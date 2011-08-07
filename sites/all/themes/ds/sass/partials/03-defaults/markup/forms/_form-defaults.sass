@@ -44,6 +44,14 @@ label
     width: 100%
     height: $base-line-height / $s-1 * 0.9em
 
+.ie7
+  .region-sidebar-first
+    input
+      &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+      &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+      &[type=number], &[type=range], &[type=search], &[type=color]
+        height: auto
+
 .textinput-thin
   width: calc-em(251px, $s0)
   // width: 251px

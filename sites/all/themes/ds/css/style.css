@@ -1748,6 +1748,10 @@ label {
   height: 1.964em;
 }
 
+.ie7 .region-sidebar-first input[type=text], .ie7 .region-sidebar-first input[type=password], .ie7 .region-sidebar-first input[type=email], .ie7 .region-sidebar-first input[type=url], .ie7 .region-sidebar-first input[type=tel], .ie7 .region-sidebar-first input[type=date], .ie7 .region-sidebar-first input[type=datetime], .ie7 .region-sidebar-first input[type=datetime-local], .ie7 .region-sidebar-first input[type=month], .ie7 .region-sidebar-first input[type=week], .ie7 .region-sidebar-first input[type=time], .ie7 .region-sidebar-first input[type=number], .ie7 .region-sidebar-first input[type=range], .ie7 .region-sidebar-first input[type=search], .ie7 .region-sidebar-first input[type=color] {
+  height: auto;
+}
+
 .textinput-thin, #ds-wide-thin .panes-2 .panel-second input[type=text], #ds-wide-thin .panes-2 .panel-second input[type=password], #ds-wide-thin .panes-2 .panel-second input[type=email], #ds-wide-thin .panes-2 .panel-second input[type=url], #ds-wide-thin .panes-2 .panel-second input[type=tel], #ds-wide-thin .panes-2 .panel-second input[type=date], #ds-wide-thin .panes-2 .panel-second input[type=datetime], #ds-wide-thin .panes-2 .panel-second input[type=datetime-local], #ds-wide-thin .panes-2 .panel-second input[type=month], #ds-wide-thin .panes-2 .panel-second input[type=week], #ds-wide-thin .panes-2 .panel-second input[type=time], #ds-wide-thin .panes-2 .panel-second input[type=number], #ds-wide-thin .panes-2 .panel-second input[type=range], #ds-wide-thin .panes-2 .panel-second input[type=search], #ds-wide-thin .panes-2 .panel-second input[type=color], #ds-wide-thin .panes-2 .panel-second select {
   width: 20.917em;
 }
