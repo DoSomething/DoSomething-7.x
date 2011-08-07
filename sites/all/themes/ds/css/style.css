@@ -1967,6 +1967,9 @@ body.one-sidebar.sidebar-first [role=main] {
   width: 77.838%;
   float: right;
 }
+.ie7 body.one-sidebar.sidebar-first [role=main] {
+  width: 77%;
+}
 body.node-type-project [role=main] .main-inner {
   float: left;
   width: 73.194%;
