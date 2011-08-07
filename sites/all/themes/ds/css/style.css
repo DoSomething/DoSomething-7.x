@@ -2785,6 +2785,8 @@ nav[role=navigation] {
   text-transform: uppercase;
   position: relative;
   background-color: #005ba9;
+}
+.ie8 nav[role=navigation], .ie7 nav[role=navigation] {
   width: 925px;
 }
 nav[role=navigation] a {
@@ -2875,9 +2877,6 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 #main-menu {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
-  text-transform: uppercase;
-  position: relative;
-  background-color: #005ba9;
   font-size: 26px;
   font-weight: 500;
   display: table-row;
