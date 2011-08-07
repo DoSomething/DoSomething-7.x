@@ -27,6 +27,7 @@
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  background-color: #521d5f;
   background-color: rgba(82, 29, 95, 0.7);
   color: white;
   left: 0;
@@ -94,6 +95,7 @@
 }
 .rotoslider .rotoslider-nav li a {
   display: block;
+  background-color: black;
   background-color: rgba(0, 0, 0, 0.6);
   border-bottom-width: 0;
   color: #999999;
@@ -102,10 +104,12 @@
   text-decoration: none;
 }
 .rotoslider .rotoslider-nav li a:hover {
+  background-color: black;
   background-color: rgba(0, 0, 0, 0.4);
   color: #cccccc;
 }
 .rotoslider .rotoslider-nav li a.active {
+  background-color: black;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
 }

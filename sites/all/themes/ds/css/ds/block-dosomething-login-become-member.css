@@ -96,8 +96,14 @@
 }
 
 .left-block-expando-h2, .logged-in #block-dosomething-login-become-member h2.my-somethings, .logged-in #block-dosomething-login-become-member h2.notifications {
-  border-top: 0.056em solid rgba(76, 76, 76, 0.6);
-  border-bottom: 0.056em solid rgba(76, 76, 76, 0.6);
+  border-top-width: 0.056em;
+  border-top-style: solid;
+  border-top-color: #4c4c4c;
+  border-top-color: rgba(76, 76, 76, 0.6);
+  border-bottom-width: 0.056em;
+  border-bottom-style: solid;
+  border-bottom-color: #4c4c4c;
+  border-bottom-color: rgba(76, 76, 76, 0.6);
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #403f3d), color-stop(100%, #5f5c58));
   background-image: -webkit-linear-gradient(bottom, #403f3d, #5f5c58);
   background-image: -moz-linear-gradient(bottom, #403f3d, #5f5c58);
@@ -112,8 +118,14 @@
   margin-right: -10.286%;
 }
 .left-block-expando-h2 .inner, .logged-in #block-dosomething-login-become-member h2.my-somethings .inner, .logged-in #block-dosomething-login-become-member h2.notifications .inner {
-  border-top: 0.056em solid rgba(118, 115, 112, 0.6);
-  border-bottom: 0.056em solid rgba(118, 115, 112, 0.6);
+  border-top-width: 0.056em;
+  border-top-style: solid;
+  border-top-color: #767370;
+  border-top-color: rgba(118, 115, 112, 0.6);
+  border-bottom-width: 0.056em;
+  border-bottom-style: solid;
+  border-bottom-color: #767370;
+  border-bottom-color: rgba(118, 115, 112, 0.6);
   padding-left: 6.857%;
   padding-right: 10.286%;
   background: url('../images/btn-leftsidebar-feeds-plus.png') no-repeat 171px center;
@@ -345,7 +357,10 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
   -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-color: rgba(0, 0, 0, 0.5);
   padding: 0 3px;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage .ratio {

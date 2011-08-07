@@ -5,15 +5,31 @@
 // --------------------------------------------------------------------------------------
 
 .left-block-expando-h2
-  border-top: calc-em(1px, $s2) solid rgba($c-thin-line-dark, 0.6)
-  border-bottom: calc-em(1px, $s2) solid rgba($c-thin-line-dark, 0.6)
+  border-top:
+    width: calc-em(1px, $s2)
+    style: solid
+    color: $c-thin-line-dark
+    color: rgba($c-thin-line-dark, 0.6)
+  border-bottom:
+    width:  calc-em(1px, $s2)
+    style: solid
+    color: $c-thin-line-dark
+    color: rgba($c-thin-line-dark, 0.6)
   +background-image(linear-gradient(bottom, #403f3d, #5f5c58))
   +box-shadow(rgba($black, 0.5) 0 0 4px inset)
   margin-left: -(percentage($s0 / $left-col-width-inner))
   margin-right: -(percentage($s2 / $left-col-width-inner))
   .inner
-    border-top: calc-em(1px, $s2) solid rgba($c-thin-line-light, 0.6)
-    border-bottom: calc-em(1px, $s2) solid rgba($c-thin-line-light, 0.6)
+    border-top: 
+      width:  calc-em(1px, $s2) 
+      style: solid 
+      color: $c-thin-line-light
+      color: rgba($c-thin-line-light, 0.6)
+    border-bottom: 
+      width:  calc-em(1px, $s2) 
+      style: solid 
+      color: $c-thin-line-light
+      color: rgba($c-thin-line-light, 0.6)
     padding-left: (percentage($s0 / $left-col-width-inner))
     padding-right: (percentage($s2 / $left-col-width-inner))
     +background(image_url("btn-leftsidebar-feeds-plus.png") no-repeat 171px center)
@@ -174,7 +190,11 @@
         height: image_height("profile-percentage-icon.png") + 6
         +border-radius(2px)
         +box-shadow(rgba($black, 0.5) 0 0 4px inset)
-        border: 1px solid rgba($black, 0.5)
+        border: 
+          width: 1px 
+          style: solid 
+          color: $black
+          color: rgba($black, 0.5)
         padding: 0 3px
         .ratio
           width: $left-col-width-inner - image_width("profile-percentage-icon.png") - 6px

@@ -571,7 +571,10 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: content-box;
   padding: 0 10px;
   height: 22px;
-  border: 1px solid rgba(52, 52, 52, 0.5);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #343434;
+  border-color: rgba(52, 52, 52, 0.5);
   border-bottom-color: #343434;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -600,7 +603,11 @@ h1, h2, h3, h4, h5, h6 {
   background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
   background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
   background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  border: 1px solid rgba(34, 34, 34, 0.3);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #222222;
+  border-color: rgba(34, 34, 34, 0.3);
+  border-bottom-color: #222222;
   border-bottom-color: rgba(34, 34, 34, 0.6);
 }
 
@@ -994,6 +1001,7 @@ sub {
 
 mark {
   background: red;
+  background-color: #ffd203;
   background-color: rgba(255, 210, 3, 0.5);
   text-shadow: none;
 }
@@ -1728,6 +1736,7 @@ label {
   width: 22.333em;
   max-width: 100%;
   margin-top: 0;
+  border-color: #161616;
   border-color: rgba(22, 22, 22, 0.25);
   height: 2.083em;
   -moz-border-radius: 6px;

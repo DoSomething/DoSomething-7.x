@@ -188,6 +188,7 @@
 
 .ui-dialog {
   padding: 10px;
+  background: black;
   background: rgba(0, 0, 0, 0.5);
   border: 0;
   -moz-border-radius: 5px;
