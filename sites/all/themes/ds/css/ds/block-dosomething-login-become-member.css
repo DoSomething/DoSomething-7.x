@@ -231,6 +231,11 @@
 #block-dosomething-login-become-member input[type='submit'] {
   margin-bottom: 0.353em;
 }
+.ie7 #block-dosomething-login-become-member input[type='submit'] {
+  margin-top: 27px;
+  margin-left: -5em;
+  line-height: 1em;
+}
 #block-dosomething-login-become-member hr {
   clear: both;
   margin: 0;
