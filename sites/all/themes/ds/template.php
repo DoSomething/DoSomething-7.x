@@ -8,8 +8,8 @@ function ds_preprocess_html(&$variables, $hook) {
   $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
   $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
   $variables['selectivizr'] .= '<![endif]-->';
-  // mootools-core-1.4.1-full-nocompat-yc.js
-  // selectivizr-1.0.2/selectivizr-min.js
+  // HTML5 Shiv
+  $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
 }
 
 function ds_preprocess_panels_pane(&$variables) {
@@ -74,7 +74,7 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'webform-submission') {
     drupal_add_css($theme_path . '/css/ds/dosomething-projects.css');
   }
-  
+
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
   if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && $arg0 !== 'admin') {
     // Add additional css class to 'Talk to Us' footer menu item.

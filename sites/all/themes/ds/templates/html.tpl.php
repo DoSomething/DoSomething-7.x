@@ -62,6 +62,7 @@
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <?php print $selectivizr; ?>
+  <?php print $shiv; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="skip-link">
