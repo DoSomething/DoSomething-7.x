@@ -9,6 +9,8 @@
     position: 100% 14%
   line-height: 0
   margin-left: $left-col-width
+  .ie7 &
+    line-height: 1
   .utility-items
     +inline-block
     a
@@ -16,6 +18,10 @@
   .here-to-help
     +inline-block
     margin-bottom: 0.75em
+    .ie7 &
+      margin-bottom: 25px
+      position: relative
+      top: -24px
   .connect-icons li
     +inline-block
     margin-bottom: 14px
@@ -25,6 +31,13 @@
     margin: 0 0 6px 14px
     .ie9 &
       margin-left: 20px
+    .ie8 &, .ie7 &
+      margin-left: 36px
+      height: 36px
+      vertical-align: top
+    .ie7 &
+      position: relative
+      top: -4px
     input[type="search"]
       +single-box-shadow($black-not, 0, 0, 4px, 2px, inset)
       background:
@@ -38,12 +51,20 @@
       height: 22px
       padding: 4px
       text-transform: lowercase
-      .ie8 &
-        // outline: 1px dashed red
+      .ie8 &, .ie7 &
         width: 120px
         position: relative
         top: 12px
         float: left
+      .ie7 &
+        height: 18px
+        width: 121px
+    .ie7 & input[type="text"]
+      height: 18px
+      width: 121px
+      position: relative
+      top: 12px
+      float: left
     input[type="search"]::-webkit-search-cancel-button
       -webkit-appearance: none
     textarea, input:not([type="submit"])
@@ -56,18 +77,27 @@
         margin-bottom: 11px
         padding: 4px 0
         width: 48px
-        .ie8 &
-          // outline: 1px dashed pink
+        .ie8 &, .ie7 &
           float: left
           position: relative
-          top: -22px
-          margin-left: 8em
           width: 2em
-          height: 1em
+          line-height: 1em
+        .ie8 &
+          top: -22px
+          height: 12px
+          margin-left: 8em
+        .ie7 &
+          top: 14px
+          height: 28px
+          margin-left: 1em
   .form-item-search-block-form
     margin-left: 1.5em
   .login
     margin-bottom: 17px
+    .ie7 &
+      margin-bottom: 25px
+      position: relative
+      top: -24px
     a
       color: $white
       font-size: 12px
@@ -75,6 +105,10 @@
   .utility-items.fbconnect
     +float-right
     margin: 1em 8px 1em 0
+    .ie7 &
+      position: absolute
+      top: 5px
+      right: 0
 
 .ui-dialog
   padding: 10px

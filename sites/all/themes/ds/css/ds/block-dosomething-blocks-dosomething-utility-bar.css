@@ -24,6 +24,9 @@
   line-height: 0;
   margin-left: 205px;
 }
+.ie7 #block-dosomething-blocks-dosomething-utility-bar {
+  line-height: 1;
+}
 #block-dosomething-blocks-dosomething-utility-bar .utility-items {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -51,6 +54,11 @@
 #block-dosomething-blocks-dosomething-utility-bar .here-to-help {
   *display: inline;
 }
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .here-to-help {
+  margin-bottom: 25px;
+  position: relative;
+  top: -24px;
+}
 #block-dosomething-blocks-dosomething-utility-bar .connect-icons li {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -77,6 +85,15 @@
 .ie9 #block-dosomething-blocks-dosomething-utility-bar .search {
   margin-left: 20px;
 }
+.ie8 #block-dosomething-blocks-dosomething-utility-bar .search, .ie7 #block-dosomething-blocks-dosomething-utility-bar .search {
+  margin-left: 36px;
+  height: 36px;
+  vertical-align: top;
+}
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .search {
+  position: relative;
+  top: -4px;
+}
 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
   -moz-box-shadow: inset 0 0 4px 2px #161616;
   -webkit-box-shadow: inset 0 0 4px 2px #161616;
@@ -93,8 +110,19 @@
   padding: 4px;
   text-transform: lowercase;
 }
-.ie8 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
+.ie8 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .ie7 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
   width: 120px;
+  position: relative;
+  top: 12px;
+  float: left;
+}
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
+  height: 18px;
+  width: 121px;
+}
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .search input[type="text"] {
+  height: 18px;
+  width: 121px;
   position: relative;
   top: 12px;
   float: left;
@@ -115,19 +143,32 @@
   padding: 4px 0;
   width: 48px;
 }
-.ie8 #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
+.ie8 #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"], .ie7 #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
   float: left;
   position: relative;
-  top: -22px;
-  margin-left: 8em;
   width: 2em;
-  height: 1em;
+  line-height: 1em;
+}
+.ie8 #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
+  top: -22px;
+  height: 12px;
+  margin-left: 8em;
+}
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
+  top: 14px;
+  height: 28px;
+  margin-left: 1em;
 }
 #block-dosomething-blocks-dosomething-utility-bar .form-item-search-block-form {
   margin-left: 1.5em;
 }
 #block-dosomething-blocks-dosomething-utility-bar .login {
   margin-bottom: 17px;
+}
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .login {
+  margin-bottom: 25px;
+  position: relative;
+  top: -24px;
 }
 #block-dosomething-blocks-dosomething-utility-bar .login a {
   color: white;
@@ -138,6 +179,11 @@
   display: inline;
   float: right;
   margin: 1em 8px 1em 0;
+}
+.ie7 #block-dosomething-blocks-dosomething-utility-bar .utility-items.fbconnect {
+  position: absolute;
+  top: 5px;
+  right: 0;
 }
 
 .ui-dialog {
