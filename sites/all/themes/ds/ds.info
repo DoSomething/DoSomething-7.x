@@ -1,5 +1,5 @@
 name = Do Something 
-description = A theme meant for use while designing "in the browser" and for writing customized CSS using the Sass CSS preprocessor. See <a href="http://thecodingdesigner.com">thecodingdesigner.com</a> for more information. 
+description = A theme for DoSomething.org
 package = The Coding Designer's Survival Kit 
 version = 1.0-dev
 core = 7.x

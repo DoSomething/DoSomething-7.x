@@ -1,0 +1,24 @@
+// Set up the layout for your site using your chosen grid framework
+/* LAYOUT --------------------------------------------------------------
+
+.container
+  width: 95%
+  max-width: $page-width
+  margin: 0 auto
+
+[role=main]
+  body.one-sidebar.sidebar-first &
+    width: percentage($main-width / $page-width)
+    float: right
+  body.node-type-project &
+    .main-inner
+      float: left
+      width: percentage($main-inner / $main-width)
+    .main-interior-sidebar
+      width: percentage($main-interior-sidebar / $main-width)
+      float: right
+
+.region-sidebar-first
+  width: percentage($left-col-width / $page-width)
+  float: left
+
