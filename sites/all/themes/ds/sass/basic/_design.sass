@@ -43,13 +43,15 @@
 
 // GUIDE IMAGE - NOT FOR PRODUCITON
 body
-  background: rgba($black, 0) image_url("guide-pages/04-DSM_Project.png") scroll no-repeat top center
+  // background: rgba($black, 0) image_url("guide-pages/04-DSM_Project.png") scroll no-repeat center top
+  &.admin-menu
+    background-position: center 29px
 
 
 #utility-bar
   background-color: $c-utility-bar-bg
   color: $white
-  height: $menu-height / $base-font-size + em
+  height: calc-em($menu-height, $base-font-size)
   line-height: $menu-height / $base-font-size
   +box-sizing(border-box)
   .utility-block
@@ -59,6 +61,7 @@ body
   position: absolute
   top: -33px
   left: -17px
+  z-index: 1
   a
     +replace-text-with-dimensions("ds-logo.png")
     display: block
@@ -69,7 +72,7 @@ nav[role=navigation]
   text-transform: uppercase
   font-family: $font-headline
   text-rendering: optimizeLegibility
-  margin-bottom: 5px
+  margin-bottom: calc-em(5px, $s0)
   .primary
     background-color: $c-menu-primary-bg
     padding-left: percentage($left-col-width / $page-width)
@@ -82,18 +85,18 @@ nav[role=navigation]
   #main-menu
     +adjust-font-size-to($s4)
     font-weight: 500
-    min-height: $menu-height / $s4 + em
-    padding-right: 3px / $s4 + em
+    min-height: calc-em($menu-height, $s4)
+    padding-right: calc-em(3px, $s4)
     padding-left: 0
     display: table-row
     li
       display: table-cell
       a
-        margin-right: 5px / $s4 + em
-        padding-top: 10px / $s4 + em
+        margin-right: calc-em(5px, $s4)
+        padding-top: calc-em(10px, $s4)
         line-height: ($menu-height - 10px) / $s4
-        padding-left: 6px / $s4 + em
-        padding-right: 6px / $s4 + em
+        padding-left: calc-em(6px, $s4)
+        padding-right: calc-em(6px, $s4)
       &.last
         a
           margin-right: 0
@@ -104,20 +107,21 @@ nav[role=navigation]
             image: image_url("sprites/arrow-down.png")
             repeat: no-repeat
             position: center -3px
-          border-top: 2px solid $white
+          border-top: (calc-em(2px, $s4)) solid $white
+          padding-top: calc-em(8px, $s4)
   #secondary-menu
     +adjust-font-size-to($s2)
     font-weight: 500
-    min-height: $submenu-height / $s2 + em
+    min-height: calc-em($submenu-height, $s2)
     line-height: $submenu-height / $s2
     +horizontal-list(0.5em)
-    padding-left: 22px
+    padding-left: calc-em(22px, $s2)
     &.active
       a
         color: $white
   a
     display: block
-    +link-colors($c-menu-primary-text, $blue, $blue, $c-menu-primary-text, false)
+    +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
     +remove-link-underlines
     
     
@@ -129,8 +133,28 @@ div[role=main]
   
 #breadcrumb
   +adjust-font-size-to($s-1)
+  i
+    margin: 0 0.75em
+  b
+    color: $blue
   a
-    +link-colors($blue-light, $white, $white, $blue-light, false)
+    +link-colors($gray-dark, $blue, $blue, $gray-dark, false)
     +remove-link-underlines    
     
-    
+.region-sidebar-first
+  .block
+    padding: 0 $s1
+    &:first-of-type
+      background-color: $c-become-member
+      background-color: rgba($c-become-member, 0.5)
+      margin-top: -(calc-em(45px, $s0))
+      padding-top: calc-em(92px + $kit-baseline, $s0)
+      h2
+        background-color: $c-callouts
+        margin-left: -(calc-em($s1, $s3))
+        margin-right: -(calc-em($s1, $s3))
+        text-align: center
+  
+  
+  
+  

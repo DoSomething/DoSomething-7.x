@@ -1,15 +1,11 @@
 // Set up the layout for your site using your chosen grid framework
 /* LAYOUT --------------------------------------------------------------
 
-.container
-  width: 95%
-  max-width: $page-width
-  margin: 0 auto
-  position: relative
+
 
 // DON'T LEAVE THIS IN PRODUCTION  
 .wireframe
-  $wf-color: $red
+  $wf-color: $black
   outline: 1px dashed $wf-color
   > *
     outline: 1px dashed adjust-hue($wf-color, 30deg)
@@ -18,6 +14,15 @@
       > *
         outline: 1px dashed adjust-hue($wf-color, 90deg)
 
+
+.container
+  width: 95%
+  max-width: $page-width
+  margin: 0 auto
+  position: relative
+  // @extend .wireframe
+          
+          
 [role=main]
   body.one-sidebar.sidebar-first &
     width: percentage($main-width / $page-width)

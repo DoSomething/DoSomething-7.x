@@ -327,6 +327,88 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
 }
 
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.italic, address, em, cite, q, dfn, i {
+  font-style: italic;
+}
+
+.bold, strong, dfn, b {
+  font-weight: bold;
+}
+
+.wireframe {
+  outline: 1px dashed red;
+}
+
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans, .textinput, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono, pre, code, kbd, tt {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
 /* import font files using @font-face */
 @font-face {
   font-family: "din-web";
@@ -448,6 +530,20 @@ body {
 .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
+}
+
+.h1, h1 {
+  font-size: 2.917em;
+  line-height: 1.029em;
+  font-weight: 500;
+  margin-top: 0.286em;
+}
+
+.h2, h2 {
+  font-size: 2em;
+  line-height: 2em;
+  font-weight: 600;
+  margin-top: 0.417em;
 }
 
 p {
@@ -1202,6 +1298,19 @@ textarea, input:not([type="radio"]) {
 }
 
 /* LAYOUT -------------------------------------------------------------- */
+.wireframe {
+  outline: 1px dashed black;
+}
+.wireframe > * {
+  outline: 1px dashed black;
+}
+.wireframe > * > * {
+  outline: 1px dashed black;
+}
+.wireframe > * > * > * {
+  outline: 1px dashed black;
+}
+
 .container {
   width: 95%;
   max-width: 925px;
@@ -1209,40 +1318,27 @@ textarea, input:not([type="radio"]) {
   position: relative;
 }
 
-.wireframe {
-  outline: 1px dashed red;
-}
-.wireframe > * {
-  outline: 1px dashed #ff8000;
-}
-.wireframe > * > * {
-  outline: 1px dashed yellow;
-}
-.wireframe > * > * > * {
-  outline: 1px dashed #80ff00;
-}
-
 body.one-sidebar.sidebar-first [role=main] {
-  width: 77.946%;
+  width: 77.892%;
   float: right;
 }
 body.node-type-project [role=main] .main-inner {
   float: left;
-  width: 73.093%;
+  width: 73.144%;
 }
 body.node-type-project [role=main] .main-interior-sidebar {
-  width: 26.075%;
+  width: 26.093%;
   float: right;
 }
 
 .region-sidebar-first {
-  width: 22.054%;
+  width: 22.216%;
   float: left;
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
-body {
-  background: rgba(0, 0, 0, 0) url('images/guide-pages/04-DSM_Project.png?1313309027') scroll no-repeat top center;
+body.admin-menu {
+  background-position: center 29px;
 }
 
 #utility-bar {
@@ -1256,13 +1352,14 @@ body {
   box-sizing: border-box;
 }
 #utility-bar .utility-block {
-  padding-left: 22.054%;
+  padding-left: 22.216%;
 }
 
 #site-name {
   position: absolute;
   top: -33px;
   left: -17px;
+  z-index: 1;
 }
 #site-name a {
   text-indent: -119988px;
@@ -1286,18 +1383,18 @@ nav[role=navigation] {
   text-transform: uppercase;
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
-  margin-bottom: 5px;
+  margin-bottom: 0.417em;
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
-  padding-left: 22.054%;
+  padding-left: 22.216%;
   display: table;
   width: 100%;
 }
 nav[role=navigation] .secondary {
   background-color: #014e9c;
-  margin-left: 22.054%;
-  width: 77.946%;
+  margin-left: 22.216%;
+  width: 77.892%;
 }
 nav[role=navigation] #main-menu {
   font-size: 2.417em;
@@ -1323,10 +1420,11 @@ nav[role=navigation] #main-menu li.last a {
 }
 nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a {
   background-color: #014e9c;
-  background-image: url('images/sprites/arrow-down.png?1313312860');
+  background-image: url('images/sprites/arrow-down.png?1313314258');
   background-repeat: no-repeat;
   background-position: center -3px;
-  border-top: 2px solid white;
+  border-top: 0.069em solid white;
+  padding-top: 0.276em;
 }
 nav[role=navigation] #secondary-menu {
   font-size: 1.5em;
@@ -1339,7 +1437,7 @@ nav[role=navigation] #secondary-menu {
   border: 0;
   overflow: hidden;
   *zoom: 1;
-  padding-left: 22px;
+  padding-left: 1.222em;
 }
 nav[role=navigation] #secondary-menu li {
   list-style-image: none;
@@ -1371,10 +1469,10 @@ nav[role=navigation] a:visited {
   color: #2c85d0;
 }
 nav[role=navigation] a:hover {
-  color: #014e9c;
+  color: white;
 }
 nav[role=navigation] a:active {
-  color: #014e9c;
+  color: white;
 }
 nav[role=navigation] a {
   border-bottom: none;
@@ -1397,21 +1495,43 @@ div[role=main] {
   font-size: 0.917em;
   line-height: 2.182em;
 }
+#breadcrumb i {
+  margin: 0 0.75em;
+}
+#breadcrumb b {
+  color: #014e9c;
+}
 #breadcrumb a {
-  color: #005ba9;
+  color: #222222;
 }
 #breadcrumb a:visited {
-  color: #005ba9;
+  color: #222222;
 }
 #breadcrumb a:hover {
-  color: white;
+  color: #014e9c;
 }
 #breadcrumb a:active {
-  color: white;
+  color: #014e9c;
 }
 #breadcrumb a {
   border-bottom: none;
 }
 #breadcrumb a:hover {
   border-bottom: none;
+}
+
+.region-sidebar-first .block {
+  padding: 0 14px;
+}
+.region-sidebar-first .block:first-of-type {
+  background-color: #5f5c58;
+  background-color: rgba(95, 92, 88, 0.5);
+  margin-top: -3.75em;
+  padding-top: 9.167em;
+}
+.region-sidebar-first .block:first-of-type h2 {
+  background-color: #fed103;
+  margin-left: -0.583em;
+  margin-right: -0.583em;
+  text-align: center;
 }

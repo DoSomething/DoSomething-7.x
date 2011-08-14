@@ -7,9 +7,13 @@
   text-rendering: optimizeLegibility
 
 .h1
-  // +adjust-font-size-to(ms(6))
+  +adjust-font-size-to($s5, 1.5)
+  font-weight: 500
+  margin-top: calc-em(10px, $s5)
 .h2
-  // +adjust-font-size-to(ms(5))
+  +adjust-font-size-to($s3)
+  font-weight: 600
+  margin-top: calc-em(10px, $s3)
 .h3
   // +adjust-font-size-to(ms(4))
 .h4
