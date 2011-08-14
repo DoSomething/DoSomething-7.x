@@ -329,14 +329,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* import font files using @font-face */
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondLight.eot');
   src: url('type/DINWeb-CondLight.eot?iefix') format('eot'), url('type/DINWeb-CondLight.woff') format('woff');
   font-weight: 200;
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondLightIta.eot');
   src: url('type/DINWeb-CondLightIta.eot?iefix') format('eot'), url('type/DINWeb-CondLightIta.woff') format('woff');
   font-style: italic;
@@ -344,14 +344,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-Cond.eot');
   src: url('type/DINWeb-Cond.eot?iefix') format('eot'), url('type/DINWeb-Cond.woff') format('woff');
   font-weight: false;
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondIta.eot');
   src: url('type/DINWeb-CondIta.eot?iefix') format('eot'), url('type/DINWeb-CondIta.woff') format('woff');
   font-style: italic;
@@ -359,14 +359,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondMedium.eot');
   src: url('type/DINWeb-CondMedium.eot?iefix') format('eot'), url('type/DINWeb-CondMedium.woff') format('woff');
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondMediumIta.eot');
   src: url('type/DINWeb-CondMediumIta.eot?iefix') format('eot'), url('type/DINWeb-CondMediumIta.woff') format('woff');
   font-style: italic;
@@ -374,14 +374,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondBold.eot');
   src: url('type/DINWeb-CondBold.eot?iefix') format('eot'), url('type/DINWeb-CondBold.woff') format('woff');
   font-weight: 600;
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondBoldIta.eot');
   src: url('type/DINWeb-CondBoldIta.eot?iefix') format('eot'), url('type/DINWeb-CondBoldIta.woff') format('woff');
   font-style: italic;
@@ -389,14 +389,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondBlack.eot');
   src: url('type/DINWeb-CondBlack.eot?iefix') format('eot'), url('type/DINWeb-CondBlack.woff') format('woff');
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "din";
+  font-family: "din-web";
   src: url('type/DINWeb-CondBlackIta.eot');
   src: url('type/DINWeb-CondBlackIta.eot?iefix') format('eot'), url('type/DINWeb-CondBlackIta.woff') format('woff');
   font-weight: 700;
@@ -462,14 +462,14 @@ pre {
 }
 
 blockquote {
-  margin: 2em 31.415px;
+  margin: 2em 12px;
   font-style: italic;
   font-weight: 300;
 }
 
 /* Lists -------------------------------------------------------------- */
 ol, ul {
-  padding-left: 31.415px;
+  padding-left: 12px;
 }
 
 dl {
@@ -497,7 +497,7 @@ dt:first-of-type {
 }
 
 dd {
-  padding-left: 31.415px;
+  padding-left: 12px;
 }
 
 /* Links -------------------------------------------------------------- */
@@ -587,11 +587,11 @@ img {
 }
 img.left {
   float: left;
-  margin: 9px 31.415px 9px 0;
+  margin: 9px 12px 9px 0;
 }
 img.right {
   float: right;
-  margin: 9px 0 9px 31.415px;
+  margin: 9px 0 9px 12px;
 }
 
 /* Tables -------------------------------------------------------------- */
@@ -1161,7 +1161,7 @@ label {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  width: 1881.415px;
+  width: 1862px;
   max-width: 100%;
   margin-top: 0;
   border-color: #161616;
@@ -1189,7 +1189,7 @@ textarea {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  width: 1881.415px;
+  width: 1862px;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -1206,6 +1206,20 @@ textarea, input:not([type="radio"]) {
   width: 95%;
   max-width: 925px;
   margin: 0 auto;
+  position: relative;
+}
+
+.wireframe {
+  outline: 1px dashed red;
+}
+.wireframe > * {
+  outline: 1px dashed #ff8000;
+}
+.wireframe > * > * {
+  outline: 1px dashed yellow;
+}
+.wireframe > * > * > * {
+  outline: 1px dashed #80ff00;
 }
 
 body.one-sidebar.sidebar-first [role=main] {
@@ -1227,6 +1241,10 @@ body.node-type-project [role=main] .main-interior-sidebar {
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
+body {
+  background: rgba(0, 0, 0, 0) url('images/guide-pages/04-DSM_Project.png?1313309027') scroll no-repeat top center;
+}
+
 #utility-bar {
   background-color: #343434;
   color: white;
@@ -1236,14 +1254,21 @@ body.node-type-project [role=main] .main-interior-sidebar {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  padding-left: 21.622%;
+}
+#utility-bar .utility-block {
+  padding-left: 22.054%;
 }
 
+#site-name {
+  position: absolute;
+  top: -33px;
+  left: -17px;
+}
 #site-name a {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('images/ds-logo.png?1313280571');
+  background-image: url('images/ds-logo.png?1313285852');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 189px;
@@ -1257,7 +1282,136 @@ body.node-type-project [role=main] .main-interior-sidebar {
   border-bottom: none;
 }
 
-nav {
-  font-family: din, "Trebuchet MS", sans-serif;
-  font-size: 29px;
+nav[role=navigation] {
+  text-transform: uppercase;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  margin-bottom: 5px;
+}
+nav[role=navigation] .primary {
+  background-color: #005ba9;
+  padding-left: 22.054%;
+  display: table;
+  width: 100%;
+}
+nav[role=navigation] .secondary {
+  background-color: #014e9c;
+  margin-left: 22.054%;
+  width: 77.946%;
+}
+nav[role=navigation] #main-menu {
+  font-size: 2.417em;
+  line-height: 1.655em;
+  font-weight: 500;
+  min-height: 1.517em;
+  padding-right: 0.103em;
+  padding-left: 0;
+  display: table-row;
+}
+nav[role=navigation] #main-menu li {
+  display: table-cell;
+}
+nav[role=navigation] #main-menu li a {
+  margin-right: 0.172em;
+  padding-top: 0.345em;
+  line-height: 1.172;
+  padding-left: 0.207em;
+  padding-right: 0.207em;
+}
+nav[role=navigation] #main-menu li.last a {
+  margin-right: 0;
+}
+nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a {
+  background-color: #014e9c;
+  background-image: url('images/sprites/arrow-down.png?1313312860');
+  background-repeat: no-repeat;
+  background-position: center -3px;
+  border-top: 2px solid white;
+}
+nav[role=navigation] #secondary-menu {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 500;
+  min-height: 2.222em;
+  line-height: 2.222;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+  padding-left: 22px;
+}
+nav[role=navigation] #secondary-menu li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+nav[role=navigation] #secondary-menu li:first-child, nav[role=navigation] #secondary-menu li.first {
+  padding-left: 0;
+}
+nav[role=navigation] #secondary-menu li:last-child {
+  padding-right: 0;
+}
+nav[role=navigation] #secondary-menu li.last {
+  padding-right: 0;
+}
+nav[role=navigation] #secondary-menu.active a {
+  color: white;
+}
+nav[role=navigation] a {
+  display: block;
+  color: #2c85d0;
+}
+nav[role=navigation] a:visited {
+  color: #2c85d0;
+}
+nav[role=navigation] a:hover {
+  color: #014e9c;
+}
+nav[role=navigation] a:active {
+  color: #014e9c;
+}
+nav[role=navigation] a {
+  border-bottom: none;
+}
+nav[role=navigation] a:hover {
+  border-bottom: none;
+}
+
+div[role=main] {
+  background-color: #e3e3e3;
+  background-color: rgba(227, 227, 227, 0.5);
+  padding-left: 12px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#breadcrumb {
+  font-size: 0.917em;
+  line-height: 2.182em;
+}
+#breadcrumb a {
+  color: #005ba9;
+}
+#breadcrumb a:visited {
+  color: #005ba9;
+}
+#breadcrumb a:hover {
+  color: white;
+}
+#breadcrumb a:active {
+  color: white;
+}
+#breadcrumb a {
+  border-bottom: none;
+}
+#breadcrumb a:hover {
+  border-bottom: none;
 }

@@ -13,23 +13,124 @@
 // $c-callouts: $yellow
 // $c-callouts-secondary: $purple
 
+// // TEXT SIZES FROM DESIGN
+// // 10px // sidebar twitter
+// // 11px // breadcrumbs, right sidebar
+// // 12px
+// // 14px // callout subhead, 
+// // 18px // submenu, h3
+// // 24px // h2, 
+// // 29px // menu, 
+// // 35px // h1, 
+// 
+// $s-2: 10px
+// $s-1: 11px
+// $s0: $base-size
+// $s1: 14px
+// $s2: 18px
+// $s3: 24px
+// $s4: 29px
+// $s5: 35px
+
+
+// // Custom Grid
+// $main-width: 721px
+// $left-col-width: 204px
+// $main-inner: 527px
+// $main-interior-sidebar: 188px
+// $menu-height: 44px
+
+
+// GUIDE IMAGE - NOT FOR PRODUCITON
+body
+  background: rgba($black, 0) image_url("guide-pages/04-DSM_Project.png") scroll no-repeat top center
+
 
 #utility-bar
   background-color: $c-utility-bar-bg
   color: $white
-  height: 44px / $base-font-size + em
-  line-height: 44px / $base-font-size
+  height: $menu-height / $base-font-size + em
+  line-height: $menu-height / $base-font-size
   +box-sizing(border-box)
-  padding-left: percentage(200px / $page-width)
+  .utility-block
+    padding-left: percentage($left-col-width / $page-width)
   
 #site-name
+  position: absolute
+  top: -33px
+  left: -17px
   a
     +replace-text-with-dimensions("ds-logo.png")
     display: block
     +remove-link-underlines
   
 
-
-nav
+nav[role=navigation]
+  text-transform: uppercase
   font-family: $font-headline
-  font-size: 29px
+  text-rendering: optimizeLegibility
+  margin-bottom: 5px
+  .primary
+    background-color: $c-menu-primary-bg
+    padding-left: percentage($left-col-width / $page-width)
+    display: table
+    width: 100%
+  .secondary
+    background-color: $c-menu-secondary-bg
+    margin-left: percentage($left-col-width / $page-width)
+    width: percentage($main-width / $page-width)
+  #main-menu
+    +adjust-font-size-to($s4)
+    font-weight: 500
+    min-height: $menu-height / $s4 + em
+    padding-right: 3px / $s4 + em
+    padding-left: 0
+    display: table-row
+    li
+      display: table-cell
+      a
+        margin-right: 5px / $s4 + em
+        padding-top: 10px / $s4 + em
+        line-height: ($menu-height - 10px) / $s4
+        padding-left: 6px / $s4 + em
+        padding-right: 6px / $s4 + em
+      &.last
+        a
+          margin-right: 0
+      &:hover, &.active
+        a
+          background:
+            color: $c-menu-secondary-bg
+            image: image_url("sprites/arrow-down.png")
+            repeat: no-repeat
+            position: center -3px
+          border-top: 2px solid $white
+  #secondary-menu
+    +adjust-font-size-to($s2)
+    font-weight: 500
+    min-height: $submenu-height / $s2 + em
+    line-height: $submenu-height / $s2
+    +horizontal-list(0.5em)
+    padding-left: 22px
+    &.active
+      a
+        color: $white
+  a
+    display: block
+    +link-colors($c-menu-primary-text, $blue, $blue, $c-menu-primary-text, false)
+    +remove-link-underlines
+    
+    
+div[role=main]
+  background-color: $c-content-bg
+  background-color: rgba($c-content-bg, 0.5)
+  padding-left: $s0
+  +box-sizing(border-box)
+  
+#breadcrumb
+  +adjust-font-size-to($s-1)
+  a
+    +link-colors($blue-light, $white, $white, $blue-light, false)
+    +remove-link-underlines    
+    
+    

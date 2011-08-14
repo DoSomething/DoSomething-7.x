@@ -5,6 +5,18 @@
   width: 95%
   max-width: $page-width
   margin: 0 auto
+  position: relative
+
+// DON'T LEAVE THIS IN PRODUCTION  
+.wireframe
+  $wf-color: $red
+  outline: 1px dashed $wf-color
+  > *
+    outline: 1px dashed adjust-hue($wf-color, 30deg)
+    > *
+      outline: 1px dashed adjust-hue($wf-color, 60deg)
+      > *
+        outline: 1px dashed adjust-hue($wf-color, 90deg)
 
 [role=main]
   body.one-sidebar.sidebar-first &
