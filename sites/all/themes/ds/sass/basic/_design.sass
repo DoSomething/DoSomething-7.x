@@ -144,22 +144,49 @@ div[role=main]
 .region-sidebar-first
   .block
     padding: 0 $s1
-    &:first-of-type
-      // background-image: image_url('sprites/bg-top-left-fade.png'), image_url('sprites/bg-diag-1-2-top-left.png')
-      // background-repeat: no-repeat, repeat
-      // background-position: center bottom, 0 0
-      // background-color: $c-become-member
-      // background-color: rgba($c-become-member, 0.5)
-      +background-with-css2-fallback(image_url('sprites/bg-top-left-fade.png') no-repeat center bottom, image_url('sprites/bg-top-left-fade-top.png') no-repeat center top, image_url('sprites/bg-diag-1-2-top-left.png') repeat 0 0)
-      margin-top: -(calc-em(45px, $s0))
-      padding-top: calc-em(89px, $s0)
-      h2
-        background-color: $c-callouts
-        margin-left: -(calc-em($s1, $s3))
-        margin-right: -(calc-em($s1, $s3))
-        text-align: center
-        line-height: 1.2em
-  
+
+
+#block-dosomething-login-become-member
+  +background-with-css2-fallback(image_url('sprites/bg-top-left-fade.png') no-repeat center bottom, image_url('sprites/bg-top-left-fade-top.png') no-repeat center top, image_url('sprites/bg-diag-1-2-top-left.png') repeat 0 0)
+  margin-top: -(calc-em(45px, $s0))
+  padding-top: calc-em(89px, $s0)
+  h2
+    // background-color: $c-callouts
+    margin-left: -(calc-em($s1, $s3))
+    margin-right: -(calc-em($s1, $s3))
+    text-align: center
+    line-height: 1.2em
+    +replace-text-with-dimensions('sprites/cta-left-col-become-member-btn.png')
+    // position: relative
+    // &:after
+    //   position: absolute
+    //   content: ''
+    //   +replace-text-with-dimensions('sprites/arrow-down-yellow.png')
+    //   bottom: -8px
+    //   left: percentage(97px / $left-col-width)
+  .separator
+    +background(image_url("sprites/hr-dark.png") repeat-x 50% 50%)
+    &.split
+      text-align: center
+      @extend .h3
+      color: $white
+      background: none
+      position: relative
+      &:before, &:after
+        position: absolute
+        content: ''
+        top: 0
+        width: 72px
+        height: 1.3em
+        +background(image_url("sprites/hr-dark.png") repeat-x 50% 50%)
+      &:before
+        left: 0
+      &:after
+        right: 0
+
+          
+.connect-thru-facebook
+  +replace-text-with-dimensions('sprites/btn-connect-facebook.png')
   
   
   

@@ -23,16 +23,23 @@ label
   
 .textinput
   @extend .sans
-  +adjust-font-size-to(ms(0), 1)
-  +rhythm-borders(1px, 0.25, ms(0))
+  +adjust-font-size-to($s0, 1)
+  +rhythm-borders(1px, 0.25, $s0)
   border-width: 1px
   +trailer(0.5)
   +box-sizing(border-box)
-  width: ($kit-col-width * 2) + ($kit-gutter * 1)
+  // width: ($kit-col-width * 2) + ($kit-gutter * 1)
   max-width: 100%
   margin-top: 0
-  border-color: $base-color
+  border-color: rgba($base-color, 0.25)
   height: $base-line-height / ms(0) * 1.5em
+  +border-radius
+  .region-sidebar-first &
+    +adjust-font-size-to($s-1, 1)
+    line-height: 1em
+    +rhythm-borders(1px, 0.25, $s-1)
+    width: 100%
+    height: $base-line-height / $s-1 * 0.9em
   
 textarea
   @extend .textinput
