@@ -1524,14 +1524,15 @@ div[role=main] {
   padding: 0 14px;
 }
 .region-sidebar-first .block:first-of-type {
-  background-color: #5f5c58;
-  background-color: rgba(95, 92, 88, 0.5);
+  background: url('images/sprites/bg-diag-1-2-top-left.png?1313542709') repeat 0 0;
+  background: url('images/sprites/bg-top-left-fade.png?1313544889') no-repeat center bottom, url('images/sprites/bg-top-left-fade-top.png?1313544874') no-repeat center top, url('images/sprites/bg-diag-1-2-top-left.png?1313542709') repeat 0 0;
   margin-top: -3.75em;
-  padding-top: 9.167em;
+  padding-top: 7.417em;
 }
 .region-sidebar-first .block:first-of-type h2 {
   background-color: #fed103;
   margin-left: -0.583em;
   margin-right: -0.583em;
   text-align: center;
+  line-height: 1.2em;
 }
