@@ -59,7 +59,9 @@ input
 button, input[type=button], input[type=submit]
   width: auto
   overflow: visible
-  // +fancy-button($gray, ms(2))
+  // DoSomething styles
+  @extend .ds-button
+  
 
 textarea
   +box-sizing(border-box) 
@@ -72,3 +74,9 @@ input
   
 textarea, input:not([type="radio"]) 
   max-width: 100%
+  
+.region-sidebar-first
+  .form-item, .form-actions
+    height: calc-em(28px, $s-1)
+    margin-top: 0
+    margin-bottom: 0

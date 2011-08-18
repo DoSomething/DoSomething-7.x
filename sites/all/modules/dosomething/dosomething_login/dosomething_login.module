@@ -63,7 +63,7 @@ function dosomething_login_register_block($form) {
     '#size' => 20,
   );
   $form['birthday'] = array(
-    'over_13' => array('#markup' => '<h3>' . t('Over 13?') . '</h3>'),
+    'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
     'month' => array(
       '#type' => 'textfield',
       '#attributes' => array(
@@ -102,22 +102,28 @@ function dosomething_login_register_block($form) {
       'attributes' => array('class' => array('why')),
       'html' => FALSE,
     ),
-    '#prefix' => '<h3>',
-    '#suffix' => '</h3>',
+    '#prefix' => '<hr class="top"/><h3 class="why-member">',
+    '#suffix' => '</h3><hr class="bottom"/>',
   );
-  $form['already']['#markup'] = '<h3>' . t('Already a member?') . '</h3>';
+  $form['already']['#markup'] = '<h3 class="already-member">' . t('Already a member?') . '</h3>';
   $form['logins'] = array(
-    'facebook_login' => array('#markup' => l('log in', 'fbconnect/login')),
+    'facebook_login' => array('#markup' => l(
+      '<span class="fb-icon">log in</span>', 
+      'fbconnect/login', 
+      array(
+        'attributes' => array('class' => 'login facebook-login ds-button'),
+        'html' => TRUE,
+      )
+    )
+    ),
     'login' => array(
       '#theme' => 'link',
       '#path' => 'user/login',
       '#text' => t('log in'),
       '#options' => array(
-        'attributes' => array('class' => array('login')),
+        'attributes' => array('class' => array('login ds-login ds-button')),
         'html' => FALSE,
       ),
-      '#prefix' => '<h3>',
-      '#suffix' => '</h3>',
     ),
   );
   return $form;
