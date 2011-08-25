@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the dignio patient sort module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function dosomething_webform_recurring_fields_schema() {
+  $schema['ds_webform_campaign_su'] = array(
+    'description' => 'Holds data collected by recurring fields submitted to webforms on campaign sign ups',
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The webform that the data was submitted to.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'Name',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 100,
+      ),
+      'email' => array(
+        'description' => 'Email Address',
+        'type' => 'varchar',
+        'not_null' =>  TRUE,
+        'length' => '255',
+      ),
+      'school' => array(
+        'description' => 'School/Drive Name',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'mobile' => array(
+        'description' => 'mobile phone number',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '15',
+      ),
+      'zip' => array(
+        'description' => 'Zip code',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '10',
+      ),
+    ),
+  );
+  
+  $schema['ds_webform_grant_app'] = array(
+    'description' => 'Holds data collected by recurring fields submitted to webforms on grant applications',
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The webform that the data was submitted to.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),  
+      'name' => array(
+        'description' => 'Name',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 100,
+      ),  
+      'email' => array(
+        'description' => 'Email Address',
+        'type' => 'varchar',
+        'not_null' =>  TRUE,
+        'length' => '255',
+      ),  
+      'school' => array(
+        'description' => 'School/Drive Name',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),  
+      'mobile' => array(
+        'description' => 'mobile phone number',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '15',
+      ),  
+      'zip' => array(
+        'description' => 'Zip code',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '10',
+      ),  
+    ),  
+  ); 
+  
+  return $schema;
+}
