@@ -11,6 +11,9 @@
 function dosomething_webform_recurring_fields_get_fields() {
   global $user;
   $user = user_load($user->uid);
+  
+  //NB: It is probably a good idea to make all the weights negative so they 
+  // appear over the normal webform elements.
   return array(
     'campaign_sign_up' => array(
       'name' => array(
@@ -41,7 +44,7 @@ function dosomething_webform_recurring_fields_get_fields() {
         '#maxlength' => 15,
       ),
       'zip' => array(
-        '#weight' => 0,
+        '#weight' => 10,
         '#type' => 'textfield',
         '#title' => t('ZIP Code'),
         '#default_value' => $user->field_user_zip[field_language('user', $user, 'field_user_zip')][0]['safe_value'],
@@ -131,8 +134,19 @@ function dosomething_webform_recurring_fields_form_alter(&$form, &$form_state, $
       }
       $form['#submit'][] = 'dosomething_webform_submit';
     }
+    //If the form has already been submitted grab the data from the table 
+    // rather than the user object.
+    if (!empty($form['#submission'])) {
+      if ($form['#submission']->sid) {
+        $sid = $form['#submission']->sid;
+        $table_name = dosomething_recurring_fields_type_to_schema($type);
+        $sid_extras = db_query("SELECT * FROM {$table_name} WHERE sid = :sid", array(':sid' => $sid))->fetchAssoc();
+        foreach ($fields_to_add[$type] as $key => $fields) {
+          $form[$key]['#default_value'] = $sid_extras[$key];
+        }
+      }
+    }
   }
-
 }
 
 /**
@@ -163,4 +177,35 @@ function dosomething_webform_submit($form, &$form_state) {
  */
 function dosomething_webform_recurring_fields_webform_submission_insert($node, $submission) {
   $node->sid = $submission->sid;
+}
+
+
+function dosomething_webform_recurring_fields_webform_submission_render_alter(&$renderable) {
+  $magic_types = dosomething_webform_recurring_fields_get_fields();
+  if (in_array($renderable['#node']->type, array_keys($magic_types))) { 
+    //This is a special webform so add the data we have collected in our
+    // own tables.
+    
+    //get table name based on content type:
+    $table_name = dosomething_recurring_fields_type_to_schema($renderable['#node']->type);
+    $sid = $renderable['#submission']->sid; //the submission id.
+
+    //get data for this submission id from our custom tables.
+    $sid_extras = db_query("SELECT * FROM {$table_name} WHERE sid = :sid", array(':sid' => $sid))->fetchAssoc();
+    foreach ($magic_types[$renderable['#node']->type] as $field => $data) {
+      $renderable[$field] = array(
+        '#value' => '<label>' . $field . '</label>' . '<span class="webform-recurring-element">' . $sid_extras[$field] . '</span>',
+        '#theme' => 'webform_display_textfield',
+        '#title' => $field,
+        '#format' => 'markup',
+        '#field_prefix' => '',
+        '#field_suffix' => '',
+        '#weight' => $magic_types[$renderable['#node']->type][$field]['#weight'],
+      );
+    }
+  }
+}
+
+function dosomething_webform_recurring_fields_webform_submission_load(&$submissions) {
+  dpm($submissions);
 }
