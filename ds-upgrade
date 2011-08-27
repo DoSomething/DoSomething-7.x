@@ -1,0 +1,4 @@
+drush @ds6 cc all
+drush @ds6 php-eval "db_query('truncate cache_form'); db_query('drop table cache_workflow_ng'); db_query('drop table og_uid_global'); db_query('truncate search_dataset'); db_query('truncate search_index'); db_query('truncate search_node_links'); db_query('truncate search_total'); db_query('drop table users_uid_lookup');"
+drush @ds6 sql-dump > ~/ds-upgrade.sql
+drush @ds6 site-upgrade --source-dump=~/ds-upgrade.sql --db-su=root --db-su-pw=root --reuse @ds7
