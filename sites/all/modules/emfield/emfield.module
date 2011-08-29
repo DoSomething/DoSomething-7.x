@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_content_migrate_field_alter().
+ */
+function emfield_content_migrate_field_alter(&$field_value, &$instance_value) {
+  if ($field_value['module'] == 'emfield') {
+    $field_value['module'] = 'media';
+    $field_value['type'] = 'media';
+    // TODO: need to convert settings etc for this field to the D7 version.
+  }
+}
+
+/**
+ * Implements hook_content_migrate_instance_alter().
+ */
+function emfield_content_migrate_instance_alter(&$instance_value, &$field_value) {
+  if ($instance_value['widget']['module'] == 'emfield') {
+    $instance_value['widget']['module'] = 'media';
+    // TODO: need to convert settings etc to the D7 version.
+  }
+}
+
