@@ -1,92 +1,247 @@
-diff --git a/modules/content_migrate/includes/content_migrate.admin.inc b/modules/content_migrate/includes/content_migrate.admin.inc
-index b2e9925..82b0acc 100644
---- a/modules/content_migrate/includes/content_migrate.admin.inc
-+++ b/modules/content_migrate/includes/content_migrate.admin.inc
-@@ -341,87 +341,88 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
-    
-   }
+diff --git a/ds-upgrade b/ds-upgrade
+index 265e0f1..1ca3eb5 100755
+--- a/ds-upgrade
++++ b/ds-upgrade
+@@ -8,6 +8,9 @@ ROOT=`drush site-alias --component=root @ds7`
+ # drush @ds7 -y updb
+ mv ${ROOT}/sites/all/movedmodules ${ROOT}/sites/all/modules
+ drush @ds7 -y updb
+-drush @ds7 -y en admin_menu_toolbar contextual overly rdf date date_popup date_views link location nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate
++drush @ds7 vset -y theme_default bartik
++drush @ds7 vset -y admin_theme seven
++drush @ds7 -7 dis php
++drush @ds7 -y en advanced_help admin_menu_toolbar contextual overlay rdf date date_popup date_views link location nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate page_manager location_node location_user features stylizer views_content
+ drush @ds7 -y content-migrate-fields
  
+diff --git a/patches/cck-1262808.patch b/patches/cck-1262808.patch
+index 9e5d4b6..e69de29 100644
+--- a/patches/cck-1262808.patch
++++ b/patches/cck-1262808.patch
+@@ -1,162 +0,0 @@
+-diff --git a/modules/content_migrate/includes/content_migrate.admin.inc b/modules/content_migrate/includes/content_migrate.admin.inc
+-index b2e9925..82b0acc 100644
+---- a/modules/content_migrate/includes/content_migrate.admin.inc
+-+++ b/modules/content_migrate/includes/content_migrate.admin.inc
+-@@ -341,87 +341,88 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+-    
+-   }
+- 
+--  // Process one node in each batch.
+-+  // Process 1000 nodes in each batch.
+-+  for ($i = 0; $i <= 1000; $i++) {
+-+    $node = array_shift($context['sandbox']['nodes']);
+-+    if (!$node) {
+-+      return;
+-+    }
+- 
+--  $node = array_shift($context['sandbox']['nodes']);
+--  if (!$node) {
+--    return;
+--  }
+-+    $field = field_info_field($field_name);
+-+    $instance = field_info_instance('node', $field_name, $node['type']);
+- 
+--  $field = field_info_field($field_name);
+--  $instance = field_info_instance('node', $field_name, $node['type']);
+-+    // Construct an record to insert into the new field table
+-+    // from the data in the old table.
+- 
+--  // Construct an record to insert into the new field table
+--  // from the data in the old table.
+-+    $query = db_select($context['sandbox']['old_table'], 'old_table', array('fetch' => PDO::FETCH_ASSOC));
+- 
+--  $query = db_select($context['sandbox']['old_table'], 'old_table', array('fetch' => PDO::FETCH_ASSOC));
+--    
+--  // We need new columns for bundle name, entity type, and language.
+--  // See the debate going on at http://drupal.org/node/1164852.
+--  // Reverting back to setting all nodes as untranslated.
+--  $language = LANGUAGE_NONE;
+--  if ($field['translatable']) {
+--    //$language = $node['language'];
+--  }
+--  $query->addExpression("'". $node['type'] ."'", 'bundle');
+--  $query->addExpression("'node'", 'entity_type');
+--  $query->addExpression("'". $language ."'", 'language');
+--    
+--  // There are new names for what were the nid and vid columns.
+--  $query->addField('old_table', 'nid', 'entity_id');
+--  $query->addField('old_table', 'vid', 'revision_id');
+--    
+--  // Add the field columns to the select query.
+--  // Use the new column names as aliases in case the 
+--  // name changed, hopefully none did.
+--  foreach ($context['sandbox']['old_cols'] as $column_name => $db_column_name) {
+--    $query->addField('old_table', $db_column_name, $context['sandbox']['new_cols'][$column_name]);
+--  }
+--    
+--  // Add delta, or construct it if missing.
+--  if ($context['sandbox']['add_delta']) {
+--    $query->addField('old_table', 'delta', 'delta');
+--  }
+--  else {
+--    $query->addExpression(0, 'delta');
+--  }
+--  $query->condition('nid', $node['nid']);
+--  $result = $query->execute();
+-+    // We need new columns for bundle name, entity type, and language.
+-+    // See the debate going on at http://drupal.org/node/1164852.
+-+    // Reverting back to setting all nodes as untranslated.
+-+    $language = LANGUAGE_NONE;
+-+    if ($field['translatable']) {
+-+      //$language = $node['language'];
+-+    }
+-+    $query->addExpression("'". $node['type'] ."'", 'bundle');
+-+    $query->addExpression("'node'", 'entity_type');
+-+    $query->addExpression("'". $language ."'", 'language');
+-+
+-+    // There are new names for what were the nid and vid columns.
+-+    $query->addField('old_table', 'nid', 'entity_id');
+-+    $query->addField('old_table', 'vid', 'revision_id');
+-+
+-+    // Add the field columns to the select query.
+-+    // Use the new column names as aliases in case the
+-+    // name changed, hopefully none did.
+-+    foreach ($context['sandbox']['old_cols'] as $column_name => $db_column_name) {
+-+      $query->addField('old_table', $db_column_name, $context['sandbox']['new_cols'][$column_name]);
+-+    }
+- 
+--  foreach ($result as $record) {
+--  
+--    // Let modules alter this before the insert.
+--    drupal_alter('content_migrate_data_record', $record, $field, $instance);
+--
+--    // Don't save empty values.
+--    if (!empty($record)) {
+--      $function = $field['module'] . '_field_is_empty';
+--      if (function_exists($function)) {
+--        // The $record array has the database columns as keys, which drupal_write_record() will need,
+--        // but the _field_is_empty() function will be looking for the short, normalized column name.
+--        $item = array();
+--        foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
+--          if (array_key_exists($db_column_name, $record)) {
+--            $item[$column_name] = $record[$db_column_name];
+-+    // Add delta, or construct it if missing.
+-+    if ($context['sandbox']['add_delta']) {
+-+      $query->addField('old_table', 'delta', 'delta');
+-+    }
+-+    else {
+-+      $query->addExpression(0, 'delta');
+-+    }
+-+    $query->condition('nid', $node['nid']);
+-+    $result = $query->execute();
+-+
+-+    foreach ($result as $record) {
+-+
+-+      // Let modules alter this before the insert.
+-+      drupal_alter('content_migrate_data_record', $record, $field, $instance);
+-+
+-+      // Don't save empty values.
+-+      if (!empty($record)) {
+-+        $function = $field['module'] . '_field_is_empty';
+-+        if (function_exists($function)) {
+-+          // The $record array has the database columns as keys, which drupal_write_record() will need,
+-+          // but the _field_is_empty() function will be looking for the short, normalized column name.
+-+          $item = array();
+-+          foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
+-+            if (array_key_exists($db_column_name, $record)) {
+-+              $item[$column_name] = $record[$db_column_name];
+-+            }
+-+          }
+-+          if ($function($item, $field)) {
+-+            $record = NULL;
+-           }
+--        }
+--        if ($function($item, $field)) {
+--          $record = NULL;
+-         }
+-       }
+--    }
+- 
+--    if (!empty($record)) {
+--      if ($record['revision_id'] == $node['vid']) {
+--        drupal_write_record($context['sandbox']['new_table'], $record);
+-+      if (!empty($record)) {
+-+        if ($record['revision_id'] == $node['vid']) {
+-+          drupal_write_record($context['sandbox']['new_table'], $record);
+-+        }
+-+        drupal_write_record($context['sandbox']['new_revision_table'], $record);
+-       }
+--      drupal_write_record($context['sandbox']['new_revision_table'], $record);
+-     }
+--  }
+- 
+--  // Update our progress information.
+--  $context['sandbox']['progress']++;
+--  $context['message'] = t('Processing %nid : %title', array('%title' => $node['title'], '%nid' => $node['nid']));
+-+    // Update our progress information.
+-+    $context['sandbox']['progress']++;
+-+  }
+-+  $context['message'] = t('Processing through %nid', array('%nid' => $node['nid']));
+- 
+-   // Inform the batch engine that we are not finished,
+-   // and provide an estimation of the completion level we reached.
+\ No newline at end of file
+diff --git a/sites/all/modules/cck/modules/content_migrate/includes/content_migrate.admin.inc b/sites/all/modules/cck/modules/content_migrate/includes/content_migrate.admin.inc
+index b2e9925..5f63815 100644
+--- a/sites/all/modules/cck/modules/content_migrate/includes/content_migrate.admin.inc
++++ b/sites/all/modules/cck/modules/content_migrate/includes/content_migrate.admin.inc
+@@ -338,18 +338,10 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+     $context['sandbox']['types'] = $types;
+     $context['sandbox']['field'] = $field;
+     $context['sandbox']['add_delta'] = $add_delta;
+-   
+-  }
+-
 -  // Process one node in each batch.
-+  // Process 1000 nodes in each batch.
-+  for ($i = 0; $i <= 1000; $i++) {
-+    $node = array_shift($context['sandbox']['nodes']);
-+    if (!$node) {
-+      return;
-+    }
- 
+-
 -  $node = array_shift($context['sandbox']['nodes']);
 -  if (!$node) {
 -    return;
--  }
-+    $field = field_info_field($field_name);
-+    $instance = field_info_instance('node', $field_name, $node['type']);
+   }
  
--  $field = field_info_field($field_name);
++  // Process 1000 nodes in each batch.
+   $field = field_info_field($field_name);
 -  $instance = field_info_instance('node', $field_name, $node['type']);
-+    // Construct an record to insert into the new field table
-+    // from the data in the old table.
  
--  // Construct an record to insert into the new field table
--  // from the data in the old table.
-+    $query = db_select($context['sandbox']['old_table'], 'old_table', array('fetch' => PDO::FETCH_ASSOC));
- 
--  $query = db_select($context['sandbox']['old_table'], 'old_table', array('fetch' => PDO::FETCH_ASSOC));
--    
--  // We need new columns for bundle name, entity type, and language.
--  // See the debate going on at http://drupal.org/node/1164852.
--  // Reverting back to setting all nodes as untranslated.
--  $language = LANGUAGE_NONE;
+   // Construct an record to insert into the new field table
+   // from the data in the old table.
+@@ -358,15 +350,11 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+     
+   // We need new columns for bundle name, entity type, and language.
+   // See the debate going on at http://drupal.org/node/1164852.
++
+   // Reverting back to setting all nodes as untranslated.
+   $language = LANGUAGE_NONE;
 -  if ($field['translatable']) {
 -    //$language = $node['language'];
 -  }
 -  $query->addExpression("'". $node['type'] ."'", 'bundle');
--  $query->addExpression("'node'", 'entity_type');
--  $query->addExpression("'". $language ."'", 'language');
+   $query->addExpression("'node'", 'entity_type');
+   $query->addExpression("'". $language ."'", 'language');
 -    
--  // There are new names for what were the nid and vid columns.
--  $query->addField('old_table', 'nid', 'entity_id');
--  $query->addField('old_table', 'vid', 'revision_id');
--    
--  // Add the field columns to the select query.
--  // Use the new column names as aliases in case the 
--  // name changed, hopefully none did.
--  foreach ($context['sandbox']['old_cols'] as $column_name => $db_column_name) {
--    $query->addField('old_table', $db_column_name, $context['sandbox']['new_cols'][$column_name]);
--  }
--    
--  // Add delta, or construct it if missing.
--  if ($context['sandbox']['add_delta']) {
--    $query->addField('old_table', 'delta', 'delta');
--  }
--  else {
--    $query->addExpression(0, 'delta');
--  }
+   // There are new names for what were the nid and vid columns.
+   $query->addField('old_table', 'nid', 'entity_id');
+   $query->addField('old_table', 'vid', 'revision_id');
+@@ -385,43 +373,52 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+   else {
+     $query->addExpression(0, 'delta');
+   }
 -  $query->condition('nid', $node['nid']);
 -  $result = $query->execute();
-+    // We need new columns for bundle name, entity type, and language.
-+    // See the debate going on at http://drupal.org/node/1164852.
-+    // Reverting back to setting all nodes as untranslated.
-+    $language = LANGUAGE_NONE;
-+    if ($field['translatable']) {
-+      //$language = $node['language'];
-+    }
-+    $query->addExpression("'". $node['type'] ."'", 'bundle');
-+    $query->addExpression("'node'", 'entity_type');
-+    $query->addExpression("'". $language ."'", 'language');
-+
-+    // There are new names for what were the nid and vid columns.
-+    $query->addField('old_table', 'nid', 'entity_id');
-+    $query->addField('old_table', 'vid', 'revision_id');
-+
-+    // Add the field columns to the select query.
-+    // Use the new column names as aliases in case the
-+    // name changed, hopefully none did.
-+    foreach ($context['sandbox']['old_cols'] as $column_name => $db_column_name) {
-+      $query->addField('old_table', $db_column_name, $context['sandbox']['new_cols'][$column_name]);
-+    }
  
 -  foreach ($result as $record) {
--  
++  for ($i = 0; $i <=100; $i++) {
++    $node = array_shift($context['sandbox']['nodes']);
++    if (!$node) {
++      return;
++    }
++    $instance = field_info_instance('node', $field_name, $node['type']);
++    $query->addExpression("'". $node['type'] ."'", 'bundle');
++    $query->condition('nid', $node['nid']);
++    $result = $query->execute();
++
++    foreach ($result as $record) {
+   
 -    // Let modules alter this before the insert.
 -    drupal_alter('content_migrate_data_record', $record, $field, $instance);
 -
@@ -100,18 +255,6 @@ index b2e9925..82b0acc 100644
 -        foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
 -          if (array_key_exists($db_column_name, $record)) {
 -            $item[$column_name] = $record[$db_column_name];
-+    // Add delta, or construct it if missing.
-+    if ($context['sandbox']['add_delta']) {
-+      $query->addField('old_table', 'delta', 'delta');
-+    }
-+    else {
-+      $query->addExpression(0, 'delta');
-+    }
-+    $query->condition('nid', $node['nid']);
-+    $result = $query->execute();
-+
-+    foreach ($result as $record) {
-+
 +      // Let modules alter this before the insert.
 +      drupal_alter('content_migrate_data_record', $record, $field, $instance);
 +
@@ -156,7 +299,7 @@ index b2e9925..82b0acc 100644
 +    // Update our progress information.
 +    $context['sandbox']['progress']++;
 +  }
-+  $context['message'] = t('Processing through %nid', array('%nid' => $node['nid']));
++  $context['message'] = t('Processing through nid %nid', array('%nid' => $node['nid']));
  
    // Inform the batch engine that we are not finished,
    // and provide an estimation of the completion level we reached.
