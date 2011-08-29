@@ -1,4 +1,13 @@
-drush @ds6 cc all
-drush @ds6 php-eval "db_query('truncate cache_form'); db_query('drop table cache_workflow_ng'); db_query('drop table og_uid_global'); db_query('truncate search_dataset'); db_query('truncate search_index'); db_query('truncate search_node_links'); db_query('truncate search_total'); db_query('drop table users_uid_lookup');"
-drush @ds6 sql-dump > ~/ds-upgrade.sql
-drush @ds6 site-upgrade --source-dump=~/ds-upgrade.sql --db-su=root --db-su-pw=root --reuse @ds7
+#! /bin/bash
+# call this as ./ds-upgrade /path/to/d6-database.sql
+ROOT=`drush site-alias --component=root @ds7`
+# mv ${ROOT}/sites/all/modules ${ROOT}/sites/all/movedmodules
+# drush @ds7 sql-drop
+# drush @ds7 sqlc < $1
+# drush @ds7 -y updb
+# drush @ds7 -y updb
+mv ${ROOT}/sites/all/movedmodules ${ROOT}/sites/all/modules
+drush @ds7 -y updb
+drush @ds7 -y en admin_menu_toolbar contextual overly rdf date date_popup date_views link location nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate
+drush @ds7 -y content-migrate-fields
+
