@@ -1,0 +1,27 @@
+#! /bin/bash
+# call this as ./ds-upgrade /path/to/d6-database.sql
+
+ROOT=`drush site-alias --component=root @ds7`
+echo 'updating ds6 site with specified fresh? database'
+# drush @ds6 sql-drop
+# drush @ds6 sqlc < $1
+echo 'deleting unwanted nodes from ds6 site'
+drush @ds6 php-eval "global \$user; \$user = user_load(1); \$result = db_query('select nid from node where type in (\'bc_financial_aid\', \'bc_financial_aid_grantalumni\', \'boot_camp_app\', \'bootcampx\', \'club_materials\', \'college_survey\', \'consulting_program_alumni_form\', \'dsaward_nomination\', \'editorial_notes\', \'iyg_judge\', \'som_judge\', \'speed_catcher\', \'yac_app\', \'youth_act_fair_signup\', \'action_guide_submission\', \'blank_page\', \'campaign_shellproj\', \'campaign_tfj_2011\', \'celebrity_db\', \'disaster_grant\', \'dsu_materials\', \'enviro_grant\', \'feed_the_need\', \'forum\', \'grammy_grant\', \'grant_alumni_update_form\', \'grant_application\', \'info_request\', \'iyg_kits\', \'jet_sweeptakes\', \'lost_found\', \'mdvoltage_application\', \'pitch_grant\', \'plum_grant_app\', \'project_teaser\', \'quiz\', \'rant_rave\', \'reporter\', \'staples_design\', \'story\', \'surge_scholarship\', \'take_action_app\', \'teach_grants\', \'testimonial\', \'throwaway_type\', \'thumb_wars_bumper_sticker\', \'thumb_wars_sock_signup\', \'thumb_wars_sticker_order\', \'ugc_tips_tools\', \'varsity\', \'whitehouse\', \'yacapp\', \'youth_grant_app\')'); while (\$nid = db_result(\$result)) {\$nids[] = \$nid;} \$total = count(\$nids); \$i = 0; foreach (\$nids as \$nid) {node_delete(\$nid); \$i++; if (is_int(\$i / 100)) {print \$i . ' out of ' . \$total;}}" 
+echo 'syncing ds6 db over ds7 db'
+# drush @ds6 sql-dump > ${ROOT}/ds6.sql
+# mv ${ROOT}/sites/all/modules ${ROOT}/sites/all/movedmodules
+# drush @ds7 sql-drop
+# drush @ds7 sqlc < ${ROOT}/ds6.sql
+echo 'running core updates'
+# drush @ds7 -y updb
+# drush @ds7 -y updb
+# mv ${ROOT}/sites/all/movedmodules ${ROOT}/sites/all/modules
+echo 'running contrib updates'
+# drush @ds7 -y updb
+# drush @ds7 vset -y theme_default bartik
+#drush @ds7 vset -y admin_theme seven
+# drush @ds7 -7 dis php
+# drush @ds7 -y en advanced_help admin_menu_toolbar contextual overlay rdf date date_popup date_views link location nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate page_manager location_node location_user features stylizer views_content
+# drush @ds7 -y cc all
+# drush @ds7 -y content-migrate-fields
+
