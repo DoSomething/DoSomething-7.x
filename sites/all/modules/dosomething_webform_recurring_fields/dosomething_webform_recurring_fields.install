@@ -93,5 +93,41 @@ function dosomething_webform_recurring_fields_schema() {
     ),  
   ); 
   
+  $schema['ds_webform_scholarship_app'] = array(
+    'description' => 'Holds data collected by recurring fields submitted to webforms on grant applications',
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The webform that the data was submitted to.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),  
+      'name' => array(
+        'description' => 'Name',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 100,
+      ),
+    ),
+  );
+
+  $schema['ds_webform_campaign_rb'] = array(
+    'description' => 'Holds data collected by recurring fields submitted to webforms on grant applications',
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The webform that the data was submitted to.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),  
+      'name' => array(
+        'description' => 'Name',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 100,
+      ),
+    ),
+  );
+  
   return $schema;
 }
