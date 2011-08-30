@@ -37,6 +37,16 @@ abstract class MigrationBase {
   }
 
   /**
+   * The name of a migration group, used to collect related migrations.
+   *
+   * @var string
+   */
+  protected $group;
+  public function getGroup() {
+    return $this->group;
+  }
+
+  /**
    * Detailed information describing the migration.
    *
    * @var string
@@ -60,7 +70,8 @@ abstract class MigrationBase {
     }
   }
   public function getItemLimit() {
-    if (isset($this->options['limit']) && $this->options['limit']['unit'] == 'items') {
+    if (isset($this->options['limit']) &&
+        ($this->options['limit']['unit'] == 'items' || $this->options['limit']['unit'] == 'item')) {
       return $this->options['limit']['value'];
     }
     else {
@@ -68,7 +79,8 @@ abstract class MigrationBase {
     }
   }
   public function getTimeLimit() {
-    if (isset($this->options['limit']) && $this->options['limit']['unit'] == 'seconds') {
+    if (isset($this->options['limit']) &&
+        ($this->options['limit']['unit'] == 'seconds' || $this->options['limit']['unit'] == 'second')) {
       return $this->options['limit']['value'];
     }
     else {
@@ -274,8 +286,15 @@ abstract class MigrationBase {
   /**
    * General initialization of a MigrationBase object.
    */
-  public function __construct() {
+  public function __construct($group = NULL) {
     $this->machineName = $this->generateMachineName();
+
+    if (empty($group)) {
+      $this->group = MigrateGroup::getInstance('default');
+    }
+    else {
+      $this->group = $group;
+    }
 
     // Record the memory limit in bytes
     $limit = trim(ini_get('memory_limit'));
@@ -494,6 +513,25 @@ abstract class MigrationBase {
         throw new MigrateException($message, MigrationBase::MESSAGE_ERROR);
       }
     }
+  }
+
+  /**
+   * Takes an Exception object and both saves and displays it, pulling additional
+   * information on the location triggering the exception.
+   *
+   * @param Exception $exception
+   *  Object representing the exception.
+   * @param boolean $save
+   *  Whether to save the message in the migration's mapping table. Set to FALSE
+   *  in contexts where this doesn't make sense.
+   */
+  public function handleException($exception, $save = TRUE) {
+    $result = _drupal_decode_exception($exception);
+    $message = $result['!message'] . ' (' . $result['%file'] . ':' . $result['%line'] . ')';
+    if ($save) {
+      $this->saveMessage($message);
+    }
+    $this->showMessage($message);
   }
 
   /**

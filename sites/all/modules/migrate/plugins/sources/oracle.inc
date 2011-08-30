@@ -2,30 +2,32 @@
 
 /**
  * @file
- * Define a MigrateSource for importing from Microsoft SQL Server databases.
+ * Define a MigrateSource class for importing from Oracle databases.
  */
 
 /**
- * Implementation of MigrateSource, to handle imports from remote MS SQL Server db servers.
+ * Implementation of MigrateSource, to handle imports from remote Oracle servers.
  */
-class MigrateSourceMSSQL extends MigrateSource {
+class MigrateSourceOracle extends MigrateSource {
   /**
-   * Array containing information for connecting to SQL Server:
-   *  servername - Hostname of the SQL Server
+   * Array containing information for connecting to Oracle:
    *  username - Username to connect as
    *  password - Password for logging in
-   *  database (optional) - Database to select after connecting
+   *  connection_string - See http://us.php.net/manual/en/function.oci-connect.php.
    *
    * @var array
    */
   protected $configuration;
 
   /**
-   * The active MS SQL Server connection for this source.
+   * The active Oracle connection for this source.
    *
    * @var resource
    */
   protected $connection;
+  public function getConnection() {
+    return $this->connection;
+  }
 
   /**
    * The SQL query from which to obtain data. Is a string.
@@ -46,23 +48,22 @@ class MigrateSourceMSSQL extends MigrateSource {
   protected $numProcessed = 0;
 
   /**
-   * By default, mssql_query fetches all results - severe memory problems with
-   * big tables. So, we will fetch a batch at a time.
+   * Character set to use in retrieving data.
    *
-   * @var int
+   * @var string
    */
-  protected $batchSize;
+  protected $characterSet;
 
   /**
-   * Return an options array for MS SQL sources.
+   * Return an options array for Oracle sources.
    *
-   * @param int $batch_size
-   *  Number of rows to pull at once (defaults to 500).
+   * @param string $character_set
+   *  Character set to use in retrieving data. Defaults to 'UTF8'.
    * @param boolean $cache_counts
    *  Indicates whether to cache counts of source records.
    */
-  static public function options($batch_size, $cache_counts) {
-    return compact('batch_size', 'cache_counts');
+  static public function options($character_set = 'UTF8', $cache_counts = FALSE) {
+    return compact('character_set', 'cache_counts');
   }
 
   /**
@@ -75,7 +76,12 @@ class MigrateSourceMSSQL extends MigrateSource {
     $this->countQuery = $count_query;
     $this->configuration = $configuration;
     $this->fields = $fields;
-    $this->batchSize = isset($options['batch_size']) ? $options['batch_size'] : 500;
+    if (empty($options['character_set'])) {
+      $this->characterSet = 'UTF8';
+    }
+    else {
+      $this->characterSet = $options['character_set'];
+    }
   }
 
   /**
@@ -92,24 +98,20 @@ class MigrateSourceMSSQL extends MigrateSource {
    */
   protected function connect() {
     if (!isset($this->connection)) {
-      if (!extension_loaded('mssql')) {
-        throw new Exception(t('You must configure the mssql extension in PHP.'));
+      if (!extension_loaded('oci8')) {
+        throw new Exception(t('You must configure the oci8 extension in PHP.'));
       }
-
-      if (isset($this->configuration['port'])) {
-        $host = $this->configuration['servername'] . ':' . $this->configuration['port'];
-      }
-      else {
-        $host = $this->configuration['servername'];
-      }
-      $this->connection = mssql_connect(
-        $host,
-        $this->configuration['username'],
-        $this->configuration['password'],
-        TRUE);
-      if (isset($this->configuration['database'])) {
-        return mssql_select_db($this->configuration['database'], $this->connection);
-      }
+      $this->connection = oci_connect($this->configuration['username'],
+        $this->configuration['password'], $this->configuration['connection_string'],
+        $this->characterSet);
+    }
+    if ($this->connection) {
+      return TRUE;
+    }
+    else {
+      $e = oci_error();
+      throw new Exception($e['message']);
+      return FALSE;
     }
   }
 
@@ -129,16 +131,26 @@ class MigrateSourceMSSQL extends MigrateSource {
    * Return a count of all available source records.
    */
   public function computeCount() {
-    migrate_instrument_start('MigrateSourceMSSQL count');
+    migrate_instrument_start('MigrateSourceOracle count');
     if ($this->connect()) {
-      $result = mssql_query($this->countQuery);
-      $count = reset(mssql_fetch_object($result));
+      $statement = oci_parse($this->connection, $this->countQuery);
+      if (!$statement) {
+        $e = oci_error($this->connection);
+        throw new Exception($e['message'] . "\n" . $e['sqltext']);
+      }
+      $result = oci_execute($statement);
+      if (!$result) {
+        $e = oci_error($statement);
+        throw new Exception($e['message'] . "\n" . $e['sqltext']);
+      }
+      $count_array = oci_fetch_array($statement);
+      $count = reset($count_array);
     }
     else {
       // Do something else?
       $count = FALSE;
     }
-    migrate_instrument_stop('MigrateSourceMSSQL count');
+    migrate_instrument_stop('MigrateSourceOracle count');
     return $count;
   }
 
@@ -191,10 +203,19 @@ class MigrateSourceMSSQL extends MigrateSource {
       }
     }
 
-    migrate_instrument_start('mssql_query');
+    migrate_instrument_start('oracle_query');
     $this->connect();
-    $this->result = mssql_query($this->query, $this->connection, $this->batchSize);
-    migrate_instrument_stop('mssql_query');
+    $this->result = oci_parse($this->connection, $this->query);
+    if (!$this->result) {
+      $e = oci_error($this->connection);
+      throw new Exception($e['message'] . "\n" . $e['sqltext']);
+    }
+    $status = oci_execute($this->result);
+    if (!$status) {
+      $e = oci_error($this->result);
+      throw new Exception($e['message'] . "\n" . $e['sqltext']);
+    }
+    migrate_instrument_stop('oracle_query');
 
     $this->next();
   }
@@ -204,7 +225,7 @@ class MigrateSourceMSSQL extends MigrateSource {
    * as well as explicitly from rewind().
    */
   public function next() {
-    migrate_instrument_start('MigrateSourceMSSQL next');
+    migrate_instrument_start('MigrateSourceOracle next');
 
     $migration = Migration::currentMigration();
 
@@ -214,7 +235,6 @@ class MigrateSourceMSSQL extends MigrateSource {
       // Enforce the itemlimit
       if ($itemlimit && $this->numProcessed >= $itemlimit) {
         $this->currentRow = NULL;
-        migrate_instrument_stop('MigrateSourceMSSQL next');
         return;
       }
 
@@ -227,6 +247,13 @@ class MigrateSourceMSSQL extends MigrateSource {
       $map_row = $map->getRowBySource($this->currentKey);
       if ($map_row && $map_row['needs_update'] == 0) {
         continue;
+      }
+      // Add map info to the row, if present
+      if ($map_row) {
+        foreach ($map_row as $field => $value) {
+          $field = 'migrate_map_' . $field;
+          $this->currentRow->$field = $value;
+        }
       }
 
       // Allow the Migration to prepare this row. prepareRow() can return boolean
@@ -248,32 +275,21 @@ class MigrateSourceMSSQL extends MigrateSource {
     if (!is_object($this->currentRow)) {
       $this->currentRow = NULL;
     }
-    migrate_instrument_stop('MigrateSourceMSSQL next');
+
+    migrate_instrument_stop('MigrateSourceOracle next');
   }
 
   /**
    * Convenience function to return the next row of the result set as an
-   * object, dealing with the difference between the end of the batch and the
-   * end of all data.
+   * object, making sure NULLs are represented as PHP NULLs and that LOBs are
+   * returned directly without special handling.
    */
   public function getNextObject() {
-    migrate_instrument_start('mssql_fetch_object');
-    $row = mssql_fetch_object($this->result);
-    migrate_instrument_stop('mssql_fetch_object');
-
-    // Might be totally out of data, or just out of this batch - request another
-    // batch and see
-    if (!is_object($row)) {
-      migrate_instrument_start('mssql_fetch_batch');
-      mssql_fetch_batch($this->result);
-      migrate_instrument_stop('mssql_fetch_batch');
-
-      migrate_instrument_start('mssql_fetch_object');
-      $row = mssql_fetch_object($this->result);
-      migrate_instrument_stop('mssql_fetch_object');
-    }
-    if (is_object($row)) {
-      return $row;
+    migrate_instrument_start('MigrateSourceOracle getNextObject');
+    $row = oci_fetch_array($this->result, OCI_ASSOC | OCI_RETURN_NULLS | OCI_RETURN_LOBS);
+    migrate_instrument_stop('MigrateSourceOracle getNextObject');
+    if (!empty($row)) {
+      return (object)$row;
     }
     else {
       return FALSE;

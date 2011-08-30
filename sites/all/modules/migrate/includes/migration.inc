@@ -122,8 +122,8 @@ abstract class Migration extends MigrationBase {
   /**
    * General initialization of a Migration object.
    */
-  public function __construct() {
-    parent::__construct();
+  public function __construct($group = NULL) {
+    parent::__construct($group);
   }
 
   /**
@@ -283,6 +283,12 @@ abstract class Migration extends MigrationBase {
         isset($this->options['feedback']['unit'])) {
       $this->feedback = $this->options['feedback']['value'];
       $this->feedback_unit = $this->options['feedback']['unit'];
+      if ($this->feedback_unit == 'item') {
+        $this->feedback_unit = 'items';
+      }
+      else if ($this->feedback_unit == 'second') {
+        $this->feedback_unit = 'seconds';
+      }
     }
     $this->lastfeedback = $this->starttime;
 
@@ -399,7 +405,7 @@ abstract class Migration extends MigrationBase {
             $this->successes_since_feedback += $batch_count;
           }
           catch (Exception $e) {
-            $this->showMessage($e->getMessage());
+            $this->handleException($e, FALSE);
             migrate_instrument_stop('bulkRollback');
             migrate_instrument_stop('rollback map/message update');
           }
@@ -497,13 +503,13 @@ abstract class Migration extends MigrationBase {
 
       $this->currentSourceKey = $this->source->getCurrentKey();
 
+      // Wipe old messages
+      $this->map->delete($this->currentSourceKey, TRUE);
+
       $this->sourceValues = $data_row;
       $this->applyMappings();
 
       try {
-        // Wipe old messages
-        $this->map->delete($this->currentSourceKey, TRUE);
-
         migrate_instrument_start('destination import', TRUE);
         $ids = $this->destination->import($this->destinationValues, $this->sourceValues);
         migrate_instrument_stop('destination import');
@@ -523,8 +529,7 @@ abstract class Migration extends MigrationBase {
         $this->showMessage($e->getMessage());
       }
       catch (Exception $e) {
-        $this->saveMessage($e->getMessage());
-        $this->showMessage($e->getMessage());
+        $this->handleException($e);
       }
       $this->total_processed++;
       $this->processed_since_feedback++;
@@ -760,7 +765,9 @@ abstract class Migration extends MigrationBase {
         // Call any designated callbacks
         $callbacks = $mapping->getCallbacks();
         foreach ($callbacks as $callback) {
-          $this->destinationValues->$destination = call_user_func($callback, $this->destinationValues->$destination);
+          if (property_exists($this->destinationValues, $destination)) {
+            $this->destinationValues->$destination = call_user_func($callback, $this->destinationValues->$destination);
+          }
         }
 
         // If specified, assure a unique value for this property.
