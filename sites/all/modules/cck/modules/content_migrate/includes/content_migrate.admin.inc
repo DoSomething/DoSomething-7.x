@@ -373,8 +373,9 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
   else {
     $query->addExpression(0, 'delta');
   }
-
-  for ($i = 0; $i <=100; $i++) {
+  $base_query = $query;
+  for ($i = 0; $i <=1000; $i++) {
+    $query = clone($base_query);
     $node = array_shift($context['sandbox']['nodes']);
     if (!$node) {
       return;
@@ -383,9 +384,7 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
     $query->addExpression("'". $node['type'] ."'", 'bundle');
     $query->condition('nid', $node['nid']);
     $result = $query->execute();
-
     foreach ($result as $record) {
-  
       // Let modules alter this before the insert.
       drupal_alter('content_migrate_data_record', $record, $field, $instance);
 
