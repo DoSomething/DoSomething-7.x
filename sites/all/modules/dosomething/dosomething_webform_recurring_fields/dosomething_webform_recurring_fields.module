@@ -98,6 +98,28 @@ function dosomething_webform_recurring_fields_get_fields() {
         '#maxlength' => 10,
       ),
     ),
+    'scholarship_application' => array(
+      'name' => array(
+        '#weight' => 0,
+        '#type' => 'textfield',
+        '#title' => t('Name'),
+        '#default_value' => $user->field_user_name[field_language('user', $user, 'field_user_name')][0]['safe_value'],
+        '#required' => TRUE,
+        '#size' => 60,
+        '#maxlength' => 100,
+      ),
+    ),
+    'campaign_report_back' => array(
+      'name' => array(
+        '#weight' => 0,
+        '#type' => 'textfield',
+        '#title' => t('Name'),
+        '#default_value' => $user->field_user_name[field_language('user', $user, 'field_user_name')][0]['safe_value'],
+        '#required' => TRUE,
+        '#size' => 60,
+        '#maxlength' => 100,
+      ),
+    ),
   );
 }
 
@@ -117,6 +139,12 @@ function dosomething_recurring_fields_type_to_schema($content_type) {
     
     case 'grant_application':
       return 'ds_webform_grant_app';
+    
+    case 'campaign_report_back':
+      return 'ds_webform_campaign_rb';
+
+    case 'scholarship_application':
+      return 'ds_webform_scholarship_app';
   }
 }
 
@@ -204,8 +232,4 @@ function dosomething_webform_recurring_fields_webform_submission_render_alter(&$
       );
     }
   }
-}
-
-function dosomething_webform_recurring_fields_webform_submission_load(&$submissions) {
-  dpm($submissions);
 }

@@ -1,8 +1,66 @@
 
+Migrate 2.2 RC2
+===============
+
+Features and enhancements
+- #1240928 - Generalize file handlers, to ease media module support.
+- #1226768 - Improved exception handling.
+- #1230294 - Get correct count of CSV with embedded newlines.
+- #1185632 - Handle (potentially multiple) headers in CSV source plugin.
+
+Bug fixes
+- #1231398 - Add map data to row in Oracle source plugin.
+- #1225636 - File field: fixed warnings, added docs.
+- #1227130 - On import, clear messages before applyMappings().
+- #1195802 - Fixed SQL Server problem handling end of batch; brought Oracle/SQL
+  Server implementations in line with each other.
+- #1205278 - Fixed file entity rollback to preserve files when requested.
+- #1223468 - Make sure getIDsFromXML always returns an array.
+- #1223734 - Fixed bogus assignment of uid to file fields.
+- #1223756 - Fix warnings with file_blob when file exists in file_managed.
+- #1216796 - Make sure file_replace argument exists.
+- #1195802 - Fixed prepareRow() support for MSSQL plugin.
+
+Migrate 2.2 RC1
+===============
+
+Features and enhancements
+- #1210152 - Improved error messages on file field migration.
+- #1212818 - migrate_ui support for one-step rollback-and-import.
+- #1218244 - Support for is_new for users.
+- #1216796 - Use file_destination() to generate destination filespec.
+- #719650 - Implemented ability to assign migrations to groups, and run by group.
+- #1201762 - Implemented built-in caching for source counts, and flag to enable it.
+- #1205278 - Added preserve_files argument to MigrateFileFieldHandler.
+- #1205278 - Added preserve_files option to MigrateDestinationFile.
+- #1078368 - Implemented create_term argument for term references, to lazy-create terms.
+- #1199150 - Added file_fid function to file field migration.
+- #1195802 - Added prepareRow() support for MSSQL plugin.
+- #1195784 - Added verification of required extension to MSSQL plugin.
+- #1180188 - Added ability to save BLOB data to file fields and file entities.
+- #1181136 - Provided mechanism to handle incoming MD5-encrypted passwords.
+- #1181720 - Add item/second limiting to UI.
+- #1181826 - Implemented hook_hook_info(), so implementing modules can define
+  hook_migrate_api() in example.migrate.inc.
+- #1179464 - Added capability of disabling handlers.
+- #1175094 - Added support for field handler complete() methods.
+- #1176930 - Renamed migrate-descriptions to migrate-mappings, enhanced to export to CSV.
+- #1169724 - Implemented source plugin for Oracle.
+
+Bug fixes
+- #1210076 - Filled out parameter docs for MigrateFileFieldHandler::buildFileArray().
+- #1185046 - Wine example mistakenly said GROUP_CONCAT could only be used once.
+- #1202234 - Fix translatable field language handling.
+- #1184538 - Fixed term field allowed values in migrate_example.
+- #1181652 - Fixed MigrateDestinationTable to work on update.
+- #1174934 - Support multi-column keys for table_copy destination.
+- #1176790 - Prevent multiple handlers from messing up fields info.
+- #1169796 - Handle example upgrades if image field is missing.
+
 Migrate 2.1
 ===========
 
-Features and enhancements:
+Features and enhancements
 - #1025754 - Added support for multi-value source keys to handleSourceMigration().
 - #1161584 - Added lookupSourceID() and lookupDestinationID() to MigrateMap.
 
@@ -11,7 +69,7 @@ Bug fixes
 - #1159274 - Handle spaces in URLs for MigrateDestinationFile.
 - #1161812 - Added handling for NULL watchdog variables.
 - #1009708 - Fixed E_STRICT notice on MigrateDestinationRole::getKeySchema().
-- #1161590 - Made $migration optional for handleSourceMigration(), createStubWrapper(), 
+- #1161590 - Made $migration optional for handleSourceMigration(), createStubWrapper(),
   lookupDestinationID().
 - #1161482 - Handle NULL source_field mappings.
 - #1156972 - Do not include message table in source queries.
@@ -21,7 +79,7 @@ Migrate 2.1 Beta 1
 
 API change:
 
-Any field handler prepare() or complete() methods you have defined must be changed 
+Any field handler prepare() or complete() methods you have defined must be changed
 to remove stdClass for the $entity argument. I.e., prepare(stdClass $entity, stdClass $row)
 should now be prepare($entity, stdClass $row).
 
@@ -109,7 +167,7 @@ Let a node migration set node_revisions.uid. That's the 'last edited by' user
 Bug fixes
 - #1053798 - Consistent use of error codes.
 - #1053526 - Machine names in drush commands now case-insensitive.
-- #914440 - Enhance multilingual support. 
+- #914440 - Enhance multilingual support.
 - #1014648 - Defaulting of file field subfields.
 - #1037872 - Make sure is_new is off for previously migrated content.
 - #919706 - Fix drush migrate-descriptions command.
@@ -134,9 +192,9 @@ Features and enhancements
 - #989200 - Support "dynamic" migrations. Changes to be aware of:
   All modules implementing migration classes must now implement hook_migrate_api()
     (see migrate_migrate_api() for an example).
-  Dependencies and sourceMigrations must now be expressed in terms of 
+  Dependencies and sourceMigrations must now be expressed in terms of
     machine name rather than class name.
-  MigrationBase::getInstance now takes a machine name rather than a class name. 
+  MigrationBase::getInstance now takes a machine name rather than a class name.
   Migration class names are no longer required to end in 'Migration'.
 - #992898 - Pass options to source and destination constructors as arrays.
 File destinations (i.e., migrating directly to the file_managed table, with
@@ -170,5 +228,5 @@ Bug fixes
 
 Migrate 2.0 Beta 1
 ==================
-Version 2 of the Migrate module is an entirely new implementation - it is 
+Version 2 of the Migrate module is an entirely new implementation - it is
 pointless to list changes since Migrate 1.

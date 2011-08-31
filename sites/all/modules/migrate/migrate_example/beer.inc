@@ -220,7 +220,7 @@ class BeerUserMigration extends BasicExampleMigration {
     // This is a shortcut you can use to mark several destination fields as DNM
     // at once
     $this->addUnmigratedDestinations(array('theme', 'signature', 'access', 'login',
-      'timezone', 'language', 'picture'));
+      'timezone', 'language', 'picture', 'is_new'));
 
     // Oops, we made a typo - this should have been 'init'! If you have
     // migrate_ui enabled, look at the BeerUser info page - you'll see that it
@@ -272,7 +272,11 @@ class BeerNodeMigration extends BasicExampleMigration {
     $count_query = db_select('migrate_example_beer_node', 'b');
     $count_query->addExpression('COUNT(bid)', 'cnt');
 
-    $this->source = new MigrateSourceSQL($query, array(), $count_query);
+    // Passing the cache_counts option means the source count (shown in
+    // drush migrate-status) will be cached - this can be very handy when
+    // dealing with a slow source database.
+    $this->source = new MigrateSourceSQL($query, array(), $count_query,
+      array('cache_counts' => TRUE));
 
     // Set up our destination - nodes of type migrate_example_beer
     $this->destination = new MigrateDestinationNode('migrate_example_beer');
@@ -331,11 +335,6 @@ class BeerNodeMigration extends BasicExampleMigration {
       array('source_field' => 'image_title'), array('source_field' => 'image_description'));
     $this->addFieldMapping('field_migrate_example_image', 'image')
          ->arguments($arguments);
-
-    // Oops, we've added a second mapping for sticky... Fortunately, the
-    // Migrate module will warn you that the second mapping overrides the first
-    $this->addFieldMapping('sticky')
-         ->defaultValue(0);
 
     // No unmapped source fields
 

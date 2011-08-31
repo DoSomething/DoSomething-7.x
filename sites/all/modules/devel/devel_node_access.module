@@ -984,7 +984,11 @@ function devel_node_access_block_view($delta) {
         // anyone is up for that please submit a patch.
         $query = db_select('users', 'u')
           ->fields('u', array('uid'))
+<<<<<<< HEAD
           ->orderBy('access', 'DESC')
+=======
+          ->orderBy('u.access', 'DESC')
+>>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
           ->range(0, 9);
         $uids = $query->execute()->fetchCol();
         array_unshift($uids, 0);

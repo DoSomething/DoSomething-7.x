@@ -13,6 +13,14 @@
  * Destination class implementing migration into users.
  */
 class MigrateDestinationUser extends MigrateDestinationEntity {
+  /**
+   * Indicates whether incoming passwords are md5-encrypted - if so, we will
+   * rehash them similarly to the D6->D7 upgrade path.
+   *
+   * @var boolean
+   */
+  protected $md5Passwords = FALSE;
+
   static public function getKeySchema() {
     return array(
       'uid' => array(
@@ -31,9 +39,11 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
    *  Default language for usrs created via this destination class.
    * @param string $text_format
    *  Default text format for users created via this destination class.
+   * @param boolean $md5_passwords
+   *  Set TRUE to indicate incoming passwords are md5-encrypted.
    */
-  static public function options($language, $text_format) {
-    return compact('language', 'text_format');
+  static public function options($language, $text_format, $md5_passwords) {
+    return compact('language', 'text_format', 'md5_passwords');
   }
 
   /**
@@ -44,6 +54,9 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
    */
   public function __construct(array $options = array()) {
     parent::__construct('user', 'user', $options);
+    if (!empty($options['md5_passwords'])) {
+      $this->md5Passwords = $options['md5_passwords'];
+    }
   }
 
   /**
@@ -57,6 +70,7 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
     $fields = array();
     // First the core (users table) properties
     $fields['uid'] = t('User: Existing user ID');
+    $fields['is_new'] = t('User: Indicates a new user with the specified uid should be created');
     $fields['name'] = t('User: Username');
     $fields['pass'] = t('User: Password (plain text)');
     $fields['mail'] = t('User: Email address');
@@ -151,6 +165,16 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
     $newaccount = user_save($old_account, (array)$account);
     migrate_instrument_stop('user_save');
     if ($newaccount) {
+      if ($this->md5Passwords) {
+        // Ape the Drupal 6 -> Drupal 7 upgrade, which encrypts the MD5 text in the
+        // modern way, and marks it with a prepended U so it recognizes and fixes it
+        // up at login time.
+        $password = 'U' . $newaccount->pass;
+        db_update('users')
+          ->fields(array('pass' => $password))
+          ->condition('uid', $newaccount->uid)
+          ->execute();
+      }
       if ($updating) {
         $this->numUpdated++;
       }

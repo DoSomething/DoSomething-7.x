@@ -17,7 +17,17 @@ abstract class AdvancedExampleMigration extends Migration {
   public $basicFormat;
 
   public function __construct() {
-    parent::__construct();
+    // TIP: Migrations can be organized into groups. In this case, all the migrations
+    // derived from AdvancedExampleMigration will be part of the 'wine' group.
+    // This enables us to easily run just the wine example migrations:
+    //  drush migrate-import --group=wine
+    // The second argument to MigrateGroup::getInstance is an array of groups
+    // which should come before this when viewing migration statuses, or running
+    // migration operations using --all. Since the beer migrations in this module
+    // did not specify a group, it is in the 'default' group, so this constructor
+    // indicates that the wine migrations come after the beer migrations.
+    parent::__construct(MigrateGroup::getInstance('wine', array('default')));
+
     $this->team = array(
       new MigrateTeamMember('Jack Kramer', 'jkramer@example.com', t('Taster')),
       new MigrateTeamMember('Linda Madison', 'lmadison@example.com', t('Winemaker')),
@@ -41,16 +51,10 @@ class WinePrepMigration extends MigrationBase {
   public static $wasEnabled = FALSE;
 
   public function __construct() {
-    parent::__construct();
+    // Because we're derived directly from migrationBase rather than AdvancedExampleMigration,
+    // we must specify the group again here.
+    parent::__construct(MigrateGroup::getInstance('wine', array('default')));
     $this->description = t('If auto_nodetitle is present, disable it for the duration');
-    // TIP: Regular dependencies, besides enforcing (in the absence of --force)
-    // the run order of migrations, affect the sorting of migrations on display.
-    // You can use soft dependencies to affect just the display order when the
-    // migrations aren't technically required to run in a certain order. In this
-    // case, we want the wine migrations to appear after the beer migrations -
-    // without this line, they would be intermingled due to their lack of
-    // (formal) interdependencies.
-    $this->softDependencies = array('BeerComment');
   }
   // Define isComplete(), returning a boolean, to indicate whether dependent
   // migrations may proceed
@@ -148,7 +152,7 @@ class WineBestWithMigration extends WineTermMigration {
  * class. This will copy the files themselves from the source, and set up the
  * Drupal file tables appropriately.
  */
-class WineFileMigration extends AdvancedExampleMigration {
+class WineFileCopyMigration extends AdvancedExampleMigration {
   public function __construct() {
     parent::__construct();
     $this->description = t('Profile images');
@@ -179,11 +183,60 @@ class WineFileMigration extends AdvancedExampleMigration {
   }
 }
 
-class WineRoleMigration extends XMLMigration {
+/**
+ * Migration class to test importing from a BLOB column into a file entity. Typically,
+ * one would use this OR import into a File Field (@see MigrateExampleOracleNode).
+ */
+class WineFileBlobMigration extends AdvancedExampleMigration {
   public function __construct() {
     parent::__construct();
+    $this->description = t('Example migration from BLOB column into files.');
+    $this->dependencies = array('WinePrep');
+    $this->map = new MigrateSQLMap($this->machineName,
+        array('imageid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => 'Image ID.'
+                )
+             ),
+        MigrateDestinationFile::getKeySchema()
+    );
+    $query = db_select('migrate_example_wine_blobs', 'wf')
+             ->fields('wf', array('imageid', 'imageblob'));
+    $this->source = new MigrateSourceSQL($query);
+
+    $options = array(
+      'copy_blob' => TRUE,
+      'copy_destination' => 'public://', // This is the default. Specified for completeness.
+    );
+    $this->destination = new MigrateDestinationFile($options);
+
+    // Basic fields
+    $this->addFieldMapping('uid')
+         ->defaultValue(1);
+    $this->addFieldMapping('filename')
+         ->defaultValue('druplicon.png');
+    $this->addFieldMapping('contents', 'imageblob')
+         ->description('An image blob in the DB');
+    $this->addFieldMapping('timestamp', 'CREATED');
+
+    // Unmapped destination fields
+    $this->addUnmigratedDestinations(array('fid', 'uri', 'filemime', 'status'));
+  }
+}
+
+class WineRoleMigration extends XMLMigration {
+  public function __construct() {
+    parent::__construct(MigrateGroup::getInstance('wine', array('default')));
     $this->description = t('XML feed (multi items) of roles (positions)');
-    $this->softDependencies = array('WineFile');
+
+    // TIP: Regular dependencies, besides enforcing (in the absence of --force)
+    // the run order of migrations, affect the sorting of migrations on display.
+    // You can use soft dependencies to affect just the display order when the
+    // migrations aren't technically required to run in a certain order. In this
+    // case, we want the role migration to appear after the file migration.
+    $this->softDependencies = array('WineFileCopy');
 
     // There isn't a consistent way to automatically identify appropriate "fields"
     // from an XML feed, so we pass an explicit list of source fields
@@ -226,7 +279,7 @@ class WineUserMigration extends AdvancedExampleMigration {
   public function __construct() {
     parent::__construct();
     $this->description = t('Wine Drinkers of the world');
-    $this->dependencies = array('WinePrep', 'WineFile', 'WineRole');
+    $this->dependencies = array('WinePrep', 'WineFileCopy', 'WineRole');
     $this->map = new MigrateSQLMap($this->machineName,
         array('accountid' => array(
                 'type' => 'int',
@@ -263,12 +316,12 @@ class WineUserMigration extends AdvancedExampleMigration {
     $this->addFieldMapping('field_migrate_example_gender', 'sex')
          ->description(t('Map from M/F to 0/1 in prepare method'));
     $this->addFieldMapping('picture', 'imageid')
-         ->sourceMigration('WineFile');
+         ->sourceMigration('WineFileCopy');
 
     // Unmapped source fields
 
     // Unmapped destination fields
-    $this->addUnmigratedDestinations(array('theme', 'timezone', 'language'));
+    $this->addUnmigratedDestinations(array('theme', 'timezone', 'language', 'is_new'));
   }
 
   public function prepare(stdClass $account, stdClass $row) {
@@ -361,7 +414,7 @@ class WineProducerMigration extends AdvancedExampleMigration {
  */
 class WineProducerXMLMigration extends XMLMigration {
   public function __construct() {
-    parent::__construct();
+    parent::__construct(MigrateGroup::getInstance('wine', array('default')));
     $this->description = t('XML feed of wine producers of the world');
     $this->dependencies = array('WineRegion', 'WineUser');
 
@@ -432,7 +485,7 @@ class WineProducerXMLMigration extends XMLMigration {
  */
 class WineProducerMultiXMLMigration extends XMLMigration {
   public function __construct() {
-    parent::__construct();
+    parent::__construct(MigrateGroup::getInstance('wine', array('default')));
     $this->description = t('XML feed (multi items) of wine producers of the world');
     $this->dependencies = array('WineRegion', 'WineUser');
 
@@ -623,9 +676,9 @@ class WineWineMigration extends AdvancedExampleMigration {
   // TIP: Implement a prepareRow() method to manipulate the source row between
   // retrieval from the database and the automatic applicaton of mappings
   public function prepareRow($current_row) {
-    // We can only handle a single multi-value source field using GROUP_CONCAT
-    // as we did above - insert others with a query against the related table
-    // with multiple values here, so the values can run through the mapping process
+    // We used the MySQL GROUP_CONCAT function above to handle a multi-value source
+    // field - more portably, we query the related table with multiple values here,
+    // so the values can run through the mapping process
     $source_id = $current_row->wineid;
     $result = db_select('migrate_example_wine_vintages', 'v')
               ->fields('v', array('vintage'))
@@ -739,7 +792,7 @@ class WineTableMigration extends AdvancedExampleMigration {
 
 class WineFinishMigration extends MigrationBase {
   public function __construct() {
-    parent::__construct();
+    parent::__construct(MigrateGroup::getInstance('wine', array('default')));
     $this->description = t('If auto_nodetitle is present and was previously enabled,
       re-enable it');
     $this->dependencies = array('WineComment');

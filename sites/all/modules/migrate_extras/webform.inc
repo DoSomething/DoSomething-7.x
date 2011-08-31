@@ -1,0 +1,270 @@
+<?php
+
+/*
+class MigrateExtrasWebformNodeHandler extends MigrateDestinationHandler {
+  public function __construct() {
+    $this->registerTypes(array('node'));
+  }
+
+  public function fields() {
+    if (module_exists('webform')) {
+      return array(
+        'webform_confirmation' => 'The confirmation message or URL displayed to the user after submitting a form.',
+        'webform_confirmation_format' => 'The {filter_format}.format of the confirmation message.',
+        'webform_redirect_url' => 'The URL a user is redirected to after submitting a form.',
+        'webform_status' => 'Boolean value of a webform for open (1) or closed (0).',
+        'webform_block' => 'Boolean value for whether this form be available as a block.',
+        'webform_teaser' => 'Boolean value for whether the entire form should be displayed on the teaser.',
+        'webform_allow_draft' => 'Boolean value for whether submissions to this form be saved as a draft.',
+        'webform_auto_save' => 'Boolean value for whether submissions to this form should be auto-saved between pages.',
+        'webform_submit_notice' => 'Boolean value for whether to show or hide the previous submissions notification.',
+        'webform_submit_text' => 'The title of the submit button on the form.',
+        'webform_submit_limit' => 'The number of submissions a single user is allowed to submit within an interval. -1 is unlimited.',
+        'webform_submit_interval' => 'The amount of time in seconds that must pass before a user can submit another submission within the set limit.'
+      );
+    }
+  }
+
+  public function prepare($entity, stdClass $row) {
+    // TODO: move webfield_* fields into the webfield array.
+  }
+}
+*/
+
+/**
+ * Destination class for the webform_submissions table.
+ *
+ * Working component types:
+ * - email
+ * - date ('Y-m-d')
+ * - file (use the file id)
+ * - markup
+ * - pagebreak (content is ignored)
+ * - select (specify the key value)
+ * - textfield
+ * - textarea
+ * - time ('H:i:s')
+ * Untested/needs work:
+ * - grid
+ * - hidden
+ */
+class MigrateDestinationWebformSubmission extends MigrateDestination {
+  static public function getKeySchema() {
+    return array(
+      'sid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+    );
+  }
+
+  /**
+   * The webform of the destination.
+   *
+   * @var string
+   */
+  protected $node;
+  public function getWebform() {
+    return $this->node;
+  }
+
+  /**
+   * An array mapping our custom names to component ids.
+   *
+   * @var array
+   */
+   protected $component_cids;
+
+  /**
+   * Basic initialization
+   *
+   * @param object $ndoe
+   *   Webform node.
+   */
+  public function __construct($node) {
+    parent::__construct();
+    $this->node = $node;
+
+    // Webform expects the component values to be keyed by cid, so we need a
+    // hash to map prefixed field names to cid.
+    $this->component_cids = array();
+    foreach ($this->node->webform['components'] as $component) {
+      $this->component_cids['data_' . $component['form_key']] = $component['cid'];
+    }
+
+    module_load_include('inc', 'webform', 'includes/webform.submissions');
+  }
+
+  public function __toString() {
+    return t('Webform Submission @title', array('@title' => $this->node->title));
+  }
+
+  /**
+   * Returns a list of fields available to be mapped/
+   *
+   * @return array
+   *   Keys: machine names of the fields (to be passed to addFieldMapping)
+   *   Values: Human-friendly descriptions of the fields.
+   */
+  public function fields() {
+    // Fields defined by the schema. nid is omitted since it should come from
+    // $this->node.
+    $fields = array(
+      'sid' => 'The unique identifier for this submission.',
+      'uid' => 'The id of the user that completed this submission.',
+      'is_draft' => 'Is this a draft of the submission?',
+      'submitted' => 'Timestamp of when the form was submitted.',
+      'remote_addr' => 'The IP address of the user that submitted the form.',
+    );
+
+    // Create a field for each component on the webform.
+    foreach ($this->node->webform['components'] as $component) {
+      // TODO: Seems like we should skip over page break components.
+      $fields['data_' . $component['form_key']] = t('@type: @name', array('@type' => $component['type'], '@name' => $component['name']));
+    }
+
+    // Then add in anything provided by handlers.
+    $fields += migrate_handler_invoke_all('WebformSubmission', 'fields');
+
+    return $fields;
+  }
+
+  /**
+   * Give handlers a shot at modifying the object before saving it.
+   *
+   * @param $entity
+   *   Webform submission object to build. Prefilled with any fields mapped in
+   *   the Migration.
+   * @param $source_row
+   *   Raw source data object - passed through to prepare handlers.
+   */
+  public function prepare($entity, stdClass $source_row) {
+    $migration = Migration::currentMigration();
+    $entity->migrate = array(
+      'machineName' => $migration->getMachineName(),
+    );
+    // Call any general object handlers.
+    migrate_handler_invoke_all('WebformSubmission', 'prepare', $entity, $source_row);
+
+    // Move the data from our custom keys back to webform's component ids.
+    $data = array();
+    foreach ($this->component_cids as $field_name => $cid) {
+      if (isset($entity->$field_name)) {
+        $data[$cid] = $entity->$field_name;
+      }
+      unset($entity->$field_name);
+    }
+    $entity->data = webform_submission_data($this->node, $data);
+
+    // Then call any prepare handler for this specific Migration.
+    if (method_exists($migration, 'prepare')) {
+      $migration->prepare($entity, $source_row);
+    }
+  }
+
+  /**
+   * Give handlers a shot at modifying the object (or taking additional action)
+   * after saving it.
+   *
+   * @param $entity
+   *   Webform submission object to build. This is the complete object after
+   *   saving.
+   * @param $source_row
+   *   Raw source data object - passed through to complete handlers.
+   */
+  public function complete($entity, stdClass $source_row) {
+    $migration = Migration::currentMigration();
+    // Call any general object handlers.
+    migrate_handler_invoke_all('WebformSubmission', 'complete', $entity, $source_row);
+    // Then call any complete handler for this specific Migration.
+    if (method_exists($migration, 'complete')) {
+      $migration->complete($entity, $source_row);
+    }
+  }
+
+  /**
+   * Import a record.
+   *
+   * @param $entity
+   *   Webform submission object to build. This is the complete object after
+   *   saving.
+   * @param $source_row
+   *   Raw source data object - passed through to complete handlers.
+   */
+  public function import(stdClass $entity, stdClass $row) {
+    // Updating previously-migrated content?
+    $migration = Migration::currentMigration();
+    if (isset($row->migrate_map_destid1)) {
+      if (isset($entity->sid) && $entity->sid != $row->migrate_map_destid1) {
+        throw new MigrateException(t("Incoming sid !sid and map destination sid !destid1 don't match",
+          array('!sid' => $entity->sid, '!destid1' => $row->migrate_map_destid1)));
+      }
+      else {
+        $entity->sid = $row->migrate_map_destid1;
+      }
+    }
+
+    $entity->nid = $this->node->nid;
+
+    // Invoke migration prepare handlers
+    $this->prepare($entity, $row);
+
+    migrate_instrument_start('webform_submission_update/insert');
+    // Determine if it's an insert or update.
+    if (empty($entity->sid)) {
+      $sid = webform_submission_insert($this->node, $entity);
+    }
+    else {
+      // If the sid was specified but doesn't exist we'll need to stick an
+      // empty record in so the update has something to stick to.
+      db_merge('webform_submissions')
+        ->key(array(
+          'sid' => $entity->sid,
+          'nid' => $entity->nid,
+        ))
+        ->insertFields(array(
+          'sid' => $entity->sid,
+          'nid' => $entity->nid,
+          'submitted' => $entity->submitted,
+          'remote_addr' => $entity->remote_addr,
+          'is_draft' => $entity->is_draft,
+        ))
+        ->execute();
+      $sid = webform_submission_update($this->node, $entity);
+    }
+    migrate_instrument_stop('webform_submission_update/insert');
+
+    if (isset($sid)) {
+      if ($updating) {
+        $this->numUpdated++;
+      }
+      else {
+        $this->numCreated++;
+      }
+      $return = array($sid);
+    }
+    else {
+      $return = FALSE;
+    }
+
+    // Invoke migration complete handlers
+    $this->complete($entity, $row);
+
+    return $return;
+  }
+
+  /**
+   * Delete a batch of submissions at once.
+   *
+   * @param $sids
+   *   Array of submission IDs to be deleted.
+   */
+  public function bulkRollback(array $sids) {
+    migrate_instrument_start(__METHOD__);
+    foreach (webform_get_submissions(array('sid' => $sids)) as $submission) {
+      webform_submission_delete($this->node, $submission);
+    }
+    migrate_instrument_stop(__METHOD__);
+  }
+}

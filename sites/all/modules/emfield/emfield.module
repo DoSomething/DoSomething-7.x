@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * Implements hook_content_migrate_field_alter().
+ */
+function emfield_content_migrate_field_alter(&$field_value, $instance_value) {
+  if (in_array($field_value['module'], array('emfield', 'emvideo', 'emimage', 'emaudio'))) {
+    $field_value['module'] = 'media';
+    $field_value['type'] = 'media';
+    // TODO: need to convert settings etc for this field to the D7 version.
+  }
+}
+
+/**
+ * Implements hook_content_migrate_instance_alter().
+ */
+function emfield_content_migrate_instance_alter(&$instance_value, $field_value) {
+  if (in_array($instance_value['widget']['module'], array('emfield', 'emvideo', 'emimage', 'emaudio'))) {
+    $instance_value['widget']['module'] = 'media';
+    $instance_value['widget']['type'] = 'media_generic';
+    foreach ($instance_value['display'] as $view_mode => $display_settings) {
+      $instance_value['display'][$view_mode]['type'] = 'default';
+    }
+    // TODO: need to convert settings etc to the D7 version.
+  }
+}
+
+/**
+ * Implements hook_content_migrate_data_record_alter().
+ */
+function emfield_content_migrate_data_record_alter(&$record, $field, $instance) {
+}
