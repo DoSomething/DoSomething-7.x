@@ -441,17 +441,12 @@ function devel_set_message($msg, $type = NULL) {
 // Return boolean. No need for cache here.
 function has_krumo() {
   // see README.txt or just download from http://krumo.sourceforge.net/
-<<<<<<< HEAD
-  @include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'devel') .'/krumo/class.krumo.php';
-  return function_exists('krumo') && !drupal_is_cli();
-=======
   @include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'devel') . '/krumo/class.krumo.php';
   if (function_exists('krumo') && !drupal_is_cli()) {
     drupal_add_js(drupal_get_path('module', 'devel') . '/devel_krumo_path.js');
     return TRUE;
   }
   return FALSE;
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
 }
 
 /**
@@ -828,12 +823,9 @@ function devel_switch_user_list() {
       $links[] = $link;
     }
   }
-<<<<<<< HEAD
-=======
   if (array_key_exists($user->uid, $links)) {
     $links[$user->uid]['title'] = '<strong>' . $links[$user->uid]['title'] . '</strong>';
   }  
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
   return $links;
 }
 
@@ -1573,18 +1565,12 @@ function dargs($always = TRUE) {
  * @param $query
  *   A Query object.
  * @param $return
-<<<<<<< HEAD
- *   Whether to return or print the string. Default to FALSE.
- * @param $name
- *   Optional name for identifying the output.
-=======
  *   Whether to return the string. Default is FALSE, meaning to print it
  *   and return $query instead.
  * @param $name
  *   Optional name for identifying the output.
  * @return
  *   The $query object, or the query string if $return was TRUE.
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
  */
 function dpq($query, $return = FALSE, $name = NULL) {
   if (user_access('access devel information')) {
@@ -1599,16 +1585,6 @@ function dpq($query, $return = FALSE, $name = NULL) {
     if ($return) {
       return $sql;
     }
-<<<<<<< HEAD
-    else {
-      dpm($sql, $name);
-    }
-  }
-}
-
-/**
- * Print a variable to the 'message' area of the page. Uses drupal_set_message()
-=======
     dpm($sql, $name);
   }
   return ($return ? NULL : $query);
@@ -1625,19 +1601,12 @@ function dpq($query, $return = FALSE, $name = NULL) {
  *   Optional name for identifying the output.
  * @return
  *   The unaltered input value.
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
  */
 function dpm($input, $name = NULL) {
   if (user_access('access devel information')) {
     $export = kprint_r($input, TRUE, $name);
     drupal_set_message($export);
   }
-<<<<<<< HEAD
-}
-
-/**
- * drupal_var_export() a variable to the 'message' area of the page. Uses drupal_set_message()
-=======
   return $input;
 }
 
@@ -1652,26 +1621,18 @@ function dpm($input, $name = NULL) {
  *   Optional name for identifying the output.
  * @return
  *   The unaltered input value.
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
  */
 function dvm($input, $name = NULL) {
   if (user_access('access devel information')) {
     $export = dprint_r($input, TRUE, $name, 'drupal_var_export', FALSE);
     drupal_set_message($export);
   }
-<<<<<<< HEAD
-=======
   return $input;
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
 }
 
 // legacy function that was poorly named. use dpm() instead, since the 'p' maps to 'print_r'
 function dsm($input, $name = NULL) {
-<<<<<<< HEAD
-  dpm($input, $name);
-=======
   return dpm($input, $name);
->>>>>>> 923b5f508a762815c5dc3669303887e9900f17cf
 }
 
 /**
