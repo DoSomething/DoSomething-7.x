@@ -1,0 +1,7 @@
+core = "7.x"
+dependencies[] = "features"
+description = "Creates the scholarship application content type"
+features[field][] = "node-scholarship_application-body"
+features[node][] = "scholarship_application"
+name = "dosomething - scholarship application"
+package = "Features"

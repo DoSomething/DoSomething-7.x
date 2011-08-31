@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething - scholarship application feature.
+ */
+
+include_once('dosomething_scholarship_application.features.inc');

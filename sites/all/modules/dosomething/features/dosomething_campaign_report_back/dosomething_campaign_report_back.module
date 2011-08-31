@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething - campaign report back feature.
+ */
+
+include_once('dosomething_campaign_report_back.features.inc');
