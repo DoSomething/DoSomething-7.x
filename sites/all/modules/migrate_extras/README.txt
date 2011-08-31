@@ -23,6 +23,7 @@ Profile2
 Rules
 User Relationships
 Voting API
+Webform
 
 Compatibility
 -------------
