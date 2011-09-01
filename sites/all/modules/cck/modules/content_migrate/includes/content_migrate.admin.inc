@@ -380,7 +380,7 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
     if (!$node) {
       return;
     }
-    $instance = field_info_instance('node', $field_name, $node['type']);
+    $instance = $instance_values[$node['type']];
     $query->addExpression("'". $node['type'] ."'", 'bundle');
     $query->condition('nid', $node['nid']);
     $result = $query->execute();
