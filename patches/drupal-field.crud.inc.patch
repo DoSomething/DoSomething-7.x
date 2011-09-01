@@ -1,0 +1,14 @@
+diff --git a/modules/field/field.crud.inc b/modules/field/field.crud.inc
+index a6aaab1..a6c305e 100644
+--- a/modules/field/field.crud.inc
++++ b/modules/field/field.crud.inc
+@@ -588,6 +588,9 @@ function _field_write_instance($instance, $update = FALSE) {
+     'default' => array(),
+   );
+   foreach ($instance['display'] as $view_mode => $display) {
++    if (!is_array($display)) {
++      $display = array();
++    }
+     $display += array(
+       'label' => 'above',
+       'type' => isset($field_type['default_formatter']) ? $field_type['default_formatter'] : 'hidden',
