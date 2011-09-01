@@ -1,5 +1,5 @@
 diff --git a/modules/content_migrate/includes/content_migrate.admin.inc b/modules/content_migrate/includes/content_migrate.admin.inc
-index b2e9925..82b0acc 100644
+index b2e9925..afe3124 100644
 --- a/modules/content_migrate/includes/content_migrate.admin.inc
 +++ b/modules/content_migrate/includes/content_migrate.admin.inc
 @@ -338,18 +338,10 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
@@ -16,30 +16,13 @@ index b2e9925..82b0acc 100644
 -    return;
    }
  
-+  // Process 1000 nodes in each batch.
++  // Process 100 nodes in each batch.
    $field = field_info_field($field_name);
 -  $instance = field_info_instance('node', $field_name, $node['type']);
  
    // Construct an record to insert into the new field table
    // from the data in the old table.
-@@ -358,15 +350,11 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
-     
-   // We need new columns for bundle name, entity type, and language.
-   // See the debate going on at http://drupal.org/node/1164852.
-+
-   // Reverting back to setting all nodes as untranslated.
-   $language = LANGUAGE_NONE;
--  if ($field['translatable']) {
--    //$language = $node['language'];
--  }
--  $query->addExpression("'". $node['type'] ."'", 'bundle');
-   $query->addExpression("'node'", 'entity_type');
-   $query->addExpression("'". $language ."'", 'language');
--    
-   // There are new names for what were the nid and vid columns.
-   $query->addField('old_table', 'nid', 'entity_id');
-   $query->addField('old_table', 'vid', 'revision_id');
-@@ -385,43 +373,52 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+@@ -385,43 +377,55 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
    else {
      $query->addExpression(0, 'delta');
    }
@@ -47,7 +30,10 @@ index b2e9925..82b0acc 100644
 -  $result = $query->execute();
  
 -  foreach ($result as $record) {
++  $base_query = $query;
 +  for ($i = 0; $i <=100; $i++) {
++    $query = clone($base_query);
++
 +    $node = array_shift($context['sandbox']['nodes']);
 +    if (!$node) {
 +      return;

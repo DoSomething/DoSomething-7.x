@@ -1,0 +1,135 @@
+diff --git a/modules/content_migrate/includes/content_migrate.admin.inc b/modules/content_migrate/includes/content_migrate.admin.inc
+index b2e9925..e855cf1 100644
+--- a/modules/content_migrate/includes/content_migrate.admin.inc
++++ b/modules/content_migrate/includes/content_migrate.admin.inc
+@@ -388,37 +388,51 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+   $query->condition('nid', $node['nid']);
+   $result = $query->execute();
+ 
+-  foreach ($result as $record) {
+-  
+-    // Let modules alter this before the insert.
+-    drupal_alter('content_migrate_data_record', $record, $field, $instance);
+-
+-    // Don't save empty values.
+-    if (!empty($record)) {
+-      $function = $field['module'] . '_field_is_empty';
+-      if (function_exists($function)) {
+-        // The $record array has the database columns as keys, which drupal_write_record() will need,
+-        // but the _field_is_empty() function will be looking for the short, normalized column name.
+-        $item = array();
+-        foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
+-          if (array_key_exists($db_column_name, $record)) {
+-            $item[$column_name] = $record[$db_column_name];
++  try {
++    foreach ($result as $record) {
++
++      // Let modules alter this before the insert.
++      drupal_alter('content_migrate_data_record', $record, $field, $instance);
++
++      // Don't save empty values.
++      if (!empty($record)) {
++        $function = $field['module'] . '_field_is_empty';
++        if (function_exists($function)) {
++          // The $record array has the database columns as keys, which drupal_write_record() will need,
++          // but the _field_is_empty() function will be looking for the short, normalized column name.
++          $item = array();
++          foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
++            if (array_key_exists($db_column_name, $record)) {
++              $item[$column_name] = $record[$db_column_name];
++            }
++          }
++          if ($function($item, $field)) {
++            $record = NULL;
+           }
+-        }
+-        if ($function($item, $field)) {
+-          $record = NULL;
+         }
+       }
+-    }
+ 
+-    if (!empty($record)) {
+-      if ($record['revision_id'] == $node['vid']) {
+-        drupal_write_record($context['sandbox']['new_table'], $record);
++      if (!empty($record)) {
++        if ($record['revision_id'] == $node['vid']) {
++          try {
++            drupal_write_record($context['sandbox']['new_table'], $record);
++          }
++          catch (PDOException $e) {
++            $errors[] = $e;
++          }
++        }
++        try {
++          drupal_write_record($context['sandbox']['new_revision_table'], $record);
++        }
++        catch (PDOException $e) {
++          $errors[] = $e;
++        }
+       }
+-      drupal_write_record($context['sandbox']['new_revision_table'], $record);
+     }
+   }
+-
++  catch (PDOException $e) {
++    $errors[] = $e;
++  }
+   // Update our progress information.
+   $context['sandbox']['progress']++;
+   $context['message'] = t('Processing %nid : %title', array('%title' => $node['title'], '%nid' => $node['nid']));
+@@ -428,7 +442,9 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
+   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+   }
+-
++  foreach ($errors as $error) {
++    drupal_set_message($error, 'error');
++  }
+ }
+ 
+ 
+diff --git a/modules/content_migrate/modules/content_migrate.filefield.inc b/modules/content_migrate/modules/content_migrate.filefield.inc
+index 0c2c000..b76330b 100644
+--- a/modules/content_migrate/modules/content_migrate.filefield.inc
++++ b/modules/content_migrate/modules/content_migrate.filefield.inc
+@@ -213,20 +213,25 @@ function content_migrate_filefield_data_record_alter(&$record, $field, $instance
+ 
+       // Insert into the file_managed table.
+       // Each fid should only be stored once in file_managed.
+-      db_merge('file_managed')
+-        ->key(array(
+-          'fid' => $file->fid,
+-        ))
+-        ->fields(array(
+-          'uid' => $file->uid,
+-          'filename' => $file->filename,
+-          'uri' => $file->uri,
+-          'filemime' => $file->filemime,
+-          'filesize' => $file->filesize,
+-          'status' => $file->status,
+-          'timestamp' => $file->timestamp,
+-        ))
+-        ->execute();
++      try {
++        db_merge('file_managed')
++          ->key(array(
++            'fid' => $file->fid,
++          ))
++          ->fields(array(
++            'uid' => $file->uid,
++            'filename' => $file->filename,
++            'uri' => $file->uri,
++            'filemime' => $file->filemime,
++            'filesize' => $file->filesize,
++            'status' => $file->status,
++            'timestamp' => $file->timestamp,
++          ))
++          ->execute();
++      }
++      catch (PDOException $e) {
++        drupal_set_message($e, 'error');
++      }
+ 
+       // Add the usage entry for the file.
+       file_usage_add($file, 'file', 'node', $nid);

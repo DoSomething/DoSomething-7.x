@@ -384,36 +384,50 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
     $query->addExpression("'". $node['type'] ."'", 'bundle');
     $query->condition('nid', $node['nid']);
     $result = $query->execute();
-    foreach ($result as $record) {
-      // Let modules alter this before the insert.
-      drupal_alter('content_migrate_data_record', $record, $field, $instance);
+    try {
+      foreach ($result as $record) {
+        // Let modules alter this before the insert.
+        drupal_alter('content_migrate_data_record', $record, $field, $instance);
 
-      // Don't save empty values.
-      if (!empty($record)) {
-        $function = $field['module'] . '_field_is_empty';
-        if (function_exists($function)) {
-          // The $record array has the database columns as keys, which drupal_write_record() will need,
-          // but the _field_is_empty() function will be looking for the short, normalized column name.
-          $item = array();
-          foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
-            if (array_key_exists($db_column_name, $record)) {
-              $item[$column_name] = $record[$db_column_name];
+        // Don't save empty values.
+        if (!empty($record)) {
+          $function = $field['module'] . '_field_is_empty';
+          if (function_exists($function)) {
+            // The $record array has the database columns as keys, which drupal_write_record() will need,
+            // but the _field_is_empty() function will be looking for the short, normalized column name.
+            $item = array();
+            foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
+              if (array_key_exists($db_column_name, $record)) {
+                $item[$column_name] = $record[$db_column_name];
+              }
+            }
+            if ($function($item, $field)) {
+              $record = NULL;
             }
           }
-          if ($function($item, $field)) {
-            $record = NULL;
+        }
+
+        if (!empty($record)) {
+          if ($record['revision_id'] == $node['vid']) {
+            try {
+              drupal_write_record($context['sandbox']['new_table'], $record);
+            }
+            catch (PDOException $e) {
+              print 'Caught exception 422: ' . $e->getMessage() . "\n";
+            }
+          }
+          try {
+            drupal_write_record($context['sandbox']['new_revision_table'], $record);
+          }
+          catch (PDOException $e) {
+            print 'Caught exception 429: ' . $e->getMessage() . "\n";
           }
         }
       }
-
-      if (!empty($record)) {
-        if ($record['revision_id'] == $node['vid']) {
-          drupal_write_record($context['sandbox']['new_table'], $record);
-        }
-        drupal_write_record($context['sandbox']['new_revision_table'], $record);
-      }
     }
-
+    catch (PDOException $e) {
+      print 'Caught exception 435: ' . $e->getMessage() . "\n";
+    }
     // Update our progress information.
     $context['sandbox']['progress']++;
   }

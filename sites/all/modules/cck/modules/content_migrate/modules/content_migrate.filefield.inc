@@ -213,20 +213,25 @@ function content_migrate_filefield_data_record_alter(&$record, $field, $instance
 
       // Insert into the file_managed table.
       // Each fid should only be stored once in file_managed.
-      db_merge('file_managed')
-        ->key(array(
-          'fid' => $file->fid,
-        ))
-        ->fields(array(
-          'uid' => $file->uid,
-          'filename' => $file->filename,
-          'uri' => $file->uri,
-          'filemime' => $file->filemime,
-          'filesize' => $file->filesize,
-          'status' => $file->status,
-          'timestamp' => $file->timestamp,
-        ))
-        ->execute();
+      try {
+        db_merge('file_managed')
+          ->key(array(
+            'fid' => $file->fid,
+          ))
+          ->fields(array(
+            'uid' => $file->uid,
+            'filename' => $file->filename,
+            'uri' => $file->uri,
+            'filemime' => $file->filemime,
+            'filesize' => $file->filesize,
+            'status' => $file->status,
+            'timestamp' => $file->timestamp,
+          ))
+          ->execute();
+      }
+      catch (Exception $e) {
+        print 'Caught exception: ' . $e->getMessage() . "\n";
+      }
 
       // Add the usage entry for the file.
       file_usage_add($file, 'file', 'node', $nid);
