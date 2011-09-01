@@ -11,8 +11,8 @@
 function dosomething_webform_recurring_fields_get_fields() {
   global $user;
   $user = user_load($user->uid);
-  
-  //NB: It is probably a good idea to make all the weights negative so they 
+
+  //NB: It is probably a good idea to make all the weights negative so they
   // appear over the normal webform elements.
   return array(
     'campaign_sign_up' => array(
@@ -37,7 +37,7 @@ function dosomething_webform_recurring_fields_get_fields() {
       'mobile' => array(
         '#weight' => 0,
         '#type' => 'textfield',
-        '#title' => t('Mobile'),
+        '#title' => t('Mobile Number'),
         '#default_value' => $user->field_user_mobile[field_language('user', $user, 'field_user_mobile')][0]['safe_value'],
         '#required' => TRUE,
         '#size' => 60,
@@ -74,7 +74,7 @@ function dosomething_webform_recurring_fields_get_fields() {
       'school' => array(
         '#weight' => 0,
         '#type' => 'textfield',
-        '#title' => t('Name'),
+        '#title' => t('School Name'),
         '#default_value' => $user->field_user_name[field_language('user', $user, 'field_user_name')][0]['safe_value'],
         '#required' => TRUE,
         '#size' => 60,
@@ -83,7 +83,7 @@ function dosomething_webform_recurring_fields_get_fields() {
       'mobile' => array(
         '#weight' => 0,
         '#type' => 'textfield',
-        '#title' => t('Mobile'),
+        '#title' => t('Mobile Number'),
         '#default_value' => $user->field_user_mobile[field_language('user', $user, 'field_user_mobile')][0]['safe_value'],
         '#required' => TRUE,
         '#size' => 60,
@@ -125,54 +125,49 @@ function dosomething_webform_recurring_fields_get_fields() {
 
 /**
  * Returns a  mapping of content types to schema tables.
- * 
+ *
  * For each content type that we want to add special fields to,
- *  add a case to this switch statment that will return the name of the 
- *  database table that is definded in the install file. These tables 
+ *  add a case to this switch statment that will return the name of the
+ *  database table that is definded in the install file. These tables
  *  are managed by this application.
  */
-function dosomething_recurring_fields_type_to_schema($content_type) {
-  switch($content_type) {
-    
-    case 'campaign_sign_up':
-      return 'ds_webform_campaign_su';
-    
-    case 'grant_application':
-      return 'ds_webform_grant_app';
-    
-    case 'campaign_report_back':
-      return 'ds_webform_campaign_rb';
-
-    case 'scholarship_application':
-      return 'ds_webform_scholarship_app';
-  }
+function dosomething_recurring_fields_type_to_table($content_type) {
+  $map = array(
+    'campaign_sign_up' => 'ds_webform_campaign_su',
+    'grant_application' => 'ds_webform_grant_app',
+    'campaign_report_back' => 'ds_webform_campaign_rb',
+    'scholarship_application' => 'ds_webform_scholarship_app',
+  );
+  return isset($map[$content_type]) ? $map[$content_type] : NULL;
 }
 
 
 /**
  * Implements hook_form_alter().
- */ 
+ */
 function dosomething_webform_recurring_fields_form_alter(&$form, &$form_state, $form_id) {
-  if (strstr($form_id, 'webform_client_form')) {
-    $fields_to_add = dosomething_webform_recurring_fields_get_fields();
-    $type = $form['#node']->type;
-    if (in_array($type, array_keys($fields_to_add))) {
-      foreach ($fields_to_add[$type] as $key => $fields) {
-        $form[$key] = $fields;
-      }
-      $form['#submit'][] = 'dosomething_webform_submit';
-    }
-    //If the form has already been submitted grab the data from the table 
-    // rather than the user object.
-    if (!empty($form['#submission'])) {
-      if ($form['#submission']->sid) {
-        $sid = $form['#submission']->sid;
-        $table_name = dosomething_recurring_fields_type_to_schema($type);
-        $sid_extras = db_query("SELECT * FROM {$table_name} WHERE sid = :sid", array(':sid' => $sid))->fetchAssoc();
-        foreach ($fields_to_add[$type] as $key => $fields) {
-          $form[$key]['#default_value'] = $sid_extras[$key];
-        }
-      }
+  // Make sure it's a webform...
+  if (strpos($form_id, 'webform_client_form') !== 0) {
+    return;
+  }
+  // ...and that we've got fields to add.
+  $fields_to_add = dosomething_webform_recurring_fields_get_fields();
+  $type = $form['#node']->type;
+  if (empty($fields_to_add[$type])) {
+    return;
+  }
+
+  // Throw our fields on.
+  $form += (array) $fields_to_add[$type];
+
+  // If the form has already been submitted grab the data from the table rather
+  // than the user object.
+  if (!empty($form['#submission']->sid)) {
+    $table_name = dosomething_recurring_fields_type_to_table($type);
+    $sid_extras = db_query("SELECT * FROM {$table_name} WHERE sid = :sid", array(':sid' => $form['#submission']->sid))
+      ->fetchAssoc();
+    foreach ($fields_to_add[$type] as $key => $fields) {
+      $form[$key]['#default_value'] = $sid_extras[$key];
     }
   }
 }
@@ -191,7 +186,7 @@ function dosomething_webform_submit($form, &$form_state) {
     }
   }
   $field_data_to_insert['sid'] = $sid;
-  $table = dosomething_recurring_fields_type_to_schema($node_type);
+  $table = dosomething_recurring_fields_type_to_table($node_type);
   $result = db_insert($table)
     ->fields($field_data_to_insert)
     ->execute();
@@ -199,28 +194,28 @@ function dosomething_webform_submit($form, &$form_state) {
 
 /**
  * Impelments hook_webform_submission_insert().
- * 
- * Find the sid from the newly added submission and add it to the node so we 
+ *
+ * Find the sid from the newly added submission and add it to the node so we
  * can use it in the submission handler.
  */
 function dosomething_webform_recurring_fields_webform_submission_insert($node, $submission) {
   $node->sid = $submission->sid;
 }
 
-
 function dosomething_webform_recurring_fields_webform_submission_render_alter(&$renderable) {
-  $magic_types = dosomething_webform_recurring_fields_get_fields();
-  if (in_array($renderable['#node']->type, array_keys($magic_types))) { 
+  $type = $renderable['#node']->type;
+  $fields_to_add = dosomething_webform_recurring_fields_get_fields();
+  if (!empty($fields_to_add[$type])) {
     //This is a special webform so add the data we have collected in our
     // own tables.
-    
+
     //get table name based on content type:
-    $table_name = dosomething_recurring_fields_type_to_schema($renderable['#node']->type);
+    $table_name = dosomething_recurring_fields_type_to_table($type);
     $sid = $renderable['#submission']->sid; //the submission id.
 
     //get data for this submission id from our custom tables.
     $sid_extras = db_query("SELECT * FROM {$table_name} WHERE sid = :sid", array(':sid' => $sid))->fetchAssoc();
-    foreach ($magic_types[$renderable['#node']->type] as $field => $data) {
+    foreach ($fields_to_add[$type] as $field => $data) {
       $renderable[$field] = array(
         '#value' => '<label>' . $field . '</label>' . '<span class="webform-recurring-element">' . $sid_extras[$field] . '</span>',
         '#theme' => 'webform_display_textfield',
@@ -228,8 +223,18 @@ function dosomething_webform_recurring_fields_webform_submission_render_alter(&$
         '#format' => 'markup',
         '#field_prefix' => '',
         '#field_suffix' => '',
-        '#weight' => $magic_types[$renderable['#node']->type][$field]['#weight'],
+        '#weight' => $magic_types[$type][$field]['#weight'],
       );
     }
   }
+}
+
+/**
+ * Implementation of hook_migrate_api().
+ */
+function dosomething_webform_recurring_fields_migrate_api() {
+  $api = array(
+    'api' => 2,
+  );
+  return $api;
 }

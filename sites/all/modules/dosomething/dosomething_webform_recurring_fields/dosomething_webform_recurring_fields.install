@@ -37,7 +37,7 @@ function dosomething_webform_recurring_fields_schema() {
         'length' => '255',
       ),
       'mobile' => array(
-        'description' => 'mobile phone number',
+        'description' => 'Mobile phone number',
         'type' => 'varchar',
         'not_null' => TRUE,
         'length' => '15',
@@ -49,8 +49,9 @@ function dosomething_webform_recurring_fields_schema() {
         'length' => '10',
       ),
     ),
+    'primary key' => array('sid'),
   );
-  
+
   $schema['ds_webform_grant_app'] = array(
     'description' => 'Holds data collected by recurring fields submitted to webforms on grant applications',
     'fields' => array(
@@ -59,40 +60,41 @@ function dosomething_webform_recurring_fields_schema() {
         'type' => 'int',
         'not null' => TRUE,
         'unsigned' => TRUE,
-      ),  
+      ),
       'name' => array(
         'description' => 'Name',
         'type' => 'varchar',
         'not null' => TRUE,
         'length' => 100,
-      ),  
+      ),
       'email' => array(
         'description' => 'Email Address',
         'type' => 'varchar',
         'not_null' =>  TRUE,
         'length' => '255',
-      ),  
+      ),
       'school' => array(
         'description' => 'School/Drive Name',
         'type' => 'varchar',
         'not_null' => TRUE,
         'length' => '255',
-      ),  
+      ),
       'mobile' => array(
-        'description' => 'mobile phone number',
+        'description' => 'Mobile phone number',
         'type' => 'varchar',
         'not_null' => TRUE,
         'length' => '15',
-      ),  
+      ),
       'zip' => array(
         'description' => 'Zip code',
         'type' => 'varchar',
         'not_null' => TRUE,
         'length' => '10',
-      ),  
-    ),  
-  ); 
-  
+      ),
+    ),
+    'primary key' => array('sid'),
+  );
+
   $schema['ds_webform_scholarship_app'] = array(
     'description' => 'Holds data collected by recurring fields submitted to webforms on grant applications',
     'fields' => array(
@@ -101,7 +103,7 @@ function dosomething_webform_recurring_fields_schema() {
         'type' => 'int',
         'not null' => TRUE,
         'unsigned' => TRUE,
-      ),  
+      ),
       'name' => array(
         'description' => 'Name',
         'type' => 'varchar',
@@ -109,6 +111,7 @@ function dosomething_webform_recurring_fields_schema() {
         'length' => 100,
       ),
     ),
+    'primary key' => array('sid'),
   );
 
   $schema['ds_webform_campaign_rb'] = array(
@@ -119,7 +122,7 @@ function dosomething_webform_recurring_fields_schema() {
         'type' => 'int',
         'not null' => TRUE,
         'unsigned' => TRUE,
-      ),  
+      ),
       'name' => array(
         'description' => 'Name',
         'type' => 'varchar',
@@ -127,7 +130,8 @@ function dosomething_webform_recurring_fields_schema() {
         'length' => 100,
       ),
     ),
+    'primary key' => array('sid'),
   );
-  
+
   return $schema;
 }

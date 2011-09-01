@@ -84,6 +84,12 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
    */
   public function __construct($node) {
     parent::__construct();
+
+    // Make sure it's a webform node.
+    $types = webform_variable_get('webform_node_types');
+    if (!in_array($node->type, $types)) {
+      throw new Exception(t('Must provide a webform node.'));
+    }
     $this->node = $node;
 
     // Webform expects the component values to be keyed by cid, so we need a
@@ -93,6 +99,8 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
       $this->component_cids['data_' . $component['form_key']] = $component['cid'];
     }
 
+    // We use the functions in this file in import() but load it here so we
+    // only do it once.
     module_load_include('inc', 'webform', 'includes/webform.submissions');
   }
 
@@ -125,7 +133,7 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
     }
 
     // Then add in anything provided by handlers.
-    $fields += migrate_handler_invoke_all('WebformSubmission', 'fields');
+    $fields += migrate_handler_invoke_all('WebformSubmission', 'fields', $this->node);
 
     return $fields;
   }
@@ -145,7 +153,7 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
       'machineName' => $migration->getMachineName(),
     );
     // Call any general object handlers.
-    migrate_handler_invoke_all('WebformSubmission', 'prepare', $entity, $source_row);
+    migrate_handler_invoke_all('WebformSubmission', 'prepare', $entity, $source_row, $this->node);
 
     // Move the data from our custom keys back to webform's component ids.
     $data = array();
@@ -159,7 +167,7 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
 
     // Then call any prepare handler for this specific Migration.
     if (method_exists($migration, 'prepare')) {
-      $migration->prepare($entity, $source_row);
+      $migration->prepare($entity, $source_row, $this->node);
     }
   }
 
@@ -176,10 +184,10 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
   public function complete($entity, stdClass $source_row) {
     $migration = Migration::currentMigration();
     // Call any general object handlers.
-    migrate_handler_invoke_all('WebformSubmission', 'complete', $entity, $source_row);
+    migrate_handler_invoke_all('WebformSubmission', 'complete', $entity, $source_row, $this->node);
     // Then call any complete handler for this specific Migration.
     if (method_exists($migration, 'complete')) {
-      $migration->complete($entity, $source_row);
+      $migration->complete($entity, $source_row, $this->node);
     }
   }
 
@@ -236,6 +244,8 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
     migrate_instrument_stop('webform_submission_update/insert');
 
     if (isset($sid)) {
+      $entity->sid = $sid;
+
       if ($updating) {
         $this->numUpdated++;
       }

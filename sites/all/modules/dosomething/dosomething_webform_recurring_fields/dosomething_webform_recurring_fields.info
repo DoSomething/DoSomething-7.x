@@ -3,3 +3,4 @@ description = Enables the creation of forms and questionnaires.
 core = 7.x
 package = DoSomething
 dependencies[] = webform
+files[] = migrate.inc
