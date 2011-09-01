@@ -3,5 +3,5 @@ dependencies[] = "features"
 description = "Creates the campaign report back content type"
 features[field][] = "node-campaign_report_back-body"
 features[node][] = "campaign_report_back"
-name = "dosomething - campaign report back"
-package = "Features"
+name = "DoSomething - Campaign Report Back"
+package = DoSomething

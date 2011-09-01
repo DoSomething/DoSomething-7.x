@@ -3,5 +3,5 @@ dependencies[] = "features"
 description = "Creates the scholarship application content type"
 features[field][] = "node-scholarship_application-body"
 features[node][] = "scholarship_application"
-name = "dosomething - scholarship application"
-package = "Features"
+name = "DoSomething - Scholarship Application"
+package = DoSomething

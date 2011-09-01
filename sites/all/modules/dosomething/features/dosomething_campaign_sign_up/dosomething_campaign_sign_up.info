@@ -3,5 +3,5 @@ dependencies[] = "features"
 description = "Creates the campaign sign up content type"
 features[field][] = "node-campaign_sign_up-body"
 features[node][] = "campaign_sign_up"
-name = "dosomething - campaign sign up"
-package = "Features"
+name = "DoSomething - Campaign Sign-up"
+package = DoSomething

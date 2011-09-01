@@ -3,5 +3,5 @@ dependencies[] = "features"
 description = "Creates the grant application content type"
 features[field][] = "node-grant_application-body"
 features[node][] = "grant_application"
-name = "dosomething - grant application"
-package = "Features"
+name = "DoSomething - Grant Application"
+package = DoSomething
