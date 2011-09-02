@@ -1,0 +1,6 @@
+core = "7.x"
+dependencies[] = "features"
+description = "Creates the School content type"
+features[node][] = "school"
+name = "DoSomething - School"
+package = "DoSomething"
