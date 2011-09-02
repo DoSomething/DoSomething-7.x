@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_editorial_content feature.
+ */
+
+include_once('dosomething_editorial_content.features.inc');
