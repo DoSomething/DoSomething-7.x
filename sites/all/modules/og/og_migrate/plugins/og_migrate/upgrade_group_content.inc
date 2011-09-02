@@ -72,6 +72,13 @@ function og_migrate_og_migrate_upgrade_group_content(&$context) {
     $context['sandbox']['progress']++;
   }
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
-    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    // Prevent batch from getting stuck and never finishing.
+    if (isset($context['sandbox']['last_progress']) && $context['sandbox']['last_progress'] == $context['sandbox']['progress']) {
+      $context['finished'] = 1;
+    }
+    else {
+      $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
+      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    }
   }
 }
