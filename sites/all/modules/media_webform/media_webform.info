@@ -1,0 +1,6 @@
+name = Media Webform
+description = Provides a Media component for Webform.
+core = 7.x
+package = Media
+dependencies[] = media
+dependencies[] = webform

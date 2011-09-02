@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Media: Webform module media component.
+ * Media component for Webform.
  */
 
 /**
