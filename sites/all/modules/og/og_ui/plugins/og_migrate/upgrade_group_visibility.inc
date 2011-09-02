@@ -132,16 +132,25 @@ function og_ui_og_migrate_upgrade_group_visibility(&$context) {
         // Since the node is already a group we have to manually override
         // the roles, as og_group() isn't called.
         $roles = og_roles_override($group->gid);
-        $roles = array_flip($roles);
+        if (count($roles)) {
+          $roles = array_flip($roles);
 
-        // Set the new permissions.
-        og_role_change_permissions($roles[OG_ANONYMOUS_ROLE], $anon_permissions);
-        og_role_change_permissions($roles[OG_AUTHENTICATED_ROLE], $auth_permissions);
+          // Set the new permissions.
+          og_role_change_permissions($roles[OG_ANONYMOUS_ROLE], $anon_permissions);
+          og_role_change_permissions($roles[OG_AUTHENTICATED_ROLE], $auth_permissions);
+        }
       }
     }
   }
 
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
-    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    // Prevent batch from getting stuck and never finishing.
+    if (isset($context['sandbox']['last_progress']) && $context['sandbox']['last_progress'] == $context['sandbox']['progress']) {
+      $context['finished'] = 1;
+    }
+    else {
+      $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
+      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    }
   }
 }
