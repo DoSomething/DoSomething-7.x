@@ -1,0 +1,1561 @@
+<?php
+/**
+ * @file
+ * dosomething_grants.features.field.inc
+ */
+
+/**
+ * Implementation of hook_field_default_fields().
+ */
+function dosomething_grants_field_default_fields() {
+  $fields = array();
+
+  // Exported field: 'node-grants_database-field_application_deadline'
+  $fields['node-grants_database-field_application_deadline'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_application_deadline',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_application_deadline',
+      'label' => 'Application Deadline',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '7',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '7',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_application_deadline_2'
+  $fields['node-grants_database-field_application_deadline_2'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_application_deadline_2',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'date',
+      'settings' => array(
+        'field_timezone' => 'America/New_York',
+        'granularity' => array(
+          0 => 'year',
+          1 => 'month',
+          2 => 'day',
+          3 => '0',
+          4 => '0',
+          5 => '0',
+        ),
+        'repeat' => 0,
+        'timezone_db' => '',
+        'todate' => '',
+        'tz_handling' => 'none',
+      ),
+      'translatable' => '0',
+      'type' => 'date',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'short',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_repeat_rule' => 'show',
+          ),
+          'type' => 'date_default',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'short',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_repeat_rule' => 'show',
+          ),
+          'type' => 'date_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'short',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_repeat_rule' => 'show',
+          ),
+          'type' => 'date_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_application_deadline_2',
+      'label' => 'Application Deadline',
+      'required' => FALSE,
+      'settings' => array(
+        'default_value' => 'blank',
+        'default_value2' => 'blank',
+        'default_value_code' => NULL,
+        'default_value_code2' => NULL,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'date',
+        'settings' => array(
+          'default_value_custom' => '',
+          'default_value_custom2' => '',
+          'increment' => '1',
+          'input_format' => 'site-wide',
+          'input_format_custom' => '',
+          'label_position' => 'above',
+          'repeat_collapsed' => NULL,
+          'text_parts' => array(),
+          'year_range' => '-0:+3',
+        ),
+        'type' => 'date_select',
+        'weight' => '0',
+      ),
+      'widget_type' => 'date_select',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_award_focus'
+  $fields['node-grants_database-field_award_focus'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_award_focus',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'General Volunteerism',
+          1 => 'General Social Entrepreneurship',
+          2 => 'Animal Welfare',
+          3 => 'Disaster Response and Relief',
+          4 => 'Discrimination',
+          5 => 'Education',
+          6 => 'Environment',
+          7 => 'Health and Fitness',
+          8 => 'HIV and Sexuality',
+          9 => 'International Human Rights',
+          10 => 'Poverty',
+          11 => 'Violence and Bullying',
+          12 => 'War, Peace and Politics',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_award_focus',
+      'label' => 'Award Focus',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '2',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_email_0'
+  $fields['node-grants_database-field_email_0'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_email_0',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'An email that applicants can use if they have questions about the application process. ',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_email_0',
+      'label' => 'Email',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-1',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '-1',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_grantsdb_award_name'
+  $fields['node-grants_database-field_grantsdb_award_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grantsdb_award_name',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grantsdb_award_name',
+      'label' => 'Name of Award',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '0',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_grantsdb_contact_name'
+  $fields['node-grants_database-field_grantsdb_contact_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grantsdb_contact_name',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-3',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-3',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grantsdb_contact_name',
+      'label' => 'Contact Name',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-3',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '-3',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_grantsdb_eligible'
+  $fields['node-grants_database-field_grantsdb_eligible'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grantsdb_eligible',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '5',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '5',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grantsdb_eligible',
+      'label' => 'Eligibility Guidelines',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '5',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '4',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '5',
+      ),
+      'widget_type' => 'text_textarea',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_grantsdb_link'
+  $fields['node-grants_database-field_grantsdb_link'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grantsdb_link',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => 'rel="nofollow" ',
+          'target' => '_blank',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 0,
+        'title' => 'none',
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'attributes' => 'N;',
+          'url' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => '6',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => '6',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grantsdb_link',
+      'label' => 'Website/link for the application',
+      'required' => FALSE,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '6',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '6',
+      ),
+      'widget_type' => 'link',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_organization_website'
+  $fields['node-grants_database-field_organization_website'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_organization_website',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => '_blank',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 1,
+        'title' => 'none',
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'attributes' => 'N;',
+          'url' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => '-5',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => '-5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => '-5',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_organization_website',
+      'label' => 'Organization Website',
+      'required' => FALSE,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_value' => '',
+        'url' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-5',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '-5',
+      ),
+      'widget_type' => 'link',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_phone_number_1'
+  $fields['node-grants_database-field_phone_number_1'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_phone_number_1',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '14',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_phone_number_1',
+      'label' => 'Phone Number',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-2',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '-2',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_picture'
+  $fields['node-grants_database-field_picture'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_picture',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => NULL,
+        'description_field' => '0',
+        'list_default' => 1,
+        'list_field' => '0',
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+      'type_name' => 'tips_and_tools',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => '',
+      'deleted' => '0',
+      'description' => '580px by 580px max',
+      'display' => array(
+        'Full' => array(
+          'label' => NULL,
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '1',
+        ),
+        'Teaser' => array(
+          'label' => NULL,
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '1',
+        ),
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_picture',
+      'label' => 'Picture or logo',
+      'required' => FALSE,
+      'settings' => array(
+        'alt_field' => 1,
+        'file_directory' => 'pictures/grantlisting',
+        'file_extensions' => '',
+        'max_filesize' => 0,
+        'max_resolution' => '0',
+        'min_resolution' => 0,
+        'title_field' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '1',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'image',
+        'settings' => array(
+          'body_preset' => NULL,
+          'image_path' => 'pictures/grantlisting',
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+          'teaser_preset' => NULL,
+          'use_default_image' => 0,
+        ),
+        'type' => 'image_image',
+        'weight' => '1',
+      ),
+      'widget_type' => 'imagefield_widget',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_posters_email'
+  $fields['node-grants_database-field_posters_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_posters_email',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Please submit your email so we can notify you when your posting has been approved.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_posters_email',
+      'label' => 'Poster\'s Email',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-2',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '-2',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_rolling'
+  $fields['node-grants_database-field_rolling'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_rolling',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'closed',
+          1 => 'open',
+          2 => 'rolling',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_rolling',
+      'label' => 'Grant status',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '0',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_type_of_award'
+  $fields['node-grants_database-field_type_of_award'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_type_of_award',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Cash Prize',
+          1 => 'Certificate',
+          2 => 'Conference',
+          3 => 'Fellowship',
+          4 => 'Project Grant',
+          5 => 'Public Recognition',
+          6 => 'Scholarship',
+          7 => 'Trip',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'hold down ctrl button to select more than one',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '3',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '3',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_type_of_award',
+      'label' => 'Type of Award',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '3',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_what_you_win'
+  $fields['node-grants_database-field_what_you_win'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_what_you_win',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '4',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '4',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_what_you_win',
+      'label' => 'Award Description',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '4',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '10',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '4',
+      ),
+      'widget_type' => 'text_textarea',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-field_winners_announced'
+  $fields['node-grants_database-field_winners_announced'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_winners_announced',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grants_database',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '8',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '8',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '8',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_winners_announced',
+      'label' => 'Winners announced',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '8',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '8',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grants_database-upload'
+  $fields['node-grants_database-upload'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'upload',
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'file',
+      'settings' => array(
+        'default_file' => 0,
+        'display_default' => '1',
+        'display_field' => 1,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_database',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'rss' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => NULL,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'upload',
+      'label' => 'File attachments',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 1,
+        'file_directory' => '',
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp4 mov mp3',
+        'max_filesize' => '8 MB',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'file',
+        'settings' => array(
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('580px by 580px max');
+  t('An email that applicants can use if they have questions about the application process. ');
+  t('Application Deadline');
+  t('Award Description');
+  t('Award Focus');
+  t('Contact Name');
+  t('Eligibility Guidelines');
+  t('Email');
+  t('File attachments');
+  t('Grant status');
+  t('Name of Award');
+  t('Organization Website');
+  t('Phone Number');
+  t('Picture or logo');
+  t('Please submit your email so we can notify you when your posting has been approved.');
+  t('Poster\'s Email');
+  t('Type of Award');
+  t('Website/link for the application');
+  t('Winners announced');
+  t('hold down ctrl button to select more than one');
+
+  return $fields;
+}
