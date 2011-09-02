@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Provides a Media component for Webform.
+ */
+
+/**
+ * Implements hook_webform_component_info().
+ */
+function media_webform_webform_component_info() {
+  $components = array();
+
+  $components['media'] = array(
+    'label' => t('Media'),
+    'description' => t('Media fields allow third-party media to be displayed.'),
+    'features' => array(
+      'required' => FALSE,
+      'conditional' => FALSE,
+    ),
+    'file' => 'components/media.inc',
+  );
+
+  return $components;
+}
