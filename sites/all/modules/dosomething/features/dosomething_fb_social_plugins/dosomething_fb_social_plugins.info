@@ -6,4 +6,4 @@ features[fb_social_preset][] = "FB Activity Feed"
 features[fb_social_preset][] = "FB Comments"
 features[fb_social_preset][] = "FB Like"
 name = "DoSomething - FB Social Plugins"
-package = "Features"
+package = DoSomething
