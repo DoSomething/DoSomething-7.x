@@ -8,7 +8,6 @@
 function fb_social_fb_social() {
   $r = fb_social_fb_plugin_load();
   $d = ctools_plugin_get_plugin_type_info();
-  dpm($d);
   return 'fb_social';
   
 }
@@ -219,7 +218,7 @@ function fb_social_node_view($node, $view_mode = 'full'){
     $plugin = fb_social_fb_plugin_load($preset->plugin_type);
     $function = ctools_plugin_get_function($plugin, 'nodeapi_view callback');
     if ($function) {
-      $function($preset, &$node, $view_mode);
+      $function($preset, node, $view_mode);
     }
   }
 }
