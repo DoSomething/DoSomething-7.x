@@ -18,22 +18,11 @@ function dosomething_webform_recurring_fields_schema() {
         'not null' => TRUE,
         'unsigned' => TRUE,
       ),
-      'name' => array(
-        'description' => 'Name',
-        'type' => 'varchar',
-        'not null' => TRUE,
-        'length' => 100,
       ),
       'email' => array(
         'description' => 'Email Address',
         'type' => 'varchar',
         'not_null' =>  TRUE,
-        'length' => '255',
-      ),
-      'school' => array(
-        'description' => 'School/Drive Name',
-        'type' => 'varchar',
-        'not_null' => TRUE,
         'length' => '255',
       ),
       'mobile' => array(
@@ -42,8 +31,14 @@ function dosomething_webform_recurring_fields_schema() {
         'not_null' => TRUE,
         'length' => '15',
       ),
-      'zip' => array(
-        'description' => 'Zip code',
+      'school' => array(
+        'description' => 'School name',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'school_zip' => array(
+        'description' => 'School Zip code',
         'type' => 'varchar',
         'not_null' => TRUE,
         'length' => '10',
@@ -67,17 +62,34 @@ function dosomething_webform_recurring_fields_schema() {
         'not null' => TRUE,
         'length' => 100,
       ),
-      'email' => array(
-        'description' => 'Email Address',
-        'type' => 'varchar',
-        'not_null' =>  TRUE,
-        'length' => '255',
+      'birthdate' => array(
+        'description' => 'Birthdate of the user',
+        'type' => 'date',
+        'not null' => TRUE,
       ),
-      'school' => array(
-        'description' => 'School/Drive Name',
+      'address' => array(
+        'description' => 'Street address of the user',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 255,
+      ),
+      'city' => array(
+        'description' => 'City of the user',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 255,
+      ),
+      'state' => array(
+        'description' => 'State of the user',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 255,
+      ),
+      'zip' => array(
+        'description' => 'Zip code of the user',
         'type' => 'varchar',
         'not_null' => TRUE,
-        'length' => '255',
+        'length' => '10',
       ),
       'mobile' => array(
         'description' => 'Mobile phone number',
@@ -85,11 +97,62 @@ function dosomething_webform_recurring_fields_schema() {
         'not_null' => TRUE,
         'length' => '15',
       ),
-      'zip' => array(
-        'description' => 'Zip code',
+      'email' => array(
+        'description' => 'Email Address',
+        'type' => 'varchar',
+        'not_null' =>  TRUE,
+        'length' => '255',
+      ),
+      'school' => array(
+        'description' => 'School Name',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'school_zip' => array(
+        'description' => 'School Zip code',
         'type' => 'varchar',
         'not_null' => TRUE,
         'length' => '10',
+      ),
+      'project_summary' => array(
+        'description' => 'A summary of the project',
+        'type' => 'text',
+        'not_null' => TRUE,
+      ),
+      'start_date' => array(
+        'description' => 'Project start date',
+        'type' => 'date',
+        'not_null' => TRUE,
+      ),
+      'end_date' => array(
+        'description' => 'Project end date',
+        'type' => 'date',
+        'not_null' => TRUE,
+      ),
+      'project_posting' => array(
+        'description' => 'URL of the project posting of the user',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'project_website_url' => array(
+        'description' => 'URL of the project website',
+        'type' => 'varchar',
+        'not_null' => FALSE,
+        'length' => '255',
+      ),
+      'photo_album_url' => array(
+        'description' => 'URL for photo album of this user',
+        'type' => 'varchar',
+        'not_null' => FALSE,
+        'length' => '255',
+      ),
+      'video_url' => array(
+        'description' => 'URL of a video related to the project',
+        'type' => 'varchar',
+        'not_null' => FALSE,
+        'length' => '255',
       ),
     ),
     'primary key' => array('sid'),
@@ -110,6 +173,98 @@ function dosomething_webform_recurring_fields_schema() {
         'not null' => TRUE,
         'length' => 100,
       ),
+      'birthdate' => array(
+        'description' => 'Birthdate of the user',
+        'type' => 'date',
+        'not null' => TRUE,
+      ),
+      'address' => array(
+        'description' => 'Street address of the user',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 255,
+      ),
+      'city' => array(
+        'description' => 'City of the user',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 255,
+      ),
+      'state' => array(
+        'description' => 'State of the user',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 255,
+      ),
+      'zip' => array(
+        'description' => 'Zip code of the user',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '10',
+      ),
+      'mobile' => array(
+        'description' => 'Mobile phone number',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '15',
+      ),
+      'email' => array(
+        'description' => 'Email Address',
+        'type' => 'varchar',
+        'not_null' =>  TRUE,
+        'length' => '255',
+      ),
+      'school' => array(
+        'description' => 'School Name',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'school_zip' => array(
+        'description' => 'School Zip code',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '10',
+      ),
+      'project_summary' => array(
+        'description' => 'A summary of the project',
+        'type' => 'text',
+        'not_null' => TRUE,
+      ),
+      'start_date' => array(
+        'description' => 'Project start date',
+        'type' => 'date',
+        'not_null' => TRUE,
+      ),
+      'end_date' => array(
+        'description' => 'Project end date',
+        'type' => 'date',
+        'not_null' => TRUE,
+      ),
+      'project_posting' => array(
+        'description' => 'URL of the project posting of the user',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'project_website_url' => array(
+        'description' => 'URL of the project website',
+        'type' => 'varchar',
+        'not_null' => FALSE,
+        'length' => '255',
+      ),
+      'photo_album_url' => array(
+        'description' => 'URL for photo album of this user',
+        'type' => 'varchar',
+        'not_null' => FALSE,
+        'length' => '255',
+      ),
+      'video_url' => array(
+        'description' => 'URL of a video related to the project',
+        'type' => 'varchar',
+        'not_null' => FALSE,
+        'length' => '255',
+      ),
     ),
     'primary key' => array('sid'),
   );
@@ -123,12 +278,32 @@ function dosomething_webform_recurring_fields_schema() {
         'not null' => TRUE,
         'unsigned' => TRUE,
       ),
-      'name' => array(
-        'description' => 'Name',
+      'mobile' => array(
+        'description' => 'Mobile phone number',
         'type' => 'varchar',
-        'not null' => TRUE,
-        'length' => 100,
+        'not_null' => TRUE,
+        'length' => '15',
       ),
+      'email' => array(
+        'description' => 'Email Address',
+        'type' => 'varchar',
+        'not_null' =>  TRUE,
+        'length' => '255',
+      ),
+      'school' => array(
+        'description' => 'School Name',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '255',
+      ),
+      'school_zip' => array(
+        'description' => 'School Zip code',
+        'type' => 'varchar',
+        'not_null' => TRUE,
+        'length' => '10',
+      ),
+      //TODO VIDEOS
+      //TODO PICTURES
     ),
     'primary key' => array('sid'),
   );
