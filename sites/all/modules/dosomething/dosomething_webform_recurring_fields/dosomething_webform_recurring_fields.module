@@ -16,15 +16,6 @@ function dosomething_webform_recurring_fields_get_fields() {
   // appear over the normal webform elements.
   return array(
     'campaign_sign_up' => array(
-      'name' => array(
-        '#weight' => 0,
-        '#type' => 'textfield',
-        '#title' => t('Name'),
-        '#default_value' => $user->field_user_name[field_language('user', $user, 'field_user_name')][0]['safe_value'],
-        '#required' => TRUE,
-        '#size' => 60,
-        '#maxlength' => 100,
-      ),
       'email' => array(
         '#weight' => 0,
         '#type' => 'textfield',
@@ -43,13 +34,22 @@ function dosomething_webform_recurring_fields_get_fields() {
         '#size' => 60,
         '#maxlength' => 15,
       ),
-      'zip' => array(
+      'school_zip' => array(
         '#weight' => 10,
         '#type' => 'textfield',
-        '#title' => t('ZIP Code'),
+        '#title' => t('School ZIP Code'),
         '#default_value' => $user->field_user_zip[field_language('user', $user, 'field_user_zip')][0]['safe_value'],
         '#size' => 60,
         '#maxlength' => 10,
+      ),
+      'school' => array(
+        '#weight' => 0,
+        '#type' => 'textfield',
+        '#title' => t('School name'),
+        '#default_value' => '',
+        '#required' => TRUE,
+        '#size' => 60,
+        '#maxlength' => 255,
       ),
     ),
     'grant_application' => array(
