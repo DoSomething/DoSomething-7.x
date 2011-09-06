@@ -46,6 +46,10 @@ function og_og_migrate_group_membership(&$context) {
       field_create_instance($instance);
     }
 
+    // It is probably already added, but make sure there is og-audience field
+    // attached to the user.
+    og_create_field(OG_AUDIENCE_FIELD, 'user', 'user');
+
     // Calculate max items.
     $query = new EntityFieldQuery();
     $context['sandbox']['max'] = $query
