@@ -24,17 +24,19 @@ function dosomething_feeds_menu() {
 function dosomething_feeds_theme() {
   return array(
     'dosomething_feed' => array(
-      'tempalte' => 'feed',
-      'arguments' => array(
-        'path' => '',
-        'items' => '',
+      'template' => 'feeds',
+      'path' => drupal_get_path('module', 'dosomething_feeds'), 
+      'variables' => array(
+        'data' => NULL,
+        'items' => NULL
       ),
     ),
     'dosomething_feed_item' => array(
-      'tempalte' => 'feed-item',
-      'arguments' => array(
-        'path' => '',
-        'items' => '',
+      'template' => 'feeds-item',
+      'path' => drupal_get_path('module', 'dosomething_feeds'),
+      'variables' => array(
+        'item' => NULL,
+        'data' => NULL,
       ),
     ),
   );
@@ -225,15 +227,20 @@ function dosomething_feeds_news() {
   $view = dosomething_feeds_get_view();
   $view->execute();
   $results = $view->result;
-  dpm($results);
+  dpm($view);
   $output = array(
     '#theme' => 'dosomething_feed',
+    '#data' => $view,
   );
   foreach ($results as $result) {
-    $output['items'][] = array(
-      '#data' => $result,
-      '#theme' => 'dosomething_feed_item',
-    );
+    $output['#items'][] = theme('dosomething_feed_item', array('item' => $result));
+    //drupal_render(
+    //array(
+    //  '#data' => $result,
+    //  '#theme' => 'dosomething_feed_item',
+    //  '#item' => $result,
+    //));
   }
+  dpm($output);
   return $output;
 }
