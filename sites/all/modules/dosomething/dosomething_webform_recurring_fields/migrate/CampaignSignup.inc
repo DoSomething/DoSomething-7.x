@@ -1,13 +1,15 @@
 <?php
 
 // Campaign Signup
+
 abstract class DSCampaignSignupMigration extends DSBaseMigration {
   public function __construct($node_type) {
-    // TODO: this is made up:
-    $webform = node_load(29784);
+    // FIXME: made up node id.
+    $webform = node_load(18);
     parent::__construct($webform, $node_type);
   }
 }
+
 
 class DSCampaignSignupEbdMigration extends DSCampaignSignupMigration {
   public function __construct() {
@@ -48,6 +50,10 @@ class DSCampaignSignupStaplesMigration extends DSCampaignSignupMigration {
   public function __construct() {
     parent::__construct('staples_2011_signup');
     $this->description = 'Staples 2011 Signup';
+    $this->addFieldMapping('name', 'title');
+    $this->addFieldMapping('school', 'field_school_name');
+    $this->addFieldMapping('email', 'field_campaign_email');
+    $this->addFieldMapping('mobile', 'field_campaign_phone_0');
   }
 }
 

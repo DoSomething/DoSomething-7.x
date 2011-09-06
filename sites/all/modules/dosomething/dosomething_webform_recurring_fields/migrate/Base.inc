@@ -5,7 +5,7 @@ abstract class DSBaseMigration extends Migration {
     parent::__construct();
     $this->dependencies = array();
 
-    $base_url = 'http://dosomething6.local/migrate';
+    $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
 
     $fields = array();
     $json = file_get_contents("{$base_url}/node/fields");
@@ -33,7 +33,7 @@ abstract class DSBaseMigration extends Migration {
     $this->addFieldMapping('submitted', 'created')->defaultValue(time());
     $this->addFieldMapping('remote_addr')->defaultValue('127.0.0.1');
 
-    // $this->addFieldMapping('data_fake1')->defaultValue('fake value');
+    $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
 
     // $this->addFieldMapping('name')->defaultValue('humbert');
     // $this->addFieldMapping('zip')->defaultValue('zippy');
@@ -61,14 +61,22 @@ class DSListJSON extends MigrateListJSON {
   }
 
   public function computeCount() {
+    $count = NULL;
+
+    migrate_instrument_start(__METHOD__);
+
     migrate_instrument_start("Retrieve $this->countUrl");
     $json = file_get_contents($this->countUrl);
     migrate_instrument_stop("Retrieve $this->countUrl");
 
     if ($json) {
       $data = drupal_json_decode($json);
-      return $data[$this->type];
+      $count = $data[$this->type];
     }
+
+    migrate_instrument_stop(__METHOD__);
+
+    return $count;
   }
 
   public function getIdList() {
@@ -120,8 +128,38 @@ class DSItemJSON extends MigrateItemJSON {
     $json = file_get_contents($item_url);
     $obj = json_decode($json);
 
+    $item = reset($obj);
+
+    foreach ($item as $name => &$value) {
+      // Flatten out single value fields.
+      if (strpos($name, 'field_') === 0 && count($value) == 1) {
+        // This looks bad but isset() returns false for null values:
+        // http://stackoverflow.com/questions/418066/best-way-to-test-for-a-variables-existence-in-php-isset-is-clearly-broken
+        if (is_object($value[0])) {
+          if (property_exists($value[0], 'value')) {
+            $value = $value[0]->value;
+          }
+          else if (property_exists($value[0], 'nid')) {
+            $value = $value[0]->nid;
+          }
+          else if (property_exists($value[0], 'uid')) {
+            $value = $value[0]->uid;
+          }
+          else if (property_exists($value[0], 'url')) {
+            $value = $value[0]->url;
+          }
+          else {
+            $value = $value[0];
+          }
+        }
+        else {
+          $value = $value[0];
+        }
+      }
+    }
+
     migrate_instrument_stop(__METHOD__);
 
-    return reset($obj);
+    return $item;
   }
 }
