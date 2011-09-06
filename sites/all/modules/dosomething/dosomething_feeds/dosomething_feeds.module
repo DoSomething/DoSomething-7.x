@@ -225,8 +225,9 @@ function dosomething_feeds_news() {
   $view = dosomething_feeds_get_view();
   $view->execute();
   $results = $view->result;
+  dpm($results);
   $output = array(
-    '#theme' = 'dosomething_feed'
+    '#theme' => 'dosomething_feed',
   );
   foreach ($results as $result) {
     $output['items'][] = array(
@@ -234,5 +235,5 @@ function dosomething_feeds_news() {
       '#theme' => 'dosomething_feed_item',
     );
   }
-  return 'funk';
+  return $output;
 }
