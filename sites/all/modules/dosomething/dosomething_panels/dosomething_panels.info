@@ -1,0 +1,4 @@
+name = DoSomething Panels
+description = Provide custom Panels plugins.
+core = 7.x
+dependencies[] = panels
