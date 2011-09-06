@@ -354,11 +354,11 @@ function fb_social_get_presets($name = NULL, $enabled = TRUE, $reset = FALSE){
 
   $presets = fb_social_preset_load($name, $reset);
   
-  if (!empty($presets) && $enabled ) {
+  if (!empty($presets) && !is_object($presets) && $enabled) {
     $presets = array_filter($presets, '_fb_social_enabled_presets_filter');
   }
   
-  if (isset($name)) {
+  if (isset($name) && !is_object($presets)) {
     return isset($presets[$name]) ? $presets[$name] : FALSE;
   }
   
