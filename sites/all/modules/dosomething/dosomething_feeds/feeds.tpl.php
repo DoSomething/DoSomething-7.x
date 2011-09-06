@@ -5,10 +5,10 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title><?php print $data->human_name ?></title>
+    <title><?php print $title ?></title>
     <atom:link href="<?php print url(current_path(), array('absolute' => TRUE)) ?>" rel="self" type="application/rss+xml" />
     <link><?php print url(current_path(), array('absolute' => TRUE)) ?></link>
-    <description><?php print $data->description ?></description>
+    <description><?php print $description ?></description>
     <pubDate><?php print date('r', REQUEST_TIME); ?></pubDate>
     <language>en</language>
     <items>
