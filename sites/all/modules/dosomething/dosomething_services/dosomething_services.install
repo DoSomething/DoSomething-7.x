@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the DoSomething services module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function dosomething_services_schema() {
+  $schema['ds_services'] = array(
+    'description' => 'Holds api keys and api limit information for dosomething 
+                      custom services module',
+    'fields' => array(
+      'api_key' => array(
+        'description' => 'The api key',
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => '50',
+      ),
+      'total_calls' => array(
+        'description' => 'The total number of API calls with this key',
+        'type' => 'int',
+        'not_null' =>  TRUE,
+        'unsigned' => TRUE,
+        'default' => '0'
+      ),
+    ),
+    'primary key' => array('api_key'),
+  );
+  return $schema;
+}
+
