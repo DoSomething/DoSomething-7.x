@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DoSomething - FB Social Plugins feature.
+ */
+
+include_once('dosomething_fb_social_plugins.features.inc');
