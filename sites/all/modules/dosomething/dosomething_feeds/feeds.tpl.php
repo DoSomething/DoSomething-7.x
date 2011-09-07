@@ -11,12 +11,10 @@
     <description><?php print $description ?></description>
     <pubDate><?php print date('r', REQUEST_TIME); ?></pubDate>
     <language>en</language>
-    <items>
       <?php 
         foreach ($items as $item) {
           print $item;
         }
       ?>
-    </items>
   </channel>
 </rss>

@@ -8,7 +8,7 @@ function dosomething_feeds_menu() {
     'access callback' => TRUE,
     'description' => 'DoSomething.org News',
     'type' => MENU_CALLBACK,
-    'page arguments' => array($type => 'chatterbox', 'title' => 'DoSomething.org News Feed', 'description' => 'The DoSomething.org News Box'),
+    'page arguments' => array('type' => 'chatterbox', 'title' => 'DoSomething.org News Feed', 'description' => 'The DoSomething.org News Box'),
   );
   $items['cgg/rss'] = array(
     'title' => 'Celebs Gone Good',
@@ -28,7 +28,9 @@ function dosomething_feeds_theme() {
       'path' => drupal_get_path('module', 'dosomething_feeds'), 
       'variables' => array(
         'data' => NULL,
-        'items' => NULL
+        'items' => NULL,
+        'title' => NULL,
+        'description' => NULL,
       ),
     ),
     'dosomething_feed_item' => array(
@@ -36,16 +38,24 @@ function dosomething_feeds_theme() {
       'path' => drupal_get_path('module', 'dosomething_feeds'),
       'variables' => array(
         'item' => NULL,
-        'data' => NULL,
       ),
     ),
   );
 }
   
 function dosomething_feeds_news($type, $title, $description) {
+  global $base_url;
   drupal_add_http_header('Content-Type: text/xml; charset=utf-8');
   module_load_include('inc', 'dosomething_feeds', 'dosomething_feeds_get_view');
-  $view = dosomething_feeds_get_view($type);
+  switch ($type) {
+    case 'chatterbox':
+      $view = dosomething_feeds_get_news_feed_view();
+      break;
+    
+    case 'celebs_gone_good':
+      $view = dosomething_feeds_get_celebs_feed_view();
+      break;
+  }
   $view->execute();
   $results = $view->result;
   $output = array(
@@ -55,8 +65,24 @@ function dosomething_feeds_news($type, $title, $description) {
     '#description' => $description,
   );
   foreach ($results as $result) {
+    $result->path = url('node/' . $result->nid, array('absolute' => TRUE)); 
+    $result->term_paths = array();
+    foreach ($result->field_taxonomy_vocabulary_5 as $term) {
+      $tid = $term['raw']['tid'];
+      $parent = "";
+      $parents = taxonomy_get_parents($tid);
+      $first = reset($parents);
+      if ($first) {
+        $parent = str_replace(" ", "+", $first->name . "/");
+      }
+      $main_part = str_replace(" ", "+", $term['rendered']['#title']);
+      $result->term_paths[] = array(
+        'path' => $base_url . '/whatsyourthing/' .  $parent . $main_part,
+        'title' =>  $term['rendered']['#title'],
+      );
+    }
     $output['#items'][] = theme('dosomething_feed_item', array('item' => $result));
   }
-  return $output;
+  print drupal_render($output);
+  exit;
 }
-
