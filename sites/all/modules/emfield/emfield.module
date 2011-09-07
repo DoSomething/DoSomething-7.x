@@ -22,7 +22,7 @@ function emfield_content_migrate_instance_alter(&$instance_value, $field_value) 
       $instance_value['display'][$view_mode]['type'] = 'media';
       $instance_value['display'][$view_mode]['module'] = 'media';
       $instance_value['display'][$view_mode]['settings'] = array(
-        'file_view_mode' => 'default',
+        'file_view_mode' => 'media_large',
       );
     }
     // TODO: need to convert settings etc to the D7 version.
@@ -33,9 +33,10 @@ function emfield_content_migrate_instance_alter(&$instance_value, $field_value) 
  * Implements hook_content_migrate_data_record_alter().
  */
 function emfield_content_migrate_data_record_alter(&$record, $field, $instance) {
-  $providers = array(
-    'youtube' => 'youtube://v/',
-  );
+  $providers = array();
+  if (module_exists('media_youtube')) {
+    $providers['youtube'] = 'youtube://v/';
+  }
   if (!empty($record[$field['field_name'] . '_data'])) {
     $data = unserialize($record[$field['field_name'] . '_data']);
     if (!empty($data)) {
