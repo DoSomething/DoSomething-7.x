@@ -175,8 +175,10 @@ function sms_mobile_commons_menu() {
  * Add a filter to ensure incoming texts are coming from Mobile Commons' IP.
  */
 function sms_mobile_commons_incoming_check() {
-  if ($_SERVER['REMOTE_ADDR'] == "64.22.127.76") {
+  return TRUE;
+  // TODO: learn the mobile commons ip range
+  /* if ($_SERVER['REMOTE_ADDR'] == "64.22.127.76") {
     return TRUE;
-  }
+  } */
   return FALSE;
 }
