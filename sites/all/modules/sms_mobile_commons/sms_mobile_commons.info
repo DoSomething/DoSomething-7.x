@@ -1,0 +1,5 @@
+name = sms mobile commons
+description = Provides mobile commons integration for SMS Framework.
+package = SMS Framework
+core = 7.x
+configure = admin/structure/sms-mobile-commons
