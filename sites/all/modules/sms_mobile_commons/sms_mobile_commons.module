@@ -157,3 +157,43 @@ function  sms_mobile_commons_admin_page_submit($form, &$form_state) {
   dpm($form_state);
 }
 
+/**
+ * Custom callback for incoming HTTP request.
+ */
+function sms_mobile_commons_incoming_callback() {  
+  $message = $_REQUEST['args'];  
+  $keyword = $_REQUEST['keyword'];
+  $carrier = $_REQUEST['carrier'];
+  $keyword = $_REQUEST['keyword'];
+  $sender = $_REQUEST['phone'];
+
+  watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
+  sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword));
+  watchdog('sms_mobile_commons', 'Received message ' . serialize($_SERVER));
+}
+
+/**
+ * Implements hook_menu().
+ */
+function sms_mobile_commons_menu() {
+  $items = array();
+
+  $items['sms/mobile-commons/receiver'] = array(
+    'title' => 'Mobile Commons SMS receiver',
+    'page callback' => 'sms_mobile_commons_incoming_callback',
+    'access callback' => 'sms_mobile_commons_incoming_check',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Add a filter to ensure incoming texts are coming from Mobile Commons' IP.
+ */
+function sms_mobile_commons_incoming_check() {
+  if ($_SERVER['REMOTE_ADDR'] == "64.22.127.76") {
+    return TRUE;
+  }
+  return FALSE;
+}

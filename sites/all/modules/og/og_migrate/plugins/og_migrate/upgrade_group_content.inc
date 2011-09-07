@@ -51,7 +51,6 @@ function og_migrate_og_migrate_upgrade_group_content(&$context) {
     ->fields('n', array('type', 'created'))
     ->fields('oga', array('upgrade_id', 'group_nid'))
     ->condition('nr.vid', $context['sandbox']['last_vid'], '>')
-    ->condition('oga.upgrade_id', $context['sandbox']['last'], '>')
     ->orderBy('nr.vid', 'ASC')
     ->range(0, $batch_size);
   $revisions = $query->execute();
@@ -67,18 +66,12 @@ function og_migrate_og_migrate_upgrade_group_content(&$context) {
     }
 
     $context['sandbox']['last_vid'] = $revision->vid;
-    $context['sandbox']['last'] = $revision->upgrade_id;
     // Group content subscribed to group.
     $context['sandbox']['progress']++;
   }
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
-    // Prevent batch from getting stuck and never finishing.
-    if (isset($context['sandbox']['last_progress']) && $context['sandbox']['last_progress'] == $context['sandbox']['progress']) {
-      $context['finished'] = 1;
-    }
-    else {
-      $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
-      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
-    }
+    print $context['sandbox']['progress'];
+    $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
 }
