@@ -58,8 +58,15 @@ function sms_mobile_commons_admin_form($configuration) {
     '#description' => t('The path on mobile commons that handles user opt-ins'),
     '#default_value' => $configuration['sms_mobile_commons_opt_in_path'],
   );
-
+  $form['sms_mobile_commons_response'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Response text for mData.'),
+    '#description' => t('A default response to give back when the site receives a message via mData. In most cases you will want to ignore the use of a default response and instead implement hook_sms_mobile_commons_response_alter().'),
+    '#default_value' => $configuration['sms_mobile_commons_response'],
+  );
+  
   return $form;
+
 }
 
 /**
@@ -91,12 +98,24 @@ function sms_mobile_commons_incoming_callback() {
   $message = $_REQUEST['args'];  
   $keyword = $_REQUEST['keyword'];
   $carrier = $_REQUEST['carrier'];
-  $keyword = $_REQUEST['keyword'];
   $sender = $_REQUEST['phone'];
-
-  watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
-  sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword));
-  watchdog('sms_mobile_commons', 'Received message ' . serialize($_SERVER));
+  $gateway = sms_gateways('gateway', 'sms_mobile_commons');
+  $config = $gateway['configuration'];
+  $output = $config['sms_mobile_commons_response'];
+  drupal_alter('sms_mobile_commons_response', $output, $message, $sender, $keyword);
+  sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword, 'response' => $output));
+  watchdog('sms_mobile_commons', 'Received message from %sender: %message and responded with %response', array('%sender' => $sender, '%message' => $message, '%response' => $output));
+  $output =
+  '<?xml version="1.0" encoding="UTF-8"?>
+  <response>
+   <reply>
+    <text>
+     <![CDATA[' . $output . ']]>
+    </text>
+   </reply>
+  </response>';
+  print $output;
+  exit;
 }
 
 /**
@@ -119,8 +138,10 @@ function sms_mobile_commons_menu() {
  * Add a filter to ensure incoming texts are coming from Mobile Commons' IP.
  */
 function sms_mobile_commons_incoming_check() {
-  if ($_SERVER['REMOTE_ADDR'] == "64.22.127.76") {
+  return TRUE;
+  // TODO: learn the mobile commons ip range
+  /* if ($_SERVER['REMOTE_ADDR'] == "64.22.127.76") {
     return TRUE;
-  }
+  } */
   return FALSE;
 }
