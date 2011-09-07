@@ -84,7 +84,7 @@ function sms_mobile_commons_incoming_callback() {
 /**
  * Implements hook_menu().
  */
-function sms_mobivity_menu() {
+function sms_mobile_commons_menu() {
   $items = array();
 
   $items['sms/mobile-commons/receiver'] = array(
