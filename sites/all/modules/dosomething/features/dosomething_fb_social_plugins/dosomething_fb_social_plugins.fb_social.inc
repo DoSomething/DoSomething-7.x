@@ -20,7 +20,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
     'block' => 1,
   );
   $fb_social_preset->fb_attrs = array(
-    'site' => 'dosomething.local',
+    'site' => 'dosomething.zivtech.com',
     'width' => '300',
     'height' => '300',
     'header' => 1,

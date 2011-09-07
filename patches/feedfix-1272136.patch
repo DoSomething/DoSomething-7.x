@@ -1,0 +1,25 @@
+From 05e7c20e26f46a756d6952922346aa4df17ebab3 Mon Sep 17 00:00:00 2001
+From: Aaron Couch <aaron@zivtech.com>
+Date: Mon, 5 Sep 2011 21:08:48 -0400
+Subject: [PATCH] fixing activity feed #1272136
+
+---
+ plugins/fb_plugin/activityfeed.inc |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/plugins/fb_plugin/activityfeed.inc b/plugins/fb_plugin/activityfeed.inc
+index 0c2d3dc..bbad364 100644
+--- a/plugins/fb_plugin/activityfeed.inc
++++ b/plugins/fb_plugin/activityfeed.inc
+@@ -3,7 +3,7 @@
+ $plugin = array(
+     'title' => t('activityfeed'), 
+     'description' => t('Facebook activityfeed plugin'), 
+-    'html tag name' => 'activityfeed' 
++    'html tag name' => 'activity' 
+ )
+ ;
+ 
+-- 
+1.7.0.4
+
