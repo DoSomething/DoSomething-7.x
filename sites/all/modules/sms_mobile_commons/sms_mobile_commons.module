@@ -169,7 +169,17 @@ function sms_mobile_commons_incoming_callback() {
 
   watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
   sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword));
-  watchdog('sms_mobile_commons', 'Received message ' . serialize($_SERVER));
+  $output =
+  '<?xml version="1.0" encoding="UTF-8"?>
+  <response>
+   <reply>
+    <text>
+     <![CDATA[This is jody\'s response message]]>
+    </text>
+   </reply>
+  </response>';
+  print $output;
+  exit;
 }
 
 /**
