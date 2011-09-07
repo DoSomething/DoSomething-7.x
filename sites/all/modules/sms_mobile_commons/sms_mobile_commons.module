@@ -67,7 +67,7 @@ function sms_mobile_commons_admin_page() {
  * Custom callback for incoming HTTP request.
  */
 function sms_mobile_commons_incoming_callback() {
-  dpm(_$REQUEST);
+  dpm($_REQUEST);
 /*  $message = $_REQUEST['smsmsg'];
   $keyword = $_REQUEST['keyword'];
   $carrier = $_REQUEST['carrierCode'];
