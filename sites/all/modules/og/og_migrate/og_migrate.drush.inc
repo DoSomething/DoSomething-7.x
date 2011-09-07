@@ -64,7 +64,6 @@ function drush_og_migrate_plugins($plugins_names) {
   $batch = array(
     'title' => t('Migrating Organic groups data'),
     'operations' => $operations,
-    'finished' => 'og_migrate_finished',
     'init_message' => t("Organic groups migration is starting."),
     'progress_message' => t('Processed @current out of @total.'),
     'error_message' => t('Organic groups migration has encountered an error.'),

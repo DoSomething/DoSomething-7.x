@@ -1,0 +1,80 @@
+diff --git a/og/og_migrate/plugins/og_migrate/upgrade_group.inc b/og/og_migrate/plugins/og_
+index 652a2a7..315a76f 100644
+--- a/og/og_migrate/plugins/og_migrate/upgrade_group.inc
++++ b/og/og_migrate/plugins/og_migrate/upgrade_group.inc
+@@ -48,7 +48,6 @@ function og_migrate_og_migrate_upgrade_group(&$context) {
+     ->fields('n', array('type', 'created'))
+     ->fields('og', array('upgrade_id'))
+     ->condition('nr.vid', $context['sandbox']['last_vid'], '>')
+-    ->condition('og.upgrade_id', $context['sandbox']['last'], '>')
+     ->orderBy('nr.vid', 'ASC')
+     ->range(0, $batch_size);
+   $revisions = $query->execute();
+@@ -77,7 +76,6 @@ function og_migrate_og_migrate_upgrade_group(&$context) {
+    }
+
+    $context['sandbox']['last_vid'] = $revision->vid;
+-    $context['sandbox']['last'] = $revision->upgrade_id;
+    $context['sandbox']['progress']++;
+  }
+
+diff --git a/og/og_migrate/plugins/og_migrate/upgrade_group_content.inc b/og/og_migrate/plu
+index 0ada7e9..f510dde 100644
+--- a/og/og_migrate/plugins/og_migrate/upgrade_group_content.inc
++++ b/og/og_migrate/plugins/og_migrate/upgrade_group_content.inc
+@@ -51,7 +51,6 @@ function og_migrate_og_migrate_upgrade_group_content(&$context) {
+     ->fields('n', array('type', 'created'))
+     ->fields('oga', array('upgrade_id', 'group_nid'))
+     ->condition('nr.vid', $context['sandbox']['last_vid'], '>')
+-    ->condition('oga.upgrade_id', $context['sandbox']['last'], '>')
+     ->orderBy('nr.vid', 'ASC')
+     ->range(0, $batch_size);
+   $revisions = $query->execute();
+@@ -67,7 +66,6 @@ function og_migrate_og_migrate_upgrade_group_content(&$context) {
+     }
+ 
+     $context['sandbox']['last_vid'] = $revision->vid;
+-    $context['sandbox']['last'] = $revision->upgrade_id;
+     // Group content subscribed to group.
+     $context['sandbox']['progress']++;
+   }
+diff --git a/og/og_migrate/plugins/og_migrate/upgrade_group_description.inc b/og/og_migrate
+index 9ddc911..acd2648 100644
+--- a/og/og_migrate/plugins/og_migrate/upgrade_group_description.inc
++++ b/og/og_migrate/plugins/og_migrate/upgrade_group_description.inc
+@@ -49,7 +49,6 @@ function og_migrate_og_migrate_upgrade_group_description(&$context) {
+     ->fields('n', array('type', 'created'))
+     ->fields('og', array('upgrade_id', 'og_description'))
+     ->condition('nr.vid', $context['sandbox']['last_vid'], '>')
+-    ->condition('og.upgrade_id', $context['sandbox']['last'], '>')
+     ->orderBy('nr.vid', 'ASC')
+     ->range(0, $batch_size);
+   $revisions = $query->execute();
+@@ -75,7 +74,6 @@ function og_migrate_og_migrate_upgrade_group_description(&$context) {
+     field_attach_update('node', $node);
+ 
+     $context['sandbox']['last_vid'] = $revision->vid;
+-    $context['sandbox']['last'] = $revision->upgrade_id;
+   }
+ 
+   if ($nids) {
+diff --git a/og/og_ui/plugins/og_migrate/upgrade_group_visibility.inc b/og/og_ui/plugins/og
+index 1745d32..7af822f 100644
+--- a/og/og_ui/plugins/og_migrate/upgrade_group_visibility.inc
++++ b/og/og_ui/plugins/og_migrate/upgrade_group_visibility.inc
+@@ -59,7 +59,6 @@ function og_ui_og_migrate_upgrade_group_visibility(&$context) {
+     ->fields('n', array('type', 'created'))
+     ->fields('og', array('og_selective', 'upgrade_id'))
+     ->condition('nr.vid', $context['sandbox']['last_vid'], '>')
+-    ->condition('og.upgrade_id', $context['sandbox']['last'], '>')
+     ->orderBy('nr.vid', 'ASC')
+     ->range(0, $batch_size);
+   $revisions = $query->execute();
+@@ -82,7 +81,6 @@ function og_ui_og_migrate_upgrade_group_visibility(&$context) {
+     field_attach_update('node', $node);
+ 
+     $context['sandbox']['last_vid'] = $revision->vid;
+-    $context['sandbox']['last'] = $revision->upgrade_id;
+     // Group content subscribed to group.
+     $context['sandbox']['progress']++;
+   }
