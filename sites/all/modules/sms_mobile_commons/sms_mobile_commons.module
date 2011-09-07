@@ -20,41 +20,6 @@ function sms_mobile_commons_gateway_info() {
   );
 }
 
-
-/**
- * Implementation of hook_menu().
- */
-/*function sms_mobile_commons_menu() {
-  $items = array();
-   
-  $items['admin/structure/sms-mobile-commons'] = array(
-    'title' => 'SMS Mobile Commons Configuration',
-    'page callback' => 'sms_mobile_commons_admin_page',
-    'access arguments' => array('administer sms mobile commons'),
-    'type' => MENU_CALLBACK,
-  );
-  
-  return $items;
-}
-*/
-/**
- * Implementation of hook_permission().
- */
-/*function sms_mobile_commons_permission() {
-  return array(
-    'administer sms mobile commons' => array(
-      'title' => t('Administer SMS Mobile Commons Configuration'), 
-      'description' => t('Allows the user to change the basic authorization 
-        configuration for SMS Mobile Commons.'),
-    ),
-    'send sms mobile commons' => array(
-      'title' => t('Send SMS Mobile Commons messages'), 
-      'description' => t('Allows the user send mobile commons messages.'),
-    ),
-  );
-}
-*/
-
 /**
  * Implementation of hook_admin_form().
  */
