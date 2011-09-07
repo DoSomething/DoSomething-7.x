@@ -71,7 +71,7 @@ function sms_mobile_commons_incoming_callback() {
   $keyword = $_REQUEST['keyword'];
   $carrier = $_REQUEST['carrier'];
   $keyword = $_REQUEST['keyword'];
-  $sender = $_REQUEST['sender'];
+  $sender = $_REQUEST['phone'];
 
   watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
   sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword));
@@ -95,20 +95,11 @@ function sms_mobile_commons_menu() {
 }
 
 /**
- * Add a filter to ensure incoming texts are coming from Mobile Commons' IP range
+ * Add a filter to ensure incoming texts are coming from Mobile Commons' IP.
  */
 function sms_mobile_commons_incoming_check() {
-  return TRUE;
-  // TODO: we have no idea how to check the message came from MC.
-  /*
-  $allowed[] = "174.132.173.";
-  $allowed[] = "174.132.174.";
-  foreach ($allowed as $allow) {
-    $allow = str_replace('.','\.', $allow);
-    if (preg_match("#^$allow#", $_SERVER['REMOTE_ADDR'])) {
-      return TRUE;
-    }
+  if ($_SERVER['REMOTE_ADDR'] == "64.22.127.76") {
+    return TRUE;
   }
   return FALSE;
-  */
 }
