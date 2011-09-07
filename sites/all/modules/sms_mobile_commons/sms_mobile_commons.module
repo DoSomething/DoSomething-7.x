@@ -106,9 +106,9 @@ function sms_mobile_commons_admin_form($configuration) {
   );
   $form['sms_mobile_commons_response'] = array(
     '#type' => 'textfield',
-    '#title' => t('Response to give back to mData messages.'),
+    '#title' => t('Response text for mData.'),
     '#description' => t('A default response to give back when the site receives a message via mData. In most cases you will want to ignore the use of a default response and instead implement hook_sms_mobile_commons_response_alter().'),
-    '#default_value' => $configuration['sms_mobile_commons_password'],
+    '#default_value' => $configuration['sms_mobile_commons_response'],
   );
   
   return $form;
@@ -136,8 +136,9 @@ function sms_mobile_commons_incoming_callback() {
   $keyword = $_REQUEST['keyword'];
   $carrier = $_REQUEST['carrier'];
   $sender = $_REQUEST['phone'];
-
-  $output = variable_get('sms_mobile_commons_response', '');
+  $gateway = sms_gateways('gateway', 'sms_mobile_commons');
+  $config = $gateway['configuration'];
+  $output = $config['sms_mobile_commons_response'];
   drupal_alter('sms_mobile_commons_response', $output, $message, $sender, $keyword);
   sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword, 'response' => $output));
   watchdog('sms_mobile_commons', 'Received message from %sender: %message and responded with %response', array('%sender' => $sender, '%message' => $message, '%response' => $output));
