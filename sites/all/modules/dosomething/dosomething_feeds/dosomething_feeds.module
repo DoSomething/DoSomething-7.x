@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
 function dosomething_feeds_menu() {
   $items = array();
   $items['news/feed'] = array(
@@ -21,6 +24,9 @@ function dosomething_feeds_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_theme().
+ */
 function dosomething_feeds_theme() {
   return array(
     'dosomething_feed' => array(
@@ -84,5 +90,5 @@ function dosomething_feeds_news($type, $title, $description) {
     $output['#items'][] = theme('dosomething_feed_item', array('item' => $result));
   }
   print drupal_render($output);
-  exit;
+  return NULL;
 }
