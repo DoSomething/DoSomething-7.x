@@ -94,3 +94,56 @@ function sms_mobile_commons_admin_page() {
   );
   return $form;
 }
+
+/**
+ * Custom callback for incoming HTTP request.
+ */
+function sms_mobile_commons_incoming_callback() {
+  dpm(_$REQUEST);
+/*  $message = $_REQUEST['smsmsg'];
+  $keyword = $_REQUEST['keyword'];
+  $carrier = $_REQUEST['carrierCode'];
+
+  // Take the keyword and the space out of the message.
+  $message = preg_replace("/^$keyword /i", '', $message);
+
+    watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
+  sms_incoming($sender, $message, array("carrier" => $carrier));
+  */
+  watchdog('sms_mobile_commons', 'Received message ' . serialize($_REQUEST));
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function sms_mobivity_menu() {
+  $items = array();
+
+  $items['sms/mobile-commons/receiver'] = array(
+    'title' => 'Mobivity SMS receiver',
+    'page callback' => 'sms_mobile_commons_incoming_callback',
+    'access callback' => 'sms_mobile_commons_incoming_check',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Add a filter to ensure incoming texts are coming from Mobile Commons' IP range
+ */
+function sms_mobile_commons_incoming_check() {
+  return TRUE;
+  // TODO: we have no idea how to check the message came from MC.
+  /*
+  $allowed[] = "174.132.173.";
+  $allowed[] = "174.132.174.";
+  foreach ($allowed as $allow) {
+    $allow = str_replace('.','\.', $allow);
+    if (preg_match("#^$allow#", $_SERVER['REMOTE_ADDR'])) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+  */
+}
