@@ -66,19 +66,16 @@ function sms_mobile_commons_admin_page() {
 /**
  * Custom callback for incoming HTTP request.
  */
-function sms_mobile_commons_incoming_callback() {
-  dpm($_REQUEST);
-/*  $message = $_REQUEST['smsmsg'];
+function sms_mobile_commons_incoming_callback() {  
+  $message = $_REQUEST['args'];  
   $keyword = $_REQUEST['keyword'];
-  $carrier = $_REQUEST['carrierCode'];
+  $carrier = $_REQUEST['carrier'];
+  $keyword = $_REQUEST['keyword'];
+  $sender = $_REQUEST['sender'];
 
-  // Take the keyword and the space out of the message.
-  $message = preg_replace("/^$keyword /i", '', $message);
-
-    watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
-  sms_incoming($sender, $message, array("carrier" => $carrier));
-  */
-  watchdog('sms_mobile_commons', 'Received message ' . serialize($_REQUEST));
+  watchdog('sms_mobile_commons', 'Received message from %sender: %message', array('%sender' => $sender, '%message' => $message));
+  sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword));
+  watchdog('sms_mobile_commons', 'Received message ' . serialize($_SERVER));
 }
 
 /**
