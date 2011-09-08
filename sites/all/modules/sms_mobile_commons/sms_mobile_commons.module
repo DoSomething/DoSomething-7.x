@@ -190,10 +190,6 @@ function sms_mobile_commons_send($number, $message, $options) {
     $campaign_id = $config['sms_mobile_commons_campaign'];
   }
   
-  //FOR TESTING
-  $number = '2157406232'; //Enter your number
-  $message = 'YO YO, Coffee is ready.' . "\n" . '--Peace';
-  
   //Find out if user has opted-out if they have don't send a message.
   $opts = array(
     'http' => array( 
