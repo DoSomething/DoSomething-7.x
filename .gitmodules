@@ -1,0 +1,3 @@
+[submodule "sites/all/modules/webform_entity"]
+	path = sites/all/modules/webform_entity
+	url = git@git.drupal.org:sandbox/tizzo/1272466.git
