@@ -179,8 +179,15 @@ function sms_mobile_commons_send($number, $message, $options) {
   $api_check_user_url = 'https://' . $api_send_url . '/api/profile'; 
   $api_send_url = 'https://' . $api_send_url . '/api/send_message'; 
   
-  $campaign_id = $config['sms_mobile_commons_campaign'];
-
+  //If option is set allow override of default campaign id.
+  if (isset($options['campaign_id'])) {
+    $campaign_id = $options['campaign_id']; 
+  }
+  else {
+    //Otherwise just use the default.
+    $campaign_id = $config['sms_mobile_commons_campaign'];
+  }
+  
   //FOR TESTING
   $number = ''; //Enter your number
   $campaign_id = ''; //enter id
