@@ -21,9 +21,18 @@ function sms_mobile_commons_gateway_info() {
 }
 
 /**
- * Implementation of hook_admin_form().
+ * Implements hook_admin_form().
  */
 function sms_mobile_commons_admin_form($configuration) {
+  if (!is_null($configuration['sms_mobile_commons_password'])) {
+    $password_needed = FALSE;
+    $password_message = "A password HAS been set.";
+  }
+  else {
+    $password_needed = TRUE;
+    $password_message = "A password HAS NOT been set.";
+
+  }
   $form = array();
   $form['sms_mobile_commons_custom_url'] = array(
     '#type' => 'textfield',
@@ -49,8 +58,8 @@ function sms_mobile_commons_admin_form($configuration) {
     '#type' => 'password',
     '#title' => t('Password'),
     '#default_value' => $configuration['sms_mobile_commons_password'],
-    '#description' => t('The password to access Mobile Commons APIs'),
-    '#required' => TRUE,
+    '#description' => t('The password to access Mobile Commons APIs. NOTE: ' . $password_message),
+    '#required' => $password_needed,
   );
   $form['sms_mobile_commons_opt_in_path'] = array(
     '#type' => 'textfield',
@@ -70,7 +79,7 @@ function sms_mobile_commons_admin_form($configuration) {
 }
 
 /**
- * Implementation of hook_form_alter().
+ * Implements hook_form_alter().
  */
 function sms_mobile_commons_form_sms_admin_gateway_form_alter(&$form, &$form_state) {
   $form['#validate'][] = 'sms_mobile_commons_admin_form_validate';
@@ -80,13 +89,14 @@ function sms_mobile_commons_form_sms_admin_gateway_form_alter(&$form, &$form_sta
  * Provides form validation for the SMS Mobile Commons gateway configuration.
  */
 function sms_mobile_commons_admin_form_validate($form, &$form_state) {
-  if (!valid_email_address($form_state['sms_mobile_commons_email'])) {
+  dpm($form_state);
+  if (!valid_email_address($form_state['values']['sms_mobile_commons_email'])) {
     form_set_error($name = 'sms_mobile_commons_email', $message = 'The email address was not valid');
   }
-  if (!valid_url($form_state['sms_mobile_commons_custom_url'])) {
+  if (!valid_url($form_state['values']['sms_mobile_commons_custom_url'])) {
     form_set_error($name = 'sms_mobile_commons_custom_url', $message = 'The url was not valid');
   }
-  if (!valid_url($form_state['sms_mobile_commons_opt_in_path'])) {
+  if (!valid_url($form_state['values']['sms_mobile_commons_opt_in_path'])) {
     form_set_error($name = 'sms_mobile_commons_opt_in_path', $message = 'The opt-in path was not valid');
   }
 }
@@ -144,4 +154,81 @@ function sms_mobile_commons_incoming_check() {
     return TRUE;
   } */
   return FALSE;
+}
+
+/**
+ * Implements hook_send().
+ */
+function sms_mobile_commons_send($number, $message, $options) {
+  $status = FALSE;
+  $return_message = "NULL";
+  
+  if (strlen($message) > 160) {
+    $return_message = 'The message you wanted to send is too long and cannot be sent.';
+  }
+ 
+  //Get configuration parameters
+  $gateway = sms_gateways('gateways');
+  $config = $gateway['sms_mobile_commons']['configuration'];
+  dpm($config);
+  $api_send_url = $config['sms_mobile_commons_custom_url'];
+  $auth_string = $config['sms_mobile_commons_email'] . ':'  . $config['sms_mobile_commons_password'];
+  
+  //remove http or https at beginning of string.
+  $api_send_url = str_replace('https://', '', $api_send_url);
+  $api_send_url = str_replace('http://', '', $api_send_url);
+  
+  $api_check_user_url = 'https://' . $api_send_url . '/api/profile'; 
+  $api_send_url = 'https://' . $api_send_url . '/api/send_message'; 
+  
+  $campaign_id = $config['sms_mobile_commons_campaign'];
+
+  //FOR TESTING
+  $number = ''; //Enter your number
+  $campaign_id = ''; //enter id
+  $message = "YO YO, Coffee is ready. \n --Peace";
+  
+  //SEND MESSAGE
+  $opts = array(
+    'http' => array( 
+      'method'  => 'POST', 
+      'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode($auth_string)). 
+        "Content-type: application/x-www-form-urlencoded\r\n", 
+      'content' => http_build_query(array(
+        'campaign_id' => $campaign_id,
+        'body' => $message,
+        'phone_number' => $number,
+      )), 
+    )
+  );
+
+  $context = stream_context_create($opts);
+  $return_val = file_get_contents($api_send_url, false, $context); 
+  
+  if (strpos($return_val, '<response success="true"/>') !== FALSE) {
+    $status = TRUE;
+    $return_message = "The message was successfully sent.";
+  }
+  else if (strpos($return_val, 'message="Invalid phone number"') !== FALSE) {
+    //Phone number was invalid, don't add to a campaign.
+    $return_message = "Invalid phone number";
+  }
+  else {
+     //we may want to add user to campaign. Right now mobile commons doesn't seem to care that users aren't (security problem?)
+     // but if we do get an invalid reply let's check their status.
+     $opts = array(
+        'http' => array( 
+          'method'  => 'GET', 
+          'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode($auth_string)), 
+        ), 
+      );
+      $context = stream_context_create($opts);
+      $return_val = file_get_contents($api_check_user_url . '?phone_number=' . $number, false, $context); 
+  }
+  
+  $result = array(
+    'status' => $status,
+    'message' => $return_message,
+    'variables' => NULL,
+  ); 
 }
