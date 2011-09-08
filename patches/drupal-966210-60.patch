@@ -1,15 +1,3 @@
-From 53a65b8f6a4ce546452dbb1207006b81d695271f Mon Sep 17 00:00:00 2001
-From: andrew morton <drewish@katherinehouse.com>
-Date: Wed, 24 Aug 2011 12:28:13 -0400
-Subject: [PATCH] Issue #966210 by mfb: DB Case Sensitivity:
- system_update_7061() fails on inserting files with same
- name but different case
-
----
- modules/simpletest/tests/file.test |   13 +++++++++++++
- modules/system/system.install      |    1 +
- 2 files changed, 14 insertions(+), 0 deletions(-)
-
 diff --git a/modules/simpletest/tests/file.test b/modules/simpletest/tests/file.test
 index 3633bae..44caf65 100644
 --- a/modules/simpletest/tests/file.test
@@ -35,10 +23,10 @@ index 3633bae..44caf65 100644
  }
  
 diff --git a/modules/system/system.install b/modules/system/system.install
-index 6d80c43..a318f4f 100644
+index 219f067..7e0267e 100644
 --- a/modules/system/system.install
 +++ b/modules/system/system.install
-@@ -808,6 +808,7 @@ function system_schema() {
+@@ -817,6 +817,7 @@ function system_schema() {
          'length' => 255,
          'not null' => TRUE,
          'default' => '',
@@ -46,6 +34,11 @@ index 6d80c43..a318f4f 100644
        ),
        'filemime' => array(
          'description' => "The file's MIME type.",
--- 
-1.7.6
-
+@@ -2180,6 +2181,7 @@ function system_update_7034() {
+         'length' => 255,
+         'not null' => TRUE,
+         'default' => '',
++        'binary' => TRUE,
+       ),
+       'filemime' => array(
+         'description' => "The file's MIME type.",
