@@ -18,7 +18,6 @@ function dosomething_webform_recurring_fields_schema() {
         'not null' => TRUE,
         'unsigned' => TRUE,
       ),
-      ),
       'email' => array(
         'description' => 'Email Address',
         'type' => 'varchar',
