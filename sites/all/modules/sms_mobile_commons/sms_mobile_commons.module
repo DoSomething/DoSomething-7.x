@@ -89,7 +89,6 @@ function sms_mobile_commons_form_sms_admin_gateway_form_alter(&$form, &$form_sta
  * Provides form validation for the SMS Mobile Commons gateway configuration.
  */
 function sms_mobile_commons_admin_form_validate($form, &$form_state) {
-  dpm($form_state);
   if (!valid_email_address($form_state['values']['sms_mobile_commons_email'])) {
     form_set_error($name = 'sms_mobile_commons_email', $message = 'The email address was not valid');
   }
@@ -170,7 +169,6 @@ function sms_mobile_commons_send($number, $message, $options) {
   //Get configuration parameters
   $gateway = sms_gateways('gateways');
   $config = $gateway['sms_mobile_commons']['configuration'];
-  dpm($config);
   $api_send_url = $config['sms_mobile_commons_custom_url'];
   $auth_string = $config['sms_mobile_commons_email'] . ':'  . $config['sms_mobile_commons_password'];
   
