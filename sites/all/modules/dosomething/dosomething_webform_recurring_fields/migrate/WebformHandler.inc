@@ -10,27 +10,15 @@ class MigrateDSWebformHandler extends MigrateDestinationHandler {
 
   public function fields($webform) {
     $fields = array();
-    switch (dosomething_recurring_fields_type_to_table($webform->type)) {
-      case 'ds_webform_campaign_su':
-        $fields['name'] = 'Name';
-        $fields['email'] = 'Email Address';
-        $fields['mobile'] = 'Mobile phone number';
-        $fields['zip'] = 'Zip code';
-        break;
 
-      case 'ds_webform_grant_app':
-        $fields['name'] = 'Name';
-        $fields['email'] = 'Email Address';
-        $fields['school'] = 'School/Drive Name';
-        $fields['mobile'] = 'Mobile phone number';
-        $fields['zip'] = 'Zip code';
-        break;
-
-      case 'ds_webform_scholarship_app':
-      case 'ds_webform_campaign_rb':
-        $fields['name'] = 'Name';
-        break;
+    module_load_include('install', 'dosomething_webform_recurring_fields');
+    $schema = dosomething_webform_recurring_fields_schema();
+    $table = dosomething_recurring_fields_type_to_table($webform->type);
+    foreach ($schema[$table]['fields'] as $name => $info) {
+      $fields[$name] = $info['description'];
     }
+    unset($fields['sid']);
+
     return $fields;
   }
 
