@@ -6,5 +6,7 @@ dependencies[] = webform
 files[] = migrate/Base.inc
 files[] = migrate/CampaignSignup.inc
 files[] = migrate/GrantApplication.inc
+files[] = migrate/Node.inc
 files[] = migrate/ScholarshipApplication.inc
 files[] = migrate/WebformHandler.inc
+files[] = migrate/User.inc

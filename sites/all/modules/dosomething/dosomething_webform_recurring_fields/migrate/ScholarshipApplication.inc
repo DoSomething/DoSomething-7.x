@@ -2,7 +2,7 @@
 
 // Scholarship Application
 
-abstract class DSScholarshipApplicationMigration extends DSBaseMigration {
+abstract class DSScholarshipApplicationMigration extends DSBaseNodeMigration {
   public function __construct($node_type) {
     // FIXME: made up node id.
     $webform = node_load(18);

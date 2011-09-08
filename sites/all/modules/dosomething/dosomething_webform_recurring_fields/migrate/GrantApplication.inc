@@ -2,7 +2,7 @@
 
 // Grant Application
 
-abstract class DSGrantApplicationMigration extends DSBaseMigration {
+abstract class DSGrantApplicationMigration extends DSBaseNodeMigration {
   public function __construct($node_type) {
     // FIXME: made up node id.
     $webform = node_load(18);

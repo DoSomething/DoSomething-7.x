@@ -2,7 +2,7 @@
 
 // Campaign Signup
 
-abstract class DSCampaignSignupMigration extends DSBaseMigration {
+abstract class DSCampaignSignupMigration extends DSBaseNodeMigration {
   public function __construct($node_type) {
     // FIXME: made up node id.
     $webform = node_load(18);
