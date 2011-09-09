@@ -1,3 +1,3 @@
 [submodule "sites/all/modules/webform_entity"]
 	path = sites/all/modules/webform_entity
-	url = git@@git.drupal.org:project/webform_entity.git
+	url = git@git.drupal.org:project/webform_entity.git
