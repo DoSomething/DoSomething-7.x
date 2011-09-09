@@ -75,6 +75,7 @@ function og_og_migrate_group_membership(&$context) {
   if (!empty($result)) {
     foreach ($result as $entity_type => $values) {
       foreach ($values as $etid => $value) {
+        $context['sandbox']['progress']++;
         $entity = entity_load($entity_type, array($etid));
         $entity = reset($entity);
         foreach ($entity->{OG_AUDIENCE_FIELD}[LANGUAGE_NONE] as $value) {
@@ -88,9 +89,7 @@ function og_og_migrate_group_membership(&$context) {
               '@id' => $etid,
             );
             $context['results'][] = t('Membership of group @label for @type @id', $params);
-
           }
-          $context['sandbox']['progress']++;
         }
       }
     }

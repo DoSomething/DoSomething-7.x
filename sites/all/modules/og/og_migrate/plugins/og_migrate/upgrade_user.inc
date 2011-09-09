@@ -75,7 +75,7 @@ function og_migrate_og_migrate_upgrade_user(&$context) {
     $context['sandbox']['progress']++;
   }
 
-  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+  if ($context['sandbox']['progress'] < $context['sandbox']['max']) {
     $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
