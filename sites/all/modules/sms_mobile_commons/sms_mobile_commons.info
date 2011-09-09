@@ -4,4 +4,3 @@ package = SMS Framework
 core = 7.x
 dependencies[] = sms
 configure = admin/structure/sms-mobile-commons
-dependencies[] = smsframework

@@ -160,7 +160,7 @@ function sms_mobile_commons_send($number, $message, $options) {
   $return_message = "NULL";
   
   if (strlen($message) > 160) {
-    $return_message = 'The message you wanted to send is too long and cannot be sent.';
+    $return_message = t('The message you wanted to send is too long and cannot be sent.');
     return array(
       'status' => $status,
       'message' => $return_message,
@@ -201,11 +201,11 @@ function sms_mobile_commons_send($number, $message, $options) {
   $return_val = file_get_contents($api_check_user_url . '?phone_number=' . $number, false, $context); 
   
   if (strpos($return_val, 'status="Opted-Out"') !== FALSE) {
-    $return_message = 'User has opted out. Don\'t send spam.';   
+    $return_message = t('User has opted out. Don\'t send spam.');   
   }
   else if(strpos($return_val, '<status>Undeliverable</status>') !== FALSE) {
     //Messages cannot be sent to this phone number.
-    $return_message = 'Message cannot be delivered because the user has a bad phone number.';
+    $return_message = t('Message cannot be delivered because the user has a bad phone number.');
   }
   else {
     //SEND MESSAGE
@@ -213,13 +213,13 @@ function sms_mobile_commons_send($number, $message, $options) {
 
     if (strpos($return_val, '<response success="true"/>') !== FALSE) {
       $status = TRUE;
-      $return_message = "The message was successfully sent.";
+      $return_message = t('The message was successfully sent.');
     }
     else {
       //Message failed. Might be a bad phone number. But mobile commons 
       // returns 'Invalid phone number' for non phone numbers as well as 
       // those not in the system.
-      $return_message = "Falied to send message";
+      $return_message = t('Falied to send message');
       
       if ($options['auto_add'] === TRUE) {
         //Add users to campaign and try again.
@@ -227,9 +227,9 @@ function sms_mobile_commons_send($number, $message, $options) {
         $return_val = sms_mobile_commons_send_worker($number, $message, $campaign_id, $auth_string);
         if (strpos($return_val, '<response success="true"/>') !== FALSE) {
           $status = TRUE;
-          $return_message = "After adding the user to the campaign, the message was successfully sent.";
+          $return_message = t('After adding the user to the campaign, the message was successfully sent.');
         } else {
-          $return_message = "Failed to send the message second time.";
+          $return_message = t('Failed to send the message second time.');
         }
       }
     }
