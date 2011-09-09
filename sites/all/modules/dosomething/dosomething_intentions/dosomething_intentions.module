@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Custom modifications for the action guide intentions form.
+ */
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') === 0) {
+    $node = $form['#node'];
+    if ($node->type == 'action_guide') {
+      global $user;
+      if (webform_get_submission_count($node->nid, $user->uid) || isset($_SESSION['dosomething_intentions'][$node->nid])) {
+        $form = array(
+          'complete' => array(
+            '#markup' => '<p>' . t('Sweet. I am going to do this') . '</p>',
+          ),
+        );
+      }
+      $form['total'] = array(
+        '#markup' => '<p>' . t('!total people have committed to this one.', array('!total' => webform_get_submission_count($node->nid))) . '</p>',
+        '#weight' => 200,
+      );
+      $form['actions']['submit']['#value'] = t('Absolutely!');
+      if ($user->uid) {
+$form['field_action_intention_email'][$form['field_action_intention_email']['#language']][0]['email']['#default_value'] = $user->mail;
+      }
+      if (!$user->uid) {
+        $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
+      }
+    }
+  }
+}
+
+function dosomething_intentions_webform_submission_submit(&$form, &$form_state) {
+  $_SESSION['dosomething_intentions'][$form['#node']->nid] = 1;
+}
+
+/**
+ * Implements hook_node_load().
+ */
+function dosomething_intentions_node_load($nodes, $types) {
+  foreach ($nodes as $node) {
+    if ($node->type == 'action_guide') {
+      // Get rid of the webform submission message.
+      $nodes[$node->nid]->webform['submit_notice'] = 0;
+      $nodes[$node->nid]->webform['redirect_url'] = '<none>';
+      $nodes[$node->nid]->webform['submit_limit'] = 1;
+    }
+  }
+}

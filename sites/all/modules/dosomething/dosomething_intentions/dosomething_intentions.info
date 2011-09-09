@@ -1,0 +1,7 @@
+name = "DoSomething Intentions"
+description = "Custom functionality for users to register intentions to follow an action guide. Previously called 'ididthis'"
+core = 7.x
+package = DoSomething
+dependencies[] = webform
+dependencies[] = webform_entity
+
