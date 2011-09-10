@@ -44,7 +44,7 @@ function dosomething_intentions_webform_submission_submit(&$form, &$form_state) 
 function dosomething_intentions_node_load($nodes, $types) {
   foreach ($nodes as $node) {
     if ($node->type == 'action_guide') {
-      // Get rid of the webform submission message.
+      // Set some webform settings so that these apply to every webform of this type.
       $nodes[$node->nid]->webform['submit_notice'] = 0;
       $nodes[$node->nid]->webform['redirect_url'] = '<none>';
       $nodes[$node->nid]->webform['submit_limit'] = 1;
