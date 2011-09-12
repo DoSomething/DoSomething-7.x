@@ -54,7 +54,7 @@ function _webform_render_media($component, $value = NULL, $filter = TRUE) {
   );
 
   $element = array(
-    'media' => media_field_widget_form($form, $form_state, NULL, $instance, NULL, NULL, NULL, $media),
+    'media' => media_field_widget_form($form, $form_state, NULL, $instance, NULL, array($value), 0, $media),
     '#webform_component' => $component,
     '#weight' => $component['weight'],
     '#title' => $filter ? _webform_filter_xss($component['name']) : $component['name'],
@@ -71,13 +71,12 @@ function _webform_render_media($component, $value = NULL, $filter = TRUE) {
  * Implements _webform_submit_component().
  */
 function _webform_submit_media($component, $value) {
-  return isset($value['media']) ? $value['media'] : NULL;
+  return !empty($value['media']['fid']) ? $value['media'] : NULL;
 }
 
 /**
  * Implements _webform_display_component().
  */
 function _webform_display_media($component, $value, $format = 'html') {
-  $fid = isset($value['fid']) ? $value['fid'] : NULL;
-  return file_view(file_load($fid));
+  return isset($value['fid']) ? file_view(file_load($value['fid'])) : NULL;
 }
