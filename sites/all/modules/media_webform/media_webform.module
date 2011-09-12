@@ -15,7 +15,6 @@ function media_webform_webform_component_info() {
     'label' => t('Media'),
     'description' => t('Media fields allow third-party media to be displayed.'),
     'features' => array(
-      'required' => FALSE,
       'conditional' => FALSE,
     ),
     'file' => 'components/media.inc',

@@ -18,6 +18,8 @@ function _webform_defaults_media() {
     'extra' => array(
       'allowed_types' => array(),
       'allowed_schemes' => array(),
+      'description' => '',
+      'private' => FALSE,
     ),
   );
 }
@@ -26,7 +28,10 @@ function _webform_defaults_media() {
  * Implements _webform_edit_component().
  */
 function _webform_edit_media($component) {
-  $instance = array('widget' => array('settings' => $component['extra']));
+  $instance = array(
+    'widget' => array('settings' => $component['extra']),
+    'required' => $component['mandatory'],
+  );
   $form['extra'] = media_field_widget_settings_form(NULL, $instance);
   return $form;
 }
@@ -37,21 +42,27 @@ function _webform_edit_media($component) {
 function _webform_render_media($component, $value = NULL, $filter = TRUE) {
   $form = array();
   $form_state = array();
-  $instance = array('widget' => array('settings' => $component['extra']));
+  $instance = array(
+    'widget' => array('settings' => $component['extra']),
+    'required' => $component['mandatory'],
+  );
+
+  $media = array(
+    '#title' => '',
+    '#required' => '',
+    '#description' => '',
+  );
 
   $element = array(
-    'media' => media_field_widget_form($form, $form_state, NULL, $instance, NULL, NULL, NULL, array()),
+    'media' => media_field_widget_form($form, $form_state, NULL, $instance, NULL, NULL, NULL, $media),
     '#webform_component' => $component,
     '#weight' => $component['weight'],
     '#title' => $filter ? _webform_filter_xss($component['name']) : $component['name'],
     '#title_display' => $component['extra']['title_display'] ? $component['extra']['title_display'] : 'before',
+    '#required' => (bool) $component['mandatory'],
     '#description' => $filter ? _webform_filter_descriptions($component['extra']['description']) : $component['extra']['description'],
     '#theme_wrappers' => array('webform_element'),
   );
-
-  if ($component['mandatory']) {
-    $element['#required'] = TRUE;
-  }
 
   return $element;
 }
