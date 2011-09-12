@@ -10,8 +10,7 @@ class DSUserMigration extends DSBaseMigration {
     $fields = array();
     $json = file_get_contents("{$base_url}/user/fields");
     if ($json) {
-      $data = drupal_json_decode($json);
-      $fields = $data[$node_type];
+      $fields = drupal_json_decode($json);
     }
 
     $this->source = new MigrateSourceList(

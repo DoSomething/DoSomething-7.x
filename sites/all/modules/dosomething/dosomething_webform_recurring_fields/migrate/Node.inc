@@ -1,23 +1,36 @@
 <?php
 
 abstract class DSBaseNodeMigration extends DSBaseMigration {
+  static function fetchFields($base_url, $node_type) {
+    $cid = "DSBaseNodeMigration:$base_url";
+    $cache = cache_get($cid);
+    if ($cache !== FALSE && is_array($cache->data)) {
+      return $cache->data[$node_type];
+    }
+
+    $json = file_get_contents($base_url . '/node/fields');
+    if ($json) {
+      $fields = drupal_json_decode($json);
+      if ($fields && is_array($fields)) {
+        cache_set($cid, $fields);
+        return $fields[$node_type];
+      }
+    }
+
+    return FALSE;
+  }
+
+
   public function __construct($webform, $node_type) {
     parent::__construct();
     $this->dependencies = array();
 
     $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
 
-    $fields = array();
-    $json = file_get_contents("{$base_url}/node/fields");
-    if ($json) {
-      $data = drupal_json_decode($json);
-      $fields = $data[$node_type];
-    }
-
     $this->source = new MigrateSourceList(
       new DSNodeListJSON($base_url, $node_type),
       new DSNodeItemJSON($base_url, $node_type),
-      $fields
+      self::fetchFields($base_url, $node_type)
     );
 
     $this->destination = new MigrateDestinationWebformSubmission($webform);

@@ -33,6 +33,12 @@ abstract class DSListJSON extends MigrateListJSON {
   public function getIdList() {
     migrate_instrument_start(__METHOD__);
 
+    $cid = 'DSListJSON:' . $this->listUrl;
+    $cache = cache_get($cid);
+    if ($cache !== FALSE && is_array($cache->data)) {
+      return $cache->data;
+    }
+
     $page = 0;
     $ids = array();
     $migration = Migration::currentMigration();
@@ -61,6 +67,8 @@ abstract class DSListJSON extends MigrateListJSON {
 
       // Go until there are no more new ids coming back.
     } while ($new_ids > 0);
+
+    cache_set($cid, $ids);
 
     migrate_instrument_stop(__METHOD__);
 
