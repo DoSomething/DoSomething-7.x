@@ -1,0 +1,69 @@
+O:8:"stdClass":28:{s:3:"uid";s:1:"1";s:5:"title";s:10:"ABC Family";s:3:"log";s:0:"";s:6:"status";s:1:"1";s:7:"comment";s:1:"2";s:7:"promote";s:1:"1";s:6:"sticky";s:1:"0";s:5:"vuuid";s:0:"";s:4:"type";s:16:"campaign_sign_up";s:8:"language";s:3:"und";s:7:"created";s:10:"1315861221";s:7:"changed";s:10:"1315861221";s:4:"tnid";s:1:"0";s:9:"translate";s:1:"0";s:4:"uuid";s:0:"";s:18:"revision_timestamp";s:10:"1315861221";s:12:"revision_uid";s:1:"1";s:4:"body";a:0:{}s:11:"rdf_mapping";a:9:{s:7:"rdftype";a:2:{i:0;s:9:"sioc:Item";i:1;s:13:"foaf:Document";}s:5:"title";a:1:{s:10:"predicates";a:1:{i:0;s:8:"dc:title";}}s:7:"created";a:3:{s:10:"predicates";a:2:{i:0;s:7:"dc:date";i:1;s:10:"dc:created";}s:8:"datatype";s:12:"xsd:dateTime";s:8:"callback";s:12:"date_iso8601";}s:7:"changed";a:3:{s:10:"predicates";a:1:{i:0;s:11:"dc:modified";}s:8:"datatype";s:12:"xsd:dateTime";s:8:"callback";s:12:"date_iso8601";}s:4:"body";a:1:{s:10:"predicates";a:1:{i:0;s:15:"content:encoded";}}s:3:"uid";a:2:{s:10:"predicates";a:1:{i:0;s:16:"sioc:has_creator";}s:4:"type";s:3:"rel";}s:4:"name";a:1:{s:10:"predicates";a:1:{i:0;s:9:"foaf:name";}}s:13:"comment_count";a:2:{s:10:"predicates";a:1:{i:0;s:16:"sioc:num_replies";}s:8:"datatype";s:11:"xsd:integer";}s:13:"last_activity";a:3:{s:10:"predicates";a:1:{i:0;s:23:"sioc:last_activity_date";}s:8:"datatype";s:12:"xsd:dateTime";s:8:"callback";s:12:"date_iso8601";}}s:7:"webform";a:17:{s:3:"nid";s:2:"14";s:12:"confirmation";s:0:"";s:19:"confirmation_format";N;s:12:"redirect_url";s:14:"<confirmation>";s:6:"status";s:1:"1";s:5:"block";s:1:"0";s:6:"teaser";s:1:"0";s:11:"allow_draft";s:1:"0";s:9:"auto_save";s:1:"0";s:13:"submit_notice";s:1:"1";s:11:"submit_text";s:0:"";s:12:"submit_limit";s:2:"-1";s:15:"submit_interval";s:2:"-1";s:13:"record_exists";b:1;s:5:"roles";a:0:{}s:6:"emails";a:0:{}s:10:"components";a:3:{i:1;a:11:{s:3:"nid";i:14;s:3:"cid";s:1:"1";s:3:"pid";s:1:"0";s:8:"form_key";s:45:"select_the_cause_you_are_taking_action_around";s:4:"name";s:45:"Select the cause you are taking action around";s:4:"type";s:6:"select";s:5:"value";s:0:"";s:5:"extra";a:14:{s:5:"items";s:232:"1|Animal Welfare
+2|Education
+3|Environment
+4|International Human Rights
+5|Poverty
+6|Discrimination
+7|HIV and Sexuality
+8|Health and Fitness
+9|War, Peace and Politics
+10|Violence and Bullying
+11|Disaster Response And Relief";s:8:"multiple";i:0;s:13:"title_display";s:6:"before";s:7:"private";i:0;s:6:"aslist";i:0;s:7:"optrand";i:0;s:20:"conditional_operator";s:1:"=";s:12:"other_option";N;s:10:"other_text";s:8:"Other...";s:11:"description";s:0:"";s:11:"custom_keys";b:0;s:14:"options_source";s:0:"";s:21:"conditional_component";s:0:"";s:18:"conditional_values";s:0:"";}s:9:"mandatory";s:1:"0";s:6:"weight";s:1:"0";s:8:"page_num";i:1;}i:2;a:11:{s:3:"nid";i:14;s:3:"cid";s:1:"2";s:3:"pid";s:1:"0";s:8:"form_key";s:8:"zip_code";s:4:"name";s:8:"Zip Code";s:4:"type";s:9:"textfield";s:5:"value";s:0:"";s:5:"extra";a:13:{s:13:"title_display";s:6:"before";s:7:"private";i:0;s:8:"disabled";i:0;s:6:"unique";i:0;s:20:"conditional_operator";s:1:"=";s:5:"width";s:0:"";s:9:"maxlength";s:0:"";s:12:"field_prefix";s:0:"";s:12:"field_suffix";s:0:"";s:11:"description";s:0:"";s:10:"attributes";a:0:{}s:21:"conditional_component";s:0:"";s:18:"conditional_values";s:0:"";}s:9:"mandatory";s:1:"0";s:6:"weight";s:1:"1";s:8:"page_num";i:1;}i:3;a:11:{s:3:"nid";i:14;s:3:"cid";s:1:"3";s:3:"pid";s:1:"0";s:8:"form_key";s:5:"state";s:4:"name";s:5:"State";s:4:"type";s:6:"select";s:5:"value";s:0:"";s:5:"extra";a:14:{s:5:"items";s:821:"AL|Alabama
+AK|Alaska
+AS|American Samoa
+AZ|Arizona
+AR|Arkansas
+CA|California
+CO|Colorado
+CT|Connecticut
+DE|Delaware
+DC|District of Columbia
+FL|Florida
+GA|Georgia
+GU|Guam
+HI|Hawaii
+ID|Idaho
+IL|Illinois
+IN|Indiana
+IA|Iowa
+KS|Kansas
+KY|Kentucky
+LA|Louisiana
+ME|Maine
+MH|Marshall Islands
+MD|Maryland
+MA|Massachusetts
+MI|Michigan
+MN|Minnesota
+MS|Mississippi
+MO|Missouri
+MT|Montana
+NE|Nebraska
+NV|Nevada
+NH|New Hampshire
+NJ|New Jersey
+NM|New Mexico
+NY|New York
+NC|North Carolina
+ND|North Dakota
+MP|Northern Marianas Islands
+OH|Ohio
+OK|Oklahoma
+OR|Oregon
+PW|Palau
+PA|Pennsylvania
+PR|Puerto Rico
+RI|Rhode Island
+SC|South Carolina
+SD|South Dakota
+TN|Tennessee
+TX|Texas
+UT|Utah
+VT|Vermont
+VI|Virgin Islands
+VA|Virginia
+WA|Washington
+WV|West Virginia
+WI|Wisconsin
+WY|Wyoming
+";s:14:"options_source";s:13:"united_states";s:8:"multiple";i:0;s:13:"title_display";s:6:"before";s:7:"private";i:0;s:6:"aslist";i:0;s:7:"optrand";i:0;s:20:"conditional_operator";s:1:"=";s:12:"other_option";N;s:10:"other_text";s:8:"Other...";s:11:"description";s:0:"";s:11:"custom_keys";b:0;s:21:"conditional_component";s:0:"";s:18:"conditional_values";s:0:"";}s:9:"mandatory";s:1:"0";s:6:"weight";s:1:"2";s:8:"page_num";i:1;}}}s:3:"cid";s:1:"0";s:22:"last_comment_timestamp";s:10:"1315861221";s:17:"last_comment_name";N;s:16:"last_comment_uid";s:1:"1";s:13:"comment_count";s:1:"0";s:4:"name";s:5:"admin";s:7:"picture";s:1:"0";s:4:"data";s:4:"b:0;";}

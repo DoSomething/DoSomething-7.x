@@ -1,0 +1,10 @@
+name = Dosomething Add Webforms
+description = Intended to be used once only, this module enables modules and creates nodes with webforms fields for Dosomething.
+core = 7.x
+package = DoSomething
+dependencies[] = webform
+dependencies[] = webform_entity
+dependencies[] = entity
+
+
+
