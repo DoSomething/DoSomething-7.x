@@ -1,0 +1,13 @@
+name = Do Something Migration
+description = Migrate content from the old site
+core = 7.x
+package = DoSomething
+dependencies[] = webform
+dependencies[] = migrate
+dependencies[] = migrate_extras
+files[] = migrate/Base.inc
+files[] = migrate/CampaignSignup.inc
+files[] = migrate/GrantApplication.inc
+files[] = migrate/Node.inc
+files[] = migrate/ScholarshipApplication.inc
+files[] = migrate/User.inc
