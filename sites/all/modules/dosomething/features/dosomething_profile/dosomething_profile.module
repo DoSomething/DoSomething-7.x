@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_profile feature.
+ */
+
+include_once('dosomething_profile.features.inc');

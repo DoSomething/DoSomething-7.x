@@ -36,6 +36,7 @@ abstract class DSListJSON extends MigrateListJSON {
     $cid = 'DSListJSON:' . $this->listUrl;
     $cache = cache_get($cid);
     if ($cache !== FALSE && is_array($cache->data)) {
+      migrate_instrument_stop(__METHOD__);
       return $cache->data;
     }
 
@@ -54,6 +55,7 @@ abstract class DSListJSON extends MigrateListJSON {
 
       if ($json === FALSE) {
         $migration->showMessage(t('Loading of !listurl failed:', array('!listurl' => $this->listUrl)));
+        migrate_instrument_stop(__METHOD__);
         return NULL;
       }
       $data = drupal_json_decode($json);
