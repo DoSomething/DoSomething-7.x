@@ -44,7 +44,10 @@ function dosomething_add_webforms_update_7000() {
   
   //enable webform entity features
   $webform_features = array(
-    //FILL THIS IN
+    'dosomething_webform_campaign_report_back'
+    'dosomething_webform_campaign_sign_up'
+    'dosomething_webform_grant_application'
+    'dosomething_webform_scholarhip_application'
   );
   module_enable($webform_features, $enable_dependencies = TRUE)
   

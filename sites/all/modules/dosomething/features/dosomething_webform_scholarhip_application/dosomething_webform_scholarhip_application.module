@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Dosomething Webform - Scholarhip Application feature.
+ */
+
+include_once('dosomething_webform_scholarhip_application.features.inc');
