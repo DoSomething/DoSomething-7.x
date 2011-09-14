@@ -70,8 +70,8 @@ class DSUserProfileMigration extends DSBaseMigration {
     // $this->addFieldMapping('profile_zip', 'field_profile_location');
     $this->addFieldMapping('field_profile_hearabout', 'profile_hearabout');
     $this->addFieldMapping('field_profile_over13', 'profile_over13')->defaultValue(0);
-    $this->addFieldMapping('field_profile_fname', 'profile_fname');
-    $this->addFieldMapping('field_profile_lname', 'profile_lname');
+    $this->addFieldMapping('field_user_first_name', 'profile_fname');
+    $this->addFieldMapping('field_user_first_name', 'profile_lname');
     $this->addFieldMapping('field_profile_bday', 'profile_bday')->defaultValue(NULL);
     $this->addFieldMapping('field_profile_gender', 'profile_gender');
     $this->addFieldMapping('field_profile_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');

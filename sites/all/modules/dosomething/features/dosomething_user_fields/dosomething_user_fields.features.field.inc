@@ -10,75 +10,6 @@
 function dosomething_user_fields_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'user-user-field_user_address'
-  $fields['user-user-field_user_address'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_address',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'addressfield',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'addressfield',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => array(
-        0 => array(
-          'administrative_area' => '',
-          'country' => 'US',
-          'element_key' => 'user|user|field_user_address|und|0',
-          'locality' => '',
-          'postal_code' => '',
-          'premise' => '',
-          'thoroughfare' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'addressfield',
-          'settings' => array(
-            'format_handlers' => array(
-              0 => 'address',
-            ),
-            'use_widget_handlers' => 1,
-          ),
-          'type' => 'addressfield_default',
-          'weight' => '3',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_user_address',
-      'label' => 'Address',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => 1,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'addressfield',
-        'settings' => array(
-          'available_countries' => array(),
-          'format_handlers' => array(
-            'address' => 'address',
-            'name-full' => 0,
-            'name-oneline' => 0,
-            'organisation' => 0,
-          ),
-        ),
-        'type' => 'addressfield_standard',
-        'weight' => '10',
-      ),
-    ),
-  );
-
   // Exported field: 'user-user-field_user_email'
   $fields['user-user-field_user_email'] = array(
     'field_config' => array(
@@ -123,130 +54,6 @@ function dosomething_user_fields_field_default_fields() {
         ),
         'type' => 'email_textfield',
         'weight' => '9',
-      ),
-    ),
-  );
-
-  // Exported field: 'user-user-field_user_first_name'
-  $fields['user-user-field_user_first_name'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_first_name',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '50',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_user_first_name',
-      'label' => 'First name',
-      'required' => 1,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => 1,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '50',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '7',
-      ),
-    ),
-  );
-
-  // Exported field: 'user-user-field_user_last_name'
-  $fields['user-user-field_user_last_name'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_last_name',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '60',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'user',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '1',
-        ),
-      ),
-      'entity_type' => 'user',
-      'field_name' => 'field_user_last_name',
-      'label' => 'Last name',
-      'required' => 1,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => 1,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '8',
       ),
     ),
   );
@@ -381,10 +188,7 @@ function dosomething_user_fields_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Address');
   t('E-mail');
-  t('First name');
-  t('Last name');
   t('School');
 
   return $fields;
