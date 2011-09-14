@@ -7,9 +7,9 @@
  */
 
 /**
- * Implements hook_update_N().
+ * Implements hook_install().
  */
-function dosomething_add_webforms_update_7000() {
+function dosomething_add_webforms_install() {
   //Enable webform and webform entity.
   $module_list = array(
     'webform',
@@ -55,6 +55,25 @@ function dosomething_add_webforms_update_7000() {
   for ($i = 1; $i <= 29; $i++) {
     $webform =  file_get_contents(drupal_get_path('module', 'dosomething_add_webforms') . '/nodes/' . $i . '.txt');
     $webform = unserialize($webform);
+    
+    $webform_data = $webform->webform;
+    unset($webform->webform);
+    node_save($webform);
+    dosomething_add_webforms_recursively_readd_nid($webform_data, $webform->nid);
     node_save($webform);
   }
+}
+
+function dosomething_add_webforms_recursively_readd_nid(&$thing, $nid) {
+  if (is_array($thing) || is_object($thing)) {
+    foreach ($thing as $key => &$value) {
+      if (is_array($value) || is_object($thing)) {
+        $value = dosomething_add_webforms_recursively_readd_nid($value, $nid);
+      }
+      elseif ($key == 'nid') {
+          $value = $nid;
+      }
+    }
+  }
+  return $thing;
 }
