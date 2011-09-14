@@ -63,15 +63,29 @@ class DSUserProfileMigration extends DSBaseMigration {
     );
 
     $this->addFieldMapping('uid', 'uid');
-    // $this->addFieldMapping('profile_address1', 'field_profile_location');
-    // $this->addFieldMapping('profile_address2', 'field_profile_location');
-    // $this->addFieldMapping('profile_city', 'field_profile_location');
-    // $this->addFieldMapping('profile_state', 'field_profile_location');
-    // $this->addFieldMapping('profile_zip', 'field_profile_location');
+
+    $arguments = array(
+      'thoroughfare' => array('source_field' => 'profile_address1'),
+      'premise' => array('source_field' => 'profile_address2'),
+      'locality' => array('source_field' => 'profile_city'),
+      'administrative_area' => array('source_field' => 'profile_state'),
+      'postal_code' => array('source_field' => 'profile_zip'),
+    );
+    $this->addFieldMapping('field_user_address')
+        ->defaultValue('US')
+         ->arguments($arguments);
+    // Since the excerpt is mapped via an argument, add a null mapping so it's
+    // not flagged as unmapped.
+    $this->addFieldMapping(NULL, 'profile_address1');
+    $this->addFieldMapping(NULL, 'profile_address2');
+    $this->addFieldMapping(NULL, 'profile_city');
+    $this->addFieldMapping(NULL, 'profile_state');
+    $this->addFieldMapping(NULL, 'profile_zip');
+
     $this->addFieldMapping('field_profile_hearabout', 'profile_hearabout');
     $this->addFieldMapping('field_profile_over13', 'profile_over13')->defaultValue(0);
     $this->addFieldMapping('field_user_first_name', 'profile_fname');
-    $this->addFieldMapping('field_user_first_name', 'profile_lname');
+    $this->addFieldMapping('field_user_last_name', 'profile_lname');
     $this->addFieldMapping('field_profile_bday', 'profile_bday')->defaultValue(NULL);
     $this->addFieldMapping('field_profile_gender', 'profile_gender');
     $this->addFieldMapping('field_profile_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');

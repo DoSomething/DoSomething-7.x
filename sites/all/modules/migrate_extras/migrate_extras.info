@@ -4,6 +4,7 @@ core = 7.x
 package=Development
 
 dependencies[] = migrate
+files[] = addressfield.inc
 files[] = date.inc
 files[] = flag.inc
 files[] = media.inc
