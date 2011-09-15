@@ -1,4 +1,4 @@
-name = Do Something Migration
+name = DoSomething Migration
 description = Migrate content from the old site
 core = 7.x
 package = DoSomething

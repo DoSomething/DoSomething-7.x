@@ -7,7 +7,7 @@ $conf = array(
   'memcache_servers' => array(
     'localhost:11211' => 'default',
   ),
-  'memcache_key_prefix' = 'dosomething_',
+  'memcache_key_prefix' => 'dosomething_',
   'session_inc' => './sites/all/modules/memcache/memcache-session.inc',
   'cache_class_cache_form' => 'DrupalDatabaseCache',
 );

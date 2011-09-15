@@ -14,3 +14,122 @@ function dosomething_migrate_migrate_api() {
   );
   return $api;
 }
+
+/*
+ * manually run the import of the webform nodes.
+ */
+function dosomething_migrate_get_webform_nodes() {
+  //Get mapping array.
+  $mapping_array = dosomething_migrate_return_content_type_mapping();
+  
+  //Enable webform and webform entity.
+  $module_list = array(
+    'webform',
+    'webform_entity',
+  );
+  module_enable($module_list, $enable_dependencies = TRUE);
+  
+
+  //enable content type features.
+  $content_features = array(
+    'dosomething_campaign_report_back',
+    'dosomething_grant_application',
+    'dosomething_scholarship_application',
+    'dosomething_campaign_sign_up',
+  );
+  module_enable($content_features, $enable_dependencies = TRUE);
+
+  //Set webform node types.
+  $types_to_add = array(
+    'campaign_report_back',
+    'campaign_sign_up',
+    'grant_application',
+    'scholarship_application',
+  );
+  $webform_types = variable_get('webform_node_types');
+  foreach ($types_to_add as $type) {
+    if (!in_array($type, $webform_types)) {
+      $webform_types[] = $type;
+    }
+  }
+  
+  variable_set('webform_node_types', $webform_types); 
+  
+  //enable webform entity features
+  $webform_features = array(
+    'dosomething_webform_campaign_report_back',
+    'dosomething_webform_campaign_sign_up',
+    'dosomething_webform_grant_application',
+    'dosomething_webform_scholarhip_application',
+  );
+  module_enable($webform_features, $enable_dependencies = TRUE);
+  //Get the node data and save it into drupal
+  for ($i = 1; $i <= 29; $i++) {
+    $webform =  file_get_contents(drupal_get_path('module', 'dosomething_migrate') . '/nodes/' . $i . '.txt');
+    $webform = unserialize($webform);
+    
+    $webform_data = $webform->webform;
+    unset($webform->webform);
+    node_save($webform);
+
+    //Update the mapping
+    $key = array_search($webform->title, $mapping_array);
+    if ($key) {
+      $mapping_array[$key] = $webform->nid;
+    }
+    dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
+    $webform->webform = $webform_data;
+    node_save($webform);
+  }
+  //Set the variable mapping the old array types to new node ids.
+  variable_set('webform_migrate_webform_mapping', $mapping_array);
+}
+
+function dosomething_migrate_recursively_readd_nid(&$thing, $nid) {
+  if (is_array($thing) || is_object($thing)) {
+    foreach ($thing as $key => &$value) {
+      if (is_array($value) || is_object($thing)) {
+        dosomething_migrate_recursively_readd_nid($value, $nid);
+      }
+      elseif ($key == 'nid') {
+          $value = $nid;
+      }
+    }
+  }
+  return $thing;
+}
+
+function dosomething_migrate_return_content_type_mapping() {
+  $array = array(
+    'campaign_bfb_2011' => 'Campaign Project - Battle for the Bands 2011',
+    'campaign_ebd_2011' => 'Campaign Project - Epic Book Drive 2011',
+    'campaign_gys_2011' => 'Campaign Project - Green Your School 2011',
+    'campaign_hunt_2011' => 'Campaign Project . Scavenger Hunt 2011',
+    'canned_food' => 'Canned Food Drive Report (Tackle Hunger)',
+    'healthy_schools_report' => 'Healthy Schools Report Back',
+    'save_our_music' => 'Save Our Music',
+    'sfs_report_gallery' => 'Staples for Students Image Submission',
+    'staples_reason' => 'Staples Reason for Helping',
+    'tfj_contest_signup' => 'Teens for Jeans Contest Signup',
+    'troop_letter' => 'Support Our Troops Letter',
+    '1in3_abuse_old' => '1in3 Dating Abuse',
+    '911_registration' => 'Register to Volunteer on September 11th',
+    'abc_family' => 'ABC Family',
+    'ds101_action_kit' => 'Do Something 101 Action Kit',
+    'ebd_signup' => 'Epic Book Drive Signup',
+    'gys_2011' => 'Green Your School 2011',
+    'healthy_schools' => 'Healthy Schools',
+    'increaseyourgreen_signup' => 'Increase Your Green Signup',
+    'scavenger_2011_signup' => 'Scavenger Hunt 2011 Signup',
+    'staples_2011_signup' => 'Staples 2011 Signup',
+    'tackle_hunger' => 'Tackle Hunger',
+    'aspca_grant_app' => 'ASPCA Grant App',
+    'general_grant_app' => 'General Grant Application',
+    'grant' => 'Grant',
+    'grant_judge' => 'Grant Judging Form',
+    'general_scholarship_app' => 'General Scholarship Application',
+    'scholarships_att' => 'Scholarships ATT',
+    'sixflags_scholarships_app' => 'Six Flags Friends Scholarships',
+  ); 
+  return $array;
+}
