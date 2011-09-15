@@ -63,7 +63,7 @@ abstract class DSListJSON extends MigrateListJSON {
         // Keep track of how many new ids come back in a request. Once we stop
         // seeing new ones we'll stop fetching.
         $old_count = count($ids);
-        $ids = $ids + $this->getIDsFromJSON($data);
+        $ids = array_merge($ids, $this->getIDsFromJSON($data));
         $new_ids = count($ids) - $old_count;
       }
 

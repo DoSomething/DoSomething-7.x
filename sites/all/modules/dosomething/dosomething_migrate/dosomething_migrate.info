@@ -10,4 +10,5 @@ files[] = migrate/Base.inc
 ;files[] = migrate/GrantApplication.inc
 ;files[] = migrate/Node.inc
 ;files[] = migrate/ScholarshipApplication.inc
-files[] = migrate/User.inc
+files[] = migrate/UserJson.inc
+files[] = migrate/UserLocal.inc
