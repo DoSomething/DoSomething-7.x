@@ -139,7 +139,7 @@ class DSUserProfileMigration extends DSBaseMigration {
 
 class DSUserListJSON extends DSListJSON {
   public function __construct($base_url) {
-    parent::__construct("{$base_url}/user/list/{$type}?page=:page", array());
+    parent::__construct("{$base_url}/user/list?page=:page", array());
     $this->countUrl = "{$base_url}/user/count";
   }
 }
