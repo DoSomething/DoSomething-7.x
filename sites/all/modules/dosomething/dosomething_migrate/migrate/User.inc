@@ -73,26 +73,33 @@ class DSUserProfileMigration extends DSBaseMigration {
     );
     $this->addFieldMapping('field_user_address')
         ->defaultValue('US')
-         ->arguments($arguments);
+        ->arguments($arguments);
     // Since the excerpt is mapped via an argument, add a null mapping so it's
     // not flagged as unmapped.
-    $this->addFieldMapping(NULL, 'profile_address1');
-    $this->addFieldMapping(NULL, 'profile_address2');
-    $this->addFieldMapping(NULL, 'profile_city');
-    $this->addFieldMapping(NULL, 'profile_state');
-    $this->addFieldMapping(NULL, 'profile_zip');
+    foreach ($arguments as $dest => $argument) {
+      $this->addFieldMapping(NULL, $argument['source_field'])->description(t("Maps to %dest in field_user_address", array('%dest' => $dest)));
+    }
 
-    $this->addFieldMapping('field_profile_hearabout', 'profile_hearabout');
-    $this->addFieldMapping('field_profile_over13', 'profile_over13')->defaultValue(0);
+    $this->addFieldMapping('field_user_hearabout', 'profile_hearabout');
+    $this->addFieldMapping('field_user_is_over13', 'profile_over13')->defaultValue(0);
     $this->addFieldMapping('field_user_first_name', 'profile_fname');
     $this->addFieldMapping('field_user_last_name', 'profile_lname');
-    $this->addFieldMapping('field_profile_bday', 'profile_bday')->defaultValue(NULL);
-    $this->addFieldMapping('field_profile_gender', 'profile_gender');
-    $this->addFieldMapping('field_profile_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
-    $this->addFieldMapping('field_profile_why_do_you', 'profile_why_do_you');
-    $this->addFieldMapping('field_profile_cell', 'profile_cell')->defaultValue('');
-    $this->addFieldMapping('field_profile_receive', 'profile_receive')->defaultValue(0);
-    $this->addFieldMapping('field_profile_newsletter', 'profile_newsletter')->defaultValue(0);
+    $this->addFieldMapping('field_user_birthday', 'profile_bday')->defaultValue(NULL);
+    $this->addFieldMapping('field_user_gender', 'profile_gender');
+    $this->addFieldMapping('field_user_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
+    $this->addFieldMapping('field_user_why_do_you', 'profile_why_do_you');
+    $this->addFieldMapping('field_user_mobile', 'profile_cell')->defaultValue('');
+    $this->addFieldMapping('field_user_mobile_optin', 'profile_receive')->defaultValue(0);
+    $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter')->defaultValue(0);
+
+    $this->addUnmigratedSources(array(
+      'name', 'pass', 'mail', 'roles', 'theme', 'signature', 'signature_format',
+      'created', 'access', 'login', 'status', 'timezone', 'language', 'picture',
+      'init',
+    ));
+    $this->addUnmigratedDestinations(array(
+      'revision_uid', 'language', 'path',
+    ));
   }
 
   public function prepareRow($row) {
