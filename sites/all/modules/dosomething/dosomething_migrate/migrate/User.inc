@@ -120,8 +120,8 @@ class DSUserProfileMigration extends DSBaseMigration {
     $row->profile_preferred_cause = isset($map[$row->profile_preferred_cause]) ? $map[$row->profile_preferred_cause] : NULL;
 
     // Make sure these an integers.
-    $row->profile_receive = (int) $row->profile_receive;
-    $row->profile_newsletter = (int) $row->profile_newsletter;
+    $row->profile_receive = isset($row->profile_receive) ? (int) $row->profile_receive : 0;
+    $row->profile_newsletter = isset($row->profile_newsletter) ? (int) $row->profile_newsletter : 0;
 
     // There's a lot of garbage in the birthday field. Excude anything that
     // doesn't have a number (other than zero to filter out 0/0/0) and some
