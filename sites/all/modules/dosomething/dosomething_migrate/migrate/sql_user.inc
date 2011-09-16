@@ -1,64 +1,35 @@
 <?php
 
-class DSUserMigration extends DSBaseMigration {
+class DSSqlUserProfileMigration extends DSBaseMigration {
   public function __construct() {
     parent::__construct();
     $this->dependencies = array();
 
-    $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
+    $profile_fields = db_select('profile_field')
+      ->fields('profile_field', array('name', 'fid'))
+      ->execute()
+      ->fetchAllKeyed(0, 1);
 
-    $fields = array();
-    $json = file_get_contents("{$base_url}/user/fields");
-    if ($json) {
-      $fields = drupal_json_decode($json);
+    $query = db_select('users', 'u')->fields('u', array('uid'));
+    foreach ($profile_fields as $name => $fid) {
+      // This isa little dirty but the placeholders weren't working.
+      $alias = $query->leftJoin('profile_value', NULL, "%alias.uid = u.uid AND %alias.fid = $fid");
+      $query->addField($alias, 'value', $name);
     }
 
-    $this->source = new MigrateSourceList(
-      new DSUserListJSON($base_url, $node_type),
-      new DSUserItemJSON($base_url, $node_type),
-      $fields
-    );
-
-    $this->destination = new MigrateDestinationUser();
-
-    $this->map = new MigrateSQLMap($this->machineName,
-      MigrateDestinationUser::getKeySchema(),
-      MigrateDestinationUser::getKeySchema()
-    );
-
-    // $this->highwaterField = array(
-    //   'name' => 'changed',
-    //   'type' => 'int',
-    // );
-
-    $this->addFieldMapping('uid', 'uid');
-
-  }
-}
-
-class DSUserProfileMigration extends DSBaseMigration {
-  public function __construct() {
-    parent::__construct();
-    $this->dependencies = array();
-
-    $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
-
-    $fields = array();
-    $json = file_get_contents("{$base_url}/user/fields");
-    if ($json) {
-      $fields = drupal_json_decode($json);
-    }
-
-    $this->source = new MigrateSourceList(
-      new DSUserListJSON($base_url, $node_type),
-      new DSUserItemJSON($base_url, $node_type),
-      $fields
-    );
+    $this->source = new MigrateSourceSQL($query);
 
     $this->destination = new MigrateDestinationProfile2('main');
 
     $this->map = new MigrateSQLMap($this->machineName,
-      MigrateDestinationUser::getKeySchema(),
+      array(
+        'uid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'alias' => 'u',
+         )
+      ),
       MigrateDestinationProfile2::getKeySchema()
     );
 
@@ -92,11 +63,6 @@ class DSUserProfileMigration extends DSBaseMigration {
     $this->addFieldMapping('field_user_mobile_optin', 'profile_receive')->defaultValue(0);
     $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter')->defaultValue(0);
 
-    $this->addUnmigratedSources(array(
-      'name', 'pass', 'mail', 'roles', 'theme', 'signature', 'signature_format',
-      'created', 'access', 'login', 'status', 'timezone', 'language', 'picture',
-      'init',
-    ));
     $this->addUnmigratedDestinations(array(
       'revision_uid', 'language', 'path',
     ));
@@ -134,18 +100,5 @@ class DSUserProfileMigration extends DSBaseMigration {
       $row->profile_bday = NULL;
     }
     #print "bday after :" . ($row->profile_bday ? gmdate('c', $row->profile_bday) : '') . "\n";
-  }
-}
-
-class DSUserListJSON extends DSListJSON {
-  public function __construct($base_url) {
-    parent::__construct("{$base_url}/user/list?page=:page", array());
-    $this->countUrl = "{$base_url}/user/count";
-  }
-}
-
-class DSUserItemJSON extends DSItemJSON {
-  public function __construct($base_url) {
-    parent::__construct("{$base_url}/user/get/:id", array());
   }
 }
