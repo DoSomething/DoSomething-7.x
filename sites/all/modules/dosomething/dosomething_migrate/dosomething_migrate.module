@@ -64,14 +64,13 @@ function dosomething_migrate_get_webform_nodes() {
   );
   module_enable($webform_features, $enable_dependencies = TRUE);
   //Get the node data and save it into drupal
-  for ($i = 1; $i <= 29; $i++) {
+  for ($i = 1; $i <= 28; $i++) {
     $webform =  file_get_contents(drupal_get_path('module', 'dosomething_migrate') . '/nodes/' . $i . '.txt');
     $webform = unserialize($webform);
     
     $webform_data = $webform->webform;
     unset($webform->webform);
     node_save($webform);
-
     //Update the mapping
     $key = array_search($webform->title, $mapping_array);
     if ($key) {
@@ -79,7 +78,10 @@ function dosomething_migrate_get_webform_nodes() {
     }
     dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
     $webform->webform = $webform_data;
+    $webform_data['nid'] = $webform->nid;
+    
     node_save($webform);
+    drupal_write_record('webform', $webform_data);
   }
   //Set the variable mapping the old array types to new node ids.
   variable_set('webform_migrate_webform_mapping', $mapping_array);

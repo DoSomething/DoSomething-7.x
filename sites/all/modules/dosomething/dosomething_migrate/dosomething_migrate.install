@@ -10,70 +10,7 @@
  * Implements hook_install().
  */
 function dosomething_migrate_install() {
-  //Get mapping array.
-  $mapping_array = dosomething_migrate_return_content_type_mapping();
-  
-  //Enable webform and webform entity.
-  $module_list = array(
-    'webform',
-    'webform_entity',
-  );
-  module_enable($module_list, $enable_dependencies = TRUE);
-  
-
-  //enable content type features.
-  $content_features = array(
-    'dosomething_campaign_report_back',
-    'dosomething_grant_application',
-    'dosomething_scholarship_application',
-    'dosomething_campaign_sign_up',
-  );
-  module_enable($content_features, $enable_dependencies = TRUE);
-
-  //Set webform node types.
-  $types_to_add = array(
-    'campaign_report_back',
-    'campaign_sign_up',
-    'grant_application',
-    'scholarship_application',
-  );
-  $webform_types = variable_get('webform_node_types');
-  foreach ($types_to_add as $type) {
-    if (!in_array($type, $webform_types)) {
-      $webform_types[] = $type;
-    }
-  }
-  
-  variable_set('webform_node_types', $webform_types); 
-  
-  //enable webform entity features
-  $webform_features = array(
-    'dosomething_webform_campaign_report_back',
-    'dosomething_webform_campaign_sign_up',
-    'dosomething_webform_grant_application',
-    'dosomething_webform_scholarhip_application',
-  );
-  module_enable($webform_features, $enable_dependencies = TRUE);
-  //Get the node data and save it into drupal
-  for ($i = 1; $i <= 29; $i++) {
-    $webform =  file_get_contents(drupal_get_path('module', 'dosomething_migrate') . '/nodes/' . $i . '.txt');
-    $webform = unserialize($webform);
-    
-    $webform_data = $webform->webform;
-    unset($webform->webform);
-    node_save($webform);
-
-    //Update the mapping
-    $key = array_search($webform->title, $mapping_array);
-    if ($key) {
-      $mapping_array[$key] = $webform->nid;
-    }
-    dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
-    $webform->webform = $webform_data;
-    node_save($webform);
-  }
-  //Set the variable mapping the old array types to new node ids.
-  variable_set('webform_migrate_webform_mapping', $mapping_array);
+  dosomething_migrate_get_webform_nodes();
 }
 
  
