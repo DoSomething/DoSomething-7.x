@@ -12,5 +12,3 @@
 function dosomething_migrate_install() {
   dosomething_migrate_get_webform_nodes();
 }
-
- 
