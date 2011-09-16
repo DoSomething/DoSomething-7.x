@@ -33,7 +33,7 @@ class DSLocalUserProfileMigration extends DSBaseMigration {
       MigrateDestinationProfile2::getKeySchema()
     );
 
-    $this->addFieldMapping('uid', 'user_id');
+    $this->addFieldMapping('uid', 'uid');
 
     $arguments = array(
       'thoroughfare' => array('source_field' => 'profile_address1'),
