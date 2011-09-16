@@ -21,9 +21,12 @@ abstract class DSBaseNodeMigration extends DSBaseMigration {
   }
 
 
-  public function __construct($webform, $node_type) {
+  public function __construct($node_type) {
     parent::__construct();
     $this->dependencies = array();
+
+    $webform_nids = variable_get('webform_migrate_webform_mapping', array());
+    $webform = node_load($webform_nids[$node_type]);
 
     $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
 
@@ -33,11 +36,11 @@ abstract class DSBaseNodeMigration extends DSBaseMigration {
       self::fetchFields($base_url, $node_type)
     );
 
-    $this->destination = new MigrateDestinationWebformSubmission($webform);
+    $this->destination = new MigrateDestinationWebformSubmissionEntity($webform);
 
     $this->map = new MigrateSQLMap($this->machineName,
       MigrateDestinationNode::getKeySchema(),
-      MigrateDestinationWebformSubmission::getKeySchema()
+      MigrateDestinationWebformSubmissionEntity::getKeySchema()
     );
 
     $this->highwaterField = array(
