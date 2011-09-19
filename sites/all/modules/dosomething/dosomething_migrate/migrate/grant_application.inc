@@ -33,10 +33,11 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->description = 'Grant';
   }
 }
-
+/*
 class DSGrantApplicationGrantJudgeMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('grant_judge');
     $this->description = 'Grant Judging Form';
   }
 }
+*/

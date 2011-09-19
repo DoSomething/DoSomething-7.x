@@ -12,8 +12,14 @@ abstract class DSSqlNodeMigration extends DSBaseMigration {
     $query = db_select('node', 'n')
       ->fields('n', array('nid'))
       ->condition('n.type', $node_type)
-      ->condition('n.status', 1);
+      ->condition('n.status', 1)
+      ->orderBy('n.changed');
     $this->source = new MigrateSourceSQL($query, $fields);
+
+    $this->highwaterField = array(
+      'name' => 'changed',
+      'type' => 'int',
+    );
 
     $webform_nids = variable_get('webform_migrate_webform_mapping', array());
     $webform = node_load($webform_nids[$node_type]);
@@ -34,10 +40,22 @@ abstract class DSSqlNodeMigration extends DSBaseMigration {
       MigrateDestinationWebformSubmissionEntity::getKeySchema()
     );
 
-    // $this->highwaterField = array(
-    //   'name' => 'changed',
-    //   'type' => 'int',
-    // );
+    // HEY! Keep this in sync with DSJsonNodeMigration.
+    $this->addFieldMapping('sid', 'nid')
+      ->description("Make the node id the submission id for easy redirection if we need to.");
+    $this->addFieldMapping('uid', 'uid')
+      ->description("User ids should be a direct mapping.");
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
+    $this->addFieldMapping('submitted', 'created')
+      ->description("Use the node creation date as the webform submission date.");
+    $this->addFieldMapping('remote_addr')
+      ->defaultValue('127.0.0.1')
+      ->description("I don't think we have an IP to use as the submission so I'm using the loopback.");
+    $this->addFieldMapping('path', 'path')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
+      ->description("Not sure if the webform submissions support paths.");
+    $this->addUnmigratedSources(array('promote', 'sticky', 'language'));
   }
 
   public function prepareRow($row) {

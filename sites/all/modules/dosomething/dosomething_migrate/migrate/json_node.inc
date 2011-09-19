@@ -45,29 +45,22 @@ abstract class DSJsonNodeMigration extends DSBaseMigration {
       MigrateDestinationWebformSubmissionEntity::getKeySchema()
     );
 
-    $this->highwaterField = array(
-      'name' => 'changed',
-      'type' => 'int',
-    );
-
-    $this->addFieldMapping('sid', 'nid');
-    $this->addFieldMapping('uid', 'uid');
-    $this->addFieldMapping('is_draft')->defaultValue(0);
-    $this->addFieldMapping('submitted', 'created')->defaultValue(time());
-    $this->addFieldMapping('remote_addr')->defaultValue('127.0.0.1');
-
-    // $this->addFieldMapping('name')->defaultValue('humbert');
-    // $this->addFieldMapping('zip')->defaultValue('zippy');
-
-    // $this->addFieldMapping('data_date')->defaultValue('2011-12-31');
-    // $this->addFieldMapping('data_email')->defaultValue('foo@example.com');
-    // $this->addFieldMapping('data_file')->defaultValue(11);
-    // $this->addFieldMapping('data_markup', 'body')->defaultValue('<p><em>itals!</em></p>');
-    // $this->addFieldMapping('data_pagebreak')->defaultValue('IGNORED!');
-    // $this->addFieldMapping('data_select')->defaultValue('foo');
-    // $this->addFieldMapping('data_text', 'type');
-    // $this->addFieldMapping('data_textarea', 'title');
-    // $this->addFieldMapping('data_time')->defaultValue('2:03pm');
+    // HEY! Keep this in sync with DSSqlNodeMigration.
+    $this->addFieldMapping('sid', 'nid')
+      ->description("Make the node id the submission id for easy redirection if we need to.");
+    $this->addFieldMapping('uid', 'uid')
+      ->description("User ids should be a direct mapping.");
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
+    $this->addFieldMapping('submitted', 'created')
+      ->description("Use the node creation date as the webform submission date.");
+    $this->addFieldMapping('remote_addr')
+      ->defaultValue('127.0.0.1')
+      ->description("I don't think we have an IP to use as the submission so I'm using the loopback.");
+    $this->addFieldMapping('path', 'path')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
+      ->description("Not sure if the webform submissions support paths.");
+    $this->addUnmigratedSources(array('promote', 'sticky', 'language'));
   }
 }
 
