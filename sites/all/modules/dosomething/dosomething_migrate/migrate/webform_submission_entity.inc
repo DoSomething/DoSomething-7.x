@@ -104,6 +104,7 @@ class MigrateDestinationWebformSubmissionEntity extends MigrateDestinationEntity
     }
 
     $entity->nid = $this->node->nid;
+    $entity->bundle = $this->bundle;
 
     // Move the data from our custom keys back to webform's component ids.
     $data = array();
@@ -137,6 +138,7 @@ class MigrateDestinationWebformSubmissionEntity extends MigrateDestinationEntity
           'submitted' => $entity->submitted,
           'remote_addr' => $entity->remote_addr,
           'is_draft' => $entity->is_draft,
+          'bundle' => $entity->bundle,
         ))
         ->execute();
       $sid = webform_submission_update($this->node, $entity);
