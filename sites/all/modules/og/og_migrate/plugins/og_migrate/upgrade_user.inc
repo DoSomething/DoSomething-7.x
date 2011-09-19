@@ -53,7 +53,7 @@ function og_migrate_og_migrate_upgrade_user(&$context) {
   $query
     ->fields('ogu')
     ->condition('ogu.upgrade_id', $context['sandbox']['last'], '>')
-    ->orderBy('ogu.nid', 'ASC')
+    ->orderBy('ogu.upgrade_id', 'ASC')
     ->range(0, $batch_size);
   $records = $query->execute();
 
