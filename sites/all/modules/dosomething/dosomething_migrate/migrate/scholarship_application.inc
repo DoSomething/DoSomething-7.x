@@ -2,7 +2,7 @@
 
 // Scholarship Application
 
-abstract class DSScholarshipApplicationMigration extends DSBaseNodeMigration {
+abstract class DSScholarshipApplicationMigration extends DSJsonNodeMigration {
 }
 
 

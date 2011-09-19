@@ -2,7 +2,7 @@
 
 // Campaign Signup
 
-abstract class DSCampaignSignupMigration extends DSBaseNodeMigration {
+abstract class DSCampaignSignupMigration extends DSJsonNodeMigration {
 }
 
 

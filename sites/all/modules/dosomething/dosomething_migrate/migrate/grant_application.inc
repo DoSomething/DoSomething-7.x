@@ -2,7 +2,7 @@
 
 // Grant Application
 
-abstract class DSGrantApplicationMigration extends DSBaseNodeMigration {
+abstract class DSGrantApplicationMigration extends DSJsonNodeMigration {
 }
 
 

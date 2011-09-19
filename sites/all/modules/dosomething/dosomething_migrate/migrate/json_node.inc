@@ -1,6 +1,6 @@
 <?php
 
-abstract class DSBaseNodeMigration extends DSBaseMigration {
+abstract class DSJsonNodeMigration extends DSBaseMigration {
   static function fetchFields($base_url, $node_type) {
     $cid = "DSBaseNodeMigration:$base_url";
     $cache = cache_get($cid);
@@ -27,7 +27,9 @@ abstract class DSBaseNodeMigration extends DSBaseMigration {
 
     $webform_nids = variable_get('webform_migrate_webform_mapping', array());
     $webform = node_load($webform_nids[$node_type]);
-
+    if (!$webform) {
+      var_dump(t('WARNING: @name has no webform node.', array('@name' => $node_type)));
+    }
     $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
 
     $this->source = new MigrateSourceList(
@@ -53,8 +55,6 @@ abstract class DSBaseNodeMigration extends DSBaseMigration {
     $this->addFieldMapping('is_draft')->defaultValue(0);
     $this->addFieldMapping('submitted', 'created')->defaultValue(time());
     $this->addFieldMapping('remote_addr')->defaultValue('127.0.0.1');
-
-    $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
 
     // $this->addFieldMapping('name')->defaultValue('humbert');
     // $this->addFieldMapping('zip')->defaultValue('zippy');
