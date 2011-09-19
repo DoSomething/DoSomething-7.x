@@ -1,7 +1,13 @@
-diff --git a/sites/all/modules/migrate_extras/README.txt b/sites/all/modules/migrate_extras/README.txt
+commit 6df2e22c15fbeb937c377f713fcdfb61d65a7d8d
+Author: andrew morton <drewish@zivtech.com>
+Date:   Mon Sep 19 13:24:49 2011 -0400
+
+    Issue #1119478 by drewish: Destination for Webform Submission.
+
+diff --git a/README.txt b/README.txt
 index 1bc8b4b..6d9e09f 100644
---- a/sites/all/modules/migrate_extras/README.txt
-+++ b/sites/all/modules/migrate_extras/README.txt
+--- a/README.txt
++++ b/README.txt
 @@ -23,6 +23,7 @@ Profile2
  Rules
  User Relationships
@@ -10,56 +16,24 @@ index 1bc8b4b..6d9e09f 100644
  
  Compatibility
  -------------
-diff --git a/sites/all/modules/migrate_extras/migrate_extras.info b/sites/all/modules/migrate_extras/migrate_extras.info
-index 1d4c2ba..feeed0e 100644
---- a/sites/all/modules/migrate_extras/migrate_extras.info
-+++ b/sites/all/modules/migrate_extras/migrate_extras.info
-@@ -14,6 +14,7 @@ files[] = og.inc
+diff --git a/migrate_extras.info b/migrate_extras.info
+index abfa7ef..2f22caa 100644
+--- a/migrate_extras.info
++++ b/migrate_extras.info
+@@ -15,5 +15,6 @@ files[] = og.inc
  files[] = privatemsg.inc
  files[] = votingapi.inc
  files[] = user_relationships.inc
 +files[] = webform.inc
  files[] = tests/date.test
  files[] = tests/pathauto.test
- 
-diff --git a/sites/all/modules/migrate_extras/webform.inc b/sites/all/modules/migrate_extras/webform.inc
+diff --git a/webform.inc b/webform.inc
 new file mode 100644
-index 0000000..4ff46cc
+index 0000000..57ce34a
 --- /dev/null
-+++ b/sites/all/modules/migrate_extras/webform.inc
-@@ -0,0 +1,270 @@
++++ b/webform.inc
+@@ -0,0 +1,249 @@
 +<?php
-+
-+/*
-+class MigrateExtrasWebformNodeHandler extends MigrateDestinationHandler {
-+  public function __construct() {
-+    $this->registerTypes(array('node'));
-+  }
-+
-+  public function fields() {
-+    if (module_exists('webform')) {
-+      return array(
-+        'webform_confirmation' => 'The confirmation message or URL displayed to the user after submitting a form.',
-+        'webform_confirmation_format' => 'The {filter_format}.format of the confirmation message.',
-+        'webform_redirect_url' => 'The URL a user is redirected to after submitting a form.',
-+        'webform_status' => 'Boolean value of a webform for open (1) or closed (0).',
-+        'webform_block' => 'Boolean value for whether this form be available as a block.',
-+        'webform_teaser' => 'Boolean value for whether the entire form should be displayed on the teaser.',
-+        'webform_allow_draft' => 'Boolean value for whether submissions to this form be saved as a draft.',
-+        'webform_auto_save' => 'Boolean value for whether submissions to this form should be auto-saved between pages.',
-+        'webform_submit_notice' => 'Boolean value for whether to show or hide the previous submissions notification.',
-+        'webform_submit_text' => 'The title of the submit button on the form.',
-+        'webform_submit_limit' => 'The number of submissions a single user is allowed to submit within an interval. -1 is unlimited.',
-+        'webform_submit_interval' => 'The amount of time in seconds that must pass before a user can submit another submission within the set limit.'
-+      );
-+    }
-+  }
-+
-+  public function prepare($entity, stdClass $row) {
-+    // TODO: move webfield_* fields into the webfield array.
-+  }
-+}
-+*/
 +
 +/**
 + * Destination class for the webform_submissions table.
@@ -114,6 +88,12 @@ index 0000000..4ff46cc
 +   */
 +  public function __construct($node) {
 +    parent::__construct();
++
++    // Make sure it's a webform node.
++    $types = webform_variable_get('webform_node_types');
++    if (!in_array($node->type, $types)) {
++      throw new Exception(t('Must provide a webform node.'));
++    }
 +    $this->node = $node;
 +
 +    // Webform expects the component values to be keyed by cid, so we need a
@@ -123,6 +103,8 @@ index 0000000..4ff46cc
 +      $this->component_cids['data_' . $component['form_key']] = $component['cid'];
 +    }
 +
++    // We use the functions in this file in import() but load it here so we
++    // only do it once.
 +    module_load_include('inc', 'webform', 'includes/webform.submissions');
 +  }
 +
@@ -155,7 +137,7 @@ index 0000000..4ff46cc
 +    }
 +
 +    // Then add in anything provided by handlers.
-+    $fields += migrate_handler_invoke_all('WebformSubmission', 'fields');
++    $fields += migrate_handler_invoke_all('WebformSubmission', 'fields', $this->node);
 +
 +    return $fields;
 +  }
@@ -175,7 +157,7 @@ index 0000000..4ff46cc
 +      'machineName' => $migration->getMachineName(),
 +    );
 +    // Call any general object handlers.
-+    migrate_handler_invoke_all('WebformSubmission', 'prepare', $entity, $source_row);
++    migrate_handler_invoke_all('WebformSubmission', 'prepare', $entity, $source_row, $this->node);
 +
 +    // Move the data from our custom keys back to webform's component ids.
 +    $data = array();
@@ -189,7 +171,7 @@ index 0000000..4ff46cc
 +
 +    // Then call any prepare handler for this specific Migration.
 +    if (method_exists($migration, 'prepare')) {
-+      $migration->prepare($entity, $source_row);
++      $migration->prepare($entity, $source_row, $this->node);
 +    }
 +  }
 +
@@ -206,10 +188,10 @@ index 0000000..4ff46cc
 +  public function complete($entity, stdClass $source_row) {
 +    $migration = Migration::currentMigration();
 +    // Call any general object handlers.
-+    migrate_handler_invoke_all('WebformSubmission', 'complete', $entity, $source_row);
++    migrate_handler_invoke_all('WebformSubmission', 'complete', $entity, $source_row, $this->node);
 +    // Then call any complete handler for this specific Migration.
 +    if (method_exists($migration, 'complete')) {
-+      $migration->complete($entity, $source_row);
++      $migration->complete($entity, $source_row, $this->node);
 +    }
 +  }
 +
@@ -266,6 +248,8 @@ index 0000000..4ff46cc
 +    migrate_instrument_stop('webform_submission_update/insert');
 +
 +    if (isset($sid)) {
++      $entity->sid = $sid;
++
 +      if ($updating) {
 +        $this->numUpdated++;
 +      }

@@ -1,36 +1,5 @@
 <?php
 
-/*
-class MigrateExtrasWebformNodeHandler extends MigrateDestinationHandler {
-  public function __construct() {
-    $this->registerTypes(array('node'));
-  }
-
-  public function fields() {
-    if (module_exists('webform')) {
-      return array(
-        'webform_confirmation' => 'The confirmation message or URL displayed to the user after submitting a form.',
-        'webform_confirmation_format' => 'The {filter_format}.format of the confirmation message.',
-        'webform_redirect_url' => 'The URL a user is redirected to after submitting a form.',
-        'webform_status' => 'Boolean value of a webform for open (1) or closed (0).',
-        'webform_block' => 'Boolean value for whether this form be available as a block.',
-        'webform_teaser' => 'Boolean value for whether the entire form should be displayed on the teaser.',
-        'webform_allow_draft' => 'Boolean value for whether submissions to this form be saved as a draft.',
-        'webform_auto_save' => 'Boolean value for whether submissions to this form should be auto-saved between pages.',
-        'webform_submit_notice' => 'Boolean value for whether to show or hide the previous submissions notification.',
-        'webform_submit_text' => 'The title of the submit button on the form.',
-        'webform_submit_limit' => 'The number of submissions a single user is allowed to submit within an interval. -1 is unlimited.',
-        'webform_submit_interval' => 'The amount of time in seconds that must pass before a user can submit another submission within the set limit.'
-      );
-    }
-  }
-
-  public function prepare($entity, stdClass $row) {
-    // TODO: move webfield_* fields into the webfield array.
-  }
-}
-*/
-
 /**
  * Destination class for the webform_submissions table.
  *
