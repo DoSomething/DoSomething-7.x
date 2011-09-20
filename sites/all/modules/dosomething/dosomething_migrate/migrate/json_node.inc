@@ -21,8 +21,8 @@ abstract class DSJsonNodeMigration extends DSBaseMigration {
   }
 
 
-  public function __construct($node_type) {
-    parent::__construct();
+  public function __construct($group = NULL, $node_type) {
+    parent::__construct($group);
     $this->dependencies = array();
 
     $webform_nids = variable_get('webform_migrate_webform_mapping', array());

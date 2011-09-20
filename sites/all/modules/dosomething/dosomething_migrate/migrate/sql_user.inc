@@ -1,8 +1,8 @@
 <?php
 
 class DSSqlUserProfileMigration extends DSBaseMigration {
-  public function __construct() {
-    parent::__construct();
+  public function __construct($group = NULL) {
+    parent::__construct($group);
     $this->dependencies = array();
 
     $profile_fields = db_select('profile_field')

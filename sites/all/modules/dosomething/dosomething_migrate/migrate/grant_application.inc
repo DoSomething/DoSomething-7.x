@@ -3,6 +3,10 @@
 // Grant Application
 
 abstract class DSGrantApplicationMigration extends DSJsonNodeMigration {
+  public function __construct($node_type) {
+    parent::__construct(MigrateGroup::getInstance('GrantApplication'), $node_type);
+    $this->addUnmigratedSources(array('changed', 'status'));
+  }
 }
 
 

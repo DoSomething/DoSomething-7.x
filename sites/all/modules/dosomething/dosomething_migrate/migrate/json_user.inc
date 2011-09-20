@@ -14,8 +14,8 @@ class DSUserItemJSON extends DSItemJSON {
 }
 
 class DSUserMigration extends DSBaseMigration {
-  public function __construct() {
-    parent::__construct();
+  public function __construct($group = NULL) {
+    parent::__construct($group);
     $this->dependencies = array();
 
     $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
@@ -50,8 +50,8 @@ class DSUserMigration extends DSBaseMigration {
 }
 
 class DSJsonUserProfileMigration extends DSBaseMigration {
-  public function __construct() {
-    parent::__construct();
+  public function __construct($group = NULL) {
+    parent::__construct($group);
     $this->dependencies = array();
 
     $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');

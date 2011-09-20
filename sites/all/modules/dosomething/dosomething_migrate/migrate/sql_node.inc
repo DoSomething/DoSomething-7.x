@@ -1,8 +1,8 @@
 <?php
 
 abstract class DSSqlNodeMigration extends DSBaseMigration {
-  public function __construct($node_type) {
-    parent::__construct();
+  public function __construct($group = NULL, $node_type) {
+    parent::__construct($group);
 
     // Do a little dance to get a field list.
     $d = new MigrateDestinationNode($node_type);
