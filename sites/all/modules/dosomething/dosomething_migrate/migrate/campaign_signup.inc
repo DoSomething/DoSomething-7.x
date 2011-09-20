@@ -19,6 +19,10 @@ class DSCampaignSignupEbdMigration extends DSCampaignSignupMigration {
     $this->addFieldMapping('data_how_will_you_make_your_book_drive_epic', 'body');
     $this->addUnmigratedSources(array('format', 'teaser'));
 
+#    $this->addFieldMapping('field_webform_email', '');
+#    $this->addFieldMapping('field_webform_mobile', '');
+#    $this->addFieldMapping('field_webform_school', '');
+
     $this->addFieldMapping(NULL, 'title')
       ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
       ->description('Should we be doing something with this?');
@@ -34,6 +38,10 @@ class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
     $this->addUnmigratedSources(array('format', 'teaser'));
     $this->addFieldMapping('data_great_school_id', 'field_great_schools_id');
 
+#    $this->addFieldMapping('field_webform_email', '');
+#    $this->addFieldMapping('field_webform_mobile', '');
+#    $this->addFieldMapping('field_webform_school', '');
+
     $this->addFieldMapping(NULL, 'title')
       ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
       ->description('Should we be doing something with this?');
@@ -47,6 +55,10 @@ class DSCampaignSignupHealthySchoolsMigration extends DSCampaignSignupMigration 
 
     $this->addFieldMapping('data_how_many_people_are_you_working_with', 'field_healthy_schools_team');
     $this->addFieldMapping('data_whatcha_doin', 'field_campaign_essay');
+
+#    $this->addFieldMapping('field_webform_email', '');
+#    $this->addFieldMapping('field_webform_mobile', '');
+#    $this->addFieldMapping('field_webform_school', '');
 
     $this->addFieldMapping(NULL, 'title')
       ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
@@ -84,6 +96,11 @@ class DSCampaignSignupIncreaseYourGreenMigration extends DSCampaignSignupMigrati
     $this->addFieldMapping('data_how_did_you_measure_your_energy_saved_what_numbers_did_you_use_to_keep_track_of_your_progress', 'field_iyg_energy_metrics');
     $this->addFieldMapping('data_innovation_let_us_know_why_your_efforts_were_unique__how_you_improved_on_whats_been_done_before', 'field_iyg_innovation');
     $this->addFieldMapping('data_anything_else_we_should_know_fill_us_in', 'field_iyg_other_info');
+
+    $this->addFieldMapping('field_webform_email', 'title');
+    $this->addFieldMapping('field_webform_mobile', 'field_increaseyourgreen_signu_0');
+#    $this->addFieldMapping('field_webform_school', '');
+
   }
 }
 
@@ -97,6 +114,11 @@ class DSCampaignSignupScavengerMigration extends DSCampaignSignupMigration {
     $this->addFieldMapping('data_last_name', 'field_campaign_last_name');
     $this->addFieldMapping('data_team_points', 'field_team_points');
     $this->addFieldMapping('data_subscriptions', 'field_hunt_subscriptions');
+
+    $this->addFieldMapping('field_webform_email', 'field_email');
+    $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
+#    $this->addFieldMapping('field_webform_school', '');
+
   }
 }
 
@@ -108,6 +130,11 @@ class DSCampaignSignupStaplesMigration extends DSCampaignSignupMigration {
     $this->addFieldMapping('data_name', 'title');
     $this->addFieldMapping('data_subscriptions', 'field_sfs_subscriptions');
     $this->addFieldMapping('data_terms_and_conditions', 'field_sfs_terms');
+
+    $this->addFieldMapping('field_webform_email', 'field_campaign_email');
+    $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone_0');
+#    $this->addFieldMapping('field_webform_school', '');
+
   }
 }
 
@@ -121,5 +148,10 @@ class DSCampaignSignupTackleHungerMigration extends DSCampaignSignupMigration {
     $this->addFieldMapping('data_city', 'field_campaign_city');
     $this->addFieldMapping('data_state', 'field_campaign_state_0');
     $this->addFieldMapping('data_text_me_a_reminder', 'field_campaign_cell_reminder');
+
+#    $this->addFieldMapping('field_webform_email', '');
+    $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
+#    $this->addFieldMapping('field_webform_school', '');
+
   }
 }
