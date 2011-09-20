@@ -29,6 +29,18 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_legal_2', 'field_legal_2_0');
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
     $this->addFieldMapping('data_legal_4', 'field_legal_4');
+
+#    $this->addFieldMapping('field_webform_birthdate', '');
+    $this->addFieldMapping('field_webform_email', 'field_your_email_address');
+    $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
+    $this->addFieldMapping('field_webform_name', 'field_your_name');
+    $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
+    $this->addFieldMapping('field_webform_project', 'field_your_do_something_project');
+#    $this->addFieldMapping('field_webform_project_dates', '');
+    $this->addFieldMapping('field_webform_project_summary', 'field_description');
+    $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
+    $this->addFieldMapping('field_webform_video_url', 'field_youtube_or_video_url');
+
   }
 }
 
@@ -56,6 +68,17 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
     $this->addFieldMapping('data_legal_4', 'field_legal_4');
     $this->addFieldMapping('data_is_this_application_complete', 'field_application_status');
+
+    $this->addFieldMapping('field_webform_birthdate', 'field_birthdate');
+    $this->addFieldMapping('field_webform_email', 'field_email');
+    $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
+    $this->addFieldMapping('field_webform_name', 'field_name');
+    $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
+    $this->addFieldMapping('field_webform_project', 'field_project');
+    $this->addFieldMapping('field_webform_project_dates', 'field_project_date');
+    $this->addFieldMapping('field_webform_project_summary', 'field_description');
+    $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
+    $this->addFieldMapping('field_webform_video_url', 'field_plumgrant_videourl');
   }
 }
 
@@ -92,6 +115,17 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
     $this->addFieldMapping('data_legal_4', 'field_legal_4');
     $this->addFieldMapping('data_is_this_application_complete', 'field_application_status');
+
+    $this->addFieldMapping('field_webform_birthdate', 'field_recipient_birthdate');
+    $this->addFieldMapping('field_webform_email', 'field_email');
+    $this->addFieldMapping('field_webform_mobile', 'field_phone_number');
+    $this->addFieldMapping('field_webform_name', 'field_name');
+    $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
+    $this->addFieldMapping('field_webform_project', 'field_your_project');
+    $this->addFieldMapping('field_webform_project_dates', 'field_project_date');
+    $this->addFieldMapping('field_webform_project_summary', 'field_describe');
+    $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
+    $this->addFieldMapping('field_webform_video_url', 'field_youtube_or_video_url');
   }
 }
 /*
