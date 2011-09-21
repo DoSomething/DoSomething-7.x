@@ -2,7 +2,7 @@
 
 // Campaign Report Back
 
-abstract class DSCampaignReportBackMigration extends DSJsonNodeMigration {
+abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));

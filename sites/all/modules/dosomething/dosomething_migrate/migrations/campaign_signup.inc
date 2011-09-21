@@ -2,7 +2,7 @@
 
 // Campaign Signup
 
-abstract class DSCampaignSignupMigration extends DSJsonNodeMigration {
+abstract class DSCampaignSignupMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignSignup'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));

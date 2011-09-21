@@ -2,7 +2,7 @@
 
 // Scholarship Application
 
-abstract class DSScholarshipApplicationMigration extends DSJsonNodeMigration {
+abstract class DSScholarshipApplicationMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('ScholarshipApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));

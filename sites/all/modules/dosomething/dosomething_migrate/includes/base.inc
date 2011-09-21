@@ -1,97 +1,56 @@
 <?php
 
-abstract class DSBaseMigration extends Migration {
+abstract class DSBaseWebformMigration extends Migration {
+  protected $webform;
+
+  public function __construct($group = NULL, $node_type) {
+    parent::__construct($group);
+
+    $webform_nids = variable_get('webform_migrate_webform_mapping', array());
+    $this->webform = node_load($webform_nids[$node_type]);
+    if (!$this->webform) {
+      var_dump(t('WARNING: @name has no webform node.', array('@name' => $node_type)));
+    }
+
+    $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
+
+    $this->destination = new MigrateDestinationWebformSubmissionEntity($this->webform);
+
+    $this->addFieldMapping('sid', 'nid')
+      ->description("Make the node id the submission id for easy redirection if we need to.");
+    $this->addFieldMapping('uid', 'uid')
+      ->description("User ids should be a direct mapping.");
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
+    $this->addFieldMapping('submitted', 'created')
+      ->description("Use the node creation date as the webform submission date.");
+    $this->addFieldMapping('remote_addr')
+      ->defaultValue('127.0.0.1')
+      ->description("I don't think we have an IP to use as the submission so I'm using the loopback.");
+    $this->addFieldMapping('path', 'path')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
+      ->description("Not sure if the webform submissions support paths.");
+    $this->addUnmigratedSources(array('promote', 'sticky', 'language'));
+  }
+
+  // public function __toString() {
+  //   // TODO: Link to configuration page
+  //   if ($this->entityType == $this->bundle) {
+  //     $output = t('%type', array('%type' => $this->entityType));
+  //   }
+  //   else {
+  //     $output = t('%type (%bundle)',
+  //       array('%type' => $this->entityType, '%bundle' => $this->bundle));
+  //   }
+  //   // TODO: Non-default language, input format
+  //   return $output;
+  // }
+}
+
+abstract class DSBaseUserMigration extends Migration {
   public function __construct($group = NULL) {
     parent::__construct($group);
 
     $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
-  }
-}
-
-abstract class DSListJSON extends MigrateListJSON {
-  protected $countUrl;
-
-  public function computeCount() {
-    $count = NULL;
-
-    migrate_instrument_start(__METHOD__);
-
-    migrate_instrument_start("Retrieve $this->countUrl");
-    $json = file_get_contents($this->countUrl);
-    migrate_instrument_stop("Retrieve $this->countUrl");
-
-    if ($json) {
-      $data = drupal_json_decode($json);
-      $count = $data;
-    }
-
-    migrate_instrument_stop(__METHOD__);
-
-    return $count;
-  }
-
-  public function getIdList() {
-    migrate_instrument_start(__METHOD__);
-
-    $cid = 'DSListJSON:' . $this->listUrl;
-    $cache = cache_get($cid);
-    if ($cache !== FALSE && is_array($cache->data)) {
-      migrate_instrument_stop(__METHOD__);
-      return $cache->data;
-    }
-
-    $page = 0;
-    $ids = array();
-    $migration = Migration::currentMigration();
-
-    do {
-      $url = str_replace(':page', $page++, $this->listUrl);
-      $new_ids = 0;
-
-      migrate_instrument_start("Retrieve $this->listUrl");
-      // We ignore $this->httpOptions
-      $json = file_get_contents($url);
-      migrate_instrument_stop("Retrieve $this->listUrl");
-
-      if ($json === FALSE) {
-        $migration->showMessage(t('Loading of !listurl failed:', array('!listurl' => $this->listUrl)));
-        migrate_instrument_stop(__METHOD__);
-        return NULL;
-      }
-      $data = drupal_json_decode($json);
-      if ($data) {
-        // Keep track of how many new ids come back in a request. Once we stop
-        // seeing new ones we'll stop fetching.
-        $old_count = count($ids);
-        $ids = array_merge($ids, $this->getIDsFromJSON($data));
-        $new_ids = count($ids) - $old_count;
-      }
-
-      // Go until there are no more new ids coming back.
-    } while ($new_ids > 0);
-
-    cache_set($cid, $ids);
-
-    migrate_instrument_stop(__METHOD__);
-
-    return $ids;
-  }
-}
-
-class DSItemJSON extends MigrateItemJSON {
-  public function __construct($base_url, $type) {
-    parent::__construct("{$base_url}/node/get/:id", array());
-  }
-
-  protected function loadJSONUrl($item_url) {
-    migrate_instrument_start(__METHOD__);
-
-    $json = file_get_contents($item_url);
-    $obj = json_decode($json);
-    $item = reset($obj);
-
-    migrate_instrument_stop(__METHOD__);
-
-    return $item;
   }
 }

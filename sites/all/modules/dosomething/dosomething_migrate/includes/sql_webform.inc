@@ -1,8 +1,8 @@
 <?php
 
-abstract class DSSqlNodeMigration extends DSBaseMigration {
+abstract class DSSqlWebformMigration extends DSBaseWebformMigration {
   public function __construct($group = NULL, $node_type) {
-    parent::__construct($group);
+    parent::__construct($group, $node_type);
 
     // Do a little dance to get a field list.
     $d = new MigrateDestinationNode($node_type);
@@ -21,13 +21,6 @@ abstract class DSSqlNodeMigration extends DSBaseMigration {
       'type' => 'int',
     );
 
-    $webform_nids = variable_get('webform_migrate_webform_mapping', array());
-    $webform = node_load($webform_nids[$node_type]);
-    if (!$webform) {
-      var_dump(t('WARNING: @name has no webform node.', array('@name' => $node_type)));
-    }
-    $this->destination = new MigrateDestinationWebformSubmissionEntity($webform);
-
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'nid' => array(
@@ -39,23 +32,6 @@ abstract class DSSqlNodeMigration extends DSBaseMigration {
       ),
       MigrateDestinationWebformSubmissionEntity::getKeySchema()
     );
-
-    // HEY! Keep this in sync with DSJsonNodeMigration.
-    $this->addFieldMapping('sid', 'nid')
-      ->description("Make the node id the submission id for easy redirection if we need to.");
-    $this->addFieldMapping('uid', 'uid')
-      ->description("User ids should be a direct mapping.");
-    $this->addFieldMapping('is_draft')
-      ->defaultValue(0);
-    $this->addFieldMapping('submitted', 'created')
-      ->description("Use the node creation date as the webform submission date.");
-    $this->addFieldMapping('remote_addr')
-      ->defaultValue('127.0.0.1')
-      ->description("I don't think we have an IP to use as the submission so I'm using the loopback.");
-    $this->addFieldMapping('path', 'path')
-      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
-      ->description("Not sure if the webform submissions support paths.");
-    $this->addUnmigratedSources(array('promote', 'sticky', 'language'));
   }
 
   public function prepareRow($row) {

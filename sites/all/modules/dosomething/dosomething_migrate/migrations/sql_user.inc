@@ -1,6 +1,6 @@
 <?php
 
-class DSSqlUserProfileMigration extends DSBaseMigration {
+class DSSqlUserProfileMigration extends Migration {
   public function __construct($group = NULL) {
     parent::__construct($group);
     $this->dependencies = array();
