@@ -2,4 +2,5 @@ name = "DoSomething Roles"
 description = "Custom functionality to change roles of users depending on their activity"
 core = 7.x
 package = DoSomething
+dependencies[] = webform
 
