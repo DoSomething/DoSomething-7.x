@@ -7,6 +7,24 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
     parent::__construct(MigrateGroup::getInstance('GrantApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
   }
+
+  public function prepareRow($row) {
+    // There's a lot of garbage in the date fields. Excude anything that doesn't
+    // have a number (other than zero to filter out 0/0/0) and some kind of
+    // separator.
+    foreach (array('field_birthdate', 'field_project_date') as $field) {
+      if (isset($row->$field)) {
+        // TODO: Check that this actually works with pre-1970 birthdays...
+        if (preg_match('![1-9]+[- ,\.\/]!', $row->$field) && ($timestamp = strtotime($row->$field))) {
+          $row->$field = $timestamp;
+        }
+        else {
+          $row->$field = NULL;
+        }
+      }
+    }
+    var_dump($row);
+  }
 }
 
 

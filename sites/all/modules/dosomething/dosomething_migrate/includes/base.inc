@@ -33,17 +33,12 @@ abstract class DSBaseWebformMigration extends Migration {
     $this->addUnmigratedSources(array('promote', 'sticky', 'language'));
   }
 
-  // public function __toString() {
-  //   // TODO: Link to configuration page
-  //   if ($this->entityType == $this->bundle) {
-  //     $output = t('%type', array('%type' => $this->entityType));
-  //   }
-  //   else {
-  //     $output = t('%type (%bundle)',
-  //       array('%type' => $this->entityType, '%bundle' => $this->bundle));
-  //   }
-  //   // TODO: Non-default language, input format
-  //   return $output;
+  // public function prepareRow($row) {
+  //   var_dump($row);
+  // }
+  // public function prepare($entity, stdClass $row) {
+  //   var_dump($row);
+  //   var_dump($entity);
   // }
 }
 
