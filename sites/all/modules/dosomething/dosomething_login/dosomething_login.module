@@ -1,0 +1,230 @@
+<?php
+
+/**
+ * @file
+ * Custom functionality relating to user registration and login.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function dosomething_login_block_info() {
+  $blocks['become_member'] = array(
+    'info' => t('Become a Member'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function dosomething_login_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'become_member':
+      global $user;
+      if (!$user->uid) {
+        $block['subject'] = t('Become a Member');
+        $block['content'] = drupal_get_form('dosomething_login_register_block');
+      }
+      break;
+  }
+  return $block;
+}
+
+/**
+ * The form for the 'Become a Member' block.
+ */
+function dosomething_login_register_block($form) {
+  $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
+  $form['connect']['#markup'] = 'TODO: Facebook connect';
+  $form['or']['#markup'] = '<h3 class="separator">' . t('or') . '</h3>';
+  $form['name'] = array(
+    'first_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('First Name'),
+      ),
+      '#size' => 9,
+    ),
+    'last_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('Last Name'),
+      ),
+      '#size' => 9,
+    ),
+  );
+  $form['cell_or_email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Cell Number or E-mail'),
+    ),
+    '#size' => 20,
+  );
+  $form['birthday'] = array(
+    'over_13' => array('#markup' => '<h3>' . t('Over 13?') . '</h3>'),
+    'month' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('mm'),
+      ),
+      '#size' => 2,
+      '#maxlength' => 2,
+    ),
+    'day' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('dd'),
+      ),
+      '#size' => 2,
+      '#maxlength' => 2,
+    ),
+    'year' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('yyyy'),
+      ),
+      '#size' => 4,
+      '#maxlength' => 4,
+    ),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+    '#attributes' => array('class' => array('submit')),
+  );
+  $form['why'] = array(
+    '#theme' => 'link',
+    '#path' => '',
+    '#text' => t('Why become a member?'),
+    '#options' => array(
+      'attributes' => array('class' => array('why')),
+      'html' => FALSE,
+    ),
+    '#prefix' => '<h3>',
+    '#suffix' => '</h3>',
+  );
+  $form['already']['#markup'] = '<h3>' . t('Already a member?') . '</h3>';
+  $form['logins'] = array(
+    'facebook_login' => array('#markup' => 'TODO: Facebook login'),
+    'login' => array(
+      '#theme' => 'link',
+      '#path' => 'user/login',
+      '#text' => t('log in'),
+      '#options' => array(
+        'attributes' => array('class' => array('login')),
+        'html' => FALSE,
+      ),
+      '#prefix' => '<h3>',
+      '#suffix' => '</h3>',
+    ),
+  );
+  return $form;
+}
+
+/**
+ * Validate the user registration form.
+ */
+function dosomething_login_register_block_validate($form, &$form_state) {
+  $values = $form_state['values'];
+  if (!$values['first_name']) {
+    form_set_error('first_name', t('Please provide your first name.'));
+  }
+  if (!$values['last_name']) {
+    form_set_error('last_name', t('Please provide your last name.'));
+  }
+  // Validate cell number or e-mail address
+  if (valid_email_address($values['cell_or_email'])) {
+    if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($values['cell_or_email']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+      form_set_error('cell_or_email', t('The e-mail address %email is already registered. <a href="@password">Have you forgotten your password?</a>', array('%email' => $values['cell_or_email'], '@password' => url('user/password'))));
+    }
+    $form_state['values']['mail'] = $values['cell_or_email'];
+  }
+  else if (($number = preg_replace('[^0-9]', '', $values['cell_or_email'])) && strlen($number) >= 10) {
+    // TOOD: Check that the phone number is unique.
+    $form_state['values']['phone'] = $number;
+    $form_state['values']['mail'] = '';
+  }
+  else {
+    form_set_error('cell_or_email', t('Please provide a valid email address or phone number'));
+  }
+  if (!is_numeric($values['month']) || $values['month'] > 12) {
+    form_set_error('month', t('Please provide a valid numeric month for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['day']) || $values['month'] > 31) {
+    form_set_error('day', t('Please provide a valid day for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['year']) || strlen($values['year']) != 4) {
+    form_set_error('year', t('Please provide the 4-digit year you were born.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!isset($invalid_birthday)) {
+    $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
+    $form_state['values']['birthdate'] = $birthday;
+    if ((time() - $birthday) < 13*365*24*60*60) {
+      form_set_error('year', t('Members must be at least 13 years old.'));
+    }
+  }
+}
+
+/**
+ * Submit the user registration form.
+ */
+function dosomething_login_register_block_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
+  $form_state['values']['name'] = dosomething_login_unique_name($name);
+  $birthday = $values['birthdate'];
+  // TODO: put the birthdate, first and last name and optional cell phone number into data.
+  // Birthdate, first and last names go into profile fields.
+  // Phone goes into sms_user field.
+  $form_state['values']['pass'] = user_password();
+  $form_state['values']['init'] = $name;
+  // Remove unneeded values.
+  form_state_values_clean($form_state);
+
+  $account = drupal_anonymous_user();
+  $account->status = 1;
+  $edit = array_intersect_key((array) $account, $form_state['values']);
+  entity_form_submit_build_entity('user', $account, $form, $form_state);
+  $account = user_save($account, $edit);
+  // Terminate if an error occurred during user_save().
+  if (!$account) {
+    drupal_set_message(t("Error saving user account."), 'error');
+    $form_state['redirect'] = '';
+    return;
+  }
+  // Log user in.
+  $form_state['uid'] = $account->uid;
+  user_login_submit(array(), $form_state);  
+}
+
+/**
+ * Generate a unique username.
+ */
+function dosomething_login_unique_name($name, $i = '') {
+  if (db_select('users')->fields('users', array('uid'))->condition('name', db_like($name . $i), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+    if ($i === '') {
+      $i = 0;
+    }
+    else {
+      $i++;
+    }
+    return dosomething_login_unique_name($name, $i);
+  }
+  else {
+    return $name . $i;
+  }
+}
+
+
+/**
+ * Implements hook_menu_alter().
+ */
+function dosomething_login_menu_alter(&$items) {
+  // Remove the default user registration page in favor of our custom registration.
+  unset($items['user/register']);
+}
