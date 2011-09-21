@@ -79,7 +79,6 @@ function dosomething_migrate_get_webform_nodes() {
     dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
     $webform->webform = $webform_data;
     $webform_data['nid'] = $webform->nid;
-
     node_save($webform);
     drupal_write_record('webform', $webform_data);
   }
