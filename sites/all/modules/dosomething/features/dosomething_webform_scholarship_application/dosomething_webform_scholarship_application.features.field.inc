@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_webform_scholarhip_application.features.field.inc
+ * dosomething_webform_scholarship_application.features.field.inc
  */
 
 /**
  * Implementation of hook_field_default_fields().
  */
-function dosomething_webform_scholarhip_application_field_default_fields() {
+function dosomething_webform_scholarship_application_field_default_fields() {
   $fields = array();
 
   // Exported field: 'webform_submission_entity-scholarship_application-field_webform_address'
