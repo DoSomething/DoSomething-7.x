@@ -6,4 +6,4 @@
 	url = git@git.drupal.org:project/survivalkit.git
 [submodule "sites/all/modules/sms_mobile_commons"]
 	path = sites/all/modules/sms_mobile_commons
-	url = lliss@git.drupal.org:project/sms_mobile_commons.git
+	url = git@git.drupal.org:project/sms_mobile_commons.git

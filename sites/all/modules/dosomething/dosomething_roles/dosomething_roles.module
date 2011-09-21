@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Custom functionality to change roles of users depending on their activity.
+ */
+
+/**
+ * Implements hook_cron().
+ */
+function dosomething_roles_cron() {
+  $last_update_active = variable_get('dosomething_roles_cron_active', 0);
+  $last_update_inactive = variable_get('dosomething_roles_cron_inactive', 0);
+  $inactive_user = user_role_load_by_name('inactive user');
+  $member = user_role_load_by_name('member');
+  $active_member = user_role_load_by_name('active member');
+  
+  if (!$last_update) {
+    $rids = $inactive_user->rid . ', ' . $member->rid . ', ' . $active_member->rid;
+    $result = db_query_range("SELECT u.uid, u.access FROM {users} u LEFT JOIN {users_roles} ur ON (ur.uid = u.uid AND ur.rid IN ($rids)) WHERE ur.uid IS NULL AND u.uid > 0 ORDER BY u.access ASC", 0, 100);
+  }
+  else {
+    $result = db_query_range("SELECT u.uid, u.access FROM {users} u WHERE access > :last_check AND u.uid > 0 ORDER BY u.access ASC", 0, 100, array(':last_check' => $last_update_active));
+  }
+  foreach ($result as $data) {
+    dosomething_roles_update_role($data->uid);
+    variable_set('dosomething_roles_cron_active', $data->access);
+  }
+  // Get users who have not logged in this past year.
+  $result = db_query_range("SELECT u.uid, u.access FROM {users} u INNER JOIN {users_roles} ur ON (u.uid = ur.uid AND ur.rid IN (:active_member, :member)) WHERE access < UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND access > :last_update_inactive ORDER BY u.access ASC", 0, 100, array(':active_member' => $active_member->rid, ':member' => $member->rid, ':last_update_inactive' => $last_udpate_inactive));
+  foreach ($result as $data) {
+     dosomething_roles_update_role($data->uid);
+     variable_set('dosomething_roles_cron_inactive', $data->access);
+  }
+}
+
+function dosomething_role_update_role($uid) {
+  $inactive_user = user_role_load_by_name('inactive user');
+  $member = user_role_load_by_name('member');
+  $active_member = user_role_load_by_name('active member');
+  $rids = $inactive_user->rid . ', ' . $member->rid . ', ' . $active_member->rid;
+  $rids = db_query("SELECT rid FROM {users_roles} WHERE uid = :uid AND rid IN (" . $rids . ")", array(':uid' => $uid))->fetchCol();
+
+  foreach ($rids as $rid) {
+    if ($rid == $inactive_user->rid) {
+      // The user is currently inactive. Check if anything has changed.
+      if (dosomething_role_is_active_member($uid)) {
+        $new_rid = $active_member->rid;
+      }
+      else if (dosomething_role_is_member($uid)) {
+        $new_rid = $member->rid;
+      }
+    } 
+    else if ($rid == $member->rid) {
+      // The user is currently a member. Check if anything has changed.
+      if (dosomething_role_is_active_member($uid)) {
+        $new_rid = $active_member->rid;
+      }
+      else if (!dosomething_role_is_member($uid)) {
+        $new_rid = $inactive_user->rid;
+      }
+    }
+    else if ($rid == $active_member->rid) {
+      // The user is currently an active member. Check if anything has changed.
+      if (!dosomething_role_is_active_member($uid)) {
+        if (dosomething_role_is_member($uid)) {
+          $new_rid = $member->rid;
+        }
+        else {
+          $new_rid = $inactive_user->rid;
+        }
+      } 
+    }
+  }
+  if (isset($new_rid)) {
+    db_query("DELETE FROM {users_roles} WHERE rid IN IN (" . $rids . ")");
+    db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
+  }
+}
+/**
+ * Determine if a given uid qualifies for the active member role.
+ */
+function dosomething_role_is_active_member($uid) {
+  return db_query("SELECT u.uid FROM {users} u INNER JOIN {node} n ON n.uid = u.uid where u.uid = :uid AND u.login > UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND u.mail NOT IN ('', '0')", array(':uid' => $uid))->fetchField();
+}
+/**
+ * Determine if a given uid qualifies for the member role.
+ */
+function dosomething_role_is_member($uid) {
+  if (db_query("SELECT u.uid from {users} u WHERE u.login > UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND u.mail NOT IN ('', '0') AND u.uid = :uid", array(':uid' => $uid))) {
+    return TRUE;
+  }
+  if (db_query("SELECT u.uid from {users} u INNER JOIN {node} n ON n.uid = u.uid WHERE u.mail NOT IN ('', '0') AND u.uid = :uid", array(':uid' => $uid))) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
