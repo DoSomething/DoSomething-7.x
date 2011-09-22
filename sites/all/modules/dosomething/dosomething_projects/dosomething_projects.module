@@ -7,6 +7,9 @@
 
 define('DOSOMETHING_PROJECTS_API_LIMIT', 300);
 
+include_once('dosomething_projects.features.inc');
+
+
 /**
  * Implements hook_menu().
  */
@@ -65,7 +68,7 @@ function dosomething_projects_permission() {
  */
 function dosomething_projects_callback() {
   $display_id = 'feed_1';
-  $view = views_get_view('api_projects');
+  $view = views_get_view('dosomething_projects');
 
   // TODO: Projects do not currently store provinces...
   $province = isset($_GET['province']) ? $_GET['province'] : 'all';

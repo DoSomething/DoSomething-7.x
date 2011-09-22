@@ -2,4 +2,7 @@ name = "DoSomething Projects"
 description = "Dosomething API for searching projects"
 core = 7.x
 package = DoSomething
+dependencies[] = "views_data_export"
+features[ctools][] = "views:views_default:3.0"
+features[views_view][] = "api_projects"
 
