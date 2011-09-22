@@ -47,6 +47,7 @@ abstract class DSSqlWebformMigration extends DSBaseWebformMigration {
         $row->summary = $value['und'][0]['summary'];
         $row->body = $value['und'][0]['value'];
       }
+#TODO: Need to flatten the node similarly to what we're doing over in D6 in dosome_migrating_node_get()
       // Flatten out single value fields.
       else if (strpos($name, 'field_') === 0 && count($value) == 1) {
         // This looks bad but isset() returns false for null values:

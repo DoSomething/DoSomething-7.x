@@ -136,18 +136,6 @@ class DSCampaignSignupStaplesMigration extends DSCampaignSignupMigration {
 #    $this->addFieldMapping('field_webform_school', '');
 
   }
-
-  public function prepareRow($row) {
-    // Flatten the field_sfs_subscriptions from a multivalue text field into a
-    // simple array.
-    if (is_array($row->field_sfs_subscriptions)) {
-      $value = array();
-      foreach ($row->field_sfs_subscriptions as $delta => $item) {
-        $value[] = $item->value;
-      }
-      $row->field_sfs_subscriptions = $value;
-    }
-  }
 }
 
 class DSCampaignSignupTackleHungerMigration extends DSCampaignSignupMigration {

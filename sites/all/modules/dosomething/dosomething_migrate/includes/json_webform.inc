@@ -63,34 +63,6 @@ class DSNodeItemJSON extends DSItemJSON {
   protected function loadJSONUrl($item_url) {
     $item = parent::loadJSONUrl($item_url);
 
-    foreach ($item as $name => &$value) {
-      // Flatten out single value fields.
-      if (strpos($name, 'field_') === 0 && count($value) == 1) {
-        // This looks bad but isset() returns false for null values:
-        // http://stackoverflow.com/questions/418066/best-way-to-test-for-a-variables-existence-in-php-isset-is-clearly-broken
-        if (is_object($value[0])) {
-          if (property_exists($value[0], 'value')) {
-            $value = $value[0]->value;
-          }
-          else if (property_exists($value[0], 'nid')) {
-            $value = $value[0]->nid;
-          }
-          else if (property_exists($value[0], 'uid')) {
-            $value = $value[0]->uid;
-          }
-          else if (property_exists($value[0], 'url')) {
-            $value = $value[0]->url;
-          }
-          else {
-            $value = $value[0];
-          }
-        }
-        else {
-          $value = $value[0];
-        }
-      }
-    }
-
     return $item;
   }
 }
