@@ -67,7 +67,7 @@ function dosomething_projects_permission() {
  * Menu callback for the API hits.
  */
 function dosomething_projects_callback() {
-  $display_id = 'feed_1';
+  $display_id = 'views_data_export_1';
   $view = views_get_view('dosomething_projects');
 
   // TODO: Projects do not currently store provinces...
