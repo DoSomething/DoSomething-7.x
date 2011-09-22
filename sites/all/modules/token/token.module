@@ -754,7 +754,7 @@ function token_build_tree($token_type, array $options = array()) {
 
   $options += array(
     'restricted' => FALSE,
-    'depth' => 4,
+    'depth' => 3,
     'data' => array(),
     'values' => FALSE,
     'flat' => FALSE,
