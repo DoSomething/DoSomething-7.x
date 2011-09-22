@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Dosomething Webform - Grant Application feature.
- */
-
-include_once('dosomething_webform_grant_application.features.inc');

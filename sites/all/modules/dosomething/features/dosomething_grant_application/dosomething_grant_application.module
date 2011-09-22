@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the dosomething - grant application feature.
+ * Code for the Dosomething - Grant Application feature.
  */
 
 include_once('dosomething_grant_application.features.inc');

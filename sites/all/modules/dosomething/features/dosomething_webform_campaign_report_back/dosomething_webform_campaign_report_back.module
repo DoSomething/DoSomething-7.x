@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Dosomething Webform - Campaign Report Back feature.
- */
-
-include_once('dosomething_webform_campaign_report_back.features.inc');

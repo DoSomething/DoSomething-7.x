@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Dosomething Webform - Campaign Sign Up feature.
- */
-
-include_once('dosomething_webform_campaign_sign_up.features.inc');
