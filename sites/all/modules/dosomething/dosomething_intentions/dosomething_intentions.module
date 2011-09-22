@@ -11,24 +11,26 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0) {
     $node = $form['#node'];
     if ($node->type == 'action_guide') {
-      global $user;
-      if (webform_get_submission_count($node->nid, $user->uid) || isset($_SESSION['dosomething_intentions'][$node->nid])) {
-        $form = array(
-          'complete' => array(
-            '#markup' => '<p>' . t('Sweet. I am going to do this') . '</p>',
-          ),
+      if (!_webform_submission_limit_check($node)) {
+        global $user;
+        if (webform_get_submission_count($node->nid, $user->uid) || isset($_SESSION['dosomething_intentions'][$node->nid])) {
+          $form = array(
+            'complete' => array(
+              '#markup' => '<p>' . t('Sweet. I am going to do this') . '</p>',
+            ),
+          );
+        }
+        $form['total'] = array(
+          '#markup' => '<p>' . t('!total people have committed to this one.', array('!total' => webform_get_submission_count($node->nid))) . '</p>',
+          '#weight' => 200,
         );
-      }
-      $form['total'] = array(
-        '#markup' => '<p>' . t('!total people have committed to this one.', array('!total' => webform_get_submission_count($node->nid))) . '</p>',
-        '#weight' => 200,
-      );
-      $form['actions']['submit']['#value'] = t('Absolutely!');
-      if ($user->uid) {
-$form['field_action_intention_email'][$form['field_action_intention_email']['#language']][0]['email']['#default_value'] = $user->mail;
-      }
-      if (!$user->uid) {
-        $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
+        $form['actions']['submit']['#value'] = t('Absolutely!');
+        if ($user->uid) {
+  $form['field_action_intention_email'][$form['field_action_intention_email']['#language']][0]['email']['#default_value'] = $user->mail;
+        }
+        if (!$user->uid) {
+          $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
+        }
       }
     }
   }
