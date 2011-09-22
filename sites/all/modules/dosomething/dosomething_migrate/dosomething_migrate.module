@@ -127,3 +127,18 @@ function dosomething_migrate_return_content_type_mapping() {
   );
   return $array;
 }
+
+function dosomething_migrate_clear_nodes() {
+  $result = db_query("SELECT 
+      nid 
+    FROM 
+      {node} 
+    WHERE 
+      type = 'grant_application' 
+      OR type = 'campaign_sign_up' 
+      OR type = 'campaign_report_back' 
+      OR type = 'scholarship_application'");
+  while ($nid = $result->fetch()) {
+    node_delete($nid->nid);
+  }
+}
