@@ -151,6 +151,6 @@ function dosomething_roles_user_update(&$edit, $account, $category) {
 function dosomething_roles_webform_submission_insert($node, $submission) {
   global $user;
   if ($user->uid == $submission->uid) {
-    dosomething_roles_update_role($account->uid);
+    dosomething_roles_update_role($submission->uid);
   }
 }

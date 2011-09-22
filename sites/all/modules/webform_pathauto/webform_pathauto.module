@@ -1,0 +1,211 @@
+<?php
+
+/**
+ * @file
+ * Pathauto integration for webform submissions
+ */
+
+/**
+ * Implements hook_pathauto().
+ */
+function webform_pathauto_pathauto($op) {
+  switch ($op) {
+    case 'settings':
+      $settings = array();
+      $settings['module'] = 'webform_pathauto';
+      $settings['token_type'] = 'webform';
+      $settings['groupheader'] = t('Webform Submission paths');
+      $settings['patterndescr'] = t('Default path pattern (applies to all webforms with blank patterns below)');
+      $settings['patterndefault'] = '[webform:node-path]/[webform:sid]';
+      $settings['batch_update_callback'] = 'webform_pathauto_pathauto_bulk_update_batch_process';
+      $settings['batch_file'] = drupal_get_path('module', 'webform_pathauto') . '/webform_pathauto.module';
+
+      $webform_types = webform_variable_get('webform_node_types');
+      if (count($webform_types)) {
+        $settings['patternitems'] = array();
+        foreach ($webform_types as $type) {
+          $settings['patternitems'][$type] = t('Pattern for all %type webform submission paths', array('%type' => $type));
+        }
+      }
+      return (object) $settings;
+    default:
+      break;
+  }
+}
+
+/**
+ * Batch processing callback; Generate aliases for webform submissions.
+ */
+function webform_pathauto_pathauto_bulk_update_batch_process(&$context) {
+  if (!isset($context['sandbox']['current'])) {
+    $context['sandbox']['count'] = 0;
+    $context['sandbox']['current'] = 0;
+  }
+
+  $query = db_select('webform_submissions', 'w');
+  $query->leftJoin('url_alias', 'ua', "CONCAT('node/', w.nid, '/', 'submission/', w.sid) = ua.source");
+  $query->addField('w', 'sid');
+  $query->isNull('ua.source');
+  $query->orderBy('w.sid');
+  $query->addTag('pathauto_bulk_update');
+
+  // Get the total amount of items to process.
+  if (!isset($context['sandbox']['total'])) {
+    $context['sandbox']['total'] = $query->countQuery()->execute()->fetchField();
+
+    // If there are no nodes to update, then stop immediately.
+    if (!$context['sandbox']['total']) {
+      $context['finished'] = 1;
+      return;
+    }
+  }
+
+  $query->range(0, 25);
+  $sids = $query->execute()->fetchCol();
+
+  webform_pathauto_update_alias_multiple($sids);
+  $context['sandbox']['count'] += count($sids);
+  $context['sandbox']['current'] = max($sids);
+  $context['message'] = t('Updated alias for webform submission @sid.', array('@sid' => end($sids)));
+
+  if ($context['sandbox']['count'] != $context['sandbox']['total']) {
+    $context['finished'] = $context['sandbox']['count'] / $context['sandbox']['total'];
+  }
+}
+
+/**
+ * Update the URL aliases for multiple webform submissions.
+ *
+ * @param $sids
+ *   An array of submission IDs.
+ * @param $options
+ *   An optional array of additional options.
+ */
+function webform_pathauto_update_alias_multiple(array $sids, array $options = array()) {
+  $options += array('message' => FALSE);
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  foreach ($sids as $sid) {
+    $submission = webform_get_submissions(array('sid' => $sid));
+    $node = node_load($submission->nid);
+    webform_pathauto_update_alias($node, $submission, 'bulkupdate', $options);
+  }
+  if (!empty($options['message'])) {
+    drupal_set_message(format_plural(count($sids), 'Updated URL alias for 1 submission.', 'Updated URL aliases for @count submissions.'));
+  }
+}
+
+/**
+ * Update the URL aliases for an individual webform submission.
+ *
+ * @param $node
+ *   A node object.
+ * @param $submission
+ *   A webform submission object.
+ * @param $op
+ *   Operation being performed on the term ('insert', 'update' or 'bulkupdate').
+ * @param $options
+ *   An optional array of additional options.
+ */
+function webform_pathauto_update_alias($node, $submission, $op, array $options = array()) {
+
+  $module = 'webform_pathauto';
+  // Skip processing if the term has no pattern.
+  if (!pathauto_pattern_load_by_entity($module, $node->type)) {
+    return;
+  }
+
+  module_load_include('inc', 'pathauto');
+  $path = 'node/' . $submission->nid . '/' . 'submission/' .  $submission->sid;
+  pathauto_create_alias($module, $op, $path, array('submission' => $submission, 'node' => $node), $node->type, LANGUAGE_NONE);
+}
+
+/**
+ * Implements hook_webform_submission_insert().
+ */
+function webform_pathauto_webform_submission_insert($node, $submission) {
+  webform_pathauto_update_alias($node, $submission, 'insert');
+}
+
+/**
+ * Implements hook_webform_submission_update().
+ */
+function webform_pathauto_webform_submission_update($node, $submission) {
+  webform_pathauto_update_alias($node, $submission, 'update');
+}
+
+/**
+ * Implements hook_webform_submission_delete().
+ */
+function webform_pathauto_webform_submission_delete($node, $submission) {
+  pathauto_path_delete_all("node/{$node->nid}/submission/{$submission->sid}");
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function webform_pathauto_node_delete($node) {
+  $submissions = webform_get_submissions(array('nid' => $node->nid));
+  if (count($submissions)) {
+    foreach ($submisisons as $submission) {
+      webform_submission_delete($node, $submission);
+    }
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function webform_pathauto_token_info() {
+  $info['types']['webform'] = array(
+    'name' => t('Webform'),
+    'description' => t('Tokens related to webform submissions.'),
+  );
+  $info['tokens']['webform']['sid'] = array(
+    'name' => t('Webform submission ID'),
+    'description' => t("The Submission ID (sid) of the webform submission"),
+    'type' => 'webform',
+  );
+  $info['tokens']['webform']['node-path'] = array(
+    'name' => t('Node path'),
+    'description' => t("The node path for the webform"),
+    'type' => 'webform',
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function webform_pathauto_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'webform' && !empty($data['submission']) && !empty($data['node'])) {
+    $node = $data['node'];
+    $submission = $data['submission'];
+
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'sid':
+          $replacements[$original] = $submission->sid;
+          break;
+
+        case 'node-path':
+          $conditions = array('source' => 'node/' . $node->nid);
+          if ($node->language != LANGUAGE_NONE) {
+            $conditions['language'] = $node->language;
+          }
+          $path = path_load($conditions);
+          if (isset($path['alias'])) {
+            $path = $path['alias'];
+          }
+          else {
+            $path = 'node/' . $node->nid;
+          }
+          $replacements[$original] = $path;
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}
