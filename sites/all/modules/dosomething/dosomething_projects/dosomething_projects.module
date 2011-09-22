@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * @file
+ * Dosomething API for searching projects.
+ */
+
+define('DOSOMETHING_PROJECTS_API_LIMIT', 300);
+
+include_once('dosomething_projects.features.inc');
+
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_projects_menu() {
+  return array(
+    'api/projects' => array(
+      'page callback' => 'dosomething_projects_callback',
+      'access callback' => 'dosomething_projects_callback_access',
+      'type' => MENU_CALLBACK,
+    ),
+  );
+}
+
+/**
+ * Menu access callback.
+ */
+function dosomething_projects_callback_access() {
+  if (isset($_GET['key'])) {
+    $key = $_GET['key'];
+    $query = new EntityFieldQuery;
+    $query->entityCondition('entity_type', 'node');
+    $query->entityCondition('bundle', 'api_key');
+    $query->propertyCondition('title', $key);
+    $result = $query->execute();
+    $nids = array_keys($result['node']);
+    $nodes = node_load_multiple($nids);
+    if (count($nodes)) {
+      foreach ($nodes as $node) {
+        if ($node->field_query_count[$node->language][0]['value'] < DOSOMETHING_PROJECTS_API_LIMIT) {
+          // Update the query count for the key.
+          $node->field_query_count[$node->language][0]['value']++;
+          node_save($node);
+          return TRUE;
+        }
+      }
+    }
+  }
+  else if (user_access('use api without key')) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function dosomething_projects_permission() {
+  return array(
+    'use api without key' => array(
+      'title' => t('Access the DoSomething projects API without a key'),
+    ),
+  );
+}
+/**
+ * Menu callback for the API hits.
+ */
+function dosomething_projects_callback() {
+  $display_id = 'feed_1';
+  $view = views_get_view('dosomething_projects');
+
+  // TODO: Projects do not currently store provinces...
+  $province = isset($_GET['province']) ? $_GET['province'] : 'all';
+  $cause = $_GET['cause'] ? $_GET['cause'] : 'all';
+  $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '*';
+
+  $page = 0;
+  if (isset($_GET['page']) && preg_match('/^\d+$/', $_GET['page']) && $_GET['page'] > 0) {
+    $page = $_GET['page'] - 1;
+  }
+  $maxnum = isset($_GET['maxnum']) ? trim($_GET['maxnum']) : 10;
+  if ($maxnum > 100 || $maxnum < 1) {
+    $maxnum = 100;
+  }
+
+  if (isset($_GET['zip'])) {
+    $zip = $_GET['zip'];
+    $distance = isset($_GET['distance']) ? $_GET['distance'] : 10;
+    $filter = $view->get_item($display_id,'filter','distance');
+    $filter['value']['postal_code'] = $zip;
+    $filter['value']['search_distance'] = $distance;
+    $view->set_item($display_id, 'filter', 'distance', $filter);
+  }
+  
+  $view->set_items_per_page($maxnum);
+  if ($page) {
+    $view->set_offset($page * $maxnum);
+  }
+  
+  print $view->preview($display_id, array($cause, $province, $keyword));
+  exit;
+}

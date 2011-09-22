@@ -144,6 +144,7 @@ function webform_pathauto_webform_submission_delete($node, $submission) {
  * Implements hook_node_delete().
  */
 function webform_pathauto_node_delete($node) {
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
   $submissions = webform_get_submissions(array('nid' => $node->nid));
   if (count($submissions)) {
     foreach ($submisisons as $submission) {
