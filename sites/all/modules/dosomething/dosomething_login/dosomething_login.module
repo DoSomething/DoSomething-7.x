@@ -37,7 +37,7 @@ function dosomething_login_block_view($delta = '') {
  */
 function dosomething_login_register_block($form) {
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
-  $form['connect']['#markup'] = 'TODO: Facebook connect';
+  $form['connect']['#markup'] = l('Connect thru Facebook', 'fbconnect/register/create');
   $form['or']['#markup'] = '<h3 class="separator">' . t('or') . '</h3>';
   $form['name'] = array(
     'first_name' => array(
@@ -107,7 +107,7 @@ function dosomething_login_register_block($form) {
   );
   $form['already']['#markup'] = '<h3>' . t('Already a member?') . '</h3>';
   $form['logins'] = array(
-    'facebook_login' => array('#markup' => 'TODO: Facebook login'),
+    'facebook_login' => array('#markup' => l('log in', 'fbconnect/login')),
     'login' => array(
       '#theme' => 'link',
       '#path' => 'user/login',
