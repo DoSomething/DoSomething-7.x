@@ -14,6 +14,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
         foreach ($row->$name as &$value) {
           $file = file_uri_to_object($value);
           if (empty($file->fid)) {
+            $file->uid = $row->uid;
             file_save($file);
           }
           $value = $file->fid;
@@ -41,7 +42,8 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->description = 'Campaign Project - Battle for the Bands 2011';
 
     $this->addFieldMapping('data_school_group_name', 'title');
-    $this->addFieldMapping('data_is_this_address_school_or_home', 'field_campaign_address_type');
+    $this->addFieldMapping('data_is_this_address_school_or_home', 'field_campaign_address_type')
+      ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_project_or_video', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_why_is_music_education_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_how_did_your_work_unfold_what_was_the_best_part', 'field_campaign_essay_how');
@@ -51,23 +53,24 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_the_name_of_the_song', 'field_botb_cover_song');
     $this->addFieldMapping('data_what_impact_did_your_project_have_on_your_school_community', 'field_impact_project_had_on_com');
     $this->addFieldMapping('data_how_many_boxes_of_books_do_you_plan_to_collect_35_books_in_a_box', 'field_what_is_your_goal_number_');
-    $this->addFieldMapping('data_does_your_video_feature_a', 'field_botb_style');
+    $this->addFieldMapping('data_does_your_video_feature_a', 'field_botb_style')
+      ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_if_you_chose_other_what_type_of_group_performed_in_your_video', 'field_botb_style_other');
     $this->addFieldMapping('data_what_was_the_biggest_challenge_you_faced', 'field_campaign_essay_challenge');
     $this->addFieldMapping('data_do_you_agree_to_the_official_contest_rules', 'field_botb_agreement');
     $this->addFieldMapping('data_anything_else_we_should_know_about_your_battle_for_the_bands_advocacy_project', 'field_botb_other');
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
-
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
+
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->description('prepareRow() handles saving the embed URL into a file')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
     // # Field: Mobile Phone Number (text)
     // $this->addFieldMapping('field_webform_mobile', '');
-    // # Field: Pictures (media)
-    // $this->addFieldMapping('field_webform_pictures', '');
   }
 }
 
