@@ -31,7 +31,7 @@ function dosomething_feeds_theme() {
   return array(
     'dosomething_feed' => array(
       'template' => 'feeds',
-      'path' => drupal_get_path('module', 'dosomething_feeds'), 
+      'path' => drupal_get_path('module', 'dosomething_feeds'),
       'variables' => array(
         'data' => NULL,
         'items' => NULL,
@@ -48,7 +48,7 @@ function dosomething_feeds_theme() {
     ),
   );
 }
-  
+
 function dosomething_feeds_news($type, $title, $description) {
   global $base_url;
   drupal_add_http_header('Content-Type: text/xml; charset=utf-8');
@@ -57,7 +57,7 @@ function dosomething_feeds_news($type, $title, $description) {
     case 'chatterbox':
       $view = dosomething_feeds_get_news_feed_view();
       break;
-    
+
     case 'celebs_gone_good':
       $view = dosomething_feeds_get_celebs_feed_view();
       break;
@@ -71,7 +71,23 @@ function dosomething_feeds_news($type, $title, $description) {
     '#description' => $description,
   );
   foreach ($results as $result) {
-    $result->path = url('node/' . $result->nid, array('absolute' => TRUE)); 
+    //Handle the Images.
+    $result->images = array();
+    $result->happy = array();
+    foreach ($result->field_field_picture as $picture) {
+      $image_path = image_style_url($picture['rendered']['#image_style'], $picture['rendered']['#item']['uri']);
+      $mime = $picture['rendered']['#item']['filemime'];
+      $image_info = image_get_info(image_style_path($picture['rendered']['#image_style'], ($picture['rendered']['#item']['uri'])));
+      $result->images[] = array(
+        'path' => $image_path,
+        'mime' => $mime,
+        'width' => $image_info['width'],
+        'height' => $image_info['height'],
+      );
+    }
+
+    //Hanlde the taxonomy terms.
+    $result->path = url('node/' . $result->nid, array('absolute' => TRUE));
     $result->term_paths = array();
     foreach ($result->field_taxonomy_vocabulary_5 as $term) {
       $tid = $term['raw']['tid'];

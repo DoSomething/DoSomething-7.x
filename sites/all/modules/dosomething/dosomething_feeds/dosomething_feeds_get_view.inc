@@ -124,33 +124,33 @@ function dosomething_feeds_get_news_feed_view() {
     'trim_length' => '600',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
-  /* Field: Content: File attachments */
-  $handler->display->display_options['fields']['upload']['id'] = 'upload';
-  $handler->display->display_options['fields']['upload']['table'] = 'field_data_upload';
-  $handler->display->display_options['fields']['upload']['field'] = 'upload';
-  $handler->display->display_options['fields']['upload']['label'] = '';
-  $handler->display->display_options['fields']['upload']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['upload']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['upload']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['upload']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['upload']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['upload']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['upload']['hide_empty'] = 1;
-  $handler->display->display_options['fields']['upload']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['upload']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['upload']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['upload']['group_rows'] = 1;
-  $handler->display->display_options['fields']['upload']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['upload']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['upload']['field_api_classes'] = 0;
+  /* Field: Field: Picture */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
   /* Field: Content: Issues */
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['id'] = 'taxonomy_vocabulary_5';
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['table'] = 'field_data_taxonomy_vocabulary_5';
