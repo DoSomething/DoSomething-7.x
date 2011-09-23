@@ -1,7 +1,5 @@
 #! /bin/bash
 # commands to run as clean up after upgrade (not mission critical)
-echo "migrating from nodewords to metatags quick `date`"
-drush @ds7 -y metatags-quick-migrate
 echo "deleting unwanted nodes `date`"
 drush @ds7 -y php-eval "global \$user; \$user = user_load(1); \$result = db_query('select nid from node where type in (\'bc_financial_aid\', \'bc_financial_aid_grantalumni\', \'boot_camp_app\', \'bootcampx\', \'botb\', \'club_materials\', \'college_survey\', \'consulting_program_alumni_form\', \'dsaward_nomination\', \'editorial_notes\', \'feedapi_node\', \'hp_art\', \'increaseyourgreen_report\', \'iyg_2010\', \'iyg_judge\', \'som_judge\', \'speed_catcher\', \'yac_app\', \'youth_act_fair_signup\', \'action_guide_submission\', \'blank_page\', \'campaign_shellproj\', \'campaign_tfj_2011\', \'celebrity_db\', \'disaster_grant\', \'dsu_materials\', \'enviro_grant\', \'feed_the_need\', \'forum\', \'grammy_grant\', \'grant_alumni_update_form\', \'grant_application\', \'info_request\', \'iyg_kits\', \'jet_sweeptakes\', \'lost_found\', \'mdvoltage_application\', \'pitch_grant\', \'plum_grant_app\', \'project_teaser\', \'quiz\', \'rant_rave\', \'reporter\', \'staples_design\', \'story\', \'surge_scholarship\', \'take_action_app\', \'custom_voting\', \'teach_grants\', \'testimonial\', \'throwaway_type\', \'thumb_wars_bumper_sticker\', \'thumb_wars_sock_signup\', \'thumb_wars_sticker_order\', \'ugc_tips_tools\', \'varsity\', \'whitehouse\', \'yacapp\', \'youth_grant_app\')'); foreach (\$result as \$record) {\$nids[] = \$record->nid;} \$result = db_query('select n.nid from node n left join node_type t on n.type = t.type where t.type IS NULL'); foreach (\$result as \$record) {\$nids[] = \$record->nid;} \$nids[] = 621564; node_delete_multiple(\$nids);" 
 echo "deleting crap content types `date`"
@@ -11,13 +9,15 @@ drush @ds7 -y php-eval "db_query('truncate search_dataset'); db_query('truncate 
 drush @ds7 -y vset search_cron_limit 0
 echo "deleting comments `date`"
 drush @ds7 -y php-eval "\$cids = db_query('select cid from comment where pid = 0')->fetchCol(); foreach (\$cids as \$cid) {comment_delete(\$cid);}"
-echo "deleting old cck tables `date`"
-drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_type_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
-drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_field_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
+# echo "deleting old cck tables `date`"
+# drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_type_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
+# drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_field_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
 echo "migrating users to new roles `date`"
 drush @ds7 -y php-eval "\$names = array('member', 'inactive user', 'active member'); foreach (\$names as \$name) { \$role = new stdClass(); \$role->name = \$name; user_role_save(\$role);}"
 drush @ds7 -y php-eval "\$inactive_user = user_role_load_by_name('inactive user'); \$member = user_role_load_by_name('member'); \$active_member = user_role_load_by_name('active member'); \$rids = \$inactive_user->rid . ', ' . \$member->rid . ', ' . \$active_member->rid; \$result = db_query('SELECT u.uid, u.access FROM {users} u LEFT JOIN {users_roles} ur ON (ur.uid = u.uid AND ur.rid IN (' . \$rids . ')) WHERE ur.uid IS NULL AND u.uid > 0 ORDER BY u.access ASC'); foreach (\$result as \$data) {dosomething_roles_update_role(\$data->uid);}"
 echo "deleting custom blocks `date`"
 drush @ds7 -y php-eval "db_delete('block_custom')->execute(); db_delete('block')->condition('module', 'block')->execute(); db_delete('block_role')->condition('module', 'block')->execute(); db_delete('panels_pane')->condition('type', 'custom')->execute();"
+echo "migrating from nodewords to metatags quick `date`"
+drush @ds7 -y metatags-quick-migrate
 drush @ds7 cc all
 echo "post upgrade scripts complete `date`"
