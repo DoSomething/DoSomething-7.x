@@ -42,32 +42,34 @@ function webform_pathauto_pathauto_bulk_update_batch_process(&$context) {
     $context['sandbox']['current'] = 0;
   }
 
-  $query = db_select('webform_submissions', 'w');
-  $query->leftJoin('url_alias', 'ua', "CONCAT('node/', w.nid, '/', 'submission/', w.sid) = ua.source");
-  $query->addField('w', 'sid');
-  $query->isNull('ua.source');
-  $query->orderBy('w.sid');
-  $query->addTag('pathauto_bulk_update');
-
   // Get the total amount of items to process.
   if (!isset($context['sandbox']['total'])) {
-    $context['sandbox']['total'] = $query->countQuery()->execute()->fetchField();
+    $query = db_select('webform_submissions', 'w');
+    $query->addField('w', 'sid');
+    $query->orderBy('w.sid');
+    $sids = $query->execute()->fetchCol();
 
+    $query = db_select('webform_submissions', 'w');
+    $query->innerJoin('url_alias', 'ua', "CONCAT('node/', w.nid, '/submission/', w.sid) = ua.source");
+    $query->addField('w', 'sid');
+    $query->orderBy('w.sid');
+    $aliased_sids = $query->execute()->fetchCol();
+
+    $sids = array_diff($sids, $aliased_sids);
+
+    $context['sandbox']['total'] = count($sids);
+    $context['sandbox']['sids'] = array_chunk($sids, 25);
     // If there are no nodes to update, then stop immediately.
     if (!$context['sandbox']['total']) {
       $context['finished'] = 1;
       return;
     }
   }
-
-  $query->range(0, 25);
-  $sids = $query->execute()->fetchCol();
-
+  $sids = array_values(array_shift($context['sandbox']['sids']));
   webform_pathauto_update_alias_multiple($sids);
   $context['sandbox']['count'] += count($sids);
   $context['sandbox']['current'] = max($sids);
   $context['message'] = t('Updated alias for webform submission @sid.', array('@sid' => end($sids)));
-
   if ($context['sandbox']['count'] != $context['sandbox']['total']) {
     $context['finished'] = $context['sandbox']['count'] / $context['sandbox']['total'];
   }
@@ -85,7 +87,7 @@ function webform_pathauto_update_alias_multiple(array $sids, array $options = ar
   $options += array('message' => FALSE);
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   foreach ($sids as $sid) {
-    $submission = webform_get_submissions(array('sid' => $sid));
+    $submission = array_shift(webform_get_submissions(array('sid' => $sid)));
     $node = node_load($submission->nid);
     webform_pathauto_update_alias($node, $submission, 'bulkupdate', $options);
   }
