@@ -153,7 +153,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => '20',
+        'max_length' => '100',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -457,7 +458,9 @@ function dosomething_campaign_report_back_field_default_fields() {
         ),
       ),
       'module' => 'media',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'media',
     ),

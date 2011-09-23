@@ -153,7 +153,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => '20',
+        'max_length' => '100',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
