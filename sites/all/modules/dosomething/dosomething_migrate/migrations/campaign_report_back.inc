@@ -7,6 +7,20 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
   }
+
+  public function prepareRow($row) {
+    foreach (array('field_embedded_video', 'field_campaign_video') as $name) {
+      if (!empty($row->$name)) {
+        foreach ($row->$name as &$value) {
+          $file = file_uri_to_object($value);
+          if (empty($file->fid)) {
+            file_save($file);
+          }
+          $value = $file->fid;
+        }
+      }
+    }
+  }
 }
 
 /*
@@ -45,15 +59,15 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
 
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
+      ->description('prepareRow() handles saving the embed URL into a file')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
     // # Field: Mobile Phone Number (text)
     // $this->addFieldMapping('field_webform_mobile', '');
     // # Field: Pictures (media)
     // $this->addFieldMapping('field_webform_pictures', '');
-    // # Field: Videos (media)
-    // $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
-
   }
 }
 
@@ -95,8 +109,10 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
 
-    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
-    $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
     // # Field: Mobile Phone Number (text)
@@ -120,8 +136,10 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
     $this->addFieldMapping('data_challenge_type', 'field_campaign_project_type');
 
     $this->addFieldMapping('field_webform_email', 'field_email');
-    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
-    $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Mobile Phone Number (text)
     // $this->addFieldMapping('field_webform_mobile', '');
   }
@@ -148,8 +166,10 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
 
     $this->addFieldMapping('field_webform_email', 'field_email_1');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
-    $this->addFieldMapping('field_webform_pictures', 'field_fooddrive_photo');
-    $this->addFieldMapping('field_webform_videos', 'field_embedded_video');
+    $this->addFieldMapping('field_webform_pictures', 'field_fooddrive_photo')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
+      ->arguments(array('file_function' => 'file_fid'));
   }
 }
 
@@ -179,8 +199,10 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
     $this->addFieldMapping('data_tell_us_about_your_project', '');
     $this->addFieldMapping('data_how_did_you_get_other_students_excited_and_involved', 'field_healthy_schools_report_ho');
 
-    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
-    $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
     // # Field: Mobile Phone Number (text)
@@ -247,7 +269,8 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
 
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_required');
-    $this->addFieldMapping('field_webform_videos', 'field_embedded_video');
+    $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Pictures (media)
     // $this->addFieldMapping('field_webform_pictures', '');
   }
@@ -312,7 +335,8 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
 
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
-    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Videos (media)
     // $this->addFieldMapping('field_webform_videos', '');
   }

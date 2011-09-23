@@ -11,11 +11,9 @@
 function dosomething_blocks_block_info() {
   $blocks['dosomething_facebook_activity'] = array(
     'info' => t('DoSomething Facebook Activity'),
-    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['dosomething_twitter_stream'] = array(
     'info' => t('DoSomething Twitter Stream'),
-    'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
@@ -28,11 +26,13 @@ function dosomething_blocks_block_view($delta = '') {
     case 'dosomething_facebook_activity':
       $block['subject'] = t('Recent Activity');
       $block['content'] = dosomething_blocks_facebook_activity_block_content();
+      drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
       break;
 
     case 'dosomething_twitter_stream':
       $block['subject'] = t('Twitter Stream');
       $block['content'] = dosomething_blocks_twitter_stream_block_content();
+      drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
       break;
   }
   return $block;

@@ -72,7 +72,7 @@ function dosomething_projects_callback() {
 
   // TODO: Projects do not currently store provinces...
   $province = isset($_GET['province']) ? $_GET['province'] : 'all';
-  $cause = $_GET['cause'] ? $_GET['cause'] : 'all';
+  $cause = isset($_GET['cause']) ? $_GET['cause'] : 'all';
   $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '*';
 
   $page = 0;
@@ -97,7 +97,7 @@ function dosomething_projects_callback() {
   if ($page) {
     $view->set_offset($page * $maxnum);
   }
-  
+
   print $view->preview($display_id, array($cause, $province, $keyword));
   exit;
 }

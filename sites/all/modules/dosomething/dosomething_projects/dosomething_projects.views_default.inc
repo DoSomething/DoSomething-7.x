@@ -11,6 +11,7 @@ function dosomething_projects_views_default_views() {
   $export = array();
 
   $view = new view;
+  $view = new view;
   $view->name = 'dosomething_projects';
   $view->description = 'API Projects';
   $view->tag = '';
@@ -288,10 +289,10 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['arguments']['taxletter']['exception']['title_enable'] = 1;
   $handler->display->display_options['arguments']['taxletter']['default_argument_type'] = 'php';
   $handler->display->display_options['arguments']['taxletter']['default_argument_options']['code'] = 'if (isset($_GET[\'cause\']) {
-  return urldecode($_GET[\'cause\']);
-} else {
-  return \'all\';
-}';
+    return urldecode($_GET[\'cause\']);
+  } else {
+    return \'all\';
+  }';
   $handler->display->display_options['arguments']['taxletter']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['taxletter']['specify_validation'] = 1;
   $handler->display->display_options['arguments']['taxletter']['validate']['fail'] = 'ignore';
@@ -307,10 +308,10 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['arguments']['province']['exception']['title_enable'] = 1;
   $handler->display->display_options['arguments']['province']['default_argument_type'] = 'php';
   $handler->display->display_options['arguments']['province']['default_argument_options']['code'] = 'if (isset($_GET[\'province\'])) {
-  return urldecode($_GET[\'province\']);
-} else {
-  return \'all\';
-}';
+    return urldecode($_GET[\'province\']);
+  } else {
+    return \'all\';
+  }';
   $handler->display->display_options['arguments']['province']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['province']['specify_validation'] = 1;
   $handler->display->display_options['arguments']['province']['validate']['fail'] = 'ignore';
@@ -370,7 +371,9 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['style_options']['parent_sort'] = 0;
   $handler->display->display_options['style_options']['transform'] = 1;
   $handler->display->display_options['path'] = 'dosomething-projects';
-  $export['api_projects'] = $view;
+  $handler->display->display_options['use_batch'] = '0';
+
+  $export['dosomething_projects'] = $view;
 
   return $export;
 }

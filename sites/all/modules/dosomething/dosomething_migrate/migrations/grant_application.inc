@@ -23,7 +23,6 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
         }
       }
     }
-    var_dump($row);
   }
 }
 
