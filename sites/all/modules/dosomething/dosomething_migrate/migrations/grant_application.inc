@@ -30,7 +30,7 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
 class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('aspca_grant_app');
-    $this->description = 'ASPCA Grant App';
+    $this->description .= 'ASPCA Grant App';
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
     $this->addFieldMapping('data_essay_1_see_it', 'field_essay_see_it');
     $this->addFieldMapping('data_essay_2_believe_it', 'field_essay_believe_it');
@@ -42,10 +42,14 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_0');
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_0');
-    $this->addFieldMapping('data_legal_1', 'field_legal_1_0');
-    $this->addFieldMapping('data_legal_2', 'field_legal_2_0');
-    $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
-    $this->addFieldMapping('data_legal_4', 'field_legal_4');
+    $this->addFieldMapping('data_legal_1', 'field_legal_1_0')
+      ->description('Keys is Boolean in integer (0/1).');
+    $this->addFieldMapping('data_legal_2', 'field_legal_2_0')
+      ->description('Keys is Boolean in integer (0/1).');
+    $this->addFieldMapping('data_legal_3', 'field_legal_3_0')
+      ->description('Keys is Boolean in integer (0/1).');
+    $this->addFieldMapping('data_legal_4', 'field_legal_4'
+      ->description('Keys is Boolean in integer (0/1).'));
 
 #    $this->addFieldMapping('field_webform_birthdate', '');
     $this->addFieldMapping('field_webform_email', 'field_your_email_address');
@@ -64,7 +68,7 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
 class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
   public function __construct() {
    parent::__construct('general_grant_app');
-    $this->description = 'General Grant Application';
+    $this->description .= 'General Grant Application';
     $this->addFieldMapping('data_your_school_deans_name', 'field_school_deans_name');
     $this->addFieldMapping('data_deans_email', 'field_deans_email');
     $this->addFieldMapping('data_deans_phone_number', 'field_deans_phone_number');
@@ -84,7 +88,8 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_legal_2', 'field_legal_2_0');
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
     $this->addFieldMapping('data_legal_4', 'field_legal_4');
-    $this->addFieldMapping('data_is_this_application_complete', 'field_application_status');
+    $this->addFieldMapping('data_is_this_application_complete', 'field_application_status')
+      ->description('Select field keys are unchanged.');
 
     $this->addFieldMapping('field_webform_birthdate', 'field_birthdate');
     $this->addFieldMapping('field_webform_email', 'field_email');
@@ -102,16 +107,19 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
 class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('grant');
-    $this->description = 'Grant';
+    $this->description .= 'Grant';
     $this->addFieldMapping('data_your_facebook_page_url', 'field_your_facebook_page_url');
     $this->addFieldMapping('data_your_twitter_handle', 'field_your_twitter_handle');
     $this->addFieldMapping('data_principal_deans_name', 'field_your_school_deans_name');
     $this->addFieldMapping('data_principal_deans_email', 'field_deans_email_0');
     $this->addFieldMapping('data_principal_deans_phone_number', 'field_deans_phone_number_0');
-    $this->addFieldMapping('data_which_grant_are_you_applying_for', 'field_which_grant');
-    $this->addFieldMapping('data_you_are_applying_as', 'field_you_are_applying_as');
+    $this->addFieldMapping('data_which_grant_are_you_applying_for', 'field_which_grant')
+      ->arguments(array('source_type' => 'value'));
+    $this->addFieldMapping('data_you_are_applying_as', 'field_you_are_applying_as')
+      ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_other_group_members_emails', 'field_other_group_members_email');
-    $this->addFieldMapping('data_how_did_you_hear_about_this_grant', 'field_how_did_you_hear_about_bo');
+    $this->addFieldMapping('data_how_did_you_hear_about_this_grant', 'field_how_did_you_hear_about_bo')
+      ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_how_many_people_are_directly_involved_in_your_project', 'field_num_people_impacted');
     $this->addFieldMapping('data_how_many_people_have_you_inspired_to_take_action', 'field_num_people_inspired');
     $this->addFieldMapping('data_how_many_people_has_your_project_helped', 'field_num_people_impacted');
@@ -131,7 +139,8 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_legal_2', 'field_legal_2_0');
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
     $this->addFieldMapping('data_legal_4', 'field_legal_4');
-    $this->addFieldMapping('data_is_this_application_complete', 'field_application_status');
+    $this->addFieldMapping('data_is_this_application_complete', 'field_application_status')
+      ->description('Select field keys are unchanged.');
 
     $this->addFieldMapping('field_webform_birthdate', 'field_recipient_birthdate');
     $this->addFieldMapping('field_webform_email', 'field_email');
@@ -149,7 +158,7 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
 class DSGrantApplicationGrantJudgeMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('grant_judge');
-    $this->description = 'Grant Judging Form';
+    $this->description .= 'Grant Judging Form';
   }
 }
 */
