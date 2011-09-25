@@ -53,7 +53,7 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_name', 'field_your_name');
     $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
     $this->addFieldMapping('field_webform_project', 'field_your_do_something_project');
-#    $this->addFieldMapping('field_webform_project_dates', '');
+    $this->addFieldMapping('field_webform_project_dates', 'field_project_dates');
     $this->addFieldMapping('field_webform_project_summary', 'field_description');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
     $this->addFieldMapping('field_webform_video_url', 'field_youtube_or_video_url');
