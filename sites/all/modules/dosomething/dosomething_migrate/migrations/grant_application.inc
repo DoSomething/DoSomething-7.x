@@ -48,8 +48,8 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
       ->description('Keys is Boolean in integer (0/1).');
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0')
       ->description('Keys is Boolean in integer (0/1).');
-    $this->addFieldMapping('data_legal_4', 'field_legal_4'
-      ->description('Keys is Boolean in integer (0/1).'));
+    $this->addFieldMapping('data_legal_4', 'field_legal_4')
+      ->description('Keys is Boolean in integer (0/1).');
 
 #    $this->addFieldMapping('field_webform_birthdate', '');
     $this->addFieldMapping('field_webform_email', 'field_your_email_address');
