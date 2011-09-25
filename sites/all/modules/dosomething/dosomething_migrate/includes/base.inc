@@ -12,6 +12,16 @@ abstract class DSBaseWebformMigration extends Migration {
       var_dump(t('WARNING: @name has no webform node.', array('@name' => $node_type)));
     }
 
+    $clean_src = strtr($node_type, array('_' => '-'));
+    $clean_dest = strtr($this->webform->type, array('_' => '-'));
+    $this->description = theme('item_list', array(
+      'items' => array(
+        'd6_fields' => l('Source CCK Fields', "http://dosomething6.local/admin/content/node-type/$clean_src/fields"),
+        'd7_fields' => l('Destination Fields (field_*)', "admin/config/content/webform/entities/$clean_dest/fields"),
+        'd7_components' => l('Destination Components (data_*)', "node/{$this->webform->nid}/webform"),
+      ),
+    ));
+
     $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
 
     $this->destination = new MigrateDestinationWebformSubmissionEntity($this->webform);

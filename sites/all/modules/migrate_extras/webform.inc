@@ -43,21 +43,24 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
    *
    * @var array
    */
-   protected $component_cids;
+  protected $component_cids;
 
   /**
-   * Basic initialization
+   * Constructs a destination for a given webform node.
    *
-   * @param object $ndoe
-   *   Webform node.
+   * @param object $node
+   *   A node object that's type has been enabled for webform use.
    */
   public function __construct($node) {
     parent::__construct();
 
+    if (empty($node)) {
+      throw new Exception(t("You must provide a webform node"));
+    }
     // Make sure it's a webform node.
     $types = webform_variable_get('webform_node_types');
     if (!in_array($node->type, $types)) {
-      throw new Exception(t('Must provide a webform node.'));
+      throw new Exception(t("The node must be configured to accept webform submissions but %type was not", array('%type' => $node->type)));
     }
     $this->node = $node;
 
@@ -74,11 +77,14 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
   }
 
   public function __toString() {
-    return t('Webform Submission @title', array('@title' => $this->node->title));
+    return t('Submission for the <a href="!link">%title</a> Webform', array(
+      '!link' => url('node/' . $this->node->nid),
+      '%title' => $this->node->title,
+    ));
   }
 
   /**
-   * Returns a list of fields available to be mapped/
+   * Returns a list of fields available to be mapped.
    *
    * @return array
    *   Keys: machine names of the fields (to be passed to addFieldMapping)
@@ -88,11 +94,11 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
     // Fields defined by the schema. nid is omitted since it should come from
     // $this->node.
     $fields = array(
-      'sid' => 'The unique identifier for this submission.',
-      'uid' => 'The id of the user that completed this submission.',
-      'is_draft' => 'Is this a draft of the submission?',
-      'submitted' => 'Timestamp of when the form was submitted.',
-      'remote_addr' => 'The IP address of the user that submitted the form.',
+      'sid' => t('The unique identifier for this submission.'),
+      'uid' => t('The id of the user that completed this submission.'),
+      'is_draft' => t('Is this a draft of the submission?'),
+      'submitted' => t('Timestamp of when the form was submitted.'),
+      'remote_addr' => t('The IP address of the user that submitted the form.'),
     );
 
     // Create a field for each component on the webform.
@@ -184,21 +190,53 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
 
     $entity->nid = $this->node->nid;
 
+    // Move the data from our custom keys back to webform's component ids.
+    $data = array();
+    foreach ($this->component_cids as $field_name => $cid) {
+      if (isset($entity->$field_name)) {
+        // Move the arguments out and kill any extraneous wrapper arrays.
+        $value = $entity->$field_name;
+        $arguments = array();
+        if (is_array($value) && isset($value['arguments'])) {
+          $arguments = (array) $value['arguments'];
+          unset($value['arguments']);
+          $value = count($value) ? reset($value) : $value;
+        }
+        // Avoid a warning if they passed in an empty array.
+        $arguments += array('source_type' => 'key');
+
+        // By default passed to select components are assumed to be the
+        // key. If the key should be looked up use the add a
+        // array('source_type' => 'value') argument to the field mapping.
+        $component = $this->node->webform['components'][$cid];
+        if ($component['type'] == 'select' && $arguments['source_type'] == 'value') {
+          $options = _webform_select_options($component);
+          $id = array_search($value, $options);
+          $data[$cid] = ($id === FALSE) ? NULL : $id;
+        }
+        else {
+          $data[$cid] = $value;
+        }
+        unset($entity->$field_name);
+      }
+    }
+    $entity->data = webform_submission_data($this->node, $data);
+
     // Invoke migration prepare handlers
     $this->prepare($entity, $row);
 
     migrate_instrument_start('webform_submission_update/insert');
     // Determine if it's an insert or update.
     if (empty($entity->sid)) {
+      $updating = TRUE;
       $sid = webform_submission_insert($this->node, $entity);
     }
     else {
       // If the sid was specified but doesn't exist we'll need to stick an
-      // empty record in so the update has something to stick to.
-      db_merge('webform_submissions')
+      // empty record in so webform's update has something to stick to.
+      $status = db_merge('webform_submissions')
         ->key(array(
           'sid' => $entity->sid,
-          'nid' => $entity->nid,
         ))
         ->insertFields(array(
           'sid' => $entity->sid,
@@ -206,8 +244,12 @@ class MigrateDestinationWebformSubmission extends MigrateDestination {
           'submitted' => $entity->submitted,
           'remote_addr' => $entity->remote_addr,
           'is_draft' => $entity->is_draft,
+          'bundle' => $entity->bundle,
         ))
         ->execute();
+        // If db_merge() makes no changes $status is NULL so make a less
+        // elegant comparison.
+      $updating = MergeQuery::STATUS_INSERT !== $status;
       $sid = webform_submission_update($this->node, $entity);
     }
     migrate_instrument_stop('webform_submission_update/insert');
