@@ -93,7 +93,7 @@ function dosomething_migrate_recursively_readd_nid(&$thing, $nid) {
         dosomething_migrate_recursively_readd_nid($value, $nid);
       }
       elseif ($key == 'nid') {
-          $value = $nid;
+        $value = $nid;
       }
     }
   }
@@ -142,18 +142,18 @@ function dosomething_migrate_return_content_type_mapping() {
 
 /**
  * A quick one off function to clean up after doing lots of testing.
- *  Removes all nodes of the types imported by the node creation. 
+ *  Removes all nodes of the types imported by the node creation.
  *  USE WITH CAUTION.
  */
 function dosomething_migrate_clear_nodes() {
-  $result = db_query("SELECT 
-      nid 
-    FROM 
-      {node} 
-    WHERE 
-      type = 'grant_application' 
-      OR type = 'campaign_sign_up' 
-      OR type = 'campaign_report_back' 
+  $result = db_query("SELECT
+      nid
+    FROM
+      {node}
+    WHERE
+      type = 'grant_application'
+      OR type = 'campaign_sign_up'
+      OR type = 'campaign_report_back'
       OR type = 'scholarship_application'");
   while ($nid = $result->fetch()) {
     node_delete($nid->nid);
@@ -171,11 +171,11 @@ function dosomething_migrate_update_nodes() {
   $serialized_nodes = array();
   $c = 0;
   $result = db_query("
-    SELECT nid 
-    FROM {node} 
-    WHERE type = 'grant_application' 
-      OR type = 'campaign_sign_up' 
-      OR type = 'campaign_report_back' 
+    SELECT nid
+    FROM {node}
+    WHERE type = 'grant_application'
+      OR type = 'campaign_sign_up'
+      OR type = 'campaign_report_back'
       OR type = 'scholarship_application'");
   while ($nid = $result->fetch()) {
     $c++;
