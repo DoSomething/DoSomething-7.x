@@ -224,7 +224,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
         'ididthis' => 0,
       ),
     ),
-    'opengraph_tags' => 0,
+    'opengraph_tags' => 1,
     'plugin_location' => array(
       'location' => '0',
       'display_teasers' => 0,
@@ -233,14 +233,32 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   );
   $fb_social_preset->fb_attrs = array(
     'send' => 0,
-    'layout' => 'button_count',
+    'layout' => 'standard',
     'show_faces' => 1,
     'width' => '350',
     'action' => 'recommend',
     'font' => 'verdana',
-    'colorscheme' => 'light',
+    'colorscheme' => 'dark',
   );
   $export['FB Like'] = $fb_social_preset;
+
+  $fb_social_preset = new stdClass;
+  $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
+  $fb_social_preset->api_version = 1;
+  $fb_social_preset->name = 'FB Facepile';
+  $fb_social_preset->description = 'FB Facepile';
+  $fb_social_preset->plugin_type = 'facepile';
+  $fb_social_preset->settings = array(
+    'block' => 1,
+  );
+  $fb_social_preset->fb_attrs = array(
+    'href' => 'http://www.facebook.com/dosomething',
+    'size' => 'large',
+    'width' => '200',
+    'numrows' => '10',
+    'colorscheme' => 'light',
+  );
+  $export['FB Facepile'] = $fb_social_preset;
 
   return $export;
 }
