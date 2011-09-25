@@ -9,6 +9,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
   }
 
   public function prepareRow($row) {
+    // emfields
     foreach (array('field_embedded_video', 'field_campaign_video') as $name) {
       if (!empty($row->$name)) {
         foreach ($row->$name as &$value) {
@@ -28,7 +29,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
 class DSCampaignReportBackBotbMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('botb');
-    $this->description = 'Battle of the Bands submission';
+    $this->description .= 'Battle of the Bands submission';
 
     # $this->addFieldMapping('', '');
 
@@ -39,7 +40,7 @@ class DSCampaignReportBackBotbMigration extends DSCampaignReportBackMigration {
 class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('campaign_bfb_2011');
-    $this->description = 'Campaign Project - Battle for the Bands 2011';
+    $this->description .= 'Campaign Project - Battle for the Bands 2011';
 
     $this->addFieldMapping('data_school_group_name', 'title');
     $this->addFieldMapping('data_is_this_address_school_or_home', 'field_campaign_address_type')
@@ -48,7 +49,8 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_why_is_music_education_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_how_did_your_work_unfold_what_was_the_best_part', 'field_campaign_essay_how');
     $this->addFieldMapping('data_why_did_you_choose_to_run_this_advocacy_project', 'field_why_run_advocacy_project');
-    $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover');
+    $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover')
+      ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_the_name_of_the_artist_or_group', 'field_botb_cover_artist');
     $this->addFieldMapping('data_the_name_of_the_song', 'field_botb_cover_song');
     $this->addFieldMapping('data_what_impact_did_your_project_have_on_your_school_community', 'field_impact_project_had_on_com');
@@ -57,9 +59,11 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
       ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_if_you_chose_other_what_type_of_group_performed_in_your_video', 'field_botb_style_other');
     $this->addFieldMapping('data_what_was_the_biggest_challenge_you_faced', 'field_campaign_essay_challenge');
-    $this->addFieldMapping('data_do_you_agree_to_the_official_contest_rules', 'field_botb_agreement');
+    $this->addFieldMapping('data_do_you_agree_to_the_official_contest_rules', 'field_botb_agreement')
+      ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_anything_else_we_should_know_about_your_battle_for_the_bands_advocacy_project', 'field_botb_other');
-    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
+    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
+      ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
 
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
@@ -77,14 +81,15 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
 class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('campaign_ebd_2011');
-    $this->description = 'Campaign Project - Epic Book Drive 2011';
+    $this->description .= 'Campaign Project - Epic Book Drive 2011';
 
     $this->addFieldMapping('data_why_is_educational_equality_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_book_drive', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_how_did_your_work_unfold_what_was_the_best_part', 'field_campaign_essay_how');
     $this->addFieldMapping('data_friends_mobile_number', 'field_your_cell_phone_notrequir');
     $this->addFieldMapping('data_what_was_the_biggest_challenge_you_faced', 'field_campaign_essay_challenge');
-    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
+    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
+      ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_anything_else_awesome_we_should_know', 'field_campaign_anything_else');
 
@@ -102,14 +107,15 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
 class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('campaign_gys_2011');
-    $this->description = 'Campaign Project - Green Your School 2011';
+    $this->description .= 'Campaign Project - Green Your School 2011';
 
     $this->addFieldMapping('data_number_of_people_involved_in_this_project', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_how_did_you_use_technology_to_green_your_school', 'field_campaign_essay_why');
     $this->addFieldMapping('data_why_is_greening_your_school_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_how_did_your_project_unfold_what_was_the_best_part', 'field_campaign_essay_how');
     $this->addFieldMapping('data_what_was_the_biggest_challenge_in_running_your_program', 'field_campaign_essay_challenge');
-    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
+    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
+      ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
 
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
@@ -126,7 +132,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
 class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('campaign_hunt_2011');
-    $this->description = 'Campaign Project - Scavenger Hunt 2011';
+    $this->description .= 'Campaign Project - Scavenger Hunt 2011';
 
     $this->addFieldMapping('data_which_of_this_days_challenges_did_you_complete', 'field_which_challenge');
     $this->addFieldMapping('data_tell_us_more_about_how_your_team_tackled_this_challenge', 'field_campaign_essay_how');
@@ -134,7 +140,8 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
     $this->addFieldMapping('data_your_youtube_username', 'field_youtube_username');
     $this->addFieldMapping('data_why_is_taking_action_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_what_was_the_biggest_challenge_you_faced', 'field_campaign_essay_challenge');
-    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
+    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
+      ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_challenge_type', 'field_campaign_project_type');
 
@@ -151,10 +158,12 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
 class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('canned_food');
-    $this->description = 'Canned Food Drive Report (Tackle Hunger)';
+    $this->description .= 'Canned Food Drive Report (Tackle Hunger)';
 
     $this->addFieldMapping('data_your_first_and_last_name', 'field_cannedfood_contactname');
-    $this->addFieldMapping('data_state', 'field_state_plain');
+    $this->addFieldMapping('data_state', 'field_state_plain')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
+      ->description("field_state_plain has 60 values but data_state only has 58. 'Canada' and something else were removed.");
     $this->addFieldMapping('data_city', 'field_city');
     $this->addFieldMapping('data_zip_code', 'field_zip_code_0');
     $this->addFieldMapping('data_birthdate', 'field_campaign_birthdate');
@@ -180,7 +189,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
 class DSCampaignReportBackFeedTheNeedMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('feed_the_need');
-    $this->description = 'Feed the Need Drive';
+    $this->description .= 'Feed the Need Drive';
 
     # $this->addFieldMapping('', '');
 
@@ -191,25 +200,27 @@ class DSCampaignReportBackFeedTheNeedMigration extends DSCampaignReportBackMigra
 class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('healthy_schools_report');
-    $this->description = 'Healthy Schools Report Back';
+    $this->description .= 'Healthy Schools Report Back';
 
     $this->addFieldMapping('data_project_name', 'field_healthy_schools_report_na');
     $this->addFieldMapping('data_city', 'field_campaign_city');
-    $this->addFieldMapping('data_state', 'field_campaign_state_0');
+    $this->addFieldMapping('data_state', 'field_campaign_state_0')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
+      ->description("field_campaign_state_0 has 74 values but data_state only has 58.");
     $this->addFieldMapping('data_how_many_people_are_on_your_team', 'field_healthy_schools_report_te');
     $this->addFieldMapping('data_how_many_people_participated', 'field_healthy_schools_report_pa');
-    $this->addFieldMapping('data_what_kind_of_project_did_you_do', 'field_healthy_schools_report_ty');
-    $this->addFieldMapping('data_tell_us_about_your_project', '');
+    $this->addFieldMapping('data_what_kind_of_project_did_you_do', 'field_healthy_schools_report_ty')
+      ->arguments(array('source_type' => 'value'));
+    $this->addFieldMapping('data_tell_us_about_your_project', 'field_campaign_essay');
     $this->addFieldMapping('data_how_did_you_get_other_students_excited_and_involved', 'field_healthy_schools_report_ho');
 
+    $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone_0');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
-    // # Field: Mobile Phone Number (text)
-    // $this->addFieldMapping('field_webform_mobile', '');
   }
 }
 
@@ -217,7 +228,7 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
 class DSCampaignReportBackHpArtMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('hp_art');
-    $this->description = 'HP Art';
+    $this->description .= 'HP Art';
 
     # $this->addFieldMapping('', '');
 
@@ -227,7 +238,7 @@ class DSCampaignReportBackHpArtMigration extends DSCampaignReportBackMigration {
 class DSCampaignReportBackIncreaseyourgreenReportMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('increaseyourgreen_report');
-    $this->description = 'Increase Your Green Report';
+    $this->description .= 'Increase Your Green Report';
 
     # $this->addFieldMapping('', '');
 
@@ -237,7 +248,7 @@ class DSCampaignReportBackIncreaseyourgreenReportMigration extends DSCampaignRep
 class DSCampaignReportBackIyg2010Migration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('iyg_2010');
-    $this->description = 'Increase Your Green 2010';
+    $this->description .= 'Increase Your Green 2010';
 
     # $this->addFieldMapping('', '');
 
@@ -248,7 +259,7 @@ class DSCampaignReportBackIyg2010Migration extends DSCampaignReportBackMigration
 class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('save_our_music');
-    $this->description = 'Save Our Music';
+    $this->description .= 'Save Our Music';
 
     $this->addFieldMapping('data_first_name', 'field_name');
     $this->addFieldMapping('data_last_name', 'field_name_last');
@@ -274,21 +285,22 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
     $this->addFieldMapping('field_webform_mobile', 'field_phone_required');
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
       ->arguments(array('file_function' => 'file_fid'));
-    // # Field: Pictures (media)
-    // $this->addFieldMapping('field_webform_pictures', '');
+    $this->addFieldMapping('field_webform_pictures', 'field_project_photo')
+      ->arguments(array('file_function' => 'file_fid'));
   }
 }
 
 class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('sfs_report_gallery');
-    $this->description = 'Staples for Students Image Submission';
+    $this->description .= 'Staples for Students Image Submission';
 
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_school_supply_drive', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_what_awesome_things_did_you_do_to_make_your_drive_particularly_successful', 'field_awesome_idea');
     $this->addFieldMapping('data_anything_else_we_should_know_about_your_staples_for_students_project', 'field_anything_else');
 
-    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'));
 
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
@@ -302,12 +314,17 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
 class DSCampaignReportBackStaplesReasonMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('staples_reason');
-    $this->description = 'Staples Reason for Helping';
+    $this->description .= 'Staples Reason for Helping';
 
+    $this->addFieldMapping('data_reason', 'title');
     $this->addFieldMapping('data_first_name', 'field_name_f');
     $this->addFieldMapping('data_last_name', 'field_name_l');
-    $this->addFieldMapping('data_state', 'field_where_from');
-    $this->addFieldMapping('data_yes_i_am_13_years_of_age_or_older', 'field_thirteen');
+    $this->addFieldMapping('data_state', 'field_where_from')
+      ->arguments(array('source_type' => 'value'))
+      ->description("field_where_from is unstructured, might not map cleanly.");
+    $this->addFieldMapping('data_yes_i_am_13_years_of_age_or_older', 'field_thirteen')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_MEDIUM)
+      ->description("HEY! Keys don't match. Source uses on/off, destination uses 0/1.");
 
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
@@ -323,10 +340,12 @@ class DSCampaignReportBackStaplesReasonMigration extends DSCampaignReportBackMig
 class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('tfj_contest_signup');
-    $this->description = 'Teens for Jeans Contest Signup';
+    $this->description .= 'Teens for Jeans Contest Signup';
 
     $this->addFieldMapping('data_full_name', 'field_campaign_name');
-    $this->addFieldMapping('data_state', 'field_campaign_state_0');
+    $this->addFieldMapping('data_state', 'field_campaign_state_0')
+      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
+      ->description("field_campaign_state_0 has 74 values but data_state only has 58.");
     $this->addFieldMapping('data_address', 'field_campaign_address');
     $this->addFieldMapping('data_city', 'field_campaign_city');
     $this->addFieldMapping('data_zip_code', 'field_campaign_zip');
@@ -348,7 +367,7 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
 class DSCampaignReportBackTroopLetterMigration extends DSCampaignReportBackMigration {
   public function __construct() {
     parent::__construct('troop_letter');
-    $this->description = 'Support Our Troops Letter';
+    $this->description .= 'Support Our Troops Letter';
 
     $this->addFieldMapping('data_zip_code', 'field_zip_code_2');
     $this->addFieldMapping('data_letter', 'field_troop_letter_body');
