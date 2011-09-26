@@ -5,6 +5,15 @@
  * Creates general custom blocks for doseomthing.
  */
 
+/**Define constants for the vocabulary ID's used to generate the dropdowns on the
+ *  make and impact block.
+ */
+define("ISSUES_VOCABULARY", 5);
+define("WHO_VOCABULARY", 3);
+define("WHERE_VOCABULARY", 2);
+define("TIME_VOCABULARY", 4);
+
+
 /**
  * Implements hook_block_info().
  */
@@ -14,6 +23,9 @@ function dosomething_blocks_block_info() {
   );
   $blocks['dosomething_twitter_stream'] = array(
     'info' => t('DoSomething Twitter Stream'),
+  );
+  $blocks['dosomething_make_impact'] = array(
+    'info' => t('DoSomething Make an Impact'),
   );
   return $blocks;
 }
@@ -34,6 +46,10 @@ function dosomething_blocks_block_view($delta = '') {
       $block['content'] = dosomething_blocks_twitter_stream_block_content();
       drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
       break;
+
+    case 'dosomething_make_impact':
+      $block['subject'] = t('Make an Impact');
+      $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
   }
   return $block;
 }
@@ -86,4 +102,88 @@ function dosomething_blocks_twitter_stream_block_content() {
       }
     }).render().setUser('dosomething').start();
     </script>";
+}
+
+/**
+ * Create the make an impact form for the make an impact block.
+ */
+function dosomething_blocks_make_an_impact_form() {
+  $form = array();
+  $what_cause = taxonomy_get_tree(ISSUES_VOCABULARY, $parent = 0, $max_depth = 1);
+  $who_with = taxonomy_get_tree(WHO_VOCABULARY, $parent = 0, $max_depth = 1);
+  $where = taxonomy_get_tree(WHERE_VOCABULARY, $parent = 0, $max_depth = 1);
+  $how_long = taxonomy_get_tree(TIME_VOCABULARY, $parent = 0, $max_depth = 1);
+  
+  $cause_options = array();
+  foreach ($what_cause as $option) {
+    $cause_options[$option->tid] = $option->name;
+  }
+
+  $who_options = array();
+  foreach ($who_with as $option) {
+    $who_options[$option->tid] = $option->name;
+  }
+
+  $where_options = array();
+  foreach ($where as $option) {
+    $where_options[$option->tid] = $option->name;
+  }
+
+  $time_options = array();
+  foreach ($how_long as $option) {
+    $time_options[$option->tid] = $option->name;
+  }
+
+  $form['description'] = array(
+    '#type' => 'item',
+    '#title' => t('This form will help you find a cause that\'s right for you.'),
+  );
+  $form['what_cause'] = array(
+    '#type' => 'select',
+    '#title' => t('What Cause'),
+    '#options' => $cause_options,
+    '#empty_option' => t('What Cause?'),
+    '#required' => TRUE,
+    '#default_value' => NULL,
+  );
+  $form['who_with'] = array(
+    '#type' => 'select',
+    '#title' => t('Who With'),
+    '#options' => $who_options,
+    '#empty_option' => t('Who With?'),
+    '#required' => TRUE,
+    '#default_value' => NULL,
+  );
+ $form['where'] = array(
+    '#type' => 'select',
+    '#title' => t('Where'),
+    '#options' => $where_options,
+    '#empty_option' => t('Where?'),
+    '#required' => TRUE,
+    '#default_value' => NULL,
+  );
+  $form['how_long'] = array(
+    '#type' => 'select',
+    '#title' => t('How Long'),
+    '#options' => $time_options,
+    '#empty_option' => t('How Long?'),
+    '#required' => TRUE,
+    '#default_value' => NULL,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+    '#submit' => array('dosomething_blocks_impact_form_submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit handler for the make an impact block.
+ */
+function dosomething_blocks_impact_form_submit($form, &$form_state) {
+  //THIS IS A STUB
+  //TODO: Fill in with real logic when we know what path to send the user to.
+  return;
 }
