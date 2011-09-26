@@ -1,16 +1,16 @@
 #! /bin/bash
 # call this as ./ds-upgrade /path/to/d6-database.sql
 # before running, turn off memcache settings from settings.php
+# and run git submodule update --init
 # this script expects drush 7.x-4.x
 
 ROOT=`drush site-alias --component=root @ds7`
 echo "syncing ds6 db over ds7 db `date`"
 drush @ds7 -y sql-drop
 drush @ds7 -y sqlc < $1
-echo "running clearing any memcached stuff `date`"
-drush @ds7 cc all
 echo "running core updates `date`"
 mv ${ROOT}/sites/all/modules ${ROOT}/sites/all/movedmodules
+echo "update system set status = 0 where name = 'og'"| drush @ds7 sqlc
 drush @ds7 -y -v updb
 drush @ds7 -y updb
 echo "running contrib updates `date`"
