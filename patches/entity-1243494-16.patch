@@ -1,0 +1,13 @@
+diff --git a/sites/all/modules/entity/modules/field.info.inc b/sites/all/modules/entity/modules/field.info.inc
+index 4253ff8..56cd91e 100644
+--- a/sites/all/modules/entity/modules/field.info.inc
++++ b/sites/all/modules/entity/modules/field.info.inc
+@@ -61,7 +61,7 @@ function entity_metadata_field_default_property_callback(&$info, $entity_type, $
+       'translatable' => !empty($field['translatable']),
+       // Specify that this property stems from a field.
+       'field' => TRUE,
+-      'required' => $instance['required'],
++      'required' => !empty($instance['required']) ? $instance['required'] : FALSE,
+     );
+     // For field types of the list module add in the options list callback.
+     if (strpos($field['type'], 'list') === 0) {
