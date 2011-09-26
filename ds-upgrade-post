@@ -9,6 +9,7 @@ drush @ds7 -y php-eval "db_query('truncate search_dataset'); db_query('truncate 
 drush @ds7 -y vset search_cron_limit 0
 echo "deleting comments `date`"
 drush @ds7 -y php-eval "\$cids = db_query('select cid from comment where pid = 0')->fetchCol(); foreach (\$cids as \$cid) {comment_delete(\$cid);}"
+drush @ds7 -y dis comment
 # echo "deleting old cck tables `date`"
 # drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_type_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
 # drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_field_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
