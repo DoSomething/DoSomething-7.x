@@ -18,7 +18,7 @@ function dosomething_migrate_migrate_api() {
 /*
  * manually run the import of the webform nodes.
  */
-function dosomething_migrate_get_webform_nodes() {
+function dosomething_migrate_regenerate_webform_nodes() {
   //Get mapping array.
   $mapping_array = dosomething_migrate_return_content_type_mapping();
 
@@ -57,9 +57,12 @@ function dosomething_migrate_get_webform_nodes() {
 
   variable_set('webform_node_types', $webform_types);
 
+  // Get the list of files from the directory. Only serialized text files.
+  $files = file_scan_directory(drupal_get_path('module', 'dosomething_migrate') . '/nodes', '/\.txt$/');
+
   //Get the node data and save it into drupal
-  for ($i = 1; $i <= 28; $i++) {
-    $webform =  file_get_contents(drupal_get_path('module', 'dosomething_migrate') . '/nodes/' . $i . '.txt');
+  foreach ($files as $file) {
+    $webform =  file_get_contents(drupal_get_path('module', 'dosomething_migrate') . '/nodes/' . $file->filename);
     $webform = unserialize($webform);
 
     $webform_data = $webform->webform;
@@ -80,6 +83,9 @@ function dosomething_migrate_get_webform_nodes() {
   variable_set('webform_migrate_webform_mapping', $mapping_array);
 }
 
+/**
+ * Recurse through a webform object and add a new $nid.
+ */
 function dosomething_migrate_recursively_readd_nid(&$thing, $nid) {
   if (is_array($thing) || is_object($thing)) {
     foreach ($thing as $key => &$value) {
@@ -94,6 +100,12 @@ function dosomething_migrate_recursively_readd_nid(&$thing, $nid) {
   return $thing;
 }
 
+/**
+ * Simply return an array mapping content type names to node titles.
+ * We are converting content types into nodes with webform submissions,
+ *  so each node type will become a node and each node will become a
+ *  webform submission.
+ */
 function dosomething_migrate_return_content_type_mapping() {
   $array = array(
     'campaign_bfb_2011' => 'Campaign Project - Battle for the Bands 2011',
@@ -128,6 +140,11 @@ function dosomething_migrate_return_content_type_mapping() {
   return $array;
 }
 
+/**
+ * A quick one off function to clean up after doing lots of testing.
+ *  Removes all nodes of the types imported by the node creation. 
+ *  USE WITH CAUTION.
+ */
 function dosomething_migrate_clear_nodes() {
   $result = db_query("SELECT 
       nid 
@@ -140,5 +157,37 @@ function dosomething_migrate_clear_nodes() {
       OR type = 'scholarship_application'");
   while ($nid = $result->fetch()) {
     node_delete($nid->nid);
+  }
+}
+
+/**
+ * A function to update the nodes that need to be imported prior to migration.
+ * N.B. In order for this to work the nodes directory in this module MUST BE
+ *  writable by the apache user (usually www-data) and so should probably be owned
+ *  or group owned by that user.
+ */
+function dosomething_migrate_update_nodes() {
+  $mapping = dosomething_migrate_return_content_type_mapping();
+  $serialized_nodes = array();
+  $c = 0;
+  $result = db_query("
+    SELECT nid 
+    FROM {node} 
+    WHERE type = 'grant_application' 
+      OR type = 'campaign_sign_up' 
+      OR type = 'campaign_report_back' 
+      OR type = 'scholarship_application'");
+  while ($nid = $result->fetch()) {
+    $c++;
+    $node = node_load($nid->nid);
+    unset($node->nid);
+    unset($node->vid);
+    $key = array_search($node->title, $mapping);
+    if ($key) {
+      $serialized = serialize($node);
+      $handle = fopen(drupal_get_path('module', 'dosomething_migrate') .  "/nodes/" . $key . ".txt", "w");
+      fwrite($handle, $serialized);
+      fclose($handle);
+    }
   }
 }
