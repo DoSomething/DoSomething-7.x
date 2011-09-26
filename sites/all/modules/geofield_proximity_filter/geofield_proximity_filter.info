@@ -1,0 +1,13 @@
+name = Geofield Proximity Filter
+description = Integrating Proximity Filter within Search API
+package = search_api
+core = 7.x
+
+dependencies[] = search_api
+dependencies[] = views
+dependencies[] = search_api_solr
+dependencies[] = geocode
+
+files[] = geofield_proximity_filter.views.inc
+files[] = geofield_proximity_filter_handler.inc
+files[] = includes/callback_latlontype.inc

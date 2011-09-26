@@ -1,0 +1,51 @@
+<?php
+/**
+ * Enter description here ...
+ */
+function geofield_proximity_filter_views_api() {
+  return array(
+    'api' => '3.0-alpha1',
+    'path' => drupal_get_path('module', 'geofield_proximity_filter'),
+  );
+}
+
+function geofield_proximity_filter_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+
+  $geofilt = $query->getOption('geofilt');
+    
+  if(is_array($geofilt)) {
+    $call_args['params']['fq'][] = "{!geofilt sfield=locs_" . $geofilt['field'] . " pt=" . $geofilt['point']['lat'] . ',' . $geofilt['point']['lon'] . " d=" . $geofilt['radius'] . "}";
+  }
+}
+
+
+function geofield_proximity_filter_search_api_alter_callback_info() {
+  $callbacks['geofield_proximity_filter_alter_latlontype'] = array(
+    'name' => t('Index Geofields as Solr LatLonType'),
+    'description' => t('Indexes geofield fields as Solr LatLonType fields to allow proximity searches.'),
+    'class' => 'GeofieldProximityFilterAlterLatlontype',
+    'weight' => 100,
+  );
+
+  return $callbacks;
+}
+
+/**
+ * Change the way the index's field names are mapped to Solr field names.
+ *
+ * @param $index
+ *   The index whose field mappings are altered.
+ * @param array $fields
+ *   An associative array containing the index field names mapped to their Solr
+ *   counterparts. The special fields 'search_api_id' and 'search_api_relevance'
+ *   are also included.
+ */
+function geofield_proximity_filter_search_api_solr_field_mapping_alter(SearchApiIndex $index, array &$fields) {
+  if ($index->item_type == 'node') {
+    foreach($index->options['fields'] as $field_name => $field){
+      if($field['type'] == 'LatLonType'){
+        $fields[$field_name] = 'locs_'. $field_name;
+      }
+    }
+  }
+}
