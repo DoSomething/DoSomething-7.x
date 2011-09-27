@@ -26,7 +26,7 @@ drush @ds7 vset -y pathauto_webform_pathauto_pattern "[webform:node-path]/[webfo
 SID=`drush @ds7 php-eval "print db_query('select max(nid) from node')->fetchField();"`
 SID=$(($SID+1000))
 echo "ALTER TABLE webform_submissions AUTO_INCREMENT=${SID}" | drush @ds7 sqlc
-drush @ds7 -y en media_youtube media_webform emfield redirect devel advanced_help admin_menu_toolbar contextual overlay rdf date date_popup date_views link location nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate page_manager location_node location_user features stylizer views_content og_ui og_migrate metatags_quick sms_mobile_commons webform email entity_token webform_entity dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins
+drush @ds7 -y en media_youtube media_webform emfield redirect devel advanced_help admin_menu_toolbar contextual overlay rdf date date_popup date_views link location nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate page_manager location_node location_user features stylizer views_content og_ui og_migrate metatags_quick sms_mobile_commons webform email entity_token webform_entity dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins geofield
 drush @ds7 -y updb
 drush @ds7 -y cc all
 echo "updating admin password `date`"
