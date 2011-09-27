@@ -130,6 +130,57 @@ function dosomething_campaign_sign_up_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_geocode_zip_code'
+  $fields['webform_submission_entity-campaign_sign_up-field_webform_geocode_zip_code'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_geocode_zip_code',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'geofield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'geofield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_geocode_zip_code',
+      'label' => 'Geocode Zip Code',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'geocode',
+        'settings' => array(
+          'geocode_field' => array(
+            'field_webform_school_zip' => 'field_webform_school_zip',
+          ),
+          'geocode_handler' => 'google',
+        ),
+        'type' => 'geocode',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_mobile'
   $fields['webform_submission_entity-campaign_sign_up-field_webform_mobile'] = array(
     'field_config' => array(
@@ -188,7 +239,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '1',
       ),
     ),
   );
@@ -264,7 +315,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
-        'weight' => '6',
+        'weight' => '2',
       ),
     ),
   );
@@ -277,80 +328,25 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_school_zip',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'lid' => array(
-          0 => 'lid',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
         ),
       ),
-      'module' => 'location_cck',
-      'settings' => array(
-        'gmap_macro' => '[gmap ]',
-        'gmap_marker' => 'drupal',
-        'location_settings' => array(
-          'display' => array(
-            'hide' => array(
-              'additional' => 0,
-              'city' => 0,
-              'coords' => 0,
-              'country' => 0,
-              'country_name' => 0,
-              'locpick' => 0,
-              'map_link' => 0,
-              'name' => 0,
-              'postal_code' => 0,
-              'province' => 0,
-              'province_name' => 0,
-              'street' => 0,
-            ),
-          ),
-          'form' => array(
-            'fields' => array(
-              'additional' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '6',
-              ),
-              'city' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '8',
-              ),
-              'country' => array(
-                'collect' => '1',
-                'default' => 'us',
-                'weight' => '14',
-              ),
-              'locpick' => array(
-                'collect' => '0',
-                'weight' => '20',
-              ),
-              'name' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '2',
-              ),
-              'postal_code' => array(
-                'collect' => '1',
-                'default' => '',
-                'weight' => '12',
-              ),
-              'province' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '10',
-              ),
-              'street' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '4',
-              ),
-            ),
-          ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
         ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
       ),
       'translatable' => '0',
-      'type' => 'location',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'campaign_sign_up',
@@ -360,9 +356,9 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'location_cck',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'location_default',
+          'type' => 'text_default',
           'weight' => 7,
         ),
       ),
@@ -371,14 +367,17 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'label' => 'School Zip Code',
       'required' => 0,
       'settings' => array(
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location',
-        'weight' => '8',
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
       ),
     ),
   );
@@ -387,6 +386,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Email');
+  t('Geocode Zip Code');
   t('Mobile Phone Number');
   t('School');
   t('School Zip Code');
