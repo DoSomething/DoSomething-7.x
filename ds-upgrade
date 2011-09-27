@@ -22,6 +22,7 @@ drush @ds7 vset -y devel_query_display 0
 drush @ds7 vset -y error_level 2
 drush @ds7 vset -y empty_timezone_message 0
 drush @ds7 vset -y pathauto_webform_pathauto_pattern "[webform:node-path]/[webform:sid]"
+drush @ds7 vset -y nodequeue_view_per_queue 0
 # Change auto increment for webform_submissions table
 SID=`drush @ds7 php-eval "print db_query('select max(nid) from node')->fetchField();"`
 SID=$(($SID+1000))
