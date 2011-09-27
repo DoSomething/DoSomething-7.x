@@ -228,3 +228,47 @@ function dosomething_login_menu_alter(&$items) {
   // Remove the default user registration page in favor of our custom registration.
   unset($items['user/register']);
 }
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_login_menu() {
+  $items = array();
+  $items['mobile-signup'] = array(
+    'title' => 'Mobile Signup',
+    'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
+    'page callback' => 'dosomething_login_mobile_signup',
+    'access callback' => 'dosomething_login_mobile_signup_access',
+  );
+  return $items;
+}
+
+function dosomething_login_mobile_signup_access() {
+  $ip = ip_address();
+  $valid = FALSE;
+  if (strpos($ip, '64.22.127') === 0) {
+    if ((int) substr($ip, 9, 3) >= 0 && (int) substr($ip, 10, 3) <= 24) {
+      $valid = TRUE;
+    }
+  }
+  //TODO: REMOVE ME BEFORE PRODUCTION!!!
+  //For testing allow ip of zivtech office and local dev machines
+  if ($ip == '192.168.56.1' || $ip == '173.161.182.250') {
+    $valid = TRUE;
+  }
+  if (!$valid) {
+    //We've got someone trying to create users on the mobile page. That's bad.
+    watchdog('dosomething_login',
+      'Someone is trying to mobile signup from ip address: ' . $ip
+      . " This is suspicious.", $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL);
+  }
+  return $valid;
+}
+
+function dosomething_login_mobile_signup() {
+  //TODO REMOVE ME. I AM FOR TESTING ONLY.
+  $ip = ip_address();
+  watchdog('dosomething_login', $ip . " " . $_SERVER['REQUEST_URI'], $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL);
+
+  return 'THIS IS A TEST';
+}
