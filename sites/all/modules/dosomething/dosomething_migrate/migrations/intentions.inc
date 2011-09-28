@@ -16,6 +16,7 @@ class DSIntentions extends Migration {
     $query->fields('sub', array('nid', 'created'))
       ->fields('act', array('nid'))
       ->fields('u', array('uid'))
+      ->fields('c', array('field_hours_volunteered_0_value', 'field_number_of_people_your_act_value', 'field_completed_didthis_value'))
       ->condition('sub.type', $source_type)
       ->condition(db_or()->condition('sub.uid', 0, '>')->isNotNull('e.field_email_1_value'));
     $this->source = new MigrateSourceSQL($query, array());
@@ -47,6 +48,9 @@ class DSIntentions extends Migration {
       ->defaultValue('127.0.0.1')
       ->description("I don't think we have an IP to use as the submission so I'm using the loopback.");
     $this->addFieldMapping('field_action_intention_email', 'email');
+    $this->addFieldMapping('field_completed_didthis', 'field_completed_didthis_value');
+    $this->addFieldMapping('field_hours_volunteered_0', 'field_hours_volunteered_0_value');
+    $this->addFieldMapping('field_number_of_people_your_act', 'field_number_of_people_your_act_value');
 
     $this->addUnmigratedDestinations(array('path'));
   }
