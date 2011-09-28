@@ -1,5 +1,6 @@
 name = "DoSomething Login"
 description = "Custom functionality relating to user registration and login"
 core = 7.x
+dependencies[] = sms_mobile_commons 
 package = DoSomething
 

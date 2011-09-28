@@ -244,15 +244,11 @@ function dosomething_login_menu() {
 }
 
 function dosomething_login_mobile_signup_access() {
-  $ip = ip_address();
-  $valid = FALSE;
-  if (strpos($ip, '64.22.127') === 0) {
-    if ((int) substr($ip, 9, 3) >= 0 && (int) substr($ip, 10, 3) <= 24) {
-      $valid = TRUE;
-    }
-  }
+  $valid = sms_mobile_commons_incoming_check();
+
   //TODO: REMOVE ME BEFORE PRODUCTION!!!
   //For testing allow ip of zivtech office and local dev machines
+  $ip = ip_address();
   if ($ip == '192.168.56.1' || $ip == '173.161.182.250') {
     $valid = TRUE;
   }
