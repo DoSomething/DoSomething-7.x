@@ -1581,7 +1581,7 @@ div[role=main] {
   margin-top: -3.75em;
   padding-top: 7.417em;
   position: relative;
-  background: url('images/guide-pages/facebook-login-dashboard.png?1313613469');
+  padding-bottom: 10px;
 }
 #block-dosomething-login-become-member h2 {
   margin-left: -0.5em;
@@ -1705,15 +1705,15 @@ div[role=main] {
   line-height: 1.15;
 }
 #block-dosomething-login-become-member .ds-button, #block-dosomething-login-become-member button, #block-dosomething-login-become-member input[type=button], #block-dosomething-login-become-member input[type=submit] {
-  margin-right: 3px;
+  margin-right: 0px;
 }
 #block-dosomething-login-become-member .facebook-login {
-  margin-right: 0;
+  margin-right: 6px;
 }
 #block-dosomething-login-become-member .facebook-login .fb-icon {
-  background: url('images/sprites/btn-leftsidebar-feeds-facebook.png?1313632037') no-repeat left center;
-  display: block;
-  width: 23px;
+  background: url('images/sprites/btn-leftsidebar-feeds-facebook.png?1317324863') no-repeat left 4px;
+  padding-left: 25px;
+  margin-left: -5px;
 }
 
 .connect-thru-facebook {

@@ -17,12 +17,12 @@
 // // 10px // sidebar twitter
 // // 11px // breadcrumbs, right sidebar
 // // 12px
-// // 14px // callout subhead, 
+// // 14px // callout subhead,
 // // 18px // submenu, h3
-// // 24px // h2, 
-// // 29px // menu, 
-// // 35px // h1, 
-// 
+// // 24px // h2,
+// // 29px // menu,
+// // 35px // h1,
+//
 // $s-2: 10px
 // $s-1: 11px
 // $s0: $base-size
@@ -56,7 +56,7 @@ body
   +box-sizing(border-box)
   .utility-block
     padding-left: percentage($left-col-width / $page-width)
-  
+
 #site-name
   position: absolute
   top: -33px
@@ -66,7 +66,7 @@ body
     +replace-text-with-dimensions("ds-logo.png")
     display: block
     +remove-link-underlines
-  
+
 
 nav[role=navigation]
   text-transform: uppercase
@@ -123,14 +123,14 @@ nav[role=navigation]
     display: block
     +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
     +remove-link-underlines
-    
-    
+
+
 div[role=main]
   background-color: $c-content-bg
   background-color: rgba($c-content-bg, 0.5)
   padding-left: $s0
   +box-sizing(border-box)
-  
+
 #breadcrumb
   +adjust-font-size-to($s-1)
   i
@@ -139,8 +139,8 @@ div[role=main]
     color: $blue
   a
     +link-colors($gray-dark, $blue, $blue, $gray-dark, false)
-    +remove-link-underlines    
-    
+    +remove-link-underlines
+
 .region-sidebar-first
   .block
     padding: 0 $s2 0 $s0
@@ -151,8 +151,9 @@ div[role=main]
   margin-top: -(calc-em(45px, $s0))
   padding-top: calc-em(89px, $s0)
   position: relative
+  padding-bottom: 10px
   // guide
-  +background(image_url('guide-pages/facebook-login-dashboard.png'))
+  // +background(image_url('guide-pages/facebook-login-dashboard.png'))
   // -- end guide
   h2
     margin-left: -(calc-em($s0, $s3))
@@ -234,27 +235,23 @@ div[role=main]
       +remove-link-underlines
     &.why-member
       padding: 2px 0
-      // border-top: 2px solid $white
-      // border-bottom: 2px solid $white
       +background(image_url('sprites/icn-popup.png') no-repeat right center)
       line-height: 1.15
     &.already-member
-
   .ds-button
-    margin-right: 3px
+    margin-right: 0px
   .facebook-login
-    margin-right: 0
+    margin-right: 6px
     .fb-icon
-      +background(image_url('sprites/btn-leftsidebar-feeds-facebook.png') no-repeat left center)
-      display: block
-      width: 23px
+      +background(image_url('sprites/btn-leftsidebar-feeds-facebook.png') no-repeat left 4px)
+      padding-left: 25px
+      margin-left: -5px
 
 
-          
+
 .connect-thru-facebook
   +replace-text-with-dimensions('sprites/btn-connect-facebook.png')
   margin-bottom: 2px
-  
-  
-  
-  
+
+
+
