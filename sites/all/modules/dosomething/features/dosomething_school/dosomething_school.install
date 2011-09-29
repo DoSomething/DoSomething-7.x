@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the DoSomething school module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function dosomething_school_schema() {
+  $schema['ds_school_import'] = array(
+    'description' => 'Holds GreatSchools data during migration import.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The GreatSchools universal id',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'School name.',
+        'type' => 'varchar',
+        'length' => 127,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'level' => array(
+        'description' => "Grade span of school. Examples are: 6-8, K-12, 3-5, 4, UG A level of 'UG' or a blank string indicates that the grade span is not known.",
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'city' => array(
+        'description' => 'City.',
+        'type' => 'varchar',
+        'length' => 127,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'state' => array(
+        'description' => 'State abbreviation.',
+        'type' => 'char',
+        'length' => 2,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'zip' => array(
+        'description' => 'Zip code.',
+        'type' => 'varchar',
+        'length' => 15,
+        'not null' => TRUE,
+      ),
+      'lat' => array(
+        'description' => 'Latitude.',
+        'type' => 'float',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'lon' => array(
+        'description' => 'Longitude.',
+        'type' => 'float',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'xml' => array(
+        'description' => "The schools' XML element.",
+        'type' => 'text',
+        'not_null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+    'indexes' => array(
+      // Should help speed searches.
+      'name_zip' => array('name', 'zip'),
+    ),
+  );
+  return $schema;
+}
