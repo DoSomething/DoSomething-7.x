@@ -1,0 +1,26 @@
+diff --git a/includes/path.inc b/includes/path.inc
+index 630b34c..bb7e8c7 100644
+--- a/includes/path.inc
++++ b/includes/path.inc
+@@ -459,13 +459,15 @@ function path_delete($criteria) {
+     $criteria = array('pid' => $criteria);
+   }
+   $path = path_load($criteria);
+-  $query = db_delete('url_alias');
+-  foreach ($criteria as $field => $value) {
+-    $query->condition($field, $value);
++  if ($path) {
++    $query = db_delete('url_alias');
++    foreach ($criteria as $field => $value) {
++      $query->condition($field, $value);
++    }
++    $query->execute();
++    module_invoke_all('path_delete', $path);
++    drupal_clear_path_cache($path['source']);
+   }
+-  $query->execute();
+-  module_invoke_all('path_delete', $path);
+-  drupal_clear_path_cache($path['source']);
+ }
+ 
+ /**
