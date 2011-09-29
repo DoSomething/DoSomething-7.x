@@ -1,0 +1,13 @@
+diff --git a/modules/content_migrate/modules/content_migrate.filefield.inc b/modules/content_migrate/modules/content_migrate.filefield.inc
+index 7782b02..f23ec41 100644
+--- a/modules/content_migrate/modules/content_migrate.filefield.inc
++++ b/modules/content_migrate/modules/content_migrate.filefield.inc
+@@ -88,7 +88,7 @@ function content_migrate_filefield_instance_alter(&$instance_value, $field_value
+       // Note; the 'path_plain' D6 formatter has disappeared.
+       if (in_array($settings['type'], array('default', 'url_plain'))) {
+         $instance_value['display'][$context]['type'] = 'file_'. $settings['type'];
+-        $instance_value['display'][$context]['moduke'] = 'file';
++        $instance_value['display'][$context]['module'] = 'file';
+       }
+     }
+   }
