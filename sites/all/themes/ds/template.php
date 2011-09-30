@@ -1,5 +1,36 @@
 <?php
 
+function ds_preprocess_html(&$variables, $hook) {
+  // dsm($variables);
+  // dsm($hook);
+}
+
+function ds_preprocess_page(&$variables) {
+  // dsm($variables);
+  // dsm($variables['page']);
+}
+
+function ds_preprocess_block(&$variables) {
+  // dsm($variables['elements']['#block']);
+
+  // set a .block-title class on the title
+  $variables['title_attributes_array']['class'][] = 'block-title';
+
+  // load css specific to blocks
+
+  if($variables['elements']['#block']->module == 'dosomething_blocks') {
+    // dosomething_facebook_activity
+    if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_facebook_activity.css');
+    }
+    // dosomething_make_impact
+    if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_make_impact.css');
+    }
+  }
+
+  // dsm($variables);
+}
 
 function ds_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
@@ -10,7 +41,6 @@ function ds_breadcrumb($variables) {
     // get rid of the homepage link.
 
       array_shift($breadcrumb);
-
 
     // Return the breadcrumb with separators.
     if (!empty($breadcrumb)) {
@@ -28,7 +58,7 @@ function ds_breadcrumb($variables) {
       if ($title) {
         $trailing_separator = $breadcrumb_separator;
       }
-    
+
 
 
       // Provide a navigational heading to give context for breadcrumb links to
