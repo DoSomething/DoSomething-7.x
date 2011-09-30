@@ -106,9 +106,11 @@ function _features_export_minimize_dependencies($dependencies, $module_name = ''
  */
 function _features_export_maximize_dependencies($dependencies, $module_name = '', $maximized = array(), $first = TRUE) {
   foreach ($dependencies as $k => $v) {
-    if (!in_array($v, $maximized)) {
-      $maximized[] = $v;
-      $module = features_get_modules($v);
+    $parsed_dependency = drupal_parse_dependency($v);
+    $name = $parsed_dependency['name'];
+    if (!in_array($name, $maximized)) {
+      $maximized[] = $name;
+      $module = features_get_modules($name);
       if ($module && !empty($module->info['dependencies'])) {
         $maximized = array_merge($maximized, _features_export_maximize_dependencies($module->info['dependencies'], $module_name, $maximized, FALSE));
       }
@@ -137,8 +139,18 @@ function features_export_prepare($export, $module_name, $reset = FALSE) {
   if (isset($export['conflicts'])) {
     unset($export['conflicts']);
   }
+
+  // Order info array.
+  $standard_info = array();
+  foreach (array('name', 'description', 'core', 'package', 'php', 'version', 'project', 'dependencies') as $item) {
+    if (isset($export[$item])) {
+      $standard_info[$item] = $export[$item];
+    }
+  }
+
+  $export = array_diff_assoc($export, $standard_info);
   ksort($export);
-  return $export;
+  return array_merge($standard_info, $export);
 }
 
 /**
@@ -327,7 +339,7 @@ function features_get_default_hooks($component = NULL, $reset = FALSE) {
 function features_export_render_defaults($module, $hook, $code) {
   $output = array();
   $output[] = "/**";
-  $output[] = " * Implementation of hook_{$hook}().";
+  $output[] = " * Implements hook_{$hook}().";
   $output[] = " */";
   $output[] = "function {$module}_{$hook}() {";
   $output[] = $code;
