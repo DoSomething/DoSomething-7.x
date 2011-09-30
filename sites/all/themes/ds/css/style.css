@@ -1,15 +1,15 @@
 /* The Coding Designer's Survival Kit
- * A framework for designing websites in the browser. 
+ * A framework for designing websites in the browser.
  *
  * Much love to:
  * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
  *
  * Available at http://thecodingdesigner.com
  * twitter: http://twitter.com/canarymason */
-/* ------------------------------------------------------------------------------------
- * ------------------------------------------------------------------------------------ */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
 /* This CSS was authored using Sass & Compass
- * Download the source files here: 
+ * Download the source files here:
  * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
  * Learn more about Sass & Compass at http://compass-style.org/ */
 /* Links -------------------------------------------------------------- */
@@ -471,6 +471,48 @@ a.ds-button:active {
   border-bottom-color: inherit;
 }
 
+/* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
+ * 2. Force vertical scrollbar in non-IE
+ * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
+html {
+  font-size: 100%;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Body -------------------------------------------------------------- */
+/* Establish baseline rhythm
+ * from compass/typography/_vertical_rhythm */
+body {
+  font-size: 75%;
+  line-height: 2em;
+}
+
+html > body {
+  font-size: 12px;
+}
+
+body {
+  font-family: "Trebuchet MS", sans-serif;
+  color: #161616;
+  background: #8e8a86;
+}
+
+/* Selected Text -------------------------------------------------------------- */
+/* -moz- must be declared separately */
+::-moz-selection {
+  color: white;
+  background: #005daa;
+  text-shadow: none;
+}
+
+::selection {
+  color: white;
+  background: #005daa;
+  text-shadow: none;
+}
+
 /* import font files using @font-face */
 @font-face {
   font-family: "din-web";
@@ -545,48 +587,6 @@ a.ds-button:active {
   src: url('type/DINWeb-CondBlackIta.eot?iefix') format('eot'), url('type/DINWeb-CondBlackIta.woff') format('woff');
   font-style: italic;
   font-weight: 700;
-}
-
-/* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
- * 2. Force vertical scrollbar in non-IE
- * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
-html {
-  font-size: 100%;
-  overflow-y: scroll;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-/* Body -------------------------------------------------------------- */
-/* Establish baseline rhythm
- * from compass/typography/_vertical_rhythm */
-body {
-  font-size: 75%;
-  line-height: 2em;
-}
-
-html > body {
-  font-size: 12px;
-}
-
-body {
-  font-family: "Trebuchet MS", sans-serif;
-  color: #161616;
-  background: #8e8a86;
-}
-
-/* Selected Text -------------------------------------------------------------- */
-/* -moz- must be declared separately */
-::-moz-selection {
-  color: white;
-  background: #005daa;
-  text-shadow: none;
-}
-
-::selection {
-  color: white;
-  background: #005daa;
-  text-shadow: none;
 }
 
 /* Headings -------------------------------------------------------------- */
@@ -1330,7 +1330,6 @@ textarea {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  width: 1862px;
 }
 
 input[type="radio"], input[type="checkbox"] {
