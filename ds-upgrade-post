@@ -10,9 +10,10 @@ drush @ds7 -y vset search_cron_limit 0
 echo "deleting comments `date`"
 drush @ds7 -y php-eval "\$cids = db_query('select cid from comment where pid = 0')->fetchCol(); foreach (\$cids as \$cid) {comment_delete(\$cid);}"
 drush @ds7 -y dis comment
-# echo "deleting old cck tables `date`"
+# echo "deleting old cck and og tables `date`"
 # drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_type_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
 # drush @ds7 -y php-eval "\$tables = db_query('show tables like \'content_field_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
+drush @ds7 -y php-eval "db_query('drop table d6_og');"
 echo "migrating users to new roles `date`"
 drush @ds7 -y php-eval "\$names = array('member', 'inactive user', 'active member'); foreach (\$names as \$name) { \$role = new stdClass(); \$role->name = \$name; user_role_save(\$role);}"
 drush @ds7 -y php-eval "\$inactive_user = user_role_load_by_name('inactive user'); \$member = user_role_load_by_name('member'); \$active_member = user_role_load_by_name('active member'); \$rids = \$inactive_user->rid . ', ' . \$member->rid . ', ' . \$active_member->rid; \$result = db_query('SELECT u.uid, u.access FROM {users} u LEFT JOIN {users_roles} ur ON (ur.uid = u.uid AND ur.rid IN (' . \$rids . ')) WHERE ur.uid IS NULL AND u.uid > 0 ORDER BY u.access ASC'); foreach (\$result as \$data) {dosomething_roles_update_role(\$data->uid);}"
