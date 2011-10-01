@@ -155,9 +155,7 @@
   margin-right: 0;
   width: 25.071%;
 }
-#block-dosomething-login-become-member #edit-submit {
-  clear: left;
-  float: right;
+#block-dosomething-login-become-member input[type='submit'] {
   margin-bottom: 0.353em;
 }
 #block-dosomething-login-become-member hr {
