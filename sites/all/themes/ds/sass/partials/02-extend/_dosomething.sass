@@ -2,13 +2,14 @@
 .ds-button
   font-family: $font-headline
   +adjust-font-size-to(17px)
-  line-height: 1
+  
+  line-height: 1.6
   font-weight: 700
-  text-shadow: none
+  // text-shadow: none
   text-transform: uppercase
   color: $c-button-dark
-  +box-sizing(border-box)
-  padding: 3px 10px
+  +box-sizing(content-box)
+  padding: 0 10px
   height: 22px
   border: 1px solid rgba($gray-darker, 0.5)
   border-bottom-color: $gray-darker
