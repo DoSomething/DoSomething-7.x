@@ -1765,7 +1765,7 @@ div[role=main] {
   padding: 0 8.78% 0 5.854%;
 }
 
-.connect-thru-facebook {
+.connect-thru-facebook a {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -1774,5 +1774,12 @@ div[role=main] {
   background-position: 50% 50%;
   width: 174px;
   height: 24px;
+  display: block;
   margin-bottom: 0.118em;
+}
+.connect-thru-facebook a {
+  border-bottom: none;
+}
+.connect-thru-facebook a:hover {
+  border-bottom: none;
 }

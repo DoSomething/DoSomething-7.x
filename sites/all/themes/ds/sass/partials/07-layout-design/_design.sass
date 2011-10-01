@@ -147,8 +147,12 @@ div[role=main]
 
 
 .connect-thru-facebook
-  +replace-text-with-dimensions('sprites/btn-connect-facebook.png')
-  margin-bottom: calc-em(2px, 17px)
+  a
+    +replace-text-with-dimensions('sprites/btn-connect-facebook.png')
+    display: block
+    margin-bottom: calc-em(2px, 17px)
+    +remove-link-underlines
+
 
 
 
