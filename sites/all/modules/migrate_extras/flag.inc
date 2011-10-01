@@ -14,6 +14,11 @@ class MigrateDestinationFlagSimple extends MigrateDestination {
     $this->fid = $fid;
   }
 
+  public function __toString() {
+    $flag = flag_get_flag(NULL, $this->fid);
+    return t('flag (!flag)', array('!flag' => $flag->name));
+  }
+
   static public function getKeySchema() {
     return array(
       'fcid' => array(

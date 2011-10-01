@@ -10,6 +10,10 @@
  * Destination class for the votingapi_vote table.
  */
 class MigrateDestinationVotingapi extends MigrateDestination {
+  public function __toString() {
+    return t('votingapi');
+  }
+  
   /**
    * An array with content ids of imported votes. Used for recalculating results.
    */

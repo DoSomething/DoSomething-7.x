@@ -11,24 +11,23 @@ In cases where modules supported by migrate_extras end up implementing the suppo
 themselves, you could at least temporarily end up with redundant implementations.
 The extra implementation may be disabled at admin/content/migrate/configure.
 
-The following modules are currently supported in Migrate Extras on Drupal 7:
+The following modules are currently supported in Migrate Extras on Drupal 7 (note
+that Date module support has moved into the Date module itself):
 
 Address Field
-Date
 Flag
 Media
 Organic Groups
 Pathauto
-Private Message
+Private Messages
 Profile2
 Rules
 User Relationships
 Voting API
-Webform
 
 Compatibility
 -------------
-This release of Migrate Extras requires Migrate V2.1 or later.
+This release of Migrate Extras requires Migrate V2.2 or later.
 
 Migrate_Extras_Examples
 ----------------
