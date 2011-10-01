@@ -1346,6 +1346,10 @@ textarea, input:not([type="radio"]) {
   margin-top: 0;
   margin-bottom: 0;
 }
+.region-sidebar-first input[type='submit'] {
+  clear: left;
+  float: right;
+}
 
 /* LAYOUT -------------------------------------------------------------- */
 .wireframe {
