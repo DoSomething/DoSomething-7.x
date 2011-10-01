@@ -1,5 +1,5 @@
-@import partials/02-extend/all
-@import partials/03-defaults/markup/headers
+// @import partials/02-extend/all
+// @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 
 // dosomething buttons
@@ -35,7 +35,9 @@ a.ds-button
   color: $white
   width: 100%
   height: image-height('sprites/icn-leftsidebar-pointer-yellow.png')
-  @extend .h3
+  font-family: $font-headline
+  font-weight: normal
+  +adjust-font-size-to($s2)
   margin-bottom: calc-em(6px, $s2)
   // .selectBox-label
     // @extend .h3
