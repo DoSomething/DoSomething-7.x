@@ -17,12 +17,13 @@ function ds_preprocess_block(&$variables) {
   $variables['title_attributes_array']['class'][] = 'block-title';
 
   // load css specific to blocks
-
-  if($variables['elements']['#block']->module == 'dosomething_blocks') {
+  if($variables['elements']['#block']->module == 'dosomething_login') {
     // block-dosomething-login-become-member
-    if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
+    if($variables['elements']['#block']->delta == 'become_member') {
       drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-login-become-member.css');
     }
+  }
+  if($variables['elements']['#block']->module == 'dosomething_blocks') {
     // dosomething_make_impact
     if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
       drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_make_impact.css');
