@@ -17,6 +17,37 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
 /* Headings -------------------------------------------------------------- */
 .h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
@@ -43,8 +74,8 @@
 }
 
 #block-dosomething-login-become-member {
-  background: url('../images/sprites/bg-diag-1-2-top-left.png?1317652457') repeat 0 0;
-  background: url('../images/sprites/bg-top-left-fade.png?1317652457') no-repeat center bottom, url('../images/sprites/bg-top-left-fade-top.png?1317652457') no-repeat center top, url('../images/sprites/bg-diag-1-2-top-left.png?1317652457') repeat 0 0;
+  background: url('../images/sprites/bg-diag-1-2-top-left.png?1313542709') repeat 0 0;
+  background: url('../images/sprites/bg-top-left-fade.png?1313544889') no-repeat center bottom, url('../images/sprites/bg-top-left-fade-top.png?1313544874') no-repeat center top, url('../images/sprites/bg-diag-1-2-top-left.png?1313542709') repeat 0 0;
   margin-top: -3.75em;
   padding-top: 7.417em;
   position: relative;
@@ -59,7 +90,7 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/sprites/cta-left-col-become-member-btn.png?1317652457');
+  background-image: url('../images/sprites/cta-left-col-become-member-btn.png?1313540830');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 204px;
@@ -67,7 +98,7 @@
   margin-bottom: 0.286em;
 }
 #block-dosomething-login-become-member .separator {
-  background: url('../images/sprites/hr-dark.png?1317652457') repeat-x 50% 50%;
+  background: url('../images/sprites/hr-dark.png?1313542513') repeat-x 50% 50%;
 }
 #block-dosomething-login-become-member .separator.split {
   text-align: center;
@@ -82,7 +113,7 @@
   top: 0;
   width: 41.026%;
   height: 1.3em;
-  background: url('../images/sprites/hr-dark.png?1317652457') repeat-x 50% 50%;
+  background: url('../images/sprites/hr-dark.png?1313542513') repeat-x 50% 50%;
 }
 #block-dosomething-login-become-member .separator.split:before {
   left: 0;
@@ -137,10 +168,10 @@
   height: 0.167em;
 }
 #block-dosomething-login-become-member hr.top {
-  background: url('../images/sprites/hr-light-up.png?1317652457') repeat-x 0 0;
+  background: url('../images/sprites/hr-light-up.png?1313541286') repeat-x 0 0;
 }
 #block-dosomething-login-become-member hr.bottom {
-  background: url('../images/sprites/hr-light-down.png?1317652457') repeat-x 0 0;
+  background: url('../images/sprites/hr-light-down.png?1313541403') repeat-x 0 0;
   margin-bottom: 0.583em;
 }
 #block-dosomething-login-become-member h3 {
@@ -169,7 +200,7 @@
 }
 #block-dosomething-login-become-member h3.why-member {
   padding: 0.111em 0;
-  background: url('../images/sprites/icn-popup.png?1317652457') no-repeat right center;
+  background: url('../images/sprites/icn-popup.png?1313540969') no-repeat right center;
   line-height: 1.15;
 }
 #block-dosomething-login-become-member .ds-button {
@@ -179,7 +210,7 @@
   margin-right: 0.353em;
 }
 #block-dosomething-login-become-member .facebook-login .fb-icon {
-  background: url('../images/sprites/btn-leftsidebar-feeds-facebook.png?1317652457') no-repeat left 0.235em;
+  background: url('../images/sprites/btn-leftsidebar-feeds-facebook.png?1317324863') no-repeat left 0.235em;
   padding-left: 1.471em;
   margin-left: -0.294em;
 }
