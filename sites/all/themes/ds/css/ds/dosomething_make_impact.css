@@ -127,7 +127,7 @@
 #block-dosomething-blocks-dosomething-make-impact {
   background-color: #222222;
   color: white;
-  padding-top: 3.893%;
+  padding-top: 3.902%;
   padding-bottom: 1.5em;
   *zoom: 1;
 }
@@ -138,7 +138,7 @@
 }
 #block-dosomething-blocks-dosomething-make-impact h2.block-title {
   margin-top: 0;
-  background: url('../images/sprites/bg-header-molecule.png?1317440268') no-repeat right 7px;
+  background: url('../images/sprites/bg-header-molecule.png?1317443435') no-repeat right 7px;
   height: 40px;
   margin-bottom: 0.167em;
 }
@@ -150,7 +150,7 @@
 }
 
 #dosomething-blocks-make-an-impact-form select {
-  background: #8e8a86 url('../images/sprites/icn-leftsidebar-pointer-yellow.png?1317441534') no-repeat right top;
+  background: #8e8a86 url('../images/sprites/icn-leftsidebar-pointer-yellow.png?1317443435') no-repeat right top;
   border: none;
   color: white;
   width: 100%;

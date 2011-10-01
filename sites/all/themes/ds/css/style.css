@@ -1373,20 +1373,20 @@ textarea, input:not([type="radio"]) {
 }
 
 body.one-sidebar.sidebar-first [role=main] {
-  width: 77.892%;
+  width: 77.838%;
   float: right;
 }
 body.node-type-project [role=main] .main-inner {
   float: left;
-  width: 73.144%;
+  width: 73.194%;
 }
 body.node-type-project [role=main] .main-interior-sidebar {
-  width: 26.093%;
+  width: 26.111%;
   float: right;
 }
 
 .region-sidebar-first {
-  width: 22.216%;
+  width: 22.162%;
   float: left;
 }
 
@@ -1406,7 +1406,7 @@ body.admin-menu {
   box-sizing: border-box;
 }
 #utility-bar .utility-block {
-  padding-left: 22.216%;
+  padding-left: 22.162%;
 }
 
 #site-name {
@@ -1441,14 +1441,14 @@ nav[role=navigation] {
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
-  padding-left: 22.216%;
+  padding-left: 22.162%;
   display: table;
   width: 100%;
 }
 nav[role=navigation] .secondary {
   background-color: #014e9c;
-  margin-left: 22.216%;
-  width: 77.892%;
+  margin-left: 22.162%;
+  width: 77.838%;
 }
 nav[role=navigation] #main-menu {
   font-size: 2.417em;
@@ -1538,7 +1538,7 @@ nav[role=navigation] a:hover {
 div[role=main] {
   background-color: #e3e3e3;
   background-color: rgba(227, 227, 227, 0.5);
-  padding-left: 1.666%;
+  padding-left: 1.667%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -1575,7 +1575,7 @@ div[role=main] {
 }
 
 .region-sidebar-first .block {
-  padding: 0 8.759% 0 5.839%;
+  padding: 0 8.78% 0 5.854%;
 }
 
 .connect-thru-facebook {
