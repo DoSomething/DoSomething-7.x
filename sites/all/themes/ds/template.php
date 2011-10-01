@@ -13,7 +13,7 @@ function ds_preprocess_page(&$variables) {
   drupal_add_js(drupal_get_path('theme', 'ds') . '/js/formalize/jquery.formalize.min.js');
   // replace select boxes to allow custom theming
   drupal_add_js(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
-  drupal_add_css(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.css');
+  // drupal_add_css(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.css');
   drupal_add_js(drupal_get_path('theme', 'ds') . '/js/ds-select.js', array('scope' => 'footer'));
 }
 
