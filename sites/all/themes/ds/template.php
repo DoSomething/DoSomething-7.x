@@ -8,6 +8,7 @@ function ds_preprocess_html(&$variables, $hook) {
 function ds_preprocess_page(&$variables) {
   // dsm($variables);
   // dsm($variables['page']);
+  drupal_add_js(drupal_get_path('theme', 'ds') . '/js/formalize/jquery.formalize.min.js');
 }
 
 function ds_preprocess_block(&$variables) {
