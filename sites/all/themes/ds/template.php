@@ -8,7 +8,13 @@ function ds_preprocess_html(&$variables, $hook) {
 function ds_preprocess_page(&$variables) {
   // dsm($variables);
   // dsm($variables['page']);
+  
+  // Add Formalize to even out most form elements
   drupal_add_js(drupal_get_path('theme', 'ds') . '/js/formalize/jquery.formalize.min.js');
+  // replace select boxes to allow custom theming
+  drupal_add_js(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.js', array('scope' => 'footer'));
+  drupal_add_css(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.css');
+  drupal_add_js(drupal_get_path('theme', 'ds') . '/js/ds-select.js', array('scope' => 'footer'));
 }
 
 function ds_preprocess_block(&$variables) {
@@ -21,7 +27,7 @@ function ds_preprocess_block(&$variables) {
   if($variables['elements']['#block']->module == 'dosomething_login') {
     // block-dosomething-login-become-member
     if($variables['elements']['#block']->delta == 'become_member') {
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-login-become-member.css');
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-login-become-member.css');                                                                                                              
     }
   }
   if($variables['elements']['#block']->module == 'dosomething_blocks') {
