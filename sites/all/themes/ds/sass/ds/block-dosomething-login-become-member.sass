@@ -15,7 +15,7 @@
   // guide
   // +background(image_url('guide-pages/facebook-login-dashboard.png'))
   // -- end guide
-  h2
+  h2.block-title
     margin-left: -(percentage($s0 / $left-col-width))
     margin-right: -(percentage($s2 / $left-col-width))
     text-align: center
@@ -94,9 +94,11 @@
       +link-colors($white, $yellow, $yellow, $white, false)
       +remove-link-underlines
     &.why-member
-      padding: calc-em(2px, $s2) 0
-      +background(image_url('sprites/icn-popup.png') no-repeat right center)
-      line-height: 1.15
+      a
+        padding: calc-em(2px, $s2) 0
+        +background(image_url('sprites/icn-popup.png') no-repeat right center)
+        line-height: 1.15
+        display: block
     &.already-member
   .ds-button
     margin-right: 0px
@@ -106,3 +108,61 @@
       +background(image_url('sprites/btn-leftsidebar-feeds-facebook.png') no-repeat left calc-em(2px, 17px))
       padding-left: calc-em(25px, 17px)
       margin-left: calc-em(-5px, 17px)
+  // ---------------------------------
+  // LOGGED IN
+  // ---------------------------------
+  .logged-in &
+    color: $white
+    +adjust-font-size-to($s-2)
+    a
+      +link-colors($yellow, $white, $white, $yellow, false)
+      +remove-link-underlines
+    .dosomething-login-user-name
+      +background(image_url("sprites/cta-left-col-header-bg.png") no-repeat 50% 50%)
+      height: image_height("sprites/cta-left-col-header-bg.png")
+      margin-left: -(percentage($s0 / $left-col-width))
+      margin-right: -(percentage($s2 / $left-col-width))
+      margin-bottom: calc-em(10px, $s5)
+      +adjust-font-size-to($s3, 1, $s2)
+      line-height: 1.2em
+      padding: 0 0.5em
+      font-family: $font-headline
+      color: $black-not
+      h2
+        line-height: 30px
+        display: inline
+        font-weight: 600
+      span
+        float: right
+        font-weight: 600
+        line-height: 30px
+    h2
+      +adjust-font-size-to($s2, 1, $s-2)
+      font-weight: 400
+    .dosomething-login-profile
+      .profile-header
+        a
+          float: right
+      .dosomething-login-percentage
+        +background($gray-lighter2 image_url("sprites/profile-percentage-icon.png") no-repeat 3px center)
+        height: image_height("sprites/profile-percentage-icon.png") + 6
+        +border-radius(2px)
+        +box-shadow(rgba($black, 0.5) 0 0 4px inset)
+        border: 1px solid rgba($black, 0.5)
+        padding: 0 3px
+        .ratio
+          width: $left-col-width-inner - image_width("sprites/profile-percentage-icon.png") - 6px
+          margin-left: image_width("sprites/profile-percentage-icon.png")
+          .inner
+            +replace-text('sprites/profile-percentage-indicator.png')
+            background-repeat: repeat-x
+            background-position: left center
+            // background-color: rgba($white, 0.3)
+            position: relative
+            top: -1px
+            width: 0%
+
+
+
+
+

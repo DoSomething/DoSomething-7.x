@@ -82,7 +82,7 @@
   padding-bottom: 0.833em;
   margin-bottom: 0.417em;
 }
-#block-dosomething-login-become-member h2 {
+#block-dosomething-login-become-member h2.block-title {
   margin-left: -5.854%;
   margin-right: -8.78%;
   text-align: center;
@@ -196,10 +196,11 @@
 #block-dosomething-login-become-member h3 a:hover {
   border-bottom: none;
 }
-#block-dosomething-login-become-member h3.why-member {
+#block-dosomething-login-become-member h3.why-member a {
   padding: 0.111em 0;
   background: url('../images/sprites/icn-popup.png') no-repeat right center;
   line-height: 1.15;
+  display: block;
 }
 #block-dosomething-login-become-member .ds-button {
   margin-right: 0px;
@@ -211,4 +212,91 @@
   background: url('../images/sprites/btn-leftsidebar-feeds-facebook.png') no-repeat left 0.118em;
   padding-left: 1.471em;
   margin-left: -0.294em;
+}
+.logged-in #block-dosomething-login-become-member {
+  color: white;
+  font-size: 0.833em;
+  line-height: 2.4em;
+}
+.logged-in #block-dosomething-login-become-member a {
+  color: #fed103;
+}
+.logged-in #block-dosomething-login-become-member a:visited {
+  color: #fed103;
+}
+.logged-in #block-dosomething-login-become-member a:hover {
+  color: white;
+}
+.logged-in #block-dosomething-login-become-member a:active {
+  color: white;
+}
+.logged-in #block-dosomething-login-become-member a {
+  border-bottom: none;
+}
+.logged-in #block-dosomething-login-become-member a:hover {
+  border-bottom: none;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-user-name {
+  background: url('../images/sprites/cta-left-col-header-bg.png') no-repeat 50% 50%;
+  height: 34px;
+  margin-left: -5.854%;
+  margin-right: -8.78%;
+  margin-bottom: 0.286em;
+  font-size: 1.333em;
+  line-height: 1em;
+  line-height: 1.2em;
+  padding: 0 0.5em;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  color: #161616;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2 {
+  line-height: 30px;
+  display: inline;
+  font-weight: 600;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-user-name span {
+  float: right;
+  font-weight: 600;
+  line-height: 30px;
+}
+.logged-in #block-dosomething-login-become-member h2 {
+  font-size: 1.8em;
+  line-height: 1.333em;
+  font-weight: 400;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .profile-header a {
+  float: right;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage {
+  background: #a1a1a1 url('../images/sprites/profile-percentage-icon.png') no-repeat 3px center;
+  height: 22px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0 3px;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage .ratio {
+  width: 152px;
+  margin-left: 17px;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage .ratio .inner {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/sprites/profile-percentage-indicator.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-repeat: repeat-x;
+  background-position: left center;
+  position: relative;
+  top: -1px;
+  width: 0%;
 }
