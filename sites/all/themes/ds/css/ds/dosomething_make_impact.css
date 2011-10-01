@@ -146,6 +146,21 @@ a.ds-button:active {
   width: 27px;
 }
 
+.selectBox-dropdown .selectBox-label {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.ie .selectBox-dropdown .selectBox-label {
+  width: 100%;
+}
+
+.selectBox-options li a {
+  white-space: normal;
+}
+
 /* Dropdown control */
 .selectBox-dropdown {
   width: 100%;
@@ -180,7 +195,7 @@ a.ds-button:active {
   z-index: 99999;
   max-height: 200px;
   /* should be the same border width as .selectBox-dropdown */
-  background-color: #222222;
+  background-color: #726e6b;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
   -o-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
@@ -236,20 +251,26 @@ a.ds-button:active {
   color: white;
 }
 .selectBox-options li a:hover {
-  color: #fed103;
+  color: white;
 }
 .selectBox-options li a:active {
-  color: #fed103;
+  color: #222222;
+}
+.selectBox-options li a {
+  border-bottom: none;
+}
+.selectBox-options li a:hover {
+  border-bottom: none;
 }
 .selectBox-options li.selectBox-hover a {
-  background-color: #222222;
+  background-color: #8e8a86;
 }
 .selectBox-options li.selectBox-disabled a {
   color: #888888;
-  background-color: transparent;
+  background-color: #726e6b;
 }
 .selectBox-options li.selectBox-selected a {
-  background-color: #c8def4;
+  background-color: #8e8a86;
 }
 .selectBox-options .selectBox-optgroup {
   color: #666666;

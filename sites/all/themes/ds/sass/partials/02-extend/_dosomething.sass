@@ -6,7 +6,7 @@
 .ds-button
   font-family: $font-headline
   +adjust-font-size-to(17px)
-  
+
   line-height: 1.6
   font-weight: 700
   // text-shadow: none
@@ -24,13 +24,13 @@
     color: $c-button-dark-active
 
 a.ds-button
-  +link-colors($c-button-dark $c-button-dark-active, $c-button-dark-active, $c-button-dark, false)  
+  +link-colors($c-button-dark $c-button-dark-active, $c-button-dark-active, $c-button-dark, false)
   +undo-better-links
   display: inline-block
 
 
 .ds-dropdown
-  background: $gray2
+  background: $c-select-field-bg
   border: none
   color: $white
   width: 100%
@@ -44,6 +44,16 @@ a.ds-button
   .selectBox-arrow
     background: image_url('sprites/icn-leftsidebar-pointer-yellow.png') no-repeat right top
     width: image-width('sprites/icn-leftsidebar-pointer-yellow.png')
-    
+
 // .selectBox-options
 //   @extend .h3
+
+.selectBox-dropdown
+  .selectBox-label
+    width: 80%
+    +text-overflow
+
+.selectBox-options
+  li
+    a
+      white-space: normal

@@ -487,6 +487,21 @@ a.ds-button:active {
   width: 27px;
 }
 
+.selectBox-dropdown .selectBox-label {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.ie .selectBox-dropdown .selectBox-label {
+  width: 100%;
+}
+
+.selectBox-options li a {
+  white-space: normal;
+}
+
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
