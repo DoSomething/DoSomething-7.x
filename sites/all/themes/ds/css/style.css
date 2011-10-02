@@ -698,28 +698,19 @@ dd {
 /* Links -------------------------------------------------------------- */
 a {
   color: #005daa;
+  text-decoration: none;
 }
 a:visited {
+  color: #652e72;
+}
+a:hover {
   color: #005daa;
 }
-a:hover {
-  color: #aa4d00;
-}
 a:active {
-  color: #aa4d00;
+  color: #005daa;
 }
-a {
-  text-decoration: none;
-  border-bottom: 1px solid #005daa;
-}
-a:visited {
-  border-bottom-color: #005daa;
-}
-a:hover {
-  border-bottom-color: #aa4d00;
-}
-a:active {
-  border-bottom-color: #aa4d00;
+a:hover, a:active {
+  text-decoration: underline;
 }
 
 small {
@@ -1578,6 +1569,9 @@ body.node-type-project [role=main] .main-interior-sidebar {
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
+body {
+  background: rgba(0, 0, 0, 0) url('images/guide-pages/23-DSM_Logged-in_Member_Dashboard.png') scroll no-repeat center top;
+}
 body.admin-menu {
   background-position: center 29px;
 }
@@ -1671,8 +1665,8 @@ nav[role=navigation] #secondary-menu {
   font-size: 1.5em;
   line-height: 1.333em;
   font-weight: 500;
-  min-height: 2.222em;
-  line-height: 2.222;
+  min-height: 1.667em;
+  line-height: 1.667;
   margin: 0;
   padding: 0;
   border: 0;

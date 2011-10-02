@@ -1,8 +1,11 @@
 /* Links --------------------------------------------------------------
 a
-  +link-colors($alt-color, complement($alt-color), complement($alt-color), $alt-color, false)
-  +better-links($alt-color, complement($alt-color), complement($alt-color), $alt-color, false)
+  +link-colors($alt-color, $alt-color, $alt-color, $purple, false)
+  text-decoration: none
+  // +better-links($alt-color, complement($alt-color), complement($alt-color), $alt-color, false)
   // +link-transitions
+  &:hover, &:active
+    text-decoration: underline
 
 em
   @extend .italic
