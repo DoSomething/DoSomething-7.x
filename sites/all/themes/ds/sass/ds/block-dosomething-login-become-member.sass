@@ -5,15 +5,15 @@
 // --------------------------------------------------------------------------------------
 
 .left-block-expando-h2
-  border-top: calc-em(1px, $s2) solid $c-thin-line-dark
-  border-bottom: calc-em(1px, $s2) solid $c-thin-line-dark
+  border-top: calc-em(1px, $s2) solid rgba($c-thin-line-dark, 0.6)
+  border-bottom: calc-em(1px, $s2) solid rgba($c-thin-line-dark, 0.6)
   +background-image(linear-gradient(bottom, #403f3d, #5f5c58))
   +box-shadow(rgba($black, 0.5) 0 0 4px inset)
   margin-left: -(percentage($s0 / $left-col-width-inner))
   margin-right: -(percentage($s2 / $left-col-width-inner))
   .inner
-    border-top: calc-em(1px, $s2) solid $c-thin-line-light
-    border-bottom: calc-em(1px, $s2) solid $c-thin-line-light
+    border-top: calc-em(1px, $s2) solid rgba($c-thin-line-light, 0.6)
+    border-bottom: calc-em(1px, $s2) solid rgba($c-thin-line-light, 0.6)
     padding-left: (percentage($s0 / $left-col-width-inner))
     padding-right: (percentage($s2 / $left-col-width-inner))
     +background(image_url("sprites/btn-leftsidebar-feeds-plus.png") no-repeat 171px center)
@@ -182,7 +182,26 @@
     h2
       &.my-somethings, &.notifications
         @extend .left-block-expando-h2
-
+      &.my-somethings
+        margin-bottom: 0.3em
+      &.notifications
+        margin-top: 0
+    .item-list
+      ul
+        margin-left: -6px
+        li
+          list-style-image: image_url("sprites/list-triangle-right.png")
+          line-height: 1.4
+          ul
+            margin-top: 6pxpx
+            margin-left: -4px
+            li
+              list-style-type: disc
+              list-style-image: none
+              line-height: 1.4
+    .dosomething-login-goto-profile
+      display: block
+      text-align: right
 
 
 
