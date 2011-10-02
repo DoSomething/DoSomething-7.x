@@ -343,7 +343,7 @@ function dosomething_login_profile_completion() {
 }
 
 function dosomething_login_my_somethings() {
-  $output = '<h2 class="my-somethings">' . t('My Somethings') . '</h2>';
+  $output = '<h2 class="my-somethings"><div class="inner">' . t('My Somethings') . '</div></h2>';
   $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_login_my_current_somethings());
   $items[] = array('data' => t('My Opportunities'), 'children' => dosomething_login_my_opportunities());
   $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => 'my-somethings')));
@@ -351,7 +351,7 @@ function dosomething_login_my_somethings() {
 }
 
 function dosomething_login_notifications() {
-  $output = '<h2 class="notifications">' . t('Notifications') . '</h2>';
+  $output = '<h2 class="notifications"><div class="inner">' . t('Notifications') . '</div></h2>';
   // TODO: replace dummy content
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');

@@ -4,6 +4,23 @@
 @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 
+.left-block-expando-h2
+  border-top: calc-em(1px, $s2) solid $c-thin-line-dark
+  border-bottom: calc-em(1px, $s2) solid $c-thin-line-dark
+  +background-image(linear-gradient(bottom, #403f3d, #5f5c58))
+  +box-shadow(rgba($black, 0.5) 0 0 4px inset)
+  margin-left: -(percentage($s0 / $left-col-width-inner))
+  margin-right: -(percentage($s2 / $left-col-width-inner))
+  .inner
+    border-top: calc-em(1px, $s2) solid $c-thin-line-light
+    border-bottom: calc-em(1px, $s2) solid $c-thin-line-light
+    padding-left: (percentage($s0 / $left-col-width-inner))
+    padding-right: (percentage($s2 / $left-col-width-inner))
+    +background(image_url("sprites/btn-leftsidebar-feeds-plus.png") no-repeat 171px center)
+  &.active
+    .inner
+      +background(image_url("sprites/btn-leftsidebar-feeds-minus.png") no-repeat 171px center)
+
 
 #block-dosomething-login-become-member
   +background-with-css2-fallback(image_url('sprites/bg-top-left-fade.png') no-repeat center bottom, image_url('sprites/bg-top-left-fade-top.png') no-repeat center top, image_url('sprites/bg-diag-1-2-top-left.png') repeat 0 0)
@@ -12,12 +29,13 @@
   position: relative
   padding-bottom: calc-em(10px, $s0)
   margin-bottom: calc-em(5px, $s0)
+  overflow: hidden
   // guide
   // +background(image_url('guide-pages/facebook-login-dashboard.png'))
   // -- end guide
   h2.block-title
-    margin-left: -(percentage($s0 / $left-col-width))
-    margin-right: -(percentage($s2 / $left-col-width))
+    margin-left: -(percentage($s0 / $left-col-width-inner))
+    margin-right: -(percentage($s2 / $left-col-width-inner))
     text-align: center
     line-height: 1.2em
     +replace-text-with-dimensions('sprites/cta-left-col-become-member-btn.png')
@@ -120,8 +138,8 @@
     .dosomething-login-user-name
       +background(image_url("sprites/cta-left-col-header-bg.png") no-repeat 50% 50%)
       height: image_height("sprites/cta-left-col-header-bg.png")
-      margin-left: -(percentage($s0 / $left-col-width))
-      margin-right: -(percentage($s2 / $left-col-width))
+      margin-left: -(percentage($s0 / $left-col-width-inner))
+      margin-right: -(percentage($s2 / $left-col-width-inner))
       margin-bottom: calc-em(10px, $s5)
       +adjust-font-size-to($s3, 1, $s2)
       line-height: 1.2em
@@ -161,7 +179,9 @@
             position: relative
             top: -1px
             width: 0%
-
+    h2
+      &.my-somethings, &.notifications
+        @extend .left-block-expando-h2
 
 
 

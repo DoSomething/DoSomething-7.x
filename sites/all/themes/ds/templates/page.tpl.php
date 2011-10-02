@@ -30,7 +30,7 @@
     <?php endif; ?>
 
     <?php print render($page['header']); ?>
-    
+
     <?php if ($main_menu || $secondary_menu): ?>
       <nav role="navigation">
         <?php if ($main_menu): ?>
@@ -47,10 +47,10 @@
     <?php endif; ?>
 
   </header>
-  
+
   <div id="main-wrapper" class="clearfix">
     <div role="main">
-     
+
      <div class="main-inner">
        <?php if ($breadcrumb): ?>
          <nav id="breadcrumb"><?php print $breadcrumb; ?></nav>
@@ -70,21 +70,16 @@
        <?php print $feed_icons; ?>
      </div>
 
-      <div class="main-interior-sidebar">
-        <h2>interior sidebar</h2>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-      </div>
-    
     </div> <!-- /#main -->
-  
+
     <?php print render($page['sidebar_first']); ?>
-  
+
     <?php // print render($page['sidebar_second']); ?>
-    
+
   </div> <!-- /#main-wrapper -->
-    
+
   <?php print render($page['footer']); ?>
-  
+
 </div>
 
 
