@@ -138,7 +138,11 @@
 }
 #block-dosomething-blocks-dosomething-make-impact h2.block-title {
   margin-top: 0;
+<<<<<<< Updated upstream
   background: url('../images/sprites/bg-header-molecule.png?1317443435') no-repeat right 7px;
+=======
+  background: url('../images/sprites/bg-header-molecule.png?1317678294') no-repeat right 7px;
+>>>>>>> Stashed changes
   height: 40px;
   margin-bottom: 0.167em;
 }
@@ -150,7 +154,11 @@
 }
 
 #dosomething-blocks-make-an-impact-form select {
+<<<<<<< Updated upstream
   background: #8e8a86 url('../images/sprites/icn-leftsidebar-pointer-yellow.png?1317443435') no-repeat right top;
+=======
+  background: #8e8a86 url('../images/sprites/icn-leftsidebar-pointer-yellow.png?1317678294') no-repeat right top;
+>>>>>>> Stashed changes
   border: none;
   color: white;
   width: 100%;

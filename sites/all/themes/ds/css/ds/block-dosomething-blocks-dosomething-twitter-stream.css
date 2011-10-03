@@ -76,7 +76,9 @@
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet .twtr-tweet-text a {
   color: white !important;
   text-decoration: none;
+  font-size: 10px;
+  font-weight: bold;
 }
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet .twtr-tweet-text a.twtr-hyperlink {
-  color: yellow !important;
+  color: #ffd203 !important;
 }
