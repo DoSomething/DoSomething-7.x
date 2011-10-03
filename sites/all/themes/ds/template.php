@@ -19,13 +19,21 @@ function ds_preprocess_block(&$variables) {
   // load css specific to blocks
 
   if($variables['elements']['#block']->module == 'dosomething_blocks') {
-    // dosomething_facebook_activity
-    if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_facebook_activity.css');
+    // block-dosomething-login-become-member
+    if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-login-become-member.css');
     }
     // dosomething_make_impact
     if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
       drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_make_impact.css');
+    }
+    // dosomething_facebook_activity
+    if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_facebook_activity.css');
+    }
+    // block-dosomething-blocks-dosomething-twitter-stream
+    if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-blocks-dosomething-twitter-stream.css');
     }
   }
 

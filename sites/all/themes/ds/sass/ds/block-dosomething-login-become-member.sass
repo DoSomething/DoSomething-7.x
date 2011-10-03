@@ -1,0 +1,107 @@
+@import setup
+// import extended classes
+@import partials/03-defaults/markup/headers
+// --------------------------------------------------------------------------------------
+
+
+#block-dosomething-login-become-member
+  +background-with-css2-fallback(image_url('sprites/bg-top-left-fade.png') no-repeat center bottom, image_url('sprites/bg-top-left-fade-top.png') no-repeat center top, image_url('sprites/bg-diag-1-2-top-left.png') repeat 0 0)
+  margin-top: -(calc-em(45px, $s0))
+  padding-top: calc-em(89px, $s0)
+  position: relative
+  padding-bottom: calc-em(10px, $s0)
+  margin-bottom: calc-em(5px, $s0)
+  // guide
+  // +background(image_url('guide-pages/facebook-login-dashboard.png'))
+  // -- end guide
+  h2
+    margin-left: -(percentage($s0 / $left-col-width))
+    margin-right: -(percentage($s2 / $left-col-width))
+    text-align: center
+    line-height: 1.2em
+    +replace-text-with-dimensions('sprites/cta-left-col-become-member-btn.png')
+    margin-bottom: calc-em(10px, $s5)
+  .separator
+    +background(image_url("sprites/hr-dark.png") repeat-x 50% 50%)
+    &.split
+      text-align: center
+      @extend .h3
+      font-weight: 600
+      color: $white
+      background: none
+      position: relative
+      &:before, &:after
+        position: absolute
+        content: ''
+        top: 0
+        width: percentage(72px / $left-col-width-inner)
+        height: 1.3em
+        +background(image_url("sprites/hr-dark.png") repeat-x 50% 50%)
+      &:before
+        left: 0
+      &:after
+        right: 0
+  .form-item-first-name, .form-item-last-name
+    width: percentage(86px / $left-col-width-inner)
+    float: left
+  .form-item-first-name
+    margin-right: percentage(2px / $left-col-width-inner)
+  .form-item-cell-or-email
+    clear: left
+  .age-question
+    @extend .h3
+    font-weight: 600
+    color: $white
+    line-height: 0.8em
+    float: left
+    margin-left: percentage(3px / $left-col-width-inner)
+    margin-right: percentage(7px / $left-col-width-inner)
+  .form-item-month, .form-item-day, .form-item-year
+    float: left
+    width: percentage(32px / $left-col-width-inner)
+    margin-right: percentage(2px / $left-col-width-inner)
+    position: relative
+    margin-top: calc-em(-7px, $s0)
+    height: calc-em(26px, $s0)
+    input
+      margin-top: percentage(-3px / $left-col-width-inner)
+      margin-bottom: 0
+  .form-item-year
+    margin-right: 0
+    width: percentage(44px / $left-col-width-inner)
+  #edit-submit
+    clear: left
+    float: right
+    margin-bottom: calc-em(6px, 17px)
+  hr
+    clear: both
+    margin: 0
+    border: none
+    width: 100%
+    height: calc-em(2px, $s0)
+    &.top
+      +background(image_url('sprites/hr-light-up.png') repeat-x 0 0)
+    &.bottom
+      +background(image_url('sprites/hr-light-down.png') repeat-x 0 0)
+      margin-bottom: calc-em(7px, $s0)
+  h3
+    clear: both
+    font-weight: 600
+    margin: calc-em(2px, $s2) 0
+    color: $white
+    a
+      +link-colors($white, $yellow, $yellow, $white, false)
+      +remove-link-underlines
+    &.why-member
+      padding: calc-em(2px, $s2) 0
+      +background(image_url('sprites/icn-popup.png') no-repeat right center)
+      line-height: 1.15
+    &.already-member
+  .ds-button
+    margin-right: 0px
+  .facebook-login
+    margin-right: calc-em(6px, 17px)
+    .fb-icon
+      +background(image_url('sprites/btn-leftsidebar-feeds-facebook.png') no-repeat left calc-em(4px, 17px))
+      padding-left: calc-em(25px, 17px)
+      margin-left: calc-em(-5px, 17px)

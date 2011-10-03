@@ -1,0 +1,25 @@
+@import setup
+// import extended classes
+@import partials/03-defaults/markup/headers
+// --------------------------------------------------------------------------------------
+
+.region-sidebar-first
+  #block-dosomething-blocks-dosomething-twitter-stream
+    background-color: $c-impact
+    color: $white
+    h2
+      margin: 0
+    #twtr-widget-1 .twtr-doc, #twtr-widget-1 .twtr-hd a, #twtr-widget-1 h3, #twtr-widget-1 h4, #twtr-widget-1 .twtr-popular
+      background-color: red
+      .twtr-tweet
+        .twtr-tweet-text
+          p
+            font-size: 10px
+            color: $c-twitter-block-text !important
+          a
+            color: $white !important
+            text-decoration: none
+          a.twtr-hyperlink
+            color: yellow !important
+
+
