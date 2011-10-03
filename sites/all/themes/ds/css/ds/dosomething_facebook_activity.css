@@ -48,17 +48,21 @@
 }
 #block-dosomething-blocks-dosomething-facebook-activity h2 {
   margin: 0;
+  background: url(../images/fb-icon.png) no-repeat;
+  background-position: 0px 0px;
+  padding: 0 0 5px 28px;
+  font-size: 18px;
+  line-height: 22px;
+}
+#block-dosomething-blocks-dosomething-facebook-activity a {
+  border: 0;
 }
 #block-dosomething-blocks-dosomething-facebook-activity .fb-activity {
-  background: red;
+  background: #222222;
 }
 #block-dosomething-blocks-dosomething-facebook-activity .fb_iframe_widget {
-  background: red;
+  background: #222222;
 }
 #block-dosomething-blocks-dosomething-facebook-activity #f1a9abd964 {
-  background: red;
-  width: 200px;
-}
-#block-dosomething-blocks-dosomething-facebook-activity #f1a9abd964 .fbConnectWidgetContent {
-  width: 200px;
+  background: #222222;
 }
