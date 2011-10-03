@@ -49,3 +49,16 @@
 #block-dosomething-blocks-dosomething-facebook-activity h2 {
   margin: 0;
 }
+#block-dosomething-blocks-dosomething-facebook-activity .fb-activity {
+  background: red;
+}
+#block-dosomething-blocks-dosomething-facebook-activity .fb_iframe_widget {
+  background: red;
+}
+#block-dosomething-blocks-dosomething-facebook-activity #f1a9abd964 {
+  background: red;
+  width: 200px;
+}
+#block-dosomething-blocks-dosomething-facebook-activity #f1a9abd964 .fbConnectWidgetContent {
+  width: 200px;
+}

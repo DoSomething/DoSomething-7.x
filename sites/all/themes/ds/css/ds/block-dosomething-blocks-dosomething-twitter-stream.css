@@ -49,17 +49,29 @@
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h2 {
   margin: 0;
 }
-.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-doc, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd a, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h3, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-popular {
-  background-color: red;
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream a {
+  border: 0;
 }
-.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-doc .twtr-tweet .twtr-tweet-text p, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd a .twtr-tweet .twtr-tweet-text p, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h3 .twtr-tweet .twtr-tweet-text p, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4 .twtr-tweet .twtr-tweet-text p, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-popular .twtr-tweet .twtr-tweet-text p {
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-hd, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h3, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h4, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-ft, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-doc, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-popular, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 {
+  background-color: #222222;
+}
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-hd .twtr-tweet, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h3 .twtr-tweet, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h4 .twtr-tweet, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-ft .twtr-tweet, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-doc .twtr-tweet, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-popular .twtr-tweet, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet {
+  border: 0;
+}
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream .twtr-timeline {
+  border: 0;
+}
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet-wrap {
+  background: #222222;
+}
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet .twtr-tweet-text p {
   font-size: 10px;
   color: #bcbcbc !important;
 }
-.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-doc .twtr-tweet .twtr-tweet-text a, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd a .twtr-tweet .twtr-tweet-text a, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h3 .twtr-tweet .twtr-tweet-text a, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4 .twtr-tweet .twtr-tweet-text a, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-popular .twtr-tweet .twtr-tweet-text a {
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet .twtr-tweet-text a {
   color: white !important;
   text-decoration: none;
 }
-.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-doc .twtr-tweet .twtr-tweet-text a.twtr-hyperlink, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd a .twtr-tweet .twtr-tweet-text a.twtr-hyperlink, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h3 .twtr-tweet .twtr-tweet-text a.twtr-hyperlink, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4 .twtr-tweet .twtr-tweet-text a.twtr-hyperlink, .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-popular .twtr-tweet .twtr-tweet-text a.twtr-hyperlink {
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet .twtr-tweet-text a.twtr-hyperlink {
   color: yellow !important;
 }
