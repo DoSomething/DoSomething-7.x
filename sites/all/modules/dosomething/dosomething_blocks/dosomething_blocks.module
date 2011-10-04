@@ -83,16 +83,7 @@ function dosomething_blocks_block_view($delta = '') {
  * Generate the contents of the facebook activity block.
  */
 function dosomething_blocks_facebook_activity_block_content() {
-  return '<div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, \'script\', \'facebook-jssdk\'));</script>
-
-        <div class="fb-activity" data-site="dosomething.org" data-colorscheme="dark" data-recommendations="false"></div>';
+  return '<div class="fb-activity" data-site="dosomething.org" data-colorscheme="dark" data-recommendations="false"></div>';
 }
 
 function dosomething_blocks_twitter_stream_block_content() {
