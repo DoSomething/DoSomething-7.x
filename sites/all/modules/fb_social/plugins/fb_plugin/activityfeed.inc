@@ -4,7 +4,8 @@ $plugin = array(
     'title' => t('activityfeed'), 
     'description' => t('Facebook activityfeed plugin'), 
     'html tag name' => 'activity' 
-);
+)
+;
 
 function activityfeed_defaults(){
   return array(

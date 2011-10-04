@@ -20,15 +20,15 @@ define("TIME_VOCABULARY", 4);
 function dosomething_blocks_block_info() {
   $blocks['dosomething_facebook_activity'] = array(
     'info' => t('DoSomething Facebook Activity'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['dosomething_twitter_stream'] = array(
     'info' => t('DoSomething Twitter Stream'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['dosomething_make_impact'] = array(
     'info' => t('DoSomething Make an Impact'),
-  );
-  $blocks['dosomething_utility_bar'] = array(
-    'info' => t('DoSomething Utility Bar'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
@@ -203,6 +203,7 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
   //TODO: Fill in with real logic when we know what path to send the user to.
   return;
 }
+<<<<<<< HEAD
 
 /**
  * Block callback for utility bar that appears at the top of a page.
@@ -458,3 +459,5 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
     'attributes' => $attributes 
   )); 
 }
+=======
+>>>>>>> module updates
