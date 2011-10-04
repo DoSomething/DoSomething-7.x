@@ -249,22 +249,26 @@ function dosomething_blocks_utility_bar() {
           'chat' => array(
             'title' => '<img src="' . $image_path .'/icn-chat.png">',
             'html' => TRUE,
-            'href' => '#',
+            'href' => '',
+            'fragment' => ' ',
           ),
           'text' => array(
             'title' => '<img src="' . $image_path .'/icn-text.png">',
             'html' => TRUE,
-            'href' => '#',
+            'href' => '',
+            'fragment' => ' ',
           ),
           'call' => array(
             'title' => '<img src="' . $image_path .'/icn-call.png">',
             'html' => TRUE,
-            'href' => '#',
+            'href' => '',
+            'fragment' => ' ',
           ),
           'email' => array(
             'title' => '<img src="' . $image_path .'/icn-email.png">',
             'html' => TRUE,
-            'href' => '#',
+            'href' => '',
+            'fragment' => ' ',
           ),
         ),
         '#attributes' => array(
