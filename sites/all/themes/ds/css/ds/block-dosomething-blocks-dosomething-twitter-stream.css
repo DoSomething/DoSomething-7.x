@@ -49,10 +49,12 @@
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h2 {
   margin: 0;
   background: url(../images/twitter-icon.png) no-repeat;
-  background-position: 0px 0px;
-  padding: 0 0 5px 28px;
+  padding: 10px 0 0px 28px;
   font-size: 18px;
   line-height: 22px;
+}
+.region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h2.active {
+  background: url(../images/twitter-icon-active.png) no-repeat;
 }
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream a {
   border: 0;
