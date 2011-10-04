@@ -149,6 +149,9 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   }
   else if (($number = preg_replace('[^0-9]', '', $values['cell_or_email'])) && strlen($number) >= 10) {
     // TOOD: Check that the phone number is unique.
+    if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+      form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
+    }
     $form_state['values']['phone'] = $number;
     $form_state['values']['mail'] = '';
   }
@@ -184,9 +187,6 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
   $form_state['values']['name'] = dosomething_login_unique_name($name);
   $birthday = $values['birthdate'];
-  // TODO: put the birthdate, first and last name and optional cell phone number into data.
-  // Birthdate, first and last names go into profile fields.
-  // Phone goes into sms_user field.
   $form_state['values']['pass'] = user_password();
   $form_state['values']['init'] = $name;
   // Remove unneeded values.
@@ -203,6 +203,21 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     $form_state['redirect'] = '';
     return;
   }
+  // Save profile data.
+  $profile = new stdClass();
+  $profile->type = 'main';
+  $profile->uid = $account->uid;
+  drupal_write_record('profile', $profile);
+  $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['first_name'];
+  $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['last_name'];
+  $birthday = new DateObject($values['birthdate']);
+  $time = $birthday->format(DATE_FORMAT_DATETIME);
+  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
+  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
+  if (isset($values['phone'])) {
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
+  }
+  field_attach_insert('profile2', $profile);
   // Log user in.
   $form_state['uid'] = $account->uid;
   user_login_submit(array(), $form_state);  
