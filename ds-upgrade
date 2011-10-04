@@ -40,6 +40,8 @@ drush  @ds7 -y content-migrate-fields field_picture field_description field_news
 echo "starting og migration `date`"
 drush @ds7 -y og-migrate
 drush @ds7 -y dis og_migrate
+echo "reverting all features to code version `date`"
+drush @ds7 -y fra
 echo "Heyo all done `date`"
 echo "Starting on post-upgrade scripts. The site is now usable."
 ${ROOT}/ds-upgrade-post
