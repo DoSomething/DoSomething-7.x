@@ -47,9 +47,9 @@
   color: white;
 }
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h2 {
-  margin: 0;
+  margin: 0 0 -6px 0;
   background: url(../images/twitter-icon.png) no-repeat;
-  padding: 0px 0 0px 28px;
+  padding: 0 0 0 28px;
   font-size: 18px;
   line-height: auto;
 }
