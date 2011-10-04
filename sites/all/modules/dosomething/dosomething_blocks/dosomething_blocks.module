@@ -34,6 +34,9 @@ function dosomething_blocks_block_info() {
     'info' => t('DoSomething Make an Impact -- Front Page'),
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['dosomething_utility_bar'] = array(
+     'info' => t('DoSomething Utility Bar'),
+   );
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
   );
@@ -129,7 +132,7 @@ function dosomething_blocks_make_an_impact_form() {
   $who_with = taxonomy_get_tree(WHO_VOCABULARY, $parent = 0, $max_depth = 1);
   $where = taxonomy_get_tree(WHERE_VOCABULARY, $parent = 0, $max_depth = 1);
   $how_long = taxonomy_get_tree(TIME_VOCABULARY, $parent = 0, $max_depth = 1);
-  
+
   $cause_options = array();
   foreach ($what_cause as $option) {
     $cause_options[$option->tid] = $option->name;
@@ -215,6 +218,10 @@ function dosomething_blocks_utility_bar() {
       'css' => array(
         $path . '/css/ds/block-dosomething-blocks-dosomething-utility-bar.css',
       ),
+      'js' => array(
+        drupal_get_path('module', 'dosomething_blocks') . '/js/lets_talk_dialog.js',
+      ),
+      'library' => array(array('system', 'ui.dialog')),
     ),
     'here' => array(
       '#type' => 'container',
@@ -309,6 +316,9 @@ function dosomething_blocks_utility_bar() {
       ),
       'search' => drupal_get_form('search_block_form'),
     ),
+    'lightbox' => array(
+      '#markup' => theme('dosomething_blocks_lets_talk_dialog'),
+    ),
   );
   return $output;
 }
@@ -389,6 +399,10 @@ function dosomething_blocks_theme() {
   return array(
     'dosomething_blocks_social_node_plugins' => array(
       'variables' => array('facebook' => NULL, 'google' => NULL, 'twitter' => NULL, 'print' => NULL, 'email' => NULL),
+    ),
+    'dosomething_blocks_lets_talk_dialog' => array(
+      'path' => drupal_get_path('module', 'dosomething_blocks') . '/templates',
+      'template' => 'lets_talk_dialog'
     ),
   );
 }
