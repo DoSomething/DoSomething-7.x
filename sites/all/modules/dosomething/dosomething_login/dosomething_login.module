@@ -37,7 +37,7 @@ function dosomething_login_block_view($delta = '') {
  */
 function dosomething_login_register_block($form) {
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
-  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . l('Connect thru Facebook', 'fbconnect/register/create') . '</div>';
+  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . fbconnect_render_button() . '</div>';
   $form['or']['#markup'] = '<div class="separator split">' . t('or') . '</div>';
   $form['name'] = array(
     'first_name' => array(
