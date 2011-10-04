@@ -522,7 +522,6 @@ function theme_fb_social_plugin($variables){
  * returns the fbml content of the plugin
  */
 function fb_social_box_view($box){
-  dpm($box);
 
   $attributes = $box->options;
 
