@@ -105,7 +105,7 @@ function dosomething_causes_landing_page_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = 'Find Your Cause';
+  $display->title = '<none>';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass;
