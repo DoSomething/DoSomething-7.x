@@ -1,11 +1,10 @@
 <?php
-
-require '/var/www/freedom_rings_dev/code/webroot/sites/all/libraries/facebook/facebook.php';
-
-$facebook = new Facebook(array(
-  'appId'  => '255675941138550',
-  'secret' => '8f7b33bc239c7572c0a132610065e8ea',
-));
+require '/var/www/dosomething/webroot/sites/all/libraries/facebook/facebook.php';
+ 
+  $facebook = new Facebook(array(
+    'appId'  => '160632053975149',
+    'secret' => '63c5ac4d7c73f0f6500a52ebf2b744ad',
+   ));
 
 // See if there is a user from a cookie
 $user = $facebook->getUser();

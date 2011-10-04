@@ -84,7 +84,6 @@ function fbconnect_prompt_page_links() {
 function fbconnect_login_page($form, $form_state = array()) {
   $conf = fbconnect_get_config();
   $data = fbconnect_get_user_info(array('name', 'email'));
-  dpm($conf);
   // User not logged into facebook we dont have any information for them, let them log in.
   if (empty($data)) {
       return facebook_login_page($form, $form_state);
@@ -95,7 +94,7 @@ function fbconnect_login_page($form, $form_state = array()) {
     // User allready registered facebook account to site, log them in
     $form_state['uid'] = $user_id;
     user_login_submit($form, $form_state);
-    drupal_set_message('You have been successfully logged in.');
+    fbconnect_user_profile();
     drupal_goto('user/' . $user_id);
   }
   elseif ( _email_allready_exist($data['email'])) {
