@@ -30,6 +30,10 @@ function dosomething_blocks_block_info() {
     'info' => t('DoSomething Make an Impact'),
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['dosomething_make_impact_front'] = array(
+    'info' => t('DoSomething Make an Impact -- Front Page'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
   );
@@ -56,6 +60,11 @@ function dosomething_blocks_block_view($delta = '') {
     case 'dosomething_make_impact':
       $block['subject'] = t('Make an Impact');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
+      break;
+
+    case 'dosomething_make_impact_front':
+      $block['subject'] = t('Make an Impact');
+      $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form_front');
       break;
 
     case 'dosomething_utility_bar':
@@ -453,8 +462,18 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
   $plugin = fb_social_fb_plugin_load($plugin_type);
 
   return theme('fb_social_plugin', $variables = array(
-    'plugin_type' => $plugin_type, 
-    'tag_name' => $plugin['html tag name'], 
-    'attributes' => $attributes 
-  )); 
+    'plugin_type' => $plugin_type,
+    'tag_name' => $plugin['html tag name'],
+    'attributes' => $attributes
+  ));
+}
+
+/**
+ * Create the impact form for the front page. This essentially extends the regulat
+ *  form dosomething_blocks_make_an_impact_form and alters the text.
+ */
+function dosomething_blocks_make_an_impact_form_front() {
+  $content = dosomething_blocks_make_an_impact_form();
+  $content['description']['#title'] = t("Ready to take action? Choose from the options below and we'll find a whole bunch of Somethings for you to do.");
+  return $content;
 }
