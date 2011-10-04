@@ -49,7 +49,7 @@
 #block-dosomething-blocks-dosomething-facebook-activity h2 {
   margin: 0;
   background: url(../images/fb-icon.png) no-repeat;
-  padding: 10px 0 10px 28px;
+  padding: 0px 0 10px 28px;
   font-size: 18px;
   line-height: auto;
 }
