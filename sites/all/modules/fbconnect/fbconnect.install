@@ -133,63 +133,6 @@ function fbconnect_schema() {
   return $schema;
 }
 
-function fbconnect_update_6002() {
-  //  variable_set('fbconnect_reg_feed_id', FBCONNECT_REG_FEED_BUNDLEID);
-  //  variable_set('fbconnect_com_feed_id', FBCONNECT_COMMENT_FEED_BUNDLEID);
-
-  db_drop_field('fbconnect_users', 'import_setting');
-  db_drop_field('fbconnect_users', 'avatar');
-  db_drop_field('fbconnect_users', 'visibility');
-
-  return t('Remove obsolete database fields.');
-}
-
-/**
- * Alter fbuid field to allow for 64-bit facebook ids.
- */
-function fbconnect_update_6003() {
-  db_drop_primary_key('fbconnect_users');
-  db_change_field('fbconnect_users', 'fbuid', 'fbuid',
-    array(
-      'type' => 'int',
-      'unsigned' => TRUE,
-      'not null' => TRUE,
-      'default' => 0,
-      'size' => 'big',
-    ),
-    array('primary key' => array('fbuid'))
-  );
-  return t('Allow for 64-bit Facebook IDs.');
-}
-
-function fbconnect_update_6004() {
-  _fbconnect_change_user_mail_field();
-  return t('Extend minumum length of emails to 320 chars.');
-}
-
-/**
- * Delete unnesessary bundle_ids from system table
- */
-function fbconnect_update_6005() {
-  variable_del('fbconnect_reg_feed_id');
-  variable_del('fbconnect_com_feed_id');
-  return t('Delete obsolete variables.');
-}
-
-function fbconnect_update_6200() {
-  db_update('variable')
-    ->fields(array('name' => 'fbconnect_appid'))
-    ->condition('name', 'fbconnect_key')
-    ->execute();
-  db_update('block')
-    ->fields(array('module' => 'fbconnect_invite'))
-    ->condition('module', 'fbconnect_key')
-    ->condition('delta', '0', '=')
-    ->execute();
-
-  return t('Rename fbconnect_key.');
-}
-
 /**
  * Implements hook_schema_alter().
  * @param array $schema

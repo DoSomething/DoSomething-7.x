@@ -84,6 +84,7 @@ function fbconnect_prompt_page_links() {
 function fbconnect_login_page($form, $form_state = array()) {
   $conf = fbconnect_get_config();
   $data = fbconnect_get_user_info(array('name', 'email'));
+  dpm($conf);
   // User not logged into facebook we dont have any information for them, let them log in.
   if (empty($data)) {
       return facebook_login_page($form, $form_state);
@@ -103,7 +104,7 @@ function fbconnect_login_page($form, $form_state = array()) {
     drupal_set_message(t('This email address is allready registered to an account. Please log in to this account with the username and password provided during registration'));
     $options = array('query' => array(
       'fbconnect' => 'true'
-    )); 
+    ));
     drupal_goto('user/login', $options);
   }
   else {
@@ -121,7 +122,7 @@ function fbconnect_register_page($form, $form_state = array()) {
   $data = fbconnect_get_user_info(array('name', 'email'));
   // User not logged into facebook we dont have any information for them, let them log in.
   if (empty($data)) {
-      return facebook_login_page($form, $form_state);
+    return facebook_login_page($form, $form_state);
   }
   //check if user has allready registered with thier facebook account
   $user_id = _is_fbconnect_user($data['id']);
@@ -226,12 +227,13 @@ function fbconnect_register_page($form, $form_state = array()) {
 
 function facebook_login_page(&$form, $form_state = array()) {
     $facebook = facebook_client();
-    $login_url = $facebook->getLoginUrl();
+    $params['scope'] = 'email';
+    $login_url = $facebook->getLoginUrl($params);
     $form['log_in_to_facebook'] = array(
-      '#title' => t('You are not logged in to facebook you would have to log in AND give the site access to use this feature'),
+      '#title' => t('You must login to Facebook AND give the site access to use this feature'),
       '#description' => t('Log in using your facebook account'),
       '#type' => 'item',
-      '#markup' => l(t('Log in to Facebook'), $login_url),
+      '#markup' => l(t('Login using your Facebook account'), $login_url),
     );
     return $form;
 }
@@ -423,7 +425,6 @@ function theme_fbconnect_user_picture_override($variables) {
   $account = $variables['account'];
   $user_url = $variables['user_url'];
   $size = $variables['size'];
-  $logo = $variables['logo'];
   $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
   $path = $protocol . '://graph.facebook.com/' . $fbuid . '/picture?type=' . $size;
   $image = theme('image', array('path' => $path, 'alt' => $account->name));

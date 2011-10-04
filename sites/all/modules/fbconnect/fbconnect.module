@@ -43,17 +43,6 @@ function fbconnect_menu() {
     'weight' => 3,
   );
 
-//  $items['user/%user_category/edit/fbconnect'] = array(
-//    'title' => 'Facebook',
-//    'page callback' => 'fbconnect_user_identities',
-//    'page arguments' => array(1),
-//    'access callback' => 'user_edit_access',
-//    'access arguments' => array(1),
-//    'load arguments' => array('%map', '%index'),
-//    'type' => MENU_LOCAL_TASK,
-//    'file' => 'fbconnect.pages.inc',
-//  );
-
   $items['fbconnect/register/prompt'] = array(
     'title' => 'Facebook connect',
     'page callback' => 'fbconnect_prompt_page',
@@ -96,6 +85,33 @@ function fbconnect_menu() {
 }
 
 /**
+ * Implements hook_block().
+ */
+function fbconnect_block_info() {
+  // This example comes from node.module.
+  $blocks['fbconnect_login'] = array(
+    'info' => t('Facebook Login'), 
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function fbconnect_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'fbconnect_login':
+      $block['subject'] = t('Facebook Login');
+      $block['content'] = fbconnect_render_button(); 
+    break;
+  }
+  return $block;
+}
+
+/**
  * Implements hook_theme().
  */
 function fbconnect_theme() {
@@ -106,7 +122,6 @@ function fbconnect_theme() {
         'account' => NULL,
         'user_url' => NULL,
         'size' => '',
-        'logo' => TRUE,
       ),
       'file' => 'fbconnect.pages.inc',
     ),
@@ -114,6 +129,8 @@ function fbconnect_theme() {
       'variables' => array(
         'text' => '',
         'attr' => '',
+        'op' => '',
+        'user_profile' => '',
       ),
     ),
     'fbconnect_user_profile_tab_connected' => array(
@@ -144,7 +161,7 @@ function fbconnect_init() {
   if ($conf && facebook_client() && user_is_anonymous()) {
     if ($conf['loginout_mode'] == 'auto') {
       $fbuid = fbconnect_get_fbuid();
-      if ($fbuid && _is_fbconnect_user($fbuid)) {
+      if ($fbuid && _is_fbconnect_user($fbuid) && fbconnect_user_profile()) {
         $form_state = array('values' => array('op' => 'connect'));
         drupal_form_submit('fbconnect_autoconnect_form', $form_state);
         drupal_goto($form_state['redirect']);
@@ -237,24 +254,6 @@ function fbconnect_form_alter(&$form, $form_state, $form_id) {
           $form['#submit'][] = 'fbconnect_add_user_afterlogin_submit';
       }
 
-      // don't break here since we want to run the next user_login_block case too
-
-      // Render fbconnect on login block.
-    case 'user_login_block':
-      if ((empty($_GET['destination']) || (!empty($_GET['destination']) && ($_GET['destination'] != 'fbconnect/link'))) && facebook_client()) {
-
-        $attr = array('scope' => 'email');
-
-        $form['fbconnect_button'] = array(
-          '#type' => 'item',
-          '#title' => t('Sign in using Facebook'),
-          '#markup' => fbconnect_render_button($attr),
-          '#weight' => 1,
-          '#id' => 'fbconnect_button',
-        );
-      }
-      break;
-
     case 'user_profile_form':
       if (variable_get('user_pictures', 0) && isset($form['_account'])) {
         $account = $form['_account']['#value'];
@@ -272,7 +271,7 @@ function fbconnect_form_alter(&$form, $form_state, $form_id) {
 }
 
 /**
- * add the user to the fbconnect_users table if they logged in with facebook
+ * Add the user to the fbconnect_users table if they logged in with facebook
  * @param mixed $form
  * @param mixed $form_state
  */
@@ -309,36 +308,33 @@ function fbconnect_user_edit_submit($form, &$form_state) {
 /**
  * Render a custom button to log in via Facebook.
  */
-function fbconnect_render_button($attr = array()) {
+function fbconnect_render_button($attr = array(), $op = null) {
+
+  $user_profile = fbconnect_user_profile();
+  if (!$op) {
+    $op = $user_profile ? 'login' : 'register';
+  }
+
   list($size) = explode('_', variable_get('fbconnect_button', NULL));
   $default_attr = array(
-    'text' => variable_get('fbconnect_button_text', t('Connect')),
+    'text' => variable_get('fbconnect_button_' . $op . '_text', t('Connect')),
     'size' => $size,
-    'onlogin' => 'facebook_onlogin_ready();',
     'background' => 'dark',
-    'v' => 2,
+    'v' => 3,
   );
 
   $attr = array_merge($default_attr, $attr);
   $text = $attr['text'];
   unset($attr['text']);
 
-  return theme('fbconnect_login_button', array('text' => $text, 'attr' => $attr));
+  return theme('fbconnect_login_button', array('text' => $text, 'attr' => $attr, 'op' => $op, 'user_profile' => $user_profile));
 }
 
-function _facebook_client_search_paths() {
-  return array_filter(array(
-    drupal_get_path('module', 'fbconnect') . '/facebook-php-sdk',
-    module_invoke('libraries', 'get_path', 'facebook-php-sdk'),
-    drupal_get_path('module', 'fbconnect') . '/facebook-client',
-    drupal_get_path('module', 'fbconnect'),
-    module_invoke('libraries', 'get_path', 'facebook-platform'),
-    module_invoke('libraries', 'get_path', 'facebook-client'),
-  ));
-}
-
+/**
+ * Include PHP-SDK library.
+ * // TODO: add full Libraries API support.
+ */
 function _facebook_client_load_include() {
-  // TODO: add full Libraries API support.
   if (!class_exists('Facebook')) {
     $paths = array(
       DRUPAL_ROOT . '/sites/all/libraries/facebook',
@@ -374,10 +370,10 @@ function facebook_client() {
       $initParams = array(
         'appId' => $conf['app_id'],
         'secret' => $conf['secret_api_key'],
-        'cookie' => TRUE,
       );
 
       $fb = new Facebook($initParams);
+
       // hack for #902542
       Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = FALSE;
       Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYHOST] = 2;
@@ -388,8 +384,26 @@ function facebook_client() {
 }
 
 /**
- * Get fbconnect config parameter
- *
+ * Get the user profile or return null if they are not logged in and registered.
+ * @return user_profile array 
+ */
+function fbconnect_user_profile() {
+  $user_profile = null;
+  $client = facebook_client();
+  $user = $client->getUser();
+  if ($user) {
+    try {
+      // Proceed knowing you have a logged in user who's authenticated.
+      $user_profile = $client->api('/me');
+    } catch (FacebookApiException $e) {
+      $user_profile = null;
+    }
+  }
+  return $user_profile;
+}
+
+/**
+ * Get fbconnect config parameter.
  * @return array
  */
 function fbconnect_get_config() {
@@ -419,7 +433,7 @@ function fbconnect_get_config() {
     $config['fast_reg_mode'] = variable_get('fbconnect_fast_reg', NULL);
     $config['fast_reg_autoname'] = variable_get('fbconnect_fast_reg_autoname', 1);
 
-    // allow third party modules to change settings
+    // Allow third party modules to change settings.
     drupal_alter('fbconnect_config', $config);
   }
 
@@ -479,28 +493,34 @@ function fbconnect_render_js() {
 }
 
 /**
- * Implements hook_page_alter ().
+ * Implements hook_page_alter().
  */
 function fbconnect_page_alter(&$page) {
-  if (facebook_client() && !_fbconnect_is_excluded_page($_GET['q'])) {
+  if (facebook_client() && !_fbconnect_is_excluded_page($_GET['q']) && !variable_get('fbconnect_noroot')) {
     $config = fbconnect_get_config();
     $channel_uri = preg_replace("@'@msi", "\'", "http://" . $_SERVER['HTTP_HOST'] . "/" . drupal_get_path('module', 'fbconnect') . "/channel.html");
     $page['page_bottom']['fb-init-code'] = array(
       '#type' => 'markup',
       '#markup' => '<div id="fb-root"></div>
-      <script type=""text/javascript"">
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId : \'' . $config['app_id'] . '\',
-          status : true, // check login status
-          cookie : true, // enable cookies to allow the server to access the session
-          xfbml : true,
-          logging: \'' . $config['debug'] . '\',
-          channelURL: \'' . $channel_uri . '\',
-          oauth  : true
-        });
+      <script type="text/javascript">
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId : \'' . $config['app_id'] . '\',
+            cookie : true, // enable cookies to allow the server to access the session
+            xfbml : true,
+            logging: \'' . $config['debug'] . '\',
+            channelURL: \'' . $channel_uri . '\',
+            oauth  : true
+          });
+          // whenever the user logs in, we tell our login service
+          FB.Event.subscribe(\'auth.login\', function() {
+            window.location.reload();
+          });
+          FB.Event.subscribe(\'auth.logout\', function(response) {
+            window.location.reload();
+          });
 
-        jQuery(document).trigger(\'fb:init\');
+          jQuery(document).trigger(\'fb:init\');
         };
 
         (function() {
@@ -511,24 +531,7 @@ function fbconnect_page_alter(&$page) {
         }());
       </script>'
     );
-    // ugly hack to integrate with fb_social
-    if (!empty($config['omit_fb_init_code'])) {
-      unset($footer['fb-init-code']);
-    }
 
-    if (!fbconnect_get_fbuid(TRUE)) {
-      // Display the autoconnect form.
-      $fbconnect_autoconnect_form = drupal_get_form('fbconnect_autoconnect_form');
-      $footer['autoconnect-form'] = '<div style="display: none">' . drupal_render($fbconnect_autoconnect_form) . '</div>';
-    }
-
-    // drupal_alter('fbconnect_footer', $footer);
-    if (isset($footer)) {
-      $page['page_bottom']['fb_init_code'] = array(
-        '#type' => 'markup',
-        '#markup' => implode("\n", $footer),
-      );
-    }
   }
 }
 
@@ -553,6 +556,9 @@ function fbconnect_autoconnect_form($form) {
   return $form;
 }
 
+/**
+ * Submit handler for autoconnect form.
+ */
 function fbconnect_autoconnect_form_submit($form, &$form_state) {
   $fbuid = fbconnect_get_fbuid();
   if (!$fbuid) {
@@ -576,7 +582,7 @@ function fbconnect_autoconnect_form_submit($form, &$form_state) {
           $form_state['redirect'] = array('fbconnect/register/prompt', drupal_get_destination() );
         }
 
-        // #805846 : No linking with FB page appears, when "destination" variable exist in url
+        // #805846 : No linking with FB page appears, when "destination" variable exist in url.
         unset($_GET['destination']);
       }
       elseif ($uid) {
@@ -624,7 +630,6 @@ function _get_user_fbuid($uid) {
     $query = db_select('fbconnect_users', 'fb_u');
     $query->fields('fb_u', array('fbuid'));
     $query->condition('uid', $uid, '=');
-    //$query = "SELECT fbuid FROM {fbconnect_users} where uid = %d";
     return $query->execute()->fetchField();
   }
 }
@@ -645,8 +650,6 @@ function fbconnect_register($uid, $fbuid) {
     return FALSE;
   }
 
-  //$delete_query = 'DELETE FROM {fbconnect_users} WHERE uid = %d';
-  //$insert_query = 'INSERT INTO {fbconnect_users} (uid, fbuid, timestamp) VALUES (%d, \'%s\', %d)';
   db_delete('fbconnect_users')
     ->condition('uid', $uid)
     ->execute();
@@ -899,7 +902,7 @@ function fbconnect_theme_user_picture_override($variables) {
   $user_url = url('user/' . $account->uid);
 
   if ($fbuid && isset($account->data['fb_avatar']) && $account->data['fb_avatar']) {
-    $output = theme('fbconnect_user_picture_override', array('fbuid' => $fbuid, 'account' => $account, 'user_url' => $user_url, 'size' => variable_get('fbconnect_pic_size', $preset), 'logo' => variable_get('fbconnect_pic_logo', TRUE)));
+    $output = theme('fbconnect_user_picture_override', array('fbuid' => $fbuid, 'account' => $account, 'user_url' => $user_url, 'size' => variable_get('fbconnect_pic_size', $preset), ));
   }
   else {
     $output = theme('fbconnect_user_picture_orig', array('account' => $account)); // Markup without fb_connect.
@@ -953,30 +956,26 @@ function fbconnect_node_build_alter($build) {
   }
 }
 
-
 /**
- * The post-remove callback for facebook. Unlinks facebook account
- * from the linked drupal one.
+ * Theme function for Facebook connect/login button.
  */
-function fbconnect_post_remove_callback() {
-//  if ($fb = facebook_client()) {
-//    $fbuid = $fb->get_loggedin_user(); // TODO: update outdated code
-//    if ($fbuid && $fb->fb_params['uninstall'] == 1) {
-//      //The user has removed your app
-//      fbconnect_unregister($fbuid);
-//      watchdog(
-//        'fbconnect',
-//        "User with fbuid @fbuid has revoked authorization",
-//        array('@fbuid' => $fbuid)
-//      );
-//    }
-//  }
-}
-
 function theme_fbconnect_login_button($variables) {
+  $op = $variables['op'];
+  $user_profile = $variables['user_profile'];
   $text = $variables['text'];
   $attr = $variables['attr'];
-  return '<fb:login-button ' . drupal_attributes($attr) . '>' . $text . '</fb:login-button>';
+  if ($op == 'login') {
+    $url = url('fbconnect/register/create');
+    $title = t('Hello %name', array('%name' => $user_profile['name']));
+    $desc = t('Login to this site using your Facebook credentials.');
+    $link = '<a href="/fbconnect/register/create" class="fb_button fb_button_' . $attr['size'] . '"><span class="fb_button_text">' . $text . '</span></a>';
+    $button = '<button onclick="location.href=\'' . $url . '\'" id="fblogin" type="button">Log in</button>';
+    return '<h3>' . $title . '</h3>' . $desc . $link;
+  }
+  else {
+    $button = '<fb:login-button ' . drupal_attributes($attr) . '>' . $text . '</fb:login-button>';
+    return $button;
+  }
 }
 
 /**
@@ -997,4 +996,18 @@ function _fbconnect_is_excluded_page($path) {
  */
 function fbconnect_rdf_namespaces() {
   return array('fb' => 'http://www.facebook.com/2008/fbml');
+}
+
+/** 
+ * Implements hook_user_logout.
+ */
+function fbconnect_user_logout() {
+  // Redirect user to Facebook logout url.
+  $client = facebook_client();
+  if ($client && $fbuid = $client->getUser() && variable_get('fbconnect_loginout_mode') == 'auto') {
+    session_destroy();
+    global $base_url;
+    $url = $client->getLogoutUrl(array('next' => $base_url));
+    drupal_goto($url);
+  }
 }

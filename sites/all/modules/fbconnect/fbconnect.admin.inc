@@ -61,6 +61,13 @@ function fbconnect_api_keys_settings($form, &$form_state) {
     '#default_value' => variable_get('fbconnect_connect_url', $GLOBALS['base_url'] . '/'),
   );
 
+   $form['fbconnect_noroot'] = array(
+     '#title' => t('Don\'t include settings in footer.'),
+     '#type' => 'checkbox',
+     '#description' => t('Check if other facebook modules are in use so fb-root code is not added twice.'),
+     '#default_value' => variable_get('fbconnect_noroot', '')
+   );
+
   //  locale
   //  connect_logo_url
   //  about_url
@@ -96,7 +103,6 @@ function fbconnect_appearance_settings($form, &$form_state) {
     '#title' => t('Login/logout mode'),
     '#options' => array(
       'manual' => t('Manual'),
-      'ask'    => t('Ask user to logout from FB'),
       'auto'   => t('Auto login/logout'),
     ),
     '#default_value' => variable_get('fbconnect_loginout_mode', FALSE),
@@ -120,21 +126,32 @@ function fbconnect_appearance_settings($form, &$form_state) {
 
   if (fbconnect_get_config()) {
     $button = array(
-      'small_short'  => fbconnect_render_button(array('size' => 'small', 'onclick' => 'return false;')),
-      'medium_short' => fbconnect_render_button(array('size' => 'medium', 'onclick' => 'return false;')),
-      'large_short'  => fbconnect_render_button(array('size' => 'large', 'onclick' => 'return false;')),
+      'small_short'  => fbconnect_render_button(array('size' => 'small', 'onclick' => 'return false;'), 'register'),
+      'medium_short' => fbconnect_render_button(array('size' => 'medium', 'onclick' => 'return false;'), 'register'),
+      'large_short'  => fbconnect_render_button(array('size' => 'large', 'onclick' => 'return false;'), 'register'),
     );
-
     $form['display']['fbconnect_button'] = array(
+      '#title' => t('Facebook Button Size'),
       '#type' => 'radios',
       '#default_value' => variable_get('fbconnect_button', 'medium_short'),
       '#options' => $button,
     );
-    $form['display']['fbconnect_button_text'] = array(
-      '#title' => t('Button text'),
+    $form['display']['fbconnect_button_register_text'] = array(
+      '#title' => t('Not Logged into Facebook Text'),
       '#type' => 'textfield',
-      '#description' => t('Enter the text you want to display on the Facebook Connect Button.'),
-      '#default_value' => variable_get('fbconnect_button_text', 'Connect'),
+      '#description' => t('The user is not logged into Facebook or this site so we have not info about their status.'),
+      '#default_value' => variable_get('fbconnect_button_register_text', 'Connect'),
+    );
+    $form['display']['fbconnect_button_login_text'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Logged into Facebook and Registered but not Logged Into This Site'),
+      '#description' => t('They are logged into Facebook and have registered but not logged into this site (manual mode only)'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="fbconnect_loginout_mode"]' => array('value' => t('manual')),
+        ),
+      ),
+      '#default_value' => variable_get('fbconnect_button_login_text', 'Login'),
     );
   }
 
@@ -186,19 +203,13 @@ function fbconnect_appearance_settings($form, &$form_state) {
     '#options' => $options_pic_size,
   );
 
-  $form['display']['fbconnect_pic_logo'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Show Facebook Logo'),
-    '#description' => t("Uncheck this if you don't want to display the facebook logo on the user picture."),
-    '#default_value' => variable_get('fbconnect_pic_logo', TRUE),
-  );
-
   $form['additional'] = array(
     '#type' => 'fieldset',
     '#title' => t('Additional'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
+
   $form['additional']['fbconnect_exclude_patterns'] = array(
     '#type' => 'textarea',
     '#title' => t('Disable FBConnect on specified pages'),

@@ -50,6 +50,46 @@ libraries[facebook-php-sdk][destination] = "modules/fbconnect"
   5. Configure the module through admin interface (admin/settings/fbconnect) using the information provided by Facebook
     (Application ID, Application Secret).
 
+-- About "Connecting" with Facebook --
+
+Facebook expects that once you are logged into Facebook and have registered 
+with the appid for site X that you would automatically logged into site X 
+if you visit it in the same browser.
+
+Select "Auto login/logout" to reproduce this behavior.
+
+It gets confusing though as a user and someone who tries to provide choices
+to users about what the "Connect" button means. 
+
+It can mean any of the following:
+
+1) Login to Facebook, register in Facebook with "Site X", and create a user for "Site X"
+
+2) Register on Facebook with "Site X" and create a user on "Site X"
+
+3) Login to Facebook and login to "Site X"
+
+4) Login to "Site X" 
+
+Facebook only gives you information about a visitor if they are BOTH logged
+into Facbook and have registered with your appid. So it is impossible to 
+differentiate from cases 1 - 3.
+
+As a user you might not want to automatically login to a site when you are 
+logged into Facebook. 
+
+This module has a "manual" setting for "Login / Logout" mode to give users
+that option.
+
+If you select "manual" there are two options for the name of the button.
+
+- "Not Logged into Facebook" satisfies cases 1 - 3. The default button says 
+  "Connect".
+
+- "Logged into Facebook and Registered but not Logged into This Site" satisfies
+  case 4. The default is "Login" and also provides the user name which is 
+  made available by Facebook. 
+
 -- FAQ --
 
 Q: How to skip linking local account to FB account?
