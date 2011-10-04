@@ -27,6 +27,10 @@ function dosomething_login_block_view($delta = '') {
         $block['subject'] = t('Become a Member');
         $block['content'] = drupal_get_form('dosomething_login_register_block');
       }
+      else {
+        $block['subject'] = '';
+        $block['content'] = dosomething_login_member_block();
+      }
       break;
   }
   return $block;
@@ -37,7 +41,7 @@ function dosomething_login_block_view($delta = '') {
  */
 function dosomething_login_register_block($form) {
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
-  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . fbconnect_render_button() . '</div>';
+  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . l('Connect thru Facebook', 'fbconnect/register/create') . '</div>';
   $form['or']['#markup'] = '<div class="separator split">' . t('or') . '</div>';
   $form['name'] = array(
     'first_name' => array(
@@ -288,4 +292,89 @@ function dosomething_login_mobile_signup() {
   watchdog('dosomething_login', $ip . " " . $_SERVER['REQUEST_URI'], $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL);
 
   return 'THIS IS A TEST';
+}
+
+/**
+ * Member dashboard block for logged in users.
+ */
+function dosomething_login_member_block() {
+  global $user;
+  drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/show-member-items.js');
+  $output = '<div class="dosomething-login-user-name">' . '<h2>' . check_plain($user->name) . '</h2><span class="user-role">(' . dosomething_login_user_role() . ')</span></div>';
+  $output .= '<div class="dosomething-login-profile">' . dosomething_login_profile_completion() . '</div>';
+  $output .= dosomething_login_my_somethings();
+  $output .= dosomething_login_notifications();
+  $output .= l('Go to profile >>', 'user', array('attributes' => array('class' => array('dosomething-login-goto-profile'))));
+  return $output;
+}
+
+function dosomething_login_user_role() {
+  global $user;
+  $roles = $user->roles;
+  $member = user_role_load_by_name('member');
+  if (isset($roles[$member->rid])) {
+    return t('member');
+  }
+  $active_member = user_role_load_by_name('active member');
+  if (isset($roles[$active_member->rid])) {
+    return 'active';
+  }
+  return t('inactive');
+}
+
+function dosomething_login_profile_completion() {
+  global $user;
+  $ratio = dosomething_login_profile_percentage();
+  $output = '<div class="profile-header">' . t('My profile: %percent', array('%percent' => number_format($ratio, 2) . '%')) .  l('Complete >>', 'user/' . $user->uid . '/edit/main') . '</div>';
+  $output .= '<div class="dosomething-login-percentage"><div data-ratio="' . $ratio . '">' . $ratio . '</div></div>';
+  return $output;
+}
+
+function dosomething_login_my_somethings() {
+  $output = '<h2 class="my-somethings">' . t('My Somethings') . '</h2>';
+  $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_login_my_current_somethings());
+  $items[] = array('data' => t('My Opportunities'), 'children' => dosomething_login_my_opportunities());
+  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => 'my-somethings')));
+  return $output;
+}
+
+function dosomething_login_notifications() {
+  $output = '<h2 class="notifications">' . t('Notifications') . '</h2>';
+  // TODO: replace dummy content
+  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => 'notifications')));
+  return $output;
+}
+
+function dosomething_login_profile_percentage() {
+  global $user;
+  $profile = profile2_load_by_user($user);
+  $total = 0;
+  $complete = 0;
+  foreach ($profile['main'] as $field_name => $values) {
+    if (substr($field_name, 0, 5) == 'field') {
+      $total++;
+      if (count($values)) {
+        $complete++;
+      }
+    }
+  }
+  if ($total) {
+    return ($complete / $total);
+  }
+}
+
+function dosomething_login_my_current_somethings() {
+  // TODO: replace dummy content
+  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  return $items;
+}
+
+function dosomething_login_my_opportunities() {
+  // TODO: replace dummy content
+  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  return $items;
 }
