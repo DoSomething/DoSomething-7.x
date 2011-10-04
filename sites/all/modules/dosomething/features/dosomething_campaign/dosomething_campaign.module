@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Dosomething Campaign feature.
+ */
+
+include_once('dosomething_campaign.features.inc');
