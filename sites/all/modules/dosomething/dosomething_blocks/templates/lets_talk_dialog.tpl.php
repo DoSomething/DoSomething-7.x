@@ -1,7 +1,7 @@
 +<?php
 /**
  * @file
- * Content for Let's Talk dialog popup. 
+ * Content for Let's Talk dialog popup.
  */
 ?>
 
@@ -13,7 +13,7 @@
         <span class="title"><?php print t('Text with us...'); ?></span><span class="desc"><?php print t('Text HELPME to 30644'); ?></span>
       </div>
       <div class="lets-talk-chat">
-        <span class="title"><?php print t('Chat with us...'); ?></span><span class="desc"><?php print t('Click <a href="NEEDLINK">here</a> to chat live'); ?> </span>; 
+        <span class="title"><?php print t('Chat with us...'); ?></span><span class="desc"><?php print t('Click <a href="NEEDLINK">here</a> to chat live'); ?> </span>;
       </div>
       <div class="lets-talk-email">
         <span class="title"><?php print t('Email us...'); ?></span><span class="desc"><?php print l('helpme@dosomething.org', 'mailto:helpmedosomething.org'); ?> </span>
