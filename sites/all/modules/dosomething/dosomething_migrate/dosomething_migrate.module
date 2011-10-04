@@ -62,7 +62,7 @@ function dosomething_migrate_regenerate_webform_nodes() {
 
   //Get the node data and save it into drupal
   foreach ($files as $file) {
-    $webform =  file_get_contents(drupal_get_path('module', 'dosomething_migrate') . '/nodes/' . $file->filename);
+    $webform =  file_get_contents($file->uri);
     $webform = unserialize($webform);
 
     $webform_data = $webform->webform;
