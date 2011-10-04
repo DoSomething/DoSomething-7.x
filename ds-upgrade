@@ -55,6 +55,8 @@ drush @ds7 vset -y pathauto_node_campaign_hunt_2011_pattern "project/scavenger-h
 drush @ds7 vset -y pathauto_node_campaign_ew_2011_pattern "project/ewaste/[node:title]"
 drush @ds7 vset -y pathauto_node_dsu_guides_pattern "u/[node:content-type]/[node:title]"
 drush @ds7 vset -y pathauto_node_project_update_pattern "actnow/project/updates/[node:title]"
+drush @ds7 vset -y pathauto_user_pattern "users/[user:name]" 
+drush @ds7 vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 # Change auto increment for webform_submissions table
 SID=`drush @ds7 php-eval "print db_query('select max(nid) from node')->fetchField();"`
 SID=$(($SID+1000))
