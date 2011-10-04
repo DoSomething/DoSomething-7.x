@@ -8,12 +8,13 @@ core = 7.x
 stylesheets[all][] = css/style.css
 
 ; regions
-regions[sidebar_first]  = Left sidebar
-# regions[sidebar_second] = Right sidebar
-regions[content] = Content
+regions[utility] = Utility Bar
 regions[header] = Header
-regions[footer] = Footer
 regions[highlighted] = Highlighted
 regions[help] = Help
 regions[page_top] = Page Top
+regions[sidebar_first]  = Left sidebar
+# regions[sidebar_second] = Right sidebar
+regions[content] = Content
 regions[page_bottom] = Page Bottom
+regions[footer] = Footer

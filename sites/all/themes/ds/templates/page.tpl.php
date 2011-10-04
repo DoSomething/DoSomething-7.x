@@ -7,13 +7,13 @@
  */
 ?>
 
-<div id="utility-bar">
-  <div class="container">
-    <div class="utility-block">
-      UTILITY BAR
+<?php if ($utility = render($page['utility'])): ?>
+  <div id="utility-bar">
+    <div class="container">
+      <?php print $utility; ?>
     </div>
   </div>
-</div>
+<?php endif; ?>
 <div id="page" class="container">
   <header role="banner">
 
