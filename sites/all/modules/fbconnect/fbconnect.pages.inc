@@ -107,7 +107,7 @@ function fbconnect_login_page($form, $form_state = array()) {
     drupal_goto('user/login', $options);
   }
   else {
-    drupal_set_message(t('You do not have an account with this site. Create an account on this site with through facebook !here', array('!here' => l('Register', 'fbconnect/register/create'))));
+    drupal_set_message(t('You do not have an account with this site. Create an account on this site with through facebook !here.', array('!here' => l('here', 'fbconnect/register/create'))));
   }
 
 }
