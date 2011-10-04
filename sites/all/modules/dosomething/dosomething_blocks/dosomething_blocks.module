@@ -212,7 +212,7 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
  */
 function dosomething_blocks_utility_bar() {
   $path = drupal_get_path('theme', 'ds');
-  $image_path = $path . '/css/images/sprites';
+  $image_path = base_path() . $path . '/css/images/sprites';
   $output = array(
     '#attached' => array(
       'css' => array(
@@ -278,6 +278,16 @@ function dosomething_blocks_utility_bar() {
         ),
       ),
     ),
+    'search' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'utility-items',
+          'search',
+        ),
+      ),
+      'search' => drupal_get_form('search_block_form'),
+    ),
     'login' => array(
       '#type' => 'container',
       '#attributes' => array(
@@ -309,16 +319,6 @@ function dosomething_blocks_utility_bar() {
           'html' => TRUE,
         ),
       ),
-    ),
-    'search' => array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'utility-items',
-          'search',
-        ),
-      ),
-      'search' => drupal_get_form('search_block_form'),
     ),
     'lightbox' => array(
       '#markup' => theme('dosomething_blocks_lets_talk_dialog'),

@@ -1,8 +1,58 @@
 @import setup
+
 // --------------------------------------------------------------------------------------
 
 #block-dosomething-blocks-dosomething-utility-bar
+  background:
+    image: image-url('sprites/bg-utility-search.png')
+    repeat: no-repeat
+    position: 100% 14%
+  line-height: 0
+  margin-left: $left-col-width
   .utility-items
     +inline-block
-    .connect-icons li
-      +inline-block
+    a
+      +remove-link-underlines
+  .here-to-help
+    +inline-block
+    margin-bottom: 9px
+  .connect-icons li
+    +inline-block
+    margin-bottom: 14px
+    padding: 0 1em
+  .search
+    +inline-block
+    margin: 0 0 6px 14px
+    input[type="search"]
+      +single-box-shadow($black-not, 0, 0, 4px, 2px, inset)
+      background:
+        color: $gray-darker
+        repeat: no-repeat
+        position: 97% 50%
+      +background-image(image_url('sprites/icn-utility-search-magnify.png'))
+      border: 1px solid #606060
+      color: $gray-light
+      font-size: 10px
+      height: 22px
+      padding: 4px
+      text-transform: lowercase
+    input[type="search"]::-webkit-search-cancel-button
+      -webkit-appearance: none
+    textarea, input:not([type="submit"])
+      width: 187px
+    .form-actions
+      margin-left: 5px
+      input[type="submit"]
+        height: 22px
+        margin-bottom: 11px
+        padding: 4px 1em 4px 1em
+        width: 48px
+  .login
+    margin-bottom: 17px
+    a
+      color: $white
+      font-size: 12px
+      margin: 0 20px
+  .utility-items.fbconnect
+    +float-right
+    margin: 1em 8px 1em 0

@@ -17,6 +17,13 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
+#block-dosomething-blocks-dosomething-utility-bar {
+  background-image: url('../images/sprites/bg-utility-search.png');
+  background-repeat: no-repeat;
+  background-position: 100% 14%;
+  line-height: 0;
+  margin-left: 205px;
+}
 #block-dosomething-blocks-dosomething-utility-bar .utility-items {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -27,13 +34,87 @@
 #block-dosomething-blocks-dosomething-utility-bar .utility-items {
   *display: inline;
 }
-#block-dosomething-blocks-dosomething-utility-bar .utility-items .connect-icons li {
+#block-dosomething-blocks-dosomething-utility-bar .utility-items a {
+  border-bottom: none;
+}
+#block-dosomething-blocks-dosomething-utility-bar .utility-items a:hover {
+  border-bottom: none;
+}
+#block-dosomething-blocks-dosomething-utility-bar .here-to-help {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
+  margin-bottom: 9px;
 }
-#block-dosomething-blocks-dosomething-utility-bar .utility-items .connect-icons li {
+#block-dosomething-blocks-dosomething-utility-bar .here-to-help {
   *display: inline;
+}
+#block-dosomething-blocks-dosomething-utility-bar .connect-icons li {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin-bottom: 14px;
+  padding: 0 1em;
+}
+#block-dosomething-blocks-dosomething-utility-bar .connect-icons li {
+  *display: inline;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin: 0 0 6px 14px;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search {
+  *display: inline;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
+  -moz-box-shadow: inset 0 0 4px 2px #161616;
+  -webkit-box-shadow: inset 0 0 4px 2px #161616;
+  -o-box-shadow: inset 0 0 4px 2px #161616;
+  box-shadow: inset 0 0 4px 2px #161616;
+  background-color: #343434;
+  background-repeat: no-repeat;
+  background-position: 97% 50%;
+  background-image: url('../images/sprites/icn-utility-search-magnify.png');
+  border: 1px solid #606060;
+  color: #d1d1d1;
+  font-size: 10px;
+  height: 22px;
+  padding: 4px;
+  text-transform: lowercase;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search textarea, #block-dosomething-blocks-dosomething-utility-bar .search input:not([type="submit"]) {
+  width: 187px;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search .form-actions {
+  margin-left: 5px;
+}
+#block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
+  height: 22px;
+  margin-bottom: 11px;
+  padding: 4px 1em 4px 1em;
+  width: 48px;
+}
+#block-dosomething-blocks-dosomething-utility-bar .login {
+  margin-bottom: 17px;
+}
+#block-dosomething-blocks-dosomething-utility-bar .login a {
+  color: white;
+  font-size: 12px;
+  margin: 0 20px;
+}
+#block-dosomething-blocks-dosomething-utility-bar .utility-items.fbconnect {
+  display: inline;
+  float: right;
+  margin: 1em 8px 1em 0;
 }
