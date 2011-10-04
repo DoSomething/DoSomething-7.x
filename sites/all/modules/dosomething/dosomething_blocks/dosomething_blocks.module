@@ -27,6 +27,9 @@ function dosomething_blocks_block_info() {
   $blocks['dosomething_make_impact'] = array(
     'info' => t('DoSomething Make an Impact'),
   );
+  $blocks['dosomething_utility_bar'] = array(
+    'info' => t('DoSomething Utility Bar'),
+  );
   return $blocks;
 }
 
@@ -50,6 +53,11 @@ function dosomething_blocks_block_view($delta = '') {
     case 'dosomething_make_impact':
       $block['subject'] = t('Make an Impact');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
+      break;
+
+    case 'dosomething_utility_bar':
+      $block['content'] = dosomething_blocks_utility_bar();
+      break;
   }
   return $block;
 }
@@ -186,4 +194,137 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
   //THIS IS A STUB
   //TODO: Fill in with real logic when we know what path to send the user to.
   return;
+}
+
+/**
+ * Block callback for utility bar that appears at the top of a page.
+ */
+function dosomething_blocks_utility_bar() {
+  $path = drupal_get_path('theme', 'ds');
+  $image_path = $path . '/css/images/sprites';
+  $output = array(
+    '#attached' => array(
+      'css' => array(
+        $path . '/css/ds/block-dosomething-blocks-dosomething-utility-bar.css',
+      ),
+    ),
+    'here' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'utility-items',
+          'here-to-help',
+        ),
+      ),
+      'here' => array(
+        '#markup' => t("We're here to help"),
+      ),
+    ),
+    'icons' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'utility-items',
+          'icons',
+        ),
+      ),
+      'links' => array(
+        '#theme' => 'links',
+        '#links' => array(
+          'chat' => array(
+            'title' => '<img src="' . $image_path .'/icn-chat.png">',
+            'html' => TRUE,
+            'href' => '#',
+          ),
+          'text' => array(
+            'title' => '<img src="' . $image_path .'/icn-text.png">',
+            'html' => TRUE,
+            'href' => '#',
+          ),
+          'call' => array(
+            'title' => '<img src="' . $image_path .'/icn-call.png">',
+            'html' => TRUE,
+            'href' => '#',
+          ),
+          'email' => array(
+            'title' => '<img src="' . $image_path .'/icn-email.png">',
+            'html' => TRUE,
+            'href' => '#',
+          ),
+        ),
+        '#attributes' => array(
+          'class' => array(
+            'connect-icons',
+          ),
+        ),
+      ),
+    ),
+    'login' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'utility-items',
+          'login',
+        ),
+      ),
+      'login' => dosomething_blocks_login(),
+    ),
+    'fbconnect' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'utility-items',
+          'fbconnect',
+        ),
+      ),
+      'link' => array(
+        '#theme' => 'link',
+        '#text' => '<img src="' . $image_path .'/btn-fbconnect.png">',
+        '#path' => '#',
+        '#options' => array(
+          'attributes' => array(
+            'class' => array(
+              'fbconnect',
+            ),
+          ),
+          'html' => TRUE,
+        ),
+      ),
+    ),
+    'search' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'utility-items',
+          'search',
+        ),
+      ),
+      'search' => drupal_get_form('search_block_form'),
+    ),
+  );
+  return $output;
+}
+
+/**
+ * Creates renderable array of login/logout links.
+ */
+function dosomething_blocks_login() {
+  global $user;
+  if (!$user->uid) {
+    $output['#markup'] = l('Log in', 'user', array('query' => user_login_destination()));
+  }
+  else {
+    $output['#markup'] = l('Log out', 'user/logout');
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Change the text of the search form.
+ */
+function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#value'] = t('Go');
+  $form['search_block_form']['#placeholder'] = t('Search');
 }

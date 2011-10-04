@@ -3,3 +3,4 @@ description = Creates custom blocks for DoSomething.
 package = DoSomething
 core = 7.x
 dependencies[] = block
+dependencies[] = html5_tools
