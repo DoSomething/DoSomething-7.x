@@ -13,12 +13,13 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
     // have a number (other than zero to filter out 0/0/0) and some kind of
     // separator.
     foreach (array('field_birthdate', 'field_project_date') as $field) {
-      if (isset($row->$field)) {
+      if (!empty($row->$field)) {
         // TODO: Check that this actually works with pre-1970 birthdays...
         if (preg_match('![1-9]+[- ,\.\/]!', $row->$field) && ($timestamp = strtotime($row->$field))) {
           $row->$field = $timestamp;
         }
         else {
+var_dump($field, "Could not parse!", $row->$field);
           $row->$field = NULL;
         }
       }

@@ -3,6 +3,11 @@
 abstract class DSBaseWebformMigration extends Migration {
   protected $webform;
 
+  /**
+   * @param $group
+   * @param $node_type
+   *   Source node type.
+   */
   public function __construct($group = NULL, $node_type) {
     parent::__construct($group);
 
