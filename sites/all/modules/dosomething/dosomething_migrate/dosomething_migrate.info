@@ -9,6 +9,7 @@ dependencies[] = migrate_extras
 dependencies[] = migrate_ui
 dependencies[] = media_youtube
 dependencies[] = media_vimeo
+dependencies[] = dosomething_profile
 files[] = includes/base.inc
 files[] = includes/json.inc
 files[] = includes/json_webform.inc
