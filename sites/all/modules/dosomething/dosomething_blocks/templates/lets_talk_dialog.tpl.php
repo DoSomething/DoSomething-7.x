@@ -1,4 +1,4 @@
-+<?php
+<?php
 /**
  * @file
  * Content for Let's Talk dialog popup.

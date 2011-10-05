@@ -18,13 +18,13 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'dosomething_facebook_activity',
     'theme' => 'ds',
     'status' => '1',
-    'weight' => '-71',
+    'weight' => '-28',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => '1',
+    'cache' => 8,
   );
 
   $theme['dosomething_blocks-dosomething_make_impact'] = array(
@@ -32,13 +32,13 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'dosomething_make_impact',
     'theme' => 'ds',
     'status' => '1',
-    'weight' => '-73',
+    'weight' => '-30',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => '1',
+    'cache' => 8,
   );
 
   $theme['dosomething_blocks-dosomething_twitter_stream'] = array(
@@ -46,8 +46,22 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'dosomething_twitter_stream',
     'theme' => 'ds',
     'status' => '1',
-    'weight' => '-72',
+    'weight' => '-29',
     'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_utility_bar',
+    'theme' => 'ds',
+    'status' => '1',
+    'weight' => '-22',
+    'region' => 'utility',
     'custom' => '0',
     'visibility' => '0',
     'pages' => '',
@@ -60,7 +74,7 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'become_member',
     'theme' => 'ds',
     'status' => '1',
-    'weight' => '-74',
+    'weight' => '-31',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',

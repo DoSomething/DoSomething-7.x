@@ -247,25 +247,25 @@ function dosomething_blocks_utility_bar() {
         '#theme' => 'links',
         '#links' => array(
           'chat' => array(
-            'title' => '<img src="' . $image_path .'/icn-chat.png">',
+            'title' => '<img src="' . $image_path .'/icn-chat.png" alt="Chat">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
           ),
           'text' => array(
-            'title' => '<img src="' . $image_path .'/icn-text.png">',
+            'title' => '<img src="' . $image_path .'/icn-text.png" alt="Text">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
           ),
           'call' => array(
-            'title' => '<img src="' . $image_path .'/icn-call.png">',
+            'title' => '<img src="' . $image_path .'/icn-call.png" alt="Call">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
           ),
           'email' => array(
-            'title' => '<img src="' . $image_path .'/icn-email.png">',
+            'title' => '<img src="' . $image_path .'/icn-email.png" alt="Email">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
@@ -306,10 +306,11 @@ function dosomething_blocks_utility_bar() {
           'fbconnect',
         ),
       ),
+      '#access' => user_is_anonymous(),
       'link' => array(
         '#theme' => 'link',
-        '#text' => '<img src="' . $image_path .'/btn-fbconnect.png">',
-        '#path' => '#',
+        '#text' => '<img src="' . $image_path .'/btn-fbconnect.png" alt="Facebook Connect">',
+        '#path' => 'fbconnect/register/create',
         '#options' => array(
           'attributes' => array(
             'class' => array(
