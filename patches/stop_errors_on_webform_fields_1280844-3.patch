@@ -1,0 +1,13 @@
+diff --git a/webform_entity.module b/webform_entity.module
+index ed69505..24fb897 100644
+--- a/webform_entity.module
++++ b/webform_entity.module
+@@ -362,7 +362,7 @@ class WebformSubmissionsController extends DrupalDefaultEntityController{
+ function webform_entity_node_load($nodes, $types) {
+   // Trick webforms with entities and no other components into displaying,
+   // by adding a fake component.
+-  if (!(arg(0) == 'node' && arg(2) == 'webform')) {
++  if (arg(0) == 'webform' && !(arg(0) == 'node' && arg(2) == 'webform')) {
+     foreach ($nodes as $node) {
+       if (!in_array($node->type, webform_variable_get('webform_node_types'))) {
+         return;
