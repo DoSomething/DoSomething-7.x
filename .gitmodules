@@ -7,3 +7,9 @@
 [submodule "sites/all/modules/sms_mobile_commons"]
 	path = sites/all/modules/sms_mobile_commons
 	url = git@git.drupal.org:project/sms_mobile_commons.git
+[submodule "sites/all/modules/migrate"]
+	path = sites/all/modules/migrate
+	url = git@git.drupal.org:project/migrate.git
+[submodule "sites/all/modules/migrate_extras"]
+	path = sites/all/modules/migrate_extras
+	url = git@git.drupal.org:project/migrate_extras.git
