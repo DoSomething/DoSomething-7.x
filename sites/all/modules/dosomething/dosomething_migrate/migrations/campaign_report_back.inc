@@ -10,7 +10,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
 
   public function prepareRow($row) {
     // emfields
-    foreach (array('field_embedded_video', 'field_campaign_video') as $name) {
+    foreach (array('field_embedded_video', 'field_campaign_video', 'field_botb_video') as $name) {
       if (!empty($row->$name)) {
         foreach ($row->$name as &$value) {
           $file = file_uri_to_object($value);
@@ -65,6 +65,8 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
       ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
+    $this->addFieldMapping('data_post_a_link_to_your_video', 'field_botb_video')
+      ->arguments(array('file_function' => 'file_fid'));
 
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->description('prepareRow() handles saving the embed URL into a file')
@@ -93,14 +95,16 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_anything_else_awesome_we_should_know', 'field_campaign_anything_else');
 
+
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
+      ->description('prepareRow() handles saving the embed URL into a file')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'));
     // # Field: Email (email)
     // $this->addFieldMapping('field_webform_email', '');
     // # Field: Mobile Phone Number (text)
     // $this->addFieldMapping('field_webform_mobile', '');
-    // # Field: Pictures (media)
-    // $this->addFieldMapping('field_webform_pictures', '');
-    // # Field: Videos (media)
-    // $this->addFieldMapping('field_webform_videos', '');
   }
 }
 
@@ -110,7 +114,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
     $this->description .= 'Campaign Project - Green Your School 2011';
 
     $this->addFieldMapping('data_number_of_people_involved_in_this_project', 'field_campaign_number_of_people');
-    $this->addFieldMapping('data_how_did_you_use_technology_to_green_your_school', 'field_campaign_essay_why');
+    $this->addFieldMapping('data_how_did_you_use_technology_to_green_your_school', 'field_iyg_technology');
     $this->addFieldMapping('data_why_is_greening_your_school_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_how_did_your_project_unfold_what_was_the_best_part', 'field_campaign_essay_how');
     $this->addFieldMapping('data_what_was_the_biggest_challenge_in_running_your_program', 'field_campaign_essay_challenge');
@@ -135,6 +139,7 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
     $this->description .= 'Campaign Project - Scavenger Hunt 2011';
 
     $this->addFieldMapping('data_which_of_this_days_challenges_did_you_complete', 'field_which_challenge');
+    $this->addFieldMapping('data_team_name', 'title');
     $this->addFieldMapping('data_tell_us_more_about_how_your_team_tackled_this_challenge', 'field_campaign_essay_how');
     $this->addFieldMapping('data_how_many_people_were_involved_in_completing_this_challenge', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_your_youtube_username', 'field_youtube_username');
