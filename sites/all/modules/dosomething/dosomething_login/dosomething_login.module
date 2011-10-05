@@ -325,7 +325,7 @@ function dosomething_login_user_role() {
 function dosomething_login_profile_completion() {
   global $user;
   $ratio = dosomething_login_profile_percentage();
-  $output = '<div class="profile-header">' . t('My profile: %percent', array('%percent' => number_format($ratio, 2) . '%')) .  l('Complete >>', 'user/' . $user->uid . '/edit/main') . '</div>';
+  $output = '<div class="profile-header">' . t('My profile: %percent', array('%percent' => number_format($ratio * 100, 0) . '%')) .  l('Complete >>', 'user/' . $user->uid . '/edit/main') . '</div>';
   $output .= '<div class="dosomething-login-percentage"><div data-ratio="' . $ratio . '">' . $ratio . '</div></div>';
   return $output;
 }
@@ -352,17 +352,20 @@ function dosomething_login_profile_percentage() {
   $profile = profile2_load_by_user($user);
   $total = 0;
   $complete = 0;
-  foreach ($profile['main'] as $field_name => $values) {
-    if (substr($field_name, 0, 5) == 'field') {
-      $total++;
-      if (count($values)) {
-        $complete++;
+  is (isset($profile['main'])) {
+    foreach ($profile['main'] as $field_name => $values) {
+      if (substr($field_name, 0, 5) == 'field') {
+        $total++;
+        if (count($values)) {
+          $complete++;
+        }
       }
     }
   }
   if ($total) {
     return ($complete / $total);
   }
+  return 0;
 }
 
 function dosomething_login_my_current_somethings() {
@@ -377,4 +380,63 @@ function dosomething_login_my_opportunities() {
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
   return $items;
+}
+
+/**
+ * Add necessary registration items to fbconnect registration form.
+ */
+function dosomething_login_form_fbconnect_register_page_alter(&$form, $form_state) {
+  $data = fbconnect_get_user_info(array('first_name', 'last_name'));
+  $form['dosomething_name'] = array(
+    'first_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('First Name'),
+      ),
+      '#default_value' => $data['first_name'],
+      '#size' => 9,
+    ),
+    'last_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('Last Name'),
+      ),
+      '#default_value' => $data['last_name'],
+      '#size' => 9,
+    ),
+  );
+  $form['cell'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Cell Number'),
+    ),
+    '#size' => 20,
+  );
+  $form['birthday'] = array(
+    'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
+    'month' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('mm'),
+      ),
+      '#size' => 2,
+      '#maxlength' => 2,
+    ),
+    'day' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('dd'),
+      ),
+      '#size' => 2,
+      '#maxlength' => 2,
+    ),
+    'year' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('yyyy'),
+      ),
+      '#size' => 4,
+      '#maxlength' => 4,
+    ),
+  );
 }
