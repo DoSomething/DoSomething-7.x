@@ -8,6 +8,22 @@ abstract class DSScholarshipApplicationMigration extends DSJsonWebformMigration 
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_geocode_zip_code'));
   }
+
+  public function prepareRow($row) {
+    // emfields
+    foreach (array('field_embedded_video', 'field_scholarship_att_video') as $name) {
+      if (!empty($row->$name)) {
+        foreach ($row->$name as &$value) {
+          $file = file_uri_to_object($value);
+          if (empty($file->fid)) {
+            $file->uid = $row->uid;
+            file_save($file);
+          }
+          $value = $file->fid;
+        }
+      }
+    }
+  }
 }
 
 
@@ -25,6 +41,8 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_0');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
     $this->addFieldMapping('data_application_complete', 'field_application_complete');
+    $this->addFieldMapping('data_picture', 'field_picture')
+      ->arguments(array('file_function' => 'file_fid'));
 
     $this->addAddressFieldMapping('field_webform_address', NULL, array(
       'thoroughfare'            => 'field_plumgrant_address',
@@ -36,7 +54,6 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('field_webform_email', 'field_email'); # Email (email)
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number'); # Mobile Phone Number (text)
     $this->addFieldMapping('field_webform_name', 'field_name'); # Name (text)
-    #$this->addFieldMapping('field_webform_photo_url', ''); # Photo album URL (link_field)
     $this->addFieldMapping('field_webform_project', 'field_project'); # Your DoSomething project posting (node_reference)
     #$this->addFieldMapping('field_webform_project_summary', ''); # Project Summary (text_long)
     $this->addFieldMapping('field_webform_project_website', 'field_website_link'); # Personal project website URL (link_field)
@@ -55,6 +72,10 @@ class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigra
     $this->addFieldMapping('data_whats_your_favorite_song_to_rock_out_to', 'field_scholarship_att_song');
     $this->addFieldMapping('data_whos_your_celebrity_crush', 'field_scholarship_att_crush');
     $this->addFieldMapping('data_who_can_we_contact_for_a_recommendation', 'field_scholarship_att_rec');
+    $this->addFieldMapping('data_video_recommended', 'field_scholarship_att_video')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('data_photos', 'field_scholarship_att_pic')
+      ->arguments(array('file_function' => 'file_fid'));
 
     #$this->addFieldMapping('field_webform_address', ''); # Address (location)
     #$this->addFieldMapping('field_webform_birthdate', ''); # Birth Date (datetime)
@@ -85,6 +106,10 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_0');
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_0');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
+    $this->addFieldMapping('data_picture', 'field_picture')
+      ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('data_video_optional', 'field_embedded_video')
+      ->arguments(array('file_function' => 'file_fid'));
 
     $this->addAddressFieldMapping('field_webform_address', NULL, array(
       'locality'                => 'field_city',
