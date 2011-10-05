@@ -152,7 +152,6 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     $form_state['values']['mail'] = $values['cell_or_email'];
   }
   else if (($number = preg_replace('[^0-9]', '', $values['cell_or_email'])) && strlen($number) >= 10) {
-    // TOOD: Check that the phone number is unique.
     if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
     }
@@ -190,7 +189,6 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $values = $form_state['values'];
   $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
   $form_state['values']['name'] = dosomething_login_unique_name($name);
-  $birthday = $values['birthdate'];
   $form_state['values']['pass'] = user_password();
   $form_state['values']['init'] = $name;
   // Remove unneeded values.
@@ -308,9 +306,12 @@ function dosomething_login_member_block() {
   return $output;
 }
 
-function dosomething_login_user_role() {
-  global $user;
-  $roles = $user->roles;
+function dosomething_login_user_role($account = NULL) {
+  if (!isset($account)) {
+    global $user;
+    $account = $user;
+  }
+  $roles = $account->roles;
   $member = user_role_load_by_name('member');
   if (isset($roles[$member->rid])) {
     return t('member');
@@ -439,4 +440,62 @@ function dosomething_login_form_fbconnect_register_page_alter(&$form, $form_stat
       '#maxlength' => 4,
     ),
   );
+  $form['#validate'][] = 'dosomething_login_fbconnect_register_validate';
+  $form['#submit'][] = 'dosomething_login_fbconnect_register_submit';
+}
+
+function dosomething_login_fbconnect_register_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $account = $form_state['user'];
+  // Save profile data.
+  $profile = new stdClass();
+  $profile->type = 'main';
+  $profile->uid = $account->uid;
+  drupal_write_record('profile', $profile);
+  $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['first_name'];
+  $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['last_name'];
+  $birthday = new DateObject($values['birthdate']);
+  $time = $birthday->format(DATE_FORMAT_DATETIME);
+  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
+  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
+  if (isset($values['phone'])) {
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
+  }
+  field_attach_insert('profile2', $profile);
+}
+
+function dosomething_login_fbconnect_register_validate($form, &$form_state) {
+  $values = $form_state['values'];
+  if (!$values['first_name']) {
+    form_set_error('first_name', t('Please provide your first name.'));
+  }
+  if (!$values['last_name']) {
+    form_set_error('last_name', t('Please provide your last name.'));
+  }
+  // Validate cell number
+  if (($number = preg_replace('[^0-9]', '', $values['cell'])) && strlen($number) >= 10) {
+    if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+      form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
+    }
+    $form_state['values']['phone'] = $number;
+  }
+  if (!is_numeric($values['month']) || $values['month'] > 12) {
+    form_set_error('month', t('Please provide a valid numeric month for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['day']) || $values['month'] > 31) {
+    form_set_error('day', t('Please provide a valid day for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['year']) || strlen($values['year']) != 4) {
+    form_set_error('year', t('Please provide the 4-digit year you were born.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!isset($invalid_birthday)) {
+    $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
+    $form_state['values']['birthdate'] = $birthday;
+    if ((time() - $birthday) < 13*365*24*60*60) {
+      form_set_error('year', t('Members must be at least 13 years old.'));
+    }
+  }
 }
