@@ -387,61 +387,63 @@ function dosomething_login_my_opportunities() {
  * Add necessary registration items to fbconnect registration form.
  */
 function dosomething_login_form_fbconnect_register_page_alter(&$form, $form_state) {
-  $data = fbconnect_get_user_info(array('first_name', 'last_name'));
-  $form['dosomething_name'] = array(
-    'first_name' => array(
+  if (isset($form['account']['mail']['#value'])) {
+    $data = fbconnect_get_user_info(array('first_name', 'last_name'));
+    $form['dosomething_name'] = array(
+      'first_name' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('First Name'),
+        ),
+        '#default_value' => $data['first_name'],
+        '#size' => 9,
+      ),
+      'last_name' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('Last Name'),
+        ),
+        '#default_value' => $data['last_name'],
+        '#size' => 9,
+      ),
+    );
+    $form['cell'] = array(
       '#type' => 'textfield',
       '#attributes' => array(
-        'placeholder' => t('First Name'),
+        'placeholder' => t('Cell Number'),
       ),
-      '#default_value' => $data['first_name'],
-      '#size' => 9,
-    ),
-    'last_name' => array(
-      '#type' => 'textfield',
-      '#attributes' => array(
-        'placeholder' => t('Last Name'),
+      '#size' => 20,
+    );
+    $form['birthday'] = array(
+      'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
+      'month' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('mm'),
+        ),
+        '#size' => 2,
+        '#maxlength' => 2,
       ),
-      '#default_value' => $data['last_name'],
-      '#size' => 9,
-    ),
-  );
-  $form['cell'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Cell Number'),
-    ),
-    '#size' => 20,
-  );
-  $form['birthday'] = array(
-    'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
-    'month' => array(
-      '#type' => 'textfield',
-      '#attributes' => array(
-        'placeholder' => t('mm'),
+      'day' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('dd'),
+        ),
+        '#size' => 2,
+        '#maxlength' => 2,
       ),
-      '#size' => 2,
-      '#maxlength' => 2,
-    ),
-    'day' => array(
-      '#type' => 'textfield',
-      '#attributes' => array(
-        'placeholder' => t('dd'),
+      'year' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('yyyy'),
+        ),
+        '#size' => 4,
+        '#maxlength' => 4,
       ),
-      '#size' => 2,
-      '#maxlength' => 2,
-    ),
-    'year' => array(
-      '#type' => 'textfield',
-      '#attributes' => array(
-        'placeholder' => t('yyyy'),
-      ),
-      '#size' => 4,
-      '#maxlength' => 4,
-    ),
-  );
-  $form['#validate'][] = 'dosomething_login_fbconnect_register_validate';
-  $form['#submit'][] = 'dosomething_login_fbconnect_register_submit';
+    );
+    $form['#validate'][] = 'dosomething_login_fbconnect_register_validate';
+    $form['#submit'][] = 'dosomething_login_fbconnect_register_submit';
+  }
 }
 
 function dosomething_login_fbconnect_register_submit($form, &$form_state) {
