@@ -56,6 +56,18 @@ abstract class DSBaseWebformMigration extends Migration {
   //   var_dump($row);
   //   var_dump($entity);
   // }
+
+  protected function addAddressFieldMapping($dest_field, $country_source_field = NULL, array $mapping) {
+    $arguments = array();
+    foreach ($mapping as $dest_role => $source_field) {
+      $arguments[$dest_role] = array('source_field' => $source_field);
+      // Add a null mapping so it's not flagged as unmapped.
+      $this->addFieldMapping(NULL, $source_field)->description(t("Maps to %role in %field", array('%role' => $dest_role, '%field' => $dest_field)));
+    }
+    return $this->addFieldMapping($dest_field, $country_source_field)
+      ->arguments($arguments);
+  }
+
 }
 
 abstract class DSBaseUserMigration extends Migration {

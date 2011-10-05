@@ -6,6 +6,7 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('GrantApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_geocode_zip_code'));
   }
 
   public function prepareRow($row) {
@@ -53,6 +54,12 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
       ->description('Keys is Boolean in integer (0/1).');
 
 #    $this->addFieldMapping('field_webform_birthdate', '');
+    $this->addAddressFieldMapping('field_webform_address', NULL, array(
+      'thoroughfare'            => 'field_your_address', # Node: Your Address (text)
+      'locality'                => 'field_city_0', # Node: City (text)
+      'administrative_area'     => 'field_state_plain', # Node: State (text)
+      'postal_code'             => 'field_zip_code_0', # Node: Zip Code (text)
+    ))->defaultValue('US');
     $this->addFieldMapping('field_webform_email', 'field_your_email_address');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
     $this->addFieldMapping('field_webform_name', 'field_your_name');
@@ -93,6 +100,12 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
       ->description('Select field keys are unchanged.');
 
     $this->addFieldMapping('field_webform_birthdate', 'field_birthdate');
+    $this->addAddressFieldMapping('field_webform_address', NULL, array(
+      'thoroughfare'            => 'field_plumgrant_address',
+      'locality'                => 'field_city_1',
+      'administrative_area'     => 'field_state_plain',
+      'postal_code'             => 'field_zip_code_2',
+    ))->defaultValue('US');
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
     $this->addFieldMapping('field_webform_name', 'field_name');
@@ -144,6 +157,12 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
       ->description('Select field keys are unchanged.');
 
     $this->addFieldMapping('field_webform_birthdate', 'field_recipient_birthdate');
+    $this->addAddressFieldMapping('field_webform_address', NULL, array(
+      'thoroughfare'            => 'field_address',
+      'locality'                => 'field_city',
+      'administrative_area'     => 'field_state',
+      'postal_code'             => 'field_zip_code_3',
+    ))->defaultValue('US');
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number');
     $this->addFieldMapping('field_webform_name', 'field_name');

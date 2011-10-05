@@ -6,6 +6,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code'));
   }
 
   public function prepareRow($row) {

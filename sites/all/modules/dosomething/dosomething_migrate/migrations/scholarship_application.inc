@@ -6,6 +6,7 @@ abstract class DSScholarshipApplicationMigration extends DSJsonWebformMigration 
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('ScholarshipApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_geocode_zip_code'));
   }
 }
 
@@ -14,11 +15,6 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
   public function __construct($webform) {
     parent::__construct('general_scholarship_app');
     $this->description .= 'General Scholarship Application';
-    // $this->addFieldMapping('name', 'field_name');
-    // $this->addFieldMapping('school', 'field_plumgrant_highschool');
-    // $this->addFieldMapping('email', 'field_email');
-    // $this->addFieldMapping('mobile', 'field_phone_number');
-    // $this->addFieldMapping('zip', 'field_zip_code_2');
 
     $this->addFieldMapping('data_how_did_you_hear_about_this_opportunity', 'field_how_did_you_hear_about_bo');
     $this->addFieldMapping('data_what_causes_or_issues_are_you_most_passionate_about_and_why', 'field_what_causes_or_issues_are');
@@ -30,11 +26,12 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
     $this->addFieldMapping('data_application_complete', 'field_application_complete');
 
-    #$this->addFieldMapping('field_webform_address', ''); # Address (location)
-        // field_plumgrant_address   Node: Your Address (text)
-        // field_city_1    Node: City (text)
-        // field_state_plain   Node: State (text)
-        // field_zip_code_2    Node: Zip Code (text)
+    $this->addAddressFieldMapping('field_webform_address', NULL, array(
+      'thoroughfare'            => 'field_plumgrant_address',
+      'locality'                => 'field_city_1',
+      'administrative_area'     => 'field_state_plain',
+      'postal_code'             => 'field_zip_code_2',
+    ))->defaultValue('US');
     $this->addFieldMapping('field_webform_birthdate', 'field_birthdate'); # Birth Date (datetime)
     $this->addFieldMapping('field_webform_email', 'field_email'); # Email (email)
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number'); # Mobile Phone Number (text)
@@ -89,7 +86,11 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_0');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
 
-    #$this->addFieldMapping('field_webform_address'); # Address (location)
+    $this->addAddressFieldMapping('field_webform_address', NULL, array(
+      'locality'                => 'field_city',
+      'administrative_area'     => 'field_state',
+      'postal_code'             => 'field_zip_code',
+    ))->defaultValue('US');
     $this->addFieldMapping('field_webform_birthdate', 'field_birthdate'); # Birth Date (datetime)
     $this->addFieldMapping('field_webform_email', 'title'); # Email (email)
     $this->addFieldMapping('field_webform_mobile', 'field_yacapp_phone'); # Mobile Phone Number (text)
