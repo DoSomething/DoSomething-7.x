@@ -23,4 +23,6 @@ drush @ds7 -y php-eval "\$views = views_get_all_views(); foreach (\$views as \$v
 echo "migrating from nodewords to metatags quick `date`"
 drush @ds7 -y metatags-quick-migrate
 drush @ds7 cc all
+echo "deleting old menus `date`"
+drush php-eval "\$menus = menu_load_all(); \$delete_me = array('menu-about-us', 'menu-about-us-footer-menu', 'menu-act-now', 'menu-clubs', 'menu-devtest-menu', 'menu-games', 'menu-help-menu', 'menu-increase-your-g', 'menu-issues-menu', 'menu-news-info', 'menu-products', 'menu-programs', 'menu-resources-menu', 'menu-social-action-t', 'menu-varsity'); foreach (\$delete_me as \$menu) {menu_delete(\$menus[\$menu]); }"
 echo "post upgrade scripts complete `date`"
