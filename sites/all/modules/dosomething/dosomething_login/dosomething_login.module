@@ -40,6 +40,12 @@ function dosomething_login_block_view($delta = '') {
  * The form for the 'Become a Member' block.
  */
 function dosomething_login_register_block($form) {
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-member-lightbox.js',
+    ),
+    'library' => array(array('system', 'ui.dialog')),
+  );
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . l('Connect thru Facebook', 'fbconnect/register/create') . '</div>';
   $form['or']['#markup'] = '<div class="separator split">' . t('or') . '</div>';
@@ -108,6 +114,11 @@ function dosomething_login_register_block($form) {
     ),
     '#prefix' => '<hr class="top"/><h3 class="why-member">',
     '#suffix' => '</h3><hr class="bottom"/>',
+  );
+  $form['lightbox'] = array(
+    '#markup' => theme('dosomething_login_member_lightbox'),
+    '#prefix' => '<div id="member-dialog">',
+    '#suffix' => '</div>',
   );
   $form['already']['#markup'] = '<h3 class="already-member">' . t('Already a member?') . '</h3>';
   $form['logins'] = array(
@@ -500,4 +511,16 @@ function dosomething_login_fbconnect_register_validate($form, &$form_state) {
       form_set_error('year', t('Members must be at least 13 years old.'));
     }
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_login_theme() {
+  return array(
+    'dosomething_login_member_lightbox' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'template' => 'dosomething-login-member-lightbox',
+    ),
+  );
 }
