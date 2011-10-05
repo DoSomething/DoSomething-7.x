@@ -352,7 +352,7 @@ function dosomething_login_profile_percentage() {
   $profile = profile2_load_by_user($user);
   $total = 0;
   $complete = 0;
-  is (isset($profile['main'])) {
+  if (isset($profile['main'])) {
     foreach ($profile['main'] as $field_name => $values) {
       if (substr($field_name, 0, 5) == 'field') {
         $total++;
