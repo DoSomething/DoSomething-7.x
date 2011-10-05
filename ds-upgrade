@@ -61,7 +61,8 @@ drush @ds7 vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 SID=`drush @ds7 php-eval "print db_query('select max(nid) from node')->fetchField();"`
 SID=$(($SID+1000))
 echo "ALTER TABLE webform_submissions AUTO_INCREMENT=${SID}" | drush @ds7 sqlc
-drush @ds7 -y en media_youtube media_webform emfield redirect devel advanced_help admin_menu_toolbar contextual overlay rdf date date_popup date_views link nodequeue og auto_nodetitle diff globalredirect logintoboggan pathauto token transliteration panels panels_ipe views views_ui views_data_export image node_reference user_reference field_group content_migrate page_manager location_node location_user features stylizer views_content og_ui og_migrate metatags_quick sms_mobile_commons webform email entity_token webform_entity dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins geofield dosomething_project_report strongarm panelizer fbconnect dosomething_profile
+echo "Enabling first round of contrib modules, pre-field and og migration `date`"
+drush @ds7 -y en media_youtube media_webform emfield rdf date date_popup date_views link og auto_nodetitle diff token transliteration views views_ui views_data_export image node_reference user_reference field_group content_migrate features views_content og_ui og_migrate metatags_quick webform email entity_token webform_entity geofield strongarm
 drush @ds7 -y dis profile
 drush @ds7 -y updb
 drush @ds7 -y cc all
@@ -73,6 +74,8 @@ drush  @ds7 -y content-migrate-fields field_picture field_description field_news
 echo "starting og migration `date`"
 drush @ds7 -y og-migrate
 drush @ds7 -y dis og_migrate
+echo "Enabling second round of contrib modules, post-field and og migration `date`"
+drush @ds7 -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout
 echo "reverting all features to code version `date`"
 drush @ds7 -y fra
 echo "Heyo all done `date`"
