@@ -56,3 +56,80 @@
   .utility-items.fbconnect
     +float-right
     margin: 1em 8px 1em 0
+    
+.ui-dialog
+  padding: 10px
+  background: rgba($black, 0.5)
+  border: 0
+  +border-radius(5px)
+  .ui-dialog-titlebar
+    background: $gray-lighter
+    +border-top-radius(5px)
+    +border-bottom-radius(0)
+    border: 0
+  #lets-talk-dialog
+    +border-bottom-radius(5px)
+    background: $gray-lighter
+    padding: 0 30px
+    h2
+      color: $blue2
+      font-size: $s5
+      padding: 10px 20px 0 20px
+      margin: 0
+      background: image_url("about-ds-border.png") repeat-x
+      background-position: 10px 78px
+    .lets-talk-about
+      margin: 0 -30px
+      padding: 10px 60px
+      background: image_url('diagonal-bg.png') repeat right top
+      font-size: $s-1
+      line-height: 14px
+      font-family: $font-sans
+    #lets-talk
+      +border-bottom-radius(5px)
+      background: $blue2
+      color: $white
+      padding: 12px 30px 30px 30px
+      +clearfix
+      h2
+        color: $white
+        font-size: $s5
+        padding-top: 15px
+        margin-bottom: 0
+        background: image_url("lets-talk-border.png") repeat-x
+        background-position: 10px 52px
+        padding: 0
+      a
+        color: $white
+      .left-coloumn
+        +float-left
+        margin-right: 40px
+        font-size: $s-1
+        line-height: 30px
+        font-family: $font-sans
+        .title
+          font-weight: bold
+        .lets-talk-text
+          background: image_url("text-with-us.png") no-repeat
+          background-position: 4px 3px
+          padding-left: 25px
+        .lets-talk-email
+          background: image_url("email-us.png") no-repeat
+          background-position: 0 8px
+          padding-left: 25px
+      .right-coloumn
+        +float-left
+        margin-right: 40px
+        font-size: $s-1
+        line-height: 30px
+        font-family: $font-sans
+        span.title
+          font-weight: bold
+        .lets-talk-phone
+          background: image_url("talk-to-us.png") no-repeat
+          background-position: 0 6px
+          padding-left: 25px
+        .lets-talk-faq
+          background: image_url("faq.png") no-repeat
+          background-position: 0 6px
+          padding-left: 25px
