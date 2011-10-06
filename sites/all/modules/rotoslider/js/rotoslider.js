@@ -3,10 +3,12 @@
 Drupal.rotoslider = Drupal.rotoslider || {};
 // This is to make sure $.mousemove() doesn't try to restart the animation over and over.
 Drupal.rotoslider.toggle = true;
+
+Drupal.settings.rotoslider = Drupal.settings.rotoslider || {};
 // Which percentage of the slider will trigger animation.
-Drupal.rotoslider.percentage = 0.2;
+Drupal.settings.rotoslider.percentage = Drupal.settings.rotoslider.percentage || 0.2;
 // Speed of the animation.
-Drupal.rotoslider.speed = 800;
+Drupal.settings.rotoslider.speed = Drupal.settings.rotoslider.speed || 1000;
 
 Drupal.behaviors.rotoslider = {
   attach: function(context, settings) {
@@ -33,10 +35,10 @@ Drupal.behaviors.rotoslider = {
             }
 
             y_pos = e.pageY - nav_offsetY;
-            if (y_pos >= 0 && y_pos <= (slider_nav_height * Drupal.rotoslider.percentage)) {
+            if (y_pos >= 0 && y_pos <= (slider_nav_height * settings.rotoslider.percentage)) {
               Drupal.rotoslider.animateThis($slider_nav_items, 0);
             }
-            else if (y_pos >= (slider_nav_height * (1 - Drupal.rotoslider.percentage)) && y_pos <= slider_nav_height) {
+            else if (y_pos >= (slider_nav_height * (1 - settings.rotoslider.percentage)) && y_pos <= slider_nav_height) {
               scroll_to = height_diff + $slider_nav_items.eq(0).position().top;
               Drupal.rotoslider.animateThis($slider_nav_items, "-="+scroll_to);
             }
@@ -67,7 +69,7 @@ Drupal.behaviors.rotoslider = {
 }
 
 Drupal.rotoslider.animateThis = function($elements, final_pos, speed) {
-  speed = speed || Drupal.rotoslider.speed;
+  speed = speed || Drupal.settings.rotoslider.speed;
   Drupal.rotoslider.toggle = false; // sets "global" toggle
 
   $elements.animate({

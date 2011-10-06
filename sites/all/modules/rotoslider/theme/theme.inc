@@ -9,8 +9,10 @@
  * Style plugin to render each item in a DoSomething Slider.
  */
 function template_preprocess_rotoslider_view_slider(&$variables) {
+  drupal_add_js(array('rotoslider' => $variables['options'['settings']), 'setting');
+
   $fields = array();
-  foreach ($variables['options']['rotoslider'] as $option => $field_name) {
+  foreach ($variables['options']['fields'] as $option => $field_name) {
     $info = field_info_field($field_name);
     $fields[$option] = !empty($info) ? "field_$field_name" : $variables['view']->field[$field_name]->field_alias;
   }
