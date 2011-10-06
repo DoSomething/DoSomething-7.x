@@ -213,8 +213,9 @@
   padding-top: 15px;
   margin-bottom: 0;
   background: url('../images/lets-talk-border.png') repeat-x;
-  background-position: 10px 52px;
+  background-position: 10px 48px;
   padding: 0;
+  line-height: 63px;
 }
 .ui-dialog #lets-talk-dialog #lets-talk a {
   color: white;
@@ -224,7 +225,7 @@
   float: left;
   margin-right: 40px;
   font-size: 11px;
-  line-height: 30px;
+  line-height: 27px;
   font-family: "Trebuchet MS", sans-serif;
 }
 .ui-dialog #lets-talk-dialog #lets-talk .left-coloumn .title {
@@ -232,12 +233,12 @@
 }
 .ui-dialog #lets-talk-dialog #lets-talk .left-coloumn .lets-talk-text {
   background: url('../images/text-with-us.png') no-repeat;
-  background-position: 4px 3px;
+  background-position: 4px 0px;
   padding-left: 25px;
 }
 .ui-dialog #lets-talk-dialog #lets-talk .left-coloumn .lets-talk-email {
   background: url('../images/email-us.png') no-repeat;
-  background-position: 0 8px;
+  background-position: 0 6px;
   padding-left: 25px;
 }
 .ui-dialog #lets-talk-dialog #lets-talk .right-coloumn {
@@ -245,7 +246,7 @@
   float: left;
   margin-right: 40px;
   font-size: 11px;
-  line-height: 30px;
+  line-height: 27px;
   font-family: "Trebuchet MS", sans-serif;
 }
 .ui-dialog #lets-talk-dialog #lets-talk .right-coloumn span.title {
@@ -253,11 +254,11 @@
 }
 .ui-dialog #lets-talk-dialog #lets-talk .right-coloumn .lets-talk-phone {
   background: url('../images/talk-to-us.png') no-repeat;
-  background-position: 0 6px;
+  background-position: 0 4px;
   padding-left: 25px;
 }
 .ui-dialog #lets-talk-dialog #lets-talk .right-coloumn .lets-talk-faq {
   background: url('../images/faq.png') no-repeat;
-  background-position: 0 6px;
+  background-position: 0 4px;
   padding-left: 25px;
 }
