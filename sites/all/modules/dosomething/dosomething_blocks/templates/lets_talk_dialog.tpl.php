@@ -27,7 +27,12 @@
   </div> <!-- /#lets-talk -->
   <h2><?php print t('About Do Something'); ?></h2>
   <div class="lets-talk-about">
-    <?php print t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at neque sed metus rutrum adipiscing nec ut erat. Suspendisse adip'); ?>
+    <div class="lets-talk-about-outter">
+      <div class="lets-talk-about-inner">
+        <?php print t('<p>Quisque facilisis erat a dui. Nam malesuada ornare dolor. Cras gravida, diam sit amet rhoncus ornare, erat elit consectetuer erat, id egestas pede nibh eget odio.</p>
+        <p>Proin tincidunt, velit vel porta elementum, magna diam molestie sapien, non aliquet massa pede eu diam. Aliquam iaculis. Fusce et ipsum et nulla tristique facilisis.</p>'); ?>
+      </div>
+    </div>
   </div>
 </div> <!-- /#lets-talk-dialog -->
 
