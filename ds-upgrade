@@ -4,7 +4,7 @@
 # and run git submodule update --init
 # this script expects drush 7.x-4.x
 
-ROOT= "/var/www/dosomething/code"
+ROOT="/var/www/dosomething/code"
 echo "syncing ds6 db over ds7 db `date`"
 drush -y sql-drop
 drush -y sqlc < $1
@@ -26,6 +26,7 @@ drush vset -y fb_social_appid 160632053975149
 drush vset -y fb_social_base_url "http://dosomething.zivtech.com"
 drush vset -y nodequeue_view_per_queue 0
 drush vset -y block_cache 1
+drush vset -y user_pictures 1
 drush vset -y pathauto_node_pattern "[node:content-type]/[node:title]"
 drush vset -y pathauto_node_action_guide_pattern "actnow/actionguide/[node:title]"
 drush vset -y pathauto_node_campaign_bfb_2011_pattern "project/battle-for-bands/[node:title]"
@@ -75,7 +76,7 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "Heyo all done `date`"
