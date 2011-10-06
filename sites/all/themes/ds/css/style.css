@@ -1569,9 +1569,6 @@ body.node-type-project [role=main] .main-interior-sidebar {
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
-body {
-  background: rgba(0, 0, 0, 0) url('images/guide-pages/23-DSM_Logged-in_Member_Dashboard.png') scroll no-repeat center top;
-}
 body.admin-menu {
   background-position: center 29px;
 }
