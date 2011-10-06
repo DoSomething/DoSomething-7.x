@@ -149,86 +149,103 @@ function dosomething_blog_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
+<<<<<<< HEAD
         'weight' => '2',
+=======
+        'weight' => '1',
       ),
     ),
   );
 
-  // Exported field: 'node-blog-field_blog_image'
-  $fields['node-blog-field_blog_image'] = array(
+  // Exported field: 'node-blog-field_embedded_video'
+  $fields['node-blog-field_embedded_video'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_blog_image',
-      'foreign keys' => array(
-        'fid' => array(
-          'columns' => array(
-            'fid' => 'fid',
-          ),
-          'table' => 'file_managed',
-        ),
-      ),
+      'field_name' => 'field_embedded_video',
+      'foreign keys' => array(),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
         ),
       ),
-      'module' => 'image',
+      'module' => 'mediafield',
       'settings' => array(
-        'default_image' => 0,
         'profile2_private' => FALSE,
-        'uri_scheme' => 'public',
       ),
       'translatable' => '0',
-      'type' => 'image',
+      'type' => 'media',
+      'type_name' => 'sixflags_scholarships_app',
     ),
     'field_instance' => array(
       'bundle' => 'blog',
+      'default_value' => array(
+        0 => array(
+          'embed' => '',
+          'value' => '',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'image',
+          'label' => 'hidden',
+          'module' => 'mediafield',
           'settings' => array(
-            'image_link' => '',
-            'image_style' => 'blog_main_image',
+            'file_view_mode' => 'media_large',
           ),
-          'type' => 'image',
-          'weight' => '0',
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
         ),
         'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_blog_image',
-      'label' => 'Image',
+      'field_name' => 'field_embedded_video',
+      'label' => 'Video (optional)',
       'required' => 0,
       'settings' => array(
-        'alt_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 0,
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
         'user_register_form' => FALSE,
       ),
+      'weight' => '-1',
       'widget' => array(
         'active' => 1,
-        'module' => 'image',
+        'module' => 'media',
         'settings' => array(
-          'preview_image_style' => 'thumbnail',
+          'allowed_schemes' => array(
+            'public' => 'public',
+            'youtube' => 'youtube',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 0,
+            'video' => 'video',
+          ),
+          'browser_plugins' => array(),
           'progress_indicator' => 'throbber',
         ),
-        'type' => 'image_image',
-        'weight' => '3',
+        'type' => 'media_generic',
+        'weight' => '5',
       ),
     ),
   );
