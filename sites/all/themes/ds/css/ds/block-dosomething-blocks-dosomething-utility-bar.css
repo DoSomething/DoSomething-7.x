@@ -168,16 +168,25 @@
   font-size: 35px;
   padding: 10px 20px 0 20px;
   margin: 0;
-  background: url('../images/about-ds-border.png') repeat-x;
-  background-position: 10px 78px;
 }
 .ui-dialog #lets-talk-dialog .lets-talk-about {
-  margin: 0 -30px;
-  padding: 10px 60px;
+  margin: -12px -30px;
+  padding: 0 50px 0 50px;
   background: url('../images/diagonal-bg.png') repeat right top;
   font-size: 11px;
   line-height: 14px;
   font-family: "Trebuchet MS", sans-serif;
+}
+.ui-dialog #lets-talk-dialog .lets-talk-about p {
+  margin-bottom: 10px;
+}
+.ui-dialog #lets-talk-dialog .lets-talk-about .lets-talk-about-outter {
+  border-top: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+}
+.ui-dialog #lets-talk-dialog .lets-talk-about .lets-talk-about-inner {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 .ui-dialog #lets-talk-dialog #lets-talk {
   -moz-border-radius-bottomleft: 5px;
