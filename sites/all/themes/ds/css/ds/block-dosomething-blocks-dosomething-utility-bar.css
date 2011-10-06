@@ -158,7 +158,7 @@
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  background: #e3e3e3;
+  background: #e3e3e3 url('../images/lightbox-bg.png') repeat-x;
   padding: 0 30px;
   margin-top: -35px;
   z-index: -10;
