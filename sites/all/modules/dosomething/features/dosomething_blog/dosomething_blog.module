@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Dosomething Blog feature.
+ */
+
+include_once('dosomething_blog.features.inc');
