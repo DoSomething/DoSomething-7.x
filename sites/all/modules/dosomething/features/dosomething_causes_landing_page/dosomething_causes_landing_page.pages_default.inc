@@ -15,7 +15,7 @@ function dosomething_causes_landing_page_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Causes landing page';
   $page->admin_description = 'The main landing page for causes.';
-  $page->path = 'find-your-cause';
+  $page->path = 'cause';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
