@@ -75,7 +75,7 @@ echo "starting og migration `date`"
 drush @ds7 -y og-migrate
 drush @ds7 -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush @ds7 -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout
+drush @ds7 -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign
 echo "reverting all features to code version `date`"
 drush @ds7 -y fra
 echo "Heyo all done `date`"
