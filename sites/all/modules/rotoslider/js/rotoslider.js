@@ -1,17 +1,17 @@
 (function($) {
 
-Drupal.dosomethingSlider = Drupal.dosomethingSlider || {};
+Drupal.rotoslider = Drupal.rotoslider || {};
 // This is to make sure $.mousemove() doesn't try to restart the animation over and over.
-Drupal.dosomethingSlider.toggle = true;
+Drupal.rotoslider.toggle = true;
 // Which percentage of the slider will trigger animation.
-Drupal.dosomethingSlider.percentage = 0.2;
+Drupal.rotoslider.percentage = 0.2;
 // Speed of the animation.
-Drupal.dosomethingSlider.speed = 800;
+Drupal.rotoslider.speed = 800;
 
-Drupal.behaviors.dosomethingSlider = {
+Drupal.behaviors.rotoslider = {
   attach: function(context, settings) {
-    $('.dosomething-slider').each(function (index, slider) {
-      $('.dosomething-slider-nav', $(slider))
+    $('.rotoslider').each(function (index, slider) {
+      $('.rotoslider-nav', $(slider))
         .hover(function() {
           nav_offsetY = $(this).offset().top;
 
@@ -28,26 +28,26 @@ Drupal.behaviors.dosomethingSlider = {
           }
 
           $(this).mousemove(function(e) {
-            if (!Drupal.dosomethingSlider.toggle) {
+            if (!Drupal.rotoslider.toggle) {
               return;
             }
 
             y_pos = e.pageY - nav_offsetY;
-            if (y_pos >= 0 && y_pos <= (slider_nav_height * Drupal.dosomethingSlider.percentage)) {
-              Drupal.dosomethingSlider.animateThis($slider_nav_items, 0);
+            if (y_pos >= 0 && y_pos <= (slider_nav_height * Drupal.rotoslider.percentage)) {
+              Drupal.rotoslider.animateThis($slider_nav_items, 0);
             }
-            else if (y_pos >= (slider_nav_height * (1 - Drupal.dosomethingSlider.percentage)) && y_pos <= slider_nav_height) {
+            else if (y_pos >= (slider_nav_height * (1 - Drupal.rotoslider.percentage)) && y_pos <= slider_nav_height) {
               scroll_to = height_diff + $slider_nav_items.eq(0).position().top;
-              Drupal.dosomethingSlider.animateThis($slider_nav_items, "-="+scroll_to);
+              Drupal.rotoslider.animateThis($slider_nav_items, "-="+scroll_to);
             }
             else {
               $slider_nav_items.stop(true, false);
-              Drupal.dosomethingSlider.toggle = true;
+              Drupal.rotoslider.toggle = true;
             }
           });
         }, function() {
           $slider_nav_items.stop(true, false);
-          Drupal.dosomethingSlider.toggle = true;
+          Drupal.rotoslider.toggle = true;
         })
         .find('li a')
           .click(function() {
@@ -66,14 +66,14 @@ Drupal.behaviors.dosomethingSlider = {
   }
 }
 
-Drupal.dosomethingSlider.animateThis = function($elements, final_pos, speed) {
-  speed = speed || Drupal.dosomethingSlider.speed;
-  Drupal.dosomethingSlider.toggle = false; // sets "global" toggle
+Drupal.rotoslider.animateThis = function($elements, final_pos, speed) {
+  speed = speed || Drupal.rotoslider.speed;
+  Drupal.rotoslider.toggle = false; // sets "global" toggle
 
   $elements.animate({
     top:final_pos
   }, speed, function() {
-    Drupal.dosomethingSlider.toggle = true; // resets "global" toggle
+    Drupal.rotoslider.toggle = true; // resets "global" toggle
   });
 
   return false;

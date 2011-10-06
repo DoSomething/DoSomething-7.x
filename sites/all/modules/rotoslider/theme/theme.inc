@@ -6,7 +6,54 @@
  */
 
 /**
- * Returns HTML for a JS slider.
+ * Style plugin to render each item in a DoSomething Slider.
+ */
+function template_preprocess_rotoslider_view_slider(&$variables) {
+  $fields = array();
+  foreach ($variables['options']['rotoslider'] as $option => $field_name) {
+    $info = field_info_field($field_name);
+    $fields[$option] = !empty($info) ? "field_$field_name" : $variables['view']->field[$field_name]->field_alias;
+  }
+
+  $heading = array(
+    'title' => t('Explore The Menu'),
+    'image' => 'http://placekitten.com/350/125',
+    'text' => t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nulla risus, congue sed accumsan ultricies, ultricies vitae lacus. Vestibulum bibendum egestas mi, in lobortis enim facilisis at. Nulla consequat pharetra eros in consequat.'),
+  );
+
+  $items = array();
+  foreach ($variables['rows'] as $delta => $row) {
+    if (!isset($row->{$fields['title']})) {
+      continue;
+    }
+
+    $items[$delta]['title'] = $row->{$fields['title']};
+    if (isset($row->{$fields['image']}[0]['raw']['uri'])) {
+      $items[$delta]['image'] = file_create_url($row->{$fields['image']}[0]['raw']['uri']);
+    }
+    else {
+      $items[$delta]['image'] = $heading['image'];
+    }
+    if (isset($row->{$fields['text']}[0]['raw']['value'])) {
+      $items[$delta]['text'] = $row->{$fields['text']}[0]['raw']['value'];
+    }
+  }
+  $variables['element'] = array(
+    '#theme' => 'rotoslider_slider',
+    '#items' => $items,
+    '#heading' => $heading,
+  );
+}
+
+/**
+ * Skip the usage of a tpl.php file.
+ */
+function theme_rotoslider_view_slider($variables) {
+  return drupal_render($variables['element']);
+}
+
+/**
+ * Builds a renderable array of a DoSomething Slider.
  *
  * @param $variables
  *   An associative array containing:
@@ -21,7 +68,7 @@
  *     - image: The image URL to be used in the default state.
  *     - text: The description of the slider set.
  */
-function theme_dosomething_slider_slider($variables) {
+function template_preprocess_rotoslider_slider(&$variables) {
   $items = $variables['items'];
   $heading = $variables['heading'];
 
@@ -54,7 +101,7 @@ function theme_dosomething_slider_slider($variables) {
       '#attributes' => array(
         'data-key' => $key,
         'class' => array(
-          'dosomething-slider-text',
+          'rotoslider-text',
         ),
       ),
       'heading' => array(
@@ -78,20 +125,20 @@ function theme_dosomething_slider_slider($variables) {
     );
   }
 
-  $path = drupal_get_path('module', 'dosomething_slider');
+  $path = drupal_get_path('module', 'rotoslider');
   $element = array(
     '#attached' => array(
       'css' => array(
-        $path . '/css/dosomething_slider.css',
+        $path . '/css/rotoslider.css',
       ),
       'js' => array(
-        $path . '/js/dosomething_slider.js',
+        $path . '/js/rotoslider.js',
       ),
     ),
     '#type' => 'container',
     '#attributes' => array(
       'class' => array(
-        'dosomething-slider',
+        'rotoslider',
       ),
     ),
     'image' => array(
@@ -100,7 +147,7 @@ function theme_dosomething_slider_slider($variables) {
       '#alt' => $heading['title'],
       '#attributes' => array(
         'class' => array(
-          'dosomething-slider-image',
+          'rotoslider-image',
         ),
       ),
     ),
@@ -108,7 +155,7 @@ function theme_dosomething_slider_slider($variables) {
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
-          'dosomething-slider-images',
+          'rotoslider-images',
         ),
       ),
       'images' => $images,
@@ -117,7 +164,7 @@ function theme_dosomething_slider_slider($variables) {
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
-          'dosomething-slider-description',
+          'rotoslider-description',
         ),
       ),
       '#children' => $heading['text'],
@@ -126,7 +173,7 @@ function theme_dosomething_slider_slider($variables) {
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
-          'dosomething-slider-descriptions',
+          'rotoslider-descriptions',
         ),
       ),
       'text' => $text,
@@ -135,14 +182,14 @@ function theme_dosomething_slider_slider($variables) {
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
-          'dosomething-slider-menu',
+          'rotoslider-menu',
         ),
       ),
       'links' => array(
         '#theme' => 'links',
         '#attributes' => array(
           'class' => array(
-            'dosomething-slider-nav',
+            'rotoslider-nav',
           ),
         ),
         '#links' => $links,
@@ -157,5 +204,12 @@ function theme_dosomething_slider_slider($variables) {
     ),
   );
 
-  return drupal_render($element);
+  $variables['element'] = $element;
+}
+
+/**
+ * Returns HTML for a DoSomething Slider.
+ */
+function theme_rotoslider_slider($variables) {
+  return drupal_render($variables['element']);
 }

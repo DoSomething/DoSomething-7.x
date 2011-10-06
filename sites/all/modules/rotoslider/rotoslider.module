@@ -8,9 +8,9 @@
 /**
  * Implements hook_theme().
  */
-function dosomething_slider_theme($existing, $type, $theme, $path) {
+function rotoslider_theme($existing, $type, $theme, $path) {
   return array(
-    'dosomething_slider_slider' => array(
+    'rotoslider_slider' => array(
       'variables' => array('items' => NULL, 'heading' => NULL),
       'path' => $path . '/theme',
       'file' => 'theme.inc',
@@ -19,14 +19,24 @@ function dosomething_slider_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function rotoslider_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'rotoslider') . '/includes',
+  );
+}
+
+/**
  * Implements hook_menu().
  */
-function dosomething_slider_menu() {
+function rotoslider_menu() {
   $items = array();
 
-  $items['dosomething_slider'] = array(
+  $items['rotoslider'] = array(
     'title' => 'DoSomething Slider',
-    'page callback' => 'dosomething_slider_demo',
+    'page callback' => 'rotoslider_demo',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -37,7 +47,7 @@ function dosomething_slider_menu() {
 /**
  * A demo callback to display a slider.
  */
-function dosomething_slider_demo() {
+function rotoslider_demo() {
   $output = array();
 
   $colors = array('660000', '006600', '000066');
@@ -51,22 +61,22 @@ function dosomething_slider_demo() {
   }
 
   $element = array(
-    '#theme' => 'dosomething_slider_slider',
+    '#theme' => 'rotoslider_slider',
     '#items' => $items,
     '#heading' => array(
       'title' => 'Woot',
-      'image' => variable_get('dosomething_slider_image', 'http://placekitten.com/700/250'),
+      'image' => variable_get('rotoslider_image', 'http://placekitten.com/700/250'),
       'text' => t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nulla risus, congue sed accumsan ultricies, ultricies vitae lacus. Vestibulum bibendum egestas mi, in lobortis enim facilisis at. Nulla consequat pharetra eros in consequat.'),
     ),
   );
-  $output['element'] = $element;
+  //$output['element'] = $element;
 
   $heading = array(
     'title' => t('Explore The Menu'),
     'image' => 'http://placekitten.com/350/125',
     'text' => t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nulla risus, congue sed accumsan ultricies, ultricies vitae lacus. Vestibulum bibendum egestas mi, in lobortis enim facilisis at. Nulla consequat pharetra eros in consequat.'),
   );
-  $output['theme']['#markup'] = theme('dosomething_slider_slider', array('items' => $items, 'heading' => $heading));
+  $output['theme']['#markup'] = theme('rotoslider_slider', array('items' => $items, 'heading' => $heading));
 
   return $output;
 }

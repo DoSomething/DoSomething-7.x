@@ -1,0 +1,6 @@
+name = DoSomething Slider
+description = Display items in a DoSomething Slider.
+core = 7.x
+package = DoSomething
+
+files[] = includes/rotoslider_plugin_style_slider.inc
