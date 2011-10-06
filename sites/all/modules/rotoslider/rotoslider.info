@@ -1,6 +1,5 @@
-name = DoSomething Slider
-description = Display items in a DoSomething Slider.
+name = Rotoslider
+description = Display items in a "Rotoslider".
 core = 7.x
-package = DoSomething
 
 files[] = includes/rotoslider_plugin_style_slider.inc

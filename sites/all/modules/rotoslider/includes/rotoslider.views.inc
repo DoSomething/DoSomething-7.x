@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Views integration for DoSomething Slider.
+ * Views integration for Rotoslider.
  */
 
 /**

@@ -35,7 +35,7 @@ function rotoslider_menu() {
   $items = array();
 
   $items['rotoslider'] = array(
-    'title' => 'DoSomething Slider',
+    'title' => 'Rotoslider',
     'page callback' => 'rotoslider_demo',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,

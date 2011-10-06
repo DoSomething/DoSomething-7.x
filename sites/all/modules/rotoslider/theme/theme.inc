@@ -2,14 +2,14 @@
 
 /**
  * @file
- * Theme functions for the DoSomething Slider.
+ * Theme functions for the Rotoslider.
  */
 
 /**
- * Style plugin to render each item in a DoSomething Slider.
+ * Style plugin to render each item in a Rotoslider.
  */
 function template_preprocess_rotoslider_view_slider(&$variables) {
-  drupal_add_js(array('rotoslider' => $variables['options'['settings']), 'setting');
+  drupal_add_js(array('rotoslider' => $variables['options']['settings']), 'setting');
 
   $fields = array();
   foreach ($variables['options']['fields'] as $option => $field_name) {
@@ -55,7 +55,7 @@ function theme_rotoslider_view_slider($variables) {
 }
 
 /**
- * Builds a renderable array of a DoSomething Slider.
+ * Builds a renderable array of a Rotoslider.
  *
  * @param $variables
  *   An associative array containing:
@@ -210,7 +210,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
 }
 
 /**
- * Returns HTML for a DoSomething Slider.
+ * Returns HTML for a Rotoslider.
  */
 function theme_rotoslider_slider($variables) {
   return drupal_render($variables['element']);
