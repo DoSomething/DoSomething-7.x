@@ -131,10 +131,195 @@ function dosomething_causes_landing_page_views_default_views() {
   $handler->display->display_options['filters']['name']['expose']['remember'] = FALSE;
   $handler->display->display_options['filters']['name']['expose']['multiple'] = FALSE;
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
+  /* Display: Causes Landing Page Block */
+  $handler = $view->new_display('block', 'Causes Landing Page Block', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = '11 Great Causes for You to Rock';
+  $handler->display->display_options['display_description'] = 'The main content for the causes landing page';
+
+  /* Display: Causes content pane */
+  $handler = $view->new_display('panel_pane', 'Causes content pane', 'panel_pane_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Image */
+  $handler->display->display_options['fields']['field_causes_image']['id'] = 'field_causes_image';
+  $handler->display->display_options['fields']['field_causes_image']['table'] = 'field_data_field_causes_image';
+  $handler->display->display_options['fields']['field_causes_image']['field'] = 'field_causes_image';
+  $handler->display->display_options['fields']['field_causes_image']['label'] = '';
+  $handler->display->display_options['fields']['field_causes_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_causes_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_causes_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_causes_image']['settings'] = array(
+    'image_style' => 'cause_main',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_causes_image']['field_api_classes'] = 0;
+  /* Field: Taxonomy term: Term description */
+  $handler->display->display_options['fields']['description']['id'] = 'description';
+  $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['description']['field'] = 'description';
+  $handler->display->display_options['fields']['description']['label'] = '';
+  $handler->display->display_options['fields']['description']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['description']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['description']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['description']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['description']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['description']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['description']['hide_alter_empty'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Taxonomy term: Term ID */
+  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['vocabularies'] = array(
+    'vocabulary_1' => 0,
+    'vocabulary_9' => 0,
+    'vocabulary_5' => 0,
+    'vocabulary_6' => 0,
+    'vocabulary_11' => 0,
+    'vocabulary_18' => 0,
+    'vocabulary_17' => 0,
+    'vocabulary_15' => 0,
+    'vocabulary_19' => 0,
+    'vocabulary_4' => 0,
+    'vocabulary_16' => 0,
+    'vocabulary_2' => 0,
+    'vocabulary_3' => 0,
+  );
+  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['tid']['not'] = 0;
+  $handler->display->display_options['pane_category']['weight'] = '0';
+  $handler->display->display_options['argument_input'] = array(
+    'tid' => array(
+      'type' => 'panel',
+      'context' => 'entity:file.extension',
+      'context_optional' => 0,
+      'panel' => '1',
+      'fixed' => '',
+      'label' => 'Taxonomy term: Term ID',
+    ),
+  );
+
+  /* Display: Issues content pane */
+  $handler = $view->new_display('panel_pane', 'Issues content pane', 'panel_pane_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Explore The Issues';
+  $handler->display->display_options['display_description'] = 'displays child issue terms on a Cause parent page ';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_1']['id'] = 'name_1';
+  $handler->display->display_options['fields']['name_1']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name_1']['field'] = 'name';
+  $handler->display->display_options['fields']['name_1']['label'] = '';
+  $handler->display->display_options['fields']['name_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name_1']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Taxonomy term: Parent term */
+  $handler->display->display_options['arguments']['parent']['id'] = 'parent';
+  $handler->display->display_options['arguments']['parent']['table'] = 'taxonomy_term_hierarchy';
+  $handler->display->display_options['arguments']['parent']['field'] = 'parent';
+  $handler->display->display_options['arguments']['parent']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['parent']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['parent']['default_argument_options']['term_page'] = 1;
+  $handler->display->display_options['arguments']['parent']['default_argument_options']['node'] = 0;
+  $handler->display->display_options['arguments']['parent']['default_argument_options']['limit'] = 0;
+  $handler->display->display_options['arguments']['parent']['default_argument_options']['vocabularies'] = array(
+    'vocabulary_1' => 0,
+    'vocabulary_9' => 0,
+    'vocabulary_5' => 0,
+    'vocabulary_6' => 0,
+    'vocabulary_11' => 0,
+    'vocabulary_18' => 0,
+    'vocabulary_17' => 0,
+    'vocabulary_15' => 0,
+    'vocabulary_19' => 0,
+    'vocabulary_4' => 0,
+    'vocabulary_16' => 0,
+    'vocabulary_2' => 0,
+    'vocabulary_3' => 0,
+  );
+  $handler->display->display_options['arguments']['parent']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['parent']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['parent']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['parent']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['parent']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['parent']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'vocabulary_5' => 'vocabulary_5',
+  );
+  $handler->display->display_options['filters']['machine_name']['group'] = 0;
+  $handler->display->display_options['pane_category']['weight'] = '0';
+  $handler->display->display_options['argument_input'] = array(
+    'tid' => array(
+      'type' => 'none',
+      'context' => 'entity:file.extension',
+      'context_optional' => 0,
+      'panel' => '1',
+      'fixed' => '',
+      'label' => 'Taxonomy term: Term ID',
+    ),
+  );
   $export['causes'] = $view;
 
   return $export;
