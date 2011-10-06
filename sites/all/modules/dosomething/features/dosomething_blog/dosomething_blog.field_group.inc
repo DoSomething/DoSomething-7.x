@@ -21,12 +21,8 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Media',
-    'weight' => '4',
-    'children' => array(
-      0 => 'field_embedded_video',
-      1 => 'field_picture',
-      2 => 'upload',
-    ),
+    'weight' => '5',
+    'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
@@ -49,14 +45,8 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Metatags',
-    'weight' => '6',
-    'children' => array(
-      0 => 'meta_abstract',
-      1 => 'meta_copyright',
-      2 => 'meta_description',
-      3 => 'meta_keywords',
-      4 => 'meta_robots',
-    ),
+    'weight' => '7',
+    'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(
       'label' => 'Metatags',
@@ -81,7 +71,7 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Path',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'redirect',
       1 => 'path',
@@ -110,11 +100,8 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '5',
-    'children' => array(
-      0 => 'taxonomy_vocabulary_11',
-      1 => 'taxonomy_vocabulary_6',
-    ),
+    'weight' => '6',
+    'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
