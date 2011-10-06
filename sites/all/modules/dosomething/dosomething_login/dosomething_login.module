@@ -337,7 +337,7 @@ function dosomething_login_user_role($account = NULL) {
 function dosomething_login_profile_completion() {
   global $user;
   $ratio = dosomething_login_profile_percentage();
-  $output = '<div class="profile-header">' . t('My profile: %percent', array('%percent' => number_format($ratio * 100, 0) . '%')) .  l('Complete >>', 'user/' . $user->uid . '/edit/main') . '</div>';
+  $output = '<div class="profile-header">' . t('My profile: %percent', array('%percent' => number_format($ratio, 0) . '%')) .  l('Complete >>', 'user/' . $user->uid . '/edit/main') . '</div>';
   $output .= '<div class="dosomething-login-percentage"><div class="ratio" data-ratio="' . $ratio . '"><div class="inner" style="width: ' . $ratio . '%">' . $ratio . '</div></div></div>';
   return $output;
 }
@@ -375,7 +375,7 @@ function dosomething_login_profile_percentage() {
     }
   }
   if ($total) {
-    return ($complete / $total);
+    return (($complete / $total) * 100);
   }
   return 0;
 }
