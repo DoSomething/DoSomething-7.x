@@ -63,14 +63,23 @@
   border: 0
   +border-radius(5px)
   .ui-dialog-titlebar
-    background: $gray-lighter
-    +border-top-radius(5px)
-    +border-bottom-radius(0)
+    background: none
     border: 0
+  .ui-icon-closethick
+    border: 0
+  .ui-widget-header
+    .ui-icon
+      background: image_url("x-box.png") no-repeat
+  .ui-corner-all
+    +border-radius(0)
+    a
+      border: 0
   #lets-talk-dialog
-    +border-bottom-radius(5px)
+    +border-radius(5px)
     background: $gray-lighter
     padding: 0 30px
+    margin-top: -35px
+    z-index: -10
     h2
       color: $blue2
       font-size: $s5
