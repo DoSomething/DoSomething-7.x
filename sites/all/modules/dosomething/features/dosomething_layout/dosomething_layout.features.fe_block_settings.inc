@@ -22,7 +22,7 @@ function dosomething_layout_default_fe_block_settings() {
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '',
+    'pages' => '<front>',
     'title' => '',
     'cache' => 8,
   );
@@ -36,7 +36,7 @@ function dosomething_layout_default_fe_block_settings() {
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '',
+    'pages' => '<front>',
     'title' => '',
     'cache' => 8,
   );
@@ -50,7 +50,7 @@ function dosomething_layout_default_fe_block_settings() {
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '',
+    'pages' => '<front>',
     'title' => '',
     'cache' => 8,
   );
@@ -88,7 +88,7 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'menu-footer',
     'theme' => 'ds',
     'status' => '1',
-    'weight' => '0',
+    'weight' => '-30',
     'region' => 'footer',
     'custom' => '0',
     'visibility' => '0',
