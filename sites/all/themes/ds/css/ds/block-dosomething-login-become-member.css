@@ -103,8 +103,7 @@
 #block-dosomething-login-become-member {
   background: url('../images/sprites/bg-diag-1-2-top-left.png') repeat 0 0;
   background: url('../images/sprites/bg-top-left-fade.png') no-repeat center bottom, url('../images/sprites/bg-top-left-fade-top.png') no-repeat center top, url('../images/sprites/bg-diag-1-2-top-left.png') repeat 0 0;
-  margin-top: -3.75em;
-  padding-top: 7.417em;
+  padding-top: 89px;
   position: relative;
   padding-bottom: 0.833em;
   margin-bottom: 0.417em;

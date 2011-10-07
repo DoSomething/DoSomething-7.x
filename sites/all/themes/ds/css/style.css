@@ -1588,6 +1588,8 @@ body.admin-menu {
 }
 
 #site-name {
+  margin: 0;
+  padding: 0;
   position: absolute;
   top: -33px;
   left: -17px;
@@ -1615,7 +1617,6 @@ nav[role=navigation] {
   text-transform: uppercase;
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
-  margin-bottom: 0.417em;
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
@@ -1721,6 +1722,7 @@ div[role=main] {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  margin-top: 0.417em;
 }
 
 #breadcrumb {

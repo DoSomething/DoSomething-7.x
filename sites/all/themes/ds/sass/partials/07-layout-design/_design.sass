@@ -58,6 +58,8 @@ body
     padding-left: percentage($left-col-width / $page-width)
 
 #site-name
+  margin: 0
+  padding: 0
   position: absolute
   top: -33px
   left: -17px
@@ -72,7 +74,6 @@ nav[role=navigation]
   text-transform: uppercase
   font-family: $font-headline
   text-rendering: optimizeLegibility
-  margin-bottom: calc-em(5px, $s0)
   .primary
     background-color: $c-menu-primary-bg
     padding-left: percentage($left-col-width / $page-width)
@@ -130,6 +131,7 @@ div[role=main]
   background-color: rgba($c-content-bg, 0.5)
   padding-left: percentage($s0 / $main-width)
   +box-sizing(border-box)
+  margin-top: calc-em(5px, $s0)
 
 #breadcrumb
   +adjust-font-size-to($s-1)
