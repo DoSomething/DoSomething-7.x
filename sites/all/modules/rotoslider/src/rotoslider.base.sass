@@ -1,0 +1,73 @@
+@import base
+
+.rotoslider
+  height: $height
+  overflow: hidden
+  position: relative
+  width: $width
+  z-index: 0
+
+  img.rotoslider-image,
+  .rotoslider-images,
+  .rotoslider-images img
+    height: $height
+    overflow: hidden
+    position: absolute
+    width: inherit
+  img.rotoslider-image
+    z-index: 1
+  .rotoslider-images img
+    display: none
+    z-index: 11
+    &.active
+      display: block
+  .rotoslider-description
+    left: 0
+    position: absolute
+    z-index: 2
+  .rotoslider-text
+    display: none
+    left: 0
+    max-height: 100px
+    overflow: hidden
+    padding: 10px $text-padding
+    position: absolute
+    width: $width - $sidebar - 2 * $text-padding
+    z-index: 12
+    &.active
+      display: block
+  .rotoslider-menu
+    border-bottom-style: solid
+    border-bottom-width: $menu-border
+    height: $height - $menu-border
+    overflow: hidden
+    position: absolute
+    right: 0
+    top: 0
+    width: $sidebar
+    z-index: 30
+    .heading
+      height: $heading-height - 2 * $heading-padding
+      left: 0
+      padding: $heading-padding 0
+      position: absolute
+      top: 0
+      width: $sidebar
+      z-index: 50
+  .rotoslider-nav
+    height: $height - $heading-height - $menu-border
+    left: 0
+    margin: 0
+    overflow: hidden
+    padding: 0
+    position: absolute
+    top: $heading-height
+    width: $sidebar
+    z-index: 40
+    li
+      left: 0
+      margin: 0 0 2px
+      position: relative
+      top: 0
+      a
+        display: block

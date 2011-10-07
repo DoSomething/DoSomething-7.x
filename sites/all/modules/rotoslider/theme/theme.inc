@@ -9,37 +9,52 @@
  * Style plugin to render each item in a Rotoslider.
  */
 function template_preprocess_rotoslider_view_slider(&$variables) {
-  drupal_add_js(array('rotoslider' => $variables['options']['settings']), 'setting');
+  $settings = array();
+  foreach (array_filter($variables['options']['settings']) as $name => $setting) {
+    if ($name == 'percentage') {
+      $settings[$name] = $setting / 100;
+    }
+    else {
+      $settings[$name] = (int) $setting;
+    }
+  }
+  if (!empty($settings)) {
+    drupal_add_js(array('rotoslider' => $settings), 'setting');
+  }
 
   $fields = array();
-  foreach ($variables['options']['fields'] as $option => $field_name) {
+  foreach (array_filter($variables['options']['fields']) as $option => $field_name) {
     $info = field_info_field($field_name);
     $fields[$option] = !empty($info) ? "field_$field_name" : $variables['view']->field[$field_name]->field_alias;
   }
 
-  $heading = array(
-    'title' => t('Explore The Menu'),
-    'image' => 'http://placekitten.com/350/125',
-    'text' => t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nulla risus, congue sed accumsan ultricies, ultricies vitae lacus. Vestibulum bibendum egestas mi, in lobortis enim facilisis at. Nulla consequat pharetra eros in consequat.'),
-  );
-
   $items = array();
   foreach ($variables['rows'] as $delta => $row) {
-    if (!isset($row->{$fields['title']})) {
+    if (!isset($fields['title']) || !isset($row->{$fields['title']})) {
       continue;
     }
 
-    $items[$delta]['title'] = $row->{$fields['title']};
-    if (isset($row->{$fields['image']}[0]['raw']['uri'])) {
-      $items[$delta]['image'] = file_create_url($row->{$fields['image']}[0]['raw']['uri']);
+    $items[$delta]['title'] = check_plain($row->{$fields['title']});
+    if (isset($fields['image']) && isset($row->{$fields['image']}[0]['raw']['uri'])) {
+      $items[$delta]['image'] = file_create_url(check_plain($row->{$fields['image']}[0]['raw']['uri']));
     }
-    else {
-      $items[$delta]['image'] = $heading['image'];
-    }
-    if (isset($row->{$fields['text']}[0]['raw']['value'])) {
-      $items[$delta]['text'] = $row->{$fields['text']}[0]['raw']['value'];
+    if (isset($fields['text']) && isset($row->{$fields['text']}[0]['raw']['value'])) {
+      $items[$delta]['text'] = check_markup($row->{$fields['text']}[0]['raw']['value']);
     }
   }
+
+  if (!empty($variables['options']['initial']['default'])) {
+    $initial = $variables['options']['initial'];
+    $heading = array(
+      'title' => check_plain($initial['title']),
+      'image' => file_create_url(check_plain($initial['image'])),
+      'text' => check_markup($initial['text']),
+    );
+  }
+  else {
+    $heading = array_shift($items);
+  }
+
   $variables['element'] = array(
     '#theme' => 'rotoslider_slider',
     '#items' => $items,
@@ -131,7 +146,8 @@ function template_preprocess_rotoslider_slider(&$variables) {
   $element = array(
     '#attached' => array(
       'css' => array(
-        $path . '/css/rotoslider.css',
+        $path . '/css/rotoslider.base.css',
+        $path . '/css/rotoslider.theme.css',
       ),
       'js' => array(
         $path . '/js/rotoslider.js',

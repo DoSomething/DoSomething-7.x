@@ -1,0 +1,5 @@
+name = Rotoslider Demo
+description = Adds a menu callback to demonstrate Rotoslider.
+core = 7.x
+
+dependencies[] = rotoslider
