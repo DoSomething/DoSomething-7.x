@@ -49,7 +49,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -78,7 +78,7 @@ function dosomething_blog_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -125,10 +125,9 @@ function dosomething_blog_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 16,
+          'type' => 'hidden',
+          'weight' => '16',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -242,7 +241,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '5',
+        'weight' => '8',
       ),
       'widget_type' => 'emvideo_textfields',
     ),
@@ -346,9 +345,77 @@ function dosomething_blog_field_default_fields() {
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '3',
+        'weight' => '5',
       ),
       'widget_type' => 'imagefield_widget',
+    ),
+  );
+
+  // Exported field: 'node-blog-field_subtitle'
+  $fields['node-blog-field_subtitle'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_subtitle',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'blog',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'A subtitle for use on the News & Stuff homepage section.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_subtitle',
+      'label' => 'Subtitle',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
     ),
   );
 
@@ -381,7 +448,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 11,
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -402,7 +469,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '12',
+        'weight' => '16',
       ),
     ),
   );
@@ -436,7 +503,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 12,
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -457,7 +524,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '10',
+        'weight' => '14',
       ),
     ),
   );
@@ -491,7 +558,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 13,
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -512,7 +579,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => '11',
+        'weight' => '15',
       ),
     ),
   );
@@ -546,7 +613,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 14,
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -567,7 +634,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
@@ -601,7 +668,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 15,
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -623,7 +690,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
@@ -665,7 +732,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -689,7 +756,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '4',
+        'weight' => '6',
       ),
     ),
   );
@@ -732,7 +799,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -753,7 +820,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -795,7 +862,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -819,7 +886,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '5',
+        'weight' => '9',
       ),
     ),
   );
@@ -857,7 +924,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_table',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'hidden',
@@ -898,7 +965,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '4',
+        'weight' => '7',
       ),
     ),
   );
@@ -979,6 +1046,7 @@ function dosomething_blog_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('580px by 580px max');
+  t('A subtitle for use on the News & Stuff homepage section.');
   t('Abstract');
   t('An entry for the Celebs Gone Good blog');
   t('Blog Icon');
@@ -993,6 +1061,7 @@ function dosomething_blog_field_default_fields() {
   t('Keywords');
   t('Picture');
   t('Robots');
+  t('Subtitle');
   t('Video (optional)');
   t('hold down ctrl button to select more than one');
 
