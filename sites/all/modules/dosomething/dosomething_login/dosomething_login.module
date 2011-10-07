@@ -210,15 +210,14 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $account = drupal_anonymous_user();
   $edit = array_intersect_key((array) $account, $form_state['values']);
   entity_form_submit_build_entity('user', $account, $form, $form_state);
+  $account->status = 0; // All users require email or phone verification.
   // Handle 'old people' (26+yo)
   if ((time() - $birthdate) > 26*365*24*60*60) {
     $role_name = 'old person';
-    $account->status = 0;
     drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
   }
   else {
     $role_name = 'member';
-    $account->status = 1;
   }
   $role = user_role_load_by_name($role_name);
   $account->roles[$role->rid] = $role->name;
@@ -244,8 +243,11 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
   }
   field_attach_insert('profile2', $profile);
-  // Log user in.
   $form_state['uid'] = $account->uid;
+  if (isset($account->mail)) {
+    _user_mail_notify('register_no_approval_required', $account);
+    drupal_set_message(t('Please check your email to verify your account.'));
+  }
   if ($account->status) {
     user_login_submit(array(), $form_state);
   }
