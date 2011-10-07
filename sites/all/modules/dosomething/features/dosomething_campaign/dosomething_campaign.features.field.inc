@@ -82,6 +82,77 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_campaign_causes_issues'
+  $fields['node-campaign-field_campaign_causes_issues'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_causes_issues',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_5',
+            'parent' => '0',
+          ),
+        ),
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Relate this Campaign to a Cause or Issue.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 5,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_causes_issues',
+      'label' => 'Causes/Issues',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_campaign_headline'
   $fields['node-campaign-field_campaign_headline'] = array(
     'field_config' => array(
@@ -147,7 +218,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
@@ -245,7 +316,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'module' => 'media',
+      'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
       ),
@@ -277,6 +348,7 @@ function dosomething_campaign_field_default_fields() {
       'label' => 'Video',
       'required' => 0,
       'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -293,10 +365,11 @@ function dosomething_campaign_field_default_fields() {
             'image' => 0,
             'video' => 'video',
           ),
+          'browser_plugins' => array(),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -374,7 +447,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '3',
+        'weight' => '4',
       ),
       'widget_type' => 'options_select',
     ),
@@ -383,9 +456,11 @@ function dosomething_campaign_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Causes/Issues');
   t('Group type');
   t('Headline');
   t('Logo');
+  t('Relate this Campaign to a Cause or Issue.');
   t('Video');
 
   return $fields;
