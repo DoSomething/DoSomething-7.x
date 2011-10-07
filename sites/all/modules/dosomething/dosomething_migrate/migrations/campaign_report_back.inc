@@ -13,16 +13,25 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
     // emfields
     foreach (array('field_embedded_video', 'field_campaign_video', 'field_botb_video') as $name) {
       if (!empty($row->$name)) {
-        foreach ($row->$name as &$value) {
-          $file = file_uri_to_object($value);
-          if (empty($file->fid)) {
-            $file->uid = $row->uid;
-            file_save($file);
+        if (is_array($row->$name)) {
+          foreach ($row->$name as &$value) {
+            $value = $this->fidFromEmField($value, $row->uid);
           }
-          $value = $file->fid;
+        }
+        else {
+          $row->$name = $this->fidFromEmField($row->$name, $row->uid);
         }
       }
     }
+  }
+
+  protected function fidFromEmField($value, $uid) {
+    $file = file_uri_to_object($value);
+    if (empty($file->fid)) {
+      $file->uid = $uid;
+      file_save($file);
+    }
+    return $file->fid;
   }
 }
 
