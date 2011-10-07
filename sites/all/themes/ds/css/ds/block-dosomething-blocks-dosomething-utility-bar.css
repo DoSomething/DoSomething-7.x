@@ -134,11 +134,20 @@
   background: none;
   border: 0;
 }
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+  background-color: none;
+}
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
+  height: 12px;
+  width: 12px;
+  background: none;
+  margin-right: 7px;
+}
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
+  background: url('../images/x-box.png') no-repeat;
+}
 .ui-dialog .ui-icon-closethick {
   border: 0;
-}
-.ui-dialog .ui-widget-header .ui-icon {
-  background: url('../images/x-box.png') no-repeat;
 }
 .ui-dialog .ui-corner-all {
   -moz-border-radius: 0;
