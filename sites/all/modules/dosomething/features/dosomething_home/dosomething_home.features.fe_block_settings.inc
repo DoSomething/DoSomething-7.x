@@ -18,7 +18,7 @@ function dosomething_home_default_fe_block_settings() {
     'delta' => 'home_page',
     'theme' => 'ds',
     'status' => '1',
-    'weight' => '-25',
+    'weight' => '-31',
     'region' => 'footer',
     'custom' => '0',
     'visibility' => '0',
