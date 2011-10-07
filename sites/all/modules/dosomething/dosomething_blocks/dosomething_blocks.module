@@ -86,7 +86,7 @@ function dosomething_blocks_block_view($delta = '') {
  * Generate the contents of the facebook activity block.
  */
 function dosomething_blocks_facebook_activity_block_content() {
-  return '<div class="fb-activity" data-width="183px" data-site="dosomething.org" data-colorscheme="dark" data-recommendations="false"></div>';
+    return '<div class="fb-activity" data-width="183" data-header="false" data-site="dosomething.org" data-colorscheme="dark" data-recommendations="false"></div>';
 }
 
 function dosomething_blocks_twitter_stream_block_content() {
