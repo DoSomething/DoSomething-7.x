@@ -133,7 +133,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more &raquo;';
-  /* Field: Content: Image */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_blog_image']['id'] = 'field_blog_image';
   $handler->display->display_options['fields']['field_blog_image']['table'] = 'field_data_field_blog_image';
   $handler->display->display_options['fields']['field_blog_image']['field'] = 'field_blog_image';
@@ -155,12 +155,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['field_blog_image']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_blog_image']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_blog_image']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_blog_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_blog_image']['settings'] = array(
-    'image_style' => 'blog_thumbnail',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_blog_image']['field_api_classes'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
