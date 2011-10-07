@@ -57,6 +57,9 @@ drush vset -y pathauto_node_dsu_guides_pattern "u/[node:content-type]/[node:titl
 drush vset -y pathauto_node_project_update_pattern "actnow/project/updates/[node:title]"
 drush vset -y pathauto_user_pattern "users/[user:name]" 
 drush vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
+drush vset -y pathauto_taxonomy_term_pattern "[term:vocabulary]/[term:name]"
+drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]" 
+drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]" 
 # Change auto increment for webform_submissions table
 SID=`drush php-eval "print db_query('select max(nid) from node')->fetchField();"`
 SID=$(($SID+1000))
