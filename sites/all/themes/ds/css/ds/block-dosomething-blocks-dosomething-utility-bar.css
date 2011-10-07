@@ -136,12 +136,15 @@
 }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
   background-color: none;
+  position: absolute;
+  top: 3px;
+  right: 0.3em;
 }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
   height: 12px;
   width: 12px;
   background: none;
-  margin-right: 7px;
+  margin: 7px;
 }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
   background: url('../images/x-box.png') no-repeat;
