@@ -11,6 +11,7 @@
 function dosomething_login_block_info() {
   $blocks['become_member'] = array(
     'info' => t('Become a Member'),
+    'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
@@ -198,6 +199,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
  */
 function dosomething_login_register_block_submit($form, &$form_state) {
   $values = $form_state['values'];
+  $birthdate = $values['birthdate'];
   $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
   $form_state['values']['name'] = dosomething_login_unique_name($name);
   $form_state['values']['pass'] = user_password();
@@ -206,9 +208,20 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   form_state_values_clean($form_state);
 
   $account = drupal_anonymous_user();
-  $account->status = 1;
   $edit = array_intersect_key((array) $account, $form_state['values']);
   entity_form_submit_build_entity('user', $account, $form, $form_state);
+  // Handle 'old people' (26+yo)
+  if ((time() - $birthdate) > 26*365*24*60*60) {
+    $role_name = 'old person';
+    $account->status = 0;
+    drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
+  }
+  else {
+    $role_name = 'member';
+    $account->status = 1;
+  }
+  $role = user_role_load_by_name($role_name);
+  $account->roles[$role->rid] = $role->name;
   $account = user_save($account, $edit);
   // Terminate if an error occurred during user_save().
   if (!$account) {
@@ -233,7 +246,9 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   field_attach_insert('profile2', $profile);
   // Log user in.
   $form_state['uid'] = $account->uid;
-  user_login_submit(array(), $form_state);
+  if ($account->status) {
+    user_login_submit(array(), $form_state);
+  }
 }
 
 /**

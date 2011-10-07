@@ -10,7 +10,7 @@ drush -y sql-drop
 drush -y sqlc < $1
 echo "running core updates `date`"
 mv ${ROOT}/sites/all/modules ${ROOT}/sites/all/movedmodules
-echo "update system set status = 0 where name = 'og'"| drush sqlc
+echo "update system set status = 0 where name = 'og' OR name = 'contact' OR name = 'comment'"| drush sqlc
 drush -y -v updb
 drush -y updb
 echo "running contrib updates `date`"
@@ -21,6 +21,7 @@ drush vset -y admin_theme seven
 drush vset -y devel_query_display 0
 drush vset -y error_level 2
 drush vset -y empty_timezone_message 0
+drush vset -y configurable_timezones 0
 drush vset -y pathauto_webform_pathauto_pattern "[webform:node-path]/[webform:sid]"
 drush vset -y fb_social_appid 160632053975149
 drush vset -y fb_social_base_url "http://dosomething.zivtech.com"
