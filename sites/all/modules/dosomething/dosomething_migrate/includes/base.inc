@@ -31,8 +31,6 @@ abstract class DSBaseWebformMigration extends Migration {
 
     $this->destination = new MigrateDestinationWebformSubmissionEntity($this->webform);
 
-    $this->addFieldMapping('sid', 'nid')
-      ->description("Make the node id the submission id for easy redirection if we need to.");
     $this->addFieldMapping('uid', 'uid')
       ->description("User ids should be a direct mapping.");
     $this->addFieldMapping('is_draft')
@@ -42,20 +40,11 @@ abstract class DSBaseWebformMigration extends Migration {
     $this->addFieldMapping('remote_addr')
       ->defaultValue('127.0.0.1')
       ->description("I don't think we have an IP to use as the submission so I'm using the loopback.");
-    $this->addFieldMapping('path', 'path')
-      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
-      ->description("Not sure if the webform submissions support paths.");
-    $this->addUnmigratedSources(array('promote', 'sticky', 'language'));
+    $this->addFieldMapping('path', 'path');
+
+    $this->addUnmigratedSources(array('nid', 'promote', 'sticky', 'language'));
+    $this->addUnmigratedDestinations(array('sid'));
   }
-
-  // public function prepareRow($row) {
-  //   var_dump($row);
-  // }
-
-  // public function prepare($entity, stdClass $row) {
-  //   var_dump($row);
-  //   var_dump($entity);
-  // }
 
   protected function addAddressFieldMapping($dest_field, $country_source_field = NULL, array $mapping) {
     $arguments = array();
