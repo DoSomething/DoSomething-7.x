@@ -147,5 +147,14 @@ class DSJsonUserProfileMigration extends DSBaseMigration {
       $row->profile_bday = NULL;
     }
     #print "bday after :" . ($row->profile_bday ? gmdate('c', $row->profile_bday) : '') . "\n";
+
+    // A zero value means nothing was selected.
+    if (empty($row->profile_gender)) {
+      $row->profile_gender = NULL;
+    }
+    else {
+      // They switched the keys to lowercase versions.
+      $row->profile_gender = strtolower($row->profile_gender);
+    }
   }
 }
