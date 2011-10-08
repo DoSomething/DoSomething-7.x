@@ -146,7 +146,7 @@ function dosomething_login_register_block($form) {
       '<span class="fb-icon">log in</span>',
       'fbconnect/login',
       array(
-        'attributes' => array('class' => 'login facebook-login ds-button'),
+        'class' => 'login facebook-login ds-button',
         'html' => TRUE,
       )
     )
@@ -357,7 +357,7 @@ function dosomething_login_member_block() {
   $output .= '<div class="dosomething-login-profile">' . dosomething_login_profile_completion() . '</div>';
   $output .= dosomething_login_my_somethings();
   $output .= dosomething_login_notifications();
-  $output .= l('Go to profile >>', 'user', array('attributes' => array('class' => array('dosomething-login-goto-profile'))));
+  //$output .= l('Go to profile >>', 'user', array('attributes' => array('class' => array('dosomething-login-goto-profile'))));
   return $output;
 }
 
