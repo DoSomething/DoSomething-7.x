@@ -18,7 +18,7 @@ class DSUserMigration extends DSBaseMigration {
     parent::__construct($group);
     $this->dependencies = array();
 
-    $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
     $fields = array();
     $json = file_get_contents("{$base_url}/user/fields");
@@ -54,7 +54,7 @@ class DSJsonUserProfileMigration extends DSBaseMigration {
     parent::__construct($group);
     $this->dependencies = array();
 
-    $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
     $fields = array();
     $json = file_get_contents("{$base_url}/user/fields");

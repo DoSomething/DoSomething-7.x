@@ -25,7 +25,7 @@ abstract class DSJsonWebformMigration extends DSBaseWebformMigration {
     parent::__construct($group, $node_type);
     $this->dependencies = array();
 
-    $base_url = variable_get('ds_migrate_url', 'http://dosomething6.local/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
     $this->source = new MigrateSourceList(
       new DSNodeListJSON($base_url, $node_type),
