@@ -23,7 +23,8 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
       else {
         $form['actions']['submit']['#value'] = t('Absolutely!');
         if ($user->uid) {
-  $form['field_action_intention_email'][$form['field_action_intention_email']['#language']][0]['email']['#default_value'] = $user->mail;
+          $lang = $form['field_action_intention_email']['#language'];
+          $form['field_action_intention_email'][$lang][0]['email']['#default_value'] = $user->mail;
         }
         if (!$user->uid) {
           $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
@@ -32,7 +33,7 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
       $form['total'] = array(
         '#markup' => '<p>' . t('!total people have committed to this one.', array('!total' => webform_get_submission_count($node->nid))) . '</p>',
         '#weight' => 200,
-      );    
+      );
     }
   }
 }
