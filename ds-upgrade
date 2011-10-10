@@ -70,6 +70,9 @@ drush vset -y print_mail_show_link 2
 drush vset -y print_html_sys_link_visibility 0
 drush vset -y print_html_sys_link_pages 0
 drush vset -y print_html_show_link 2
+# Using vset to do this has just been added to drush and might not be on the prod server.
+# http://drupal.org/node/664452#comment-5078776
+drush php-eval "variable_set('google_plusone_button_settings', array('annotation' => 'none', 'width' => 150, 'size' => 'tall', 'syntax' => 'HTML5'));"
 echo "Enabling first round of contrib modules, pre-field and og migration `date`"
 drush -y en media_youtube media_webform mediafield emfield rdf date date_popup date_views link og auto_nodetitle diff token transliteration views views_ui views_data_export image node_reference user_reference field_group content_migrate features views_content og_ui og_migrate metatags_quick webform email entity_token webform_entity geofield strongarm
 drush -y dis profile
