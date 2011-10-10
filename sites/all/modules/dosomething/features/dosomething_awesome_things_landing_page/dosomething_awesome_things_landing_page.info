@@ -1,7 +1,7 @@
 name = "Dosomething - Awesome Things Landing Page"
 description = "Awesome Things landing panels page and views"
 core = "7.x"
-package = "Features"
+package = "Dosomething"
 dependencies[] = "dosomething_blog"
 dependencies[] = "page_manager"
 features[ctools][] = "page_manager:pages_default:1"
