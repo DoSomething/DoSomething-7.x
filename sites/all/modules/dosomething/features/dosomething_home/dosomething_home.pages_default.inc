@@ -8,6 +8,7 @@
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_home_default_page_manager_pages() {
+
   $page = new stdClass;
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
