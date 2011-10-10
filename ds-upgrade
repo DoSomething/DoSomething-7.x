@@ -59,11 +59,17 @@ drush vset -y pathauto_node_campaign_hunt_2011_pattern "project/scavenger-hunt/[
 drush vset -y pathauto_node_campaign_ew_2011_pattern "project/ewaste/[node:title]"
 drush vset -y pathauto_node_dsu_guides_pattern "u/[node:content-type]/[node:title]"
 drush vset -y pathauto_node_project_update_pattern "actnow/project/updates/[node:title]"
-drush vset -y pathauto_user_pattern "users/[user:name]" 
+drush vset -y pathauto_user_pattern "users/[user:name]"
 drush vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 drush vset -y pathauto_taxonomy_term_pattern "[term:vocabulary]/[term:name]"
-drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]" 
-drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]" 
+drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]"
+drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]"
+drush vset -y print_mail_sys_link_visibility 0
+drush vset -y print_mail_sys_link_pages 0
+drush vset -y print_mail_show_link 2
+drush vset -y print_html_sys_link_visibility 0
+drush vset -y print_html_sys_link_pages 0
+drush vset -y print_html_show_link 2
 echo "Enabling first round of contrib modules, pre-field and og migration `date`"
 drush -y en media_youtube media_webform mediafield emfield rdf date date_popup date_views link og auto_nodetitle diff token transliteration views views_ui views_data_export image node_reference user_reference field_group content_migrate features views_content og_ui og_migrate metatags_quick webform email entity_token webform_entity geofield strongarm
 drush -y dis profile
@@ -78,11 +84,11 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone print
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "combining blog posts into new blog content type `date`"
-drush -y php-eval "\$vocab = taxonomy_vocabulary_machine_name_load('blog_type'); \$vid = \$vocab->vid; \$term = new stdClass(); \$term->vid = \$vid; \$term->name = 'Celebs Gone Good'; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); \$terms['celebs_gone_good'] = \$term->tid; \$term = new stdClass(); \$term->vid = \$vid; \$term->name = 'News'; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); \$terms['chatterbox'] = \$term->tid; \$term = new stdClass(); \$term->name = 'DoSomething Staff'; \$term->vid = \$vid; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); \$terms['staff_blog'] = \$term->tid; \$term = new stdClass(); \$term->vid = \$vid; \$term->name = 'Awe-Some Ones'; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); 
+drush -y php-eval "\$vocab = taxonomy_vocabulary_machine_name_load('blog_type'); \$vid = \$vocab->vid; \$term = new stdClass(); \$term->vid = \$vid; \$term->name = 'Celebs Gone Good'; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); \$terms['celebs_gone_good'] = \$term->tid; \$term = new stdClass(); \$term->vid = \$vid; \$term->name = 'News'; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); \$terms['chatterbox'] = \$term->tid; \$term = new stdClass(); \$term->name = 'DoSomething Staff'; \$term->vid = \$vid; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term); \$terms['staff_blog'] = \$term->tid; \$term = new stdClass(); \$term->vid = \$vid; \$term->name = 'Awe-Some Ones'; \$term->vocabulary_machine_name = 'blog_type'; taxonomy_term_save(\$term);
 \$nids = db_query('SELECT nid FROM node where type IN (\'chatterbox\', \'staff_blog\', \'celebs_gone_good\')')->fetchCol(); \$nodes = node_load_multiple(\$nids); foreach (\$nodes as \$node) {\$node->field_blog_type[LANGUAGE_NONE][0]['tid'] = \$terms[\$node->type]; \$node->type = 'blog'; if (isset(\$node->field_staff_blog_video)) {\$node->field_embedded_video = \$node->field_staff_blog_video;} node_save(\$node);}"
 echo "migrating profile to profile2 `date`"
 drush -y mi DSSqlUserProfile
