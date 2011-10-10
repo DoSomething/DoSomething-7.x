@@ -38,6 +38,19 @@ function dosomething_login_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_mail().
+ */
+function dosomething_login_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'dosomething-parent-email':
+      $message['subject'][] = t('Permissions for %first %last', array('%first' => $params['first_name'], '%last' => $params['last_name']));
+      $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_email', $params));
+      $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
+      break;
+  }
+}
+
+/**
  * The form for the 'Become a Member' block.
  */
 function dosomething_login_register_block($form) {
@@ -292,6 +305,13 @@ function dosomething_login_menu() {
     'page callback' => 'dosomething_login_mobile_signup',
     'access callback' => 'dosomething_login_mobile_signup_access',
   );
+  $items['dosomething/under-13/permission/%/%/%'] = array(
+    'title' => 'Parental Permission',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_login_parent_permission_page', 3, 4, 5),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -525,10 +545,62 @@ function dosomething_login_fbconnect_register_validate($form, &$form_state) {
   if (!isset($invalid_birthday)) {
     $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
     $form_state['values']['birthdate'] = $birthday;
-    if ((time() - $birthday) < 13*365*24*60*60) {
+    if (!dosomething_login_user_is_over_age($birthday, 13)) {
       form_set_error('year', t('Members must be at least 13 years old.'));
     }
   }
+}
+
+/**
+ * Form for a person under 13 to request their parent's permission
+ *  to use the site.
+ */
+function dosomething_login_parent_permission_email_form(&$form, &$form_state, $uid) {
+  $form = array();
+  $form['parent_email'] = array(
+    '#title' => t('Parent Email Address'),
+    '#type' => 'textfield',
+    '#size' => 20,
+  );
+  $form['uid'] = array(
+    '#type' => 'value',
+    '#value' => $uid,
+  );
+  $form['submit_email'] = array(
+    '#type' => 'submit',
+    '#value' => t('Send Email'),
+  );
+  return $form;
+}
+
+/**
+ * Validation callback for parent permission email form.
+ */
+function dosomething_login_parent_permission_email_form_validate($form, &$form_state) {
+  $email = $form_state['values']['parent_email'];
+  if (!valid_email_address($email)) {
+    form_set_error('parent_email', t('you must provide a valid email address'));
+  }
+}
+
+
+/**
+ * Submission callback for parent permission email form.
+ */
+function dosomething_login_parent_permission_email_form_submit($form, &$form_state) {
+  $email = $form_state['values']['parent_email'];
+  $params = array();
+
+  $account = user_load($form_state['values']['uid']);
+  
+  // Note: On account creation, fields use language-none so it should be ok not
+  // to use field_get_items here.
+  $profile = profile2_load_by_user($account, 'main');
+  $params['first_name'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  $params['last_name'] = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+  drupal_mail('domsomething_login', 'dosomething-parent-email', $email, $language, $params); 
+  // TODO: This message may not be necessary.
+  drupal_set_message(t('An email has been sent to %email.', array('%email' => $email))); 
 }
 
 /**
@@ -540,5 +612,80 @@ function dosomething_login_theme() {
       'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
       'template' => 'dosomething-login-member-lightbox',
     ),
+    'dosomething_login_parent_email' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'arguments' => array('first_name' => NULL, 'last_name' => NULL),
+      'template' => 'dosomething-login-parent-email',
+    ),
   );
 }
+
+/**
+ * Check if a user is over 13.
+ *
+ * @param $birthday
+ *  (int) timestamp of birthday.
+ * @return @boolean
+ */
+function dosomething_login_user_is_over_age($birthday, $age = 13) {
+  return ((time() - $birthday) < $age*365*24*60*60) ? FALSE : TRUE;
+}
+
+/**
+ * Generates a unique URL for a parent to give permission to their
+ *  under 13 year old child.
+ *
+ * @param object $account
+ *   An object containing the user account.
+ *
+ * @return
+ *   A unique URL that provides a one-time link for the user.
+ */
+function dosomething_login_one_time_parent_permission_link($account) {
+  $timestamp = REQUEST_TIME;
+  return url("dosomething/under-13/permission/$account->uid/$timestamp/" . user_pass_rehash($account->pass, $timestamp, $account->created), array('absolute' => TRUE));
+}
+
+/**
+ * TODO:
+ */
+function dosomething_login_parent_permission_page($form, &$form_state, $uid, $timestamp, $hash, $action = NULL) {
+  // TODO: This expires after 6 months (maybe sooner).
+  $timeout = 86400; // TODO: increase this number
+  $current = REQUEST_TIME;
+  // Some redundant checks for extra security ?
+  $users = user_load_multiple(array($uid), array('status' => '1'));
+  if ($timestamp <= $current && $account = reset($users)) {
+    // No time out for first time login.
+    if ($current - $timestamp > $timeout) {
+      drupal_set_message(t('You have tried to use a one-time link that has expired.'));
+      drupal_goto();
+    }
+    elseif ($account->uid && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->created)) {
+      if ($action == 'allow') {
+        watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
+        drupal_set_message(t('You have just allowed %user_name to be a meber of this site.  An email has been sent.', array('%user_name' => $account->name)));
+        // TODO: Send email to $account->mail about becoming a member.
+        
+        $edit = array();
+        $role = user_role_load_by_name('member');
+        $account->roles[$role->rid] = $role->name;
+        $account = user_save($account, $edit);
+        drupal_goto();
+      }
+      // TODO: else if user already has permission by virtue of being 13 or older.
+      else {
+        $form['message'] = array('#markup' => t('<p>Allow %user_name to be a member of this site.</p>',  array('%user_name' => $account->name)));
+        $form['actions'] = array('#type' => 'actions');
+        $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Submit'));
+        $form['#action'] = url("user/reset/$uid/$timestamp/$hashed_pass/allow");
+        return $form;
+      }
+    }
+    else {
+      drupal_set_message(t('You have tried to use a one-time login link that has either been used or is no longer valid. Please request a new one using the form below.'));
+      drupal_goto('user/password');
+    }
+  }
+}
+
