@@ -375,6 +375,8 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
     $google = theme('google_plusone_button', $button_settings);
   }
   if (module_exists('tweetbutton')) {
+    drupal_add_js('http://platform.twitter.com/widgets.js'); 
+    drupal_add_css(drupal_get_path('module', 'tweetbutton').'/tweetbutton.css');
     $variables = dosomething_blocks_tweet_prepare($path);
     $twitter = theme('tweetbutton_display', $variables);
   }
@@ -486,4 +488,13 @@ function dosomething_blocks_make_an_impact_form_front() {
   $content = dosomething_blocks_make_an_impact_form();
   $content['description']['#title'] = t("Ready to take action? Choose from the options below and we'll find a whole bunch of Somethings for you to do.");
   return $content;
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function dosomething_blocks_views_api() {
+  return array(
+    'api' => 3,
+  );
 }
