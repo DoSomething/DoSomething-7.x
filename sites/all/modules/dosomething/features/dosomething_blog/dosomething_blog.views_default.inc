@@ -22,7 +22,6 @@ function dosomething_blog_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Blog Center';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -248,23 +247,18 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Taxonomy term: Name */
-  $handler->display->display_options['arguments']['name']['id'] = 'name';
-  $handler->display->display_options['arguments']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['arguments']['name']['field'] = 'name';
-  $handler->display->display_options['arguments']['name']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['arguments']['name']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['name']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['name']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['name']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['name']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['name']['glossary'] = 0;
-  $handler->display->display_options['arguments']['name']['limit'] = '0';
-  $handler->display->display_options['arguments']['name']['path_case'] = 'lower';
-  $handler->display->display_options['arguments']['name']['transform_dash'] = 1;
-  $handler->display->display_options['arguments']['name']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['name']['add_table'] = 0;
-  $handler->display->display_options['arguments']['name']['require_value'] = 0;
+  /* Contextual filter: Taxonomy term: Term ID */
+  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['tid']['not'] = 0;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -279,10 +273,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'blog' => 'blog',
   );
-
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'blog-center2';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
@@ -411,7 +401,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more &raquo;';
-  /* Field: Broken/missing handler */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_blog_image']['id'] = 'field_blog_image';
   $handler->display->display_options['fields']['field_blog_image']['table'] = 'field_data_field_blog_image';
   $handler->display->display_options['fields']['field_blog_image']['field'] = 'field_blog_image';

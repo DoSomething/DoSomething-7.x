@@ -65,10 +65,11 @@ function dosomething_blog_default_page_manager_pages() {
       'title' => '',
       'body' => '<h1>Blog Center</h1>
 <ul class="blog-center-menu">
-<li><a href="/blog-center">All</a></li>
-<li><a href="/blog-center/awe-some-ones">Awe-Some Ones</a></li>
-<li><a href="/blog-center/celebs-gone-good">Celebs Gone Good</a></li>
-<li><a href="/blog-center/dosomething-staff">DoSomething Staff</a></li>
+<li><a href="/blog">All</a></li>
+<li><a href="/blog/9357">News</a></li>
+<li><a href="/blog/9359">Awe-Some Ones</a></li>
+<li><a href="/blog/9356">Celebs Gone Good</a></li>
+<li><a href="/blog/9358">DoSomething Staff</a></li>
 </ul>',
       'format' => '3',
       'substitute' => TRUE,

@@ -49,7 +49,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -78,7 +78,157 @@ function dosomething_blog_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '4',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-blog-field_blog_causes'
+  $fields['node-blog-field_blog_causes'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_blog_causes',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_5',
+            'parent' => '0',
+          ),
+        ),
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'blog',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'If relevant, select the Cause(s) or Issue(s) that this blog post relates to.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_blog_causes',
+      'label' => 'Causes/Issues',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-blog-field_blog_image'
+  $fields['node-blog-field_blog_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_blog_image',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'blog',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'blog_main_image',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_blog_image',
+      'label' => 'Image',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '3',
       ),
     ),
   );
@@ -125,9 +275,10 @@ function dosomething_blog_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '16',
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 16,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -241,7 +392,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '8',
+        'weight' => '5',
       ),
       'widget_type' => 'emvideo_textfields',
     ),
@@ -345,77 +496,9 @@ function dosomething_blog_field_default_fields() {
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '5',
+        'weight' => '3',
       ),
       'widget_type' => 'imagefield_widget',
-    ),
-  );
-
-  // Exported field: 'node-blog-field_subtitle'
-  $fields['node-blog-field_subtitle'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_subtitle',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'blog',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'A subtitle for use on the News & Stuff homepage section.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '17',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_subtitle',
-      'label' => 'Subtitle',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '2',
-      ),
     ),
   );
 
@@ -448,7 +531,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '11',
+          'weight' => 11,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -469,7 +552,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '16',
+        'weight' => '12',
       ),
     ),
   );
@@ -503,7 +586,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '12',
+          'weight' => 12,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -524,7 +607,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '14',
+        'weight' => '10',
       ),
     ),
   );
@@ -558,7 +641,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '13',
+          'weight' => 13,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -579,7 +662,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => '15',
+        'weight' => '11',
       ),
     ),
   );
@@ -613,7 +696,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '14',
+          'weight' => 14,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -634,7 +717,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '11',
+        'weight' => '9',
       ),
     ),
   );
@@ -668,7 +751,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '15',
+          'weight' => 15,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -690,7 +773,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => '10',
+        'weight' => '8',
       ),
     ),
   );
@@ -732,7 +815,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '10',
+          'weight' => 10,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -756,7 +839,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -799,7 +882,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '10',
+          'weight' => 10,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -820,7 +903,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -862,7 +945,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '10',
+          'weight' => 10,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -886,7 +969,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '9',
+        'weight' => '5',
       ),
     ),
   );
@@ -924,7 +1007,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_table',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'full' => array(
           'label' => 'hidden',
@@ -965,7 +1048,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '7',
+        'weight' => '4',
       ),
     ),
   );
@@ -1046,22 +1129,23 @@ function dosomething_blog_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('580px by 580px max');
-  t('A subtitle for use on the News & Stuff homepage section.');
   t('Abstract');
   t('An entry for the Celebs Gone Good blog');
   t('Blog Icon');
   t('Blog type');
   t('Body');
+  t('Causes/Issues');
   t('Celebrity Name Tags');
   t('Charity');
   t('Copyright');
   t('Description');
   t('File attachments');
+  t('If relevant, select the Cause(s) or Issue(s) that this blog post relates to.');
+  t('Image');
   t('Issues');
   t('Keywords');
   t('Picture');
   t('Robots');
-  t('Subtitle');
   t('Video (optional)');
   t('hold down ctrl button to select more than one');
 
