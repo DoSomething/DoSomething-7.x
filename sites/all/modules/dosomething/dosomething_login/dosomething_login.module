@@ -633,14 +633,50 @@ function dosomething_login_theme() {
 }
 
 /**
+ * Determine if a drupal user is over 13 years old.
+ *
+ * @param $uid
+ *  (int) numeric id of drupal user.
+ * @return @boolean
+ */
+function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
+  $account = user_load($uid);
+  $profile = profile2_load_by_user($account, 'main');
+  if (is_object($profile)) {
+    $birthday = field_get_items('profile2', $profile, 'field_user_birthday'); 
+    if (isset($birthday[0]['value'])) {
+      // this is only a a time (no time) so timezone is not important.
+      $timestamp = strtotime($birthday[0]['value']);
+      return dosomething_login_user_is_over_age($timestamp, $age);
+    }
+  }
+  return FALSE;
+}
+
+/**
  * Check if a user is over 13.
  *
  * @param $birthday
  *  (int) timestamp of birthday.
  * @return @boolean
  */
-function dosomething_login_user_is_over_age($birthday, $age = 13) {
-  return ((time() - $birthday) < $age*365*24*60*60) ? FALSE : TRUE;
+function dosomething_login_person_is_over_age($birthday, $age = 13) {
+  return ((time() - $birthday) < strtotime("-$age year")) ? FALSE : TRUE;
+}
+
+/**
+ * Mark a user as being over 13.
+ *  They don't need parental permission at this point.
+ */
+function dosomething_login_user_account_over_13($uid) {
+  // TODO: What else needs to be done to graduate the user to being over 13?
+  $account = user_load($uid);
+  $profile = profile2_load_by_user($account, 'main');
+  if (is_object($profile)) {
+    $birthday = field_get_items('profile2', $profile, 'field_user_birthday'); 
+    $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
+    profile2_save($profile);
+  }
 }
 
 /**
@@ -675,7 +711,10 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
       drupal_goto();
     }
     elseif ($account->uid && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->created)) {
-      if ($action == 'allow') {
+      if ($action == 'submit') {
+        // TODO: take different action depending on which button was clicked.
+
+        // If the child is allowed access.
         watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
         drupal_set_message(t('You have just allowed %user_name to be a meber of this site.  An email has been sent.', array('%user_name' => $account->name)));
         drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, $params); 
@@ -684,10 +723,11 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
       }
       // TODO: else if user already has permission by virtue of being 13 or older.
       else {
-        $form['message'] = array('#markup' => t('<p>Allow %user_name to be a member of this site.</p>',  array('%user_name' => $account->name)));
+        $form['message'] = array('#markup' => t('<p>Do you consent to allowing %user_name to be a member of this site.</p>',  array('%user_name' => $account->name)));
         $form['actions'] = array('#type' => 'actions');
-        $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Submit'));
-        $form['#action'] = url("user/reset/$uid/$timestamp/$hashed_pass/allow");
+        $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Yes'));
+        $form['actions']['cancel'] = array('#type' => 'submit', '#value' => t('no'));
+        $form['#action'] = url("user/reset/$uid/$timestamp/$hashed_pass/submit");
         return $form;
       }
     }
@@ -709,5 +749,81 @@ function dosomething_login_give_user_parental_permission($account) {
   //$role = user_role_load_by_name('member');
   //$account->roles[$role->rid] = $role->name;
   //$account = user_save($account, $edit);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function dosomething_login_cron() {
+  //dosomething_login_update_accounts_under_13();
+  //dosomething_login_clear_old_accounts();
+}
+
+/**
+ * Update users who have become 13 or older.
+ */
+function dosomething_login_update_accounts_under_13($limit = 10) {
+  $profiles = dosomething_login_get_accounts_under_13($limit);
+  if (count($profiles)) {
+    foreach ($profiles as $profile_data) {
+      $profile = profile2_load($profile_data->pid);
+      $birthday = field_get_items('profile2', $profile, 'field_user_birthday');
+      if (isset($birthday[0]['value'])) {
+        if (dosomething_login_person_is_over_age(strtotime($birthday[0]['value']), 13)) {
+          // TODO: Anything else to mark as over 13?
+          $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
+          profile2_save($profile);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Get a list of accounts who are under 13
+ */
+function dosomething_login_get_accounts_under_13($limit = 10) {
+  // TODO: Grab users in order of their birthdays
+  // depending on whether they're marked under 13.
+  // LIMIT ?
+  $query = new EntityFieldQuery;
+
+  try {
+    $result = $query
+      ->entityCondition('entity_type', 'profile2')
+      ->propertyCondition('type', 'main')
+      ->fieldCondition('field_user_is_over13', 'value', 0, '=')
+      ->fieldOrderBy('field_user_birthday', 'value', 'ASC')
+      ->execute();
+  } catch (Exception $e) {
+    // TODO: Some watchdog notice.
+    return 0;
+  }
+  return $result;
+}
+
+/**
+ * Delete old accounts of users who are under 13 and
+ *  haven't received permission from there parents.
+ */
+function dosomething_login_clear_old_accounts($limit = 10) {
+  $accounts = dosomething_login_get_old_accounts($limit);
+  if (count($accounts)) {
+    foreach ($accounts as $uid) {
+      user_delete($uid);
+    }
+  }
+}
+
+/**
+ * Get the count of unassigned notifications.
+ */
+function dosomething_login_get_old_accounts() {
+  return array();
+  // TODO: What marks a user as pending?
+  // This won't do anything for now.
+  // We can use an entity query here.
+  // Grab users that have a created value less then REQUEST_TIME - strtitime('-6 months')
+  // order by user created.
 }
 
