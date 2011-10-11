@@ -1335,7 +1335,7 @@ Use numbers only (no text).',
           0 => 'fid',
         ),
       ),
-      'module' => 'media',
+      'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
       ),
@@ -1344,15 +1344,41 @@ Use numbers only (no text).',
     ),
     'field_instance' => array(
       'bundle' => 'project_report',
+      'default_value' => array(
+        0 => array(
+          'embed' => '',
+          'value' => '',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => NULL,
-          'settings' => array(),
-          'type' => 'media_large',
-          'weight' => 4,
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1360,6 +1386,7 @@ Use numbers only (no text).',
       'label' => 'Video',
       'required' => 0,
       'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
