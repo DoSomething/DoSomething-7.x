@@ -103,14 +103,15 @@ function dosomething_causes_default_page_manager_handlers() {
         'contains' => 'region',
         'children' => array(
           0 => 'bottom_',
+          1 => 'right_center',
         ),
         'parent' => 'main',
         'class' => '',
       ),
       'bottom_' => array(
         'type' => 'region',
-        'title' => 'Center',
-        'width' => 100,
+        'title' => 'Left Center',
+        'width' => '52.3577296304569',
         'width_type' => '%',
         'parent' => '2',
         'class' => '',
@@ -132,6 +133,14 @@ function dosomething_causes_default_page_manager_handlers() {
         'parent' => '3',
         'class' => '',
       ),
+      'right_center' => array(
+        'type' => 'region',
+        'title' => 'Right Center',
+        'width' => '47.6422703695431',
+        'width_type' => '%',
+        'parent' => '2',
+        'class' => '',
+      ),
     ),
   );
   $display->panel_settings = array(
@@ -142,6 +151,7 @@ function dosomething_causes_default_page_manager_handlers() {
       'top_right' => NULL,
       'bottom_' => NULL,
       'bottom' => NULL,
+      'right_center' => NULL,
     ),
   );
   $display->cache = array();
@@ -184,6 +194,38 @@ function dosomething_causes_default_page_manager_handlers() {
     $display->panels['bottom_'][0] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
+    $pane->panel = 'right_center';
+    $pane->type = 'views';
+    $pane->subtype = 'polls';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '1',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-3'] = $pane;
+    $display->panels['right_center'][0] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'causes-panel_pane_1';
@@ -197,10 +239,10 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['top'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][0] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'top_right';
     $pane->type = 'views_panes';
     $pane->subtype = 'causes-panel_pane_2';
@@ -214,8 +256,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['top_right'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['top_right'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
