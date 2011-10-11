@@ -17,6 +17,7 @@ echo "running contrib updates `date`"
 mv ${ROOT}/sites/all/movedmodules ${ROOT}/sites/all/modules
 drush -y updb
 drush vset -y theme_default ds
+drush vset -y metatags_quick_use_path_based 0
 drush vset -y user_email_verification 1
 drush vset -y user_admin_role 3
 drush vset -y admin_theme seven
