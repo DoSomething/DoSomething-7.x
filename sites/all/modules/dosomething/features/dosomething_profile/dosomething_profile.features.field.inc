@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_field_default_fields().
+ * Implements hook_field_default_fields().
  */
 function dosomething_profile_field_default_fields() {
   $fields = array();
@@ -31,13 +31,13 @@ function dosomething_profile_field_default_fields() {
       'bundle' => 'main',
       'default_value' => array(
         0 => array(
-          'administrative_area' => '',
-          'country' => 'US',
           'element_key' => 'profile2|main|field_user_address|und|0',
-          'locality' => '',
-          'postal_code' => '',
-          'premise' => '',
           'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'administrative_area' => '',
+          'postal_code' => '',
+          'country' => 'US',
         ),
       ),
       'deleted' => '0',
@@ -53,13 +53,13 @@ function dosomething_profile_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => 14,
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'profile2',
       'field_name' => 'field_user_address',
-      'label' => 'Location',
-      'required' => 0,
+      'label' => 'Address',
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -76,85 +76,232 @@ function dosomething_profile_field_default_fields() {
           ),
         ),
         'type' => 'addressfield_standard',
-        'weight' => '0',
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'profile2-main-field_user_birthday'
-  $fields['profile2-main-field_user_birthday'] = array(
+  // Exported field: 'profile2-main-field_user_age'
+  $fields['profile2-main-field_user_age'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_user_birthday',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'date',
-      'settings' => array(
-        'granularity' => array(
-          'day' => 'day',
-          'hour' => 0,
-          'minute' => 0,
-          'month' => 'month',
-          'second' => 0,
-          'year' => 'year',
+      'field_name' => 'field_user_age',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
         ),
-        'profile2_private' => 1,
-        'repeat' => 0,
-        'timezone_db' => '',
-        'todate' => '',
-        'tz_handling' => 'none',
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '3',
+        'profile2_private' => 0,
       ),
       'translatable' => '0',
-      'type' => 'datetime',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'main',
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-            'show_repeat_rule' => 'show',
-          ),
-          'type' => 'date_default',
-          'weight' => 5,
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'profile2',
-      'field_name' => 'field_user_birthday',
-      'label' => 'Birthdate',
+      'field_name' => 'field_user_age',
+      'label' => 'Age',
       'required' => 1,
       'settings' => array(
-        'default_value' => 'blank',
-        'default_value2' => 'blank',
-        'default_value_code' => '',
-        'default_value_code2' => '',
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'date',
+        'module' => 'text',
         'settings' => array(
-          'increment' => '15',
-          'input_format' => 'm/d/Y - H:i:s',
-          'input_format_custom' => '',
-          'label_position' => 'none',
-          'repeat_collapsed' => 0,
-          'text_parts' => array(),
-          'year_range' => '1900:+3',
+          'size' => '60',
         ),
-        'type' => 'date_popup',
-        'weight' => '5',
+        'type' => 'text_textfield',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'profile2-main-field_user_confirm_email'
+  $fields['profile2-main-field_user_confirm_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_user_confirm_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'email',
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => '13',
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_user_confirm_email',
+      'label' => 'Confirm Email',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'email',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'email_textfield',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'profile2-main-field_user_email'
+  $fields['profile2-main-field_user_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_user_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'email',
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_user_email',
+      'label' => 'Email',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'email',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'email_textfield',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'profile2-main-field_user_email_updates'
+  $fields['profile2-main-field_user_email_updates'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_user_email_updates',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_user_email_updates',
+      'label' => 'I would also like to receive email updates from DoSomething.org',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '9',
       ),
     ),
   );
@@ -199,7 +346,7 @@ function dosomething_profile_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 15,
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'profile2',
@@ -217,7 +364,7 @@ function dosomething_profile_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '0',
       ),
     ),
   );
@@ -259,13 +406,13 @@ function dosomething_profile_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 8,
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'profile2',
       'field_name' => 'field_user_gender',
       'label' => 'Gender',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -273,134 +420,8 @@ function dosomething_profile_field_default_fields() {
         'active' => 1,
         'module' => 'options',
         'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '11',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_hearabout'
-  $fields['profile2-main-field_user_hearabout'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_hearabout',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 4,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_hearabout',
-      'label' => 'How did you hear about us?',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '0',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_is_over13'
-  $fields['profile2-main-field_user_is_over13'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_is_over13',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 3,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_is_over13',
-      'label' => 'I am over 13',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '7',
+        'type' => 'options_buttons',
+        'weight' => '5',
       ),
     ),
   );
@@ -445,7 +466,7 @@ function dosomething_profile_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 16,
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'profile2',
@@ -463,82 +484,19 @@ function dosomething_profile_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '1',
       ),
     ),
   );
 
-  // Exported field: 'profile2-main-field_user_mobile'
-  $fields['profile2-main-field_user_mobile'] = array(
+  // Exported field: 'profile2-main-field_user_official_rules'
+  $fields['profile2-main-field_user_official_rules'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_user_mobile',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '32',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'If you would like to receive SMS updates from Do Something, please provide your mobile number. If you\'d rather not receive these updates, leave this field blank.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 11,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_mobile',
-      'label' => 'Cell Phone',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_mobile_optin'
-  $fields['profile2-main-field_user_mobile_optin'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_mobile_optin',
+      'field_name' => 'field_user_official_rules',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -552,7 +510,7 @@ function dosomething_profile_field_default_fields() {
           1 => '',
         ),
         'allowed_values_function' => '',
-        'profile2_private' => 1,
+        'profile2_private' => 0,
       ),
       'translatable' => '0',
       'type' => 'list_boolean',
@@ -568,17 +526,16 @@ function dosomething_profile_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'list',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 12,
+          'type' => 'hidden',
+          'weight' => '16',
         ),
       ),
       'entity_type' => 'profile2',
-      'field_name' => 'field_user_mobile_optin',
-      'label' => 'Would you like to receive volunteer opportunities on your mobile phone?',
-      'required' => 0,
+      'field_name' => 'field_user_official_rules',
+      'label' => 'I have read and accept the <a href="/">Official Rules</a>',
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -594,216 +551,14 @@ function dosomething_profile_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-main-field_user_newsletter_optin'
-  $fields['profile2-main-field_user_newsletter_optin'] = array(
+  // Exported field: 'profile2-main-field_user_phone_number'
+  $fields['profile2-main-field_user_phone_number'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_user_newsletter_optin',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'Would you like to receive our email newsletter? Read our privacy policy <a href="/privacy">here</a>.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 13,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_newsletter_optin',
-      'label' => 'Subscribe to newsletter',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '10',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_preferred_cause'
-  $fields['profile2-main-field_user_preferred_cause'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_preferred_cause',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'profile2_private' => 1,
-        'referenceable_types' => array(
-          '1in3_abuse_old' => 0,
-          '301_redirects' => 0,
-          '911_registration' => 0,
-          'abc_family' => 0,
-          'action_guide' => 0,
-          'api_key' => 0,
-          'aspca_grant_app' => 0,
-          'awards_archive' => 0,
-          'bc_bio_form' => 0,
-          'campaign_bfb_2011' => 0,
-          'campaign_bully_2011' => 0,
-          'campaign_ebd_2011' => 0,
-          'campaign_ew_2011' => 0,
-          'campaign_gys_2011' => 0,
-          'campaign_hunt_2011' => 0,
-          'campaign_macys_2011' => 0,
-          'campaign_sports_2011' => 0,
-          'canned_food' => 0,
-          'cause' => 'cause',
-          'cause_video' => 0,
-          'celebs_gone_good' => 0,
-          'chatterbox' => 0,
-          'club' => 0,
-          'club_event' => 0,
-          'club_first_meeting_cash' => 0,
-          'custom_voting' => 0,
-          'decade_2011_signup' => 0,
-          'ds101_action_kit' => 0,
-          'ds_award_judging' => 0,
-          'dsaward_app' => 0,
-          'dsaward_rec' => 0,
-          'dsu_askprof' => 0,
-          'dsu_guides' => 0,
-          'easy_idea' => 0,
-          'ebd_signup' => 0,
-          'editorial_project' => 0,
-          'ewaste_signup_2011' => 0,
-          'final_grant_update' => 0,
-          'forum' => 0,
-          'general_grant_app' => 0,
-          'general_scholarship_app' => 0,
-          'grant' => 0,
-          'grant_alumni' => 0,
-          'grant_judge' => 0,
-          'grants_database' => 0,
-          'gys_2011' => 0,
-          'healthy_schools' => 0,
-          'healthy_schools_report' => 0,
-          'help_ticket' => 0,
-          'ididthis' => 0,
-          'increaseyourgreen_signup' => 0,
-          'issue' => 0,
-          'page' => 0,
-          'poll' => 0,
-          'press' => 0,
-          'project' => 0,
-          'project_update' => 0,
-          'save_our_music' => 0,
-          'scavenger_2011_signup' => 0,
-          'scholarship_update' => 0,
-          'scholarships_att' => 0,
-          'scroller' => 0,
-          'sfs_report_gallery' => 0,
-          'sixflags_scholarships_app' => 0,
-          'staff_blog' => 0,
-          'staples_2011_signup' => 0,
-          'staples_members' => 0,
-          'staples_reason' => 0,
-          'tackle_hunger' => 0,
-          'tfj_contest_signup' => 0,
-          'tips_and_tools' => 0,
-          'troop_letter' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 10,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_preferred_cause',
-      'label' => 'What\'s Your Something?',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '13',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_why_do_you'
-  $fields['profile2-main-field_user_why_do_you'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_why_do_you',
+      'field_name' => 'field_user_phone_number',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -819,10 +574,11 @@ function dosomething_profile_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'profile2_private' => 1,
+        'max_length' => '30',
+        'profile2_private' => 0,
       ),
       'translatable' => '0',
-      'type' => 'text_long',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'main',
@@ -835,45 +591,39 @@ function dosomething_profile_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 9,
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'profile2',
-      'field_name' => 'field_user_why_do_you',
-      'label' => 'Why Do You Do Something?',
+      'field_name' => 'field_user_phone_number',
+      'label' => 'Phone Number',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '15',
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'telwidget',
+        'weight' => '7',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Birthdate');
-  t('Cell Phone');
+  t('Address');
+  t('Age');
+  t('Confirm Email');
+  t('Email');
   t('First Name');
   t('Gender');
-  t('How did you hear about us?');
-  t('I am over 13');
-  t('If you would like to receive SMS updates from Do Something, please provide your mobile number. If you\'d rather not receive these updates, leave this field blank.');
+  t('I have read and accept the <a href="/">Official Rules</a>');
+  t('I would also like to receive email updates from DoSomething.org');
   t('Last Name');
-  t('Location');
-  t('Subscribe to newsletter');
-  t('What\'s Your Something?');
-  t('Why Do You Do Something?');
-  t('Would you like to receive our email newsletter? Read our privacy policy <a href="/privacy">here</a>.');
-  t('Would you like to receive volunteer opportunities on your mobile phone?');
+  t('Phone Number');
 
   return $fields;
 }

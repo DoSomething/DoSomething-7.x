@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_ctools_plugin_api().
+ * Implements hook_ctools_plugin_api().
  */
 function dosomething_profile_ctools_plugin_api() {
   list($module, $api) = func_get_args();
@@ -15,7 +15,7 @@ function dosomething_profile_ctools_plugin_api() {
 }
 
 /**
- * Implementation of hook_default_profile2_type().
+ * Implements hook_default_profile2_type().
  */
 function dosomething_profile_default_profile2_type() {
   $items = array();
@@ -23,9 +23,9 @@ function dosomething_profile_default_profile2_type() {
     "userCategory" : true,
     "userView" : true,
     "type" : "main",
-    "label" : "Profile",
+    "label" : "My Profile",
     "weight" : "0",
-    "data" : { "registration" : 1, "use_page" : 0 },
+    "data" : { "registration" : 1 },
     "rdf_mapping" : []
   }');
   return $items;
