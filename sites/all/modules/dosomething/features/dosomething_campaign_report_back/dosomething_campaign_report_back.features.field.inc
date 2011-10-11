@@ -456,7 +456,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'module' => 'media',
+      'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
       ),
