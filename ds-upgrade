@@ -62,10 +62,6 @@ drush vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 drush vset -y pathauto_taxonomy_term_pattern "[term:vocabulary]/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]" 
 drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]" 
-# Change auto increment for webform_submissions table
-SID=`drush php-eval "print db_query('select max(nid) from node')->fetchField();"`
-SID=$(($SID+1000))
-echo "ALTER TABLE webform_submissions AUTO_INCREMENT=${SID}" | drush sqlc
 echo "Enabling first round of contrib modules, pre-field and og migration `date`"
 drush -y en media_youtube media_webform emfield rdf date date_popup date_views link og auto_nodetitle diff token transliteration views views_ui views_data_export image node_reference user_reference field_group content_migrate features views_content og_ui og_migrate metatags_quick webform email entity_token webform_entity geofield strongarm
 drush -y dis profile
