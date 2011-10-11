@@ -21,8 +21,8 @@ function dosomething_home_default_fe_block_settings() {
     'weight' => '-31',
     'region' => 'footer',
     'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
     'title' => '',
     'cache' => -1,
   );
