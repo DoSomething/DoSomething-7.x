@@ -2,11 +2,12 @@
 
 /**
  * @file
- * Creates general custom blocks for doseomthing.
+ * Creates general custom blocks for dosomething.
  */
 
-/**Define constants for the vocabulary ID's used to generate the dropdowns on the
- *  make and impact block.
+/**
+ * Define constants for the vocabulary ID's used to generate the dropdowns on 
+ * the make an impact block.
  */
 define("ISSUES_VOCABULARY", 5);
 define("WHO_VOCABULARY", 3);
@@ -113,7 +114,6 @@ function dosomething_blocks_twitter_stream_block_content() {
       features: {
         scrollbar: false,
         loop: false,
-        live: true,
         hashtags: true,
         timestamp: true,
         avatars: true,
