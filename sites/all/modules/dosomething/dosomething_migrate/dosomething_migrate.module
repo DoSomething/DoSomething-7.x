@@ -47,6 +47,7 @@ function dosomething_migrate_regenerate_webform_nodes() {
     'grant_application',
     'scholarship_application',
     'action_guide',
+    'project_report',
   );
   $webform_types = variable_get('webform_node_types');
   foreach ($types_to_add as $type) {
