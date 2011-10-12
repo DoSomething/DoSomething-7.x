@@ -1716,7 +1716,6 @@ nav[role=navigation] a:hover {
 
 div[role=main] {
   background-color: #e3e3e3;
-  background-color: rgba(227, 227, 227, 0.5);
   padding-left: 1.667%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
