@@ -551,7 +551,7 @@ function dosomething_login_fbconnect_register_validate($form, &$form_state) {
   if (!isset($invalid_birthday)) {
     $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
     $form_state['values']['birthdate'] = $birthday;
-    if (!dosomething_login_user_is_over_age($birthday, 13)) {
+    if ((time() - $birthday) < 13*365*24*60*60) {
       form_set_error('year', t('Members must be at least 13 years old.'));
     }
   }
