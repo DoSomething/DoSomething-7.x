@@ -129,6 +129,21 @@ function dosomething_login_cron() {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
+  global $user;
+  if (!dosomething_login_user_has_parental_consent($user->uid)) {
+    // TODO: Give a user parental consent if they are over 13
+    // so that they don't get stuck not being able to edit their
+    // account by changing their birthdate.
+    // We need to know how that will be modelled before doing it.
+    dosomething_login_set_parental_consent_message();
+    //drupal_goto('user');
+  }
+}
+
+/**
  * The form for the 'Become a Member' block.
  */
 function dosomething_login_register_block($form) {
@@ -303,7 +318,6 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   entity_form_submit_build_entity('user', $account, $form, $form_state);
   // Handle 'old people' (26+yo)
   if (dosomething_login_person_is_over_age($birthdate, 26)) {
-    // TODO: There is no old person role, why not?
     $role_name = 'old person';
     drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
     $account->status = 0;
@@ -312,6 +326,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     $role_name = 'member';
     $account->status = 1;
   }
+  // TODO: If user is under 13, make them a pending member
   $role = user_role_load_by_name($role_name);
   $account->roles[$role->rid] = $role->name;
   $account = user_save($account, $edit);
@@ -331,7 +346,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $birthday = new DateObject($values['birthdate']);
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
-  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
+  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = dosomething_login_person_is_over_age(strtotime($time), 13);
   if (isset($values['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
   }
@@ -555,9 +570,11 @@ function dosomething_login_fbconnect_register_submit($form, &$form_state) {
   $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['first_name'];
   $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['last_name'];
   $birthday = new DateObject($values['birthdate']);
+  // TODO: If user is under 13, make them a pending member.
+  // TODO: If user is over 26, make them an old person.
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
-  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
+  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = dosomething_login_person_is_over_age(strtotime($time), 13);
   if (isset($values['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
   }
@@ -671,14 +688,23 @@ function dosomething_login_get_user_full_name($account) {
  *  If they are over 13, then they don't need it.
  */
 function dosomething_login_user_has_parental_consent($uid) {
-
   if (dosomething_login_drupal_user_is_over_age($uid)) {
     return TRUE;
   }
-  // TODO: Check if user has parental consent.
-  // If they do, then return true
-  // We don't know how this will be modeled.
+  $account = user_load($uid);
+  if (!in_array('pending member', $account->roles)) {
+    return TRUE;
+  }
   return FALSE;
+}
+
+/**
+ * Set a message indicating that s user cannot perform an action
+ *  until the have been given consent by a parent.
+ */
+function dosomething_login_set_parental_consent_message() {
+  // TODO: Some link to ask for parental consent
+  drupal_set_message(t('Before you can perform this action, you must have parental consent.'));
 }
 
 /**
@@ -771,13 +797,14 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
             case t('Yes'):
               watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
               drupal_set_message(t('You have just allowed %user_name to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
-              drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, $params);
+              drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, array('account' => $account));
               dosomething_login_grant_user_parental_permission($account);
               break;
+
             case t('No'):
               watchdog('dosomething', 'User %name was NOT given parental permission to be a member.', array('%name' => $account->name));
               drupal_set_message(t('%user_name has been denied parental consent to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
-              drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', $account->mail, $language, $params);
+              drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', $account->mail, $language, array('account' => $account));
               dosomething_login_deny_user_parental_permission($account);
               break;
 
@@ -813,22 +840,22 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
  * Give a user under 13 parental permission.
  */
 function dosomething_login_grant_user_parental_permission($account) {
-  // TODO: How is non-parental permission stored?
-  // We don't know if it's going to be a role or not yet.
-
-  //$edit = array();
-  //$role = user_role_load_by_name('member');
-  //$account->roles[$role->rid] = $role->name;
-  //$account = user_save($account, $edit);
+  $member = user_role_load_by_name('member');
+  $pending_member = user_role_load_by_name('pending member');
+  // Only set the roles if they are a pending member.
+  if (isset($account->roles[$pending_member->rid])) {
+    $account->roles[$member->rid] = $member->name;
+    unset($account->roles[$pending_member->rid]);
+    $account = user_save($account);
+  }
 }
 
 /**
  * Give a user under 13 parental permission.
  */
 function dosomething_login_deny_user_parental_permission($account) {
-  // TODO: How is non-parental permission stored?
-  // We don't know if it's going to be a role or not yet.
-  // We're waiting on this.
+  // TODO: Should we do anything to deny a user access?
+  // Delete their account, or deactivate it?
 }
 
 /**
@@ -836,15 +863,16 @@ function dosomething_login_deny_user_parental_permission($account) {
  */
 function dosomething_login_update_accounts_under_13($limit = 10) {
   $profiles = dosomething_login_get_accounts_under_13($limit);
-  if (count($profiles)) {
-    foreach ($profiles as $profile_data) {
+  if (isset($profiles['profile2']) && count($profiles['profile2'])) {
+    foreach ($profiles['profile2'] as $profile_data) {
       $profile = profile2_load($profile_data->pid);
       $birthday = field_get_items('profile2', $profile, 'field_user_birthday');
       if (isset($birthday[0]['value'])) {
         if (dosomething_login_person_is_over_age(strtotime($birthday[0]['value']), 13)) {
-          // TODO: Anything else to mark as over 13?
           $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
           profile2_save($profile);
+          $account = user_load($profile->uid);
+          dosomething_login_grant_user_parental_permission($account);
         }
       }
     }
@@ -855,9 +883,8 @@ function dosomething_login_update_accounts_under_13($limit = 10) {
  * Get a list of accounts who are under 13
  */
 function dosomething_login_get_accounts_under_13($limit = 10) {
-  // TODO: Grab users in order of their birthdays
+  //Grab users in order of their birthdays
   // depending on whether they're marked under 13.
-  // LIMIT ?
   $query = new EntityFieldQuery;
 
   try {
@@ -866,6 +893,7 @@ function dosomething_login_get_accounts_under_13($limit = 10) {
       ->propertyCondition('type', 'main')
       ->fieldCondition('field_user_is_over13', 'value', 0, '=')
       ->fieldOrderBy('field_user_birthday', 'value', 'ASC')
+      ->range(0, $limit)
       ->execute();
   } catch (Exception $e) {
     // TODO: Some watchdog notice.
@@ -890,12 +918,27 @@ function dosomething_login_clear_old_accounts($limit = 10) {
 /**
  * Get the count of unassigned notifications.
  */
-function dosomething_login_get_old_accounts() {
-  return array();
-  // TODO: What marks a user as pending?
-  // This won't do anything for now.
-  // We can use an entity query here.
-  // Grab users that have a created value less then REQUEST_TIME - strtitime('-6 months')
-  // order by user created.
+function dosomething_login_get_old_accounts($limit = 10) {
+  $records = array();
+  $role = user_role_load_by_name('pending member');
+  try {
+    $query = db_select('users', 'u');
+    $query->innerJoin('users_roles', 'r', 'r.uid = u.uid');
+    $result = $query->fields('u', array('uid'))
+      ->condition('r.rid', $role->rid, '=')
+      ->condition('u.status', 1, '=')
+      ->condition('u.created', strtotime('-6 months'), '<')
+      ->orderBy('u.created', 'ASC')
+      ->range(0, $limit)
+      ->execute();
+
+  } catch (Exception $e) {
+    // TODO: Some watchdog notice.
+    return array();
+  }
+  while($record = $result->fetchAssoc()) {
+    $records[] = $record;
+  }
+  return $records;
 }
 
