@@ -1,0 +1,24 @@
+.panel-one-two-one {}
+
+.panel-one-two-one .panel-top {
+  width: 100%;
+}
+
+.panel-one-two-one .panel-row-middle {}
+
+.panel-one-two-one .panel-row-middle .panel-mid-left {
+  float: left;
+  width: 50%;
+}
+* html .panel-one-two-one .panel-row-middle .panel-mid-left {
+  width: 49.9%;
+}
+.panel-one-two-one .panel-row-middle .panel-mid-right {
+  float: left;
+  width: 49.9%;
+}
+
+.panel-one-two-one .panel-bottom {
+  width: 100%;
+  clear: left;
+}

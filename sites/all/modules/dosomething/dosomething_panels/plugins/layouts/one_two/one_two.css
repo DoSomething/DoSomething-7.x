@@ -1,0 +1,21 @@
+.one-two { 
+}
+
+.one-two .panel-top,
+.one-two .panel-bottom { 
+  width: 99.9%; 
+  clear: both;
+}
+
+.one-two .panel-first { 
+  float: left; 
+  width: 50%; 
+}
+* html .one-two .panel-first {
+  width: 49.9%;
+}
+
+.one-two .panel-last { 
+  float: left; 
+  width: 49.9%; 
+}
