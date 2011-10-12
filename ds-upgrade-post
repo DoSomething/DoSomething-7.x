@@ -7,9 +7,9 @@ drush -y php-eval "\$types = array('bc_financial_aid', 'bc_financial_aid_grantal
 echo "truncating search tables `date`"
 drush -y php-eval "db_query('truncate search_dataset'); db_query('truncate search_index'); db_query('truncate search_node_links'); db_query('truncate search_total');" 
 drush -y vset search_cron_limit 0
-echo "deleting comments `date`"
-drush -y dis comment
-drush -y pm-uninstall comment
+echo "removing comments `date`"
+drush -y dis comment forum
+drush -y pm-uninstall comment forum
 # echo "deleting old cck and og tables `date`"
 # drush -y php-eval "\$tables = db_query('show tables like \'content_type_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
 # drush -y php-eval "\$tables = db_query('show tables like \'content_field_%\'')->fetchCol(); foreach (\$tables as \$table) {db_query('drop table ' . \$table);}"
