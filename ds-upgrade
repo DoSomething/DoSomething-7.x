@@ -16,6 +16,7 @@ drush -y updb
 echo "running contrib updates `date`"
 mv ${ROOT}/sites/all/movedmodules ${ROOT}/sites/all/modules
 drush -y updb
+drush php-eval "\$forked = db_query('select max(timestamp) from sessions')->fetchField(); variable_set('ds_migration_forked_ts', \$forked);"
 drush vset -y theme_default ds
 drush vset -y metatags_quick_use_path_based 0
 drush vset -y user_email_verification 1

@@ -1,0 +1,31 @@
+.panel-twocol-a {
+}
+
+.panel-twocol-a .panel-left {
+  width: 66%;
+  float: left;
+}
+* html .panel-twocol-a .panel-left {
+  width: 65.9%;
+}
+
+.panel-twocol-a .panel-left .panel-row-bottom {
+  clear: left;
+}
+
+.panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-left {
+  float: left;
+  width: 50%;
+}
+* html .panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-left {
+  width: 49.9%;
+}
+.panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-right {
+  float: left;
+  width: 49.9%;
+}
+
+.panel-twocol-a .panel-right {
+  width: 33%;
+  float: right;
+}
