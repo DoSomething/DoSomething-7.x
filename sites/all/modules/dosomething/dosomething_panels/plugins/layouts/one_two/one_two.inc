@@ -8,7 +8,7 @@ $plugin = array(
   'css' => 'one_two.css',
   'regions' => array(
     'top' => t('Top'),
-    'left' => t('Left side'),
-    'right' => t('Right side'),
+    'left' => t('Bottom Left'),
+    'right' => t('Bottom Right'),
   ),
 );

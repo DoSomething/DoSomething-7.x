@@ -1,21 +1,19 @@
-.one-two { 
+.panel-one-two {}
+
+.panel-one-two .panel-top {
+  width: 100%;
 }
 
-.one-two .panel-top,
-.one-two .panel-bottom { 
-  width: 99.9%; 
-  clear: both;
-}
+.panel-one-two .panel-row-bottom {}
 
-.one-two .panel-first { 
-  float: left; 
-  width: 50%; 
+.panel-one-two .panel-row-bottom .panel-first {
+  float: left;
+  width: 50%;
 }
-* html .one-two .panel-first {
+* html .panel-one-two .panel-row-bottom .panel-first {
   width: 49.9%;
 }
-
-.one-two .panel-last { 
-  float: left; 
-  width: 49.9%; 
+.panel-one-two .panel-row-bottom .panel-last {
+  float: left;
+  width: 49.9%;
 }

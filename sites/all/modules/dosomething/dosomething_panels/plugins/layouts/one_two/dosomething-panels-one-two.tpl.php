@@ -6,7 +6,7 @@
   <?php endif; ?>
 
   <?php if ($content['left'] || $content['right']): ?>
-    <div class="panel-bottom">
+    <div class="panel-row-bottom panel-row">
       <?php if ($content['left']): ?>
         <div class="panel-first panel-panel">
           <?php print $content['left']; ?>
