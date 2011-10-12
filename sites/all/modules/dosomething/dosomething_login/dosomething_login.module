@@ -43,15 +43,24 @@ function dosomething_login_block_view($delta = '') {
 function dosomething_login_mail($key, &$message, $params) {
   switch ($key) {
     case 'dosomething-parent-email':
-      $message['subject'] = t('Permissions for %first %last', array('%first' => $params['first_name'], '%last' => $params['last_name']));
+      $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
+      $message['subject'] = t('Permissions for %name', array('%name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-parent-permission-granted-email':
-      $message['subject'] = t('Permissions Granted');
+      $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
+      $message['subject'] = t('Permission Granted');
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_permission_granted_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
+    case 'dosomething-parent-permission-denied-email':
+      $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
+      $message['subject'] = t('Permission Denied');
+      $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_permission_denied_email', $params));
+      $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
+      break;
+
 
   }
 }
@@ -589,7 +598,6 @@ function dosomething_login_parent_permission_email_form_validate($form, &$form_s
   }
 }
 
-
 /**
  * Submission callback for parent permission email form.
  */
@@ -621,13 +629,18 @@ function dosomething_login_theme() {
     ),
     'dosomething_login_parent_email' => array(
       'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('first_name' => NULL, 'last_name' => NULL),
+      'arguments' => array('full_name' => NULL),
       'template' => 'dosomething-login-parent-email',
     ),
-    'dosomething_login_parent_permission-granted_email' => array(
+    'dosomething_login_parent_permission_granted_email' => array(
       'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('first_name' => NULL, 'last_name' => NULL),
+      'arguments' => array('full_name' => NULL),
       'template' => 'dosomething-login-parent-permission-granted-email',
+    ),
+    'dosomething_login_parent_permission_denied_email' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'arguments' => array('full_name' => NULL),
+      'template' => 'dosomething-login-parent-permission-denied-email',
     ),
   );
 }
@@ -647,7 +660,7 @@ function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
     if (isset($birthday[0]['value'])) {
       // this is only a a time (no time) so timezone is not important.
       $timestamp = strtotime($birthday[0]['value']);
-      return dosomething_login_user_is_over_age($timestamp, $age);
+      return dosomething_login_person_is_over_age($timestamp, $age);
     }
   }
   return FALSE;
@@ -668,7 +681,7 @@ function dosomething_login_person_is_over_age($birthday, $age = 13) {
  * Mark a user as being over 13.
  *  They don't need parental permission at this point.
  */
-function dosomething_login_user_account_over_13($uid) {
+function dosomething_login_mark_user_account_over_13($uid) {
   // TODO: What else needs to be done to graduate the user to being over 13?
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
@@ -677,6 +690,40 @@ function dosomething_login_user_account_over_13($uid) {
     $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
     profile2_save($profile);
   }
+}
+
+/**
+ * Get a user's full name from their main profile.
+ */
+function dosomething_login_get_user_full_name($account) {
+  $full_name = '';
+  $names = array();
+  $profile = profile2_load_by_user($account, 'main');
+  if (is_object($profile)) {
+    foreach (array('field_user_first_name', 'field_user_last_name') as $field) {
+      $stored_names = field_get_items('profile2', $profile, $field); 
+      if (isset($stored_names[0]['safe_value'])) {
+        $names[] = $stored_names[0]['safe_value'];
+      }
+    }
+    $full_name = implode(' ', $names);
+  }
+  return $full_name;
+}
+
+/**
+ * Determine if user has parentel consent to use this site.
+ *  If they are over 13, then they don't need it.
+ */
+function dosomething_login_user_has_parental_consent($uid) {
+
+  if (dosomething_login_drupal_user_is_over_age($uid)) {
+    return TRUE;
+  }
+  // TODO: Check if user has parental consent.
+  // If they do, then return true
+  // We don't know how this will be modeled.
+  return FALSE;
 }
 
 /**
@@ -700,41 +747,65 @@ function dosomething_login_one_time_parent_permission_link($account) {
 function dosomething_login_parent_permission_page($form, &$form_state, $uid, $timestamp, $hash, $action = NULL) {
   // TODO: This expires after 6 months (maybe sooner).
   global $language;
-  $timeout = 86400; // TODO: increase this number
+  $timeout = strtotime('-6 months');
   $current = REQUEST_TIME;
   // Some redundant checks for extra security ?
   $users = user_load_multiple(array($uid), array('status' => '1'));
   if ($timestamp <= $current && $account = reset($users)) {
     // No time out for first time login.
-    if ($current - $timestamp > $timeout) {
-      drupal_set_message(t('You have tried to use a one-time link that has expired.'));
+    if ($timestamp < $timeout) {
+      drupal_set_message(t('You have tried a parental consent link that has expired.'));
       drupal_goto();
     }
-    elseif ($account->uid && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->created)) {
+    elseif ($account->uid && $timestamp <= $current && $hash == user_pass_rehash($account->pass, $timestamp, $account->created)) {
+      if (dosomething_login_user_has_parental_consent($uid)) {
+        drupal_set_message(t('%user_name is either over 13 or has already received parental consent.', array('%user_name' => $account->name)));
+        drupal_goto();
+      }
       if ($action == 'submit') {
-        // TODO: take different action depending on which button was clicked.
+        if (isset($form_state['input']['op'])) {
+          switch ($form_state['input']['op']) {
+            case t('Yes'):
+              // If the child is allowed access.
+              watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
+              drupal_set_message(t('You have just allowed %user_name to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
+              drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', 'matt@zivtech.com', $language, array('account' => $account)); 
+              //drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, $params); 
+              dosomething_login_give_user_parental_permission($account);
+              break;
+            case t('No'):
+              watchdog('dosomething', 'User %name was NOT given parental permission to be a member.', array('%name' => $account->name));
+              drupal_set_message(t('%user_name has been denied parental consent to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
+              drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', 'matt@zivtech.com', $language, array('account' => $account)); 
+              //drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', $account->mail, $language, $params); 
+              dosomething_login_deny_user_parental_permission($account);
+              break;
 
-        // If the child is allowed access.
-        watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
-        drupal_set_message(t('You have just allowed %user_name to be a meber of this site.  An email has been sent.', array('%user_name' => $account->name)));
-        drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, $params); 
-        dosomething_login_give_user_parental_permission($account);
+            default:
+              drupal_set_message(t('You provided an invalid response.'), 'warning');
+              drupal_goto("dosomething/under-13/permission/$uid/$timestamp/$hash");
+              break;
+          }
+        }
+        else {
+          drupal_set_message(t('You provided an invalid response.'), 'warning');
+        }
         drupal_goto();
       }
       // TODO: else if user already has permission by virtue of being 13 or older.
       else {
-        $form['message'] = array('#markup' => t('<p>Do you consent to allowing %user_name to be a member of this site.</p>',  array('%user_name' => $account->name)));
+        $form['message'] = array('#markup' => t('<p>Will you allow %user_name to be a member of this site?</p>',  array('%user_name' => $account->name)));
         $form['actions'] = array('#type' => 'actions');
         $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Yes'));
-        $form['actions']['cancel'] = array('#type' => 'submit', '#value' => t('no'));
-        $form['#action'] = url("user/reset/$uid/$timestamp/$hashed_pass/submit");
+        $form['actions']['cancel'] = array('#type' => 'submit', '#value' => t('No'));
+        $form['#action'] = url("dosomething/under-13/permission/$uid/$timestamp/$hash/submit");
         return $form;
       }
-    }
-    else {
-      drupal_set_message(t('You have tried to use a one-time login link that has either been used or is no longer valid. Please request a new one using the form below.'));
-      drupal_goto('user/password');
-    }
+    } 
+  }
+  else {
+    drupal_set_message(t('You have tried to use a parental permission link that has either been used or is not valid.'));
+    drupal_goto('');
   }
 }
 
@@ -749,6 +820,15 @@ function dosomething_login_give_user_parental_permission($account) {
   //$role = user_role_load_by_name('member');
   //$account->roles[$role->rid] = $role->name;
   //$account = user_save($account, $edit);
+}
+
+/**
+ * Give a user under 13 parental permission.
+ */
+function dosomething_login_deny_user_parental_permission($account) {
+  // TODO: How is non-parental permission stored?
+  // We don't know if it's going to be a role or not yet.
+  // We're waiting on this.
 }
 
 /**

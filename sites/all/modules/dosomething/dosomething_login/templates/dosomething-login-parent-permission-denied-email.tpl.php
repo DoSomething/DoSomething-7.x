@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Content parent permission email.
+ * Content parent deny permission email.
  */
 ?>
 
