@@ -6,6 +6,35 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_login_menu() {
+  $items = array();
+  $items['mobile-signup'] = array(
+    'title' => 'Mobile Signup',
+    'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
+    'page callback' => 'dosomething_login_mobile_signup',
+    'access callback' => 'dosomething_login_mobile_signup_access',
+  );
+  $items['dosomething/under-13/permission/%/%/%'] = array(
+    'title' => 'Parental Permission',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_login_parent_permission_page', 3, 4, 5),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function dosomething_login_menu_alter(&$items) {
+  // Remove the default user registration page in favor of our custom registration.
+  unset($items['user/register']);
+}
+
+/**
  * Implements hook_block_info().
  */
 function dosomething_login_block_info() {
@@ -60,9 +89,43 @@ function dosomething_login_mail($key, &$message, $params) {
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_permission_denied_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
-
-
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_login_theme() {
+  return array(
+    'dosomething_login_member_lightbox' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'template' => 'dosomething-login-member-lightbox',
+    ),
+    'dosomething_login_parent_email' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'arguments' => array('full_name' => NULL),
+      'template' => 'dosomething-login-parent-email',
+    ),
+    'dosomething_login_parent_permission_granted_email' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'arguments' => array('full_name' => NULL),
+      'template' => 'dosomething-login-parent-permission-granted-email',
+    ),
+    'dosomething_login_parent_permission_denied_email' => array(
+      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'arguments' => array('full_name' => NULL),
+      'template' => 'dosomething-login-parent-permission-denied-email',
+    ),
+  );
+}
+
+/**
+ * Implements hook_cron().
+ */
+function dosomething_login_cron() {
+  // TODO: Only run every few hours?
+  //dosomething_login_update_accounts_under_13();
+  //dosomething_login_clear_old_accounts();
 }
 
 /**
@@ -216,7 +279,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   if (!isset($invalid_birthday)) {
     $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
     $form_state['values']['birthdate'] = $birthday;
-    if ((time() - $birthday) < 13*365*24*60*60) {
+    if (!dosomething_login_person_is_over_age($birthday, 13)) {
       form_set_error('year', t('Members must be at least 13 years old.'));
     }
   }
@@ -239,7 +302,8 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $edit = array_intersect_key((array) $account, $form_state['values']);
   entity_form_submit_build_entity('user', $account, $form, $form_state);
   // Handle 'old people' (26+yo)
-  if ((time() - $birthdate) > 26*365*24*60*60) {
+  if (dosomething_login_person_is_over_age($birthdate, 26)) {
+    // TODO: There is no old person role, why not?
     $role_name = 'old person';
     drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
     $account->status = 0;
@@ -298,36 +362,6 @@ function dosomething_login_unique_name($name, $i = '') {
   else {
     return $name . $i;
   }
-}
-
-
-/**
- * Implements hook_menu_alter().
- */
-function dosomething_login_menu_alter(&$items) {
-  // Remove the default user registration page in favor of our custom registration.
-  unset($items['user/register']);
-}
-
-/**
- * Implements hook_menu().
- */
-function dosomething_login_menu() {
-  $items = array();
-  $items['mobile-signup'] = array(
-    'title' => 'Mobile Signup',
-    'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
-    'page callback' => 'dosomething_login_mobile_signup',
-    'access callback' => 'dosomething_login_mobile_signup_access',
-  );
-  $items['dosomething/under-13/permission/%/%/%'] = array(
-    'title' => 'Parental Permission',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_login_parent_permission_page', 3, 4, 5),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
 }
 
 function dosomething_login_mobile_signup_access() {
@@ -560,89 +594,10 @@ function dosomething_login_fbconnect_register_validate($form, &$form_state) {
   if (!isset($invalid_birthday)) {
     $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
     $form_state['values']['birthdate'] = $birthday;
-    if ((time() - $birthday) < 13*365*24*60*60) {
+    if (dosomething_login_person_is_over_age($birthday, 13)) {
       form_set_error('year', t('Members must be at least 13 years old.'));
     }
   }
-}
-
-/**
- * Form for a person under 13 to request their parent's permission
- *  to use the site.
- */
-function dosomething_login_parent_permission_email_form(&$form, &$form_state, $uid) {
-  $form = array();
-  $form['parent_email'] = array(
-    '#title' => t('Parent Email Address'),
-    '#type' => 'textfield',
-    '#size' => 20,
-  );
-  $form['uid'] = array(
-    '#type' => 'value',
-    '#value' => $uid,
-  );
-  $form['submit_email'] = array(
-    '#type' => 'submit',
-    '#value' => t('Send Email'),
-  );
-  return $form;
-}
-
-/**
- * Validation callback for parent permission email form.
- */
-function dosomething_login_parent_permission_email_form_validate($form, &$form_state) {
-  $email = $form_state['values']['parent_email'];
-  if (!valid_email_address($email)) {
-    form_set_error('parent_email', t('you must provide a valid email address'));
-  }
-}
-
-/**
- * Submission callback for parent permission email form.
- */
-function dosomething_login_parent_permission_email_form_submit($form, &$form_state) {
-  global $language;
-  $email = $form_state['values']['parent_email'];
-  $params = array();
-
-  $account = user_load($form_state['values']['uid']);
-  
-  // Note: On account creation, fields use language-none so it should be ok not
-  // to use field_get_items here.
-  $profile = profile2_load_by_user($account, 'main');
-  $params['first_name'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  $params['last_name'] = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
-  drupal_mail('dosomething_login', 'dosomething-parent-email', $email, $language, $params); 
-  // TODO: This message may not be necessary.
-  drupal_set_message(t('An email has been sent to %email.', array('%email' => $email))); 
-}
-
-/**
- * Implements hook_theme().
- */
-function dosomething_login_theme() {
-  return array(
-    'dosomething_login_member_lightbox' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'template' => 'dosomething-login-member-lightbox',
-    ),
-    'dosomething_login_parent_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL),
-      'template' => 'dosomething-login-parent-email',
-    ),
-    'dosomething_login_parent_permission_granted_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL),
-      'template' => 'dosomething-login-parent-permission-granted-email',
-    ),
-    'dosomething_login_parent_permission_denied_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL),
-      'template' => 'dosomething-login-parent-permission-denied-email',
-    ),
-  );
 }
 
 /**
@@ -674,7 +629,7 @@ function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
  * @return @boolean
  */
 function dosomething_login_person_is_over_age($birthday, $age = 13) {
-  return ((time() - $birthday) < strtotime("-$age year")) ? FALSE : TRUE;
+  return $birthday < strtotime("-$age year") ? TRUE : FALSE;
 }
 
 /**
@@ -727,6 +682,52 @@ function dosomething_login_user_has_parental_consent($uid) {
 }
 
 /**
+ * Form for a person under 13 to request their parent's permission
+ *  to use the site.
+ */
+function dosomething_login_parent_permission_email_form(&$form, &$form_state, $uid) {
+  $form = array();
+  $form['parent_email'] = array(
+    '#title' => t('Parent Email Address'),
+    '#type' => 'textfield',
+    '#size' => 20,
+  );
+  $form['uid'] = array(
+    '#type' => 'value',
+    '#value' => $uid,
+  );
+  $form['submit_email'] = array(
+    '#type' => 'submit',
+    '#value' => t('Send Email'),
+  );
+  return $form;
+}
+
+/**
+ * Validation callback for parent permission email form.
+ */
+function dosomething_login_parent_permission_email_form_validate($form, &$form_state) {
+  $email = $form_state['values']['parent_email'];
+  if (!valid_email_address($email)) {
+    form_set_error('parent_email', t('you must provide a valid email address'));
+  }
+}
+
+/**
+ * Submission callback for parent permission email form.
+ */
+function dosomething_login_parent_permission_email_form_submit($form, &$form_state) {
+  global $language;
+  $email = $form_state['values']['parent_email'];
+  $account = user_load($form_state['values']['uid']);
+  $params = array('account' => $account);
+
+  drupal_mail('dosomething_login', 'dosomething-parent-email', $email, $language, $params);
+  // TODO: This message may not be necessary.
+  drupal_set_message(t('An email has been sent to %email.', array('%email' => $email)));
+}
+
+/**
  * Generates a unique URL for a parent to give permission to their
  *  under 13 year old child.
  *
@@ -742,7 +743,8 @@ function dosomething_login_one_time_parent_permission_link($account) {
 }
 
 /**
- * TODO:
+ * Page callback for parental consent link.
+ *  This is used for users under 13 who need consent to be members.
  */
 function dosomething_login_parent_permission_page($form, &$form_state, $uid, $timestamp, $hash, $action = NULL) {
   // TODO: This expires after 6 months (maybe sooner).
@@ -764,20 +766,18 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
       }
       if ($action == 'submit') {
         if (isset($form_state['input']['op'])) {
+          // Determine whether the parent is granting or denying membership.
           switch ($form_state['input']['op']) {
             case t('Yes'):
-              // If the child is allowed access.
               watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
               drupal_set_message(t('You have just allowed %user_name to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
-              drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', 'matt@zivtech.com', $language, array('account' => $account)); 
-              //drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, $params); 
-              dosomething_login_give_user_parental_permission($account);
+              drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, $params);
+              dosomething_login_grant_user_parental_permission($account);
               break;
             case t('No'):
               watchdog('dosomething', 'User %name was NOT given parental permission to be a member.', array('%name' => $account->name));
               drupal_set_message(t('%user_name has been denied parental consent to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
-              drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', 'matt@zivtech.com', $language, array('account' => $account)); 
-              //drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', $account->mail, $language, $params); 
+              drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', $account->mail, $language, $params);
               dosomething_login_deny_user_parental_permission($account);
               break;
 
@@ -812,7 +812,7 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
 /**
  * Give a user under 13 parental permission.
  */
-function dosomething_login_give_user_parental_permission($account) {
+function dosomething_login_grant_user_parental_permission($account) {
   // TODO: How is non-parental permission stored?
   // We don't know if it's going to be a role or not yet.
 
@@ -829,14 +829,6 @@ function dosomething_login_deny_user_parental_permission($account) {
   // TODO: How is non-parental permission stored?
   // We don't know if it's going to be a role or not yet.
   // We're waiting on this.
-}
-
-/**
- * Implements hook_cron().
- */
-function dosomething_login_cron() {
-  //dosomething_login_update_accounts_under_13();
-  //dosomething_login_clear_old_accounts();
 }
 
 /**
