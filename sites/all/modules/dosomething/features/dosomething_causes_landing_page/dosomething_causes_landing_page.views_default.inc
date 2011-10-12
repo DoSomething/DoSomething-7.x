@@ -12,7 +12,7 @@ function dosomething_causes_landing_page_views_default_views() {
 
   $view = new view;
   $view->name = 'causes';
-  $view->description = 'Causes related displays';
+  $view->description = 'Causes and Issues related displays';
   $view->tag = 'default';
   $view->base_table = 'taxonomy_term_data';
   $view->human_name = 'Causes';
@@ -117,25 +117,26 @@ function dosomething_causes_landing_page_views_default_views() {
   $handler->display->display_options['filters']['machine_name']['value'] = array(
     'vocabulary_5' => 'vocabulary_5',
   );
-  /* Filter criterion: Taxonomy term: Name */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['relationship'] = 'parent';
-  $handler->display->display_options['filters']['name']['operator'] = 'empty';
-  $handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
-  $handler->display->display_options['filters']['name']['expose']['label'] = 'Name';
-  $handler->display->display_options['filters']['name']['expose']['use_operator'] = FALSE;
-  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
-  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
-  $handler->display->display_options['filters']['name']['expose']['remember'] = FALSE;
-  $handler->display->display_options['filters']['name']['expose']['multiple'] = FALSE;
 
   /* Display: Causes Landing Page Block */
   $handler = $view->new_display('block', 'Causes Landing Page Block', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = '11 Great Causes for You to Rock';
   $handler->display->display_options['display_description'] = 'The main content for the causes landing page';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'vocabulary_5' => 'vocabulary_5',
+  );
+  /* Filter criterion: Taxonomy term: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['relationship'] = 'parent';
+  $handler->display->display_options['filters']['name']['operator'] = 'empty';
 
   /* Display: Causes content pane */
   $handler = $view->new_display('panel_pane', 'Causes content pane', 'panel_pane_1');
