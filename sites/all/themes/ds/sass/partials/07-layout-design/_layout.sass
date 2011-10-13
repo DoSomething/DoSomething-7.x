@@ -5,7 +5,7 @@
 
 // DON'T LEAVE THIS IN PRODUCTION
 .wireframe
-  $wf-color: $black
+  $wf-color: $red
   outline: 1px dashed $wf-color
   > *
     outline: 1px dashed adjust-hue($wf-color, 30deg)
@@ -39,4 +39,38 @@
 .region-sidebar-first
   width: percentage($left-col-width / $page-width)
   float: left
+
+// PANELS OVERRIDE -----------------------------------------------------
+.panel-one-three-two
+  // @extend .wireframe
+  .panel-top
+    margin-bottom: calc-em($s2b, $s0)
+  .panel-row-middle
+    @extend .clearfix
+    margin-bottom: calc-em($s2b, $s0)
+    .panel-panel
+      margin-right: percentage($kit-gutter-narrow / $main-width-w-padding)
+    .panel-mid-left
+      width: percentage($three-col-wide / $main-width-w-padding)
+    .panel-mid-center
+      // width: $three-col-wide
+      width: percentage($three-col-wide / $main-width-w-padding)
+    .panel-mid-right
+      // width: $three-col-thin
+      width: percentage($three-col-thin / $main-width-w-padding)
+      margin-right: 0
+      float: right
+  .panel-row-bottom
+    @extend .clearfix
+    clear: both
+    .panel-panel
+      margin-right: percentage($kit-gutter-narrow / $main-width-w-padding)
+    .panel-bottom-left
+      // width: $two-col-wide
+      width: percentage($two-col-wide / $main-width-w-padding)
+    .panel-bottom-right
+      // width: $two-col-thin
+      width: percentage($two-col-thin / $main-width-w-padding)
+      margin-right: 0
+      float: right
 

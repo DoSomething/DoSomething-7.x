@@ -378,6 +378,15 @@ h1, h2, h3, h4, h5, h6 {
   outline: 1px dashed red;
 }
 
+.clearfix, .panel-one-three-two .panel-row-middle, .panel-one-three-two .panel-row-bottom {
+  *zoom: 1;
+}
+.clearfix:after, .panel-one-three-two .panel-row-middle:after, .panel-one-three-two .panel-row-bottom:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .serif {
   font-family: Georgia, serif;
 }
@@ -1615,16 +1624,16 @@ html.js fieldset.collapsed {
 
 /* LAYOUT -------------------------------------------------------------- */
 .wireframe {
-  outline: 1px dashed black;
+  outline: 1px dashed red;
 }
 .wireframe > * {
-  outline: 1px dashed black;
+  outline: 1px dashed #ff8000;
 }
 .wireframe > * > * {
-  outline: 1px dashed black;
+  outline: 1px dashed yellow;
 }
 .wireframe > * > * > * {
-  outline: 1px dashed black;
+  outline: 1px dashed #80ff00;
 }
 
 .container {
@@ -1650,6 +1659,41 @@ body.node-type-project [role=main] .main-interior-sidebar {
 .region-sidebar-first {
   width: 22.162%;
   float: left;
+}
+
+.panel-one-three-two .panel-top {
+  margin-bottom: 1.833em;
+}
+.panel-one-three-two .panel-row-middle {
+  margin-bottom: 1.833em;
+}
+.panel-one-three-two .panel-row-middle .panel-panel {
+  margin-right: 0.718%;
+}
+.panel-one-three-two .panel-row-middle .panel-mid-left {
+  width: 36.063%;
+}
+.panel-one-three-two .panel-row-middle .panel-mid-center {
+  width: 36.063%;
+}
+.panel-one-three-two .panel-row-middle .panel-mid-right {
+  width: 26.006%;
+  margin-right: 0;
+  float: right;
+}
+.panel-one-three-two .panel-row-bottom {
+  clear: both;
+}
+.panel-one-three-two .panel-row-bottom .panel-panel {
+  margin-right: 0.718%;
+}
+.panel-one-three-two .panel-row-bottom .panel-bottom-left {
+  width: 61.494%;
+}
+.panel-one-three-two .panel-row-bottom .panel-bottom-right {
+  width: 37.213%;
+  margin-right: 0;
+  float: right;
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
@@ -1814,6 +1858,7 @@ nav[role=navigation] a:hover {
 div[role=main] {
   background-color: #e3e3e3;
   padding-left: 1.667%;
+  padding-right: 1.667%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;

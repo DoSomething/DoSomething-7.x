@@ -68,6 +68,15 @@
   outline: 1px dashed red;
 }
 
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .ds-button {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
