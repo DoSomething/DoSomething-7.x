@@ -1,0 +1,300 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.wireframe {
+  outline: 1px dashed red;
+}
+
+.ds-button {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 1.417em;
+  line-height: 1.412em;
+  line-height: 1.6;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #343434;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 0 10px;
+  height: 22px;
+  border: 1px solid rgba(52, 52, 52, 0.5);
+  border-bottom-color: #343434;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #b7b7b7;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #b7b7b7), color-stop(51%, #a5a5a5));
+  background-image: -webkit-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: -moz-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: -o-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: -ms-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+}
+.ds-button:hover, .ds-button:active {
+  color: #161616;
+}
+
+a.ds-button {
+  color: #343434 #161616;
+  display: inline-block;
+}
+a.ds-button:hover {
+  color: #161616;
+}
+a.ds-button:active {
+  color: #343434;
+}
+a.ds-button {
+  text-decoration: none;
+  border-bottom-style: inherit;
+}
+a.ds-button:visited {
+  border-bottom-color: inherit;
+}
+a.ds-button:focus {
+  border-bottom-color: inherit;
+}
+a.ds-button:hover {
+  border-bottom-color: inherit;
+}
+a.ds-button:active {
+  border-bottom-color: inherit;
+}
+
+.ds-dropdown, #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown {
+  background: #8e8a86;
+  border: none;
+  color: white;
+  width: 100%;
+  height: 26px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  line-height: 1.333em;
+  margin-bottom: 0.333em;
+}
+.ds-dropdown .selectBox-arrow, #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown .selectBox-arrow {
+  background: url('../images/sprites/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
+  width: 27px;
+}
+
+.selectBox-dropdown .selectBox-label {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.ie .selectBox-dropdown .selectBox-label {
+  width: 100%;
+}
+
+.selectBox-options li a {
+  white-space: normal;
+}
+
+/* Dropdown control */
+.selectBox-dropdown {
+  width: 100%;
+  /* width = (desired width) - padding-right */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  vertical-align: middle;
+  cursor: default;
+}
+.selectBox-dropdown .selectBox-label {
+  width: 100%;
+  padding: 0.2em 0.3em;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.selectBox-dropdown .selectBox-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+  position: absolute;
+  z-index: 99999;
+  max-height: 200px;
+  /* should be the same border width as .selectBox-dropdown */
+  background-color: #726e6b;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  overflow: auto;
+}
+
+/* Inline control */
+.selectBox-inline {
+  width: 250px;
+  outline: none;
+  border: solid 1px #bbbbbb;
+  background: white;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: auto;
+}
+.selectBox-inline:focus {
+  border-color: #666666;
+}
+
+/* Options */
+.selectBox-options {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li a {
+  color: white;
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  padding: 0 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  background: 6px center no-repeat;
+}
+.selectBox-options li a:visited {
+  color: white;
+}
+.selectBox-options li a:hover {
+  color: white;
+}
+.selectBox-options li a:active {
+  color: #222222;
+}
+.selectBox-options li a {
+  border-bottom: none;
+}
+.selectBox-options li a:hover {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-hover a {
+  background-color: #8e8a86;
+}
+.selectBox-options li.selectBox-disabled a {
+  color: #888888;
+  background-color: #726e6b;
+}
+.selectBox-options li.selectBox-selected a {
+  background-color: #8e8a86;
+}
+.selectBox-options .selectBox-optgroup {
+  color: #666666;
+  background: #eeeeee;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 0 0.3em;
+  white-space: nowrap;
+}
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+  color: #888888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  border-color: #666666;
+}
+
+.selectBox-inline.selectBox-disabled {
+  color: #888888 !important;
+}
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+  background-color: transparent !important;
+}

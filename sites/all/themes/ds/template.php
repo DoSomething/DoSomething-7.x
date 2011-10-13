@@ -44,6 +44,12 @@ function ds_preprocess_block(&$variables) {
       drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-blocks-dosomething-twitter-stream.css');
     }
   }
+  if($variables['elements']['#block']->module == 'panels_mini') {
+    if($variables['elements']['#block']->delta == 'home_page') {
+      // home page panels_mini second row
+      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_panels_mini_home_page.css');
+    }
+  }
 
   // dsm($variables);
 }
