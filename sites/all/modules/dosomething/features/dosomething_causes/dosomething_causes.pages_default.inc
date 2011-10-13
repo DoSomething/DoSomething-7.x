@@ -251,7 +251,7 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->pid = 'new-2';
     $pane->panel = 'bottom_';
     $pane->type = 'views_panes';
-    $pane->subtype = 'blogs-panel_pane_1';
+    $pane->subtype = 'blog_center-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
