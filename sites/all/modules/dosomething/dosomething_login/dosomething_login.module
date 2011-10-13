@@ -16,6 +16,14 @@ function dosomething_login_menu() {
     'page callback' => 'dosomething_login_mobile_signup',
     'access callback' => 'dosomething_login_mobile_signup_access',
   );
+  $items['user/registration'] = array(
+    'title' => 'Registration',
+    'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_login_register_block'),
+    'access callback' => 'user_register_access',
+    'type' => MENU_CALLBACK,
+  );
   $items['dosomething/under-13/permission/%/%/%'] = array(
     'title' => 'Parental Permission',
     'page callback' => 'drupal_get_form',
@@ -54,8 +62,10 @@ function dosomething_login_block_view($delta = '') {
     case 'become_member':
       global $user;
       if (!$user->uid) {
-        $block['subject'] = t('Become a Member');
-        $block['content'] = drupal_get_form('dosomething_login_register_block');
+        if ((arg(0) != 'user' || arg(1) != 'registration')) {
+          $block['subject'] = t('Become a Member');
+          $block['content'] = drupal_get_form('dosomething_login_register_block');
+        }
       }
       else {
         $block['subject'] = '';
@@ -149,11 +159,15 @@ function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
 function dosomething_login_register_block($form) {
   $form['#attached'] = array(
     'js' => array(
+      drupal_get_path('module', 'dosomething_login') . '/js/jquery-validation-1.9.0/jquery.validate.min.js',
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-member-lightbox.js',
     ),
     'library' => array(array('system', 'ui.dialog')),
   );
+  $query = drupal_get_destination();
+  $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
+  $form['#action'] = url('user/registration', array('query' => $query));
   $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . l('Connect thru Facebook', 'fbconnect/register/create') . '</div>';
   $form['or']['#markup'] = '<div class="separator split">' . t('or') . '</div>';
   $form['name'] = array(
@@ -206,10 +220,22 @@ function dosomething_login_register_block($form) {
       '#maxlength' => 4,
     ),
   );
-  $form['submit'] = array(
+  $form['first_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
     '#attributes' => array('class' => array('submit')),
+  );
+  // TODO: Add captcha and password
+  $form['parent_email'] = array(
+    '#title' => t('Parent Email Address'),
+    '#type' => 'hidden',
+    '#prefix' => '<div id="registration-dialog">',
+    '#size' => 20,
+  );
+  $form['final_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+    '#suffix' => '</div>',
   );
   $form['why'] = array(
     '#theme' => 'link',
@@ -292,10 +318,11 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     $invalid_birthday = TRUE;
   }
   if (!isset($invalid_birthday)) {
-    $birthday = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
-    $form_state['values']['birthdate'] = $birthday;
-    if (!dosomething_login_person_is_over_age($birthday, 13)) {
-      form_set_error('year', t('Members must be at least 13 years old.'));
+    $form_state['values']['birthdate'] = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
+    if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
+      if (isset($form_state['values']['parent_email'])) {
+        //form_set_error('parent_email', t('Please provide a valid parental email address.'));
+      }
     }
   }
 }
@@ -351,7 +378,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $birthday = new DateObject($values['birthdate']);
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
-  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = dosomething_login_person_is_over_age(strtotime($time), 13);
+  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($values['birthdate'], 13);
   if (isset($values['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
   }
@@ -597,7 +624,7 @@ function dosomething_login_fbconnect_register_submit($form, &$form_state) {
 
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
-  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = dosomething_login_person_is_over_age($values['birthdate'], 13);
+  $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($values['birthdate'], 13);
   if (isset($values['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
   }
@@ -734,8 +761,7 @@ function dosomething_login_set_parental_consent_message() {
  * Form for a person under 13 to request their parent's permission
  *  to use the site.
  */
-function dosomething_login_parent_permission_email_form(&$form, &$form_state, $uid) {
-  $form = array();
+function dosomething_login_parent_permission_email_form($form, &$form_state, $uid) {
   $form['parent_email'] = array(
     '#title' => t('Parent Email Address'),
     '#type' => 'textfield',
