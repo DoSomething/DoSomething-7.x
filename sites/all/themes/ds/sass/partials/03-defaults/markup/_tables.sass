@@ -36,13 +36,21 @@ colgroup
 col
 
 tbody
+  border-top: none
 
 thead
 
 tfoot
 
 tr
+  &.odd, &.even
+    border-bottom: none
+  &.odd
+    background-color: $gray-light
+  &.even
+  background-color: none
 
 td
 
 th
+  border-bottom: none

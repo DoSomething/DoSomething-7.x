@@ -382,7 +382,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, serif;
 }
 
-.sans, .textinput, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
+.sans, .textinput, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color], select {
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -624,6 +624,7 @@ body {
 .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
+  color: #005dab;
 }
 
 .h1, h1 {
@@ -635,7 +636,7 @@ body {
 
 .h2, h2 {
   font-size: 2em;
-  line-height: 2em;
+  line-height: 1.25em;
   font-weight: 600;
   margin-top: 0.417em;
 }
@@ -643,6 +644,25 @@ body {
 .h3, h3 {
   font-size: 1.5em;
   line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
 }
 
 p {
@@ -664,7 +684,7 @@ blockquote {
 
 /* Lists -------------------------------------------------------------- */
 ol, ul {
-  padding-left: 12px;
+  padding-left: 1em;
 }
 
 dl {
@@ -673,10 +693,12 @@ dl {
 
 ol {
   list-style: decimal;
+  padding-left: 2em;
 }
 
 ul {
   list-style: disc;
+  list-style-image: url('images/sprites/icn-rightsidebar-tri-right-blue.png');
 }
 li ul {
   list-style-type: circle;
@@ -750,7 +772,7 @@ sub {
 
 mark {
   background: red;
-  background-color: rgba(254, 209, 3, 0.5);
+  background-color: rgba(255, 210, 3, 0.5);
   text-shadow: none;
 }
 
@@ -784,6 +806,24 @@ img.right {
 /* tables still need 'cellspacing="0"' in the markup */
 table {
   max-width: 100%;
+}
+
+tbody {
+  border-top: none;
+}
+
+tr {
+  background-color: none;
+}
+tr.odd, tr.even {
+  border-bottom: none;
+}
+tr.odd {
+  background-color: #d1d1d1;
+}
+
+th {
+  border-bottom: none;
 }
 
 .input_tiny {
@@ -840,8 +880,7 @@ input[type="radio"],
 input[type="checkbox"] {
   position: relative;
   vertical-align: top;
-  top: 3px;
-  top: 0 \0;
+  top: 7px;
   *top: -3px;
 }
 
@@ -1163,8 +1202,7 @@ input[type="radio"],
 input[type="checkbox"] {
   position: relative;
   vertical-align: top;
-  top: 3px;
-  top: 0 \0;
+  top: 7px;
   *top: -3px;
 }
 
@@ -1453,7 +1491,7 @@ label {
   margin-right: 0.5em;
 }
 
-.textinput, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
+.textinput, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color], select {
   font-size: 1em;
   line-height: 2em;
   border-style: solid;
@@ -1465,10 +1503,11 @@ label {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  width: 22.333em;
   max-width: 100%;
   margin-top: 0;
   border-color: rgba(22, 22, 22, 0.25);
-  height: 3em;
+  height: 2.083em;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   -o-border-radius: 6px;
@@ -1476,7 +1515,7 @@ label {
   -khtml-border-radius: 6px;
   border-radius: 6px;
 }
-.region-sidebar-first .textinput, .region-sidebar-first textarea, .region-sidebar-first input[type=text], .region-sidebar-first input[type=password], .region-sidebar-first input[type=email], .region-sidebar-first input[type=url], .region-sidebar-first input[type=tel], .region-sidebar-first input[type=date], .region-sidebar-first input[type=datetime], .region-sidebar-first input[type=datetime-local], .region-sidebar-first input[type=month], .region-sidebar-first input[type=week], .region-sidebar-first input[type=time], .region-sidebar-first input[type=number], .region-sidebar-first input[type=range], .region-sidebar-first input[type=search], .region-sidebar-first input[type=color] {
+.region-sidebar-first .textinput, .region-sidebar-first textarea, .region-sidebar-first input[type=text], .region-sidebar-first input[type=password], .region-sidebar-first input[type=email], .region-sidebar-first input[type=url], .region-sidebar-first input[type=tel], .region-sidebar-first input[type=date], .region-sidebar-first input[type=datetime], .region-sidebar-first input[type=datetime-local], .region-sidebar-first input[type=month], .region-sidebar-first input[type=week], .region-sidebar-first input[type=time], .region-sidebar-first input[type=number], .region-sidebar-first input[type=range], .region-sidebar-first input[type=search], .region-sidebar-first input[type=color], .region-sidebar-first select {
   font-size: 0.917em;
   line-height: 2.182em;
   line-height: 1em;
@@ -1488,7 +1527,7 @@ label {
 }
 
 textarea {
-  height: 13;
+  min-height: 8em;
 }
 
 input[type=search] {
@@ -1496,6 +1535,14 @@ input[type=search] {
 }
 input[type=search]::-webkit-search-decoration {
   display: none;
+}
+
+select {
+  line-height: 1;
+}
+.form-item-date select {
+  width: auto;
+  padding-right: 2em;
 }
 
 button, input[type=button], input[type=submit] {
@@ -1527,6 +1574,43 @@ textarea, input:not([type="radio"]) {
 .region-sidebar-first input[type='submit'] {
   clear: left;
   float: right;
+}
+
+html.js input.form-autocomplete {
+  background-position: 100% 5px;
+}
+
+html.js input.throbbing {
+  background-position: 100% -15px;
+}
+
+.password-strength, div.password-confirm {
+  width: 13em;
+}
+
+.form-item .description {
+  font-size: 1em;
+  color: #5f5c58;
+}
+
+fieldset {
+  border-color: #d1d1d1;
+  border-style: solid;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+}
+
+html.js fieldset.collapsed {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
@@ -1571,6 +1655,19 @@ body.node-type-project [role=main] .main-interior-sidebar {
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
 body.admin-menu {
   background-position: center 29px;
+}
+
+/* GENERAL STYLES -------------------------------------------------------------- */
+.item-list > h2, .item-list > h3 {
+  margin-bottom: 0;
+}
+.item-list ol {
+  margin-top: 0;
+}
+
+.menu li ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 #utility-bar {

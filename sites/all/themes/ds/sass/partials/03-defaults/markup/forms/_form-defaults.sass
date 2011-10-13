@@ -29,10 +29,12 @@ label
   +trailer(0.5)
   +box-sizing(border-box)
   // width: ($kit-col-width * 2) + ($kit-gutter * 1)
+  width: calc-em(268px, $s0)
   max-width: 100%
   margin-top: 0
   border-color: rgba($base-color, 0.25)
-  height: $base-line-height / ms(0) * 1.5em
+  // height: $base-line-height / ms(0) * 1.5em
+  height: calc-em(25px, $s0)
   +border-radius
   .region-sidebar-first &
     +adjust-font-size-to($s-1, 1)
@@ -43,7 +45,7 @@ label
 
 textarea
   @extend .textinput
-  height: $base-line-height / ms(0) * 6.5
+  min-height: 8em
 
 input
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
@@ -55,6 +57,13 @@ input
     -webkit-appearance: none
     &::-webkit-search-decoration
       display: none
+
+select
+  @extend .textinput
+  line-height: 1
+  .form-item-date &
+    width: auto
+    padding-right: 2em
 
 button, input[type=button], input[type=submit]
   width: auto
@@ -83,3 +92,26 @@ textarea, input:not([type="radio"])
   input[type='submit']
     clear: left
     float: right
+
+// drupal throbber
+html.js input.form-autocomplete
+  background-position: 100% 5px
+html.js input.throbbing
+  background-position: 100% -15px
+
+// drupal passwords
+.password-strength, div.password-confirm
+  width: 13em
+.form-item .description
+  font-size: 1em
+  color: $gray
+
+// drupal fieldsets
+fieldset
+  border-color: $gray-light
+  border-style: solid
+  +border-radius
+
+html.js fieldset.collapsed
+  +border-radius(0)
+

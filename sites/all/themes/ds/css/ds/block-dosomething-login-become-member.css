@@ -52,6 +52,7 @@
 .h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
+  color: #005dab;
 }
 
 .h1, h1 {
@@ -63,7 +64,7 @@
 
 .h2, h2 {
   font-size: 2em;
-  line-height: 2em;
+  line-height: 1.25em;
   font-weight: 600;
   margin-top: 0.417em;
 }
@@ -71,6 +72,25 @@
 .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question {
   font-size: 1.5em;
   line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
 }
 
 .left-block-expando-h2, .logged-in #block-dosomething-login-become-member h2.my-somethings, .logged-in #block-dosomething-login-become-member h2.notifications {
@@ -212,10 +232,10 @@
   color: white;
 }
 #block-dosomething-login-become-member h3 a:hover {
-  color: #fed103;
+  color: #ffd203;
 }
 #block-dosomething-login-become-member h3 a:active {
-  color: #fed103;
+  color: #ffd203;
 }
 #block-dosomething-login-become-member h3 a {
   border-bottom: none;
@@ -246,10 +266,10 @@
   line-height: 2.4em;
 }
 .logged-in #block-dosomething-login-become-member a {
-  color: #fed103;
+  color: #ffd203;
 }
 .logged-in #block-dosomething-login-become-member a:visited {
-  color: #fed103;
+  color: #ffd203;
 }
 .logged-in #block-dosomething-login-become-member a:hover {
   color: white;
