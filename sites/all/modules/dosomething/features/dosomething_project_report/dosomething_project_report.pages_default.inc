@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_default_page_manager_pages().
+ * Implements hook_default_page_manager_pages().
  */
 function dosomething_project_report_default_page_manager_pages() {
   $page = new stdClass;
@@ -16,7 +16,10 @@ function dosomething_project_report_default_page_manager_pages() {
   $page->admin_title = 'projects';
   $page->admin_description = '';
   $page->path = 'projects';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'none',
     'title' => '',
