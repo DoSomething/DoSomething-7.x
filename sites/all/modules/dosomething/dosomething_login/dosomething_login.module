@@ -31,6 +31,13 @@ function dosomething_login_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['dosomething/under-13/parent-consent-email'] = array(
+    'title' => 'Parental Permission',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_login_parent_permission_email_form'),
+    'access callback' => 'dosomething_parent_consent_email_access',
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -134,8 +141,8 @@ function dosomething_login_theme() {
  */
 function dosomething_login_cron() {
   // TODO: Only run every few hours?
-  //dosomething_login_update_accounts_under_13();
-  //dosomething_login_clear_old_accounts();
+  dosomething_login_update_accounts_under_13();
+  dosomething_login_clear_old_accounts();
 }
 
 /**
@@ -144,12 +151,36 @@ function dosomething_login_cron() {
 function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
   global $user;
   if (!dosomething_login_user_has_parental_consent($user->uid)) {
-    // TODO: Give a user parental consent if they are over 13
+    // Note: Give a user parental consent if they are over 13
     // so that they don't get stuck not being able to edit their
     // account by changing their birthdate.
-    // We need to know how that will be modelled before doing it.
     dosomething_login_set_parental_consent_message();
-    //drupal_goto('user');
+    drupal_goto('user');
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
+    $node_types = array(
+      'campaign_report_back',
+      'campaign_sign_up',
+      'grant_application',
+      'scholarship_application',
+      'action_guide',
+      'project_report',
+    );
+    // Users without parental consent should be able to see this
+    // but not be able to do anything with it.
+    if (in_array($form['type']['#value'], $node_types)) {
+      global $user;
+      if (!dosomething_login_user_has_parental_consent($user->uid)) {
+        dosomething_login_set_parental_consent_message();
+        drupal_goto();
+      }
+    }
   }
 }
 
@@ -754,14 +785,26 @@ function dosomething_login_user_has_parental_consent($uid) {
  */
 function dosomething_login_set_parental_consent_message() {
   // TODO: Some link to ask for parental consent
-  drupal_set_message(t('Before you can perform this action, you must have parental consent.'));
+  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => 'dosomething/under-13/parent-consent-email')));
+}
+
+/**
+ * Determine access to parental consent email request form.
+ */
+function dosomething_parent_consent_email_access() {
+  global $user;
+  return !dosomething_login_user_has_parental_consent($user->uid);
 }
 
 /**
  * Form for a person under 13 to request their parent's permission
  *  to use the site.
  */
-function dosomething_login_parent_permission_email_form($form, &$form_state, $uid) {
+function dosomething_login_parent_permission_email_form($form, &$form_state, $uid = NULL) {
+  if (is_null($uid)) {
+    global $user;
+    $uid = $user->uid;
+  }
   $form['parent_email'] = array(
     '#title' => t('Parent Email Address'),
     '#type' => 'textfield',
