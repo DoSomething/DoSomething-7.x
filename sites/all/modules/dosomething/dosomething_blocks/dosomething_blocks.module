@@ -202,8 +202,21 @@ function dosomething_blocks_make_an_impact_form() {
  * Submit handler for the make an impact block.
  */
 function dosomething_blocks_impact_form_submit($form, &$form_state) {
-  //THIS IS A STUB
-  //TODO: Fill in with real logic when we know what path to send the user to.
+  //For reference the action finder page filter query looks like:
+  //?time=15&where=All&who=6&Issues=All&=Apply
+  $what_cause = $form_state['values']['what_cause'];
+  $how_long = $form_state['values']['how_long'];
+  $who_with = $form_state['values']['who_with'];
+  $where = $form_state['values']['where'];
+  $options = array(
+    'query' => array(
+      'where' => $where,
+      'time' => $how_long,
+      'who' => $who_with,
+      'issues' => $what_cause,
+    ),
+  );
+  drupal_goto('action-finder', $options);
   return;
 }
 
@@ -351,7 +364,6 @@ function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $
   $form['actions']['submit']['#value'] = t('Go');
   $form['search_block_form']['#placeholder'] = t('Search');
 }
-
 
 /**
  * Block for social media buttons. Initially for node displays.

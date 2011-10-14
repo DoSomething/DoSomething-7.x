@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Dosomething Action Finder feature.
+ */
+
+include_once('dosomething_action_finder.features.inc');

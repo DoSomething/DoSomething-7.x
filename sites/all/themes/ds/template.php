@@ -100,3 +100,18 @@ function ds_breadcrumb($variables) {
   // Otherwise, return an empty string.
   return '';
 }
+
+/**
+ * Add a custon title to the exposed filter form on the action finder page.
+ */
+function ds_preprocess_views_exposed_form(&$vars) {
+  if ($vars['form']['#id'] == 'views-exposed-form-action-finder-page') {
+    $obj = new stdClass;
+    $obj->label = 'Find Something Else';
+    $obj->id = 'filter-title';
+    $obj->operator = NULL;
+    $obj->widget = NULL;
+    $title = array('title' => $obj);
+    $vars['widgets'] = $title + $vars['widgets'];
+  }
+}
