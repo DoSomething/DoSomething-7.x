@@ -23,33 +23,30 @@
       // TODO: jquery validation for rest of form.
       var form = $("#dosomething-login-register-block");
       var date = new Date();
-      $('#registration-dialog').hide();
+      if (!Drupal.settings.dosomethingLogin.showExtraFields) {
+        $('#registration-dialog').hide();
+      }
 
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
-        if (form.valid()) {
-          var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val()); 
-          if (date.getTime() - birthDate.getTime() > 409968000000) {
-            // TODO: Hide parent email?
+        if (!Drupal.settings.dosomethingLogin.showExtraFields) {
+          if (form.valid()) {
+            $('#registration-dialog').dialog({modal:true, width:617, height:392});
+            var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val()); 
+            // Check if user is over 13.
+            if (date.getTime() - birthDate.getTime() > 409968000000) {
+              // TODO: Show/hide parent email based on birthday value.
+            }
           }
-          else {
-            // TODO: New form validation
-            /*$("#edit-parent-email").rules("add", {
-              parent_email: {
-                required: true,
-                email: true
-              },
-            });*/
-          }
-          $('#registration-dialog').dialog({modal:true, width:617, height:392});
-          // TODO: Show/hide parent email based on birthday value.
+          event.preventDefault();
         }
-        event.preventDefault();
       });
 
+      // Submit the form on second form submit.
       $("#edit-final-submit").click(function(event) {
-        if (form.valid()) {
-          // TODO: Set parent email and other values.
+        if (!Drupal.settings.dosomethingLogin.showExtraFields) {
+          var newForm = $("#registration-dialog");
+          form.append(newForm);
           form.submit();
         }
       });

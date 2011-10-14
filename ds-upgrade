@@ -87,7 +87,7 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone print
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "combining blog posts into new blog content type `date`"

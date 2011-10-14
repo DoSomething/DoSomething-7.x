@@ -187,13 +187,18 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
 /**
  * The form for the 'Become a Member' block.
  */
-function dosomething_login_register_block($form) {
+function dosomething_login_register_block($form, &$form_state) {
   $form['#attached'] = array(
     'js' => array(
       drupal_get_path('module', 'dosomething_login') . '/js/jquery-validation-1.9.0/jquery.validate.min.js',
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-member-lightbox.js',
     ),
     'library' => array(array('system', 'ui.dialog')),
+  );
+  $show_extra_fields = count($form_state['input']) ? TRUE : FALSE;
+  $form['#attached']['js'][] = array(
+    'data' => array('dosomethingLogin' => array('showExtraFields' => $show_extra_fields)),
+    'type' => 'setting',
   );
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
@@ -251,18 +256,33 @@ function dosomething_login_register_block($form) {
       '#maxlength' => 4,
     ),
   );
-  $form['first_submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Submit'),
-    '#attributes' => array('class' => array('submit')),
-  );
+  if (!$show_extra_fields) {
+    $form['first_submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Submit'),
+      '#attributes' => array('class' => array('submit')),
+    );
+  }
   // TODO: Add captcha and password
   $form['parent_email'] = array(
     '#title' => t('Parent Email Address'),
-    '#type' => 'hidden',
+    '#description' => t('If you under 13 years of age, you need to have consent from a parent or guardian in order to be a member of this site.'),
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'class' => array('dosomething-form-values'),
+    ),
     '#prefix' => '<div id="registration-dialog">',
     '#size' => 20,
   );
+  if (module_exists('captcha')) {
+    $form['captcha'] = array(
+      '#title' => t('Captcha'),
+      '#type' => 'captcha',
+      '#attributes' => array(
+        'class' => array('dosomething-form-values'),
+      ),
+    );
+  }
   $form['final_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
@@ -351,8 +371,8 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   if (!isset($invalid_birthday)) {
     $form_state['values']['birthdate'] = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
     if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
-      if (isset($form_state['values']['parent_email'])) {
-        //form_set_error('parent_email', t('Please provide a valid parental email address.'));
+      if (!isset($form_state['values']['parent_email']) || !valid_email_address($form_state['values']['parent_email'])) {
+        form_set_error('parent_email', t('Please provide a valid parental email address.'));
       }
     }
   }
@@ -421,6 +441,13 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
   else {
     // TOOD: verify cell number via SMS.
+  }
+
+  if (!dosomething_login_person_is_over_age($values['birthdate'], 13)) {
+    if (isset($values['parent_email'])) {
+      $params = array('account' => $account);
+      drupal_mail('dosomething_login', 'dosomething-parent-email', $values['parent_email'], $language, $params);
+    }
   }
 }
 
