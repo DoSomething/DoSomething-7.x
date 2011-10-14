@@ -268,9 +268,6 @@ function dosomething_login_register_block($form, &$form_state) {
     '#title' => t('Parent Email Address'),
     '#description' => t('If you under 13 years of age, you need to have consent from a parent or guardian in order to be a member of this site.'),
     '#type' => 'textfield',
-    '#attributes' => array(
-      'class' => array('dosomething-form-values'),
-    ),
     '#prefix' => '<div id="registration-dialog">',
     '#size' => 20,
   );
@@ -278,9 +275,6 @@ function dosomething_login_register_block($form, &$form_state) {
     $form['captcha'] = array(
       '#title' => t('Captcha'),
       '#type' => 'captcha',
-      '#attributes' => array(
-        'class' => array('dosomething-form-values'),
-      ),
     );
   }
   $form['final_submit'] = array(
@@ -1029,7 +1023,9 @@ function dosomething_login_clear_old_accounts($limit = 10) {
   $accounts = dosomething_login_get_old_accounts($limit);
   if (count($accounts)) {
     foreach ($accounts as $uid) {
-      user_delete($uid);
+      if ($uid != 1) {
+        user_delete($uid);
+      }
     }
   }
 }
