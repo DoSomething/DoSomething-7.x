@@ -64,16 +64,9 @@ function dosomething_blog_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Blog Center title and categories',
+      'admin_title' => 'Blog Center title',
       'title' => '',
-      'body' => '<h1>Blog Center</h1>
-<ul class="blog-center-menu">
-<li><a href="/blog">All</a></li>
-<li><a href="/blog/9357">News</a></li>
-<li><a href="/blog/9359">Awe-Some Ones</a></li>
-<li><a href="/blog/9356">Celebs Gone Good</a></li>
-<li><a href="/blog/9358">DoSomething Staff</a></li>
-</ul>',
+      'body' => '<h1>Blog Center</h1>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -88,6 +81,26 @@ function dosomething_blog_default_page_manager_pages() {
     $display->panels['middle'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
+    $pane->panel = 'middle';
+    $pane->type = 'block';
+    $pane->subtype = 'menu-menu-blog-center';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['middle'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
     $pane->panel = 'middle';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
@@ -115,11 +128,11 @@ function dosomething_blog_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['middle'][2] = 'new-3';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-2';
+  $display->title_pane = 'new-3';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['blog_center'] = $page;
