@@ -75,6 +75,20 @@
             required: true,
             range: [1970, date.getFullYear()]
           },
+        },
+        messages: {
+          day: {
+            required: "",
+            range: "",
+          },
+          month: {
+            required: "",
+            range: "",
+          },
+          year: {
+            required: "",
+            range: "",
+          }
         }
       });
     }
