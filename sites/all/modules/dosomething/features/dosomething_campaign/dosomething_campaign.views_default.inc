@@ -30,11 +30,10 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['row_class'] = '[field_campaign_background_color]';
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
-  /* Field: Content: Background colors */
+  /* Field: Content: Background color */
   $handler->display->display_options['fields']['field_campaign_background_color']['id'] = 'field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['table'] = 'field_data_field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['field'] = 'field_campaign_background_color';
@@ -58,11 +57,36 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_background_color']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['field_api_classes'] = 0;
+  /* Field: Content: Foreground color */
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['id'] = 'field_campaign_foreground_color';
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['table'] = 'field_data_field_campaign_foreground_color';
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['field'] = 'field_campaign_foreground_color';
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_foreground_color']['field_api_classes'] = 0;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_campaign_logo']['id'] = 'field_campaign_logo';
   $handler->display->display_options['fields']['field_campaign_logo']['table'] = 'field_data_field_campaign_logo';
   $handler->display->display_options['fields']['field_campaign_logo']['field'] = 'field_campaign_logo';
   $handler->display->display_options['fields']['field_campaign_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_logo']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['absolute'] = 0;
@@ -86,38 +110,36 @@ function dosomething_campaign_views_default_views() {
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_campaign_logo']['field_api_classes'] = 0;
-  /* Field: Content: Action items list */
-  $handler->display->display_options['fields']['field_campaign_action_list']['id'] = 'field_campaign_action_list';
-  $handler->display->display_options['fields']['field_campaign_action_list']['table'] = 'field_data_field_campaign_action_list';
-  $handler->display->display_options['fields']['field_campaign_action_list']['field'] = 'field_campaign_action_list';
-  $handler->display->display_options['fields']['field_campaign_action_list']['label'] = '';
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_campaign_action_list']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_campaign_action_list']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['group_rows'] = 1;
-  $handler->display->display_options['fields']['field_campaign_action_list']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_campaign_action_list']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['field_campaign_action_list']['multi_type'] = 'ul';
-  $handler->display->display_options['fields']['field_campaign_action_list']['field_api_classes'] = 0;
+  /* Field: Content: Teaser */
+  $handler->display->display_options['fields']['field_campaign_teaser']['id'] = 'field_campaign_teaser';
+  $handler->display->display_options['fields']['field_campaign_teaser']['table'] = 'field_data_field_campaign_teaser';
+  $handler->display->display_options['fields']['field_campaign_teaser']['field'] = 'field_campaign_teaser';
+  $handler->display->display_options['fields']['field_campaign_teaser']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_teaser']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campaign_teaser']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser']['field_api_classes'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_node']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['absolute'] = 0;
@@ -136,6 +158,86 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Get More Info';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="/">Report Back (placeholder)</a>';
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
+  /* Field: Content: Main Image */
+  $handler->display->display_options['fields']['field_campaign_main_image']['id'] = 'field_campaign_main_image';
+  $handler->display->display_options['fields']['field_campaign_main_image']['table'] = 'field_data_field_campaign_main_image';
+  $handler->display->display_options['fields']['field_campaign_main_image']['field'] = 'field_campaign_main_image';
+  $handler->display->display_options['fields']['field_campaign_main_image']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_main_image']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campaign_main_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campaign_main_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_campaign_main_image']['settings'] = array(
+    'image_style' => 'campaigns_image',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_campaign_main_image']['field_api_classes'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="views-field-field-campaign-logo">[field_campaign_logo]</div>
+<div class="views-field-field-campaign-teaser">[field_campaign_teaser]</div>
+<div class="views-field-view-node">[view_node]</div>
+<div class="views-field-nothing">[nothing] </div>
+<div class="views-field-field-campaign-main-image">[field_campaign_main_image]</div>';
+  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['element_type'] = 'div';
+  $handler->display->display_options['fields']['nothing_1']['element_class'] = 'campaigns-container';
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing_1']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node_1']['id'] = 'view_node_1';
   $handler->display->display_options['fields']['view_node_1']['table'] = 'node';
@@ -160,56 +262,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['view_node_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node_1']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node_1']['text'] = 'Join This';
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="/">Report Back (placeholder)</a>';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Field: Content: Main Image */
-  $handler->display->display_options['fields']['field_campaign_main_image']['id'] = 'field_campaign_main_image';
-  $handler->display->display_options['fields']['field_campaign_main_image']['table'] = 'field_data_field_campaign_main_image';
-  $handler->display->display_options['fields']['field_campaign_main_image']['field'] = 'field_campaign_main_image';
-  $handler->display->display_options['fields']['field_campaign_main_image']['label'] = '';
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_campaign_main_image']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_campaign_main_image']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_campaign_main_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_campaign_main_image']['settings'] = array(
-    'image_style' => 'campaigns_image',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_campaign_main_image']['field_api_classes'] = 0;
   /* Field: Content: Headline */
   $handler->display->display_options['fields']['field_campaign_headline']['id'] = 'field_campaign_headline';
   $handler->display->display_options['fields']['field_campaign_headline']['table'] = 'field_data_field_campaign_headline';

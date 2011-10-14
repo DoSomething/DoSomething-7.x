@@ -77,19 +77,19 @@ function dosomething_campaign_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_action_list'
-  $fields['node-campaign-field_campaign_action_list'] = array(
+  // Exported field: 'node-campaign-field_campaign_background_color'
+  $fields['node-campaign-field_campaign_background_color'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '3',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_campaign_action_list',
+      'field_name' => 'field_campaign_background_color',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -105,7 +105,7 @@ function dosomething_campaign_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => '255',
+        'max_length' => '6',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
@@ -115,83 +115,13 @@ function dosomething_campaign_field_default_fields() {
       'bundle' => 'campaign',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Items to appear in campaigns listing. Ex. <i>Run your own supply drive</i>',
+      'description' => 'Please enter the 6 digit hex value without the #.',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 7,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_campaign_action_list',
-      'label' => 'Action items list',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-campaign-field_campaign_background_color'
-  $fields['node-campaign-field_campaign_background_color'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_campaign_background_color',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'yellow/red',
-          1 => 'blue/purple',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => array(
-        0 => array(
-          'value' => '0',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
           'weight' => 8,
         ),
         'teaser' => array(
@@ -203,17 +133,20 @@ function dosomething_campaign_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_campaign_background_color',
-      'label' => 'Background colors',
+      'label' => 'Background color',
       'required' => 1,
       'settings' => array(
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '5',
+        'module' => 'text',
+        'settings' => array(
+          'size' => '8',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '6',
       ),
     ),
   );
@@ -284,7 +217,76 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '8',
+        'weight' => '10',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_campaign_foreground_color'
+  $fields['node-campaign-field_campaign_foreground_color'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_foreground_color',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '6',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Please enter the 6 digit hex value without the #.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 9,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_foreground_color',
+      'label' => 'Foreground color',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '8',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '7',
       ),
     ),
   );
@@ -517,6 +519,74 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_campaign_teaser'
+  $fields['node-campaign-field_campaign_teaser'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_teaser',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Text to appear in Current Campaigns list',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 10,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_teaser',
+      'label' => 'Teaser',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '3',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_campaign_video'
   $fields['node-campaign-field_campaign_video'] = array(
     'field_config' => array(
@@ -584,7 +654,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '6',
+        'weight' => '8',
       ),
     ),
   );
@@ -662,7 +732,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '7',
+        'weight' => '9',
       ),
       'widget_type' => 'options_select',
     ),
@@ -947,10 +1017,10 @@ function dosomething_campaign_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Abstract');
-  t('Action items list');
-  t('Background colors');
+  t('Background color');
   t('Body');
   t('Causes/Issues');
+  t('Foreground color');
   t('Copyright');
   t('Description');
   t('Group type');
@@ -959,8 +1029,11 @@ function dosomething_campaign_field_default_fields() {
   t('Keywords');
   t('Logo');
   t('Main Image');
+  t('Please enter the 6 digit hex value without the #.');
   t('Relate this Campaign to a Cause or Issue.');
   t('Robots');
+  t('Teaser');
+  t('Text to appear in Current Campaigns list');
   t('Video');
 
   return $fields;
