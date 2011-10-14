@@ -168,6 +168,12 @@
 #block-dosomething-login-become-member .separator.split:after {
   right: 0;
 }
+#block-dosomething-login-become-member .form-item {
+  height: auto;
+}
+#block-dosomething-login-become-member .form-item label.error {
+  float: left;
+}
 #block-dosomething-login-become-member .form-item-first-name, #block-dosomething-login-become-member .form-item-last-name {
   width: 49.143%;
   float: left;
