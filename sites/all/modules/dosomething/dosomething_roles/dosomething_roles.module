@@ -21,6 +21,9 @@ function dosomething_roles_cron() {
   }
 
   // Get users who have not logged in this past year for possible role regression.
+  // TODO: Get users who have not done any action updates in 1 year, 9 months, 10 months, 11 months
+  // After 1 year, we bump them down
+  // We warn them at the other points.
   $last_update_inactive = variable_get('dosomething_roles_cron_inactive', 0);
   $result = db_query_range("SELECT u.uid, u.access FROM {users} u INNER JOIN {users_roles} ur ON (u.uid = ur.uid AND ur.rid IN (:active_member, :member)) WHERE access < UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND access > :last_update_inactive ORDER BY u.access ASC", 0, 100, array(':active_member' => $active_member->rid, ':member' => $member->rid, ':last_update_inactive' => $last_update_inactive));
   foreach ($result as $data) {
@@ -30,6 +33,10 @@ function dosomething_roles_cron() {
 }
 
 function dosomething_roles_update_role($uid) {
+  // TODO: New update criteria
+  // member - continue to be under 26 (converted to varsity afterwards) - if they haven't logged in in a year, make them inactive.
+  // active member - one action update to maintain status
+  // varsity - 5 action updates or (win grant and submit grant update) to maintain status
   if (!$uid) {
     return;
   }
@@ -101,6 +108,7 @@ function dosomething_roles_is_active_member($uid) {
   }
   return FALSE;
 }
+
 /**
  * Determine if a given uid qualifies for the member role.
  */
@@ -119,12 +127,29 @@ function dosomething_roles_is_member($uid) {
 }
 
 /**
+ * Get a list of node types that are considered 'action updates'.
+ */
+function dosomething_roles_get_action_update_types() {
+  return array(
+    'campaign_report_back',
+    'campaign_sign_up',
+    'grant_application',
+    'scholarship_application',
+    'action_guide',
+    'project_report',
+  );
+}
+
+/**
  * Implements hook_node_insert().
  */
 function dosomething_roles_node_insert($node) {
   global $user;
   if ($user->uid == $node->uid) {
-    dosomething_roles_update_role($node->uid);
+    // TODO: Mark that an action update has occurred - probably some admin field on a user account.
+    if (in_array($node->type, dosomething_roles_get_action_update_types())) {
+      dosomething_roles_update_role($node->uid);
+    }
   }
 }
 
@@ -141,7 +166,10 @@ function dosomething_roles_user_login(&$edit, $account) {
 function dosomething_roles_user_update(&$edit, $account, $category) {
   global $user;
   if ($user->uid == $account->uid) {
-    dosomething_roles_update_role($account->uid);
+    // TODO: Mark that an action update has occurred - probably some admin field on a user account.
+    if (in_array($node->type, dosomething_roles_get_action_update_types())) {
+      dosomething_roles_update_role($account->uid);
+    }
   }
 }
 
@@ -151,6 +179,7 @@ function dosomething_roles_user_update(&$edit, $account, $category) {
 function dosomething_roles_webform_submission_insert($node, $submission) {
   global $user;
   if ($user->uid == $submission->uid) {
+    // TODO: Mark that an action update has occurred - probably some admin field on a user account.
     dosomething_roles_update_role($submission->uid);
   }
 }
