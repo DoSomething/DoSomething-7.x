@@ -287,7 +287,6 @@ function dosomething_campaign_views_default_views() {
   /* Display: Related Campaigns Content pane */
   $handler = $view->new_display('panel_pane', 'Related Campaigns Content pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Related Campaigns';
   $handler->display->display_options['display_description'] = 'Related campaigns pane - pulled into Causes term page.';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
