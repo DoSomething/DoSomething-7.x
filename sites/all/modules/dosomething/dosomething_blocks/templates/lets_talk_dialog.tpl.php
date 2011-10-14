@@ -12,6 +12,9 @@
       <div class="lets-talk-text">
         <span class="title"><?php print t('Text with us...'); ?></span><span class="desc"><?php print t('Text HELPME to 30644'); ?></span>
       </div>
+      <div class="lets-talk-chat">
+        <span class="title"><?php print t('Chat with us...'); ?></span><span class="desc"><?php print t('Click <a href="/">here</a> to chat live'); ?></span>
+      </div>
       <div class="lets-talk-email">
         <span class="title"><?php print t('Email us...'); ?></span><span class="desc"><?php print l('helpme@dosomething.org', 'mailto:helpmedosomething.org'); ?> </span>
       </div>
