@@ -1,0 +1,12 @@
+.panel-one-two-one-two .panel-full {
+  width: 100%; }
+.panel-one-two-one-two .panel-row-2cols .panel-first {
+  float: left;
+  width: 50%; }
+  * html .panel-one-two-one-two .panel-row-2cols .panel-first {
+    width: 49.9%; }
+.panel-one-two-one-two .panel-row-2cols .panel-last {
+  float: left;
+  width: 49.9%; }
+.panel-one-two-one-two .panel-row3 {
+  clear: both; }
