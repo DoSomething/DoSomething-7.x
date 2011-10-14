@@ -374,7 +374,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-.wireframe {
+.wireframe, .panel-two-three {
   outline: 1px dashed red;
 }
 
@@ -1623,16 +1623,16 @@ html.js fieldset.collapsed {
 }
 
 /* LAYOUT -------------------------------------------------------------- */
-.wireframe {
+.wireframe, .panel-two-three {
   outline: 1px dashed red;
 }
-.wireframe > * {
+.wireframe > *, .panel-two-three > * {
   outline: 1px dashed #ff8000;
 }
-.wireframe > * > * {
+.wireframe > * > *, .panel-two-three > * > * {
   outline: 1px dashed yellow;
 }
-.wireframe > * > * > * {
+.wireframe > * > * > *, .panel-two-three > * > * > * {
   outline: 1px dashed #80ff00;
 }
 
@@ -1694,6 +1694,37 @@ body.node-type-project [role=main] .main-interior-sidebar {
   width: 37.213%;
   margin-right: 0;
   float: right;
+}
+
+.panel-one-two .panel-row-bottom .panel-panel {
+  margin-right: 1.437%;
+  width: auto;
+  max-width: 48.851%;
+}
+.panel-one-two .panel-row-bottom .panel-last {
+  float: right;
+  margin-right: 0;
+}
+
+.panel-one-two-one-two .panel-row-2cols .panel-panel {
+  margin-right: 2.874%;
+}
+.panel-one-two-one-two .panel-row-2cols .panel-first {
+  width: 66.379%;
+}
+.panel-one-two-one-two .panel-row-2cols .panel-last {
+  width: 32.471%;
+  float: right;
+  margin-right: -12px;
+}
+
+.panel-two-three .panel-row-top .panel-top-left {
+  width: 71.839%;
+}
+.panel-two-three .panel-row-top .panel-top-right {
+  width: 29.741%;
+  float: right;
+  margin-right: -12px;
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */

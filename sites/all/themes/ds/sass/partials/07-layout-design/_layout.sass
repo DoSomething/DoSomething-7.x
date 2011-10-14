@@ -42,7 +42,6 @@
 
 // PANELS OVERRIDE -----------------------------------------------------
 .panel-one-three-two
-  // @extend .wireframe
   .panel-top
     margin-bottom: calc-em($s2b, $s0)
   .panel-row-middle
@@ -73,4 +72,49 @@
       width: percentage($two-col-thin / $main-width-w-padding)
       margin-right: 0
       float: right
+
+
+.panel-one-two
+  .panel-top
+  .panel-row-bottom
+    .panel-panel
+      margin-right: percentage($kit-gutter-medium / $main-width-w-padding)
+      width: auto
+      max-width: percentage(340px / $main-width-w-padding)
+    .panel-first
+    .panel-last
+      float: right
+      margin-right: 0
+
+
+.panel-one-two-one-two
+  .panel-full
+  .panel-row-2cols
+    .panel-panel
+      margin-right: percentage($kit-gutter-wide / $main-width-w-padding)
+    .panel-first
+      width: percentage($two-col-wide2 / $main-width-w-padding)
+    .panel-last
+      width: percentage($two-col-thin2 / $main-width-w-padding)
+      float: right
+      margin-right: -$s0
+  .panel-row3
+
+
+.panel-two-three
+  @extend .wireframe
+  .panel-row-top
+    .panel-top-left
+      width: percentage($campaign-wide / $main-width-w-padding)
+    .panel-top-right
+      width: percentage($campaign-thin / $main-width-w-padding)
+      float: right
+      margin-right: -$s0
+  .panel-row-bottom
+    .panel-bottom-left
+    .panel-bottom-center, .panel-bottom-right
+
+
+
+
 
