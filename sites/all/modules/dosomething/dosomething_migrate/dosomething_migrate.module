@@ -78,7 +78,9 @@ function dosomething_migrate_regenerate_webform_nodes() {
     $webform->webform = $webform_data;
     $webform_data['nid'] = $webform->nid;
     node_save($webform);
-    drupal_write_record('webform', $webform_data);
+    if ($webform->type !== 'webform') {
+      drupal_write_record('webform', $webform_data);
+    }
   }
   //Set the variable mapping the old array types to new node ids.
   variable_set('webform_migrate_webform_mapping', $mapping_array);
