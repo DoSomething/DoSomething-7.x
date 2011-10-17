@@ -38,6 +38,7 @@ drush vset -y pathauto_node_campaign_bfb_2011_pattern "project/battle-for-bands/
 drush vset -y pathauto_node_campaign_bully_2011_pattern "project/step-up-to-bullying/[node:title]"
 drush vset -y pathauto_node_campaign_ebd_2011_pattern "project/epic-book-drive/[node:title]"
 drush vset -y pathauto_node_campaign_gys_2011_pattern "project/green-your-school/[node:title]"
+drush vset -y pathauto_node_cause_pattern "whatsyourthing/cause/[node:title]"
 drush vset -y pathauto_node_campaign_sports_2011_pattern "sports/project/[node:title]"
 drush vset -y pathauto_node_cause_or_issue_pattern "whatsyourthing/cause/[node:title]"
 drush vset -y pathauto_node_club_pattern "club/[node:title]"
@@ -87,7 +88,8 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print dosomething_causes dosomething_causes_landing_page
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home dosomething_causes dosomething_causes_landing_page
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "combining blog posts into new blog content type `date`"
