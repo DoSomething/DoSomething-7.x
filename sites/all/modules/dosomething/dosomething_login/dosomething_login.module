@@ -547,7 +547,7 @@ function dosomething_login_notifications() {
 
 function dosomething_login_profile_percentage() {
   global $user;
-  $profile = profile2_load_by_user($user, 'main');
+  $profile = profile2_load_by_user($user);
   $total = 0;
   $complete = 0;
   if (isset($profile['main'])) {
