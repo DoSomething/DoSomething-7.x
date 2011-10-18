@@ -381,16 +381,25 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
     $presets = fb_social_get_presets();
     $facebook = dosomething_blocks_fb_social_preset_view($presets['FB Like'], $url);
   }
+  else {
+    $facebook = NULL;
+  }
   if (module_exists('google_plusone')) {
     $button_settings = variable_get('google_plusone_button_settings');
     $button_settings['url'] = $url;
     $google = theme('google_plusone_button', $button_settings);
+  }
+  else {
+    $google = NULL;
   }
   if (module_exists('tweetbutton')) {
     drupal_add_js('http://platform.twitter.com/widgets.js'); 
     drupal_add_css(drupal_get_path('module', 'tweetbutton').'/tweetbutton.css');
     $variables = dosomething_blocks_tweet_prepare($path);
     $twitter = theme('tweetbutton_display', $variables);
+  }
+  else {
+    $twitter = NULL;
   }
   if (module_exists('print')) {
     if ($url) {
@@ -400,6 +409,9 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
       $print = print_insert_link();
     }
   }
+  else {
+    $print = NULL;
+  }
   if (module_exists('print_mail')) {
     if ($url) {
       $email = print_mail_insert_link('printmail/' . $path);
@@ -407,6 +419,9 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
     else {
       $email = print_mail_insert_link();
     }
+  }
+  else {
+    $email = NULL;
   }
   return theme('dosomething_blocks_social_node_plugins', array('facebook' => $facebook, 'google' => $google, 'twitter' => $twitter, 'print' => $print, 'email' => $email));
 }
