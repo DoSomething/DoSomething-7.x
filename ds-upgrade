@@ -65,6 +65,9 @@ drush vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 drush vset -y pathauto_taxonomy_term_pattern "[term:vocabulary]/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]"
+drush vset -y tweetbutton_button: "none"
+drush vset -y tweetbutton_tweet_text: "!title !author_name"
+drush vset -y tweetbutton_account: "@dosomething"
 drush vset -y print_mail_sys_link_visibility 0
 drush vset -y print_mail_sys_link_pages 0
 drush vset -y print_mail_show_link 2
@@ -73,7 +76,8 @@ drush vset -y print_html_sys_link_pages 0
 drush vset -y print_html_show_link 2
 # Using vset to do this has just been added to drush and might not be on the prod server.
 # http://drupal.org/node/664452#comment-5078776
-drush php-eval "variable_set('google_plusone_button_settings', array('annotation' => 'none', 'width' => 150, 'size' => 'tall', 'syntax' => 'HTML5'));"
+drush php-eval "variable_set('google_plusone_advanced_settings', array('lang' => '', 'scope' => 'page_bottom', 'async' => 1, 'parsetags' => 'unload'));"
+drush php-eval "variable_set('google_plusone_button_settings', array('annotation' => 'none', 'width' => 150, 'size' => 'tall', 'syntax' => 'HTML5', 'css' > '' ));"
 echo "Enabling first round of contrib modules, pre-field and og migration `date`"
 drush -y en media_youtube media_webform mediafield emfield rdf date date_popup date_views link og auto_nodetitle diff token transliteration views views_ui views_data_export image node_reference user_reference field_group content_migrate features views_content og_ui og_migrate metatags_quick webform email entity_token webform_entity geofield strongarm
 drush -y dis profile
@@ -88,7 +92,7 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print dosomething_causes dosomething_causes_landing_page dosomething_panels
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print_mail dosomething_causes dosomething_causes_landing_page dosomething_panels
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "combining blog posts into new blog content type `date`"
