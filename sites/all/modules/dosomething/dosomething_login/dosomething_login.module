@@ -235,7 +235,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#size' => 20,
   );
   $form['birthday'] = array(
-    'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
+    'over_13' => array('#markup' => '<div class="age-question">' . t('Birthday') . '</div>'),
     'month' => array(
       '#type' => 'textfield',
       '#attributes' => array(
@@ -264,18 +264,28 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       '#maxlength' => 4,
     ),
   );
-  // TODO: Add captcha and password
-  $form['parent_email'] = array(
-    '#title' => t('Parent Email Address'),
-    '#description' => t('If you under 13 years of age, you need to have consent from a parent or guardian in order to be a member of this site.'),
-    '#type' => 'textfield',
+
+  $form['parent_email_message'] = array(
+    '#type' => 'item',
+    '#title' => t('What a Rock Star!'),
+    '#description' => t('Since you\'re under the age of 13, you\'ll need to get a parent or guradian\'s permission.'),
     '#prefix' => '<div class="under-13-field">',
+  );
+  $form['parent_email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Parent or Guardian\'s Email'),
+    ),
     '#suffix' => '</div>',
     '#size' => 20,
   );
+
   $form['pass'] = array(
     '#type' => 'password_confirm',
-    '#title' => t('Password'),
+    '#required' => TRUE,
+    '#attributes' => array(
+      'placeholder' => t('Create a Password'),
+    ),
     '#maxlength' => 64,
     '#size' => 15,
   );
@@ -423,6 +433,40 @@ function dosomething_login_register_block($form, &$form_state) {
  */
 function dosomething_login_register_block_validate($form, &$form_state) {
   $values = $form_state['values'];
+  $form_state['values']['birthdate'] = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
+  if (!is_numeric($values['month']) || $values['month'] > 12) {
+    form_set_error('month', t('Please provide a valid numeric month for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['day']) || $values['month'] > 31) {
+    form_set_error('day', t('Please provide a valid day for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['year']) || strlen($values['year']) != 4) {
+    form_set_error('year', t('Please provide the 4-digit year you were born.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!isset($invalid_birthday)) {
+    if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
+      if (!isset($form_state['values']['parent_email']) || !valid_email_address($form_state['values']['parent_email'])) {
+        form_set_error('parent_email', t('Please provide a valid parental email address.'));
+      }
+    }
+    else if (dosomething_login_person_is_over_age($form_state['values']['birthdate'], 25)) {
+      // Don't throw required field errors for captcha and password.
+      // We could add errors back if needed.
+      form_clear_error();
+      $messages = drupal_get_messages('error');
+      if (count($messages['error'])) {
+        foreach ($messages['error'] as $message) {
+          if (!preg_match('/field is required.$/', $message)) {
+            drupal_set_message($message, 'error');
+          }
+        }
+      }
+    }
+  }
+
   if (!$values['first_name']) {
     form_set_error('first_name', t('Please provide your first name.'));
   }
@@ -446,26 +490,6 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   else {
     form_set_error('cell_or_email', t('Please provide a valid email address or phone number'));
   }
-  if (!is_numeric($values['month']) || $values['month'] > 12) {
-    form_set_error('month', t('Please provide a valid numeric month for your birthday.'));
-    $invalid_birthday = TRUE;
-  }
-  if (!is_numeric($values['day']) || $values['month'] > 31) {
-    form_set_error('day', t('Please provide a valid day for your birthday.'));
-    $invalid_birthday = TRUE;
-  }
-  if (!is_numeric($values['year']) || strlen($values['year']) != 4) {
-    form_set_error('year', t('Please provide the 4-digit year you were born.'));
-    $invalid_birthday = TRUE;
-  }
-  if (!isset($invalid_birthday)) {
-    $form_state['values']['birthdate'] = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
-    if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
-      if (!isset($form_state['values']['parent_email']) || !valid_email_address($form_state['values']['parent_email'])) {
-        form_set_error('parent_email', t('Please provide a valid parental email address.'));
-      }
-    }
-  }
 }
 
 /**
@@ -486,9 +510,9 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   entity_form_submit_build_entity('user', $account, $form, $form_state);
 
   // Determine the user's role by their age.
-  if (dosomething_login_person_is_over_age($birthdate, 26)) {
+  if (dosomething_login_person_is_over_age($birthdate, 25)) {
     $role_name = 'old person';
-    drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
+    drupal_set_message(t('You have been signed up for our weekly updates'));
     $account->status = 0;
   }
   else if (!dosomething_login_person_is_over_age($birthdate, 13)) {
@@ -753,7 +777,7 @@ function dosomething_login_fbconnect_register_submit($form, &$form_state) {
 
   // Determine the user's role by their age.
   $member_role = user_role_load_by_name('member');
-  if (dosomething_login_person_is_over_age($values['birthdate'], 26)) {
+  if (dosomething_login_person_is_over_age($values['birthdate'], 25)) {
     $role_name = 'old person';
     drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
     $account->status = 0;
