@@ -570,6 +570,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     if (isset($values['parent_email'])) {
       $params = array('account' => $account);
       drupal_mail('dosomething_login', 'dosomething-parent-email', $values['parent_email'], $language, $params);
+      drupal_set_message(t('An email has been sent to %email for permission.', array('%email' => $values['parent_email'])));
     }
   }
 }
