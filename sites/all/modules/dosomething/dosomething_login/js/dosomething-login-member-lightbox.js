@@ -26,15 +26,23 @@
         return this.optional(element) || (phone || email);
       }, "Please enter a valid email address or phone number(no spaces).");
 
+      $("#edit-final-submit").click(function(event) {
+        // The elements are disabled, but still need to actually post.
+        popupForm.find('.dosomething-original-value').each(function() {
+          $(this).removeAttr("disabled");
+        });
+      });
+
 
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
         if (blockForm.valid()) {
-          $('#dosomething-login-register-popup-form').dialog({modal:true, width:617, height:392});
+          popupForm.dialog({modal:true, width:617, height:392});
           popupForm.find('.dosomething-original-value').each(function() {
             var name = $(this).attr('name');
             var value = blockForm.find('input[name="' + name + '"]').val();
             $(this).val(value);
+            $(this).attr('disabled', 'disabled');
           });
           var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
           // Check if user is over 25.
