@@ -37,6 +37,7 @@ function dosomething_migrate_regenerate_webform_nodes() {
     'dosomething_scholarship_application',
     'dosomething_campaign_sign_up',
     'dosomething_action_guide',
+    'dosomething_project_report'
   );
   module_enable($content_features, $enable_dependencies = TRUE);
 
@@ -65,7 +66,6 @@ function dosomething_migrate_regenerate_webform_nodes() {
   foreach ($files as $file) {
     $webform =  file_get_contents($file->uri);
     $webform = unserialize($webform);
-
     $webform_data = $webform->webform;
     unset($webform->webform);
     node_save($webform);
@@ -78,9 +78,6 @@ function dosomething_migrate_regenerate_webform_nodes() {
     $webform->webform = $webform_data;
     $webform_data['nid'] = $webform->nid;
     node_save($webform);
-    if ($webform->type !== 'webform') {
-      drupal_write_record('webform', $webform_data);
-    }
   }
   //Set the variable mapping the old array types to new node ids.
   variable_set('webform_migrate_webform_mapping', $mapping_array);
@@ -139,6 +136,7 @@ function dosomething_migrate_return_content_type_mapping() {
     'general_scholarship_app' => 'General Scholarship Application',
     'scholarships_att' => 'Scholarships ATT',
     'sixflags_scholarships_app' => 'Six Flags Friends Scholarships',
+    'project' => 'Projects'
   );
   return $array;
 }
@@ -157,7 +155,8 @@ function dosomething_migrate_clear_nodes() {
       type = 'grant_application'
       OR type = 'campaign_sign_up'
       OR type = 'campaign_report_back'
-      OR type = 'scholarship_application'");
+      OR type = 'scholarship_application'
+      OR type = 'project_report'");
   while ($nid = $result->fetch()) {
     node_delete($nid->nid);
   }
@@ -179,7 +178,8 @@ function dosomething_migrate_update_nodes() {
     WHERE type = 'grant_application'
       OR type = 'campaign_sign_up'
       OR type = 'campaign_report_back'
-      OR type = 'scholarship_application'");
+      OR type = 'scholarship_application'
+      OR type = 'project_report'");
   while ($nid = $result->fetch()) {
     $c++;
     $node = node_load($nid->nid);
