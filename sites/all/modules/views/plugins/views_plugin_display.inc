@@ -53,31 +53,35 @@ class views_plugin_display extends views_plugin {
     $this->unpack_options($this->options, $options);
 
     // Translate changed settings:
-    // Check if any of the previous values now managed by
-    // pluggable pagers have been changed.
-    // If yes, perform the conversion
     $items_per_page = $this->get_option('items_per_page');
     $offset = $this->get_option('offset');
-    $type = $this->get_option('use_pager');
-    if ((!empty($items_per_page) && $items_per_page != 10) || !empty($offset) || !empty($type)) {
-      if (!$type) {
+    $use_pager = $this->get_option('use_pager');
+    $pager = $this->get_option('pager');
+    // Check if the pager options were already converted.
+    if ((!empty($items_per_page) && $items_per_page != 10) || !empty($offset) || !empty($use_pager)) {
+      // Find out the right pager type.
+      // If the view "use pager" it's a normal/full pager.
+      if ($use_pager) {
+        $type = 'full';
+      }
+      // If it does not use pager, but 0 items per page it should not page
+      // else it should display just a certain amount of items.
+      else {
         $type = $items_per_page ? 'some' : 'none';
       }
 
-      if ($type == 1) {
-        $type = 'full';
-      }
-
+      // Setup the pager options.
       $pager = array(
         'type' => $type,
         'options' => array(
-          'offset' => $offset
+          'offset' => intval($offset)
         ),
       );
 
       if ($items_per_page) {
         $pager['options']['items_per_page'] = $items_per_page;
       }
+      // Setup the pager element.
       if ($id = $this->get_option('pager_element')) {
         $pager['options']['id'] = $id;
       }
@@ -89,6 +93,7 @@ class views_plugin_display extends views_plugin {
       $this->set_option('use_pager', NULL);
       $this->set_option('pager', $pager);
     }
+
 
     // Plugable headers, footer and empty texts are
     // not compatible with previous version of views
@@ -134,17 +139,34 @@ class views_plugin_display extends views_plugin {
       // Clear the values
       $this->set_option('distinct', NULL);
     }
+
+    // Convert field language settings.
+    $query_options = $this->get_option('query');
+    if (isset($query_options['options']['field_language'])) {
+      $this->set_option('field_language', $query_options['options']['field_language']);
+      unset($query_options['options']['field_language']);
+    }
+    if (isset($query_options['options']['field_language_add_to_query'])) {
+      $this->set_option('field_language_add_to_query', $query_options['options']['field_language_add_to_query']);
+      unset($query_options['options']['field_language_add_to_query']);
+    }
+    $this->set_option('query', $query_options);
   }
 
   function construct() {
     // Load extenders as soon as possible
     $this->extender = array();
-    $extenders = array_filter(variable_get('views_display_extenders', array()));
+    $extenders = views_get_enabled_display_extenders();
     // If you update to the dev version the registry might not be loaded yet.
     if (!empty($extenders) && class_exists('views_plugin_display_extender')) {
       foreach ($extenders as $extender) {
         $data = views_fetch_plugin_data('display_extender', $extender);
-        $this->extender[$extender] = new $data['handler']($view, $this);
+        if (isset($data['handler']) && class_exists($data['handler'])) {
+          $this->extender[$extender] = new $data['handler']($view, $this);
+        }
+        else {
+          vpr('Invalid display extender @extender', array('@handler' => $extender));
+        }
       }
     }
     parent::construct();
@@ -460,6 +482,12 @@ class views_plugin_display extends views_plugin {
         'default' => FALSE,
         'bool' => TRUE,
       ),
+      'field_language' => array(
+        'default' => '***CURRENT_LANGUAGE***',
+      ),
+      'field_language_add_to_query' => array(
+        'default' => 1,
+      ),
 
       // These types are all plugins that can have individual settings
       // and therefore need special handling.
@@ -616,6 +644,16 @@ class views_plugin_display extends views_plugin {
   function uses_link_display() { return !$this->has_path(); }
 
   /**
+   * Check to see if the display can put the exposed formin a block.
+   *
+   * By default, displays that do not have a path cannot disconnect
+   * the exposed form and put it in a block, because the form has no
+   * place to go and Views really wants the forms to go to a specific
+   * page.
+   */
+  function uses_exposed_form_in_block() { return $this->has_path(); }
+
+  /**
    * Check to see which display to use when creating links within
    * a view using this display.
    */
@@ -740,7 +778,7 @@ class views_plugin_display extends views_plugin {
 
         if (!isset($this->base_field)) {
           $views_data = views_fetch_data($this->view->base_table);
-          $this->view->base_field = $views_data['table']['base']['field'];
+          $this->view->base_field = !empty($views_data['table']['base']['field']) ? $views_data['table']['base']['field'] : '';
         }
         $plugin->init($this->view->base_table, $this->view->base_field, $options);
       }
@@ -1087,6 +1125,22 @@ class views_plugin_display extends views_plugin {
       'desc' => t('Allow to set some advanced settings for the query plugin'),
     );
 
+    $languages = array(
+        '***CURRENT_LANGUAGE***' => t("Current user's language"),
+        '***DEFAULT_LANGUAGE***' => t("Default site language"),
+        LANGUAGE_NONE => t('Language neutral'),
+    );
+    if (module_exists('locale')) {
+      $languages = array_merge($languages, locale_language_list());
+    }
+    $field_language = array();
+    $options['field_language'] = array(
+      'category' => 'other',
+      'title' => t('Field Language'),
+      'value' => $languages[$this->get_option('field_language')],
+      'desc' => t('All fields which support translations will be displayed in the selected language.'),
+    );
+
     $access_plugin = $this->get_plugin('access');
     if (!$access_plugin) {
       // default to the no access control plugin.
@@ -1155,7 +1209,7 @@ class views_plugin_display extends views_plugin {
       }
     }
 
-    if ($this->has_path()) {
+    if ($this->uses_exposed_form_in_block()) {
       $options['exposed_block'] = array(
         'category' => 'exposed',
         'title' => t('Exposed form in block'),
@@ -1344,7 +1398,7 @@ class views_plugin_display extends views_plugin {
         $access = $this->get_option('access');
         $form['access']['type'] =  array(
           '#type' => 'radios',
-          '#options' => views_fetch_plugin_names('access'),
+          '#options' => views_fetch_plugin_names('access', NULL, array($this->view->base_table)),
           '#default_value' => $access['type'],
         );
 
@@ -1387,7 +1441,7 @@ class views_plugin_display extends views_plugin {
         $cache = $this->get_option('cache');
         $form['cache']['type'] =  array(
           '#type' => 'radios',
-          '#options' => views_fetch_plugin_names('cache'),
+          '#options' => views_fetch_plugin_names('cache', NULL, array($this->view->base_table)),
           '#default_value' => $cache['type'],
         );
 
@@ -1445,6 +1499,48 @@ class views_plugin_display extends views_plugin {
           );
 
           $this->view->query->options_form($form['query']['options'], $form_state);
+        }
+        break;
+      case 'field_language':
+        $form['#title'] .= t('Field Language');
+
+        $entities = entity_get_info();
+        $entity_tables = array();
+        $has_translation_handlers = FALSE;
+        foreach ($entities as $type => $entity_info) {
+          $entity_tables[] = $entity_info['base table'];
+
+          if (!empty($entity_info['translation'])) {
+            $has_translation_handlers = TRUE;
+          }
+        }
+
+        // Doesn't make sense to show a field setting here if we aren't querying
+        // an entity base table. Also, we make sure that there's at least one
+        // entity type with a translation handler attached.
+        if (in_array($this->view->base_table, $entity_tables) && $has_translation_handlers) {
+          $languages = array(
+            '***CURRENT_LANGUAGE***' => t("Current user's language"),
+            '***DEFAULT_LANGUAGE***' => t("Default site language"),
+            LANGUAGE_NONE => t('Language neutral'),
+          );
+          $languages = array_merge($languages, views_language_list());
+
+          $form['field_language'] = array(
+            '#type' => 'select',
+            '#title' => t('Field Language'),
+            '#description' => t('All fields which support translations will be displayed in the selected language.'),
+            '#options' => $languages,
+            '#default_value' => $this->get_option('field_language'),
+          );
+          $form['field_language_add_to_query'] = array(
+            '#type' => 'checkbox',
+            '#title' => t('When needed, add the field language condition to the query'),
+            '#default_value' => $this->get_option('field_language_add_to_query'),
+          );
+        }
+        else {
+          $form['field_language']['#markup'] = t("You don't have translatable entity types.");
         }
         break;
       case 'style_plugin':
@@ -1810,7 +1906,7 @@ class views_plugin_display extends views_plugin {
         $exposed_form = $this->get_option('exposed_form');
         $form['exposed_form']['type'] =  array(
           '#type' => 'radios',
-          '#options' => views_fetch_plugin_names('exposed_form'),
+          '#options' => views_fetch_plugin_names('exposed_form', NULL, array($this->view->base_table)),
           '#default_value' => $exposed_form['type'],
         );
 
@@ -1846,11 +1942,11 @@ class views_plugin_display extends views_plugin {
         $pager = $this->get_option('pager');
         $form['pager']['type'] =  array(
           '#type' => 'radios',
-          '#options' => views_fetch_plugin_names('pager', empty($this->definition['use pager']) ? 'basic' : NULL),
+          '#options' => views_fetch_plugin_names('pager', empty($this->definition['use pager']) ? 'basic' : NULL, array($this->view->base_table)),
           '#default_value' => $pager['type'],
         );
 
-        $pager_plugin = views_fetch_plugin_data('pager', $pager['type']);
+        $pager_plugin = views_fetch_plugin_data('pager', $pager['type'], array($this->view->base_table));
         if (!empty($pager_plugin['uses options'])) {
           $form['markup'] = array(
             '#prefix' => '<div class="form-item description">',
@@ -1914,7 +2010,7 @@ class views_plugin_display extends views_plugin {
     switch ($form_state['section']) {
       case 'display_title':
         if (empty($form_state['values']['display_title'])) {
-          form_error($form['options']['display_title'], t('Display title may not be empty.'));
+          form_error($form['display_title'], t('Display title may not be empty.'));
         }
         break;
       case 'css_class':
@@ -1925,13 +2021,13 @@ class views_plugin_display extends views_plugin {
       break;
       case 'display_id':
         if ($form_state['values']['display_id']) {
-          if (preg_match('/[^a-zA-Z0-9_]/', $form_state['values']['display_id'])) {
-            form_error($form['options']['display_id'], t('Display name must be letters, numbers, or underscores only.'));
+          if (preg_match('/[^a-z0-9_]/', $form_state['values']['display_id'])) {
+            form_error($form['display_id'], t('Display name must be letters, numbers, or underscores only.'));
           }
 
           foreach ($this->view->display as $id => $display) {
             if ($id != $this->view->current_display && ($form_state['values']['display_id'] == $id || (isset($display->new_id) && $form_state['values']['display_id'] == $display->new_id))) {
-              form_error($form['options']['display_id'], t('Display id should be unique.'));
+              form_error($form['display_id'], t('Display id should be unique.'));
             }
           }
         }
@@ -2058,6 +2154,10 @@ class views_plugin_display extends views_plugin {
       case 'link_display':
       case 'display_comment':
         $this->set_option($section, $form_state['values'][$section]);
+        break;
+      case 'field_language':
+        $this->set_option('field_language', $form_state['values']['field_language']);
+        $this->set_option('field_language_add_to_query', $form_state['values']['field_language_add_to_query']);
         break;
       case 'use_ajax':
       case 'hide_attachment_summary':
@@ -2247,7 +2347,7 @@ class views_plugin_display extends views_plugin {
         $theme = views_theme_functions('views_more', $this->view, $this->display);
         $path = check_url(url($path, $url_options));
 
-        return theme($theme, array('more_url' => $path, 'link_text' => check_plain($this->use_more_text())));
+        return theme($theme, array('more_url' => $path, 'link_text' => check_plain($this->use_more_text()), 'view' => $this->view));
       }
     }
   }
@@ -2445,19 +2545,19 @@ class views_plugin_display extends views_plugin {
    * Provide the block system with any exposed widget blocks for this display.
    */
   function get_special_blocks() {
-    if (!$this->has_path()) {
-      return;
-    }
+    $blocks = array();
 
-    $delta = '-exp-' . $this->view->name . '-' . $this->display->id;
-    $desc = t('Exposed form: @view-@display_id', array('@view' => $this->view->name, '@display_id' => $this->display->id));
+    if ($this->uses_exposed_form_in_block()) {
+      $delta = '-exp-' . $this->view->name . '-' . $this->display->id;
+      $desc = t('Exposed form: @view-@display_id', array('@view' => $this->view->name, '@display_id' => $this->display->id));
 
-    return array(
-      $delta => array(
+      $blocks[$delta] = array(
         'info' => $desc,
         'cache' => DRUPAL_NO_CACHE,
-      )
-    );
+      );
+    }
+
+    return $blocks;
   }
 
   /**
@@ -2695,7 +2795,7 @@ class views_plugin_display extends views_plugin {
       $handler = views_get_handler($info['table'], $info['field'], $handler_type);
       if ($handler) {
         $handler->init($this->view, $info);
-        $handler->unpack_translatables($translatable, array_merge($parents, array($handler_type, $info['table'], $info['field'])));
+        $handler->unpack_translatables($translatable, array_merge($parents, array($type, $info['table'], $info['id'])));
       }
 
       // Prevent reference problems.
