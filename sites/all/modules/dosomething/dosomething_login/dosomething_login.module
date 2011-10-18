@@ -512,6 +512,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
 
   $account = drupal_anonymous_user();
   $edit = array_intersect_key((array) $account, $form_state['values']);
+  $edit['pass'] = $form_state['values']['pass'];
   entity_form_submit_build_entity('user', $account, $form, $form_state);
 
   // Determine the user's role by their age.
@@ -549,6 +550,9 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
   $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($values['birthdate'], 13);
+  if ($values['signup'] || $role_name == 'old person') {
+    $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
+  }
   if (isset($values['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
   }
