@@ -20,7 +20,7 @@ function dosomething_login_menu() {
     'title' => 'Registration',
     'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_login_register_block'),
+    'page arguments' => array('dosomething_login_register_popup_form'),
     'access callback' => 'user_register_access',
     'type' => MENU_CALLBACK,
   );
@@ -71,7 +71,8 @@ function dosomething_login_block_view($delta = '') {
       if (!$user->uid) {
         if ((arg(0) != 'user' || arg(1) != 'registration')) {
           $block['subject'] = t('Become a Member');
-          $block['content'] = drupal_get_form('dosomething_login_register_block');
+          $block['content'][] = drupal_get_form('dosomething_login_register_block');
+          $block['content'][] = drupal_get_form('dosomething_login_register_popup_form');
         }
       }
       else {
@@ -187,6 +188,127 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
 /**
  * The form for the 'Become a Member' block.
  */
+function dosomething_login_register_popup_form($form, &$form_state) {
+  $form['#validate'][] = 'dosomething_login_register_block_validate';
+  $form['#submit'][] = 'dosomething_login_register_block_submit';
+  $form['#attached'] = array(
+    'js' => array(
+      // TODO: Only add on user/registration page.
+      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-lightbox.js',
+    ),
+  );
+
+  $query = drupal_get_destination();
+  $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
+  $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
+  $form['#action'] = url('user/registration', array('query' => $query));
+
+  $form['title_text'] = array(
+    '#type' => 'item',
+    '#title' => t('You\'re almost there.'),
+    '#description' => t('Fill out the rest of the informationbelow and you\'ll be a member in no time.'),
+  );
+  $form['name'] = array(
+    'first_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('First Name'),
+        'class' => array('dosomething-original-value'),
+      ),
+      '#size' => 9,
+    ),
+    'last_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('Last Name'),
+        'class' => array('dosomething-original-value'),
+      ),
+      '#size' => 9,
+    ),
+  );
+  $form['cell_or_email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('E-mail'),
+      'class' => array('dosomething-original-value'),
+    ),
+    '#size' => 20,
+  );
+  $form['birthday'] = array(
+    'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
+    'month' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('mm'),
+        'class' => array('dosomething-original-value'),
+      ),
+      '#size' => 2,
+      '#maxlength' => 2,
+    ),
+    'day' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('dd'),
+        'class' => array('dosomething-original-value'),
+      ),
+      '#size' => 2,
+      '#maxlength' => 2,
+    ),
+    'year' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('yyyy'),
+        'class' => array('dosomething-original-value'),
+      ),
+      '#size' => 4,
+      '#maxlength' => 4,
+    ),
+  );
+  // TODO: Add captcha and password
+  $form['parent_email'] = array(
+    '#title' => t('Parent Email Address'),
+    '#description' => t('If you under 13 years of age, you need to have consent from a parent or guardian in order to be a member of this site.'),
+    '#type' => 'textfield',
+    '#prefix' => '<div class="under-13-field">',
+    '#suffix' => '</div>',
+    '#size' => 20,
+  );
+  $form['pass'] = array(
+    '#type' => 'password_confirm',
+    '#title' => t('Password'),
+    '#maxlength' => 64,
+    '#size' => 15,
+  );
+  if (module_exists('captcha')) {
+    $form['captcha'] = array(
+      '#title' => t('Captcha'),
+      '#type' => 'captcha',
+    );
+  }
+
+  $form['signup_title'] = array(
+    '#type' => 'item',
+    '#title' => t('Sign Up for Updates'),
+    '#description' => t('In order to be a member, you have to be 25 and under.  However, this doesn\'t mean you can\'t stay up to date on our latests somethings.'),
+    '#prefix' => '<div class="over-25-field">',
+    '#suffix' => '</div>',
+  );
+  $form['signup'] = array(
+    '#type' => 'checkbox',
+    '#description' => t('Yes! I\'d love to receive the hilarious and informative weekly updates.'),
+    '#prefix' => '<div class="over-25-field">',
+    '#suffix' => '</div>',
+  );
+  $form['final_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  return $form;
+}
+
+/**
+ * The form for the 'Become a Member' block.
+ */
 function dosomething_login_register_block($form, &$form_state) {
   $form['#attached'] = array(
     'js' => array(
@@ -194,11 +316,6 @@ function dosomething_login_register_block($form, &$form_state) {
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-member-lightbox.js',
     ),
     'library' => array(array('system', 'ui.dialog')),
-  );
-  $show_extra_fields = count($form_state['input']) ? TRUE : FALSE;
-  $form['#attached']['js'][] = array(
-    'data' => array('dosomethingLogin' => array('showExtraFields' => $show_extra_fields)),
-    'type' => 'setting',
   );
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
@@ -256,31 +373,10 @@ function dosomething_login_register_block($form, &$form_state) {
       '#maxlength' => 4,
     ),
   );
-  if (!$show_extra_fields) {
-    $form['first_submit'] = array(
-      '#type' => 'submit',
-      '#value' => t('Submit'),
-      '#attributes' => array('class' => array('submit')),
-    );
-  }
-  // TODO: Add captcha and password
-  $form['parent_email'] = array(
-    '#title' => t('Parent Email Address'),
-    '#description' => t('If you under 13 years of age, you need to have consent from a parent or guardian in order to be a member of this site.'),
-    '#type' => 'textfield',
-    '#prefix' => '<div id="registration-dialog">',
-    '#size' => 20,
-  );
-  if (module_exists('captcha')) {
-    $form['captcha'] = array(
-      '#title' => t('Captcha'),
-      '#type' => 'captcha',
-    );
-  }
-  $form['final_submit'] = array(
+  $form['first_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
-    '#suffix' => '</div>',
+    '#attributes' => array('class' => array('submit')),
   );
   $form['why'] = array(
     '#theme' => 'link',
