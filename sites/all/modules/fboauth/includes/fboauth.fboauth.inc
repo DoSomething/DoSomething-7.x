@@ -60,7 +60,7 @@ function fboauth_action_invoke($action_name, $app_id, $access_token) {
     $callback = $action['callback'];
 
     if (function_exists($callback)) {
-      $callback($app_id, $access_token);
+      return $callback($app_id, $access_token);
     }
   }
 }
