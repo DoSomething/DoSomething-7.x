@@ -2060,6 +2060,15 @@ div[role=main] {
   text-transform: none;
 }
 
+/*Blog Center Block */
+#panels-ipe-regionid-right h2 {
+  font-size: 16px;
+  line-height: 18px;
+}
+#panels-ipe-regionid-right h2 a {
+  color: black;
+}
+
 /*Blog Archive Block */
 .block-dosomething-blog-archive .collapse-icon {
   color: #005dab;
