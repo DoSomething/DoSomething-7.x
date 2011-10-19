@@ -224,6 +224,11 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
  * Block callback for utility bar that appears at the top of a page.
  */
 function dosomething_blocks_utility_bar() {
+  // Get login link for fboauth.
+  $fb_app_id = variable_get('fboauth_id', '');
+  $fb_link = fboauth_action_link_properties('connect', $redirect = null, $fb_app_id);
+  $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
+
   $path = drupal_get_path('theme', 'ds');
   $image_path = base_path() . $path . '/css/images';
   $output = array(
@@ -323,7 +328,7 @@ function dosomething_blocks_utility_bar() {
       'link' => array(
         '#theme' => 'link',
         '#text' => '<img src="' . $image_path .'/btn-fbconnect.png" alt="Facebook Connect">',
-        '#path' => 'fbconnect/register/create',
+        '#path' => $fb_url,
         '#options' => array(
           'attributes' => array(
             'class' => array(

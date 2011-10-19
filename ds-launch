@@ -3,8 +3,8 @@
 
 drush @ds7 -y dis devel
 drush @ds7 -y vset fb_social_base_url "http://dosomething.org"
-drush @ds7 -y vset fbconnect_appid 93836527897
-drush @ds7 -y vset fbconnect_skey a4393ed0e0b8921da746bad0a5fe3c11
+drush @ds7 -y vset fboauth_id 93836527897
+drush @ds7 -y vset fboauth_secret a4393ed0e0b8921da746bad0a5fe3c11
 drush @ds7 -y vset preprocess_css 1
 drush @ds7 -y vset preprocess_js 1
 

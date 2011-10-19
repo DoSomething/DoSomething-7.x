@@ -328,11 +328,16 @@ function dosomething_login_register_block($form, &$form_state) {
     ),
     'library' => array(array('system', 'ui.dialog')),
   );
+  // Get login link for fboauth.
+  $fb_app_id = variable_get('fboauth_id', '');
+  $fb_link = fboauth_action_link_properties('connect', $redirect = null, $fb_app_id);
+  $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
+
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['#action'] = url('user/registration', array('query' => $query));
-  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' . l('Connect thru Facebook', 'fbconnect/register/create') . '</div>';
+  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' .  l('Connect thru Facebook', $fb_url) . '</div>';
   $form['or']['#markup'] = '<div class="separator split">' . t('or') . '</div>';
   $form['name'] = array(
     'first_name' => array(
@@ -407,14 +412,13 @@ function dosomething_login_register_block($form, &$form_state) {
   );
   $form['already']['#markup'] = '<h3 class="already-member">' . t('Already a member?') . '</h3>';
   $form['logins'] = array(
-    'facebook_login' => array('#markup' => l(
-      '<span class="fb-icon">log in</span>',
-      'fbconnect/login',
-      array(
-        'class' => 'login facebook-login ds-button',
-        'html' => TRUE,
+    'facebook_login' => array(
+      '#markup' => l('<span class="fb-icon">log in</span>', $fb_url,
+        array(
+          'class' => 'login facebook-login ds-button',
+          'html' => TRUE,
+        )
       )
-    )
     ),
     'login' => array(
       '#theme' => 'link',
