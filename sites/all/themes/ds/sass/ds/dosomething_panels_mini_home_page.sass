@@ -6,11 +6,106 @@
 // @import partials/02-extend/all
 // @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
+// DON'T LEAVE THIS IN PRODUCTION
+.wireframe
+  $wf-color: $red
+  outline: 1px dashed $wf-color
+  > *
+    outline: 1px dashed adjust-hue($wf-color, 30deg)
+    > *
+      outline: 1px dashed adjust-hue($wf-color, 60deg)
+      > *
+        outline: 1px dashed adjust-hue($wf-color, 90deg)
+// -- DON'T LEAVE THIS IN PRODUCTION
+
+#block-panels-mini-home-page
+  background: $c-impact image_url("sprites/home-row-2-bg.png") no-repeat 16px bottom
+  color: $white
+  height: 365px
+  h2
+    color: $white
+  // @extend .wireframe
+  .panel-panel
+    float: left
+    width: ($page-width - $left-col-width - $s2 - 36px) / 2
+    margin-right: 36px
+    +box-sizing(border-box)
+  .panel-col-first
+    width: $left-col-width
+    margin-right: $s2
+    padding-right: 6px
+    padding-left: 10px
+  .panel-col-last
+    float: right
+    margin-right: 0
+    padding-right: $s3
+
+
+
+
+.pane-dosomething-blocks-dosomething-twitter-stream
+  h2
+    margin: 0 0 -6px 0
+    background: image_url("twitter-icon.png") no-repeat
+    padding: 0 0 0 28px
+    font-size: 18px
+    line-height: 2
+  h2.active
+    background: image_url("twitter-icon-active.png") no-repeat
+  a
+    border: 0
+  #twtr-widget-1 .twtr-doc, #twtr-widget-1 .twtr-hd a, #twtr-widget-1 h3, #twtr-widget-1 h4, #twtr-widget-1 .twtr-popular
+    background-color: $c-impact !important
+    .twtr-tweet
+      border: 0
+  .twtr-timeline
+    border: 0
+  #twtr-widget-1
+    .twtr-tweet-wrap
+      background: $c-impact
+    .twtr-tweet
+      .twtr-tweet-text
+        p
+          font-size: 10px
+          color: $c-twitter-block-text !important
+        a
+          color: $white !important
+          text-decoration: none
+          font-size: 10px
+          font-weight: bold
+        a.twtr-hyperlink
+          color: $yellow !important
+
+
+.pane-dosomething-blocks-dosomething-facebook-activity
+  h2
+    margin: 0
+    background: url(../images/fb-icon.png) no-repeat
+    padding: 0px 0 10px 28px
+    font-size: 18px
+    line-height: 2
+  h2.active
+    background: url(../images/fb-icon-active.png) no-repeat
+  a
+    border: 0
+
 
 
 .pane-dosomething-blocks-dosomething-make-impact-front
+  h2.pane-title
+    background: image_url("sprites/make-an-impact-home-header.png") no-repeat
+    height: image_height("sprites/make-an-impact-home-header.png")
+    line-height: 34px
+
+
+// SPRITES
+// @import "sprites/impact-bubbles/*.png"
 
 #dosomething-blocks-make-an-impact-form-front
+  // background: image_url("sprites/make-and-impact-form-bg.png") no-repeat center 57px
+  label[for='edit-description']
+    font-weight: normal
   .selectBox-dropdown
-    @extend .ds-dropdown
+    // @extend .ds-dropdown
+
 
