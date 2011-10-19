@@ -922,10 +922,14 @@ function dosomething_login_get_user_full_name($account) {
  *  If they are over 13, then they don't need it.
  */
 function dosomething_login_user_has_parental_consent($uid) {
-  if (dosomething_login_drupal_user_is_over_age($uid)) {
+  $account = user_load($uid);
+  if (dosomething_login_drupal_user_is_over_age($uid, 13)) {
     return TRUE;
   }
-  $account = user_load($uid);
+  // Don't lock out admins
+  if (in_array('administrator', $account->roles)) {
+    return TRUE;
+  }
   if (!in_array('pending member', $account->roles)) {
     return TRUE;
   }
