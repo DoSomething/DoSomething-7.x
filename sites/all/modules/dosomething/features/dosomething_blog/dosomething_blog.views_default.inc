@@ -17,7 +17,7 @@ function dosomething_blog_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'Blog Center';
   $view->core = 7;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
@@ -33,27 +33,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
-  /* Relationship: Content: Taxonomy terms on node */
-  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
-  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['required'] = 0;
-  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
-    'vocabulary_5' => 'vocabulary_5',
-    'blog_type' => 'blog_type',
-    'vocabulary_1' => 0,
-    'vocabulary_9' => 0,
-    'vocabulary_6' => 0,
-    'vocabulary_11' => 0,
-    'vocabulary_18' => 0,
-    'vocabulary_17' => 0,
-    'vocabulary_15' => 0,
-    'vocabulary_19' => 0,
-    'vocabulary_4' => 0,
-    'vocabulary_16' => 0,
-    'vocabulary_2' => 0,
-    'vocabulary_3' => 0,
-  );
   /* Field: Content: Blog type */
   $handler->display->display_options['fields']['field_blog_type']['id'] = 'field_blog_type';
   $handler->display->display_options['fields']['field_blog_type']['table'] = 'field_data_field_blog_type';
@@ -248,37 +227,17 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Taxonomy term: Term ID */
-  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['vocabularies'] = array(
-    'vocabulary_1' => 0,
-    'vocabulary_9' => 0,
-    'vocabulary_5' => 0,
-    'blog_type' => 0,
-    'vocabulary_6' => 0,
-    'vocabulary_11' => 0,
-    'vocabulary_18' => 0,
-    'vocabulary_17' => 0,
-    'vocabulary_15' => 0,
-    'vocabulary_19' => 0,
-    'vocabulary_4' => 0,
-    'vocabulary_16' => 0,
-    'vocabulary_2' => 0,
-    'vocabulary_3' => 0,
-  );
-  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['tid']['not'] = 0;
+  /* Contextual filter: Content: Blog type (field_blog_type) */
+  $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['not'] = 0;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -303,27 +262,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Taxonomy terms on node */
-  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
-  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['required'] = 0;
-  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
-    'vocabulary_5' => 'vocabulary_5',
-    'vocabulary_1' => 0,
-    'vocabulary_9' => 0,
-    'blog_type' => 0,
-    'vocabulary_6' => 0,
-    'vocabulary_11' => 0,
-    'vocabulary_18' => 0,
-    'vocabulary_17' => 0,
-    'vocabulary_15' => 0,
-    'vocabulary_19' => 0,
-    'vocabulary_4' => 0,
-    'vocabulary_16' => 0,
-    'vocabulary_2' => 0,
-    'vocabulary_3' => 0,
-  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Post date */
   $handler->display->display_options['fields']['created_1']['id'] = 'created_1';
@@ -402,32 +340,6 @@ function dosomething_blog_views_default_views() {
     'trim_length' => '300',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
-  /* Field: Taxonomy term: Term ID */
-  $handler->display->display_options['fields']['tid']['id'] = 'tid';
-  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['tid']['field'] = 'tid';
-  $handler->display->display_options['fields']['tid']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['fields']['tid']['label'] = '';
-  $handler->display->display_options['fields']['tid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['tid']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['tid']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['tid']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['tid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['tid']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['tid']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['tid']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['tid']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['tid']['separator'] = '';
-  $handler->display->display_options['fields']['tid']['format_plural'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -474,55 +386,17 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Testing';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Taxonomy term: Term ID */
-  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['vocabularies'] = array(
-    'vocabulary_1' => 0,
-    'vocabulary_9' => 0,
-    'vocabulary_5' => 0,
-    'blog_type' => 0,
-    'vocabulary_6' => 0,
-    'vocabulary_11' => 0,
-    'vocabulary_18' => 0,
-    'vocabulary_17' => 0,
-    'vocabulary_15' => 0,
-    'vocabulary_19' => 0,
-    'vocabulary_4' => 0,
-    'vocabulary_16' => 0,
-    'vocabulary_2' => 0,
-    'vocabulary_3' => 0,
-  );
-  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['tid']['not'] = 0;
-  $handler->display->display_options['argument_input'] = array(
-    'tid' => array(
-      'type' => 'none',
-      'context' => 'entity:file.extension',
-      'context_optional' => 0,
-      'panel' => '0',
-      'fixed' => '',
-      'label' => 'Taxonomy term: Term ID',
-    ),
-    'term_node_tid_depth' => array(
-      'type' => 'none',
-      'context' => 'entity:file.extension',
-      'context_optional' => 0,
-      'panel' => '0',
-      'fixed' => '',
-      'label' => 'Content: Has taxonomy term ID (with depth)',
-    ),
-  );
+  /* Contextual filter: Content: Blog type (field_blog_type) */
+  $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['not'] = 0;
   $export['blog_center'] = $view;
 
   $view = new view;
@@ -532,7 +406,7 @@ function dosomething_blog_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'Blogs';
   $view->core = 7;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */

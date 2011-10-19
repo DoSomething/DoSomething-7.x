@@ -501,6 +501,74 @@ function dosomething_blog_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-blog-field_subtitle'
+  $fields['node-blog-field_subtitle'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_subtitle',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'blog',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'A subtitle for use on the News & Stuff homepage section.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_subtitle',
+      'label' => 'Subtitle',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
+    ),
+  );
+
   // Exported field: 'node-blog-meta_abstract'
   $fields['node-blog-meta_abstract'] = array(
     'field_config' => array(
@@ -513,8 +581,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'abstract',
         0 => 'meta_name',
+        'meta_name' => 'abstract',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -568,8 +636,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'copyright',
         0 => 'meta_name',
+        'meta_name' => 'copyright',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -623,8 +691,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'description',
         0 => 'meta_name',
+        'meta_name' => 'description',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -678,8 +746,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'keywords',
         0 => 'meta_name',
+        'meta_name' => 'keywords',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -733,8 +801,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'robots',
         0 => 'meta_name',
+        'meta_name' => 'robots',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -1128,6 +1196,7 @@ function dosomething_blog_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('580px by 580px max');
+  t('A subtitle for use on the News & Stuff homepage section.');
   t('Abstract');
   t('An entry for the Celebs Gone Good blog');
   t('Blog Icon');
@@ -1145,6 +1214,7 @@ function dosomething_blog_field_default_fields() {
   t('Keywords');
   t('Picture');
   t('Robots');
+  t('Subtitle');
   t('Video (optional)');
   t('hold down ctrl button to select more than one');
 
