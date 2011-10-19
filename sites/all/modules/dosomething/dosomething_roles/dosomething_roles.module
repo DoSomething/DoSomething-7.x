@@ -44,6 +44,26 @@ function dosomething_roles_update_role($uid) {
   if (!$uid) {
     return;
   }
+  // TODO: It would be nice to do the hierarchy with the role weights.
+  $role_hierarchy = array(
+    'varsity',
+    'active member',
+    'member',
+    'inactive member',
+  );
+
+  // TODO:
+  //  Get the user's role level
+  //  Get the anniversary date
+  //  If the role has increased
+  //    increase the role, and set new anniversary
+  //  if it's past the anniverary
+  //   set a new anniversary
+  //   if the role has decreased, then downgrade 
+  //  Else make no changes.
+  // If new role is old person, then send message to user
+  // and block account. 
+
   $inactive_user = user_role_load_by_name('inactive user');
   $member = user_role_load_by_name('member');
   $active_member = user_role_load_by_name('active member');
@@ -192,9 +212,10 @@ function dosomething_roles_get_member_role($uid) {
 
   // TODO: What to do with people when they turn 26?
   // Do the automatically become 'old persons' and become blocked?
-  $over_25 = FALSE;
   if (module_exists('dosomething_login')) {
-    $over_25 = dosomething_login_drupal_user_is_over_age($uid, 25);
+    if (dosomething_login_drupal_user_is_over_age($uid, 25)) {
+      return 'old person';
+    }
   }
   if ($action_update_count >= 5 || $grant_update) {
     $role_name = 'varsity';
@@ -220,6 +241,8 @@ function dosomething_roles_get_member_role($uid) {
  *  Returns int or NULL if unsuccessful.
  */
 function dosomething_roles_get_action_update_count($uid, $timestamp) {
+  // TODO: Needs to take webform submission statuses into account
+  // If they're incomplete/unpublished? then they don't count.
   $node_types = dosomething_roles_get_action_update_types();
   try {
     $query = db_select('webform_submissions', 'w');
