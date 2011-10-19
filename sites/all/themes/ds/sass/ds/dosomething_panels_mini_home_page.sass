@@ -21,9 +21,12 @@
 #block-panels-mini-home-page
   background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
   color: $white
+  padding-top: 20px
   // height: 365px
   h2
     color: $white
+    margin-top: 0
+    margin-bottom: 0
   // @extend .wireframe
   .panel-panel
     float: left
@@ -121,7 +124,6 @@
     height: image_height("make-an-impact-home-header.png")
     line-height: 34px
 
-
 // SPRITES
 @import "impactbubbles/*.png"
 $impactbubbles-sprite-dimensions: true
@@ -132,8 +134,12 @@ $impactbubbles-sprite-dimensions: true
   position: relative
   width: 100%
   min-height: 365px
+  #edit-description
+    margin: 10px 0 20px 0
   label[for='edit-description']
     font-weight: normal
+    font-size: 10px
+    line-height: 12px
   .form-type-select
     position: absolute
     padding: 0px 0.5em
