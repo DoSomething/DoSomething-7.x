@@ -1,7 +1,23 @@
 <?php
 
-abstract class DSListJSON extends MigrateListJSON {
+abstract class DSListJSON extends MigrateListJSON implements Iterator {
+  // Subclasses need to populate this with a URL where we can get a count.
   protected $countUrl;
+  // Which page are we on?
+  protected $pageNumber;
+  // Array of remaining values on this page.
+  protected $pageValues;
+  // Current value.
+  protected $current;
+  // Have we reached the end of the list?
+  protected $eof;
+
+  public function __construct($list_url, $http_options = array()) {
+    parent::__construct($list_url, $http_options);
+    $this->listUrl = $list_url;
+    $this->httpOptions = $http_options;
+    $this->rewind();
+  }
 
   public function computeCount() {
     $count = NULL;
@@ -23,50 +39,86 @@ abstract class DSListJSON extends MigrateListJSON {
   }
 
   public function getIdList() {
-    migrate_instrument_start(__METHOD__);
+    return $this;
+  }
 
-    $cid = 'DSListJSON:' . $this->listUrl;
+  /**
+   * Try to fetch and parse the page specified by pageValues, populates
+   * pageValues with the ids and fills current with the first value.
+   */
+  protected function fetchPage() {
+#    var_dump(__METHOD__ . ' ' . $this->pageNumber);
+    // Assume there's nothing left so we can be proved wrong.
+    $this->pageValues = array();
+    $this->eof = TRUE;
+    $this->current = FALSE;
+
+    $url = str_replace(':page', $this->pageNumber, $this->listUrl);
+    $cid = __CLASS__ . ':' . $url;
+
     $cache = cache_get($cid);
-    if ($cache !== FALSE && is_array($cache->data)) {
-      migrate_instrument_stop(__METHOD__);
-      return $cache->data;
+    if ($cache !== FALSE && isset($cache->data)) {
+      $ids = $cache->data;
     }
-
-    $page = 0;
-    $ids = array();
-    $migration = Migration::currentMigration();
-
-    do {
-      $url = str_replace(':page', $page++, $this->listUrl);
-      $new_ids = 0;
-
+    else {
       migrate_instrument_start("Retrieve $this->listUrl");
-      // We ignore $this->httpOptions
-      $json = file_get_contents($url);
+      $jsonString = file_get_contents($url);
       migrate_instrument_stop("Retrieve $this->listUrl");
-
-      if ($json === FALSE) {
-        $migration->showMessage(t('Loading of !listurl failed:', array('!listurl' => $this->listUrl)));
-        migrate_instrument_stop(__METHOD__);
+      if ($jsonString === FALSE) {
         return NULL;
       }
-      $data = drupal_json_decode($json);
-      if ($data) {
-        // Keep track of how many new ids come back in a request. Once we stop
-        // seeing new ones we'll stop fetching.
-        $old_count = count($ids);
-        $ids = array_merge($ids, $this->getIDsFromJSON($data));
-        $new_ids = count($ids) - $old_count;
+      $jsonArray = drupal_json_decode($jsonString);
+      if ($jsonArray === NULL) {
+        return NULL;
       }
+      $ids = $this->getIDsFromJSON($jsonArray);
+      if (!$ids) {
+        return NULL;
+      }
+      cache_set($cid, $ids);
+    }
 
-      // Go until there are no more new ids coming back.
-    } while ($new_ids > 0);
+    $this->pageValues = $ids;
+    $this->eof = empty($this->pageValues);
+    $this->current = reset($this->pageValues);
+#var_dump("IDS $url " . implode(',', $this->pageValues));
+  }
 
-    cache_set($cid, $ids);
+  function rewind() {
+#    var_dump(__METHOD__);
+    $this->pageNumber = 0;
+    $this->fetchPage();
+  }
 
-    migrate_instrument_stop(__METHOD__);
+  function current() {
+#    var_dump(__METHOD__, $this->current);
+    return $this->current;
+  }
 
-    return $ids;
+  function key() {
+#    var_dump(__METHOD__);
+    return $this->pageNumber . ':' . $this->rowCount;
+  }
+
+  function next() {
+#    var_dump(__METHOD__);
+    $this->current = array_shift($this->pageValues);
+    if ($this->current === NULL) {
+      if (!$this->eof) {
+        $this->pageNumber += 1;
+        $this->fetchPage();
+      }
+      else {
+        $this->current = FALSE;
+      }
+    }
+    return $this->current;
+  }
+
+  function valid() {
+    $valid = !empty($this->pageValues) || !$this->eof;
+#    var_dump(__METHOD__, $valid);
+    return $valid;
   }
 }
 

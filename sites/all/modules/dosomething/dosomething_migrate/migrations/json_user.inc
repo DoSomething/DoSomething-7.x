@@ -1,9 +1,10 @@
 <?php
 
 class DSUserListJSON extends DSListJSON {
-  public function __construct($base_url) {
-    parent::__construct("{$base_url}/user/list?page=:page", array());
-    $this->countUrl = "{$base_url}/user/count";
+  public function __construct($base_url, $query_arg) {
+    $uid = db_query("SELECT MAX(uid) FROM {users}")->fetchField();
+    parent::__construct("{$base_url}/user/list?&page=:page&{$query_arg}", array());
+    $this->countUrl = "{$base_url}/user/count&{$query_arg}";
   }
 }
 
@@ -13,10 +14,9 @@ class DSUserItemJSON extends DSItemJSON {
   }
 }
 
-class DSUserMigration extends DSBaseMigration {
-  public function __construct($group = NULL) {
-    parent::__construct($group);
-    $this->dependencies = array();
+abstract class DSJsonUserMigration extends Migration {
+  public function __construct($query_args) {
+    parent::__construct(MigrateGroup::getInstance('Users'));
 
     $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
@@ -27,46 +27,40 @@ class DSUserMigration extends DSBaseMigration {
     }
 
     $this->source = new MigrateSourceList(
-      new DSUserListJSON($base_url, $node_type),
-      new DSUserItemJSON($base_url, $node_type),
+      new DSUserListJSON($base_url, $query_args),
+      new DSUserItemJSON($base_url),
       $fields
     );
+  }
+}
 
-    $this->destination = new MigrateDestinationUser();
+class DSJsonChangedUser extends DSJsonUserMigration {
+  public function __construct() {
+    $uid = db_query("SELECT MAX(uid) FROM {users}")->fetchField();
+    parent::__construct("since_uid={$uid}");
+
+    $this->dependencies = array();
 
     $this->map = new MigrateSQLMap($this->machineName,
       MigrateDestinationUser::getKeySchema(),
       MigrateDestinationUser::getKeySchema()
     );
 
-    // $this->highwaterField = array(
-    //   'name' => 'changed',
-    //   'type' => 'int',
-    // );
+    $this->destination = new MigrateDestinationUser();
 
     $this->addFieldMapping('uid', 'uid');
 
   }
 }
 
-class DSJsonUserProfileMigration extends DSBaseMigration {
-  public function __construct($group = NULL) {
-    parent::__construct($group);
-    $this->dependencies = array();
+class DSJsonChangedProfile extends DSJsonUserMigration {
+  public function __construct() {
+    // TODO: need to make sure this variable is getting set, defaulting to
+    // September 25th to make sure I get some data.
+    $ts = variable_get('ds_migration_forked_ts', 1317000000);
+    parent::__construct("since_ts={$ts}");
 
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-
-    $fields = array();
-    $json = file_get_contents("{$base_url}/user/fields");
-    if ($json) {
-      $fields = drupal_json_decode($json);
-    }
-
-    $this->source = new MigrateSourceList(
-      new DSUserListJSON($base_url, $node_type),
-      new DSUserItemJSON($base_url, $node_type),
-      $fields
-    );
+    $this->dependencies = array('DSJsonChangedUser');
 
     $this->destination = new MigrateDestinationProfile2('main');
 

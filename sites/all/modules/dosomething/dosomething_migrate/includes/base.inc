@@ -59,10 +59,3 @@ abstract class DSBaseWebformMigration extends Migration {
 
 }
 
-abstract class DSBaseUserMigration extends Migration {
-  public function __construct($group = NULL) {
-    parent::__construct($group);
-
-    $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
-  }
-}
