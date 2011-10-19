@@ -99,7 +99,8 @@
 
 
 // SPRITES
-// @import "impact-bubbles/*.png"
+@import "sprites/impactbubbles/*.png"
+@include all-impactbubbles-sprites
 
 #dosomething-blocks-make-an-impact-form-front
   // background: image_url("make-and-impact-form-bg.png") no-repeat center 57px
@@ -107,5 +108,16 @@
     font-weight: normal
   .selectBox-dropdown
     // @extend .ds-dropdown
+  .form-item-what-cause
+    @extend .impactbubbles-impact-bubble-cause
+  .form-item-who-with
+    @extend .impactbubbles-impact-bubble-who
+  .form-item-where
+    @extend .impactbubbles-impact-bubble-where
+  .form-item-how-long
+    @extend .impactbubbles-impact-bubble-how-long
+  .form-submit
+    // @extend .impactbubbles-impact-bubble-dude
+
 
 

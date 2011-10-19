@@ -409,6 +409,30 @@ a.ds-button:active {
   line-height: 34px;
 }
 
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause, .impactbubbles-impact-bubble-dude, .impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long, .impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where, .impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  background: url('../images/sprites/impactbubbles-s51a65c5e02.png') no-repeat;
+}
+
+.impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
+  background-position: 0 0;
+}
+
+.impactbubbles-impact-bubble-dude {
+  background-position: 0 -74px;
+}
+
+.impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long {
+  background-position: 0 -147px;
+}
+
+.impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where {
+  background-position: 0 -206px;
+}
+
+.impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  background-position: 0 -265px;
+}
+
 #dosomething-blocks-make-an-impact-form-front label[for='edit-description'] {
   font-weight: normal;
 }
