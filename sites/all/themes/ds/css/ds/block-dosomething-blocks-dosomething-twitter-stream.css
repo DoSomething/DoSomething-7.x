@@ -71,7 +71,8 @@
   background: url('../images/twitter-icon.png') no-repeat;
   padding: 0 0 0 28px;
   font-size: 18px;
-  line-height: auto;
+  line-height: 2;
+  color: white;
 }
 .region-sidebar-first #block-dosomething-blocks-dosomething-twitter-stream h2.active {
   background: url('../images/twitter-icon-active.png') no-repeat;

@@ -325,6 +325,8 @@ a.ds-button:active {
   background: url('../images/sprites/bg-header-molecule.png') no-repeat right 7px;
   height: 40px;
   margin-bottom: 0.167em;
+  line-height: 2.1;
+  color: white;
 }
 #block-dosomething-blocks-dosomething-make-impact #edit-description {
   height: 0;
