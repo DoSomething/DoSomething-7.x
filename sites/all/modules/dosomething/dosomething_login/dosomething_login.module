@@ -165,7 +165,7 @@ function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
  */
 function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
   // TODO: Do same thing for webforms.
-  if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
+  if (isset($form['#node']) && strpos($form_id, 'webform_client_form_') === 0) {
     $node_types = array(
       'campaign_report_back',
       'campaign_sign_up',
@@ -176,7 +176,7 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     );
     // Users without parental consent should be able to see this
     // but not be able to do anything with it.
-    if (in_array($form['type']['#value'], $node_types)) {
+    if (in_array($form['#node']->type, $node_types)) {
       global $user;
       if (!dosomething_login_user_has_parental_consent($user->uid)) {
         dosomething_login_set_parental_consent_message();
@@ -938,7 +938,7 @@ function dosomething_login_user_has_parental_consent($uid) {
  */
 function dosomething_login_set_parental_consent_message() {
   // TODO: Some link to ask for parental consent
-  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => 'dosomething/under-13/parent-consent-email')));
+  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => 'dosomething/under-13/parent-consent-email')), 'warning');
 }
 
 /**
@@ -959,7 +959,7 @@ function dosomething_login_parent_permission_email_form($form, &$form_state, $ui
     $uid = $user->uid;
   }
   $form['parent_email'] = array(
-    '#title' => t('Parent Email Address'),
+    '#title' => t('Parent or Guardian Email Address'),
     '#type' => 'textfield',
     '#size' => 20,
   );
