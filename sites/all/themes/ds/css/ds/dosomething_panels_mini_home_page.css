@@ -324,9 +324,12 @@ a.ds-button:active {
 #block-panels-mini-home-page {
   background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
   color: white;
+  padding-top: 20px;
 }
 #block-panels-mini-home-page h2 {
   color: white;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 #block-panels-mini-home-page .panel-panel {
   float: left;
@@ -466,8 +469,13 @@ a.ds-button:active {
   width: 100%;
   min-height: 365px;
 }
+#dosomething-blocks-make-an-impact-form-front #edit-description {
+  margin: 10px 0 20px 0;
+}
 #dosomething-blocks-make-an-impact-form-front label[for='edit-description'] {
   font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-type-select {
   position: absolute;
