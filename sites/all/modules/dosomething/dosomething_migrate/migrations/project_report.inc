@@ -1,0 +1,64 @@
+<?php
+
+// Project
+
+class DSProject extends DSJsonWebformMigration {
+  public function __construct($node_type) {
+    parent::__construct(MigrateGroup::getInstance('Project'), 'project');
+
+    $this->description .= 'A volunteer project';
+
+    // $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover')
+    //   ->description('Select field keys are unchanged.');
+
+    #$this->addFieldMapping('field_award_winner', ''); # Field: DoSomething Award Winner (list_text)
+    $this->addFieldMapping('field_essay_believe_it', 'field_essay_believe_it'); # Field: Why is it important to you? (text_long)
+    $this->addFieldMapping('field_essay_build_it', 'field_essay_build_it'); # Field: What's your plan of action? (text_long)
+    $this->addFieldMapping('field_essay_see_it', 'field_essay_see_it'); # Field: What's the problem you are trying to solve? (text_long)
+    $this->addFieldMapping('field_fb_like_count', 'field_fb_like_count'); # Field: Facebook like count (number_integer)
+    $this->addFieldMapping('field_hours_volunteered', 'field_hours_volunteered'); # Field: Total hours volunteered (to date) (number_integer)
+    $this->addFieldMapping('field_link', 'field_website_link'); # Field: Web site link (link_field)
+    $this->addFieldMapping('field_num_people_impacted', 'field_num_people_impacted'); # Field: How many people has your project helped? (number_integer)
+    $this->addFieldMapping('field_num_people_inspired', 'field_num_people_inspired'); # Field: How many people have you inspired to take action? (number_integer)
+    #$this->addFieldMapping('field_others_involved', ''); # Field: How Can Others Help? (text_long)
+    $this->addFieldMapping('field_picture', 'field_project_photo') # Field: Project Photo (image)
+      ->arguments(array('file_function' => 'file_fid'));
+    #$this->addFieldMapping('field_project_clubs', ''); # Field: Did you do this project with a DoSomething Club? (node_reference)
+    $this->addFieldMapping('field_project_inspiration', 'field_num_people_inspired'); # Field: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (list_text)
+    #$this->addFieldMapping('field_project_report_zip', ''); # Field: Locations (text)
+    $this->addFieldMapping('field_project_title', 'title'); # Field: Title (text)
+    $this->addFieldMapping('field_project_type', 'field_type_of_project'); # Field: Project Type (list_text)
+    $this->addFieldMapping('field_update_people_involved', 'field_num_people_involved'); # Field: How many people are directly involved in your project? (number_integer)
+    $this->addFieldMapping('field_webform_videos', 'field_embedded_video') # Field: Video (media)
+      ->description('prepareRow() handles saving the embed URL into a file')
+      ->arguments(array('file_function' => 'file_fid'));
+    #$this->addFieldMapping('taxonomy_vocabulary_5', ''); # Field: Issues (taxonomy_term_reference)
+
+// field_type_of_project Node: Is this a... (text)
+// field_inspired_by_dosomething Node: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (number_integer)
+// field_project_age Node: Current age (NOTE: this section is for people 25 and younger) (number_integer)
+// field_dosomething_award_winner  Node: DoSomething Award Winner? (text)
+// field_related_action_guide  Node: OPTIONAL - Link DoSomething action guides or fact pages to this project (nodereference)
+// field_related_campaign  Node: Related Campaign or Program (text)
+// field_hours_volunteered Node: Total hours volunteered (to date) (number_integer)
+
+    $this->addUnmigratedSources(array('changed', 'status'));
+  }
+
+  public function prepareRow($row) {
+    // emfields
+    foreach (array('field_embedded_video') as $name) {
+      if (!empty($row->$name)) {
+        if (is_array($row->$name)) {
+          foreach ($row->$name as &$value) {
+            $value = $this->fidFromEmField($value, $row->uid);
+          }
+        }
+        else {
+          $row->$name = $this->fidFromEmField($row->$name, $row->uid);
+        }
+      }
+    }
+  }
+}
+

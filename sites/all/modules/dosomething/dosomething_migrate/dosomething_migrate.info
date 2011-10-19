@@ -25,6 +25,7 @@ files[] = migrations/campaign_report_back.inc
 files[] = migrations/grant_application.inc
 files[] = migrations/intentions.inc
 ;files[] = migrations/json_user.inc
+files[] = migrations/project_report.inc
 files[] = migrations/scholarship_application.inc
 files[] = migrations/sql_user.inc
 
