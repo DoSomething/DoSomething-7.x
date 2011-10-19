@@ -33,10 +33,6 @@ function dosomething_roles_cron() {
 }
 
 function dosomething_roles_update_role($uid) {
-  // TODO: New update criteria
-  // member - continue to be under 26 (converted to varsity afterwards) - if they haven't logged in in a year, make them inactive.
-  // active member - one action update to maintain status
-  // varsity - 5 action updates or (win grant and submit grant update) to maintain status
 
   // TODO: The role can only increase
   //   unless it is past a user's anniversary date.
@@ -167,8 +163,9 @@ function dosomething_roles_get_action_update_types() {
 function dosomething_roles_node_insert($node) {
   global $user;
   if ($user->uid == $node->uid) {
-    // TODO: Only update if this is a grant update.
-    dosomething_roles_update_role($node->uid);
+    if ($node->type == 'final_grant_update') {
+      dosomething_roles_update_role($node->uid);
+    }
   }
 }
 
@@ -204,14 +201,18 @@ function dosomething_roles_webform_submission_insert($node, $submission) {
 /**
  * Determine a user's role level without considering their 'Aniversary Date'
  *  when the role to actually change.
+ *  old person - user over 25.
+ *  inactive user - under 26, hasn't logged in in over a year.
+ *  member - continue to be under 26.
+ *  active member - one action update within year.
+ *  varsity - 5 action updates or win grant and submit grant update.
  */
 function dosomething_roles_get_member_role($uid) {
   $account = user_load($uid);
-  $action_update_count = dosomething_roles_get_action_update_count($uid, strtotime('-1 year'));
-  $grant_update = dosomething_roles_user_submitted_grant($uid);
+  $timestamp = strtotime('-1 year');
+  $action_update_count = dosomething_roles_get_action_update_count($uid, $timestamp);
+  $grant_update = dosomething_roles_user_submitted_grant($uid, $timestamp);
 
-  // TODO: What to do with people when they turn 26?
-  // Do the automatically become 'old persons' and become blocked?
   if (module_exists('dosomething_login')) {
     if (dosomething_login_drupal_user_is_over_age($uid, 25)) {
       return 'old person';
@@ -241,8 +242,8 @@ function dosomething_roles_get_member_role($uid) {
  *  Returns int or NULL if unsuccessful.
  */
 function dosomething_roles_get_action_update_count($uid, $timestamp) {
-  // TODO: Needs to take webform submission statuses into account
-  // If they're incomplete/unpublished? then they don't count.
+  // TODO: If the status is 'Idea' it doesn't count.
+  // What is this status?
   $node_types = dosomething_roles_get_action_update_types();
   try {
     $query = db_select('webform_submissions', 'w');
@@ -250,6 +251,7 @@ function dosomething_roles_get_action_update_count($uid, $timestamp) {
     $count = $query->fields('w', array('sid'))
     ->condition('w.uid', $uid, '=')
     ->condition('n.type', $node_types, 'IN')
+    ->condition('w.is_draft', 0)
     ->condition('w.submitted', $timestamp, '>')
     ->execute()
     ->rowCount();
@@ -264,9 +266,23 @@ function dosomething_roles_get_action_update_count($uid, $timestamp) {
  * Determine if a user has submitted a grant update within
  *  the given span of time.
  */
-function dosomething_roles_user_submitted_grant($uid) {
-  // TODO: Is a grant update a node or another type of webform?
-  return FALSE;
+function dosomething_roles_user_submitted_grant($uid, $timestamp) {
+  // TODO: Verify that this is the grant update.
+  $query = new EntityFieldQuery;
+  try {
+    $count = $query
+      ->entityCondition('entity_type', 'node')
+      ->propertyCondition('uid', $uid)
+      ->propertyCondition('type', 'final_grant_update')
+      ->propertyCondition('status', NODE_PUBLISHED)
+      ->propertyCondition('created', $timestamp, '>')
+      ->count()
+      ->execute();
+  }
+  catch (Exception $e) {
+    return NULL;
+  }
+  return $count;
 }
 
 /**
@@ -274,8 +290,24 @@ function dosomething_roles_user_submitted_grant($uid) {
  *  When a user increases their role, they get it for one year.
  */
 function dosomething_roles_get_anniversary($uid) {
-  // TODO: We need to store this somewhere.
-  // Storing it on the profile makes sense,
-  //  but it needs to be an admin-only field.
-  return time();
+  // TODO: it needs to be an admin-only field.
+  // TODO: Make this module depend on profile2
+  $account = user_load($uid);
+  $profile = profile2_load_by_user($account, 'main');
+  $date = field_get_items('profile2', $profile, 'field_user_anniversary');
+  if (isset($date[0]['value'])) {
+    return $date[0]['value'];
+  }
+  return REQUEST_TIME;
 }
+
+/**
+ * Set a new membership annivesary for a user.
+ */
+function dosomething_roles_set_anniversary($uid, $timestamp) {
+  $account = user_load($uid);
+  $profile = profile2_load_by_user($account, 'main');
+  $profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = $timestamp;
+  field_attach_update('profile2', $profile);
+}
+
