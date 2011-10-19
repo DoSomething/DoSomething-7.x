@@ -33,114 +33,60 @@ function dosomething_roles_cron() {
 }
 
 function dosomething_roles_update_role($uid) {
-
-  // TODO: The role can only increase
-  //   unless it is past a user's anniversary date.
-  //   in this case we set a new anniverary date and we downgrade if needed.
   if (!$uid) {
     return;
   }
   // TODO: It would be nice to do the hierarchy with the role weights.
+  $rids = array();
+  $roles = user_roles();
+  $account = user_load($uid);
+  $current_role_name = 'inactive user';
   $role_hierarchy = array(
     'varsity',
     'active member',
     'member',
     'inactive member',
+    'old person',
   );
+  foreach ($role_hierarchy as $weight => $role_name) {
+    $rid = array_search($role_name, $roles);
+    $rids[$role_name] = $rid;
 
-  // TODO:
-  //  Get the user's role level
-  //  Get the anniversary date
-  //  If the role has increased
-  //    increase the role, and set new anniversary
-  //  if it's past the anniverary
-  //   set a new anniversary
-  //   if the role has decreased, then downgrade 
-  //  Else make no changes.
+    // Note: only one of these roles should be in the roles list.
+    if (in_array($role_name, $account->roles)) {
+      $current_role_name = $role_name;
+    }
+  }
+
+  $new_role_name = dosomething_roles_get_member_role($uid);
+  $anniversary = dosomething_roles_get_anniversary($uid);
+  $new_role_weight = array_search($new_role_name, $role_hierarchy);
+  $current_role_weight = array_search($current_role_name, $role_hierarchy);
+  $new_anniversary = strtotime('+1 year');
+
+  // If the role has increased, increase the role, and set new anniversary
+  if ($new_role_weight < $current_role_weight) {
+    dosomething_roles_set_anniversary($uid, $new_anniversary);
+    $new_rid = $rids[$new_role_name]; 
+  }
+  // Else if it's past the anniverary set a new anniversary.
+  else if (REQUEST_TIME > $anniversary) {
+    dosomething_roles_set_anniversary($uid, $new_anniversary);
+    if ($new_role_weight > $current_role_weight) {
+      // If the role level has decreased, then downgrade. 
+      // It can only ever downgrade by one.
+      $role_name = $role_hierarchy[$current_role_weight + 1];
+      $new_rid = $rids[$role_name];
+    }
+  }
+  // TODO: Deal with old persons
   // If new role is old person, then send message to user
   // and block account. 
 
-  $inactive_user = user_role_load_by_name('inactive user');
-  $member = user_role_load_by_name('member');
-  $active_member = user_role_load_by_name('active member');
-  $rids = $inactive_user->rid . ', ' . $member->rid . ', ' . $active_member->rid;
-  $old_rids = db_query("SELECT rid FROM {users_roles} WHERE uid = :uid AND rid IN (" . $rids . ")", array(':uid' => $uid))->fetchCol();
-  if (!count($old_rids)) {
-    if (dosomething_roles_is_active_member($uid)) {
-      $new_rid = $active_member->rid;
-    }
-    else if (dosomething_roles_is_member($uid)) {
-      $new_rid = $member->rid;
-    }
-    else {
-      $new_rid = $inactive_user->rid;
-    }
-  }
-  else {
-    foreach ($old_rids as $rid) {
-      if ($rid == $inactive_user->rid) {
-        // The user is currently inactive. Check if anything has changed.
-        if (dosomething_roles_is_active_member($uid)) {
-          $new_rid = $active_member->rid;
-        }
-        else if (dosomething_roles_is_member($uid)) {
-          $new_rid = $member->rid;
-        }
-      } 
-      else if ($rid == $member->rid) {
-        // The user is currently a member. Check if anything has changed.
-        if (dosomething_roles_is_active_member($uid)) {
-          $new_rid = $active_member->rid;
-        }
-        else if (!dosomething_roles_is_member($uid)) {
-          $new_rid = $inactive_user->rid;
-        }
-      }
-      else if ($rid == $active_member->rid) {
-        // The user is currently an active member. Check if anything has changed.
-        if (!dosomething_roles_is_active_member($uid)) {
-          if (dosomething_roles_is_member($uid)) {
-            $new_rid = $member->rid;
-          }
-          else {
-            $new_rid = $inactive_user->rid;
-          }
-        } 
-      }
-    }
-  }
   if (isset($new_rid)) {
-    if (count($old_rids)) {
-      db_query("DELETE FROM {users_roles} WHERE rid IN (" . $rids . ") AND uid = :uid", array(':uid' => $uid)); 
-    }
-    db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
+    //db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
+    //db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
   }
-}
-/**
- * Determine if a given uid qualifies for the active member role.
- */
-function dosomething_roles_is_active_member($uid) {
-  if (db_query("SELECT u.uid FROM {users} u INNER JOIN {node} n ON n.uid = u.uid where u.uid = :uid AND u.login > UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND u.mail NOT IN ('', '0')", array(':uid' => $uid))->fetchField()) {
-    return TRUE;
-  }
-  if (db_query("SELECT u.uid FROM {users} u INNER JOIN {webform_submissions} w ON w.uid = u.uid where u.uid = :uid AND u.login > UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND u.mail NOT IN ('', '0')", array(':uid' => $uid))->fetchField()) {
-    return TRUE;
-  }
-  return FALSE;
-}
-
-/**
- * Determine if a given uid qualifies for the member role.
- */
-function dosomething_roles_is_member($uid) {
-  // TODO: should submitting a webform count for member?
-  if (db_query("SELECT u.uid from {users} u WHERE u.login > UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND u.mail NOT IN ('', '0') AND u.uid = :uid", array(':uid' => $uid))) {
-    return TRUE;
-  }
-  if (db_query("SELECT u.uid from {users} u INNER JOIN {node} n ON n.uid = u.uid WHERE u.mail NOT IN ('', '0') AND u.uid = :uid", array(':uid' => $uid))) {
-    return TRUE;
-  }
-  return FALSE;
 }
 
 /**
@@ -292,6 +238,8 @@ function dosomething_roles_user_submitted_grant($uid, $timestamp) {
 function dosomething_roles_get_anniversary($uid) {
   // TODO: it needs to be an admin-only field.
   // TODO: Make this module depend on profile2
+  // TODO: Enable this when feature is fixed.
+  return REQUEST_TIME;
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   $date = field_get_items('profile2', $profile, 'field_user_anniversary');
@@ -308,6 +256,7 @@ function dosomething_roles_set_anniversary($uid, $timestamp) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   $profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = $timestamp;
-  field_attach_update('profile2', $profile);
+  // TODO: Enable this when feature is fixed.
+  //field_attach_update('profile2', $profile);
 }
 
