@@ -146,10 +146,8 @@ function dosomething_roles_get_action_update_types() {
 function dosomething_roles_node_insert($node) {
   global $user;
   if ($user->uid == $node->uid) {
-    // TODO: Mark that an action update has occurred - probably some admin field on a user account.
-    if (in_array($node->type, dosomething_roles_get_action_update_types())) {
-      dosomething_roles_update_role($node->uid);
-    }
+    // TODO: Only update if this is a grant update.
+    dosomething_roles_update_role($node->uid);
   }
 }
 
@@ -166,10 +164,7 @@ function dosomething_roles_user_login(&$edit, $account) {
 function dosomething_roles_user_update(&$edit, $account, $category) {
   global $user;
   if ($user->uid == $account->uid) {
-    // TODO: Mark that an action update has occurred - probably some admin field on a user account.
-    if (in_array($node->type, dosomething_roles_get_action_update_types())) {
-      dosomething_roles_update_role($account->uid);
-    }
+    dosomething_roles_update_role($account->uid);
   }
 }
 
@@ -179,7 +174,8 @@ function dosomething_roles_user_update(&$edit, $account, $category) {
 function dosomething_roles_webform_submission_insert($node, $submission) {
   global $user;
   if ($user->uid == $submission->uid) {
-    // TODO: Mark that an action update has occurred - probably some admin field on a user account.
-    dosomething_roles_update_role($submission->uid);
+    if (in_array($node->type, dosomething_roles_get_action_update_types())) {
+      dosomething_roles_update_role($submission->uid);
+    }
   }
 }
