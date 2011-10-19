@@ -67,9 +67,9 @@ drush vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 drush vset -y pathauto_taxonomy_term_pattern "[term:vocabulary]/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]"
-drush vset -y tweetbutton_button: "none"
-drush vset -y tweetbutton_tweet_text: "!title !author_name"
-drush vset -y tweetbutton_account: "@dosomething"
+drush vset -y tweetbutton_button "none"
+drush vset -y tweetbutton_tweet_text '!title !author_name'
+drush vset -y tweetbutton_account "@dosomething"
 drush vset -y print_mail_sys_link_visibility 0
 drush vset -y print_mail_sys_link_pages 0
 drush vset -y print_mail_show_link 2
