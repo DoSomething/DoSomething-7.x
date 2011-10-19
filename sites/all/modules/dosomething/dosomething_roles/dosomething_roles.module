@@ -37,6 +37,10 @@ function dosomething_roles_update_role($uid) {
   // member - continue to be under 26 (converted to varsity afterwards) - if they haven't logged in in a year, make them inactive.
   // active member - one action update to maintain status
   // varsity - 5 action updates or (win grant and submit grant update) to maintain status
+
+  // TODO: The role can only increase
+  //   unless it is past a user's anniversary date.
+  //   in this case we set a new anniverary date and we downgrade if needed.
   if (!$uid) {
     return;
   }
@@ -120,9 +124,6 @@ function dosomething_roles_is_member($uid) {
   if (db_query("SELECT u.uid from {users} u INNER JOIN {node} n ON n.uid = u.uid WHERE u.mail NOT IN ('', '0') AND u.uid = :uid", array(':uid' => $uid))) {
     return TRUE;
   }
-  if (db_query("SELECT u.uid from {users} u INNER JOIN {webform_submissions} w ON w.uid = u.uid WHERE u.mail NOT IN ('', '0') AND u.uid = :uid", array(':uid' => $uid))) {
-    return TRUE;
-  }
   return FALSE;
 }
 
@@ -178,4 +179,80 @@ function dosomething_roles_webform_submission_insert($node, $submission) {
       dosomething_roles_update_role($submission->uid);
     }
   }
+}
+
+/**
+ * Determine a user's role level without considering their 'Aniversary Date'
+ *  when the role to actually change.
+ */
+function dosomething_roles_get_member_role($uid) {
+  $account = user_load($uid);
+  $action_update_count = dosomething_roles_get_action_update_count($uid, strtotime('-1 year'));
+  $grant_update = dosomething_roles_user_submitted_grant($uid);
+
+  // TODO: What to do with people when they turn 26?
+  // Do the automatically become 'old persons' and become blocked?
+  $over_25 = FALSE;
+  if (module_exists('dosomething_login')) {
+    $over_25 = dosomething_login_drupal_user_is_over_age($uid, 25);
+  }
+  if ($action_update_count >= 5 || $grant_update) {
+    $role_name = 'varsity';
+  }
+  else if ($action_update_count >= 1) {
+    $role_name = 'active member';
+  }
+  else if ($account->login >= strtotime('-1 year')) {
+    $role_name = 'member';
+  }
+  else {
+    $role_name = 'inactive member';
+  }
+  return $role_name;
+}
+
+/**
+ * This will get the number of action updates since the given time.
+ *
+ * @param $uid
+ * @param $timestamp
+ * @return mixed
+ *  Returns int or NULL if unsuccessful.
+ */
+function dosomething_roles_get_action_update_count($uid, $timestamp) {
+  $node_types = dosomething_roles_get_action_update_types();
+  try {
+    $query = db_select('webform_submissions', 'w');
+    $query->innerJoin('node', 'n', 'w.nid = n.nid');
+    $count = $query->fields('w', array('sid'))
+    ->condition('w.uid', $uid, '=')
+    ->condition('n.type', $node_types, 'IN')
+    ->condition('w.submitted', $timestamp, '>')
+    ->execute()
+    ->rowCount();
+  }
+  catch (Exception $e) {
+    $count = NULL;
+  }
+  return $count;
+}
+
+/**
+ * Determine if a user has submitted a grant update within
+ *  the given span of time.
+ */
+function dosomething_roles_user_submitted_grant($uid) {
+  // TODO: Is a grant update a node or another type of webform?
+  return FALSE;
+}
+
+/**
+ * Get the anniversary of this user's member level.
+ *  When a user increases their role, they get it for one year.
+ */
+function dosomething_roles_get_anniversary($uid) {
+  // TODO: We need to store this somewhere.
+  // Storing it on the profile makes sense,
+  //  but it needs to be an admin-only field.
+  return time();
 }
