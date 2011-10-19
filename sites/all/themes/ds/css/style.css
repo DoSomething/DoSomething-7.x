@@ -1950,10 +1950,10 @@ div[role=main] {
 }
 
 .region-footer #block-menu-menu-footer {
-  background: url('images/bg-diag-footer.png') repeat 0 0;
+  background: url('images/bg-diag-footer-line.png') repeat 0 12px;
   overflow: hidden;
   *zoom: 1;
-  height: 270px;
+  padding-bottom: 20px;
 }
 .region-footer #block-menu-menu-footer .content ul.menu {
   padding: 0;
@@ -1976,7 +1976,7 @@ div[role=main] {
 }
 .region-footer #block-menu-menu-footer .content ul.menu li a {
   color: white;
-  padding: 0 40px;
+  padding: 0 48px;
   line-height: 33px;
   text-transform: uppercase;
   font-size: 11px;
@@ -1985,8 +1985,8 @@ div[role=main] {
   padding-left: 0;
 }
 .region-footer #block-menu-menu-footer .content ul.menu ul li {
-  background: url('images/bg-diag-footer.png') repeat 0 0;
-  border-bottom: 1px solid #525252;
+  width: auto;
+  background: url('images/bg-diag-footer-line.png') repeat 0 0;
   float: none;
   display: block;
   padding-top: 0;
