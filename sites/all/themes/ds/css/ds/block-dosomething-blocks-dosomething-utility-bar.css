@@ -18,7 +18,7 @@
  * 'top' for hanging tabs
  * assumes placement on UL */
 #block-dosomething-blocks-dosomething-utility-bar {
-  background-image: url('../images/sprites/bg-utility-search.png');
+  background-image: url('../images/bg-utility-search.png');
   background-repeat: no-repeat;
   background-position: 100% 14%;
   line-height: 0;
@@ -82,7 +82,7 @@
   background-color: #343434;
   background-repeat: no-repeat;
   background-position: 97% 50%;
-  background-image: url('../images/sprites/icn-utility-search-magnify.png');
+  background-image: url('../images/icn-utility-search-magnify.png');
   border: 1px solid #606060;
   color: #d1d1d1;
   font-size: 10px;

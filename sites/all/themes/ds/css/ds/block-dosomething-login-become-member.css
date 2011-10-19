@@ -114,15 +114,15 @@
   border-bottom: 0.056em solid rgba(118, 115, 112, 0.6);
   padding-left: 6.857%;
   padding-right: 10.286%;
-  background: url('../images/sprites/btn-leftsidebar-feeds-plus.png') no-repeat 171px center;
+  background: url('../images/btn-leftsidebar-feeds-plus.png') no-repeat 171px center;
 }
 .left-block-expando-h2.active .inner, .logged-in #block-dosomething-login-become-member h2.active.my-somethings .inner, .logged-in #block-dosomething-login-become-member h2.active.notifications .inner {
-  background: url('../images/sprites/btn-leftsidebar-feeds-minus.png') no-repeat 171px center;
+  background: url('../images/btn-leftsidebar-feeds-minus.png') no-repeat 171px center;
 }
 
 #block-dosomething-login-become-member {
-  background: url('../images/sprites/bg-diag-1-2-top-left.png') repeat 0 0;
-  background: url('../images/sprites/bg-top-left-fade.png') no-repeat center bottom, url('../images/sprites/bg-top-left-fade-top.png') no-repeat center top, url('../images/sprites/bg-diag-1-2-top-left.png') repeat 0 0;
+  background: url('../images/bg-diag-1-2-top-left.png') repeat 0 0;
+  background: url('../images/bg-top-left-fade.png') no-repeat center bottom, url('../images/bg-top-left-fade-top.png') no-repeat center top, url('../images/bg-diag-1-2-top-left.png') repeat 0 0;
   padding-top: 89px;
   position: relative;
   padding-bottom: 0.833em;
@@ -137,7 +137,7 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/sprites/cta-left-col-become-member-btn.png');
+  background-image: url('../images/cta-left-col-become-member-btn.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 204px;
@@ -145,7 +145,7 @@
   margin-bottom: 0.286em;
 }
 #block-dosomething-login-become-member .separator {
-  background: url('../images/sprites/hr-dark.png') repeat-x 50% 50%;
+  background: url('../images/hr-dark.png') repeat-x 50% 50%;
 }
 #block-dosomething-login-become-member .separator.split {
   text-align: center;
@@ -160,7 +160,7 @@
   top: 0;
   width: 41.143%;
   height: 1.3em;
-  background: url('../images/sprites/hr-dark.png') repeat-x 50% 50%;
+  background: url('../images/hr-dark.png') repeat-x 50% 50%;
 }
 #block-dosomething-login-become-member .separator.split:before {
   left: 0;
@@ -219,10 +219,10 @@
   height: 0.167em;
 }
 #block-dosomething-login-become-member hr.top {
-  background: url('../images/sprites/hr-light-up.png') repeat-x 0 0;
+  background: url('../images/hr-light-up.png') repeat-x 0 0;
 }
 #block-dosomething-login-become-member hr.bottom {
-  background: url('../images/sprites/hr-light-down.png') repeat-x 0 0;
+  background: url('../images/hr-light-down.png') repeat-x 0 0;
   margin-bottom: 0.583em;
 }
 #block-dosomething-login-become-member h3 {
@@ -251,7 +251,7 @@
 }
 #block-dosomething-login-become-member h3.why-member a {
   padding: 0.111em 0;
-  background: url('../images/sprites/icn-popup.png') no-repeat right center;
+  background: url('../images/icn-popup.png') no-repeat right center;
   line-height: 1.15;
   display: block;
 }
@@ -262,7 +262,7 @@
   margin-right: 0.353em;
 }
 #block-dosomething-login-become-member .facebook-login .fb-icon {
-  background: url('../images/sprites/btn-leftsidebar-feeds-facebook.png') no-repeat left 0.118em;
+  background: url('../images/btn-leftsidebar-feeds-facebook.png') no-repeat left 0.118em;
   padding-left: 1.471em;
   margin-left: -0.294em;
 }
@@ -290,7 +290,7 @@
   border-bottom: none;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name {
-  background: url('../images/sprites/cta-left-col-header-bg.png') no-repeat 50% 50%;
+  background: url('../images/cta-left-col-header-bg.png') no-repeat 50% 50%;
   height: 34px;
   margin-left: -6.857%;
   margin-right: -10.286%;
@@ -321,7 +321,7 @@
   float: right;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage {
-  background: #a1a1a1 url('../images/sprites/profile-percentage-icon.png') no-repeat 3px center;
+  background: #a1a1a1 url('../images/profile-percentage-icon.png') no-repeat 3px center;
   height: 22px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -344,7 +344,7 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/sprites/profile-percentage-indicator.png');
+  background-image: url('../images/profile-percentage-indicator.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-repeat: repeat-x;
@@ -363,7 +363,7 @@
   margin-left: -6px;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li {
-  list-style-image: url('../images/sprites/list-triangle-right.png');
+  list-style-image: url('../images/list-triangle-right.png');
   line-height: 1.4;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li ul {

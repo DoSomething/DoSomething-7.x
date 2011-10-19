@@ -151,7 +151,7 @@ a.ds-button:active {
   margin-bottom: 0.333em;
 }
 .ds-dropdown .selectBox-arrow {
-  background: url('../images/sprites/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
+  background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
 
@@ -322,7 +322,7 @@ a.ds-button:active {
 }
 
 #block-panels-mini-home-page {
-  background: #222222 url('../images/sprites/home-row-2-bg.png') no-repeat 16px bottom;
+  background: #222222 url('../images/home-row-2-bg.png') no-repeat 16px bottom;
   color: white;
   height: 365px;
 }
@@ -404,7 +404,7 @@ a.ds-button:active {
 }
 
 .pane-dosomething-blocks-dosomething-make-impact-front h2.pane-title {
-  background: url('../images/sprites/make-an-impact-home-header.png') no-repeat;
+  background: url('../images/make-an-impact-home-header.png') no-repeat;
   height: 33px;
   line-height: 34px;
 }

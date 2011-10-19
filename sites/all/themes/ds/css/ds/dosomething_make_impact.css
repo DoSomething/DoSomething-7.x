@@ -151,7 +151,7 @@ a.ds-button:active {
   margin-bottom: 0.333em;
 }
 .ds-dropdown .selectBox-arrow, #dosomething-blocks-make-an-impact-form .selectBox-dropdown .selectBox-arrow {
-  background: url('../images/sprites/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
+  background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
 
@@ -322,7 +322,7 @@ a.ds-button:active {
 }
 #block-dosomething-blocks-dosomething-make-impact h2.block-title {
   margin-top: 0;
-  background: url('../images/sprites/bg-header-molecule.png') no-repeat right 7px;
+  background: url('../images/bg-header-molecule.png') no-repeat right 7px;
   height: 40px;
   margin-bottom: 0.167em;
   line-height: 2.1;
