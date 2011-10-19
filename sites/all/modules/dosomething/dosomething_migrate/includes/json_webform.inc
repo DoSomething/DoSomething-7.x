@@ -38,6 +38,15 @@ abstract class DSJsonWebformMigration extends DSBaseWebformMigration {
       MigrateDestinationWebformSubmissionEntity::getKeySchema()
     );
   }
+
+  protected function fidFromEmField($value, $uid) {
+    $file = file_uri_to_object($value);
+    if (empty($file->fid)) {
+      $file->uid = $uid;
+      file_save($file);
+    }
+    return $file->fid;
+  }
 }
 
 class DSNodeListJSON extends DSListJSON {

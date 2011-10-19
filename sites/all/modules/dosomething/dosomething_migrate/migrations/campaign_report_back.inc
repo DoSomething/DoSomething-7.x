@@ -24,15 +24,6 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
       }
     }
   }
-
-  protected function fidFromEmField($value, $uid) {
-    $file = file_uri_to_object($value);
-    if (empty($file->fid)) {
-      $file->uid = $uid;
-      file_save($file);
-    }
-    return $file->fid;
-  }
 }
 
 /*
