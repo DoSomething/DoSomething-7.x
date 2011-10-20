@@ -229,7 +229,7 @@ function dosomething_login_fboauth_user_save($account, $fbuser) {
   }
 
   $role = user_role_load_by_name($role_name);
-  $account->roles[$role->rid] = $role->name;
+  //$account->roles[$role->rid] = $role->name;
 }
 
 /**
@@ -583,7 +583,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
   $role = user_role_load_by_name($role_name);
   $account->roles[$role->rid] = $role->name;
-  $account = user_save($account, $edit);
+  $account = user_save($account, $edit); 
 
   // Terminate if an error occurred during user_save().
   if (!$account) {
@@ -625,6 +625,10 @@ function dosomething_login_register_block_submit($form, &$form_state) {
       drupal_mail('dosomething_login', 'dosomething-parent-email', $values['parent_email'], $language, $params);
       drupal_set_message(t('An email has been sent to %email for permission.', array('%email' => $values['parent_email'])));
     }
+  }
+  // Log user in.
+  if ($account->status) {
+    user_login_submit(array(), $form_state);
   }
 }
 

@@ -141,7 +141,10 @@ function dosomething_roles_node_insert($node) {
  * Implements hook_user_login().
  */
 function dosomething_roles_user_login(&$edit, $account) {
-  dosomething_roles_update_role($account->uid);
+  // Don't run this on the first login.
+  if ($account->access) {
+    dosomething_roles_update_role($account->uid);
+  }
 }
 
 /**
