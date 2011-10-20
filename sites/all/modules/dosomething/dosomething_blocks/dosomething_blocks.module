@@ -153,6 +153,17 @@ function dosomething_blocks_make_an_impact_form() {
     $time_options[$option->tid] = $option->name;
   }
 
+  $filters = array('where', 'time', 'who', 'issues');
+  $defaults = array();
+  foreach ($filters as $filter) {
+    if (isset($_GET[$filter])) {
+      $defaults[$filter] = $_GET[$filter];
+    }
+    else {
+      $defaults[$filter] = '';
+    }
+  }
+
   $form['description'] = array(
     '#type' => 'item',
     '#title' => t('This form will help you find a cause that\'s right for you.'),
@@ -163,7 +174,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#options' => $cause_options,
     '#empty_option' => t('What Cause?'),
     '#required' => TRUE,
-    '#default_value' => NULL,
+    '#default_value' => $defaults['issues'],
   );
   $form['who_with'] = array(
     '#type' => 'select',
@@ -171,7 +182,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#options' => $who_options,
     '#empty_option' => t('Who With?'),
     '#required' => TRUE,
-    '#default_value' => NULL,
+    '#default_value' => $defaults['who'],
   );
  $form['where'] = array(
     '#type' => 'select',
@@ -179,7 +190,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#options' => $where_options,
     '#empty_option' => t('Where?'),
     '#required' => TRUE,
-    '#default_value' => NULL,
+    '#default_value' => $defaults['where'],
   );
   $form['how_long'] = array(
     '#type' => 'select',
@@ -187,7 +198,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#options' => $time_options,
     '#empty_option' => t('How Long?'),
     '#required' => TRUE,
-    '#default_value' => NULL,
+    '#default_value' => $defaults['time'],
   );
   $form['submit'] = array(
     '#type' => 'submit',
