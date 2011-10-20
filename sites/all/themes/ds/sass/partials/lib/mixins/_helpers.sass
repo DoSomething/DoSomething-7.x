@@ -27,3 +27,11 @@
 =scale-image-ie($image)
   background: none
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="#{image_url($image, true, false)}",  sizingMethod="scale")
+
+
+// shortcut for css borders
+=border($color, $width: 1px, $side: 'all', $style: solid)
+  @if $side == 'all'
+    border: $width $style $color
+  @else 
+    border-#{$side}: $width $style $color

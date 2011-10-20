@@ -171,6 +171,43 @@ div[role=main]
     margin-bottom: calc-em(2px, 17px)
     +remove-link-underlines
 
-
-
+// footer block
+.region-footer
+  #block-menu-menu-footer
+    +background-with-css2-fallback(image_url('bg-diag-footer.png') repeat 0 0)
+    +clearfix
+    height: 270px
+    .content
+      ul.menu
+        padding: 0
+        margin: 0
+        li
+          +no-bullets
+          background: $blue-light2
+          margin-left: 0
+          padding: 0
+          display: block
+          margin-right: 0
+          +float-left
+          a
+            color: $white
+            padding: 0 40px
+            line-height: 33px
+            text-transform: uppercase
+            font-size: 11px
+        ul
+          padding-left: 0
+          li
+            +background-with-css2-fallback(image_url('bg-diag-footer.png') repeat 0 0)
+            +border($gray5, 1px, bottom)
+            float: none
+            display: block
+            padding-top: 0
+            height: 21px
+            // margin-left: 20px
+            a
+              color: $white
+              line-height: 11px
+              font-size: 11px
+              text-transform: none
 
