@@ -345,6 +345,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['signup'] = array(
     '#type' => 'checkbox',
     '#description' => t('Yes! I\'d love to receive the hilarious and informative weekly updates.'),
+    '#default_value' => TRUE,
     '#prefix' => '<div class="over-25-field">',
     '#suffix' => '</div>',
   );
