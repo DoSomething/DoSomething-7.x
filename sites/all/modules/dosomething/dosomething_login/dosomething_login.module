@@ -187,6 +187,42 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_fboauth_user_save().
+ */
+function dosomething_login_fboauth_user_save($account, $fbuser) {
+  // Determine the user's role by their age.
+
+  // Note: We can't use hook_fboauth_user_presave because it
+  // doesn't pass the account object for us to change the roles.
+  // and it expects the roles to be in the account object.
+  if (!isset($fbuser->birthday)) {
+    $role_name = 'unverified user';
+  }
+  else {
+    $timestamp = strtotime($fbuser->birthday);
+    if (dosomething_login_person_is_over_age($timestamp, 25)) {
+      $role_name = 'old person';
+      // TODO: Sign user up for weekly updates?
+      drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 25.'));
+      $account->status = 0;
+    }
+    else if (!dosomething_login_person_is_over_age($timestamp, 13)) {
+      // TODO: It would be nice to be able to redirect user to parent 
+      //  email address form.
+      $role_name = 'pending member';
+      $account->status = 1;
+    }
+    else {
+      $role_name = 'member';
+      $account->status = 1;
+    }
+  }
+
+  $role = user_role_load_by_name($role_name);
+  $account->roles[$role->rid] = $role->name;
+}
+
+/**
  * The form for the 'Become a Member' block.
  */
 function dosomething_login_register_popup_form($form, &$form_state) {
@@ -795,7 +831,7 @@ function dosomething_login_fbconnect_register_submit($form, &$form_state) {
   $member_role = user_role_load_by_name('member');
   if (dosomething_login_person_is_over_age($values['birthdate'], 25)) {
     $role_name = 'old person';
-    drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 26.'));
+    drupal_set_message(t('Thank you for registering. Unfortunately, we do not allow accounts for people over 25.'));
     $account->status = 0;
     unset($account->roles[$member_role->rid]);
   }
