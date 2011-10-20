@@ -612,11 +612,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     // TOOD: verify cell number via SMS.
   }
 
-<<<<<<< HEAD
   if (!dosomething_login_person_is_over_age($birthdate, 13)) {
-=======
-  if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
->>>>>>> updating login for fb
     if (isset($values['parent_email'])) {
       global $language;
       $params = array('account' => $account);
