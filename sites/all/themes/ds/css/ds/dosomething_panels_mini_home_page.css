@@ -22,7 +22,7 @@
   visibility: hidden;
 }
 
-.visuallyhidden, #dosomething-blocks-make-an-impact-form-front .form-type-select label .form-required {
+.visuallyhidden, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-ft, #dosomething-blocks-make-an-impact-form-front .form-type-select label .form-required {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -33,7 +33,7 @@
   width: 1px;
 }
 
-.visuallyhidden.focusable, #dosomething-blocks-make-an-impact-form-front .form-type-select label .focusable.form-required {
+.visuallyhidden.focusable, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .focusable.twtr-ft, #dosomething-blocks-make-an-impact-form-front .form-type-select label .focusable.form-required {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -43,7 +43,7 @@
   position: absolute;
   width: 1px;
 }
-.visuallyhidden.focusable:active, #dosomething-blocks-make-an-impact-form-front .form-type-select label .focusable.form-required:active, .visuallyhidden.focusable:focus, #dosomething-blocks-make-an-impact-form-front .form-type-select label .focusable.form-required:focus {
+.visuallyhidden.focusable:active, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .focusable.twtr-ft:active, #dosomething-blocks-make-an-impact-form-front .form-type-select label .focusable.form-required:active, .visuallyhidden.focusable:focus, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .focusable.twtr-ft:focus, #dosomething-blocks-make-an-impact-form-front .form-type-select label .focusable.form-required:focus {
   clip: auto;
   height: auto;
   margin: 0;
@@ -322,9 +322,8 @@ a.ds-button:active {
 }
 
 #block-panels-mini-home-page {
-  background: #222222 url('../images/home-row-2-bg.png') no-repeat 16px bottom;
+  background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
   color: white;
-  height: 365px;
 }
 #block-panels-mini-home-page h2 {
   color: white;
@@ -366,17 +365,33 @@ a.ds-button:active {
 .pane-dosomething-blocks-dosomething-twitter-stream a {
   border: 0;
 }
+.pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd {
+  background: url('../images/bg-leftsidebar-feeds-divider.png') no-repeat left bottom;
+  padding: 6px 0.5em 0;
+}
+.pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4 {
+  display: none;
+}
+.pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-new-results, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-results-inner, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-timeline {
+  background-color: transparent !important;
+}
 .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-doc, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd a, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h3, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-popular {
   background-color: #222222 !important;
+  font-family: "Trebuchet MS", sans-serif;
 }
 .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-doc .twtr-tweet, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-hd a .twtr-tweet, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h3 .twtr-tweet, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 h4 .twtr-tweet, .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-popular .twtr-tweet {
   border: 0;
 }
 .pane-dosomething-blocks-dosomething-twitter-stream .twtr-timeline {
   border: 0;
+  background-color: transparent !important;
+  height: auto !important;
 }
 .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet-wrap {
-  background: #222222;
+  background: transparent;
+}
+.pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet:not(:last-of-type) {
+  background: url('../images/bg-leftsidebar-feeds-divider.png') no-repeat left bottom;
 }
 .pane-dosomething-blocks-dosomething-twitter-stream #twtr-widget-1 .twtr-tweet .twtr-tweet-text p {
   font-size: 10px;
@@ -449,7 +464,7 @@ a.ds-button:active {
 #dosomething-blocks-make-an-impact-form-front {
   position: relative;
   width: 100%;
-  height: 365px;
+  min-height: 365px;
 }
 #dosomething-blocks-make-an-impact-form-front label[for='edit-description'] {
   font-weight: normal;
@@ -502,10 +517,35 @@ a.ds-button:active {
 }
 #dosomething-blocks-make-an-impact-form-front .dude {
   position: absolute;
-  left: 128px;
+  left: 124px;
   top: 155px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-submit {
   position: absolute;
   bottom: -30px;
+}
+
+.pane-news-stuff h2.pane-title {
+  background: url('../images/news-home-header.png') no-repeat right top;
+  height: 33px;
+  line-height: 34px;
+}
+.pane-news-stuff .views-row {
+  background: #a1a1a1;
+  padding: 0 0.5em;
+}
+.pane-news-stuff .views-row:not(.views-row-last) {
+  margin-bottom: 10px;
+}
+.pane-news-stuff .views-row a {
+  color: white;
+}
+.pane-news-stuff .views-row a:visited {
+  color: white;
+}
+.pane-news-stuff .views-row a:hover {
+  color: white;
+}
+.pane-news-stuff .views-row a:active {
+  color: #222222;
 }
