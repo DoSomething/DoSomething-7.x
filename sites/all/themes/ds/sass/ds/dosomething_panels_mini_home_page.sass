@@ -35,6 +35,8 @@
     margin-right: $s2
     padding-right: 6px
     padding-left: 10px
+    .panel-separator
+      margin: 0
   .panel-col-last
     float: right
     margin-right: 0
@@ -99,25 +101,63 @@
 
 
 // SPRITES
-@import "sprites/impactbubbles/*.png"
+@import "impactbubbles/*.png"
+$impactbubbles-sprite-dimensions: true
 @include all-impactbubbles-sprites
 
 #dosomething-blocks-make-an-impact-form-front
   // background: image_url("make-and-impact-form-bg.png") no-repeat center 57px
+  position: relative
+  width: 100%
+  height: 365px
   label[for='edit-description']
     font-weight: normal
-  .selectBox-dropdown
-    // @extend .ds-dropdown
+  .form-type-select
+    position: absolute
+    padding: 0px 0.5em
+    label
+      @extend .h3
+      .form-required
+        @extend .visuallyhidden
+    select
+    .selectBox-dropdown
+      // @extend .ds-dropdown
+      background: $gray-lighter2
+      width: 100px
+      margin-top: 7px
+      +link-colors($white, $white, $c-select-link-hover, $white, false)
+      .selectBox-label
+        width: 95%
+        height: 1.5em
+      .selectBox-arrow
+        display: none
   .form-item-what-cause
     @extend .impactbubbles-impact-bubble-cause
+    left: 37px
   .form-item-who-with
     @extend .impactbubbles-impact-bubble-who
+    left: 167px
   .form-item-where
     @extend .impactbubbles-impact-bubble-where
+    top: 129px
+    .selectBox-dropdown
+      margin-top: 5px
   .form-item-how-long
     @extend .impactbubbles-impact-bubble-how-long
+    left: 200px
+    top: 129px
+    padding: 0 0.5em 0 14px
+    .selectBox-dropdown
+      margin-top: 5px
+  .dude
+    @extend .impactbubbles-impact-bubble-dude
+    position: absolute
+    left: 128px
+    top: 155px
   .form-submit
-    // @extend .impactbubbles-impact-bubble-dude
+    position: absolute
+    bottom: -30px
+
 
 
 
