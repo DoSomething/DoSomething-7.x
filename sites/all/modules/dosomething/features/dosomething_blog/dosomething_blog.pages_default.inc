@@ -132,7 +132,7 @@ function dosomething_blog_default_page_manager_handlers() {
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
-      'display' => 'block_2',
+      'display' => 'blog_archive_block',
       'override_title' => 0,
       'override_title_text' => '',
     );
