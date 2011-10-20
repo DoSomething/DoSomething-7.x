@@ -377,8 +377,7 @@ function dosomething_login_register_block($form, &$form_state) {
     'library' => array(array('system', 'ui.dialog')),
   );
   // Get login link for fboauth.
-  $fb_app_id = variable_get('fboauth_id', '');
-  $fb_link = fboauth_action_link_properties('connect', $redirect = null, $fb_app_id);
+  $fb_link = fboauth_action_link_properties('prereg');
   $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
 
   $query = drupal_get_destination();
@@ -1256,11 +1255,18 @@ function dosomething_login_fboauth_actions() {
   $actions['prereg'] = array(
     'title' => t('Pre Register'),
     'callback' => 'dosomething_login_action_prereg',
-    'permissions' => array_keys(fboauth_user_connect_permissions()),
+    'permissions' => array(
+      'email',
+      'user_birthday',
+    ),
   );
   return $actions;
 }
 
+/**
+ * Facebook OAuth action callback; Take user to registration page if don't
+ * already have an account.
+ */
 function dosomething_login_action_prereg($app_id, $access_token) {
   global $user;
 
@@ -1287,20 +1293,40 @@ function dosomething_login_action_prereg($app_id, $access_token) {
       fboauth_save($user->uid, $fbuser->id);
       drupal_set_message(t('You\'ve connected your account with Facebook.'));
     }
-    // Redirect to our user_reg page. 
+    // Redirect to our user_reg page.
     else {
-      $_SESSION['fbuser'] = $fb_user;
+      // The fboauth module requires a redirect.
+      $_SESSION['fbuser'] = $fbuser;
       return 'user/fb/registration';
     }
   }
 }
 
+/**
+ * Registration page through Facebook. Prepopulates info and connects user
+ * to Facebook account.
+ */
 function dosomething_login_register_facebook($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
-  dpm($_SESSION);
-  if ($_SESSION['fb_user']) {
-    $form['account']['name']['#value'] = '';
-    $form['account']['mail']['#value'] = 'email';
+  $form['#redirect'] = 'user';
+  unset($form['#action']);
+  if (isset($_SESSION['fbuser'])) {
+    $fbuser = $_SESSION['fbuser'];
+    $form['cell_or_email']['#value'] = $fbuser->email;
+    $form['name']['first_name']['#value'] = $fbuser->first_name;
+    $form['name']['last_name']['#value'] = $fbuser->last_name;
+    $birthday = $fbuser->birthday;
+    $date = explode('/', $birthday);
+    $form['birthday']['month']['#value'] = $date[0];
+    $form['birthday']['day']['#value'] = $date[1];
+    $form['birthday']['year']['#value'] = $date[2];
+    $account = fboauth_create_user($fbuser);
+    // Load the account fresh just to have a fully-loaded object.
+    $account = user_load($account->uid);
+    unset($_SESSION['fbuser']);
+  }
+  else {
+    drupal_set_message("There was a problem receiving your information from Facebook, please register below to creat an account.");
   }
   return $form;
 }
