@@ -275,7 +275,7 @@ function dosomething_roles_get_anniversary($uid) {
 }
 
 /**
- * Set a new membership annivesary for a user.
+ * Set a new membership anniversary for a user.
  */
 function dosomething_roles_set_anniversary($uid, $timestamp) {
   $account = user_load($uid);

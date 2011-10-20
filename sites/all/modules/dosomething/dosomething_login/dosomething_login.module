@@ -99,7 +99,8 @@ function dosomething_login_mail($key, &$message, $params) {
   switch ($key) {
     case 'dosomething-parent-email':
       $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
-      $message['subject'] = t('Permissions for %name', array('%name' => $params['full_name']));
+      $params['link'] = dosomething_login_one_time_parent_permission_link($params['account']);
+      $message['subject'] = t('Permissions for @name', array('@name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
@@ -129,7 +130,7 @@ function dosomething_login_theme() {
     ),
     'dosomething_login_parent_email' => array(
       'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL),
+      'arguments' => array('full_name' => NULL, 'link' => NULL),
       'template' => 'dosomething-login-parent-email',
     ),
     'dosomething_login_parent_permission_granted_email' => array(
@@ -612,7 +613,6 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $form_state['uid'] = $account->uid;
   if (isset($account->mail) && $account->status) {
     _user_mail_notify('register_no_approval_required', $account);
-    drupal_set_message(t('Please check your email to verify your account.'));
   }
   else {
     // TOOD: verify cell number via SMS.
@@ -623,7 +623,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
       global $language;
       $params = array('account' => $account);
       drupal_mail('dosomething_login', 'dosomething-parent-email', $values['parent_email'], $language, $params);
-      drupal_set_message(t('An email has been sent to %email for permission.', array('%email' => $values['parent_email'])));
+      drupal_set_message(t('An email has been sent to %email for parental permission.', array('%email' => $values['parent_email'])));
     }
   }
   // Log user in.

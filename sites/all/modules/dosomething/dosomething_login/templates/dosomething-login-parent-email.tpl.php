@@ -5,7 +5,7 @@
  */
 ?>
 
-<?php print $full_name ?>
+<?php print $full_name ?> has requested to be a member of <?php print check_plain(variable_get('site name', 'Do Something.org')); ?>.
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at neque sed metus rutrum adipiscing nec ut erat. Suspendisse adip</p>
+<p>Go to this link to give your permission: <?php print $link; ?></p>
 
