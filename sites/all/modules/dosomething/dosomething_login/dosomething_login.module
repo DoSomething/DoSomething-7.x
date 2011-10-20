@@ -480,7 +480,7 @@ function dosomething_login_register_block($form, &$form_state) {
  * Validate the user registration form.
  */
 function dosomething_login_register_block_validate($form, &$form_state) {
-  $values = $form_state['values'];
+  $values = $form_state['input'];
   $form_state['values']['birthdate'] = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
   if (!is_numeric($values['month']) || $values['month'] > 12) {
     form_set_error('month', t('Please provide a valid numeric month for your birthday.'));
@@ -612,7 +612,11 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     // TOOD: verify cell number via SMS.
   }
 
+<<<<<<< HEAD
   if (!dosomething_login_person_is_over_age($birthdate, 13)) {
+=======
+  if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
+>>>>>>> updating login for fb
     if (isset($values['parent_email'])) {
       global $language;
       $params = array('account' => $account);
