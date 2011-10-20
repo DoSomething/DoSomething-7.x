@@ -543,7 +543,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
  * Submit the user registration form.
  */
 function dosomething_login_register_block_submit($form, &$form_state) {
-  $values = $form_state['values'];
+  $values = $form_state['input'];
   $birthdate = $values['birthdate'];
   $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
   $form_state['values']['name'] = dosomething_login_unique_name($name);
