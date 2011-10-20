@@ -36,10 +36,30 @@ function dosomething_roles_update_role($uid) {
   if (!$uid) {
     return;
   }
+  $account = user_load($uid);
+
+  // Make sure this is not a staff member.
+  // TODO: Maybe we should have another role to mark
+  // non-staff users so we can check for that.
+  $staff_roles = array(
+    'administrator',
+    'content loader',
+    'developer',
+    'grant reviewer',
+    'grant alumni',
+    'help desk',
+    'moderator',
+    'project_police',
+  );
+  foreach ($staff_roles as $role_name) {
+    if (in_array($role_name, $account->roles)) {
+      return;
+    }
+  }
+
   // TODO: It would be nice to do the hierarchy with the role weights.
   $rids = array();
   $roles = user_roles();
-  $account = user_load($uid);
   $current_role_name = 'inactive user';
   $role_hierarchy = array(
     'varsity',
@@ -70,7 +90,7 @@ function dosomething_roles_update_role($uid) {
     $new_rid = $rids[$new_role_name]; 
   }
   // Else if it's past the anniverary set a new anniversary.
-  else if (REQUEST_TIME > $anniversary) {
+  else if (REQUEST_TIME >= $anniversary) {
     dosomething_roles_set_anniversary($uid, $new_anniversary);
     if ($new_role_weight > $current_role_weight) {
       // If the role level has decreased, then downgrade. 
@@ -79,13 +99,15 @@ function dosomething_roles_update_role($uid) {
       $new_rid = $rids[$role_name];
     }
   }
-  // TODO: Deal with old persons
-  // If new role is old person, then send message to user
-  // and block account. 
+
+  if ($new_role_name == 'old person' && $new_role_name != $current_role_name) {
+    // TODO: Deal with old persons
+    // If new role is old person, then send message to user and block account. 
+  }
 
   if (isset($new_rid)) {
-    //db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
-    //db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
+    db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
+    db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
   }
 }
 
@@ -238,13 +260,13 @@ function dosomething_roles_user_submitted_grant($uid, $timestamp) {
 function dosomething_roles_get_anniversary($uid) {
   // TODO: it needs to be an admin-only field.
   // TODO: Make this module depend on profile2
-  // TODO: Enable this when feature is fixed.
-  return REQUEST_TIME;
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
-  $date = field_get_items('profile2', $profile, 'field_user_anniversary');
-  if (isset($date[0]['value'])) {
-    return $date[0]['value'];
+  if (is_object($profile)) {
+    $date = field_get_items('profile2', $profile, 'field_user_anniversary');
+    if (isset($date[0]['value'])) {
+      return $date[0]['value'];
+    }
   }
   return REQUEST_TIME;
 }
@@ -255,8 +277,18 @@ function dosomething_roles_get_anniversary($uid) {
 function dosomething_roles_set_anniversary($uid, $timestamp) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
+  // Create a profile if it doesn't exist.
+  if (!$profile) {
+    $values = array(
+      'type' => 'main',
+      'user' => $account,
+    );
+    $create_function = function_exists('profile2_create') ? 'profile_create' : 'profile_create';
+    $profile = profile_create($values);
+    profile2_save($profile);
+  }
+
   $profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = $timestamp;
-  // TODO: Enable this when feature is fixed.
-  //field_attach_update('profile2', $profile);
+  field_attach_update('profile2', $profile);
 }
 
