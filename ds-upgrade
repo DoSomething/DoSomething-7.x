@@ -27,6 +27,8 @@ drush vset -y error_level 2
 drush vset -y empty_timezone_message 0
 drush vset -y configurable_timezones 0
 drush vset -y pathauto_webform_pathauto_pattern "[webform:node-path]/[webform:sid]"
+drush vset -y fboauth_id 160632053975149
+drush vset -y fboauth_secret 63c5ac4d7c73f0f6500a52ebf2b744ad
 drush vset -y fb_social_appid 160632053975149
 drush vset -y fb_social_base_url "http://dosomething.zivtech.com"
 drush vset -y nodequeue_view_per_queue 0
@@ -65,9 +67,9 @@ drush vset -y pathauto_forum_pattern "[term:vocabulary:name]/[term:name]"
 drush vset -y pathauto_taxonomy_term_pattern "[term:vocabulary]/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_6_pattern "category/celebrity-name-tags/[term:name]"
 drush vset -y pathauto_taxonomy_term_vocabulary_18_pattern "u/majors/[term:vocabulary]"
-drush vset -y tweetbutton_button: "none"
-drush vset -y tweetbutton_tweet_text: "!title !author_name"
-drush vset -y tweetbutton_account: "@dosomething"
+drush vset -y tweetbutton_button "none"
+drush vset -y tweetbutton_tweet_text '!title !author_name'
+drush vset -y tweetbutton_account "@dosomething"
 drush vset -y print_mail_sys_link_visibility 0
 drush vset -y print_mail_sys_link_pages 0
 drush vset -y print_mail_show_link 2
@@ -92,7 +94,7 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fbconnect dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print_mail dosomething_causes dosomething_causes_landing_page dosomething_panels
+drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fboauth dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print_mail dosomething_causes dosomething_causes_landing_page dosomething_panels
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "combining blog posts into new blog content type `date`"

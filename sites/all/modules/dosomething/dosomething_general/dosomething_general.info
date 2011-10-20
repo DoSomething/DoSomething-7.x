@@ -1,5 +1,0 @@
-name = "DoSomething General"
-description = "General tweaks and custom functionality"
-core = 7.x 
-package = DoSomething
-

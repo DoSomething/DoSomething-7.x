@@ -24,6 +24,7 @@ function dosomething_profile_field_group_info() {
     'weight' => '3',
     'children' => array(
       0 => 'field_user_hearabout',
+      1 => 'field_user_anniversary',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -51,11 +52,11 @@ function dosomething_profile_field_group_info() {
     'label' => 'Personal Information',
     'weight' => '1',
     'children' => array(
-      0 => 'field_user_first_name',
-      1 => 'field_user_last_name',
-      2 => 'field_user_birthday',
-      3 => 'field_user_gender',
-      4 => 'field_user_is_over13',
+      0 => 'field_user_birthday',
+      1 => 'field_user_first_name',
+      2 => 'field_user_gender',
+      3 => 'field_user_is_over13',
+      4 => 'field_user_last_name',
       5 => 'field_user_preferred_cause',
       6 => 'field_user_why_do_you',
     ),
@@ -85,10 +86,9 @@ function dosomething_profile_field_group_info() {
     'label' => 'Subscriptions',
     'weight' => '2',
     'children' => array(
-      0 => 'field_profile_cell',
-      1 => 'field_user_mobile',
+      0 => 'field_user_mobile',
+      1 => 'field_user_mobile_optin',
       2 => 'field_user_newsletter_optin',
-      3 => 'field_user_mobile_optin',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
