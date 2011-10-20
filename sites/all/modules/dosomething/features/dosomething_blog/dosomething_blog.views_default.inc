@@ -457,7 +457,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['title']['element_type'] = '0';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
