@@ -6,52 +6,39 @@
 // @import partials/02-extend/all
 // @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
-// DON'T LEAVE THIS IN PRODUCTION
-.wireframe
-  $wf-color: $red
-  outline: 1px dashed $wf-color
-  > *
-    outline: 1px dashed adjust-hue($wf-color, 30deg)
-    > *
-      outline: 1px dashed adjust-hue($wf-color, 60deg)
-      > *
-        outline: 1px dashed adjust-hue($wf-color, 90deg)
-// -- DON'T LEAVE THIS IN PRODUCTION
 
 #block-panels-mini-home-page
   background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
   color: $white
-  // height: 365px
   h2
     color: $white
-  // @extend .wireframe
   .panel-panel
     float: left
-    width: ($page-width - $left-col-width - $s2 - 36px) / 2
-    margin-right: 36px
+    width: percentage((($page-width - $left-col-width - $s2 - 36px) / 2) / $page-width)
+    margin-right: percentage(36px / $page-width)
     +box-sizing(border-box)
   .panel-col-first
-    width: $left-col-width
-    margin-right: $s2
-    padding-right: 6px
-    padding-left: 10px
+    width: percentage($left-col-width / $page-width)
+    margin-right: percentage($s2 / $page-width)
+    padding-right: percentage(6px / $page-width)
+    padding-left: percentage(10px / $page-width)
     .panel-separator
       margin: 0
   .panel-col-last
     float: right
     margin-right: 0
-    padding-right: $s3
+    padding-right: percentage($s3 / $page-width)
 
 
 
 
 .pane-dosomething-blocks-dosomething-twitter-stream
   h2
-    margin: 0 0 -6px 0
-    background: image_url("twitter-icon.png") no-repeat
-    padding: 0 0 0 28px
-    font-size: 18px
+    +adjust-font-size-to($s2)
     line-height: 2
+    margin: 0 0 calc-em(-6px, $s2) 0
+    background: image_url("twitter-icon.png") no-repeat
+    padding: 0 0 0 calc-em(28px, $s2)
   h2.active
     background: image_url("twitter-icon-active.png") no-repeat
   a
@@ -60,7 +47,7 @@
     .twtr-hd
       // border-bottom: 1px solid rgba($gray-darker, 0.5)
       background: image_url("bg-leftsidebar-feeds-divider.png") no-repeat left bottom
-      padding: 6px 0.5em 0
+      padding: calc-em(6px, 12px) 0.5em 0
   #twtr-widget-1 h4
     display: none
   #twtr-widget-1 .twtr-new-results, #twtr-widget-1 .twtr-results-inner, #twtr-widget-1 .twtr-timeline
@@ -83,12 +70,12 @@
         background: image_url("bg-leftsidebar-feeds-divider.png") no-repeat left bottom
       .twtr-tweet-text
         p
-          font-size: 10px
+          +adjust-font-size-to(10px)
           color: $c-twitter-block-text !important
         a
           color: $white !important
           text-decoration: none
-          font-size: 10px
+          // font-size: 10px
           font-weight: bold
         a.twtr-hyperlink
           color: $yellow !important
@@ -98,28 +85,23 @@
 
 .pane-dosomething-blocks-dosomething-facebook-activity
   h2
+    +adjust-font-size-to($s2)
+    line-height: 2
     margin: 0
     background: url(../images/fb-icon.png) no-repeat
-    padding: 0px 0 10px 28px
-    font-size: 18px
-    line-height: 2
+    padding: 0 0 calc-em(10px, $s2) calc-em(28px, $s2)
   h2.active
     background: url(../images/fb-icon-active.png) no-repeat
   a
     border: 0
-  // iframe
-  //   body
-  //     color: $yellow !important
-  //   .fbRecommendation, .pas
-  //     color: $red
 
 
 
 .pane-dosomething-blocks-dosomething-make-impact-front
   h2.pane-title
     background: image_url("make-an-impact-home-header.png") no-repeat
-    height: image_height("make-an-impact-home-header.png")
-    line-height: 34px
+    height: calc-em(image_height("make-an-impact-home-header.png"), $s3)
+    line-height: calc-em(34px, $s3)
 
 
 // SPRITES
@@ -184,13 +166,13 @@ $impactbubbles-sprite-dimensions: true
 .pane-news-stuff
   h2.pane-title
     background: image_url("news-home-header.png") no-repeat right top
-    height: image_height("news-home-header.png")
-    line-height: 34px
+    height: calc-em(image_height("news-home-header.png"), $s3)
+    line-height: calc-em(34px, $s3)
   .views-row
     background: $gray-lighter2
     padding: 0 0.5em
     &:not(.views-row-last)
-      margin-bottom: $s-2
+      margin-bottom: calc-em($s-2, $s0)
     a
       +link-colors($white, $white, $c-select-link-hover, $white, false)
 
