@@ -2,29 +2,34 @@
 // @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 // dosomething headers
-.ds-header
-  display: block
-  color: $white
-  background: $c-headers
-  +adjust-font-size-to($s3)
-  line-height: 1.65
-  font-weight: 500
-  padding: calc-em(3px, $s3) 0.5em 0
-  +border-top-left-radius
-.ds-header-usergen
-  @extend .ds-header
-  background: $purple
-.ds-header-news
-  @extend .ds-header
-  background: $black
-.ds-header-top
-  @extend .ds-header
-  +border-top-radius
-  text-align: center
-.ds-header-tr
-  @extend .ds-header
-  +border-top-left-radius(0)
-  +border-top-right-radius
+.ds-pane
+  h2.pane-title
+    display: block
+    color: $white
+    background: $c-headers
+    +adjust-font-size-to($s3)
+    line-height: 1.65
+    font-weight: 500
+    padding: calc-em(3px, $s3) 0.5em 0
+    +border-top-left-radius
+.ds-pane-usergen
+  h2.pane-title
+    @extend .ds-header
+    background: $purple
+.ds-pane-news
+  h2.pane-title
+    @extend .ds-header
+    background: $black
+.ds-pane-top
+  h2.pane-title
+    @extend .ds-header
+    +border-top-radius
+    text-align: center
+.ds-pane-tr
+  h2.pane-title
+    @extend .ds-header
+    +border-top-left-radius(0)
+    +border-top-right-radius
 
 
 
