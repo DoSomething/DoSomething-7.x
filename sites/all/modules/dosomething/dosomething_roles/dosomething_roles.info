@@ -3,4 +3,4 @@ description = "Custom functionality to change roles of users depending on their 
 core = 7.x
 package = DoSomething
 dependencies[] = webform
-
+dependencies[] = profile2

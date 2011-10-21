@@ -2056,12 +2056,16 @@ div[role=main] {
 }
 
 /*Blog Archive Block */
+.block-dosomething-blog-archive .collapse-icon {
+  color: #005dab;
+}
 .block-dosomething-blog-archive h3 {
   cursor: pointer;
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: normal;
-  padding: 6px 0;
+  padding: 4px 0;
+  color: #656565;
 }
 .block-dosomething-blog-archive ul {
   padding: 0 0 0 10px;
@@ -2069,8 +2073,8 @@ div[role=main] {
 }
 .block-dosomething-blog-archive ul li {
   background: none;
-  line-height: 130%;
-  padding: 3px 0 5px;
+  line-height: 120%;
+  padding: 1px 0 4px;
 }
 
 .pane-blog-center-panel-pane-1 .view-blog-center {

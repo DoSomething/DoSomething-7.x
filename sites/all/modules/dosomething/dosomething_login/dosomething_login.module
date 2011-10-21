@@ -584,7 +584,13 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $role = user_role_load_by_name($role_name);
   $account->roles[$role->rid] = $role->name;
   $account = user_save($account, $edit); 
-
+  // After they are saved, save their fbuid with their uid if they registered
+  // through Facebook.
+  if (isset($_SESSION['fbuser'])) {
+    module_load_unlude('inc', 'fboauth', 'fboauth');
+    $account = fboauth_create_user($fbuser);
+    unset($_SESSION);
+  }
   // Terminate if an error occurred during user_save().
   if (!$account) {
     drupal_set_message(t("Error saving user account."), 'error');
@@ -1320,10 +1326,8 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['month']['#value'] = $date[0];
     $form['birthday']['day']['#value'] = $date[1];
     $form['birthday']['year']['#value'] = $date[2];
-    $account = fboauth_create_user($fbuser);
     // Load the account fresh just to have a fully-loaded object.
     $account = user_load($account->uid);
-    unset($_SESSION['fbuser']);
   }
   else {
     drupal_set_message("There was a problem receiving your information from Facebook, please register below to creat an account.");

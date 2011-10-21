@@ -17,7 +17,7 @@ function dosomething_project_report_views_default_views() {
   $view->base_table = 'webform_submissions';
   $view->human_name = 'project';
   $view->core = 7;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
@@ -202,12 +202,8 @@ function dosomething_project_report_views_default_views() {
   /* Display: Project Block - Gallery */
   $handler = $view->new_display('block', 'Project Block - Gallery', 'block_2');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'views_galleriffic';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'gallerifficfields';
-  $handler->display->display_options['row_options']['slide_field'] = 'field_picture';
-  $handler->display->display_options['row_options']['thumbnail_field'] = 'field_picture_1';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: large picture */

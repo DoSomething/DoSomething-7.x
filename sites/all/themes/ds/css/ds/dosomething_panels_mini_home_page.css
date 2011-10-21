@@ -375,7 +375,6 @@ a.ds-button:active {
 #block-panels-mini-home-page h2 {
   color: white;
   margin-top: 0;
-  margin-bottom: 0;
 }
 #block-panels-mini-home-page .panel-panel {
   float: left;
@@ -476,6 +475,7 @@ a.ds-button:active {
   background: url('../images/make-an-impact-home-header.png') no-repeat;
   height: 1.375em;
   line-height: 1.417em;
+  margin-bottom: 0;
 }
 
 .impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause, .impactbubbles-impact-bubble-dude, #dosomething-blocks-make-an-impact-form-front .dude, .impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long, .impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where, .impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
@@ -515,7 +515,6 @@ a.ds-button:active {
 #dosomething-blocks-make-an-impact-form-front {
   position: relative;
   width: 100%;
-  min-height: 365px;
 }
 #dosomething-blocks-make-an-impact-form-front #edit-description {
   margin: 10px 0 20px 0;
@@ -558,14 +557,14 @@ a.ds-button:active {
   left: 167px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-where {
-  top: 129px;
+  top: 114px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-where .selectBox-dropdown {
   margin-top: 5px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-how-long {
   left: 200px;
-  top: 129px;
+  top: 114px;
   padding: 0 0.5em 0 14px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-how-long .selectBox-dropdown {
@@ -574,7 +573,7 @@ a.ds-button:active {
 #dosomething-blocks-make-an-impact-form-front .dude {
   position: absolute;
   left: 124px;
-  top: 155px;
+  top: 138px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-submit {
   position: absolute;
@@ -585,6 +584,7 @@ a.ds-button:active {
   background: url('../images/news-home-header.png') no-repeat right top;
   height: 1.375em;
   line-height: 1.417em;
+  margin-bottom: 25px;
 }
 .pane-news-stuff .views-row {
   background: #a1a1a1;
