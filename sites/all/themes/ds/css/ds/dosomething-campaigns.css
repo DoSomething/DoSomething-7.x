@@ -1,0 +1,63 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.view-current-campaigns {
+  margin-top: 40px;
+}
+.view-current-campaigns .views-row {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin: 15px 0;
+}
+.view-current-campaigns .campaigns-top {
+  float: left;
+  width: 97%;
+  padding: 20px 10px 10px;
+}
+.view-current-campaigns .views-field-field-campaign-logo, .view-current-campaigns .views-field-field-campaign-teaser {
+  float: left;
+}
+.view-current-campaigns .views-field-field-campaign-logo {
+  padding-right: 20px;
+}
+.view-current-campaigns .views-field-field-campaign-teaser {
+  width: 285px;
+}
+.view-current-campaigns .views-field-field-campaign-teaser p {
+  margin-top: -1em;
+}
+.view-current-campaigns .views-field-field-campaign-main-image {
+  padding-left: 10px;
+}
+.view-current-campaigns .campaigns-headline-container {
+  clear: both;
+  color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  padding-left: 10px;
+  font-size: 35px;
+  line-height: 1em;
+  padding-top: 4px;
+  margin-bottom: 15px;
+}
+.view-current-campaigns .views-field-fb-social {
+  clear: both;
+  float: right;
+  float-display: none;
+}
