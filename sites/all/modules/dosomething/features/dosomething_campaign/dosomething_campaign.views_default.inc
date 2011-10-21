@@ -106,13 +106,12 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_campaign_logo']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_campaign_logo']['empty'] = 'logo';
   $handler->display->display_options['fields']['field_campaign_logo']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_campaign_logo']['settings'] = array(
-    'image_style' => '',
+    'image_style' => 'campaigns_logo',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_campaign_logo']['field_api_classes'] = 0;
@@ -214,13 +213,12 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_main_image']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_campaign_main_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_campaign_main_image']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_campaign_main_image']['empty'] = 'Main image';
   $handler->display->display_options['fields']['field_campaign_main_image']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_main_image']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_main_image']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_main_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_campaign_main_image']['settings'] = array(
-    'image_style' => '',
+    'image_style' => 'blog_main_image',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_campaign_main_image']['field_api_classes'] = 0;
