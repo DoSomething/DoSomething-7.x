@@ -548,7 +548,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
  */
 function dosomething_login_register_block_submit($form, &$form_state) {
   $values = $form_state['input'];
-  $birthdate = $values['birthdate'];
+  $birthdate = $form_state['values']['birthdate'];
   $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
   $form_state['values']['name'] = dosomething_login_unique_name($name);
   $form_state['values']['init'] = $name;
@@ -612,7 +612,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     // TOOD: verify cell number via SMS.
   }
 
-  if (!dosomething_login_person_is_over_age($values['birthdate'], 13)) {
+  if (!dosomething_login_person_is_over_age($birthdate, 13)) {
     if (isset($values['parent_email'])) {
       global $language;
       $params = array('account' => $account);
