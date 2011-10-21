@@ -683,9 +683,11 @@ function dosomething_login_member_block() {
   global $user;
   drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/show-member-items.js');
   $output = '<div class="dosomething-login-user-name">' . '<h2>' . check_plain($user->name) . '</h2><span class="user-role">( ' . dosomething_login_user_role() . ' )</span></div>';
+  $output .= '<div class="dosomething-user-block-collapsible">';
   $output .= '<div class="dosomething-login-profile">' . dosomething_login_profile_completion() . '</div>';
   $output .= dosomething_login_my_somethings();
   $output .= dosomething_login_notifications();
+  $output .= '</div>';
   //$output .= l('Go to profile >>', 'user', array('attributes' => array('class' => array('dosomething-login-goto-profile'))));
   return $output;
 }

@@ -129,7 +129,7 @@
   margin-bottom: 0.417em;
   overflow: hidden;
 }
-#block-dosomething-login-become-member h2 {
+#block-dosomething-login-become-member .dosomething-user-block-collapsible h2 {
   color: white;
 }
 #block-dosomething-login-become-member h2.block-title {
