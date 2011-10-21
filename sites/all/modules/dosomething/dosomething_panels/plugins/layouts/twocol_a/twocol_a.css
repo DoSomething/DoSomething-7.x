@@ -1,31 +1,36 @@
-.panel-twocol-a {
-}
+.panel-row {
+  *zoom: 1; }
+  .panel-row:after {
+    content: "";
+    display: table;
+    clear: both; }
 
-.panel-twocol-a .panel-left {
-  width: 66%;
-  float: left;
-}
-* html .panel-twocol-a .panel-left {
-  width: 65.9%;
-}
+.panes-1 .panel-panel {
+  width: 100%; }
 
-.panel-twocol-a .panel-left .panel-row-bottom {
-  clear: left;
-}
-
-.panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-left {
-  float: left;
+.panes-2 .panel-panel {
   width: 50%;
-}
-* html .panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-left {
-  width: 49.9%;
-}
-.panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-right {
-  float: left;
-  width: 49.9%;
-}
+  float: left; }
+  .panes-2 .panel-panel.panel-last {
+    float: right; }
 
-.panel-twocol-a .panel-right {
+.panes-3 .panel-panel {
   width: 33%;
-  float: right;
-}
+  float: left; }
+  .panes-3 .panel-panel.panel-last {
+    float: right; }
+
+.panel-row-outer.panes-2 .panel-outer-left {
+  width: 66%; }
+.panel-row-outer.panes-2 .panel-outer-right {
+  width: 33%; }
+
+.panel-outer-left .panel-top {
+  width: 100%; }
+.panel-outer-left .panes-1 .panel-panel {
+  width: 100%; }
+.panel-outer-left .panes-2 .panel-panel {
+  width: 50%;
+  float: left; }
+  .panel-outer-left .panes-2 .panel-panel.panel-last {
+    float: right; }

@@ -1,15 +1,24 @@
-.panel-one-two
-  .panel-top
-    width: 100%
-  .panel-row-bottom
-    .panel-panel
-      width: 49.9%
-    .panel-first
-      float: left
-      /*  width: 50%
-      * html &
-          // width: 49.9%
+=clearfix
+  *zoom: 1
+  &:after
+    content: ""
+    display: table
+    clear: both
 
-.panel-one-two .panel-row-bottom .panel-last
-  float: left
-  /*  width: 49.9%;
+.panel-row
+  +clearfix
+.panes-1
+  .panel-panel
+    width: 100%
+.panes-2
+  .panel-panel
+    width: 50%
+    float: left
+    &.panel-last
+      float: right
+.panes-3
+  .panel-panel
+    width: 33%
+    float: left
+    &.panel-last
+      float: right

@@ -1,24 +1,21 @@
-.panel-one-two-one {}
+.panel-row {
+  *zoom: 1; }
+  .panel-row:after {
+    content: "";
+    display: table;
+    clear: both; }
 
-.panel-one-two-one .panel-top {
-  width: 100%;
-}
+.panes-1 .panel-panel {
+  width: 100%; }
 
-.panel-one-two-one .panel-row-middle {}
-
-.panel-one-two-one .panel-row-middle .panel-mid-left {
-  float: left;
+.panes-2 .panel-panel {
   width: 50%;
-}
-* html .panel-one-two-one .panel-row-middle .panel-mid-left {
-  width: 49.9%;
-}
-.panel-one-two-one .panel-row-middle .panel-mid-right {
-  float: left;
-  width: 49.9%;
-}
+  float: left; }
+  .panes-2 .panel-panel.panel-last {
+    float: right; }
 
-.panel-one-two-one .panel-bottom {
-  width: 100%;
-  clear: left;
-}
+.panes-3 .panel-panel {
+  width: 33%;
+  float: left; }
+  .panes-3 .panel-panel.panel-last {
+    float: right; }

@@ -1,23 +1,72 @@
-.panel-twocol-a .panel-left
-  width: 66%
-  float: left
+=clearfix
+  *zoom: 1
+  &:after
+    content: ""
+    display: table
+    clear: both
 
-* html .panel-twocol-a .panel-left
-  width: 65.9%
+.panel-row
+  +clearfix
 
-.panel-twocol-a .panel-left .panel-row-bottom
-  clear: left
-  .panel-bottom-left
-    float: left
+
+
+.panes-1
+  .panel-panel
+    width: 100%
+.panes-2
+  .panel-panel
     width: 50%
-
-* html .panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-left
-  width: 49.9%
-
-.panel-twocol-a
-  .panel-left .panel-row-bottom .panel-bottom-right
     float: left
-    width: 49.9%
-  .panel-right
+    &.panel-last
+      float: right
+.panes-3
+  .panel-panel
     width: 33%
-    float: right
+    float: left
+    &.panel-last
+      float: right
+
+.panel-row-outer
+  &.panes-2
+    .panel-outer-left
+      width: 66%
+    .panel-outer-right
+      width: 33%
+
+.panel-outer-left
+  .panel-top
+    width: 100%
+  .panes-1
+    .panel-panel
+      width: 100%
+  .panes-2
+    .panel-panel
+      width: 50%
+      float: left
+      &.panel-last
+        float: right
+
+
+// .panel-twocol-a .panel-left
+//   width: 66%
+//   float: left
+//
+// * html .panel-twocol-a .panel-left
+//   width: 65.9%
+//
+// .panel-twocol-a .panel-left .panel-row-bottom
+//   clear: left
+//   .panel-bottom-left
+//     float: left
+//     width: 50%
+//
+// * html .panel-twocol-a .panel-left .panel-row-bottom .panel-bottom-left
+//   width: 49.9%
+//
+// .panel-twocol-a
+//   .panel-left .panel-row-bottom .panel-bottom-right
+//     float: left
+//     width: 49.9%
+//   .panel-right
+//     width: 33%
+//     float: right
