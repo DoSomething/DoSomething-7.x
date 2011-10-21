@@ -1,12 +1,37 @@
 // @import partials/02-extend/all
 // @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
+// dosomething headers
+.ds-header
+  display: block
+  color: $white
+  background: $c-headers
+  +adjust-font-size-to($s3)
+  line-height: 1.65
+  font-weight: 500
+  padding: calc-em(3px, $s3) 0.5em 0
+  +border-top-left-radius
+.ds-header-usergen
+  @extend .ds-header
+  background: $purple
+.ds-header-news
+  @extend .ds-header
+  background: $black
+.ds-header-top
+  @extend .ds-header
+  +border-top-radius
+  text-align: center
+.ds-header-tr
+  @extend .ds-header
+  +border-top-left-radius(0)
+  +border-top-right-radius
+
+
 
 // dosomething buttons
 .ds-button
   font-family: $font-headline
   +adjust-font-size-to(17px)
-
   line-height: 1.6
   font-weight: 700
   // text-shadow: none
