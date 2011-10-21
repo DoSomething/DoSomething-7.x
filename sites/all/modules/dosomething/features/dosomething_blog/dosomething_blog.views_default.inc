@@ -400,9 +400,14 @@ function dosomething_blog_views_default_views() {
 
   /* Display: Blog Archives Block */
   $handler = $view->new_display('block', 'Blog Archives Block', 'blog_archive_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Archives';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'block-dosomething-blog-archive';
   $handler->display->display_options['display_description'] = 'Displays a list of Archive blogs posts alongside blog posts';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = 'created_1';
