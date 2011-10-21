@@ -217,10 +217,10 @@ function dosomething_blocks_make_an_impact_form() {
 function dosomething_blocks_impact_form_submit($form, &$form_state) {
   //For reference the action finder page filter query looks like:
   //?time=15&where=All&who=6&Issues=All&=Apply
-  $what_cause = $form_state['values']['what_cause'];
-  $how_long = $form_state['values']['how_long'];
-  $who_with = $form_state['values']['who_with'];
-  $where = $form_state['values']['where'];
+  $what_cause = !empty($form_state['values']['what_cause']) ? $form_state['values']['what_cause'] : 'All';
+  $how_long = !empty($form_state['values']['how_long']) ? $form_state['values']['how_long'] : 'All';
+  $who_with = !empty($form_state['values']['who_with']) ? $form_state['values']['who_with'] : 'All';
+  $where = !empty($form_state['values']['where']) ? $form_state['values']['where'] : 'All';
   $options = array(
     'query' => array(
       'where' => $where,
