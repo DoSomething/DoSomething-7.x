@@ -238,8 +238,7 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
  */
 function dosomething_blocks_utility_bar() {
   // Get login link for fboauth.
-  $fb_app_id = variable_get('fboauth_id', '');
-  $fb_link = fboauth_action_link_properties('connect', $redirect = null, $fb_app_id);
+  $fb_link = fboauth_action_link_properties('prereg');
   $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
 
   $path = drupal_get_path('theme', 'ds');

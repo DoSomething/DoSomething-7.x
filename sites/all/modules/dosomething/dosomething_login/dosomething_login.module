@@ -196,6 +196,36 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_element_info().
+ */
+function dosomething_login_element_info() {
+  $types = array();
+  $types['dosomething_password_confirm'] = array(
+    '#input' => TRUE,
+    '#process' => array('dosomething_roles_dosomething_password_confirm', 'user_form_process_password_confirm'),
+    '#theme_wrappers' => array('form_element'),
+    '#theme' => 'password_confirm',
+    '#element_validate' => array('password_confirm_validate'),
+  );
+  return $types;
+}
+
+/**
+ * Process a form element of type dosomething_password_confirm.
+ */
+function dosomething_roles_dosomething_password_confirm($element) {
+  // The normal password confirm sets a title and doesn't let you add
+  // attributes or edit the title.
+
+  // This removes the title of the confirm password and adds placeholders.
+  $element = form_process_password_confirm($element);
+  unset($element['pass2']['#title']);
+  $element['pass1']['#attributes']['placeholder'] = t('Create a Password');
+  $element['pass2']['#attributes']['placeholder'] = t('Confirm that password please');
+  return $element;
+}
+
+/**
  * The form for the 'Become a Member' block.
  */
 function dosomething_login_register_popup_form($form, &$form_state) {
@@ -291,7 +321,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   );
 
   $form['pass'] = array(
-    '#type' => 'password_confirm',
+    '#type' => 'dosomething_password_confirm',
     '#required' => TRUE,
     '#attributes' => array(
       'placeholder' => t('Create a Password'),
