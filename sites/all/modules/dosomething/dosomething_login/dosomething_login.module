@@ -343,12 +343,16 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#prefix' => '<div class="over-25-field">',
     '#suffix' => '</div>',
   );
+  $form['signup_message'] = array(
+    '#type' => 'item',
+    '#description' => t('Yes! I\'d love to receive the hilarious and informative weekly updates.'),
+    '#prefix' => '<div class="over-25-field">',
+    '#suffix' => '</div>',
+  );
   $form['signup'] = array(
     '#type' => 'checkbox',
     '#description' => t('Yes! I\'d love to receive the hilarious and informative weekly updates.'),
     '#default_value' => TRUE,
-    '#prefix' => '<div class="over-25-field">',
-    '#suffix' => '</div>',
   );
   $form['final_submit'] = array(
     '#type' => 'submit',
@@ -543,7 +547,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
  * Submit the user registration form.
  */
 function dosomething_login_register_block_submit($form, &$form_state) {
-  $values = $form_state['values'];
+  $values = $form_state['input'];
   $birthdate = $values['birthdate'];
   $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
   $form_state['values']['name'] = dosomething_login_unique_name($name);
@@ -1318,7 +1322,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['year']['#value'] = $date[2];
   }
   else {
-    drupal_set_message("There was a problem receiving your information from Facebook, please register below to creat an account.");
+    drupal_set_message("There was a problem receiving your information from Facebook, please register below to create an account.");
   }
   return $form;
 }
