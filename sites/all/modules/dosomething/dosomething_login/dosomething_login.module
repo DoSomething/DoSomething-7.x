@@ -1322,7 +1322,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['year']['#value'] = $date[2];
   }
   else {
-    drupal_set_message("There was a problem receiving your information from Facebook, please register below to creat an account.");
+    drupal_set_message("There was a problem receiving your information from Facebook, please register below to create an account.");
   }
   return $form;
 }
