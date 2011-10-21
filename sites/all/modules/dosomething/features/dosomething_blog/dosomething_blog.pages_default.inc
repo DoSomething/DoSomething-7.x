@@ -93,14 +93,11 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'left-top';
-    $pane->type = 'node_comments';
-    $pane->subtype = 'node_comments';
+    $pane->type = 'block';
+    $pane->subtype = 'fb_social-FB Comments';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'mode' => '1',
-      'comments_per_page' => '50',
-      'context' => 'argument_entity_id:node_1',
       'override_title' => 0,
       'override_title_text' => '',
     );

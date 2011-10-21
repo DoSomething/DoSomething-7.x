@@ -303,6 +303,84 @@ function dosomething_blog_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-blog-field_blog_video'
+  $fields['node-blog-field_blog_video'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_blog_video',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'mediafield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'media',
+    ),
+    'field_instance' => array(
+      'bundle' => 'blog',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => NULL,
+          'settings' => array(),
+          'type' => 'media_large',
+          'weight' => 18,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_blog_video',
+      'label' => 'Video (optional)',
+      'required' => 0,
+      'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'public' => 'public',
+            'vimeo' => 0,
+            'youtube' => 'youtube',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 0,
+            'video' => 'video',
+          ),
+          'browser_plugins' => array(
+            'library' => 0,
+            'media_default--media_browser_1' => 0,
+            'media_internet' => 0,
+            'upload' => 0,
+          ),
+          'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-blog-field_embedded_video'
   $fields['node-blog-field_embedded_video'] = array(
     'field_config' => array(
@@ -420,7 +498,7 @@ function dosomething_blog_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => 0,
+        'default_image' => NULL,
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',
@@ -581,8 +659,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'abstract',
         0 => 'meta_name',
+        'meta_name' => 'abstract',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -636,8 +714,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'copyright',
         0 => 'meta_name',
+        'meta_name' => 'copyright',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -691,8 +769,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'description',
         0 => 'meta_name',
+        'meta_name' => 'description',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -746,8 +824,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'keywords',
         0 => 'meta_name',
+        'meta_name' => 'keywords',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -801,8 +879,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'robots',
         0 => 'meta_name',
+        'meta_name' => 'robots',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
