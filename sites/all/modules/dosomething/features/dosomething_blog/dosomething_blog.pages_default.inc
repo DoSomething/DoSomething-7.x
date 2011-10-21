@@ -64,6 +64,26 @@ function dosomething_blog_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
+    $pane->panel = 'left-bottom-left';
+    $pane->type = 'block';
+    $pane->subtype = 'fb_social-FB Comments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left-bottom-left'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
     $pane->panel = 'left-top';
     $pane->type = 'node_content';
     $pane->subtype = 'node_content';
@@ -88,28 +108,8 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass;
-    $pane->pid = 'new-2';
-    $pane->panel = 'left-top';
-    $pane->type = 'block';
-    $pane->subtype = 'fb_social-FB Comments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['left-top'][1] = 'new-2';
+    $display->panels['left-top'][0] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
     $pane->panel = 'right';
@@ -178,7 +178,7 @@ function dosomething_blog_default_page_manager_handlers() {
     $display->content['new-4'] = $pane;
     $display->panels['right'][1] = 'new-4';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $export['node_view_panel_context'] = $handler;
 
