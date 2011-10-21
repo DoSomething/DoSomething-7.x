@@ -315,6 +315,9 @@ a.ds-button:active {
 }
 #block-panels-mini-home-page h2 {
   color: white;
+}
+#block-panels-mini-home-page h2 {
+  color: white;
   margin-top: 0;
   margin-bottom: 0;
 }
