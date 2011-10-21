@@ -38,10 +38,13 @@
   padding-right: 20px;
 }
 .view-current-campaigns .views-field-field-campaign-teaser {
-  width: 285px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  width: 250px;
 }
-.view-current-campaigns .views-field-field-campaign-teaser p {
-  margin-top: -1em;
+.view-current-campaigns .views-field-field-campaign-teaser .ds-button {
+  font-size: 14px;
+  color: black;
 }
 .view-current-campaigns .views-field-field-campaign-main-image {
   padding-left: 10px;
