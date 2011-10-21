@@ -9,10 +9,3 @@ files[] = includes/common.inc
 files[] = includes/legacy.inc
 files[] = includes/plugins.inc
 files[] = plugins/views/panels_views_plugin_row_fields.inc
-
-; Information added by drupal.org packaging script on 2011-03-17
-version = "7.x-3.0-alpha3"
-core = "7.x"
-project = "panels"
-datestamp = "1300396268"
-
