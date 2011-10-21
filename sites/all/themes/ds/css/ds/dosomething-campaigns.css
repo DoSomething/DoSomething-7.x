@@ -24,7 +24,15 @@
   clear: both;
   float: left;
   width: 100%;
-  margin: 15px 0;
+  padding: 15px 0;
+  border-bottom: 1px solid white;
+  border-top: 1px solid #c6c6c6;
+}
+.view-current-campaigns .views-row.views-row-first {
+  border-top: none;
+}
+.view-current-campaigns .views-row.views-row-last {
+  border-bottom: none;
 }
 .view-current-campaigns .campaigns-top {
   float: left;
@@ -39,12 +47,18 @@
 }
 .view-current-campaigns .views-field-field-campaign-teaser {
   font-family: din-web, "Trebuchet MS", sans-serif;
+  width: 288px;
+}
+.view-current-campaigns .views-field-field-campaign-teaser .campaign-teaser {
   font-size: 18px;
-  width: 240px;
 }
 .view-current-campaigns .views-field-field-campaign-teaser .ds-button {
-  font-size: 14px;
-  color: black;
+  color: #343434;
+  margin-right: 10px;
+}
+.view-current-campaigns .views-field-field-campaign-teaser .ds-button:hover {
+  color: #161616;
+  text-decoration: none;
 }
 .view-current-campaigns .views-field-field-campaign-main-image {
   padding-left: 10px;
@@ -56,20 +70,27 @@
   padding-left: 10px;
   font-size: 35px;
   line-height: 1em;
-  height: 39px;
+  height: 37px;
   margin-bottom: 15px;
 }
 .view-current-campaigns .campaigns-headline-container .campaign-join-this a {
   display: block;
   background: url(../../css/images/join-this-arrow.png) no-repeat;
   text-indent: -5000px;
-  width: 143px;
+  width: 142px;
   height: 40px;
   float: right;
-  margin-top: -1px;
+  margin-top: -2px;
+}
+.view-current-campaigns .campaigns-headline-container .campaign-headline {
+  padding-top: 3px;
 }
 .view-current-campaigns .views-field-fb-social {
   clear: both;
   float: right;
   float-display: none;
+}
+
+.campaign-join-this {
+  overflow: visible;
 }

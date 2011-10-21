@@ -7,7 +7,13 @@
     clear: both
     float: left
     width: 100%
-    margin: 15px 0
+    padding: 15px 0
+    border-bottom: 1px solid $white
+    border-top: 1px solid $gray-lighter3
+  .views-row.views-row-first
+    border-top: none
+  .views-row.views-row-last
+    border-bottom: none
   .campaigns-top
     float: left
     width: 97%
@@ -18,32 +24,41 @@
     padding-right: 20px
   .views-field-field-campaign-teaser
     font-family: $font-headline
-    font-size: $s2
-    width: 240px
+    width: 288px
+    .campaign-teaser
+      font-size: $s2
     .ds-button
-      font-size: $s1
-      color: black
+      color: $gray-darker
+      margin-right: 10px
+      &:hover
+        color: $black-not
+        text-decoration: none
   .views-field-field-campaign-main-image
     padding-left: 10px
   .campaigns-headline-container
     clear: both
-    color: white
+    color: $white
     font-family: $font-headline
     padding-left: 10px
     font-size: $s5
     line-height: 1em
-    height: 39px
+    height: 37px
     margin-bottom: 15px
     .campaign-join-this
       a
         display: block
         background: url(../../css/images/join-this-arrow.png) no-repeat
         text-indent: -5000px
-        width: 143px
+        width: 142px
         height: 40px
         float: right
-        margin-top: -1px
+        margin-top: -2px
+    .campaign-headline
+      padding-top: 3px
   .views-field-fb-social
     clear: both
     float: right
       display: none
+
+.campaign-join-this
+  overflow: visible

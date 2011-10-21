@@ -203,7 +203,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_teaser']['label'] = '';
   $handler->display->display_options['fields']['field_campaign_teaser']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['text'] = '[field_campaign_teaser] 
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['text'] = '<div class="campaign-teaser">[field_campaign_teaser]</div>
 
 [nid_1] [nid] ';
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['make_link'] = 0;
@@ -248,7 +248,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_main_image']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_main_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_campaign_main_image']['settings'] = array(
-    'image_style' => 'blog_main_image',
+    'image_style' => 'campaigns_image',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_campaign_main_image']['field_api_classes'] = 0;
@@ -309,7 +309,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_headline']['field'] = 'field_campaign_headline';
   $handler->display->display_options['fields']['field_campaign_headline']['label'] = '';
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_campaign_headline']['alter']['text'] = '<span class="campaign-join-this">[view_node_1]</span> <span class="campaign-headline">[field_campaign_headline]</span>';
+  $handler->display->display_options['fields']['field_campaign_headline']['alter']['text'] = '<div class="campaign-join-this">[view_node_1]</div> <div class="campaign-headline">[field_campaign_headline]</div>';
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['external'] = 0;
