@@ -115,3 +115,9 @@ function ds_preprocess_views_exposed_form(&$vars) {
     $vars['widgets'] = $title + $vars['widgets'];
   }
 }
+
+function ds_preprocess_views_view(&$vars) {
+  if ($vars['name'] == 'current_campaigns') {
+    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething-campaigns.css');
+  }  
+}  
