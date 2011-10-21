@@ -173,7 +173,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#title' => t('What Cause'),
     '#options' => $cause_options,
     '#empty_option' => t('What Cause?'),
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#default_value' => $defaults['issues'],
   );
   $form['who_with'] = array(
@@ -181,7 +181,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#title' => t('Who With'),
     '#options' => $who_options,
     '#empty_option' => t('Who With?'),
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#default_value' => $defaults['who'],
   );
  $form['where'] = array(
@@ -189,7 +189,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#title' => t('Where'),
     '#options' => $where_options,
     '#empty_option' => t('Where?'),
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#default_value' => $defaults['where'],
   );
   $form['how_long'] = array(
@@ -197,7 +197,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#title' => t('How Long'),
     '#options' => $time_options,
     '#empty_option' => t('How Long?'),
-    '#required' => TRUE,
+    '#required' => FALSE,
     '#default_value' => $defaults['time'],
   );
   $form['submit'] = array(
