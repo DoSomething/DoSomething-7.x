@@ -418,7 +418,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Only use the fancy ampersand in <h#> tags */
-.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top h2.pane-title, .ds-pane-tr h2.pane-title {
+.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -434,6 +434,10 @@ h1, h2, h3, h4, h5, h6 {
   -khtml-border-top-left-radius: 6px;
   border-top-left-radius: 6px;
 }
+.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
+  padding-left: 1em;
+  padding-right: 1em;
+}
 
 .ds-pane-usergen h2.pane-title {
   background: #652e72;
@@ -443,7 +447,7 @@ h1, h2, h3, h4, h5, h6 {
   background: black;
 }
 
-.ds-pane-top h2.pane-title {
+.ds-pane-top-radius h2.pane-title {
   -moz-border-radius-topleft: 6px;
   -webkit-border-top-left-radius: 6px;
   -o-border-top-left-radius: 6px;
@@ -459,7 +463,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-.ds-pane-tr h2.pane-title {
+.ds-pane-top-right-radius h2.pane-title {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
   -o-border-top-left-radius: 0;

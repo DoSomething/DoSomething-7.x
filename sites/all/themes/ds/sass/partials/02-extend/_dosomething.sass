@@ -12,6 +12,9 @@
     font-weight: 500
     padding: calc-em(3px, $s3) 0.5em 0 !important
     +border-top-left-radius
+  .pane-content
+    padding-left: calc-em(12px, $s0)
+    padding-right: calc-em(12px, $s0)
 .ds-pane-usergen
   @extend .ds-pane
   h2.pane-title
@@ -20,12 +23,12 @@
   @extend .ds-pane
   h2.pane-title
     background: $black
-.ds-pane-top
+.ds-pane-top-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-radius
     text-align: center
-.ds-pane-tr
+.ds-pane-top-right-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-left-radius(0)
