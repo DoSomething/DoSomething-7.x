@@ -2082,6 +2082,19 @@ div[role=main] {
   padding: 1px 0 4px;
 }
 
+/*Related Posts Block */
+.block-related-posts .view-content .views-field-title {
+  font-size: 1.2em;
+  color: #484848;
+  font-weight: bold;
+}
+.block-related-posts .view-content .views-field-field-picture img {
+  border: 5px solid white;
+}
+.block-related-posts .view-content .views-row {
+  padding-bottom: 30px;
+}
+
 .pane-blog-center-panel-pane-1 .view-blog-center {
   background-color: #d1d1d1;
 }
