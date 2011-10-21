@@ -309,7 +309,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_headline']['field'] = 'field_campaign_headline';
   $handler->display->display_options['fields']['field_campaign_headline']['label'] = '';
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_campaign_headline']['alter']['text'] = '<span class="campaign-headline">[field_campaign_headline]</span> <span class="campaign-join-this">[view_node_1]</span>';
+  $handler->display->display_options['fields']['field_campaign_headline']['alter']['text'] = '<span class="campaign-join-this">[view_node_1]</span> <span class="campaign-headline">[field_campaign_headline]</span>';
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_campaign_headline']['alter']['external'] = 0;

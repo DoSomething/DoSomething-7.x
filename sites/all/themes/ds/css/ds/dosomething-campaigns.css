@@ -56,8 +56,17 @@
   padding-left: 10px;
   font-size: 35px;
   line-height: 1em;
-  padding-top: 4px;
+  height: 39px;
   margin-bottom: 15px;
+}
+.view-current-campaigns .campaigns-headline-container .campaign-join-this a {
+  display: block;
+  background: url(../../css/images/join-this-arrow.png) no-repeat;
+  text-indent: -5000px;
+  width: 143px;
+  height: 40px;
+  float: right;
+  margin-top: -1px;
 }
 .view-current-campaigns .views-field-fb-social {
   clear: both;
