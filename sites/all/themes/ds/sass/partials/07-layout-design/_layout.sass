@@ -41,78 +41,126 @@
   float: left
 
 // PANELS OVERRIDE -----------------------------------------------------
-.panel-one-three-two
-  .panel-top
-    margin-bottom: calc-em($s2b, $s0)
-  .panel-row-middle
-    @extend .clearfix
-    margin-bottom: calc-em($s2b, $s0)
+.ds-panel
+  .panel-panel
+    margin-right: percentage($kit-gutter / $main-width-w-padding)
+  .panes-1
     .panel-panel
-      margin-right: percentage($kit-gutter-narrow / $main-width-w-padding)
-    .panel-mid-left
-      width: percentage($three-col-wide / $main-width-w-padding)
-    .panel-mid-center
-      // width: $three-col-wide
-      width: percentage($three-col-wide / $main-width-w-padding)
-    .panel-mid-right
-      // width: $three-col-thin
-      width: percentage($three-col-thin / $main-width-w-padding)
+      width: 100%
       margin-right: 0
-      float: right
-  .panel-row-bottom
-    @extend .clearfix
-    clear: both
+  .panes-2
     .panel-panel
-      margin-right: percentage($kit-gutter-narrow / $main-width-w-padding)
-    .panel-bottom-left
-      // width: $two-col-wide
-      width: percentage($two-col-wide / $main-width-w-padding)
-    .panel-bottom-right
-      // width: $two-col-thin
-      width: percentage($two-col-thin / $main-width-w-padding)
-      margin-right: 0
-      float: right
-
-
-.panel-one-two
-  .panel-top
-  .panel-row-bottom
-    .panel-panel
-      margin-right: percentage($kit-gutter-medium / $main-width-w-padding)
-      width: auto
-      max-width: percentage(340px / $main-width-w-padding)
-    .panel-first
+      width: percentage($two-col-even / $main-width-w-padding)
+      float: left
     .panel-last
-      float: right
       margin-right: 0
-
-
-.panel-one-two-one-two
-  .panel-full
-  .panel-row-2cols
+      float: right
+  .panes-3
     .panel-panel
-      margin-right: percentage($kit-gutter-wide / $main-width-w-padding)
-    .panel-first
-      width: percentage($two-col-wide2 / $main-width-w-padding)
+      width: percentage($three-col-even / $main-width-w-padding)
     .panel-last
-      width: percentage($two-col-thin2 / $main-width-w-padding)
+      margin-right: 0
       float: right
-      margin-right: -$s0
-  .panel-row3
+
+//
+  .panel-one-three-two
+    .panel-top
+      margin-bottom: calc-em($s2b, $s0)
+    .panel-row-middle
+      @extend .clearfix
+      margin-bottom: calc-em($s2b, $s0)
+      .panel-panel
+        margin-right: percentage($kit-gutter-narrow / $main-width-w-padding)
+      .panel-mid-left
+        width: percentage($three-col-wide / $main-width-w-padding)
+      .panel-mid-center
+        // width: $three-col-wide
+        width: percentage($three-col-wide / $main-width-w-padding)
+      .panel-mid-right
+        // width: $three-col-thin
+        width: percentage($three-col-thin / $main-width-w-padding)
+        margin-right: 0
+        float: right
+      &.panes-1
+        .panel-panel
+          margin-right: 0
+        .panel-mid-left, .panel-mid-center, .panel-mid-right
+          width: 100%
+      &.panes-2
+        .panel-panel
+          &:first-child
+            width: 50%
+          &:last-child
+            width: 50%
+            float: right
+    .panel-row-bottom
+      @extend .clearfix
+      clear: both
+      .panel-panel
+        margin-right: percentage($kit-gutter-narrow / $main-width-w-padding)
+      .panel-bottom-left
+        // width: $two-col-wide
+        width: percentage($two-col-wide / $main-width-w-padding)
+      .panel-bottom-right
+        // width: $two-col-thin
+        width: percentage($two-col-thin / $main-width-w-padding)
+        margin-right: 0
+        float: right
 
 
-.panel-two-three
-  @extend .wireframe
-  .panel-row-top
-    .panel-top-left
-      width: percentage($campaign-wide / $main-width-w-padding)
-    .panel-top-right
-      width: percentage($campaign-thin / $main-width-w-padding)
-      float: right
-      margin-right: -$s0
-  .panel-row-bottom
-    .panel-bottom-left
-    .panel-bottom-center, .panel-bottom-right
+  .panel-one-two
+    .panel-top
+    .panel-row-bottom
+      .panel-panel
+        margin-right: percentage($kit-gutter-medium / $main-width-w-padding)
+        width: auto
+        max-width: percentage(340px / $main-width-w-padding)
+      .panel-first
+      .panel-last
+        float: right
+        margin-right: 0
+
+
+  .panel-one-two-one-two
+    .panel-full
+    .panel-row-2cols
+      .panel-panel
+        margin-right: percentage($kit-gutter-wide / $main-width-w-padding)
+      .panel-first
+        width: percentage($two-col-wide2 / $main-width-w-padding)
+      .panel-last
+        width: percentage($two-col-thin2 / $main-width-w-padding)
+        float: right
+        margin-right: -$s0
+    .panel-row3
+
+
+  .panel-two-three
+    .panel-row-top
+      .panel-top-left
+        width: 100%
+      .panel-top-right
+        width: 100%
+      &.both
+        .panel-top-left
+          width: percentage($campaign-wide / $main-width-w-padding)
+        .panel-top-right
+          width: percentage($campaign-thin / $main-width-w-padding)
+          float: right
+          margin-right: -$s0
+    .panel-row-bottom
+      .panel-bottom-left
+      .panel-bottom-center, .panel-bottom-right
+      &.panes-1
+        .panel-bottom-left, .panel-bottom-center, .panel-bottom-right
+          width: 100%
+      &.panes-2
+        .panel-panel
+          &:first-child
+            width: 50%
+          &:last-child
+            width: 50%
+            float: right
 
 
 

@@ -374,14 +374,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-.wireframe, .panel-two-three {
+.wireframe {
   outline: 1px dashed red;
 }
 
-.clearfix, .panel-one-three-two .panel-row-middle, .panel-one-three-two .panel-row-bottom {
+.clearfix {
   *zoom: 1;
 }
-.clearfix:after, .panel-one-three-two .panel-row-middle:after, .panel-one-three-two .panel-row-bottom:after {
+.clearfix:after {
   content: "";
   display: table;
   clear: both;
@@ -1684,16 +1684,16 @@ html.js fieldset.collapsed {
 }
 
 /* LAYOUT -------------------------------------------------------------- */
-.wireframe, .panel-two-three {
+.wireframe {
   outline: 1px dashed red;
 }
-.wireframe > *, .panel-two-three > * {
+.wireframe > * {
   outline: 1px dashed #ff8000;
 }
-.wireframe > * > *, .panel-two-three > * > * {
+.wireframe > * > * {
   outline: 1px dashed yellow;
 }
-.wireframe > * > * > *, .panel-two-three > * > * > * {
+.wireframe > * > * > * {
   outline: 1px dashed #80ff00;
 }
 
@@ -1722,70 +1722,27 @@ body.node-type-project [role=main] .main-interior-sidebar {
   float: left;
 }
 
-.panel-one-three-two .panel-top {
-  margin-bottom: 1.833em;
+.ds-panel .panel-panel {
+  margin-right: 1.739%;
 }
-.panel-one-three-two .panel-row-middle {
-  margin-bottom: 1.833em;
+.ds-panel .panes-1 .panel-panel {
+  width: 100%;
+  margin-right: 0;
 }
-.panel-one-three-two .panel-row-middle .panel-panel {
-  margin-right: 0.718%;
+.ds-panel .panes-2 .panel-panel {
+  width: 49.13%;
+  float: left;
 }
-.panel-one-three-two .panel-row-middle .panel-mid-left {
-  width: 36.063%;
-}
-.panel-one-three-two .panel-row-middle .panel-mid-center {
-  width: 36.063%;
-}
-.panel-one-three-two .panel-row-middle .panel-mid-right {
-  width: 26.006%;
+.ds-panel .panes-2 .panel-last {
   margin-right: 0;
   float: right;
 }
-.panel-one-three-two .panel-row-bottom {
-  clear: both;
+.ds-panel .panes-3 .panel-panel {
+  width: 32.174%;
 }
-.panel-one-three-two .panel-row-bottom .panel-panel {
-  margin-right: 0.718%;
-}
-.panel-one-three-two .panel-row-bottom .panel-bottom-left {
-  width: 61.494%;
-}
-.panel-one-three-two .panel-row-bottom .panel-bottom-right {
-  width: 37.213%;
+.ds-panel .panes-3 .panel-last {
   margin-right: 0;
   float: right;
-}
-
-.panel-one-two .panel-row-bottom .panel-panel {
-  margin-right: 1.437%;
-  width: auto;
-  max-width: 48.851%;
-}
-.panel-one-two .panel-row-bottom .panel-last {
-  float: right;
-  margin-right: 0;
-}
-
-.panel-one-two-one-two .panel-row-2cols .panel-panel {
-  margin-right: 2.874%;
-}
-.panel-one-two-one-two .panel-row-2cols .panel-first {
-  width: 66.379%;
-}
-.panel-one-two-one-two .panel-row-2cols .panel-last {
-  width: 32.471%;
-  float: right;
-  margin-right: -12px;
-}
-
-.panel-two-three .panel-row-top .panel-top-left {
-  width: 71.839%;
-}
-.panel-two-three .panel-row-top .panel-top-right {
-  width: 29.741%;
-  float: right;
-  margin-right: -12px;
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
