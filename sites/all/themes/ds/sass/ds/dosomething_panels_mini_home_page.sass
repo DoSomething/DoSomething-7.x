@@ -12,6 +12,13 @@
   color: $white
   h2
     color: $white
+  padding-top: 20px
+  // height: 365px
+  h2
+    color: $white
+    margin-top: 0
+    margin-bottom: 0
+  // @extend .wireframe
   .panel-panel
     float: left
     width: percentage((($page-width - $left-col-width - $s2 - 36px) / 2) / $page-width)
@@ -103,7 +110,6 @@
     height: calc-em(image_height("make-an-impact-home-header.png"), $s3)
     line-height: calc-em(34px, $s3)
 
-
 // SPRITES
 @import "impactbubbles/*.png"
 $impactbubbles-sprite-dimensions: true
@@ -114,8 +120,12 @@ $impactbubbles-sprite-dimensions: true
   position: relative
   width: 100%
   min-height: 365px
+  #edit-description
+    margin: 10px 0 20px 0
   label[for='edit-description']
     font-weight: normal
+    font-size: 10px
+    line-height: 12px
   .form-type-select
     position: absolute
     padding: 0px 0.5em

@@ -153,6 +153,17 @@ function dosomething_blocks_make_an_impact_form() {
     $time_options[$option->tid] = $option->name;
   }
 
+  $filters = array('where', 'time', 'who', 'issues');
+  $defaults = array();
+  foreach ($filters as $filter) {
+    if (isset($_GET[$filter])) {
+      $defaults[$filter] = $_GET[$filter];
+    }
+    else {
+      $defaults[$filter] = '';
+    }
+  }
+
   $form['description'] = array(
     '#type' => 'item',
     '#title' => t('This form will help you find a cause that\'s right for you.'),
@@ -162,32 +173,32 @@ function dosomething_blocks_make_an_impact_form() {
     '#title' => t('What Cause'),
     '#options' => $cause_options,
     '#empty_option' => t('What Cause?'),
-    '#required' => TRUE,
-    '#default_value' => NULL,
+    '#required' => FALSE,
+    '#default_value' => $defaults['issues'],
   );
   $form['who_with'] = array(
     '#type' => 'select',
     '#title' => t('Who With'),
     '#options' => $who_options,
     '#empty_option' => t('Who With?'),
-    '#required' => TRUE,
-    '#default_value' => NULL,
+    '#required' => FALSE,
+    '#default_value' => $defaults['who'],
   );
  $form['where'] = array(
     '#type' => 'select',
     '#title' => t('Where'),
     '#options' => $where_options,
     '#empty_option' => t('Where?'),
-    '#required' => TRUE,
-    '#default_value' => NULL,
+    '#required' => FALSE,
+    '#default_value' => $defaults['where'],
   );
   $form['how_long'] = array(
     '#type' => 'select',
     '#title' => t('How Long'),
     '#options' => $time_options,
     '#empty_option' => t('How Long?'),
-    '#required' => TRUE,
-    '#default_value' => NULL,
+    '#required' => FALSE,
+    '#default_value' => $defaults['time'],
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -206,10 +217,10 @@ function dosomething_blocks_make_an_impact_form() {
 function dosomething_blocks_impact_form_submit($form, &$form_state) {
   //For reference the action finder page filter query looks like:
   //?time=15&where=All&who=6&Issues=All&=Apply
-  $what_cause = $form_state['values']['what_cause'];
-  $how_long = $form_state['values']['how_long'];
-  $who_with = $form_state['values']['who_with'];
-  $where = $form_state['values']['where'];
+  $what_cause = !empty($form_state['values']['what_cause']) ? $form_state['values']['what_cause'] : 'All';
+  $how_long = !empty($form_state['values']['how_long']) ? $form_state['values']['how_long'] : 'All';
+  $who_with = !empty($form_state['values']['who_with']) ? $form_state['values']['who_with'] : 'All';
+  $where = !empty($form_state['values']['where']) ? $form_state['values']['where'] : 'All';
   $options = array(
     'query' => array(
       'where' => $where,

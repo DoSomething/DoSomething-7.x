@@ -24,9 +24,9 @@ function dosomething_layout_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
-    'has_children' => '0',
+    'has_children' => '1',
     'expanded' => '1',
-    'weight' => '-48',
+    'weight' => '-46',
   );
   // Exported menu link: menu-footer:node/3
   $menu_links['menu-footer:node/3'] = array(
@@ -42,9 +42,9 @@ function dosomething_layout_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
-    'has_children' => '0',
+    'has_children' => '1',
     'expanded' => '1',
-    'weight' => '-49',
+    'weight' => '-48',
   );
   // Exported menu link: menu-footer:node/30080
   $menu_links['menu-footer:node/30080'] = array(

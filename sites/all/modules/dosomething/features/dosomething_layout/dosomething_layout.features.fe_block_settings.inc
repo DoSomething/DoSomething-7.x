@@ -80,7 +80,7 @@ function dosomething_layout_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => '1',
+    'cache' => -1,
   );
 
   $theme['menu-menu-footer'] = array(

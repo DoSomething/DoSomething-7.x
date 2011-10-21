@@ -174,9 +174,9 @@ div[role=main]
 // footer block
 .region-footer
   #block-menu-menu-footer
-    +background-with-css2-fallback(image_url('bg-diag-footer.png') repeat 0 0)
+    +background-with-css2-fallback(image_url('bg-diag-footer-line.png') repeat 0 12px)
     +clearfix
-    height: 270px
+    padding-bottom: 20px
     .content
       ul.menu
         padding: 0
@@ -191,15 +191,16 @@ div[role=main]
           +float-left
           a
             color: $white
-            padding: 0 40px
+            padding: 0 48px
             line-height: 33px
             text-transform: uppercase
             font-size: 11px
         ul
           padding-left: 0
           li
-            +background-with-css2-fallback(image_url('bg-diag-footer.png') repeat 0 0)
-            +border($gray5, 1px, bottom)
+            width: auto
+            +background-with-css2-fallback(image_url('bg-diag-footer-line.png') repeat 0 0)
+            // +border($gray5, 1px, bottom)
             float: none
             display: block
             padding-top: 0
@@ -211,3 +212,18 @@ div[role=main]
               font-size: 11px
               text-transform: none
 
+/** Blog Archive Block **/
+.block-dosomething-blog-archive
+  h3
+    cursor: pointer
+    margin: 0
+    font-size: 1.5em
+    font-weight: normal
+    padding: 6px 0
+  ul
+    padding: 0 0 0 10px
+    list-style: none
+    li
+      background: none
+      line-height: 130%
+      padding: 3px 0 5px

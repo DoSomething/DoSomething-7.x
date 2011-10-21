@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * General custom tweaks to dosomething.
+ */
+
+/**
+ * Implements hook_views_preview().
+ */
+function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
+  // Add the blog-archive.js file to the Blog Archive block.
+  if ($view->name == 'blog_center' && $display_id == 'blog_archive_block') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/blog-archive.js'); 
+  }
+}

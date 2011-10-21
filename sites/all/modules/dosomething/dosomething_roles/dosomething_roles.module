@@ -141,7 +141,10 @@ function dosomething_roles_node_insert($node) {
  * Implements hook_user_login().
  */
 function dosomething_roles_user_login(&$edit, $account) {
-  dosomething_roles_update_role($account->uid);
+  // Don't run this on the first login.
+  if ($account->access) {
+    dosomething_roles_update_role($account->uid);
+  }
 }
 
 /**
@@ -258,7 +261,6 @@ function dosomething_roles_user_submitted_grant($uid, $timestamp) {
  *  When a user increases their role, they get it for one year.
  */
 function dosomething_roles_get_anniversary($uid) {
-  // TODO: it needs to be an admin-only field.
   // TODO: Make this module depend on profile2
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
@@ -272,7 +274,7 @@ function dosomething_roles_get_anniversary($uid) {
 }
 
 /**
- * Set a new membership annivesary for a user.
+ * Set a new membership anniversary for a user.
  */
 function dosomething_roles_set_anniversary($uid, $timestamp) {
   $account = user_load($uid);
@@ -290,5 +292,17 @@ function dosomething_roles_set_anniversary($uid, $timestamp) {
 
   $profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = $timestamp;
   field_attach_update('profile2', $profile);
+}
+
+/**
+ * Implements hook_form_profile2_edit_TYPE_form_alter().
+ */
+function dosomething_roles_form_profile2_edit_main_form_alter(&$form, &$form_state) {
+  // Disalbe access to anniversary field.  This could be done with
+  // field permissions, but until we need more fine grained permissions
+  // on other fields, let's not add more overhead to this site.
+  if (isset($form['profile_main']['field_user_anniversary'])) {
+    unset($form['profile_main']['field_user_anniversary']);
+  }
 }
 

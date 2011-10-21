@@ -5,7 +5,5 @@
  */
 ?>
 
-<?php print $full_name ?>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at neque sed metus rutrum adipiscing nec ut erat. Suspendisse adip</p>
+<p>You have been denied mebership to <?php print check_plain(variable_get('site name', 'Do Something.org')); ?> by your parent or guardian.</p> 
 
