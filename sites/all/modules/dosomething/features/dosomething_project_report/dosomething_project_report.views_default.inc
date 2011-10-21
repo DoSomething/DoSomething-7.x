@@ -202,8 +202,10 @@ function dosomething_project_report_views_default_views() {
   /* Display: Project Block - Gallery */
   $handler = $view->new_display('block', 'Project Block - Gallery', 'block_2');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: large picture */
