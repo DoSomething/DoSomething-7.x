@@ -10,24 +10,24 @@
     +adjust-font-size-to($s3)
     line-height: 1.65
     font-weight: 500
-    padding: calc-em(3px, $s3) 0.5em 0
+    padding: calc-em(3px, $s3) 0.5em 0 !important
     +border-top-left-radius
 .ds-pane-usergen
+  @extend .ds-pane
   h2.pane-title
-    @extend .ds-header
     background: $purple
 .ds-pane-news
+  @extend .ds-pane
   h2.pane-title
-    @extend .ds-header
     background: $black
 .ds-pane-top
+  @extend .ds-pane
   h2.pane-title
-    @extend .ds-header
     +border-top-radius
     text-align: center
 .ds-pane-tr
+  @extend .ds-pane
   h2.pane-title
-    @extend .ds-header
     +border-top-left-radius(0)
     +border-top-right-radius
 
