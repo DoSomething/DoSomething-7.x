@@ -458,7 +458,9 @@ function dosomething_login_register_block($form, &$form_state) {
     'facebook_login' => array(
       '#markup' => l('<span class="fb-icon">log in</span>', $fb_url,
         array(
-          'class' => 'login facebook-login ds-button',
+          'attributes' => array(
+            'class' => 'login facebook-login ds-button',
+          ),
           'html' => TRUE,
         )
       )
