@@ -6,7 +6,7 @@
  */
 
 /**
- * Implements hook_views_preview().
+ * Implements hook_views_pre_view().
  */
 function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
   // Add the blog-archive.js file to the Blog Archive block.
