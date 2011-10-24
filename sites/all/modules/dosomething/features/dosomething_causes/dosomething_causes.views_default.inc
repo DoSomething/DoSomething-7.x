@@ -11,6 +11,191 @@ function dosomething_causes_views_default_views() {
   $export = array();
 
   $view = new view;
+  $view->name = 'find_your_cause';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Find Your Cause';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Find Your Cause';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Main Image */
+  $handler->display->display_options['fields']['field_campaign_main_image']['id'] = 'field_campaign_main_image';
+  $handler->display->display_options['fields']['field_campaign_main_image']['table'] = 'field_data_field_campaign_main_image';
+  $handler->display->display_options['fields']['field_campaign_main_image']['field'] = 'field_campaign_main_image';
+  $handler->display->display_options['fields']['field_campaign_main_image']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campaign_main_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campaign_main_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_main_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_campaign_main_image']['settings'] = array(
+    'image_style' => 'action_results_thumbnail',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_campaign_main_image']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['view_node']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['view_node']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['view_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['view_node']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['view_node']['text'] = 'Learn More »';
+  /* Field: Global: Facebook Social Plugin */
+  $handler->display->display_options['fields']['fb_social']['id'] = 'fb_social';
+  $handler->display->display_options['fields']['fb_social']['table'] = 'views';
+  $handler->display->display_options['fields']['fb_social']['field'] = 'fb_social';
+  $handler->display->display_options['fields']['fb_social']['label'] = '';
+  $handler->display->display_options['fields']['fb_social']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['fb_social']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['fb_social']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['fb_social']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['fb_social']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['fb_social']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['fb_social']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['fb_social']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['fb_social']['fb_social_plugins'] = 'FB Like';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Has taxonomy term ID */
+  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['index'] = '1';
+  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['tid']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
+    'vocabulary_5' => 'vocabulary_5',
+  );
+  $handler->display->display_options['arguments']['tid']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['tid']['validate_options']['transform'] = '1';
+  $handler->display->display_options['arguments']['tid']['validate']['fail'] = 'ignore';
+  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['tid']['add_table'] = 1;
+  $handler->display->display_options['arguments']['tid']['require_value'] = 0;
+  $handler->display->display_options['arguments']['tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['arguments']['tid']['set_breadcrumb'] = 0;
+  /* Contextual filter: Content: Has taxonomy term ID */
+  $handler->display->display_options['arguments']['tid_1']['id'] = 'tid_1';
+  $handler->display->display_options['arguments']['tid_1']['table'] = 'taxonomy_index';
+  $handler->display->display_options['arguments']['tid_1']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid_1']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid_1']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['tid_1']['default_argument_options']['index'] = '2';
+  $handler->display->display_options['arguments']['tid_1']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['tid_1']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid_1']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid_1']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid_1']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['tid_1']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['tid_1']['validate_options']['vocabularies'] = array(
+    'vocabulary_5' => 'vocabulary_5',
+  );
+  $handler->display->display_options['arguments']['tid_1']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['tid_1']['validate_options']['transform'] = '1';
+  $handler->display->display_options['arguments']['tid_1']['validate']['fail'] = 'ignore';
+  $handler->display->display_options['arguments']['tid_1']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['tid_1']['add_table'] = 1;
+  $handler->display->display_options['arguments']['tid_1']['require_value'] = 0;
+  $handler->display->display_options['arguments']['tid_1']['reduce_duplicates'] = 0;
+  $handler->display->display_options['arguments']['tid_1']['set_breadcrumb'] = 0;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'action_guide' => 'action_guide',
+    'campaign' => 'campaign',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'find-your-cause';
+  $export['find_your_cause'] = $view;
+
+  $view = new view;
   $view->name = 'polls';
   $view->description = 'Displays Poll related content';
   $view->tag = 'default';
