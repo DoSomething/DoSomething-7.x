@@ -28,6 +28,7 @@ function dosomething_causes_page_causes_title() {
 }
 
 function dosomething_causes_page_get_causes() {
+  global $base_url;
   drupal_add_js(drupal_get_path('module', 'dosomething_causes_page') . '/js/dosomething_causes_page_popups.js');
   //get taxonomy terms
   $cause_render_array = array();
@@ -41,6 +42,20 @@ function dosomething_causes_page_get_causes() {
       $link_text = str_replace(' ', '-', $link_text);
       $child_causes[] = l($child_cause->name, 'find-your-cause/' . $link_text);
     }
+    if(!empty($cause->field_causes_image)) {
+      $cause_image = $cause->field_causes_image[field_language('taxonomy_term', $cause, 'field_causes_image')][0]['uri'];
+    }
+    else {
+      $cause_image = NULL;
+    }
+    if (module_exists('fb_social')) {
+      $presets = fb_social_get_presets();
+      $taxonomy_path = taxonomy_term_uri($cause);
+      $facebook = fb_social_preset_view($presets['reccommend_cause'], $base_url . '/' . $taxonomy_path['path']);
+    }
+    else {
+      $facebook = NULL;
+    }
     $cause_data_to_render = array(
       'title'  => array(
         '#markup' => t($cause->name),
@@ -50,7 +65,7 @@ function dosomething_causes_page_get_causes() {
       'image' => array(
         '#theme' => 'image_style',
         '#style_name' => 'find_your_cause',
-        '#path' => $cause->field_causes_image[field_language('taxonomy_term', $cause, 'field_causes_image')][0]['uri'],
+        '#path' => $cause_image,
       ),
       'description' => array(
         '#markup' => $cause->description,
@@ -72,7 +87,7 @@ function dosomething_causes_page_get_causes() {
           '#type' => 'ul',
         ),
         'facebook' => array(
-          '#markup' => 'facebook place holder stuff'
+          '#markup' => $facebook,
         ),
         '#prefix' => '<div class="cause-item-pop-up-content">',
         '#suffix' => '</div>',
