@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * Custom Causes Page for dosomething.
+ */
+
+define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_causes_page_menu() {
+  $items['cause'] = array(
+    'title' => '11 Great Causes for You to Rock',
+    //'title callback' => 'dosomething_causes_page_causes_title',
+    'page callback' => 'dosomething_causes_page_get_causes',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function dosomething_causes_page_causes_title() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
+  $causes = taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = FALSE);
+  return t(count($causes) . ' Great Causes for You to Rock');
+}
+
+function dosomething_causes_page_get_causes() {
+  drupal_add_js(drupal_get_path('module', 'dosomething_causes_page') . '/js/dosomething_causes_page_popups.js');
+  //get taxonomy terms
+  $cause_render_array = array();
+  $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
+  $causes = taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = TRUE);
+  foreach ($causes as $cause) {
+    $child_causes_raw = taxonomy_get_tree($vocabulary->vid, $cause->tid, $max_depth = NULL, $load_entities = FALSE);
+    $child_causes = array();
+    foreach ($child_causes_raw as $child_cause) {
+      $link_text = strtolower($cause->name . '/' . $child_cause->name);
+      $link_text = str_replace(' ', '-', $link_text);
+      $child_causes[] = l($child_cause->name, 'find-your-cause/' . $link_text);
+    }
+    $cause_data_to_render = array(
+      'title'  => array(
+        '#markup' => t($cause->name),
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+      ),
+      'image' => array(
+        '#theme' => 'image_style',
+        '#style_name' => 'find_your_cause',
+        '#path' => $cause->field_causes_image[field_language('taxonomy_term', $cause, 'field_causes_image')][0]['uri'],
+      ),
+      'description' => array(
+        '#markup' => $cause->description,
+        '#prefix' => '<p class="cause-description">',
+        '#suffix' => '</p>',
+      ),
+     'pop up content' => array(
+       'all issues' => array(
+         '#markup' => 'All Issues',
+          '#prefix' => '<h4>',
+          '#suffix' => '</h4>',
+        ),
+        'all issues link' => array(
+          '#markup' => l('Go', 'find-your-cause/' . str_replace(' ', '-', strtolower($cause->name))),
+        ),
+        'children' => array(
+          '#theme' => 'item_list',
+          '#items' => $child_causes,
+          '#type' => 'ul',
+        ),
+        'facebook' => array(
+          '#markup' => 'facebook place holder stuff'
+        ),
+        '#prefix' => '<div class="cause-item-pop-up-content">',
+        '#suffix' => '</div>',
+      ),
+      '#prefix' => '<div class="cause-item">',
+      '#suffix' => '</div>',
+    );
+    $cause_render_array[] = $cause_data_to_render;
+  }
+  return $cause_render_array;
+}
+
