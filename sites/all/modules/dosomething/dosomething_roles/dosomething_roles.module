@@ -69,20 +69,7 @@ function dosomething_roles_update_role($uid) {
   global $language;
   $account = user_load($uid);
 
-  // TODO: Maybe we should have another role to mark
-  // non-staff users so we can check for that.
-  $staff_roles = array(
-    'administrator',
-    'content loader',
-    'developer',
-    'grant reviewer',
-    'grant alumni',
-    'help desk',
-    'moderator',
-    'project_police',
-  );
-  // Make sure this user is not a staff member.
-  if (count(array_intersect($staff_roles, $account->roles))) {
+  if (dosomething_roles_user_is_staff_member($account)) {
     return;
   }
 
@@ -90,13 +77,7 @@ function dosomething_roles_update_role($uid) {
   $rids = array();
   $roles = user_roles();
   $current_role_name = 'inactive user';
-  $role_hierarchy = array(
-    'varsity',
-    'active member',
-    'member',
-    'inactive member',
-    'old person',
-  );
+  $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
   foreach ($role_hierarchy as $weight => $role_name) {
     $rid = array_search($role_name, $roles);
     $rids[$role_name] = $rid;
@@ -118,22 +99,23 @@ function dosomething_roles_update_role($uid) {
     dosomething_roles_set_anniversary($uid, $new_anniversary);
     $new_rid = $rids[$new_role_name];
   }
-  // Else if it's past the anniverary set a new anniversary.
+  // Else if it's past the anniversary set a new one.
   else if (REQUEST_TIME >= $anniversary) {
     dosomething_roles_set_anniversary($uid, $new_anniversary);
     if ($new_role_weight > $current_role_weight) {
       // If the role level has decreased, then downgrade.
-      // It can only ever downgrade by one.
-      $role_name = $role_hierarchy[$current_role_weight + 1];
+      $role_name = $role_hierarchy[$new_role_weight];
       $new_rid = $rids[$role_name];
     }
   }
 
+  // If a user turns 26, then they are immediately set to 'old person'.
   if ($new_role_name == 'old person' && $new_role_name != $current_role_name) {
     // Note: It may be better to user_save here.  If we decide to, then we need
     //  to add a flag to the account object (no_dosomething_role_update) to
     //  prevent an infinite loop.
     global $language;
+    $new_rid = $rids[$new_role_name];
     db_update('users')->fields(array('status' => 0))->condition('uid', $account->uid)->execute();
     $params = array('account' => $account);
     drupal_mail('dosomething_roles', 'dosomething-roles-old-person-email', $accopunt->mail, $language, $params);
@@ -157,6 +139,45 @@ function dosomething_roles_get_action_update_types() {
     'action_guide',
     'project_report',
   );
+}
+
+/**
+ * Get a list of the mebership roles in order from highest level
+ *  to lowest level.  Lower weight = Higher level.
+ */
+function dosomething_roles_get_membership_role_hierarchy() {
+  return  array(
+    'varsity',
+    'active member',
+    'member',
+    'inactive user',
+    'old person',
+  );
+}
+
+/**
+ * Determine if athe given user is a staff member.
+ */
+function dosomething_roles_user_is_staff_member($account) {
+  if (is_numeric($account)) {
+    $account = user_load($account);
+  }
+  // TODO: Maybe we should have another role to mark
+  // non-staff users so we can check for that?
+  $staff_roles = array(
+    'administrator',
+    'content loader',
+    'developer',
+    'grant reviewer',
+    'grant alumni',
+    'help desk',
+    'moderator',
+    'project_police',
+  );
+  if (count(array_intersect($staff_roles, $account->roles))) {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /**
@@ -206,19 +227,49 @@ function dosomething_roles_webform_submission_insert($node, $submission) {
 }
 
 /**
+ * Implements hook_webform_submission_update().
+ */
+function dosomething_roles_webform_submission_update($node, $submission) {
+  if (in_array($node->type, dosomething_roles_get_action_update_types())) {
+    if (dosomething_roles_user_is_staff_member($submission->uid)) {
+      return;
+    }
+    if ($submission->is_draft) {
+      $timestamp = strtotime('-1 year');
+      $role_name = dosomething_roles_get_member_role($submission->uid);
+      if ($role_name == 'member') {
+        // Role user back to being a member immediately,
+        //  because their action update is now unpublished.
+        $rids = array();
+        $roles = user_roles();
+        $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
+        foreach ($role_hierarchy as $weight => $role_name) {
+          $rids[$role_name] = array_search($role_name, $roles);
+        }
+        db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
+        db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $rids['member']))->execute();
+      }
+    }
+    else {
+      dosomething_roles_update_role($submission->uid);
+    }
+  }
+}
+
+/**
  * Determine a user's role level without considering their 'Aniversary Date'
  *  when the role to actually change.
+ *
+ *  Rules:
  *  old person - user over 25.
- *  inactive user - under 26, hasn't logged in in over a year.
+ *  inactive user - under 26, hasn't logged in during the last year.
  *  member - continue to be under 26.
  *  active member - one action update within year.
- *    TODO: They also must provide their school name and zipcode,
- *    but we're not sure where that's stored.
- *    TODO: If their action update is unpublished, then they should
- *    immediately fall to 'member'.
+ *    They also must provide their school name and zipcode,
+ *      but that's conatined in the action update.
+ *    If their action update is unpublished, then they should
+ *      immediately fall to 'member'. (See hook_webform_submission_update).
  *  varsity - 5 action updates or win grant and submit grant update.
- *    TODO: When the grant update is a year old, they should fall to
- *    'member' if they don't have any action updates.
  */
 function dosomething_roles_get_member_role($uid) {
   $account = user_load($uid);
