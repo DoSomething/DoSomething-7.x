@@ -2018,11 +2018,11 @@ div[role=main] {
 }
 
 /*Blog Center Block */
-#panels-ipe-regionid-right h2 {
+.view-blog-center h2 {
   font-size: 16px;
   line-height: 18px;
 }
-#panels-ipe-regionid-right h2 a {
+.view-blog-center h2 a {
   color: black;
 }
 
