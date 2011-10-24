@@ -32,7 +32,7 @@ $bottom_row_classes = implode(" ", $bottom_row_classes);
     <?php if ($content['left-top'] | $content['left-bottom-left'] | $content['left-bottom-right']): ?>
       <div class="panel-outer-left panel-panel">
         <?php if ($content['left-top']): ?>
-          <div class="panel-top panel-panel">
+          <div class="panel-top panel-panel panel-full">
             <?php print $content['left-top']; ?>
           </div>
         <?php endif; ?>

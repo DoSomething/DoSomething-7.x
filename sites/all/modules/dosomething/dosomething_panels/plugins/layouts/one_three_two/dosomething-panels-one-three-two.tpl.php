@@ -29,7 +29,7 @@ $bottom_row_classes = implode(" ", $bottom_row_classes);
 
 <div class="panel-one-three-two panel-display ds-panel" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <?php if ($content['top']): ?>
-    <div class="panel-top panel-panel">
+    <div class="panel-top panel-panel panel-full">
       <?php print $content['top']; ?>
     </div>
   <?php endif; ?>

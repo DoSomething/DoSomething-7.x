@@ -1725,6 +1725,9 @@ body.node-type-project [role=main] .main-interior-sidebar {
 .ds-panel .panel-panel {
   margin-right: 1.739%;
 }
+.ds-panel .panel-panel.panel-full {
+  margin-right: 0;
+}
 .ds-panel .panes-1 .panel-panel {
   width: 100%;
   margin-right: 0;
@@ -1743,6 +1746,18 @@ body.node-type-project [role=main] .main-interior-sidebar {
 .ds-panel .panes-3 .panel-last {
   margin-right: 0;
   float: right;
+}
+
+.panel-twocol-a .panes-2 .panel-outer-left {
+  width: 66.667%;
+}
+.panel-twocol-a .panes-2 .panel-outer-right {
+  width: 31.739%;
+  margin-right: 0;
+  float: right;
+}
+.panel-twocol-a .panel-outer-left .panel-top {
+  width: 100%;
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */

@@ -14,7 +14,7 @@ $mid_row_classes = implode(" ", $mid_row_classes);
 
 <div class="panel-one-two-one panel-display ds-panel" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <?php if ($content['top']): ?>
-    <div class="panel-top panel-panel">
+    <div class="panel-top panel-panel panel-full">
       <?php print $content['top']; ?>
     </div>
   <?php endif; ?>
@@ -35,7 +35,7 @@ $mid_row_classes = implode(" ", $mid_row_classes);
   <?php endif; ?>
 
   <?php if ($content['bottom']): ?>
-    <div class="panel-bottom panel-panel">
+    <div class="panel-bottom panel-panel panel-full">
       <?php print $content['bottom']; ?>
     </div>
   <?php endif; ?>
