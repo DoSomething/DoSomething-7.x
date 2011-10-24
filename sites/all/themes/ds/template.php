@@ -121,3 +121,22 @@ function ds_preprocess_views_view(&$vars) {
     drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething-campaigns.css');
   }  
 }  
+
+/**
+ * Override of theme_menu_link().
+ */
+function ds_menu_link(array $variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  // Add unique classes for this particular menu item and for the depth.
+  $element['#attributes']['class'][] = 'menu-' . $element['#original_link']['mlid'];
+  $element['#attributes']['class'][] = 'menu-level-' . $element['#original_link']['depth'];
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
+
