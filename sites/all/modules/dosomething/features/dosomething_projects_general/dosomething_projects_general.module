@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_projects_general feature.
+ */
+
+include_once('dosomething_projects_general.features.inc');

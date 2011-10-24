@@ -1,0 +1,7 @@
+name = "DoSomething Projects General"
+description = "Creates general views displays relating to Projects."
+core = "7.x"
+package = "DoSomething"
+dependencies[] = "views"
+features[ctools][] = "views:views_default:3.0"
+features[views_view][] = "project_related_displays"
