@@ -116,6 +116,8 @@ function dosomething_projects_general_views_default_views() {
 
   /* Display: Get The Facts Block */
   $handler = $view->new_display('block', 'Get The Facts Block', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Get the Facts ';
   $handler->display->display_options['display_description'] = 'Displays a list of Tips and Tools, 11 Facts content.';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
@@ -167,6 +169,8 @@ function dosomething_projects_general_views_default_views() {
 
   /* Display: Related Projects Block */
   $handler = $view->new_display('block', 'Related Projects Block', 'block_3');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Related Projects';
   $handler->display->display_options['display_description'] = 'Displays a list of related Project content.';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
