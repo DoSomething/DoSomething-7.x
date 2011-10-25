@@ -187,6 +187,24 @@
   margin-top: -15px;
 }
 
+#dosomething11 {
+  overflow: hidden;
+  *zoom: 1;
+  padding-bottom: 10px;
+}
+#dosomething11 img {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+}
+#dosomething11 p {
+  display: inline;
+  float: right;
+  width: 115px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
 .ds-button, .ds-button-strong {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
