@@ -437,6 +437,34 @@ function dosomething_causes_default_page_manager_handlers() {
     $display->panels['top_left_'][0] = 'new-8';
     $pane = new stdClass;
     $pane->pid = 'new-9';
+    $pane->panel = 'top_right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_3';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-9'] = $pane;
+    $display->panels['top_right'][0] = 'new-9';
+    $pane = new stdClass;
+    $pane->pid = 'new-10';
     $pane->panel = 'top_right_';
     $pane->type = 'views_panes';
     $pane->subtype = 'causes-panel_pane_2';
@@ -450,8 +478,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-9'] = $pane;
-    $display->panels['top_right_'][0] = 'new-9';
+    $display->content['new-10'] = $pane;
+    $display->panels['top_right_'][0] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
