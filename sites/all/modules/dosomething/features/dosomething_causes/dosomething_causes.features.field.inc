@@ -120,7 +120,7 @@ function dosomething_causes_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => NULL,
+        'default_image' => 0,
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',
@@ -494,8 +494,8 @@ function dosomething_causes_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => 0,
             'vocabulary' => 'vocabulary_5',
+            'parent' => 0,
           ),
         ),
         'profile2_private' => FALSE,
