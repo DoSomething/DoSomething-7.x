@@ -15,29 +15,63 @@
 .ds-pane
   h2.pane-title
     @extend .ds-pane-title
+    display: block
+    color: $white
+    background: $c-headers
+    margin-bottom: 0
+    +adjust-font-size-to($s3)
+    line-height: 1.65
+    font-weight: 500
+    padding: calc-em(3px, $s3) 0.5em 0 !important
+    +border-top-left-radius
   .pane-content
-    padding-left: calc-em(12px, $s0)
-    padding-right: calc-em(12px, $s0)
+    // padding-left: calc-em(12px, $s0)
+    // padding-right: calc-em(12px, $s0)
+    // padding: 5px 0px 10px 20px
+    background: $gray6
+    p
+      margin-top: 0
+    h3
+      color: $black
+      margin-top: 0
+      margin-bottom: 5px
+      border-bottom: 1px dotted $white
 .ds-pane-usergen
   @extend .ds-pane
   h2.pane-title
     background: $purple
+    margin-bottom: 0
+    line-height: 30px
 .ds-pane-news
   @extend .ds-pane
   h2.pane-title
     background: $black
+    line-height: 30px
 .ds-pane-top-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-radius
-    text-align: center
+    text-align: left
+    line-height: 40px
 .ds-pane-top-right-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-left-radius(0)
     +border-top-right-radius
+    line-height: 30px
 
-
+#schools-and-clubs
+  +clearfix
+  padding: 15px
+  span
+    +float-left
+    width: 300px
+    font-size: 11px
+    line-height: 14px
+  img
+    +float-right
+    clear: right
+    margin-top: -15px
 
 // dosomething buttons
 .ds-button
@@ -59,9 +93,16 @@
   &:hover, &:active
     color: $c-button-dark-active
 
+.ds-button-strong
+  @extend .ds-button
+  background-color: $yellow
+  +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
+  border: 1px solid rgba($gray-dark, 0.3)
+  border-bottom-color: rgba($gray-dark, 0.6)
+
 a.ds-button
   +link-colors($c-button-dark $c-button-dark-active, $c-button-dark-active, $c-button-dark, false)
-  +undo-better-links
+  // +undo-better-links
   display: inline-block
 
 

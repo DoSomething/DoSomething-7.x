@@ -298,8 +298,8 @@ function dosomething_causes_views_default_views() {
     'poll' => 'poll',
   );
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $export['polls'] = $view;
 
   return $export;

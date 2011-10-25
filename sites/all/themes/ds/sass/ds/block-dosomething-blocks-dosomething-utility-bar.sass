@@ -15,7 +15,7 @@
       +remove-link-underlines
   .here-to-help
     +inline-block
-    margin-bottom: 9px
+    margin-bottom: 0.75em
   .connect-icons li
     +inline-block
     margin-bottom: 14px
@@ -30,7 +30,7 @@
         repeat: no-repeat
         position: 97% 50%
       +background-image(image_url('icn-utility-search-magnify.png'))
-      border: 1px solid #606060
+      border: 1px solid $gray5
       color: $gray-light
       font-size: 10px
       height: 22px
@@ -39,6 +39,7 @@
     input[type="search"]::-webkit-search-cancel-button
       -webkit-appearance: none
     textarea, input:not([type="submit"])
+      line-height: 10px
       width: 187px
     .form-actions
       margin-left: 5px
@@ -47,16 +48,18 @@
         margin-bottom: 11px
         padding: 4px 0
         width: 48px
+  .form-item-search-block-form
+    margin-left: 0.5em
   .login
     margin-bottom: 17px
     a
       color: $white
       font-size: 12px
-      margin: 0 20px
+      margin: 0 1.5em
   .utility-items.fbconnect
     +float-right
     margin: 1em 8px 1em 0
-    
+
 .ui-dialog
   padding: 10px
   background: rgba($black, 0.5)

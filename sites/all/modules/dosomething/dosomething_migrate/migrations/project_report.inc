@@ -25,7 +25,7 @@ class DSProject extends DSJsonWebformMigration {
       ->arguments(array('file_function' => 'file_fid'));
     #$this->addFieldMapping('field_project_clubs', ''); # Field: Did you do this project with a DoSomething Club? (node_reference)
     $this->addFieldMapping('field_project_inspiration', 'field_num_people_inspired'); # Field: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (list_text)
-    #$this->addFieldMapping('field_project_report_zip', ''); # Field: Locations (text)
+    $this->addFieldMapping('field_project_report_zip', 'locations'); # Field: Locations (text)
     $this->addFieldMapping('field_project_title', 'title'); # Field: Title (text)
     $this->addFieldMapping('field_project_type', 'field_type_of_project'); # Field: Project Type (list_text)
     $this->addFieldMapping('field_update_people_involved', 'field_num_people_involved'); # Field: How many people are directly involved in your project? (number_integer)
@@ -59,6 +59,9 @@ class DSProject extends DSJsonWebformMigration {
         }
       }
     }
+
+    // Extract the zip code from the location:
+    $row->locations = empty($r->locations[0]->postal_code) ? NULL : $r->locations[0]->postal_code;
   }
 }
 

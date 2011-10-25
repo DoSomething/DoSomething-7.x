@@ -38,9 +38,11 @@
           <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links')))); ?>
         </div>
         <?php endif; ?>
-        <?php if ($secondary_menu): ?>
+        <?php if (count($secondary_menu_items)): ?>
         <div class="secondary">
-          <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links')))); ?>
+          <?php foreach ($secondary_menu_items as $mlid => $item): ?>
+            <?php print theme('links__system_secondary_menu', array('links' => $item['links'], 'attributes' => array('id' => 'secondary-menu-' . $mlid, 'class' => $item['attributes']['class']))); ?>
+          <?php endforeach; ?>
         </div>
         <?php endif; ?>
       </nav> <!-- /nav -->

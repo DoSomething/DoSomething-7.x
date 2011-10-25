@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * Implements hook_init().
+ */
+function dosomething_campaign_styles_init() {
+  if ($context = og_context()) {
+    if (isset($context->etid)) {
+      ctools_include('plugins');
+      // Currently this is hard coded to work with nids specifically.
+      $plugin = dosomething_campaign_styles_pluginify_path(drupal_get_path_alias('node/' . $context->etid));
+      if ($plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin)) {
+        $plugins = array();
+        $plugins[] = $plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', 'staples_for_students_2011');
+        while ($parent_plugin = dosomething_campaign_styles_get_style_parent($plugin)) {
+          $plugin = $parent_plugin;
+          $plugins[] = $parent_plugin;
+        }
+        while ($plugin_data = array_pop($plugins)) {
+          foreach ($plugin_data['css'] as $css_path) {
+            drupal_add_css($plugin_data['path'] . '/' . $css_path);
+          }
+          foreach ($plugin_data['js'] as $js_path) {
+            drupal_add_js($plugin_data['path'] . '/' . $js_path);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function dosomething_campaign_styles_ctools_plugin_type() {
+  return array(
+    'campaign_style' => array(
+      'child plugins' => FALSE,
+      'load themes' => TRUE,
+      'cache' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ *
+ * @param string $owner
+ *   The system name of the module owning the plugin type for which a base
+ *   directory location is being requested.
+ * @param string $plugin_type
+ *   The name of the plugin type for which a base directory is being requested.
+ * @return string
+ *   The path where CTools' plugin system should search for plugin files,
+ *   relative to your module's root. Omit leading and trailing slashes.
+ */
+function dosomething_campaign_styles_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'dosomething_campaign_styles' && $plugin_type == 'campaign_style') {
+    return "campaign_styles";
+  }
+}
+
+/**
+ * Find the parent of a given campaign style. 
+ */
+function dosomething_campaign_styles_get_style_parent($plugin) {
+  $parent_plugin = FALSE;
+  if (isset($plugin['parent'])) {
+    ctools_include('plugins');
+    $parent_plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin['parent']);
+  }
+  return $parent_plugin;
+}
+
+/**
+ * Convert a path to a ctools safe plugin name.
+ *
+ * @param $path
+ *   The string from the URL alias.
+ * @return
+ *   The plugin (and variable) safe name.
+ */
+function dosomething_campaign_styles_pluginify_path($path) {
+  $plugin_name = str_replace('/', '_', $path);
+  $plugin_name = str_replace('-', '_', $plugin_name);
+  return $plugin_name;
+}

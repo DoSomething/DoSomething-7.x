@@ -130,6 +130,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
       'display' => 'block_1',
       'context' => array(
         0 => '',
+        1 => '',
       ),
       'override_title' => 0,
       'override_title_text' => '',
@@ -179,7 +180,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $display->content['new-4'] = $pane;
     $display->panels['mid-right'][2] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view_panel_context_2'] = $handler;
 
