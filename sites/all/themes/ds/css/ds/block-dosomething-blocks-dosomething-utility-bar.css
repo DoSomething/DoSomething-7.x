@@ -140,13 +140,19 @@
   border: 0;
 }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
-  background-color: none;
+  background: none;
   position: absolute;
   top: 18px;
   right: 0.3em;
 }
-.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a {
   background: none;
+  padding: 0;
+  text-decoration: none;
+}
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a:hover, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close a:hover {
+  padding: 0 !important;
+  text-decoration: none;
 }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
   background: url('../images/x-box.png') no-repeat;

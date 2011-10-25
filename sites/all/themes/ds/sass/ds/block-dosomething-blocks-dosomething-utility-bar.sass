@@ -70,12 +70,17 @@
     background: none
     border: 0
     .ui-dialog-titlebar-close, .ui-dialog-titlebar-close
-      background-color: none
+      background: none
       position: absolute
       top: 18px
       right: 0.3em
-      a, &:hover
+      a
         background: none
+        padding: 0
+        text-decoration: none
+        &:hover
+          padding: 0 !important
+          text-decoration: none
       .ui-icon
         background: image_url("x-box.png") no-repeat
         height: 12px
