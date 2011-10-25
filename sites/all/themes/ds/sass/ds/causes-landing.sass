@@ -1,0 +1,27 @@
+@import setup
+// import extended classes
+// @import partials/02-extend/all
+// @import partials/02-extend/dosomething
+@import partials/03-defaults/markup/headers
+// --------------------------------------------------------------------------------------
+
+.page-cause
+  .main-inner
+    .cause-item
+      margin-right: percentage($kit-gutter / $main-width-w-padding)
+      width: percentage($three-col-even / $main-width-w-padding)
+      float: left
+      // outline: 1px dashed $white
+      &:nth-of-type(3n+3)
+        margin-right: 0
+        float: right
+      &:nth-of-type(3n+4)
+        clear: both
+      h2
+        @extend .h3
+        text-align: center
+      img
+        width: 206px
+        margin: 0 auto
+
+
