@@ -436,7 +436,7 @@ h1, h2, h3, h4, h5, h6 {
   border-top-left-radius: 6px;
 }
 .ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
-  padding: 5px 20px 10px 20px;
+  padding: 5px 0px 10px 20px;
   background: #d2d2d2;
 }
 .ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p {
@@ -2093,10 +2093,18 @@ div[role=main] {
   line-height: 56px;
   background-color: #222222;
 }
+.pane-blog-center .blog-center-post {
+  background: url('images/blog-center-lines.png') no-repeat;
+  background-position: 30px 0px;
+  padding: 0;
+  margin-bottom: 12px;
+}
 
 .view-blog-center h2 {
   font-size: 16px;
   line-height: 18px;
+  margin-bottom: 5px;
+  padding-right: 10px;
 }
 .view-blog-center h2 a {
   color: black;
