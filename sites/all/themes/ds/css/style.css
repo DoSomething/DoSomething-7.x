@@ -571,6 +571,30 @@ a.ds-button:active {
   white-space: normal;
 }
 
+.three-across ul {
+  list-style: none;
+}
+.three-across ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+.three-across ul li {
+  width: 32.174%;
+  float: left;
+  margin-right: 1.739%;
+  background: red;
+}
+.three-across ul li:nth-child(3n+3) {
+  float: right;
+  margin-right: 0;
+  background: #ffc0cb;
+}
+.three-across ul li:nth-child(3n+4) {
+  clear: both;
+  background: #652e72;
+}
+
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
@@ -1760,6 +1784,10 @@ body.node-type-project [role=main] .main-interior-sidebar {
   width: 100%;
 }
 
+.panels-flexible-region-new-top_ {
+  width: 100%;
+}
+
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
 body.admin-menu {
   background-position: center 29px;
@@ -2074,93 +2102,4 @@ div[role=main] {
 }
 .block-related-posts .view-content .views-row {
   padding-bottom: 30px;
-}
-
-.pane-blog-center-panel-pane-1 .view-blog-center {
-  background-color: #d1d1d1;
-}
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-title h2 {
-  color: black;
-}
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-title h2 {
-  border-bottom: none;
-}
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-title h2:hover {
-  border-bottom: none;
-}
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-title,
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-body,
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-nothing,
-.pane-blog-center-panel-pane-1 .view-blog-center .views-field-view-node {
-  padding: 0.5em 0 0 0.5em;
-}
-.pane-blog-center-panel-pane-1 .blog-date {
-  background: url('images/bg-date.png');
-  background-height: 88px;
-  background-repeat: none;
-  color: black;
-  font-size: 1em;
-  font-weight: bold;
-  position: relative;
-  top: 20px;
-  left: -3px;
-  width: 42px;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  text-shadow: white, 1px 1px 0;
-}
-.pane-blog-center-panel-pane-1 .blog-date {
-  *display: inline;
-}
-.pane-blog-center-panel-pane-1 .views-field-term-node-tid {
-  padding: 0;
-}
-.pane-blog-center-panel-pane-1 .views-field-term-node-tid h2 {
-  -moz-border-radius-topleft: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -o-border-top-left-radius: 6px;
-  -ms-border-top-left-radius: 6px;
-  -khtml-border-top-left-radius: 6px;
-  border-top-left-radius: 6px;
-  background-color: black;
-  color: white;
-  margin: 0;
-  padding: 0.5em 0 0 0.5em;
-}
-
-.pane-polls .pane-title {
-  -moz-border-radius-topright: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -o-border-top-right-radius: 6px;
-  -ms-border-top-right-radius: 6px;
-  -khtml-border-top-right-radius: 6px;
-  border-top-right-radius: 6px;
-  background-color: #652e72;
-  padding: 0.5em 0 0 0.5em;
-}
-.pane-polls h2 {
-  color: white;
-  margin: 0;
-}
-.pane-polls .pane-content {
-  background-color: #d1d1d1;
-}
-.pane-polls .node-poll h2 {
-  padding: 1em 1em 0 1em;
-}
-.pane-polls .node-poll h2 a {
-  color: black;
-  margin: 0;
-}
-.pane-polls .node-poll h2 a {
-  border-bottom: none;
-}
-.pane-polls .node-poll h2 a:hover {
-  border-bottom: none;
-}
-.pane-polls .node-poll .poll {
-  padding-left: 1em;
 }

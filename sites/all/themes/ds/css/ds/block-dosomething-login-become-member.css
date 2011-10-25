@@ -201,6 +201,30 @@ a.ds-button:active {
   white-space: normal;
 }
 
+.three-across ul {
+  list-style: none;
+}
+.three-across ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+.three-across ul li {
+  width: 32.174%;
+  float: left;
+  margin-right: 1.739%;
+  background: red;
+}
+.three-across ul li:nth-child(3n+3) {
+  float: right;
+  margin-right: 0;
+  background: #ffc0cb;
+}
+.three-across ul li:nth-child(3n+4) {
+  clear: both;
+  background: #652e72;
+}
+
 /* Headings -------------------------------------------------------------- */
 .h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;

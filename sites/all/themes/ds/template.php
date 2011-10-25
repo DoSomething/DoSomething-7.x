@@ -15,6 +15,14 @@ function ds_preprocess_page(&$variables) {
   drupal_add_js(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
   // drupal_add_css(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.css');
   drupal_add_js(drupal_get_path('theme', 'ds') . '/js/ds-select.js', array('scope' => 'footer'));
+
+  // load css specific to pages
+  // causes landing page
+  if(arg(0) == 'cause') {
+    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/causes-landing.css');
+  }
+
+  // dsm($variables);
 }
 
 function ds_preprocess_block(&$variables) {
@@ -119,8 +127,8 @@ function ds_preprocess_views_exposed_form(&$vars) {
 function ds_preprocess_views_view(&$vars) {
   if ($vars['name'] == 'current_campaigns') {
     drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething-campaigns.css');
-  }  
-}  
+  }
+}
 
 /**
  * Override of theme_menu_link().
