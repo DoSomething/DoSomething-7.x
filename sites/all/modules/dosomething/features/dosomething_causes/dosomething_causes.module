@@ -5,3 +5,17 @@
  */
 
 include_once('dosomething_causes.features.inc');
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function dosomething_causes_preprocess_views_view(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
+  switch ($variables['name']) {
+    case 'polls':
+      drupal_add_css($theme_path . '/css/ds/dosomething-polls.css');
+      break;
+    case 'causes':
+      break;
+  }
+}
