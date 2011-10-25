@@ -48,7 +48,7 @@
 }
 
 /* Only use the fancy ampersand in <h#> tags */
-.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
+.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -64,6 +64,7 @@
   -khtml-border-top-left-radius: 6px;
   border-top-left-radius: 6px;
 }
+
 .ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
   padding-left: 1em;
   padding-right: 1em;

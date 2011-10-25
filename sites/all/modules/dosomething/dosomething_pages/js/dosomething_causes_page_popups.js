@@ -6,12 +6,14 @@
       $('.cause-item .pop-up-open').click(function() {
         $(this).parent().parent().addClass('showing');
         $(this).parent().parent().children('.cause-item-pop-up-content').show();
+        $(this).parent().parent().children('.cause-description-pre').hide();
         $(this).parent().parent().children('.cause-description').hide();
         // $(this).hide();
         $(this).parent().parent().children('h2').before('<a class="pop-up-close" href="#">close</a>');
         $('.cause-item .pop-up-close').click(function() {
           $(this).parent().removeClass('showing');
           // $(this).parent().children('.pop-up-open').show();
+          $(this).parent().children('.cause-description-pre').show();
           $(this).parent().children('.cause-description').show();
           $(this).parent().children('.cause-item-pop-up-content').hide();
           $(this).remove();

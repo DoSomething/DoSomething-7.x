@@ -11,17 +11,86 @@
       margin-right: percentage($kit-gutter / $main-width-w-padding)
       width: percentage($three-col-even / $main-width-w-padding)
       float: left
+      +box-sizing(border-box)
+      padding: 0 8px
+      margin-bottom: 42px
       // outline: 1px dashed $white
       &:nth-of-type(3n+3)
         margin-right: 0
         float: right
       &:nth-of-type(3n+4)
         clear: both
+      &:nth-of-type(even)
+        .cause-description-pre
+          border-bottom-color: $gray
+        .cause-description
+          background: $gray
       h2
         @extend .h3
         text-align: center
+        margin: 0 0 1px
       img
         width: 206px
         margin: 0 auto
+      .cause-description-pre
+        content: "\0020"
+        width: 0
+        height: 0
+        border-top: 0
+        border-right: transparent solid 8px
+        border-bottom: $gray2 solid 8px
+        border-left: transparent solid 8px
+        position: relative
+        left: 95px
+      .cause-description
+        background: $gray2
+        color: $white
+        padding: 8px 12px
+        position: relative
+        height: 58px
+        overflow: hidden
+        p
+          +adjust-font-size-to(11px)
+          line-height: 1.5
+          margin: 0
+        .pop-up-open
+          +replace-text-with-dimensions('icn-popup.png')
+          display: block
+          position: absolute
+          right: 6px
+          bottom: 6px
+      &.showing
+        position: relative
+        background-color: $white
+        border-right: 1px solid $gray-light
+        border-left: 1px solid $gray-lighter2
+        +border-top-radius
+        z-index: 10
+        h2
+          +border-top-radius
+          color: $white
+          background: $c-headers
+          margin: 0 -8px 1px
+        .pop-up-close
+          +replace-text-with-dimensions('x-box-white.png')
+          display: block
+          position: absolute
+          right: 6px
+          top: 6px
+        .cause-item-pop-up-content
+          position: absolute
+          background-color: $white
+          +border-bottom-radius
+          border-top: none
+          border-right: 1px solid $gray-light
+          border-bottom: 1px solid $gray-light
+          border-left: 1px solid $gray-lighter2
+          width: $three-col-even
+          +box-sizing(border-box)
+          margin-left: -9px
+          padding: 0 8px
+          overflow: hidden
+
+
 
 
