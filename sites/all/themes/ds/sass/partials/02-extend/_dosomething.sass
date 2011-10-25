@@ -25,10 +25,10 @@
     padding: calc-em(3px, $s3) 0.5em 0 !important
     +border-top-left-radius
   .pane-content
-    // padding-left: calc-em(12px, $s0)
-    // padding-right: calc-em(12px, $s0)
+    padding-left: calc-em(12px, $s0)
+    padding-right: calc-em(12px, $s0)
     // padding: 5px 0px 10px 20px
-    background: $gray6
+    // background: $gray6
     p
       margin-top: 0
     h3
@@ -45,7 +45,7 @@
 .ds-pane-news
   @extend .ds-pane
   h2.pane-title
-    background: $black
+    background: $gray-dark
     line-height: 30px
 .ds-pane-top-radius
   @extend .ds-pane
@@ -59,6 +59,10 @@
     +border-top-left-radius(0)
     +border-top-right-radius
     line-height: 30px
+.ds-pane-no-radius
+  @extend .ds-pane
+  h2.pane-title
+    +border-radius(0)
 
 // dosomething buttons
 .ds-button

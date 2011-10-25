@@ -77,7 +77,7 @@
   clear: both;
 }
 
-.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
+.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -94,7 +94,7 @@
   border-top-left-radius: 6px;
 }
 
-.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
+.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -111,13 +111,14 @@
   -khtml-border-top-left-radius: 6px;
   border-top-left-radius: 6px;
 }
-.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
-  background: #d2d2d2;
+.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content {
+  padding-left: 1em;
+  padding-right: 1em;
 }
-.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p {
+.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p {
   margin-top: 0;
 }
-.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3 {
+.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3, .ds-pane-no-radius .pane-content h3 {
   color: black;
   margin-top: 0;
   margin-bottom: 5px;
@@ -131,7 +132,7 @@
 }
 
 .ds-pane-news h2.pane-title {
-  background: black;
+  background: #222222;
   line-height: 30px;
 }
 
@@ -168,6 +169,55 @@
   line-height: 30px;
 }
 
+<<<<<<< HEAD
+=======
+.ds-pane-no-radius h2.pane-title {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+
+#schools-and-clubs {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 15px;
+}
+#schools-and-clubs span {
+  display: inline;
+  float: left;
+  width: 300px;
+  font-size: 11px;
+  line-height: 14px;
+}
+#schools-and-clubs img {
+  display: inline;
+  float: right;
+  clear: right;
+  margin-top: -15px;
+}
+
+#dosomething11, #this-weeks-winner {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 10px 0 10px 0;
+}
+#dosomething11 img, #this-weeks-winner img {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+}
+#dosomething11 p, #this-weeks-winner p {
+  display: inline;
+  float: right;
+  width: 115px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+>>>>>>> define and refine general styles
 .ds-button, .ds-button-strong {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;

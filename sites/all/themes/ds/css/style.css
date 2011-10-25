@@ -418,7 +418,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Only use the fancy ampersand in <h#> tags */
-.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
+.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -435,7 +435,7 @@ h1, h2, h3, h4, h5, h6 {
   border-top-left-radius: 6px;
 }
 
-.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title {
+.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -452,13 +452,14 @@ h1, h2, h3, h4, h5, h6 {
   -khtml-border-top-left-radius: 6px;
   border-top-left-radius: 6px;
 }
-.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
-  background: #d2d2d2;
+.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content {
+  padding-left: 1em;
+  padding-right: 1em;
 }
-.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p {
+.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p {
   margin-top: 0;
 }
-.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3 {
+.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3, .ds-pane-no-radius .pane-content h3 {
   color: black;
   margin-top: 0;
   margin-bottom: 5px;
@@ -472,7 +473,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ds-pane-news h2.pane-title {
-  background: black;
+  background: #222222;
   line-height: 30px;
 }
 
@@ -509,6 +510,55 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 30px;
 }
 
+<<<<<<< HEAD
+=======
+.ds-pane-no-radius h2.pane-title {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+
+#schools-and-clubs {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 15px;
+}
+#schools-and-clubs span {
+  display: inline;
+  float: left;
+  width: 300px;
+  font-size: 11px;
+  line-height: 14px;
+}
+#schools-and-clubs img {
+  display: inline;
+  float: right;
+  clear: right;
+  margin-top: -15px;
+}
+
+#dosomething11, #this-weeks-winner {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 10px 0 10px 0;
+}
+#dosomething11 img, #this-weeks-winner img {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+}
+#dosomething11 p, #this-weeks-winner p {
+  display: inline;
+  float: right;
+  width: 115px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+>>>>>>> define and refine general styles
 .ds-button, .ds-button-strong, button, input[type=button], input[type=submit] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
@@ -1810,6 +1860,18 @@ body.node-type-project [role=main] .main-interior-sidebar {
 .panel-twocol-a .panel-outer-left .panel-top {
   width: 100%;
 }
+.panel-twocol-a .panel-outer-left .panes-1 .panel-panel {
+  width: 100%;
+  margin-right: 0;
+}
+.panel-twocol-a .panel-outer-left .panes-2 .panel-panel {
+  width: 73.696%;
+  float: left;
+}
+.panel-twocol-a .panel-outer-left .panes-2 .panel-last {
+  margin-right: 0;
+  float: right;
+}
 
 .panels-flexible-region-new-top_ {
   width: 100%;
@@ -2103,22 +2165,6 @@ div[role=main] {
 }
 
 /*Blog Center Block */
-.pane-blog-center h2.pane-title {
-  -moz-border-radius-topleft: 0;
-  -webkit-border-top-left-radius: 0;
-  -o-border-top-left-radius: 0;
-  -ms-border-top-left-radius: 0;
-  -khtml-border-top-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-border-radius-topright: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -o-border-top-right-radius: 6px;
-  -ms-border-top-right-radius: 6px;
-  -khtml-border-top-right-radius: 6px;
-  border-top-right-radius: 6px;
-  line-height: 56px;
-  background-color: #222222;
-}
 .pane-blog-center .blog-center-post {
   background: url('images/blog-center-lines.png') no-repeat;
   background-position: 30px 0px;
@@ -2169,4 +2215,8 @@ div[role=main] {
 }
 .block-related-posts .view-content .views-row {
   padding-bottom: 30px;
+}
+
+iframe {
+  max-width: 100%;
 }
