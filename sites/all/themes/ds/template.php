@@ -18,7 +18,7 @@ function ds_preprocess_page(&$variables) {
 
   // load css specific to pages
   // causes landing page
-  if(arg(0) == 'cause') {
+  if(arg(0) == 'cause' || arg(0) == 'causes') {
     drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/causes-landing.css');
   }
 

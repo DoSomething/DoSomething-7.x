@@ -2,8 +2,19 @@
 // @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 // dosomething headers
+.ds-pane-title
+  display: block
+  color: $white
+  background: $c-headers
+  +adjust-font-size-to($s3)
+  line-height: 1.65
+  font-weight: 500
+  padding: calc-em(3px, $s3) 0.5em 0 !important
+  +border-top-left-radius
+
 .ds-pane
   h2.pane-title
+    @extend .ds-pane-title
     display: block
     color: $white
     background: $c-headers

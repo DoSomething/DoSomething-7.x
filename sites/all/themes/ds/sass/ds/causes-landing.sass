@@ -1,0 +1,131 @@
+@import setup
+// import extended classes
+// @import partials/02-extend/all
+// @import partials/02-extend/dosomething
+@import partials/03-defaults/markup/headers
+// --------------------------------------------------------------------------------------
+
+.page-causes
+  .main-inner
+    .cause-item
+      margin-right: percentage($kit-gutter / $main-width-w-padding)
+      width: percentage($three-col-even / $main-width-w-padding)
+      float: left
+      +box-sizing(border-box)
+      padding: 0 calc-em(8px, $s0)
+      margin-bottom: calc-em(42px, $s0)
+      &:nth-of-type(3n+3)
+        margin-right: 0
+        float: right
+      &:nth-of-type(3n+4)
+        clear: both
+      &:nth-of-type(even)
+        .cause-description-pre
+          border-bottom-color: $gray
+        .cause-description
+          background: $gray
+      h2
+        @extend .h3
+        text-align: center
+        margin: 0 calc-em(-8px, $s2) calc-em(1px, $s2)
+        +transition('color', 0.4s, 'ease-out')
+      img
+        width: 100%
+        margin: 0 auto
+      .cause-description-pre
+        content: "\0020"
+        width: 0
+        height: 0
+        border-top: 0
+        border-right: transparent solid 8px
+        border-bottom: $gray2 solid 8px
+        border-left: transparent solid 8px
+        position: relative
+        left: 95px
+      .cause-description
+        background: $gray2
+        color: $white
+        padding: calc-em(8px, $s0) calc-em(12px, $s0)
+        position: relative
+        height: calc-em(58px, $s0)
+        overflow: hidden
+        p
+          +adjust-font-size-to(11px)
+          line-height: 1.5
+          margin: 0
+        .pop-up-open
+          +replace-text-with-dimensions('icn-popup.png')
+          display: block
+          position: absolute
+          right: calc-em(6px, $s0)
+          bottom: calc-em(6px, $s0)
+      .cause-item-pop-up-content
+        position: relative
+        overflow: hidden
+        +transition('opacity', 0.4s, 'ease-out')
+        .causes-page-js &
+          opacity: 0
+          height: 0
+          padding: 0
+          position: absolute
+          background-color: $white
+          +border-bottom-radius
+          border-top: none
+          border-right: calc-em(1px, $s0) solid $gray-light
+          border-bottom: calc-em(1px, $s0) solid $gray-light
+          width: 100%
+          +box-sizing(border-box)
+          margin-left: percentage(-8px / $three-col-even)
+          margin-top: calc-em(-80px, $s0)
+          padding: calc-em(65px, $s0) percentage(8px / $three-col-even) 0
+          +box-shadow(rgba($black-not, 0.2) 0px 2px 6px)
+        h4
+          @extend .h3
+          border-bottom: calc-em(1px, $s2) solid $gray3
+          margin-bottom: 0.25em
+        .go
+          position: absolute
+          top: calc-em(21px, 17px)
+          right: calc-em(8px, 17px)
+          .causes-page-js &
+            top: calc-em(83px, 17px)
+        .item-list
+          ul
+            border-bottom: calc-em(1px, $s0) solid $gray3
+            padding-bottom: 1em
+      &.showing
+        position: relative
+        +border-top-radius
+        z-index: 10
+        h2
+          +border-top-radius
+          color: $white
+          background: $c-headers
+        img
+          position: relative
+          z-index: 11
+        .pop-up-close
+          +replace-text-with-dimensions('x-box-white.png')
+          display: block
+          position: absolute
+          right: calc-em(6px, $s0)
+          top: calc-em(6px, $s0)
+        .cause-description-pre, .cause-description
+          .causes-page-js &
+            display: none
+        .cause-item-pop-up-content
+          .causes-page-js &
+            opacity: 1
+            height: auto
+            padding: calc-em(65px, $s0) percentage(8px / $three-col-even) 0
+          h4
+            border-bottom-color: $gray-lighter
+          .item-list
+            ul
+              border-bottom-color: $gray-lighter
+
+
+
+
+
+
