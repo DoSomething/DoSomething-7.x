@@ -8,6 +8,7 @@
 .page-causes
   .main-inner
     .cause-item
+      position: relative
       margin-right: percentage($kit-gutter / $main-width-w-padding)
       width: percentage($three-col-even / $main-width-w-padding)
       float: left
@@ -64,9 +65,6 @@
           border-bottom: calc-em(1px, $s0) solid $gray-light
           width: 100%
           +box-sizing(border-box)
-          margin-left: percentage(-8px / $three-col-even)
-          margin-top: calc-em(-80px, $s0)
-          padding: calc-em(65px, $s0) percentage(8px / $three-col-even) 0
           +box-shadow(rgba($black-not, 0.2) 0px 2px 6px)
         h4
           @extend .h3
@@ -106,6 +104,8 @@
           .causes-page-js &
             opacity: 1
             height: auto
+            margin-left: percentage(-8px / $three-col-even)
+            margin-top: calc-em(-80px, $s0)
             padding: calc-em(65px, $s0) percentage(8px / $three-col-even) 0
           h4
             border-bottom-color: $gray-lighter

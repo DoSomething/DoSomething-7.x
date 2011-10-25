@@ -63,6 +63,7 @@
 }
 
 .page-causes .main-inner .cause-item {
+  position: relative;
   margin-right: 1.739%;
   width: 32.174%;
   float: left;
@@ -174,9 +175,6 @@
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  margin-left: -3.604%;
-  margin-top: -6.667em;
-  padding: 5.417em 3.604% 0;
   -moz-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   -webkit-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   -o-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
@@ -254,6 +252,8 @@
 .causes-page-js .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content {
   opacity: 1;
   height: auto;
+  margin-left: -3.604%;
+  margin-top: -6.667em;
   padding: 5.417em 3.604% 0;
 }
 .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4 {
