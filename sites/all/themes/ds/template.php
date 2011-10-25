@@ -22,7 +22,7 @@ function ds_preprocess_page(&$variables) {
     drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/causes-landing.css');
   }
 
-  // dsm($variables);
+  $variables['secondary_menu_items'] = ds_menu_secondary_links($variables);
 }
 
 function ds_preprocess_block(&$variables) {
@@ -131,20 +131,78 @@ function ds_preprocess_views_view(&$vars) {
 }
 
 /**
- * Override of theme_menu_link().
+ * Get the secondary links for all possible main menu links.
+ *  This is used to build html for all hidden and shown
+ *  secondary links.
  */
-function ds_menu_link(array $variables) {
-  $element = $variables['element'];
-  $sub_menu = '';
-
-  // Add unique classes for this particular menu item and for the depth.
-  $element['#attributes']['class'][] = 'menu-' . $element['#original_link']['mlid'];
-  $element['#attributes']['class'][] = 'menu-level-' . $element['#original_link']['depth'];
-
-  if ($element['#below']) {
-    $sub_menu = drupal_render($element['#below']);
+function ds_menu_secondary_links($variables) {
+  $secondary_menu_items = ds_menu_navigation_links('main-menu');
+  if (count($secondary_menu_items)) {
+    foreach ($secondary_menu_items as $mlid => &$links) {
+      $links['attributes']['class'][] = 'links';
+      if (isset($variables['main_menu'][$mlid . ' active-trail'])) {
+        $links['links'] = $variables['secondary_menu'];
+      }
+      else {
+        $links['attributes']['class'][] = 'hidden';
+      }
+    }
   }
-  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+  return $secondary_menu_items;
+}
+
+/**
+ * Return an array of links for a navigation menu.
+ *  Note that this is specifc for level 2.
+ *
+ * @param $menu_name
+ *   The name of the menu.
+ *
+ * @return
+ *   An array of links of the specified menu.
+ */
+function ds_menu_navigation_links($menu_name) {
+  // Don't even bother querying the menu table if no menu is specified.
+  if (empty($menu_name)) {
+    return array();
+  }
+
+  // Get the menu hierarchy for the current page.
+  $mlids = array();
+
+  $main_tree = menu_build_tree($menu_name);
+  $router_item = menu_get_item();
+  $links = array();
+  foreach ($main_tree as $tree) {
+    if (!empty($tree['below'])) {
+      $links['menu-' . $tree['link']['mlid']] = array();
+      $count = 0;
+      foreach ($tree['below'] as $item) {
+        if (!$item['link']['hidden']) {
+          $class = '';
+          $l = $item['link']['localized_options'];
+          $l['href'] = $item['link']['href'];
+          $l['title'] = $item['link']['title'];
+          if ($item['link']['in_active_trail']) {
+            $class = ' active-trail';
+            $l['attributes']['class'][] = 'active-trail';
+          }
+          // Normally, l() compares the href of every link with $_GET['q'] and sets
+          // the active class accordingly. But local tasks do not appear in menu
+          // trees, so if the current path is a local task, and this link is its
+          // tab root, then we have to set the class manually.
+          if ($item['link']['href'] == $router_item['tab_root_href'] && $item['link']['href'] != $_GET['q']) {
+            $l['attributes']['class'][] = 'active';
+          }
+          // Keyed with the unique mlid to generate classes in theme_links().
+          $l['attributes']['class'][] = 'main-menu-parent-' . $tree['link']['mlid'];
+          $l['attributes']['class'][] = 'secondary-menu-item-' . $count;
+          $links['menu-' . $tree['link']['mlid']]['links']['menu-' . $item['link']['mlid'] . $class] = $l;
+        }
+        $count++;
+      }
+    }
+  }
+  return $links;
 }
 
