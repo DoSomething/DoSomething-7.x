@@ -14,4 +14,3 @@ function dosomething_blog_ctools_plugin_directory($module, $plugin) {
     return 'plugins/' . $plugin;
   }
 }
-

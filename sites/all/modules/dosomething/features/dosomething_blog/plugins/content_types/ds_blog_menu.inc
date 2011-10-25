@@ -53,6 +53,11 @@ function dosomething_blog_ds_blog_menu_content_type_render($subtype, $conf, $pan
             'html' => TRUE,
             'href' => 'blog/all', 
           ),  
+          'news' => array(
+            'title' => 'News',
+            'html' => TRUE,
+            'href' => 'blog/' . $news, 
+          ),  
           'awesome' => array(
             'title' => 'Awe-Some Ones',
             'html' => TRUE,
@@ -67,11 +72,6 @@ function dosomething_blog_ds_blog_menu_content_type_render($subtype, $conf, $pan
             'title' => 'DoSomething Staff',
             'html' => TRUE,
             'href' => 'blog/' . $staff, 
-          ),  
-          'news' => array(
-            'title' => 'News',
-            'html' => TRUE,
-            'href' => 'blog/' . $news, 
           ),  
         ),
       ),
