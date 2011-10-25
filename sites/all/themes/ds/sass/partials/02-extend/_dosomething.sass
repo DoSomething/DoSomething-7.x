@@ -82,9 +82,16 @@
   &:hover, &:active
     color: $c-button-dark-active
 
+.ds-button-strong
+  @extend .ds-button
+  background-color: $yellow
+  +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
+  border: 1px solid rgba($gray-dark, 0.3)
+  border-bottom-color: rgba($gray-dark, 0.6)
+
 a.ds-button
   +link-colors($c-button-dark $c-button-dark-active, $c-button-dark-active, $c-button-dark, false)
-  +undo-better-links
+  // +undo-better-links
   display: inline-block
 
 

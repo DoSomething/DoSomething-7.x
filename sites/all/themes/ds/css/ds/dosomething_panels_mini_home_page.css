@@ -170,7 +170,7 @@
   margin-top: -15px;
 }
 
-.ds-button {
+.ds-button, .ds-button-strong {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
   line-height: 1.412em;
@@ -200,35 +200,31 @@
   background-image: -ms-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
   background-image: linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
 }
-.ds-button:hover, .ds-button:active {
+.ds-button:hover, .ds-button-strong:hover, .ds-button:active, .ds-button-strong:active {
   color: #161616;
 }
 
-a.ds-button {
+.ds-button-strong {
+  background-color: #ffd203;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
+  background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -moz-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  border: 1px solid rgba(34, 34, 34, 0.3);
+  border-bottom-color: rgba(34, 34, 34, 0.6);
+}
+
+a.ds-button, a.ds-button-strong {
   color: #343434 #161616;
   display: inline-block;
 }
-a.ds-button:hover {
+a.ds-button:hover, a.ds-button-strong:hover {
   color: #161616;
 }
-a.ds-button:active {
+a.ds-button:active, a.ds-button-strong:active {
   color: #343434;
-}
-a.ds-button {
-  text-decoration: none;
-  border-bottom-style: inherit;
-}
-a.ds-button:visited {
-  border-bottom-color: inherit;
-}
-a.ds-button:focus {
-  border-bottom-color: inherit;
-}
-a.ds-button:hover {
-  border-bottom-color: inherit;
-}
-a.ds-button:active {
-  border-bottom-color: inherit;
 }
 
 .ds-dropdown {
