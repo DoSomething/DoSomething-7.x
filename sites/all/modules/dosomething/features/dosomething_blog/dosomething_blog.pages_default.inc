@@ -301,12 +301,16 @@ blog/all',
     ),
   );
   $display = new panels_display;
-  $display->layout = 'onecol';
+  $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'left-top' => NULL,
+      'left-bottom-left' => NULL,
+      'left-bottom-right' => NULL,
+      'right' => NULL,
     ),
   );
   $display->cache = array();
@@ -315,7 +319,7 @@ blog/all',
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'middle';
+    $pane->panel = 'left-top';
     $pane->type = 'ds_blog_menu';
     $pane->subtype = 'ds_blog_menu';
     $pane->shown = TRUE;
@@ -329,10 +333,10 @@ blog/all',
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $display->panels['left-top'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
-    $pane->panel = 'middle';
+    $pane->panel = 'left-top';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
     $pane->shown = TRUE;
@@ -361,7 +365,39 @@ blog/all',
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $display->panels['left-top'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'right';
+    $pane->type = 'views';
+    $pane->subtype = 'blog_center';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '0',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'blog_archive_block',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-3'] = $pane;
+    $display->panels['right'][0] = 'new-3';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
@@ -398,12 +434,16 @@ blog/all',
     ),
   );
   $display = new panels_display;
-  $display->layout = 'onecol';
+  $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'left-top' => NULL,
+      'left-bottom-left' => NULL,
+      'left-bottom-right' => NULL,
+      'right' => NULL,
     ),
   );
   $display->cache = array();
@@ -412,7 +452,7 @@ blog/all',
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'middle';
+    $pane->panel = 'left-top';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = FALSE;
@@ -432,10 +472,10 @@ blog/all',
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $display->panels['left-top'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
-    $pane->panel = 'middle';
+    $pane->panel = 'left-top';
     $pane->type = 'ds_blog_menu';
     $pane->subtype = 'ds_blog_menu';
     $pane->shown = TRUE;
@@ -449,10 +489,10 @@ blog/all',
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $display->panels['left-top'][1] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
-    $pane->panel = 'middle';
+    $pane->panel = 'left-top';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
     $pane->shown = TRUE;
@@ -481,7 +521,39 @@ blog/all',
     $pane->extras = array();
     $pane->position = 2;
     $display->content['new-3'] = $pane;
-    $display->panels['middle'][2] = 'new-3';
+    $display->panels['left-top'][2] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
+    $pane->panel = 'right';
+    $pane->type = 'views';
+    $pane->subtype = 'blog_center';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '0',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'blog_archive_block',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-4'] = $pane;
+    $display->panels['right'][0] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-3';
   $handler->conf['display'] = $display;
