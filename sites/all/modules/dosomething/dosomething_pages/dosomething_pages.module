@@ -77,7 +77,15 @@ function dosomething_pages_get_causes() {
           '#suffix' => '</h4>',
         ),
         'all issues link' => array(
-          '#markup' => l('Go', 'find-your-cause/' . str_replace(' ', '-', strtolower($cause->name))),
+          '#markup' => l(
+            'Go',
+            'find-your-cause/' . str_replace(' ', '-', strtolower($cause->name)),
+            array(
+              'attributes' => array(
+                'class' => array('go', 'ds-button-strong')
+              )
+            )
+          ),
         ),
         'children' => array(
           '#theme' => 'item_list',

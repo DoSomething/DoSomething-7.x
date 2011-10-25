@@ -18,7 +18,7 @@
  * 'top' for hanging tabs
  * assumes placement on UL */
 /* Headings -------------------------------------------------------------- */
-.h1, h1, .h2, h2, .h3, h3, .page-causes .main-inner .cause-item h2, .h4, h4, .h5, h5, .h6, h6 {
+.h1, h1, .h2, h2, .h3, h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
   color: #005dab;
@@ -38,7 +38,7 @@
   margin-top: 0.417em;
 }
 
-.h3, h3, .page-causes .main-inner .cause-item h2 {
+.h3, h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4 {
   font-size: 1.5em;
   line-height: 1.333em;
   font-weight: 600;
@@ -135,8 +135,6 @@
 }
 .page-causes .main-inner .cause-item.showing {
   position: relative;
-  background-color: white;
-  border-right: 1px solid #d1d1d1;
   -moz-border-radius-topleft: 6px;
   -webkit-border-top-left-radius: 6px;
   -o-border-top-left-radius: 6px;
@@ -167,6 +165,10 @@
   color: white;
   background: #005dab;
   margin: 0 -8px 1px;
+}
+.page-causes .main-inner .cause-item.showing img {
+  position: relative;
+  z-index: 11;
 }
 .page-causes .main-inner .cause-item.showing .pop-up-close {
   text-indent: -119988px;
@@ -206,6 +208,10 @@
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   margin-left: -8px;
-  padding: 0 8px;
+  margin-top: -80px;
+  padding: 65px 8px 0;
   overflow: hidden;
+}
+.page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4 {
+  border-bottom: 1px #a1a1a1;
 }
