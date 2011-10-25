@@ -14,7 +14,6 @@
       +box-sizing(border-box)
       padding: 0 8px
       margin-bottom: 42px
-      // outline: 1px dashed $white
       &:nth-of-type(3n+3)
         margin-right: 0
         float: right
@@ -28,7 +27,9 @@
       h2
         @extend .h3
         text-align: center
-        margin: 0 0 1px
+        // margin: 0 0
+        margin: 0 -8px 1px
+        +transition('color', 0.4s, 'ease-out')
       img
         width: 206px
         margin: 0 auto
@@ -59,18 +60,33 @@
           position: absolute
           right: 6px
           bottom: 6px
+      .cause-item-pop-up-content
+        position: absolute
+        background-color: $white
+        +border-bottom-radius
+        border-top: none
+        border-right: 1px solid $gray-light
+        border-bottom: 1px solid $gray-light
+        width: $three-col-even
+        +box-sizing(border-box)
+        margin-left: -8px
+        margin-top: -80px
+        padding: 65px 8px 0
+        overflow: hidden
+        +box-shadow(rgba($black-not, 0.2) 0px 2px 6px)
+        +transition('opacity', 0.4s, 'ease-out')
+        .causes-page-js &
+          opacity: 0
+          height: 0
+          padding: 0
       &.showing
         position: relative
-        // background-color: $white
-        // border-right: 1px solid $gray-light
-        // border-left: 1px solid $gray-lighter2
         +border-top-radius
         z-index: 10
         h2
           +border-top-radius
           color: $white
           background: $c-headers
-          margin: 0 -8px 1px
         img
           position: relative
           z-index: 11
@@ -80,23 +96,27 @@
           position: absolute
           right: 6px
           top: 6px
+        .cause-description-pre, .cause-description
+          .causes-page-js &
+            display: none
         .cause-item-pop-up-content
-          position: absolute
-          background-color: $white
-          +border-bottom-radius
-          border-top: none
-          border-right: 1px solid $gray-light
-          border-bottom: 1px solid $gray-light
-          // border-left: 1px solid $gray-lighter2
-          width: $three-col-even
-          +box-sizing(border-box)
-          margin-left: -8px
-          margin-top: -80px
-          padding: 65px 8px 0
-          overflow: hidden
+          .causes-page-js &
+            opacity: 1
+            height: auto
+            padding: 65px 8px 0
           h4
             @extend .h3
-            border-bottom: 1px $gray-lighter2
+            border-bottom: 1px solid $gray-lighter
+            margin-bottom: 0.25em
+          .go
+            position: absolute
+            top: 83px
+            right: 8px
+          .item-list
+            ul
+              border-bottom: 1px solid $gray-lighter
+              padding-bottom: 1em
+
 
 
 
