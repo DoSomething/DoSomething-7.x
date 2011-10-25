@@ -7,32 +7,47 @@
     display: block
     color: $white
     background: $c-headers
+    margin-bottom: 0
     +adjust-font-size-to($s3)
     line-height: 1.65
     font-weight: 500
     padding: calc-em(3px, $s3) 0.5em 0 !important
     +border-top-left-radius
   .pane-content
-    padding-left: calc-em(12px, $s0)
-    padding-right: calc-em(12px, $s0)
+    // padding-left: calc-em(12px, $s0)
+    // padding-right: calc-em(12px, $s0)
+    padding: 5px 20px 10px 20px
+    background: $gray6
+    p
+      margin-top: 0
+    h3
+      color: $black
+      margin-top: 0
+      margin-bottom: 5px
+      border-bottom: 1px dotted $white
 .ds-pane-usergen
   @extend .ds-pane
   h2.pane-title
     background: $purple
+    margin-bottom: 0
+    line-height: 30px
 .ds-pane-news
   @extend .ds-pane
   h2.pane-title
     background: $black
+    line-height: 30px
 .ds-pane-top-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-radius
     text-align: center
+    line-height: 40px
 .ds-pane-top-right-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-left-radius(0)
     +border-top-right-radius
+    line-height: 30px
 
 
 

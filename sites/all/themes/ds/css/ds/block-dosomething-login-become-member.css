@@ -52,6 +52,7 @@
   display: block;
   color: white;
   background: #005dab;
+  margin-bottom: 0;
   font-size: 2em;
   line-height: 2em;
   line-height: 1.65;
@@ -65,16 +66,28 @@
   border-top-left-radius: 6px;
 }
 .ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 5px 20px 10px 20px;
+  background: #d2d2d2;
+}
+.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p {
+  margin-top: 0;
+}
+.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3 {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted white;
 }
 
 .ds-pane-usergen h2.pane-title {
   background: #652e72;
+  margin-bottom: 0;
+  line-height: 30px;
 }
 
 .ds-pane-news h2.pane-title {
   background: black;
+  line-height: 30px;
 }
 
 .ds-pane-top-radius h2.pane-title {
@@ -91,6 +104,7 @@
   -khtml-border-top-right-radius: 6px;
   border-top-right-radius: 6px;
   text-align: center;
+  line-height: 40px;
 }
 
 .ds-pane-top-right-radius h2.pane-title {
@@ -106,6 +120,7 @@
   -ms-border-top-right-radius: 6px;
   -khtml-border-top-right-radius: 6px;
   border-top-right-radius: 6px;
+  line-height: 30px;
 }
 
 .ds-button {
