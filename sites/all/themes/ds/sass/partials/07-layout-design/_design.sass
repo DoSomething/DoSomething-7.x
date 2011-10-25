@@ -61,8 +61,10 @@ body
       margin-top: 0
       margin-bottom: 0
 
-// #main-wrapper
-//   background-color: $c-content-bg
+#main-wrapper
+  // background-color: $c-content-bg
+  background: image_url("bg-page.png") repeat-y center top
+  color: $blue !important
 
 #utility-bar
   background-color: $c-utility-bar-bg
@@ -150,7 +152,7 @@ nav[role=navigation]
   a
     display: block
     +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
-    +remove-link-underlines 
+    +remove-link-underlines
 
 div[role=main]
   background-color: $c-content-bg
