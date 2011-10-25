@@ -66,7 +66,6 @@
   border-top-left-radius: 6px;
 }
 .ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content {
-  padding: 5px 0px 10px 20px;
   background: #d2d2d2;
 }
 .ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p {
@@ -103,7 +102,7 @@
   -ms-border-top-right-radius: 6px;
   -khtml-border-top-right-radius: 6px;
   border-top-right-radius: 6px;
-  text-align: center;
+  text-align: left;
   line-height: 40px;
 }
 
@@ -121,6 +120,25 @@
   -khtml-border-top-right-radius: 6px;
   border-top-right-radius: 6px;
   line-height: 30px;
+}
+
+#schools-and-clubs {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 15px;
+}
+#schools-and-clubs span {
+  display: inline;
+  float: left;
+  width: 300px;
+  font-size: 11px;
+  line-height: 14px;
+}
+#schools-and-clubs img {
+  display: inline;
+  float: right;
+  clear: right;
+  margin-top: -15px;
 }
 
 .ds-button {
