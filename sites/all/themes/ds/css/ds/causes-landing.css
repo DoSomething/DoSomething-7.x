@@ -120,9 +120,9 @@
 .page-causes .main-inner .cause-item .cause-description {
   background: #8e8a86;
   color: white;
-  padding: 8px 12px;
+  padding: 0.667em 1em;
   position: relative;
-  height: 58px;
+  height: 4.833em;
   overflow: hidden;
 }
 .page-causes .main-inner .cause-item .cause-description p {
@@ -142,8 +142,8 @@
   height: 12px;
   display: block;
   position: absolute;
-  right: 6px;
-  bottom: 6px;
+  right: 0.5em;
+  bottom: 0.5em;
 }
 .page-causes .main-inner .cause-item .cause-item-pop-up-content {
   position: relative;
@@ -180,35 +180,35 @@
   -khtml-border-bottom-right-radius: 6px;
   border-bottom-right-radius: 6px;
   border-top: none;
-  border-right: 1px solid #d1d1d1;
-  border-bottom: 1px solid #d1d1d1;
-  width: 222px;
+  border-right: 0.083em solid #d1d1d1;
+  border-bottom: 0.083em solid #d1d1d1;
+  width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  margin-left: -8px;
-  margin-top: -80px;
-  padding: 65px 8px 0;
+  margin-left: -3.604%;
+  margin-top: -6.667em;
+  padding: 5.417em 3.604% 0;
   -moz-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   -webkit-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   -o-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
 }
 .page-causes .main-inner .cause-item .cause-item-pop-up-content h4 {
-  border-bottom: 1px solid #bcbcbc;
+  border-bottom: 0.056em solid #bcbcbc;
   margin-bottom: 0.25em;
 }
 .page-causes .main-inner .cause-item .cause-item-pop-up-content .go {
   position: absolute;
-  top: 21px;
-  right: 8px;
+  top: 1.235em;
+  right: 0.471em;
 }
 .causes-page-js .page-causes .main-inner .cause-item .cause-item-pop-up-content .go {
-  top: 83px;
+  top: 4.882em;
 }
 .page-causes .main-inner .cause-item .cause-item-pop-up-content .item-list ul {
-  border-bottom: 1px solid #bcbcbc;
+  border-bottom: 0.083em solid #bcbcbc;
   padding-bottom: 1em;
 }
 .page-causes .main-inner .cause-item.showing {
@@ -258,8 +258,8 @@
   height: 10px;
   display: block;
   position: absolute;
-  right: 6px;
-  top: 6px;
+  right: 0.5em;
+  top: 0.5em;
 }
 .causes-page-js .page-causes .main-inner .cause-item.showing .cause-description-pre, .causes-page-js .page-causes .main-inner .cause-item.showing .cause-description {
   display: none;
@@ -267,11 +267,11 @@
 .causes-page-js .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content {
   opacity: 1;
   height: auto;
-  padding: 65px 8px 0;
+  padding: 5.417em 3.604% 0;
 }
 .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4 {
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom-color: #e3e3e3;
 }
 .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content .item-list ul {
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom-color: #e3e3e3;
 }
