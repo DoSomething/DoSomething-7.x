@@ -65,10 +65,11 @@
   background: rgba($black, 0.5)
   border: 0
   +border-radius(5px)
+  top: 10% !important
   .ui-dialog-titlebar
     background: none
     border: 0
-    .ui-dialog-titlebar-close, .ui-dialog-titlebar-close 
+    .ui-dialog-titlebar-close, .ui-dialog-titlebar-close
       background-color: none
       position: absolute
       top: 18px
@@ -89,7 +90,7 @@
     +border-radius(5px)
     background: $gray-lighter image_url("lightbox-bg.png") repeat-x
     padding: 0 30px
-    margin-top: -35px
+    margin-top: -30px
     z-index: -10
     h2
       color: $blue2
@@ -162,3 +163,7 @@
           background: image_url("faq.png") no-repeat
           background-position: 0 4px
           padding-left: 25px
+
+.ui-widget-overlay
+  background: $gray-dark
+  opacity: 0.6
