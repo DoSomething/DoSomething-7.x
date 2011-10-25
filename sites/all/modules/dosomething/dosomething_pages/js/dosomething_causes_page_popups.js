@@ -1,21 +1,32 @@
 (function ($) {
   Drupal.behaviors.causePagePopUps = {
     attach: function(context, settings) {
-      $('.cause-item .cause-item-pop-up-content').hide();
+      $('html').addClass('causes-page-js');
+      // $('.cause-item .cause-item-pop-up-content').hide();
       $('.cause-item .cause-description').append('<a class="pop-up-open" href="#">open</a>');
       $('.cause-item .pop-up-open').click(function() {
-        $(this).parent().parent().addClass('showing');
-        $(this).parent().parent().children('.cause-item-pop-up-content').show();
-        $(this).parent().parent().children('.cause-description-pre').hide();
-        $(this).parent().parent().children('.cause-description').hide();
-        // $(this).hide();
-        $(this).parent().parent().children('h2').before('<a class="pop-up-close" href="#">close</a>');
+        $('.cause-item')
+          .removeClass('showing')
+          // .children('.cause-description-pre').show().end()
+          // .children('.cause-description').show().end()
+          // .children('.cause-item-pop-up-content').hide().end()
+          .children('.pop-up-close').remove()
+          ;
+        $thisCause = $(this).parent().parent();
+        $thisCause
+          .addClass('showing')
+          // .children('.cause-item-pop-up-content').show().end()
+          // .children('.cause-description-pre').hide().end()
+          // .children('.cause-description').hide().end()
+          .children('h2').before('<a class="pop-up-close" href="#">close</a>')
+          ;
         $('.cause-item .pop-up-close').click(function() {
-          $(this).parent().removeClass('showing');
-          // $(this).parent().children('.pop-up-open').show();
-          $(this).parent().children('.cause-description-pre').show();
-          $(this).parent().children('.cause-description').show();
-          $(this).parent().children('.cause-item-pop-up-content').hide();
+          $thisCause = $(this).parent();
+          $thisCause
+            .removeClass('showing')
+            // .children('.cause-description-pre').show().end()
+            // .children('.cause-description').show().end()
+            // .children('.cause-item-pop-up-content').hide();
           $(this).remove();
           return false;
         });
