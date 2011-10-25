@@ -1,4 +1,0 @@
-name = DoSomething Causes Page
-description = Adds Causes page with custom pop-ups.
-package = DoSomething
-core = 7.x

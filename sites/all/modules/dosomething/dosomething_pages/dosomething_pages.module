@@ -10,26 +10,26 @@ define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
 /**
  * Implements hook_menu().
  */
-function dosomething_causes_page_menu() {
+function dosomething_pages_menu() {
   $items['cause'] = array(
     'title' => '11 Great Causes for You to Rock',
-    //'title callback' => 'dosomething_causes_page_causes_title',
-    'page callback' => 'dosomething_causes_page_get_causes',
+    //'title callback' => 'dosomething_pages_causes_title',
+    'page callback' => 'dosomething_pages_get_causes',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
   return $items;
 }
 
-function dosomething_causes_page_causes_title() {
+function dosomething_pages_causes_title() {
   $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
   $causes = taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = FALSE);
   return t(count($causes) . ' Great Causes for You to Rock');
 }
 
-function dosomething_causes_page_get_causes() {
+function dosomething_pages_get_causes() {
   global $base_url;
-  drupal_add_js(drupal_get_path('module', 'dosomething_causes_page') . '/js/dosomething_causes_page_popups.js');
+  drupal_add_js(drupal_get_path('module', 'dosomething_pages') . '/js/dosomething_causes_page_popups.js');
   //get taxonomy terms
   $cause_render_array = array();
   $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);

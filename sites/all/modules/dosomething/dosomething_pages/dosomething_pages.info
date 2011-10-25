@@ -1,0 +1,4 @@
+name = DoSomething Pages
+description = Adds custom pages to DoSomething.org.
+package = DoSomething
+core = 7.x
