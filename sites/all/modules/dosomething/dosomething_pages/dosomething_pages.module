@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Custom Causes Page for dosomething.
+ * Custom Pages for dosomething.
  */
 
 define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
@@ -12,11 +12,9 @@ define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
  */
 function dosomething_pages_menu() {
   $items['cause'] = array(
-    'title' => '11 Great Causes for You to Rock',
-    //'title callback' => 'dosomething_pages_causes_title',
+    'title callback' => 'dosomething_pages_causes_title',
     'page callback' => 'dosomething_pages_get_causes',
     'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
   );
   return $items;
 }
