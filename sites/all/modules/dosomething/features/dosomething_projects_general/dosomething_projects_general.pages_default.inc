@@ -88,13 +88,16 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'mid-right';
-    $pane->type = 'block';
-    $pane->subtype = 'block-1';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
+      'admin_title' => 'Start a Project',
+      'title' => '<none>',
+      'body' => '<a href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
+      'format' => '3',
+      'substitute' => 1,
     );
     $pane->cache = array();
     $pane->style = array(
