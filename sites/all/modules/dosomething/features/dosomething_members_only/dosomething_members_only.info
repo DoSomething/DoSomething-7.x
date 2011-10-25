@@ -1,0 +1,8 @@
+name = "Dosomething Members Only"
+core = "7.x"
+package = "DoSomething"
+dependencies[] = "page_manager"
+dependencies[] = "dosomething_block"
+description = "Feature for Members Only section."
+features[ctools][] = "page_manager:pages_default:1"
+features[page_manager_pages][] = "club_hub"
