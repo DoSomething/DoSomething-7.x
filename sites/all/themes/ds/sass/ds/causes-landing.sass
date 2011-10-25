@@ -12,8 +12,10 @@
       width: percentage($three-col-even / $main-width-w-padding)
       float: left
       +box-sizing(border-box)
-      padding: 0 8px
-      margin-bottom: 42px
+      // padding: 0 8px
+      padding: 0 calc-em(8px, $s0)
+      // margin-bottom: 42px
+      margin-bottom: calc-em(42px, $s0)
       &:nth-of-type(3n+3)
         margin-right: 0
         float: right
@@ -27,11 +29,12 @@
       h2
         @extend .h3
         text-align: center
-        // margin: 0 0
-        margin: 0 -8px 1px
+        // margin: 0 -8px 1px
+        margin: 0 calc-em(-8px, $s2) calc-em(1px, $s2)
         +transition('color', 0.4s, 'ease-out')
       img
-        width: 206px
+        // width: 206px
+        width: 100%
         margin: 0 auto
       .cause-description-pre
         content: "\0020"
@@ -61,24 +64,39 @@
           right: 6px
           bottom: 6px
       .cause-item-pop-up-content
-        position: absolute
-        background-color: $white
-        +border-bottom-radius
-        border-top: none
-        border-right: 1px solid $gray-light
-        border-bottom: 1px solid $gray-light
-        width: $three-col-even
-        +box-sizing(border-box)
-        margin-left: -8px
-        margin-top: -80px
-        padding: 65px 8px 0
+        position: relative
         overflow: hidden
-        +box-shadow(rgba($black-not, 0.2) 0px 2px 6px)
         +transition('opacity', 0.4s, 'ease-out')
         .causes-page-js &
           opacity: 0
           height: 0
           padding: 0
+          position: absolute
+          background-color: $white
+          +border-bottom-radius
+          border-top: none
+          border-right: 1px solid $gray-light
+          border-bottom: 1px solid $gray-light
+          width: $three-col-even
+          +box-sizing(border-box)
+          margin-left: -8px
+          margin-top: -80px
+          padding: 65px 8px 0
+          +box-shadow(rgba($black-not, 0.2) 0px 2px 6px)
+        h4
+          @extend .h3
+          border-bottom: 1px solid $gray3
+          margin-bottom: 0.25em
+        .go
+          position: absolute
+          top: 21px
+          right: 8px
+          .causes-page-js &
+            top: 83px
+        .item-list
+          ul
+            border-bottom: 1px solid $gray3
+            padding-bottom: 1em
       &.showing
         position: relative
         +border-top-radius
@@ -105,17 +123,11 @@
             height: auto
             padding: 65px 8px 0
           h4
-            @extend .h3
             border-bottom: 1px solid $gray-lighter
-            margin-bottom: 0.25em
-          .go
-            position: absolute
-            top: 83px
-            right: 8px
           .item-list
             ul
               border-bottom: 1px solid $gray-lighter
-              padding-bottom: 1em
+
 
 
 

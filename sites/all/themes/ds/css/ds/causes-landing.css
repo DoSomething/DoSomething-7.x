@@ -18,7 +18,7 @@
  * 'top' for hanging tabs
  * assumes placement on UL */
 /* Headings -------------------------------------------------------------- */
-.h1, h1, .h2, h2, .h3, h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4, .h4, h4, .h5, h5, .h6, h6 {
+.h1, h1, .h2, h2, .h3, h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item .cause-item-pop-up-content h4, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
   color: #005dab;
@@ -38,7 +38,7 @@
   margin-top: 0.417em;
 }
 
-.h3, h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4 {
+.h3, h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item .cause-item-pop-up-content h4 {
   font-size: 1.5em;
   line-height: 1.333em;
   font-weight: 600;
@@ -70,8 +70,8 @@
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 8px;
-  margin-bottom: 42px;
+  padding: 0 0.667em;
+  margin-bottom: 3.5em;
 }
 .page-causes .main-inner .cause-item:nth-of-type(3n+3) {
   margin-right: 0;
@@ -88,7 +88,7 @@
 }
 .page-causes .main-inner .cause-item h2 {
   text-align: center;
-  margin: 0 -8px 1px;
+  margin: 0 -0.444em 0.056em;
   -moz-transition-property: color;
   -webkit-transition-property: color;
   -o-transition-property: color;
@@ -103,7 +103,7 @@
   transition-timing-function: ease-out;
 }
 .page-causes .main-inner .cause-item img {
-  width: 206px;
+  width: 100%;
   margin: 0 auto;
 }
 .page-causes .main-inner .cause-item .cause-description-pre {
@@ -146,6 +146,25 @@
   bottom: 6px;
 }
 .page-causes .main-inner .cause-item .cause-item-pop-up-content {
+  position: relative;
+  overflow: hidden;
+  -moz-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -moz-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.causes-page-js .page-causes .main-inner .cause-item .cause-item-pop-up-content {
+  opacity: 0;
+  height: 0;
+  padding: 0;
   position: absolute;
   background-color: white;
   -moz-border-radius-bottomleft: 6px;
@@ -171,28 +190,26 @@
   margin-left: -8px;
   margin-top: -80px;
   padding: 65px 8px 0;
-  overflow: hidden;
   -moz-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   -webkit-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   -o-box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
   box-shadow: rgba(22, 22, 22, 0.2) 0px 2px 6px;
-  -moz-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-  -moz-transition-duration: 0.4s;
-  -webkit-transition-duration: 0.4s;
-  -o-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-timing-function: ease-out;
-  -o-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
 }
-.causes-page-js .page-causes .main-inner .cause-item .cause-item-pop-up-content {
-  opacity: 0;
-  height: 0;
-  padding: 0;
+.page-causes .main-inner .cause-item .cause-item-pop-up-content h4 {
+  border-bottom: 1px solid #bcbcbc;
+  margin-bottom: 0.25em;
+}
+.page-causes .main-inner .cause-item .cause-item-pop-up-content .go {
+  position: absolute;
+  top: 21px;
+  right: 8px;
+}
+.causes-page-js .page-causes .main-inner .cause-item .cause-item-pop-up-content .go {
+  top: 83px;
+}
+.page-causes .main-inner .cause-item .cause-item-pop-up-content .item-list ul {
+  border-bottom: 1px solid #bcbcbc;
+  padding-bottom: 1em;
 }
 .page-causes .main-inner .cause-item.showing {
   position: relative;
@@ -254,14 +271,7 @@
 }
 .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content h4 {
   border-bottom: 1px solid #e3e3e3;
-  margin-bottom: 0.25em;
-}
-.page-causes .main-inner .cause-item.showing .cause-item-pop-up-content .go {
-  position: absolute;
-  top: 83px;
-  right: 8px;
 }
 .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content .item-list ul {
   border-bottom: 1px solid #e3e3e3;
-  padding-bottom: 1em;
 }
