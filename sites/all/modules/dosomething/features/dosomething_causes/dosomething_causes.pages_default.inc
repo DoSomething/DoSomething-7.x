@@ -312,6 +312,34 @@ function dosomething_causes_default_page_manager_handlers() {
     $display->panels['issues_right'][0] = 'new-3';
     $pane = new stdClass;
     $pane->pid = 'new-4';
+    $pane->panel = 'issues_right_';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-4'] = $pane;
+    $display->panels['issues_right_'][0] = 'new-4';
+    $pane = new stdClass;
+    $pane->pid = 'new-5';
     $pane->panel = 'right_center';
     $pane->type = 'views';
     $pane->subtype = 'polls';
@@ -340,10 +368,10 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['right_center'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['right_center'][0] = 'new-5';
     $pane = new stdClass;
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -360,10 +388,10 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][0] = 'new-6';
     $pane = new stdClass;
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'top_left_';
     $pane->type = 'views_panes';
     $pane->subtype = 'causes-panel_pane_1';
@@ -377,10 +405,10 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-6'] = $pane;
-    $display->panels['top_left_'][0] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['top_left_'][0] = 'new-7';
     $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'top_right_';
     $pane->type = 'views_panes';
     $pane->subtype = 'causes-panel_pane_2';
@@ -394,8 +422,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['top_right_'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['top_right_'][0] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
