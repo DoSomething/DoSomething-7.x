@@ -20,10 +20,8 @@
       &:nth-of-type(3n+4)
         clear: both
       &:nth-of-type(even)
-        .cause-description-pre
-          border-bottom-color: $gray
         .cause-description
-          background: $gray
+          background-color: $gray
       h2
         @extend .h3
         text-align: center
@@ -32,22 +30,13 @@
       img
         width: 100%
         margin: 0 auto
-      .cause-description-pre
-        content: "\0020"
-        width: 0
-        height: 0
-        border-top: 0
-        border-right: transparent solid 8px
-        border-bottom: $gray2 solid 8px
-        border-left: transparent solid 8px
-        position: relative
-        left: 95px
       .cause-description
-        background: $gray2
+        background: $gray2 image_url('triangle-mask-up.png') no-repeat center top
         color: $white
-        padding: calc-em(8px, $s0) calc-em(12px, $s0)
+        padding: calc-em(16px, $s0) calc-em(12px, $s0) calc-em(8px, $s0)
         position: relative
         height: calc-em(58px, $s0)
+        margin-top: calc-em(-1px, $s0)
         overflow: hidden
         p
           +adjust-font-size-to(11px)
@@ -110,7 +99,7 @@
           position: absolute
           right: calc-em(6px, $s0)
           top: calc-em(6px, $s0)
-        .cause-description-pre, .cause-description
+        .cause-description
           .causes-page-js &
             display: none
         .cause-item-pop-up-content

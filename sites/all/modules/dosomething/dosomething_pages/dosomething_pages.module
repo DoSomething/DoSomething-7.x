@@ -67,7 +67,7 @@ function dosomething_pages_get_causes() {
       ),
       'description' => array(
         '#markup' => $cause->description,
-        '#prefix' => '<div class="cause-description-pre"></div><div class="cause-description"><p>',
+        '#prefix' => '<div class="cause-description"><p>',
         '#suffix' => '</p></div>',
       ),
      'pop up content' => array(

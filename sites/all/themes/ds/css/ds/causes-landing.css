@@ -80,11 +80,8 @@
 .page-causes .main-inner .cause-item:nth-of-type(3n+4) {
   clear: both;
 }
-.page-causes .main-inner .cause-item:nth-of-type(even) .cause-description-pre {
-  border-bottom-color: #5f5c58;
-}
 .page-causes .main-inner .cause-item:nth-of-type(even) .cause-description {
-  background: #5f5c58;
+  background-color: #5f5c58;
 }
 .page-causes .main-inner .cause-item h2 {
   text-align: center;
@@ -106,23 +103,13 @@
   width: 100%;
   margin: 0 auto;
 }
-.page-causes .main-inner .cause-item .cause-description-pre {
-  content: "\0020";
-  width: 0;
-  height: 0;
-  border-top: 0;
-  border-right: transparent solid 8px;
-  border-bottom: #8e8a86 solid 8px;
-  border-left: transparent solid 8px;
-  position: relative;
-  left: 95px;
-}
 .page-causes .main-inner .cause-item .cause-description {
-  background: #8e8a86;
+  background: #8e8a86 url('../images/triangle-mask-up.png') no-repeat center top;
   color: white;
-  padding: 0.667em 1em;
+  padding: 1.333em 1em 0.667em;
   position: relative;
   height: 4.833em;
+  margin-top: -0.083em;
   overflow: hidden;
 }
 .page-causes .main-inner .cause-item .cause-description p {
@@ -261,7 +248,7 @@
   right: 0.5em;
   top: 0.5em;
 }
-.causes-page-js .page-causes .main-inner .cause-item.showing .cause-description-pre, .causes-page-js .page-causes .main-inner .cause-item.showing .cause-description {
+.causes-page-js .page-causes .main-inner .cause-item.showing .cause-description {
   display: none;
 }
 .causes-page-js .page-causes .main-inner .cause-item.showing .cause-item-pop-up-content {
