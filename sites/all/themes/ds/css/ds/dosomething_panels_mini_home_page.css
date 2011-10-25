@@ -460,6 +460,7 @@ a.ds-button:active, a.ds-button-strong:active {
   background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
   color: white;
   padding-top: 20px;
+  min-height: 300px;
 }
 #block-panels-mini-home-page h2 {
   color: white;
