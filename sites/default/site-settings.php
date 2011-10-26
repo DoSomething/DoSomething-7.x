@@ -4,9 +4,9 @@ include_once('./sites/all/modules/memcache/memcache.inc');
 
 $conf = array(
   'cache_default_class' => 'MemCacheDrupal',
-//  'memcache_servers' => array(
-//    'localhost:11211' => 'default',
-//  ),
+  'memcache_servers' => array(
+    'localhost:11211' => 'default',
+  ),
   'memcache_key_prefix' => 'dosomething_',
   'cache_class_cache_form' => 'DrupalDatabaseCache',
 );
