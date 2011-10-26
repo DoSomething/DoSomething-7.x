@@ -169,8 +169,6 @@
   line-height: 30px;
 }
 
-<<<<<<< HEAD
-=======
 .ds-pane-no-radius h2.pane-title {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -180,44 +178,6 @@
   border-radius: 0;
 }
 
-#schools-and-clubs {
-  overflow: hidden;
-  *zoom: 1;
-  padding: 15px;
-}
-#schools-and-clubs span {
-  display: inline;
-  float: left;
-  width: 300px;
-  font-size: 11px;
-  line-height: 14px;
-}
-#schools-and-clubs img {
-  display: inline;
-  float: right;
-  clear: right;
-  margin-top: -15px;
-}
-
-#dosomething11, #this-weeks-winner {
-  overflow: hidden;
-  *zoom: 1;
-  padding: 10px 0 10px 0;
-}
-#dosomething11 img, #this-weeks-winner img {
-  display: inline;
-  float: left;
-  margin-right: 10px;
-}
-#dosomething11 p, #this-weeks-winner p {
-  display: inline;
-  float: right;
-  width: 115px;
-  font-size: 11px;
-  line-height: 14px;
-}
-
->>>>>>> define and refine general styles
 .ds-button, .ds-button-strong {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
@@ -469,6 +429,82 @@ a.ds-button:active, a.ds-button-strong:active {
   background-color: transparent !important;
 }
 
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, #dosomething-blocks-make-an-impact-form-front .form-type-select label, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
+/* Headings -------------------------------------------------------------- */
+.h1, h1, .h2, h2, .h3, h3, #dosomething-blocks-make-an-impact-form-front .form-type-select label, .h4, h4, .h5, h5, .h6, h6 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  color: #005dab;
+}
+
+.h1, h1 {
+  font-size: 2.917em;
+  line-height: 1.029em;
+  font-weight: 500;
+  margin-top: 0.286em;
+}
+
+.h2, h2 {
+  font-size: 2em;
+  line-height: 1.25em;
+  font-weight: 600;
+  margin-top: 0.417em;
+}
+
+.h3, h3, #dosomething-blocks-make-an-impact-form-front .form-type-select label {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
+}
+
 #block-panels-mini-home-page {
   background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
   color: white;
@@ -634,10 +670,13 @@ a.ds-button:active, a.ds-button-strong:active {
   position: absolute;
   padding: 0px 0.5em;
 }
+#dosomething-blocks-make-an-impact-form-front .form-type-select label {
+  color: white;
+}
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown {
   background: #a1a1a1;
   width: 100px;
-  margin-top: 13px;
+  margin-top: 8px;
   color: white;
 }
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:visited {
@@ -666,7 +705,7 @@ a.ds-button:active, a.ds-button-strong:active {
   top: 114px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-where .selectBox-dropdown {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-how-long {
   left: 200px;
@@ -674,7 +713,7 @@ a.ds-button:active, a.ds-button-strong:active {
   padding: 0 0.5em 0 14px;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-how-long .selectBox-dropdown {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 #dosomething-blocks-make-an-impact-form-front .dude {
   position: absolute;

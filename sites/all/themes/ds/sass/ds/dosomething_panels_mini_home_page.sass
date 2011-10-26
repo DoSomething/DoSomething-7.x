@@ -3,8 +3,8 @@
 @import partials/lib/extend/helpers
 @import partials/02-extend/dosomething
 @import partials/02-extend/jquery-selectbox
-// @import partials/02-extend/all
-// @import partials/03-defaults/markup/headers
+@import partials/02-extend/all
+@import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 
 #block-panels-mini-home-page
@@ -132,6 +132,7 @@ $impactbubbles-sprite-dimensions: true
     padding: 0px 0.5em
     label
       @extend .h3
+      color: $white
       .form-required
         @extend .visuallyhidden
     select
@@ -139,7 +140,7 @@ $impactbubbles-sprite-dimensions: true
       // @extend .ds-dropdown
       background: $gray-lighter2
       width: 100px
-      margin-top: 13px
+      margin-top: 8px
       +link-colors($white, $white, $c-select-link-hover, $white, false)
       .selectBox-label
         width: 95%
@@ -156,14 +157,14 @@ $impactbubbles-sprite-dimensions: true
     @extend .impactbubbles-impact-bubble-where
     top: 114px
     .selectBox-dropdown
-      margin-top: 10px
+      margin-top: 5px
   .form-item-how-long
     @extend .impactbubbles-impact-bubble-how-long
     left: 200px
     top: 114px
     padding: 0 0.5em 0 14px
     .selectBox-dropdown
-      margin-top: 10px
+      margin-top: 5px
   .dude
     @extend .impactbubbles-impact-bubble-dude
     position: absolute
