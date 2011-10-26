@@ -2,51 +2,63 @@
   Drupal.behaviors.dsMainMenu = {
     attach: function (context, settings) {
       var timeout = false;
+      var causesTimeout = false;
+      var levelOne = $("#causes-menu-dropdown li.causes-menu-dropdown-level-1");
+      var levelTwo = $("#causes-menu-dropdown li.causes-menu-dropdown-level-2");
+      var secondaryMenu = $(".secondary ul");
+      var secondaryMenuActive = $(".secondary ul.active");
+      var causes = $("#causes-menu-dropdown li");
+      var timeLength = 5000;
+
+      // Show and hide secondary menu.
       $("#main-menu li").hover(function() {
         // Clear the timeout in case user was hovering
         //  over another menu item.
         if (timeout) {
           clearTimeout(timeout);
         }
+
         var classes = $(this).attr('class').split(' ');
-        var tclass = classes[0];
+        var menuClass = classes[0];
 
         // Hide all but related secondary menu
-        $(".secondary ul").addClass('hidden');
-        $("#secondary-menu-" + tclass).removeClass('hidden');
+        secondaryMenu.addClass('hidden');
+        $("#secondary-menu-" + menuClass).removeClass('hidden');
+        causes.hide();
       },
       function() {
         timeout = setTimeout(function() {
           // Hide everything except active secondary menu.
-          $(".secondary ul").addClass('hidden');
-          $(".secondary ul.active").removeClass('hidden');
-        }, 8000);
+          secondaryMenu.addClass('hidden');
+          secondaryMenuActive.removeClass('hidden');
+          causes.hide();
+        }, timeLength);
       });
-    }
-  }
-  Drupal.behaviors.dsDropdownMenu = {
-    attach: function (context, settings) {
-      var levelOne = $("#causes-menu-dropdown li.causes-menu-dropdown-level-1");
-      var levelTwo = $("#causes-menu-dropdown li.causes-menu-dropdown-level-2");
-      
+
       // TODO: Define this element differently
+      //   or add it to the settings?
+      // Show and hide level 1 in the all-causes dropdown.
       $("#secondary-menu-menu-78489 .menu-77381").hover(function() {
-        $(this).addClass('causes-hovering');
         levelOne.show();
       },
       function() {
-        t = setTimeout(function() {
-          $(this).removeClass('causes-hovering');
+        causesTimeout = setTimeout(function() {
           levelOne.hide();
-        }, 8000);
+        }, timeLength + 1000);
       }); 
 
+      // Show and hide level 2 items in the all-causes dropdown.
       levelOne.hover(function() {
         levelOne.show();
         $(this).find("li.causes-menu-dropdown-level-2").show();
       },
       function() {
         $(this).find("li.causes-menu-dropdown-level-2").hide();
+      });
+
+      // Hide the causes menu on click.
+      $("body").click(function() {
+        causes.hide();
       });
     }
   }

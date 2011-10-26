@@ -1956,6 +1956,13 @@ nav[role=navigation] .secondary ul li.last {
 nav[role=navigation] .secondary ul.active a {
   color: white;
 }
+nav[role=navigation] .causes-dropdown {
+  position: absolute;
+  z-index: 10;
+  left: 25em;
+  top: 4.2em;
+  background-color: #014e9c;
+}
 nav[role=navigation] .causes-dropdown .item-list #causes-menu-dropdown li {
   display: none;
 }
