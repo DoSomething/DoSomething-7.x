@@ -140,13 +140,16 @@ function ds_menu_secondary_links($variables) {
   if (count($secondary_menu_items)) {
     foreach ($secondary_menu_items as $mlid => &$links) {
       $links['attributes']['class'][] = 'links';
+      $links['attributes']['class'][] = $mlid;
       if (isset($variables['main_menu'][$mlid . ' active-trail'])) {
         $links['links'] = $variables['secondary_menu'];
+        $links['attributes']['class'][] = 'active';
       }
       else {
         $links['attributes']['class'][] = 'hidden';
       }
     }
+    drupal_add_js(drupal_get_path('theme', 'ds') . '/js/ds-main-menu.js');
   }
   return $secondary_menu_items;
 }
