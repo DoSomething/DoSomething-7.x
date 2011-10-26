@@ -369,31 +369,19 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-6';
     $pane->panel = 'right_center';
-    $pane->type = 'views';
-    $pane->subtype = 'polls';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'polls-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '1',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-usergen ds-pane-top-right-radius',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-6'] = $pane;
