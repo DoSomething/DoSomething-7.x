@@ -187,17 +187,17 @@
   margin-top: -15px;
 }
 
-#dosomething11 {
+#dosomething11, #this-weeks-winner {
   overflow: hidden;
   *zoom: 1;
-  padding-bottom: 10px;
+  padding: 10px 0 10px 0;
 }
-#dosomething11 img {
+#dosomething11 img, #this-weeks-winner img {
   display: inline;
   float: left;
   margin-right: 10px;
 }
-#dosomething11 p {
+#dosomething11 p, #this-weeks-winner p {
   display: inline;
   float: right;
   width: 115px;
