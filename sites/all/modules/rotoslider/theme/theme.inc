@@ -22,34 +22,12 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     drupal_add_js(array('rotoslider' => $settings), 'setting');
   }
 
-  $fields = array();
-  foreach (array_filter($variables['options']['fields']) as $option => $field_name) {
-    $info = field_info_field($field_name);
-    $fields[$option] = !empty($info) ? "field_$field_name" : $variables['view']->field[$field_name]->field_alias;
-  }
-
-  $items = array();
-  foreach ($variables['rows'] as $delta => $row) {
-    if (!isset($fields['title']) || !isset($row->{$fields['title']})) {
-      continue;
-    }
-
-    $items[$delta]['title'] = check_plain($row->{$fields['title']});
-    if (isset($fields['image']) && isset($row->{$fields['image']}[0]['raw']['uri'])) {
-      $items[$delta]['image'] = file_create_url(check_plain($row->{$fields['image']}[0]['raw']['uri']));
-    }
-    if (isset($fields['text']) && isset($row->{$fields['text']}[0]['raw']['value'])) {
-      $items[$delta]['text'] = check_markup($row->{$fields['text']}[0]['raw']['value']);
-    }
-  }
+  $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field);
 
   if (!empty($variables['options']['initial']['default'])) {
-    $initial = $variables['options']['initial'];
-    $heading = array(
-      'title' => check_plain($initial['title']),
-      'image' => file_create_url(check_plain($initial['image'])),
-      'text' => check_markup($initial['text']),
-    );
+    unset($variables['options']['initial']['default']);
+    $heading = _rotoslider_process($variables['options']['initial'], array($variables['rows'][0]), $variables['view']->field);
+    $heading = reset($heading);
   }
   else {
     $heading = array_shift($items);
@@ -230,4 +208,45 @@ function template_preprocess_rotoslider_slider(&$variables) {
  */
 function theme_rotoslider_slider($variables) {
   return drupal_render($variables['element']);
+}
+
+function _rotoslider_process($options, $rows, $fields) {
+  $items = array();
+  $info = array();
+  foreach (array_filter($options) as $type => $field_name) {
+    if (empty($fields[$field_name])) {
+      $info[$type] = $field_name;
+    }
+    else {
+      $info[$type] = isset($fields[$field_name]->field_info) ? "field_$field_name" : $fields[$field_name]->field_alias;
+    }
+  }
+
+  foreach ($rows as $delta => $row) {
+    foreach (array('title', 'image', 'text') as $type) {
+      if (isset($row->$info[$type])) {
+        $value = $row->$info[$type];
+      }
+      elseif (isset($info[$type])) {
+        $value = $info[$type];
+      }
+      elseif ($type == 'title') {
+        continue;
+      }
+      else {
+        $value = '';
+      }
+
+      $column = $type == 'image' ? 'uri' : 'value';
+      $values[$type] = is_array($value) ? $value[0]['raw'][$column] : $value;
+    }
+
+    $items[$delta] = array(
+      'title' => check_plain($values['title']),
+      'image' => file_create_url(check_plain($values['image'])),
+      'text' => check_markup($values['text']),
+    );
+  }
+
+  return $items;
 }

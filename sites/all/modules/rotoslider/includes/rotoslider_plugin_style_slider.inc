@@ -95,21 +95,32 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
       '#description' => t('If unchecked, the first slide will be the initial slide.'),
       '#default_value' => $this->options['initial']['default'],
     );
-    $form['initial']['title'] = array(
-      '#type' => 'textfield',
+
+    if (module_exists('select_or_other')) {
+      $initial = array(
+        '#type' => 'select_or_other',
+        '#options' => $options,
+        '#other_unknown_defaults' => 'append',
+      );
+    }
+    else {
+      $initial = array(
+        '#type' => 'textfield',
+      );
+    }
+
+    $form['initial']['title'] = $initial + array(
       '#title' => t('Title'),
       '#default_value' => $this->options['initial']['title'],
       '#dependency' => array('edit-style-options-initial-default' => array(1)),
     );
-    $form['initial']['image'] = array(
-      '#type' => 'textfield',
+    $form['initial']['image'] = $initial + array(
       '#title' => t('Image'),
       '#description' => t('Either an external URL, or a URI with a stream wrapper like "public://".'),
       '#default_value' => $this->options['initial']['image'],
       '#dependency' => array('edit-style-options-initial-default' => array(1)),
     );
-    $form['initial']['text'] = array(
-      '#type' => 'textarea',
+    $form['initial']['text'] = $initial + array(
       '#title' => t('Description'),
       '#default_value' => $this->options['initial']['text'],
       '#dependency' => array('edit-style-options-initial-default' => array(1)),
