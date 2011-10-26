@@ -20,7 +20,33 @@
           // Hide everything except active secondary menu.
           $(".secondary ul").addClass('hidden');
           $(".secondary ul.active").removeClass('hidden');
-        }, 5000);
+        }, 8000);
+      });
+    }
+  }
+  Drupal.behaviors.dsDropdownMenu = {
+    attach: function (context, settings) {
+      var levelOne = $("#causes-menu-dropdown li.causes-menu-dropdown-level-1");
+      var levelTwo = $("#causes-menu-dropdown li.causes-menu-dropdown-level-2");
+      
+      // TODO: Define this element differently
+      $("#secondary-menu-menu-78489 .menu-77381").hover(function() {
+        $(this).addClass('causes-hovering');
+        levelOne.show();
+      },
+      function() {
+        t = setTimeout(function() {
+          $(this).removeClass('causes-hovering');
+          levelOne.hide();
+        }, 8000);
+      }); 
+
+      levelOne.hover(function() {
+        levelOne.show();
+        $(this).find("li.causes-menu-dropdown-level-2").show();
+      },
+      function() {
+        $(this).find("li.causes-menu-dropdown-level-2").hide();
       });
     }
   }

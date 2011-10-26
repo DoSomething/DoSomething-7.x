@@ -23,6 +23,8 @@ function ds_preprocess_page(&$variables) {
   }
 
   $variables['secondary_menu_items'] = ds_menu_secondary_links($variables);
+  // TODO: constant for vocab id.
+  $variables['causes_dropdown_menu'] = ds_get_heirarchical_taxonomy_listing(5);
 }
 
 function ds_preprocess_block(&$variables) {
@@ -207,5 +209,43 @@ function ds_menu_navigation_links($menu_name) {
     }
   }
   return $links;
+}
+
+/**
+ * TODO: MOVE THIS?
+ * TODO: Cache this!!!
+ */
+function ds_get_heirarchical_taxonomy_listing($vid) {
+  $attributes = array(
+    'id' => 'causes-menu-dropdown',
+  );
+
+  $t = taxonomy_get_tree($vid);
+  $tree = array();
+  foreach ($t as $term) {
+    foreach ($term->parents as $parent_id) {
+      if ($parent_id) {
+        if (!isset($tree[$parent_id])) {
+          $tree[$parent_id] = array();
+          $tree[$parent_id]['children'] = array();
+        }
+        $tree[$parent_id]['children'][$term->tid]['data'] = l(check_plain($term->name), 'taxonoomy/term/' . $term->tid);
+        $tree[$parent_id]['children'][$term->tid]['class'] = array('causes-menu-dropdown-level-2');
+      }
+      else if (!isset($tree[$term->tid]->tid)) {
+        $children = isset($tree[$term->tid]['children']) ? $tree[$term->tid]['children'] : array();
+        $tree[$term->tid]['data'] = l(check_plain($term->name), 'taxonoomy/term/' . $term->tid);
+        $tree[$term->tid]['children'] = $children;
+        $tree[$term->tid]['class'] = array('causes-menu-dropdown-level-1');
+      }
+    }
+  }
+
+  $items = array(
+    '#theme' => 'item_list',
+    '#items' => $tree,
+    '#attributes' => $attributes,
+  );
+  return $items;
 }
 

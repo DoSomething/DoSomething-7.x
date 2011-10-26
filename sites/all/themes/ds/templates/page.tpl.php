@@ -31,7 +31,7 @@
 
     <?php print render($page['header']); ?>
 
-    <?php if ($main_menu || $secondary_menu): ?>
+    <?php if ($main_menu || $secondary_menu_items): ?>
       <nav role="navigation">
         <?php if ($main_menu): ?>
         <div class="primary">
@@ -45,6 +45,9 @@
           <?php endforeach; ?>
         </div>
         <?php endif; ?>
+        <div class="causes-dropdown">
+          <?php print render($causes_dropdown_menu); ?>
+        </div>
       </nav> <!-- /nav -->
     <?php endif; ?>
 
