@@ -4,27 +4,28 @@
  * Implements hook_init().
  */
 function dosomething_campaign_styles_init() {
-  // TODO: Determine whether we're in an appropriate OG context.
-  // TODO: Load the settings for some particular campaign.
   if ($context = og_context()) {
-    dpm($context);
-  /*
-    ctools_include('plugins');
-    $plugins = array();
-    $plugins[] = $plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', 'staples_for_students_2011');
-    while ($parent_plugin = dosomething_campaign_styles_get_style_parent($plugin)) {
-      $plugin = $parent_plugin;
-      $plugins[] = $parent_plugin;
-    }
-    while ($plugin_data = array_pop($plugins)) {
-      foreach ($plugin_data['css'] as $css_path) {
-        drupal_add_css($plugin_data['path'] . '/' . $css_path);
+    if (isset($context->etid)) {
+      ctools_include('plugins');
+      // Currently this is hard coded to work with nids specifically.
+      $plugin = dosomething_campaign_styles_pluginify_path(drupal_get_path_alias('node/' . $context->etid));
+      if ($plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin)) {
+        $plugins = array();
+        $plugins[] = $plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', 'staples_for_students_2011');
+        while ($parent_plugin = dosomething_campaign_styles_get_style_parent($plugin)) {
+          $plugin = $parent_plugin;
+          $plugins[] = $parent_plugin;
+        }
+        while ($plugin_data = array_pop($plugins)) {
+          foreach ($plugin_data['css'] as $css_path) {
+            drupal_add_css($plugin_data['path'] . '/' . $css_path);
+          }
+          foreach ($plugin_data['js'] as $js_path) {
+            drupal_add_css($plugin_data['path'] . '/' . $js_path);
+          }
+        }
       }
-      foreach ($plugin_data['js'] as $js_path) {
-        drupal_add_css($plugin_data['path'] . '/' . $js_path);
-      }
     }
-  */
   }
 }
 
@@ -67,4 +68,18 @@ function dosomething_campaign_styles_get_style_parent($plugin) {
     $parent_plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin['parent']);
   }
   return $parent_plugin;
+}
+
+/**
+ * Convert a path to a ctools safe plugin name.
+ *
+ * @param $path
+ *   The string from the URL alias.
+ * @return
+ *   The plugin (and variable) safe name.
+ */
+function dosomething_campaign_styles_pluginify_path($path) {
+  $plugin_name = str_replace('/', '_', $path);
+  $plugin_name = str_replace('-', '_', $plugin_name);
+  return $plugin_name;
 }
