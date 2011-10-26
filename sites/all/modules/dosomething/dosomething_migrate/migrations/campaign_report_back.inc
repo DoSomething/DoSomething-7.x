@@ -73,7 +73,6 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_post_a_link_to_your_video', 'field_botb_video')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('data_campaign_project_type', 'field_campaign_project_type');
 
     $this->addFieldMapping('field_webform_school_zip', 'locations')
       ->description('Pulling the zip code out of the locations in prepareRow()');
@@ -85,7 +84,7 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
 
     //NULL Mappings
     $this->addUnmigratedSources(array('field_campaign_group', 'field_campaign_project_type'));
-    $this->addUnmigratedDestinations(array('data_campaign_project_type', 'field_webform_mobile', 'field_webform_email', 'field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array('data_campaign_project_type', 'field_webform_mobile', 'field_webform_email'));
 
   }
 }
@@ -113,11 +112,10 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('data_school_group_name', 'field_campaign_group');
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('data_school_group_name_1', 'field_webform_mobile', 'field_webform_email', 'field_webform_school', 'field_webform_school_zip', 'data_video'));
+    $this->addUnmigratedDestinations(array('data_school_group_name_1', 'field_webform_mobile', 'field_webform_email', 'data_video'));
 
   }
 }
@@ -127,6 +125,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
     parent::__construct('campaign_gys_2011');
     $this->description .= 'Campaign Project - Green Your School 2011';
 
+    $this->addFieldMapping('data_your_school', 'title');
     $this->addFieldMapping('data_number_of_people_involved_in_this_project', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_how_did_you_use_technology_to_green_your_school', 'field_iyg_technology');
     $this->addFieldMapping('data_why_is_greening_your_school_important_to_you', 'field_campaign_essay_why');
@@ -140,10 +139,9 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('data_your_school', 'title');
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_email', 'field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_email', 'field_webform_school_zip'));
   }
 }
 
@@ -173,7 +171,7 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
       ->arguments(array('file_function' => 'file_fid'));
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array('field_webform_mobile'));
   }
 }
 
@@ -207,11 +205,6 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('data_name_of_school_or_group', 'title');
-
-    //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
-
   }
 }
 
@@ -250,7 +243,7 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_school_zip'));
   }
 }
 
@@ -318,11 +311,10 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_pictures', 'field_project_photo')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('data_school_you_attend', 'field_school');
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array('field_webform_school_zip'));
   }
 }
 
@@ -341,10 +333,8 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
 
-    $this->addFieldMapping('data_drive_or_school_name', 'title');
-
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'field_webform_school_zip', 'field_webform_school', 'data_pictures_from_your_drive'));
+    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'data_pictures_from_your_drive'));
   }
 }
 
@@ -365,7 +355,7 @@ class DSCampaignReportBackStaplesReasonMigration extends DSCampaignReportBackMig
       ->description('Pulling the zip code out of the locations in prepareRow()');
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'field_webform_school_zip', 'field_webform_school', 'field_webform_pictures'));
+    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'field_webform_pictures'));
   }
 }
 
@@ -390,10 +380,9 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
     $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('data_name_of_your_school_or_group', 'title');
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_videos', 'field_webform_school_zip', 'field_webform_school'));
+    $this->addUnmigratedDestinations(array('field_webform_videos', 'field_webform_school_zip'));
   }
 }
 
@@ -409,6 +398,6 @@ class DSCampaignReportBackTroopLetterMigration extends DSCampaignReportBackMigra
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_pictures', 'field_webform_school', 'field_webform_school_zip', 'field_webform_videos'));
+    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_pictures', 'field_webform_school_zip', 'field_webform_videos'));
   }
 }
