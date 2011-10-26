@@ -8,6 +8,11 @@ abstract class DSCampaignSignupMigration extends DSJsonWebformMigration {
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code'));
   }
+
+  public function prepareRow($row) {
+    // Extract the zip code from the location:
+    $row->locations = empty($row->locations[0]->postal_code) ? NULL : $row->locations[0]->postal_code;
+  }
 }
 
 
@@ -39,6 +44,8 @@ class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
     $this->addUnmigratedSources(array('format', 'teaser'));
     $this->addFieldMapping('data_great_school_id', 'field_great_schools_id');
 
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
 #    $this->addFieldMapping('field_webform_email', '');
 #    $this->addFieldMapping('field_webform_mobile', '');
 #    $this->addFieldMapping('field_webform_school', '');
@@ -54,6 +61,7 @@ class DSCampaignSignupHealthySchoolsMigration extends DSCampaignSignupMigration 
     parent::__construct('healthy_schools');
     $this->description .= 'Healthy Schools';
 
+    $this->addFieldMapping('data_school_organization_name', 'field_campaign_school');
     $this->addFieldMapping('data_how_many_people_are_you_working_with', 'field_healthy_schools_team');
     $this->addFieldMapping('data_whatcha_doin', 'field_campaign_essay');
 
@@ -97,6 +105,10 @@ class DSCampaignSignupIncreaseYourGreenMigration extends DSCampaignSignupMigrati
     $this->addFieldMapping('data_how_did_you_measure_your_energy_saved_what_numbers_did_you_use_to_keep_track_of_your_progress', 'field_iyg_energy_metrics');
     $this->addFieldMapping('data_innovation_let_us_know_why_your_efforts_were_unique__how_you_improved_on_whats_been_done_before', 'field_iyg_innovation');
     $this->addFieldMapping('data_anything_else_we_should_know_fill_us_in', 'field_iyg_other_info');
+    $this->addFieldMapping('data_how_did_you_get_other_members_of_your_school_and_or_community_involved', 'field_iyg_people_engage');
+    $this->addFieldMapping('data_how_did_you_spread_the_word_about_your_efforts_to_your_school_and_community', 'field_iyg_people_spread');
+    $this->addFieldMapping('data_how_you_improved_your_school_what_policies_did_you_have_to_change_what_new_programs_practices_did_you_implement', 'field_iyg_waste_info');
+    $this->addFieldMapping('data_your_schools_name', 'field_increaseyourgreen_signu_1');
 
     $this->addFieldMapping('field_webform_email', 'title');
     $this->addFieldMapping('field_webform_mobile', 'field_increaseyourgreen_signu_0');

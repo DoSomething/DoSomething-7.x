@@ -61,7 +61,7 @@ class DSProject extends DSJsonWebformMigration {
     }
 
     // Extract the zip code from the location:
-    $row->locations = empty($r->locations[0]->postal_code) ? NULL : $r->locations[0]->postal_code;
+    $row->locations = empty($row->locations[0]->postal_code) ? NULL : $row->locations[0]->postal_code;
   }
 }
 

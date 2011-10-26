@@ -6,7 +6,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'field_webform_school'));
   }
 
   public function prepareRow($row) {
@@ -23,6 +23,9 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
         }
       }
     }
+
+    // Extract the zip code from the location:
+    $row->locations = empty($row->locations[0]->postal_code) ? NULL : $row->locations[0]->postal_code;
   }
 }
 
@@ -65,10 +68,15 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_anything_else_we_should_know_about_your_battle_for_the_bands_advocacy_project', 'field_botb_other');
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
       ->description('Select field keys are unchanged.');
+    $this->addFieldMapping('data_how_did_you_head_about_us', 'vocab_15')
+    ->arguments(array('source_type' => 'value'));
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_post_a_link_to_your_video', 'field_botb_video')
       ->arguments(array('file_function' => 'file_fid'));
+    $this->addFieldMapping('data_campaign_project_type', 'field_campaign_project_type');
 
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
@@ -87,6 +95,7 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
     parent::__construct('campaign_ebd_2011');
     $this->description .= 'Campaign Project - Epic Book Drive 2011';
 
+    $this->addFieldMapping('data_school_group_name', 'field_campaign_group');
     $this->addFieldMapping('data_why_is_educational_equality_important_to_you', 'field_campaign_essay_why');
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_book_drive', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_how_did_your_work_unfold_what_was_the_best_part', 'field_campaign_essay_how');
@@ -97,7 +106,8 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_anything_else_awesome_we_should_know', 'field_campaign_anything_else');
 
-
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
@@ -154,6 +164,8 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
     $this->addFieldMapping('data_challenge_type', 'field_campaign_project_type');
 
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
@@ -170,6 +182,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
     parent::__construct('canned_food');
     $this->description .= 'Canned Food Drive Report (Tackle Hunger)';
 
+    $this->addFieldMapping('data_name_of_school_or_group', 'title');
     $this->addFieldMapping('data_your_first_and_last_name', 'field_cannedfood_contactname');
     $this->addFieldMapping('data_state', 'field_state_plain')
       ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
@@ -186,6 +199,8 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
     $this->addFieldMapping('data_where_did_you_donate', 'field_cannedfood_donationcenter');
     $this->addFieldMapping('data_tell_us_more_about_your_drive_what_creative_things_did_you_do_to_really_rock_this_is_your_chance_to_shine', 'field_tell_us_more_about_your_d');
 
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_email', 'field_email_1');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
     $this->addFieldMapping('field_webform_pictures', 'field_fooddrive_photo')
@@ -276,6 +291,7 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
     parent::__construct('save_our_music');
     $this->description .= 'Save Our Music';
 
+    $this->addFieldMapping('data_school_you_attend', 'field_school');
     $this->addFieldMapping('data_first_name', 'field_name');
     $this->addFieldMapping('data_last_name', 'field_name_last');
     $this->addFieldMapping('data_address', 'field_plumgrant_address');
@@ -315,10 +331,13 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
     parent::__construct('sfs_report_gallery');
     $this->description .= 'Staples for Students Image Submission';
 
+    $this->addFieldMapping('data_drive_or_school_name', 'title');
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_school_supply_drive', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_what_awesome_things_did_you_do_to_make_your_drive_particularly_successful', 'field_awesome_idea');
     $this->addFieldMapping('data_anything_else_we_should_know_about_your_staples_for_students_project', 'field_anything_else');
 
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'));
 
@@ -342,6 +361,9 @@ class DSCampaignReportBackStaplesReasonMigration extends DSCampaignReportBackMig
       ->description("field_where_from is unstructured, might not map cleanly.");
     $this->addFieldMapping('data_yes_i_am_13_years_of_age_or_older', 'field_thirteen');
 
+    $this->addFieldMapping('field_webform_school_zip', 'locations')
+      ->description('Pulling the zip code out of the locations in prepareRow()');
+
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'field_webform_school_zip', 'field_webform_school', 'field_webform_pictures'));
   }
@@ -352,6 +374,7 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
     parent::__construct('tfj_contest_signup');
     $this->description .= 'Teens for Jeans Contest Signup';
 
+    $this->addFieldMapping('data_name_of_your_school_or_group', 'title');
     $this->addFieldMapping('data_full_name', 'field_campaign_name');
     $this->addFieldMapping('data_state', 'field_campaign_state_0');
     $this->addFieldMapping('data_address', 'field_campaign_address');
