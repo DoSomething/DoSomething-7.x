@@ -1,0 +1,47 @@
+=clearfix
+  *zoom: 1
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+.panel-row
+  +clearfix
+
+.panes-1
+  .panel-panel
+    width: 100%
+.panes-2
+  .panel-panel
+    width: 50%
+    float: left
+    &.panel-last
+      float: right
+
+.panes-3
+  .panel-panel
+    width: 33%
+    float: left
+    &.panel-last
+      float: right
+
+
+.panel-row-top.panes-2
+  .panel-row-top-first
+    width: 66%
+    float: left
+  .panel-top-second
+    width: 33%
+    float: right
+
+.panel-row-top
+  .panel-top-first-bottom
+    width: 100%
+
+.panel-row-bottom.panes-2
+  .panel-panel
+    width: 66%
+    float: left
+    &.panel-last
+      width: 33%
+      float: right
