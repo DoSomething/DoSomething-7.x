@@ -41,28 +41,35 @@
   h2.pane-title
     background: $purple
     margin-bottom: 0
-    line-height: 30px
 .ds-pane-news
   @extend .ds-pane
   h2.pane-title
     background: $gray-dark
-    line-height: 30px
 .ds-pane-top-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-radius
-    text-align: left
-    line-height: 40px
 .ds-pane-top-right-radius
   @extend .ds-pane
   h2.pane-title
     +border-top-left-radius(0)
     +border-top-right-radius
-    line-height: 30px
 .ds-pane-no-radius
   @extend .ds-pane
   h2.pane-title
     +border-radius(0)
+.ds-pane-center
+  h2.pane-title
+    text-align: center
+.ds-pane-fat
+  h2.pane-title
+    line-height: 40px
+.ds-pane-campaign
+  @extend .ds-pane
+  h2.pane-title
+    background-color: $yellow
+    +background-image(linear-gradient(top, $yellow-gloss-light, $yellow-gloss-dark))
+    color: $black-not
 
 // dosomething buttons
 .ds-button

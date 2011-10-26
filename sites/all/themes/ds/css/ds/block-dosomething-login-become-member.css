@@ -48,7 +48,7 @@
 }
 
 /* Only use the fancy ampersand in <h#> tags */
-.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
+.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title, .ds-pane-campaign h2.pane-title {
   display: block;
   color: white;
   font-size: 2em;
@@ -64,7 +64,7 @@
   border-top-left-radius: 6px;
 }
 
-.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
+.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title, .ds-pane-campaign h2.pane-title {
   display: block;
   color: white;
   background: #005dab;
@@ -81,14 +81,14 @@
   -khtml-border-top-left-radius: 6px;
   border-top-left-radius: 6px;
 }
-.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content {
+.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content, .ds-pane-campaign .pane-content {
   padding-left: 1em;
   padding-right: 1em;
 }
-.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p {
+.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p, .ds-pane-campaign .pane-content p {
   margin-top: 0;
 }
-.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3, .ds-pane-no-radius .pane-content h3 {
+.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3, .ds-pane-no-radius .pane-content h3, .ds-pane-campaign .pane-content h3 {
   color: black;
   margin-top: 0;
   margin-bottom: 5px;
@@ -98,12 +98,10 @@
 .ds-pane-usergen h2.pane-title {
   background: #652e72;
   margin-bottom: 0;
-  line-height: 30px;
 }
 
 .ds-pane-news h2.pane-title {
   background: #222222;
-  line-height: 30px;
 }
 
 .ds-pane-top-radius h2.pane-title {
@@ -119,8 +117,6 @@
   -ms-border-top-right-radius: 6px;
   -khtml-border-top-right-radius: 6px;
   border-top-right-radius: 6px;
-  text-align: left;
-  line-height: 40px;
 }
 
 .ds-pane-top-right-radius h2.pane-title {
@@ -136,7 +132,6 @@
   -ms-border-top-right-radius: 6px;
   -khtml-border-top-right-radius: 6px;
   border-top-right-radius: 6px;
-  line-height: 30px;
 }
 
 .ds-pane-no-radius h2.pane-title {
@@ -146,6 +141,25 @@
   -ms-border-radius: 0;
   -khtml-border-radius: 0;
   border-radius: 0;
+}
+
+.ds-pane-center h2.pane-title {
+  text-align: center;
+}
+
+.ds-pane-fat h2.pane-title {
+  line-height: 40px;
+}
+
+.ds-pane-campaign h2.pane-title {
+  background-color: #ffd203;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fbdf61), color-stop(100%, #fbc013));
+  background-image: -webkit-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: -moz-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: -o-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: -ms-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: linear-gradient(top, #fbdf61, #fbc013);
+  color: #161616;
 }
 
 .ds-button, .ds-button-strong {
