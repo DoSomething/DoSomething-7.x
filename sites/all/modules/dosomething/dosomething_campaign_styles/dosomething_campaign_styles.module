@@ -21,7 +21,7 @@ function dosomething_campaign_styles_init() {
             drupal_add_css($plugin_data['path'] . '/' . $css_path);
           }
           foreach ($plugin_data['js'] as $js_path) {
-            drupal_add_css($plugin_data['path'] . '/' . $js_path);
+            drupal_add_js($plugin_data['path'] . '/' . $js_path);
           }
         }
       }
@@ -36,6 +36,8 @@ function dosomething_campaign_styles_ctools_plugin_type() {
   return array(
     'campaign_style' => array(
       'child plugins' => FALSE,
+      'load themes' => TRUE,
+      'cache' => TRUE,
     ),
   );
 }
@@ -53,8 +55,8 @@ function dosomething_campaign_styles_ctools_plugin_type() {
  *   relative to your module's root. Omit leading and trailing slashes.
  */
 function dosomething_campaign_styles_ctools_plugin_directory($owner, $plugin_type) {
-  if ($owner == 'dosomething_campaign_styles') {
-    return "plugins/$plugin_type";
+  if ($owner == 'dosomething_campaign_styles' && $plugin_type == 'campaign_style') {
+    return "campaign_styles";
   }
 }
 
