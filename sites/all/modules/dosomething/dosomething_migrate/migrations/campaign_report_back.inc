@@ -85,7 +85,6 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
     //NULL Mappings
     $this->addUnmigratedSources(array('field_campaign_group', 'field_campaign_project_type'));
     $this->addUnmigratedDestinations(array('data_campaign_project_type', 'field_webform_mobile', 'field_webform_email', 'field_webform_issues'));
-
   }
 }
 
@@ -116,7 +115,6 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array('data_school_group_name_1', 'field_webform_mobile', 'field_webform_email', 'data_video', 'field_webform_issues'));
-
   }
 }
 
@@ -140,7 +138,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_issues', 'vocab_5');
-    
+
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_email', 'field_webform_school_zip'));
   }
@@ -205,7 +203,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
       ->arguments(array('file_function' => 'file_fid'));
-  
+
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_issues'));
   }

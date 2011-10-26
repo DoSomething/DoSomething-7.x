@@ -28,7 +28,6 @@ class DSCampaignSignupEbdMigration extends DSCampaignSignupMigration {
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_school', 'field_webform_school_zip'));
     $this->addUnmigratedSources(array('format', 'teaser'));
-
   }
 }
 
@@ -66,14 +65,11 @@ class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
     $this->description .= 'Green Your School 2011';
 
     $this->addFieldMapping('data_how_will_you_green_your_school', 'body');
-    $this->addUnmigratedSources(array('format', 'teaser'));
     $this->addFieldMapping('data_great_school_id', 'field_great_schools_id');
     $this->addFieldMapping('data_school', 'title');
 
-    $this->addFieldMapping('field_webform_school_zip', 'locations')
-      ->description('Pulling the zip code out of the locations in prepareRow()');
-
     //Null Mappings
+    $this->addUnmigratedSources(array('format', 'teaser'));
     $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_school', 'field_webform_school_zip'));
   }
 }
@@ -126,15 +122,10 @@ class DSCampaignSignupIncreaseYourGreenMigration extends DSCampaignSignupMigrati
 
     $this->addFieldMapping('field_webform_email', 'title');
     $this->addFieldMapping('field_webform_mobile', 'field_increaseyourgreen_signu_0');
-    $this->addFieldMapping('data_how_did_you_spread_the_word_about_your_efforts_to_your_school_and_community', 'field_iyg_people_spread');
-    $this->addFieldMapping('data_how_did_you_get_other_members_of_your_school_and_or_community_involved', 'field_iyg_people_engage');
-    $this->addFieldMapping('data_how_you_improved_your_school_what_policies_did_you_have_to_change_what_new_programs_practices_did_you_implement', 'field_iyg_waste_info');
-    $this->addFieldMapping('data_your_schools_name', 'field_increaseyourgreen_signu_1');
 
     //Null Mappings
     //$this->addUnmigratedSources(array(''));
     $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
-
   }
 }
 
@@ -156,7 +147,6 @@ class DSCampaignSignupScavengerMigration extends DSCampaignSignupMigration {
     //Null Mappings
     //$this->addUnmigratedSources(array(''));
     $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
-
   }
 }
 
@@ -178,7 +168,6 @@ class DSCampaignSignupStaplesMigration extends DSCampaignSignupMigration {
     //Null Mappings
     //$this->addUnmigratedSources(array(''));
     $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
-
   }
 }
 

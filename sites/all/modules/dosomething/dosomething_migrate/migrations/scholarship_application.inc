@@ -69,7 +69,7 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('data_phone_number', 'field_phone_number_1');
     $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
-  
+
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip', 'data_video_optional', 'field_webform_photo_url', 'field_webform_project_summary'));
@@ -91,7 +91,7 @@ class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigra
       ->arguments(array('file_function' => 'file_fid'));
 
     $this->addFieldMapping('field_webform_name', 'title'); # Name (text)
-    
+
     //Null Mappings
     //$this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array('field_webform_address', 'field_webform_birthdate', 'field_webform_email', 'field_webform_mobile', 'field_webform_photo_url', 'field_webform_project', 'field_webform_project_summary', 'field_webform_project_website', 'field_webform_school', 'field_webform_school_zip', 'field_webform_video_url'));
@@ -131,7 +131,7 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
     $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
-    
+
     //Null Mappings
     //$this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array('field_webform_photo_url', 'field_webform_project_summary', 'field_webform_project_website', 'field_webform_school', 'field_webform_school_zip', 'field_webform_video_url'));
