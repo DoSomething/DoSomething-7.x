@@ -256,12 +256,28 @@ function dosomething_blog_views_default_views() {
 
   /* Display: Blog Center Block */
   $handler = $view->new_display('block', 'Blog Center Block', 'block_1');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Blog type (field_blog_type) */
+  $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['not'] = 0;
 
   /* Display: Causes/Issues Blog Content pane */
   $handler = $view->new_display('panel_pane', 'Causes/Issues Blog Content pane', 'panel_pane_1');
   $handler->display->display_options['display_description'] = 'Displays Cause/Issues related Blog posts';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Post date */
@@ -341,37 +357,14 @@ function dosomething_blog_views_default_views() {
     'trim_length' => '300',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Read More &raquo;';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['path'] = 'blog/[tid]';
-  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['view_node']['alter']['path'] = 'blog/%1/%2';
+  $handler->display->display_options['fields']['view_node']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['external'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['nl2br'] = 0;
@@ -380,24 +373,71 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['view_node']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['view_node']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['view_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['view_node']['text'] = 'Testing';
+  $handler->display->display_options['fields']['view_node']['text'] = 'Read more &raquo;';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_blog_image']['id'] = 'field_blog_image';
+  $handler->display->display_options['fields']['field_blog_image']['table'] = 'field_data_field_blog_image';
+  $handler->display->display_options['fields']['field_blog_image']['field'] = 'field_blog_image';
+  $handler->display->display_options['fields']['field_blog_image']['label'] = '';
+  $handler->display->display_options['fields']['field_blog_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_blog_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_blog_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_blog_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_blog_image']['settings'] = array(
+    'image_style' => 'blog_thumbnail',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_blog_image']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Sticky */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'node';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Blog type (field_blog_type) */
-  $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_blog_type_tid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['field_blog_type_tid']['not'] = 0;
+  /* Contextual filter: Content: Has taxonomy term ID */
+  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid']['title_enable'] = 1;
+  $handler->display->display_options['arguments']['tid']['title'] = 'Blog Center: %1';
+  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
+  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['tid']['add_table'] = 0;
+  $handler->display->display_options['arguments']['tid']['require_value'] = 0;
+  $handler->display->display_options['arguments']['tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['arguments']['tid']['set_breadcrumb'] = 0;
 
   /* Display: Blog Archives Block */
   $handler = $view->new_display('block', 'Blog Archives Block', 'blog_archive_block');
@@ -758,6 +798,22 @@ function dosomething_blog_views_default_views() {
     'action_guide' => 'action_guide',
   );
   $handler->display->display_options['block_description'] = 'Do This Blog Block';
+
+  /* Display: Issues Blog Center Block */
+  $handler = $view->new_display('block', 'Issues Blog Center Block', 'block_4');
+  $handler->display->display_options['display_description'] = 'Displays Cause/Issues related Blog posts';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Field: Issues (taxonomy_vocabulary_5) */
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['not'] = 0;
   $export['blog_center'] = $view;
 
   $view = new view;
