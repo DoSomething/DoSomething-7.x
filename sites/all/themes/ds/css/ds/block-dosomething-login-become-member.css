@@ -51,7 +51,6 @@
 .ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
-  background: #005dab;
   font-size: 2em;
   line-height: 2em;
   line-height: 1.65;
