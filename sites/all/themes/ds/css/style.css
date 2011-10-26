@@ -1862,37 +1862,32 @@ body.admin-menu {
 }
 
 nav[role=navigation] {
-  text-transform: uppercase;
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
+  text-transform: uppercase;
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
-  padding-left: 22.162%;
   display: table;
+  padding-left: 22.162%;
   width: 100%;
-}
-nav[role=navigation] .secondary {
-  background-color: #014e9c;
-  margin-left: 22.162%;
-  width: 77.838%;
 }
 nav[role=navigation] #main-menu {
   font-size: 2.417em;
   line-height: 1.655em;
   font-weight: 500;
+  display: table-row;
   min-height: 1.517em;
   padding-right: 0.103em;
   padding-left: 0;
-  display: table-row;
 }
 nav[role=navigation] #main-menu li {
   display: table-cell;
 }
 nav[role=navigation] #main-menu li a {
+  line-height: 1.172;
   margin-right: 0.172em;
   padding-top: 0.345em;
-  line-height: 1.172;
   padding-left: 0.207em;
   padding-right: 0.207em;
 }
@@ -1907,20 +1902,25 @@ nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.a
   border-top: 0.069em solid white;
   padding-top: 0.276em;
 }
-nav[role=navigation] #secondary-menu {
+nav[role=navigation] .secondary {
+  background-color: #014e9c;
+  margin-left: 22.162%;
+  width: 77.838%;
+}
+nav[role=navigation] .secondary ul {
   font-size: 1.5em;
   line-height: 1.333em;
   font-weight: 500;
-  min-height: 1.667em;
-  line-height: 1.667;
   margin: 0;
   padding: 0;
   border: 0;
   overflow: hidden;
   *zoom: 1;
+  line-height: 1.667;
+  min-height: 1.667em;
   padding-left: 1.222em;
 }
-nav[role=navigation] #secondary-menu li {
+nav[role=navigation] .secondary ul li {
   list-style-image: none;
   list-style-type: none;
   margin-left: 0px;
@@ -1930,16 +1930,16 @@ nav[role=navigation] #secondary-menu li {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
-nav[role=navigation] #secondary-menu li:first-child, nav[role=navigation] #secondary-menu li.first {
+nav[role=navigation] .secondary ul li:first-child, nav[role=navigation] .secondary ul li.first {
   padding-left: 0;
 }
-nav[role=navigation] #secondary-menu li:last-child {
+nav[role=navigation] .secondary ul li:last-child {
   padding-right: 0;
 }
-nav[role=navigation] #secondary-menu li.last {
+nav[role=navigation] .secondary ul li.last {
   padding-right: 0;
 }
-nav[role=navigation] #secondary-menu.active a {
+nav[role=navigation] .secondary ul.active a {
   color: white;
 }
 nav[role=navigation] a {

@@ -87,31 +87,27 @@ body
 
 
 nav[role=navigation]
-  text-transform: uppercase
   font-family: $font-headline
   text-rendering: optimizeLegibility
+  text-transform: uppercase
   .primary
     background-color: $c-menu-primary-bg
-    padding-left: percentage($left-col-width / $page-width)
     display: table
+    padding-left: percentage($left-col-width / $page-width)
     width: 100%
-  .secondary
-    background-color: $c-menu-secondary-bg
-    margin-left: percentage($left-col-width / $page-width)
-    width: percentage($main-width / $page-width)
   #main-menu
     +adjust-font-size-to($s4)
     font-weight: 500
+    display: table-row
     min-height: calc-em($menu-height, $s4)
     padding-right: calc-em(3px, $s4)
     padding-left: 0
-    display: table-row
     li
       display: table-cell
       a
+        line-height: ($menu-height - 10px) / $s4
         margin-right: calc-em(5px, $s4)
         padding-top: calc-em(10px, $s4)
-        line-height: ($menu-height - 10px) / $s4
         padding-left: calc-em(6px, $s4)
         padding-right: calc-em(6px, $s4)
       &.last
@@ -126,16 +122,20 @@ nav[role=navigation]
             position: center -3px
           border-top: (calc-em(2px, $s4)) solid $white
           padding-top: calc-em(8px, $s4)
-  #secondary-menu
-    +adjust-font-size-to($s2)
-    font-weight: 500
-    min-height: calc-em($submenu-height, $s2)
-    line-height: $submenu-height / $s2
-    +horizontal-list(0.5em)
-    padding-left: calc-em(22px, $s2)
-    &.active
-      a
-        color: $white
+  .secondary
+    background-color: $c-menu-secondary-bg
+    margin-left: percentage($left-col-width / $page-width)
+    width: percentage($main-width / $page-width)
+    ul
+      +adjust-font-size-to($s2)
+      font-weight: 500
+      +horizontal-list(0.5em)
+      line-height: $submenu-height / $s2
+      min-height: calc-em($submenu-height, $s2)
+      padding-left: calc-em(22px, $s2)
+      &.active
+        a
+          color: $white
   a
     display: block
     +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
