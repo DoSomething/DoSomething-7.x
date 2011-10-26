@@ -1,0 +1,154 @@
+<?php
+
+/**
+ * Vocabulary id of issues vocabulary.
+ */
+define('DS_MENU_ISSUES_VID', 5);
+define('DS_MENU_ALL_CAUSES_LINK', 'cause');
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_menu_theme() {
+  return array(
+    'dosomething_menu_taxonomy_listing' => array(
+      'arguments' => array('tree' => NULL), 
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function dosomething_menu_preprocess_page(&$variables) {
+  $variables['secondary_menu_items'] = dosomething_menu_secondary_links($variables);
+  $tree = dosomething_menu_get_heirarchical_taxonomy_listing(DS_MENU_ISSUES_VID);
+  $variables['causes_dropdown_menu'] = theme('dosomething_menu_taxonomy_listing', array('tree' => $tree));
+}
+
+/**
+ * Get the secondary links for all possible main menu links.
+ *  This is used to build html for all hidden and shown
+ *  secondary links.
+ */
+function dosomething_menu_secondary_links($variables) {
+  $secondary_menu_items = dosomething_menu_navigation_links('main-menu');
+  if (count($secondary_menu_items)) {
+    foreach ($secondary_menu_items as $mlid => &$links) {
+      $links['attributes']['class'][] = 'links';
+      $links['attributes']['class'][] = $mlid;
+      if (isset($variables['main_menu'][$mlid . ' active-trail'])) {
+        $links['links'] = $variables['secondary_menu'];
+        $links['attributes']['class'][] = 'active';
+      }
+      else {
+        $links['attributes']['class'][] = 'hidden';
+      }
+    }
+    drupal_add_js(drupal_get_path('module', 'dosomething_menu') . '/js/ds-main-menu.js');
+  }
+  return $secondary_menu_items;
+}
+
+/**
+ * Return an array of links for a navigation menu.
+ *  Note that this is specifc for level 2.
+ *
+ * @param $menu_name
+ *   The name of the menu.
+ *
+ * @return
+ *   An array of links of the specified menu.
+ */
+function dosomething_menu_navigation_links($menu_name) {
+  // Don't even bother querying the menu table if no menu is specified.
+  if (empty($menu_name)) {
+    return array();
+  }
+
+  // Get the menu hierarchy for the current page.
+  $mlids = array();
+
+  $main_tree = menu_build_tree($menu_name);
+  $router_item = menu_get_item();
+  $links = array();
+  foreach ($main_tree as $tree) {
+    if (!empty($tree['below'])) {
+      $links['menu-' . $tree['link']['mlid']] = array();
+      $count = 0;
+      foreach ($tree['below'] as $item) {
+        if (!$item['link']['hidden']) {
+          $class = '';
+          $l = $item['link']['localized_options'];
+          $l['href'] = $item['link']['href'];
+          $l['title'] = $item['link']['title'];
+          if ($item['link']['in_active_trail']) {
+            $class = ' active-trail';
+            $l['attributes']['class'][] = 'active-trail';
+          }
+          // Normally, l() compares the href of every link with $_GET['q'] and sets
+          // the active class accordingly. But local tasks do not appear in menu
+          // trees, so if the current path is a local task, and this link is its
+          // tab root, then we have to set the class manually.
+          if ($item['link']['href'] == $router_item['tab_root_href'] && $item['link']['href'] != $_GET['q']) {
+            $l['attributes']['class'][] = 'active';
+          }
+          if ($item['link']['href'] == DS_MENU_ALL_CAUSES_LINK) {
+            $l['attributes']['class'][] = 'causes-dropdown-trigger';
+          }
+          // Keyed with the unique mlid to generate classes in theme_links().
+          $l['attributes']['class'][] = 'main-menu-parent-' . $tree['link']['mlid'];
+          $l['attributes']['class'][] = 'secondary-menu-item-' . $count;
+          $links['menu-' . $tree['link']['mlid']]['links']['menu-' . $item['link']['mlid'] . $class] = $l;
+        }
+        $count++;
+      }
+    }
+  }
+  return $links;
+}
+
+/**
+ * TODO: Cache this!!!
+ * Build a heirarchical listing of taxonomy items.
+ */
+function dosomething_menu_get_heirarchical_taxonomy_listing($vid) {
+  $tree = array();
+  $taxonomy_tree = taxonomy_get_tree($vid);
+  foreach ($taxonomy_tree as $term) {
+    foreach ($term->parents as $parent_id) {
+      if ($parent_id) {
+        if (!isset($tree[$parent_id])) {
+          $tree[$parent_id] = array();
+          $tree[$parent_id]['children'] = array();
+        }
+        $tree[$parent_id]['children'][$term->tid]['data'] = l(check_plain($term->name), 'taxonomy/term/' . $term->tid);
+        $tree[$parent_id]['children'][$term->tid]['class'] = array('causes-menu-dropdown-level-2');
+      }
+      else if (!isset($tree[$term->tid]->tid)) {
+        $children = isset($tree[$term->tid]['children']) ? $tree[$term->tid]['children'] : array();
+        $tree[$term->tid]['data'] = l(check_plain($term->name), 'taxonomy/term/' . $term->tid);
+        $tree[$term->tid]['children'] = $children;
+        $tree[$term->tid]['class'] = array('causes-menu-dropdown-level-1');
+      }
+    }
+  }
+  return $tree;
+}
+
+/**
+ * Theme function for rendering a multi-level taxonomy list.
+ */
+function theme_dosomething_menu_taxonomy_listing($variables) {
+  $tree = $variables['tree'];
+  $attributes = array(
+    'id' => 'causes-menu-dropdown',
+  );
+  $items = array(
+    '#theme' => 'item_list',
+    '#items' => $tree,
+    '#attributes' => $attributes,
+  );
+  return $items;
+}
+

@@ -46,7 +46,9 @@
         </div>
         <?php endif; ?>
         <div class="causes-dropdown">
-          <?php print render($causes_dropdown_menu); ?>
+          <?php if (isset($causes_dropdown_menu)): ?>
+            <?php print render($causes_dropdown_menu); ?>
+          <?php endif; ?>
         </div>
       </nav> <!-- /nav -->
     <?php endif; ?>

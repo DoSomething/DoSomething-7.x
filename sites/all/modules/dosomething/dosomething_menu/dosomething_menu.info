@@ -1,0 +1,5 @@
+name = "DoSomething Menu"
+description = "Custom functionality for the main and secondary menus"
+core = 7.x
+package = DoSomething
+dependencies[] = taxonomy
