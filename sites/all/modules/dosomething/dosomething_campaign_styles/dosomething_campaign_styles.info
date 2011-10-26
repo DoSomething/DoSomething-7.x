@@ -1,0 +1,6 @@
+name = "Dosomething Campaign Styles"
+description = "This module provides a ctools plugin system for modifying campaigns by adding CSS and JS."
+core = "7.x"
+package = "Dosomething"
+dependencies[] = dosomething_campaign
+dependencies[] = og_context
