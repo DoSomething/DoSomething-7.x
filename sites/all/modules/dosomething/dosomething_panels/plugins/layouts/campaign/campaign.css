@@ -1,0 +1,38 @@
+.panel-row {
+  *zoom: 1; }
+  .panel-row:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.panes-1 .panel-panel {
+  width: 100%; }
+
+.panes-2 .panel-panel {
+  width: 50%;
+  float: left; }
+  .panes-2 .panel-panel.panel-last {
+    float: right; }
+
+.panes-3 .panel-panel {
+  width: 33%;
+  float: left; }
+  .panes-3 .panel-panel.panel-last {
+    float: right; }
+
+.panel-row-top.panes-2 .panel-row-top-first {
+  width: 66%;
+  float: left; }
+.panel-row-top.panes-2 .panel-top-second {
+  width: 33%;
+  float: right; }
+
+.panel-row-top .panel-top-first-bottom {
+  width: 100%; }
+
+.panel-row-bottom.panes-2 .panel-panel {
+  width: 66%;
+  float: left; }
+  .panel-row-bottom.panes-2 .panel-panel.panel-last {
+    width: 33%;
+    float: right; }

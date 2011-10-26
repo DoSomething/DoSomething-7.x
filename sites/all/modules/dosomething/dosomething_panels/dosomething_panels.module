@@ -166,3 +166,62 @@ function dosomething_panels_preprocess_dosomething_panels_one_three_two(&$variab
   }
   $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
 }
+
+function dosomething_panels_preprocess_dosomething_panels_campaign(&$variables) {
+  $content = $variables['content'];
+
+  if (isset($content['top-first-top-first']) || isset($content['top-first-top-second']) || isset($content['top-first-bottom'])) {
+    $top_row_classes[] = 'top-first';
+  }
+  if (isset($content['top-second'])) {
+    $top_row_classes[] = 'top-second';
+  }
+  $top_row_classes[] = 'panes-' . count($top_row_classes);
+  if (isset($content['top-first-top-first']) || isset($content['top-first-top-second']) || isset($content['top-first-bottom']) || isset($content['top-second'])) {
+    $top_row_classes[] = 'all';
+  }
+  $variables['top_row_classes'] = implode(' ', $top_row_classes);
+
+
+  if (isset($content['top-first-top-first'])) {
+    $top_first_top_classes[] = 'top-first-top-first';
+  }
+  if (isset($content['top-first-top-second'])) {
+    $top_first_top_classes[] = 'top-first-top-second';
+  }
+  $top_first_top_classes[] = 'panes-' . count($top_first_top_classes);
+  if (isset($content['top-first-top-first']) || isset($content['top-first-top-second'])) {
+    $top_first_top_classes[] = 'both all';
+  }
+  $variables['top_first_top_classes'] = implode(' ', $top_first_top_classes);
+
+
+  if ($content['middle-first']) {
+    $middle_row_classes[] = 'middle-first';
+  }
+  if ($content['middle-second']) {
+    $middle_row_classes[] = 'middle-second';
+  }
+  if ($content['middle-third']) {
+    $middle_row_classes[] = 'middle-third';
+  }
+  $middle_row_classes[] = 'panes-' . count($middle_row_classes);
+  if ($content['middle-first'] && $content['middle-second'] && $content['middle-third']) {
+    $middle_row_classes[] = 'all';
+  }
+  $variables['middle_row_classes'] = implode(' ', $middle_row_classes);
+
+
+  if ($content['bottom-first']) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if ($content['bottom-second']) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  if ($content['bottom-first'] && $content['bottom-second']) {
+    $bottom_row_classes[] = 'both all';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+
+}
