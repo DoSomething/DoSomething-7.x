@@ -140,8 +140,6 @@
   line-height: 30px;
 }
 
-<<<<<<< HEAD
-=======
 .ds-pane-no-radius h2.pane-title {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -151,44 +149,6 @@
   border-radius: 0;
 }
 
-#schools-and-clubs {
-  overflow: hidden;
-  *zoom: 1;
-  padding: 15px;
-}
-#schools-and-clubs span {
-  display: inline;
-  float: left;
-  width: 300px;
-  font-size: 11px;
-  line-height: 14px;
-}
-#schools-and-clubs img {
-  display: inline;
-  float: right;
-  clear: right;
-  margin-top: -15px;
-}
-
-#dosomething11, #this-weeks-winner {
-  overflow: hidden;
-  *zoom: 1;
-  padding: 10px 0 10px 0;
-}
-#dosomething11 img, #this-weeks-winner img {
-  display: inline;
-  float: left;
-  margin-right: 10px;
-}
-#dosomething11 p, #this-weeks-winner p {
-  display: inline;
-  float: right;
-  width: 115px;
-  font-size: 11px;
-  line-height: 14px;
-}
-
->>>>>>> define and refine general styles
 .ds-button, .ds-button-strong {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
