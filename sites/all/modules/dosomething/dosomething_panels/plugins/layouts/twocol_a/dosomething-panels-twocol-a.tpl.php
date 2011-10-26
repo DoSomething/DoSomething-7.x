@@ -1,35 +1,41 @@
 <?php
-if ($content['left-top'] | $content['left-bottom-left'] | $content['left-bottom-right']) {
+if (isset($content['left-top']) || isset($content['left-bottom-left']) || isset($content['left-bottom-right'])) {
   $outer_row_classes[] = 'outer-first';
 }
-if ($content['right']) {
+if (isset($content['right'])) {
   $outer_row_classes[] = 'outer-second';
 }
 $outer_row_classes[] = 'panes-' . count($outer_row_classes);
-if ((($content['left-top'] | $content['left-bottom-left'] | $content['left-bottom-right'])) && $content['right']) {
+if ((isset($content['left-top']) || isset($content['left-bottom-left']) || isset($content['left-bottom-right'])) && isset($content['right'])) {
   $outer_row_classes[] = 'both';
 }
 $outer_row_classes = implode(" ", $outer_row_classes);
 
 
-if ($content['bottom-left']) {
+if (isset($content['bottom-left'])) {
   $bottom_row_classes[] = 'bottom-first';
 }
-if ($content['bottom-right']) {
+if (isset($content['bottom-right'])) {
   $bottom_row_classes[] = 'bottom-second';
 }
-$bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
-if ($content['bottom-left'] && $content['bottom-right']) {
+if (isset($bottom_row_classes)) {
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+}
+if (isset($content['bottom-left']) && isset($content['bottom-right'])) {
   $bottom_row_classes[] = 'both';
 }
-$bottom_row_classes = implode(" ", $bottom_row_classes);
-
+if (isset($bottom_row_classes)) {
+  $bottom_row_classes = implode(" ", $bottom_row_classes);
+}
+else {
+  $bottom_row_classes = NULL;
+}
 ?>
 
 <div class="panel-twocol-a panel-display ds-panel" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <div class="panel-row panel-row-outer <?php print $outer_row_classes?>">
 
-    <?php if ($content['left-top'] | $content['left-bottom-left'] | $content['left-bottom-right']): ?>
+    <?php if (isset($content['left-top']) || isset($content['left-bottom-left']) || isset($content['left-bottom-right'])): ?>
       <div class="panel-outer-left panel-panel">
         <?php if ($content['left-top']): ?>
           <div class="panel-top panel-panel panel-full">
@@ -37,7 +43,7 @@ $bottom_row_classes = implode(" ", $bottom_row_classes);
           </div>
         <?php endif; ?>
 
-        <?php if ($content['left-bottom-left'] | $content['left-bottom-right']): ?>
+        <?php if (isset($content['left-bottom-left']) || isset($content['left-bottom-right'])): ?>
           <div class="panel-row panel-row-bottom <?php print $bottom_row_classes?>">
             <?php if ($content['left-bottom-left']): ?>
               <div class="panel-first panel-panel">
