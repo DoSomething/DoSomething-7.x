@@ -194,6 +194,7 @@
 }
 .ds-button:hover, .ds-button-strong:hover, .ds-button:active, .ds-button-strong:active {
   color: #161616;
+  text-decoration: none;
 }
 
 .ds-button-strong {

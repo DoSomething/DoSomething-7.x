@@ -564,6 +564,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .ds-button:hover, .ds-button-strong:hover, button:hover, input[type=button]:hover, input[type=submit]:hover, .ds-button:active, .ds-button-strong:active, button:active, input[type=button]:active, input[type=submit]:active {
   color: #161616;
+  text-decoration: none;
 }
 
 .ds-button-strong {
