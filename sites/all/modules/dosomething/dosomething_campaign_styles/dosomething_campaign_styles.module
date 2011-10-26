@@ -8,10 +8,10 @@ function dosomething_campaign_styles_init() {
     if (isset($context->etid)) {
       ctools_include('plugins');
       // Currently this is hard coded to work with nids specifically.
-      $plugin = dosomething_campaign_styles_pluginify_path(drupal_get_path_alias('node/' . $context->etid));
-      if ($plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin)) {
+      $plugin_name = dosomething_campaign_styles_pluginify_path(drupal_get_path_alias('node/' . $context->etid));
+      if ($plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin_name)) {
         $plugins = array();
-        $plugins[] = $plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', 'staples_for_students_2011');
+        $plugins[] = $plugin;
         while ($parent_plugin = dosomething_campaign_styles_get_style_parent($plugin)) {
           $plugin = $parent_plugin;
           $plugins[] = $parent_plugin;
