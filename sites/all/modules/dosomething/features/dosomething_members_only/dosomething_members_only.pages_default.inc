@@ -16,7 +16,10 @@ function dosomething_members_only_default_page_manager_pages() {
   $page->admin_title = 'Club Hub';
   $page->admin_description = '';
   $page->path = 'club-hub';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'normal',
     'title' => 'ClubHub',

@@ -406,7 +406,7 @@ function dosomething_blog_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => 0,
+        'default_image' => NULL,
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',
@@ -914,8 +914,8 @@ function dosomething_blog_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'vocabulary' => 'vocabulary_5',
             'parent' => 0,
+            'vocabulary' => 'vocabulary_5',
           ),
         ),
         'profile2_private' => FALSE,
@@ -1149,6 +1149,12 @@ function dosomething_blog_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
+          'weight' => 0,
+        ),
+        'token' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => 0,
         ),
       ),

@@ -84,7 +84,6 @@ function dosomething_login_block_view($delta = '') {
         }
       }
       else {
-        $block['subject'] = '';
         $block['content'] = dosomething_login_member_block();
       }
       break;
@@ -122,25 +121,26 @@ function dosomething_login_mail($key, &$message, $params) {
 /**
  * Implements hook_theme().
  */
-function dosomething_login_theme() {
+function dosomething_login_theme($existing, $type, $theme, $path) {
   return array(
     'dosomething_login_member_lightbox' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
+      'path' => $path . '/templates',
+      'variables' => array(),
       'template' => 'dosomething-login-member-lightbox',
     ),
     'dosomething_login_parent_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL, 'link' => NULL),
+      'path' => $path . '/templates',
+      'variables' => array('full_name' => NULL, 'link' => NULL),
       'template' => 'dosomething-login-parent-email',
     ),
     'dosomething_login_parent_permission_granted_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL),
+      'path' => $path . '/templates',
+      'variables' => array('full_name' => NULL),
       'template' => 'dosomething-login-parent-permission-granted-email',
     ),
     'dosomething_login_parent_permission_denied_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_login') . '/templates',
-      'arguments' => array('full_name' => NULL),
+      'path' => $path . '/templates',
+      'variables' => array('full_name' => NULL),
       'template' => 'dosomething-login-parent-permission-denied-email',
     ),
   );
@@ -245,8 +245,8 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $form['title_text'] = array(
     '#type' => 'item',
-    '#title' => t('You\'re almost there.'),
-    '#description' => t('Fill out the rest of the informationbelow and you\'ll be a member in no time.'),
+    '#title' => t("You're almost there."),
+    '#description' => t("Fill out the rest of the informationbelow and you'll be a member in no time."),
   );
   $form['name'] = array(
     'first_name' => array(
@@ -275,7 +275,15 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#size' => 20,
   );
   $form['birthday'] = array(
-    'over_13' => array('#markup' => '<div class="age-question">' . t('Birthday') . '</div>'),
+    'over_13' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'age-question',
+        ),
+      ),
+      '#children' => t('Birthday'),
+    ),
     'month' => array(
       '#type' => 'textfield',
       '#attributes' => array(
@@ -308,13 +316,13 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['parent_email_message'] = array(
     '#type' => 'item',
     '#title' => t('What a Rock Star!'),
-    '#description' => t('Since you\'re under the age of 13, you\'ll need to get a parent or guradian\'s permission.'),
+    '#description' => t("Since you're under the age of 13, you'll need to get a parent or guradian's permission."),
     '#prefix' => '<div class="under-13-field">',
   );
   $form['parent_email'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
-      'placeholder' => t('Parent or Guardian\'s Email'),
+      'placeholder' => t("Parent or Guardian's Email"),
     ),
     '#suffix' => '</div>',
     '#size' => 20,
@@ -339,19 +347,19 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['signup_title'] = array(
     '#type' => 'item',
     '#title' => t('Sign Up for Updates'),
-    '#description' => t('In order to be a member, you have to be 25 and under.  However, this doesn\'t mean you can\'t stay up to date on our latests somethings.'),
+    '#description' => t("In order to be a member, you have to be 25 and under. However, this doesn't mean you can't stay up to date on our latests somethings."),
     '#prefix' => '<div class="over-25-field">',
     '#suffix' => '</div>',
   );
   $form['signup_message'] = array(
     '#type' => 'item',
-    '#description' => t('Yes! I\'d love to receive the hilarious and informative weekly updates.'),
+    '#description' => t("Yes! I'd love to receive the hilarious and informative weekly updates."),
     '#prefix' => '<div class="over-25-field">',
     '#suffix' => '</div>',
   );
   $form['signup'] = array(
     '#type' => 'checkbox',
-    '#description' => t('Yes! I\'d love to receive the hilarious and informative weekly updates.'),
+    '#description' => t("Yes! I'd love to receive the hilarious and informative weekly updates."),
     '#default_value' => TRUE,
   );
   $form['final_submit'] = array(
@@ -378,10 +386,26 @@ function dosomething_login_register_block($form, &$form_state) {
 
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
-  $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['#action'] = url('user/registration', array('query' => $query));
-  $form['connect']['#markup'] = '<div class="connect-thru-facebook">' .  l('Connect thru Facebook', $fb_url) . '</div>';
-  $form['or']['#markup'] = '<div class="separator split">' . t('or') . '</div>';
+  $form['connect'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'connect-thru-facebook',
+      ),
+    ),
+    '#children' => l('Connect thru Facebook', $fb_url),
+  );
+  $form['or'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'separator',
+        'split',
+      ),
+    ),
+    '#children' => t('or'),
+  );
   $form['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
@@ -406,7 +430,15 @@ function dosomething_login_register_block($form, &$form_state) {
     '#size' => 20,
   );
   $form['birthday'] = array(
-    'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
+    'over_13' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'age-question',
+        ),
+      ),
+      '#children' => t('Over 13?'),
+    ),
     'month' => array(
       '#type' => 'textfield',
       '#attributes' => array(
@@ -449,9 +481,11 @@ function dosomething_login_register_block($form, &$form_state) {
     '#suffix' => '</h3><hr class="bottom"/>',
   );
   $form['lightbox'] = array(
-    '#markup' => theme('dosomething_login_member_lightbox'),
-    '#prefix' => '<div id="member-dialog">',
-    '#suffix' => '</div>',
+    '#theme' => 'dosomething_login_member_lightbox',
+    '#type' => 'container',
+    '#attributes' => array(
+      'id' => 'member-dialog',
+    ),
   );
   $form['already']['#markup'] = '<h3 class="already-member">' . t('Already a member?') . '</h3>';
   $form['logins'] = array(
@@ -683,15 +717,50 @@ function dosomething_login_mobile_signup() {
  */
 function dosomething_login_member_block() {
   global $user;
-  drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/show-member-items.js');
-  $output = '<div class="dosomething-login-user-name">' . '<h2>' . check_plain($user->name) . '</h2><span class="user-role">( ' . dosomething_login_user_role() . ' )</span></div>';
-  $output .= '<div class="dosomething-user-block-collapsible">';
-  $output .= '<div class="dosomething-login-profile">' . dosomething_login_profile_completion() . '</div>';
-  $output .= dosomething_login_my_somethings();
-  $output .= dosomething_login_notifications();
-  $output .= '</div>';
-  //$output .= l('Go to profile >>', 'user', array('attributes' => array('class' => array('dosomething-login-goto-profile'))));
-  return $output;
+  return array(
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'dosomething_login') . '/js/show-member-items.js',
+      ),
+    ),
+    'name' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-login-user-name',
+        ),
+      ),
+      'name' => array(
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+        '#markup' => check_plain($user->name),
+      ),
+      'role' => array(
+        '#prefix' => '<span class="user-role">( ',
+        '#suffix' => ' )</span>',
+        '#markup' => dosomething_login_user_role(),
+      ),
+    ),
+    'collapsible' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-user-block-collapsible',
+        ),
+      ),
+      'profile' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'dosomething-login-profile',
+          ),
+        ),
+        'completion' => dosomething_login_profile_completion(),
+      ),
+      'somethings' => dosomething_login_my_somethings(),
+      'notifications' => dosomething_login_notifications(),
+    ),
+  );
 }
 
 function dosomething_login_user_role($account = NULL) {
@@ -714,26 +783,105 @@ function dosomething_login_user_role($account = NULL) {
 function dosomething_login_profile_completion() {
   global $user;
   $ratio = dosomething_login_profile_percentage();
-  $output = '<div class="profile-header">' . t('My profile: %percent', array('%percent' => number_format($ratio, 0) . '%')) .  l('Complete >>', 'user/' . $user->uid . '/edit/main') . '</div>';
-  $output .= '<div class="dosomething-login-percentage"><div class="ratio" data-ratio="' . $ratio . '"><div class="inner" style="width: ' . $ratio . '%">' . $ratio . '</div></div></div>';
-  return $output;
+  return array(
+    'header' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'profile-header',
+        ),
+      ),
+      '#children' => t('My profile: %percent', array('%percent' => number_format($ratio, 0) . '%')) . l('Complete >>', 'user/' . $user->uid . '/edit/main'),
+    ),
+    'percentage' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-login-percentage',
+        ),
+      ),
+      'ratio' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'ratio',
+          ),
+          'data-ratio' => $ratio,
+        ),
+        'inner' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'inner',
+            ),
+            'style' => 'width: ' . $ratio . '%',
+          ),
+          '#children' => $ratio,
+        ),
+      ),
+    ),
+  );
 }
 
 function dosomething_login_my_somethings() {
-  $output = '<h2 class="my-somethings"><div class="inner">' . t('My Somethings') . '</div></h2>';
+  $items = array();
+
   $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_login_my_current_somethings());
   $items[] = array('data' => t('My Opportunities'), 'children' => dosomething_login_my_opportunities());
-  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => 'my-somethings')));
-  return $output;
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h2 class="my-somethings">',
+      '#suffix' => '</h2>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => 'inner',
+        ),
+        '#children' => t('My Somethings'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array(
+          'my-somethings',
+        ),
+      ),
+    ),
+  );
 }
 
 function dosomething_login_notifications() {
-  $output = '<h2 class="notifications"><div class="inner">' . t('Notifications') . '</div></h2>';
+  $items = array();
+
   // TODO: replace dummy content
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
-  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => 'notifications')));
-  return $output;
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h2 class="notifications">',
+      '#suffix' => '</h2>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => 'inner',
+        ),
+        '#children' => t('Notifications'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array(
+          'notifications',
+        ),
+      ),
+    ),
+  );
 }
 
 function dosomething_login_profile_percentage() {
@@ -803,7 +951,15 @@ function dosomething_login_form_fbconnect_register_page_alter(&$form, $form_stat
       '#size' => 20,
     );
     $form['birthday'] = array(
-      'over_13' => array('#markup' => '<div class="age-question">' . t('Over 13?') . '</div>'),
+      'over_13' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'age-question',
+          ),
+        ),
+        '#children' => t('Over 13?'),
+      ),
       'month' => array(
         '#type' => 'textfield',
         '#attributes' => array(
@@ -918,7 +1074,7 @@ function dosomething_login_fbconnect_register_validate($form, &$form_state) {
  *  (int) numeric id of drupal user.
  * @return @boolean
  */
-function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
+function dosomething_login_drupal_user_is_over_age($uid, $age = 13, $end_timestamp = NULL) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   if (is_object($profile)) {
@@ -926,21 +1082,26 @@ function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
     if (isset($birthday[0]['value'])) {
       // this is only a a time (no time) so timezone is not important.
       $timestamp = strtotime($birthday[0]['value']);
-      return dosomething_login_person_is_over_age($timestamp, $age);
+      return dosomething_login_person_is_over_age($timestamp, $age, $end_timestamp);
     }
   }
   return FALSE;
 }
 
 /**
- * Check if a user is over 13.
+ * Check if a user is over the given age.
  *
  * @param $birthday
  *  (int) timestamp of birthday.
+ * @param $age
+ *  (int) the age to check.
+ * @param $timestamp
+ *  (int) the time at which to check the age. Defaults to current time.
  * @return @boolean
  */
-function dosomething_login_person_is_over_age($birthday, $age = 13) {
-  return $birthday < strtotime("-$age year") ? TRUE : FALSE;
+function dosomething_login_person_is_over_age($birthday, $age = 13, $timestamp = NULL) {
+  $timestamp = is_null($timestamp) ? REQUEST_TIME : $timestamp;
+  return $birthday < strtotime("-$age year", $timestamp) ? TRUE : FALSE;
 }
 
 /**
@@ -1105,14 +1266,14 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
           switch ($form_state['input']['op']) {
             case t('Yes'):
               watchdog('dosomething', 'User %name was given parental permission to be a member.', array('%name' => $account->name));
-              drupal_set_message(t('You have just allowed %user_name to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
+              drupal_set_message(t('You have just allowed %user_name to be a member of this site. An email has been sent.', array('%user_name' => $account->name)));
               drupal_mail('dosomething_login', 'dosomething-parent-permission-granted-email', $account->mail, $language, array('account' => $account));
               dosomething_login_grant_user_parental_permission($account);
               break;
 
             case t('No'):
               watchdog('dosomething', 'User %name was NOT given parental permission to be a member.', array('%name' => $account->name));
-              drupal_set_message(t('%user_name has been denied parental consent to be a member of this site.  An email has been sent.', array('%user_name' => $account->name)));
+              drupal_set_message(t('%user_name has been denied parental consent to be a member of this site. An email has been sent.', array('%user_name' => $account->name)));
               drupal_mail('dosomething_login', 'dosomething-parent-permission-denied-email', $account->mail, $language, array('account' => $account));
               dosomething_login_deny_user_parental_permission($account);
               break;
@@ -1130,7 +1291,7 @@ function dosomething_login_parent_permission_page($form, &$form_state, $uid, $ti
       }
       // TODO: else if user already has permission by virtue of being 13 or older.
       else {
-        $form['message'] = array('#markup' => t('<p>Will you allow %user_name to be a member of this site?</p>',  array('%user_name' => $account->name)));
+        $form['message'] = array('#markup' => t('<p>Will you allow %user_name to be a member of this site?</p>', array('%user_name' => $account->name)));
         $form['actions'] = array('#type' => 'actions');
         $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('Yes'));
         $form['actions']['cancel'] = array('#type' => 'submit', '#value' => t('No'));
@@ -1289,14 +1450,14 @@ function dosomething_login_action_prereg($app_id, $access_token) {
 
     // Logins will be denied if the user's account is blocked.
     if (fboauth_login_user($account)) {
-      drupal_set_message(t('You\'ve connected your account with Facebook.'));
+      drupal_set_message(t("You've connected your account with Facebook."));
     }
   }
   else {
     // If the user is already logged in, associate the two accounts.
     if ($user->uid) {
       fboauth_save($user->uid, $fbuser->id);
-      drupal_set_message(t('You\'ve connected your account with Facebook.'));
+      drupal_set_message(t("You've connected your account with Facebook."));
     }
     // Redirect to our user_reg page.
     else {

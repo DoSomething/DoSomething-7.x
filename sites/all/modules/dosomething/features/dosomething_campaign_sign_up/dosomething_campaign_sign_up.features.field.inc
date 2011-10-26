@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_field_default_fields().
+ * Implements hook_field_default_fields().
  */
 function dosomething_campaign_sign_up_field_default_fields() {
   $fields = array();
@@ -34,7 +34,9 @@ function dosomething_campaign_sign_up_field_default_fields() {
         ),
       ),
       'module' => 'text',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'text_with_summary',
     ),
@@ -78,6 +80,282 @@ function dosomething_campaign_sign_up_field_default_fields() {
         ),
         'type' => 'text_textarea_with_summary',
         'weight' => -4,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-meta_abstract'
+  $fields['node-campaign_sign_up-meta_abstract'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_abstract',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'abstract',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_abstract',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Abstract',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-meta_copyright'
+  $fields['node-campaign_sign_up-meta_copyright'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_copyright',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'copyright',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 2,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_copyright',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Copyright',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-meta_description'
+  $fields['node-campaign_sign_up-meta_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_description',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'description',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_description',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Description',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textarea',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-meta_keywords'
+  $fields['node-campaign_sign_up-meta_keywords'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_keywords',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'keywords',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 4,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_keywords',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Keywords',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-meta_robots'
+  $fields['node-campaign_sign_up-meta_robots'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_robots',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'robots',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 5,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_robots',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Robots',
+      'required' => FALSE,
+      'settings' => array(
+        'options' => 'noarchive,nofollow,noindex,noodp,nosnippet,noydir',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_checkboxes',
+        'weight' => 0,
       ),
     ),
   );
@@ -384,10 +662,15 @@ function dosomething_campaign_sign_up_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Abstract');
   t('Body');
+  t('Copyright');
+  t('Description');
   t('Email');
   t('Geocode Zip Code');
+  t('Keywords');
   t('Mobile Phone Number');
+  t('Robots');
   t('School');
   t('School Zip Code');
 

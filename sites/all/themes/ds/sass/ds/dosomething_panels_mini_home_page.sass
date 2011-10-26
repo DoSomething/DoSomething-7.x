@@ -17,8 +17,6 @@
   h2
     color: $white
     margin-top: 0
-    // margin-bottom: 0
-  // @extend .wireframe
   .panel-panel
     float: left
     width: percentage((($page-width - $left-col-width - $s2 - 36px) / 2) / $page-width)
@@ -35,9 +33,6 @@
     float: right
     margin-right: 0
     padding-right: percentage($s3 / $page-width)
-
-
-
 
 .pane-dosomething-blocks-dosomething-twitter-stream
   h2
@@ -70,7 +65,6 @@
     height: auto !important
   #twtr-widget-1
     .twtr-tweet-wrap
-      // background: $c-impact
       background: transparent
     .twtr-tweet
       &:not(:last-of-type)
@@ -82,13 +76,11 @@
         a
           color: $white !important
           text-decoration: none
-          // font-size: 10px
           font-weight: bold
         a.twtr-hyperlink
           color: $yellow !important
     .twtr-ft
       @extend .visuallyhidden
-
 
 .pane-dosomething-blocks-dosomething-facebook-activity
   h2
@@ -101,8 +93,6 @@
     background: url(../images/fb-icon-active.png) no-repeat
   a
     border: 0
-
-
 
 .pane-dosomething-blocks-dosomething-make-impact-front
   h2.pane-title
@@ -117,10 +107,8 @@ $impactbubbles-sprite-dimensions: true
 @include all-impactbubbles-sprites
 
 #dosomething-blocks-make-an-impact-form-front
-  // background: image_url("make-and-impact-form-bg.png") no-repeat center 57px
   position: relative
   width: 100%
-  // min-height: 365px
   #edit-description
     margin: 10px 0 20px 0
   label[for='edit-description']
@@ -137,8 +125,8 @@ $impactbubbles-sprite-dimensions: true
         @extend .visuallyhidden
     select
     .selectBox-dropdown
-      // @extend .ds-dropdown
       background: $gray-lighter2
+      cursor: pointer
       width: 100px
       margin-top: 8px
       +link-colors($white, $white, $c-select-link-hover, $white, false)
@@ -147,6 +135,12 @@ $impactbubbles-sprite-dimensions: true
         height: 1.5em
       .selectBox-arrow
         display: none
+  .form-item-what-cause,
+  .form-item-who-with,
+  .form-item-where,
+  .form-item-how-long
+    label
+      cursor: default
   .form-item-what-cause
     @extend .impactbubbles-impact-bubble-cause
     left: 37px
@@ -174,7 +168,6 @@ $impactbubbles-sprite-dimensions: true
     position: absolute
     bottom: -30px
 
-
 .pane-news-stuff
   h2.pane-title
     background: image_url("news-home-header.png") no-repeat right top
@@ -185,7 +178,6 @@ $impactbubbles-sprite-dimensions: true
     background: $gray2
     padding: 6px
     &:not(.views-row-last)
-      // margin-bottom: calc-em($s-2, $s0)
       margin-bottom: 7px
     a
       +link-colors($white, $white, $c-select-link-hover, $white, false)

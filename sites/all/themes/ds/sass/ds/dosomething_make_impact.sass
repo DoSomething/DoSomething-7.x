@@ -1,12 +1,8 @@
 @import setup
-// import extended classes
 @import partials/lib/extend/helpers
 @import partials/02-extend/dosomething
 @import partials/02-extend/jquery-selectbox
-// @import partials/02-extend/all
-// @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
-
 
 #block-dosomething-blocks-dosomething-make-impact
   background-color: $c-impact
@@ -14,17 +10,13 @@
   padding-top: percentage(8px / $left-col-width)
   padding-bottom: 1.5em
   +pie-clearfix
-  //
-  // guide
-  // +background(image_url('guide-pages/make-an-impact.png'))
-  // -- end guide
   h2.block-title
-    margin-top: 0
     background: image_url('bg-header-molecule.png') no-repeat right 7px
-    height: image-height('bg-header-molecule.png') + 7px
-    margin-bottom: calc-em(4px, $s3)
-    line-height: 2.1
     color: $white
+    height: image-height('bg-header-molecule.png') + 7px
+    line-height: 2.1
+    margin-bottom: calc-em(4px, $s3)
+    margin-top: 0
   #edit-description
     height: 0
   label
@@ -32,21 +24,7 @@
   .form-item, .form-actions
     height: auto
 
-
 #dosomething-blocks-make-an-impact-form
   .selectBox-dropdown
     @extend .ds-dropdown
-    // .selectBox-label
-    //   @extend .h3
-
-
-
-  // select
-  //   background: $gray2 image_url('icn-leftsidebar-pointer-yellow.png') no-repeat right top
-  //   border: none
-  //   color: $white
-  //   width: 100%
-  //   height: image-height('icn-leftsidebar-pointer-yellow.png')
-  //   @extend .h3
-  //   margin-bottom: calc-em(6px, $s2)
-  //
+    cursor: pointer

@@ -36,6 +36,7 @@ function metatags_quick_schema() {
 }
 
 function metatags_quick_install() {
+  variable_set('metatags_quick_default_field_length', 160);
   drupal_set_message(t('Meta tags (quick) installed. To start, please visit !here',
     array('!here' => l(t('module settings screen'), 'admin/config/search/metatags_quick'))), 'status');
 }
@@ -52,6 +53,7 @@ function metatags_quick_uninstall() {
   
   variable_del('metatags_quick_settings');
   variable_del('metatags_quick_use_path_based');
+  variable_del('metatags_quick_default_field_length');
 }
 
 /**
@@ -59,11 +61,14 @@ function metatags_quick_uninstall() {
  * 
  */
 function metatags_quick_field_schema($field) {
+  if(!isset($field['settings']['max_length'])) {
+    $field['settings']['max_length'] = 255;
+  }
   return array(
     'columns' => array(
       'metatags_quick' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => $field['settings']['max_length'],
         'not null' => FALSE,
       ),
     ),

@@ -85,72 +85,6 @@ body
     display: block
     +remove-link-underlines
 
-
-// nav[role=navigation]
-  font-family: $font-headline
-  text-rendering: optimizeLegibility
-  text-transform: uppercase
-  .primary
-    background-color: $c-menu-primary-bg
-    display: table
-    padding-left: percentage($left-col-width / $page-width)
-    width: 100%
-  #main-menu
-    +adjust-font-size-to($s4)
-    font-weight: 500
-    display: table-row
-    min-height: calc-em($menu-height, $s4)
-    padding-right: calc-em(3px, $s4)
-    padding-left: 0
-    li
-      display: table-cell
-      a
-        line-height: ($menu-height - 10px) / $s4
-        margin-right: calc-em(5px, $s4)
-        padding-top: calc-em(10px, $s4)
-        padding-left: calc-em(6px, $s4)
-        padding-right: calc-em(6px, $s4)
-      &.last
-        a
-          margin-right: 0
-      &:hover, &.active
-        a
-          background:
-            color: $c-menu-secondary-bg
-            image: image_url("arrow-down.png")
-            repeat: no-repeat
-            position: center -3px
-          border-top: (calc-em(2px, $s4)) solid $white
-          padding-top: calc-em(8px, $s4)
-  .secondary
-    background-color: $c-menu-secondary-bg
-    margin-left: percentage($left-col-width / $page-width)
-    width: percentage($main-width / $page-width)
-    ul
-      +adjust-font-size-to($s2)
-      font-weight: 500
-      +horizontal-list(0.5em)
-      line-height: $submenu-height / $s2
-      min-height: calc-em($submenu-height, $s2)
-      padding-left: calc-em(22px, $s2)
-      &.active
-        a
-          color: $white
-  .causes-dropdown
-    position: absolute
-    z-index: 10
-    left: 25em
-    top: 4.2em
-    background-color: #014E9C
-    .item-list
-      #causes-menu-dropdown
-        li
-          display: none
-  a
-    display: block
-    +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
-    +remove-link-underlines
-
 nav[role=navigation]
   font-family: $font-headline
   text-rendering: optimizeLegibility
@@ -202,27 +136,37 @@ nav[role=navigation]
         a
           color: $white
   .causes-dropdown
-    background-color: $blue
     position: absolute
     left: 22.4em
     top: 6em
-    // left: 29.4em
-    // top: 3.44em
     z-index: 10
     #causes-menu-dropdown
+      background-color: $blue
+      display: none
       margin-bottom: 0
-    ul.causes-menu-dropdown
-      margin: 0
+      &:active
+        background-color: none
     li.causes-menu-dropdown-level-1
       +adjust-font-size-to($s2)
       font-weight: 500
       height: 2em
       margin: 0 0 0 0.5em
+      &.active
+        position: relative
+        left: 3em
+        top: -1.7em
+        li.causes-menu-dropdown-level-2
+          position: relative
+          left: 0
+          top: 0.1em
     ul.causes-menu-dropdown-level-1
       background-color: $blue
       position: relative
       top: -1.8em
       left: 5.3em
+      &.active
+        left: 0
+        top: -0.2em
     li.causes-menu-dropdown-level-2
       +clean-list
       padding-left: 5px
@@ -319,12 +263,6 @@ div[role=main]
 
 /** Blog Center Block **/
 .pane-blog-center
-  // h2.pane-title
-    // +border-top-left-radius(0)
-    // +border-top-right-radius
-    // line-height: 56px
-    // background-color: $gray-dark
-    // // height: 200px
   .blog-center-post
     background: image_url("blog-center-lines.png") no-repeat
     background-position: 30px 0px

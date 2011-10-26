@@ -1,7 +1,8 @@
 name = "Dosomething Action Finder"
 description = "Create the Action Finder page with features"
 core = "7.x"
-package = DoSomething
+package = "DoSomething"
+php = "5.2.4"
 dependencies[] = "views"
 features[ctools][] = "views:views_default:3.0"
 features[views_view][] = "action_finder"

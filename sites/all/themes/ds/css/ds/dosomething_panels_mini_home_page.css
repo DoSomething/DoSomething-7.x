@@ -80,7 +80,6 @@
 .ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
-  background: #005dab;
   font-size: 2em;
   line-height: 2em;
   line-height: 1.65;
@@ -401,6 +400,7 @@ a.ds-button:active, a.ds-button-strong:active {
 }
 .selectBox-options li.selectBox-selected a {
   background-color: #8e8a86;
+  display: none;
 }
 .selectBox-options .selectBox-optgroup {
   color: #666666;
@@ -675,6 +675,7 @@ a.ds-button:active, a.ds-button-strong:active {
 }
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown {
   background: #a1a1a1;
+  cursor: pointer;
   width: 100px;
   margin-top: 8px;
   color: white;
@@ -694,6 +695,12 @@ a.ds-button:active, a.ds-button-strong:active {
 }
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
   display: none;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
+#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
+#dosomething-blocks-make-an-impact-form-front .form-item-where label,
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+  cursor: default;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
   left: 37px;

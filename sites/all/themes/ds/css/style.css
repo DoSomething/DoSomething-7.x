@@ -421,7 +421,6 @@ h1, h2, h3, h4, h5, h6 {
 .ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title {
   display: block;
   color: white;
-  background: #005dab;
   font-size: 2em;
   line-height: 2em;
   line-height: 1.65;
@@ -1981,17 +1980,18 @@ nav[role=navigation] .secondary ul.active a {
   color: white;
 }
 nav[role=navigation] .causes-dropdown {
-  background-color: #014e9c;
   position: absolute;
   left: 22.4em;
   top: 6em;
   z-index: 10;
 }
 nav[role=navigation] .causes-dropdown #causes-menu-dropdown {
+  background-color: #014e9c;
+  display: none;
   margin-bottom: 0;
 }
-nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown {
-  margin: 0;
+nav[role=navigation] .causes-dropdown #causes-menu-dropdown:active {
+  background-color: none;
 }
 nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
   font-size: 1.5em;
@@ -2000,11 +2000,25 @@ nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
   height: 2em;
   margin: 0 0 0 0.5em;
 }
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active {
+  position: relative;
+  left: 3em;
+  top: -1.7em;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active li.causes-menu-dropdown-level-2 {
+  position: relative;
+  left: 0;
+  top: 0.1em;
+}
 nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1 {
   background-color: #014e9c;
   position: relative;
   top: -1.8em;
   left: 5.3em;
+}
+nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1.active {
+  left: 0;
+  top: -0.2em;
 }
 nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 {
   list-style: none;

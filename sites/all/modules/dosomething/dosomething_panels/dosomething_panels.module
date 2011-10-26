@@ -17,6 +17,7 @@ function dosomething_panels_ctools_plugin_directory($module, $plugin) {
 function dosomething_panels_preprocess_dosomething_panels_two_three(&$variables) {
   $content = $variables['content'];
 
+  $top_row_classes = array();
   if ($content['top-left']) {
     $top_row_classes[] = 'top-first';
   }
@@ -29,6 +30,7 @@ function dosomething_panels_preprocess_dosomething_panels_two_three(&$variables)
   }
   $variables['top_row_classes'] = implode(' ', $top_row_classes);
 
+  $bottom_row_classes = array();
   if ($content['bottom-left']) {
     $bottom_row_classes[] = 'bottom-first';
   }
@@ -48,6 +50,7 @@ function dosomething_panels_preprocess_dosomething_panels_two_three(&$variables)
 function dosomething_panels_preprocess_dosomething_panels_twocol_a(&$variables) {
   $content = $variables['content'];
 
+  $outer_row_classes = array();
   if (isset($content['left-top']) || isset($content['left-bottom-left']) || isset($content['left-bottom-right'])) {
     $outer_row_classes[] = 'outer-first';
   }
@@ -79,6 +82,7 @@ function dosomething_panels_preprocess_dosomething_panels_twocol_a(&$variables) 
 function dosomething_panels_preprocess_dosomething_panels_one_two_one_two(&$variables) {
   $content = $variables['content'];
 
+  $row2_row_classes = array();
   if ($content['row2-left']) {
     $row2_row_classes[] = 'row2-first';
   }
@@ -91,6 +95,7 @@ function dosomething_panels_preprocess_dosomething_panels_one_two_one_two(&$vari
   }
   $variables['row2_row_classes'] = implode(' ', $row2_row_classes);
 
+  $bottom_row_classes = array();
   if ($content['bottom-left']) {
     $bottom_row_classes[] = 'bottom-first';
   }
@@ -107,6 +112,7 @@ function dosomething_panels_preprocess_dosomething_panels_one_two_one_two(&$vari
 function dosomething_panels_preprocess_dosomething_panels_one_two_one(&$variables) {
   $content = $variables['content'];
 
+  $mid_row_classes = array();
   if ($content['mid-left']) {
     $mid_row_classes[] = 'mid-first';
   }
@@ -123,6 +129,7 @@ function dosomething_panels_preprocess_dosomething_panels_one_two_one(&$variable
 function dosomething_panels_preprocess_dosomething_panels_one_two(&$variables) {
   $content = $variables['content'];
 
+  $bottom_row_classes = array();
   if ($content['left']) {
     $bottom_row_classes[] = 'bottom-first';
   }
@@ -139,6 +146,7 @@ function dosomething_panels_preprocess_dosomething_panels_one_two(&$variables) {
 function dosomething_panels_preprocess_dosomething_panels_one_three_two(&$variables) {
   $content = $variables['content'];
 
+  $mid_row_classes = array();
   if ($content['mid-left']) {
     $mid_row_classes[] = 'mid-first';
   }
@@ -154,6 +162,7 @@ function dosomething_panels_preprocess_dosomething_panels_one_three_two(&$variab
   }
   $variables['mid_row_classes'] = implode(' ', $mid_row_classes);
 
+  $bottom_row_classes = array();
   if ($content['bottom-left']) {
     $bottom_row_classes[] = 'bottom-first';
   }

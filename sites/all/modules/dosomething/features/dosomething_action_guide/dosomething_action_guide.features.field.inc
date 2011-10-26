@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_field_default_fields().
+ * Implements hook_field_default_fields().
  */
 function dosomething_action_guide_field_default_fields() {
   $fields = array();
@@ -34,7 +34,9 @@ function dosomething_action_guide_field_default_fields() {
         ),
       ),
       'module' => 'text',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'text_with_summary',
     ),
@@ -273,7 +275,7 @@ function dosomething_action_guide_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => 0,
+        'default_image' => NULL,
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',

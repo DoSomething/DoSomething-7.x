@@ -58,4 +58,4 @@ Your support is much appreciated. Thanks in advance!
 Author:
 -------
 Valery Lourie valerylourie@gmail.com
-
+upgrade path from nodewords written by maxiorel <maxiorel@49016.no-reply.drupal.org>
