@@ -23,7 +23,7 @@ class DSJsonWebformSubmissionJsonMigrateItems extends MigrateItems implements It
 
     // TODO: need to make sure this variable is getting set, defaulting to
     // September 25th to make sure I get some data.
-    $ts = 1217000000; # variable_get('ds_migration_forked_ts', 1317000000);
+    $ts = variable_get('ds_migration_forked_ts', 1317000000);
 
     $this->key = $key;
     $this->listUrl = "{$base_url}/webform/list/{$key}?page=:page&since_ts={$ts}";
