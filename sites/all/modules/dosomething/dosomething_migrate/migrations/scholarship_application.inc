@@ -64,11 +64,15 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number'); # Mobile Phone Number (text)
     $this->addFieldMapping('field_webform_name', 'field_name'); # Name (text)
     $this->addFieldMapping('field_webform_project', 'field_project'); # Your DoSomething project posting (node_reference)
-    #$this->addFieldMapping('field_webform_project_summary', ''); # Project Summary (text_long)
     $this->addFieldMapping('field_webform_project_website', 'field_website_link'); # Personal project website URL (link_field)
-    #$this->addFieldMapping('field_webform_school', ''); # School (node_reference)
-    #$this->addFieldMapping('field_webform_school_zip', ''); # School Zip Code (location)
     $this->addFieldMapping('field_webform_video_url', 'field_embedded_video'); # Youtube or video URL (link_field)
+    $this->addFieldMapping('data_phone_number', 'field_phone_number_1');
+    $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
+    $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
+  
+    //Null Mappings
+    $this->addUnmigratedSources(array('title'));
+    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip', 'data_video_optional', 'field_webform_photo_url', 'field_webform_project_summary'));
   }
 }
 
@@ -86,18 +90,11 @@ class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigra
     $this->addFieldMapping('data_photos', 'field_scholarship_att_pic')
       ->arguments(array('file_function' => 'file_fid'));
 
-    #$this->addFieldMapping('field_webform_address', ''); # Address (location)
-    #$this->addFieldMapping('field_webform_birthdate', ''); # Birth Date (datetime)
-    #$this->addFieldMapping('field_webform_email', ''); # Email (email)
-    #$this->addFieldMapping('field_webform_mobile', ''); # Mobile Phone Number (text)
     $this->addFieldMapping('field_webform_name', 'title'); # Name (text)
-    #$this->addFieldMapping('field_webform_photo_url', ''); # Photo album URL (link_field)
-    #$this->addFieldMapping('field_webform_project', ''); # Your DoSomething project posting (node_reference)
-    #$this->addFieldMapping('field_webform_project_summary', ''); # Project Summary (text_long)
-    #$this->addFieldMapping('field_webform_project_website', ''); # Personal project website URL (link_field)
-    #$this->addFieldMapping('field_webform_school', ''); # School (node_reference)
-    #$this->addFieldMapping('field_webform_school_zip', ''); # School Zip Code (location)
-    #$this->addFieldMapping('field_webform_video_url', 'field_scholarship_att_video'); # Youtube or video URL (link_field)
+    
+    //Null Mappings
+    //$this->addUnmigratedSources(array('title'));
+    $this->addUnmigratedDestinations(array('field_webform_address', 'field_webform_birthdate', 'field_webform_email', 'field_webform_mobile', 'field_webform_photo_url', 'field_webform_project', 'field_webform_project_summary', 'field_webform_project_website', 'field_webform_school', 'field_webform_school_zip', 'field_webform_video_url'));
   }
 }
 
@@ -129,12 +126,14 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
     $this->addFieldMapping('field_webform_email', 'title'); # Email (email)
     $this->addFieldMapping('field_webform_mobile', 'field_yacapp_phone'); # Mobile Phone Number (text)
     $this->addFieldMapping('field_webform_name', 'field_plumgrant_name'); # Name (text)
-    #$this->addFieldMapping('field_webform_photo_url'); # Photo album URL (link_field)
     $this->addFieldMapping('field_webform_project', 'field_project'); # Your DoSomething project posting (node_reference)
-    #$this->addFieldMapping('field_webform_project_summary'); # Project Summary (text_long)
-    #$this->addFieldMapping('field_webform_project_website'); # Personal project website URL (link_field)
-    #$this->addFieldMapping('field_webform_school'); # School (node_reference)
-    #$this->addFieldMapping('field_webform_school_zip'); # School Zip Code (location)
-    #$this->addFieldMapping('field_webform_video_url'); # Youtube or video URL (link_field)
+    $this->addFieldMapping('data_web_site_link', 'field_website_link');
+    $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
+    $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
+    $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
+    
+    //Null Mappings
+    //$this->addUnmigratedSources(array('title'));
+    $this->addUnmigratedDestinations(array('field_webform_photo_url', 'field_webform_project_summary', 'field_webform_project_website', 'field_webform_school', 'field_webform_school_zip', 'field_webform_video_url'));
   }
 }
