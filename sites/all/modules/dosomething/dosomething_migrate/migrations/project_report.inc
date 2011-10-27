@@ -11,7 +11,7 @@ class DSProject extends DSJsonWebformMigration {
     // $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover')
     //   ->description('Select field keys are unchanged.');
 
-    #$this->addFieldMapping('field_award_winner', ''); # Field: DoSomething Award Winner (list_text)
+    $this->addFieldMapping('field_award_winner', 'field_dosomething_award_winner'); # Field: DoSomething Award Winner (list_text)
     $this->addFieldMapping('field_essay_believe_it', 'field_essay_believe_it'); # Field: Why is it important to you? (text_long)
     $this->addFieldMapping('field_essay_build_it', 'field_essay_build_it'); # Field: What's your plan of action? (text_long)
     $this->addFieldMapping('field_essay_see_it', 'field_essay_see_it'); # Field: What's the problem you are trying to solve? (text_long)
@@ -20,11 +20,11 @@ class DSProject extends DSJsonWebformMigration {
     $this->addFieldMapping('field_link', 'field_website_link'); # Field: Web site link (link_field)
     $this->addFieldMapping('field_num_people_impacted', 'field_num_people_impacted'); # Field: How many people has your project helped? (number_integer)
     $this->addFieldMapping('field_num_people_inspired', 'field_num_people_inspired'); # Field: How many people have you inspired to take action? (number_integer)
-    #$this->addFieldMapping('field_others_involved', ''); # Field: How Can Others Help? (text_long)
+    $this->addFieldMapping('field_others_involved', 'field_others_involved'); # Field: How Can Others Help? (text_long)
     $this->addFieldMapping('field_picture', 'field_project_photo') # Field: Project Photo (image)
       ->arguments(array('file_function' => 'file_fid'));
-    #$this->addFieldMapping('field_project_clubs', ''); # Field: Did you do this project with a DoSomething Club? (node_reference)
-    $this->addFieldMapping('field_project_inspiration', 'field_num_people_inspired'); # Field: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (list_text)
+    $this->addFieldMapping('field_project_related_campaign', 'field_related_campaign');
+    $this->addFieldMapping('field_project_inspiration', 'field_inspired_by_dosomething'); # Field: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (list_text)
     $this->addFieldMapping('field_project_report_zip', 'locations'); # Field: Locations (text)
     $this->addFieldMapping('field_project_title', 'title'); # Field: Title (text)
     $this->addFieldMapping('field_project_type', 'field_type_of_project'); # Field: Project Type (list_text)
@@ -34,6 +34,8 @@ class DSProject extends DSJsonWebformMigration {
       ->arguments(array('file_function' => 'file_fid'));
     #$this->addFieldMapping('taxonomy_vocabulary_5', ''); # Field: Issues (taxonomy_term_reference)
 
+    $this->addFieldMapping('field_project_webform_age', 'field_project_age'); # Field: Project Type (list_text)
+    $this->addFieldMapping('field_project_action_guide', 'field_related_action_guide');
 // field_type_of_project Node: Is this a... (text)
 // field_inspired_by_dosomething Node: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (number_integer)
 // field_project_age Node: Current age (NOTE: this section is for people 25 and younger) (number_integer)
