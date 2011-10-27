@@ -33,6 +33,7 @@ function dosomething_menu_preprocess_page(&$variables) {
   if ($term = menu_get_object('taxonomy_term', 2)) {
     if ($term->vid == DS_MENU_ISSUES_VID) {
       $params['term'] = $term;
+      // TODO: Set active path to 'find-your-cause'.
     }
   }
 
@@ -50,7 +51,17 @@ function dosomething_menu_secondary_links($variables) {
     foreach ($secondary_menu_items as $mlid => &$links) {
       $links['attributes']['class'][] = 'links';
       $links['attributes']['class'][] = $mlid;
+
+      // Make sure proper classes are set on active secondary menu items.
       if (isset($variables['main_menu'][$mlid . ' active-trail'])) {
+        foreach ($links['links'] as $second_mlid => &$second_link) {
+          $key = isset($variables['secondary_menu'][$second_mlid . ' active-trail']) ? $second_mlid . ' active-trail' : $second_mlid;
+          $classes = $second_link['attributes']['class'];
+          if (isset($variables['secondary_menu'][$key]['attributes']['class'])) {
+            $classes = array_merge($second_link['attributes']['class'], $variables['secondary_menu'][$key]['attributes']['class']);
+          }
+          $variables['secondary_menu'][$key]['attributes']['class'] = $classes;
+        }
         $links['links'] = $variables['secondary_menu'];
         $links['attributes']['class'][] = 'active';
       }
