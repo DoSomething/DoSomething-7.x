@@ -59,6 +59,8 @@ function dosomething_menu_secondary_links($variables) {
       }
     }
     drupal_add_js(drupal_get_path('module', 'dosomething_menu') . '/js/ds-main-menu.js');
+    // TODO: Add this as a library or something else for reuse.
+    drupal_add_js(drupal_get_path('module', 'dosomething_menu') . '/js/jquery.hoverIntent.minified.js');
   }
   return $secondary_menu_items;
 }
