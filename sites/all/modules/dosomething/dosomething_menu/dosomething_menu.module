@@ -13,7 +13,10 @@ define('DS_MENU_TAXONOMY_MENU_CID', 'ds_menu_taxonomy_listing_');
 function dosomething_menu_theme() {
   return array(
     'dosomething_menu_taxonomy_listing' => array(
-      'arguments' => array('tree' => NULL), 
+      'arguments' => array(
+        'tree' => NULL,
+        'term' => NULL,
+      ),
     ),
   );
 }
@@ -24,7 +27,16 @@ function dosomething_menu_theme() {
 function dosomething_menu_preprocess_page(&$variables) {
   $variables['secondary_menu_items'] = dosomething_menu_secondary_links($variables);
   $tree = dosomething_menu_get_heirarchical_taxonomy_listing(DS_MENU_ISSUES_VID);
-  $variables['causes_dropdown_menu'] = theme('dosomething_menu_taxonomy_listing', array('tree' => $tree));
+  $params = array('tree' => $tree);
+
+  // We need to know if we are on an issues page.
+  if ($term = menu_get_object('taxonomy_term', 2)) {
+    if ($term->vid == DS_MENU_ISSUES_VID) {
+      $params['term'] = $term;
+    }
+  }
+
+  $variables['causes_dropdown_menu'] = theme('dosomething_menu_taxonomy_listing', $params);
 }
 
 /**
@@ -149,6 +161,35 @@ function dosomething_menu_get_heirarchical_taxonomy_listing($vid) {
  */
 function theme_dosomething_menu_taxonomy_listing($variables) {
   $tree = $variables['tree'];
+  $term = isset($variables['term']) ? $variables['term'] : NULL;
+  if (is_null($term)) {
+    foreach ($tree as &$item) {
+      unset($item['children']);
+    }
+  }
+  else {
+   $title = '';
+    if (isset($tree[$term->tid])) {
+      $parent_id = $term->tid;
+    }
+    else {
+      foreach ($tree as $tid => $children) {
+        if (isset($children['children'][$term->tid])) {
+          $parent_id = $tid;
+          break;
+        }
+      }
+    }
+    if (isset($parent_id)) {
+      $tree = array($tree[$parent_id]);
+    }
+    else {
+      foreach ($tree as $item) {
+        unset($tree['children']);
+      }
+    }
+  }
+
   $attributes = array(
     'id' => 'causes-menu-dropdown',
   );

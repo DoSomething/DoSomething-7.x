@@ -27,12 +27,7 @@
         causes.hide();
       },
       function() {
-        timeout = setTimeout(function() {
-          // Hide everything except active secondary menu.
-          secondaryMenu.addClass('hidden');
-          secondaryMenuActive.removeClass('hidden');
-          causes.hide();
-        }, timeLength);
+        // Nothing to do on hover out.
       });
 
       // Show and hide level 1 in the all-causes dropdown.
