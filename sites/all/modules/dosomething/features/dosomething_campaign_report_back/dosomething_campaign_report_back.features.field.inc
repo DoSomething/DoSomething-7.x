@@ -251,8 +251,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'abstract',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -306,8 +306,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'copyright',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -361,8 +361,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'description',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -416,8 +416,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'keywords',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -471,8 +471,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'robots',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -610,6 +610,71 @@ function dosomething_campaign_report_back_field_default_fields() {
         ),
         'type' => 'geocode',
         'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_issues'
+  $fields['webform_submission_entity-campaign_report_back-field_webform_issues'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_issues',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_5',
+            'parent' => '0',
+          ),
+        ),
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_report_back',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 11,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_issues',
+      'label' => 'Issues',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '31',
       ),
     ),
   );
@@ -968,6 +1033,7 @@ function dosomething_campaign_report_back_field_default_fields() {
   t('Description');
   t('Email');
   t('Geocode Zip Code');
+  t('Issues');
   t('Keywords');
   t('Mobile Phone Number');
   t('Pictures');

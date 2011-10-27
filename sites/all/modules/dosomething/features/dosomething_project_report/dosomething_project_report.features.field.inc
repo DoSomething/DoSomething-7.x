@@ -94,8 +94,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'abstract',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -149,8 +149,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'copyright',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -204,8 +204,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'description',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -259,8 +259,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'keywords',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -314,8 +314,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'robots',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -354,6 +354,78 @@ function dosomething_project_report_field_default_fields() {
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
         'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-vocabulary_5-field_causes_image'
+  $fields['taxonomy_term-vocabulary_5-field_causes_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_causes_image',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_5',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_causes_image',
+      'label' => 'Image',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '1',
       ),
     ),
   );
@@ -1594,7 +1666,7 @@ function dosomething_project_report_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => 255,
+        'max_length' => '255',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
@@ -1689,6 +1761,63 @@ function dosomething_project_report_field_default_fields() {
         'settings' => array(),
         'type' => 'options_buttons',
         'weight' => '0',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_project_webform_age'
+  $fields['webform_submission_entity-project_report-field_project_webform_age'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_webform_age',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 23,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_project_webform_age',
+      'label' => 'Age',
+      'required' => 0,
+      'settings' => array(
+        'max' => '150',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'numberfield',
+        'weight' => '31',
       ),
     ),
   );
@@ -1915,6 +2044,7 @@ Use numbers only (no text).');
   t('(i.e. Number of people who donated canned goods to your canned food drive, etc.)');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
   t('Abstract');
+  t('Age');
   t('Body');
   t('Copyright');
   t('Describe the steps you will take/took to create your project or organization. What kind of impact have you made?');
@@ -1929,6 +2059,7 @@ Use numbers only (no text).');
   t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
   t('How many people have you inspired to take action?');
+  t('Image');
   t('Issues');
   t('Keywords');
   t('Locations');

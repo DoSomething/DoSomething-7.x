@@ -742,6 +742,6 @@ return false; });
   $page->default_handlers[$handler->name] = $handler;
   $pages['projects'] = $page;
 
- return $pages;
+  return $pages;
 
 }
