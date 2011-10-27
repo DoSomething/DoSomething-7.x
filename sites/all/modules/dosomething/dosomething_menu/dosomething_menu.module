@@ -5,6 +5,7 @@
  */
 define('DS_MENU_ISSUES_VID', 5);
 define('DS_MENU_ALL_CAUSES_LINK', 'cause');
+define('DS_MENU_TAXONOMY_MENU_CID', 'ds_menu_taxonomy_listing_');
 
 /**
  * Implements hook_theme().
@@ -109,10 +110,16 @@ function dosomething_menu_navigation_links($menu_name) {
 }
 
 /**
- * TODO: Cache this!!!
  * Build a heirarchical listing of taxonomy items.
+ *  Will only work for 2 level with strict parent child relationships.
+ *  ie terms exist only within one level.
  */
 function dosomething_menu_get_heirarchical_taxonomy_listing($vid) {
+  $cid = DS_MENU_TAXONOMY_MENU_CID . $vid;
+  $cache = cache_get($cid);
+  if ($cache && isset($cache->data)) {
+    return $cache->data;
+  }
   $tree = array();
   $taxonomy_tree = taxonomy_get_tree($vid);
   foreach ($taxonomy_tree as $term) {
@@ -133,6 +140,7 @@ function dosomething_menu_get_heirarchical_taxonomy_listing($vid) {
       }
     }
   }
+  cache_set($cid, $tree);
   return $tree;
 }
 
@@ -150,5 +158,45 @@ function theme_dosomething_menu_taxonomy_listing($variables) {
     '#attributes' => $attributes,
   );
   return $items;
+}
+
+/**
+ * Implements hook_taxonomy_term_presave().
+ */
+function dosomething_menu_taxonomy_term_presave($term) {
+  // Clear the taxonomy menu cache.
+  cache_clear_all(DS_MENU_TAXONOMY_MENU_CID . $term->vid, 'cache');
+}
+
+/**
+ * Implements hook_taxonomy_vocabulary_presave().
+ */
+function dosomething_menu_taxonomy_vocabulary_presave($vocabulary) {
+  // Clear the taxonomy menu cache.
+  cache_clear_all(DS_MENU_TAXONOMY_MENU_CID . $vocabulary->vid, 'cache');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_menu_form_taxonomy_overview_terms_alter(&$form, &$form_state) {
+  $form['#submit'][] = 'dosomething_menu_taxonomy_overview_terms_submit';
+}
+
+/**
+ * Submission callback for taxonomy_overview_terms form.
+ */
+function dosomething_menu_taxonomy_overview_terms_submit($form, &$form_state) {
+  // Clear the taxonomy menu cache.
+  if ($form_state['triggering_element']['#value'] == t('Reset to alphabetical')) {
+    // Execute the reset action.
+    if ($form_state['values']['reset_alphabetical'] === TRUE) {
+      cache_clear_all(DS_MENU_TAXONOMY_MENU_CID . $form_state['values']['vid'], 'cache');
+    }
+  }
+  else {
+  $vocabulary = $form['#vocabulary'];
+    cache_clear_all(DS_MENU_TAXONOMY_MENU_CID . $vocabulary->vid, 'cache');
+  }
 }
 
