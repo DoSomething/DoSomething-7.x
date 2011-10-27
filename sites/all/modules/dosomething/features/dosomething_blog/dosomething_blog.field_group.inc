@@ -21,7 +21,7 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Media',
-    'weight' => '5',
+    'weight' => '9',
     'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -45,7 +45,7 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Metatags',
-    'weight' => '7',
+    'weight' => '13',
     'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -71,7 +71,7 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Path',
-    'weight' => '8',
+    'weight' => '17',
     'children' => array(
       0 => 'redirect',
       1 => 'path',
@@ -100,7 +100,7 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '6',
+    'weight' => '12',
     'children' => array(),
     'format_type' => 'tab',
     'format_settings' => array(

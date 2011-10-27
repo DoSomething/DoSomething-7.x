@@ -429,16 +429,6 @@ blog/all',
           'context' => 'empty',
           'not' => FALSE,
         ),
-        1 => array(
-          'name' => 'term_vocabulary',
-          'settings' => array(
-            'vids' => array(
-              20 => '20',
-            ),
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
       ),
       'logic' => 'and',
     ),
