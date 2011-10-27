@@ -50,187 +50,18 @@ function dosomething_causes_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display;
-  $display->layout = 'flexible';
-  $display->layout_settings = array(
-    'items' => array(
-      'canvas' => array(
-        'type' => 'row',
-        'contains' => 'column',
-        'children' => array(
-          0 => 'main',
-        ),
-        'parent' => NULL,
-      ),
-      'main' => array(
-        'type' => 'column',
-        'width' => 100,
-        'width_type' => '%',
-        'children' => array(
-          0 => 6,
-          1 => 5,
-          2 => 4,
-          3 => 1,
-          4 => 2,
-          5 => 3,
-        ),
-        'parent' => 'canvas',
-      ),
-      1 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'issues_left',
-          1 => 'top_right',
-          2 => 'issues_right_',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'top_right' => array(
-        'type' => 'region',
-        'title' => 'Issues Middle',
-        'width' => '33.44442922440388',
-        'width_type' => '%',
-        'parent' => '1',
-        'class' => '',
-      ),
-      2 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'bottom_',
-          1 => 'right_center',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'bottom_' => array(
-        'type' => 'region',
-        'title' => 'Left Center',
-        'width' => '52.3577296304569',
-        'width_type' => '%',
-        'parent' => '2',
-        'class' => '',
-      ),
-      3 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'bottom',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'bottom' => array(
-        'type' => 'region',
-        'title' => 'Causes Bottom',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '3',
-        'class' => '',
-      ),
-      'right_center' => array(
-        'type' => 'region',
-        'title' => 'Right Center',
-        'width' => '47.6422703695431',
-        'width_type' => '%',
-        'parent' => '2',
-        'class' => '',
-      ),
-      4 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'issues_right',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      5 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'top_left_',
-          1 => 'top_right_',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'top_left_' => array(
-        'type' => 'region',
-        'title' => 'Top Left',
-        'width' => '61.292284019556746',
-        'width_type' => '%',
-        'parent' => '5',
-        'class' => '',
-      ),
-      'top_right_' => array(
-        'type' => 'region',
-        'title' => 'Causes Top Right',
-        'width' => '38.707715980443254',
-        'width_type' => '%',
-        'parent' => '5',
-        'class' => '',
-      ),
-      'issues_right' => array(
-        'type' => 'region',
-        'title' => 'Issues Top Bottom',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '4',
-        'class' => '',
-      ),
-      'issues_left' => array(
-        'type' => 'region',
-        'title' => 'Issues Left',
-        'width' => '34.24118301873123',
-        'width_type' => '%',
-        'parent' => '1',
-        'class' => '',
-      ),
-      'issues_right_' => array(
-        'type' => 'region',
-        'title' => 'Issues Right',
-        'width' => '32.314387756864875',
-        'width_type' => '%',
-        'parent' => '1',
-        'class' => '',
-      ),
-      6 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'top',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'top' => array(
-        'type' => 'region',
-        'title' => 'Top',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '6',
-        'class' => '',
-      ),
-    ),
-  );
+  $display->layout = 'one_three_two';
+  $display->layout_settings = '';
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'center' => NULL,
       'top' => NULL,
-      'top_right' => NULL,
-      'bottom_' => NULL,
-      'bottom' => NULL,
-      'right_center' => NULL,
-      'top_bottom' => NULL,
-      'top_left' => NULL,
-      'top_left_' => NULL,
-      'top_right_' => NULL,
-      'issues_left' => NULL,
-      'issues_right' => NULL,
-      'issues_right_' => NULL,
+      'mid-left' => NULL,
+      'mid-center' => NULL,
+      'mid-right' => NULL,
+      'bottom-left' => NULL,
+      'bottom-right' => NULL,
+      'footer' => NULL,
     ),
   );
   $display->cache = array();
@@ -239,7 +70,44 @@ function dosomething_causes_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'bottom';
+    $pane->panel = 'bottom-left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'blog_center-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['bottom-left'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'bottom-right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'polls-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-usergen ds-pane-top-right-radius',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-2'] = $pane;
+    $display->panels['bottom-right'][0] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'footer';
     $pane->type = 'views_panes';
     $pane->subtype = 'current_campaigns-panel_pane_1';
     $pane->shown = TRUE;
@@ -263,204 +131,11 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
-    $pane->pid = 'new-2';
-    $pane->panel = 'bottom_';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'blog_center-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-2'] = $pane;
-    $display->panels['bottom_'][0] = 'new-2';
-    $pane = new stdClass;
-    $pane->pid = 'new-3';
-    $pane->panel = 'bottom_';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'See More News Link',
-      'title' => '',
-      'body' => '<a href="/blog/%term:tid" title="Blog Page">See more news &raquo;</a>',
-      'format' => '3',
-      'substitute' => 1,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
     $display->content['new-3'] = $pane;
-    $display->panels['bottom_'][1] = 'new-3';
+    $display->panels['footer'][0] = 'new-3';
     $pane = new stdClass;
     $pane->pid = 'new-4';
-    $pane->panel = 'issues_left';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_2';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['issues_left'][0] = 'new-4';
-    $pane = new stdClass;
-    $pane->pid = 'new-5';
-    $pane->panel = 'issues_right';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'current_campaigns-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['issues_right'][0] = 'new-5';
-    $pane = new stdClass;
-    $pane->pid = 'new-6';
-    $pane->panel = 'issues_right_';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-6'] = $pane;
-    $display->panels['issues_right_'][0] = 'new-6';
-    $pane = new stdClass;
-    $pane->pid = 'new-7';
-    $pane->panel = 'right_center';
-    $pane->type = 'views';
-    $pane->subtype = 'polls';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '1',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['right_center'][0] = 'new-7';
-    $pane = new stdClass;
-    $pane->pid = 'new-8';
-    $pane->panel = 'top';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '<none>',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-8'] = $pane;
-    $display->panels['top'][0] = 'new-8';
-    $pane = new stdClass;
-    $pane->pid = 'new-9';
-    $pane->panel = 'top_left_';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'causes-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-9'] = $pane;
-    $display->panels['top_left_'][0] = 'new-9';
-    $pane = new stdClass;
-    $pane->pid = 'new-10';
-    $pane->panel = 'top_right';
+    $pane->panel = 'mid-center';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_3';
     $pane->shown = TRUE;
@@ -484,13 +159,93 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-10'] = $pane;
-    $display->panels['top_right'][0] = 'new-10';
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-center'][0] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-11';
-    $pane->panel = 'top_right_';
+    $pane->pid = 'new-5';
+    $pane->panel = 'mid-left';
     $pane->type = 'views_panes';
-    $pane->subtype = 'causes-panel_pane_2';
+    $pane->subtype = 'project_related_displays-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-5'] = $pane;
+    $display->panels['mid-left'][0] = 'new-5';
+    $pane = new stdClass;
+    $pane->pid = 'new-6';
+    $pane->panel = 'mid-right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'arguments' => array(
+        'term_node_tid_depth' => '%term:tid',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-6'] = $pane;
+    $display->panels['mid-right'][0] = 'new-6';
+    $pane = new stdClass;
+    $pane->pid = 'new-7';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '<none>',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][0] = 'new-7';
+    $pane = new stdClass;
+    $pane->pid = 'new-8';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'causes-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -500,9 +255,37 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-11'] = $pane;
-    $display->panels['top_right_'][0] = 'new-11';
+    $pane->position = 1;
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][1] = 'new-8';
+    $pane = new stdClass;
+    $pane->pid = 'new-9';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'current_campaigns-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][2] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

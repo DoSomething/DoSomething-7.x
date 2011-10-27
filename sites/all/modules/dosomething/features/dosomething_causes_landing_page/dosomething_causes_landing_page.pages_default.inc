@@ -16,7 +16,10 @@ function dosomething_causes_landing_page_default_page_manager_pages() {
   $page->admin_title = 'Causes landing page';
   $page->admin_description = 'The main landing page for causes.';
   $page->path = 'cause';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -146,6 +149,6 @@ function dosomething_causes_landing_page_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['causes'] = $page;
 
- return $pages;
+  return $pages;
 
 }
