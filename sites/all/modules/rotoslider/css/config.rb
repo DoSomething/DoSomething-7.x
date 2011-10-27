@@ -1,5 +1,5 @@
 http_path = "/"
-css_dir = "css"
+css_dir = ""
 sass_dir = "src"
 images_dir = "images"
 javascripts_dir = "javascripts"

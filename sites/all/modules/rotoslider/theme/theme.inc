@@ -9,6 +9,7 @@
  * Style plugin to render each item in a Rotoslider.
  */
 function template_preprocess_rotoslider_view_slider(&$variables) {
+  // Prepare settings to be passed to JS.
   $settings = array();
   foreach (array_filter($variables['options']['settings']) as $name => $setting) {
     if ($name == 'percentage') {
@@ -22,8 +23,10 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     drupal_add_js(array('rotoslider' => $settings), 'setting');
   }
 
+  // Add a slide for each row.
   $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field);
 
+  // Either create an initial slide from the settings, or use the first slide.
   if (!empty($variables['options']['initial']['default'])) {
     unset($variables['options']['initial']['default']);
     $heading = _rotoslider_process($variables['options']['initial'], array($variables['rows'][0]), $variables['view']->field);
@@ -33,6 +36,7 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     $heading = array_shift($items);
   }
 
+  // Build the element for theme_rotoslider_slider().
   $variables['element'] = array(
     '#theme' => 'rotoslider_slider',
     '#items' => $items,
@@ -70,11 +74,14 @@ function template_preprocess_rotoslider_slider(&$variables) {
   static $count;
   $count++;
 
-  $images = array();
+  // Build three arrays, each with its fields.
   $links = array();
+  $images = array();
   $text = array();
   foreach ($items as $item) {
+    // Append an integer to each set of data to keep them unique.
     $key = drupal_html_class($item['title'] . '-' . $count);
+    // An individual item to be passed to theme_links().
     $links[$key] = array(
       'title' => $item['title'],
       'href' => "#",
@@ -83,6 +90,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
         'data-key' => $key,
       ),
     );
+    // Each image is passed to theme_image().
     $images[$key] = array(
       '#theme' => 'image',
       '#path' => $item['image'],
@@ -91,6 +99,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
         'data-key' => $key,
       ),
     );
+    // A container with heading and text as children.
     $text[$key] = array(
       '#type' => 'container',
       '#attributes' => array(
@@ -210,8 +219,26 @@ function theme_rotoslider_slider($variables) {
   return drupal_render($variables['element']);
 }
 
+/**
+ * Helper function: Turns raw Views data into santized values.
+ *
+ * @param $options
+ *   Array of either Views field names or hardcoded values, keyed by field type.
+ * @param $rows
+ *   Array of objects containing raw Views data, keyed by Views field aliases.
+ * @param $fields
+ *   Array of Views field handler objects, keyed by Views field names.
+ *
+ * @return
+ *   Array of numerically indexed items. Each item should itself be an array,
+ *   with the following elements:
+ *   - title: The item's plain text title.
+ *   - image: The item's image absolute URL.
+ *   - text: The item's decription, which may contain markup.
+ */
 function _rotoslider_process($options, $rows, $fields) {
   $items = array();
+
   $info = array();
   foreach (array_filter($options) as $type => $field_name) {
     if (empty($fields[$field_name])) {
