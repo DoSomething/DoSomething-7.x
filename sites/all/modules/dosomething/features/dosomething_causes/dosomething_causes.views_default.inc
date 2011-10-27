@@ -261,22 +261,6 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
   $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;
   $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['vocabularies'] = array(
-    'vocabulary_1' => 0,
-    'vocabulary_9' => 0,
-    'vocabulary_5' => 0,
-    'blog_type' => 0,
-    'vocabulary_6' => 0,
-    'vocabulary_11' => 0,
-    'vocabulary_18' => 0,
-    'vocabulary_17' => 0,
-    'vocabulary_15' => 0,
-    'vocabulary_19' => 0,
-    'vocabulary_4' => 0,
-    'vocabulary_16' => 0,
-    'vocabulary_2' => 0,
-    'vocabulary_3' => 0,
-  );
   $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
