@@ -1,33 +1,26 @@
 (function ($) {
   Drupal.behaviors.dsMainMenu = {
     attach: function (context, settings) {
-      var timeout = false;
       var causesTimeout = false;
       var levelOne = $("#causes-menu-dropdown li.causes-menu-dropdown-level-1");
       var levelTwo = $("#causes-menu-dropdown li.causes-menu-dropdown-level-2");
       var causesMenu = $("#causes-menu-dropdown");
       var secondaryMenu = $(".secondary ul");
       var secondaryMenuActive = $(".secondary ul.active");
-      var timeLength = 5000;
 
       // Show and hide secondary menu.
-      $("#main-menu li").hover(function() {
-        // Clear the timeout in case user was hovering
-        //  over another menu item.
-        if (timeout) {
-          clearTimeout(timeout);
+      $("#main-menu li").hoverIntent({
+        interval: 300,
+        over: function() {
+
+          var classes = $(this).attr("class").split(" ");
+          var menuClass = classes[0];
+
+          // Hide all but related secondary menu
+          secondaryMenu.addClass("hidden");
+          $("#secondary-menu-" + menuClass).removeClass("hidden");
+          causesMenu.hide();
         }
-
-        var classes = $(this).attr('class').split(' ');
-        var menuClass = classes[0];
-
-        // Hide all but related secondary menu
-        secondaryMenu.addClass("hidden");
-        $("#secondary-menu-" + menuClass).removeClass("hidden");
-        causes.hide();
-      },
-      function() {
-        // Nothing to do on hover out.
       });
 
       // Show and hide level 1 in the all-causes dropdown.
@@ -38,21 +31,25 @@
       function() {
         causesTimeout = setTimeout(function() {
           causesMenu.hide();
-        }, timeLength);
+        }, 5000);
       });
 
-      // Show and hide level 2 items in the all-causes dropdown.
-      causesMenu.hoverIntent(function() {
-        causesMenu.show();
-        if (causesTimeout) {
-          clearTimeout(causesTimeout);
+      // Show and hide all-causes dropdown.
+      causesMenu.hoverIntent({
+        timeout: 1000,
+        over: function() {
+          causesMenu.show();
+          // Clear the timeout from the trigger,
+          // because we are now hovering.
+          if (causesTimeout) {
+            clearTimeout(causesTimeout);
+          }
+          levelTwo.show();
+        },
+        out: function() {
+          causesMenu.hide();
+          levelTwo.hide();
         }
-        //$(this).find("li.causes-menu-dropdown-level-2").show();
-        levelTwo.show();
-      },
-      function() {
-        //$(this).find("li.causes-menu-dropdown-level-2").hide();
-        causesMenu.hide();
       });
     }
   }
