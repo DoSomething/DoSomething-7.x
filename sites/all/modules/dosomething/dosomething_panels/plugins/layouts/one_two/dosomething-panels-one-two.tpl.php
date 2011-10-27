@@ -1,17 +1,3 @@
-<?php
-if ($content['left']) {
-  $bottom_row_classes[] = 'bottom-first';
-}
-if ($content['right']) {
-  $bottom_row_classes[] = 'bottom-second';
-}
-$bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
-if ($content['left'] && $content['right']) {
-  $bottom_row_classes[] = 'both';
-}
-$bottom_row_classes = implode(" ", $bottom_row_classes);
-?>
-
 <div class="panel-one-two panel-display ds-panel" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <?php if ($content['top']): ?>
     <div class="panel-top panel-panel panel-full">

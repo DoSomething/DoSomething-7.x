@@ -13,5 +13,6 @@ $plugin = array(
     'mid-right' => t('Middle - Right'),
     'bottom-left' => t('Bottom - Left'),
     'bottom-right' => t('Bottom - Right'),
+    'footer' => t('Footer'),
   ),
 );

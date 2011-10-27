@@ -13,3 +13,156 @@ function dosomething_panels_ctools_plugin_directory($module, $plugin) {
     return 'plugins/layouts';
   }
 }
+
+function dosomething_panels_preprocess_dosomething_panels_two_three(&$variables) {
+  $content = $variables['content'];
+
+  if ($content['top-left']) {
+    $top_row_classes[] = 'top-first';
+  }
+  if ($content['top-right']) {
+    $top_row_classes[] = 'top-second';
+  }
+  $top_row_classes[] = 'panes-' . count($top_row_classes);
+  if ($content['top-left'] && $content['top-right']) {
+    $top_row_classes[] = 'both';
+  }
+  $variables['top_row_classes'] = implode(' ', $top_row_classes);
+
+  if ($content['bottom-left']) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if ($content['bottom-center']) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  if ($content['bottom-right']) {
+    $bottom_row_classes[] = 'bottom-third';
+  }
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  if ($content['bottom-left'] && $content['bottom-center'] && $content['bottom-right']) {
+    $bottom_row_classes[] = 'all';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+}
+
+function dosomething_panels_preprocess_dosomething_panels_twocol_a(&$variables) {
+  $content = $variables['content'];
+
+  if (isset($content['left-top']) || isset($content['left-bottom-left']) || isset($content['left-bottom-right'])) {
+    $outer_row_classes[] = 'outer-first';
+  }
+  if (isset($content['right'])) {
+    $outer_row_classes[] = 'outer-second';
+  }
+  $outer_row_classes[] = 'panes-' . count($outer_row_classes);
+  if ((isset($content['left-top']) || isset($content['left-bottom-left']) || isset($content['left-bottom-right'])) && isset($content['right'])) {
+    $outer_row_classes[] = 'both';
+  }
+  $variables['outer_row_classes'] = implode(' ', $outer_row_classes);
+
+  $bottom_row_classes = array();
+  if (isset($content['left-bottom-left'])) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if (isset($content['left-bottom-right'])) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  if (isset($bottom_row_classes)) {
+    $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  }
+  if (isset($content['left-bottom-left']) && isset($content['left-bottom-right'])) {
+    $bottom_row_classes[] = 'both';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+}
+
+function dosomething_panels_preprocess_dosomething_panels_one_two_one_two(&$variables) {
+  $content = $variables['content'];
+
+  if ($content['row2-left']) {
+    $row2_row_classes[] = 'row2-first';
+  }
+  if ($content['row2-right']) {
+    $row2_row_classes[] = 'row2-second';
+  }
+  $row2_row_classes[] = 'panes-' . count($row2_row_classes);
+  if ($content['row2-left'] && $content['row2-right']) {
+    $row2_row_classes[] = 'both';
+  }
+  $variables['row2_row_classes'] = implode(' ', $row2_row_classes);
+
+  if ($content['bottom-left']) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if ($content['bottom-right']) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  if ($content['bottom-left'] && $content['bottom-right']) {
+    $bottom_row_classes[] = 'both';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+}
+
+function dosomething_panels_preprocess_dosomething_panels_one_two_one(&$variables) {
+  $content = $variables['content'];
+
+  if ($content['mid-left']) {
+    $mid_row_classes[] = 'mid-first';
+  }
+  if ($content['mid-right']) {
+    $mid_row_classes[] = 'mid-second';
+  }
+  $mid_row_classes[] = 'panes-' . count($mid_row_classes);
+  if ($content['mid-left'] && $content['mid-right']) {
+    $mid_row_classes[] = 'both';
+  }
+  $variables['mid_row_classes'] = implode(' ', $mid_row_classes);
+}
+
+function dosomething_panels_preprocess_dosomething_panels_one_two(&$variables) {
+  $content = $variables['content'];
+
+  if ($content['left']) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if ($content['right']) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  if ($content['left'] && $content['right']) {
+    $bottom_row_classes[] = 'both';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+}
+
+function dosomething_panels_preprocess_dosomething_panels_one_three_two(&$variables) {
+  $content = $variables['content'];
+
+  if ($content['mid-left']) {
+    $mid_row_classes[] = 'mid-first';
+  }
+  if ($content['mid-center']) {
+    $mid_row_classes[] = 'mid-second';
+  }
+  if ($content['mid-right']) {
+    $mid_row_classes[] = 'mid-third';
+  }
+  $mid_row_classes[] = 'panes-' . count($mid_row_classes);
+  if ($content['mid-left'] && $content['mid-center'] && $content['mid-right']) {
+    $mid_row_classes[] = 'all';
+  }
+  $variables['mid_row_classes'] = implode(' ', $mid_row_classes);
+
+  if ($content['bottom-left']) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if ($content['bottom-right']) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  if ($content['bottom-left'] && $content['bottom-right']) {
+    $bottom_row_classes[] = 'both';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+}
