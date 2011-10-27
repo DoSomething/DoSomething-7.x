@@ -1981,16 +1981,58 @@ nav[role=navigation] .secondary ul.active a {
   color: white;
 }
 nav[role=navigation] .causes-dropdown {
-  position: absolute;
-  z-index: 10;
-  left: 25em;
-  top: 4.2em;
   background-color: #014e9c;
+  position: absolute;
+  left: 23.4em;
+  z-index: 10;
 }
-nav[role=navigation] .causes-dropdown .item-list #causes-menu-dropdown li {
-  display: none;
+nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown {
+  margin: 0;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 500;
+  margin: 0 0 0 0.5em;
+  height: 2em;
+}
+nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1 {
+  background-color: #014e9c;
+  position: relative;
+  top: -2.4em;
+  left: 11.1em;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding-left: 5px;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 a {
+  font-size: 14px;
+  margin-top: 0;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2:hover {
+  background-color: #417cb4;
+}
+nav[role=navigation] .causes-dropdown a {
+  line-height: 1.172;
+  margin-right: 0.172em;
+  padding-top: 0.345em;
+  padding-bottom: 0.345em;
+  padding-left: 0.207em;
+  padding-right: 0.207em;
+}
+nav[role=navigation] .causes-dropdown.last a {
+  margin-right: 0;
 }
 nav[role=navigation] a {
+  text-decoration: none;
   display: block;
   color: #2c85d0;
 }
@@ -2002,12 +2044,6 @@ nav[role=navigation] a:hover {
 }
 nav[role=navigation] a:active {
   color: white;
-}
-nav[role=navigation] a {
-  border-bottom: none;
-}
-nav[role=navigation] a:hover {
-  border-bottom: none;
 }
 
 div[role=main] {
