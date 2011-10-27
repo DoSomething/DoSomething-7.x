@@ -36,6 +36,7 @@ class DSProject extends DSJsonWebformMigration {
 
     $this->addFieldMapping('field_project_webform_age', 'field_project_age'); # Field: Project Type (list_text)
     $this->addFieldMapping('field_project_action_guide', 'field_related_action_guide');
+    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5');
 // field_type_of_project Node: Is this a... (text)
 // field_inspired_by_dosomething Node: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (number_integer)
 // field_project_age Node: Current age (NOTE: this section is for people 25 and younger) (number_integer)

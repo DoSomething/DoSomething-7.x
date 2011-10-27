@@ -59,6 +59,7 @@ class DSCampaignSignupHealthySchoolsMigration extends DSCampaignSignupMigration 
     $this->addFieldMapping('data_how_many_people_are_you_working_with', 'field_healthy_schools_team');
     $this->addFieldMapping('data_whatcha_doin', 'field_campaign_essay');
     $this->addFieldMapping('data_school_organization_name', 'field_campaign_school');
+    $this->addFieldMapping('data_how_did_you_hear_about_us', 'vocab_15');
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
