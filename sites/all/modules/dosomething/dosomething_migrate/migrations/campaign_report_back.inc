@@ -182,9 +182,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
 
     $this->addFieldMapping('data_name_of_school_or_group', 'title');
     $this->addFieldMapping('data_your_first_and_last_name', 'field_cannedfood_contactname');
-    $this->addFieldMapping('data_state', 'field_state_plain')
-      ->issuePriority(MigrateFieldMapping::ISSUE_PRIORITY_LOW)
-      ->description("field_state_plain has 60 values but data_state only has 58. 'Canada' and something else were removed.");
+    $this->addFieldMapping('data_state', 'field_state_plain');
     $this->addFieldMapping('data_city', 'field_city');
     $this->addFieldMapping('data_zip_code', 'field_zip_code_0');
     $this->addFieldMapping('data_birthdate', 'field_campaign_birthdate');
