@@ -249,6 +249,8 @@ function _rotoslider_process($options, $rows, $fields) {
     }
   }
 
+  // Get the placeholder image.
+  $placeholder = variable_get('rotoslider_placeholder');
   foreach ($rows as $delta => $row) {
     foreach (array('title', 'image', 'text') as $type) {
       if (isset($row->$info[$type])) {
@@ -262,6 +264,11 @@ function _rotoslider_process($options, $rows, $fields) {
       }
       else {
         $value = '';
+      }
+
+      // If a placeholder is set and the image is missing, use it.
+      if (empty($value) && $type == 'image' && !empty($placeholder)) {
+        $value = $placeholder;
       }
 
       $column = $type == 'image' ? 'uri' : 'value';
