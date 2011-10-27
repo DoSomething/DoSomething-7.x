@@ -1983,8 +1983,12 @@ nav[role=navigation] .secondary ul.active a {
 nav[role=navigation] .causes-dropdown {
   background-color: #014e9c;
   position: absolute;
-  left: 23.4em;
+  left: 22.4em;
+  top: 6em;
   z-index: 10;
+}
+nav[role=navigation] .causes-dropdown #causes-menu-dropdown {
+  margin-bottom: 0;
 }
 nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown {
   margin: 0;
@@ -1993,14 +1997,14 @@ nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
   font-size: 1.5em;
   line-height: 1.333em;
   font-weight: 500;
-  margin: 0 0 0 0.5em;
   height: 2em;
+  margin: 0 0 0 0.5em;
 }
 nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1 {
   background-color: #014e9c;
   position: relative;
-  top: -2.4em;
-  left: 11.1em;
+  top: -1.8em;
+  left: 5.3em;
 }
 nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 {
   list-style: none;
