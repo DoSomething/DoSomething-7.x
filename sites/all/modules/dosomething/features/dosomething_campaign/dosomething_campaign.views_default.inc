@@ -33,7 +33,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
-  /* Relationship: Broken/missing handler */
+  /* Relationship: Content: Campaign (field_report_back_reference) - reverse */
   $handler->display->display_options['relationships']['reverse_field_report_back_reference_node']['id'] = 'reverse_field_report_back_reference_node';
   $handler->display->display_options['relationships']['reverse_field_report_back_reference_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_report_back_reference_node']['field'] = 'reverse_field_report_back_reference_node';
@@ -381,6 +381,10 @@ function dosomething_campaign_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Related Campaigns Content pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['display_description'] = 'Related campaigns pane - pulled into Causes term page.';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -467,6 +471,11 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Do This';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Has taxonomy term ID (with depth) */
   $handler->display->display_options['arguments']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
