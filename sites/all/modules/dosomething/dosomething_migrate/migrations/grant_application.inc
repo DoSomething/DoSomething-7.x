@@ -69,7 +69,13 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_project_summary', 'field_description');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
     $this->addFieldMapping('field_webform_video_url', 'field_youtube_or_video_url');
+    $this->addFieldMapping('data_username', 'title');
+    $this->addFieldMapping('data_your_high_school', 'field_your_high_school');
+    $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applica_0');
 
+    //Null Mappings
+    //$this->addUnmigratedSources(array(''));
+    $this->addUnmigratedDestinations(array('data_how_did_you_hear_about_us', 'data_birth_date', 'data_school', 'data_school_zip_code', 'field_webform_birthdate', 'field_webform_school', 'field_webform_school_zip'));
   }
 }
 
@@ -115,6 +121,12 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_project_summary', 'field_description');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
     $this->addFieldMapping('field_webform_video_url', 'field_plumgrant_videourl');
+    $this->addFieldMapping('data_email', 'title');
+    $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
+    $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
+  
+    //Null Mappings
+    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
   }
 }
 
@@ -134,7 +146,7 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_other_group_members_emails', 'field_other_group_members_email');
     $this->addFieldMapping('data_how_did_you_hear_about_this_grant', 'field_how_did_you_hear_about_bo')
       ->arguments(array('source_type' => 'value'));
-    $this->addFieldMapping('data_how_many_people_are_directly_involved_in_your_project', 'field_num_people_impacted');
+    $this->addFieldMapping('data_how_many_people_are_directly_involved_in_your_project', 'field_num_people_involved');
     $this->addFieldMapping('data_how_many_people_have_you_inspired_to_take_action', 'field_num_people_inspired');
     $this->addFieldMapping('data_how_many_people_has_your_project_helped', 'field_num_people_impacted');
     $this->addFieldMapping('data_see_it', 'field_essay_one');
@@ -172,6 +184,14 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_project_summary', 'field_describe');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
     $this->addFieldMapping('field_webform_video_url', 'field_youtube_or_video_url');
+    $this->addFieldMapping('data_please_submit_a_budget_detailing_how_you_would_use_the_grant_money', 'field_budget_0');
+    $this->addFieldMapping('data_high_school', 'field_plumgrant_highschool');
+    $this->addFieldMapping('data_college_if_applicable', 'field_your_college_if_applicabl');
+    $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
+  
+    //Null Mappings
+    $this->addUnmigratedSources(array('title'));
+    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
   }
 }
 /*
