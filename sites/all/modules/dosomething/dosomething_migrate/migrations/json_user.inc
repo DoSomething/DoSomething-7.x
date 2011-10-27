@@ -34,10 +34,12 @@ abstract class DSJsonUserMigration extends Migration {
   }
 }
 
-class DSJsonChangedUser extends DSJsonUserMigration {
+class DSJsonNewUser extends DSJsonUserMigration {
   public function __construct() {
-    $uid = db_query("SELECT MAX(uid) FROM {users}")->fetchField();
-    parent::__construct("since_uid={$uid}");
+    // TODO: need to make sure this variable is getting set, defaulting to
+    // September 25th to make sure I get some data.
+    $ts = variable_get('ds_migration_forked_ts', 1317000000);
+    parent::__construct("created_since={$ts}");
 
     $this->dependencies = array();
 
@@ -47,20 +49,96 @@ class DSJsonChangedUser extends DSJsonUserMigration {
     );
 
     $this->destination = new MigrateDestinationUser();
-
-    $this->addFieldMapping('uid', 'uid');
-
+    $this->addFieldMapping('is_new')->defaultValue(TRUE);
+    $this->addSimpleMappings(array(
+      'uid',
+      'name',
+      'mail',
+      'login',
+      'access',
+      'timezone',
+      'language',
+      'signature',
+      'signature_format',
+      'status',
+      'init',
+    ));
   }
 }
 
-class DSJsonChangedProfile extends DSJsonUserMigration {
+class DSJsonChangedUser extends DSJsonUserMigration {
   public function __construct() {
     // TODO: need to make sure this variable is getting set, defaulting to
     // September 25th to make sure I get some data.
     $ts = variable_get('ds_migration_forked_ts', 1317000000);
-    parent::__construct("since_ts={$ts}");
+    parent::__construct("changed_since={$ts}");
 
-    $this->dependencies = array('DSJsonChangedUser');
+    $this->dependencies = array('DSJsonNewUser');
+
+    $this->map = new MigrateSQLMap($this->machineName,
+      MigrateDestinationUser::getKeySchema(),
+      MigrateDestinationUser::getKeySchema()
+    );
+
+    // We want to update existing users.
+    $this->destination = new MigrateDestinationUser();
+    $this->systemOfRecord = Migration::DESTINATION;
+    $this->addSimpleMappings(array(
+      'uid',
+      'name',
+      'mail',
+      'login',
+      'access',
+      'timezone',
+      'language',
+      'signature',
+      'signature_format',
+      'status',
+      'init',
+    ));
+    $this->addUnmigratedSources(array(
+      'created',  // Shouldn't be changing.
+      'picture',  // Not in use.
+      'theme',    // Theme will change
+      'profile_hearabout', // All these are handled by DSJsonProfile
+      'profile_address1',
+      'profile_address2',
+      'profile_city',
+      'profile_state',
+      'profile_zip',
+      'profile_over13',
+      'profile_fname',
+      'profile_lname',
+      'profile_bday',
+      'profile_gender',
+      'profile_preferred_cause',
+      'profile_why_do_you',
+      'profile_cell',
+      'profile_receive',
+      'profile_newsletter',
+    ));
+    $this->addUnmigratedDestinations(array(
+      'is_new',
+      'created',  // Shouldn't be changing.
+      'picture',  // Not in use.
+      'path',     // Auto generated.
+      'theme',    // Default is fine.
+      'pathauto', // Let it happen.
+    ));
+    #$this->addFieldMapping('pass', ''); # User: Password (plain text)
+    #$this->addFieldMapping('roles', ''); # User: Role IDs
+  }
+}
+
+class DSJsonProfile extends DSJsonUserMigration {
+  public function __construct() {
+    // TODO: need to make sure this variable is getting set, defaulting to
+    // September 25th to make sure I get some data.
+    $ts = variable_get('ds_migration_forked_ts', 1317000000);
+    parent::__construct("changed_since={$ts}");
+
+    // Get existing user's profiles migrated, then create users.
+    $this->dependencies = array('DSSqlUserProfile', 'DSJsonNewUser', 'DSJsonChangedUser');
 
     $this->destination = new MigrateDestinationProfile2('main');
 
@@ -69,7 +147,18 @@ class DSJsonChangedProfile extends DSJsonUserMigration {
       MigrateDestinationProfile2::getKeySchema()
     );
 
-    $this->addFieldMapping('uid', 'uid');
+    $this->addFieldMapping('uid', 'uid')->sourceMigration(array('DSJsonNewUser', 'DSJsonChangedUser'));
+    $this->addFieldMapping('field_user_hearabout', 'profile_hearabout');
+    $this->addFieldMapping('field_user_is_over13', 'profile_over13')->defaultValue(0);
+    $this->addFieldMapping('field_user_first_name', 'profile_fname');
+    $this->addFieldMapping('field_user_last_name', 'profile_lname');
+    $this->addFieldMapping('field_user_birthday', 'profile_bday')->defaultValue(NULL);
+    $this->addFieldMapping('field_user_gender', 'profile_gender');
+    $this->addFieldMapping('field_user_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
+    $this->addFieldMapping('field_user_why_do_you', 'profile_why_do_you');
+    $this->addFieldMapping('field_user_mobile', 'profile_cell')->defaultValue('');
+    $this->addFieldMapping('field_user_mobile_optin', 'profile_receive')->defaultValue(0);
+    $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter')->defaultValue(0);
 
     $arguments = array(
       'thoroughfare' => array('source_field' => 'profile_address1'),
@@ -87,17 +176,12 @@ class DSJsonChangedProfile extends DSJsonUserMigration {
       $this->addFieldMapping(NULL, $argument['source_field'])->description(t("Maps to %dest in field_user_address", array('%dest' => $dest)));
     }
 
-    $this->addFieldMapping('field_user_hearabout', 'profile_hearabout');
-    $this->addFieldMapping('field_user_is_over13', 'profile_over13')->defaultValue(0);
-    $this->addFieldMapping('field_user_first_name', 'profile_fname');
-    $this->addFieldMapping('field_user_last_name', 'profile_lname');
-    $this->addFieldMapping('field_user_birthday', 'profile_bday')->defaultValue(NULL);
-    $this->addFieldMapping('field_user_gender', 'profile_gender');
-    $this->addFieldMapping('field_user_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
-    $this->addFieldMapping('field_user_why_do_you', 'profile_why_do_you');
-    $this->addFieldMapping('field_user_mobile', 'profile_cell')->defaultValue('');
-    $this->addFieldMapping('field_user_mobile_optin', 'profile_receive')->defaultValue(0);
-    $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter')->defaultValue(0);
+    #$this->addFieldMapping('field_user_age', ''); # Field: Age (text)
+    #$this->addFieldMapping('field_user_confirm_email', ''); # Field: Confirm Email (email)
+    #$this->addFieldMapping('field_user_email', ''); # Field: Email (email)
+    #$this->addFieldMapping('field_user_email_updates', ''); # Field: I would also like to receive email updates from DoSomething.org (list_boolean)
+    #$this->addFieldMapping('field_user_official_rules', ''); # Field: I have read and accept the <a href="/">Official Rules</a> (list_boolean)
+    #$this->addFieldMapping('field_user_phone_number', ''); # Field: Phone Number (text)
 
     $this->addUnmigratedSources(array(
       'name', 'pass', 'mail', 'roles', 'theme', 'signature', 'signature_format',

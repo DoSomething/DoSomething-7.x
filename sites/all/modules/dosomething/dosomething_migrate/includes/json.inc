@@ -20,22 +20,23 @@ abstract class DSListJSON extends MigrateListJSON implements Iterator {
   }
 
   public function computeCount() {
-    $count = NULL;
+    $counts = &drupal_static(__METHOD__);
 
     migrate_instrument_start(__METHOD__);
 
-    migrate_instrument_start("Retrieve $this->countUrl");
-    $json = file_get_contents($this->countUrl);
-    migrate_instrument_stop("Retrieve $this->countUrl");
+    if (!isset($counts[$this->countUrl])) {
+      migrate_instrument_start("Retrieve $this->countUrl");
+      $json = file_get_contents($this->countUrl);
+      migrate_instrument_stop("Retrieve $this->countUrl");
 
-    if ($json) {
-      $data = drupal_json_decode($json);
-      $count = $data;
+      if ($json) {
+        $data = drupal_json_decode($json);
+        $counts[$this->countUrl] = $data;
+      }
     }
-
     migrate_instrument_stop(__METHOD__);
 
-    return $count;
+    return $counts[$this->countUrl];
   }
 
   public function getIdList() {

@@ -26,8 +26,8 @@ class DSJsonWebformSubmissionJsonMigrateItems extends MigrateItems implements It
     $ts = variable_get('ds_migration_forked_ts', 1317000000);
 
     $this->key = $key;
-    $this->listUrl = "{$base_url}/webform/list/{$key}?page=:page&since_ts={$ts}";
-    $this->countUrl = "{$base_url}/webform/count?since_ts={$ts}";
+    $this->listUrl = "{$base_url}/webform/list/{$key}?page=:page&created_since={$ts}";
+    $this->countUrl = "{$base_url}/webform/count?created_since={$ts}";
     $this->getUrl = "{$base_url}/webform/get/:id";
 
     // Initialize everything.
@@ -136,7 +136,7 @@ class DSJsonWebformSubmissionJsonMigrateItems extends MigrateItems implements It
 
     migrate_instrument_stop(__METHOD__);
 
-    return $counts[$this->key];
+    return isset($counts[$this->key]) ? $counts[$this->key] : 0;
   }
 
   public function getItem($id) {
