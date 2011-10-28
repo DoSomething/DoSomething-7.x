@@ -918,7 +918,7 @@ function dosomething_login_fbconnect_register_validate($form, &$form_state) {
  *  (int) numeric id of drupal user.
  * @return @boolean
  */
-function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
+function dosomething_login_drupal_user_is_over_age($uid, $age = 13, $end_timestamp = NULL) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   if (is_object($profile)) {
@@ -926,21 +926,26 @@ function dosomething_login_drupal_user_is_over_age($uid, $age = 13) {
     if (isset($birthday[0]['value'])) {
       // this is only a a time (no time) so timezone is not important.
       $timestamp = strtotime($birthday[0]['value']);
-      return dosomething_login_person_is_over_age($timestamp, $age);
+      return dosomething_login_person_is_over_age($timestamp, $age, $end_timestamp);
     }
   }
   return FALSE;
 }
 
 /**
- * Check if a user is over 13.
+ * Check if a user is over the given age.
  *
  * @param $birthday
  *  (int) timestamp of birthday.
+ * @param $age
+ *  (int) the age to check.
+ * @param $timestamp
+ *  (int) the time at which to check the age.  Defaults to current time.
  * @return @boolean
  */
-function dosomething_login_person_is_over_age($birthday, $age = 13) {
-  return $birthday < strtotime("-$age year") ? TRUE : FALSE;
+function dosomething_login_person_is_over_age($birthday, $age = 13, $timestamp = NULL) {
+  $timestamp = is_null($timestamp) ? REQUEST_TIME : $timestamp;
+  return $birthday < strtotime("-$age year", $timestamp) ? TRUE : FALSE;
 }
 
 /**

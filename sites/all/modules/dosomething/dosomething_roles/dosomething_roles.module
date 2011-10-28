@@ -30,6 +30,18 @@ function dosomething_roles_cron() {
      dosomething_roles_update_role($data->uid);
      variable_set('dosomething_roles_cron_inactive', $data->access);
   }
+
+  // Look people up whose anniversary is x months away.
+  // Keep track of x month day (and uid)
+
+  // One the first of the month, start grabbing everyone who will expire in x months during the month.
+  // Start emailing them one by one and keep track of the uid.
+
+  // On the first of the next month if our list has anyone left, then we're in trouble because we're
+  // not sending them out fast enough.
+
+  // You'll have to figure out what the user's status will be in x months too.
+
 }
 
 /**
@@ -270,15 +282,23 @@ function dosomething_roles_webform_submission_update($node, $submission) {
  *    If their action update is unpublished, then they should
  *      immediately fall to 'member'. (See hook_webform_submission_update).
  *  varsity - 5 action updates or win grant and submit grant update.
+ *
+ * @param $uid
+ *  (int) uid from account object.
+ * @param $end_timestamp
+ *  (int) timestamp of date from which to determine membership level. (OPTIONAL)
+ *   By default this will determine level at the current time.
+ * @return string
  */
-function dosomething_roles_get_member_role($uid) {
+function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
   $account = user_load($uid);
-  $timestamp = strtotime('-1 year');
+  $end_timestamp = is_null($end_timestamp) ? REQUEST_TIME : $end_timestamp;
+  $timestamp = strtotime('-1 year', $end_timestamp);
   $action_update_count = dosomething_roles_get_action_update_count($uid, $timestamp);
   $grant_update = dosomething_roles_user_submitted_grant($uid, $timestamp);
 
   if (module_exists('dosomething_login')) {
-    if (dosomething_login_drupal_user_is_over_age($uid, 25)) {
+    if (dosomething_login_drupal_user_is_over_age($uid, 25, $end_timestamp)) {
       return 'old person';
     }
   }
@@ -288,7 +308,7 @@ function dosomething_roles_get_member_role($uid) {
   else if ($action_update_count >= 1) {
     $role_name = 'active member';
   }
-  else if ($account->login >= strtotime('-1 year')) {
+  else if ($account->login >= $timestamp) {
     $role_name = 'member';
   }
   else {
@@ -390,11 +410,39 @@ function dosomething_roles_set_anniversary($uid, $timestamp) {
  * Implements hook_form_profile2_edit_TYPE_form_alter().
  */
 function dosomething_roles_form_profile2_edit_main_form_alter(&$form, &$form_state) {
-  // Disalbe access to anniversary field.  This could be done with
+  // Disable access to anniversary field.  This could be done with
   // field permissions, but until we need more fine grained permissions
   // on other fields, let's not add more overhead to this site.
   if (isset($form['profile_main']['field_user_anniversary'])) {
     unset($form['profile_main']['field_user_anniversary']);
   }
+}
+
+/**
+ *
+ */
+function dosomething_roles_get_users_by_anniversary($start_date, $end_date = NULL, $uid = NULL) {
+  // TODO: When getting results, verify they're not a staff member.
+  if (is_null($end_date)) {
+    $end_date = REQUEST_TIME;
+  }
+  $query = new EntityFieldQuery;
+  try {
+    $query
+      ->entityCondition('entity_type', 'profile2')
+      ->propertyCondition('type', 'main', '=')
+      ->fieldCondition('field_user_anniversary', 'value', array($start_date, $end_date), 'BETWEEN')
+      ->propertyOrderBy('uid');
+
+    if (!is_null($uid)) {
+      $query->propertyCondition('uid', $uid, '>');
+    }
+    $results = $query->execute();
+    return $results;
+  }
+  catch (Exception $e) {
+    return NULL;
+  }
+  return $count;
 }
 
