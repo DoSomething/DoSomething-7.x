@@ -51,7 +51,7 @@ function dosomething_project_report_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -79,7 +79,77 @@ function dosomething_project_report_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => 31,
+        'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project_report-field_body_logged_in'
+  $fields['node-project_report-field_body_logged_in'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_body_logged_in',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The content from this field will only be shown to logged in users.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_body_logged_in',
+      'label' => 'Body (logged in user)',
+      'required' => 0,
+      'settings' => array(
+        'display_summary' => 0,
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '20',
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '33',
       ),
     ),
   );
@@ -96,8 +166,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'abstract',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -113,7 +183,7 @@ function dosomething_project_report_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 1,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -134,7 +204,7 @@ function dosomething_project_report_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -151,8 +221,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'copyright',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -168,7 +238,7 @@ function dosomething_project_report_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 2,
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -189,7 +259,7 @@ function dosomething_project_report_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -206,8 +276,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'description',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -223,7 +293,7 @@ function dosomething_project_report_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 3,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -244,7 +314,7 @@ function dosomething_project_report_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -261,8 +331,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'keywords',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -278,7 +348,7 @@ function dosomething_project_report_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 4,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -299,7 +369,7 @@ function dosomething_project_report_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -316,8 +386,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'robots',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -333,7 +403,7 @@ function dosomething_project_report_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 5,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -355,7 +425,7 @@ function dosomething_project_report_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => 0,
+        'weight' => '0',
       ),
     ),
   );
@@ -887,6 +957,121 @@ function dosomething_project_report_field_default_fields() {
         'settings' => array(),
         'type' => 'link_field',
         'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_locations'
+  $fields['webform_submission_entity-project_report-field_locations'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_locations',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'lid' => array(
+          0 => 'lid',
+        ),
+      ),
+      'module' => 'location_cck',
+      'settings' => array(
+        'gmap_macro' => '[gmap ]',
+        'gmap_marker' => 'drupal',
+        'location_settings' => array(
+          'display' => array(
+            'hide' => array(
+              'additional' => 0,
+              'city' => 0,
+              'coords' => 0,
+              'country' => 0,
+              'country_name' => 0,
+              'locpick' => 0,
+              'map_link' => 0,
+              'name' => 0,
+              'postal_code' => 0,
+              'province' => 0,
+              'province_name' => 0,
+              'street' => 0,
+            ),
+          ),
+          'form' => array(
+            'fields' => array(
+              'additional' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '6',
+              ),
+              'city' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '8',
+              ),
+              'country' => array(
+                'collect' => '1',
+                'default' => 'us',
+                'weight' => '14',
+              ),
+              'locpick' => array(
+                'collect' => '0',
+                'weight' => '20',
+              ),
+              'name' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '2',
+              ),
+              'postal_code' => array(
+                'collect' => '2',
+                'default' => '',
+                'weight' => '12',
+              ),
+              'province' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '10',
+              ),
+              'street' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '4',
+              ),
+            ),
+          ),
+        ),
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'location',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'location_cck',
+          'settings' => array(),
+          'type' => 'location_default',
+          'weight' => 16,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_locations',
+      'label' => 'Locations',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'location_cck',
+        'settings' => array(),
+        'type' => 'location',
+        'weight' => '18',
       ),
     ),
   );
@@ -2048,6 +2233,7 @@ Use numbers only (no text).');
   t('Abstract');
   t('Age');
   t('Body');
+  t('Body (logged in user)');
   t('Copyright');
   t('Describe the steps you will take/took to create your project or organization. What kind of impact have you made?');
   t('Describe your project/organization and how it addresses the problem(s) above.');
@@ -2073,6 +2259,7 @@ Use numbers only (no text).');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
   t('Tell us about the community you are helping and the problem(s) being solved.');
   t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
+  t('The content from this field will only be shown to logged in users.');
   t('Title');
   t('Total hours volunteered (to date)');
   t('Video');

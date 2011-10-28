@@ -51,7 +51,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -79,7 +79,77 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => -4,
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-field_body_logged_in'
+  $fields['node-campaign_sign_up-field_body_logged_in'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_body_logged_in',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The content from this field will only be shown to logged in users.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_body_logged_in',
+      'label' => 'Body (logged in user)',
+      'required' => 0,
+      'settings' => array(
+        'display_summary' => 0,
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '20',
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '2',
       ),
     ),
   );
@@ -96,8 +166,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'abstract',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -113,7 +183,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 1,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -134,7 +204,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => 0,
+        'weight' => '6',
       ),
     ),
   );
@@ -151,8 +221,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'copyright',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -168,7 +238,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 2,
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -189,7 +259,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => 0,
+        'weight' => '7',
       ),
     ),
   );
@@ -206,8 +276,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'description',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -223,7 +293,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 3,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -244,7 +314,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => 0,
+        'weight' => '5',
       ),
     ),
   );
@@ -261,8 +331,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'keywords',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -278,7 +348,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 4,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -299,7 +369,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => 0,
+        'weight' => '4',
       ),
     ),
   );
@@ -316,8 +386,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'robots',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -333,7 +403,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 5,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -355,7 +425,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => 0,
+        'weight' => '3',
       ),
     ),
   );
@@ -664,6 +734,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Abstract');
   t('Body');
+  t('Body (logged in user)');
   t('Copyright');
   t('Description');
   t('Email');
@@ -673,6 +744,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
   t('Robots');
   t('School');
   t('School Zip Code');
+  t('The content from this field will only be shown to logged in users.');
 
   return $fields;
 }

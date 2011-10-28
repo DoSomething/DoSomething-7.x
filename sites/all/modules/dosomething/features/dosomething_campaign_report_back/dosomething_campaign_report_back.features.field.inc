@@ -51,7 +51,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -119,11 +119,11 @@ function dosomething_campaign_report_back_field_default_fields() {
       'description' => 'The content from this field will only be shown to logged in users.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 7,
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -281,7 +281,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'node_reference',
           'settings' => array(),
           'type' => 'node_reference_default',
-          'weight' => 6,
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -340,7 +340,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 1,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -395,7 +395,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 2,
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -450,7 +450,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 3,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -505,7 +505,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 4,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -560,7 +560,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => 5,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
