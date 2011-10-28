@@ -10,16 +10,16 @@ $plugin = array(
   'defaults' => array(
     'link' => TRUE,
   ),  
+  'category' => t('Rotoslider'),
 );
 
 /**
  * Render the custom content type.
  */
 function rotoslider_demo_roto_slider_content_type_render($subtype, $conf, $panel_args, $context) {
-    // Build the content type block.
+  // Build the content type block.
   $block = new stdClass();
   $block->module  = 'rotoslider_demo';
-  $block->title   = $type->demo;
   $block->content = drupal_render(rotoslider_demo_page());
   $block->delta   = 1;
 
