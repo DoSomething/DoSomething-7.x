@@ -33,6 +33,34 @@ class DSCampaignSignupEbdMigration extends DSCampaignSignupMigration {
 }
 
 class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
+  //Location
+  public function prepare($entity, $row) {
+    # Might need to call parent::prepare($entity, $row);
+
+    // This should copy all the locations over to a field named field_address.
+    // I put the complete list of fields that addressfield supports in and
+    // tried mapping location in as best as I could. You'll want to look it
+    // over.
+    print_r($row);
+    foreach ($row->locations as $delta => $location) {
+      $entity->field_address['und'][$delta] = array(
+        'country' => $location->country,
+        'administrative_area' => $location->country_name, # The administrative area of this address. (i.e. State/Province)
+        #'sub_administrative_area' => $location->province, # The sub administrative area of this address.
+        'locality' => $location->city, # The locality of this address. (i.e. City)
+        #'dependent_locality' => $location->, # The dependent locality of this address.
+        'postal_code' => $location->postal_code, # The postal code of this address.
+        'thoroughfare' => $location->street, # The thoroughfare of this address. (i.e. Street address)
+        'premise' => $location->additional, # The premise of this address. (i.e. Apartment / Suite number)
+        #'sub_premise' => $location->, # The sub_premise of this address.
+        #'organisation_name' => $location->, # Contents of a primary OrganisationName element in the xNL XML.
+        #'name_line' => $location->, # Contents of a primary NameLine element in the xNL XML.
+        #'first_name' => $location->, # Contents of the FirstName element of a primary PersonName element in the xNL XML.
+        #'last_name' => $location->, # Contents of the LastName element of a primary PersonName element in the xNL XML.
+      );
+    }
+  }
+
   public function __construct() {
     parent::__construct('gys_2011');
     $this->description .= 'Green Your School 2011';
