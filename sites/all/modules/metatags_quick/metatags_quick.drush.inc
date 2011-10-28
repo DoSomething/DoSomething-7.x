@@ -64,7 +64,7 @@ function drush_metatags_quick_migrate_fields($field_names) {
   }
 
   module_load_include('inc', 'metatags_quick', 'metatags_quick.admin');
-  module_load_include('inc', 'metatags_quick', 'nodewords_upgrade');
+  module_load_include('inc', 'metatags_quick_import', 'metatags_quick_import.admin');
   
   foreach($field_names as $field_name => $value) {
     if (!$value) {

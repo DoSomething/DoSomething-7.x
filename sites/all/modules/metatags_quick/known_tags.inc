@@ -5,6 +5,7 @@
 
 /**
  * Returns array of fields needed for upgrade from nodewords, keyed by meta name
+ * @todo: use hooks to alter known tags
  * @return array
  */
 function _metatags_quick_known_fields() {

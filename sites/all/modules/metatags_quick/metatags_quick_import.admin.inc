@@ -7,6 +7,7 @@
 
 function metatags_quick_upgrade() {
   if (db_table_exists('nodewords')) {
+    module_load_include('inc', 'metatags_quick', 'known_tags');
     $form['description'] = array(
       '#type' => 'markup',
       '#markup' => '<p>' . t('This utility will convert existing nodewords to the Drupal 7 fields.') . '</p>'
@@ -19,11 +20,12 @@ function metatags_quick_upgrade() {
       '#default_value' => '1',
     );
     $fields = variable_get('nodewords_edit', array());
-    $options = drupal_map_assoc(array_keys($fields));
+    $options = drupal_map_assoc(array_keys(_metatags_quick_known_fields()));
     $form['fields_select'] = array(
       '#title' => t('Fields to import'),
       '#description' => t('Field list is taken from nodewords settings.'),
       '#type' => 'checkboxes',
+      '#required' => TRUE,
       '#options' => $options,
       '#default_value' => $fields,
     );
@@ -73,17 +75,19 @@ function metatags_quick_upgrade_submit($form, &$form_state) {
     }
   }
   $batch = metatags_quick_upgrade_batch($form_state['values']['batch_size'], $fields_to_import);
+  $_SESSION['nodewords_iterations'] = count($batch['operations']);
   batch_set($batch);
 }
 
 function metatags_quick_upgrade_finished($success, $results, $operations) {
   if ($success) {
-    drupal_set_message(t('@node_count results processed in @requests iterations.', array('@node_count' => $_SESSION['nodewords_upgrade_total'], '@requests' => count($results))));
+    drupal_set_message(t('@node_count results processed in @requests iterations.', array('@node_count' => $_SESSION['nodewords_upgrade_total'], '@requests' => $_SESSION['nodewords_iterations'])));
   }
   else {
     $error_operation = reset($operations);
     drupal_set_message(t('An error occurred while processing @operation with arguments : @args', array('@operation' => $error_operation[0], '@args' => print_r($error_operation[0], TRUE))));
   }
+  unset($_SESSION['nodewords_iterations'], $_SESSION['nodewords_upgrade_total']);
 }
 
 
@@ -115,7 +119,7 @@ function metatags_quick_upgrade_batch($batch_size, $fields_to_import) {
     'progress_message' => t('Completed :nodes_completed of :nodes_total', array(
       ':nodes_completed' => $_SESSION['nodewords_upgrade_processed'], ':nodes_total' => $_SESSION['nodewords_upgrade_total'])),
     'finished' => 'metatags_quick_upgrade_finished',
-    'file' => drupal_get_path('module', 'metatags_quick') . '/nodewords_upgrade.inc',
+    'file' => drupal_get_path('module', 'metatags_quick') . '/metatags_quick_import.admin.inc',
   );
   return $batch;
 }
