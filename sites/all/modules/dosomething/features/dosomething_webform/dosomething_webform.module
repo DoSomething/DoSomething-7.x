@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_webform feature.
+ */
+
+include_once('dosomething_webform.features.inc');

@@ -20,6 +20,9 @@ function dosomething_project_report_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -65,17 +68,18 @@ function dosomething_project_report_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'Body',
-      'required' => FALSE,
+      'label' => 'Body (anonymous user)',
+      'required' => 0,
       'settings' => array(
-        'display_summary' => TRUE,
-        'text_processing' => 1,
+        'display_summary' => 1,
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => 20,
+          'rows' => '20',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
@@ -92,6 +96,9 @@ function dosomething_project_report_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_body_logged_in',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -2232,7 +2239,7 @@ Use numbers only (no text).');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
   t('Abstract');
   t('Age');
-  t('Body');
+  t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Copyright');
   t('Describe the steps you will take/took to create your project or organization. What kind of impact have you made?');
