@@ -72,6 +72,38 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
+    $pane->panel = 'left-bottom-left';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'This week\'s winner',
+      'title' => 'This Week\'s winner',
+      'body' => '<div id="">
+<img src="http://dosomething.zivtech.com/sites/all/themes/ds/css/images/this-weeks-winner.jpg">
+<h3>Coffee Compost</h3>
+<p>Max and Coffee 2Compost are providing an innovative service to collect the remnants of coffee.</p>
+<a class="ds-button-strong" href="">Apply Now</a>
+<a href="">See more winners »</a>
+</div>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'this-weeks-winner',
+      'css_class' => 'ds-pane-usergen ds-pane-top-left-radius',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left-bottom-left'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
     $pane->panel = 'left-bottom-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -80,8 +112,38 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'DoSomethng 11',
       'title' => 'DoSomething 11',
-      'body' => '<a href="#">Meet all 11</a>
-',
+      'body' => '<div id="">
+<img src="http://dosomething.zivtech.com/sites/all/themes/ds/css/images/dosomething11.jpg">
+<h3>Lorem ipsum dolor</h3>
+<p>Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum velit nec est. Quisque posuere, purus sit amet malesuada blandit, sapien sapien auctor arcu,ultricies. </p>
+<a href="#">Meet all 11</a>
+</div>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'dosomething11',
+      'css_class' => 'ds-pane-user ds-pane-top-right-radius',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-2'] = $pane;
+    $display->panels['left-bottom-right'][0] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'left-top';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<img src="http://howardtyson.com/sites/default/files/cheater-cheater-pumpkin-eater.png">',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -92,10 +154,10 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left-bottom-right'][0] = 'new-1';
+    $display->content['new-3'] = $pane;
+    $display->panels['left-top'][0] = 'new-3';
     $pane = new stdClass;
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-4';
     $pane->panel = 'left-top';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -104,9 +166,11 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Schools & Clubs',
       'title' => 'Schools & Clubs',
-      'body' => 'The deeper you roll, the more good you can do. So grab 4 friends or classmates and team up to make a difference.
-
-<a href="">Learn More</a>',
+      'body' => '<div id="">
+<span>The deeper you roll, the more good you can do. So grab 4 friends or classmates and team up to make a difference.</span>
+<img src="http://dosomething.zivtech.com/sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a class="ds-button-strong" href="">Learn More</a>
+</div>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -114,13 +178,16 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'schools-and-clubs',
+      'css_class' => 'ds-pane-top-radius',
+    );
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-2'] = $pane;
-    $display->panels['left-top'][0] = 'new-2';
+    $pane->position = 1;
+    $display->content['new-4'] = $pane;
+    $display->panels['left-top'][1] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
@@ -139,24 +206,27 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
       'args' => '',
       'url' => '',
       'display' => 'block_1',
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Blog Center',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-news',
+    );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['right'][0] = 'new-3';
+    $display->content['new-5'] = $pane;
+    $display->panels['right'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-5';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['awesome_things'] = $page;
 
- return $pages;
+  return $pages;
 
 }
