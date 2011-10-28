@@ -52,13 +52,11 @@ function dosomething_blocks_block_view($delta = '') {
     case 'dosomething_facebook_activity':
       $block['subject'] = t('Recent Activity');
       $block['content'] = dosomething_blocks_facebook_activity_block_content();
-      drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
       break;
 
     case 'dosomething_twitter_stream':
       $block['subject'] = t('Twitter Stream');
       $block['content'] = dosomething_blocks_twitter_stream_block_content();
-      drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
       break;
 
     case 'dosomething_make_impact':
@@ -87,40 +85,67 @@ function dosomething_blocks_block_view($delta = '') {
  * Generate the contents of the facebook activity block.
  */
 function dosomething_blocks_facebook_activity_block_content() {
-    return '<div class="fb-activity" data-width="183" data-header="false" data-site="dosomething.org" data-colorscheme="dark" data-recommendations="false" border-color="#222222"></div>';
+  $element = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'fb-activity',
+      ),
+      'data-width' => 183,
+      'data-header' => 'false',
+      'data-site' => 'dosomething.org',
+      'data-colorscheme' => 'dark',
+      'data-recommendations' => 'false',
+      'border-color' => '#222',
+    ),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js',
+      ),
+    ),
+  );
+  return array('element' => $element);
 }
 
 function dosomething_blocks_twitter_stream_block_content() {
-  return "<script src=\"http://widgets.twimg.com/j/2/widget.js\"></script>
-    <script>
-    new TWTR.Widget({
-      version: 2,
-      type: 'profile',
-      rpp: 4,
-      interval: 30000,
-      width: 'auto',
-      height: 300,
-      theme: {
-        shell: {
-          background: '#9c9c9c',
-          color: '#ffffff'
+  $element = array(
+    '#markup' => "<script src=\"http://widgets.twimg.com/j/2/widget.js\"></script>
+      <script>
+      new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: 4,
+        interval: 30000,
+        width: 'auto',
+        height: 300,
+        theme: {
+          shell: {
+            background: '#9c9c9c',
+            color: '#ffffff'
+          },
+          tweets: {
+            background: '#000000',
+            color: '#ffffff',
+            links: '#4aed05'
+          }
         },
-        tweets: {
-          background: '#000000',
-          color: '#ffffff',
-          links: '#4aed05'
+        features: {
+          scrollbar: false,
+          loop: false,
+          hashtags: true,
+          timestamp: true,
+          avatars: true,
+          behavior: 'all'
         }
-      },
-      features: {
-        scrollbar: false,
-        loop: false,
-        hashtags: true,
-        timestamp: true,
-        avatars: true,
-        behavior: 'all'
-      }
-    }).render().setUser('dosomething').start();
-    </script>";
+      }).render().setUser('dosomething').start();
+      </script>",
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js',
+      )
+    ),
+  );
+  return array('element' => $element);
 }
 
 /**
@@ -488,14 +513,29 @@ function dosomething_blocks_tweet_prepare($path = NULL) {
 }
 
 /**
+ * Preprocess social plugins.
+ *
+ * Build render array for easier manipulation on the theme layer.
+ */
+function dosomething_blocks_preprocess_dosomething_blocks_social_node_plugins(&$variables) {
+  foreach (array_filter($variables) as $name => $plugin) {
+    $variables['element'][$name] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          $name . '-plugin',
+        ),
+      ),
+      '#children' => $plugin,
+    );
+  }
+}
+
+/**
  * Theme function for social plugins.
  */
 function theme_dosomething_blocks_social_node_plugins($variables) {
-  $output = '';
-  foreach ($variables as $name => $plugin) {
-    $output.= '<div class="' . $name . '-plugin">' . $plugin . '</div>';
-  }
-  return $output;
+  return drupal_render($variables['element']);
 }
 
 /**
