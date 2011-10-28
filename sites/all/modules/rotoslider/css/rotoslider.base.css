@@ -1,14 +1,14 @@
 .rotoslider {
-  height: 250px;
+  height: 265px;
   overflow: hidden;
   position: relative;
-  width: 700px;
+  width: 690px;
   z-index: 0;
 }
 .rotoslider img.rotoslider-image,
 .rotoslider .rotoslider-images,
 .rotoslider .rotoslider-images img {
-  height: 250px;
+  height: 265px;
   overflow: hidden;
   position: absolute;
   width: inherit;
@@ -35,7 +35,7 @@
   overflow: hidden;
   padding: 10px 15px;
   position: absolute;
-  width: 470px;
+  width: 448px;
   z-index: 12;
 }
 .rotoslider .rotoslider-text.active {
@@ -44,32 +44,32 @@
 .rotoslider .rotoslider-menu {
   border-bottom-style: solid;
   border-bottom-width: 6px;
-  height: 244px;
+  height: 259px;
   overflow: hidden;
   position: absolute;
   right: 0;
   top: 0;
-  width: 200px;
+  width: 212px;
   z-index: 30;
 }
 .rotoslider .rotoslider-menu .heading {
-  height: 16px;
+  height: 18px;
   left: 0;
   padding: 5px 0;
   position: absolute;
   top: 0;
-  width: 200px;
+  width: 212px;
   z-index: 50;
 }
 .rotoslider .rotoslider-nav {
-  height: 218px;
+  height: 231px;
   left: 0;
   margin: 0;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  top: 26px;
-  width: 200px;
+  top: 28px;
+  width: 212px;
   z-index: 40;
 }
 .rotoslider .rotoslider-nav li {
