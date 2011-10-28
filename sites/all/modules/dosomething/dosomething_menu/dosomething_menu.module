@@ -7,20 +7,6 @@ define('DS_MENU_ISSUES_VID', 5);
 define('DS_MENU_TAXONOMY_MENU_CID', 'ds_menu_taxonomy_listing_');
 
 /**
- * Implements hook_theme().
- */
-function dosomething_menu_theme() {
-  return array(
-    'dosomething_menu_taxonomy_listing' => array(
-      'arguments' => array(
-        'tree' => NULL,
-        'term' => NULL,
-      ),
-    ),
-  );
-}
-
-/**
  * Implements hook_preprocess_page().
  */
 function dosomething_menu_preprocess_page(&$variables) {
@@ -36,7 +22,7 @@ function dosomething_menu_preprocess_page(&$variables) {
   }
 
   $variables['secondary_menu_items'] = dosomething_menu_secondary_links($variables, $term);
-  $variables['causes_dropdown_menu'] = theme('dosomething_menu_taxonomy_listing', $params);
+  $variables['causes_dropdown_menu'] = dosomething_menu_taxonomy_listing($params);
 
   // TODO: Add this as a library or something else for reuse.
   drupal_add_js(drupal_get_path('module', 'dosomething_menu') . '/js/jquery.hoverIntent.minified.js');
@@ -188,7 +174,7 @@ function dosomething_menu_get_heirarchical_taxonomy_listing($vid) {
 /**
  * Theme function for rendering a multi-level taxonomy list.
  */
-function theme_dosomething_menu_taxonomy_listing($variables) {
+function dosomething_menu_taxonomy_listing($variables) {
   $tree = $variables['tree'];
   $term = isset($variables['term']) ? $variables['term'] : NULL;
 
