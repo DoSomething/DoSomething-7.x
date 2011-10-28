@@ -267,8 +267,8 @@ function _rotoslider_process($options, $rows, $fields) {
       }
 
       // If a placeholder is set and the image is missing, use it.
-      if (empty($value) && $type == 'image' && !empty($placeholder)) {
-        $value = $placeholder;
+      if (empty($value)) {
+        $value = ($type == 'image' && !empty($placeholder)) ? $placeholder : '';
       }
 
       $column = $type == 'image' ? 'uri' : 'value';
