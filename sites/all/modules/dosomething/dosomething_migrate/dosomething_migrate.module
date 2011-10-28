@@ -185,6 +185,7 @@ function dosomething_migrate_update_nodes() {
     $node = node_load($nid->nid);
     unset($node->nid);
     unset($node->vid);
+    $node->webform['record_exists'] = FALSE;
     $key = array_search($node->title, $mapping);
     if ($key) {
       $serialized = serialize($node);
