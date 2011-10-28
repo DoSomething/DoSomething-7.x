@@ -401,6 +401,7 @@ a.ds-button:active, a.ds-button-strong:active {
 }
 .selectBox-options li.selectBox-selected a {
   background-color: #8e8a86;
+  display: none;
 }
 .selectBox-options .selectBox-optgroup {
   color: #666666;

@@ -229,6 +229,8 @@ function dosomething_blocks_make_an_impact_form() {
     '#type' => 'submit',
     '#value' => 'Submit',
     '#submit' => array('dosomething_blocks_impact_form_submit'),
+    '#prefix' => '<div class="submit-wrapper dude">',
+    '#suffix' => '</div>',
   );
 
   return $form;
