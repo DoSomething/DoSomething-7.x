@@ -28,10 +28,23 @@ function dosomething_roles_cron() {
   $result = db_query_range("SELECT u.uid, u.access FROM {users} u INNER JOIN {users_roles} ur ON (u.uid = ur.uid AND ur.rid IN (:active_member, :member)) WHERE access < UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND access > :last_update_inactive ORDER BY u.access ASC", 0, 100, array(':active_member' => $active_member->rid, ':member' => $member->rid, ':last_update_inactive' => $last_update_inactive));
   foreach ($result as $data) {
      dosomething_roles_update_role($data->uid);
-     variable_set('dosomething_roles_cron_inactive', $data->access);
+     variable_set('dosomething_roles_cron_inactive', $data->access); 
   }
+}
 
-  // Look people up whose anniversary is x months away.
+/**
+ *
+ *  TODO: Enable this in cron, clean up these comments, extensive testing.
+ *  Move this
+  // For each result
+      // if it is the current timestamp and uid is less than the current uid, then move along
+      // If it is a staff member, then skip but set timestamp and uid values.
+      // load profile and account
+      // check on future member status
+      // if it is different, and it is lower, then we send an email. 
+      // set uid and timestamp variables
+
+// Look people up whose anniversary is x months away.
   // Keep track of x month day (and uid)
 
   // One the first of the month, start grabbing everyone who will expire in x months during the month.
@@ -42,6 +55,60 @@ function dosomething_roles_cron() {
 
   // You'll have to figure out what the user's status will be in x months too.
 
+
+ */
+function dosomething_roles_send_demotion_notifications($month) {
+  $current_timestamp = strtotime("+$month month", REQUEST_TIME);
+  $current_month = date('m', $current_timestamp);
+  $current_year = date('Y', $current_timestamp);
+  $beginning_timestamp = strtotime("$current_month/01/$current_year");
+  $checking_month = variable_get('dosomething_roles_member_demotion_notice_' . $month . '_month', 01);
+  $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
+
+  // It's a new month, so let's start over.
+  if ($current_month != $checking_month) {
+    variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $beginning_timestamp);
+    variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', 0);
+    variable_get('dosomething_roles_member_demotion_notice_' . $month . '_month', $current_month);
+  }
+  $last_checked_timestamp = variable_get('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $beginning_timestamp);
+  $current_uid = variable_get('dosomething_roles_member_demotion_notice_' . $month . '_uid', 0);
+  $end_timestamp = strtotime("+1 month", $beginning_timestamp);
+  $results = dosomething_roles_get_users_by_anniversary($last_checked_timestamp, $end_timestamp);
+
+  if (isset($results['profile2']) && count($results['profile2'])) {
+    foreach ($results['profile2'] as $profile_data) {
+      $profile = profile2_load($profile_data->pid);
+      $account = user_load($profile->uid);
+      $anniversary = dosomething_roles_get_anniversary($account->uid);
+      if ($account->uid >= $current_uid && $anniversary == $last_checked_timestamp) {
+        continue;
+      }
+      else if (dosomething_roles_user_is_staff_member($account->uid)) {
+        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
+        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary - 1);
+        continue;
+      }
+
+      $current_role_name = 'inactive user';
+      $new_role_name = dosomething_roles_get_member_role($account->uid, strtotime("+1 day", $anniversary));
+      $new_role_weight = array_search($new_role_name, $role_hierarchy);
+      foreach ($role_hierarchy as $weight => $role_name) {
+        // Note: only one of these roles should be in the roles list.
+        if (in_array($role_name, $account->roles)) {
+          $current_role_name = $role_name;
+          break;
+        }
+      }
+      $current_role_weight = array_search($current_role_name, $role_hierarchy);
+
+      if ($current_role_weight > $new_role_weight) {
+        // TODO: Send them a stern warning.
+      }
+      variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
+      variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary - 1);
+    }
+  }
 }
 
 /**
@@ -130,7 +197,7 @@ function dosomething_roles_update_role($uid) {
     $new_rid = $rids[$new_role_name];
     db_update('users')->fields(array('status' => 0))->condition('uid', $account->uid)->execute();
     $params = array('account' => $account);
-    drupal_mail('dosomething_roles', 'dosomething-roles-old-person-email', $accopunt->mail, $language, $params);
+    drupal_mail('dosomething_roles', 'dosomething-roles-old-person-email', $account->mail, $language, $params);
   }
 
   if (isset($new_rid)) {
@@ -419,25 +486,22 @@ function dosomething_roles_form_profile2_edit_main_form_alter(&$form, &$form_sta
 }
 
 /**
- *
+ * TODO: Comment this stuff.
  */
-function dosomething_roles_get_users_by_anniversary($start_date, $end_date = NULL, $uid = NULL) {
-  // TODO: When getting results, verify they're not a staff member.
+function dosomething_roles_get_users_by_anniversary($start_date, $end_date = NULL, $limit = 10) {
   if (is_null($end_date)) {
     $end_date = REQUEST_TIME;
   }
   $query = new EntityFieldQuery;
   try {
-    $query
+    $results = $query
       ->entityCondition('entity_type', 'profile2')
       ->propertyCondition('type', 'main', '=')
       ->fieldCondition('field_user_anniversary', 'value', array($start_date, $end_date), 'BETWEEN')
-      ->propertyOrderBy('uid');
-
-    if (!is_null($uid)) {
-      $query->propertyCondition('uid', $uid, '>');
-    }
-    $results = $query->execute();
+      ->fieldOrderBy('field_user_anniversary', 'value')
+      ->propertyOrderBy('uid')
+      ->range(0, $limit)
+      ->execute();
     return $results;
   }
   catch (Exception $e) {
