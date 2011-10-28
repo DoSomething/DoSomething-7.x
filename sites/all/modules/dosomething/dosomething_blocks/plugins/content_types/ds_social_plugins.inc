@@ -11,19 +11,12 @@
  */
 $plugin = array(
   'title' => t('DoSomething Social Media Plugins'),
-
   'description' => t('Displays social media plugins.'),
-
   'single' => TRUE,
-
   'content_types' => array('ds_social_plugins'),
-
   'render callback' => 'dosomething_blocks_social_plugins_content_type_render',
-
   'defaults' => array(),
-
   'icon' => 'icon_example.png',
-
   'category' => array(t('DoSometing'), 1),
 );
 
@@ -41,12 +34,8 @@ $plugin = array(
  *   An object with at least title and content members
  */
 function dosomething_blocks_social_plugins_content_type_render($subtype, $conf, $args, $context) {
-  dpm($args);
   $block = new stdClass();
-  $block->title = "";
-  $block->content = dosomething_blocks_social_node_plugins($url = NULL); 
-  dpm($block);
+  $block->title = '';
+  $block->content = dosomething_blocks_social_node_plugins($url = NULL);
   return $block;
 }
-
-

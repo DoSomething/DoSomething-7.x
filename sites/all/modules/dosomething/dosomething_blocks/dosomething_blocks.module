@@ -9,10 +9,10 @@
  * Define constants for the vocabulary ID's used to generate the dropdowns on
  * the make an impact block.
  */
-define("ISSUES_VOCABULARY", 5);
-define("WHO_VOCABULARY", 3);
-define("WHERE_VOCABULARY", 2);
-define("TIME_VOCABULARY", 4);
+define('ISSUES_VOCABULARY', 5);
+define('WHO_VOCABULARY', 3);
+define('WHERE_VOCABULARY', 2);
+define('TIME_VOCABULARY', 4);
 
 
 /**
@@ -204,8 +204,6 @@ function dosomething_blocks_make_an_impact_form() {
     '#type' => 'submit',
     '#value' => 'Submit',
     '#submit' => array('dosomething_blocks_impact_form_submit'),
-    '#prefix' => '<div class="submit-wrapper dude">',
-    '#suffix' => '</div>',
   );
 
   return $form;
@@ -277,25 +275,25 @@ function dosomething_blocks_utility_bar() {
         '#theme' => 'links',
         '#links' => array(
           'chat' => array(
-            'title' => '<img src="' . $image_path .'/icn-chat.png" alt="Chat">',
+            'title' => '<img src="' . $image_path . '/icn-chat.png" alt="Chat">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
           ),
           'text' => array(
-            'title' => '<img src="' . $image_path .'/icn-text.png" alt="Text">',
+            'title' => '<img src="' . $image_path . '/icn-text.png" alt="Text">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
           ),
           'call' => array(
-            'title' => '<img src="' . $image_path .'/icn-call.png" alt="Call">',
+            'title' => '<img src="' . $image_path . '/icn-call.png" alt="Call">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
           ),
           'email' => array(
-            'title' => '<img src="' . $image_path .'/icn-email.png" alt="Email">',
+            'title' => '<img src="' . $image_path . '/icn-email.png" alt="Email">',
             'html' => TRUE,
             'href' => '',
             'fragment' => ' ',
@@ -339,7 +337,7 @@ function dosomething_blocks_utility_bar() {
       '#access' => user_is_anonymous(),
       'link' => array(
         '#theme' => 'link',
-        '#text' => '<img src="' . $image_path .'/btn-fbconnect.png" alt="Facebook Connect">',
+        '#text' => '<img src="' . $image_path . '/btn-fbconnect.png" alt="Facebook Connect">',
         '#path' => $fb_url,
         '#options' => array(
           'attributes' => array(
@@ -388,7 +386,7 @@ function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $
 function dosomething_blocks_social_node_plugins($url = NULL) {
   if ($url) {
     global $base_url;
-    $path_array = explode($base_url .'/', $url);
+    $path_array = explode($base_url . '/', $url);
     $path = $path_array[1];
   }
   else {
@@ -411,7 +409,7 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
   }
   if (module_exists('tweetbutton')) {
     drupal_add_js('http://platform.twitter.com/widgets.js');
-    drupal_add_css(drupal_get_path('module', 'tweetbutton').'/tweetbutton.css');
+    drupal_add_css(drupal_get_path('module', 'tweetbutton') . '/tweetbutton.css');
     $variables = dosomething_blocks_tweet_prepare($path);
     $twitter = theme('tweetbutton_display', $variables);
   }
@@ -477,7 +475,7 @@ function dosomething_blocks_tweet_prepare($path = NULL) {
       '!title'        => $node->title,
       '!author_name'  => $node->name,
       '!node_type'    => $node->type,
-      '!node_url'     => url('node/'.$node->nid, array('absolute' => TRUE)),
+      '!node_url'     => url('node/' . $node->nid, array('absolute' => TRUE)),
     );
   }
   else {
@@ -508,7 +506,7 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
 
   $attributes = $preset->fb_attrs;
   if ($url) {
-    $attributes = array_merge($attributes,  array('href' => $url));
+    $attributes = array_merge($attributes, array('href' => $url));
   }
 
   fb_social_fb_plugin_preprocess_options($plugin_type, $attributes);
