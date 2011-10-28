@@ -5,7 +5,17 @@
  */
 
 /**
- * Implementation of hook_node_info().
+ * Implements hook_ctools_plugin_api().
+ */
+function dosomething_action_guide_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
+}
+
+/**
+ * Implements hook_node_info().
  */
 function dosomething_action_guide_node_info() {
   $items = array(
@@ -28,7 +38,7 @@ class="goright"  class="goleft"  gives img src="" padding and floats it to the l
 }
 
 /**
- * Implementation of hook_default_webform_submission_entity_type().
+ * Implements hook_default_webform_submission_entity_type().
  */
 function dosomething_action_guide_default_webform_submission_entity_type() {
   $items = array();
