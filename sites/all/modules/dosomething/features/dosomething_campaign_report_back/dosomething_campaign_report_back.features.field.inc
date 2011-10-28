@@ -84,6 +84,76 @@ function dosomething_campaign_report_back_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign_report_back-field_body_logged_in'
+  $fields['node-campaign_report_back-field_body_logged_in'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_body_logged_in',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_report_back',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The content from this field will only be shown to logged in users.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 7,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_body_logged_in',
+      'label' => 'Body (logged in user)',
+      'required' => 0,
+      'settings' => array(
+        'display_summary' => 0,
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '20',
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '3',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign_report_back-field_report_back_reference'
   $fields['node-campaign_report_back-field_report_back_reference'] = array(
     'field_config' => array(
@@ -253,8 +323,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'abstract',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -291,7 +361,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -308,8 +378,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'copyright',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -346,7 +416,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -363,8 +433,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'description',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -401,7 +471,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -418,8 +488,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'keywords',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -456,7 +526,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -473,8 +543,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'robots',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -512,7 +582,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -1030,6 +1100,7 @@ function dosomething_campaign_report_back_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Abstract');
   t('Body');
+  t('Body (logged in user)');
   t('Campaign');
   t('Copyright');
   t('Description');
@@ -1043,6 +1114,7 @@ function dosomething_campaign_report_back_field_default_fields() {
   t('School');
   t('School Zip Code');
   t('The campaign that this report back refers to.');
+  t('The content from this field will only be shown to logged in users.');
   t('Videos');
 
   return $fields;
