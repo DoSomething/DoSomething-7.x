@@ -16,7 +16,10 @@ function dosomething_awesome_things_action_updates_default_page_manager_pages() 
   $page->admin_title = 'Action Updates';
   $page->admin_description = '';
   $page->path = 'awesome-things/action-updates';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'normal',
     'title' => 'Action Updates',
@@ -122,6 +125,6 @@ function dosomething_awesome_things_action_updates_default_page_manager_pages() 
   $page->default_handlers[$handler->name] = $handler;
   $pages['action_updates'] = $page;
 
- return $pages;
+  return $pages;
 
 }

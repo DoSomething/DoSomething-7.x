@@ -1,6 +1,7 @@
 name = "Dosomething - Awesome Things Action Updates"
 core = "7.x"
 package = "Dosomething"
+php = "5.2.4"
 dependencies[] = "page_manager"
 dependencies[] = "views"
 features[ctools][] = "page_manager:pages_default:1"

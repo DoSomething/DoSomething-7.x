@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_fb_social_default_presets().
+ * Implements hook_fb_social_default_presets().
  */
 function dosomething_fb_social_plugins_fb_social_default_presets() {
   $export = array();

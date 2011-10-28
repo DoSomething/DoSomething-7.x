@@ -8,7 +8,6 @@
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_home_default_page_manager_pages() {
-
   $page = new stdClass;
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
@@ -65,11 +64,13 @@ function dosomething_home_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'rotoslider-panel_pane_1';
+    $pane->type = 'roto_slider';
+    $pane->subtype = 'roto_slider';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'link' => TRUE,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -85,6 +86,6 @@ function dosomething_home_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['front'] = $page;
 
- return $pages;
+  return $pages;
 
 }
