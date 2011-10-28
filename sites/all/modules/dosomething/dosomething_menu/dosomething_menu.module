@@ -4,7 +4,6 @@
  * Vocabulary id of issues vocabulary.
  */
 define('DS_MENU_ISSUES_VID', 5);
-define('DS_MENU_ALL_CAUSES_LINK', 'cause');
 define('DS_MENU_TAXONOMY_MENU_CID', 'ds_menu_taxonomy_listing_');
 
 /**
@@ -130,7 +129,7 @@ function dosomething_menu_navigation_links($menu_name, $term = FALSE) {
           // If this is a taxonomy page, then we set the active-trail
           // to the causes menu. We also need to set the trigger for the
           // dropdown.
-          if ($item['link']['href'] == DS_MENU_ALL_CAUSES_LINK) {
+          if ($item['link']['href'] == variable_get('dosomething_menu_all_causes_path', 'causes')) {
             $l['attributes']['class'][] = 'causes-dropdown-trigger';
             if ($term) {
               $l['attributes']['class'][] = 'active-trail';
