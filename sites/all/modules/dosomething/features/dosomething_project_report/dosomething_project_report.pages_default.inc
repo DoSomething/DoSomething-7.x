@@ -15,7 +15,7 @@ function dosomething_project_report_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'projects';
   $page->admin_description = '';
-  $page->path = 'projects';
+  $page->path = 'projects/%sid';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -23,116 +23,195 @@ function dosomething_project_report_default_page_manager_pages() {
   $page->menu = array(
     'type' => 'none',
     'title' => '',
-    'weight' => 0,
     'name' => 'navigation',
+    'weight' => '0',
     'parent' => array(
       'type' => 'none',
       'title' => '',
-      'weight' => 0,
       'name' => 'navigation',
+      'weight' => '0',
     ),
   );
-  $page->arguments = array();
-  $page->conf = array();
+  $page->arguments = array(
+    'sid' => array(
+      'id' => 1,
+      'identifier' => 'Webform Submission: ID',
+      'name' => 'entity_id:webform_submission_entity',
+      'settings' => array(),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
   $page->default_handlers = array();
   $handler = new stdClass;
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_projects_panel_context';
+  $handler->name = 'page_projects_panel_context_2';
   $handler->task = 'page';
   $handler->subtask = 'projects';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = 1;
   $handler->conf = array(
-    'title' => 'Panel',
-    'no_blocks' => '0',
+    'title' => 'project page view',
+    'no_blocks' => 0,
     'pipeline' => 'standard',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_bundle:webform_submission_entity',
+          'settings' => array(
+            'type' => array(
+              'project_report' => 'project_report',
+            ),
+          ),
+          'context' => 'argument_entity_id:webform_submission_entity_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display;
-  $display->layout = 'flexible';
-  $display->layout_settings = array(
-    'width_type' => 'px',
-    'percent_width' => '505',
-    'rows' => '4',
-    'row_1' => array(
-      'columns' => '1',
-      'width_1' => '505',
-      'names' => array(
-        0 => 'Top',
-      ),
-    ),
-    'row_2' => array(
-      'columns' => '1',
-      'width_1' => '505',
-      'names' => array(
-        0 => 'Middle 1',
-      ),
-    ),
-    'row_3' => array(
-      'columns' => '2',
-      'width_1' => '245',
-      'width_2' => '245',
-      'names' => array(
-        0 => 'Middle 2 left',
-        1 => 'Middle 2 right',
-      ),
-    ),
-    'row_4' => array(
-      'columns' => '1',
-      'width_1' => '505',
-      'names' => array(
-        0 => 'Bottom',
-      ),
-    ),
-    'sidebars' => array(
-      'left' => 0,
-      'left_width' => 200,
-      'right' => 0,
-      'right_width' => 200,
-      'width_type' => 'px',
-    ),
-  );
+  $display->layout = 'twocol_a';
+  $display->layout_settings = array();
   $display->panel_settings = array(
-    'style' => 'default',
     'style_settings' => array(
       'default' => NULL,
-      'row_1_1' => NULL,
-      'row_2_1' => NULL,
-      'row_3_1' => NULL,
-      'row_3_2' => NULL,
-      'row_4_1' => NULL,
-    ),
-    'edit_style' => 'Edit style settings',
-    'did' => '20',
-    'row_1_1' => array(
-      'style' => '',
-      'edit_style' => 'Edit style settings',
-    ),
-    'row_2_1' => array(
-      'style' => '',
-      'edit_style' => 'Edit style settings',
-    ),
-    'row_3_1' => array(
-      'style' => '',
-      'edit_style' => 'Edit style settings',
-    ),
-    'row_3_2' => array(
-      'style' => '',
-      'edit_style' => 'Edit style settings',
-    ),
-    'row_4_1' => array(
-      'style' => '',
-      'edit_style' => 'Edit style settings',
+      'left-top' => NULL,
+      'left-bottom-left' => NULL,
+      'left-bottom-right' => NULL,
+      'right' => NULL,
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%webform_submission_entity:field-project-title';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass;
+    $pane->pid = 'new-1';
+    $pane->panel = 'left-top';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'Project Status',
+      'body' => 'People Involved %webform_submission_entity:field-update-people-involved
+People Impacted %webform_submission_entity:field-num-people-impacted',
+      'format' => '6',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left-top'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'left-top';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'webform_submission_entity:field_essay_build_it';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'text_default',
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:webform_submission_entity_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['left-top'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'left-top';
+    $pane->type = 'token';
+    $pane->subtype = 'webform_submission_entity:field-essay-see-it';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'sanitize' => 1,
+      'context' => 'argument_entity_id:webform_submission_entity_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['left-top'][2] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
+    $pane->panel = 'left-top';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'webform_submission_entity:field_others_involved';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'text_default',
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:webform_submission_entity_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $display->content['new-4'] = $pane;
+    $display->panels['left-top'][3] = 'new-4';
+    $pane = new stdClass;
+    $pane->pid = 'new-5';
+    $pane->panel = 'left-top';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'webform_submission_entity:field_webform_videos';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'media',
+      'formatter_settings' => array(
+        'file_view_mode' => 'default',
+      ),
+      'context' => 'argument_entity_id:webform_submission_entity_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $display->content['new-5'] = $pane;
+    $display->panels['left-top'][4] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

@@ -173,8 +173,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'abstract',
         0 => 'meta_name',
+        'meta_name' => 'abstract',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -228,8 +228,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'copyright',
         0 => 'meta_name',
+        'meta_name' => 'copyright',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -283,8 +283,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'description',
         0 => 'meta_name',
+        'meta_name' => 'description',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -338,8 +338,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'keywords',
         0 => 'meta_name',
+        'meta_name' => 'keywords',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -393,8 +393,8 @@ function dosomething_project_report_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'robots',
         0 => 'meta_name',
+        'meta_name' => 'robots',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -968,121 +968,6 @@ function dosomething_project_report_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_locations'
-  $fields['webform_submission_entity-project_report-field_locations'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_locations',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'lid' => array(
-          0 => 'lid',
-        ),
-      ),
-      'module' => 'location_cck',
-      'settings' => array(
-        'gmap_macro' => '[gmap ]',
-        'gmap_marker' => 'drupal',
-        'location_settings' => array(
-          'display' => array(
-            'hide' => array(
-              'additional' => 0,
-              'city' => 0,
-              'coords' => 0,
-              'country' => 0,
-              'country_name' => 0,
-              'locpick' => 0,
-              'map_link' => 0,
-              'name' => 0,
-              'postal_code' => 0,
-              'province' => 0,
-              'province_name' => 0,
-              'street' => 0,
-            ),
-          ),
-          'form' => array(
-            'fields' => array(
-              'additional' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '6',
-              ),
-              'city' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '8',
-              ),
-              'country' => array(
-                'collect' => '1',
-                'default' => 'us',
-                'weight' => '14',
-              ),
-              'locpick' => array(
-                'collect' => '0',
-                'weight' => '20',
-              ),
-              'name' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '2',
-              ),
-              'postal_code' => array(
-                'collect' => '2',
-                'default' => '',
-                'weight' => '12',
-              ),
-              'province' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '10',
-              ),
-              'street' => array(
-                'collect' => '0',
-                'default' => '',
-                'weight' => '4',
-              ),
-            ),
-          ),
-        ),
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'location',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'location_cck',
-          'settings' => array(),
-          'type' => 'location_default',
-          'weight' => 16,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_locations',
-      'label' => 'Locations',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location',
-        'weight' => '18',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-project_report-field_num_people_impacted'
   $fields['webform_submission_entity-project_report-field_num_people_impacted'] = array(
     'field_config' => array(
@@ -1274,83 +1159,6 @@ function dosomething_project_report_field_default_fields() {
         ),
         'type' => 'text_textarea',
         'weight' => '16',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_picture'
-  $fields['webform_submission_entity-project_report-field_picture'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_picture',
-      'foreign keys' => array(
-        'fid' => array(
-          'columns' => array(
-            'fid' => 'fid',
-          ),
-          'table' => 'file_managed',
-        ),
-      ),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => NULL,
-        'description_field' => '0',
-        'list_default' => 1,
-        'list_field' => '0',
-        'profile2_private' => FALSE,
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '0',
-      'type' => 'image',
-      'type_name' => 'tips_and_tools',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => 2,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_picture',
-      'label' => 'Project Photo',
-      'required' => 0,
-      'settings' => array(
-        'alt_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'image',
-        'settings' => array(
-          'preview_image_style' => 'thumbnail',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'image_image',
-        'weight' => '3',
       ),
     ),
   );
@@ -2259,7 +2067,6 @@ Use numbers only (no text).');
   t('Keywords');
   t('Locations');
   t('OPTIONAL - Link DoSomething action guides or fact pages to this project');
-  t('Project Photo');
   t('Project Type');
   t('Related Campaign or Program');
   t('Robots');

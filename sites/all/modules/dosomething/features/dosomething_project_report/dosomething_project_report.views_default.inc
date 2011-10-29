@@ -183,7 +183,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['field_essay_build_it']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_essay_build_it']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_essay_build_it']['field_api_classes'] = 0;
-  /* Field: Field: Why is it important to you? */
+  /* Field: Webform Submission: Why is it important to you? */
   $handler->display->display_options['fields']['field_essay_believe_it']['id'] = 'field_essay_believe_it';
   $handler->display->display_options['fields']['field_essay_believe_it']['table'] = 'field_data_field_essay_believe_it';
   $handler->display->display_options['fields']['field_essay_believe_it']['field'] = 'field_essay_believe_it';
