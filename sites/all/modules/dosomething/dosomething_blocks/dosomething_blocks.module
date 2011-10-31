@@ -9,10 +9,10 @@
  * Define constants for the vocabulary ID's used to generate the dropdowns on
  * the make an impact block.
  */
-define('ISSUES_VOCABULARY', 5);
-define('WHO_VOCABULARY', 3);
-define('WHERE_VOCABULARY', 2);
-define('TIME_VOCABULARY', 4);
+define('DS_ISSUES_VOCABULARY_ID', 5);
+define('DS_WHO_VOCABULARY_ID', 3);
+define('DS_WHERE_VOCABULARY_ID', 2);
+define('DS_TIME_VOCABULARY_ID', 4);
 
 
 /**
@@ -153,10 +153,10 @@ function dosomething_blocks_twitter_stream_block_content() {
  */
 function dosomething_blocks_make_an_impact_form() {
   $form = array();
-  $what_cause = taxonomy_get_tree(ISSUES_VOCABULARY, $parent = 0, $max_depth = 1);
-  $who_with = taxonomy_get_tree(WHO_VOCABULARY, $parent = 0, $max_depth = 1);
-  $where = taxonomy_get_tree(WHERE_VOCABULARY, $parent = 0, $max_depth = 1);
-  $how_long = taxonomy_get_tree(TIME_VOCABULARY, $parent = 0, $max_depth = 1);
+  $what_cause = taxonomy_get_tree(DS_ISSUES_VOCABULARY_ID, $parent = 0, $max_depth = 1);
+  $who_with = taxonomy_get_tree(DS_WHO_VOCABULARY_ID, $parent = 0, $max_depth = 1);
+  $where = taxonomy_get_tree(DS_WHERE_VOCABULARY_ID, $parent = 0, $max_depth = 1);
+  $how_long = taxonomy_get_tree(DS_TIME_VOCABULARY_ID, $parent = 0, $max_depth = 1);
 
   $cause_options = array();
   foreach ($what_cause as $option) {
@@ -209,7 +209,7 @@ function dosomething_blocks_make_an_impact_form() {
     '#required' => FALSE,
     '#default_value' => $defaults['who'],
   );
- $form['where'] = array(
+  $form['where'] = array(
     '#type' => 'select',
     '#title' => t('Where'),
     '#options' => $where_options,
