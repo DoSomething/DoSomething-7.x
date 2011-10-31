@@ -382,6 +382,22 @@ function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
 }
 
 /**
+ * Get a user's current membership role.
+ */
+function dosomething_roles_get_current_role($uid) {
+  $current_role_name = 'inactive user';
+  $account = user_load($uid);
+  $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
+  $intersection = array_intersect($role_hierarchy, $account->roles);
+  if (is_array($intersection)) {
+    // Note: only one of these roles should be in the roles list.
+    // If there are more, then the highest level (lowest weight) is grabbed.
+    $current_role_name = array_shift($intersection);
+  }
+  return $current_role_name;
+}
+
+/**
  * This will get the number of action updates since the given time.
  *
  * @param $uid
@@ -389,7 +405,7 @@ function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
  * @return mixed
  *  Returns int or NULL if unsuccessful.
  */
-function dosomething_roles_get_action_update_count($uid, $timestamp) {
+function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FALSE) {
   // TODO: If the status is 'Idea' it doesn't count.
   // What is this status?
   $node_types = dosomething_roles_get_action_update_types();
@@ -399,7 +415,7 @@ function dosomething_roles_get_action_update_count($uid, $timestamp) {
     $count = $query->fields('w', array('sid'))
     ->condition('w.uid', $uid, '=')
     ->condition('n.type', $node_types, 'IN')
-    ->condition('w.is_draft', 0)
+    ->condition('w.is_draft', (int) $draft)
     ->condition('w.submitted', $timestamp, '>')
     ->execute()
     ->rowCount();
@@ -468,6 +484,62 @@ function dosomething_roles_set_anniversary($uid, $timestamp) {
 
   $profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = $timestamp;
   field_attach_update('profile2', $profile);
+}
+
+/**
+ * Determine how close a user is from moving to the next level.
+ */
+function dosomething_roles_get_user_percentage($uid) {
+  $account = user_load($uid);
+  $current_role = dosomething_roles_get_current_role($uid);
+  $timestamp = strtotime('-1 year');
+  $percent = 0;
+  switch ($current_role) {
+    case 'varsity':
+      $percent = 100;
+      break;
+    case 'active member':
+      $count = dosomething_roles_get_action_update_count($uid, $timestamp);
+      $percent = $count > 5 ? 100 : 20 * $count;
+      break;
+    case 'member':
+      $percent = 50 * dosomething_roles_profile_ratio($uid);
+      if (dosomething_roles_get_action_update_count($uid, $timestamp);
+        $percent += 50;
+      }
+      else if (dosomething_roles_get_action_update_count($uid, $timestamp, TRUE);
+        // TODO: This 'intent' to do an action has not been implemented yet.
+        $percent += 25;
+      }
+      break;
+  }
+  return $percent;
+}
+
+/**
+ * Figure out how much of a user's profile has
+ *  been committed.
+ */
+function dosomething_roles_profile_ratio($uid) {
+  $account = user_load($uid);
+  $profile = profile2_load_by_user($account, 'main');
+  $total = 0;
+  $complete = 0;
+
+  if (is_object($profile)) {
+    foreach ($profile as $field_name => $values) {
+      if (substr($field_name, 0, 5) == 'field') {
+        $total++;
+        if (count($values)) {
+          $complete++;
+        }
+      }
+    }
+  }
+  if ($total) {
+    return $complete / $total;
+  }
+  return 0;
 }
 
 /**
