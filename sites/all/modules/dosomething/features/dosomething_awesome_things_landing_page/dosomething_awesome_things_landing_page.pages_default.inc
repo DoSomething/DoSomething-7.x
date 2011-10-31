@@ -16,10 +16,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
   $page->admin_title = 'Awesome Things';
   $page->admin_description = '';
   $page->path = 'awesome-things';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
+  $page->access = array();
   $page->menu = array(
     'type' => 'normal',
     'title' => 'Awesome-Things',
