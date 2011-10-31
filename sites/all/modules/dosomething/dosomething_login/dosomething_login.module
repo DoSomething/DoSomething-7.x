@@ -785,7 +785,7 @@ function dosomething_login_user_role($account = NULL) {
 
 function dosomething_login_profile_completion() {
   global $user;
-  $ratio = dosomething_login_profile_percentage();
+  $ratio = dosomething_roles_get_user_percentage($user->uid);
   return array(
     'header' => array(
       '#type' => 'container',
@@ -893,27 +893,6 @@ function dosomething_login_clubs() {
       ),
     ),
   );
-}
-
-function dosomething_login_profile_percentage() {
-  global $user;
-  $profile = profile2_load_by_user($user);
-  $total = 0;
-  $complete = 0;
-  if (isset($profile['main'])) {
-    foreach ($profile['main'] as $field_name => $values) {
-      if (substr($field_name, 0, 5) == 'field') {
-        $total++;
-        if (count($values)) {
-          $complete++;
-        }
-      }
-    }
-  }
-  if ($total) {
-    return (($complete / $total) * 100);
-  }
-  return 0;
 }
 
 function dosomething_login_my_current_somethings() {

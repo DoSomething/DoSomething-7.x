@@ -504,10 +504,10 @@ function dosomething_roles_get_user_percentage($uid) {
       break;
     case 'member':
       $percent = 50 * dosomething_roles_profile_ratio($uid);
-      if (dosomething_roles_get_action_update_count($uid, $timestamp);
+      if (dosomething_roles_get_action_update_count($uid, $timestamp)) {
         $percent += 50;
       }
-      else if (dosomething_roles_get_action_update_count($uid, $timestamp, TRUE);
+      else if (dosomething_roles_get_action_update_count($uid, $timestamp, TRUE)) {
         // TODO: This 'intent' to do an action has not been implemented yet.
         $percent += 25;
       }
