@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Send new feedback entries as tickets to Unfuddle.
+ */
+
+define('UNFUDDLE_FEEDBACK_NORMAL_PRIORITY', 3);
+
+/**
+ * Implements hook_feedback_insert().
+ */
+function unfuddle_feedback_feedback_insert($entry) {
+  $message = $entry->message;
+  $location = $entry->location;
+  if (unfuddle_feedback_post_ticket($message, $location)) {
+    drupal_set_message(t('A ticket was created in Unfuddle.'));
+  }
+  else {
+    drupal_set_message(t('Error posting ticket to Unfuddle.'));
+  }
+}
+
+/**
+ * Post a ticket to Unfuddle.
+ */
+function unfuddle_feedback_post_ticket($message, $location) {
+  global $user;
+
+  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($message, 20, TRUE)));
+
+  $description = t('Reporter: ') . $user->name . "\n\n";
+  $description .= t('Location: ') . url($location, array('absolute' => TRUE)) . "\n\n";
+  if (module_exists('browscap')) {
+    $browserinfo = browscap_get_browser();
+    $browser = $browserinfo['parent'] ? $browserinfo['parent'] .' / '. $browserinfo['platform'] : $browserinfo['useragent'];
+    $description .= t('Browser: !browser', array('!browser' => $browser)) . "\n\n";
+  }
+  $description .= $message;
+
+  $unfuddle = new Unfuddle();
+  $fields = array('priority' => UNFUDDLE_FEEDBACK_NORMAL_PRIORITY);
+  return $unfuddle->createTicket($subject, $description, $fields);
+}
+

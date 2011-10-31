@@ -148,6 +148,8 @@ drush -y en dosomething_campaign_styles
 drush -y en dosomething_feeds
 drush -y en unfuddle_feedback
 drush -y en entityreference
+drush -y en dosomething_feedback
+drush -y en browscap
 drush -y en dosomething_editorial_content
 echo "reverting all features to code version `date`"
 drush -y fra

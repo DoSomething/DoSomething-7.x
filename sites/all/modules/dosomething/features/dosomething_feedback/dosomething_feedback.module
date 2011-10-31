@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_feedback feature.
+ */
+
+include_once('dosomething_feedback.features.inc');
+
+/**
+ * Default the name field to use the user name.
+ */
+function dosomething_feedback_form_feedback_form_alter(&$form, $form_state) {
+  global $user;
+  if ($user->uid) {
+    $form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $user->name;
+  }
+}
