@@ -166,6 +166,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
       'images' => $images,
     ),
     'description' => array(
+      '#pre_render' => array('rotoslider_container_pre_render'),
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
@@ -210,6 +211,16 @@ function template_preprocess_rotoslider_slider(&$variables) {
   );
 
   $variables['element'] = $element;
+}
+
+/**
+ * #pre_render callback: Prevents empty containers from printing.
+ */
+function rotoslider_container_pre_render($element) {
+  if ($element['#type'] == 'container' && empty($element['#children'])) {
+    $element = array('#markup' => '');
+  }
+  return $element;
 }
 
 /**
