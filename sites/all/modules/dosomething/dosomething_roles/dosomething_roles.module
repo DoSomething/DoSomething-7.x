@@ -81,24 +81,23 @@ function dosomething_roles_send_demotion_notifications($month) {
       $profile = profile2_load($profile_data->pid);
       $account = user_load($profile->uid);
       $anniversary = dosomething_roles_get_anniversary($account->uid);
-      if ($account->uid >= $current_uid && $anniversary == $last_checked_timestamp) {
+      if (($account->uid >= $current_uid) && ($anniversary == $last_checked_timestamp)) {
         continue;
       }
       else if (dosomething_roles_user_is_staff_member($account->uid)) {
         variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
-        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary - 1);
+        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary);
         continue;
       }
 
       $current_role_name = 'inactive user';
       $new_role_name = dosomething_roles_get_member_role($account->uid, strtotime("+1 day", $anniversary));
       $new_role_weight = array_search($new_role_name, $role_hierarchy);
-      foreach ($role_hierarchy as $weight => $role_name) {
+      $intersection = array_intersect($role_hierarchy, $account->roles);
+      if (is_array($intersection)) {
         // Note: only one of these roles should be in the roles list.
-        if (in_array($role_name, $account->roles)) {
-          $current_role_name = $role_name;
-          break;
-        }
+        // If there are more, then the highest level (lowest weight) is grabbed.
+        $current_role_name = array_shift($intersection);
       }
       $current_role_weight = array_search($current_role_name, $role_hierarchy);
 
@@ -106,7 +105,7 @@ function dosomething_roles_send_demotion_notifications($month) {
         // TODO: Send them a stern warning.
       }
       variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
-      variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary - 1);
+      variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary);
     }
   }
 }
@@ -157,14 +156,12 @@ function dosomething_roles_update_role($uid) {
   $roles = user_roles();
   $current_role_name = 'inactive user';
   $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
-  foreach ($role_hierarchy as $weight => $role_name) {
-    $rid = array_search($role_name, $roles);
-    $rids[$role_name] = $rid;
-
+  $intersection = array_intersect($role_hierarchy, $account->roles);
+  $rids = array_flip($role_hierarchy);
+  if (is_array($intersection)) {
     // Note: only one of these roles should be in the roles list.
-    if (in_array($role_name, $account->roles)) {
-      $current_role_name = $role_name;
-    }
+    // If there are more, then the highest level (lowest weight) is grabbed.
+    $current_role_name = array_shift($intersection);
   }
 
   $new_role_name = dosomething_roles_get_member_role($uid);
