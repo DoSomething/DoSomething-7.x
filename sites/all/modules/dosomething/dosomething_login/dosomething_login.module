@@ -758,7 +758,7 @@ function dosomething_login_member_block() {
         'completion' => dosomething_login_profile_completion(),
       ),
       'somethings' => dosomething_login_my_somethings(),
-      'notifications' => dosomething_login_notifications(),
+      'clubs' => dosomething_login_clubs(),
     ),
   );
 }
@@ -853,12 +853,20 @@ function dosomething_login_my_somethings() {
   );
 }
 
-function dosomething_login_notifications() {
+function dosomething_login_clubs() {
+  global $user;
   $items = array();
 
-  // TODO: replace dummy content
-  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
-  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  $groups = dosomething_login_get_user_group_memberships($user->uid, 'club');
+  if (count($groups)) {
+    foreach ($groups as $group) {
+     $items[] = l(filter_xss($group->title), 'node/' . $group->nid);
+    }
+  }
+  else {
+    // TODO: Find the correct link.
+    $items[] = l(t('Start a club'), '');
+  }
 
   return array(
     'title' => array(
@@ -869,7 +877,7 @@ function dosomething_login_notifications() {
         '#attributes' => array(
           'class' => 'inner',
         ),
-        '#children' => t('Notifications'),
+        '#children' => t('Clubs'),
       ),
     ),
     'list' => array(
@@ -917,6 +925,34 @@ function dosomething_login_my_opportunities() {
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
   $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
   return $items;
+}
+
+/**
+ * Get a list of group memberships for a user based on node type.
+ *  of group.  This assumes that the group is a node and the membership
+ *  is for a user.
+ */
+function dosomething_login_get_user_group_memberships($uid, $node_type) {
+  if (!module_exists('og')) {
+    continue;
+  }
+  // There doesn't seem to be an og function to do exactly what we want
+  // so we have our own.
+  $groups = array();
+  $query = db_select('og_membership', 'm');
+  $query->innerJoin('og', 'o', 'o.gid = m.gid');
+  $query->innerJoin('node', 'n', 'o.etid = n.nid');
+  $query->fields('o', array('gid', 'etid'));
+  $query->fields('n', array('nid', 'title'));
+  $query->condition('o.entity_type', 'node', '=');
+  $query->condition('m.etid', $uid, '=');
+  $query->condition('n.type', $node_type, '=');
+  $query->condition('o.state', OG_STATE_ACTIVE);
+  $results = $query->execute();
+  while ($result = $results->fetchObject()) {
+    $groups[$result->etid] = $result;
+  }
+  return $groups;
 }
 
 /**
