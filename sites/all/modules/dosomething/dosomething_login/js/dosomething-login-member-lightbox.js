@@ -6,7 +6,7 @@
   Drupal.behaviors.dosomethingLoginMemberLightbox = {
     attach: function(context, settings) {
       $('#member-dialog').hide();
-      $("#block-dosomething-login-become-member .why-member a").click(function(event) {
+      $("#block-dosomething-login-become-member a.why").click(function(event) {
         event.preventDefault();
         $('#member-dialog').dialog({modal:true, width:617, height:392});
       });

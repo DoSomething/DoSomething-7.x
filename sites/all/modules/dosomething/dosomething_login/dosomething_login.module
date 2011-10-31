@@ -437,7 +437,7 @@ function dosomething_login_register_block($form, &$form_state) {
           'age-question',
         ),
       ),
-      '#children' => t('Over 13?'),
+      '#children' => t('Birthday'),
     ),
     'month' => array(
       '#type' => 'textfield',
@@ -466,19 +466,22 @@ function dosomething_login_register_block($form, &$form_state) {
   );
   $form['first_submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Submit'),
+    '#value' => t('Signup'),
     '#attributes' => array('class' => array('submit')),
   );
   $form['why'] = array(
+    '#prefix' => '<hr class="top"/><h3 class="why-member">',
+    '#markup' => t('Why be a member?') . '</h3>' . t('Benefits. Benefits. Benefits.'),
+  );
+  $form['learn'] = array(
     '#theme' => 'link',
     '#path' => '',
-    '#text' => t('Why become a member?'),
+    '#text' => t("Learn more >>"),
     '#options' => array(
       'attributes' => array('class' => array('why')),
       'html' => FALSE,
     ),
-    '#prefix' => '<hr class="top"/><h3 class="why-member">',
-    '#suffix' => '</h3><hr class="bottom"/>',
+    '#suffix' => '<hr class="bottom"/>',
   );
   $form['lightbox'] = array(
     '#theme' => 'dosomething_login_member_lightbox',
@@ -877,7 +880,7 @@ function dosomething_login_clubs() {
         '#attributes' => array(
           'class' => 'inner',
         ),
-        '#children' => t('Clubs'),
+        '#children' => t('My Clubs'),
       ),
     ),
     'list' => array(
@@ -1164,7 +1167,7 @@ function dosomething_login_get_user_full_name($account) {
   $profile = profile2_load_by_user($account, 'main');
   if (is_object($profile)) {
     foreach (array('field_user_first_name', 'field_user_last_name') as $field) {
-      $stored_names = field_get_items('profile2', $profile, $field); 
+      $stored_names = field_get_items('profile2', $profile, $field);
       if (isset($stored_names[0]['safe_value'])) {
         $names[] = $stored_names[0]['safe_value'];
       }
