@@ -96,7 +96,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/" title="" class="projects-see-all">See all &raquo;</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/action-finder" title="" class="projects-see-all">See all &raquo;</a>';
   $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -167,7 +167,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/" title="" class="projects-see-all">See all &raquo;</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/find-your-cause" title="" class="projects-see-all">See all &raquo;</a>';
   $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
