@@ -1,8 +1,17 @@
 <?php
 
 function ds_preprocess_html(&$variables, $hook) {
-  // dsm($variables);
   // dsm($hook);
+  // dsm($variables);
+}
+
+function ds_preprocess_panels_pane(&$vars) {
+  // load css specific to panes
+  // blog panes
+  if($vars['pane']->type == 'views' && $vars['pane']->subtype == 'blog_center') {
+    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/blog-panes.css');
+  }
+  // dsm($vars);
 }
 
 function ds_preprocess_page(&$variables) {
