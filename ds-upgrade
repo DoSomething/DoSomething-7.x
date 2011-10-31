@@ -94,7 +94,61 @@ echo "starting og migration `date`"
 drush -y og-migrate
 drush -y dis og_migrate
 echo "Enabling second round of contrib modules, post-field and og migration `date`"
-drush -y en redirect devel advanced_help admin_menu_toolbar contextual overlay nodequeue pathauto panels panels_ipe page_manager stylizer sms_mobile_commons dosomething_intentions dosomething_login webform_pathauto dosomething_roles dosomething_blocks dosomething_projects webform_devel dosomething_fb_social_plugins dosomething_project_report panelizer fboauth dosomething_profile dosomething_layout dosomething_campaign dosomething_blog dosomething_migrate dosomething_home tweetbutton google_plusone captcha print_mail dosomething_causes dosomething_panels dosomething_webform field_permissions
+drush -y en redirect 
+drush -y en devel 
+drush -y en advanced_help 
+drush -y en admin_menu_toolbar 
+drush -y en contextual 
+drush -y en overlay 
+drush -y en nodequeue 
+drush -y en pathauto 
+drush -y en panels 
+drush -y en panels_ipe 
+drush -y en page_manager 
+drush -y en stylizer 
+drush -y en sms_mobile_commons 
+drush -y en dosomething_intentions 
+drush -y en dosomething_login 
+drush -y en webform_pathauto 
+drush -y en dosomething_roles 
+drush -y en dosomething_blocks 
+drush -y en dosomething_projects 
+drush -y en webform_devel 
+drush -y en dosomething_fb_social_plugins 
+drush -y en dosomething_project_report 
+drush -y en panelizer 
+drush -y en fboauth 
+drush -y en dosomething_profile 
+drush -y en dosomething_layout 
+drush -y en dosomething_campaign 
+drush -y en dosomething_blog 
+drush -y en dosomething_migrate 
+drush -y en dosomething_home 
+drush -y en tweetbutton 
+drush -y en google_plusone 
+drush -y en captcha 
+drush -y en print_mail 
+drush -y en dosomething_causes 
+drush -y en dosomething_panels 
+drush -y en field_permissions
+drush -y en dosomething_awesome_things_action_updates
+drush -y en dosomething_awesome_things_landing_page 
+drush -y en dosomething_image_styles 
+drush -y en dosomething_school 
+drush -y en dosomething_action_finder 
+drush -y en dosomething_general 
+drush -y en dosomething_members_only 
+drush -y en dosomething_menu 
+drush -y en dosomething_pages 
+drush -y en dosomething_projects 
+drush -y en dosomething_projects_general 
+drush -y en dosomething_roles 
+drush -y en dosomething_user_my_somethings
+drush -y en dosomething_campaign_styles
+drush -y en dosomething_feeds
+drush -y en unfuddle_feedback
+drush -y en entityreference
+drush -y en dosomething_editorial_content
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "combining blog posts into new blog content type `date`"
