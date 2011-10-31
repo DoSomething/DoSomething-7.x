@@ -11,9 +11,7 @@ define('UNFUDDLE_FEEDBACK_NORMAL_PRIORITY', 3);
  * Implements hook_feedback_insert().
  */
 function unfuddle_feedback_feedback_insert($entry) {
-  $message = $entry->message;
-  $location = $entry->location;
-  if (unfuddle_feedback_post_ticket($message, $location)) {
+  if (unfuddle_feedback_post_ticket($entry)) {
     drupal_set_message(t('A ticket was created in Unfuddle.'));
   }
   else {
@@ -24,19 +22,12 @@ function unfuddle_feedback_feedback_insert($entry) {
 /**
  * Post a ticket to Unfuddle.
  */
-function unfuddle_feedback_post_ticket($message, $location) {
+function unfuddle_feedback_post_ticket($entry) {
   global $user;
+  include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
+  $description = drupal_html_to_text(drupal_render(feedback_view($entry)), array('a'));
 
-  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($message, 20, TRUE)));
-
-  $description = t('Reporter: ') . $user->name . "\n\n";
-  $description .= t('Location: ') . url($location, array('absolute' => TRUE)) . "\n\n";
-  if (module_exists('browscap')) {
-    $browserinfo = browscap_get_browser();
-    $browser = $browserinfo['parent'] ? $browserinfo['parent'] .' / '. $browserinfo['platform'] : $browserinfo['useragent'];
-    $description .= t('Browser: !browser', array('!browser' => $browser)) . "\n\n";
-  }
-  $description .= $message;
+  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($description, 20, TRUE)));
 
   $unfuddle = new Unfuddle();
   $fields = array('priority' => UNFUDDLE_FEEDBACK_NORMAL_PRIORITY);

@@ -1,0 +1,60 @@
+diff --git a/sites/all/modules/migrate b/sites/all/modules/migrate
+index 6ed602e..dd3016e 160000
+--- a/sites/all/modules/migrate
++++ b/sites/all/modules/migrate
+@@ -1 +1 @@
+-Subproject commit 6ed602e4607092bc26a2b80b23061c3df7f17243
++Subproject commit dd3016ecab1959db3c7f8efa177915b2ca23bb4a
+diff --git a/sites/all/modules/migrate_extras b/sites/all/modules/migrate_extras
+index 974c6b1..ff89214 160000
+--- a/sites/all/modules/migrate_extras
++++ b/sites/all/modules/migrate_extras
+@@ -1 +1 @@
+-Subproject commit 974c6b16f56effa1456d156fa1e5c884031030e2
++Subproject commit ff89214951d48bcf486eeb0fdac2cff23e68d013
+diff --git a/sites/all/modules/unfuddle_feedback/unfuddle_feedback.module b/sites/all/modules/unfuddle_feedback/unfuddle_feedback.module
+index 9ea9d2c..e49ab75 100644
+--- a/sites/all/modules/unfuddle_feedback/unfuddle_feedback.module
++++ b/sites/all/modules/unfuddle_feedback/unfuddle_feedback.module
+@@ -11,9 +11,7 @@ define('UNFUDDLE_FEEDBACK_NORMAL_PRIORITY', 3);
+  * Implements hook_feedback_insert().
+  */
+ function unfuddle_feedback_feedback_insert($entry) {
+-  $message = $entry->message;
+-  $location = $entry->location;
+-  if (unfuddle_feedback_post_ticket($message, $location)) {
++  if (unfuddle_feedback_post_ticket($entry)) {
+     drupal_set_message(t('A ticket was created in Unfuddle.'));
+   }
+   else {
+@@ -24,19 +22,12 @@ function unfuddle_feedback_feedback_insert($entry) {
+ /**
+  * Post a ticket to Unfuddle.
+  */
+-function unfuddle_feedback_post_ticket($message, $location) {
++function unfuddle_feedback_post_ticket($entry) {
+   global $user;
++  include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
++  $description = drupal_html_to_text(drupal_render(feedback_view($entry)), array('a'));
+ 
+-  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($message, 20, TRUE)));
+-
+-  $description = t('Reporter: ') . $user->name . "\n\n";
+-  $description .= t('Location: ') . url($location, array('absolute' => TRUE)) . "\n\n";
+-  if (module_exists('browscap')) {
+-    $browserinfo = browscap_get_browser();
+-    $browser = $browserinfo['parent'] ? $browserinfo['parent'] .' / '. $browserinfo['platform'] : $browserinfo['useragent'];
+-    $description .= t('Browser: !browser', array('!browser' => $browser)) . "\n\n";
+-  }
+-  $description .= $message;
++  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($description, 20, TRUE)));
+ 
+   $unfuddle = new Unfuddle();
+   $fields = array('priority' => UNFUDDLE_FEEDBACK_NORMAL_PRIORITY);
+diff --git a/sites/all/modules/webform_entity b/sites/all/modules/webform_entity
+index d72f45f..4a1d1f7 160000
+--- a/sites/all/modules/webform_entity
++++ b/sites/all/modules/webform_entity
+@@ -1 +1 @@
+-Subproject commit d72f45f4138c5817e0cb2bb6c75bae637c076cf4
++Subproject commit 4a1d1f7b421396b7eda8c1163bbecdd71691a42f
