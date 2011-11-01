@@ -47,14 +47,14 @@ function dosomething_webform_field_default_fields() {
       'bundle' => 'webform',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Old body field which will be deleted and is only being used to store data.',
+      'description' => 'Everyone can view the content of this field.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 8,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -65,7 +65,7 @@ function dosomething_webform_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'Body (old)',
+      'label' => 'Body',
       'required' => 0,
       'settings' => array(
         'display_summary' => 0,
@@ -261,7 +261,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -316,7 +316,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -371,7 +371,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '5',
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -426,7 +426,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -481,7 +481,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'metatags_quick',
           'settings' => array(),
           'type' => 'metatags_quick_default',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -541,7 +541,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_table',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'hidden',
@@ -590,16 +590,16 @@ The content from this field will only be shown to anonymous users.',
   // Translatables
   // Included for use with string extractors like potx.
   t('Abstract');
+  t('Body');
   t('Body (anonymous user)	');
   t('Body (logged in user)');
-  t('Body (old)');
   t('Copyright');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Description');
+  t('Everyone can view the content of this field.');
   t('File attachments');
   t('Keywords');
-  t('Old body field which will be deleted and is only being used to store data.');
   t('Robots');
   t('The content from this field will only be shown to logged in users.');
 
