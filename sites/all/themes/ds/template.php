@@ -5,38 +5,40 @@ function ds_preprocess_html(&$variables, $hook) {
   // dsm($variables);
 }
 
-function ds_preprocess_panels_pane(&$vars) {
+function ds_preprocess_panels_pane(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
   // load css specific to panes
   // blog panes
-  if($vars['pane']->type == 'views' && $vars['pane']->subtype == 'blog_center') {
-    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/blog-panes.css');
+  if ($variables['pane']->type == 'views' && $variables['pane']->subtype == 'blog_center') {
+    drupal_add_css($theme_path . '/css/ds/blog-panes.css');
   }
-  // dsm($vars);
 }
 
 function ds_preprocess_page(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
   // dsm($variables);
   // dsm($variables['page']);
 
   // Add Formalize to even out most form elements
-  drupal_add_js(drupal_get_path('theme', 'ds') . '/js/formalize/jquery.formalize.min.js');
+  drupal_add_js($theme_path . '/js/formalize/jquery.formalize.min.js');
   // replace select boxes to allow custom theming
-  drupal_add_js(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
+  drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
   // drupal_add_css(drupal_get_path('theme', 'ds') . '/js/jQuery-SelectBox/jquery.selectBox.css');
-  drupal_add_js(drupal_get_path('theme', 'ds') . '/js/ds-select.js', array('scope' => 'footer'));
+  drupal_add_js($theme_path . '/js/ds-select.js', array('scope' => 'footer'));
 
   // load css specific to pages
   // causes landing page
   if(arg(0) == 'cause' || arg(0) == 'causes') {
-    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/causes-landing.css');
+    drupal_add_css($theme_path . '/css/ds/causes-landing.css');
   }
   if(arg(0) == 'awesome-things') {
-    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/page-awesome-things.css');
+    drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
   }
 
 }
 
 function ds_preprocess_block(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
   // dsm($variables['elements']['#block']);
 
   // set a .block-title class on the title
@@ -46,27 +48,27 @@ function ds_preprocess_block(&$variables) {
   if($variables['elements']['#block']->module == 'dosomething_login') {
     // block-dosomething-login-become-member
     if($variables['elements']['#block']->delta == 'become_member') {
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-login-become-member.css');
+      drupal_add_css($theme_path . '/css/ds/block-dosomething-login-become-member.css');
     }
   }
   if($variables['elements']['#block']->module == 'dosomething_blocks') {
     // dosomething_make_impact
     if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_make_impact.css');
+      drupal_add_css($theme_path . '/css/ds/dosomething_make_impact.css');
     }
     // dosomething_facebook_activity
     if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_facebook_activity.css');
+      drupal_add_css($theme_path . '/css/ds/dosomething_facebook_activity.css');
     }
     // block-dosomething-blocks-dosomething-twitter-stream
     if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/block-dosomething-blocks-dosomething-twitter-stream.css');
+      drupal_add_css($theme_path . '/css/ds/block-dosomething-blocks-dosomething-twitter-stream.css');
     }
   }
   if($variables['elements']['#block']->module == 'panels_mini') {
     if($variables['elements']['#block']->delta == 'home_page') {
       // home page panels_mini second row
-      drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething_panels_mini_home_page.css');
+      drupal_add_css($theme_path . '/css/ds/dosomething_panels_mini_home_page.css');
     }
   }
 
@@ -123,15 +125,15 @@ function ds_breadcrumb($variables) {
 /**
  * Add a custon title to the exposed filter form on the action finder page.
  */
-function ds_preprocess_views_exposed_form(&$vars) {
-  if ($vars['form']['#id'] == 'views-exposed-form-action-finder-page') {
+function ds_preprocess_views_exposed_form(&$variables) {
+  if ($variables['form']['#id'] == 'views-exposed-form-action-finder-page') {
     $obj = new stdClass;
     $obj->label = 'Find Something Else';
     $obj->id = 'filter-title';
     $obj->operator = NULL;
     $obj->widget = NULL;
     $title = array('title' => $obj);
-    $vars['widgets'] = $title + $vars['widgets'];
+    $variables['widgets'] = $title + $variables['widgets'];
   }
 }
 
