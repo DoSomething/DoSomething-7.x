@@ -137,9 +137,17 @@ function ds_preprocess_views_exposed_form(&$variables) {
   }
 }
 
-function ds_preprocess_views_view(&$vars) {
-  if ($vars['name'] == 'current_campaigns') {
-    drupal_add_css(drupal_get_path('theme', 'ds') . '/css/ds/dosomething-campaigns.css');
+function ds_preprocess_views_view(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
+  switch ($variables['name']) {
+    case 'current_campaigns':
+      drupal_add_css($theme_path . '/css/ds/dosomething-campaigns.css');
+      break;
+
+    case 'blog_center':
+      if ($variables['display_id'] == 'panel_pane_1') {
+        drupal_add_css($theme_path . '/css/ds/blog-panes.css');
+      }
+      break;
   }
 }
-
