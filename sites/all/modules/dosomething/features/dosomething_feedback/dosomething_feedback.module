@@ -15,3 +15,28 @@ function dosomething_feedback_form_feedback_form_alter(&$form, $form_state) {
     $form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $user->name;
   }
 }
+
+/**
+ * Implements hook_unfuddle_feedback_ticket_fields_alter().
+ */
+function dosomething_feedback_unfuddle_feedback_ticket_fields_alter(&$fields, $entry) {
+  if (isset($entry->field_priority[LANGUAGE_NONE][0]['value'])) {
+    switch($entry->field_priority[LANGUAGE_NONE][0]['value']) {
+      case 'Critical':
+        $fields['priority'] = 5;
+        break;
+      case 'High':
+        $fields['priority'] = 4;
+        break;
+      case 'Medium':
+        $fields['priority'] = 3;
+        break;
+      case 'Low':
+        $fields['priority'] = 2;
+        break;
+      case 'Enhancement':
+        $fields['priority'] = 1;
+        break;
+    }
+  }
+}
