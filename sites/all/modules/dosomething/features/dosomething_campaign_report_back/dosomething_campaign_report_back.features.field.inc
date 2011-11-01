@@ -10,16 +10,14 @@
 function dosomething_campaign_report_back_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-campaign_report_back-body'
-  $fields['node-campaign_report_back-body'] = array(
+  // Exported field: 'node-campaign_report_back-field_body_anonymous'
+  $fields['node-campaign_report_back-field_body_anonymous'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
-      'entity_types' => array(
-        0 => 'node',
-      ),
-      'field_name' => 'body',
+      'entity_types' => array(),
+      'field_name' => 'field_body_anonymous',
       'field_permissions' => array(
         'type' => '2',
       ),
@@ -47,7 +45,8 @@ function dosomething_campaign_report_back_field_default_fields() {
       'bundle' => 'campaign_report_back',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
+The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -57,21 +56,18 @@ function dosomething_campaign_report_back_field_default_fields() {
           'weight' => '0',
         ),
         'teaser' => array(
-          'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(
-            'trim_length' => 600,
-          ),
-          'type' => 'text_summary_or_trimmed',
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'body',
+      'field_name' => 'field_body_anonymous',
       'label' => 'Body (anonymous user)',
       'required' => 0,
       'settings' => array(
-        'display_summary' => 1,
+        'display_summary' => 0,
         'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
@@ -156,7 +152,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -368,7 +364,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -423,7 +419,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -478,7 +474,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -533,7 +529,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -589,7 +585,7 @@ function dosomething_campaign_report_back_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -1110,6 +1106,8 @@ function dosomething_campaign_report_back_field_default_fields() {
   t('Body (logged in user)');
   t('Campaign');
   t('Copyright');
+  t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
+The content from this field will only be shown to anonymous users.');
   t('Description');
   t('Email');
   t('Geocode Zip Code');
