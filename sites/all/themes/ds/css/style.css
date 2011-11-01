@@ -2249,6 +2249,25 @@ div[role=main] {
   padding: 1px 0 4px;
 }
 
+/*Blog Archive Pane */
+#blog-archives-pane {
+  background: #d2d2d2;
+  padding: 20px 0 20px 15px;
+}
+#blog-archives-pane .views-field-title {
+  margin-bottom: 12px;
+  background: url('images/small-arrow-right.png') no-repeat;
+  background-position: 0px 3px;
+  padding-left: 15px;
+}
+#blog-archives-pane .views-field-title a {
+  margin: 0;
+  font-size: 11px;
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: normal;
+  color: #222222;
+}
+
 /*Related Posts Block */
 .block-related-posts .view-content .views-field-title {
   font-size: 1.2em;

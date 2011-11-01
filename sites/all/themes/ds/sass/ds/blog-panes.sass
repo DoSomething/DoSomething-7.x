@@ -12,6 +12,8 @@
   .page-awesome-things &
     h2.pane-title
       line-height: 56px
+      +border-top-left-radius(0)
+      +border-top-right-radius(4px)
 
     .pane-content
       padding: 8px 10px 20px 40px
@@ -21,7 +23,7 @@
         margin-bottom: 0
       .views-field-field-blog-type
         display: none
-      .views-field-created
+      .views-field-created, .views-field-created-1
         +float-left
         background
         background-color: $white
