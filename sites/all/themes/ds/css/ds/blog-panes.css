@@ -50,3 +50,6 @@
 .pane-blog-center .pane-content .views-field-created img {
   margin-top: 10px;
 }
+.pane-blog-center .pane-content .views-field-field-picture img {
+  border: 5px white solid;
+}
