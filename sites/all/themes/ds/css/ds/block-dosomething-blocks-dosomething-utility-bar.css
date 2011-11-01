@@ -289,3 +289,11 @@
   background: #222222;
   opacity: 0.6;
 }
+
+.lets-talk-chat {
+  display: none;
+}
+
+.chat a {
+  display: none;
+}

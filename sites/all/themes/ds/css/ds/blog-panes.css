@@ -24,18 +24,18 @@
 .page-awesome-things .pane-blog-center h2.pane-title {
   line-height: 56px;
 }
-.pane-blog-center .pane-content {
+.page-awesome-things .pane-blog-center .pane-content {
   padding: 8px 10px 20px 40px;
   background: #d2d2d2 url('../images/blog-center-lines.png') bottom no-repeat;
   background-position: 30px 0px;
 }
-.pane-blog-center .pane-content p {
+.page-awesome-things .pane-blog-center .pane-content p {
   margin-bottom: 0;
 }
-.pane-blog-center .pane-content .views-field-field-blog-type {
+.page-awesome-things .pane-blog-center .pane-content .views-field-field-blog-type {
   display: none;
 }
-.pane-blog-center .pane-content .views-field-created {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created {
   display: inline;
   float: left;
   background-color: white;
@@ -47,27 +47,27 @@
   padding-left: 13px;
   padding-top: 0px;
 }
-.pane-blog-center .pane-content .views-field-created .month {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .month {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 10px;
 }
-.pane-blog-center .pane-content .views-field-created .day {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .day {
   font-weight: bold;
   font-size: 14px;
 }
-.pane-blog-center .pane-content .views-field-created .blog-icon {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .blog-icon {
   margin-top: 10px;
 }
-.pane-blog-center .pane-content .views-field-field-picture img {
+.page-awesome-things .pane-blog-center .pane-content .views-field-field-picture img {
   border: 5px white solid;
 }
-.pane-blog-center .pane-content .view-blog-center h2 {
+.page-awesome-things .pane-blog-center .view-blog-center h2 {
   font-size: 16px;
   line-height: 18px;
   margin-bottom: 5px;
   padding-right: 10px;
 }
-.pane-blog-center .pane-content .view-blog-center h2 a {
+.page-awesome-things .pane-blog-center .view-blog-center h2 a {
   color: black;
 }
