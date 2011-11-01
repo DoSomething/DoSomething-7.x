@@ -80,25 +80,22 @@ function template_preprocess_rotoslider_slider(&$variables) {
   $text = array();
   foreach ($items as $item) {
     // Append an integer to each set of data to keep them unique.
-    $key = drupal_html_class($item['title'] . '-' . $count);
+    $key = drupal_html_class($item['title']['#markup'] . '-' . $count);
     // An individual item to be passed to theme_links().
     $links[$key] = array(
-      'title' => $item['title'],
+      'title' => $item['title']['#markup'],
       'href' => "#",
       'external' => TRUE,
       'attributes' => array(
         'data-key' => $key,
       ),
     );
-    // Each image is passed to theme_image().
     $images[$key] = array(
-      '#theme' => 'image',
-      '#path' => $item['image'],
-      '#alt' => $item['title'],
+      '#alt' => $item['title']['#markup'],
       '#attributes' => array(
         'data-key' => $key,
       ),
-    );
+    ) + $item['image'];
     // A container with heading and text as children.
     $text[$key] = array(
       '#type' => 'container',
@@ -115,7 +112,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
             'heading',
           ),
         ),
-        '#children' => $item['title'],
+        'children' => $item['title'],
       ),
       'text' => array(
         '#type' => 'container',
@@ -124,7 +121,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
             'text',
           ),
         ),
-        '#children' => $item['text'],
+        'children' => $item['text'],
       ),
     );
   }
@@ -147,15 +144,13 @@ function template_preprocess_rotoslider_slider(&$variables) {
       ),
     ),
     'image' => array(
-      '#theme' => 'image',
-      '#path' => $heading['image'],
-      '#alt' => $heading['title'],
+      '#alt' => $heading['title']['#markup'],
       '#attributes' => array(
         'class' => array(
           'rotoslider-image',
         ),
       ),
-    ),
+    ) + $heading['image'],
     'images' => array(
       '#type' => 'container',
       '#attributes' => array(
@@ -166,14 +161,13 @@ function template_preprocess_rotoslider_slider(&$variables) {
       'images' => $images,
     ),
     'description' => array(
-      '#pre_render' => array('rotoslider_container_pre_render'),
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
           'rotoslider-description',
         ),
       ),
-      '#children' => $heading['text'],
+      'children' => $heading['text'],
     ),
     'descriptions' => array(
       '#type' => 'container',
@@ -200,7 +194,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
         ),
         '#links' => $links,
         '#heading' => array(
-          'text' => $heading['title'],
+          'text' => $heading['title']['#markup'],
           'level' => 'div',
           'class' => array(
             'heading',
@@ -211,16 +205,6 @@ function template_preprocess_rotoslider_slider(&$variables) {
   );
 
   $variables['element'] = $element;
-}
-
-/**
- * #pre_render callback: Prevents empty containers from printing.
- */
-function rotoslider_container_pre_render($element) {
-  if ($element['#type'] == 'container' && empty($element['#children'])) {
-    $element = array('#markup' => '');
-  }
-  return $element;
 }
 
 /**
@@ -279,18 +263,22 @@ function _rotoslider_process($options, $rows, $fields) {
 
       // If a placeholder is set and the image is missing, use it.
       if (empty($value)) {
-        $value = ($type == 'image' && !empty($placeholder)) ? $placeholder : '';
+        if ($type == 'image' && !empty($placeholder)) {
+          $value[0]['rendered'] = array(
+            '#theme' => 'image',
+            '#path' => $placeholder,
+            '#attributes' => array(),
+          );
+        }
+        else {
+          $value = '';
+        }
       }
 
-      $column = $type == 'image' ? 'uri' : 'value';
-      $values[$type] = is_array($value) ? $value[0]['raw'][$column] : $value;
+      $values[$type] = is_array($value) ? $value[0]['rendered'] : array('#markup' => $value);
     }
 
-    $items[$delta] = array(
-      'title' => check_plain($values['title']),
-      'image' => file_create_url(check_plain($values['image'])),
-      'text' => check_markup($values['text']),
-    );
+    $items[$delta] = $values;
   }
 
   return $items;
