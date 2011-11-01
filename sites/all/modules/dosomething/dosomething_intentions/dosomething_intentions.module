@@ -21,6 +21,17 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
         );
       }
       else {
+        // If this is not a draft, then we only show the email and only allow a save.
+        if (!$form['#is_draft'] && $node->webform['allow_draft']) {
+          foreach (element_children($form) as $child) {
+            if (!in_array($child, array('actions', 'field_action_intention_email', 'form_build_id', 'form_token', 'form_id', 'details', 'hidden'))) {
+             $form[$child]['#access'] = FALSE;
+            }
+          }
+          $form['actions']['submit']['#access'] = FALSE;
+          $form['actions']['draft']['#value'] = t('Absolutely!');
+        }
+
         $form['actions']['submit']['#value'] = t('Absolutely!');
         if ($user->uid) {
           $lang = $form['field_action_intention_email']['#language'];
