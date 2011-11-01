@@ -471,11 +471,11 @@ function dosomething_login_register_block($form, &$form_state) {
   );
   $form['why'] = array(
     '#prefix' => '<hr class="top"/><h3 class="why-member">',
-    '#markup' => t('Why be a member?') . '</h3>' . t('Benefits. Benefits. Benefits.'),
+    '#markup' => t('Why be a member?') . '</h3>' . t('Benefits. Benefits. Benefits. '),
   );
   $form['learn'] = array(
     '#theme' => 'link',
-    '#path' => '',
+    '#path' => 'user/registration',
     '#text' => t("Learn more >>"),
     '#options' => array(
       'attributes' => array('class' => array('why')),

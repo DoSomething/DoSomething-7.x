@@ -3,15 +3,15 @@
  */
 
 (function ($) {
-  Drupal.behaviors.dosomethingLoginMemberLightbox = {
+  /**Drupal.behaviors.dosomethingLoginMemberLightbox = {
     attach: function(context, settings) {
       $('#member-dialog').hide();
-      $("#block-dosomething-login-become-member a.why").click(function(event) {
-        event.preventDefault();
-        $('#member-dialog').dialog({modal:true, width:617, height:392});
-      });
+      //$("#block-dosomething-login-become-member a.why").click(function(event) {
+       // event.preventDefault();
+        //$('#member-dialog').dialog({modal:true, width:617, height:392});
+      //});
     }
-  }
+  } **/
   Drupal.behaviors.dosomethingLoginRegister = {
     attach: function(context, settings) {
       var popupForm = $("#dosomething-login-register-popup-form");
