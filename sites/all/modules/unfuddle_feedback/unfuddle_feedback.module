@@ -31,6 +31,7 @@ function unfuddle_feedback_post_ticket($entry) {
 
   $unfuddle = new Unfuddle();
   $fields = array('priority' => UNFUDDLE_FEEDBACK_NORMAL_PRIORITY);
+  drupal_alter('unfuddle_feedback_ticket', $subject, $description, $fields);
   return $unfuddle->createTicket($subject, $description, $fields);
 }
 
