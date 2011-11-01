@@ -34,7 +34,15 @@ function ds_preprocess_page(&$variables) {
   if(arg(0) == 'awesome-things') {
     drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
   }
+}
 
+function ds_preprocess_node(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
+
+  // Action Tip node page
+  if($variables['type'] == 'action_guide') {
+    drupal_add_css($theme_path . '/css/ds/page-node-action-guide.css');
+  }
 }
 
 function ds_preprocess_block(&$variables) {
