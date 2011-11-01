@@ -146,6 +146,7 @@ drush -y en dosomething_roles
 drush -y en dosomething_user_my_somethings
 drush -y en dosomething_campaign_styles
 drush -y en dosomething_feeds
+drush -y en dosomething_webform
 drush -y en unfuddle_feedback
 drush -y en entityreference
 drush -y en dosomething_feedback
