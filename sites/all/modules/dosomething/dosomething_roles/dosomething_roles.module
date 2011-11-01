@@ -91,8 +91,10 @@ function dosomething_roles_send_demotion_notifications($month) {
       }
 
       $current_role_name = 'inactive user';
-      $new_role_name = dosomething_roles_get_member_role($account->uid, strtotime("+1 day", $anniversary));
+      // find what a user's role will be when they're anniversary has passed.
+      $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
       $new_role_weight = array_search($new_role_name, $role_hierarchy);
+      // TODO: Use dosomething_roles_get_current_role
       $intersection = array_intersect($role_hierarchy, $account->roles);
       if (is_array($intersection)) {
         // Note: only one of these roles should be in the roles list.
@@ -157,7 +159,7 @@ function dosomething_roles_update_role($uid) {
   $current_role_name = 'inactive user';
   $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
   $intersection = array_intersect($role_hierarchy, $account->roles);
-  $rids = array_flip($role_hierarchy);
+  $rids = array_flip(array_intersect($roles, $role_hierarchy));
   if (is_array($intersection)) {
     // Note: only one of these roles should be in the roles list.
     // If there are more, then the highest level (lowest weight) is grabbed.
@@ -312,6 +314,7 @@ function dosomething_roles_webform_submission_update($node, $submission) {
     }
     if ($submission->is_draft) {
       $timestamp = strtotime('-1 year');
+      // TODO: Get current role too.  Only do this if they're an active user.
       $role_name = dosomething_roles_get_member_role($submission->uid);
       if ($role_name == 'member') {
         // Role user back to being a member immediately,
