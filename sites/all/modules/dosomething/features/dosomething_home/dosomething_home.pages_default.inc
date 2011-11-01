@@ -64,13 +64,11 @@ function dosomething_home_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
-    $pane->type = 'roto_slider';
-    $pane->subtype = 'roto_slider';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'home_slideshow-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'link' => TRUE,
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
