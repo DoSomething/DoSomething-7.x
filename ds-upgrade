@@ -146,12 +146,12 @@ drush -y en dosomething_roles
 drush -y en dosomething_user_my_somethings
 drush -y en dosomething_campaign_styles
 drush -y en dosomething_feeds
-drush -y en dosomething_webform
 drush -y en unfuddle_feedback
 drush -y en entityreference
 drush -y en dosomething_feedback
 drush -y en browscap
 drush -y en dosomething_editorial_content
+drush php-eval "_browscap_import();"
 echo "reverting all features to code version `date`"
 drush -y fra
 echo "delete from role_permission where permission like '%field_body_anonymous%' and module = 'field_permissions'"| drush sqlc

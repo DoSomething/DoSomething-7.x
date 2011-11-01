@@ -36,9 +36,7 @@ function dosomething_pages_get_causes() {
     $child_causes_raw = taxonomy_get_tree($vocabulary->vid, $cause->tid, $max_depth = NULL, $load_entities = FALSE);
     $child_causes = array();
     foreach ($child_causes_raw as $child_cause) {
-      $link_text = strtolower($cause->name . '/' . $child_cause->name);
-      $link_text = str_replace(' ', '-', $link_text);
-      $child_causes[] = l($child_cause->name, 'find-your-cause/' . $link_text);
+      $child_causes[] = l($child_cause->name, 'taxonomy/term/' . $child_cause->tid);
     }
     if(!empty($cause->field_causes_image)) {
       $cause_image = $cause->field_causes_image[field_language('taxonomy_term', $cause, 'field_causes_image')][0]['uri'];
@@ -79,7 +77,7 @@ function dosomething_pages_get_causes() {
         'all issues link' => array(
           '#markup' => l(
             'Go',
-            'find-your-cause/' . str_replace(' ', '-', strtolower($cause->name)),
+            'taxonomy/term/' . $cause->tid,
             array(
               'attributes' => array(
                 'class' => array('go', 'ds-button-strong')
