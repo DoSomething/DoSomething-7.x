@@ -475,7 +475,7 @@ function dosomething_login_register_block($form, &$form_state) {
   );
   $form['learn'] = array(
     '#theme' => 'link',
-    '#path' => 'user/registration',
+    '#path' => 'why-become-a-member',
     '#text' => t("Learn more >>"),
     '#options' => array(
       'attributes' => array('class' => array('why')),
