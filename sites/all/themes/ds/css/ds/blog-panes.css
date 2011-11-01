@@ -62,6 +62,13 @@
 .page-awesome-things .pane-blog-center .pane-content .views-field-field-picture img {
   border: 5px white solid;
 }
+.page-awesome-things .pane-blog-center .blog-center-block-attachment {
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background: #d2d2d2 url('../images/blog-center-lines.png') bottom no-repeat;
+  background-position: 5px 0px;
+}
 .page-awesome-things .pane-blog-center .view-blog-center h2 {
   font-size: 16px;
   line-height: 18px;
