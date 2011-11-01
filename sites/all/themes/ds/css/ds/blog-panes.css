@@ -17,15 +17,25 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
+.pane-blog-center {
+  background: url('../images/blog-center-lines.png') no-repeat;
+  background-position: 30px 0px;
+}
 .page-awesome-things .pane-blog-center h2.pane-title {
   line-height: 56px;
 }
-.pane-blog-center .pane-content {
-  background: #d2d2d2;
-  padding-left: 40px;
-  padding-top: 3px;
+.page-awesome-things .pane-blog-center .pane-content {
+  padding: 8px 10px 20px 40px;
+  background: #d2d2d2 url('../images/blog-center-lines.png') bottom no-repeat;
+  background-position: 30px 0px;
 }
-.pane-blog-center .pane-content .views-field-created {
+.page-awesome-things .pane-blog-center .pane-content p {
+  margin-bottom: 0;
+}
+.page-awesome-things .pane-blog-center .pane-content .views-field-field-blog-type {
+  display: none;
+}
+.page-awesome-things .pane-blog-center .pane-content .views-field-created {
   display: inline;
   float: left;
   background-color: white;
@@ -37,51 +47,27 @@
   padding-left: 13px;
   padding-top: 0px;
 }
-.pane-blog-center .pane-content .views-field-created .month {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .month {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 10px;
 }
-.pane-blog-center .pane-content .views-field-created .day {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .day {
   font-weight: bold;
   font-size: 14px;
 }
-.pane-blog-center .pane-content .views-field-created .blog-icon {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .blog-icon {
   margin-top: 10px;
 }
-.pane-blog-center .pane-content .views-field-field-picture img {
+.page-awesome-things .pane-blog-center .pane-content .views-field-field-picture img {
   border: 5px white solid;
 }
-
-.ds-pane-news .pane-content {
-  background: #d2d2d2;
-  padding-left: 40px;
-  padding-top: 3px;
+.page-awesome-things .pane-blog-center .pane-content .view-blog-center h2 {
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 5px;
+  padding-right: 10px;
 }
-.ds-pane-news .pane-content .views-field-created {
-  display: inline;
-  float: left;
-  background-color: white;
-  background: url('../images/bg-blog-date.png') no-repeat;
-  width: 41px;
-  height: 86px;
-  position: relative;
-  left: -24px;
-  padding-left: 13px;
-  padding-top: 0px;
-}
-.ds-pane-news .pane-content .views-field-created .month {
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 10px;
-}
-.ds-pane-news .pane-content .views-field-created .day {
-  font-weight: bold;
-  font-size: 14px;
-}
-.ds-pane-news .pane-content .views-field-created .blog-icon {
-  margin-top: 10px;
-}
-.ds-pane-news .pane-content .views-field-field-picture img {
-  border: 5px white solid;
+.page-awesome-things .pane-blog-center .pane-content .view-blog-center h2 a {
+  color: black;
 }
