@@ -151,6 +151,7 @@ drush -y en entityreference
 drush -y en dosomething_feedback
 drush -y en browscap
 drush -y en dosomething_editorial_content
+drush -y en rotoslider
 drush php-eval "_browscap_import();"
 echo "reverting all features to code version `date`"
 drush -y fra
