@@ -45,11 +45,11 @@
           <?php endforeach; ?>
         </div>
         <?php endif; ?>
-        <div class="causes-dropdown">
-          <?php if (isset($causes_dropdown_menu)): ?>
+        <?php if (isset($causes_dropdown_menu)): ?>
+          <div class="<?php print $cause_or_issue_dropdown; ?>">
             <?php print render($causes_dropdown_menu); ?>
-          <?php endif; ?>
-        </div>
+          </div>
+        <?php endif; ?>
       </nav> <!-- /nav -->
     <?php endif; ?>
 
