@@ -2010,6 +2010,7 @@ nav[role=navigation] .secondary ul {
   min-height: 1.667em;
   padding-left: 0.333em;
   padding-right: 1.056em;
+  overflow: visible;
 }
 nav[role=navigation] .secondary ul li {
   list-style-image: none;
@@ -2052,24 +2053,63 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 nav[role=navigation] .causes-dropdown-trigger {
   position: relative;
 }
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
+  top: 30px;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
+  display: block !important;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li {
+  padding: 0;
+  float: none;
+  display: block;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li a {
+  padding: 0.3em 0.5em;
+}
 nav[role=navigation] .causes-dropdown {
   position: absolute;
   top: 6em;
   z-index: 10;
+  text-transform: none;
+  font-size: 0.667em;
+  line-height: 0em;
+  font-weight: 500;
 }
-nav[role=navigation] .causes-dropdown #causes-menu-dropdown {
+nav[role=navigation] .causes-dropdown ul {
   background-color: #014e9c;
   display: none;
   margin-bottom: 0;
 }
-nav[role=navigation] .causes-dropdown #causes-menu-dropdown:active {
+nav[role=navigation] .causes-dropdown ul:active {
   background-color: none;
 }
+nav[role=navigation] .causes-dropdown ul li:hover {
+  background: #005ba9;
+}
+nav[role=navigation] .causes-dropdown ul li a {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown ul li a:visited {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown ul li a:hover {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown ul li a:active {
+  color: white;
+}
 nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
-  font-size: 1.5em;
-  line-height: 1.333em;
-  font-weight: 500;
-  height: 2em;
   margin: 0 0 0 0.5em;
 }
 nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active {
