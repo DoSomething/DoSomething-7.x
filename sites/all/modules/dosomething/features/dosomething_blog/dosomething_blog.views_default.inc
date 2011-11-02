@@ -362,6 +362,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['ds_social_plugins']['id'] = 'ds_social_plugins';
   $handler->display->display_options['fields']['ds_social_plugins']['table'] = 'views';
   $handler->display->display_options['fields']['ds_social_plugins']['field'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['label'] = '';
   $handler->display->display_options['fields']['ds_social_plugins']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['ds_social_plugins']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['ds_social_plugins']['alter']['absolute'] = 0;
@@ -374,7 +375,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['ds_social_plugins']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['ds_social_plugins']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['ds_social_plugins']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['ds_social_plugins']['hide_empty'] = 0;
   $handler->display->display_options['fields']['ds_social_plugins']['empty_zero'] = 0;
