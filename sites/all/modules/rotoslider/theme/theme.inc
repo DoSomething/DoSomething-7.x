@@ -15,16 +15,21 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     if ($name == 'percentage') {
       $settings[$name] = $setting / 100;
     }
-    else {
+    elseif ($name == 'speed') {
       $settings[$name] = (int) $setting;
     }
+  }
+
+  $base_field = NULL;
+  if (!empty($variables['options']['settings']['link'])) {
+    $base_field = $variables['view']->base_field;
   }
   if (!empty($settings)) {
     drupal_add_js(array('rotoslider' => $settings), 'setting');
   }
 
   // Add a slide for each row.
-  $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field);
+  $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field, $base_field);
 
   // Either create an initial slide from the settings, or use the first slide.
   if (!empty($variables['options']['initial']['default'])) {
@@ -96,7 +101,21 @@ function template_preprocess_rotoslider_slider(&$variables) {
         'data-key' => $key,
       ),
     ) + $item['image'];
-    // A container with heading and text as children.
+    // A container with heading (possibly a link) and text as children.
+    if (!empty($item['uri'])) {
+      $heading_text = array(
+        '#theme' => 'link',
+        '#text' => $item['title']['#markup'],
+        '#path' => $item['uri']['path'],
+        '#options' => $item['uri']['options'] + array(
+          'attributes' => array(),
+          'html' => FALSE,
+        ),
+      );
+    }
+    else {
+      $heading_text = $item['title'];
+    }
     $text[$key] = array(
       '#type' => 'container',
       '#attributes' => array(
@@ -112,7 +131,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
             'heading',
           ),
         ),
-        'heading' => $item['title'],
+        'heading' => $heading_text,
       ),
       'text' => array(
         '#type' => 'container',
@@ -250,7 +269,7 @@ function theme_rotoslider_slider($variables) {
  *   - image: The item's image absolute URL.
  *   - text: The item's decription, which may contain markup.
  */
-function _rotoslider_process($options, $rows, $fields) {
+function _rotoslider_process($options, $rows, $fields, $base_field = NULL) {
   $items = array();
 
   $info = array();
@@ -266,6 +285,14 @@ function _rotoslider_process($options, $rows, $fields) {
   // Get the placeholder image.
   $placeholder = variable_get('rotoslider_placeholder');
   foreach ($rows as $delta => $row) {
+    $values = array();
+
+    // Find the URI of the original content.
+    // @todo Make this a proper field.
+    if (!empty($base_field) && !empty($row->_field_data[$base_field])) {
+      $values['uri'] = entity_uri($row->_field_data[$base_field]['entity_type'], $row->_field_data[$base_field]['entity']);
+    }
+
     foreach (array('title', 'image', 'text') as $type) {
       $value = '';
       // The field contains a Views field alias.
@@ -312,6 +339,8 @@ function _rotoslider_process($options, $rows, $fields) {
           }
         }
       }
+
+      // Wrap plain text as a render array.
       if (!is_array($value)) {
         $value = array('#markup' => $value);
       }
