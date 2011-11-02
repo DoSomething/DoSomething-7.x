@@ -358,6 +358,37 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
+  /* Field: Global: DoSomething Social Plugins */
+  $handler->display->display_options['fields']['ds_social_plugins']['id'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['table'] = 'views';
+  $handler->display->display_options['fields']['ds_social_plugins']['field'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['module_options'] = array(
+    'fb_social' => 'fb_social',
+    'google_plusone' => 'google_plusone',
+    'tweetbutton' => 0,
+    'print' => 0,
+    'print_mail' => 0,
+  );
+  $handler->display->display_options['fields']['ds_social_plugins']['options'] = array(
+    'fb_social_preset' => 'FB Like',
+  );
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Blog type (field_blog_type) */
   $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
@@ -1169,6 +1200,38 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
+  /* Field: Global: DoSomething Social Plugins */
+  $handler->display->display_options['fields']['ds_social_plugins']['id'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['table'] = 'views';
+  $handler->display->display_options['fields']['ds_social_plugins']['field'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['label'] = '';
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['module_options'] = array(
+    'fb_social' => 'fb_social',
+    'google_plusone' => 'google_plusone',
+    'tweetbutton' => 0,
+    'print' => 0,
+    'print_mail' => 0,
+  );
+  $handler->display->display_options['fields']['ds_social_plugins']['options'] = array(
+    'fb_social_preset' => 'FB Like',
+  );
   $handler->display->display_options['displays'] = array(
     'block_1' => 'block_1',
     'default' => 0,
