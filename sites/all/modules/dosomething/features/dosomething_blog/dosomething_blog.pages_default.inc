@@ -329,7 +329,10 @@ blog/all',
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'blog-menu',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
