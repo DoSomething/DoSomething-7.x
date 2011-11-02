@@ -350,6 +350,10 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['fb_social']['empty_zero'] = 0;
   $handler->display->display_options['fields']['fb_social']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['fb_social']['fb_social_plugins'] = 'FB Like';
+  /* Sort criterion: Content: Sticky */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'node';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
