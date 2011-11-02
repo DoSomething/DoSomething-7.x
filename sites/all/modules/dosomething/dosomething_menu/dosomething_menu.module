@@ -131,6 +131,7 @@ function dosomething_menu_navigation_links($menu_name, $term = FALSE) {
           // If the link is already setup and in the active trail, then add this too.
           if ($class && isset($links['menu-' . $tree['link']['mlid']])) {
             $links['menu-' . $tree['link']['mlid'] . $class] = $links['menu-' . $tree['link']['mlid']];
+            unset($links['menu-' . $tree['link']['mlid']]);
           }
           else if (!$class && isset($links['menu-' . $tree['link']['mlid'] . ' active-trail'])) {
             $class = ' active-trail';
