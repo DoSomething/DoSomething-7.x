@@ -112,7 +112,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
             'heading',
           ),
         ),
-        'children' => $item['title'],
+        'heading' => $item['title'],
       ),
       'text' => array(
         '#type' => 'container',
@@ -121,7 +121,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
             'text',
           ),
         ),
-        'children' => $item['text'],
+        'text' => $item['text'],
       ),
     );
   }
@@ -161,15 +161,17 @@ function template_preprocess_rotoslider_slider(&$variables) {
       'images' => $images,
     ),
     'description' => array(
+      '#pre_render' => array('rotoslider_container_pre_render'),
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
           'rotoslider-description',
         ),
       ),
-      'children' => $heading['text'],
+      'description' => $heading['text'],
     ),
     'descriptions' => array(
+      '#pre_render' => array('rotoslider_container_pre_render'),
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
@@ -205,6 +207,23 @@ function template_preprocess_rotoslider_slider(&$variables) {
   );
 
   $variables['element'] = $element;
+}
+
+/**
+ * #pre_render callback: Prevents empty containers from printing.
+ */
+function rotoslider_container_pre_render($element) {
+  $children_keys = element_children($element);
+  $children = drupal_render_children($element, $children_keys);
+  if (empty($children)) {
+    $element = array('#markup');
+  }
+  else {
+    foreach ($children_keys as $key) {
+      show($element[$key]);
+    }
+  }
+  return $element;
 }
 
 /**
@@ -248,34 +267,56 @@ function _rotoslider_process($options, $rows, $fields) {
   $placeholder = variable_get('rotoslider_placeholder');
   foreach ($rows as $delta => $row) {
     foreach (array('title', 'image', 'text') as $type) {
+      $value = '';
+      // The field contains a Views field alias.
       if (isset($row->$info[$type])) {
         $value = $row->$info[$type];
       }
+      // The field contains the actual value.
       elseif (isset($info[$type])) {
         $value = $info[$type];
       }
+      // Do not add items without a title.
       elseif ($type == 'title') {
         continue;
       }
-      else {
-        $value = '';
+
+      // Use the rendered value of a field.
+      if (is_array($value) && isset($value[0]['rendered'])) {
+        $value = $value[0]['rendered'];
       }
 
-      // If a placeholder is set and the image is missing, use it.
-      if (empty($value)) {
-        if ($type == 'image' && !empty($placeholder)) {
-          $value[0]['rendered'] = array(
-            '#theme' => 'image',
-            '#path' => $placeholder,
-            '#attributes' => array(),
-          );
+      // Rewrite the image to use either theme_image() or theme_image_style().
+      if ($type == 'image') {
+        // Views gives us an array for theme_image_formatter(), rewrite it.
+        if (is_array($value) && isset($value['#theme']) && $value['#theme'] == 'image_formatter') {
+          $value['#style_name'] = $value['#image_style'];
+          $value['#theme'] = 'image_style';
+          $value['#path'] = $value['#item']['uri'];
         }
         else {
-          $value = '';
+          // If a placeholder is set and the image is missing, use it.
+          if (empty($value) && !empty($placeholder)) {
+            $path = $placeholder;
+          }
+          // If the image is present, use it.
+          elseif (!empty($value) && !is_array($value)) {
+            $path = $value;
+          }
+          if (!empty($path)) {
+            $value = array(
+              '#theme' => 'image',
+              '#path' => $path,
+              '#attributes' => array(),
+            );
+          }
         }
       }
+      if (!is_array($value)) {
+        $value = array('#markup' => $value);
+      }
 
-      $values[$type] = is_array($value) ? $value[0]['rendered'] : array('#markup' => $value);
+      $values[$type] = $value;
     }
 
     $items[$delta] = $values;
