@@ -339,6 +339,26 @@ blog/all',
     $display->panels['left-top'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
+    $pane->panel = 'left-top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'blog_center-panel_pane_3';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'blog-page-pane',
+      'css_class' => '.pane-content',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['left-top'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'blog_center-panel_pane_2';
@@ -355,8 +375,8 @@ blog/all',
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-2'] = $pane;
-    $display->panels['right'][0] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['right'][0] = 'new-3';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
