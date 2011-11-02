@@ -116,7 +116,7 @@ function dosomething_menu_navigation_links($menu_name, $term = FALSE) {
           // If this is a taxonomy page, then we set the active-trail
           // to the causes menu. We also need to set the trigger for the
           // dropdown.
-          if ($item['link']['href'] == variable_get('dosomething_menu_all_causes_path', 'node/30080')) {
+          if ($item['link']['href'] == variable_get('dosomething_menu_all_causes_path', 'causes')) {
             $l['attributes']['class'][] = 'causes-dropdown-trigger';
             if ($term) {
               $l['attributes']['class'][] = 'active-trail';
