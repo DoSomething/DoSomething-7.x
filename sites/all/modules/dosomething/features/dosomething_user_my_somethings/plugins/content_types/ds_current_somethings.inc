@@ -19,7 +19,6 @@ function dosomething_user_my_somethings_ds_current_somethings_ctools_content_typ
  * Output function for the 'DS User info' content type.
  */
 function dosomething_user_my_somethings_ds_current_somethings_content_type_render($subtype, $conf, $panel_args, $context) {
-  dpm($context->data);
   $uid = $context->data->uid;
   $user = node_load($uid);
 
