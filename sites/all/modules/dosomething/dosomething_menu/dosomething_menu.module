@@ -36,6 +36,7 @@ function dosomething_menu_preprocess_page(&$variables) {
  */
 function dosomething_menu_secondary_links($variables, $term) {
   $secondary_menu_items = dosomething_menu_navigation_links('main-menu', $term);
+dsm($secondary_menu_items);
   if (count($secondary_menu_items)) {
     foreach ($secondary_menu_items as $mlid => &$links) {
       $links['attributes']['class'][] = 'links';
@@ -115,7 +116,7 @@ function dosomething_menu_navigation_links($menu_name, $term = FALSE) {
           // If this is a taxonomy page, then we set the active-trail
           // to the causes menu. We also need to set the trigger for the
           // dropdown.
-          if ($item['link']['href'] == variable_get('dosomething_menu_all_causes_path', 'causes')) {
+          if ($item['link']['href'] == variable_get('dosomething_menu_all_causes_path', 'node/30080')) {
             $l['attributes']['class'][] = 'causes-dropdown-trigger';
             if ($term) {
               $l['attributes']['class'][] = 'active-trail';
