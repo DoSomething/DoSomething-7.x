@@ -35,7 +35,9 @@
       <nav role="navigation">
         <?php if ($main_menu): ?>
         <div class="primary">
-          <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links')))); ?>
+          <div class="wrapper">
+            <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links')))); ?>
+          </div>
         </div>
         <?php endif; ?>
         <?php if (count($secondary_menu_items)): ?>

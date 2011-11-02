@@ -1954,8 +1954,10 @@ nav[role=navigation] {
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
-  display: table;
   padding-left: 22.162%;
+}
+nav[role=navigation] .primary .wrapper {
+  display: table;
   width: 100%;
 }
 nav[role=navigation] #main-menu {
@@ -1994,8 +1996,6 @@ nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.a
 nav[role=navigation] .secondary {
   background-color: #014e9c;
   padding-left: 22.162%;
-  display: table;
-  width: 100%;
 }
 nav[role=navigation] .secondary ul {
   font-size: 1.5em;
