@@ -203,6 +203,27 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: editorial_content_small
+  $styles['editorial_content_small'] = array(
+    'name' => 'editorial_content_small',
+    'effects' => array(
+      2 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '132',
+          'height' => '123',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: feature_grants_winner_image
   $styles['feature_grants_winner_image'] = array(
     'name' => 'feature_grants_winner_image',
