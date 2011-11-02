@@ -10,18 +10,20 @@
       var secondaryMenuActive = $(".secondary ul.active");
       $(".causes-dropdown-trigger").append(causesMenuParent);
 
-      console.log('your mom');
-
       // Show and hide secondary menu.
       $("nav[role=navigation]").hoverIntent({
         interval: 100,
         timeout: 1000,
         over: function() {
-                console.log('over');
+                var classes = $("#main-menu li:hover").attr("class").split(" ");
+                var menuClass = classes[0];
+                secondaryMenu.addClass("hidden");
+                $("#secondary-menu-" + menuClass).removeClass("hidden");
+                causesMenu.hide();
+
                 $("#main-menu li").hoverIntent({
-                  interval: 100,
+                  interval: 50,
                   over: function() {
-                    console.log('nested over');
                     var classes = $(this).attr("class").split(" ");
                     var menuClass = classes[0];
 
@@ -39,22 +41,26 @@
               },
         });
 
-      // // Show and hide secondary menu.
-      // $("#main-menu li").hoverIntent({
-      //   interval: 300,
-      //   over: function() {
-      //
-      //     var classes = $(this).attr("class").split(" ");
-      //     var menuClass = classes[0];
-      //
-      //     // Hide all but related secondary menu
-      //     secondaryMenu.addClass("hidden");
-      //     $("#secondary-menu-" + menuClass).removeClass("hidden");
-      //     causesMenu.hide();
-      //   }
-      // });
+      // Show and hide level 1 in the all-causes dropdown.
+      $(".causes-dropdown-trigger").mouseover(function() {
+        causesMenu.show();
+        // levelOne.show();
+        causesMenu.mouseout(
+          function() {
+            $(this).hide();
+          }
+        );
+      });
 
-      // // Show and hide level 1 in the all-causes dropdown.
+      // causesMenu.hover(
+      //   function() {
+      //     console.log($(this));
+      //   },
+      //   function() {
+      //     $(this).hide();
+      //   }
+      // );
+
       // $(".causes-dropdown-trigger").hover(function() {
       //   causesMenu.show();
       //   levelOne.show();

@@ -1983,7 +1983,7 @@ nav[role=navigation] #main-menu li a.active {
 nav[role=navigation] #main-menu li.last a {
   margin-right: 0;
 }
-nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a {
+nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a {
   background-color: #014e9c;
   background-image: url('images/arrow-down.png');
   background-repeat: no-repeat;
@@ -2057,7 +2057,6 @@ nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
   top: 30px;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
-  display: block !important;
   list-style: none;
   margin-left: 0;
   padding-left: 0;
