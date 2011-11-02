@@ -75,8 +75,7 @@ function dosomething_blocks_block_view($delta = '') {
 
     case 'dosomething_social_node_buttons':
       $block['subject'] = t('Social Buttons');
-      // This could be edited in the block if worth the time to add that.
-      $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, $modules = array(), $options = array('fb_social_preset' => 'FB Like'));
+      $block['content'] = dosomething_blocks_social_node_plugins();
       break;
   }
   return $block;
@@ -110,7 +109,7 @@ function dosomething_blocks_facebook_activity_block_content() {
 
 function dosomething_blocks_twitter_stream_block_content() {
   $element = array(
-    '#markup' => "<script src=\"http://widgets.twimg.com/j/2/widget.js\"></script>
+    '#markup' => "
       <script>
       new TWTR.Widget({
         version: 2,
@@ -143,6 +142,7 @@ function dosomething_blocks_twitter_stream_block_content() {
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js',
+        drupal_get_path('module', 'dosomething_blocks') . '/js/twitter-widget.js',
       )
     ),
   );
@@ -441,7 +441,7 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
 
   if (module_exists('fb_social') && $modules['fb_social']) {
     $presets = fb_social_get_presets();
-    if (isset($options['fb_social_preset'])) { 
+    if ($options['fb_social_preset']) { 
       $element['#facebook'] = dosomething_blocks_fb_social_preset_view($presets[$options['fb_social_preset']], $url);
     }
   }
