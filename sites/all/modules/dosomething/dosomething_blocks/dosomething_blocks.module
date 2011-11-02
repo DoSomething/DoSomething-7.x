@@ -75,7 +75,7 @@ function dosomething_blocks_block_view($delta = '') {
 
     case 'dosomething_social_node_buttons':
       $block['subject'] = t('Social Buttons');
-      $block['content'] = dosomething_blocks_social_node_plugins();
+      $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, $modules = NULL, $options = array('fb_social_preset' => 'FB Like'));
       break;
   }
   return $block;
@@ -416,9 +416,9 @@ function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $
  *  Modules to include. If empty all will be included. Choices are:
  *  - fb_social, google_plusone, tweetbutton, mail, print_mail
  * @param $options array
- *  Options specific to modules. REQUIRED for fb_social. 
+ *  Options specific to modules. REQUIRED for fb_social.
  *
- * @see dosomething_blocks_social_plugins_modules(). 
+ * @see dosomething_blocks_social_plugins_modules().
  */
 function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(), $options = array()) {
   $element = array(
@@ -441,7 +441,7 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
 
   if (module_exists('fb_social') && $modules['fb_social']) {
     $presets = fb_social_get_presets();
-    if ($options['fb_social_preset']) { 
+    if (isset($options['fb_social_preset'])) {
       $element['#facebook'] = dosomething_blocks_fb_social_preset_view($presets[$options['fb_social_preset']], $url);
     }
   }
