@@ -2160,6 +2160,56 @@ nav[role=navigation] .causes-dropdown a {
 nav[role=navigation] .causes-dropdown.last a {
   margin-right: 0;
 }
+nav[role=navigation] .issues-dropover {
+  position: relative;
+}
+nav[role=navigation] .issues-dropover .arrows {
+  position: absolute;
+  left: -0.25em;
+}
+nav[role=navigation] .issues-dropover .issues-dropdown-menu {
+  background: #014e9c;
+  position: absolute;
+  left: 2px;
+  display: none;
+  z-index: 10;
+}
+nav[role=navigation] .issues-dropover ul {
+  font-size: 1em;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding: 0;
+  text-transform: none;
+}
+nav[role=navigation] .issues-dropover ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+nav[role=navigation] .issues-dropover ul li {
+  padding: 0;
+  display: block;
+  float: none;
+  margin-bottom: 0;
+}
+nav[role=navigation] .issues-dropover ul li:hover {
+  background: #005ba9;
+}
+nav[role=navigation] .issues-dropover ul li a {
+  padding: 0.3em 0.5em;
+  margin-bottom: 0;
+  color: white;
+}
+nav[role=navigation] .issues-dropover ul li a:visited {
+  color: white;
+}
+nav[role=navigation] .issues-dropover ul li a:hover {
+  color: white;
+}
+nav[role=navigation] .issues-dropover ul li a:active {
+  color: white;
+}
 nav[role=navigation] a {
   text-decoration: none;
   display: block;
@@ -2173,6 +2223,10 @@ nav[role=navigation] a:hover {
 }
 nav[role=navigation] a:active {
   color: white;
+}
+
+.issues-dropdown {
+  display: none;
 }
 
 div[role=main] {

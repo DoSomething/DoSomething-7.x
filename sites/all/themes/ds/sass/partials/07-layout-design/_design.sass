@@ -225,10 +225,40 @@ nav[role=navigation]
     &.last
       a
         margin-right: 0
+  .issues-dropover
+    position: relative
+    .arrows
+      position: absolute
+      left: -0.25em
+    .issues-dropdown-menu
+      background: $blue
+      position: absolute
+      left: 2px
+      display: none
+      z-index: 10
+    ul
+      font-size: 1em
+      +clean-list
+      padding: 0
+      text-transform: none
+      li
+        padding: 0
+        display: block
+        float: none
+        margin-bottom: 0
+        &:hover
+          background: $blue-light
+        a
+          padding: 0.3em 0.5em
+          margin-bottom: 0
+          +link-colors($white, $white, $white, $white, false)
   a
     text-decoration: none
     display: block
     +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
+
+.issues-dropdown
+  display: none
 
 div[role=main]
   background-color: $c-content-bg
