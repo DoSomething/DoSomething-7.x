@@ -204,7 +204,6 @@ function dosomething_login_element_info() {
     '#input' => TRUE,
     '#process' => array('dosomething_roles_dosomething_password_confirm', 'user_form_process_password_confirm'),
     '#theme_wrappers' => array('form_element'),
-    '#theme' => 'password_confirm',
     '#element_validate' => array('password_confirm_validate'),
   );
   return $types;
@@ -867,8 +866,7 @@ function dosomething_login_clubs() {
     }
   }
   else {
-    // TODO: Find the correct link.
-    $items[] = l(t('Start a club'), '');
+    $items[] = l(t('Start a club'), '/node/add/club');
   }
 
   return array(
