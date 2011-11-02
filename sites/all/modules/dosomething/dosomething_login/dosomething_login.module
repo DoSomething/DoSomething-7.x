@@ -333,7 +333,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#attributes' => array(
       'placeholder' => t('Create a Password'),
     ),
-    '#maxlength' => 64,
     '#size' => 15,
   );
   if (module_exists('captcha')) {
