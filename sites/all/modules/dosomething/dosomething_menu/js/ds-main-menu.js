@@ -5,8 +5,10 @@
       var levelOne = $("#causes-menu-dropdown li.causes-menu-dropdown-level-1");
       var levelTwo = $("#causes-menu-dropdown li.causes-menu-dropdown-level-2");
       var causesMenu = $("#causes-menu-dropdown");
+      var causesMenuParent = $(".causes-dropdown");
       var secondaryMenu = $(".secondary ul");
       var secondaryMenuActive = $(".secondary ul.active");
+      $(".causes-dropdown-trigger").append(causesMenuParent);
 
       // Show and hide secondary menu.
       $("#main-menu li").hoverIntent({

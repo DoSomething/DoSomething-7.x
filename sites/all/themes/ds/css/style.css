@@ -1977,6 +1977,9 @@ nav[role=navigation] #main-menu li a {
   padding-left: 0.207em;
   padding-right: 0.207em;
 }
+nav[role=navigation] #main-menu li a.active {
+  color: white;
+}
 nav[role=navigation] #main-menu li.last a {
   margin-right: 0;
 }
@@ -1990,8 +1993,9 @@ nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.a
 }
 nav[role=navigation] .secondary {
   background-color: #014e9c;
-  margin-left: 22.162%;
-  width: 77.838%;
+  padding-left: 22.162%;
+  display: table;
+  width: 100%;
 }
 nav[role=navigation] .secondary ul {
   font-size: 1.5em;
@@ -2004,7 +2008,8 @@ nav[role=navigation] .secondary ul {
   *zoom: 1;
   line-height: 1.667;
   min-height: 1.667em;
-  padding-left: 1.222em;
+  padding-left: 0.333em;
+  padding-right: 1.056em;
 }
 nav[role=navigation] .secondary ul li {
   list-style-image: none;
@@ -2013,8 +2018,8 @@ nav[role=navigation] .secondary ul li {
   white-space: nowrap;
   display: inline;
   float: left;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 nav[role=navigation] .secondary ul li:first-child, nav[role=navigation] .secondary ul li.first {
   padding-left: 0;
@@ -2025,12 +2030,30 @@ nav[role=navigation] .secondary ul li:last-child {
 nav[role=navigation] .secondary ul li.last {
   padding-right: 0;
 }
-nav[role=navigation] .secondary ul.active a {
+nav[role=navigation] .secondary ul a.active {
   color: white;
+}
+nav[role=navigation] .secondary ul:nth-of-type(4n+2) {
+  margin-left: 9.556em;
+}
+nav[role=navigation] .secondary ul:nth-of-type(1n+3) {
+  text-align: right;
+}
+nav[role=navigation] .secondary ul:nth-of-type(1n+3) li {
+  display: inline;
+  float: none;
+}
+nav[role=navigation] .secondary ul:nth-of-type(1n+3) li a {
+  display: inline;
+}
+nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
+  padding-right: 12.222em;
+}
+nav[role=navigation] .causes-dropdown-trigger {
+  position: relative;
 }
 nav[role=navigation] .causes-dropdown {
   position: absolute;
-  left: 22.4em;
   top: 6em;
   z-index: 10;
 }

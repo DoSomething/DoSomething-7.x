@@ -109,6 +109,8 @@ nav[role=navigation]
         padding-top: calc-em(10px, $s4)
         padding-left: calc-em(6px, $s4)
         padding-right: calc-em(6px, $s4)
+        &.active
+          color: white
       &.last
         a
           margin-right: 0
@@ -123,21 +125,36 @@ nav[role=navigation]
           padding-top: calc-em(8px, $s4)
   .secondary
     background-color: $c-menu-secondary-bg
-    margin-left: percentage($left-col-width / $page-width)
-    width: percentage($main-width / $page-width)
+    padding-left: percentage($left-col-width / $page-width)
+    display: table
+    width: 100%
     ul
       +adjust-font-size-to($s2)
       font-weight: 500
-      +horizontal-list(0.5em)
+      +horizontal-list(0.7em)
       line-height: $submenu-height / $s2
       min-height: calc-em($submenu-height, $s2)
-      padding-left: calc-em(22px, $s2)
-      &.active
-        a
+      padding-left: calc-em(6px, $s2)
+      padding-right: calc-em(19px, $s2)
+      a
+        &.active
           color: $white
+      &:nth-of-type(4n+2)
+        margin-left: calc-em(172px, $s2)
+      &:nth-of-type(1n+3)
+        text-align: right
+        li
+          display: inline
+          float: none
+          a
+            display: inline
+      &:nth-of-type(4n+3)
+        padding-right: calc-em(220px, $s2)
+  .causes-dropdown-trigger
+    position: relative
   .causes-dropdown
     position: absolute
-    left: 22.4em
+    // left: 22.4em
     top: 6em
     z-index: 10
     #causes-menu-dropdown
