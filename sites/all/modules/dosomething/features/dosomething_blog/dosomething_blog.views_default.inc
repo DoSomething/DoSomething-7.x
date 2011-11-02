@@ -358,38 +358,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
-  /* Field: Global: DoSomething Social Plugins */
-  $handler->display->display_options['fields']['ds_social_plugins']['id'] = 'ds_social_plugins';
-  $handler->display->display_options['fields']['ds_social_plugins']['table'] = 'views';
-  $handler->display->display_options['fields']['ds_social_plugins']['field'] = 'ds_social_plugins';
-  $handler->display->display_options['fields']['ds_social_plugins']['label'] = '';
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['ds_social_plugins']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['ds_social_plugins']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['module_options'] = array(
-    'fb_social' => 'fb_social',
-    'google_plusone' => 'google_plusone',
-    'tweetbutton' => 0,
-    'print' => 0,
-    'print_mail' => 0,
-  );
-  $handler->display->display_options['fields']['ds_social_plugins']['options'] = array(
-    'fb_social_preset' => 'FB Like',
-  );
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Blog type (field_blog_type) */
   $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
@@ -1201,38 +1169,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
-  /* Field: Global: DoSomething Social Plugins */
-  $handler->display->display_options['fields']['ds_social_plugins']['id'] = 'ds_social_plugins';
-  $handler->display->display_options['fields']['ds_social_plugins']['table'] = 'views';
-  $handler->display->display_options['fields']['ds_social_plugins']['field'] = 'ds_social_plugins';
-  $handler->display->display_options['fields']['ds_social_plugins']['label'] = '';
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['ds_social_plugins']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['ds_social_plugins']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['ds_social_plugins']['module_options'] = array(
-    'fb_social' => 'fb_social',
-    'google_plusone' => 'google_plusone',
-    'tweetbutton' => 0,
-    'print' => 0,
-    'print_mail' => 0,
-  );
-  $handler->display->display_options['fields']['ds_social_plugins']['options'] = array(
-    'fb_social_preset' => 'FB Like',
-  );
   $handler->display->display_options['displays'] = array(
     'block_1' => 'block_1',
     'default' => 0,
@@ -1277,6 +1213,108 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+
+  /* Display: Blog Archives Block */
+  $handler = $view->new_display('block', 'Blog Archives Block', 'block_5');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Archives';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'block-dosomething-blog-archive';
+  $handler->display->display_options['display_description'] = 'Displays a list of Archive blogs posts alongside blog posts';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['grouping'] = 'created_1';
+  $handler->display->display_options['style_options']['class'] = 'blog-archive-block';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['hide_empty'] = 0;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Post date */
+  $handler->display->display_options['fields']['created_1']['id'] = 'created_1';
+  $handler->display->display_options['fields']['created_1']['table'] = 'node';
+  $handler->display->display_options['fields']['created_1']['field'] = 'created';
+  $handler->display->display_options['fields']['created_1']['label'] = '';
+  $handler->display->display_options['fields']['created_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['created_1']['alter']['text'] = '<span class="collapse-icon">►</span> [created_1]';
+  $handler->display->display_options['fields']['created_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['created_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['created_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['created_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['created_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['created_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['created_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['created_1']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['created_1']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created_1']['custom_date_format'] = 'F Y';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'blog' => 'blog',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Date: Date (node) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'node';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['operator'] = 'between';
+  $handler->display->display_options['filters']['date_filter']['group'] = 0;
+  $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['date_filter']['default_date'] = 'now -182 day';
+  $handler->display->display_options['filters']['date_filter']['default_to_date'] = 'now';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'node.created' => 'node.created',
+  );
+  $handler->display->display_options['block_description'] = 'Blog Archives Block';
   $export['blog_center'] = $view;
 
   $view = new view;

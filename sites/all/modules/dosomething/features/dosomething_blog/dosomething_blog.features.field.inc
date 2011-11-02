@@ -88,77 +88,6 @@ function dosomething_blog_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-blog-field_blog_causes'
-  $fields['node-blog-field_blog_causes'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_blog_causes',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'vocabulary_5',
-            'parent' => '0',
-          ),
-        ),
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'blog',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'If relevant, select the Cause(s) or Issue(s) that this blog post relates to.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '3',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_blog_causes',
-      'label' => 'Causes/Issues',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '2',
-      ),
-    ),
-  );
-
   // Exported field: 'node-blog-field_blog_image'
   $fields['node-blog-field_blog_image'] = array(
     'field_config' => array(
@@ -233,7 +162,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -381,8 +310,102 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '11',
+        'weight' => '31',
       ),
+    ),
+  );
+
+  // Exported field: 'node-blog-field_embedded_video'
+  $fields['node-blog-field_embedded_video'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_embedded_video',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'mediafield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'media',
+      'type_name' => 'sixflags_scholarships_app',
+    ),
+    'field_instance' => array(
+      'bundle' => 'blog',
+      'default_value' => array(
+        0 => array(
+          'embed' => '',
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_embedded_video',
+      'label' => 'Video (optional)',
+      'required' => 0,
+      'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-1',
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'public' => 'public',
+            'youtube' => 'youtube',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 0,
+            'video' => 'video',
+          ),
+          'browser_plugins' => array(),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '8',
+      ),
+      'widget_type' => 'emvideo_textfields',
     ),
   );
 
@@ -394,9 +417,6 @@ function dosomething_blog_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_picture',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -487,7 +507,7 @@ function dosomething_blog_field_default_fields() {
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '8',
+        'weight' => '5',
       ),
       'widget_type' => 'imagefield_widget',
     ),
@@ -556,7 +576,7 @@ function dosomething_blog_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '2',
       ),
     ),
   );
@@ -573,8 +593,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'abstract',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -611,7 +631,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '19',
+        'weight' => '12',
       ),
     ),
   );
@@ -628,8 +648,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'copyright',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -666,7 +686,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '16',
+        'weight' => '10',
       ),
     ),
   );
@@ -683,8 +703,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'description',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -721,7 +741,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textarea',
-        'weight' => '17',
+        'weight' => '11',
       ),
     ),
   );
@@ -738,8 +758,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'keywords',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -776,7 +796,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_textfield',
-        'weight' => '15',
+        'weight' => '9',
       ),
     ),
   );
@@ -793,8 +813,8 @@ function dosomething_blog_field_default_fields() {
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        0 => 'meta_name',
         'meta_name' => 'robots',
+        0 => 'meta_name',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -832,7 +852,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'metatags_quick',
         'settings' => array(),
         'type' => 'metatags_quick_checkboxes',
-        'weight' => '13',
+        'weight' => '8',
       ),
     ),
   );
@@ -898,7 +918,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -962,7 +982,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -1028,7 +1048,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '9',
+        'weight' => '5',
       ),
     ),
   );
@@ -1107,7 +1127,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '7',
+        'weight' => '4',
       ),
     ),
   );
@@ -1204,13 +1224,11 @@ function dosomething_blog_field_default_fields() {
   t('Blog Icon');
   t('Blog type');
   t('Body');
-  t('Causes/Issues');
   t('Celebrity Name Tags');
   t('Charity');
   t('Copyright');
   t('Description');
   t('File attachments');
-  t('If relevant, select the Cause(s) or Issue(s) that this blog post relates to.');
   t('Image');
   t('Issues');
   t('Keywords');
