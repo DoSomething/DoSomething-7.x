@@ -128,6 +128,7 @@ drush -y en dosomething_home
 drush -y en tweetbutton 
 drush -y en google_plusone 
 drush -y en captcha 
+drush -y en image_captcha
 drush -y en print_mail 
 drush -y en dosomething_causes 
 drush -y en dosomething_panels 
