@@ -10,6 +10,78 @@
 function dosomething_project_report_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'node-project_report-body'
+  $fields['node-project_report-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Body',
+      'required' => FALSE,
+      'settings' => array(
+        'display_summary' => TRUE,
+        'text_processing' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 20,
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => 31,
+      ),
+    ),
+  );
+
   // Exported field: 'node-project_report-field_body_anonymous'
   $fields['node-project_report-field_body_anonymous'] = array(
     'field_config' => array(
@@ -169,8 +241,8 @@ The content from this field will only be shown to anonymous users.',
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'abstract',
         0 => 'meta_name',
+        'meta_name' => 'abstract',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -224,8 +296,8 @@ The content from this field will only be shown to anonymous users.',
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'copyright',
         0 => 'meta_name',
+        'meta_name' => 'copyright',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -279,8 +351,8 @@ The content from this field will only be shown to anonymous users.',
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'description',
         0 => 'meta_name',
+        'meta_name' => 'description',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -334,8 +406,8 @@ The content from this field will only be shown to anonymous users.',
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'keywords',
         0 => 'meta_name',
+        'meta_name' => 'keywords',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -389,8 +461,8 @@ The content from this field will only be shown to anonymous users.',
       'indexes' => array(),
       'module' => 'metatags_quick',
       'settings' => array(
-        'meta_name' => 'robots',
         0 => 'meta_name',
+        'meta_name' => 'robots',
       ),
       'translatable' => '0',
       'type' => 'metatags_quick',
@@ -1906,6 +1978,68 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-project_report-field_project_status'
+  $fields['webform_submission_entity-project_report-field_project_status'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_status',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Idea',
+          1 => 'Ongoing',
+          2 => 'Completed',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 23,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_project_status',
+      'label' => 'Status',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-project_report-field_project_title'
   $fields['webform_submission_entity-project_report-field_project_title'] = array(
     'field_config' => array(
@@ -2308,6 +2442,7 @@ Use numbers only (no text).');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
   t('Abstract');
   t('Age');
+  t('Body');
   t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Copyright');
@@ -2336,6 +2471,7 @@ The content from this field will only be shown to anonymous users.');
   t('Related Campaign or Program');
   t('Robots');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
+  t('Status');
   t('Tell us about the community you are helping and the problem(s) being solved.');
   t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
   t('The content from this field will only be shown to logged in users.');
