@@ -2057,6 +2057,7 @@ nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
   top: 30px;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
+  display: block !important;
   list-style: none;
   margin-left: 0;
   padding-left: 0;
