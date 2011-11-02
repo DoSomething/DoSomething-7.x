@@ -68,7 +68,7 @@ class DSJsonWebformSubmissionJsonMigrateItems extends MigrateItems implements It
         return NULL;
       }
       $ids = $jsonArray;
-      if (!$ids) {
+      if (!is_array($ids)) {
         return NULL;
       }
       cache_set($cid, $ids);
@@ -120,11 +120,12 @@ class DSJsonWebformSubmissionJsonMigrateItems extends MigrateItems implements It
   }
 
   public function computeCount() {
-    $counts = &drupal_static(__METHOD__);
+    $counts = &drupal_static(__METHOD__, NULL);
 
     migrate_instrument_start(__METHOD__);
 
-    if (!isset($counts[$this->key])) {
+    if (is_null($counts)) {
+      // Try and fetch it.
       migrate_instrument_start("Retrieve $this->countUrl");
       $json = file_get_contents($this->countUrl);
       migrate_instrument_stop("Retrieve $this->countUrl");
