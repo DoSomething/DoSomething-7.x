@@ -409,8 +409,17 @@ function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $
 
 /**
  * Block for social media buttons. Initially for node displays.
+ * @param $url string
+ *  Url that social plugins refer to. If blank will default to page on display.
+ * @param $modules array
+ *  Modules to include. If empty all will be included. Choices are:
+ *  - fb_social, google_plusone, tweetbutton, mail, print_mail
+ * @param $options array
+ *  Options specific to modules. REQUIRED for fb_social. 
+ *
+ * @see dosomething_blocks_social_plugins_modules(). 
  */
-function dosomething_blocks_social_node_plugins($url = NULL) {
+function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(), $options = array()) {
   $element = array(
     '#theme' => 'dosomething_blocks_social_node_plugins',
   );
@@ -424,11 +433,18 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
     $path = NULL;
   }
 
-  if (module_exists('fb_social')) {
-    $presets = fb_social_get_presets();
-    $element['#facebook'] = dosomething_blocks_fb_social_preset_view($presets['FB Like'], $url);
+  // If modules is empty, add all of them.
+  if(!$modules) {
+    $modules = dosomething_blocks_social_plugins_modules();
   }
-  if (module_exists('google_plusone')) {
+
+  if (module_exists('fb_social') && $modules['fb_social']) {
+    $presets = fb_social_get_presets();
+    if ($options['fb_social_preset']) { 
+      $element['#facebook'] = dosomething_blocks_fb_social_preset_view($presets[$options['fb_social_preset']], $url);
+    }
+  }
+  if (module_exists('google_plusone') && $modules['google_plusone']) {
     $button_settings = variable_get('google_plusone_button_settings', array());
     $button_settings['url'] = $url;
     foreach ($button_settings as $key => $value) {
@@ -436,7 +452,7 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
     }
     $element['#google']['#theme'] = 'google_plusone_button';
   }
-  if (module_exists('tweetbutton')) {
+  if (module_exists('tweetbutton') && $modules['tweetbutton']) {
     $element['#twitter'] = array(
       '#theme' => 'tweetbutton_display',
       '#tokens' => dosomething_blocks_tweet_prepare($path),
@@ -450,13 +466,27 @@ function dosomething_blocks_social_node_plugins($url = NULL) {
       ),
     );
   }
-  if (module_exists('print')) {
+  if (module_exists('print') && $modules['print']) {
     $element['#print']['#markup'] = $url ? print_insert_link('print/' . $path) : print_insert_link();
   }
-  if (module_exists('print_mail')) {
+  if (module_exists('print_mail') && $modules['print_mail']) {
     $element['#email']['#markup'] = $url ? print_mail_insert_link('printmail/' . $path) : print_mail_insert_link();
   }
   return $element;
+}
+
+/**
+ * Return an array of optinos for the social plugins.
+ * @see dosomething_blocks_social_node_plugins(). 
+ */
+function dosomething_blocks_social_plugins_modules() {
+  return array(
+    'fb_social' => t('Facebook Social'),
+    'google_plusone' => t('Google PlusOne'), 
+    'tweetbutton' => t('Twitter'), 
+    'print' => t('Print'), 
+    'print_mail' => t('Email'),
+  );
 }
 
 /**
