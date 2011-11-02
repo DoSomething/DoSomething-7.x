@@ -101,37 +101,3 @@ function dosomething_projects_callback() {
   print $view->preview($display_id, array($cause, $province, $keyword));
   exit;
 }
-
-/**
- * Implements hook_form_alter().
- */
-function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
-  if (strpos($form_id, 'webform_client_form_') === 0) {
-    $node = $form['#node'];
-    if ($node->type == 'project_report') {
-       // If this is not a draft, then we only show the email and only allow a save.
-      if (!$form['#is_draft'] && $node->webform['allow_draft']) {
-        foreach (element_children($form) as $child) {
-          if (!in_array($child, array('actions', 'field_action_intention_email', 'form_build_id', 'form_token', 'form_id', 'details', 'hidden'))) {
-           $form[$child]['#access'] = FALSE;
-          }
-        }
-        $form['actions']['submit']['#access'] = FALSE;
-        $form['actions']['draft']['#value'] = t('Absolutely!');
-      }
-
-      $form['actions']['submit']['#value'] = t('Absolutely!');
-      if ($user->uid) {
-        $lang = $form['field_action_intention_email']['#language'];
-        $form['field_action_intention_email'][$lang][0]['email']['#default_value'] = $user->mail;
-      }
-      if (!$user->uid) {
-        $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
-      }
-    }
-    $form['total'] = array(
-      '#markup' => '<p>' . t('!total people have committed to this one.', array('!total' => webform_get_submission_count($node->nid))) . '</p>',
-      '#weight' => 200,
-    );
-  }
-}
