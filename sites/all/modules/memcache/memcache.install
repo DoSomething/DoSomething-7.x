@@ -43,3 +43,10 @@ function memcache_requirements($phase) {
   }
   return $requirements;
 }
+
+/**
+ * Remove the memcache_widlcard_flushes variable since its structure has changed.
+ */
+function memcache_update_7000() {
+  variable_del('memcache_wildcard_flushes');
+}
