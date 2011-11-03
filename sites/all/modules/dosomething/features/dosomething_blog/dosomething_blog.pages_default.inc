@@ -388,7 +388,7 @@ blog/all',
   $handler->task = 'page';
   $handler->subtask = 'blog_center';
   $handler->handler = 'panel_context';
-  $handler->weight = -29;
+  $handler->weight = -28;
   $handler->conf = array(
     'title' => 'Blogs - with argument',
     'no_blocks' => 0,
@@ -529,7 +529,7 @@ blog/all',
   $handler->task = 'page';
   $handler->subtask = 'blog_center';
   $handler->handler = 'panel_context';
-  $handler->weight = -28;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'Issues Blog',
     'no_blocks' => 0,
