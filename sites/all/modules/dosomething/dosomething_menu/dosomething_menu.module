@@ -36,7 +36,6 @@ function dosomething_menu_preprocess_page(&$variables) {
  */
 function dosomething_menu_secondary_links($variables, $term) {
   $secondary_menu_items = dosomething_menu_navigation_links('main-menu', $term);
-dsm($secondary_menu_items);
   if (count($secondary_menu_items)) {
     foreach ($secondary_menu_items as $mlid => &$links) {
       $links['attributes']['class'][] = 'links';
