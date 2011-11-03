@@ -1,39 +1,29 @@
 @import base
 
-.rotoslider
+.rotoslider-with-image
+  img.rotoslider-image,
+  .rotoslider-images,
+  .rotoslider-images img
+    width: $main-width
   .rotoslider-description
-    line-height: 1.4
-    padding: $text-padding
-    top: 10px
-    width: 200px - 2 * $text-padding
-  .rotoslider-description,
-  .rotoslider-text
-    background-color: rgba($purple, 0.7)
-    color: $white
-  .rotoslider-text
-    bottom: 5px
-    .heading
-      font-size: 1.5em
-      line-height: 1
+    bottom: 0
+    top: initial
+  .rotoslider-descriptions
+    & > div
+      height: $description-height + $neg-text-padding
+      padding-right: $sidebar + $text-padding
+      width: $main-width + $neg-text-padding
   .rotoslider-menu
-    border-bottom-color: $yellow
-    .heading
-      background-color: $yellow
-      font-weight: bold
-      letter-spacing: 1px
-      text-align: center
-      text-transform: uppercase
-  .rotoslider-nav li a
-    background-color: rgba($black, 0.6)
     border-bottom-width: 0
-    color: #999
-    font-weight: bold
-    padding: 0.5em 0
-    text-align: center
-    text-decoration: none
-    &:hover
-      background-color: rgba($black, 0.4)
-      color: #ccc
-    &.active
-      background-color: rgba($black, 0.8)
-      color: $white
+    height: $image-nav-height
+  .rotoslider-nav
+    height: $image-nav-height
+    top: 0
+    li
+      margin: 0
+      a
+        padding: 0
+    img
+      height: $image-nav-height / 5
+      vertical-align: middle
+      width: 100%

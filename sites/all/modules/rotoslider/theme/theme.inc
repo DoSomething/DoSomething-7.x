@@ -20,32 +20,31 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     }
   }
 
-  $base_field = NULL;
-  if (!empty($variables['options']['settings']['link'])) {
-    $base_field = $variables['view']->base_field;
-  }
   if (!empty($settings)) {
     drupal_add_js(array('rotoslider' => $settings), 'setting');
   }
 
+  if (!empty($variables['options']['settings']['link'])) {
+    $options['base_field'] = $variables['view']->base_field;
+  }
+  $options['image'] = !empty($variables['options']['settings']['image']);
+
   // Add a slide for each row.
-  $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field, $base_field);
+  $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field, $options);
 
   // Either create an initial slide from the settings, or use the first slide.
   if (!empty($variables['options']['initial']['default'])) {
     unset($variables['options']['initial']['default']);
     $heading = _rotoslider_process($variables['options']['initial'], array($variables['rows'][0]), $variables['view']->field);
     $heading = reset($heading);
-  }
-  else {
-    $heading = array_shift($items);
+    array_unshift($items, $heading);
   }
 
   // Build the element for theme_rotoslider_slider().
   $variables['element'] = array(
     '#theme' => 'rotoslider_slider',
     '#items' => $items,
-    '#heading' => $heading,
+    '#image' => $options['image'],
   );
 }
 
@@ -61,20 +60,19 @@ function theme_rotoslider_view_slider($variables) {
  *
  * @param $variables
  *   An associative array containing:
- *   - items: An associative array of items to be displayed in the slider. Each
- *     item should be itself an array, with the following elements:
+ *   - items: An associative array of items to be displayed in the slider. The
+ *     first element will be used as the initial state of the slider. Each item
+ *     should be itself an array, with the following elements:
  *     - title: The slider item text.
  *     - image: The image URL.
  *     - text: The description associated with this item.
- *   - header: A single item to be displayed as the initial state of the slider.
- *     The array must contain the following elements:
- *     - title: The title of the slider set.
- *     - image: The image URL to be used in the default state.
- *     - text: The description of the slider set.
+ *   - image: A boolean which determines if the slider navigation should be
+ *     text-based or image-based.
  */
 function template_preprocess_rotoslider_slider(&$variables) {
   $items = $variables['items'];
-  $heading = $variables['heading'];
+  $image = $variables['image'];
+  $path = drupal_get_path('module', 'rotoslider');
 
   static $count;
   $count++;
@@ -87,21 +85,30 @@ function template_preprocess_rotoslider_slider(&$variables) {
     // Append an integer to each set of data to keep them unique.
     $key = drupal_html_class($item['title']['#markup'] . '-' . $count);
     // An individual item to be passed to theme_links().
-    $links[$key] = array(
-      'title' => $item['title']['#markup'],
+    $link_text = $item['title']['#markup'];
+    if (!empty($item['title']['#path'])) {
+      $link_text = $item['title'];
+      unset($link_text['#markup']);
+      $link_text = drupal_render($link_text);
+    }
+    $links[] = array(
+      'title' => $link_text,
       'href' => "#",
       'external' => TRUE,
+      'html' => TRUE,
       'attributes' => array(
         'data-key' => $key,
       ),
     );
-    $images[$key] = array(
+    $images[] = array(
       '#alt' => $item['title']['#markup'],
       '#attributes' => array(
         'data-key' => $key,
       ),
     ) + $item['image'];
+
     // A container with heading (possibly a link) and text as children.
+    $heading_text = $item['title'];
     if (!empty($item['uri'])) {
       $heading_text = array(
         '#theme' => 'link',
@@ -113,10 +120,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
         ),
       );
     }
-    else {
-      $heading_text = $item['title'];
-    }
-    $text[$key] = array(
+    $text[] = array(
       '#type' => 'container',
       '#attributes' => array(
         'data-key' => $key,
@@ -145,7 +149,8 @@ function template_preprocess_rotoslider_slider(&$variables) {
     );
   }
 
-  $path = drupal_get_path('module', 'rotoslider');
+  $heading = array_shift($links);
+
   $element = array(
     '#attached' => array(
       'css' => array(
@@ -163,13 +168,12 @@ function template_preprocess_rotoslider_slider(&$variables) {
       ),
     ),
     'image' => array(
-      '#alt' => $heading['title']['#markup'],
       '#attributes' => array(
         'class' => array(
           'rotoslider-image',
         ),
       ),
-    ) + $heading['image'],
+    ) + array_shift($images),
     'images' => array(
       '#type' => 'container',
       '#attributes' => array(
@@ -178,16 +182,6 @@ function template_preprocess_rotoslider_slider(&$variables) {
         ),
       ),
       'images' => $images,
-    ),
-    'description' => array(
-      '#pre_render' => array('rotoslider_container_pre_render'),
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'rotoslider-description',
-        ),
-      ),
-      'description' => $heading['text'],
     ),
     'descriptions' => array(
       '#pre_render' => array('rotoslider_container_pre_render'),
@@ -213,17 +207,26 @@ function template_preprocess_rotoslider_slider(&$variables) {
             'rotoslider-nav',
           ),
         ),
-        '#links' => $links,
         '#heading' => array(
-          'text' => $heading['title']['#markup'],
+          'text' => $heading['title'],
           'level' => 'div',
           'class' => array(
             'heading',
           ),
         ),
+        '#links' => $links,
       ),
     ),
   );
+
+  $element['descriptions']['text'][0]['#attributes']['class'] = array('rotoslider-description');
+  if (!empty($image)) {
+    $element['#attributes']['class'][] = 'rotoslider-with-image';
+    unset($element['menu']['links']['#heading']);
+  }
+  else {
+    $element['descriptions']['text'][0]['heading']['#access'] = FALSE;
+  }
 
   $variables['element'] = $element;
 }
@@ -269,7 +272,7 @@ function theme_rotoslider_slider($variables) {
  *   - image: The item's image absolute URL.
  *   - text: The item's decription, which may contain markup.
  */
-function _rotoslider_process($options, $rows, $fields, $base_field = NULL) {
+function _rotoslider_process($options, $rows, $fields, $settings = array()) {
   $items = array();
 
   $info = array();
@@ -284,16 +287,16 @@ function _rotoslider_process($options, $rows, $fields, $base_field = NULL) {
 
   // Get the placeholder image.
   $placeholder = variable_get('rotoslider_placeholder');
-  foreach ($rows as $delta => $row) {
+  foreach ($rows as $row) {
     $values = array();
 
     // Find the URI of the original content.
     // @todo Make this a proper field.
-    if (!empty($base_field) && !empty($row->_field_data[$base_field])) {
-      $values['uri'] = entity_uri($row->_field_data[$base_field]['entity_type'], $row->_field_data[$base_field]['entity']);
+    if (!empty($settings['base_field']) && !empty($row->_field_data[$settings['base_field']])) {
+      $values['uri'] = entity_uri($row->_field_data[$settings['base_field']]['entity_type'], $row->_field_data[$settings['base_field']]['entity']);
     }
 
-    foreach (array('title', 'image', 'text') as $type) {
+    foreach (array('image', 'text', 'title') as $type) {
       $value = '';
       // The field contains a Views field alias.
       if (isset($row->$info[$type])) {
@@ -345,10 +348,14 @@ function _rotoslider_process($options, $rows, $fields, $base_field = NULL) {
         $value = array('#markup' => $value);
       }
 
+      if ($type == 'title' && !empty($settings['image']) && !empty($values['image'])) {
+        $value += $values['image'];
+      }
+
       $values[$type] = $value;
     }
 
-    $items[$delta] = $values;
+    $items[] = $values;
   }
 
   return $items;

@@ -21,24 +21,34 @@
     z-index: 11
     &.active
       display: block
+  .rotoslider-descriptions
+    & > div
+      background-color: rgba($purple, 0.7)
+      color: $white
+      left: 0
+      max-height: 100px
+      padding: $text-padding
+      position: absolute
+    .heading
+      font-size: 1.5em
+      line-height: 1
+    .text
+      p:last-child
+        margin-bottom: 0
   .rotoslider-description
-    left: 0
-    position: absolute
+    line-height: 1.4
+    top: 10px
+    width: 200px + $neg-text-padding
     z-index: 2
   .rotoslider-text
+    bottom: 0
     display: none
-    left: 0
-    max-height: 100px
-    overflow: hidden
-    padding: 10px $text-padding
-    position: absolute
-    width: $width - $sidebar - 2 * $text-padding
+    width: $main-width + $neg-text-padding
     z-index: 12
     &.active
       display: block
   .rotoslider-menu
-    border-bottom-style: solid
-    border-bottom-width: $menu-border
+    border-bottom: $menu-border solid $yellow
     height: $height - $menu-border
     overflow: hidden
     position: absolute
@@ -47,15 +57,20 @@
     width: $sidebar
     z-index: 30
     .heading
+      background-color: $yellow
+      font-weight: bold
       height: $heading-height - 2 * $heading-padding
       left: 0
+      letter-spacing: 1px
       padding: $heading-padding 0
       position: absolute
+      text-align: center
+      text-transform: uppercase
       top: 0
       width: $sidebar
       z-index: 50
   .rotoslider-nav
-    height: $height - $heading-height - $menu-border
+    height: $nav-height
     left: 0
     margin: 0
     overflow: hidden
@@ -71,3 +86,16 @@
       top: 0
       a
         display: block
+        background-color: rgba($black, 0.6)
+        border-bottom-width: 0
+        color: #999
+        font-weight: bold
+        padding: 0.5em 0
+        text-align: center
+        text-decoration: none
+        &:hover
+          background-color: rgba($black, 0.4)
+          color: #ccc
+        &.active
+          background-color: rgba($black, 0.8)
+          color: $white

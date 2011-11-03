@@ -24,6 +24,7 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
         'speed' => array('default' => '1000'),
         'percentage' => array('default' => '20'),
         'link' => array('default' => FALSE),
+        'image' => array('default' => FALSE),
       ),
     );
     $options['initial'] = array(
@@ -65,7 +66,7 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
 
     $form['settings'] = array(
       '#type' => 'fieldset',
-      '#title' => t('JS Settings'),
+      '#title' => t('Settings'),
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
@@ -87,6 +88,12 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
       '#type' => 'checkbox',
       '#title' => t('Link to content'),
       '#description' => t('Link the description title to the original content.'),
+      '#default_value' => $this->options['settings']['link'],
+    );
+    $form['settings']['image'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Use image for sliders'),
+      '#description' => t('Instead of the title, only display an image in the sidebar.'),
       '#default_value' => $this->options['settings']['link'],
     );
 

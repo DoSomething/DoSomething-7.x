@@ -37,14 +37,16 @@ function rotoslider_demo_page() {
     );
   }
 
+  $heading = array(
+    'title' => 'Rotoslider',
+    'image' => 'http://placekitten.com/700/250',
+    'text' => t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nulla risus, congue sed accumsan ultricies, ultricies vitae lacus.'),
+  );
+  array_unshift($items, $heading);
+
   $element = array(
     '#theme' => 'rotoslider_slider',
     '#items' => $items,
-    '#heading' => array(
-      'title' => 'Rotoslider',
-      'image' => 'http://placekitten.com/700/250',
-      'text' => t('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nulla risus, congue sed accumsan ultricies, ultricies vitae lacus.'),
-    ),
   );
 
   return $element;
