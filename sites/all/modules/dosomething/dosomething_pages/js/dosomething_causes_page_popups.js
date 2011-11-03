@@ -2,7 +2,7 @@
   Drupal.behaviors.causePagePopUps = {
     attach: function(context, settings) {
       $('html').addClass('causes-page-js');
-      $('.cause-item .cause-description').append('<a class="pop-up-open" href="#">open</a>');
+      $('.cause-item .cause-description').not('.no-popup').append('<a class="pop-up-open" href="#">open</a>');
       $('.cause-item .pop-up-open').click(function() {
         $('.cause-item')
           .removeClass('showing')
