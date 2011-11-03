@@ -2350,8 +2350,61 @@ div[role=main] {
 #blog-page-pane .pane-content p {
   margin-bottom: 0;
 }
-#blog-page-pane .pane-content .views-field-field-blog-type {
-  display: none;
+#blog-page-pane .pane-content .News-icon {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/icn-subnav-news.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 16px;
+  height: 18px;
+  position: relative;
+  top: 65px;
+  left: -40px;
+  z-index: 1000;
+}
+#blog-page-pane .pane-content .Celebs-Gone-Good-icon {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/icn-subnav-celebs.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 23px;
+  height: 17px;
+  position: relative;
+  top: 65px;
+  left: -40px;
+  z-index: 1000;
+}
+#blog-page-pane .pane-content .Awe-Some-Ones-icon {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/icn-subnav-awesomes.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 26px;
+  height: 18px;
+  position: relative;
+  top: 65px;
+  left: -40px;
+  z-index: 1000;
+}
+#blog-page-pane .pane-content .DoSomething-Staff-icon {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/icn-subnav-staff.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 21px;
+  height: 16px;
+  position: relative;
+  top: 65px;
+  left: -40px;
+  z-index: 1000;
 }
 #blog-page-pane .pane-content .views-field-created, #blog-page-pane .pane-content .views-field-created-1 {
   display: inline;
