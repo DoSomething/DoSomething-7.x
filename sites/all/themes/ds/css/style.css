@@ -1927,7 +1927,7 @@ body.admin-menu {
   position: absolute;
   top: -33px;
   left: -17px;
-  z-index: 1;
+  z-index: 100;
 }
 #site-name a {
   text-indent: -119988px;
@@ -1951,6 +1951,7 @@ nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
+  position: relative;
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
@@ -1996,6 +1997,11 @@ nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.a
 nav[role=navigation] .secondary {
   background-color: #014e9c;
   padding-left: 22.162%;
+}
+.front nav[role=navigation] .secondary {
+  position: absolute;
+  width: 78%;
+  z-index: 1;
 }
 nav[role=navigation] .secondary ul {
   font-size: 1.5em;

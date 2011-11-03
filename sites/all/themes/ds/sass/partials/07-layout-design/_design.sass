@@ -79,7 +79,7 @@ body
   position: absolute
   top: -33px
   left: -17px
-  z-index: 1
+  z-index: 100
   a
     +replace-text-with-dimensions("ds-logo.png")
     display: block
@@ -89,6 +89,7 @@ nav[role=navigation]
   font-family: $font-headline
   text-rendering: optimizeLegibility
   text-transform: uppercase
+  position: relative
   .primary
     background-color: $c-menu-primary-bg
     padding-left: percentage($left-col-width / $page-width)
@@ -127,6 +128,10 @@ nav[role=navigation]
   .secondary
     background-color: $c-menu-secondary-bg
     padding-left: percentage($left-col-width / $page-width)
+    .front &
+      position: absolute
+      width: 78%
+      z-index: 1
     ul
       +adjust-font-size-to($s2)
       font-weight: 500
