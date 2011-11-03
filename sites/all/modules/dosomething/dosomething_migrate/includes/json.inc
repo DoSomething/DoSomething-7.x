@@ -1,10 +1,14 @@
 <?php
 
-abstract class DSListJSON extends MigrateListJSON implements Iterator {
-  // Subclasses need to populate this with a URL where we can get a count.
+class DSJsonMigrateItems extends MigrateItems implements Iterator {
+  // Where can we get counts?
   protected $countUrl;
+  // Where can we fetch items?
+  protected $getUrl;
+  // Where can we get ids?
+  protected $listUrl;
   // Which page are we on?
-  protected $pageNumber;
+  protected $pageNumber = 0;
   // Array of remaining values on this page.
   protected $pageValues;
   // Current value.
@@ -12,35 +16,15 @@ abstract class DSListJSON extends MigrateListJSON implements Iterator {
   // Have we reached the end of the list?
   protected $eof;
 
-  public function __construct($list_url, $http_options = array()) {
-    parent::__construct($list_url, $http_options);
-    $this->listUrl = $list_url;
-    $this->httpOptions = $http_options;
+  public function __construct() {
+    parent::__construct();
+
+    // Initialize everything.
     $this->rewind();
   }
 
-  public function computeCount() {
-    $counts = &drupal_static(__METHOD__);
-
-    migrate_instrument_start(__METHOD__);
-
-    if (!isset($counts[$this->countUrl])) {
-      migrate_instrument_start("Retrieve $this->countUrl");
-      $json = file_get_contents($this->countUrl);
-      migrate_instrument_stop("Retrieve $this->countUrl");
-
-      if ($json) {
-        $data = drupal_json_decode($json);
-        $counts[$this->countUrl] = $data;
-      }
-    }
-    migrate_instrument_stop(__METHOD__);
-
-    return $counts[$this->countUrl];
-  }
-
-  public function getIdList() {
-    return $this;
+  public function __toString() {
+    return $this->listUrl;
   }
 
   /**
@@ -48,7 +32,7 @@ abstract class DSListJSON extends MigrateListJSON implements Iterator {
    * pageValues with the ids and fills current with the first value.
    */
   protected function fetchPage() {
-#    var_dump(__METHOD__ . ' ' . $this->pageNumber);
+#var_dump(__METHOD__ . ' ' . $this->pageNumber);
     // Assume there's nothing left so we can be proved wrong.
     $this->pageValues = array();
     $this->eof = TRUE;
@@ -72,8 +56,8 @@ abstract class DSListJSON extends MigrateListJSON implements Iterator {
       if ($jsonArray === NULL) {
         return NULL;
       }
-      $ids = $this->getIDsFromJSON($jsonArray);
-      if (!$ids) {
+      $ids = $jsonArray;
+      if (!is_array($ids)) {
         return NULL;
       }
       cache_set($cid, $ids);
@@ -86,24 +70,23 @@ abstract class DSListJSON extends MigrateListJSON implements Iterator {
   }
 
   function rewind() {
-#    var_dump(__METHOD__);
+#var_dump(__METHOD__);
     $this->pageNumber = 0;
     $this->fetchPage();
   }
 
   function current() {
-#    var_dump(__METHOD__, $this->current);
+#var_dump(__METHOD__, $this->current);
     return $this->current;
   }
 
   function key() {
-#    var_dump(__METHOD__);
     return $this->pageNumber . ':' . $this->rowCount;
   }
 
   function next() {
-#    var_dump(__METHOD__);
     $this->current = array_shift($this->pageValues);
+#var_dump(__METHOD__, $this->current);
     if ($this->current === NULL) {
       if (!$this->eof) {
         $this->pageNumber += 1;
@@ -118,25 +101,65 @@ abstract class DSListJSON extends MigrateListJSON implements Iterator {
 
   function valid() {
     $valid = !empty($this->pageValues) || !$this->eof;
-#    var_dump(__METHOD__, $valid);
     return $valid;
   }
-}
 
-class DSItemJSON extends MigrateItemJSON {
-  public function __construct($base_url, $type) {
-    parent::__construct("{$base_url}/node/get/:id", array());
+  public function getIdList() {
+    return $this;
   }
 
-  protected function loadJSONUrl($item_url) {
+  public function computeCount() {
+    $counts = &drupal_static(__METHOD__);
+
     migrate_instrument_start(__METHOD__);
 
-    $json = file_get_contents($item_url);
-    $obj = json_decode($json);
-    $item = reset($obj);
+    if (!isset($counts[$this->countUrl])) {
+      migrate_instrument_start("Retrieve $this->countUrl");
+      $json = file_get_contents($this->countUrl);
+      migrate_instrument_stop("Retrieve $this->countUrl");
+
+      if ($json) {
+        $data = drupal_json_decode($json);
+        $counts[$this->countUrl] = $data;
+      }
+    }
+    migrate_instrument_stop(__METHOD__);
+
+    return isset($counts[$this->countUrl]) ? $counts[$this->countUrl] : 0;
+  }
+
+  public function getItem($id) {
+    $cache = &drupal_static(__METHOD__);
+
+    // Check the prefetch cache.
+    if (isset($cache[$id])) {
+      return $cache[$id];
+    }
+
+    migrate_instrument_start(__METHOD__);
+
+    // Grab the this and the next few records to try to avoid the HTTP overhead.
+    $ids = array_merge(array($id, $this->current), array_slice($this->pageValues, 0, 200));
+
+    $url = str_replace(':id', implode(',', $ids), $this->getUrl);
+    $json = file_get_contents($url);
+    if (!$json) {
+      migrate_instrument_stop(__METHOD__);
+
+      $migration = Migration::currentMigration();
+      $message =  t('Loading of !objecturl failed:', array('!objecturl' => $item_url));
+      $migration->getMap()->saveMessage(
+        array($id), $message, MigrationBase::MESSAGE_ERROR);
+      return NULL;
+    }
+
+    $cache = array();
+    foreach (drupal_json_decode($json) as $k => $v) {
+      $cache[$k] = (object) $v;
+    }
 
     migrate_instrument_stop(__METHOD__);
 
-    return $item;
+    return $cache[$id];
   }
 }

@@ -1,35 +1,43 @@
 <?php
 
-class DSUserListJSON extends DSListJSON {
-  public function __construct($base_url, $query_arg) {
-    $uid = db_query("SELECT MAX(uid) FROM {users}")->fetchField();
-    parent::__construct("{$base_url}/user/list?&page=:page&{$query_arg}", array());
-    $this->countUrl = "{$base_url}/user/count&{$query_arg}";
-  }
-}
 
-class DSUserItemJSON extends DSItemJSON {
-  public function __construct($base_url) {
-    parent::__construct("{$base_url}/user/get/:id", array());
+class DSUserJsonMigrateItems extends DSJsonMigrateItems {
+  public function __construct($base_url, $query_arg) {
+    $this->listUrl = "{$base_url}/user/list?&page=:page&{$query_arg}";
+    $this->countUrl = "{$base_url}/user/count&{$query_arg}";
+    $this->getUrl = "{$base_url}/user/get/:id";
+    parent::__construct();
   }
 }
 
 abstract class DSJsonUserMigration extends Migration {
+  static function fetchFields($base_url) {
+    $cid = "DSJsonUserMigration:$base_url";
+    $cache = cache_get($cid);
+    if ($cache !== FALSE && isset($cache->data)) {
+      return $cache->data;
+    }
+
+    $json = file_get_contents("{$base_url}/user/fields");
+    if ($json) {
+      $fields = drupal_json_decode($json);
+      if ($fields && is_array($fields)) {
+        cache_set($cid, $fields);
+        return $fields;
+      }
+    }
+
+    return FALSE;
+  }
+
   public function __construct($query_args) {
     parent::__construct(MigrateGroup::getInstance('Users'));
 
     $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
-    $fields = array();
-    $json = file_get_contents("{$base_url}/user/fields");
-    if ($json) {
-      $fields = drupal_json_decode($json);
-    }
-
-    $this->source = new MigrateSourceList(
-      new DSUserListJSON($base_url, $query_args),
-      new DSUserItemJSON($base_url),
-      $fields
+    $this->source = new MigrateSourceMultiItems(
+      new DSUserJsonMigrateItems($base_url, $query_args),
+      self::fetchFields($base_url)
     );
   }
 }
@@ -63,6 +71,27 @@ class DSJsonNewUser extends DSJsonUserMigration {
       'status',
       'init',
     ));
+    $this->addUnmigratedSources(array(
+      'created',  // Shouldn't be changing.
+      'picture',  // Not in use.
+      'theme',    // Theme will change
+      'profile_hearabout', // All these are handled by DSJsonProfile
+      'profile_address1',
+      'profile_address2',
+      'profile_city',
+      'profile_state',
+      'profile_zip',
+      'profile_over13',
+      'profile_fname',
+      'profile_lname',
+      'profile_bday',
+      'profile_gender',
+      'profile_preferred_cause',
+      'profile_why_do_you',
+      'profile_cell',
+      'profile_receive',
+      'profile_newsletter',
+      ));
   }
 }
 

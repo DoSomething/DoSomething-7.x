@@ -27,9 +27,9 @@ abstract class DSJsonWebformMigration extends DSBaseWebformMigration {
 
     $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
-    $this->source = new MigrateSourceList(
-      new DSNodeListJSON($base_url, $node_type),
-      new DSNodeItemJSON($base_url, $node_type),
+
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
       self::fetchFields($base_url, $node_type)
     );
 
@@ -49,29 +49,36 @@ abstract class DSJsonWebformMigration extends DSBaseWebformMigration {
   }
 }
 
-class DSNodeListJSON extends DSListJSON {
+class DSNodeJsonMigrateItems extends DSJsonMigrateItems {
+  // Which node type are we looking at?
   protected $type;
 
   public function __construct($base_url, $type) {
-    parent::__construct("{$base_url}/node/list/{$type}?page=:page", array());
+    $this->listUrl = "{$base_url}/node/list/{$type}?page=:page";
     $this->countUrl = "{$base_url}/node/count";
+    $this->getUrl = "{$base_url}/node/get/:id";
     $this->type = $type;
+    parent::__construct();
   }
 
   public function computeCount() {
-    $data = parent::computeCount();
-    return $data[$this->type];
-  }
-}
+    $counts = &drupal_static(__METHOD__, NULL);
 
-class DSNodeItemJSON extends DSItemJSON {
-  public function __construct($base_url, $type) {
-    parent::__construct("{$base_url}/node/get/:id", array());
-  }
+    migrate_instrument_start(__METHOD__);
 
-  protected function loadJSONUrl($item_url) {
-    $item = parent::loadJSONUrl($item_url);
+    if (is_null($counts)) {
+      // Try and fetch it.
+      migrate_instrument_start("Retrieve $this->countUrl");
+      $json = file_get_contents($this->countUrl);
+      migrate_instrument_stop("Retrieve $this->countUrl");
 
-    return $item;
+      if ($json) {
+        $counts = drupal_json_decode($json);
+      }
+    }
+
+    migrate_instrument_stop(__METHOD__);
+
+    return isset($counts[$this->type]) ? $counts[$this->type] : 0;
   }
 }
