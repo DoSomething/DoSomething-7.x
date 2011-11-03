@@ -17,7 +17,7 @@ function dosomething_feedback_form_feedback_form_alter(&$form, $form_state) {
 }
 
 /**
- * Implements hook_unfuddle_feedback_ticket_fields_alter().
+ * Implements hook_unfuddle_feedback_fields_alter().
  */
 function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
   if (isset($entry->field_priority[LANGUAGE_NONE][0]['value'])) {
@@ -39,4 +39,12 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
         break;
     }
   }
+}
+
+/**
+ * Implements hook_unfuddle_feedback_subject_alter().
+ */
+function dosomething_feedback_unfuddle_feedback_subject_alter(&$subject, $entry) {
+  $subject = $entry->location;
+  $subject .= ' (' . check_plain($entry->field_name[LANGUAGE_NONE][0]['value']) . ')';
 }
