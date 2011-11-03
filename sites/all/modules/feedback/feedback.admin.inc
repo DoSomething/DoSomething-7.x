@@ -222,6 +222,9 @@ function template_preprocess_feedback_entry(&$variables) {
   }
 
   $entry = $variables['elements']['#entry'];
+  if ($entry->uid) {
+    $entry->name = db_query("SELECT name FROM {users} WHERE uid = :uid", array(':uid' => $entry->uid))->fetchField();
+  }
 
   // Preprocess fields.
   field_attach_preprocess('feedback', $entry, $variables['elements'], $variables);
