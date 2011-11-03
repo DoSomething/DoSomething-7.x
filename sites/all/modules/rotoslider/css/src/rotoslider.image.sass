@@ -1,28 +1,28 @@
-@import base
+$height: 390px
+$width: 715px
+$sidebar: 188px
 
-.rotoslider-with-image
+@import rotoslider
+
+.rotoslider-image-nav
   img.rotoslider-image,
   .rotoslider-images,
   .rotoslider-images img
     width: $main-width
   .rotoslider-description
     bottom: 0
-    top: initial
   .rotoslider-descriptions
     & > div
-      height: $description-height + $neg-text-padding
+      background:
+        position: bottom right
+        repeat: no-repeat
+      height: $description-height - $double-text-padding
       padding-right: $sidebar + $text-padding
-      width: $main-width + $neg-text-padding
+      width: $main-width - $double-text-padding
   .rotoslider-menu
-    border-bottom-width: 0
     height: $image-nav-height
   .rotoslider-nav
     height: $image-nav-height
-    top: 0
-    li
-      margin: 0
-      a
-        padding: 0
     img
       height: $image-nav-height / 5
       vertical-align: middle

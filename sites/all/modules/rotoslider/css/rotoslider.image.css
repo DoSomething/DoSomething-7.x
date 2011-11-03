@@ -1,17 +1,16 @@
 .rotoslider {
-  height: 265px;
+  height: 390px;
   overflow: hidden;
   position: relative;
-  width: 690px;
+  width: 715px;
   z-index: 0;
 }
 .rotoslider img.rotoslider-image,
 .rotoslider .rotoslider-images,
 .rotoslider .rotoslider-images img {
-  height: 265px;
+  height: 390px;
   overflow: hidden;
   position: absolute;
-  width: inherit;
 }
 .rotoslider img.rotoslider-image {
   z-index: 1;
@@ -28,7 +27,7 @@
   color: white;
   left: 0;
   max-height: 100px;
-  padding: 15px;
+  padding: 10px;
   position: absolute;
 }
 .rotoslider .rotoslider-descriptions .heading {
@@ -39,28 +38,23 @@
   margin-bottom: 0;
 }
 .rotoslider .rotoslider-description {
-  line-height: 1.4;
-  top: 10px;
-  width: 170px;
   z-index: 2;
 }
 .rotoslider .rotoslider-text {
   bottom: 0;
   display: none;
-  width: 448px;
+  width: 507px;
   z-index: 12;
 }
 .rotoslider .rotoslider-text.active {
   display: block;
 }
 .rotoslider .rotoslider-menu {
-  border-bottom: 6px solid #ffcc00;
-  height: 259px;
   overflow: hidden;
   position: absolute;
   right: 0;
   top: 0;
-  width: 212px;
+  width: 188px;
   z-index: 30;
 }
 .rotoslider .rotoslider-menu .heading {
@@ -74,23 +68,20 @@
   text-align: center;
   text-transform: uppercase;
   top: 0;
-  width: 212px;
+  width: 188px;
   z-index: 50;
 }
 .rotoslider .rotoslider-nav {
-  height: 231px;
   left: 0;
   margin: 0;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  top: 28px;
-  width: 212px;
+  width: 188px;
   z-index: 40;
 }
 .rotoslider .rotoslider-nav li {
   left: 0;
-  margin: 0 0 2px;
   position: relative;
   top: 0;
 }
@@ -100,7 +91,6 @@
   border-bottom-width: 0;
   color: #999999;
   font-weight: bold;
-  padding: 0.5em 0;
   text-align: center;
   text-decoration: none;
 }
@@ -111,4 +101,31 @@
 .rotoslider .rotoslider-nav li a.active {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
+}
+
+.rotoslider-image-nav img.rotoslider-image,
+.rotoslider-image-nav .rotoslider-images,
+.rotoslider-image-nav .rotoslider-images img {
+  width: 527px;
+}
+.rotoslider-image-nav .rotoslider-description {
+  bottom: 0;
+}
+.rotoslider-image-nav .rotoslider-descriptions > div {
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  height: 45px;
+  padding-right: 198px;
+  width: 507px;
+}
+.rotoslider-image-nav .rotoslider-menu {
+  height: 325px;
+}
+.rotoslider-image-nav .rotoslider-nav {
+  height: 325px;
+}
+.rotoslider-image-nav .rotoslider-nav img {
+  height: 65px;
+  vertical-align: middle;
+  width: 100%;
 }

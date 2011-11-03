@@ -83,7 +83,7 @@ function template_preprocess_rotoslider_slider(&$variables) {
   $text = array();
   foreach ($items as $item) {
     // Append an integer to each set of data to keep them unique.
-    $key = drupal_html_class($item['title']['#markup'] . '-' . $count);
+    $key = drupal_html_class('a' . $item['title']['#markup'] . '-' . $count);
     // An individual item to be passed to theme_links().
     $link_text = $item['title']['#markup'];
     if (!empty($item['title']['#path'])) {
@@ -153,10 +153,6 @@ function template_preprocess_rotoslider_slider(&$variables) {
 
   $element = array(
     '#attached' => array(
-      'css' => array(
-        $path . '/css/rotoslider.base.css',
-        $path . '/css/rotoslider.theme.css',
-      ),
       'js' => array(
         $path . '/js/rotoslider.js',
       ),
@@ -221,10 +217,13 @@ function template_preprocess_rotoslider_slider(&$variables) {
 
   $element['descriptions']['text'][0]['#attributes']['class'] = array('rotoslider-description');
   if (!empty($image)) {
-    $element['#attributes']['class'][] = 'rotoslider-with-image';
+    $element['#attributes']['class'][] = 'rotoslider-image-nav';
+    $element['#attached']['css'][] = $path . '/css/rotoslider.image.css';
     unset($element['menu']['links']['#heading']);
   }
   else {
+    $element['#attributes']['class'][] = 'rotoslider-text-nav';
+    $element['#attached']['css'][] = $path . '/css/rotoslider.text.css';
     $element['descriptions']['text'][0]['heading']['#access'] = FALSE;
   }
 

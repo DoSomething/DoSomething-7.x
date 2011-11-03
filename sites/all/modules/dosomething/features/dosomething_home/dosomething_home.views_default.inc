@@ -28,12 +28,14 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'rotoslider';
   $handler->display->display_options['style_options']['fields']['title'] = 'title';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_picture';
   $handler->display->display_options['style_options']['fields']['text'] = 'field_description';
+  $handler->display->display_options['style_options']['settings']['link'] = 1;
+  $handler->display->display_options['style_options']['settings']['image'] = 1;
   $handler->display->display_options['style_options']['initial']['default'] = 0;
   $handler->display->display_options['style_options']['initial']['title'] = 'title';
   $handler->display->display_options['style_options']['initial']['image'] = 'title';

@@ -13,7 +13,6 @@
     height: $height
     overflow: hidden
     position: absolute
-    width: inherit
   img.rotoslider-image
     z-index: 1
   .rotoslider-images img
@@ -36,20 +35,15 @@
       p:last-child
         margin-bottom: 0
   .rotoslider-description
-    line-height: 1.4
-    top: 10px
-    width: 200px + $neg-text-padding
     z-index: 2
   .rotoslider-text
     bottom: 0
     display: none
-    width: $main-width + $neg-text-padding
+    width: $main-width - $double-text-padding
     z-index: 12
     &.active
       display: block
   .rotoslider-menu
-    border-bottom: $menu-border solid $yellow
-    height: $height - $menu-border
     overflow: hidden
     position: absolute
     right: 0
@@ -70,18 +64,15 @@
       width: $sidebar
       z-index: 50
   .rotoslider-nav
-    height: $nav-height
     left: 0
     margin: 0
     overflow: hidden
     padding: 0
     position: absolute
-    top: $heading-height
     width: $sidebar
     z-index: 40
     li
       left: 0
-      margin: 0 0 2px
       position: relative
       top: 0
       a
@@ -90,7 +81,6 @@
         border-bottom-width: 0
         color: #999
         font-weight: bold
-        padding: 0.5em 0
         text-align: center
         text-decoration: none
         &:hover
