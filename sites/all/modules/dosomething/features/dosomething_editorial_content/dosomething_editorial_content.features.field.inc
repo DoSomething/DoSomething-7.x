@@ -20,6 +20,9 @@ function dosomething_editorial_content_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -127,7 +130,7 @@ function dosomething_editorial_content_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -205,7 +208,7 @@ function dosomething_editorial_content_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -282,7 +285,7 @@ function dosomething_editorial_content_field_default_fields() {
             'view_mode' => '',
           ),
           'type' => 'entityreference_entity_view',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -307,6 +310,76 @@ function dosomething_editorial_content_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete_tags',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-editorial_content_-field_editorial_teaser'
+  $fields['node-editorial_content_-field_editorial_teaser'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_editorial_teaser',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'editorial_content_',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_editorial_teaser',
+      'label' => 'Teaser',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '3',
+        ),
+        'type' => 'text_textarea',
         'weight' => '4',
       ),
     ),
@@ -319,6 +392,7 @@ function dosomething_editorial_content_field_default_fields() {
   t('Description');
   t('Image');
   t('Reference a webform submission by typing in its submission ID.');
+  t('Teaser');
 
   return $fields;
 }

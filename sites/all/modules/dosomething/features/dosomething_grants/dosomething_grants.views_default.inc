@@ -96,30 +96,29 @@ function dosomething_grants_views_default_views() {
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_editorial_image']['field_api_classes'] = 0;
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['max_length'] = '100';
-  $handler->display->display_options['fields']['body']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['trim'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['body']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['body']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['body']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  /* Field: Content: Teaser */
+  $handler->display->display_options['fields']['field_editorial_teaser']['id'] = 'field_editorial_teaser';
+  $handler->display->display_options['fields']['field_editorial_teaser']['table'] = 'field_data_field_editorial_teaser';
+  $handler->display->display_options['fields']['field_editorial_teaser']['field'] = 'field_editorial_teaser';
+  $handler->display->display_options['fields']['field_editorial_teaser']['label'] = '';
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_editorial_teaser']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['field_api_classes'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'node';

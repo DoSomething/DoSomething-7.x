@@ -16,7 +16,10 @@ function dosomething_grants_default_page_manager_pages() {
   $page->admin_title = 'Grants';
   $page->admin_description = 'The grants landing page.';
   $page->path = 'grants';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'normal',
     'title' => 'Grants',
