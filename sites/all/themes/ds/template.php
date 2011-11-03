@@ -34,6 +34,9 @@ function ds_preprocess_page(&$variables) {
   if(arg(0) == 'awesome-things') {
     drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
   }
+  if(arg(0) == 'club-hub') {
+    drupal_add_css($theme_path . '/css/ds/page-club-hub.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {
@@ -134,7 +137,9 @@ function ds_breadcrumb($variables) {
  * Add a custon title to the exposed filter form on the action finder page.
  */
 function ds_preprocess_views_exposed_form(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
   if ($variables['form']['#id'] == 'views-exposed-form-action-finder-page') {
+    dpm($variables);
     $obj = new stdClass;
     $obj->label = 'Find Something Else';
     $obj->id = 'filter-title';
@@ -142,6 +147,7 @@ function ds_preprocess_views_exposed_form(&$variables) {
     $obj->widget = NULL;
     $title = array('title' => $obj);
     $variables['widgets'] = $title + $variables['widgets'];
+    drupal_add_css($theme_path . '/css/ds/page-action-finder.css');
   }
 }
 

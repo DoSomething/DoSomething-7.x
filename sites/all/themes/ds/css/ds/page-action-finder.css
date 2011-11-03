@@ -1,0 +1,653 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden, .view-filters .views-exposed-widgets label .form-required {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable, .view-filters .views-exposed-widgets label .focusable.form-required {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.visuallyhidden.focusable:active, .view-filters .views-exposed-widgets label .focusable.form-required:active, .visuallyhidden.focusable:focus, .view-filters .views-exposed-widgets label .focusable.form-required:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.wireframe {
+  outline: 1px dashed red;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.ds-pane-title, .ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title, .ds-pane-campaign h2.pane-title {
+  display: block;
+  color: white;
+  font-size: 2em;
+  line-height: 2em;
+  line-height: 1.65;
+  font-weight: 500;
+  padding: 0.125em 0.5em 0 !important;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -o-border-top-left-radius: 6px;
+  -ms-border-top-left-radius: 6px;
+  -khtml-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.ds-pane h2.pane-title, .ds-pane-usergen h2.pane-title, .ds-pane-news h2.pane-title, .ds-pane-top-radius h2.pane-title, .ds-pane-top-right-radius h2.pane-title, .ds-pane-no-radius h2.pane-title, .ds-pane-campaign h2.pane-title {
+  display: block;
+  color: white;
+  background: #005dab;
+  margin-bottom: 0;
+  font-size: 2em;
+  line-height: 2em;
+  line-height: 1.65;
+  font-weight: 500;
+  padding: 0.125em 0.5em 0 !important;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -o-border-top-left-radius: 6px;
+  -ms-border-top-left-radius: 6px;
+  -khtml-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content, .ds-pane-campaign .pane-content {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p, .ds-pane-campaign .pane-content p {
+  margin-top: 0;
+}
+.ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3, .ds-pane-no-radius .pane-content h3, .ds-pane-campaign .pane-content h3 {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted white;
+}
+
+.ds-pane-usergen h2.pane-title {
+  background: #652e72;
+  margin-bottom: 0;
+}
+
+.ds-pane-news h2.pane-title {
+  background: #222222;
+}
+
+.ds-pane-top-radius h2.pane-title {
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -o-border-top-left-radius: 6px;
+  -ms-border-top-left-radius: 6px;
+  -khtml-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -o-border-top-right-radius: 6px;
+  -ms-border-top-right-radius: 6px;
+  -khtml-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.ds-pane-top-right-radius h2.pane-title {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  -o-border-top-left-radius: 0;
+  -ms-border-top-left-radius: 0;
+  -khtml-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -o-border-top-right-radius: 6px;
+  -ms-border-top-right-radius: 6px;
+  -khtml-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.ds-pane-no-radius h2.pane-title {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+
+.ds-pane-center h2.pane-title {
+  text-align: center;
+}
+
+.ds-pane-fat h2.pane-title {
+  line-height: 40px;
+}
+
+.ds-pane-campaign h2.pane-title {
+  background-color: #ffd203;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fbdf61), color-stop(100%, #fbc013));
+  background-image: -webkit-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: -moz-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: -o-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: -ms-linear-gradient(top, #fbdf61, #fbc013);
+  background-image: linear-gradient(top, #fbdf61, #fbc013);
+  color: #161616;
+}
+
+.ds-button, .ds-button-strong {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 1.417em;
+  line-height: 1.412em;
+  line-height: 1.6;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #343434;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 0 10px;
+  height: 22px;
+  border: 1px solid rgba(52, 52, 52, 0.5);
+  border-bottom-color: #343434;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #b7b7b7;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #b7b7b7), color-stop(51%, #a5a5a5));
+  background-image: -webkit-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: -moz-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: -o-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: -ms-linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+  background-image: linear-gradient(top, #b7b7b7 49%, #a5a5a5 51%);
+}
+.ds-button:hover, .ds-button-strong:hover, .ds-button:active, .ds-button-strong:active {
+  color: #161616;
+  text-decoration: none;
+}
+
+.ds-button-strong {
+  background-color: #ffd203;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
+  background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -moz-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  border: 1px solid rgba(34, 34, 34, 0.3);
+  border-bottom-color: rgba(34, 34, 34, 0.6);
+}
+
+a.ds-button, a.ds-button-strong {
+  color: #343434 #161616;
+  display: inline-block;
+}
+a.ds-button:hover, a.ds-button-strong:hover {
+  color: #161616;
+}
+a.ds-button:active, a.ds-button-strong:active {
+  color: #343434;
+}
+
+.ds-dropdown {
+  background: #8e8a86;
+  border: none;
+  color: white;
+  width: 100%;
+  height: 26px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  line-height: 1.333em;
+  margin-bottom: 0.333em;
+}
+.ds-dropdown .selectBox-arrow {
+  background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
+  width: 27px;
+}
+
+.selectBox-dropdown .selectBox-label {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.ie .selectBox-dropdown .selectBox-label {
+  width: 100%;
+}
+
+.selectBox-options li a {
+  white-space: normal;
+}
+
+.three-across ul {
+  list-style: none;
+}
+.three-across ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+.three-across ul li {
+  width: 32.174%;
+  float: left;
+  margin-right: 1.739%;
+  background: red;
+}
+.three-across ul li:nth-child(3n+3) {
+  float: right;
+  margin-right: 0;
+  background: #ffc0cb;
+}
+.three-across ul li:nth-child(3n+4) {
+  clear: both;
+  background: #652e72;
+}
+
+/* Dropdown control */
+.selectBox-dropdown {
+  width: 100%;
+  /* width = (desired width) - padding-right */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  vertical-align: middle;
+  cursor: default;
+}
+.selectBox-dropdown .selectBox-label {
+  width: 100%;
+  padding: 0.2em 0.3em;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.selectBox-dropdown .selectBox-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+  position: absolute;
+  z-index: 99999;
+  max-height: 200px;
+  /* should be the same border width as .selectBox-dropdown */
+  background-color: #726e6b;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  overflow: auto;
+}
+
+/* Inline control */
+.selectBox-inline {
+  width: 250px;
+  outline: none;
+  border: solid 1px #bbbbbb;
+  background: white;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: auto;
+}
+.selectBox-inline:focus {
+  border-color: #666666;
+}
+
+/* Options */
+.selectBox-options {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li a {
+  color: white;
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  padding: 0 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  background: 6px center no-repeat;
+}
+.selectBox-options li a:visited {
+  color: white;
+}
+.selectBox-options li a:hover {
+  color: white;
+}
+.selectBox-options li a:active {
+  color: #222222;
+}
+.selectBox-options li a {
+  border-bottom: none;
+}
+.selectBox-options li a:hover {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-hover a {
+  background-color: #8e8a86;
+}
+.selectBox-options li.selectBox-disabled a {
+  color: #888888;
+  background-color: #726e6b;
+}
+.selectBox-options li.selectBox-selected a {
+  background-color: #8e8a86;
+  display: none;
+}
+.selectBox-options .selectBox-optgroup {
+  color: #666666;
+  background: #eeeeee;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 0 0.3em;
+  white-space: nowrap;
+}
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+  color: #888888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  border-color: #666666;
+}
+
+.selectBox-inline.selectBox-disabled {
+  color: #888888 !important;
+}
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+  background-color: transparent !important;
+}
+
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, .view-filters .views-exposed-widgets label, .view-filters #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
+/* Headings -------------------------------------------------------------- */
+.h1, h1, .h2, h2, .h3, h3, .view-filters .views-exposed-widgets label, .view-filters #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  color: #005dab;
+}
+
+.h1, h1 {
+  font-size: 2.917em;
+  line-height: 1.029em;
+  font-weight: 500;
+  margin-top: 0.286em;
+}
+
+.h2, h2 {
+  font-size: 2em;
+  line-height: 1.25em;
+  font-weight: 600;
+  margin-top: 0.417em;
+}
+
+.h3, h3, .view-filters .views-exposed-widgets label, .view-filters #filter-title-wrapper {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
+}
+
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, .view-filters #edit-issues-wrapper, .impactbubbles-impact-bubble-dude, .view-filters .views-submit-button, .impactbubbles-impact-bubble-how-long, .view-filters #edit-time-wrapper, .impactbubbles-impact-bubble-where, .view-filters #edit-where-wrapper, .impactbubbles-impact-bubble-who, .view-filters #edit-who-wrapper {
+  background: url('../images/impactbubbles-s20f9e531bf.png') no-repeat;
+}
+
+.impactbubbles-impact-bubble-cause, .view-filters #edit-issues-wrapper {
+  background-position: 0 0;
+  height: 74px;
+  width: 112px;
+}
+
+.impactbubbles-impact-bubble-dude, .view-filters .views-submit-button {
+  background-position: 0 -74px;
+  height: 73px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-how-long, .view-filters #edit-time-wrapper {
+  background-position: 0 -147px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-where, .view-filters #edit-where-wrapper {
+  background-position: 0 -206px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-who, .view-filters #edit-who-wrapper {
+  background-position: 0 -265px;
+  height: 74px;
+  width: 112px;
+}
+
+.views-exposed-form .views-exposed-widget {
+  float: none;
+  padding: 0;
+}
+
+.views-exposed-form {
+  position: relative;
+  left: 185px;
+}
+
+.view-filters {
+  background: #222222;
+  padding-top: 10px;
+  min-height: 250px;
+}
+.view-filters .views-exposed-widgets {
+  position: absolute;
+  padding: 0px 0.5em;
+}
+.view-filters .views-exposed-widgets label {
+  color: white;
+}
+.view-filters .views-exposed-widgets .selectBox-dropdown {
+  background: #a1a1a1;
+  cursor: pointer;
+  width: 100px;
+  margin-top: 8px;
+  color: white;
+}
+.view-filters .views-exposed-widgets .selectBox-dropdown:visited {
+  color: white;
+}
+.view-filters .views-exposed-widgets .selectBox-dropdown:hover {
+  color: white;
+}
+.view-filters .views-exposed-widgets .selectBox-dropdown:active {
+  color: #222222;
+}
+.view-filters .views-exposed-widgets .selectBox-dropdown .selectBox-label {
+  width: 95%;
+  height: 1.5em;
+}
+.view-filters .views-exposed-widgets .selectBox-dropdown .selectBox-arrow {
+  display: none;
+}
+.view-filters #filter-title-wrapper {
+  position: relative;
+  left: 63px;
+}
+.view-filters #filter-title-wrapper label {
+  cursor: inherit;
+}
+.view-filters #edit-issues-wrapper,
+.view-filters #edit-who-wrapper,
+.view-filters #edit-where-wrapper,
+.view-filters #edit-time-wrapper {
+  position: absolute;
+}
+.view-filters #edit-issues-wrapper label,
+.view-filters #edit-who-wrapper label,
+.view-filters #edit-where-wrapper label,
+.view-filters #edit-time-wrapper label {
+  cursor: default;
+}
+.view-filters #edit-issues-wrapper {
+  left: 37px;
+  padding: 0px 0.5em;
+}
+.view-filters #edit-who-wrapper {
+  left: 167px;
+  padding: 0px 0.5em;
+}
+.view-filters #edit-where-wrapper {
+  top: 114px;
+  padding: 0px 0.5em;
+}
+.view-filters #edit-where-wrapper .selectBox-dropdown {
+  margin-top: 5px;
+}
+.view-filters #edit-time-wrapper {
+  left: 200px;
+  top: 114px;
+  padding: 0 0.5em 0 14px;
+}
+.view-filters #edit-time-wrapper .selectBox-dropdown {
+  margin-top: 5px;
+}
+.view-filters .views-submit-button {
+  position: absolute;
+  left: 124px;
+  top: 138px;
+  height: 67px;
+}
+.view-filters .form-submit {
+  position: absolute;
+  bottom: -30px;
+}

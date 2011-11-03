@@ -5,6 +5,7 @@
       $("#block-dosomething-blocks-dosomething-make-impact select").selectBox();
       $("#dosomething-blocks-make-an-impact-form select").selectBox();
       $("#dosomething-blocks-make-an-impact-form-front select").selectBox();
+      $("#views-exposed-form-action-finder-page select").selectBox();
     }
   }
 })(jQuery);
