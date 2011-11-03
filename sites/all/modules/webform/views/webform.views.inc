@@ -28,6 +28,10 @@ function webform_views_data() {
       'title' => t('Sid'),
       'handler' => 'views_handler_filter_numeric',
     ),
+    'argument' => array(
+      'title' => t('Sid'),
+      'handler' => 'views_handler_argument_numeric',
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
