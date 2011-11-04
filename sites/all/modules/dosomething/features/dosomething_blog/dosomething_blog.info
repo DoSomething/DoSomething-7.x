@@ -54,4 +54,3 @@ features[taxonomy][] = "vocabulary_11"
 features[taxonomy][] = "vocabulary_6"
 features[views_view][] = "blog_center"
 features[views_view][] = "blogs"
- 

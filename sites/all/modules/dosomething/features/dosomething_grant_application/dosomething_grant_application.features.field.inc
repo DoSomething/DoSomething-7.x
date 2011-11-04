@@ -10,6 +10,1091 @@
 function dosomething_grant_application_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'node-grant_application-body'
+  $fields['node-grant_application-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Body',
+      'required' => FALSE,
+      'settings' => array(
+        'display_summary' => TRUE,
+        'text_processing' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 20,
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => -4,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_budget'
+  $fields['node-grant_application-field_budget'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_budget',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 1,
+        'display_field' => NULL,
+        'force_list' => 1,
+        'force_list_default' => 1,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+      'type_name' => 'grant_application',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_budget',
+      'label' => 'Budget',
+      'required' => '0',
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => 'grants/budgets/[uid]',
+        'file_extensions' => 'txt xls doc pdf docx',
+        'max_filesize' => NULL,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'file',
+        'settings' => array(
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '0',
+      ),
+      'widget_type' => 'filefield_widget',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_description'
+  $fields['node-grant_application-field_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_description',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '255',
+        'text_processing' => '1',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'tips_and_tools',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Suggested maximum length 150 characters.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-4',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-4',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_description',
+      'label' => 'Short Description',
+      'required' => '1',
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-4',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '-4',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_embedded_video'
+  $fields['node-grant_application-field_embedded_video'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_embedded_video',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'mediafield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'media',
+      'type_name' => 'sixflags_scholarships_app',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => array(
+        0 => array(
+          'embed' => '',
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_embedded_video',
+      'label' => 'Video (optional)',
+      'required' => '0',
+      'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '1',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            0 => 'public',
+            1 => 'private',
+          ),
+          'allowed_types' => array(
+            0 => 'image',
+          ),
+          'browser_plugins' => array(),
+          'preview_autoplay' => 0,
+          'preview_height' => '350',
+          'preview_width' => '425',
+          'progress_indicator' => 'throbber',
+          'providers' => array(
+            'bliptv' => 'bliptv',
+            'brightcove' => 'brightcove',
+            'dailymotion' => 0,
+            'google' => 'google',
+            'guba' => 0,
+            'imeem' => 0,
+            'jumpcut' => 0,
+            'lastfm' => 0,
+            'livevideo' => 0,
+            'metacafe' => 'metacafe',
+            'myspace' => 0,
+            'revver' => 'revver',
+            'sevenload' => 0,
+            'spike' => 0,
+            'tudou' => 0,
+            'veoh' => 'veoh',
+            'vimeo' => 'vimeo',
+            'youtube' => 'youtube',
+            'zzz_custom_url' => 0,
+          ),
+          'thumbnail_default_path' => '',
+          'thumbnail_height' => '90',
+          'thumbnail_width' => '120',
+          'video_autoplay' => 0,
+          'video_height' => '350',
+          'video_width' => '425',
+        ),
+        'type' => 'media_generic',
+        'weight' => '1',
+      ),
+      'widget_type' => 'emvideo_textfields',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_essay_believe_it'
+  $fields['node-grant_application-field_essay_believe_it'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_essay_believe_it',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'profile2_private' => FALSE,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'project',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_essay_believe_it',
+      'label' => 'Essay 2: Believe It',
+      'required' => '1',
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '1',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '1',
+      ),
+      'widget_type' => 'text_textarea',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_essay_build_it'
+  $fields['node-grant_application-field_essay_build_it'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_essay_build_it',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'profile2_private' => FALSE,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'project',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_essay_build_it',
+      'label' => 'Essay 3: Build It',
+      'required' => '1',
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '2',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '2',
+      ),
+      'widget_type' => 'text_textarea',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_essay_see_it'
+  $fields['node-grant_application-field_essay_see_it'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_essay_see_it',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'profile2_private' => FALSE,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'project',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_essay_see_it',
+      'label' => 'Essay 1: See It',
+      'required' => '1',
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '0',
+      ),
+      'widget_type' => 'text_textarea',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_picture'
+  $fields['node-grant_application-field_picture'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_picture',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => NULL,
+        'description_field' => '0',
+        'list_default' => 1,
+        'list_field' => '0',
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+      'type_name' => 'tips_and_tools',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => '',
+      'deleted' => '0',
+      'description' => '580px by 580px max',
+      'display' => array(
+        'Full' => array(
+          'label' => NULL,
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'Teaser' => array(
+          'label' => NULL,
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 11,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_picture',
+      'label' => 'Project Photo',
+      'required' => '0',
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => 'pictures',
+        'file_extensions' => '',
+        'max_filesize' => 0,
+        'max_resolution' => '0',
+        'min_resolution' => 0,
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'image',
+        'settings' => array(
+          'body_preset' => NULL,
+          'image_path' => 'pictures',
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+          'teaser_preset' => NULL,
+          'use_default_image' => 0,
+        ),
+        'type' => 'image_image',
+        'weight' => '0',
+      ),
+      'widget_type' => 'imagefield_widget',
+    ),
+  );
+
+  // Exported field: 'node-grant_application-meta_abstract'
+  $fields['node-grant_application-meta_abstract'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_abstract',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'abstract',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_abstract',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Abstract',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-meta_copyright'
+  $fields['node-grant_application-meta_copyright'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_copyright',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'copyright',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_copyright',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Copyright',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-meta_description'
+  $fields['node-grant_application-meta_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_description',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'description',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 2,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_description',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Description',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textarea',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-meta_keywords'
+  $fields['node-grant_application-meta_keywords'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_keywords',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'keywords',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_keywords',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Keywords',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textfield',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-meta_robots'
+  $fields['node-grant_application-meta_robots'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_robots',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'robots',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 4,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_robots',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Robots',
+      'required' => FALSE,
+      'settings' => array(
+        'options' => 'noarchive,nofollow,noindex,noodp,nosnippet,noydir',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_checkboxes',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-taxonomy_vocabulary_5'
+  $fields['node-grant_application-taxonomy_vocabulary_5'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'taxonomy_vocabulary_5',
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_5',
+          ),
+        ),
+        'profile2_private' => FALSE,
+        'required' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'hold down ctrl button to select more than one',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 10,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'taxonomy_vocabulary_5',
+      'label' => 'Issues',
+      'required' => '0',
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => 0,
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-grant_application-field_webform_address'
   $fields['webform_submission_entity-grant_application-field_webform_address'] = array(
     'field_config' => array(
@@ -1161,22 +2246,39 @@ function dosomething_grant_application_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('580px by 580px max');
+  t('Abstract');
   t('Address');
   t('Birth Date');
+  t('Body');
+  t('Budget');
+  t('Copyright');
+  t('Description');
   t('Email');
+  t('Essay 1: See It');
+  t('Essay 2: Believe It');
+  t('Essay 3: Build It');
   t('Geocode Address');
   t('Geocode Zip Code');
   t('Grant Reference');
+  t('Issues');
+  t('Keywords');
   t('Mobile Phone Number');
   t('Name');
   t('Personal project website URL');
   t('Photo album URL');
   t('Project Dates');
+  t('Project Photo');
   t('Project Summary');
+  t('Robots');
   t('School');
   t('School Zip Code');
+  t('Short Description');
+  t('Suggested maximum length 150 characters.');
+  t('Video (optional)');
   t('Your DoSomething project posting');
   t('Youtube or video URL');
+  t('hold down ctrl button to select more than one');
 
   return $fields;
 }
