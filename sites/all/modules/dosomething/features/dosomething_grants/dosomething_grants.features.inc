@@ -34,7 +34,7 @@ function dosomething_grants_views_api() {
 function dosomething_grants_node_info() {
   $items = array(
     'grants_database' => array(
-      'name' => t('Grants'),
+      'name' => t('grant database entry'),
       'base' => 'node_content',
       'description' => t('Entries of ALL DS and non DS grants teens can apply for.  Users can add. '),
       'has_title' => '1',

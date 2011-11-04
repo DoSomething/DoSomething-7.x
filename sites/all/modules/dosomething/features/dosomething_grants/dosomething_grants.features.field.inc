@@ -1893,14 +1893,11 @@ function dosomething_grants_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Abstract');
   t('Amount of grant');
   t('An email that applicants can use if they have questions about the application process. ');
   t('Application Deadline');
   t('Award Focus');
   t('Contact Name');
-  t('Copyright');
-  t('Description');
   t('Email');
   t('FAQ');
   t('File attachments');
@@ -1911,7 +1908,6 @@ function dosomething_grants_field_default_fields() {
   t('How Many?');
   t('How Much?');
   t('How many grants or how often. Ex. <i>One a week</i>');
-  t('Keywords');
   t('Name of Award');
   t('Organization Website');
   t('Phone Number');
@@ -1919,7 +1915,6 @@ function dosomething_grants_field_default_fields() {
   t('Please submit your email so we can notify you when your posting has been approved.');
   t('Poster\'s Email');
   t('Required');
-  t('Robots');
   t('Steps to Apply');
   t('Type of Award');
   t('Website/link for the application');

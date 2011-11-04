@@ -37,7 +37,7 @@ function dosomething_grants_views_default_views() {
   $handler->display->display_options['relationships']['field_editorial_reference_target_id']['table'] = 'field_data_field_editorial_reference';
   $handler->display->display_options['relationships']['field_editorial_reference_target_id']['field'] = 'field_editorial_reference_target_id';
   $handler->display->display_options['relationships']['field_editorial_reference_target_id']['required'] = 1;
-  /* Relationship: Webform Submission: Grant (field_webform_grant_ref) */
+  /* Relationship: Webform Submission: Grant Reference (field_webform_grant_ref) */
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['id'] = 'field_webform_grant_ref_nid';
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['table'] = 'field_data_field_webform_grant_ref';
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['field'] = 'field_webform_grant_ref_nid';
