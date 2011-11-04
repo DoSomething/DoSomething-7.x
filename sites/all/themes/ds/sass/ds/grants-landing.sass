@@ -6,6 +6,47 @@
     top: 1px solid $gray-lighter3
     bottom: 1px solid $gray-lighter3
 
-h2.pane-title
+.panel-row
   border-bottom: 1px solid $gray-lighter3
   +box-shadow($white 0 1px -1px 1px)
+
+.panel-bottom
+  column-count: 2
+  .panels-ipe-portlet-wrapper
+    width: 50%
+  .field-name-field-picture img
+    +float-left
+    height: 107px
+    margin-right: 15px
+    width: 170px
+  h2.pane-title
+    left: 185px
+    margin: 0
+    position: relative
+    top: 47px
+    a
+      color: $white
+      font-size: 18px
+      &:visited
+        color: $white
+  .field-name-field-description
+    color: $white
+    height: 95px
+    padding: 0.5em
+    width: 333px
+    p
+      line-height: 14px
+      padding-top: 1em
+    &:nth-of-type(even)
+      background: image_url('bg-arrowblock-dark.png') no-repeat
+      background-position: 170px 0
+    &:nth-of-type(odd)
+      background: image_url('bg-arrowblock-light.png') no-repeat
+      background-position: 170px 0
+  .field-name-field-link a
+    color: $white
+    position: relative
+    left: 136px
+    top: -20px
+    &:hover
+      color: $white

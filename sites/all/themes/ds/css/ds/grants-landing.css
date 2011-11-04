@@ -26,10 +26,64 @@
   border-bottom: 1px solid #c6c6c6;
 }
 
-h2.pane-title {
+.panel-row {
   border-bottom: 1px solid #c6c6c6;
   -moz-box-shadow: white 0 1px -1px 1px;
   -webkit-box-shadow: white 0 1px -1px 1px;
   -o-box-shadow: white 0 1px -1px 1px;
   box-shadow: white 0 1px -1px 1px;
+}
+
+.panel-bottom {
+  column-count: 2;
+}
+.panel-bottom .panels-ipe-portlet-wrapper {
+  width: 50%;
+}
+.panel-bottom .field-name-field-picture img {
+  display: inline;
+  float: left;
+  height: 107px;
+  margin-right: 15px;
+  width: 170px;
+}
+.panel-bottom h2.pane-title {
+  left: 185px;
+  margin: 0;
+  position: relative;
+  top: 47px;
+}
+.panel-bottom h2.pane-title a {
+  color: white;
+  font-size: 18px;
+}
+.panel-bottom h2.pane-title a:visited {
+  color: white;
+}
+.panel-bottom .field-name-field-description {
+  color: white;
+  height: 95px;
+  padding: 0.5em;
+  width: 333px;
+}
+.panel-bottom .field-name-field-description p {
+  line-height: 14px;
+  padding-top: 1em;
+}
+.panel-bottom .field-name-field-description:nth-of-type(even) {
+  background: url('../images/bg-arrowblock-dark.png') no-repeat;
+  background-position: 170px 0;
+}
+.panel-bottom .field-name-field-description:nth-of-type(odd) {
+  background: url('../images/bg-arrowblock-light.png') no-repeat;
+  background-position: 170px 0;
+}
+.panel-bottom .field-name-field-link a {
+  color: white;
+  position: relative;
+  left: 136px;
+  top: -20px;
+}
+.panel-bottom .field-name-field-link a:hover {
+  color: white;
 }

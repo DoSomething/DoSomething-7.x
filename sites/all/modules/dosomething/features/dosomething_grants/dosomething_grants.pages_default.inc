@@ -78,20 +78,19 @@ function dosomething_grants_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'node';
+    $pane->subtype = 'node';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Current Grants',
-      'title' => 'Current Grants',
-      'body' => '<div class="grants-teaser">
-  <h4>Apply for a $500 Seed Grant</h4>
-  <p>Get Money to take your project to the next level.</p>
-  <a>Learn more »</a>
-</div>',
-      'format' => '3',
-      'substitute' => TRUE,
+      'nid' => '302484',
+      'links' => 0,
+      'leave_node_title' => 0,
+      'identifier' => '',
+      'build_mode' => 'teaser',
+      'link_node_title' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -231,8 +230,8 @@ function dosomething_grants_default_page_manager_pages() {
 
 Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berliner Weisse Estery, Flute Firkin Pitch Chill Haze Hops Final Gravity, Final Gravity. Centrifugation Dunkle Pilsner Yeast Dunkle. Fruity, Attenuation, Winy Oxygenation Double Magnum Mead Jeroboam Musty Bottle Conditioning. Caramel Diacetyl Crystal malt Hogshead, Lupulin Malt Liquor. Krug; Yard Dry beer.
 <ul>
-<li>Ester Wort Chiller, Gueuze Mouthfeel Wheat beer glass Brown ale Trappist!
-<li>Hang Gueuze Specific Gravity Caramel malt Wheat beer glass.
+<li>Ester Wort Chiller, Gueuze Mouthfeel Wheat beer glass Brown ale Trappist! 
+<li>Hang Gueuze Specific Gravity Caramel malt Wheat beer glass. 
 <li>Wit Tart Steam Beer Steam Beer Heat Exchanger?
 </ul>
  Infusion Malt Extract. Astringent Noble Hops Mug Pilsner Pub glass Zymurgy; Ale. Bung Draugh Double Magnum Yard Conditioning Tank Body, " Berliner Weisse Bottle Conditioning." Primary Fermentation Noble Hops, Filter All-malt.
