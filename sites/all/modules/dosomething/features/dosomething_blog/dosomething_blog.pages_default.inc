@@ -183,31 +183,19 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-5';
     $pane->panel = 'right';
-    $pane->type = 'views';
-    $pane->subtype = 'blog_center';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'blog_center-panel_pane_2';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 1,
-      'nodes_per_page' => '10',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'blog_archive_block',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'blog-archives-pane',
+      'css_class' => 'ds-pane-no-radius ds-pane-news',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-5'] = $pane;
