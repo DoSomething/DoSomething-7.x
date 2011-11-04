@@ -308,6 +308,14 @@ function panels_ctools_plugin_directory($module, $plugin) {
   if (!module_invoke('ctools', 'api_version', PANELS_REQUIRED_CTOOLS_API)) {
     return;
   }
+
+  // We don't support the 'ctools' 'cache' plugin and pretending to causes
+  // errors when they're in use.
+  if ($module == 'ctools' && $plugin == 'cache') {
+    return;
+    // if we did we'd make a plugin/ctools_cache or something.
+  }
+
   if ($module == 'page_manager' || $module == 'panels' || $module == 'ctools' || $module == 'stylizer') {
     return 'plugins/' . $plugin;
   }
@@ -1193,9 +1201,14 @@ function template_preprocess_panels_pane(&$vars) {
   $vars['id'] = '';
 
   // Add some usable classes based on type/subtype
-  ctools_include('cleanstring');
-  $type_class = $content->type ? 'pane-'. ctools_cleanstring($content->type, array('lower case' => TRUE)) : '';
-  $subtype_class = $content->subtype ? 'pane-'. ctools_cleanstring($content->subtype, array('lower case' => TRUE)) : '';
+  if (isset($content->type)) {
+    ctools_include('cleanstring');
+    $type_class = $content->type ? 'pane-'. ctools_cleanstring($content->type, array('lower case' => TRUE)) : '';
+    $subtype_class = $content->subtype ? 'pane-'. ctools_cleanstring($content->subtype, array('lower case' => TRUE)) : '';
+  }
+  else {
+    $subtype_class = $type_class = '';
+  }
 
   // Sometimes type and subtype are the same. Avoid redundant classes.
   $vars['classes_array'][] = $type_class;
