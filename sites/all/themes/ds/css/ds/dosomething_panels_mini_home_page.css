@@ -755,7 +755,8 @@ a.ds-button:active, a.ds-button-strong:active {
 }
 .pane-news-stuff .views-row {
   background: #8e8a86;
-  padding: 6px;
+  padding: 0 6px 0 0;
+  height: 70px;
 }
 .pane-news-stuff .views-row:not(.views-row-last) {
   margin-bottom: 7px;
@@ -775,4 +776,17 @@ a.ds-button:active, a.ds-button-strong:active {
 }
 .pane-news-stuff .views-row a:active {
   color: #222222;
+}
+.pane-news-stuff .views-field-title {
+  padding-top: 6px;
+}
+.pane-news-stuff .views-field-fb-social {
+  position: relative;
+  left: 20.6em;
+  bottom: 2.2em;
+}
+.pane-news-stuff .news-image {
+  display: inline;
+  float: left;
+  padding-right: 6px;
 }
