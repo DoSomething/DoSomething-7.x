@@ -34,8 +34,8 @@ function ds_preprocess_page(&$variables) {
   if(arg(0) == 'awesome-things') {
     drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
   }
-  if(arg(0) == 'club-hub') {
-    drupal_add_css($theme_path . '/css/ds/page-club-hub.css');
+  if(arg(0) == 'grants') {
+    drupal_add_css($theme_path . '/css/ds/grants-landing.css');
   }
 }
 

@@ -1,0 +1,35 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.panel-top {
+  -moz-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  -webkit-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  -o-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  border-top: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+h2.pane-title {
+  border-bottom: 1px solid #c6c6c6;
+  -moz-box-shadow: white 0 1px -1px 1px;
+  -webkit-box-shadow: white 0 1px -1px 1px;
+  -o-box-shadow: white 0 1px -1px 1px;
+  box-shadow: white 0 1px -1px 1px;
+}
