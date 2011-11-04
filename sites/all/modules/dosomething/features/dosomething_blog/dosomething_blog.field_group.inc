@@ -37,32 +37,6 @@ function dosomething_blog_field_group_info() {
   $field_group = new stdClass;
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_metatags|node|blog|form';
-  $field_group->group_name = 'group_metatags';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'blog';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Metatags',
-    'weight' => '20',
-    'children' => array(),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'label' => 'Metatags',
-      'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => '',
-        'description' => '',
-      ),
-      'formatter' => 'closed',
-    ),
-  );
-  $export['group_metatags|node|blog|form'] = $field_group;
-
-  $field_group = new stdClass;
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_path|node|blog|form';
   $field_group->group_name = 'group_path';
   $field_group->entity_type = 'node';
