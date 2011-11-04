@@ -240,7 +240,7 @@ div[role=main]
           +float-left
           a
             color: $white
-            padding: 0 48px
+            padding: 0 47px
             line-height: 33px
             text-transform: uppercase
             font-size: 11px
@@ -305,25 +305,57 @@ div[role=main]
 
 /** Blog Menu**/
 #blog-menu
-  position: absolute
+  position: relative
   top: -65px
-  left: 190px
+  left: 160px
   background: $white
   border-top: 1px solid $gray6
   border-bottom: 1px solid $gray6
   padding: 1px 0
+  width: 545px
   ul
     +horizontal-list
-    padding: 8px
+    // padding: 8px
     margin: 0
     background: $gray6
     list-style-image: none
     list-style: none
+    height: 26px
+    padding-top: 8px
+    padding-left: 12px
+    padding-right: 12px
     li
-      margin: 0 10px
       a
         color: $gray-dark
         font-size: 11px
+        padding-top: 9px
+      .active
+        background: image_url("blog-menu-active-arrow.png") no-repeat
+        background-position: top 0px
+    .news
+      a
+        background: image_url("icn-subnav-news.png") top right no-repeat
+        background-position: 34px 5px
+        padding-right: 24px
+        margin-left: 12px
+    .awesome
+      a
+        background: image_url("icn-subnav-awesomes.png") top right no-repeat
+        background-position: 82px 5px
+        padding-right: 32px
+        margin-left: 12px
+    .celebs
+      a
+        background: image_url("icn-subnav-celebs.png") top right no-repeat
+        background-position: 95px 5px
+        padding-right: 32px
+        margin-left: 12px
+    .staff
+      a
+        background: image_url("icn-subnav-staff.png") top right no-repeat
+        background-position: 95px 5px
+        padding-right: 32px
+        margin-left: 12px
 
 /** Blog Center Landing page pane **/
 #blog-page-pane

@@ -67,9 +67,13 @@
 .panel-twocol-a
   .panes-2
     .panel-outer-left
-      width: percentage($two-col-wide2 / $main-width-w-padding)
+      // +box-sizing(border-box)
+      // width: percentage($two-col-wide2 / $main-width-w-padding)
+      width: 66%
     .panel-outer-right
-      width: percentage($two-col-thin2 / $main-width-w-padding)
+      // +box-sizing(border-box)
+      // width: percentage($two-col-thin2 / $main-width-w-padding)
+      width: 32%
       margin-right: 0
       float: right
   .panel-outer-left

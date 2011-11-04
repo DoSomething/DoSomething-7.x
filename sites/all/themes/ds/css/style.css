@@ -1824,10 +1824,10 @@ body.node-type-project [role=main] .main-interior-sidebar {
 }
 
 .panel-twocol-a .panes-2 .panel-outer-left {
-  width: 66.667%;
+  width: 66%;
 }
 .panel-twocol-a .panes-2 .panel-outer-right {
-  width: 31.739%;
+  width: 32%;
   margin-right: 0;
   float: right;
 }
@@ -2204,7 +2204,7 @@ div[role=main] {
 }
 .region-footer #block-menu-menu-footer .content ul.menu li a {
   color: white;
-  padding: 0 48px;
+  padding: 0 47px;
   line-height: 33px;
   text-transform: uppercase;
   font-size: 11px;
@@ -2277,13 +2277,14 @@ div[role=main] {
 
 /*Blog Menu* */
 #blog-menu {
-  position: absolute;
+  position: relative;
   top: -65px;
-  left: 190px;
+  left: 160px;
   background: white;
   border-top: 1px solid #d2d2d2;
   border-bottom: 1px solid #d2d2d2;
   padding: 1px 0;
+  width: 545px;
 }
 #blog-menu ul {
   margin: 0;
@@ -2291,11 +2292,14 @@ div[role=main] {
   border: 0;
   overflow: hidden;
   *zoom: 1;
-  padding: 8px;
   margin: 0;
   background: #d2d2d2;
   list-style-image: none;
   list-style: none;
+  height: 26px;
+  padding-top: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 #blog-menu ul li {
   list-style-image: none;
@@ -2316,12 +2320,38 @@ div[role=main] {
 #blog-menu ul li.last {
   padding-right: 0;
 }
-#blog-menu ul li {
-  margin: 0 10px;
-}
 #blog-menu ul li a {
   color: #222222;
   font-size: 11px;
+  padding-top: 9px;
+}
+#blog-menu ul li .active {
+  background: url('images/blog-menu-active-arrow.png') no-repeat;
+  background-position: top 0px;
+}
+#blog-menu ul .news a {
+  background: url('images/icn-subnav-news.png') top right no-repeat;
+  background-position: 34px 5px;
+  padding-right: 24px;
+  margin-left: 12px;
+}
+#blog-menu ul .awesome a {
+  background: url('images/icn-subnav-awesomes.png') top right no-repeat;
+  background-position: 82px 5px;
+  padding-right: 32px;
+  margin-left: 12px;
+}
+#blog-menu ul .celebs a {
+  background: url('images/icn-subnav-celebs.png') top right no-repeat;
+  background-position: 95px 5px;
+  padding-right: 32px;
+  margin-left: 12px;
+}
+#blog-menu ul .staff a {
+  background: url('images/icn-subnav-staff.png') top right no-repeat;
+  background-position: 95px 5px;
+  padding-right: 32px;
+  margin-left: 12px;
 }
 
 /*Blog Center Landing page pane */
