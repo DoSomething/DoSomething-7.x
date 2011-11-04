@@ -360,6 +360,7 @@ div[role=main]
 
 /** Blog Center Landing page pane **/
 #blog-page-pane
+  margin-top: -90px 
   .pane-content
     padding: 8px 10px 20px 40px
     background-position: 30px 0px
@@ -368,6 +369,8 @@ div[role=main]
       background: image_url("blog-center-post-lines.png") bottom no-repeat
       background-position: 0 0
       padding-top: 10px
+    .views-row-first
+      background-image: none
     h2
       a
         color: $black
@@ -383,25 +386,25 @@ div[role=main]
     .News-icon
       +replace-text-with-dimensions("icn-subnav-news.png")
       position: relative
-      top: 65px
+      top: 85px
       left: -40px
       z-index: 1000
     .Celebs-Gone-Good-icon
       +replace-text-with-dimensions("icn-subnav-celebs.png")
       position: relative
-      top: 65px
+      top: 85px
       left: -40px
       z-index: 1000
     .Awe-Some-Ones-icon
       +replace-text-with-dimensions("icn-subnav-awesomes.png")
       position: relative
-      top: 65px
+      top: 85px
       left: -40px
       z-index: 1000
     .DoSomething-Staff-icon
       +replace-text-with-dimensions("icn-subnav-staff.png")
       position: relative
-      top: 65px
+      top: 85px
       left: -40px
       z-index: 1000
     .views-field-created, .views-field-created-1
@@ -411,7 +414,8 @@ div[role=main]
       background: image_url("bg-blog-page-date.png") no-repeat
       width: 41px
       height: 160px
-      position: absolute
+      position: relative
+      top: 20px
       margin-left: -52px
       padding-left: 13px
       padding-top: 0px

@@ -2356,6 +2356,9 @@ div[role=main] {
 }
 
 /*Blog Center Landing page pane */
+#blog-page-pane {
+  margin-top: -90px;
+}
 #blog-page-pane .pane-content {
   padding: 8px 10px 20px 40px;
   background-position: 30px 0px;
@@ -2365,6 +2368,9 @@ div[role=main] {
   background: url('images/blog-center-post-lines.png') bottom no-repeat;
   background-position: 0 0;
   padding-top: 10px;
+}
+#blog-page-pane .pane-content .views-row-first {
+  background-image: none;
 }
 #blog-page-pane .pane-content h2 a {
   color: black;
@@ -2391,7 +2397,7 @@ div[role=main] {
   width: 16px;
   height: 18px;
   position: relative;
-  top: 65px;
+  top: 85px;
   left: -40px;
   z-index: 1000;
 }
@@ -2405,7 +2411,7 @@ div[role=main] {
   width: 23px;
   height: 17px;
   position: relative;
-  top: 65px;
+  top: 85px;
   left: -40px;
   z-index: 1000;
 }
@@ -2419,7 +2425,7 @@ div[role=main] {
   width: 26px;
   height: 18px;
   position: relative;
-  top: 65px;
+  top: 85px;
   left: -40px;
   z-index: 1000;
 }
@@ -2433,7 +2439,7 @@ div[role=main] {
   width: 21px;
   height: 16px;
   position: relative;
-  top: 65px;
+  top: 85px;
   left: -40px;
   z-index: 1000;
 }
@@ -2444,7 +2450,8 @@ div[role=main] {
   background: url('images/bg-blog-page-date.png') no-repeat;
   width: 41px;
   height: 160px;
-  position: absolute;
+  position: relative;
+  top: 20px;
   margin-left: -52px;
   padding-left: 13px;
   padding-top: 0px;
