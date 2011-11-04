@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_start_something feature.
+ */
+
+include_once('dosomething_start_something.features.inc');

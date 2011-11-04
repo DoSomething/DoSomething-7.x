@@ -1,0 +1,314 @@
+<?php
+/**
+ * @file
+ * dosomething_start_something.views_default.inc
+ */
+
+/**
+ * Implements hook_views_default_views().
+ */
+function dosomething_start_something_views_default_views() {
+  $export = array();
+
+  $view = new view;
+  $view->name = 'action_of_the_week';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Action of the Week';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 0;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'queue1' => 0,
+    'queue2' => 0,
+    'queue3' => 0,
+    'queue4' => 0,
+    'queue5' => 0,
+    'queue6' => 0,
+    'queue7' => 0,
+    'queue8' => 0,
+    'queue9' => 0,
+    'queue10' => 0,
+    'queue11' => 0,
+    'queue12' => 0,
+    'queue13' => 0,
+    'queue14' => 0,
+    'queue15' => 0,
+    'queue16' => 0,
+    'queue17' => 0,
+    'queue18' => 0,
+    'queue19' => 0,
+    'queue20' => 0,
+    'queue21' => 0,
+    'queue22' => 0,
+    'queue23' => 0,
+    'queue24' => 0,
+    'queue25' => 0,
+    'queue26' => 0,
+    'queue27' => 0,
+    'queue28' => 0,
+    'queue29' => 0,
+    'queue30' => 0,
+    'queue31' => 0,
+    'queue32' => 0,
+    'queue33' => 0,
+    'queue34' => 0,
+    'queue35' => 0,
+    'queue36' => 0,
+    'queue37' => 0,
+    'queue38' => 0,
+    'queue40' => 0,
+    'queue41' => 0,
+    'queue42' => 0,
+    'queue43' => 0,
+    'queue44' => 0,
+    'queue45' => 0,
+    'queue46' => 0,
+    'queue47' => 0,
+    'queue48' => 0,
+    'queue49' => 0,
+    'queue50' => 0,
+    'queue51' => 0,
+    'queue52' => 0,
+    'queue53' => 0,
+    'queue54' => 0,
+    'queue55' => 0,
+    'queue56' => 0,
+    'queue57' => 0,
+    'queue58' => 0,
+    'queue59' => 0,
+    'queue60' => 0,
+    'queue61' => 0,
+    'queue62' => 0,
+    'queue63' => 0,
+    'queue64' => 0,
+    'queue65' => 0,
+    'queue66' => 0,
+    'projects_police_personal_info' => 0,
+    'projects_police_solicitation' => 0,
+    'projects_police_volunteer_opp' => 0,
+    'projects_police_not_a_project' => 0,
+    'projects_police_offensive' => 0,
+    'projects_police_blank_project' => 0,
+    'action_of_the_week' => 0,
+  );
+  /* Field: Field: Picture */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'explore_action_guides',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Action of the Week';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'action_guide' => 'action_guide',
+  );
+  /* Filter criterion: Nodequeue: Queue machine name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'nodequeue_queue';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['name']['value'] = 'action_of_the_week';
+  $export['action_of_the_week'] = $view;
+
+  $view = new view;
+  $view->name = 'upcoming_somethings';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Upcoming Somethings';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Campaign Date */
+  $handler->display->display_options['fields']['field_campain_date']['id'] = 'field_campain_date';
+  $handler->display->display_options['fields']['field_campain_date']['table'] = 'field_data_field_campain_date';
+  $handler->display->display_options['fields']['field_campain_date']['field'] = 'field_campain_date';
+  $handler->display->display_options['fields']['field_campain_date']['label'] = '';
+  $handler->display->display_options['fields']['field_campain_date']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campain_date']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['settings'] = array(
+    'format_type' => 'field_recipient_birthdate_short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'show',
+  );
+  $handler->display->display_options['fields']['field_campain_date']['field_api_classes'] = 0;
+  /* Field: Content: Logo */
+  $handler->display->display_options['fields']['field_campaign_logo']['id'] = 'field_campaign_logo';
+  $handler->display->display_options['fields']['field_campaign_logo']['table'] = 'field_data_field_campaign_logo';
+  $handler->display->display_options['fields']['field_campaign_logo']['field'] = 'field_campaign_logo';
+  $handler->display->display_options['fields']['field_campaign_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campaign_logo']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campaign_logo']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_logo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_campaign_logo']['settings'] = array(
+    'image_style' => 'upcoming_somethings_thumb',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_campaign_logo']['field_api_classes'] = 0;
+  /* Sort criterion: Content: Campaign Date - end date (field_campain_date:value2) */
+  $handler->display->display_options['sorts']['field_campain_date_value2']['id'] = 'field_campain_date_value2';
+  $handler->display->display_options['sorts']['field_campain_date_value2']['table'] = 'field_data_field_campain_date';
+  $handler->display->display_options['sorts']['field_campain_date_value2']['field'] = 'field_campain_date_value2';
+  $handler->display->display_options['sorts']['field_campain_date_value2']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'campaign' => 'campaign',
+  );
+  /* Filter criterion: Date: Date (node) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'node';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['operator'] = '>=';
+  $handler->display->display_options['filters']['date_filter']['default_date'] = 'now';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'field_data_field_campain_date.field_campain_date_value2' => 'field_data_field_campain_date.field_campain_date_value2',
+  );
+
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming Somethings';
+  $export['upcoming_somethings'] = $view;
+
+  return $export;
+}
