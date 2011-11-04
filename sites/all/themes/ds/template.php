@@ -165,3 +165,8 @@ function ds_preprocess_views_view(&$variables) {
       break;
   }
 }
+
+function ds_preprocess_rotoslider_slider(&$variables) {
+  $theme_path = drupal_get_path('theme', 'ds');
+  drupal_add_css($theme_path . '/css/ds/dosomething-rotoslider.css');
+}

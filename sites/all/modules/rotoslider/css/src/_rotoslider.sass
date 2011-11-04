@@ -22,6 +22,7 @@
       display: block
   .rotoslider-descriptions
     & > div
+      +box-sizing('border-box')
       background-color: rgba($purple, 0.7)
       color: $white
       left: 0
@@ -32,14 +33,17 @@
       font-size: 1.5em
       line-height: 1
     .text
-      p:last-child
-        margin-bottom: 0
+      p
+        &:first-child
+          margin-top: 0
+        &:last-child
+          margin-bottom: 0
   .rotoslider-description
     z-index: 2
   .rotoslider-text
     bottom: 0
     display: none
-    width: $main-width - $double-text-padding
+    width: $main-width
     z-index: 12
     &.active
       display: block

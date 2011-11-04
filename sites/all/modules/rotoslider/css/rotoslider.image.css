@@ -23,6 +23,10 @@
   display: block;
 }
 .rotoslider .rotoslider-descriptions > div {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
   background-color: rgba(82, 29, 95, 0.7);
   color: white;
   left: 0;
@@ -34,6 +38,9 @@
   font-size: 1.5em;
   line-height: 1;
 }
+.rotoslider .rotoslider-descriptions .text p:first-child {
+  margin-top: 0;
+}
 .rotoslider .rotoslider-descriptions .text p:last-child {
   margin-bottom: 0;
 }
@@ -43,7 +50,7 @@
 .rotoslider .rotoslider-text {
   bottom: 0;
   display: none;
-  width: 507px;
+  width: 527px;
   z-index: 12;
 }
 .rotoslider .rotoslider-text.active {
@@ -114,9 +121,8 @@
 .rotoslider-image-nav .rotoslider-descriptions > div {
   background-position: bottom right;
   background-repeat: no-repeat;
-  height: 45px;
-  padding-right: 198px;
-  width: 507px;
+  height: 65px;
+  width: 715px;
 }
 .rotoslider-image-nav .rotoslider-menu {
   height: 325px;
