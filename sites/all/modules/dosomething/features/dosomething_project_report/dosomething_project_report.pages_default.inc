@@ -89,7 +89,7 @@ function dosomething_project_report_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '%webform_submission_entity:field-project-title';
+  $display->title = '%sid:field-project-title';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass;
@@ -102,8 +102,8 @@ function dosomething_project_report_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'Project Status',
-      'body' => 'People Involved %webform_submission_entity:field-update-people-involved
-People Impacted %webform_submission_entity:field-num-people-impacted',
+      'body' => 'People Involved %sid:field-update-people-involved
+People Impacted %sid:field-num-people-impacted',
       'format' => '6',
       'substitute' => 1,
     );

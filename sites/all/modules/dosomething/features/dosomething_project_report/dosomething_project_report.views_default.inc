@@ -139,7 +139,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['delta_offset'] = '0';
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['field_api_classes'] = 0;
-  /* Field: Field: Essay 1: See It */
+  /* Field: Field: What's the problem you are trying to solve? */
   $handler->display->display_options['fields']['field_essay_see_it']['id'] = 'field_essay_see_it';
   $handler->display->display_options['fields']['field_essay_see_it']['table'] = 'field_data_field_essay_see_it';
   $handler->display->display_options['fields']['field_essay_see_it']['field'] = 'field_essay_see_it';
@@ -161,7 +161,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['field_essay_see_it']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_essay_see_it']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_essay_see_it']['field_api_classes'] = 0;
-  /* Field: Field: Essay 3: Build It */
+  /* Field: Field: What's your plan of action? */
   $handler->display->display_options['fields']['field_essay_build_it']['id'] = 'field_essay_build_it';
   $handler->display->display_options['fields']['field_essay_build_it']['table'] = 'field_data_field_essay_build_it';
   $handler->display->display_options['fields']['field_essay_build_it']['field'] = 'field_essay_build_it';
@@ -183,7 +183,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['field_essay_build_it']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_essay_build_it']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_essay_build_it']['field_api_classes'] = 0;
-  /* Field: Field: Essay 2: Believe It */
+  /* Field: Field: Why is it important to you? */
   $handler->display->display_options['fields']['field_essay_believe_it']['id'] = 'field_essay_believe_it';
   $handler->display->display_options['fields']['field_essay_believe_it']['table'] = 'field_data_field_essay_believe_it';
   $handler->display->display_options['fields']['field_essay_believe_it']['field'] = 'field_essay_believe_it';
