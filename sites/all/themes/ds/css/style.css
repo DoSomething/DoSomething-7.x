@@ -378,10 +378,10 @@ h1, h2, h3, h4, h5, h6 {
   outline: 1px dashed red;
 }
 
-.clearfix {
+.clearfix, .pane-dosomething-blocks-dosomething-social-node-buttons {
   *zoom: 1;
 }
-.clearfix:after {
+.clearfix:after, .pane-dosomething-blocks-dosomething-social-node-buttons:after {
   content: "";
   display: table;
   clear: both;
@@ -2614,4 +2614,23 @@ div[role=main] {
 
 iframe {
   max-width: 100%;
+}
+
+/* Social toolbar */
+.pane-dosomething-blocks-dosomething-social-node-buttons {
+  -moz-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  -webkit-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  -o-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  border-top: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin {
+  float: left;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin,
+.pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin,
+.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin,
+.pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
+  float: right;
 }
