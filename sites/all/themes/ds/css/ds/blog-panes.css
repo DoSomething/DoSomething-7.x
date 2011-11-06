@@ -251,4 +251,15 @@
   background: url('../images/bg-polls-divider-right.png');
   background-position: right top;
   background-repeat: no-repeat;
+  margin-top: 2em;
+  margin-right: -1em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+.view-display-id-panel_pane_1 .views-field-ds-social-plugins .facebook-plugin {
+  margin-bottom: 1em;
+}
+
+.ds-pane-no-padding .view-content {
+  padding-right: 1em;
 }

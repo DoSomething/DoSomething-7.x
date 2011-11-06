@@ -378,10 +378,12 @@ h1, h2, h3, h4, h5, h6 {
   outline: 1px dashed red;
 }
 
-.clearfix, .pane-dosomething-blocks-dosomething-social-node-buttons {
+.clearfix, .pane-dosomething-blocks-dosomething-social-node-buttons,
+.views-field-ds-social-plugins {
   *zoom: 1;
 }
-.clearfix:after, .pane-dosomething-blocks-dosomething-social-node-buttons:after {
+.clearfix:after, .pane-dosomething-blocks-dosomething-social-node-buttons:after,
+.views-field-ds-social-plugins:after {
   content: "";
   display: table;
   clear: both;
@@ -533,6 +535,11 @@ h1, h2, h3, h4, h5, h6 {
   background-image: -ms-linear-gradient(top, #fbdf61, #fbc013);
   background-image: linear-gradient(top, #fbdf61, #fbc013);
   color: #161616;
+}
+
+.ds-pane-no-padding .pane-content {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .ds-button, .ds-button-strong, button, input[type=button], input[type=submit] {
@@ -2647,35 +2654,40 @@ iframe {
 }
 
 /* Social toolbar */
-.pane-dosomething-blocks-dosomething-social-node-buttons {
-  -moz-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
-  -webkit-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
-  -o-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
-  box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
-  border-top: 1px solid #c6c6c6;
-  border-bottom: 1px solid #c6c6c6;
+.pane-dosomething-blocks-dosomething-social-node-buttons,
+.views-field-ds-social-plugins {
   margin-bottom: 18px;
   padding-top: 2.5em;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin {
+.pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin,
+.views-field-ds-social-plugins .facebook-plugin {
   width: 100%;
   max-width: 300px;
   float: left;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .wrapper {
+.pane-dosomething-blocks-dosomething-social-node-buttons .wrapper,
+.views-field-ds-social-plugins .wrapper {
   width: 100%;
   width: auto;
   max-width: 300px;
   float: right;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
+.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin,
+.views-field-ds-social-plugins .google-plugin,
+.views-field-ds-social-plugins .twitter-plugin,
+.views-field-ds-social-plugins .print-plugin,
+.views-field-ds-social-plugins .email-plugin {
   float: left;
   margin-right: 8px;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .print_html, .pane-dosomething-blocks-dosomething-social-node-buttons .print_mail, .pane-dosomething-blocks-dosomething-social-node-buttons .print_pdf {
+.pane-dosomething-blocks-dosomething-social-node-buttons .print_html, .pane-dosomething-blocks-dosomething-social-node-buttons .print_mail, .pane-dosomething-blocks-dosomething-social-node-buttons .print_pdf,
+.views-field-ds-social-plugins .print_html,
+.views-field-ds-social-plugins .print_mail,
+.views-field-ds-social-plugins .print_pdf {
   margin-left: 0;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin a {
+.pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin a,
+.views-field-ds-social-plugins .email-plugin a {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -2686,10 +2698,12 @@ iframe {
   height: 20px;
   display: block;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin {
+.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin,
+.views-field-ds-social-plugins .print-plugin {
   margin-right: 0;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin a {
+.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin a,
+.views-field-ds-social-plugins .print-plugin a {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -2699,6 +2713,18 @@ iframe {
   width: 21px;
   height: 21px;
   display: block;
+}
+
+.pane-dosomething-blocks-dosomething-social-node-buttons {
+  -moz-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  -webkit-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  -o-box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
+  border-top: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+  border-top: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+  margin-bottom: 18px;
 }
 
 /*Become a member popup window */

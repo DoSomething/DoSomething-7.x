@@ -181,6 +181,7 @@ function ds_preprocess_views_view(&$variables) {
       }
       break;
   }
+  // dsm($variables);
 }
 
 function ds_preprocess_rotoslider_slider(&$variables) {
