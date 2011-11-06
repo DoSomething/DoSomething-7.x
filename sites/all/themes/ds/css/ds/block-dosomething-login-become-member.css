@@ -276,6 +276,28 @@ a.ds-button:active, a.ds-button-strong:active {
   background: #652e72;
 }
 
+/* legacy DoSomething classes (modified) */
+.box {
+  position: relative;
+  margin: 1em 0;
+  padding: 0px 12px 18px 12px;
+}
+
+.blue {
+  padding: 0 12px;
+  background-color: #d1d1d1;
+}
+
+.goright {
+  float: right;
+  padding: 10px;
+}
+
+img.goleft {
+  float: left;
+  padding: 10px;
+}
+
 /* Headings -------------------------------------------------------------- */
 .h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;

@@ -646,6 +646,28 @@ a.ds-button:active, a.ds-button-strong:active {
   background: #652e72;
 }
 
+/* legacy DoSomething classes (modified) */
+.box {
+  position: relative;
+  margin: 1em 0;
+  padding: 0px 12px 18px 12px;
+}
+
+.blue {
+  padding: 0 12px;
+  background-color: #d1d1d1;
+}
+
+.goright {
+  float: right;
+  padding: 10px;
+}
+
+img.goleft {
+  float: left;
+  padding: 10px;
+}
+
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
