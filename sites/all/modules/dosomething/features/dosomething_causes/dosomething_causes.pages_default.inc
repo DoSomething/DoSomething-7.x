@@ -342,7 +342,7 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'style' => 'naked',
+      'style' => 'default',
       'settings' => NULL,
     );
     $pane->css = array();
@@ -375,7 +375,7 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'style' => 'naked',
+      'style' => 'default',
       'settings' => NULL,
     );
     $pane->css = array();
