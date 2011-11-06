@@ -36,6 +36,14 @@ function ds_preprocess_page(&$variables) {
   // issues pages
   if ($variables['theme_hook_suggestions'][1] == 'page__taxonomy__term') {
     drupal_add_css($theme_path . '/css/ds/dosomething-issues.css');
+    // add jquery to set equal heights
+    drupal_add_js($theme_path . '/js/equalheights.jquery.js', array('scope' => 'footer'));
+    drupal_add_js('(function ($) {
+      $(".panel-row-middle").equalHeights();
+      $(".panel-row-middle").equalHeightsPaneContent();
+      })(jQuery);',
+        array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
+      );
   }
   // awesome things landing page
   if ($arg0 == 'awesome-things') {
