@@ -17,7 +17,7 @@ function dosomething_causes_default_page_manager_handlers() {
   $handler->task = 'term_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'Cause page',
     'no_blocks' => 0,
@@ -54,14 +54,36 @@ function dosomething_causes_default_page_manager_handlers() {
   $display->layout_settings = '';
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
-      'top' => NULL,
-      'mid-left' => NULL,
-      'mid-center' => NULL,
-      'mid-right' => NULL,
-      'bottom-left' => NULL,
-      'bottom-right' => NULL,
-      'footer' => NULL,
+      'default' => array(),
+      'top' => array(),
+      'mid-left' => array(),
+      'mid-center' => array(),
+      'mid-right' => array(),
+      'bottom-left' => array(),
+      'bottom-right' => array(),
+      'footer' => array(),
+    ),
+    'style' => 'stylizer',
+    'top' => array(
+      'style' => 'stylizer',
+    ),
+    'mid-left' => array(
+      'style' => 'stylizer',
+    ),
+    'mid-center' => array(
+      'style' => 'stylizer',
+    ),
+    'mid-right' => array(
+      'style' => 'stylizer',
+    ),
+    'bottom-left' => array(
+      'style' => 'stylizer',
+    ),
+    'bottom-right' => array(
+      'style' => 'stylizer',
+    ),
+    'footer' => array(
+      'style' => 'stylizer',
     ),
   );
   $display->cache = array();
@@ -78,7 +100,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array(
       'css_id' => '',
@@ -98,7 +121,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array(
       'css_id' => '',
@@ -129,7 +153,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -157,7 +182,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -185,7 +211,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -199,16 +226,7 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->subtype = 'project_related_displays-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'arguments' => array(
@@ -217,7 +235,8 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -237,7 +256,8 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -254,7 +274,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -282,13 +303,86 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
     $display->content['new-9'] = $pane;
     $display->panels['top'][2] = 'new-9';
+    $pane = new stdClass;
+    $pane->pid = 'new-10';
+    $pane->panel = 'top';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'taxonomy_term:field_causes_image';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'image',
+      'formatter_settings' => array(
+        'image_style' => 'issue_main',
+        'image_link' => '',
+      ),
+      'context' => 'argument_term_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'style' => 'naked',
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][3] = 'new-10';
+    $pane = new stdClass;
+    $pane->pid = 'new-11';
+    $pane->panel = 'top';
+    $pane->type = 'term_description';
+    $pane->subtype = 'term_description';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'style' => 'naked',
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $display->content['new-11'] = $pane;
+    $display->panels['top'][4] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -422,7 +516,10 @@ function dosomething_causes_default_page_manager_pages() {
   $page->admin_title = 'Suggest a Cause';
   $page->admin_description = 'Suggest a Cause webform page';
   $page->path = 'suggest-a-cause';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
