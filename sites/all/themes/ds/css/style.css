@@ -2522,12 +2522,10 @@ div[role=main] {
 }
 .page-blog .panel-outer-right .pane-blog-center .block-dosomething-blog-archive ul {
   padding: 0 0 0 10px;
-  list-style: none;
 }
 .page-blog .panel-outer-right .pane-blog-center .block-dosomething-blog-archive ul li {
   background: none;
   line-height: 120%;
-  padding: 1px 0 4px;
 }
 
 /*Blog Archive Pane */
@@ -2544,7 +2542,6 @@ div[role=main] {
 }
 .ds-internal-sidebar-flush-right .views-field-title, #blog-archives-pane .views-field-title {
   margin-bottom: 12px;
-  background: url('images/small-arrow-right.png') no-repeat;
   background-position: 0px 3px;
   padding-left: 15px;
 }
