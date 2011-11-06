@@ -1925,10 +1925,6 @@ body.admin-menu {
   margin-bottom: 0;
 }
 
-#main-wrapper {
-  background: url('images/bg-page.png') repeat-y center top;
-}
-
 #utility-bar {
   background-color: #343434;
   color: white;
