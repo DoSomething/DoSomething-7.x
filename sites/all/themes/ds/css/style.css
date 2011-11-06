@@ -2624,13 +2624,50 @@ iframe {
   box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
   border-top: 1px solid #c6c6c6;
   border-bottom: 1px solid #c6c6c6;
+  min-height: 57px;
+  margin-bottom: 18px;
+  position: relative;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
+  position: absolute;
+  bottom: 0;
 }
 .pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin {
-  float: left;
+  left: 0;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin,
-.pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin,
-.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin,
+.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin {
+  right: 115px;
+  bottom: -5px;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin {
+  right: 54px;
+  bottom: -1px;
+}
 .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
-  float: right;
+  right: 27px;
+  bottom: -14px;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin a {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/social-email.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 21px;
+  height: 20px;
+  display: block;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/social-print.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 21px;
+  height: 21px;
+  display: block;
+  right: 0;
+  bottom: 3px;
 }
