@@ -12,6 +12,8 @@ function ds_preprocess_panels_pane(&$variables) {
   if ($variables['pane']->type == 'views' && $variables['pane']->subtype == 'blog_center') {
     drupal_add_css($theme_path . '/css/ds/blog-panes.css');
   }
+
+  // dsm($variables);
 }
 
 function ds_preprocess_page(&$variables) {
