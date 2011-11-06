@@ -12,7 +12,6 @@ function ds_preprocess_panels_pane(&$variables) {
   if ($variables['pane']->type == 'views' && $variables['pane']->subtype == 'blog_center') {
     drupal_add_css($theme_path . '/css/ds/blog-panes.css');
   }
-
   // dsm($variables);
 }
 
@@ -33,6 +32,10 @@ function ds_preprocess_page(&$variables) {
   // causes landing page
   if ($arg0 == 'cause' || $arg0 == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
+  }
+  // issues pages
+  if ($variables['theme_hook_suggestions'][1] == 'page__taxonomy__term') {
+    drupal_add_css($theme_path . '/css/ds/dosomething-issues.css');
   }
   // awesome things landing page
   if ($arg0 == 'awesome-things') {
