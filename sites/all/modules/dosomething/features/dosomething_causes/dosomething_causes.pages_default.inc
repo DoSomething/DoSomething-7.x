@@ -232,7 +232,16 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->subtype = 'project_related_displays-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(),
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
     );
     $pane->configuration = array(
       'arguments' => array(
