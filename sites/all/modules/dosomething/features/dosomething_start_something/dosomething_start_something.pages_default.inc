@@ -16,7 +16,10 @@ function dosomething_start_something_default_page_manager_pages() {
   $page->admin_title = 'Start Something';
   $page->admin_description = '';
   $page->path = 'start-something';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
