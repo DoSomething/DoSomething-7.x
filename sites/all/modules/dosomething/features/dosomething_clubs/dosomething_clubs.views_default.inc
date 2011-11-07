@@ -27,6 +27,9 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'GO';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 0;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -151,6 +154,8 @@ function dosomething_clubs_views_default_views() {
   /* Display: Club Results Content Pane */
   $handler = $view->new_display('panel_pane', 'Club Results Content Pane', 'panel_pane_1');
   $handler->display->display_options['display_description'] = 'Displays search results for a state or zip club search.';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -303,27 +308,29 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'club' => 'club',
   );
+  $handler->display->display_options['filters']['type']['group'] = 0;
   /* Filter criterion: Content: State/Province (field_club_state) */
   $handler->display->display_options['filters']['field_club_state_value']['id'] = 'field_club_state_value';
   $handler->display->display_options['filters']['field_club_state_value']['table'] = 'field_data_field_club_state';
   $handler->display->display_options['filters']['field_club_state_value']['field'] = 'field_club_state_value';
+  $handler->display->display_options['filters']['field_club_state_value']['group'] = 0;
   $handler->display->display_options['filters']['field_club_state_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_club_state_value']['expose']['operator_id'] = 'field_club_state_value_op';
   $handler->display->display_options['filters']['field_club_state_value']['expose']['label'] = 'Browse Clubs by State';
   $handler->display->display_options['filters']['field_club_state_value']['expose']['operator'] = 'field_club_state_value_op';
   $handler->display->display_options['filters']['field_club_state_value']['expose']['identifier'] = 'field_club_state_value';
   $handler->display->display_options['filters']['field_club_state_value']['expose']['reduce'] = 0;
-  /* Filter criterion: Content: Enter your ZIP code (field_club_zip:format) */
-  $handler->display->display_options['filters']['field_club_zip_format']['id'] = 'field_club_zip_format';
-  $handler->display->display_options['filters']['field_club_zip_format']['table'] = 'field_data_field_club_zip';
-  $handler->display->display_options['filters']['field_club_zip_format']['field'] = 'field_club_zip_format';
-  $handler->display->display_options['filters']['field_club_zip_format']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_club_zip_format']['expose']['operator_id'] = 'field_club_zip_format_op';
-  $handler->display->display_options['filters']['field_club_zip_format']['expose']['label'] = 'Browse Clubs by Zip';
-  $handler->display->display_options['filters']['field_club_zip_format']['expose']['operator'] = 'field_club_zip_format_op';
-  $handler->display->display_options['filters']['field_club_zip_format']['expose']['identifier'] = 'field_club_zip_format';
-  $handler->display->display_options['filters']['field_club_zip_format']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['field_club_zip_format']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: Enter your ZIP code (field_club_zip) */
+  $handler->display->display_options['filters']['field_club_zip_value']['id'] = 'field_club_zip_value';
+  $handler->display->display_options['filters']['field_club_zip_value']['table'] = 'field_data_field_club_zip';
+  $handler->display->display_options['filters']['field_club_zip_value']['field'] = 'field_club_zip_value';
+  $handler->display->display_options['filters']['field_club_zip_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_club_zip_value']['expose']['operator_id'] = 'field_club_zip_value_op';
+  $handler->display->display_options['filters']['field_club_zip_value']['expose']['label'] = 'Browse Clubs by Zip';
+  $handler->display->display_options['filters']['field_club_zip_value']['expose']['operator'] = 'field_club_zip_value_op';
+  $handler->display->display_options['filters']['field_club_zip_value']['expose']['identifier'] = 'field_club_zip_value';
+  $handler->display->display_options['filters']['field_club_zip_value']['expose']['required'] = 0;
+  $handler->display->display_options['filters']['field_club_zip_value']['expose']['multiple'] = FALSE;
   $export['clubs'] = $view;
 
   return $export;
