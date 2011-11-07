@@ -332,7 +332,10 @@ function dosomething_causes_default_page_manager_pages() {
   $page->admin_title = 'Find Your Cause Page';
   $page->admin_description = 'The main Find Your Cause Page.';
   $page->path = 'find-your-cause ';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(

@@ -722,6 +722,9 @@ function dosomething_blog_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
