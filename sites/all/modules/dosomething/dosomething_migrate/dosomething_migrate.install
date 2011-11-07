@@ -10,5 +10,6 @@
  * Implements hook_install().
  */
 function dosomething_migrate_install() {
+  dosomething_migrate_set_webform_types();
   dosomething_migrate_regenerate_webform_nodes();
 }

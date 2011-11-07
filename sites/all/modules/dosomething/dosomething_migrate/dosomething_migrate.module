@@ -15,32 +15,7 @@ function dosomething_migrate_migrate_api() {
   return $api;
 }
 
-/*
- * manually run the import of the webform nodes.
- */
-function dosomething_migrate_regenerate_webform_nodes() {
-  //Get mapping array.
-  $mapping_array = dosomething_migrate_return_content_type_mapping();
-
-  //Enable webform and webform entity.
-  $module_list = array(
-    'webform',
-    'webform_entity',
-  );
-  module_enable($module_list, $enable_dependencies = TRUE);
-
-
-  //enable content type features.
-  $content_features = array(
-    'dosomething_campaign_report_back',
-    'dosomething_grant_application',
-    'dosomething_scholarship_application',
-    'dosomething_campaign_sign_up',
-    'dosomething_action_guide',
-    'dosomething_project_report'
-  );
-  module_enable($content_features, $enable_dependencies = TRUE);
-
+function dosomething_migrate_set_webform_types() {
   //Set webform node types.
   $types_to_add = array(
     'campaign_report_back',
@@ -56,31 +31,68 @@ function dosomething_migrate_regenerate_webform_nodes() {
       $webform_types[] = $type;
     }
   }
-
   variable_set('webform_node_types', $webform_types);
+
+}
+
+/**
+ * manually run the import of the webform nodes.
+ */
+function dosomething_migrate_regenerate_webform_nodes() {
+  //Get mapping array.
+  $mapping_array = dosomething_migrate_return_content_type_mapping();
 
   // Get the list of files from the directory. Only serialized text files.
   $files = file_scan_directory(drupal_get_path('module', 'dosomething_migrate') . '/nodes', '/\.txt$/');
 
   //Get the node data and save it into drupal
   foreach ($files as $file) {
-    $webform =  file_get_contents($file->uri);
-    $webform = unserialize($webform);
-    $webform_data = $webform->webform;
-    unset($webform->webform);
-    node_save($webform);
+    $webform = dosomething_migrate_save_webform_node($file->uri);
     //Update the mapping
     $key = array_search($webform->title, $mapping_array);
     if ($key) {
       $mapping_array[$key] = $webform->nid;
     }
-    dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
-    $webform->webform = $webform_data;
-    $webform_data['nid'] = $webform->nid;
-    node_save($webform);
   }
   //Set the variable mapping the old array types to new node ids.
   variable_set('webform_migrate_webform_mapping', $mapping_array);
+}
+
+function dosomething_migrate_add_missing_nodes() {
+  $path = drupal_get_path('module', 'dosomething_migrate') . '/nodes';
+
+  $mapping_array = variable_get('webform_migrate_webform_mapping', array());
+  $required_types = dosomething_migrate_return_content_type_mapping();
+
+  $missing = array_diff_key($required_types, $mapping_array);
+  $loadable_nids = array_keys(node_load_multiple(array_filter($mapping_array)));
+  $unloadable = array_diff($mapping_array, $loadable_nids);
+  $problems = ($unloadable + $missing);
+
+  $fixed_something = FALSE;
+  foreach ($problems as $type => $junk) {
+var_dump("addding a missing $path");
+    $webform = dosomething_migrate_save_webform_node($path . '/' . $type . '.txt');
+    $mapping_array[$type] = $webform->nid;
+    $fixed_something = TRUE;
+  }
+
+  if ($fixed_something == TRUE) {
+var_dump("updated mappings");
+    variable_set('webform_migrate_webform_mapping', $mapping_array);
+  }
+}
+
+function dosomething_migrate_save_webform_node($path) {
+  $webform = unserialize(file_get_contents($path));
+  $webform_data = $webform->webform;
+  unset($webform->webform);
+  node_save($webform);
+  dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
+  $webform->webform = $webform_data;
+  $webform_data['nid'] = $webform->nid;
+  node_save($webform);
+  return $webform;
 }
 
 /**
