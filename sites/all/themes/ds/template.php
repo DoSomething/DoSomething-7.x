@@ -145,7 +145,6 @@ function ds_breadcrumb($variables) {
 function ds_preprocess_views_exposed_form(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
   if ($variables['form']['#id'] == 'views-exposed-form-action-finder-page') {
-    dpm($variables);
     $obj = new stdClass;
     $obj->label = 'Find Something Else';
     $obj->id = 'filter-title';
