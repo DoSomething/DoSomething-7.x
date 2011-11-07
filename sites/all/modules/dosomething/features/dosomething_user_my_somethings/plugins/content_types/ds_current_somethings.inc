@@ -20,24 +20,19 @@ function dosomething_user_my_somethings_ds_current_somethings_ctools_content_typ
  */
 function dosomething_user_my_somethings_ds_current_somethings_content_type_render($subtype, $conf, $panel_args, $context) {
   $uid = $context->data->uid;
-
-  $report_backs = dosomething_user_my_somethings_campaign_report_backs($uid);
-  $action_guides = dosomething_user_my_somethings_action_guides($uid);
-  
-
   $block = new stdClass();
-  
-  $block->content = 'test';
-  
+  $content = dosomething_user_my_somethings_content($uid);
+  $block->content = theme('table', array('rows' => $content));
   return $block;
 }
 
 /**
- * Return an array of campaign report backs 
- * that a user has not completed for campaigns they are part of.
+ * Return content for My Somethings pane.
  */
-function dosomething_user_my_somethings_campaign_report_backs($uid) {
-  $user = node_load($uid);
+function dosomething_user_my_somethings_content($uid) {
+  $links = array();
+  // Find campaign report backs that a user has not completed for campaigns they are part of.
+  $user = user_load($uid);
   $groups = og_get_entity_groups('user', $user);
   foreach ($groups as $gid) {
     // Get campaign title and entity_id of its campaign report back.
@@ -52,19 +47,37 @@ function dosomething_user_my_somethings_campaign_report_backs($uid) {
                               array(':nid' => $report_back->entity_id, ':uid' => $uid))->fetchField();
       // User has not submitted a report back.
       if (!$submission) {
-        $report_backs[$report_back->entity_id] = $report_back->label;
+        $links[] = array(
+          'title' => $report_back->label,
+          'link' => l('Complete this', 'node/' . $report_back->entity_id),
+        );
       }
     }
   }
-  return $report_backs;
-}
+  
+  // Find action guides that a user has saved draft but not complteted.
+  $data = db_query("SELECT w.nid, n.title FROM {webform_submissions} w 
+                      INNER JOIN {node} n ON w.nid = n.nid
+                      WHERE w.uid = :uid AND bundle = 'action_guide' AND is_draft = 1", array(':uid' => $uid))->fetchAll(); 
+  foreach($data as $guide) {
+    $links[] = array(
+       'title' => $guide->title,
+       'link' => l('Complete this', 'node/' . $guide->nid),
+    );
+  }  
 
-function dosomething_user_my_somethings_action_guides($uid) {
-    $guides = db_query("SELECT w.nid, n.title FROM {webform_submissions} w 
-                               INNER JOIN {node} n ON w.nid = n.nid
-                               WHERE w.uid = :uid AND bundle = 'action_guide' AND is_draft = 1", array(':uid' => $uid))->fetchAll(); 
-    foreach($guides as $guide) {
-      $action_guides[$guide->nid] = $guide->title;
-    }  
-  return $action_guides;
+  // Find a user's projects where status is idea or ongoing.
+  $projects = db_query("SELECT w.sid, t.field_project_title_value FROM {webform_submissions} w 
+                      INNER JOIN {field_data_field_project_status} s ON w.sid = s.entity_id
+                      INNER JOIN {field_data_field_project_title} t ON w.sid = t.entity_id
+                      WHERE w.uid = :uid AND w.bundle = 'project_report' AND w.nid = '704011' 
+                      AND (s.field_project_status_value = 0 OR s.field_project_status_value = 1)", array(':uid' => $uid))->fetchAll(); 
+  foreach ($projects as $project) {
+    $links[] = array(
+      'title' => $project->field_project_title_value,
+      'link' => l('Complete this', 'node/704011/submission/' . $project->sid),
+    );
+  } 
+
+  return $links;
 }  
