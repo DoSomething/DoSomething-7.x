@@ -281,7 +281,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '10',
+        'weight' => '15',
       ),
     ),
   );
@@ -348,7 +348,7 @@ The content from this field will only be shown to anonymous users.',
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '17',
+        'weight' => '21',
       ),
     ),
   );
@@ -361,6 +361,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_essay_build_it',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -390,7 +393,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_report',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Describe the steps you will take/took to create your project or organization. What kind of impact have you made?',
+      'description' => 'Describe the steps you will take/took to create your project or organization.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -415,7 +418,7 @@ The content from this field will only be shown to anonymous users.',
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '18',
+        'weight' => '12',
       ),
     ),
   );
@@ -482,7 +485,7 @@ The content from this field will only be shown to anonymous users.',
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '16',
+        'weight' => '11',
       ),
     ),
   );
@@ -546,7 +549,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '15',
+        'weight' => '20',
       ),
     ),
   );
@@ -610,7 +613,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '20',
+        'weight' => '23',
       ),
     ),
   );
@@ -683,7 +686,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '4',
+        'weight' => '7',
       ),
     ),
   );
@@ -747,7 +750,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '13',
+        'weight' => '18',
       ),
     ),
   );
@@ -811,7 +814,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '12',
+        'weight' => '17',
       ),
     ),
   );
@@ -878,7 +881,7 @@ The content from this field will only be shown to anonymous users.',
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '19',
+        'weight' => '22',
       ),
     ),
   );
@@ -958,7 +961,7 @@ The content from this field will only be shown to anonymous users.',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '5',
+        'weight' => '8',
       ),
     ),
   );
@@ -1109,7 +1112,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
-        'weight' => '23',
+        'weight' => '25',
       ),
     ),
   );
@@ -1257,7 +1260,137 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
-        'weight' => '14',
+        'weight' => '19',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_project_goal'
+  $fields['webform_submission_entity-project_report-field_project_goal'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_goal',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'What is the project? Ex. <i>Reduce litter in my neighborhood by 50%.</i>',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 27,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_project_goal',
+      'label' => 'Goal',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_project_impact'
+  $fields['webform_submission_entity-project_report-field_project_impact'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_impact',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Ex. <i>Picked up 8 bags of trash.</i>',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 26,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_project_impact',
+      'label' => 'Measurable impact',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '3',
       ),
     ),
   );
@@ -1314,7 +1447,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '2',
+        'weight' => '13',
       ),
     ),
   );
@@ -1377,7 +1510,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '24',
+        'weight' => '26',
       ),
     ),
   );
@@ -1450,7 +1583,7 @@ The content from this field will only be shown to anonymous users.',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '6',
+        'weight' => '9',
       ),
     ),
   );
@@ -1513,7 +1646,88 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '22',
+        'weight' => '24',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_project_start_date'
+  $fields['webform_submission_entity-project_report-field_project_start_date'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_start_date',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'date',
+      'settings' => array(
+        'granularity' => array(
+          'day' => 'day',
+          'hour' => 0,
+          'minute' => 0,
+          'month' => 'month',
+          'second' => 0,
+          'year' => 'year',
+        ),
+        'profile2_private' => FALSE,
+        'repeat' => 0,
+        'timezone_db' => '',
+        'todate' => '',
+        'tz_handling' => 'none',
+      ),
+      'translatable' => '0',
+      'type' => 'datetime',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+            'show_repeat_rule' => 'show',
+          ),
+          'type' => 'date_default',
+          'weight' => 28,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_project_start_date',
+      'label' => 'Start date',
+      'required' => 0,
+      'settings' => array(
+        'default_value' => 'now',
+        'default_value2' => 'blank',
+        'default_value_code' => '',
+        'default_value_code2' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'date',
+        'settings' => array(
+          'increment' => '15',
+          'input_format' => 'm/d/Y - H:i:s',
+          'input_format_custom' => '',
+          'label_position' => 'above',
+          'repeat_collapsed' => 0,
+          'text_parts' => array(),
+          'year_range' => '-3:+3',
+        ),
+        'type' => 'date_select',
+        'weight' => '6',
       ),
     ),
   );
@@ -1526,6 +1740,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_project_status',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -1566,7 +1783,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_project_status',
       'label' => 'Status',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -1575,7 +1792,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '1',
+        'weight' => '5',
       ),
     ),
   );
@@ -1588,6 +1805,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_project_title',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1626,7 +1846,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_project_title',
       'label' => 'Title',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -1638,7 +1858,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '0',
       ),
     ),
   );
@@ -1697,7 +1917,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '0',
+        'weight' => '1',
       ),
     ),
   );
@@ -1754,7 +1974,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '25',
+        'weight' => '27',
       ),
     ),
   );
@@ -1820,7 +2040,7 @@ Use numbers only (no text).',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '11',
+        'weight' => '16',
       ),
     ),
   );
@@ -1897,7 +2117,7 @@ Use numbers only (no text).',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
@@ -1910,6 +2130,9 @@ Use numbers only (no text).',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
@@ -1919,8 +2142,8 @@ Use numbers only (no text).',
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => 0,
             'vocabulary' => 'vocabulary_5',
+            'parent' => 0,
           ),
         ),
         'profile2_private' => FALSE,
@@ -1946,7 +2169,7 @@ Use numbers only (no text).',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'taxonomy_vocabulary_5',
       'label' => 'Issues',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -1955,7 +2178,7 @@ Use numbers only (no text).',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '9',
+        'weight' => '2',
       ),
     ),
   );
@@ -1971,13 +2194,15 @@ Use numbers only (no text).');
   t('Body (logged in user)');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
-  t('Describe the steps you will take/took to create your project or organization. What kind of impact have you made?');
+  t('Describe the steps you will take/took to create your project or organization.');
   t('Describe your project/organization and how it addresses the problem(s) above.');
   t('Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project?');
   t('Did you do this project with a DoSomething Club?');
   t('DoSomething Award Winner');
   t('Enter the zip codes in which your project made an impact.');
+  t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('Facebook like count');
+  t('Goal');
   t('How Can Others Help? ');
   t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
@@ -1985,12 +2210,14 @@ The content from this field will only be shown to anonymous users.');
   t('Image');
   t('Issues');
   t('Locations');
+  t('Measurable impact');
   t('OPTIONAL - Link DoSomething action guides or fact pages to this project');
   t('Photos');
   t('Project Photo');
   t('Project Type');
   t('Related Campaign or Program');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
+  t('Start date');
   t('Status');
   t('Tell us about the community you are helping and the problem(s) being solved.');
   t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
@@ -1999,6 +2226,7 @@ The content from this field will only be shown to anonymous users.');
   t('Total hours volunteered (to date)');
   t('Video');
   t('Web site link');
+  t('What is the project? Ex. <i>Reduce litter in my neighborhood by 50%.</i>');
   t('What\'s the problem you are trying to solve?');
   t('What\'s your plan of action?');
   t('Why is it important to you?');
