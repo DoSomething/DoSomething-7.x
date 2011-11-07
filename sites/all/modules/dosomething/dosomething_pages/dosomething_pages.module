@@ -16,7 +16,8 @@ function dosomething_pages_menu() {
     'page callback' => 'dosomething_pages_get_causes',
     'access callback' => TRUE,
     // We don't want this in the navigation menu
-    'menu_name' => 'ds-causes',
+    // See dosomething_menu module under hook_menu_alter().
+    'menu_name' => 'ds-main-menu',
   );
   return $items;
 }

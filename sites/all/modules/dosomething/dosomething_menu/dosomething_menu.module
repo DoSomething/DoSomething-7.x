@@ -7,6 +7,21 @@ define('DS_MENU_ISSUES_VID', 5);
 define('DS_MENU_TAXONOMY_MENU_CID', 'ds_menu_taxonomy_listing_');
 
 /**
+ * Implements hook_menu_alter().
+ */
+function dosomething_menu_menu_alter(&$items) {
+  // In order for items to show up in the main-menu properly,
+  // we need them to not be in the navigation menu.
+  // Menu items are automatically added to the navigation
+  // menu if no menu is assigned.
+
+  // Another way to handle this is to set the order of menus
+  // with the variable 'menu_default_active_menus'. 
+  // @see menu_set_active_menu_names 
+  $items['poll']['menu_name'] = 'ds-main-menu'; 
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function dosomething_menu_preprocess_page(&$variables) {
@@ -36,6 +51,7 @@ function dosomething_menu_preprocess_page(&$variables) {
  *  secondary links.
  */
 function dosomething_menu_secondary_links($variables, $term) {
+dsm($variables);
   $secondary_menu_items = dosomething_menu_navigation_links('main-menu', $term);
   if (count($secondary_menu_items)) {
     foreach ($secondary_menu_items as $mlid => &$links) {
@@ -199,6 +215,7 @@ function dosomething_menu_cause_or_issue($variables) {
 function dosomething_menu_taxonomy_listing($variables) {
   $tree = $variables['tree'];
   $term = isset($variables['term']) ? $variables['term'] : NULL;
+  $title = '';
 
   // If this is a taxonomy page, then the menu should have
   // the parent at the top and then all of its children.
@@ -209,7 +226,6 @@ function dosomething_menu_taxonomy_listing($variables) {
     }
   }
   else {
-   $title = '';
     if (isset($tree[$term->tid])) {
       $parent_id = $term->tid;
     }
@@ -224,7 +240,9 @@ function dosomething_menu_taxonomy_listing($variables) {
     }
     if (isset($parent_id)) {
       $tree[$parent_id]['class'][] = 'active';
-      $tree = array($tree[$parent_id]);
+      //$tree = array($tree[$parent_id]);
+      $title = $tree[$parent_id]['data'];
+      $tree = $tree[$parent_id]['children'];
     }
     else {
       foreach ($tree as $item) {
@@ -243,6 +261,7 @@ function dosomething_menu_taxonomy_listing($variables) {
   $items = array(
     '#theme' => 'item_list',
     '#items' => $tree,
+    '#title' => $title,
     '#attributes' => $attributes,
   );
   return $items;
