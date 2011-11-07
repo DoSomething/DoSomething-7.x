@@ -48,10 +48,8 @@ function dosomething_roles_demote_expired_users() {
       if (!dosomething_roles_user_is_staff_member($account->uid)) {
         if ($account->uid > $last_uid || $last_checked_timestamp < $anniversary) {
           // Find what a user's role will be after updating.
-          $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
-          $new_role_weight = array_search($new_role_name, $role_hierarchy);
+          $new_role_name = dosomething_roles_get_member_role($account->uid);
           $current_role_name = dosomething_roles_get_current_role($account->uid);
-          $current_role_weight = array_search($current_role_name, $role_hierarchy);
 
           dosomething_roles_update_role($account->uid);
 
@@ -60,13 +58,12 @@ function dosomething_roles_demote_expired_users() {
             $params = array(
               'new_role' => $new_role_name,
             );
-            drupal_mail('dosomething_roles', 'dosomething-roles-demotio', $account->mail, $language, $params);
+            drupal_mail('dosomething_roles', 'dosomething-roles-demotion', $account->mail, $language, $params);
           }
         }
       }
       variable_set('dosomething_roles_member_demotion_last_timestamp', $anniversary);
       variable_set('dosomething_roles_member_demotion_last_uid', $account->uid);
-      $last_uid = $account->uid;
       $last_checked_timestamp = $anniversary;
     }
   }

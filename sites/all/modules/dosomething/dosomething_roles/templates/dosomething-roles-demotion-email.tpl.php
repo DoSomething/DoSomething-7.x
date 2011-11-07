@@ -5,5 +5,5 @@
  */
 ?>
 
-<p>In your membership has been demoted to <?php print ucwords($variables['new_role']); ?> due to inactivity.</p>
+<p>Your membership has been demoted to <?php print ucwords($variables['new_role']); ?> due to inactivity.</p>
 
