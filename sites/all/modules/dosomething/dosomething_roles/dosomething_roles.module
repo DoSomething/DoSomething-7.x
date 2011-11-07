@@ -20,22 +20,55 @@ function dosomething_roles_cron() {
     dosomething_roles_update_role($data->uid);
   }
 
-  // Get users who have not logged in this past year for possible role regression.
-  // TODO: Get users who have not done any action updates in 1 year, 9 months, 10 months, 11 months
-  // After 1 year, we bump them down
-  // We warn them at the other points.
-  $last_update_inactive = variable_get('dosomething_roles_cron_inactive', 0);
-  $result = db_query_range("SELECT u.uid, u.access FROM {users} u INNER JOIN {users_roles} ur ON (u.uid = ur.uid AND ur.rid IN (:active_member, :member)) WHERE access < UNIX_TIMESTAMP(DATE_SUB(CURRENT_TIMESTAMP(),interval 1 year)) AND access > :last_update_inactive ORDER BY u.access ASC", 0, 100, array(':active_member' => $active_member->rid, ':member' => $member->rid, ':last_update_inactive' => $last_update_inactive));
-  foreach ($result as $data) {
-     dosomething_roles_update_role($data->uid);
-     variable_set('dosomething_roles_cron_inactive', $data->access); 
-  }
-
   // Send notifications for users about to lose membership status.
   for ($month = 3; $month > 0; $month--) {
     // TODO: enable this
     //dosomething_roles_send_demotion_notifications($i);
-    // TODO: Get users whose anniversaries have past and demote them, if necessary.
+  }
+
+  // Get users whose anniversaries have past and demote them, if necessary.
+  // TODO: Test and enable this
+  //dosomething_roles_demote_expired_users();
+}
+
+/**
+ * Update roles for users whose anniversaries have passed.
+ * Note: this should only do 10 at a time based on 
+ * dosomething_roles_get_users_by_anniversary.
+ */
+function dosomething_roles_demote_expired_users() {
+  $last_checked_timestamp = variable_get('dosomething_roles_member_demotion_last_timestamp', 0);
+  $last_uid = variable_get('dosomething_roles_member_demotion_last_uid', 0);
+  $results = dosomething_roles_get_users_by_anniversary($last_checked_timestamp, REQUEST_TIME);
+  if (isset($results['profile2']) && count($results['profile2'])) {
+    foreach ($results['profile2'] as $profile_data) {
+      $profile = profile2_load($profile_data->pid);
+      $account = user_load($profile->uid);
+      $anniversary = dosomething_roles_get_anniversary($account->uid);
+      if (!dosomething_roles_user_is_staff_member($account->uid)) {
+        if ($account->uid > $last_uid || $last_checked_timestamp < $anniversary) {
+          // Find what a user's role will be after updating.
+          $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
+          $new_role_weight = array_search($new_role_name, $role_hierarchy);
+          $current_role_name = dosomething_roles_get_current_role($account->uid);
+          $current_role_weight = array_search($current_role_name, $role_hierarchy);
+
+          dosomething_roles_update_role($account->uid);
+
+          if ($new_role_name != $current_role_name) {
+            global $language;
+            $params = array(
+              'new_role' => $new_role_name,
+            );
+            drupal_mail('dosomething_roles', 'dosomething-roles-demotio', $account->mail, $language, $params);
+          }
+        }
+      }
+      variable_set('dosomething_roles_member_demotion_last_timestamp', $anniversary);
+      variable_set('dosomething_roles_member_demotion_last_uid', $account->uid);
+      $last_uid = $account->uid;
+      $last_checked_timestamp = $anniversary;
+    }
   }
 }
 
@@ -74,7 +107,7 @@ function dosomething_roles_send_demotion_notifications($month) {
       $anniversary = dosomething_roles_get_anniversary($account->uid);
 
       // Don't send the email to the same person twice.
-      if (($account->uid >= $current_uid) && ($anniversary == $last_checked_timestamp)) {
+      if (($account->uid <= $current_uid) && ($anniversary == $last_checked_timestamp)) {
         continue;
       }
       // Don't mess with the roles of staff members.
