@@ -83,3 +83,63 @@
         padding-right: 10px
         a
           color: $black
+
+.ds-pane-news
+  .pane-content
+    padding: 8px 10px 20px 40px
+    background: $gray6 image_url("blog-center-lines.png") bottom no-repeat
+    background-position: 30px 0px
+    p
+      margin-bottom: 0
+    .News-icon,
+    .Celebs-Gone-Good-icon,
+    .Awe-Some-Ones-icon,
+    .DoSomething-Staff-icon
+      position: relative
+      top: 65px
+      left: -13px
+      z-index: 100
+    .News-icon
+      +replace-text-with-dimensions("icn-subnav-news.png")
+    .Celebs-Gone-Good-icon
+      +replace-text-with-dimensions("icn-subnav-celebs.png")
+    .Awe-Some-Ones-icon
+      +replace-text-with-dimensions("icn-subnav-awesomes.png")
+    .DoSomething-Staff-icon
+      +replace-text-with-dimensions("icn-subnav-staff.png")
+    .views-field-created, .views-field-created-1
+      +float-left
+      background
+      background-color: $white
+      background: image_url("bg-blog-date.png") no-repeat
+      width: 41px
+      height: 86px
+      position: absolute
+      margin-left: -24px
+      padding-left: 11px
+      padding-top: 0px
+      .month
+        font-weight: bold
+        text-transform: uppercase
+        font-size: 10px
+        margin-left: -3px
+      .day
+        font-weight: bold
+        font-size: 14px
+      .blog-icon
+        margin-top: 10px
+    .views-field-field-picture img
+      border: 5px $white solid
+    .view-blog-center
+      h2
+        font-size: 16px
+        line-height: 18px
+        margin-bottom: 5px
+        margin-top: 0
+        padding-right: 10px
+        a
+          color: $black
+    .views-field-title,
+    .views-field-body,
+    .read-more-link
+      padding-left: 2.5em
