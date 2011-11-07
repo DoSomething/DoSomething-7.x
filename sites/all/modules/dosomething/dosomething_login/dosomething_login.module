@@ -839,7 +839,7 @@ function dosomething_login_my_somethings() {
         '#attributes' => array(
           'class' => 'inner',
         ),
-        '#children' => t('My Somethings'),
+        '#children' => t('My Current Somethings'),
       ),
     ),
     'list' => array(
@@ -865,7 +865,7 @@ function dosomething_login_clubs() {
     }
   }
   else {
-    $items[] = l(t('Start a club'), '/node/add/club');
+    $items[] = l(t('Start a club'), 'node/add/club');
   }
 
   return array(
