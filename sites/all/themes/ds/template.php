@@ -28,13 +28,15 @@ function ds_preprocess_page(&$variables) {
 
   // load css specific to pages
   // causes landing page
-  if(arg(0) == 'cause' || arg(0) == 'causes') {
+  if (arg(0) == 'cause' || arg(0) == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
   }
-  if(arg(0) == 'awesome-things') {
+  // awesome things landing page
+  if (arg(0) == 'awesome-things') {
     drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
   }
-  if(arg(0) == 'grants') {
+  // grants landing page
+  if (arg(0) == 'grants') {
     drupal_add_css($theme_path . '/css/ds/grants-landing.css');
   }
 }
@@ -43,8 +45,12 @@ function ds_preprocess_node(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
 
   // Action Tip node page
-  if($variables['type'] == 'action_guide') {
+  if ($variables['type'] == 'action_guide') {
     drupal_add_css($theme_path . '/css/ds/page-node-action-guide.css');
+  }
+  // Grant node
+  if ($variables['type'] == 'grants_database') {
+    drupal_add_css($theme_path . '/css/ds/page-node-grant.css');
   }
 }
 
