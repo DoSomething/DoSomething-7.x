@@ -5,3 +5,12 @@
  */
 
 include_once('dosomething_clubs.features.inc');
+
+/**
+ * Implements hook_node_presave().
+ */
+function dosomething_clubs_node_presave($node) {
+  if ($node->type == 'club' && $node->is_new) {
+    $node->title .= ' Do Something Club';
+  }
+}

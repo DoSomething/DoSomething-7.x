@@ -410,12 +410,6 @@ function dosomething_blog_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'blog',
-      'default_value' => array(
-        0 => array(
-          'embed' => '',
-          'value' => '',
-        ),
-      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -476,7 +470,6 @@ function dosomething_blog_field_default_fields() {
         'type' => 'media_generic',
         'weight' => '8',
       ),
-      'widget_type' => 'emvideo_textfields',
     ),
   );
 
