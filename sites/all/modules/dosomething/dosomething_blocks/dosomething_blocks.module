@@ -442,19 +442,23 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
   if (module_exists('fb_social') && $modules['fb_social']) {
     $presets = fb_social_get_presets();
     if (isset($options['fb_social_preset'])) {
-      $element['#facebook'] = dosomething_blocks_fb_social_preset_view($presets[$options['fb_social_preset']], $url);
+      $element['#facebook'] = array('#weight' => 0) + dosomething_blocks_fb_social_preset_view($presets[$options['fb_social_preset']], $url);
     }
   }
   if (module_exists('google_plusone') && $modules['google_plusone']) {
     $button_settings = variable_get('google_plusone_button_settings', array());
     $button_settings['url'] = $url;
+    $element['#google'] = array(
+      '#weight' => 4,
+      '#theme' => 'google_plusone_button',
+    );
     foreach ($button_settings as $key => $value) {
       $element['#google']["#$key"] = $value;
     }
-    $element['#google']['#theme'] = 'google_plusone_button';
   }
   if (module_exists('tweetbutton') && $modules['tweetbutton']) {
     $element['#twitter'] = array(
+      '#weight' => 3,
       '#theme' => 'tweetbutton_display',
       '#tokens' => dosomething_blocks_tweet_prepare($path),
       '#attached' => array(
@@ -468,10 +472,16 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
     );
   }
   if (module_exists('print') && $modules['print']) {
-    $element['#print']['#markup'] = $url ? print_insert_link('print/' . $path) : print_insert_link();
+    $element['#print'] = array(
+      '#weight' => 1,
+      '#markup' => $url ? print_insert_link('print/' . $path) : print_insert_link(),
+    );
   }
   if (module_exists('print_mail') && $modules['print_mail']) {
-    $element['#email']['#markup'] = $url ? print_mail_insert_link('printmail/' . $path) : print_mail_insert_link();
+    $element['#email'] = array(
+      '#weight' => 2,
+      '#markup' => $url ? print_mail_insert_link('printmail/' . $path) : print_mail_insert_link(),
+    );
   }
   return $element;
 }
@@ -542,7 +552,8 @@ function dosomething_blocks_tweet_prepare($path = NULL) {
  *
  * Build render array for easier manipulation on the theme layer.
  */
-function dosomething_blocks_preprocess_dosomething_blocks_social_node_plugins(&$variables) {
+function template_preprocess_dosomething_blocks_social_node_plugins(&$variables) {
+  uasort($variables, 'element_sort');
   foreach (array_filter($variables) as $name => $plugin) {
     $variables['element'][$name] = array(
       '#type' => 'container',
