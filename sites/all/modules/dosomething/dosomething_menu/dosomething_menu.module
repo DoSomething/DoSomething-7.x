@@ -51,7 +51,6 @@ function dosomething_menu_preprocess_page(&$variables) {
  *  secondary links.
  */
 function dosomething_menu_secondary_links($variables, $term) {
-dsm($variables);
   $secondary_menu_items = dosomething_menu_navigation_links('main-menu', $term);
   if (count($secondary_menu_items)) {
     foreach ($secondary_menu_items as $mlid => &$links) {
