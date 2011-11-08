@@ -24,7 +24,16 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     'pipeline' => 'standard',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Logged in user',
+        'keyword' => 'user_2',
+        'name' => 'user',
+        'type' => 'current',
+        'uid' => NULL,
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
   );
   $display = new panels_display;
@@ -43,11 +52,31 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
-    $pane->type = 'ds_my_somethings';
-    $pane->subtype = 'ds_my_somethings';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'compare_users',
+          'settings' => array(
+            'equality' => '1',
+          ),
+          'context' => array(
+            0 => 'context_user_1',
+            1 => 'argument_entity_id:user_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Edit Profile link',
+      'title' => '',
+      'body' => '<a href="/user/%user:uid/edit/main" class="ds-button">EDIT PROFILE</a>',
+      'format' => '3',
+      'substitute' => 1,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -60,8 +89,8 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'middle';
-    $pane->type = 'ds_current_somethings';
-    $pane->subtype = 'ds_current_somethings';
+    $pane->type = 'ds_my_somethings';
+    $pane->subtype = 'ds_my_somethings';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -76,6 +105,23 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $display->panels['middle'][1] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
+    $pane->panel = 'middle';
+    $pane->type = 'ds_current_somethings';
+    $pane->subtype = 'ds_current_somethings';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['middle'][2] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'my_somethings-panel_pane_1';
@@ -92,11 +138,11 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['middle'][2] = 'new-3';
+    $pane->position = 3;
+    $display->content['new-4'] = $pane;
+    $display->panels['middle'][3] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'middle';
     $pane->type = 'ds_past_somethings';
     $pane->subtype = 'ds_past_somethings';
@@ -109,9 +155,9 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
-    $display->content['new-4'] = $pane;
-    $display->panels['middle'][3] = 'new-4';
+    $pane->position = 4;
+    $display->content['new-5'] = $pane;
+    $display->panels['middle'][4] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
