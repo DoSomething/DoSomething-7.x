@@ -327,38 +327,29 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_school',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
-        'nid' => array(
+        'format' => array(
           'columns' => array(
-            'nid' => 'nid',
+            'format' => 'format',
           ),
-          'table' => 'node',
+          'table' => 'filter_format',
         ),
       ),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'format' => array(
+          0 => 'format',
         ),
       ),
-      'module' => 'node_reference',
+      'module' => 'text',
       'settings' => array(
-        'referenceable_types' => array(
-          'article' => 0,
-          'campaign_report_back' => 0,
-          'campaign_sign_up' => 0,
-          'grant_application' => 0,
-          'page' => 0,
-          'scholarship_application' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
-      'type' => 'node_reference',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'campaign_sign_up',
@@ -368,10 +359,10 @@ The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'node_reference',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 6,
+          'type' => 'text_default',
+          'weight' => 9,
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -379,17 +370,14 @@ The content from this field will only be shown to anonymous users.',
       'label' => 'School',
       'required' => 0,
       'settings' => array(
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'node_reference',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'node_reference/autocomplete',
-          'size' => '60',
-        ),
-        'type' => 'node_reference_autocomplete',
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'telwidget',
         'weight' => '2',
       ),
     ),
