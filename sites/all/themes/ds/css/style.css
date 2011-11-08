@@ -1926,7 +1926,7 @@ body.admin-menu {
 }
 
 #main-wrapper {
-  background: url('images/bg-page.png') repeat-y center top;
+  background: #e3e3e3 url('images/bg-page.png') repeat-y center top;
 }
 
 #utility-bar {
@@ -2259,14 +2259,13 @@ nav[role=navigation] a:active {
 }
 
 div[role=main] {
-  background-color: #e3e3e3;
   padding-left: 1.667%;
   padding-right: 1.667%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  margin-top: 0.417em;
+  border-top: 0.417em solid #8e8a86;
   min-height: 400px;
 }
 

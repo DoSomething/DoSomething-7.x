@@ -62,7 +62,7 @@ body
       margin-bottom: 0
 
 #main-wrapper
-  background: image_url("bg-page.png") repeat-y center top
+  background: $c-content-bg image_url("bg-page.png") repeat-y center top
 
 #utility-bar
   background-color: $c-utility-bar-bg
@@ -260,11 +260,10 @@ nav[role=navigation]
   display: none
 
 div[role=main]
-  background-color: $c-content-bg
   padding-left: percentage($s0 / $main-width)
   padding-right: percentage($s0 / $main-width)
   +box-sizing(border-box)
-  margin-top: calc-em(5px, $s0)
+  border-top: calc-em(5px, $s0) solid $background-color
   min-height: 400px
 
 #breadcrumb
