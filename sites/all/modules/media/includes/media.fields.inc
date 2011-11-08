@@ -142,8 +142,9 @@ function media_field_widget_settings_form($field, $instance) {
  * Implements hook_field_widget_form().
  */
 function media_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  $field_settings = $instance['settings'];
-  $widget_settings = $instance['widget']['settings'];
+
+  $field_settings = isset($instance['settings']) ? $instance['settings'] : array();
+  $widget_settings = isset($instance['widget']['settings']) ? $instance['widget']['settings'] : array();
 
   $permission = user_access('edit media');
   if (!$permission) {
