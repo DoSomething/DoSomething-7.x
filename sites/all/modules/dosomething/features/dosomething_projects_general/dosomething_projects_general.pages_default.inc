@@ -61,6 +61,26 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'mid-left';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['mid-left'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'mid-left';
     $pane->type = 'node_content';
     $pane->subtype = 'node_content';
     $pane->shown = TRUE;
@@ -82,11 +102,11 @@ function dosomething_projects_general_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['mid-left'][0] = 'new-1';
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['mid-left'][1] = 'new-2';
     $pane = new stdClass;
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -95,7 +115,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Start a Project',
       'title' => '<none>',
-      'body' => '<a href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
+      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -106,10 +126,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-2'] = $pane;
-    $display->panels['mid-right'][0] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['mid-right'][0] = 'new-3';
     $pane = new stdClass;
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'mid-right';
     $pane->type = 'views';
     $pane->subtype = 'project_related_displays';
@@ -139,13 +159,16 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-3'] = $pane;
-    $display->panels['mid-right'][1] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-right'][1] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'mid-right';
     $pane->type = 'views';
     $pane->subtype = 'project_related_displays';
@@ -174,13 +197,16 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 2;
-    $display->content['new-4'] = $pane;
-    $display->panels['mid-right'][2] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['mid-right'][2] = 'new-5';
     $pane = new stdClass;
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_1';
@@ -191,11 +217,14 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-usergen ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 3;
-    $display->content['new-5'] = $pane;
-    $display->panels['mid-right'][3] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['mid-right'][3] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
