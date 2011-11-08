@@ -117,6 +117,9 @@
 .ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p, .ds-pane-campaign .pane-content p {
   margin-top: 0;
 }
+.ds-pane .pane-content p:last-child, .ds-pane-usergen .pane-content p:last-child, .ds-pane-news .pane-content p:last-child, .ds-pane-top-radius .pane-content p:last-child, .ds-pane-top-right-radius .pane-content p:last-child, .ds-pane-no-radius .pane-content p:last-child, .ds-pane-campaign .pane-content p:last-child {
+  margin-bottom: 0;
+}
 .ds-pane .pane-content h3, .ds-pane-usergen .pane-content h3, .ds-pane-news .pane-content h3, .ds-pane-top-radius .pane-content h3, .ds-pane-top-right-radius .pane-content h3, .ds-pane-no-radius .pane-content h3, .ds-pane-campaign .pane-content h3 {
   color: black;
   margin-top: 0;
