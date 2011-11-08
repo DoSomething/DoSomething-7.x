@@ -905,6 +905,7 @@ function dosomething_login_clubs() {
  * @return array
  */
 function dosomething_login_my_current_somethings($uid) {
+  $items = array();
   // TODO: replace dummy content
   // TODO: As this loads on every page, it would be great to cache
   // and clear cache when webforms are updated or inserted.
