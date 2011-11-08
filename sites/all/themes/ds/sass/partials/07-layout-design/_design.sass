@@ -351,7 +351,7 @@ div[role=main]
       padding: 1px 0 4px
 
 /** Blog Archive Pane **/
-#blog-archives-pane
+.ds-internal-sidebar-flush-right
   background: $gray6
   padding: 20px 0 20px 15px
   margin-right: -15px
@@ -371,6 +371,9 @@ div[role=main]
       font-family: $font-sans
       font-weight: normal
       color: $gray-dark
+
+#blog-archives-pane
+  @extend .ds-internal-sidebar-flush-right
 
 /** Blog Menu**/
 #blog-menu

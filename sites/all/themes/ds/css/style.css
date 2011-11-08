@@ -2398,24 +2398,24 @@ div[role=main] {
 }
 
 /*Blog Archive Pane */
-#blog-archives-pane {
+.ds-internal-sidebar-flush-right, #blog-archives-pane {
   background: #d2d2d2;
   padding: 20px 0 20px 15px;
   margin-right: -15px;
 }
-#blog-archives-pane h2.pane-title {
+.ds-internal-sidebar-flush-right h2.pane-title, #blog-archives-pane h2.pane-title {
   margin-bottom: 18px;
   margin-left: -15px;
   margin-top: -20px;
   line-height: 58px;
 }
-#blog-archives-pane .views-field-title {
+.ds-internal-sidebar-flush-right .views-field-title, #blog-archives-pane .views-field-title {
   margin-bottom: 12px;
   background: url('images/small-arrow-right.png') no-repeat;
   background-position: 0px 3px;
   padding-left: 15px;
 }
-#blog-archives-pane .views-field-title a {
+.ds-internal-sidebar-flush-right .views-field-title a, #blog-archives-pane .views-field-title a {
   margin: 0;
   font-size: 11px;
   font-family: "Trebuchet MS", sans-serif;
