@@ -14,3 +14,339 @@ function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin
     return 'plugins/' . $plugin;
   }
 }
+
+/**
+ * Implements hook_block_view().
+ */
+function dosomething_user_my_somethings_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'become_member':
+      global $user;
+      if ($user->uid) {
+        $block['content'] = dosomething_user_my_somethings_member_block();
+      }
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Member dashboard block for logged in users.
+ */
+function dosomething_user_my_somethings_member_block() {
+  global $user;
+  return array(
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'dosomething_user_my_somethings') . '/js/show-member-items.js',
+      ),
+    ),
+    'name' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-login-user-name',
+        ),
+      ),
+      'name' => array(
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+        '#markup' => check_plain($user->name),
+      ),
+      'role' => array(
+        '#prefix' => '<span class="user-role">( ',
+        '#suffix' => ' )</span>',
+        '#markup' => dosomething_user_my_somethings_user_role(),
+      ),
+    ),
+    'collapsible' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-user-block-collapsible',
+        ),
+      ),
+      'profile' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'dosomething-login-profile',
+          ),
+        ),
+        'completion' => dosomething_user_my_somethings_profile_completion(),
+      ),
+      'somethings' => dosomething_user_my_somethings_my_somethings(),
+      'clubs' => dosomething_user_my_somethings_clubs(),
+    ),
+  );
+}
+
+/**
+ * Markup for how much of the profile is finished.
+ */
+function dosomething_user_my_somethings_profile_completion() {
+  global $user;
+  $ratio = 0;
+  if (module_exists('dosomething_roles')) {
+    $ratio = dosomething_roles_get_user_percentage($user->uid);
+  }
+  
+  return array(
+    'header' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'profile-header',
+        ),
+      ),
+      '#children' => t('My profile: %percent', array('%percent' => number_format($ratio, 0) . '%')) . l('Complete >>', 'user/' . $user->uid . '/edit/main'),
+    ),
+    'percentage' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-login-percentage',
+        ),
+      ),
+      'ratio' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'ratio',
+          ),
+          'data-ratio' => $ratio,
+        ),
+        'inner' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'inner',
+            ),
+            'style' => 'width: ' . $ratio . '%',
+          ),
+          '#children' => $ratio,
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Get markup for My Current Somethings.
+ */
+function dosomething_user_my_somethings_my_somethings() {
+  global $user;
+  $items = array();
+
+  $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_user_my_somethings_my_current_somethings($user->uid));
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h2 class="my-somethings">',
+      '#suffix' => '</h2>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => 'inner',
+        ),
+        '#children' => t('My Current Somethings'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array(
+          'my-somethings',
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Build list of current somethings. These include:
+ *   Campaign sign-ups for which the user has not submitted a report-back (links to campaign report-back page)
+ *   Incomplete grant applications (link to grant application form)
+ *   Projects where status = Idea or Ongoing. (links to project update form)
+ *
+ * @param $uid
+ *  (int) a user id.
+ * @return array
+ */
+function dosomething_user_my_somethings_my_current_somethings($uid) {
+  // TODO: replace dummy content
+  // TODO: As this loads on every page, it would be great to cache
+  // and clear cache when webforms are updated or inserted.
+  $somethings_info = array(
+    'grant_application' => array(
+      'title' => 'field_webform_name',
+      'draft' => TRUE,
+      'statuses' => NULL,
+    ),
+    'project_report' => array(
+      'title' => 'field_project_title',
+      'draft' => FALSE,
+      'statuses' => array('ongoing project', 'project idea'),
+    ),
+  );
+  foreach ($somethings_info as $type => $info) {
+    $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title'], $info['draft'], $info['statuses']);
+  }
+
+  foreach ($somethings as $type => $something) {
+    if (count($something)) {
+      foreach ($something as $submission) {
+        $items[] = l(filter_xss($submission->{$somethings_info[$type]['title'] . '_value'}), 'node/' . $submission->nid . '/submission/' . $submission->sid .'/edit');
+      }
+    }
+  }
+  return $items;
+}
+
+/**
+ * Get the markup for a list of user's clubs.
+ */
+function dosomething_user_my_somethings_clubs() {
+  global $user;
+  $items = array();
+
+  // TODO: It would be nice to cache these memberships.
+  $groups = dosomething_user_my_somethings_get_user_group_memberships($user->uid, 'club');
+  if (count($groups)) {
+    foreach ($groups as $group) {
+     $items[] = l(filter_xss($group->title), 'node/' . $group->nid);
+    }
+  }
+  else {
+    $items[] = l(t('Start a club'), 'node/add/club');
+  }
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h2 class="notifications">',
+      '#suffix' => '</h2>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => 'inner',
+        ),
+        '#children' => t('My Clubs'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array(
+          'notifications',
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Show the user's role.
+ */
+function dosomething_user_my_somethings_user_role($account = NULL) {
+  if (!isset($account)) {
+    global $user;
+    $account = $user;
+  }
+  $roles = $account->roles;
+  $member = user_role_load_by_name('member');
+  if (isset($roles[$member->rid])) {
+    return t('member');
+  }
+  $active_member = user_role_load_by_name('active member');
+  if (isset($roles[$active_member->rid])) {
+    return 'active';
+  }
+  return t('inactive');
+}
+
+/**
+ * Get a list of a user's webform submissions.
+ *
+ * @param $uid
+ *  (int) a user id.
+ * @param $type
+ *  (string) The type of weform submission.
+ * @param $title_field
+ *  (string) The name of the title field for the webform type.
+ * @param $is_draft
+ *  (boolean_ Whether or not the submission is a draft.
+ * @param $statuses
+ *  (array) A list of statuses for filtering on project reports.
+ * @return array
+ */
+function dosomething_user_my_somethings_get_submissions($uid, $type, $title_field, $is_draft = FALSE, $statuses = NULL) {
+  $submissions = array();
+  if (is_array($statuses)) {
+    $available_statuses = array(
+      1 => 'volunteer experience',
+      2 => 'project idea',
+      3 => 'ongoing project',
+      4 => 'completed project',
+    );
+    $statuses = array_keys(array_intersect($available_statuses, $statuses));
+  }
+  try {
+    $query = db_select('webform_submissions', 'ws');
+    $query->innerJoin('node', 'n', 'ws.nid = n.nid');
+    $query->innerJoin('field_revision_' . $title_field, 't', 'ws.sid = t.entity_id');
+    if (is_array($statuses)) {
+     $query->innerJoin('field_revision_field_project_type', 'pt', 'ws.sid = pt.entity_id');
+    }
+    $query->fields('ws', array('sid', 'submitted'));
+    $query->fields('n', array('nid', 'type'));
+    $query->fields('t', array($title_field . '_value'));
+    $query->condition('ws.uid', $uid, '=');
+    $query->condition('n.type', $type, '=');
+    $query->condition('ws.is_draft', (int) $is_draft, '=');
+    $query->condition('t.entity_type', 'webform_submission_entity', '=');
+    if (is_array($statuses)) {
+      $query->condition('pt.entity_type', 'webform_submission_entity', '=');
+      $query->condition('pt.field_project_type_value', $statuses, 'IN');
+    }
+    $results = $query->execute();
+    while ($result = $results->fetchObject()) {
+      $submissions[$result->sid] = $result;
+    }
+  }
+  catch (Exception $e) {
+    return NULL;
+  }
+  return $submissions;
+}
+
+/**
+ * Get a list of group memberships for a user based on node type.
+ *  of group.  This assumes that the group is a node and the membership
+ *  is for a user.
+ */
+function dosomething_user_my_somethings_get_user_group_memberships($uid, $node_type) {
+  if (!module_exists('og')) {
+    continue;
+  }
+  // There doesn't seem to be an og function to do exactly what we want
+  // so we have our own.
+  $groups = array();
+  $query = db_select('og_membership', 'm');
+  $query->innerJoin('og', 'o', 'o.gid = m.gid');
+  $query->innerJoin('node', 'n', 'o.etid = n.nid');
+  $query->fields('o', array('gid', 'etid'));
+  $query->fields('n', array('nid', 'title'));
+  $query->condition('o.entity_type', 'node', '=');
+  $query->condition('m.etid', $uid, '=');
+  $query->condition('n.type', $node_type, '=');
+  $query->condition('o.state', OG_STATE_ACTIVE);
+  $results = $query->execute();
+  while ($result = $results->fetchObject()) {
+    $groups[$result->etid] = $result;
+  }
+  return $groups;
+}
+
