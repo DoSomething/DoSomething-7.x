@@ -39,6 +39,10 @@ function ds_preprocess_page(&$variables) {
   if (arg(0) == 'grants') {
     drupal_add_css($theme_path . '/css/ds/grants-landing.css');
   }
+  // members only landing page
+  if (arg(0) == 'members-only') {
+    drupal_add_css($theme_path . '/css/ds/members-only-landing.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {

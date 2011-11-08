@@ -1,0 +1,21 @@
+@import setup
+
+.pane-content
+  .block-pair
+    +inline-block
+    height: 55px
+    width: 33%
+    background-position: 50% 50%
+    &:nth-of-type(even)
+      background: image_url('bg-toparrowblock-dark.png') no-repeat
+    &:nth-of-type(odd)
+      background: image_url('bg-toparrowblock-light.png') no-repeat
+  a
+    color: $white
+    cursor: pointer
+    display: block
+    margin-top: 20px
+    text-align: center
+    &:visited,
+    &:hover
+      color: $white

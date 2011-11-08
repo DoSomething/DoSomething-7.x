@@ -1,0 +1,48 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.pane-content .block-pair {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  height: 55px;
+  width: 33%;
+  background-position: 50% 50%;
+}
+.pane-content .block-pair {
+  *display: inline;
+}
+.pane-content .block-pair:nth-of-type(even) {
+  background: url('../images/bg-toparrowblock-dark.png') no-repeat;
+}
+.pane-content .block-pair:nth-of-type(odd) {
+  background: url('../images/bg-toparrowblock-light.png') no-repeat;
+}
+.pane-content a {
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+.pane-content a:visited, .pane-content a:hover {
+  color: white;
+}

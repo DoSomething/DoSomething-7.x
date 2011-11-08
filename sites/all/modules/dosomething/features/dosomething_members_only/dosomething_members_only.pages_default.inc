@@ -218,20 +218,24 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
       'admin_title' => 'Members Only Blocks',
       'title' => '',
       'body' => '
-        <ul>
-          <li>MySomethings [logged in: mySomethings page, not logged in: access denied page]</li>
-          <li>What is membership [standard content page]</li>
-          <li>How to become a member [standard content page]</li>
-        </ul>
-        <ul>
-          <li>Membership benefits [standard content page]</li>
-          <li>Grants [Grants page]</li>
-          <li><a href="/scholarships">Scholarships</a></li>
-        </ul>
-          <ul>
-          <li><a href="/club-hub">Club Hub</a></li>
-          <li>FAQs [standard content page]</li>
-        </ul>
+        <div class="block-pair">
+          <a>How to Become a Member</a>
+        </div>
+        <div class="block-pair">
+          <a>Member Benefits</a>
+        </div>
+        <div class="block-pair">
+          <a>Membership Levels</a>
+        </div>
+        <div class="block-pair">
+          <a>My Somethings</a>
+        </div>
+        <div class="block-pair">
+          <a>My Profile</a>
+        </div>
+        <div class="block-pair">
+          <a>FAQ</a>
+        </div>
       ',
       'format' => '3',
       'substitute' => TRUE,
