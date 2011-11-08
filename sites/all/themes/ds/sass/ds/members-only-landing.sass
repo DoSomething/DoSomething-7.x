@@ -3,13 +3,20 @@
 .pane-content
   .block-pair
     +inline-block
-    height: 55px
-    width: 33%
-    background-position: 50% 50%
+    background: $gray2 image_url('triangle-mask-up.png') no-repeat center top
+    color: $white
+    padding: calc-em(16px, $s0) calc-em(12px, $s0) calc-em(8px, $s0)
+    position: relative
+    height: calc-em(58px, $s0)
+    margin-top: calc-em(-1px, $s0)
+    overflow: hidden
+    &:nth-of-type(3n+3)
+      margin-right: 0
+      float: right
+    &:nth-of-type(3n+4)
+      clear: both
     &:nth-of-type(even)
-      background: image_url('bg-toparrowblock-dark.png') no-repeat
-    &:nth-of-type(odd)
-      background: image_url('bg-toparrowblock-light.png') no-repeat
+      background-color: $gray
   a
     color: $white
     cursor: pointer
