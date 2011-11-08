@@ -316,7 +316,7 @@ class Unfuddle {
 
     $xml = new SimpleXMLElement('<ticket></ticket>');
     $xml->addChild('summary', $summary);
-    $xml->addChild('description', '<![CDATA[' . $description . ']]>');
+    $xml->addChild('description', $description);
     foreach ($fields as $field => $data) {
       $xml->addChild($field, $data);
     }

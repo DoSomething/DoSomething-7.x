@@ -39,6 +39,9 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
         break;
     }
   }
+  $fields['description-format'] = 'plain';
+  $fields['assignee-id'] = 48329;
+  $fields['milestone-id'] = 357;
 }
 
 /**
