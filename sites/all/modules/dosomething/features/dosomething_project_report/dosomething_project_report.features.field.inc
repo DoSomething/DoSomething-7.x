@@ -691,6 +691,121 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-project_report-field_locations'
+  $fields['webform_submission_entity-project_report-field_locations'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_locations',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'lid' => array(
+          0 => 'lid',
+        ),
+      ),
+      'module' => 'location_cck',
+      'settings' => array(
+        'gmap_macro' => '[gmap ]',
+        'gmap_marker' => 'drupal',
+        'location_settings' => array(
+          'display' => array(
+            'hide' => array(
+              'additional' => 0,
+              'city' => 0,
+              'coords' => 0,
+              'country' => 0,
+              'country_name' => 0,
+              'locpick' => 0,
+              'map_link' => 0,
+              'name' => 0,
+              'postal_code' => 0,
+              'province' => 0,
+              'province_name' => 0,
+              'street' => 0,
+            ),
+          ),
+          'form' => array(
+            'fields' => array(
+              'additional' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '6',
+              ),
+              'city' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '8',
+              ),
+              'country' => array(
+                'collect' => '1',
+                'default' => 'us',
+                'weight' => '14',
+              ),
+              'locpick' => array(
+                'collect' => '0',
+                'weight' => '20',
+              ),
+              'name' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '2',
+              ),
+              'postal_code' => array(
+                'collect' => '2',
+                'default' => '',
+                'weight' => '12',
+              ),
+              'province' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '10',
+              ),
+              'street' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '4',
+              ),
+            ),
+          ),
+        ),
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'location',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'location_cck',
+          'settings' => array(),
+          'type' => 'location_default',
+          'weight' => 16,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_locations',
+      'label' => 'Locations',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'location_cck',
+        'settings' => array(),
+        'type' => 'location',
+        'weight' => '18',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-project_report-field_num_people_impacted'
   $fields['webform_submission_entity-project_report-field_num_people_impacted'] = array(
     'field_config' => array(
@@ -1732,71 +1847,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_project_status'
-  $fields['webform_submission_entity-project_report-field_project_status'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_status',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'Idea',
-          1 => 'Ongoing',
-          2 => 'Completed',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => array(
-        0 => array(
-          'value' => '0',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '23',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_status',
-      'label' => 'Status',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-project_report-field_project_title'
   $fields['webform_submission_entity-project_report-field_project_title'] = array(
     'field_config' => array(
@@ -2142,8 +2192,8 @@ Use numbers only (no text).',
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'vocabulary' => 'vocabulary_5',
             'parent' => 0,
+            'vocabulary' => 'vocabulary_5',
           ),
         ),
         'profile2_private' => FALSE,
@@ -2218,7 +2268,6 @@ The content from this field will only be shown to anonymous users.');
   t('Related Campaign or Program');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
   t('Start date');
-  t('Status');
   t('Tell us about the community you are helping and the problem(s) being solved.');
   t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
   t('The content from this field will only be shown to logged in users.');
