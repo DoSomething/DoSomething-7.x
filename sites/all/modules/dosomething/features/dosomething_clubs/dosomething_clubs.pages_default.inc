@@ -16,7 +16,10 @@ function dosomething_clubs_default_page_manager_pages() {
   $page->admin_title = 'Clubs';
   $page->admin_description = 'Search results page for Clubs.';
   $page->path = 'clubs';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
