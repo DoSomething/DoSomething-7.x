@@ -144,23 +144,23 @@
   color: black;
 }
 
-.ds-pane-news .pane-content {
+.view-display-id-panel_pane_1 {
   background: #d2d2d2;
   padding: 8px 0 20px 0 !important;
 }
-.ds-pane-news .pane-content p {
+.view-display-id-panel_pane_1 p {
   margin-bottom: 0;
   padding-right: 10px;
 }
-.ds-pane-news .pane-content .News-icon,
-.ds-pane-news .pane-content .Celebs-Gone-Good-icon,
-.ds-pane-news .pane-content .Awe-Some-Ones-icon,
-.ds-pane-news .pane-content .DoSomething-Staff-icon {
+.view-display-id-panel_pane_1 .News-icon,
+.view-display-id-panel_pane_1 .Celebs-Gone-Good-icon,
+.view-display-id-panel_pane_1 .Awe-Some-Ones-icon,
+.view-display-id-panel_pane_1 .DoSomething-Staff-icon {
   position: relative;
   top: 65px;
   z-index: 100;
 }
-.ds-pane-news .pane-content .News-icon {
+.view-display-id-panel_pane_1 .News-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -170,7 +170,7 @@
   width: 16px;
   height: 18px;
 }
-.ds-pane-news .pane-content .Celebs-Gone-Good-icon {
+.view-display-id-panel_pane_1 .Celebs-Gone-Good-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -180,7 +180,7 @@
   width: 23px;
   height: 17px;
 }
-.ds-pane-news .pane-content .Awe-Some-Ones-icon {
+.view-display-id-panel_pane_1 .Awe-Some-Ones-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -190,7 +190,7 @@
   width: 26px;
   height: 18px;
 }
-.ds-pane-news .pane-content .DoSomething-Staff-icon {
+.view-display-id-panel_pane_1 .DoSomething-Staff-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -200,7 +200,7 @@
   width: 21px;
   height: 16px;
 }
-.ds-pane-news .pane-content .views-field-created, .ds-pane-news .pane-content .views-field-created-1 {
+.view-display-id-panel_pane_1 .views-field-created, .view-display-id-panel_pane_1 .views-field-created-1 {
   display: inline;
   float: left;
   background-color: white;
@@ -212,42 +212,42 @@
   padding-left: 11px;
   padding-top: 0;
 }
-.ds-pane-news .pane-content .views-field-created .month, .ds-pane-news .pane-content .views-field-created-1 .month {
+.view-display-id-panel_pane_1 .views-field-created .month, .view-display-id-panel_pane_1 .views-field-created-1 .month {
   font-weight: bold;
   font-size: 10px;
   margin-left: -3px;
   text-transform: uppercase;
 }
-.ds-pane-news .pane-content .views-field-created .day, .ds-pane-news .pane-content .views-field-created-1 .day {
+.view-display-id-panel_pane_1 .views-field-created .day, .view-display-id-panel_pane_1 .views-field-created-1 .day {
   font-weight: bold;
   font-size: 14px;
 }
-.ds-pane-news .pane-content .views-field-created .blog-icon, .ds-pane-news .pane-content .views-field-created-1 .blog-icon {
+.view-display-id-panel_pane_1 .views-field-created .blog-icon, .view-display-id-panel_pane_1 .views-field-created-1 .blog-icon {
   margin-top: 10px;
 }
-.ds-pane-news .pane-content .views-field-field-picture img {
+.view-display-id-panel_pane_1 .views-field-field-picture img {
   border: 5px white solid;
 }
-.ds-pane-news .pane-content .view-blog-center h2 {
+.view-display-id-panel_pane_1 .view-blog-center h2 {
   font-size: 16px;
   line-height: 18px;
   margin-bottom: 5px;
   margin-top: 0;
   padding-right: 10px;
 }
-.ds-pane-news .pane-content .view-blog-center h2 a {
+.view-display-id-panel_pane_1 .view-blog-center h2 a {
   color: black;
 }
-.ds-pane-news .pane-content .views-field-title,
-.ds-pane-news .pane-content .views-field-body,
-.ds-pane-news .pane-content .read-more-link {
+.view-display-id-panel_pane_1 .views-field-title,
+.view-display-id-panel_pane_1 .views-field-body,
+.view-display-id-panel_pane_1 .read-more-link {
   padding-left: 3.5em;
 }
-.ds-pane-news .pane-content .views-field-nothing {
+.view-display-id-panel_pane_1 .views-field-nothing {
   display: inline;
   float: right;
 }
-.ds-pane-news .pane-content .views-field-ds-social-plugins {
+.view-display-id-panel_pane_1 .views-field-ds-social-plugins {
   background: url('../images/bg-polls-divider-right.png');
   background-position: right top;
   background-repeat: no-repeat;
