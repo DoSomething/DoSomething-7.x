@@ -201,6 +201,11 @@ function dosomething_roles_update_role($uid) {
   global $language;
   $account = user_load($uid);
 
+  // Don't make the user a full member if they are currently pendig.
+  if (in_array('pending member', $account->roles)) {
+    return;
+  }
+
   if (dosomething_roles_user_is_staff_member($account)) {
     return;
   }
