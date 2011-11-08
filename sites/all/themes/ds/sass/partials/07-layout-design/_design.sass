@@ -535,30 +535,35 @@ iframe
     bottom: 1px solid $gray-lighter3
   min-height: 57px
   margin-bottom: $kit-baseline
-  position: relative
   .facebook-plugin, .google-plugin, .twitter-plugin, .print-plugin, .email-plugin
-    // float: right
-    // margin-right: 8px
-    position: absolute
-    bottom: 0
   .facebook-plugin
-    left: 0
+    width: 100%
+    max-width: 300px
+    float: left
+  .wrapper
+    width: 100%
+    width: auto
+    max-width: 300px
+    float: right
+    // position: relative
+  .google-plugin, .twitter-plugin, .print-plugin, .email-plugin
+    float: left
+    margin-right: 8px
+  .google-plugin, .twitter-plugin
+    // position: relative
+
   .google-plugin
-    right: 115px
-    bottom: -5px
   .twitter-plugin
-    right: 54px
-    bottom: -1px
+  .print_html, .print_mail, .print_pdf
+    margin-left: 0
   .email-plugin
-    right: 27px
-    bottom: -14px
     a
       +replace-text-with-dimensions('social-email.png')
       display: block
   .print-plugin
-    +replace-text-with-dimensions('social-print.png')
-    display: block
-    right: 0
-    bottom: 3px
+    margin-right: 0
+    a
+      +replace-text-with-dimensions('social-print.png')
+      display: block
 
 
