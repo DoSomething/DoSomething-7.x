@@ -29,7 +29,8 @@ function dosomething_user_my_somethings_ds_my_somethings_content_type_render($su
     if ($member = dosomething_user_my_somethings_role($account)) {
       $block->content .= '<div><span class="label">' . t('Member Status:') . '</span>' . $member . '</div>';
     }
-    $block->content .= '<div><span class="label">' . t('School:') .'</span>' . '' . '</div>';
+    // TODO: add school info.
+    //$block->content .= '<div><span class="label">' . t('School:') .'</span>' . '' . '</div>';
     $block->content .= '<div><span class="label">' . t('Member Since:') .'</span>' . date('m/Y', $account->created) . '</div>';
   }
   else {

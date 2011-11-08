@@ -57,6 +57,61 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['middle'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'middle';
+    $pane->type = 'ds_current_somethings';
+    $pane->subtype = 'ds_current_somethings';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['middle'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'middle';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'my_somethings-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'arguments' => array(
+        'etid' => '%user:uid',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['middle'][2] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
+    $pane->panel = 'middle';
+    $pane->type = 'ds_past_somethings';
+    $pane->subtype = 'ds_past_somethings';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $display->content['new-4'] = $pane;
+    $display->panels['middle'][3] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
