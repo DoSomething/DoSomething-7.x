@@ -19,7 +19,7 @@
  */
 class views_plugin_style extends views_plugin {
   /**
-   * Store all availible tokens row rows.
+   * Store all available tokens row rows.
    */
   var $row_tokens = array();
   /**
@@ -252,7 +252,7 @@ class views_plugin_style extends views_plugin {
           'options' => $this->options,
           'rows' => $rows,
           'title' => $title)
-        );
+      );
     }
     unset($this->view->row_index);
     return $output;

@@ -31,9 +31,26 @@ function views_ui_get_admin_css() {
   $themes = list_themes();
   $theme_key = $GLOBALS['theme'];
   while ($theme_key) {
-    $list[$module_path . "/css/views-admin.$theme_key.css"] = array(
-      'group' => CSS_THEME,
-    );
+    // Try to find the admin css file for non-core themes.
+    if (!in_array($theme_key, array('garland', 'seven', 'bartik'))) {
+      $theme_path = drupal_get_path('theme', $theme_key);
+      // First search in the css directory, then in the root folder of the theme.
+      if (file_exists($theme_path . "/css/views-admin.$theme_key.css")) {
+        $list[$theme_path . "/css/views-admin.$theme_key.css"] = array(
+          'group' => CSS_THEME,
+        );
+      }
+      else if (file_exists($theme_path . "/views-admin.$theme_key.css")) {
+        $list[$theme_path . "/views-admin.$theme_key.css"] = array(
+          'group' => CSS_THEME,
+        );
+      }
+    }
+    else {
+      $list[$module_path . "/css/views-admin.$theme_key.css"] = array(
+        'group' => CSS_THEME,
+      );
+    }
     $theme_key = isset($themes[$theme_key]->base_theme) ? $themes[$theme_key]->base_theme : '';
   }
   // Views contains style overrides for the following modules
@@ -2476,7 +2493,7 @@ function views_ui_standard_submit($form, &$form_state) {
   // these changes apply to.
   if ($revert) {
     // If it's revert just change the override and return.
-    $display = $form_state['view']->display[$form_state['display_id']];
+    $display = &$form_state['view']->display[$form_state['display_id']];
     $display->handler->options_override($form, $form_state);
 
     // Don't execute the normal submit handling but still store the changed view into cache.
@@ -2490,7 +2507,7 @@ function views_ui_standard_submit($form, &$form_state) {
   elseif ($was_defaulted && !$is_defaulted) {
     // We were using the default display's values, but we're now overriding
     // the default display and saving values specific to this display.
-    $display = $form_state['view']->display[$form_state['display_id']];
+    $display = &$form_state['view']->display[$form_state['display_id']];
     $display->handler->options_override($form, $form_state);
     $display->handler->options_submit($form, $form_state);
   }
@@ -2499,7 +2516,7 @@ function views_ui_standard_submit($form, &$form_state) {
     // to go back to the default display.
     // Overwrite the default display with the current form values, and make
     // the current display use the new default values.
-    $display = $form_state['view']->display[$form_state['display_id']];
+    $display = &$form_state['view']->display[$form_state['display_id']];
     $display->handler->options_override($form, $form_state);
     $display->handler->options_submit($form, $form_state);
   }
@@ -2517,7 +2534,7 @@ function views_ui_standard_override_values($form, $form_state) {
   // Make sure the dropdown exists in the first place.
   if (isset($form_state['values']['override']['dropdown'])) {
     // #default_value is used to determine whether it was the default value or not.
-    // So the availible options are: $display, 'default' and 'default_revert', not 'defaults'.
+    // So the available options are: $display, 'default' and 'default_revert', not 'defaults'.
     $was_defaulted = ($form['override']['dropdown']['#default_value'] === 'defaults');
     $is_defaulted = ($form_state['values']['override']['dropdown'] === 'default');
     $revert = ($form_state['values']['override']['dropdown'] === 'default_revert');
