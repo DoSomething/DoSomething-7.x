@@ -75,7 +75,15 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
 
     //Null Mappings
     //$this->addUnmigratedSources(array(''));
-    $this->addUnmigratedDestinations(array('data_how_did_you_hear_about_us', 'data_birth_date', 'data_school', 'data_school_zip_code', 'field_webform_birthdate', 'field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array(
+      'data_how_did_you_hear_about_us',
+      'data_birth_date', 'data_school',
+      'data_school_zip_code',
+      'field_webform_birthdate',
+      'field_webform_school',
+      'field_webform_school_zip',
+      'field_webform_grant_ref',
+    ));
   }
 }
 
@@ -124,9 +132,13 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_email', 'title');
     $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
-  
+
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array(
+      'field_webform_school',
+      'field_webform_school_zip',
+      'field_webform_grant_ref',
+    ));
   }
 }
 
@@ -188,10 +200,14 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_high_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_college_if_applicable', 'field_your_college_if_applicabl');
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
-  
+
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array(
+      'field_webform_school',
+      'field_webform_school_zip',
+      'field_webform_grant_ref',
+    ));
   }
 }
 /*
