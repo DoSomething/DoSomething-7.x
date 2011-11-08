@@ -56,15 +56,15 @@ function dosomething_user_my_somethings_ds_past_somethings_content($uid) {
   }  
 
   // Find a user's projects where status is completed.
-  $projects = db_query("SELECT w.sid, t.field_project_title_value FROM {webform_submissions} w 
-                      INNER JOIN {field_data_field_project_status} s ON w.sid = s.entity_id
+  $projects = db_query("SELECT w.nid, w.sid, t.field_project_title_value FROM {webform_submissions} w 
+                      INNER JOIN {field_data_field_project_type} s ON w.sid = s.entity_id
                       INNER JOIN {field_data_field_project_title} t ON w.sid = t.entity_id
-                      WHERE w.uid = :uid AND w.bundle = 'project_report' AND w.nid = '704011' 
-                      AND s.field_project_status_value = 2", array(':uid' => $uid))->fetchAll(); 
+                      WHERE w.uid = :uid AND w.bundle = 'project_report' 
+                      AND s.field_project_type_value = 4", array(':uid' => $uid))->fetchAll(); 
   foreach ($projects as $project) {
     $links[] = array(
       'title' => $project->field_project_title_value,
-      'link' => l('View', 'node/704011/submission/' . $project->sid),
+      'link' => l('View', 'node/' . $project->nid . '/submission/' . $project->sid),
     );
   } 
 
