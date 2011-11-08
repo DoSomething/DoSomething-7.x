@@ -217,22 +217,22 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
     $pane->configuration = array(
       'admin_title' => 'Members Only Blocks',
       'title' => '',
-      'body' => '<table>
-  <tr>
-  <td>MySomethings [logged in: mySomethings page, not logged in: access denied page]</td>
-  <td>What is membership [standard content page]</td>
-  <td>How to become a member [standard content page]</td>
-  </tr>
-  <tr>
-  <td>Membership benefits [standard content page]</td>
-  <td>Grants [Grants page]</td>
-  <td><a href="/scholarships">Scholarships</a></td>
-  </tr>
-  <tr>
-  <td><a href="/club-hub">Club Hub</a></td>
-  <td>FAQs [standard content page]</td>
-  </tr>
-  </table>',
+      'body' => '
+        <ul>
+          <li>MySomethings [logged in: mySomethings page, not logged in: access denied page]</li>
+          <li>What is membership [standard content page]</li>
+          <li>How to become a member [standard content page]</li>
+        </ul>
+        <ul>
+          <li>Membership benefits [standard content page]</li>
+          <li>Grants [Grants page]</li>
+          <li><a href="/scholarships">Scholarships</a></li>
+        </ul>
+          <ul>
+          <li><a href="/club-hub">Club Hub</a></li>
+          <li>FAQs [standard content page]</li>
+        </ul>
+      ',
       'format' => '3',
       'substitute' => TRUE,
     );
