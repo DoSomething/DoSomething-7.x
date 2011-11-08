@@ -1926,7 +1926,8 @@ body.admin-menu {
 }
 
 #main-wrapper {
-  background: #e3e3e3 url('images/bg-page.png') repeat-y center top;
+  background: url('images/bg-page.png') repeat-y center top;
+  background-color: #e3e3e3;
 }
 
 #utility-bar {
