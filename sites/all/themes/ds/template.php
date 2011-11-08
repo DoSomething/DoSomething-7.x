@@ -26,21 +26,27 @@ function ds_preprocess_page(&$variables) {
   drupal_add_js($theme_path . '/js/ds-select.js', array('scope' => 'footer'));
 
   // load css specific to pages
+  // Only call arg(0) once.
+  $arg0 = arg(0);
   // causes landing page
   if (arg(0) == 'cause' || arg(0) == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
   }
   // awesome things landing page
-  if (arg(0) == 'awesome-things') {
+  if ($arg0 == 'awesome-things') {
     drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
   }
   // grants landing page
-  if (arg(0) == 'grants') {
+  if ($arg0 == 'grants') {
     drupal_add_css($theme_path . '/css/ds/grants-landing.css');
   }
   // members only landing page
-  if (arg(0) == 'members-only') {
+  if ($arg0 == 'members-only') {
     drupal_add_css($theme_path . '/css/ds/members-only-landing.css');
+  }
+  // Why Become a Member page.
+  if ($arg0 == 'why-become-a-member') {
+    drupal_add_css($theme_path . '/css/ds/dosomething-members-only.css');
   }
 }
 
