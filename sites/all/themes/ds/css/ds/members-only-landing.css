@@ -25,21 +25,14 @@
   *vertical-align: auto;
   background: #8e8a86 url('../images/triangle-mask-up.png') no-repeat center top;
   color: white;
-  padding: 1.333em 1em 0.667em;
-  position: relative;
-  height: 4.833em;
+  height: 3.75em;
   margin-top: -0.083em;
   overflow: hidden;
+  padding: 1.333em 1em 0.667em;
+  width: 29%;
 }
 .pane-content .block-pair {
   *display: inline;
-}
-.pane-content .block-pair:nth-of-type(3n+3) {
-  margin-right: 0;
-  float: right;
-}
-.pane-content .block-pair:nth-of-type(3n+4) {
-  clear: both;
 }
 .pane-content .block-pair:nth-of-type(even) {
   background-color: #5f5c58;
@@ -48,7 +41,7 @@
   color: white;
   cursor: pointer;
   display: block;
-  margin-top: 20px;
+  margin-top: 1em;
   text-align: center;
 }
 .pane-content a:visited, .pane-content a:hover {
