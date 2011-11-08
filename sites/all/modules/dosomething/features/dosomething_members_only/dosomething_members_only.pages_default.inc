@@ -85,15 +85,21 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Static Page Content',
       'title' => '',
-      'body' => '<a href="/" title="Grants">Grants</a>
-<a href="/scholarships" title="Scholarships">Scholarships</a>
-<a href="/" title="Clubs">Clubs</a>
-
+      'body' => '<h2>Grants</h2>
 Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum velit nec est. Quisque posuere, purus sit amet malesuada blandit, sapien sapien auctor arcu, sed pulvinar felis mi sollicitudin tortor. Maecenas volutpat, nisl et dignissim pharetra, urna lectus ultrices est, vel pretium pede turpis id velit. Aliquam sagittis magna in felis egestas rutrum. Proin wisi libero, vestibulum eget, pulvinar nec, suscipit ut, mi. Integer in arcu ultricies leo dapibus ultricies. Sed rhoncus lobortis dolor. Suspendisse dolor. Mauris sapien velit, pulvinar non, rutrum non, consectetuer eget, metus. Morbi tincidunt lorem at urna. Etiam porta. Ut mauris. Phasellus tristique rhoncus magna. Nam tincidunt consequat urna. Sed tempor.
 
+<h2>Scholarships</h2>
 Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum velit nec est. Quisque posuere, purus sit amet malesuada blandit, sapien sapien auctor arcu, sed pulvinar felis mi sollicitudin tortor. Maecenas volutpat, nisl et dignissim pharetra, urna lectus ultrices est, vel pretium pede turpis id velit. Aliquam sagittis magna in felis egestas rutrum. Proin wisi libero, vestibulum eget, pulvinar nec, suscipit ut, mi. Integer in arcu ultricies leo dapibus ultricies. Sed rhoncus lobortis dolor. Suspendisse dolor. Mauris sapien velit, pulvinar non, rutrum non, consectetuer eget, metus. Morbi tincidunt lorem at urna. Etiam porta. Ut mauris. Phasellus tristique rhoncus magna. Nam tincidunt consequat urna. Sed tempor.
 
-Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum velit nec est. Quisque posuere, purus sit amet malesuada blandit, sapien sapien auctor arcu, sed pulvinar felis mi sollicitudin tortor. Maecenas volutpat, nisl et dignissim pharetra, urna lectus ultrices est, vel pretium pede turpis id velit. Aliquam sagittis magna in felis egestas rutrum. Proin wisi libero, vestibulum eget, pulvinar nec, suscipit ut, mi. Integer in arcu ultricies leo dapibus ultricies. Sed rhoncus lobortis dolor. Suspendisse dolor. Mauris sapien velit, pulvinar non, rutrum non, consectetuer eget, metus. Morbi tincidunt lorem at urna. Etiam porta. Ut mauris. Phasellus tristique rhoncus magna. Nam tincidunt consequat urna. Sed tempor.',
+<h2>Clubs</h2>
+<ul>
+<li>\'The Dormouse is asleep again,\' said the Hatter, and he poured a little  hot tea upon its nose</li>
+<li> The Dormouse shook its head impatiently, and said, without opening its  eyes, \'Of course, of course; just what I was going to remark myself</li>
+<li>\' \'Have you guessed the riddle yet?\' the Hatter said, turning to Alice  again</li>
+<li> \'No, I give it up,\' Alice replied: \'what\'s the answer?\' \'I haven\'t the slightest idea,\' said the Hatter</li>
+<li> \'Nor I,\' said the March Hare</li>
+<li> Alice sighed wearily</li>
+</ul>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -116,7 +122,7 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
     $pane->configuration = array(
       'admin_title' => 'Sign Up Button',
       'title' => '',
-      'body' => '<a href="/user/registration" title="Join DoSomething Now">Join Now</a>',
+      'body' => '<a class="ds-button-strong" href="/user/registration" title="Join DoSomething Now">Join Now</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
