@@ -21,16 +21,24 @@
   background-color: #d2d2d2;
   padding: 0;
 }
-.pane-polls-panel-pane-1 .node-poll h2 {
+.pane-polls-panel-pane-1 .pane-content {
+  padding: 0 !important;
+}
+.pane-polls-panel-pane-1 .node-poll .submitted {
+  display: none;
+}
+.pane-polls-panel-pane-1 .node-poll h2,
+.pane-polls-panel-pane-1 .node-poll .field-name-field-description,
+.pane-polls-panel-pane-1 .node-poll .field-name-field-picture {
   margin-left: 20px;
 }
-.pane-polls-panel-pane-1 .node-poll h2 a {
+.pane-polls-panel-pane-1 .node-poll a {
   color: black;
 }
-.pane-polls-panel-pane-1 .node-poll h2 a {
+.pane-polls-panel-pane-1 .node-poll a {
   border-bottom: none;
 }
-.pane-polls-panel-pane-1 .node-poll h2 a:hover {
+.pane-polls-panel-pane-1 .node-poll a:hover {
   border-bottom: none;
 }
 .pane-polls-panel-pane-1 .poll .vote-form {
@@ -43,11 +51,11 @@
   background: url('../images/bg-polls-divider-left.png');
   background-position: left top;
   background-repeat: no-repeat;
-  padding: 0.5em 1em;
+  padding: 0.5em 1.5em;
 }
 .pane-polls-panel-pane-1 .poll input[type="submit"] {
   margin-bottom: 1em;
-  margin-left: 2em;
+  margin-left: 2.5em;
 }
 .pane-polls-panel-pane-1 .poll input[type="radio"] {
   position: static;

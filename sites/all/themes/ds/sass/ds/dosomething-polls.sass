@@ -3,8 +3,15 @@
 .pane-polls-panel-pane-1
   background-color: $gray6
   padding: 0
-  .node-poll h2
-    margin-left: 20px
+  .pane-content
+    padding: 0!important
+  .node-poll
+    .submitted
+      display: none
+    h2,
+    .field-name-field-description,
+    .field-name-field-picture
+      margin-left: 20px
     a
       color: $black
       +remove-link-underlines
@@ -18,10 +25,10 @@
       background: image_url('bg-polls-divider-left.png')
       background-position: left top
       background-repeat: no-repeat
-      padding: 0.5em 1em
+      padding: 0.5em 1.5em
     input[type="submit"]
       margin-bottom: 1em
-      margin-left: 2em
+      margin-left: 2.5em
     input[type="radio"]
       position: static
       top: 0

@@ -538,7 +538,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['field_blog_image']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_blog_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_blog_image']['settings'] = array(
-    'image_style' => 'news_thumbnail',
+    'image_style' => 'blog_thumbnail',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_blog_image']['field_api_classes'] = 0;

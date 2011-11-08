@@ -145,12 +145,12 @@
 }
 
 .ds-pane-news .pane-content {
-  padding: 8px 10px 20px 40px;
-  background: #d2d2d2 url('../images/blog-center-lines.png') bottom no-repeat;
-  background-position: 30px 0px;
+  background: #d2d2d2;
+  padding: 8px 0 20px 0 !important;
 }
 .ds-pane-news .pane-content p {
   margin-bottom: 0;
+  padding-right: 10px;
 }
 .ds-pane-news .pane-content .News-icon,
 .ds-pane-news .pane-content .Celebs-Gone-Good-icon,
@@ -158,7 +158,6 @@
 .ds-pane-news .pane-content .DoSomething-Staff-icon {
   position: relative;
   top: 65px;
-  left: -13px;
   z-index: 100;
 }
 .ds-pane-news .pane-content .News-icon {
@@ -209,15 +208,15 @@
   width: 41px;
   height: 86px;
   position: absolute;
-  margin-left: -24px;
+  margin-left: -12px;
   padding-left: 11px;
-  padding-top: 0px;
+  padding-top: 0;
 }
 .ds-pane-news .pane-content .views-field-created .month, .ds-pane-news .pane-content .views-field-created-1 .month {
   font-weight: bold;
-  text-transform: uppercase;
   font-size: 10px;
   margin-left: -3px;
+  text-transform: uppercase;
 }
 .ds-pane-news .pane-content .views-field-created .day, .ds-pane-news .pane-content .views-field-created-1 .day {
   font-weight: bold;
@@ -242,5 +241,14 @@
 .ds-pane-news .pane-content .views-field-title,
 .ds-pane-news .pane-content .views-field-body,
 .ds-pane-news .pane-content .read-more-link {
-  padding-left: 2.5em;
+  padding-left: 3.5em;
+}
+.ds-pane-news .pane-content .views-field-nothing {
+  display: inline;
+  float: right;
+}
+.ds-pane-news .pane-content .views-field-ds-social-plugins {
+  background: url('../images/bg-polls-divider-right.png');
+  background-position: right top;
+  background-repeat: no-repeat;
 }
