@@ -825,9 +825,10 @@ function dosomething_login_profile_completion() {
 }
 
 function dosomething_login_my_somethings() {
+  global $user;
   $items = array();
 
-  $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_login_my_current_somethings());
+  $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_login_my_current_somethings($user->uid));
   $items[] = array('data' => t('My Opportunities'), 'children' => dosomething_login_my_opportunities());
 
   return array(
@@ -893,10 +894,43 @@ function dosomething_login_clubs() {
   );
 }
 
-function dosomething_login_my_current_somethings() {
+/**
+ * Build list of current somethings. These include:
+ *   Campaign sign-ups for which the user has not submitted a report-back (links to campaign report-back page)
+ *   Incomplete grant applications (link to grant application form)
+ *   Projects where status = Idea or Ongoing. (links to project update form)
+ *
+ * @param $uid
+ *  (int) a user id.
+ * @return array
+ */
+function dosomething_login_my_current_somethings($uid) {
   // TODO: replace dummy content
-  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
-  $items[] = 'Fox Lane book drive | ' . l('Report Back', '<front>');
+  // TODO: As this loads on every page, it would be great to cache
+  // and clear cache when webforms are updated or inserted.
+  $somethings_info = array(
+    'grant_application' => array(
+      'title' => 'field_webform_name',
+      'draft' => TRUE,
+      'statuses' => NULL,
+    ),
+    'project_report' => array(
+      'title' => 'field_project_title',
+      'draft' => FALSE,
+      'statuses' => array('ongoing project', 'project idea'),
+    ),
+  );
+  foreach ($somethings_info as $type => $info) {
+    $somethings[$type] = dosomething_login_get_submissions($uid, $type, $info['title'], $info['draft'], $info['statuses']);
+  }
+
+  foreach ($somethings as $type => $something) {
+    if (count($something)) {
+      foreach ($something as $submission) {
+        $items[] = l(filter_xss($submission->{$somethings_info[$type]['title'] . '_value'}), 'node/' . $submission->nid . '/submission/' . $submission->sid .'/edit');
+      }
+    }
+  }
   return $items;
 }
 
@@ -933,6 +967,62 @@ function dosomething_login_get_user_group_memberships($uid, $node_type) {
     $groups[$result->etid] = $result;
   }
   return $groups;
+}
+
+/**
+ * Get a list of a user's webform submissions.
+ *
+ * @param $uid
+ *  (int) a user id.
+ * @param $type
+ *  (string) The type of weform submission.
+ * @param $title_field
+ *  (string) The name of the title field for the webform type.
+ * @param $is_draft
+ *  (boolean_ Whether or not the submission is a draft.
+ * @param $statuses
+ *  (array) A list of statuses for filtering on project reports.
+ * @return array
+ */
+function dosomething_login_get_submissions($uid, $type, $title_field, $is_draft = FALSE, $statuses = NULL) {
+  $submissions = array();
+  if (is_array($statuses)) {
+    $available_statuses = array(
+      1 => 'volunteer experience',
+      2 => 'project idea',
+      3 => 'ongoing project',
+      4 => 'completed project',
+    );
+    $statuses = array_keys(array_intersect($available_statuses, $statuses));
+  }
+  $query = new EntityFieldQuery;
+  try {
+    $query = db_select('webform_submissions', 'ws');
+    $query->innerJoin('node', 'n', 'ws.nid = n.nid');
+    $query->innerJoin('field_revision_' . $title_field, 't', 'ws.sid = t.entity_id');
+    if (is_array($statuses)) {
+     $query->innerJoin('field_revision_field_project_type', 'pt', 'ws.sid = pt.entity_id');
+    }
+    $query->fields('ws', array('sid', 'submitted'));
+    $query->fields('n', array('nid', 'type'));
+    $query->fields('t', array($title_field . '_value'));
+    $query->condition('ws.uid', $uid, '=');
+    $query->condition('n.type', $type, '=');
+    $query->condition('ws.is_draft', (int) $is_draft, '=');
+    $query->condition('t.entity_type', 'webform_submission_entity', '=');
+    if (is_array($statuses)) {
+      $query->condition('pt.entity_type', 'webform_submission_entity', '=');
+      $query->condition('pt.field_project_type_value', $statuses, 'IN');
+    }
+    $results = $query->execute();
+    while ($result = $results->fetchObject()) {
+      $submissions[$result->sid] = $result;
+    }
+  }
+  catch (Exception $e) {
+    return NULL;
+  }
+  return $submissions;
 }
 
 /**
