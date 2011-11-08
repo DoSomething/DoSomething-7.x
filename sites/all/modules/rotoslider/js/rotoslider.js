@@ -3,17 +3,21 @@
 Drupal.rotoslider = Drupal.rotoslider || {};
 // This is to make sure $.mousemove() doesn't try to restart the animation over and over.
 Drupal.rotoslider.toggle = true;
+Drupal.rotoslider.nav = {};
+Drupal.rotoslider.index = 0;
 
 Drupal.settings.rotoslider = Drupal.settings.rotoslider || {};
 // Which percentage of the slider will trigger animation.
 Drupal.settings.rotoslider.percentage = Drupal.settings.rotoslider.percentage || 0.2;
 // Speed of the animation.
 Drupal.settings.rotoslider.speed = Drupal.settings.rotoslider.speed || 1000;
+// Seconds to wait.
+Drupal.settings.rotoslider.cycle = Drupal.settings.rotoslider.cycle || 0;
 
 Drupal.behaviors.rotoslider = {
   attach: function(context, settings) {
     $('.rotoslider').each(function (index, slider) {
-      $('.rotoslider-nav', $(slider))
+      Drupal.rotoslider.nav = $('.rotoslider-nav', $(slider))
         .hover(function() {
           nav_offsetY = $(this).offset().top;
 
@@ -62,10 +66,23 @@ Drupal.behaviors.rotoslider = {
                 .siblings().removeClass('active');
             });
             return false;
-          })
-        .end();
+          });
+
+      if (settings.rotoslider.cycle > 0) {
+        setInterval("Drupal.rotoslider.rotate()", settings.rotoslider.cycle * 1000);
+      }
     });
   }
+}
+
+Drupal.rotoslider.rotate = function() {
+  if (Drupal.rotoslider.index < Drupal.rotoslider.nav.length - 1) {
+    Drupal.rotoslider.index++;
+  }
+  else {
+    Drupal.rotoslider.index = 0;
+  }
+  Drupal.rotoslider.nav.eq(Drupal.rotoslider.index).click();
 }
 
 Drupal.rotoslider.animateThis = function($elements, final_pos, speed) {

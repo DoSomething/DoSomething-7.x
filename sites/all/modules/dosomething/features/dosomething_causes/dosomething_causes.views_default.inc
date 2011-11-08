@@ -34,7 +34,9 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['style_options']['fields']['title'] = 'name';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_causes_image';
   $handler->display->display_options['style_options']['fields']['text'] = 'description';
+  $handler->display->display_options['style_options']['settings']['cycle'] = '0';
   $handler->display->display_options['style_options']['settings']['link'] = 1;
+  $handler->display->display_options['style_options']['settings']['image'] = 0;
   $handler->display->display_options['style_options']['initial']['default'] = 1;
   $handler->display->display_options['style_options']['initial']['title'] = 'Explore The Issues';
   $handler->display->display_options['style_options']['initial']['image'] = 'http://flickholdr.com/700/250/sunrise';

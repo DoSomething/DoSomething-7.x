@@ -23,6 +23,7 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
       'contains' => array(
         'speed' => array('default' => '1000'),
         'percentage' => array('default' => '20'),
+        'cycle' => array('default' => '0'),
         'link' => array('default' => FALSE),
         'image' => array('default' => FALSE),
       ),
@@ -83,6 +84,13 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
       '#field_suffix' => '%',
       '#size' => 2,
       '#default_value' => $this->options['settings']['percentage'],
+    );
+    $form['settings']['cycle'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Cycle speed'),
+      '#field_suffix' => 'seconds',
+      '#size' => 2,
+      '#default_value' => $this->options['settings']['cycle'],
     );
     $form['settings']['link'] = array(
       '#type' => 'checkbox',

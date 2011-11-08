@@ -1,6 +1,7 @@
 $height: 390px
 $width: 715px
 $sidebar: 188px
+$arrow-width: 220px
 
 @import rotoslider
 
@@ -18,6 +19,9 @@ $sidebar: 188px
         repeat: no-repeat
       height: $description-height
       width: $width
+      .heading,
+      .text
+        width: $width - $arrow-width
   .rotoslider-menu
     height: $image-nav-height
   .rotoslider-nav

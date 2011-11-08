@@ -18,6 +18,9 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     elseif ($name == 'speed') {
       $settings[$name] = (int) $setting;
     }
+    elseif ($name == 'cycle') {
+      $settings[$name] = (int) $setting;
+    }
   }
 
   if (!empty($settings)) {

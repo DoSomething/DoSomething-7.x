@@ -124,6 +124,10 @@
   height: 65px;
   width: 715px;
 }
+.rotoslider-image-nav .rotoslider-descriptions > div .heading,
+.rotoslider-image-nav .rotoslider-descriptions > div .text {
+  width: 495px;
+}
 .rotoslider-image-nav .rotoslider-menu {
   height: 325px;
 }

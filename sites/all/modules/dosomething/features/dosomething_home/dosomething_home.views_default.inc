@@ -34,6 +34,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['style_options']['fields']['title'] = 'title';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_picture';
   $handler->display->display_options['style_options']['fields']['text'] = 'field_description';
+  $handler->display->display_options['style_options']['settings']['cycle'] = '3';
   $handler->display->display_options['style_options']['settings']['link'] = 1;
   $handler->display->display_options['style_options']['settings']['image'] = 1;
   $handler->display->display_options['style_options']['initial']['default'] = 0;
