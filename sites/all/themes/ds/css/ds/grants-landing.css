@@ -27,11 +27,11 @@
 }
 
 .panel-bottom h2.pane-title {
-  border-bottom: 1px solid #c6c6c6;
   -moz-box-shadow: white 0 1px -1px 1px;
   -webkit-box-shadow: white 0 1px -1px 1px;
   -o-box-shadow: white 0 1px -1px 1px;
   box-shadow: white 0 1px -1px 1px;
+  border-bottom: 1px solid #c6c6c6;
   margin: 1em 0;
 }
 .panel-bottom .item-list ul {
