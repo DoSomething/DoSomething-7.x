@@ -29,7 +29,7 @@ function dosomething_grants_default_page_manager_handlers() {
         'identifier' => 'General Grant Application',
         'keyword' => 'general_grant_app',
         'name' => 'entity:node',
-        'id' => '718310',
+        'id' => '718348',
       ),
     ),
     'relationships' => array(),
