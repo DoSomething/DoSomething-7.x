@@ -20,9 +20,7 @@ function dosomething_scholarship_application_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
+      'field_permissions' => array(),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -82,7 +80,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '-4',
+        'weight' => -4,
       ),
     ),
   );
@@ -788,72 +786,6 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_school'
-  $fields['webform_submission_entity-scholarship_application-field_webform_school'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_school',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'scholarship_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 16,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_school',
-      'label' => 'School',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '6',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-scholarship_application-field_webform_school_zip'
   $fields['webform_submission_entity-scholarship_application-field_webform_school_zip'] = array(
     'field_config' => array(
@@ -1000,7 +932,6 @@ function dosomething_scholarship_application_field_default_fields() {
   t('Personal project website URL');
   t('Photo album URL');
   t('Project Summary');
-  t('School');
   t('School Zip Code');
   t('Your DoSomething project posting');
   t('Youtube or video URL');
