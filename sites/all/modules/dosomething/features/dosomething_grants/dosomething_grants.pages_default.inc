@@ -365,12 +365,17 @@ function dosomething_grants_default_page_manager_pages() {
       'top' => NULL,
       'mid-left' => NULL,
       'mid-right' => NULL,
-      'bottom' => NULL,
+      'bottom' => array(
+        'list_type' => 'ul',
+      ),
       'row2-left' => NULL,
       'row2-right' => NULL,
       'row3' => NULL,
       'bottom-left' => NULL,
       'bottom-right' => NULL,
+    ),
+    'bottom' => array(
+      'style' => 'list',
     ),
   );
   $display->cache = array();
@@ -390,9 +395,9 @@ function dosomething_grants_default_page_manager_pages() {
       'leave_node_title' => 0,
       'identifier' => '',
       'build_mode' => 'teaser',
-      'link_node_title' => 1,
-      'override_title' => 0,
-      'override_title_text' => '',
+      'link_node_title' => 0,
+      'override_title' => 1,
+      'override_title_text' => 'Current Grants',
     );
     $pane->cache = array();
     $pane->style = array(

@@ -22,36 +22,32 @@
   display: none;
 }
 
-h2.pane-title {
+.pane-content ul {
+  padding-left: 3em;
+}
+
+.panel-bottom h2.pane-title {
   border-bottom: 1px solid #c6c6c6;
   -moz-box-shadow: white 0 1px -1px 1px;
   -webkit-box-shadow: white 0 1px -1px 1px;
   -o-box-shadow: white 0 1px -1px 1px;
   box-shadow: white 0 1px -1px 1px;
+  margin: 1em 0;
+}
+.panel-bottom .item-list ul {
+  list-style: none;
   margin: 0;
 }
-h2.pane-title a {
-  color: white;
-  font-size: 18px;
+.panel-bottom .item-list ul li {
+  margin: 0;
 }
-h2.pane-title a:visited {
-  color: white;
+.panel-bottom ul li:nth-of-type(odd) .pane-content {
+  display: inline;
+  float: left;
+  background: url('../images/bg-arrowblock-dark.png') no-repeat;
 }
-
-.pane-content ul {
-  padding-left: 3em;
-}
-
-.panel-bottom {
-  *zoom: 1;
-}
-.panel-bottom:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.panel-bottom .node-teaser {
-  width: 300px;
+.panel-bottom ul li:nth-of-type(even) .pane-content {
+  background: url('../images/bg-arrowblock-light.png') no-repeat;
 }
 .panel-bottom .pane-content {
   display: -moz-inline-box;
@@ -59,33 +55,17 @@ h2.pane-title a:visited {
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  margin-top: 10px;
+  color: white;
+  height: 108px;
+  margin-bottom: 1em;
+  width: 50%;
 }
 .panel-bottom .pane-content {
   *display: inline;
 }
-.panel-bottom .pane-content:nth-of-type(even) {
-  background: url('../images/bg-arrowblock-dark.png') no-repeat;
-}
-.panel-bottom .pane-content:nth-of-type(odd) {
-  background: url('../images/bg-arrowblock-light.png') no-repeat;
-}
-.panel-bottom .panels-ipe-portlet-marker {
-  color: white;
-  height: 95px;
-  padding: 0.5em;
-}
-.panel-bottom .panels-ipe-portlet-marker p {
-  line-height: 14px;
-  padding-top: 1em;
-}
-.panel-bottom .field-name-field-link a {
+.panel-bottom .pane-content a {
   color: white;
 }
-.panel-bottom .field-name-field-link a:hover {
+.panel-bottom .pane-content a:hover {
   color: white;
-}
-.panel-bottom .field-name-field-picture img {
-  height: 107px;
-  width: 170px;
 }
