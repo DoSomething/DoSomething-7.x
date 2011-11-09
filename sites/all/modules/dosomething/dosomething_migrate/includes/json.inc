@@ -142,12 +142,18 @@ class DSJsonMigrateItems extends MigrateItems implements Iterator {
     $ids = array_merge(array($id, $this->current), array_slice($this->pageValues, 0, 200));
 
     $url = str_replace(':id', implode(',', $ids), $this->getUrl);
-    $json = file_get_contents($url);
+    $json = @file_get_contents($url);
+    if (!$json) {
+      // Make one more try for just the specified item.
+      $url = str_replace(':id', $id, $this->getUrl);
+      $json = @file_get_contents($url);
+    }
+
     if (!$json) {
       migrate_instrument_stop(__METHOD__);
 
       $migration = Migration::currentMigration();
-      $message =  t('Loading of !objecturl failed:', array('!objecturl' => $item_url));
+      $message =  t('Loading of !objecturl failed:', array('!objecturl' => $url));
       $migration->getMap()->saveMessage(
         array($id), $message, MigrationBase::MESSAGE_ERROR);
       return NULL;
