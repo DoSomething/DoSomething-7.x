@@ -1473,7 +1473,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => 'blog_thumbnail_large',
+    'image_style' => 'blog_large_thumbnail',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
