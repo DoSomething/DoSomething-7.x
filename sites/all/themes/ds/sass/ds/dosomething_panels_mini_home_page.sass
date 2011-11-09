@@ -101,72 +101,7 @@
     line-height: calc-em(34px, $s3)
     margin-bottom: 0
 
-// SPRITES
-@import "impactbubbles/*.png"
-$impactbubbles-sprite-dimensions: true
-@include all-impactbubbles-sprites
-
-#dosomething-blocks-make-an-impact-form-front
-  position: relative
-  width: 100%
-  #edit-description
-    margin: 10px 0 20px 0
-  label[for='edit-description']
-    font-weight: normal
-    font-size: 10px
-    line-height: 12px
-  .form-type-select
-    position: absolute
-    padding: 0px 0.5em
-    label
-      @extend .h3
-      color: $white
-      .form-required
-        @extend .visuallyhidden
-    select
-    .selectBox-dropdown
-      background: $gray-lighter2
-      cursor: pointer
-      width: 100px
-      margin-top: 8px
-      +link-colors($white, $white, $c-select-link-hover, $white, false)
-      .selectBox-label
-        width: 95%
-        height: 1.5em
-      .selectBox-arrow
-        display: none
-  .form-item-what-cause,
-  .form-item-who-with,
-  .form-item-where,
-  .form-item-how-long
-    label
-      cursor: default
-  .form-item-what-cause
-    @extend .impactbubbles-impact-bubble-cause
-    left: 37px
-  .form-item-who-with
-    @extend .impactbubbles-impact-bubble-who
-    left: 167px
-  .form-item-where
-    @extend .impactbubbles-impact-bubble-where
-    top: 114px
-    .selectBox-dropdown
-      margin-top: 5px
-  .form-item-how-long
-    @extend .impactbubbles-impact-bubble-how-long
-    left: 200px
-    top: 114px
-    padding: 0 0.5em 0 14px
-    .selectBox-dropdown
-      margin-top: 5px
-  .dude
-    @extend .impactbubbles-impact-bubble-dude
-    position: absolute
-    left: 124px
-    top: 138px
-  .form-submit
-    position: absolute
-    bottom: -30px
+@import ds/dosomething-make-impact-front
 
 .pane-news-stuff
   h2.pane-title

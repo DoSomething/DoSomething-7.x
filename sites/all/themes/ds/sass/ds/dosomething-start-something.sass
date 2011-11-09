@@ -1,0 +1,37 @@
+@import setup
+@import dosomething-make-impact-front
+
+.pane-dosomething-blocks-dosomething-make-impact-front
+  form
+    min-height: calc-em(240px, $s0)
+  .pane-content
+    +clearfix
+    background-color: $gray6
+
+#page
+  .ds-pane-no-padding
+    .pane-content
+      padding:
+        left: 0
+        right: 0
+
+$upcoming-somethings-gutter: 10px
+$upcoming-somethings-width: ($main-width-w-padding - 6 * $upcoming-somethings-gutter) / 5
+.view-upcoming-somethings
+  .view-content
+    +pie-clearfix
+    background-color: $gray6
+    padding:
+      bottom: $upcoming-somethings-gutter
+      top: $upcoming-somethings-gutter
+  .views-row
+    background-color: $white
+    +float-left
+    margin-right: 10px
+    text-align: center
+    width: calc-em($upcoming-somethings-width, $s0)
+    &.views-row-first
+      margin-left: $upcoming-somethings-gutter
+  .views-field-field-campain-date
+    color: $blue2
+    letter-spacing: -1px

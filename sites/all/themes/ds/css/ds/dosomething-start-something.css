@@ -1,0 +1,171 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause, .impactbubbles-impact-bubble-dude, #dosomething-blocks-make-an-impact-form-front .dude, .impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long, .impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where, .impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  background: url('../images/impactbubbles-s20f9e531bf.png') no-repeat;
+}
+
+.impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
+  background-position: 0 0;
+  height: 74px;
+  width: 112px;
+}
+
+.impactbubbles-impact-bubble-dude, #dosomething-blocks-make-an-impact-form-front .dude {
+  background-position: 0 -74px;
+  height: 73px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long {
+  background-position: 0 -147px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where {
+  background-position: 0 -206px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  background-position: 0 -265px;
+  height: 74px;
+  width: 112px;
+}
+
+#dosomething-blocks-make-an-impact-form-front {
+  position: relative;
+  width: 100%;
+}
+#dosomething-blocks-make-an-impact-form-front #edit-description {
+  margin: 10px 0 20px 0;
+}
+#dosomething-blocks-make-an-impact-form-front label[for='edit-description'] {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select {
+  position: absolute;
+  padding: 0px 0.5em;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select label {
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown {
+  background: #a1a1a1;
+  cursor: pointer;
+  width: 100px;
+  margin-top: 8px;
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:visited {
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:hover {
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:active {
+  color: #222222;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-label {
+  width: 95%;
+  height: 1.5em;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
+  display: none;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
+#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
+#dosomething-blocks-make-an-impact-form-front .form-item-where label,
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+  cursor: default;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
+  left: 37px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  left: 167px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-where {
+  top: 114px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-where .selectBox-dropdown {
+  margin-top: 5px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long {
+  left: 200px;
+  top: 114px;
+  padding: 0 0.5em 0 14px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long .selectBox-dropdown {
+  margin-top: 5px;
+}
+#dosomething-blocks-make-an-impact-form-front .dude {
+  position: absolute;
+  left: 124px;
+  top: 138px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-submit {
+  position: absolute;
+  bottom: -30px;
+}
+
+.pane-dosomething-blocks-dosomething-make-impact-front form {
+  min-height: 20em;
+}
+.pane-dosomething-blocks-dosomething-make-impact-front .pane-content {
+  overflow: hidden;
+  *zoom: 1;
+  background-color: #d2d2d2;
+}
+
+#page .ds-pane-no-padding .pane-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.view-upcoming-somethings .view-content {
+  *zoom: 1;
+  background-color: #d2d2d2;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.view-upcoming-somethings .view-content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.view-upcoming-somethings .views-row {
+  background-color: white;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+  width: 10.5em;
+}
+.view-upcoming-somethings .views-row.views-row-first {
+  margin-left: 10px;
+}
+.view-upcoming-somethings .views-field-field-campain-date {
+  color: #005dab;
+  letter-spacing: -1px;
+}

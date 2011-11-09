@@ -29,7 +29,7 @@ function ds_preprocess_page(&$variables) {
   // Only call arg(0) once.
   $arg0 = arg(0);
   // causes landing page
-  if (arg(0) == 'cause' || arg(0) == 'causes') {
+  if ($arg0 == 'cause' || $arg0 == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
   }
   // awesome things landing page
@@ -51,6 +51,9 @@ function ds_preprocess_page(&$variables) {
   // club hub landing page
   if ($arg0 == 'clubhub') {
     drupal_add_css($theme_path . '/css/ds/clubhub-landing.css');
+  }
+  if ($arg0 == 'start-something') {
+    drupal_add_css($theme_path . '/css/ds/dosomething-start-something.css');
   }
 }
 
@@ -183,4 +186,21 @@ function ds_preprocess_views_view(&$variables) {
 function ds_preprocess_rotoslider_slider(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
   drupal_add_css($theme_path . '/css/ds/dosomething-rotoslider.css');
+}
+
+/**
+ * Overrides theme_date_display_range().
+ */
+function ds_date_display_range($vars) {
+  $date1 = $vars['date1'];
+  $date2 = $vars['date2'];
+  $timezone = $vars['timezone'];
+  $attributes_start = $vars['attributes_start'];
+  $attributes_end = $vars['attributes_end'];
+
+  // Wrap the result with the attributes.
+  return t('!start-date - !end-date', array(
+    '!start-date' => '<span class="date-display-start"' . drupal_attributes($attributes_start) . '>' . $date1 . '</span>',
+    '!end-date' => '<span class="date-display-end"' . drupal_attributes($attributes_end) . '>' . $date2 . $timezone. '</span>',
+  ));
 }
