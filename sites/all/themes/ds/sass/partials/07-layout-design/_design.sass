@@ -572,7 +572,87 @@ iframe
       display: block
 
 /*Become a member popup window*/
-#dosomething-login-register-popup-form
-  border: 2px solid white
-  color: $white
+.ui-dialog
+  font-family: $font-headline
+  background: $gray-dark
+  border: 2px solid $white
+  input
+    // width: 300px
+    background: $gray-bg1
+    +border-radius(0)
+  input[type="checkbox"]
+    +float-left
+    width: 14px
+  .ui-dialog-titlebar 
+    display: none
+  .form-submit
+    color: $white
+    padding: 5px
+    background: $purple
+    width: 100%
+    margin: -20px
+  #dosomething-login-register-popup-form
+    color: $white
+    #edit-title-text
+      label[for="edit-title-text"]
+        font-size: $s5
+        margin-bottom: 12px
+      .description
+        color: $white
+  .form-item-first-name,
+  .form-item-last-name
+    +float-left
+    width: 245px
+    height: 24px
+    margin-right: 12px
+    input
+      background: $gray-bg1
+      +border-radius(0)
+  .form-item-cell-or-email
+    +float-left
+    margin-right: 12px
+    height: 24px
+    input
+      width: 500px
+      background: $gray-bg1
+      +border-radius(0)
+  .age-question
+  #edit-over-13--2
+    +float-left
+    clear: both
+    margin-right: 12px
+    padding-top: 16px
+    font-size: $s2
+    // height: 24px
+    // margin-bottom: 12px
+    // clear: both
+    //   input: width: 300px
+  .form-item-month,
+  .form-item-day,
+    clear: right
+    margin-right: 12px
+    height: 24px
+    input
+      text-align: center
+      +float-left
+      background: $gray-bg1
+      +border-radius(0)
+      width: 60px
+      margin-right: 12px
+      margin-top: 12px
+  .form-item-year
+    clear: right
+    margin-right: 12px
+    height: 24px
+    input
+      text-align: center
+      +float-left
+      background: $gray-bg1
+      +border-radius(0)
+      width: 90px
+      margin-right: 12px
+      margin-top: 12px
+
+
+
 

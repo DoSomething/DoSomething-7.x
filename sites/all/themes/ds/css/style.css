@@ -2702,7 +2702,126 @@ iframe {
 }
 
 /*Become a member popup window */
-#dosomething-login-register-popup-form {
+.ui-dialog {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  background: #222222;
   border: 2px solid white;
+}
+.ui-dialog input {
+  background: #3f3f3f;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+.ui-dialog input[type="checkbox"] {
+  display: inline;
+  float: left;
+  width: 14px;
+}
+.ui-dialog .ui-dialog-titlebar {
+  display: none;
+}
+.ui-dialog .form-submit {
   color: white;
+  padding: 5px;
+  background: #652e72;
+  width: 100%;
+  margin: -20px;
+}
+.ui-dialog #dosomething-login-register-popup-form {
+  color: white;
+}
+.ui-dialog #dosomething-login-register-popup-form #edit-title-text label[for="edit-title-text"] {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+.ui-dialog #dosomething-login-register-popup-form #edit-title-text .description {
+  color: white;
+}
+.ui-dialog .form-item-first-name,
+.ui-dialog .form-item-last-name {
+  display: inline;
+  float: left;
+  width: 245px;
+  height: 24px;
+  margin-right: 12px;
+}
+.ui-dialog .form-item-first-name input,
+.ui-dialog .form-item-last-name input {
+  background: #3f3f3f;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+.ui-dialog .form-item-cell-or-email {
+  display: inline;
+  float: left;
+  margin-right: 12px;
+  height: 24px;
+}
+.ui-dialog .form-item-cell-or-email input {
+  width: 500px;
+  background: #3f3f3f;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+.ui-dialog #edit-over-13--2 {
+  display: inline;
+  float: left;
+  clear: both;
+  margin-right: 12px;
+  padding-top: 16px;
+  font-size: 18px;
+}
+.ui-dialog .form-item-month,
+.ui-dialog .form-item-day {
+  clear: right;
+  margin-right: 12px;
+  height: 24px;
+}
+.ui-dialog .form-item-month input,
+.ui-dialog .form-item-day input {
+  text-align: center;
+  display: inline;
+  float: left;
+  background: #3f3f3f;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  width: 60px;
+  margin-right: 12px;
+  margin-top: 12px;
+}
+.ui-dialog .form-item-year {
+  clear: right;
+  margin-right: 12px;
+  height: 24px;
+}
+.ui-dialog .form-item-year input {
+  text-align: center;
+  display: inline;
+  float: left;
+  background: #3f3f3f;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  width: 90px;
+  margin-right: 12px;
+  margin-top: 12px;
 }
