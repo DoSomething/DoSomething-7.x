@@ -2649,8 +2649,10 @@ iframe {
   box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
   border-top: 1px solid #c6c6c6;
   border-bottom: 1px solid #c6c6c6;
-  min-height: 57px;
   margin-bottom: 18px;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
+  margin-top: 2.5em;
 }
 .pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin {
   width: 100%;
