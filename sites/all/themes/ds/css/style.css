@@ -2376,13 +2376,13 @@ div[role=main] {
 }
 
 /*Blog Archive Block */
-.panel-outer-right .pane-blog-center {
+.page-blog .panel-outer-right .pane-blog-center {
   margin-top: 40px;
 }
-.panel-outer-right .pane-blog-center .block-dosomething-blog-archive .collapse-icon {
+.page-blog .panel-outer-right .pane-blog-center .block-dosomething-blog-archive .collapse-icon {
   color: #005dab;
 }
-.panel-outer-right .pane-blog-center .block-dosomething-blog-archive h3 {
+.page-blog .panel-outer-right .pane-blog-center .block-dosomething-blog-archive h3 {
   cursor: pointer;
   margin: 0;
   font-size: 1.3em;
@@ -2390,11 +2390,11 @@ div[role=main] {
   padding: 4px 0;
   color: #656565;
 }
-.panel-outer-right .pane-blog-center .block-dosomething-blog-archive ul {
+.page-blog .panel-outer-right .pane-blog-center .block-dosomething-blog-archive ul {
   padding: 0 0 0 10px;
   list-style: none;
 }
-.panel-outer-right .pane-blog-center .block-dosomething-blog-archive ul li {
+.page-blog .panel-outer-right .pane-blog-center .block-dosomething-blog-archive ul li {
   background: none;
   line-height: 120%;
   padding: 1px 0 4px;
