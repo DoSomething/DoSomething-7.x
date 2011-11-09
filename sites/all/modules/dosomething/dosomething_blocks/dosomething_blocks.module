@@ -613,8 +613,8 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
 }
 
 /**
- * Create the impact form for the front page. This essentially extends the regulat
- *  form dosomething_blocks_make_an_impact_form and alters the text.
+ * Create the impact form for the front page. This essentially extends the
+ * regular form dosomething_blocks_make_an_impact_form and alters the text.
  */
 function dosomething_blocks_make_an_impact_form_front() {
   $content = dosomething_blocks_make_an_impact_form();
