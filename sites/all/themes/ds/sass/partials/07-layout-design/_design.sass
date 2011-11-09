@@ -332,23 +332,26 @@ div[role=main]
 
 
 /** Blog Archive Block **/
-.block-dosomething-blog-archive
-  .collapse-icon
-    color: #005DAB
-  h3
-    cursor: pointer
-    margin: 0
-    font-size: 1.3em
-    font-weight: normal
-    padding: 4px 0
-    color: #656565
-  ul
-    padding: 0 0 0 10px
-    list-style: none
-    li
-      background: none
-      line-height: 120%
-      padding: 1px 0 4px
+.panel-outer-right
+  .pane-blog-center
+    margin-top: 40px
+    .block-dosomething-blog-archive
+      .collapse-icon
+        color: #005DAB
+      h3
+        cursor: pointer
+        margin: 0
+        font-size: 1.3em
+        font-weight: normal
+        padding: 4px 0
+        color: #656565
+      ul
+        padding: 0 0 0 10px
+        list-style: none
+        li
+          background: none
+          line-height: 120%
+          padding: 1px 0 4px
 
 /** Blog Archive Pane **/
 .ds-internal-sidebar-flush-right
@@ -385,6 +388,8 @@ div[role=main]
   border-bottom: 1px solid $gray6
   padding: 1px 0
   width: 545px
+  margin-top: 45px
+  margin-bottom: 20px
   ul
     +horizontal-list
     // padding: 8px
@@ -568,4 +573,8 @@ iframe
       +replace-text-with-dimensions('social-print.png')
       display: block
 
+/*Become a member popup window*/
+#dosomething-login-register-popup-form
+  border: 2px solid white
+  color: $white
 
