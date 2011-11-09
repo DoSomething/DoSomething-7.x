@@ -49,7 +49,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Group description */
   $handler->display->display_options['fields']['og_description']['id'] = 'og_description';
   $handler->display->display_options['fields']['og_description']['table'] = 'field_data_og_description';
   $handler->display->display_options['fields']['og_description']['field'] = 'og_description';

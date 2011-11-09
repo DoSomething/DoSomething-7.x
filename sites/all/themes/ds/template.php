@@ -48,6 +48,10 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'why-become-a-member') {
     drupal_add_css($theme_path . '/css/ds/dosomething-members-only.css');
   }
+  // club hub landing page
+  if ($arg0 == 'clubhub') {
+    drupal_add_css($theme_path . '/css/ds/clubhub-landing.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {

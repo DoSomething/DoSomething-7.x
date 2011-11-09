@@ -2675,6 +2675,7 @@ function dosomething_clubs_field_default_fields() {
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -3584,6 +3585,75 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
+  // Exported field: 'node-club-og_description'
+  $fields['node-club-og_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'og_description',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'This is description of the group.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 34,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'og_description',
+      'label' => 'Group description',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '18',
+      ),
+    ),
+  );
+
   // Exported field: 'node-club-og_roles_permissions'
   $fields['node-club-og_roles_permissions'] = array(
     'field_config' => array(
@@ -3796,6 +3866,121 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
+  // Exported field: 'node-club-taxonomyextra'
+  $fields['node-club-taxonomyextra'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'taxonomyextra',
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_1',
+            'parent' => 0,
+          ),
+          1 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_9',
+          ),
+          2 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_5',
+          ),
+          3 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_6',
+          ),
+          4 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_11',
+          ),
+          5 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_18',
+          ),
+          6 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_17',
+          ),
+          7 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_15',
+          ),
+          8 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_19',
+          ),
+          9 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_4',
+          ),
+          10 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_16',
+          ),
+          11 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_2',
+          ),
+          12 => array(
+            'parent' => 0,
+            'vocabulary' => 'vocabulary_3',
+          ),
+        ),
+        'profile2_private' => FALSE,
+        'required' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Debris left over after upgrade from Drupal 6',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 10,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'taxonomyextra',
+      'label' => 'Taxonomy upgrade extras',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'taxonomy',
+        'settings' => array(
+          'autocomplete_path' => 'taxonomy/autocomplete',
+          'size' => 60,
+        ),
+        'type' => 'taxonomy_autocomplete',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('<p>By submitting this club application I understand that I am committing to:</p>
@@ -3812,8 +3997,10 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Clubs Agreement');
   t('Country, if outside the U.S. and Canada');
   t('Date of birth');
+  t('Debris left over after upgrade from Drupal 6');
   t('Expected number of club members');
   t('First Name');
+  t('Group description');
   t('Group roles and permissions');
   t('Group type');
   t('How did you hear about Do Something Clubs?');
@@ -3842,7 +4029,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Student Leader Email');
   t('Student Leader First Name');
   t('Student Leader Last Name');
+  t('Taxonomy upgrade extras');
   t('The more ideas the better! Separate multiple ideas with a semicolon!');
+  t('This is description of the group.');
   t('This is for your Club\'s Profile Page!');
   t('Video (optional)');
   t('What is your role?');
