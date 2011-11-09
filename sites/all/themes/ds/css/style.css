@@ -2086,7 +2086,7 @@ nav[role=navigation] .causes-dropdown-trigger {
   position: relative;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
-  top: 30px;
+  top: 10px;
   left: -9px;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
