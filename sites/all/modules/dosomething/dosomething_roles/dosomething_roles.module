@@ -468,23 +468,29 @@ function dosomething_roles_get_current_role($uid) {
  *  Returns int or NULL if unsuccessful.
  */
 function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FALSE) {
-  // TODO: If the status is 'Idea' it doesn't count.
-  // What is this status?
+  // If the status of a submission is 'Idea', it doesn't count.
+  // That status is only relevant for project_reports.
   $node_types = dosomething_roles_get_action_update_types();
   try {
     $query = db_select('webform_submissions', 'w');
     $query->innerJoin('node', 'n', 'w.nid = n.nid');
+    $query->leftJoin('field_revision_field_project_type', 'pt', 'w.sid = pt.entity_id');
     $count = $query->fields('w', array('sid'))
     ->condition('w.uid', $uid, '=')
     ->condition('n.type', $node_types, 'IN')
     ->condition('w.is_draft', (int) $draft)
     ->condition('w.submitted', $timestamp, '>')
+    // field_project_type cannot be 2 (project idea)
+    // We can directly place in the values with the where.
+    ->where('pt.field_project_type_value IS NULL OR pt.field_project_type_value != 2')
+    ->where("pt.entity_type IS NULL OR pt.entity_type = 'webform_submission_entity'")
     ->execute()
     ->rowCount();
   }
   catch (Exception $e) {
     $count = NULL;
   }
+
   return $count;
 }
 
