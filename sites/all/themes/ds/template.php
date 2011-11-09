@@ -61,10 +61,6 @@ function ds_preprocess_node(&$variables) {
   if ($variables['type'] == 'action_guide') {
     drupal_add_css($theme_path . '/css/ds/page-node-action-guide.css');
   }
-  // Grant node
-  if ($variables['type'] == 'grants_database') {
-    drupal_add_css($theme_path . '/css/ds/page-node-grant.css');
-  }
 }
 
 function ds_preprocess_block(&$variables) {
