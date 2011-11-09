@@ -16,22 +16,6 @@ function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin
 }
 
 /**
- * Implements hook_block_view().
- */
-function dosomething_user_my_somethings_block_view($delta = '') {
-  $block = array();
-  switch ($delta) {
-    case 'become_member':
-      global $user;
-      if ($user->uid) {
-        $block['content'] = dosomething_user_my_somethings_member_block();
-      }
-      break;
-  }
-  return $block;
-}
-
-/**
  * Member dashboard block for logged in users.
  */
 function dosomething_user_my_somethings_member_block() {
@@ -91,7 +75,7 @@ function dosomething_user_my_somethings_profile_completion() {
   if (module_exists('dosomething_roles')) {
     $ratio = dosomething_roles_get_user_percentage($user->uid);
   }
-  
+
   return array(
     'header' => array(
       '#type' => 'container',
@@ -139,7 +123,7 @@ function dosomething_user_my_somethings_my_somethings() {
   global $user;
   $items = array();
 
-  $items[] = array('data' => t('My Current Somethings'), 'children' => dosomething_user_my_somethings_my_current_somethings($user->uid));
+  $items = dosomething_user_my_somethings_my_current_somethings($user->uid);
 
   return array(
     'title' => array(
