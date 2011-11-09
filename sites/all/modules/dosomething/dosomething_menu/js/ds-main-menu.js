@@ -9,10 +9,12 @@
       $(".causes-dropdown-trigger").append($causesMenuParent);
 
       // Shape the issues menu into something that fits into the secondary menu
-      $issuesMenu = $("#issues-menu-dropdown > li").removeClass('first').addClass('issues-dropover');
-      $issuesMenu.find('div.item-list').addClass('issues-dropdown-menu');
-      $issuesMenu.find('> a').addClass('issues-dropdown-trigger').prepend('<span class="arrows"> &raquo; </span>')
-      $(".causes-dropdown-trigger").parent().removeClass("last").after($issuesMenu);
+      $('.issues-dropdown > .item-list > h3 > a')
+        .addClass('issues-dropdown-trigger').prepend('<span class="arrows"> &raquo; </span>')
+        .wrap('<li class="issues-dropover"></li>')
+        .after($('#issues-menu-dropdown')).end()
+        .find('#issues-menu-dropdown').addClass('issues-dropdown-menu').end();
+      $(".causes-dropdown-trigger").parent().removeClass("last").after($('.issues-dropover'));
       $(".issues-dropdown").remove();
 
       // Show and hide secondary menu.

@@ -2086,7 +2086,7 @@ nav[role=navigation] .causes-dropdown-trigger {
   position: relative;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
-  top: 30px;
+  top: 10px;
   left: -9px;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
@@ -2649,28 +2649,26 @@ iframe {
   box-shadow: white 0 1px -1px 1px, white 0 5px 0 -4px inset;
   border-top: 1px solid #c6c6c6;
   border-bottom: 1px solid #c6c6c6;
-  min-height: 57px;
   margin-bottom: 18px;
-  position: relative;
-}
-.pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
-  position: absolute;
-  bottom: 0;
+  padding-top: 2.5em;
 }
 .pane-dosomething-blocks-dosomething-social-node-buttons .facebook-plugin {
-  left: 0;
+  width: 100%;
+  max-width: 300px;
+  float: left;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin {
-  right: 115px;
-  bottom: -5px;
+.pane-dosomething-blocks-dosomething-social-node-buttons .wrapper {
+  width: 100%;
+  width: auto;
+  max-width: 300px;
+  float: right;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin {
-  right: 54px;
-  bottom: -1px;
+.pane-dosomething-blocks-dosomething-social-node-buttons .google-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .twitter-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin, .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
+  float: left;
+  margin-right: 8px;
 }
-.pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin {
-  right: 27px;
-  bottom: -14px;
+.pane-dosomething-blocks-dosomething-social-node-buttons .print_html, .pane-dosomething-blocks-dosomething-social-node-buttons .print_mail, .pane-dosomething-blocks-dosomething-social-node-buttons .print_pdf {
+  margin-left: 0;
 }
 .pane-dosomething-blocks-dosomething-social-node-buttons .email-plugin a {
   text-indent: -119988px;
@@ -2684,6 +2682,9 @@ iframe {
   display: block;
 }
 .pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin {
+  margin-right: 0;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .print-plugin a {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -2693,6 +2694,4 @@ iframe {
   width: 21px;
   height: 21px;
   display: block;
-  right: 0;
-  bottom: 3px;
 }
