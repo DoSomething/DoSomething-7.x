@@ -28,7 +28,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -871,6 +871,29 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
+  /* Field: Global: Facebook Social Plugin */
+  $handler->display->display_options['fields']['fb_social']['id'] = 'fb_social';
+  $handler->display->display_options['fields']['fb_social']['table'] = 'views';
+  $handler->display->display_options['fields']['fb_social']['field'] = 'fb_social';
+  $handler->display->display_options['fields']['fb_social']['label'] = '';
+  $handler->display->display_options['fields']['fb_social']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['fb_social']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['fb_social']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['fb_social']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['fb_social']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['fb_social']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['fb_social']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['fb_social']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['fb_social']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['fb_social']['fb_social_plugins'] = 'small_like';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Has taxonomy term ID */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
