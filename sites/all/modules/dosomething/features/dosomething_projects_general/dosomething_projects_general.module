@@ -5,3 +5,19 @@
  */
 
 include_once('dosomething_projects_general.features.inc');
+
+/**
+ * Implements hooks_webform_submission_access(),
+ */
+function dosomething_projects_general_webform_submission_access($node, $submission, $op, $account) {
+  switch ($op) {
+    case 'edit':
+    // Allow users to edit project reports for 24 hrs following submission.
+    if ($submission->uid == $account->uid && $node->type == 'project_report') {
+      if (date("U") <= ($submission->submitted + 86400)) {
+        return TRUE;
+      }  
+    }
+  }
+}
+
