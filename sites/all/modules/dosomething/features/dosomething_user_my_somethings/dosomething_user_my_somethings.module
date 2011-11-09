@@ -16,6 +16,20 @@ function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin
 }
 
 /**
+ * Implements hook_webform_submission_insert().
+ */
+function dosomething_user_my_somethings_webform_submission_insert($node, $submission) {
+  cache_clear_all('dosomething_user_my_somethings_' . $submission->uid, 'cache');
+}
+
+/**
+ * Implements hook_webform_submission_update().
+ */
+function dosomething_user_my_somethings_webform_submission_update($node, $submission) {
+  cache_clear_all('dosomething_user_my_somethings_' . $submission->uid, 'cache');
+}
+
+/**
  * Member dashboard block for logged in users.
  */
 function dosomething_user_my_somethings_member_block() {
@@ -160,30 +174,45 @@ function dosomething_user_my_somethings_my_somethings() {
  * @return array
  */
 function dosomething_user_my_somethings_my_current_somethings($uid) {
+  // TODO: We don't have campaigns modelled here yet, because
+  // the model is changing.
   $items = array();
-  // TODO: replace dummy content
-  // TODO: As this loads on every page, it would be great to cache
-  // and clear cache when webforms are updated or inserted.
   $somethings_info = array(
     'grant_application' => array(
-      'title' => 'field_webform_name',
+      'title' => t('Grant Applications'),
+      'title_field' => 'field_webform_name',
       'draft' => TRUE,
+      'draft' => FALSE,
       'statuses' => NULL,
     ),
     'project_report' => array(
-      'title' => 'field_project_title',
+      'title' => t('Project Reports'),
+      'title_field' => 'field_project_title',
       'draft' => FALSE,
       'statuses' => array('ongoing project', 'project idea'),
     ),
   );
-  foreach ($somethings_info as $type => $info) {
-    $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title'], $info['draft'], $info['statuses']);
+
+  $cid = 'dosomething_user_my_somethings_' . $uid;
+  $cache = cache_get($cid);
+  if (!is_object($cache)) {
+    foreach ($somethings_info as $type => $info) {
+      $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title_field'], $info['draft'], $info['statuses']);
+    }
+    cache_set($cid, $somethings);
+  }
+  else {
+    $somethings = $cache->data;
   }
 
-  foreach ($somethings as $type => $something) {
-    if (count($something)) {
-      foreach ($something as $submission) {
-        $items[] = l(filter_xss($submission->{$somethings_info[$type]['title'] . '_value'}), 'node/' . $submission->nid . '/submission/' . $submission->sid .'/edit');
+  if (count($somethings)) {
+    foreach ($somethings as $type => $something) {
+      if (count($something)) {
+        $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
+        foreach ($something as $submission) {
+          $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
+          $items[$type]['children'][] = l($title, 'node/' . $submission->nid . '/submission/' . $submission->sid .'/edit');
+        }
       }
     }
   }
