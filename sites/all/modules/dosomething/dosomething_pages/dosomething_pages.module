@@ -114,7 +114,7 @@ function dosomething_pages_get_causes() {
       '#markup' => '<img alt="submit a cause" src="/' . drupal_get_path('module', 'dosomething_pages') . '/images/submit_a_cause.jpg" />',
     ),
     'description' => array(
-      '#markup' => 'Suggest a cause text goes here. EDIT MY TEXT IN THE DOSOMETHING PAGES MODULE FILE. <a href="http://google.com">Suggest a cause &raquo;</a>',
+      '#markup' => 'Suggest a cause text goes here. EDIT MY TEXT IN THE DOSOMETHING PAGES MODULE FILE. <a href="/suggest-a-cause">Suggest a cause &raquo;</a>',
       '#prefix' => '<div class="cause-description no-popup"><p>',
       '#suffix' => '</p></div>',
     ),
