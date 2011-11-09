@@ -7,7 +7,7 @@
 include_once('dosomething_projects_general.features.inc');
 
 /**
- * Implements hooks_webform_submission_access(),
+ * Implements hook_webform_submission_access().
  */
 function dosomething_projects_general_webform_submission_access($node, $submission, $op, $account) {
   switch ($op) {
