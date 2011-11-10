@@ -12,6 +12,7 @@
   h2.pane-title
     +ds-bevel-single
     margin: 1em 0
+    display: block
   .item-list ul
     list-style: none
     margin: 0
@@ -20,18 +21,46 @@
   ul
     li:nth-of-type(odd)
       .pane-content
-        +float-left
         background: image_url('bg-arrowblock-dark.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-left
     li:nth-of-type(even)
       .pane-content
         background: image_url('bg-arrowblock-light.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-right
+        img
+          padding-left: 0.3em
+  li
+    display: block
+    width: 100%
+  ul
+    +pie-clearfix
   .pane-content
     +inline-block
-    color: $white
     height: 108px
     margin-bottom: 1em
     width: 50%
+    .field-items
+      width: 30%
+      +float-right
     a
+      +float-left
       color: $white
+      font-family: $font-headline
+      font-size: 18px
+      font-weight: 500
+      margin-top: 1em
+      padding-left: 2em
+      text-rendering: optimizeLegibility
+      text-transform: uppercase
       &:hover
         color: $white
+    img
+      +float-left
+      width: 170px
+      height: 108px
+    p
+      margin: 0

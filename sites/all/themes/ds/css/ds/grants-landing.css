@@ -33,6 +33,7 @@
   box-shadow: white 0 1px -1px 1px;
   border-bottom: 1px solid #c6c6c6;
   margin: 1em 0;
+  display: block;
 }
 .panel-bottom .item-list ul {
   list-style: none;
@@ -42,12 +43,35 @@
   margin: 0;
 }
 .panel-bottom ul li:nth-of-type(odd) .pane-content {
+  background: url('../images/bg-arrowblock-dark.png') no-repeat;
+  background-position: top right;
+}
+.panel-bottom ul li:nth-of-type(odd) .pane-content:nth-of-type(n) {
   display: inline;
   float: left;
-  background: url('../images/bg-arrowblock-dark.png') no-repeat;
 }
 .panel-bottom ul li:nth-of-type(even) .pane-content {
   background: url('../images/bg-arrowblock-light.png') no-repeat;
+  background-position: top right;
+}
+.panel-bottom ul li:nth-of-type(even) .pane-content:nth-of-type(n) {
+  display: inline;
+  float: right;
+}
+.panel-bottom ul li:nth-of-type(even) .pane-content img {
+  padding-left: 0.3em;
+}
+.panel-bottom li {
+  display: block;
+  width: 100%;
+}
+.panel-bottom ul {
+  *zoom: 1;
+}
+.panel-bottom ul:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 .panel-bottom .pane-content {
   display: -moz-inline-box;
@@ -55,7 +79,6 @@
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  color: white;
   height: 108px;
   margin-bottom: 1em;
   width: 50%;
@@ -63,9 +86,32 @@
 .panel-bottom .pane-content {
   *display: inline;
 }
+.panel-bottom .pane-content .field-items {
+  width: 30%;
+  display: inline;
+  float: right;
+}
 .panel-bottom .pane-content a {
+  display: inline;
+  float: left;
   color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 1em;
+  padding-left: 2em;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
 }
 .panel-bottom .pane-content a:hover {
   color: white;
+}
+.panel-bottom .pane-content img {
+  display: inline;
+  float: left;
+  width: 170px;
+  height: 108px;
+}
+.panel-bottom .pane-content p {
+  margin: 0;
 }
