@@ -378,7 +378,7 @@ function dosomething_login_register_block($form, &$form_state) {
   $form['#attached'] = array(
     'js' => array(
       drupal_get_path('module', 'dosomething_login') . '/js/jquery-validation-1.9.0/jquery.validate.min.js',
-      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-member-lightbox.js',
+      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-popup-lightbox.js',
     ),
     'library' => array(array('system', 'ui.dialog')),
   );
