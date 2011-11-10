@@ -69,17 +69,14 @@ function dosomething_user_my_somethings_ds_current_somethings_content($uid) {
 
   // Find a user's projects where status is idea or ongoing.
   $projects = dosomething_user_my_somethings_get_submissions($uid, 'project_report', 'field_project_title', FALSE, array('ongoing project', 'project idea'));
-  /*$projects = db_query("SELECT w.nid, w.sid, t.field_project_title_value FROM {webform_submissions} w 
-                      INNER JOIN {field_data_field_project_type} s ON w.sid = s.entity_id
-                      INNER JOIN {field_data_field_project_title} t ON w.sid = t.entity_id
-                      WHERE w.uid = :uid AND w.bundle = 'project_report'  
-                      AND (s.field_project_type_value = 2 OR s.field_project_type_value = 3)", array(':uid' => $uid))->fetchAll();*/
-  foreach ($projects as $project) {
-    $links[] = array(
-      'title' => $project->field_project_title_value,
-      'link' => l('Complete this', 'node/' . $project->nid . '/submission/' . $project->sid),
-    );
-  } 
+  if (count($projects)) {
+    foreach ($projects as $project) {
+      $links[] = array(
+        'title' => $project->field_project_title_value,
+        'link' => l('Complete this', 'node/' . $project->nid . '/submission/' . $project->sid),
+      );
+    } 
+  }
 
   return $links;
 }  
