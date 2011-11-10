@@ -1155,18 +1155,19 @@ function dosomething_login_register_facebook($form, &$form_state) {
  * TODO: 1) remove when friends removed. 2) delete when user deleted.
  */
 function dosomething_login_facebook_friend_process($facebook_friends = array(), $uid) {
-  $local_query =  db_select('fboauth_users', 'fboauth_users');
-  $local_query->fields('fbaouth_users', array('fbid', 'uid'));
-  $local_results->execute();
+  $local_query = db_select('fboauth_users', 'fboauth_users');
+  $local_query->fields('fboauth_users', array('fbid', 'uid'));
+  $local_results = $local_query->execute();
   while ($local_result = $local_results->fetchObject()) {
-    $fb_user[$local_result->fbuid] = $local_result->uid;
+    $fb_user[$local_result->fbid] = $local_result->uid;
   }
   $query = db_insert('facebook_friends')->fields(array('uid', 'fbid'));
   foreach($facebook_friends as $friend) {
     if (isset($fb_user[$friend->id])) {
-      $query->values(array('uid' => $uid, 'fbid' => $friend->uid));
+      $query->values(array('uid' => $uid, 'fbid' => $friend->id));
     }
   }
+  $query->execute();
 }
       
 
