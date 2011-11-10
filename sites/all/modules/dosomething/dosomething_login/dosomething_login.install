@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function dosomething_login_schema() {
+  $schema['facebook_friends'] = array(
+    'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'fbid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+      ),
+    ),
+    'primary key' => array('fbid'),
+    'indexes' => array(
+      'uid_fbid' => array('uid', 'fbid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Install table for dosomething_login if it doesn't already exist.
+ */
+function dosomething_local_update_7000(&$sandbox) {
+  if (!db_table_exists('facebook_friends')) {
+    drupal_install_schema('dosomething_login');
+  }
+}
