@@ -93,10 +93,7 @@
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
   display: none;
 }
-#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
-#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
-#dosomething-blocks-make-an-impact-form-front .form-item-where label,
-#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label, #dosomething-blocks-make-an-impact-form-front .form-item-who-with label, #dosomething-blocks-make-an-impact-form-front .form-item-where label, #dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
   cursor: default;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
@@ -135,7 +132,6 @@
 .pane-dosomething-blocks-dosomething-make-impact-front .pane-content {
   overflow: hidden;
   *zoom: 1;
-  background-color: #d2d2d2;
 }
 
 #page .ds-pane-no-padding .pane-content {
@@ -145,7 +141,18 @@
 
 .view-upcoming-somethings .view-content {
   *zoom: 1;
-  background-color: #d2d2d2;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -o-border-bottom-left-radius: 6px;
+  -ms-border-bottom-left-radius: 6px;
+  -khtml-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -o-border-bottom-right-radius: 6px;
+  -ms-border-bottom-right-radius: 6px;
+  -khtml-border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 6px;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -155,10 +162,15 @@
   clear: both;
 }
 .view-upcoming-somethings .views-row {
-  background-color: white;
+  -moz-box-shadow: #8e8a86 0 2px 4px;
+  -webkit-box-shadow: #8e8a86 0 2px 4px;
+  -o-box-shadow: #8e8a86 0 2px 4px;
+  box-shadow: #8e8a86 0 2px 4px;
+  background-color: #f2f2f2;
   display: inline;
   float: left;
   margin-right: 10px;
+  padding-bottom: 10px;
   text-align: center;
   width: 10.5em;
 }
@@ -168,4 +180,21 @@
 .view-upcoming-somethings .views-field-field-campain-date {
   color: #005dab;
   letter-spacing: -1px;
+  -moz-box-shadow: white 0 1px -1px 1px;
+  -webkit-box-shadow: white 0 1px -1px 1px;
+  -o-box-shadow: white 0 1px -1px 1px;
+  box-shadow: white 0 1px -1px 1px;
+  border-bottom: 1px solid #d6d6d6;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+#ready-to-start .pane-content {
+  padding: 1em;
+  text-align: center;
+}
+#ready-to-start .pane-content a {
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-right: 0.5em;
 }
