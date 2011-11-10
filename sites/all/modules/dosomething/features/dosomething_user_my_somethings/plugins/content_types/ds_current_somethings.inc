@@ -35,6 +35,8 @@ function dosomething_user_my_somethings_ds_current_somethings_content($uid) {
   // Find campaign report backs that a user has not completed for campaigns they are part of.
   $user = user_load($uid);
   $groups = og_get_entity_groups('user', $user);
+  $my_somethings = dosomething_user_my_somethings_get_my_somethings($uid);
+
   foreach ($groups as $gid) {
     // Get campaign title and entity_id of its campaign report back.
     $report_back = db_query("SELECT f.entity_id, o.label, n.type from {field_data_field_report_back_reference} f 
@@ -68,9 +70,8 @@ function dosomething_user_my_somethings_ds_current_somethings_content($uid) {
   }  
 
   // Find a user's projects where status is idea or ongoing.
-  $projects = dosomething_user_my_somethings_get_submissions($uid, 'project_report', 'field_project_title', FALSE, array('ongoing project', 'project idea'));
-  if (count($projects)) {
-    foreach ($projects as $project) {
+  if (isset($my_somethings['projects']) && count($my_somethings['projects'])) {
+    foreach ($my_somethings['projects'] as $project) {
       $links[] = array(
         'title' => $project->field_project_title_value,
         'link' => l('Complete this', 'node/' . $project->nid . '/submission/' . $project->sid),
