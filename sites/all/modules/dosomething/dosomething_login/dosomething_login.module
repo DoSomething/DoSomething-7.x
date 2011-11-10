@@ -1161,8 +1161,8 @@ function dosomething_login_facebook_friend_process($facebook_friends = array(), 
     ->execute();
 
   // Get currently users currently registered through Facebook.
-  $local_results = db_select('fboauth_users');
-    ->fields('fboauth_users', array('fbid', 'uid'));
+  $local_results = db_select('fboauth_users')
+    ->fields('fboauth_users', array('fbid', 'uid'))
     ->execute();
   while ($local_result = $local_results->fetchObject()) {
     $fb_user[$local_result->fbid] = $local_result->uid;
