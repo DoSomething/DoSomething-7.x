@@ -21,7 +21,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     'settings' => NULL,
   );
   $page->menu = array(
-    'type' => 'normal',
+    'type' => 'none',
     'title' => 'Grants',
     'name' => 'main-menu',
     'weight' => '0',
