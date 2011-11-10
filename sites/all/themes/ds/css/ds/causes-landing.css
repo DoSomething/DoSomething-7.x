@@ -120,6 +120,18 @@
   line-height: 1.5;
   margin: 0;
 }
+.page-causes .main-inner .cause-item .cause-description a {
+  color: #ffd203;
+}
+.page-causes .main-inner .cause-item .cause-description a:visited {
+  color: #ffd203;
+}
+.page-causes .main-inner .cause-item .cause-description a:hover {
+  color: #fbdf61;
+}
+.page-causes .main-inner .cause-item .cause-description a:active {
+  color: #fbdf61;
+}
 .page-causes .main-inner .cause-item .cause-description .pop-up-open {
   text-indent: -119988px;
   overflow: hidden;

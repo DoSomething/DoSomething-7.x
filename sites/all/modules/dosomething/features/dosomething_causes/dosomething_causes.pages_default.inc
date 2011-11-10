@@ -82,7 +82,7 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'ds-pane-news',
+      'css_class' => 'ds-pane-news ds-pane-no-padding',
     );
     $pane->extras = array();
     $pane->position = 0;

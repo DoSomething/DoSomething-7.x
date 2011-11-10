@@ -533,9 +533,9 @@ iframe
   max-width: 100%
 
 /* Social toolbar
-.pane-dosomething-blocks-dosomething-social-node-buttons
+.pane-dosomething-blocks-dosomething-social-node-buttons,
+.views-field-ds-social-plugins
   @extend .clearfix
-  +ds-bevel-double
   // min-height: 57px
   margin-bottom: $kit-baseline
   padding-top: 2.5em
@@ -570,6 +570,15 @@ iframe
     a
       +replace-text-with-dimensions('social-print.png')
       display: block
+.pane-dosomething-blocks-dosomething-social-node-buttons
+  // +box-shadow($white 0 1px -1px 1px, $white 0 5px 0 -4px inset)
+  +ds-bevel-double
+  border:
+    top: 1px solid $gray-lighter3
+    bottom: 1px solid $gray-lighter3
+  // min-height: 57px
+  margin-bottom: $kit-baseline
+
 
 /*Become a member popup window*/
 .ui-dialog
@@ -583,7 +592,7 @@ iframe
   input[type="checkbox"]
     +float-left
     width: 14px
-  .ui-dialog-titlebar 
+  .ui-dialog-titlebar
     display: none
   .form-submit
     color: $white
@@ -652,7 +661,4 @@ iframe
       width: 90px
       margin-right: 12px
       margin-top: 12px
-
-
-
 
