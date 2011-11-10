@@ -242,7 +242,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane ds-pane-usergen',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-7'] = $pane;
