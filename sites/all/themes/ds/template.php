@@ -207,3 +207,29 @@ function ds_date_display_range($vars) {
     '!end-date' => '<span class="date-display-end"' . drupal_attributes($attributes_end) . '>' . $date2 . $timezone. '</span>',
   ));
 }
+
+/**
+ * Overwrites all user profiled pics with Facebook photo.
+ * user_picture is empty by design if they are not connected to Facebook.
+ */
+function ds_preprocess_user_picture(&$variables) {
+  $variables['user_picture'] = '';
+    $account = $variables['account'];
+    if ($account && $fbid = fboauth_fbid_load($account->uid)) {
+      $filepath = 'https://graph.facebook.com/' . $fbid . '/picture?type=large';
+      $alt = t("@user's picture", array('@user' => format_username($account)));
+      if (module_exists('image') && file_valid_uri($filepath) && $style = variable_get('user_picture_style', '')) {
+        $variables['user_picture'] = theme('image_style', array('style_name' => $style, 'path' => $filepath, 'alt' => $alt, 'title' => $alt));
+      }
+      else {
+        $variables['user_picture'] = theme('image', array('path' => $filepath, 'alt' => $alt, 'title' => $alt));
+      }
+      if (!empty($account->uid) && user_access('access user profiles')) {
+        $attributes = array(
+          'attributes' => array('title' => t('View user profile.')),
+          'html' => TRUE,
+        );
+        $variables['user_picture'] = l($variables['user_picture'], "user/$account->uid", $attributes);
+      }
+    }
+}
