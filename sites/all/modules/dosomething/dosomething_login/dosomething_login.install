@@ -31,7 +31,7 @@ function dosomething_login_schema() {
 /**
  * Install table for dosomething_login if it doesn't already exist.
  */
-function dosomething_local_update_7000(&$sandbox) {
+function dosomething_login_update_7000(&$sandbox) {
   if (!db_table_exists('facebook_friends')) {
     drupal_install_schema('dosomething_login');
   }
