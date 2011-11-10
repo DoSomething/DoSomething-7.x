@@ -1086,6 +1086,8 @@ function dosomething_login_action_prereg($app_id, $access_token) {
 
   $fbuser = fboauth_graph_query('me', $access_token);
   $uid = fboauth_uid_load($fbuser->id);
+  $fb_friends = fboauth_graph_query('me/friends', $access_token);
+  dpm($fb_friends); 
 
   // If the user has logged in before, load their account and login.
   if (!$user->uid && $uid && ($account = user_load($uid))) {
