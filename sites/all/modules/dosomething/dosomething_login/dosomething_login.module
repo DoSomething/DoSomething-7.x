@@ -363,6 +363,8 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#default_value' => TRUE,
   );
   $form['final_submit'] = array(
+    '#prefix' => '<div class="ds-login-popup-footer">',
+    '#suffix' => '</div>',
     '#type' => 'submit',
     '#value' => t('Submit'),
   );
