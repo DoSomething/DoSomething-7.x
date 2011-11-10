@@ -137,7 +137,7 @@ function dosomething_user_my_somethings_my_somethings() {
   global $user;
   $items = array();
 
-  $items = dosomething_user_my_somethings_my_current_somethings($user->uid);
+  $items = dosomething_user_my_somethings_my_current_something_links($user->uid);
 
   return array(
     'title' => array(
@@ -164,47 +164,26 @@ function dosomething_user_my_somethings_my_somethings() {
 }
 
 /**
- * Build list of current somethings. These include:
- *   Campaign sign-ups for which the user has not submitted a report-back (links to campaign report-back page)
- *   Incomplete grant applications (link to grant application form)
- *   Projects where status = Idea or Ongoing. (links to project update form)
+ * Get a list of links for the different types of my somethings.
  *
  * @param $uid
  *  (int) a user id.
  * @return array
  */
-function dosomething_user_my_somethings_my_current_somethings($uid) {
-  // TODO: We don't have campaigns modelled here yet, because
-  // the model is changing.
+function dosomething_user_my_somethings_my_current_something_links($uid) {
   $items = array();
   $somethings_info = array(
     'grant_application' => array(
       'title' => t('Grant Applications'),
       'title_field' => 'field_webform_name',
-      'draft' => TRUE,
-      'draft' => FALSE,
-      'statuses' => NULL,
     ),
     'project_report' => array(
       'title' => t('Project Reports'),
       'title_field' => 'field_project_title',
-      'draft' => FALSE,
-      'statuses' => array('ongoing project', 'project idea'),
     ),
   );
-
-  $cid = 'dosomething_user_my_somethings_' . $uid;
-  $cache = cache_get($cid);
-  if (!is_object($cache)) {
-    foreach ($somethings_info as $type => $info) {
-      $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title_field'], $info['draft'], $info['statuses']);
-    }
-    cache_set($cid, $somethings);
-  }
-  else {
-    $somethings = $cache->data;
-  }
-
+  // These my somethings are cached.
+  $somethings = dosomething_user_my_somethings_get_my_somethings($uid);
   if (count($somethings)) {
     foreach ($somethings as $type => $something) {
       if (count($something)) {
@@ -364,3 +343,42 @@ function dosomething_user_my_somethings_get_user_group_memberships($uid, $node_t
   return $groups;
 }
 
+/**
+ * Build list of current somethings. These include:
+ *   Campaign sign-ups for which the user has not submitted a report-back (links to campaign report-back page)
+ *   Incomplete grant applications (link to grant application form)
+ *   Projects where status = Idea or Ongoing. (links to project update form)
+ *
+ * @param $uid
+ *  (int) a user id.
+ * @return array
+ */
+function dosomething_user_my_somethings_get_my_somethings($uid) {
+  // TODO: We don't have campaigns modelled here yet, because
+  // the model is changing.
+  $somethings_info = array(
+    'grant_application' => array(
+      'title_field' => 'field_webform_name',
+      'draft' => TRUE,
+      'statuses' => NULL,
+    ),
+    'project_report' => array(
+      'title_field' => 'field_project_title',
+      'draft' => FALSE,
+      'statuses' => array('ongoing project', 'project idea'),
+    ),
+  );
+
+  $cid = 'dosomething_user_my_somethings_' . $uid;
+  $cache = cache_get($cid);
+  if (!is_object($cache)) {
+    foreach ($somethings_info as $type => $info) {
+      $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title_field'], $info['draft'], $info['statuses']);
+    }
+    cache_set($cid, $somethings);
+  }
+  else {
+    $somethings = $cache->data;
+  }
+  return $somethings;
+}
