@@ -50,7 +50,7 @@
 .rotoslider .rotoslider-text {
   bottom: 0;
   display: none;
-  width: 527px;
+  width: 540px;
   z-index: 12;
 }
 .rotoslider .rotoslider-text.active {
@@ -61,7 +61,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 188px;
+  width: 175px;
   z-index: 30;
 }
 .rotoslider .rotoslider-menu .heading {
@@ -75,7 +75,7 @@
   text-align: center;
   text-transform: uppercase;
   top: 0;
-  width: 188px;
+  width: 175px;
   z-index: 50;
 }
 .rotoslider .rotoslider-nav {
@@ -84,7 +84,7 @@
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 188px;
+  width: 175px;
   z-index: 40;
 }
 .rotoslider .rotoslider-nav li {
@@ -113,7 +113,7 @@
 .rotoslider-image-nav img.rotoslider-image,
 .rotoslider-image-nav .rotoslider-images,
 .rotoslider-image-nav .rotoslider-images img {
-  width: 527px;
+  width: 540px;
 }
 .rotoslider-image-nav .rotoslider-description {
   bottom: 0;

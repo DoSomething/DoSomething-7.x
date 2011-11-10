@@ -26,6 +26,7 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
         'cycle' => array('default' => '0'),
         'link' => array('default' => FALSE),
         'image' => array('default' => FALSE),
+        'image_style' => array('default' => FALSE),
       ),
     );
     $options['initial'] = array(
@@ -103,6 +104,14 @@ class rotoslider_plugin_style_slider extends views_plugin_style {
       '#title' => t('Use image for sliders'),
       '#description' => t('Instead of the title, only display an image in the sidebar.'),
       '#default_value' => $this->options['settings']['link'],
+    );
+    $form['settings']['image_style'] = array(
+      '#type' => 'select',
+      '#title' => t('Sidebar image style'),
+      '#options' => image_style_options(),
+      '#description' => t('Choose the image style for the sidebar.'),
+      '#default_value' => $this->options['settings']['image_style'],
+      '#dependency' => array('edit-style-options-settings-image' => array(1)),
     );
 
     $form['initial'] = array(
