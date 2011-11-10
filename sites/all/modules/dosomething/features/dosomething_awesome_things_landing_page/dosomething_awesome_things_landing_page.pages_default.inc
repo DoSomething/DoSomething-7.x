@@ -17,18 +17,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'awesome-things';
   $page->access = array();
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Awesome-Things',
-    'name' => 'main-menu',
-    'weight' => '4',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
+  $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
