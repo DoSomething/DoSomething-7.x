@@ -113,6 +113,7 @@
 .ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content, .ds-pane-campaign .pane-content {
   padding-left: 1em;
   padding-right: 1em;
+  background: #d2d2d2;
 }
 .ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p, .ds-pane-campaign .pane-content p {
   margin-top: 0;
@@ -741,10 +742,7 @@ img.goleft {
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
   display: none;
 }
-#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
-#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
-#dosomething-blocks-make-an-impact-form-front .form-item-where label,
-#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label, #dosomething-blocks-make-an-impact-form-front .form-item-who-with label, #dosomething-blocks-make-an-impact-form-front .form-item-where label, #dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
   cursor: default;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
