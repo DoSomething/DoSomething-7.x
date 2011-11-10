@@ -70,8 +70,8 @@ function dosomething_user_my_somethings_ds_current_somethings_content($uid) {
   }  
 
   // Find a user's projects where status is idea or ongoing.
-  if (isset($my_somethings['projects']) && count($my_somethings['projects'])) {
-    foreach ($my_somethings['projects'] as $project) {
+  if (isset($my_somethings['project_report']) && count($my_somethings['project_report'])) {
+    foreach ($my_somethings['project_report'] as $project) {
       $links[] = array(
         'title' => $project->field_project_title_value,
         'link' => l('Complete this', 'node/' . $project->nid . '/submission/' . $project->sid),
