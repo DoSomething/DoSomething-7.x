@@ -41,8 +41,14 @@
   color: white;
   cursor: pointer;
   display: block;
-  margin-top: 1em;
+  margin-top: 0.7em;
   text-align: center;
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .pane-content a:visited, .pane-content a:hover {
   color: white;
