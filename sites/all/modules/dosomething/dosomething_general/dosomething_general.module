@@ -34,7 +34,7 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
 function theme_dosomething_general_facebook_friend_pic($var) { 
   // Less overhead than user_load.
   $name = db_query('SELECT name from {users} WHERE uid = :uid', array(':uid' => $var['uid']))->fetchField();
-  $filepath = 'https://graph.facebook.com/' . $var['fbid'] . '/picture?type=large';
+  $filepath = 'https://graph.facebook.com/' . $var['fbid'] . '/picture?type=small';
   $alt = t("@names's picture", array('@name' => $name));
   if (module_exists('image') && $var['image_style']) {
     $picture = theme('image_style', array('style_name' => $var['image_style'], 'path' => $filepath, 'alt' => $alt, 'title' => $alt));
