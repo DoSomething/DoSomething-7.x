@@ -1714,6 +1714,9 @@ input[type=search] {
 input[type=search]::-webkit-search-decoration {
   display: none;
 }
+input[type=number] {
+  line-height: 1em;
+}
 
 select {
   line-height: 1;
