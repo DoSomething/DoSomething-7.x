@@ -12,24 +12,26 @@ include_once('dosomething_campaign_sign_up.features.inc');
 function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id) {
   // Make sure we're dealing with the right form.
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form['#node']) && $form['#node']->type == 'campaign_sign_up') {
+    $magic_fields_field = 'field_signup_magic_fields';
     $node = $form['#node'];
     // Make sure no one did something stupid like deleting our field.
-    if (isset($node->field_signup_magic_fields)) {
+    module_load_include('inc', 'field', 'field.attach');
+    $enabled_fields = array();
+    if (isset($node->{$magic_fields_field})) {
       // Get the allowed values.
-      $enabled_fields = array();
-      if ($items = field_get_items('node', $node, 'field_signup_magic_fields')) {
+      if ($items = field_get_items('node', $node, $magic_fields_field)) {
         foreach ($items as $item) {
           foreach ($item as $field) {
             $enabled_fields[] = $field;
           }
         }
       }
-      // Get the field info so that we can get the list of values to work with.
-      $field_info = field_info_field('field_signup_magic_fields');
-      foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
-        if (isset($form[$field_name]) && !in_array($field_name, $enabled_fields)) {
-          $form[$field_name]['#access'] = FALSE;
-        }
+    }
+    // Get the field info so that we can get the list of values to work with.
+    $field_info = field_info_field($magic_fields_field);
+    foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
+      if (isset($form['submitted']['webform_entity_form'][$field_name]) && !in_array($field_name, $enabled_fields)) {
+        $form['submitted']['webform_entity_form'][$field_name]['#access'] = FALSE;
       }
     }
   }
