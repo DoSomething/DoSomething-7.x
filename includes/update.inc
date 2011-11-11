@@ -413,7 +413,7 @@ function update_fix_d7_block_deltas(&$sandbox, $renamed_deltas, $moved_deltas) {
     $sandbox['max'] = db_query("SELECT COUNT(*) FROM {users} WHERE data IS NOT NULL")->fetchField();
   }
   // Now do the batch update of the user-specific block visibility settings.
-  /* $limit = 100;
+  $limit = 100;
   $result = db_select('users', 'u')
     ->fields('u', array('uid', 'data'))
     ->condition('uid', $sandbox['last_user_processed'], '>')
@@ -457,8 +457,6 @@ function update_fix_d7_block_deltas(&$sandbox, $renamed_deltas, $moved_deltas) {
     $sandbox['progress']++;
     $sandbox['last_user_processed'] = $row->uid;
   }
-  */
-$sandbox['progress'] = $sandbox['max'];
   // Indicate our current progress to the batch update system.
   if ($sandbox['progress'] < $sandbox['max']) {
     $sandbox['#finished'] = $sandbox['progress'] / $sandbox['max'];
@@ -1428,7 +1426,7 @@ function update_retrieve_dependencies() {
   $return = array();
   // Get a list of installed modules, arranged so that we invoke their hooks in
   // the same order that module_invoke_all() does.
-  $modules = db_query("SELECT name FROM {system} WHERE type = 'module' AND schema_version != :schema ORDER BY weight ASC, name ASC", array(':schema' => SCHEMA_UNINSTALLED))->fetchCol();
+  $modules = db_query("SELECT name FROM {system} WHERE type = 'module' AND schema_version <> :schema ORDER BY weight ASC, name ASC", array(':schema' => SCHEMA_UNINSTALLED))->fetchCol();
   foreach ($modules as $module) {
     $function = $module . '_update_dependencies';
     if (function_exists($function)) {

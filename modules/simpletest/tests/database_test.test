@@ -2096,7 +2096,7 @@ class DatabaseSelectComplexTestCase extends DatabaseTestCase {
    */
   function testCountQueryFieldRemovals() {
     // countQuery should remove all fields and expressions, so this can be
-    // tested by adding a non-existant field and expression: if it ends
+    // tested by adding a non-existent field and expression: if it ends
     // up in the query, an error will be thrown. If not, it will return the
     // number of records, which in this case happens to be 4 (there are four
     // records in the {test} table).
@@ -2364,8 +2364,8 @@ class DatabaseSelectPagerDefaultTestCase extends DatabaseTestCase {
   }
 
   /**
-  * Confirm that every pager gets a valid non-overlaping element ID.
-  */
+   * Confirm that every pager gets a valid non-overlaping element ID.
+   */
   function testElementNumbers() {
     $_GET['page'] = '3, 2, 1, 0';
 
@@ -3107,39 +3107,6 @@ class DatabaseBasicSyntaxTestCase extends DatabaseTestCase {
       ->execute()
       ->fetchField();
     $this->assertIdentical($num_matches, '1', t('Found 1 record.'));
-  }
-}
-
-/**
- * Test case sensitivity handling.
- */
-class DatabaseCaseSensitivityTestCase extends DatabaseTestCase {
-  public static function getInfo() {
-    return array(
-      'name' => 'Case sensitivity',
-      'description' => 'Test handling case sensitive collation.',
-      'group' => 'Database',
-    );
-  }
-
-  /**
-   * Test BINARY collation in MySQL.
-   */
-  function testCaseSensitiveInsert() {
-    $num_records_before = db_query('SELECT COUNT(*) FROM {test}')->fetchField();
-
-    $john = db_insert('test')
-      ->fields(array(
-        'name' => 'john', // <- A record already exists with name 'John'.
-        'age' => 2,
-        'job' => 'Baby',
-      ))
-      ->execute();
-
-    $num_records_after = db_query('SELECT COUNT(*) FROM {test}')->fetchField();
-    $this->assertIdentical($num_records_before + 1, (int) $num_records_after, t('Record inserts correctly.'));
-    $saved_age = db_query('SELECT age FROM {test} WHERE name = :name', array(':name' => 'john'))->fetchField();
-    $this->assertIdentical($saved_age, '2', t('Can retrieve after inserting.'));
   }
 }
 
