@@ -83,13 +83,12 @@ ul li:nth-of-type(even) .pane-content {
   *display: inline;
 }
 .panel-bottom p {
-  margin: 0;
+  margin: 2.5em 2em;
 }
 .panel-bottom p a {
   color: white;
   display: block;
   font-size: 18px;
-  margin: 2.5em 2em;
 }
 .panel-bottom p a:hover {
   color: white;
