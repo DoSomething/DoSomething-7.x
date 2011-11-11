@@ -26,8 +26,14 @@ function unfuddle_feedback_post_ticket($entry) {
   global $user;
   include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
   $description = drupal_html_to_text(drupal_render(feedback_view($entry)), array('a'));
+  if (!$user->uid) {
+    $name = t('Anonymous');
+  }
+  else {
+    $name = $user->name;
+  }
 
-  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($description, 20, TRUE)));
+  $subject = t('!name: !message', array('!name' => $name, '!message' => truncate_utf8($description, 20, TRUE)));
 
   $unfuddle = new Unfuddle();
   $fields = array('priority' => UNFUDDLE_FEEDBACK_NORMAL_PRIORITY);
