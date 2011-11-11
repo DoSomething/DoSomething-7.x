@@ -157,6 +157,103 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-campaign_report_back-field_report_back_magic_fields'
+  $fields['node-campaign_report_back-field_report_back_magic_fields'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_report_back_magic_fields',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'field_webform_email' => 'Email',
+          'field_webform_mobile' => 'Mobile Phone Numbe',
+          'field_webform_school' => 'Schoo',
+          'field_webform_school_zip' => 'School Zip Cod',
+          'field_webform_geocode_zip_code' => 'Geocode Zip Cod',
+          'field_webform_pictures' => 'Pictures',
+          'field_webform_videos' => 'Video',
+          'field_webform_issues' => 'Issues',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_report_back',
+      'default_value' => array(
+        0 => array(
+          'value' => 'field_webform_email',
+        ),
+        1 => array(
+          'value' => 'field_webform_mobile',
+        ),
+        2 => array(
+          'value' => 'field_webform_school',
+        ),
+        3 => array(
+          'value' => 'field_webform_school_zip',
+        ),
+        4 => array(
+          'value' => 'field_webform_geocode_zip_code',
+        ),
+        5 => array(
+          'value' => 'field_webform_pictures',
+        ),
+        6 => array(
+          'value' => 'field_webform_videos',
+        ),
+        7 => array(
+          'value' => 'field_webform_issues',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 8,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_report_back_magic_fields',
+      'label' => 'Enabled Fields',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign_report_back-field_report_back_reference'
   $fields['node-campaign_report_back-field_report_back_reference'] = array(
     'field_config' => array(
@@ -826,6 +923,7 @@ The content from this field will only be shown to anonymous users.',
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Email');
+  t('Enabled Fields');
   t('Geocode Zip Code');
   t('Issues');
   t('Mobile Phone Number');
