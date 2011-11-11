@@ -33,6 +33,14 @@ function dosomething_scholarship_application_views_api() {
  */
 function dosomething_scholarship_application_node_info() {
   $items = array(
+    'scholarship' => array(
+      'name' => t('Scholarship'),
+      'base' => 'node_content',
+      'description' => t('Scholarship information node'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'scholarship_application' => array(
       'name' => t('Scholarship Application'),
       'base' => 'node_content',

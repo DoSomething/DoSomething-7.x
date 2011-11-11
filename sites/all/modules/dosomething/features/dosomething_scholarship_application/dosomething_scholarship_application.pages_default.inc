@@ -61,6 +61,23 @@ function dosomething_scholarship_application_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
+    $pane->panel = 'bottom';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'scholarships-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['bottom'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -89,10 +106,10 @@ Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berline
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['mid-left'][0] = 'new-1';
+    $display->content['new-2'] = $pane;
+    $display->panels['mid-left'][0] = 'new-2';
     $pane = new stdClass;
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'editorial_content_scholarships-panel_pane_1';
@@ -103,13 +120,16 @@ Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berline
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane ds-pane-usergen',
+    );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-2'] = $pane;
-    $display->panels['mid-right'][0] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['mid-right'][0] = 'new-3';
     $pane = new stdClass;
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -126,10 +146,10 @@ Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berline
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['top'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][0] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['scholarships'] = $page;
