@@ -34,6 +34,14 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
         $form['submitted']['webform_entity_form'][$field_name]['#access'] = FALSE;
       }
     }
+    global $user;
+    $ref = field_get_items('node', $node, 'field_report_back_reference');
+    if (isset($ref[0]['nid'])) {
+      if (is_object($group = og_get_group('node', $ref[0]['nid']))) {
+        $form['submitted']['webform_entity_form']['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
+        $form['submitted']['webform_entity_form']['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
+      }
+    }
   }
 }
 
