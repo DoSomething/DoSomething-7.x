@@ -157,6 +157,169 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-campaign_sign_up-field_campaign'
+  $fields['node-campaign_sign_up-field_campaign'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'module' => 'node_reference',
+      'settings' => array(
+        'profile2_private' => FALSE,
+        'referenceable_types' => array(
+          '1in3_abuse_old' => 0,
+          '301_redirects' => 0,
+          '911_registration' => 0,
+          'abc_family' => 0,
+          'action_guide' => 0,
+          'api_key' => 0,
+          'aspca_grant_app' => 0,
+          'awards_archive' => 0,
+          'bc_bio_form' => 0,
+          'blog' => 0,
+          'campaign' => 'campaign',
+          'campaign_art_2011' => 0,
+          'campaign_bully_2011' => 0,
+          'campaign_cancer_2011' => 0,
+          'campaign_ew_2011' => 0,
+          'campaign_hunt_2011' => 0,
+          'campaign_macys_2011' => 0,
+          'campaign_report_back' => 0,
+          'campaign_sign_up' => 0,
+          'campaign_sports_2011' => 0,
+          'cancer_2011_signup' => 0,
+          'canned_food' => 0,
+          'cause' => 0,
+          'cause_video' => 0,
+          'celebs_gone_good' => 0,
+          'chatterbox' => 0,
+          'club' => 0,
+          'club_event' => 0,
+          'club_first_meeting_cash' => 0,
+          'decade_2011_signup' => 0,
+          'ds101_action_kit' => 0,
+          'ds_award_judging' => 0,
+          'dsaward_app' => 0,
+          'dsaward_rec' => 0,
+          'dsu_askprof' => 0,
+          'dsu_guides' => 0,
+          'easy_idea' => 0,
+          'ebd_signup' => 0,
+          'editorial_content_' => 0,
+          'editorial_project' => 0,
+          'ewaste_signup_2011' => 0,
+          'faq' => 0,
+          'feed' => 0,
+          'feed_item' => 0,
+          'final_grant_update' => 0,
+          'general_grant_app' => 0,
+          'general_scholarship_app' => 0,
+          'grant' => 0,
+          'grant_alumni' => 0,
+          'grant_application' => 0,
+          'grant_judge' => 0,
+          'grants_database' => 0,
+          'gys_2011' => 0,
+          'healthy_schools' => 0,
+          'healthy_schools_report' => 0,
+          'help_ticket' => 0,
+          'huffpo' => 0,
+          'ididthis' => 0,
+          'increaseyourgreen_signup' => 0,
+          'issue' => 0,
+          'page' => 0,
+          'poll' => 0,
+          'press' => 0,
+          'project' => 0,
+          'project_report' => 0,
+          'project_update' => 0,
+          'save_our_music' => 0,
+          'scavenger_2011_signup' => 0,
+          'scholarship_application' => 0,
+          'scholarship_update' => 0,
+          'scholarships_att' => 0,
+          'school' => 0,
+          'scroller' => 0,
+          'sfs_report_gallery' => 0,
+          'sixflags_scholarships_app' => 0,
+          'staff_blog' => 0,
+          'staples_2011_signup' => 0,
+          'staples_members' => 0,
+          'staples_reason' => 0,
+          'tackle_hunger' => 0,
+          'tfj_contest_signup' => 0,
+          'tips_and_tools' => 0,
+          'troop_letter' => 0,
+          'webform' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'node_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign',
+      'label' => 'Campaign',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'node_reference',
+        'settings' => array(
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'node_reference/autocomplete',
+          'size' => '60',
+        ),
+        'type' => 'node_reference_autocomplete',
+        'weight' => '6',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign_sign_up-field_signup_magic_fields'
   $fields['node-campaign_sign_up-field_signup_magic_fields'] = array(
     'field_config' => array(
@@ -209,10 +372,9 @@ The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 2,
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -526,15 +688,89 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-campaign_sign_up-group_audience'
+  $fields['webform_submission_entity-campaign_sign_up-group_audience'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'group_audience',
+      'foreign keys' => array(
+        'og' => array(
+          'columns' => array(
+            'gid' => 'gid',
+          ),
+          'table' => 'og',
+        ),
+      ),
+      'indexes' => array(
+        'gid' => array(
+          0 => 'gid',
+        ),
+      ),
+      'module' => 'og',
+      'no_ui' => TRUE,
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'group',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'og',
+          'settings' => array(),
+          'type' => 'og_list_default',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'group_audience',
+      'label' => 'Groups audience',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'view modes' => array(
+        'full' => array(
+          'custom settings' => FALSE,
+          'label' => 'Full',
+          'type' => 'og_list_default',
+        ),
+        'teaser' => array(
+          'custom settings' => FALSE,
+          'label' => 'Teaser',
+          'type' => 'og_list_default',
+        ),
+      ),
+      'widget' => array(
+        'module' => 'og',
+        'settings' => array(
+          'opt_group' => 'auto',
+        ),
+        'type' => 'group_audience',
+        'weight' => 31,
+      ),
+      'widget_type' => 'group_audience',
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body (anonymous user)');
   t('Body (logged in user)');
+  t('Campaign');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Email');
   t('Enabled Fields');
   t('Geocode Zip Code');
+  t('Groups audience');
   t('Mobile Phone Number');
   t('School');
   t('School Zip Code');
