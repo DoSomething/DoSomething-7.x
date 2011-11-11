@@ -17,8 +17,8 @@
 <div id="page" class="container">
   <header role="banner">
 
-    <?php if ($site_name): ?>
-      <?php if ($title): ?>
+    <?php if (isset($site_name)): ?>
+      <?php if (isset($title)): ?>
         <div id="site-name"><strong>
           <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
         </strong></div>
@@ -31,16 +31,16 @@
 
     <?php print render($page['header']); ?>
 
-    <?php if ($main_menu || $secondary_menu_items): ?>
+    <?php if (isset($main_menu) || isset($secondary_menu_items)): ?>
       <nav role="navigation">
-        <?php if ($main_menu): ?>
+        <?php if (isset($main_menu)): ?>
         <div class="primary">
           <div class="wrapper">
             <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links')))); ?>
           </div>
         </div>
         <?php endif; ?>
-        <?php if (count($secondary_menu_items)): ?>
+        <?php if (isset($secondary_menu_items) && count($secondary_menu_items)): ?>
         <div class="secondary">
           <?php foreach ($secondary_menu_items as $mlid => $item): ?>
             <?php print theme('links__system_secondary_menu', array('links' => $item['links'], 'attributes' => array('id' => 'secondary-menu-' . $mlid, 'class' => $item['attributes']['class']))); ?>
