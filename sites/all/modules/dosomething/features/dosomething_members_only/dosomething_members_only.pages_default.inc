@@ -89,26 +89,30 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Members Only Blocks',
       'title' => '',
-      'body' => '
-        <div class="block-pair">
-          <a>How to Become a Member</a>
+      'body' => '        <div class="block-pair">
+          <a href="/user">MySomethings</a>
         </div>
         <div class="block-pair">
-          <a>Member Benefits</a>
+          <a href="">What is Membership</a>
         </div>
         <div class="block-pair">
-          <a>Membership Levels</a>
+          <a href="">How to Become a Member</a>
         </div>
         <div class="block-pair">
-          <a>My Somethings</a>
+          <a href="">Membership Benefits</a>
         </div>
         <div class="block-pair">
-          <a>My Profile</a>
+          <a href="/grants">Grants</a>
         </div>
         <div class="block-pair">
-          <a>FAQ</a>
+          <a href="/scholarships">Scholarships</a>
         </div>
-      ',
+        <div class="block-pair">
+          <a href="/clubhub">Club Hub</a>
+        </div>
+        <div class="block-pair">
+          <a href="/faqs">FAQs</a>
+        </div>',
       'format' => '3',
       'substitute' => TRUE,
     );

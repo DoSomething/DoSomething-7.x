@@ -12,6 +12,7 @@ function ds_preprocess_panels_pane(&$variables) {
   if ($variables['pane']->type == 'views' && $variables['pane']->subtype == 'blog_center') {
     drupal_add_css($theme_path . '/css/ds/blog-panes.css');
   }
+  // dsm($variables);
 }
 
 function ds_preprocess_page(&$variables) {
@@ -29,8 +30,20 @@ function ds_preprocess_page(&$variables) {
   // Only call arg(0) once.
   $arg0 = arg(0);
   // causes landing page
-  if (arg(0) == 'cause' || arg(0) == 'causes') {
+  if ($arg0 == 'cause' || $arg0 == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
+  }
+  // issues pages
+  if ($variables['theme_hook_suggestions'][1] == 'page__taxonomy__term') {
+    drupal_add_css($theme_path . '/css/ds/dosomething-issues.css');
+    // add jquery to set equal heights
+    drupal_add_js($theme_path . '/js/equalheights.jquery.js', array('scope' => 'footer'));
+    drupal_add_js('(function ($) {
+      $(".panel-row-middle").equalHeights();
+      $(".panel-row-middle").equalHeightsPaneContent();
+      })(jQuery);',
+        array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
+      );
   }
   // awesome things landing page
   if ($arg0 == 'awesome-things') {
@@ -52,6 +65,9 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'clubhub') {
     drupal_add_css($theme_path . '/css/ds/clubhub-landing.css');
   }
+  if ($arg0 == 'start-something') {
+    drupal_add_css($theme_path . '/css/ds/dosomething-start-something.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {
@@ -60,10 +76,6 @@ function ds_preprocess_node(&$variables) {
   // Action Tip node page
   if ($variables['type'] == 'action_guide') {
     drupal_add_css($theme_path . '/css/ds/page-node-action-guide.css');
-  }
-  // Grant node
-  if ($variables['type'] == 'grants_database') {
-    drupal_add_css($theme_path . '/css/ds/page-node-grant.css');
   }
 }
 
@@ -182,9 +194,53 @@ function ds_preprocess_views_view(&$variables) {
       }
       break;
   }
+  // dsm($variables);
 }
 
 function ds_preprocess_rotoslider_slider(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
   drupal_add_css($theme_path . '/css/ds/dosomething-rotoslider.css');
+}
+
+/**
+ * Overrides theme_date_display_range().
+ */
+function ds_date_display_range($vars) {
+  $date1 = $vars['date1'];
+  $date2 = $vars['date2'];
+  $timezone = $vars['timezone'];
+  $attributes_start = $vars['attributes_start'];
+  $attributes_end = $vars['attributes_end'];
+
+  // Wrap the result with the attributes.
+  return t('!start-date - !end-date', array(
+    '!start-date' => '<span class="date-display-start"' . drupal_attributes($attributes_start) . '>' . $date1 . '</span>',
+    '!end-date' => '<span class="date-display-end"' . drupal_attributes($attributes_end) . '>' . $date2 . $timezone. '</span>',
+  ));
+}
+
+/**
+ * Overwrites all user profiled pics with Facebook photo.
+ * user_picture is empty by design if they are not connected to Facebook.
+ */
+function ds_preprocess_user_picture(&$variables) {
+  $variables['user_picture'] = '';
+    $account = $variables['account'];
+    if ($account && $fbid = fboauth_fbid_load($account->uid)) {
+      $filepath = 'https://graph.facebook.com/' . $fbid . '/picture?type=large';
+      $alt = t("@user's picture", array('@user' => format_username($account)));
+      if (module_exists('image') && file_valid_uri($filepath) && $style = variable_get('user_picture_style', '')) {
+        $variables['user_picture'] = theme('image_style', array('style_name' => $style, 'path' => $filepath, 'alt' => $alt, 'title' => $alt));
+      }
+      else {
+        $variables['user_picture'] = theme('image', array('path' => $filepath, 'alt' => $alt, 'title' => $alt));
+      }
+      if (!empty($account->uid) && user_access('access user profiles')) {
+        $attributes = array(
+          'attributes' => array('title' => t('View user profile.')),
+          'html' => TRUE,
+        );
+        $variables['user_picture'] = l($variables['user_picture'], "user/$account->uid", $attributes);
+      }
+    }
 }

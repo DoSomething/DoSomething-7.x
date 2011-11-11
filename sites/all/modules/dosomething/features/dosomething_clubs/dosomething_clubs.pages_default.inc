@@ -228,22 +228,24 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-7';
     $pane->panel = 'mid-right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'webform_submission';
+    $pane->subtype = 'webform_submission';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Feature Club Project PLACEHOLDER',
-      'title' => 'Feature Club Project PLACEHOLDER',
-      'body' => 'Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas tellus. Maecenas erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-      'format' => '6',
-      'substitute' => TRUE,
+      'sid' => '84707',
+      'identifier' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Club Project of The Week',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane ds-pane-usergen',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-7'] = $pane;

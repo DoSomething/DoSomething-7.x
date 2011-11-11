@@ -37,6 +37,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['style_options']['settings']['cycle'] = '3';
   $handler->display->display_options['style_options']['settings']['link'] = 1;
   $handler->display->display_options['style_options']['settings']['image'] = 1;
+  $handler->display->display_options['style_options']['settings']['image_style'] = 'rotoslider_nav';
   $handler->display->display_options['style_options']['initial']['default'] = 0;
   $handler->display->display_options['style_options']['initial']['title'] = 'title';
   $handler->display->display_options['style_options']['initial']['image'] = 'title';
@@ -104,7 +105,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => 'cause_main',
+    'image_style' => 'rotoslider_homepage_main',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;

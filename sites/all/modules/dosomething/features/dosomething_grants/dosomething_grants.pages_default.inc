@@ -322,18 +322,7 @@ function dosomething_grants_default_page_manager_pages() {
     'type' => 'none',
     'settings' => NULL,
   );
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Grants',
-    'name' => 'main-menu',
-    'weight' => '0',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
+  $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
@@ -387,7 +376,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->panel = 'bottom';
     $pane->type = 'node';
     $pane->subtype = 'node';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'nid' => '302484',
@@ -416,9 +405,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Club Grants',
-      'title' => '',
-      'body' => 'Club Grants',
+      'admin_title' => '',
+      'title' => 'Current Grants',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/node/add/grant"> Apply for a Grant</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -439,9 +429,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grants Judging Criteria',
-      'title' => 'Grant Resources',
-      'body' => 'Judging Criteria',
+      'admin_title' => 'Club Grants',
+      'title' => '',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/club-grants">Club Grants</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -462,9 +453,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grants FAQ',
-      'title' => '',
-      'body' => 'Grant FAQ',
+      'admin_title' => 'Grants Judging Criteria',
+      'title' => 'Grant Resources',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="">Judging Criteria</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -485,9 +477,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grant Winners',
-      'title' => 'Past Winners',
-      'body' => 'Grant Winners',
+      'admin_title' => 'Grants FAQ',
+      'title' => '',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="">Grants FAQ</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -508,9 +501,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'DS Award Winners',
+      'admin_title' => 'External Grant DB',
       'title' => '',
-      'body' => 'DS Award Winners',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="">External Grant DB</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -525,6 +519,54 @@ function dosomething_grants_default_page_manager_pages() {
     $display->panels['bottom'][5] = 'new-6';
     $pane = new stdClass;
     $pane->pid = 'new-7';
+    $pane->panel = 'bottom';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Grant Winners',
+      'title' => 'Past Winners',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="">Grant Winners</a>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $display->content['new-7'] = $pane;
+    $display->panels['bottom'][6] = 'new-7';
+    $pane = new stdClass;
+    $pane->pid = 'new-8';
+    $pane->panel = 'bottom';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'DS Award Winners',
+      'title' => '',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="">DS Award Winners</a>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $display->content['new-8'] = $pane;
+    $display->panels['bottom'][7] = 'new-8';
+    $pane = new stdClass;
+    $pane->pid = 'new-9';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -553,14 +595,14 @@ Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berline
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['mid-left'][0] = 'new-7';
+    $display->content['new-9'] = $pane;
+    $display->panels['mid-left'][0] = 'new-9';
     $pane = new stdClass;
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-10';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'Seed Grant Winner',
@@ -578,10 +620,39 @@ Max and Coffee 2 Compost are providing an innovative service to collect the remn
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-8'] = $pane;
-    $display->panels['mid-right'][0] = 'new-8';
+    $display->content['new-10'] = $pane;
+    $display->panels['mid-right'][0] = 'new-10';
     $pane = new stdClass;
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-11';
+    $pane->panel = 'mid-right';
+    $pane->type = 'node';
+    $pane->subtype = 'node';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'nid' => '718331',
+      'links' => 1,
+      'leave_node_title' => 0,
+      'identifier' => '',
+      'build_mode' => 'teaser',
+      'link_node_title' => 0,
+      'override_title' => 1,
+      'override_title_text' => 'Seed Grants Winner',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane ds-pane-usergen',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-11'] = $pane;
+    $display->panels['mid-right'][1] = 'new-11';
+    $pane = new stdClass;
+    $pane->pid = 'new-12';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -598,8 +669,8 @@ Max and Coffee 2 Compost are providing an innovative service to collect the remn
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-9'] = $pane;
-    $display->panels['top'][0] = 'new-9';
+    $display->content['new-12'] = $pane;
+    $display->panels['top'][0] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

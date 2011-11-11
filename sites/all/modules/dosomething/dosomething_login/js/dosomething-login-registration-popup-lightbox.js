@@ -20,7 +20,7 @@
           phone = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(value) && value.length >= 12;
         }
         return this.optional(element) || (phone || email);
-      }, "Please enter a valid email address or phone number(no spaces or dashes).");
+      }, "Please enter a valid email address or phone number(no spaces).");
 
       $("#edit-final-submit").click(function(event) {
         // The elements are disabled, but still need to actually post.
@@ -33,7 +33,7 @@
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
         if (blockForm.valid()) {
-          popupForm.dialog({modal:true, width:617, height:392});
+          popupForm.dialog({modal:true, width:592});
           popupForm.find('.dosomething-original-value').each(function() {
             var name = $(this).attr('name');
             var value = blockForm.find('input[name="' + name + '"]').val();
@@ -48,7 +48,7 @@
           }
           // Check if user is under 13.
           else if (date.getTime() - birthDate.getTime() < 409968000000) {
-            // TODO: Show/hide parent email based on birthday value.
+            // Show/hide parent email based on birthday value.
             popupForm.find('.form-item, .captcha, .age-question').show();
             $("#edit-signup-title").hide();
             $(".under-13-field").show();

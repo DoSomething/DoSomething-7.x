@@ -113,6 +113,7 @@
 .ds-pane .pane-content, .ds-pane-usergen .pane-content, .ds-pane-news .pane-content, .ds-pane-top-radius .pane-content, .ds-pane-top-right-radius .pane-content, .ds-pane-no-radius .pane-content, .ds-pane-campaign .pane-content {
   padding-left: 1em;
   padding-right: 1em;
+  background: #d2d2d2;
 }
 .ds-pane .pane-content p, .ds-pane-usergen .pane-content p, .ds-pane-news .pane-content p, .ds-pane-top-radius .pane-content p, .ds-pane-top-right-radius .pane-content p, .ds-pane-no-radius .pane-content p, .ds-pane-campaign .pane-content p {
   margin-top: 0;
@@ -192,6 +193,11 @@
   background-image: -ms-linear-gradient(top, #fbdf61, #fbc013);
   background-image: linear-gradient(top, #fbdf61, #fbc013);
   color: #161616;
+}
+
+.ds-pane-no-padding .pane-content {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .ds-button, .ds-button-strong {

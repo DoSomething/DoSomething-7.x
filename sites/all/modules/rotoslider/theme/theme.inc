@@ -31,6 +31,9 @@ function template_preprocess_rotoslider_view_slider(&$variables) {
     $options['base_field'] = $variables['view']->base_field;
   }
   $options['image'] = !empty($variables['options']['settings']['image']);
+  if (!empty($variables['options']['settings']['image_style'])) {
+    $options['nav_style'] = $variables['options']['settings']['image_style'];
+  }
 
   // Add a slide for each row.
   $items = _rotoslider_process($variables['options']['fields'], $variables['rows'], $variables['view']->field, $options);
@@ -92,6 +95,9 @@ function template_preprocess_rotoslider_slider(&$variables) {
     if (!empty($item['title']['#path'])) {
       $link_text = $item['title'];
       unset($link_text['#markup']);
+      if (!empty($link_text['#nav_style'])) {
+        $link_text['#style_name'] = $link_text['#nav_style'];
+      }
       $link_text = drupal_render($link_text);
     }
     $links[] = array(
@@ -325,6 +331,9 @@ function _rotoslider_process($options, $rows, $fields, $settings = array()) {
           $value['#style_name'] = $value['#image_style'];
           $value['#theme'] = 'image_style';
           $value['#path'] = $value['#item']['uri'];
+          if (!empty($settings['nav_style'])) {
+            $value['#nav_style'] = $settings['nav_style'];
+          }
         }
         else {
           // If a placeholder is set and the image is missing, use it.

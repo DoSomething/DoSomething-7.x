@@ -16,7 +16,10 @@ function dosomething_start_something_default_page_manager_pages() {
   $page->admin_title = 'Resources';
   $page->admin_description = 'The main resources landing page.';
   $page->path = 'resources';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -177,7 +180,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->pid = 'new-1';
     $pane->panel = 'mid-left';
     $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_make_impact';
+    $pane->subtype = 'dosomething_blocks-dosomething_make_impact_front';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -188,7 +191,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-usergen',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
@@ -227,6 +233,32 @@ function dosomething_start_something_default_page_manager_pages() {
     $display->panels['mid-right'][0] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
+    $pane->panel = 'mid-right';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'Ready To Start Your Own Something?',
+      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">Start a Project</a> <a class="ds-button-strong" href="/node/add/club" title="Start a Club">Start a Club</a>',
+      'format' => '1',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'ready-to-start',
+      'css_class' => 'ds-pane ds-pane-top-right-radius',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-3'] = $pane;
+    $display->panels['mid-right'][1] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'upcoming_somethings-panel_pane_1';
@@ -237,11 +269,14 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-center ds-pane-top-radius ds-pane-no-padding',
+    );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['top'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][0] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

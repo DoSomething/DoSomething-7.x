@@ -18,12 +18,33 @@
  * 'top' for hanging tabs
  * assumes placement on UL */
 h2.pane-title {
-  border-bottom: 1px solid #c6c6c6;
   -moz-box-shadow: white 0 1px -1px 1px;
   -webkit-box-shadow: white 0 1px -1px 1px;
   -o-box-shadow: white 0 1px -1px 1px;
   box-shadow: white 0 1px -1px 1px;
+  border-bottom: 1px solid #c7c7c7;
   margin: 1em 0;
+}
+
+.field-label {
+  display: inline;
+  float: left;
+}
+
+.pane-webform-submission .pane-title {
+  border: none;
+}
+.pane-webform-submission #webform-component-hidden {
+  display: none;
+}
+.pane-webform-submission .pane-content {
+  padding-top: 2em !important;
+}
+.pane-webform-submission .pane-content .field {
+  margin-bottom: 0.5em;
+}
+.pane-webform-submission .pane-content:last-child {
+  margin-bottom: 0;
 }
 
 ul li:nth-of-type(odd) .pane-content {
@@ -43,6 +64,12 @@ ul li:nth-of-type(even) .pane-content {
   margin: 0;
 }
 .panel-bottom .pane-content {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  font-weight: 500;
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;

@@ -28,7 +28,7 @@
     padding-left: calc-em(12px, $s0)
     padding-right: calc-em(12px, $s0)
     // padding: 5px 0px 10px 20px
-    // background: $gray6
+    background: $gray6
     p
       margin-top: 0
       &:last-child
@@ -72,6 +72,10 @@
     background-color: $yellow
     +background-image(linear-gradient(top, $yellow-gloss-light, $yellow-gloss-dark))
     color: $black-not
+.ds-pane-no-padding
+  .pane-content
+    padding-left: 0
+    padding-right: 0
 
 // dosomething buttons
 .ds-button

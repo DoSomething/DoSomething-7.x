@@ -34,7 +34,6 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['style_options']['fields']['title'] = 'name';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_causes_image';
   $handler->display->display_options['style_options']['fields']['text'] = 'description';
-  $handler->display->display_options['style_options']['settings']['cycle'] = '0';
   $handler->display->display_options['style_options']['settings']['link'] = 1;
   $handler->display->display_options['style_options']['settings']['image'] = 0;
   $handler->display->display_options['style_options']['initial']['default'] = 1;
@@ -275,7 +274,7 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['alter']['alter_text'] = 0;

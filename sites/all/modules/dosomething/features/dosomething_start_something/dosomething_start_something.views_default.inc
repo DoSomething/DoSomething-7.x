@@ -357,6 +357,17 @@ function dosomething_start_something_views_default_views() {
   /* Display: Resources Landing Pane */
   $handler = $view->new_display('panel_pane', 'Resources Landing Pane', 'panel_pane_1');
   $handler->display->display_options['display_description'] = 'Displays a list of resources on the Resources landing page.';
+  $handler->display->display_options['argument_input'] = array(
+    'taxonomy_vocabulary_5_tid' => array(
+      'type' => 'none',
+      'context' => 'entity:feedback.field-priority',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Field: Issues (taxonomy_vocabulary_5)',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['resources'] = $view;
 
   $view = new view;

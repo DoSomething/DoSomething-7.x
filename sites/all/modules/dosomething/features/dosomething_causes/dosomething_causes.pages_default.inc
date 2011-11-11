@@ -17,7 +17,7 @@ function dosomething_causes_default_page_manager_handlers() {
   $handler->task = 'term_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'Cause page',
     'no_blocks' => 0,
@@ -54,14 +54,36 @@ function dosomething_causes_default_page_manager_handlers() {
   $display->layout_settings = '';
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
-      'top' => NULL,
-      'mid-left' => NULL,
-      'mid-center' => NULL,
-      'mid-right' => NULL,
-      'bottom-left' => NULL,
-      'bottom-right' => NULL,
-      'footer' => NULL,
+      'default' => array(),
+      'top' => array(),
+      'mid-left' => array(),
+      'mid-center' => array(),
+      'mid-right' => array(),
+      'bottom-left' => array(),
+      'bottom-right' => array(),
+      'footer' => array(),
+    ),
+    'style' => 'stylizer',
+    'top' => array(
+      'style' => 'stylizer',
+    ),
+    'mid-left' => array(
+      'style' => 'stylizer',
+    ),
+    'mid-center' => array(
+      'style' => 'stylizer',
+    ),
+    'mid-right' => array(
+      'style' => 'stylizer',
+    ),
+    'bottom-left' => array(
+      'style' => 'stylizer',
+    ),
+    'bottom-right' => array(
+      'style' => 'stylizer',
+    ),
+    'footer' => array(
+      'style' => 'stylizer',
     ),
   );
   $display->cache = array();
@@ -78,11 +100,12 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'ds-pane-news',
+      'css_class' => 'ds-pane-news ds-pane-no-padding',
     );
     $pane->extras = array();
     $pane->position = 0;
@@ -98,7 +121,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array(
       'css_id' => '',
@@ -129,7 +153,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -157,9 +182,13 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-top-right-radius',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-4'] = $pane;
@@ -185,9 +214,13 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-5'] = $pane;
@@ -217,9 +250,13 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-top-right-radius ds-pane-usergen',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-6'] = $pane;
@@ -237,7 +274,8 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -254,7 +292,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -282,13 +321,86 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
     $display->content['new-9'] = $pane;
     $display->panels['top'][2] = 'new-9';
+    $pane = new stdClass;
+    $pane->pid = 'new-10';
+    $pane->panel = 'top';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'taxonomy_term:field_causes_image';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'image',
+      'formatter_settings' => array(
+        'image_style' => 'issue_main',
+        'image_link' => '',
+      ),
+      'context' => 'argument_term_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'style' => 'default',
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][3] = 'new-10';
+    $pane = new stdClass;
+    $pane->pid = 'new-11';
+    $pane->panel = 'top';
+    $pane->type = 'term_description';
+    $pane->subtype = 'term_description';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'style' => 'default',
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $display->content['new-11'] = $pane;
+    $display->panels['top'][4] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -413,6 +525,109 @@ function dosomething_causes_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['find_your_cause_page'] = $page;
+
+  $page = new stdClass;
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'suggest_a_cause';
+  $page->task = 'page';
+  $page->admin_title = 'Suggest a Cause';
+  $page->admin_description = 'Suggest a Cause webform page';
+  $page->path = 'suggest-a-cause';
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass;
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_suggest_a_cause_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'suggest_a_cause';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Suggest a Cause',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display;
+  $display->layout = 'one_two_one';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'mid-left' => NULL,
+      'mid-right' => NULL,
+      'bottom' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = 'Suggest a Cause';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass;
+    $pane->pid = 'new-1';
+    $pane->panel = 'mid-left';
+    $pane->type = 'node';
+    $pane->subtype = 'node';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'nid' => '718352',
+      'links' => 1,
+      'leave_node_title' => 0,
+      'identifier' => '',
+      'build_mode' => 'full',
+      'link_node_title' => 0,
+      'override_title' => 1,
+      'override_title_text' => '<none>',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['mid-left'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-2'] = $pane;
+    $display->panels['top'][0] = 'new-2';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['suggest_a_cause'] = $page;
 
   return $pages;
 
