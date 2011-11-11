@@ -5,3 +5,45 @@
  */
 
 include_once('dosomething_campaign_report_back.features.inc');
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form_id) {
+  // Make sure we're dealing with the right form.
+  if (strpos($form_id, 'webform_client_form_') === 0 && isset($form['#node']) && $form['#node']->type == 'campaign_report_back') {
+    $node = $form['#node'];
+    // Make sure no one did something stupid like deleting our field.
+    if (isset($node->field_report_back_magic_fields)) {
+      // Get the allowed values.
+      $enabled_fields = array();
+      if ($items = field_get_items('node', $node, 'field_report_back_magic_fields')) {
+        foreach ($items as $item) {
+          foreach ($item as $field) {
+            $enabled_fields[] = $field;
+          }
+        }
+      }
+      // Get the field info so that we can get the list of values to work with.
+      $field_info = field_info_field('field_report_back_magic_fields');
+    }
+    foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
+      if (isset($form[$field_name]) && !in_array($field_name, $enabled_fields)) {
+        $form[$field_name]['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+/**
+ * Implementation of hook_module_implements_alter().
+ */
+function dosomething_campaign_report_back_module_implements_alter(&$implementations, $hook) {
+  // We can only disable our elements if we come after webform_entity, make sure we do.
+  if ($hook == 'form_alter' && isset($implementations['dosomething_campaign_report_back'])) {
+    $group = $implementations['dosomething_campaign_report_back'];
+    unset($implementations['dosomething_campaign_report_back']);
+    $implementations['dosomething_campaign_report_back'] = $group;
+
+  }
+}
