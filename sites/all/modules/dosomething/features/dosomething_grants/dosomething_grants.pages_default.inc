@@ -374,6 +374,23 @@ function dosomething_grants_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'grants-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['bottom'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'bottom';
     $pane->type = 'node';
     $pane->subtype = 'node';
     $pane->shown = FALSE;
@@ -394,30 +411,6 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
-    $pane->pid = 'new-2';
-    $pane->panel = 'bottom';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Current Grants',
-      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="/node/add/grant"> Apply for a Grant</a>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['bottom'][1] = 'new-2';
@@ -429,10 +422,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Club Grants',
-      'title' => '',
+      'admin_title' => '',
+      'title' => 'Current Grants',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="/club-grants">Club Grants</a>',
+<a href="/node/add/grant"> Apply for a Grant</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -453,10 +446,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grants Judging Criteria',
-      'title' => 'Grant Resources',
+      'admin_title' => 'Club Grants',
+      'title' => '',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="">Judging Criteria</a>',
+<a href="/club-grants">Club Grants</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -477,10 +470,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grants FAQ',
-      'title' => '',
+      'admin_title' => 'Grants Judging Criteria',
+      'title' => 'Grant Resources',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="">Grants FAQ</a>',
+<a href="">Judging Criteria</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -501,10 +494,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'External Grant DB',
+      'admin_title' => 'Grants FAQ',
       'title' => '',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="">External Grant DB</a>',
+<a href="">Grants FAQ</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -522,13 +515,13 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grant Winners',
-      'title' => 'Past Winners',
+      'admin_title' => 'External Grant DB',
+      'title' => '',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="">Grant Winners</a>',
+<a href="">External Grant DB</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -549,10 +542,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'DS Award Winners',
-      'title' => '',
+      'admin_title' => 'Grant Winners',
+      'title' => 'Past Winners',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="">DS Award Winners</a>',
+<a href="">Grant Winners</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -567,6 +560,30 @@ function dosomething_grants_default_page_manager_pages() {
     $display->panels['bottom'][7] = 'new-8';
     $pane = new stdClass;
     $pane->pid = 'new-9';
+    $pane->panel = 'bottom';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'DS Award Winners',
+      'title' => '',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="">DS Award Winners</a>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 8;
+    $display->content['new-9'] = $pane;
+    $display->panels['bottom'][8] = 'new-9';
+    $pane = new stdClass;
+    $pane->pid = 'new-10';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -595,10 +612,10 @@ Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berline
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-9'] = $pane;
-    $display->panels['mid-left'][0] = 'new-9';
+    $display->content['new-10'] = $pane;
+    $display->panels['mid-left'][0] = 'new-10';
     $pane = new stdClass;
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -620,10 +637,10 @@ Max and Coffee 2 Compost are providing an innovative service to collect the remn
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-10'] = $pane;
-    $display->panels['mid-right'][0] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['mid-right'][0] = 'new-11';
     $pane = new stdClass;
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-12';
     $pane->panel = 'mid-right';
     $pane->type = 'node';
     $pane->subtype = 'node';
@@ -649,10 +666,10 @@ Max and Coffee 2 Compost are providing an innovative service to collect the remn
     );
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-11'] = $pane;
-    $display->panels['mid-right'][1] = 'new-11';
+    $display->content['new-12'] = $pane;
+    $display->panels['mid-right'][1] = 'new-12';
     $pane = new stdClass;
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-13';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -669,8 +686,8 @@ Max and Coffee 2 Compost are providing an innovative service to collect the remn
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-12'] = $pane;
-    $display->panels['top'][0] = 'new-12';
+    $display->content['new-13'] = $pane;
+    $display->panels['top'][0] = 'new-13';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
