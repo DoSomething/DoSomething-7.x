@@ -247,8 +247,8 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => '',
-    'image_link' => '',
+    'image_style' => 'grants_landing',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';

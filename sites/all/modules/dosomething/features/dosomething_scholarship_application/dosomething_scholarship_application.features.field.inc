@@ -151,7 +151,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'label' => 'Closing Date',
       'required' => 0,
       'settings' => array(
-        'default_value' => 'now',
+        'default_value' => 'blank',
         'default_value2' => 'blank',
         'default_value_code' => '',
         'default_value_code2' => '',
