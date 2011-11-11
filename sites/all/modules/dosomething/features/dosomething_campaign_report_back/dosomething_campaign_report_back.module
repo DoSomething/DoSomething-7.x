@@ -49,7 +49,8 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
  * Implementation of hook_module_implements_alter().
  */
 function dosomething_campaign_report_back_module_implements_alter(&$implementations, $hook) {
-  // We can only disable our elements if we come after webform_entity, make sure we do.
+  // We can only disable our elements if we come after webform_entity, make
+  // sure we do.
   if ($hook == 'form_alter' && isset($implementations['dosomething_campaign_report_back'])) {
     $group = $implementations['dosomething_campaign_report_back'];
     unset($implementations['dosomething_campaign_report_back']);
