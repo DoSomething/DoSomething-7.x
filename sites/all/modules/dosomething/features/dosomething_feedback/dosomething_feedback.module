@@ -71,7 +71,7 @@ function dosomething_feedback_insert($entry) {
 /**
  * Implements hook_mail().
  */
-function dosomething_mail($key, &$message, $params) {
+function dosomething_feedback_mail($key, &$message, $params) {
   $message['subject'] .= str_replace(array("\r", "\n"), '', $params['subject']);
   $message['body'][] = $params['body'];
 }
