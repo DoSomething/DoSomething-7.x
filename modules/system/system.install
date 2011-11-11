@@ -817,6 +817,7 @@ function system_schema() {
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
+        'binary' => TRUE,
       ),
       'filemime' => array(
         'description' => "The file's MIME type.",
@@ -2180,6 +2181,7 @@ function system_update_7034() {
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
+        'binary' => TRUE,
       ),
       'filemime' => array(
         'description' => "The file's MIME type.",
