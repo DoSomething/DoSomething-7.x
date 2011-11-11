@@ -178,7 +178,7 @@ class DSJsonProfile extends DSJsonUserMigration {
 
     $this->addFieldMapping('uid', 'uid')->sourceMigration(array('DSJsonNewUser', 'DSJsonChangedUser'));
     $this->addFieldMapping('field_user_hearabout', 'profile_hearabout');
-    $this->addFieldMapping('field_user_is_over13', 'profile_over13')->defaultValue(0);
+    $this->addFieldMapping('field_user_is_over13', 'profile_over13');
     $this->addFieldMapping('field_user_first_name', 'profile_fname');
     $this->addFieldMapping('field_user_last_name', 'profile_lname');
     $this->addFieldMapping('field_user_birthday', 'profile_bday')->defaultValue(NULL);
@@ -186,8 +186,8 @@ class DSJsonProfile extends DSJsonUserMigration {
     $this->addFieldMapping('field_user_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
     $this->addFieldMapping('field_user_why_do_you', 'profile_why_do_you');
     $this->addFieldMapping('field_user_mobile', 'profile_cell')->defaultValue('');
-    $this->addFieldMapping('field_user_mobile_optin', 'profile_receive')->defaultValue(0);
-    $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter')->defaultValue(0);
+    $this->addFieldMapping('field_user_mobile_optin', 'profile_receive');
+    $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter');
 
     $arguments = array(
       'thoroughfare' => array('source_field' => 'profile_address1'),
@@ -242,6 +242,9 @@ class DSJsonProfile extends DSJsonUserMigration {
     // Make sure these an integers.
     $row->profile_receive = isset($row->profile_receive) ? (int) $row->profile_receive : 0;
     $row->profile_newsletter = isset($row->profile_newsletter) ? (int) $row->profile_newsletter : 0;
+
+    // Trim long cellphone numbers.
+    $row->profile_cell = substr($row->profile_cell, 0, 32);
 
     // There's a lot of garbage in the birthday field. Excude anything that
     // doesn't have a number (other than zero to filter out 0/0/0) and some

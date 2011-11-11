@@ -1,8 +1,8 @@
 <?php
 
 class DSSqlUserProfile extends Migration {
-  public function __construct($group = NULL) {
-    parent::__construct($group);
+  public function __construct() {
+    parent::__construct(MigrateGroup::getInstance('Users'));
     $this->dependencies = array();
 
     $profile_fields = db_select('profile_field')
@@ -88,6 +88,9 @@ class DSSqlUserProfile extends Migration {
     // Make sure these an integers.
     $row->profile_receive = isset($row->profile_receive) ? (int) $row->profile_receive : 0;
     $row->profile_newsletter = isset($row->profile_newsletter) ? (int) $row->profile_newsletter : 0;
+
+    // Trim long cellphone numbers.
+    $row->profile_cell = substr($row->profile_cell, 0, 32);
 
     // There's a lot of garbage in the birthday field. Excude anything that
     // doesn't have a number (other than zero to filter out 0/0/0) and some
