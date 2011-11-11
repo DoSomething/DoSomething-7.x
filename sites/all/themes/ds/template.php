@@ -34,7 +34,7 @@ function ds_preprocess_page(&$variables) {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
   }
   // issues pages
-  if ($variables['theme_hook_suggestions'][1] == 'page__taxonomy__term') {
+  if (isset($variables['theme_hook_suggestions'][1]) && $variables['theme_hook_suggestions'][1] == 'page__taxonomy__term') {
     drupal_add_css($theme_path . '/css/ds/dosomething-issues.css');
     // add jquery to set equal heights
     drupal_add_js($theme_path . '/js/equalheights.jquery.js', array('scope' => 'footer'));
