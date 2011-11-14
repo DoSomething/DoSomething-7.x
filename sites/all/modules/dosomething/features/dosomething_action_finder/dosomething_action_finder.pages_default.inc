@@ -114,7 +114,7 @@ function dosomething_action_finder_default_page_manager_pages() {
       'fields' => array(),
       'context' => 'context_view:action_finder-ctools_context_1_1',
       'override_title' => 1,
-      'override_title_text' => '',
+      'override_title_text' => 'Action Finder',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -222,7 +222,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane->position = 2;
     $display->content['new-6'] = $pane;
     $display->panels['mid-right'][2] = 'new-6';
-  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
