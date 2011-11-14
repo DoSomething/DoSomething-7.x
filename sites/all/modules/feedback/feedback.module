@@ -201,7 +201,14 @@ function feedback_form($form, &$form_state) {
   $form['#attributes']['class'] = array('feedback-form');
 
   // Store the path on which this form is displayed.
-  $form['location'] = array('#type' => 'value', '#value' => $_GET['q']);
+  // Save it in the form_state to handle form reloading e.g. causes by image upload.
+  if (!isset($form_state['location'])) {
+    $form['location'] = array('#type' => 'value', '#value' => $_GET['q']);
+    $form_state['location'] = $form['location'];
+  }
+  else {
+    $form['location'] = $form_state['location'];
+  }
 
   $form['help'] = array(
     '#prefix' => '<div class="feedback-help">',
