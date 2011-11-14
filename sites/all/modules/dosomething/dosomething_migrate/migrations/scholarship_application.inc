@@ -31,6 +31,7 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
   public function __construct($webform) {
     parent::__construct('general_scholarship_app');
     $this->description .= 'General Scholarship Application';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_how_did_you_hear_about_this_opportunity', 'field_how_did_you_hear_about_bo');
     $this->addFieldMapping('data_what_causes_or_issues_are_you_most_passionate_about_and_why', 'field_what_causes_or_issues_are');
@@ -42,7 +43,8 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
     $this->addFieldMapping('data_application_complete', 'field_application_complete');
     $this->addFieldMapping('data_picture', 'field_picture')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     $this->addAddressFieldMapping('field_webform_address', NULL, array(
       'thoroughfare'            => 'field_plumgrant_address',
@@ -56,6 +58,7 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('field_webform_name', 'field_name'); # Name (text)
     $this->addFieldMapping('field_webform_project', 'field_project'); # Your DoSomething project posting (node_reference)
     $this->addFieldMapping('field_webform_project_website', 'field_website_link'); # Personal project website URL (link_field)
+#TODO This looks problematic: is it an emfield or a url?
     $this->addFieldMapping('field_webform_video_url', 'field_embedded_video'); # Youtube or video URL (link_field)
     $this->addFieldMapping('data_phone_number', 'field_phone_number_1');
     $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
@@ -71,6 +74,7 @@ class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigra
   public function __construct() {
     parent::__construct('scholarships_att');
     $this->description .= 'Scholarships ATT';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_why_you_should_be_chosen', 'field_scholarship_att_whyyou');
     $this->addFieldMapping('data_whats_your_favorite_song_to_rock_out_to', 'field_scholarship_att_song');
@@ -79,7 +83,8 @@ class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigra
     $this->addFieldMapping('data_video_recommended', 'field_scholarship_att_video')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('data_photos', 'field_scholarship_att_pic')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     $this->addFieldMapping('field_webform_name', 'title'); # Name (text)
 
@@ -93,6 +98,7 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
   public function __construct() {
     parent::__construct('sixflags_scholarships_app');
     $this->description .= 'Six Flags Friends Scholarships';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_what_causes_or_issues_are_you_most_passionate_about_and_why', 'field_what_causes_or_issues_are');
     $this->addFieldMapping('data_how_have_you_gotten_involved_with_your_causes_what_leadership_roles_have_you_taken_on', 'field_what_activities_have_you_');
@@ -104,7 +110,8 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_0');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
     $this->addFieldMapping('data_picture', 'field_picture')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('data_video_optional', 'field_embedded_video')
       ->arguments(array('file_function' => 'file_fid'));
 

@@ -139,7 +139,7 @@ class DSJsonMigrateItems extends MigrateItems implements Iterator {
     migrate_instrument_start(__METHOD__);
 
     // Grab the this and the next few records to try to avoid the HTTP overhead.
-    $ids = array_merge(array($id, $this->current), array_slice($this->pageValues, 0, 200));
+    $ids = array_merge(array($id, $this->current), array_slice($this->pageValues, 0, 100));
 
     $url = str_replace(':id', implode(',', $ids), $this->getUrl);
     $json = @file_get_contents($url);

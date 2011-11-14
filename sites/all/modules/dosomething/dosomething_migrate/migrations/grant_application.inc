@@ -20,7 +20,7 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
           $row->$field = $timestamp;
         }
         else {
-var_dump($field, "Could not parse!", $row->$field);
+var_dump("Could not parse $field's value: {$row->$field}");
           $row->$field = NULL;
         }
       }
