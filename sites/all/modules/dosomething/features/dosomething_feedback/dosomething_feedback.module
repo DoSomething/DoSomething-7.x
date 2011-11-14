@@ -55,14 +55,14 @@ function dosomething_feedback_unfuddle_feedback_subject_alter(&$subject, $entry)
 /**
  * Implements hook_feedback_insert().
  */
-function dosomething_feedback_insert($entry) {
+function dosomething_feedback_feedback_insert($entry) {
   global $user;
   include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
   $description = drupal_html_to_text(drupal_render(feedback_view($entry)));
   $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($description, 20, TRUE)));
   $params['subject'] = $subject;
   $params['body'] = $description;
-  $emails = array('benji@zivtech.com', 'kfong@dosomething.org');
+  $emails = array('benji@zivtech.com', 'kfong@dosomething.org', 'jody@zivtech.com');
   foreach ($emails as $to) {
     drupal_mail('dosomething_feedback', 'mail', $to, language_default(), $params);
   }
@@ -72,6 +72,6 @@ function dosomething_feedback_insert($entry) {
  * Implements hook_mail().
  */
 function dosomething_feedback_mail($key, &$message, $params) {
-  $message['subject'] .= str_replace(array("\r", "\n"), '', $params['subject']);
+  $message['subject'] = 'New Feedback from DoSomething';
   $message['body'][] = $params['body'];
 }
