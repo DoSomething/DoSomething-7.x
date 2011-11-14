@@ -34,6 +34,7 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
         $form['submitted']['webform_entity_form'][$field_name]['#access'] = FALSE;
       }
     }
+
     global $user;
     $profile = profile2_load_by_user($user, 'main');
     $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
@@ -54,21 +55,30 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
   }
 }
 
+/**
+ * Campaign Sign Up form submission callback.
+ */
 function dosomething_campaign_report_back_campaign_signup_form_submit(&$form, &$form_state) {
   global $user;
-  $profile = profile2_load_by_user($user, 'main');
-  $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-  $profile->save();
-  $user->mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  user_save($user);
+  if (isset($form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
+    $profile = profile2_load_by_user($user, 'main');
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+    $profile->save();
+  }
+  if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
+    $user->mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
+    user_save($user);
+  }
 }
+
 
 /**
  * Implementation of hook_module_implements_alter().
+ *
+ * We can only disable our elements if we come after webform_entity, make
+ * sure we do.
  */
 function dosomething_campaign_report_back_module_implements_alter(&$implementations, $hook) {
-  // We can only disable our elements if we come after webform_entity, make
-  // sure we do.
   if ($hook == 'form_alter' && isset($implementations['dosomething_campaign_report_back'])) {
     $group = $implementations['dosomething_campaign_report_back'];
     unset($implementations['dosomething_campaign_report_back']);
