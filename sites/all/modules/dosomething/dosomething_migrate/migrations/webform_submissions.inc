@@ -97,6 +97,9 @@ abstract class DSWebformSubmissionMigration extends Migration {
 
     $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
 
+    $this->sourceItemReviewPattern = "http://dosomething6.local/node/{$this->webform->nid}/webform-results/:id:/edit";
+    $this->destinationItemReviewPattern = "http://dosomething.local/node/{$this->webform->nid}/webform-results/:id:/edit";
+
     $this->destination = new MigrateDestinationWebformSubmission($this->webform);
 
     unset($fields['sid'], $fields['nid']);

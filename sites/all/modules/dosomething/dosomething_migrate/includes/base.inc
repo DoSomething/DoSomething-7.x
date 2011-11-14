@@ -29,6 +29,9 @@ abstract class DSBaseWebformMigration extends Migration {
 
     $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
 
+    $this->sourceItemReviewPattern = "http://dosomething6.local/node/:id:/edit";
+    $this->destinationItemReviewPattern = "http://dosomething.local/node/{$this->webform->nid}/webform-results/:id:/edit";
+
     $this->destination = new MigrateDestinationWebformSubmissionEntity($this->webform);
 
     $this->addFieldMapping('uid', 'uid')
