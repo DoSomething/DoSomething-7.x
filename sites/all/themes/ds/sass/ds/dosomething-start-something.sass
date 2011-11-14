@@ -50,3 +50,29 @@ $upcoming-somethings-width: ($main-width-w-padding - 6 * $upcoming-somethings-gu
         left: 1em
         right: 1em
       margin-right: 0.5em
+
+#explore-action-guides
+  .views-row
+    background-color: $purple
+    +pie-clearfix
+  .views-field-title,
+  .do-this-link
+    +box-sizing('border-box')
+    +clearfix
+    +float-left
+    height: 48px
+    width: 50%
+  .views-field-title
+    color: $white
+    padding: 0.25em 1em
+    .views-label
+      +adjust-font-size-to($s3)
+      display: block
+      font-family: $font-headline
+      line-height: 1
+  .do-this-link
+    a
+      display: block
+      +replace-text('arrow-do-this.png', right, bottom)
+      height: inherit
+      +background-size('contain')
