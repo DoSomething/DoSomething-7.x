@@ -23,8 +23,6 @@ function dosomething_action_finder_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Action Finder';
-  $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'See all Action Guides »';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -198,10 +196,6 @@ function dosomething_action_finder_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_4_tid']['type'] = 'select';
   $handler->display->display_options['filters']['taxonomy_vocabulary_4_tid']['vocabulary'] = 'vocabulary_4';
   $handler->display->display_options['filters']['taxonomy_vocabulary_4_tid']['error_message'] = 1;
-
-  /* Display: Action Finder Landing Page */
-  $handler = $view->new_display('page', 'Action Finder Landing Page', 'page');
-  $handler->display->display_options['path'] = 'action-finder';
 
   /* Display: Action of the Week */
   $handler = $view->new_display('panel_pane', 'Action of the Week', 'panel_pane_1');
@@ -405,6 +399,20 @@ function dosomething_action_finder_views_default_views() {
   $handler->display->display_options['allow']['title_override'] = 'title_override';
   $handler->display->display_options['allow']['exposed_form'] = 0;
   $handler->display->display_options['allow']['fields_override'] = 0;
+
+  /* Display: Action Finder Landing Context */
+  $handler = $view->new_display('ctools_context', 'Action Finder Landing Context', 'ctools_context_1');
+  $handler->display->display_options['display_description'] = 'The main Action Finder landing page content';
+  $handler->display->display_options['style_plugin'] = 'ctools_context';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['inherit_panels_path'] = '1';
+  $handler->display->display_options['argument_input'] = array(
+    'taxonomy_vocabulary_5_tid' => array(
+      'type' => 'context',
+      'context' => 'entity:taxonomy_term.tid',
+      'context_optional' => 1,
+    ),
+  );
   $export['action_finder'] = $view;
 
   return $export;
