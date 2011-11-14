@@ -33,11 +33,15 @@ function dosomething_feedback_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => '255',
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
         'profile2_private' => FALSE,
+        'text_processing' => '0',
       ),
       'translatable' => '0',
       'type' => 'text',
+      'type_name' => 'youth_grant_app',
     ),
     'field_instance' => array(
       'bundle' => 'feedback',

@@ -48,8 +48,13 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
  * Implements hook_unfuddle_feedback_subject_alter().
  */
 function dosomething_feedback_unfuddle_feedback_subject_alter(&$subject, $entry) {
-  $subject = $entry->location;
-  $subject .= ' (' . check_plain($entry->field_name[LANGUAGE_NONE][0]['value']) . ')';
+  if (isset($entry->field_summary[LANGUAGE_NONE][0]['value'])) {
+    $subject = check_plain($entry->field_summary[LANGUAGE_NONE][0]['value']);
+  }
+  else {
+    $subject = $entry->location;
+    $subject .= ' (' . check_plain($entry->field_name[LANGUAGE_NONE][0]['value']) . ')';
+  } 
 }
 
 /**
@@ -59,8 +64,6 @@ function dosomething_feedback_feedback_insert($entry) {
   global $user;
   include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
   $description = drupal_html_to_text(drupal_render(feedback_view($entry)));
-  $subject = t('!name: !message', array('!name' => $user->name, '!message' => truncate_utf8($description, 20, TRUE)));
-  $params['subject'] = $subject;
   $params['body'] = $description;
   $emails = array('benji@zivtech.com', 'kfong@dosomething.org', 'jody@zivtech.com');
   foreach ($emails as $to) {
