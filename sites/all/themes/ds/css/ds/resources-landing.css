@@ -506,22 +506,22 @@ img.goleft {
   float: none;
 }
 
-.view-content .views-row {
+.pane-resources-panel-pane-1 .views-row {
   *zoom: 1;
   background: url('../images/triangle-mask-left.png') no-repeat 19% center, #8e8a86;
   height: 6.5em;
   margin-bottom: 2em;
   width: 100%;
 }
-.view-content .views-row:after {
+.pane-resources-panel-pane-1 .views-row:after {
   content: "";
   display: table;
   clear: both;
 }
-.view-content .views-row:nth-of-type(even) {
+.pane-resources-panel-pane-1 .views-row:nth-of-type(even) {
   background-color: #5f5c58;
 }
-.view-content .views-field-field-picture img {
+.pane-resources-panel-pane-1 .views-field-field-picture img {
   display: inline;
   float: left;
   display: -moz-inline-box;
@@ -533,19 +533,19 @@ img.goleft {
   margin-right: 1.5em;
   padding: 0;
 }
-.view-content .views-field-field-picture img {
+.pane-resources-panel-pane-1 .views-field-field-picture img {
   *display: inline;
 }
-.view-content .unimage-wrapper {
+.pane-resources-panel-pane-1 .unimage-wrapper {
   height: 6.5em;
   padding: 0.583em 0;
 }
-.view-content .unimage-wrapper a {
+.pane-resources-panel-pane-1 .unimage-wrapper a {
   color: white;
   display: inline;
   float: left;
 }
-.view-content .unimage-wrapper h2 {
+.pane-resources-panel-pane-1 .unimage-wrapper h2 {
   font-size: 1.5em;
   line-height: 1.333em;
   color: white;
@@ -555,7 +555,7 @@ img.goleft {
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
 }
-.view-content .unimage-wrapper .fb-social-like-plugin {
+.pane-resources-panel-pane-1 .unimage-wrapper .fb-social-like-plugin {
   display: inline;
   float: right;
   width: 53px;
