@@ -68,6 +68,10 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'start-something') {
     drupal_add_css($theme_path . '/css/ds/dosomething-start-something.css');
   }
+  // resources landing page
+  if ($arg0 == 'resources') {
+    drupal_add_css($theme_path . '/css/ds/resources-landing.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {
