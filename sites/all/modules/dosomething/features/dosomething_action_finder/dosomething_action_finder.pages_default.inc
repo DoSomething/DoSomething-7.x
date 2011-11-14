@@ -188,7 +188,7 @@ function dosomething_action_finder_default_page_manager_pages() {
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
-      'display' => 'block_2',
+      'display' => 'block_1',
       'context' => array(
         0 => '',
         1 => '',
@@ -208,6 +208,42 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-6';
     $pane->panel = 'mid-right';
+    $pane->type = 'views';
+    $pane->subtype = 'project_related_displays';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '3',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_2',
+      'context' => array(
+        0 => '',
+        1 => '',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-6'] = $pane;
+    $display->panels['mid-right'][2] = 'new-6';
+    $pane = new stdClass;
+    $pane->pid = 'new-7';
+    $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_1';
     $pane->shown = TRUE;
@@ -219,9 +255,9 @@ function dosomething_action_finder_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-6'] = $pane;
-    $display->panels['mid-right'][2] = 'new-6';
+    $pane->position = 3;
+    $display->content['new-7'] = $pane;
+    $display->panels['mid-right'][3] = 'new-7';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
