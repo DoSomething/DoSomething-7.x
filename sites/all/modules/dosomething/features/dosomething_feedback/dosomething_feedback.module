@@ -39,7 +39,7 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
         break;
     }
   }
-  $fields['description-format'] = 'plain';
+  $fields['description-format'] = 'markdown';
   $fields['assignee-id'] = 48329;
   $fields['milestone-id'] = 357;
 }
@@ -56,6 +56,17 @@ function dosomething_feedback_unfuddle_feedback_subject_alter(&$subject, $entry)
     $subject .= ' (' . check_plain($entry->field_name[LANGUAGE_NONE][0]['value']) . ')';
   } 
 }
+
+/**
+ * Implements hook_unfuddle_feedback_description_alter().
+ */
+function dosomething_feedback_unfuddle_feedback_description_alter(&$description, $entry) {
+  if (isset($entry->field_image[LANGUAGE_NONE][0]['fid'])) {
+    $file = file_load($entry->field_image[LANGUAGE_NONE][0]['fid']);
+    $description .= '![](' . file_create_url($file->uri)  . ' "")';
+  }
+}
+
 
 /**
  * Implements hook_feedback_insert().

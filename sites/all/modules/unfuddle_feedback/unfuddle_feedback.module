@@ -25,7 +25,7 @@ function unfuddle_feedback_feedback_insert($entry) {
 function unfuddle_feedback_post_ticket($entry) {
   global $user;
   include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
-  $description = drupal_html_to_text(drupal_render(feedback_view($entry)), array('a'));
+  $description = drupal_html_to_text(drupal_render(feedback_view($entry)));
   if (!$user->uid) {
     $name = t('Anonymous');
   }
