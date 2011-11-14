@@ -306,23 +306,11 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'mid-right';
-    $pane->type = 'views';
-    $pane->subtype = 'action_of_the_week';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'action_finder-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '1',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'default',
       'override_title' => 1,
       'override_title_text' => 'Explore Action Guides',
     );
@@ -330,7 +318,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'explore-action-guides',
+      'css_class' => 'ds-pane-top-right-radius ds-pane-no-padding',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-2'] = $pane;
@@ -355,7 +346,7 @@ function dosomething_start_something_default_page_manager_pages() {
     );
     $pane->css = array(
       'css_id' => 'ready-to-start',
-      'css_class' => 'ds-pane ds-pane-top-right-radius',
+      'css_class' => 'ds-pane-top-right-radius',
     );
     $pane->extras = array();
     $pane->position = 1;

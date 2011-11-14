@@ -198,3 +198,51 @@
   padding-right: 1em;
   margin-right: 0.5em;
 }
+
+#explore-action-guides .views-row {
+  background-color: #652e72;
+  *zoom: 1;
+}
+#explore-action-guides .views-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#explore-action-guides .views-field-title,
+#explore-action-guides .do-this-link {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  *zoom: 1;
+  display: inline;
+  float: left;
+  height: 48px;
+  width: 50%;
+}
+#explore-action-guides .views-field-title {
+  color: white;
+  padding: 0.25em 1em;
+}
+#explore-action-guides .views-field-title .views-label {
+  font-size: 2em;
+  line-height: 2em;
+  display: block;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  line-height: 1;
+}
+#explore-action-guides .do-this-link a {
+  display: block;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/arrow-do-this.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  height: inherit;
+  -moz-background-size: contain;
+  -webkit-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
