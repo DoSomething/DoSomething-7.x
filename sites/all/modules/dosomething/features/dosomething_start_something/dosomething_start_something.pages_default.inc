@@ -215,7 +215,7 @@ function dosomething_start_something_default_page_manager_pages() {
       'settings' => NULL,
     );
     $pane->css = array(
-      'css_id' => '',
+      'css_id' => 'explore-action-guides',
       'css_class' => 'ds-pane-top-right-radius ds-pane-no-padding',
     );
     $pane->extras = array();
