@@ -93,7 +93,10 @@
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
   display: none;
 }
-#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label, #dosomething-blocks-make-an-impact-form-front .form-item-who-with label, #dosomething-blocks-make-an-impact-form-front .form-item-where label, #dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
+#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
+#dosomething-blocks-make-an-impact-form-front .form-item-where label,
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
   cursor: default;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
@@ -245,4 +248,24 @@
   -webkit-background-size: contain;
   -o-background-size: contain;
   background-size: contain;
+}
+
+.view-featured-campaign .rotoslider,
+.view-featured-campaign img.rotoslider-image,
+.view-featured-campaign .rotoslider-images,
+.view-featured-campaign .rotoslider-images img {
+  height: 325px;
+  width: 690px;
+}
+.view-featured-campaign .rotoslider-descriptions > div {
+  width: 690px;
+}
+.view-featured-campaign .rotoslider-menu {
+  height: 260px;
+}
+.view-featured-campaign .rotoslider-nav {
+  height: 260px;
+}
+.view-featured-campaign .rotoslider-nav img {
+  height: 65px;
 }

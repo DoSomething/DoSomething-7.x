@@ -76,3 +76,24 @@ $upcoming-somethings-width: ($main-width-w-padding - 6 * $upcoming-somethings-gu
       +replace-text('arrow-do-this.png', right, bottom)
       height: inherit
       +background-size('contain')
+
+$campaign-width: 690px
+$campaign-height: 325px
+$campaign-nav-height: $campaign-height - 65px
+$num-of-images: 4
+.view-featured-campaign
+  .rotoslider,
+  img.rotoslider-image,
+  .rotoslider-images,
+  .rotoslider-images img
+    height: $campaign-height
+    width: $campaign-width
+  .rotoslider-descriptions
+    & > div
+      width: $campaign-width
+  .rotoslider-menu
+    height: $campaign-nav-height
+  .rotoslider-nav
+    height: $campaign-nav-height
+    img
+      height: $campaign-nav-height / $num-of-images
