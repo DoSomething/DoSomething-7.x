@@ -46,8 +46,9 @@
       margin-right: calc-em(18px, $s0)
       padding: 0
   .unimage-wrapper
-    height: calc-em(78px, $s0)
     padding: calc-em(7px, $s0) 0
+    +pie-clearfix
+    width: 455px
     a
       color: $white
       +float-left
@@ -59,6 +60,7 @@
       margin: 0
       text-rendering: optimizeLegibility
       text-transform: uppercase
+      width: 100%
     .fb-social-like-plugin
       +float-right
-      width: 53px
+      width: calc-em(55px, $s0)
