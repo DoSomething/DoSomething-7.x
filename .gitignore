@@ -5,4 +5,25 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 files
-tags
+tag
+
+# Ifnore hidden  files
+.__layout.sass
+.__fonts.sass
+.__design.sass
+._webform-admin.css
+
+._media.pages.inc
+._dosomething_menu.info
+._dosomething_login.module
+._dosomething_blocks.module
+._dosomething_user_my_somethings.pages_default.inc
+._selectivizr.sass
+._style.sass
+.__ui-patterns.sass
+.__borders.sass
+.__tabs.sass
+.__helpers.sass
+
+#Ignore livereload
+sites/all/modules/livereload/
