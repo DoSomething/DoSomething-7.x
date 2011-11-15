@@ -38,7 +38,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     'title' => 'Scholarships Landing Page',
     'no_blocks' => 0,
     'pipeline' => 'ipe',
-    'css_id' => '',
+    'css_id' => 'scholarships-landing',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
