@@ -77,6 +77,23 @@
     padding-left: 0
     padding-right: 0
 
+// arrow lists with faded lines in panels panes
+.ds-arrow-list
+  ul
+    li
+      margin-left: calc-em(12px, $s0)
+      .views-field-title
+        background:
+          image: image_url('bg-polls-divider-left.png')
+          position: left top
+          repeat: no-repeat
+        margin-left: calc-em(-24px, $s0)
+        padding: 0.25em 0 0.25em calc-em(26px, $s0)
+      &.views-row-first
+        .views-field-title
+          background: none
+
+
 // dosomething buttons
 .ds-button
   font-family: $font-headline

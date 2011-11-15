@@ -32,3 +32,17 @@
 .page-taxonomy-term .panel-top .pane-term-description .pane-content p:last-of-type {
   margin-bottom: 0.5em;
 }
+.page-taxonomy-term .panel-row-middle .panel-panel {
+  position: relative;
+}
+.page-taxonomy-term .panel-row-middle .panel-panel .contextual-links-region {
+  position: static;
+}
+.page-taxonomy-term .panel-row-middle .panel-panel .view-footer p {
+  position: absolute;
+  right: 0.5em;
+  bottom: 0.5em;
+}
+.page-taxonomy-term .panel-row-bottom {
+  margin-bottom: 18px;
+}
