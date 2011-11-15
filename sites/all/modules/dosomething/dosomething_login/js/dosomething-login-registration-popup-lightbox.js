@@ -44,7 +44,7 @@
           // Check if user is over 25.
           if (date.getTime() - birthDate.getTime() > 819936000000) {
             popupForm.find('.form-item, .captcha, .age-question').hide();
-            popupForm.find('.over-25-field, .over-25-field .form-item, .form-submit').show();
+            popupForm.find('.ds-signup-always-show .form-item, .over-25-field, .over-25-field .form-item, .form-submit').show();
           }
           // Check if user is under 13.
           else if (date.getTime() - birthDate.getTime() < 409968000000) {

@@ -235,7 +235,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['#attached'] = array(
     'js' => array(
       // TODO: Only add on user/registration page.
-      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-lightbox.js',
+      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js',
     ),
   );
 
@@ -351,16 +351,12 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#prefix' => '<div class="over-25-field">',
     '#suffix' => '</div>',
   );
-  $form['signup_message'] = array(
-    '#type' => 'item',
-    '#description' => t("Yes! I'd love to receive the hilarious and informative weekly updates."),
-    '#prefix' => '<div class="over-25-field">',
-    '#suffix' => '</div>',
-  );
   $form['signup'] = array(
     '#type' => 'checkbox',
     '#description' => t("Yes! I'd love to receive the hilarious and informative weekly updates."),
     '#default_value' => TRUE,
+    '#prefix' => '<div class="ds-signup-always-show">',
+    '#suffix' => '</div>',
   );
   $form['final_submit'] = array(
     '#prefix' => '<div class="ds-login-popup-footer">',
