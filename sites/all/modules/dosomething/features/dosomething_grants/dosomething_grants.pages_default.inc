@@ -497,7 +497,7 @@ function dosomething_grants_default_page_manager_pages() {
       'admin_title' => 'Grants FAQ',
       'title' => '',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="">Grants FAQ</a>',
+<a href="/node/433975">Grants FAQ</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
