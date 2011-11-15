@@ -255,7 +255,7 @@ function dosomething_roles_update_role($uid) {
     db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
     db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
 
-    $account = user_load($uid, TRUE);
+    //$account = user_load($uid, TRUE);
   }
 }
 

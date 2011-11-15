@@ -248,16 +248,11 @@ function dosomething_user_my_somethings_user_role($account = NULL) {
     global $user;
     $account = $user;
   }
-  $roles = $account->roles;
-  $member = user_role_load_by_name('member');
-  if (isset($roles[$member->rid])) {
-    return t('member');
+  if (dosomething_roles_user_is_staff_member($account)) {
+    return t('staff');
   }
-  $active_member = user_role_load_by_name('active member');
-  if (isset($roles[$active_member->rid])) {
-    return 'active';
-  }
-  return t('inactive');
+  $current_role = dosomething_roles_get_current_role($account->uid);
+  return filter_xss($current_role);
 }
 
 /**
