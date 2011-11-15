@@ -213,15 +213,10 @@ function dosomething_roles_update_role($uid) {
   // TODO: It would be nice to do the hierarchy with the role weights.
   $rids = array();
   $roles = user_roles();
-  $current_role_name = 'inactive user';
   $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
   $intersection = array_intersect($role_hierarchy, $account->roles);
   $rids = array_flip(array_intersect($roles, $role_hierarchy));
-  if (is_array($intersection)) {
-    // Note: only one of these roles should be in the roles list.
-    // If there are more, then the highest level (lowest weight) is grabbed.
-    $current_role_name = array_shift($intersection);
-  }
+  $current_role_name = dosomething_roles_get_current_role($account->uid);
 
   $new_role_name = dosomething_roles_get_member_role($uid);
   $anniversary = dosomething_roles_get_anniversary($uid);
@@ -259,6 +254,8 @@ function dosomething_roles_update_role($uid) {
   if (isset($new_rid)) {
     db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
     db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
+
+    $account = user_load($uid, TRUE);
   }
 }
 
@@ -328,7 +325,7 @@ function dosomething_roles_node_insert($node) {
 }
 
 /**
- * Implements hook_user_login().
+ * Implements hook_user_login()r
  */
 function dosomething_roles_user_login(&$edit, $account) {
   // Don't run this on the first login.
@@ -592,16 +589,24 @@ function dosomething_roles_get_user_percentage($uid) {
 function dosomething_roles_profile_ratio($uid) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
+  $check_fields = array(
+    'field_user_address',
+    'field_user_birthday',
+    'field_user_first_name',
+    'field_user_last_name',
+    'field_user_hearabout',
+    'field_user_official_rules',
+    'field_user_preferred_cause',
+    'field_user_why_do_you',
+  );
   $total = 0;
   $complete = 0;
 
   if (is_object($profile)) {
-    foreach ($profile as $field_name => $values) {
-      if (substr($field_name, 0, 5) == 'field') {
-        $total++;
-        if (count($values)) {
-          $complete++;
-        }
+    foreach ($check_fields as $field_name) {
+      $total++;
+      if (isset($profile->{$field_name}) && count($profile->{$field_name})) {
+        $complete++;
       }
     }
   }
