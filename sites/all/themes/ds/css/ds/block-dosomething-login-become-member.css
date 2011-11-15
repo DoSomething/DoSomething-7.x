@@ -171,6 +171,20 @@
   padding-right: 0;
 }
 
+.ds-arrow-list ul li {
+  margin-left: 1em;
+}
+.ds-arrow-list ul li .views-field-title {
+  background-image: url('../images/bg-polls-divider-left.png');
+  background-position: left top;
+  background-repeat: no-repeat;
+  margin-left: -2em;
+  padding: 0.25em 0 0.25em 2.167em;
+}
+.ds-arrow-list ul li.views-row-first .views-field-title {
+  background: none;
+}
+
 .ds-button, .ds-button-strong {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.417em;
