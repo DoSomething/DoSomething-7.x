@@ -252,7 +252,8 @@ function dosomething_user_my_somethings_user_role($account = NULL) {
     return t('staff');
   }
   $current_role = dosomething_roles_get_current_role($account->uid);
-  return filter_xss($current_role);
+  $exploded_role = explode(' ', trim($current_role));
+  return filter_xss($exploded_role[0]);
 }
 
 /**
