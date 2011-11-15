@@ -22,6 +22,7 @@ function dosomething_scholarship_application_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Recent Scholarship Winner';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -32,17 +33,88 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_editorial_reference_target_id']['id'] = 'field_editorial_reference_target_id';
-  $handler->display->display_options['relationships']['field_editorial_reference_target_id']['table'] = 'field_data_field_editorial_reference';
-  $handler->display->display_options['relationships']['field_editorial_reference_target_id']['field'] = 'field_editorial_reference_target_id';
-  $handler->display->display_options['relationships']['field_editorial_reference_target_id']['required'] = 1;
-  /* Relationship: Webform submissions: Node */
-  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
-  $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
-  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
-  $handler->display->display_options['relationships']['nid']['relationship'] = 'field_editorial_reference_target_id';
-  $handler->display->display_options['relationships']['nid']['required'] = 0;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'recent_scholarship_winner' => 'recent_scholarship_winner',
+    'queue1' => 0,
+    'queue2' => 0,
+    'queue3' => 0,
+    'queue4' => 0,
+    'queue5' => 0,
+    'queue6' => 0,
+    'queue7' => 0,
+    'queue8' => 0,
+    'queue9' => 0,
+    'queue10' => 0,
+    'queue11' => 0,
+    'queue12' => 0,
+    'queue13' => 0,
+    'queue14' => 0,
+    'queue15' => 0,
+    'queue16' => 0,
+    'queue17' => 0,
+    'queue18' => 0,
+    'queue19' => 0,
+    'queue20' => 0,
+    'queue21' => 0,
+    'queue22' => 0,
+    'queue23' => 0,
+    'queue24' => 0,
+    'queue25' => 0,
+    'queue26' => 0,
+    'queue27' => 0,
+    'queue28' => 0,
+    'queue29' => 0,
+    'queue30' => 0,
+    'queue31' => 0,
+    'queue32' => 0,
+    'queue33' => 0,
+    'queue34' => 0,
+    'queue35' => 0,
+    'queue36' => 0,
+    'queue37' => 0,
+    'queue38' => 0,
+    'queue40' => 0,
+    'queue41' => 0,
+    'queue42' => 0,
+    'queue43' => 0,
+    'queue44' => 0,
+    'queue45' => 0,
+    'queue46' => 0,
+    'queue47' => 0,
+    'queue48' => 0,
+    'queue49' => 0,
+    'queue50' => 0,
+    'queue51' => 0,
+    'queue52' => 0,
+    'queue53' => 0,
+    'queue54' => 0,
+    'queue55' => 0,
+    'queue56' => 0,
+    'queue57' => 0,
+    'queue58' => 0,
+    'queue59' => 0,
+    'queue60' => 0,
+    'queue61' => 0,
+    'queue62' => 0,
+    'queue63' => 0,
+    'queue64' => 0,
+    'queue65' => 0,
+    'queue66' => 0,
+    'projects_police_personal_info' => 0,
+    'projects_police_solicitation' => 0,
+    'projects_police_volunteer_opp' => 0,
+    'projects_police_not_a_project' => 0,
+    'projects_police_offensive' => 0,
+    'projects_police_blank_project' => 0,
+    'test' => 0,
+    'scholarships_past_winners' => 0,
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -60,7 +132,6 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
@@ -168,11 +239,11 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['sorts']['sticky']['table'] = 'node';
   $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
-  /* Sort criterion: Content: Updated date */
-  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
-  $handler->display->display_options['sorts']['changed']['table'] = 'node';
-  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
-  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -187,17 +258,101 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'editorial_content_' => 'editorial_content_',
   );
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
-  $handler->display->display_options['filters']['type_1']['table'] = 'node';
-  $handler->display->display_options['filters']['type_1']['field'] = 'type';
-  $handler->display->display_options['filters']['type_1']['relationship'] = 'nid';
-  $handler->display->display_options['filters']['type_1']['value'] = array(
-    'scholarship_application' => 'scholarship_application',
-  );
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: Recent Winner Pane */
+  $handler = $view->new_display('panel_pane', 'Recent Winner Pane', 'panel_pane_1');
+
+  /* Display: Past Winners Pane */
+  $handler = $view->new_display('panel_pane', 'Past Winners Pane', 'panel_pane_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Past Winners';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'scholarships_past_winners' => 'scholarships_past_winners',
+    'queue1' => 0,
+    'queue2' => 0,
+    'queue3' => 0,
+    'queue4' => 0,
+    'queue5' => 0,
+    'queue6' => 0,
+    'queue7' => 0,
+    'queue8' => 0,
+    'queue9' => 0,
+    'queue10' => 0,
+    'queue11' => 0,
+    'queue12' => 0,
+    'queue13' => 0,
+    'queue14' => 0,
+    'queue15' => 0,
+    'queue16' => 0,
+    'queue17' => 0,
+    'queue18' => 0,
+    'queue19' => 0,
+    'queue20' => 0,
+    'queue21' => 0,
+    'queue22' => 0,
+    'queue23' => 0,
+    'queue24' => 0,
+    'queue25' => 0,
+    'queue26' => 0,
+    'queue27' => 0,
+    'queue28' => 0,
+    'queue29' => 0,
+    'queue30' => 0,
+    'queue31' => 0,
+    'queue32' => 0,
+    'queue33' => 0,
+    'queue34' => 0,
+    'queue35' => 0,
+    'queue36' => 0,
+    'queue37' => 0,
+    'queue38' => 0,
+    'queue40' => 0,
+    'queue41' => 0,
+    'queue42' => 0,
+    'queue43' => 0,
+    'queue44' => 0,
+    'queue45' => 0,
+    'queue46' => 0,
+    'queue47' => 0,
+    'queue48' => 0,
+    'queue49' => 0,
+    'queue50' => 0,
+    'queue51' => 0,
+    'queue52' => 0,
+    'queue53' => 0,
+    'queue54' => 0,
+    'queue55' => 0,
+    'queue56' => 0,
+    'queue57' => 0,
+    'queue58' => 0,
+    'queue59' => 0,
+    'queue60' => 0,
+    'queue61' => 0,
+    'queue62' => 0,
+    'queue63' => 0,
+    'queue64' => 0,
+    'queue65' => 0,
+    'queue66' => 0,
+    'projects_police_personal_info' => 0,
+    'projects_police_solicitation' => 0,
+    'projects_police_volunteer_opp' => 0,
+    'projects_police_not_a_project' => 0,
+    'projects_police_offensive' => 0,
+    'projects_police_blank_project' => 0,
+    'test' => 0,
+    'recent_scholarship_winner' => 0,
+  );
   $export['editorial_content_scholarships'] = $view;
 
   $view = new view;
@@ -219,7 +374,7 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
