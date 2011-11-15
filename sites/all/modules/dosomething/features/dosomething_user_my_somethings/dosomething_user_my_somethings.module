@@ -7,6 +7,14 @@
 include_once('dosomething_user_my_somethings.features.inc');
 
 /**
+ * Implements hook_menu_alter().
+ */
+function dosomething_user_my_somethings_menu_alter(&$items) {
+  // User's fullname should be title of page.
+  $items['user/%user']['title callback'] = 'dosomething_user_my_somethings_get_full_name';
+}
+
+/**
 * Implementation of hook_ctools_plugin_directory().
 */
 function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin) {
@@ -269,9 +277,11 @@ function dosomething_user_my_somethings_get_full_name($account) {
   $name_fields = array('field_user_first_name', 'field_user_last_name');
   foreach ($name_fields as $field_name) {
     $field = field_get_items('profile2', $profile, $field_name);
-    $names[] = isset($field[0]['safe_value']) ? $field[0]['safe_value'] : '';
+    if (isset($field[0]['safe_value'])) {
+      $names[] = $field[0]['safe_value'];
+    }
   }
-  return implode(' ', $names);
+  return empty($names) ? filter_xss($account->name) : implode(' ', $names);
 }
 
 /**
