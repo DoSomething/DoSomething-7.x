@@ -634,11 +634,11 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
   $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($birthdate, 13);
-  if ($values['signup'] || $role_name == 'old person') {
+  if ($values['signup']) {
     $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
   }
-  if (isset($values['phone'])) {
-    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['phone'];
+  if (isset($form_state['values']['phone'])) {
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['phone'];
   }
   field_attach_insert('profile2', $profile);
   $form_state['uid'] = $account->uid;
