@@ -272,7 +272,8 @@ a.ds-button:active, a.ds-button-strong:active {
   color: #343434;
 }
 
-.ds-dropdown, #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown {
+.ds-dropdown, #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown,
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown {
   background: #8e8a86;
   border: none;
   color: white;
@@ -284,7 +285,8 @@ a.ds-button:active, a.ds-button-strong:active {
   line-height: 1.333em;
   margin-bottom: 0.333em;
 }
-.ds-dropdown .selectBox-arrow, #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown .selectBox-arrow {
+.ds-dropdown .selectBox-arrow, #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown .selectBox-arrow,
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown .selectBox-arrow {
   background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
@@ -512,7 +514,8 @@ img.goleft {
 #views-exposed-form-resources-panel-pane-1 .form-item, #views-exposed-form-resources-panel-pane-1 .form-actions {
   height: auto;
 }
-#views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown {
+#views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown,
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown {
   cursor: pointer;
   width: 25%;
 }
