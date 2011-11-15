@@ -26,9 +26,9 @@ function dosomething_user_my_somethings_ds_my_somethings_content_type_render($su
     if (isset($profile['main']->field_user_address['und'][0]['locality']) && $profile['main']->field_user_address['und'][0]['administrative_area']) {
       $block->content = '<div><span class="label">' . t('Hometown:') .'</span>' . $profile['main']->field_user_address['und'][0]['locality'] . ', ' . $profile['main']->field_user_address['und'][0]['administrative_area'] . '</div>';
     }  
-    if ($member = dosomething_user_my_somethings_role($account)) {
-      $block->content .= '<div><span class="label">' . t('Member Status:') . '</span>' . $member . '</div>';
-    }
+    $role = dosomething_user_my_somethings_user_role($account);
+    $block->content .= '<div><span class="label">' . t('Member Status:') . '</span>' . ucwords($role) . '</div>';
+
     // TODO: add school info.
     //$block->content .= '<div><span class="label">' . t('School:') .'</span>' . '' . '</div>';
     $block->content .= '<div><span class="label">' . t('Member Since:') .'</span>' . date('m/Y', $account->created) . '</div>';
@@ -40,18 +40,3 @@ function dosomething_user_my_somethings_ds_my_somethings_content_type_render($su
   return $block;
 }
 
-/**
- * Return user's member role.
- */
-function dosomething_user_my_somethings_role($account = NULL) {
-  $roles = $account->roles;
-  $member = user_role_load_by_name('member');
-  if (isset($roles[$member->rid])) {
-    return t('Member');
-  }
-  $active_member = user_role_load_by_name('active member');
-  if (isset($roles[$active_member->rid])) {
-    return 'Active Member';
-  }
-  return t('Inactive Member');
-}
