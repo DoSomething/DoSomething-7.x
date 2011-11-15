@@ -137,9 +137,8 @@
   *zoom: 1;
 }
 
-#page .ds-pane-no-padding .pane-content {
-  padding-left: 0;
-  padding-right: 0;
+#upcoming-somethings .pane-content {
+  background: transparent;
 }
 
 .view-upcoming-somethings .view-content {
@@ -156,6 +155,7 @@
   -ms-border-bottom-right-radius: 6px;
   -khtml-border-bottom-right-radius: 6px;
   border-bottom-right-radius: 6px;
+  background-color: #d2d2d2;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -202,6 +202,9 @@
   margin-right: 0.5em;
 }
 
+#explore-action-guides .pane-content {
+  background: transparent;
+}
 #explore-action-guides .views-row {
   background-color: #652e72;
   *zoom: 1;

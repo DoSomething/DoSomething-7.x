@@ -382,7 +382,7 @@ function dosomething_start_something_default_page_manager_pages() {
       'settings' => NULL,
     );
     $pane->css = array(
-      'css_id' => '',
+      'css_id' => 'upcoming-somethings',
       'css_class' => 'ds-pane-center ds-pane-top-radius ds-pane-no-padding',
     );
     $pane->extras = array();
