@@ -2859,7 +2859,7 @@ iframe {
   background: #222222;
   border: 2px solid white;
 }
-.ui-dialog .ui-icon {
+.ui-dialog .ui-dialog-titlebar-close .ui-icon {
   background: url('images/x-box.png') no-repeat;
   height: 12px;
   width: 12px;

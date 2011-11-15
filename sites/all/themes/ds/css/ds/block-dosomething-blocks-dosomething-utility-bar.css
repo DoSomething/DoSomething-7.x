@@ -155,7 +155,7 @@
   text-decoration: none;
 }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon, .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
-  background: url('../images/x-box.png') no-repeat;
+  background: url('../images/x-box.png') no-repeat #3f3f3f;
   height: 12px;
   width: 12px;
 }
