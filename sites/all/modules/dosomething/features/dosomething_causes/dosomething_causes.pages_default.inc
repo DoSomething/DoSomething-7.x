@@ -187,7 +187,7 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'ds-pane-top-right-radius',
+      'css_class' => 'ds-pane-top-right-radius ds-arrow-list',
     );
     $pane->extras = array();
     $pane->position = 0;
@@ -219,7 +219,7 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'ds-pane',
+      'css_class' => 'ds-pane ds-arrow-list',
     );
     $pane->extras = array();
     $pane->position = 0;
@@ -255,7 +255,7 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'ds-pane-top-right-radius ds-pane-usergen',
+      'css_class' => 'ds-pane-top-right-radius ds-pane-usergen ds-arrow-list',
     );
     $pane->extras = array();
     $pane->position = 0;
