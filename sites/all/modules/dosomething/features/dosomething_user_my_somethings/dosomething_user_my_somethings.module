@@ -50,7 +50,7 @@ function dosomething_user_my_somethings_member_block() {
       'name' => array(
         '#prefix' => '<h2>',
         '#suffix' => '</h2>',
-        '#markup' => check_plain($user->name),
+        '#markup' => dosomething_user_my_somethings_get_full_name($user),
       ),
       'role' => array(
         '#prefix' => '<span class="user-role">( ',
@@ -254,6 +254,24 @@ function dosomething_user_my_somethings_user_role($account = NULL) {
   $current_role = dosomething_roles_get_current_role($account->uid);
   $exploded_role = explode(' ', trim($current_role));
   return filter_xss($exploded_role[0]);
+}
+
+/**
+ * Get a user's full name as a string.
+ *
+ * @param $account
+ *  (object) A standard user object.
+ * @return string
+ */
+function dosomething_user_my_somethings_get_full_name($account) {
+  $profile = profile2_load_by_user($account, 'main');
+  $names = array();
+  $name_fields = array('field_user_first_name', 'field_user_last_name');
+  foreach ($name_fields as $field_name) {
+    $field = field_get_items('profile2', $profile, $field_name);
+    $names[] = isset($field[0]['safe_value']) ? $field[0]['safe_value'] : '';
+  }
+  return implode(' ', $names);
 }
 
 /**
