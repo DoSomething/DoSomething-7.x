@@ -195,6 +195,13 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+  else if (in_array($form_id, array('user_login', 'user_login_block'))) {
+    // Our login validation function must run first.
+    $form['#validate'] = is_array($form['#validate']) ? $form['#validate'] : array();
+    array_unshift($form['#validate'],'dosomething_login_user_login_validate');
+    $form['name']['#title'] = t('Email or Cell Number');
+    $form['name']['#description'] = t('Enter your email or cell phone number.');
+  }
 }
 
 /**
@@ -224,6 +231,31 @@ function dosomething_roles_dosomething_password_confirm($element) {
   $element['pass1']['#attributes']['placeholder'] = t('Create a Password');
   $element['pass2']['#attributes']['placeholder'] = t('Confirm that password please');
   return $element;
+}
+
+/**
+ * Custom validation for user login form
+ *
+ */
+function dosomething_login_user_login_validate($form, &$form_state) {
+  // Note: Taken from logintoboggan module
+  // Allow users to login with email address and cell phone number
+  // TODO: Cell phone numbers are not unique amongst the existing users.
+  // otherwise, we can directly search for the cell phon number when
+  // logging in.
+  if (isset($form_state['values']['name']) && $form_state['values']['name']) {
+    if ($name = db_query("SELECT name FROM {users} WHERE LOWER(mail) = LOWER(:name)", array(
+      ':name' => $form_state['values']['name'],
+    ))->fetchField()) {
+      form_set_value($form['name'], $name, $form_state);
+    }
+    // TODO: Only remove spaces, parentheses and dashes in regex
+    else if (($number = preg_replace('/[^0-9]/', '', $form_state['values']['name'])) && strlen($number) >= 10) {
+      if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile.com'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+        form_set_value($form['name'], $name, $form_state);
+      }
+    }
+  }
 }
 
 /**
@@ -565,7 +597,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     }
     $form_state['values']['mail'] = $values['cell_or_email'];
   }
-  else if (($number = preg_replace('[^0-9]', '', $values['cell_or_email'])) && strlen($number) >= 10) {
+  else if (($number = preg_replace('/[^0-9]/', '', $values['cell_or_email'])) && strlen($number) >= 10) {
     if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
     }
