@@ -527,8 +527,89 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['filters']['field_closing_date_value_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_closing_date_value_1']['group'] = 1;
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: Current Scholarships Pane */
+  $handler = $view->new_display('panel_pane', 'Current Scholarships Pane', 'panel_pane_1');
+
+  /* Display: Apply link pane */
+  $handler = $view->new_display('panel_pane', 'Apply link pane', 'panel_pane_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Scholarship (field_scholarship_application) - reverse */
+  $handler->display->display_options['relationships']['reverse_field_scholarship_application_node']['id'] = 'reverse_field_scholarship_application_node';
+  $handler->display->display_options['relationships']['reverse_field_scholarship_application_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_scholarship_application_node']['field'] = 'reverse_field_scholarship_application_node';
+  $handler->display->display_options['relationships']['reverse_field_scholarship_application_node']['required'] = 1;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['relationship'] = 'reverse_field_scholarship_application_node';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['text'] = 'APPLY NOW';
+  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['link_class'] = 'ds-button';
+  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nid']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['nid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['relationship'] = 'reverse_field_scholarship_application_node';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'scholarship' => 'scholarship',
+  );
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Nid',
+    ),
+  );
   $export['scholarships'] = $view;
 
   return $export;

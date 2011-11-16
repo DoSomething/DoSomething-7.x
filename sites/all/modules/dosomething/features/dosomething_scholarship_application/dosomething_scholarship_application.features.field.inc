@@ -309,7 +309,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'grants_logo',
           ),
           'type' => 'image',
           'weight' => '0',
