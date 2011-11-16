@@ -135,3 +135,13 @@
 // panels hacks
 .panels-flexible-region-new-top_
   width: 100%
+
+
+// alternate column dimensions
+#ds-wide-thin
+  .panes-2
+    .panel-first
+      width: percentage($two-col-wide / $main-width-w-padding)
+    .panel-second
+      width: percentage($two-col-thin / $main-width-w-padding)
+

@@ -22,7 +22,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
     'title' => 'Resources',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),

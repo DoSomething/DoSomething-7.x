@@ -2058,6 +2058,13 @@ body.node-type-project [role=main] .main-interior-sidebar {
   width: 100%;
 }
 
+#ds-wide-thin .panes-2 .panel-first {
+  width: 62.029%;
+}
+#ds-wide-thin .panes-2 .panel-second {
+  width: 36.377%;
+}
+
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
 body.admin-menu {
   background-position: center 29px;
