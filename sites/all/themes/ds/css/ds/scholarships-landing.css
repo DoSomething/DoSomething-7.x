@@ -22,7 +22,21 @@
 }
 #scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .scholarships-wrapper {
   background: url('../images/bg-arrowblock-dark.png') no-repeat;
+  float: left;
   height: 98px;
   padding: 10px 10px 0 20px;
-  width: 150px;
+  width: 144px;
+}
+#scholarships-landing .grant-resources {
+  clear: both;
+}
+#scholarships-landing .grant-resources .grant-resource img {
+  float: left;
+}
+#scholarships-landing .grant-resources .grant-resource a {
+  background: url('../images/bg-arrowblock-dark.png') no-repeat;
+  float: left;
+  height: 98px;
+  padding: 10px 10px 0 20px;
+  width: 144px;
 }
