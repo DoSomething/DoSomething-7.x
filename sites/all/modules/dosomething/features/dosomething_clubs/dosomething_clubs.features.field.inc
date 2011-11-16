@@ -10,6 +10,137 @@
 function dosomething_clubs_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'node-club-field_camp'
+  $fields['node-club-field_camp'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_camp',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'profile2_private' => FALSE,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'club',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '5',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'mobile' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'rss' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '-1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_camp',
+      'label' => 'My Do Something Club is going to work on',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-1',
+      'widget' => array(
+        'active' => 1,
+        'module' => 'select_or_other',
+        'settings' => array(
+          'available_options' => 'Make_Art_Save_Art|Make Art, Save Art - our fall art education campaign
+Tackle_Hunger|Tackle Hunger - our winter canned food drive
+Teens_for_Jeans|Teens for Jeans - our winter jean drive
+Green_Your_School|Green Your School Challenge - our spring environmental challenge
+Battle_for_the_Bands|Battle for the Bands - our spring music education campaign
+Epic_Book_Drive|Epic Book Drive - our spring book drive',
+          'available_options_php' => '',
+          'markup_available_options_php' => '&lt;none&gt;',
+          'other' => 'I\'m going to create my own project idea:',
+          'other_unknown_defaults' => 'other',
+          'sort_options' => 0,
+        ),
+        'type' => 'select_or_other_buttons',
+        'weight' => '-1',
+      ),
+      'widget_type' => 'select_or_other_buttons',
+    ),
+  );
+
   // Exported field: 'node-club-field_club_address'
   $fields['node-club-field_club_address'] = array(
     'field_config' => array(
@@ -167,7 +298,7 @@ function dosomething_clubs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '20',
+          'weight' => '22',
         ),
         'full' => array(
           'label' => 'above',
@@ -2909,7 +3040,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '9',
+          'weight' => '10',
         ),
         'full' => array(
           'label' => 'above',
@@ -3253,7 +3384,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '10',
+          'weight' => '11',
         ),
         'full' => array(
           'label' => 'above',
@@ -3553,7 +3684,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'og_ui',
           'settings' => array(),
           'type' => 'og_group_subscribe',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3633,7 +3764,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '11',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3658,6 +3789,85 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'type' => 'text_textfield',
         'weight' => '18',
       ),
+    ),
+  );
+
+  // Exported field: 'node-club-og_node_link'
+  $fields['node-club-og_node_link'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'og_node_link',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'no_ui' => TRUE,
+      'settings' => array(
+        'allowed_values' => array(),
+        'allowed_values_function' => 'og_node_link_field_allowed_values',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 'club_event',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'og_node_link',
+          'settings' => array(),
+          'type' => 'og_node_link_default',
+          'weight' => '13',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'og_node_link',
+      'label' => 'Add group content',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'view modes' => array(
+        'full' => array(
+          'label' => 'above',
+          'type' => 'og_node_link_default',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'type' => 'og_node_link_default',
+        ),
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => 33,
+      ),
+      'widget_type' => 'options_select',
     ),
   );
 
@@ -3705,7 +3915,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '22',
+          'weight' => '24',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3780,7 +3990,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '21',
+          'weight' => '23',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3846,7 +4056,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '12',
+          'weight' => '19',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3958,7 +4168,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3997,6 +4207,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         <li>Update my club profile online whenever important information changes including club leader, contact information and mailing address.</li>
         <li>Notify the Do Something Clubs staff if anything inhibits my club from active participation in the program by e-mailing.</li>
 </ol>');
+  t('Add group content');
   t('Address');
   t('City');
   t('Club Photos');
@@ -4018,6 +4229,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Member 2 email');
   t('Member 3 email');
   t('Member 4 email');
+  t('My Do Something Club is going to work on');
   t('Official club photo');
   t('Other Project Ideas');
   t('Please don\'t use BMP files.
