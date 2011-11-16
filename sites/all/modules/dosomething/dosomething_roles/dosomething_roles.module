@@ -590,7 +590,6 @@ function dosomething_roles_profile_ratio($uid) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   $check_fields = array(
-    'field_user_address',
     'field_user_birthday',
     'field_user_first_name',
     'field_user_last_name',
@@ -600,6 +599,12 @@ function dosomething_roles_profile_ratio($uid) {
     'field_user_why_do_you',
     'field_user_mobile',
   );
+  $address_fields = array(
+    'thoroughfare',
+    'locality',
+    'administrative_area',
+    'postal_code',
+  );
   $total = 0;
   $complete = 0;
 
@@ -608,6 +613,17 @@ function dosomething_roles_profile_ratio($uid) {
       if (isset($profile->{$field_name})) {
         $total++;
         if (count($profile->{$field_name})) {
+          $complete++;
+        }
+      }
+    }
+    // The address is always there because there's automatically a country.
+    // So, we check fields within the address individually.
+    // It would be nice if we could use addressfield_field_is_empty.
+    if (isset($profile->field_user_address[LANGUAGE_NONE][0])) {
+      foreach ($address_fields as $field) {
+        $total++;
+        if (!empty($profile->field_user_address[LANGUAGE_NONE][0][$field])) {
           $complete++;
         }
       }
