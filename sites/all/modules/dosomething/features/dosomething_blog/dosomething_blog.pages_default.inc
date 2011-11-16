@@ -317,7 +317,7 @@ blog/all',
     ),
   );
   $display->cache = array();
-  $display->title = 'Blog Center';
+  $display->title = 'AmazeBlog';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass;
