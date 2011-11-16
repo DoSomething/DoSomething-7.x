@@ -17,26 +17,91 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
-#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-field-field-picture {
+#scholarships-landing h2.pane-title {
+  -moz-box-shadow: white 0 1px -1px 1px;
+  -webkit-box-shadow: white 0 1px -1px 1px;
+  -o-box-shadow: white 0 1px -1px 1px;
+  box-shadow: white 0 1px -1px 1px;
+  border-bottom: 1px solid #c7c7c7;
+  margin: 1em 0;
+}
+#scholarships-landing .pane-editorial-content-scholarships-panel-pane-1 .pane-content {
+  padding-top: 1em;
+}
+#scholarships-landing .pane-editorial-content-scholarships-panel-pane-1 h2 {
+  margin: 0;
+}
+#scholarships-landing .pane-editorial-content-scholarships-panel-pane-1 .views-field-title {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
+}
+#scholarships-landing .pane-editorial-content-scholarships-panel-pane-1 .views-field-field-editorial-image {
+  float: left;
+  margin-right: 1em;
+}
+#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row {
+  float: left;
+  display: inline;
+}
+#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row .views-field-field-picture {
   float: left;
 }
-#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .scholarships-wrapper {
+#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row .scholarships-wrapper {
   background: url('../images/bg-arrowblock-dark.png') no-repeat;
   float: left;
   height: 98px;
   padding: 10px 10px 0 20px;
-  width: 144px;
+  width: 142px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  color: white;
+  font-size: 1.167em;
+  line-height: 1.714em;
+}
+#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row .scholarships-wrapper .scholarships-title {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 500;
+}
+#scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row .scholarships-wrapper a {
+  color: white;
 }
 #scholarships-landing .grant-resources {
   clear: both;
+  float: left;
+}
+#scholarships-landing .grant-resources .grant-resource {
+  background: url('../images/bg-arrowblock-dark.png') no-repeat 98% top;
+  float: left;
+  width: 50%;
+  margin-bottom: 2em;
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+#scholarships-landing .grant-resources .grant-resource {
+  *display: inline;
 }
 #scholarships-landing .grant-resources .grant-resource img {
+  width: 170px;
+  height: 108px;
   float: left;
 }
 #scholarships-landing .grant-resources .grant-resource a {
-  background: url('../images/bg-arrowblock-dark.png') no-repeat;
   float: left;
-  height: 98px;
+  color: white;
+  height: 79px;
   padding: 10px 10px 0 20px;
-  width: 144px;
+  width: 142px;
 }

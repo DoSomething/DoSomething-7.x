@@ -1,24 +1,66 @@
 @import setup
 
 #scholarships-landing
+  h2.pane-title
+    +ds-bevel-single
+    margin: 1em 0
+  .pane-editorial-content-scholarships-panel-pane-1
+    .pane-content
+      padding-top: 1em
+    h2
+      margin: 0
+    .views-field-title
+      +adjust-font-size-to($s2)
+      font-family: $font-headline
+      text-rendering: optimizeLegibility
+      font-weight: 500
+    .views-field-field-editorial-image
+      float: left
+      margin-right: 1em
+          
   .view-scholarships.view-display-id-panel_pane_1
-    .views-field-field-picture
+    .views-row
       float: left
-    .scholarships-wrapper
-      background: image_url('bg-arrowblock-dark.png') no-repeat 
-      float: left
-      height: 98px
-      padding: 10px 10px 0 20px
-      width: 144px
-   
-  .grant-resources
-    clear: both
-    .grant-resource
-      img
+      display: inline
+      .views-field-field-picture
         float: left
-      a
+      .scholarships-wrapper
         background: image_url('bg-arrowblock-dark.png') no-repeat 
         float: left
         height: 98px
         padding: 10px 10px 0 20px
-        width: 144px
+        width: 142px
+        font-family: $font-headline
+        text-rendering: optimizeLegibility
+        color: $white
+        +adjust-font-size-to($s1)
+        .scholarships-title
+          +adjust-font-size-to($s1)
+          font-weight: 500 
+        a
+          color: $white    
+ 
+  .grant-resources
+    clear: both
+    float: left
+    .grant-resource
+      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top 
+      float: left
+      width: 50%
+      margin-bottom: 2em
+      +adjust-font-size-to($s2)
+      font-family: $font-headline
+      text-rendering: optimizeLegibility
+      text-transform: uppercase
+      font-weight: 500 
+      +inline-block
+      img
+        width: 170px
+        height: 108px
+        float: left
+      a
+        float: left
+        color: $white
+        height: 79px
+        padding: 10px 10px 0 20px
+        width: 142px
