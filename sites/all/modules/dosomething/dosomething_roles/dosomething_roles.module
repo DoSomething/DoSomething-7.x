@@ -598,15 +598,18 @@ function dosomething_roles_profile_ratio($uid) {
     'field_user_official_rules',
     'field_user_preferred_cause',
     'field_user_why_do_you',
+    'field_user_mobile',
   );
   $total = 0;
   $complete = 0;
 
   if (is_object($profile)) {
     foreach ($check_fields as $field_name) {
-      $total++;
-      if (isset($profile->{$field_name}) && count($profile->{$field_name})) {
-        $complete++;
+      if (isset($profile->{$field_name})) {
+        $total++;
+        if (count($profile->{$field_name})) {
+          $complete++;
+        }
       }
     }
   }
