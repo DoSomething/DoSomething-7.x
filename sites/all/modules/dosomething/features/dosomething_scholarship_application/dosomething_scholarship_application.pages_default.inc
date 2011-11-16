@@ -284,16 +284,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Scholarships Text',
       'title' => '',
-      'body' => 'This is custom scholarships text: Estery, Hard Cider Cask Conditioned Ale Nebuchadnezzar; Musty." Original Gravity, Fermentation; Mouthfeel Malt Mug Astringent Priming. Lambic Dry beer. Fermentation Dortmunder Imperial. Tart Gueuze.
-
-Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berliner Weisse Estery, Flute Firkin Pitch Chill Haze Hops Final Gravity, Final Gravity. Centrifugation Dunkle Pilsner Yeast Dunkle. Fruity, Attenuation, Winy Oxygenation Double Magnum Mead Jeroboam Musty Bottle Conditioning. Caramel Diacetyl Crystal malt Hogshead, Lupulin Malt Liquor. Krug; Yard Dry beer.
-<ul>
-<li>Ester Wort Chiller, Gueuze Mouthfeel Wheat beer glass Brown ale Trappist! 
-<li>Hang Gueuze Specific Gravity Caramel malt Wheat beer glass. 
-<li>Wit Tart Steam Beer Steam Beer Heat Exchanger?
-</ul>
- Infusion Malt Extract. Astringent Noble Hops Mug Pilsner Pub glass Zymurgy; Ale. Bung Draugh Double Magnum Yard Conditioning Tank Body, " Berliner Weisse Bottle Conditioning." Primary Fermentation Noble Hops, Filter All-malt.
-',
+      'body' => 'No money, no problem: DoSomething.org Scholarships recognize everyday teens who are taking action and making a difference in their community. Most scholarship programs focus on the best students or the all-star athletes; we recognize and reward social action leaders. ',
       'format' => '3',
       'substitute' => TRUE,
     );
