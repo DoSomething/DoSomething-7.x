@@ -592,16 +592,12 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Grants custom text',
       'title' => '',
-      'body' => 'This is custom grants text: Estery, Hard Cider Cask Conditioned Ale Nebuchadnezzar; Musty." Original Gravity, Fermentation; Mouthfeel Malt Mug Astringent Priming. Lambic Dry beer. Fermentation Dortmunder Imperial. Tart Gueuze.
-
-Grist Brewhouse Bock Heat Exchanger, " Oxidized Secondary Fermentation?" Berliner Weisse Estery, Flute Firkin Pitch Chill Haze Hops Final Gravity, Final Gravity. Centrifugation Dunkle Pilsner Yeast Dunkle. Fruity, Attenuation, Winy Oxygenation Double Magnum Mead Jeroboam Musty Bottle Conditioning. Caramel Diacetyl Crystal malt Hogshead, Lupulin Malt Liquor. Krug; Yard Dry beer.
+      'body' => 'The Do Something Grants program awards our members who are working on awesome community projects or programs. Whether your just starting out or want to take your project to the next level, apply for a Do Something Grant!
 <ul>
-<li>Ester Wort Chiller, Gueuze Mouthfeel Wheat beer glass Brown ale Trappist! 
-<li>Hang Gueuze Specific Gravity Caramel malt Wheat beer glass. 
-<li>Wit Tart Steam Beer Steam Beer Heat Exchanger?
-</ul>
- Infusion Malt Extract. Astringent Noble Hops Mug Pilsner Pub glass Zymurgy; Ale. Bung Draugh Double Magnum Yard Conditioning Tank Body, " Berliner Weisse Bottle Conditioning." Primary Fermentation Noble Hops, Filter All-malt.
-',
+<li>We award a Do Something member with a $500 Seed Grant every week.</li>
+<li>We have also given out 9/11 Remembrance Grants, Summer Jobless Grants, and many other types of funding.</li>
+<li>Our grant alumni receive exclusive opportunities such as participation in our Consulting program and monthly Alumni calls.</li>
+</ul>',
       'format' => '3',
       'substitute' => TRUE,
     );
