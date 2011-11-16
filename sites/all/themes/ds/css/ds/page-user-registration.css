@@ -1,0 +1,51 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+#dosomething-login-register-popup-form {
+  *zoom: 1;
+}
+#dosomething-login-register-popup-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#dosomething-login-register-popup-form .age-question {
+  font-weight: bold;
+}
+#dosomething-login-register-popup-form .form-item-month,
+#dosomething-login-register-popup-form .form-item-day {
+  display: inline;
+  float: left;
+  margin-right: 1em;
+  margin-top: 0;
+  width: 5%;
+}
+#dosomething-login-register-popup-form .form-item-year {
+  display: inline;
+  float: left;
+  margin-top: 0;
+  width: 8%;
+}
+#dosomething-login-register-popup-form #edit-signup {
+  display: inline;
+  float: left;
+}
+#dosomething-login-register-popup-form .form-submit {
+  margin-bottom: 1em;
+}

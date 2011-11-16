@@ -80,6 +80,10 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'action-finder') {
     drupal_add_css($theme_path . '/css/ds/action-finder-list.css');
   }
+  // user registration page
+  if ($arg0 == 'user' || $arg0 == 'user-registration') {
+    drupal_add_css($theme_path . '/css/ds/page-user-registration.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {

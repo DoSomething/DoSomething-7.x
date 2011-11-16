@@ -1706,6 +1706,7 @@ label {
   -ms-border-radius: 6px;
   -khtml-border-radius: 6px;
   border-radius: 6px;
+  line-height: 1em;
 }
 .region-sidebar-first .textinput, .region-sidebar-first textarea, .region-sidebar-first input[type=text], .region-sidebar-first input[type=password], .region-sidebar-first input[type=email], .region-sidebar-first input[type=url], .region-sidebar-first input[type=tel], .region-sidebar-first input[type=date], .region-sidebar-first input[type=datetime], .region-sidebar-first input[type=datetime-local], .region-sidebar-first input[type=month], .region-sidebar-first input[type=week], .region-sidebar-first input[type=time], .region-sidebar-first input[type=number], .region-sidebar-first input[type=range], .region-sidebar-first input[type=search], .region-sidebar-first input[type=color], .region-sidebar-first select {
   font-size: 0.917em;
