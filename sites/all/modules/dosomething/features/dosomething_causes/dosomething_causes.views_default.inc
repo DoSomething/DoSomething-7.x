@@ -85,7 +85,7 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['fields']['field_causes_image']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_causes_image']['settings'] = array(
-    'image_style' => 'find_your_cause',
+    'image_style' => 'issue_main',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_causes_image']['field_api_classes'] = 0;
