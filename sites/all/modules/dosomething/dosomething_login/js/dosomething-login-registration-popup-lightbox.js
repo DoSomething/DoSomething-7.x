@@ -81,7 +81,7 @@
           },
           year: {
             required: true,
-            range: [1970, date.getFullYear()]
+            range: [date.getFullYear() - 80, date.getFullYear()]
           },
         },
         messages: {
