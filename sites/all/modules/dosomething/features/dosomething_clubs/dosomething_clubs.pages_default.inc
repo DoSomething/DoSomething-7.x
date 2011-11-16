@@ -120,7 +120,7 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Start a Club (anon. users)',
       'title' => 'Start or Join a Club',
-      'body' => '<a href="/user" title="Log In">Log in</a> or <a href="/user/registration" title="Register">Register</a> to to start a club.',
+      'body' => '<a href="/user" title="Log In">Log in</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
