@@ -381,26 +381,11 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'action_guide' => 'action_guide',
-    'dsu_askprof' => 'dsu_askprof',
-    'dsu_guides' => 'dsu_guides',
-    'tips_and_tools' => 'tips_and_tools',
-  );
-  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
-  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
-  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
-  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['reduce'] = 1;
   /* Filter criterion: Field: Issues (taxonomy_vocabulary_5) */
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['group'] = 0;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'Cause';
@@ -412,6 +397,23 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['hierarchy'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['error_message'] = 1;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'action_guide' => 'action_guide',
+    'dsu_askprof' => 'dsu_askprof',
+    'dsu_guides' => 'dsu_guides',
+    'tips_and_tools' => 'tips_and_tools',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = 1;
 
   /* Display: Resources Landing Pane */
   $handler = $view->new_display('panel_pane', 'Resources Landing Pane', 'panel_pane_1');

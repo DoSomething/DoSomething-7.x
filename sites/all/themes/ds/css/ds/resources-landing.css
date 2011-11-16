@@ -519,8 +519,21 @@ img.goleft {
   cursor: pointer;
   width: 25%;
 }
+#views-exposed-form-resources-panel-pane-1 .views-exposed-form {
+  height: 30px;
+}
 #views-exposed-form-resources-panel-pane-1 .views-exposed-form .views-exposed-widget {
   float: none;
+}
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper {
+  position: relative;
+  right: -130px;
+  top: -38px;
+}
+#views-exposed-form-resources-panel-pane-1 .views-submit-button {
+  position: relative;
+  right: -260px;
+  top: -102px;
 }
 
 .pane-resources-panel-pane-1 .views-row {

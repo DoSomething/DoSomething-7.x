@@ -40,7 +40,13 @@
           font-weight: 500 
         a
           color: $white    
- 
+    .views-row:nth-of-type(odd)  
+      .scholarships-wrapper
+        background: image_url('bg-arrowblock-dark.png') no-repeat
+    .views-row:nth-of-type(even)  
+      .scholarships-wrapper
+        background: image_url('bg-arrowblock-light.png') no-repeat
+
   .grant-resources
     clear: both
     float: left
@@ -65,3 +71,7 @@
         height: 79px
         padding: 10px 10px 0 20px
         width: 143px
+    .grant-resource:nth-of-type(odd)
+      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top 
+    .grant-resource:nth-of-type(even)
+      background: image_url('bg-arrowblock-light.png') no-repeat 98% top 

@@ -44,6 +44,7 @@ features[field][] = "webform_submission_entity-scholarship_application-field_web
 features[field][] = "webform_submission_entity-scholarship_application-field_webform_video_url"
 features[node][] = "scholarship"
 features[node][] = "scholarship_application"
+features[page_manager_handlers][] = "node_view_panel_context_4"
 features[page_manager_pages][] = "scholarships"
 features[variable][] = "comment_anonymous_scholarship"
 features[variable][] = "comment_default_mode_scholarship"
