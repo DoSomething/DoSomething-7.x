@@ -93,13 +93,13 @@ function dosomething_members_only_default_page_manager_pages() {
           <a href="/user">MySomethings</a>
         </div>
         <div class="block-pair">
-          <a href="">What is Membership</a>
+          <a href="/node/718378">What is Membership</a>
         </div>
         <div class="block-pair">
-          <a href="">How to Become a Member</a>
+          <a href="/node/718379">How to Become a Member</a>
         </div>
         <div class="block-pair">
-          <a href="">Membership Benefits</a>
+          <a href="/node/718380">Membership Benefits</a>
         </div>
         <div class="block-pair">
           <a href="/grants">Grants</a>
@@ -111,7 +111,7 @@ function dosomething_members_only_default_page_manager_pages() {
           <a href="/clubhub">Club Hub</a>
         </div>
         <div class="block-pair">
-          <a href="/faqs">FAQs</a>
+          <a href="/node/718377">FAQs</a>
         </div>',
       'format' => '3',
       'substitute' => TRUE,
