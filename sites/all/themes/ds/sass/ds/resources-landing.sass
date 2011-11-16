@@ -31,37 +31,4 @@
     float: none
 
 .pane-resources-panel-pane-1
-  .views-row
-    +pie-clearfix
-    background: (image_url('triangle-mask-left.png') no-repeat 19% center, $gray2)
-    height: calc-em(78px, $s0)
-    margin-bottom: calc-em(24px, $s0)
-    width: 100%
-    &:nth-of-type(even)
-      background-color: $gray
-  .views-field-field-picture
-    img
-      +float-left
-      +inline-block
-      height: calc-em(78px, $s0)
-      margin-right: calc-em(18px, $s0)
-      padding: 0
-  .unimage-wrapper
-    padding: calc-em(7px, $s0) 0
-    +pie-clearfix
-    width: 455px
-    a
-      color: $white
-      +float-left
-    h2
-      +adjust-font-size-to($s2)
-      color: $white
-      font-family: $font-headline
-      font-weight: 500
-      margin: 0
-      text-rendering: optimizeLegibility
-      text-transform: uppercase
-      width: 100%
-    .fb-social-like-plugin
-      +float-right
-      width: calc-em(55px, $s0)
+  +alternating-list

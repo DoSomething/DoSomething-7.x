@@ -76,6 +76,10 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'scholarships') {
     drupal_add_css($theme_path . '/css/ds/scholarships-landing.css');
   }
+  // action finder page list
+  if ($arg0 == 'action-finder') {
+    drupal_add_css($theme_path . '/css/ds/action-finder-list.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {
