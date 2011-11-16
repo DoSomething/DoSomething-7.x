@@ -167,7 +167,7 @@ function dosomething_clubs_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => '20',
         ),
         'full' => array(
           'label' => 'above',
@@ -584,8 +584,9 @@ function dosomething_clubs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'list_default',
           'weight' => '3',
         ),
         'full' => array(
@@ -1539,8 +1540,9 @@ function dosomething_clubs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'text_default',
           'weight' => '0',
         ),
         'full' => array(
@@ -1641,8 +1643,9 @@ function dosomething_clubs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'text_default',
           'weight' => '2',
         ),
         'full' => array(
@@ -1742,8 +1745,9 @@ function dosomething_clubs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'text_default',
           'weight' => '4',
         ),
         'full' => array(
@@ -2199,10 +2203,12 @@ function dosomething_clubs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => NULL,
-          'settings' => array(),
-          'type' => 'media_large',
-          'weight' => 18,
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'media',
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2493,7 +2499,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '-4',
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'above',
@@ -2592,8 +2598,9 @@ function dosomething_clubs_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'text_default',
           'weight' => '1',
         ),
         'full' => array(
@@ -2697,7 +2704,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '-7',
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'above',
@@ -2799,7 +2806,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '-6',
+          'weight' => '1',
         ),
         'full' => array(
           'label' => 'above',
@@ -2902,7 +2909,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '24',
+          'weight' => '9',
         ),
         'full' => array(
           'label' => 'above',
@@ -3025,7 +3032,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '-5',
+          'weight' => '2',
         ),
         'full' => array(
           'label' => 'above',
@@ -3246,7 +3253,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '27',
+          'weight' => '10',
         ),
         'full' => array(
           'label' => 'above',
@@ -3546,7 +3553,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'og_ui',
           'settings' => array(),
           'type' => 'og_group_subscribe',
-          'weight' => '18',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3626,7 +3633,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 34,
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3698,7 +3705,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '19',
+          'weight' => '22',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3773,7 +3780,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '16',
+          'weight' => '21',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3837,10 +3844,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '6',
+          'type' => 'hidden',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3952,7 +3958,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
