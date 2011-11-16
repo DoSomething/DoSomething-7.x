@@ -42,6 +42,10 @@ function dosomething_profile_ds_friends_pics_content($uid) {
   if ($img) {
     return theme('item_list', array('items' => $img));
   }
+  // Check if they have connected through Facebook.
+  elseif (db_query('SELECT uid from {fboauth_users} WHERE uid = :uid', array(':uid' => $uid))->fetchField()) {
+    return '';
+  }
   else {
     // Get login link for fboauth.
     $fb_link = fboauth_action_link_properties('prereg');
