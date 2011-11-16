@@ -410,25 +410,25 @@ div[role=main]
         background-position: top 0px
     .news
       a
-        background: image_url("icn-subnav-news.png") top right no-repeat
+        background: image_url("new-icons_news.png") top right no-repeat
         background-position: 34px 5px
-        padding-right: 24px
+        padding-right: 32px
         margin-left: 12px
     .awesome
       a
-        background: image_url("icn-subnav-awesomes.png") top right no-repeat
+        background: image_url("new-icons_awesome-ones.png") top right no-repeat
         background-position: 82px 5px
         padding-right: 32px
         margin-left: 12px
     .celebs
       a
-        background: image_url("icn-subnav-celebs.png") top right no-repeat
+        background: image_url("new-icons_celebs-gone-good.png") top right no-repeat
         background-position: 95px 5px
         padding-right: 32px
         margin-left: 12px
     .staff
       a
-        background: image_url("icn-subnav-staff.png") top right no-repeat
+        background: image_url("new-icons_staff-stuff.png") top right no-repeat
         background-position: 95px 5px
         padding-right: 32px
         margin-left: 12px
@@ -459,25 +459,25 @@ div[role=main]
     p
       margin-bottom: 0
     .News-icon
-      +replace-text-with-dimensions("icn-subnav-news.png")
+      +replace-text-with-dimensions("new-icons_news.png")
       position: relative
       top: 85px
       left: -40px
       z-index: 100
     .Celebs-Gone-Good-icon
-      +replace-text-with-dimensions("icn-subnav-celebs.png")
+      +replace-text-with-dimensions("new-icons_celebs-gone-good.png")
       position: relative
       top: 85px
       left: -40px
       z-index: 100
     .Awe-Some-Ones-icon
-      +replace-text-with-dimensions("icn-subnav-awesomes.png")
+      +replace-text-with-dimensions("new-icons_awesome-ones.png")
       position: relative
       top: 85px
       left: -40px
       z-index: 100
     .DoSomething-Staff-icon
-      +replace-text-with-dimensions("icn-subnav-staff.png")
+      +replace-text-with-dimensions("new-icons_staff-stuff.png")
       position: relative
       top: 85px
       left: -40px
@@ -600,9 +600,10 @@ iframe
 
   .form-submit
 
-  #dosomething-login-register-popup-form
+  #dosomething-login-register-popup-form, #dosomething-login-register-popup-form
+    font-size: $s3
     color: $white
-    #edit-title-text
+    #edit-title-text, #edit-signup-title
     label[for="edit-title-text"]
       font-size: $s5
       margin-bottom: 12px

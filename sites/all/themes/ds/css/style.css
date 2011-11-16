@@ -2631,25 +2631,25 @@ div[role=main] {
   background-position: top 0px;
 }
 #blog-menu ul .news a {
-  background: url('images/icn-subnav-news.png') top right no-repeat;
+  background: url('images/new-icons_news.png') top right no-repeat;
   background-position: 34px 5px;
-  padding-right: 24px;
+  padding-right: 32px;
   margin-left: 12px;
 }
 #blog-menu ul .awesome a {
-  background: url('images/icn-subnav-awesomes.png') top right no-repeat;
+  background: url('images/new-icons_awesome-ones.png') top right no-repeat;
   background-position: 82px 5px;
   padding-right: 32px;
   margin-left: 12px;
 }
 #blog-menu ul .celebs a {
-  background: url('images/icn-subnav-celebs.png') top right no-repeat;
+  background: url('images/new-icons_celebs-gone-good.png') top right no-repeat;
   background-position: 95px 5px;
   padding-right: 32px;
   margin-left: 12px;
 }
 #blog-menu ul .staff a {
-  background: url('images/icn-subnav-staff.png') top right no-repeat;
+  background: url('images/new-icons_staff-stuff.png') top right no-repeat;
   background-position: 95px 5px;
   padding-right: 32px;
   margin-left: 12px;
@@ -2691,10 +2691,10 @@ div[role=main] {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('images/icn-subnav-news.png');
+  background-image: url('images/new-icons_news.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 16px;
+  width: 18px;
   height: 18px;
   position: relative;
   top: 85px;
@@ -2705,11 +2705,11 @@ div[role=main] {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('images/icn-subnav-celebs.png');
+  background-image: url('images/new-icons_celebs-gone-good.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 23px;
-  height: 17px;
+  width: 19px;
+  height: 18px;
   position: relative;
   top: 85px;
   left: -40px;
@@ -2719,10 +2719,10 @@ div[role=main] {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('images/icn-subnav-awesomes.png');
+  background-image: url('images/new-icons_awesome-ones.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 26px;
+  width: 23px;
   height: 18px;
   position: relative;
   top: 85px;
@@ -2733,11 +2733,11 @@ div[role=main] {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('images/icn-subnav-staff.png');
+  background-image: url('images/new-icons_staff-stuff.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 21px;
-  height: 16px;
+  width: 19px;
+  height: 18px;
   position: relative;
   top: 85px;
   left: -40px;
@@ -2895,15 +2895,16 @@ iframe {
   float: left;
   width: 14px;
 }
-.ui-dialog #dosomething-login-register-popup-form {
+.ui-dialog #dosomething-login-register-popup-form, .ui-dialog #dosomething-login-register-popup-form {
+  font-size: 24px;
   color: white;
 }
-.ui-dialog #dosomething-login-register-popup-form label[for="edit-title-text"] {
+.ui-dialog #dosomething-login-register-popup-form label[for="edit-title-text"], .ui-dialog #dosomething-login-register-popup-form label[for="edit-title-text"] {
   font-size: 35px;
   margin-bottom: 12px;
   padding-bottom: 5px;
 }
-.ui-dialog #dosomething-login-register-popup-form .description {
+.ui-dialog #dosomething-login-register-popup-form .description, .ui-dialog #dosomething-login-register-popup-form .description {
   color: white;
 }
 .ui-dialog .form-item-first-name,
