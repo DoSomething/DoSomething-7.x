@@ -471,7 +471,7 @@ function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FA
   try {
     $query = db_select('webform_submissions', 'w');
     $query->innerJoin('node', 'n', 'w.nid = n.nid');
-    $query->leftJoin('field_revision_field_project_type', 'pt', 'w.sid = pt.entity_id');
+    $query->leftJoin('field_data_field_project_type', 'pt', 'w.sid = pt.entity_id');
     $count = $query->fields('w', array('sid'))
     ->condition('w.uid', $uid, '=')
     ->condition('n.type', $node_types, 'IN')

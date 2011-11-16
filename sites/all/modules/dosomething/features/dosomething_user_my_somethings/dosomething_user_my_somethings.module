@@ -315,9 +315,9 @@ function dosomething_user_my_somethings_get_submissions($uid, $type, $title_fiel
   try {
     $query = db_select('webform_submissions', 'ws');
     $query->innerJoin('node', 'n', 'ws.nid = n.nid');
-    $query->innerJoin('field_revision_' . $title_field, 't', 'ws.sid = t.entity_id');
+    $query->innerJoin('field_data_' . $title_field, 't', 'ws.sid = t.entity_id');
     if (is_array($statuses)) {
-     $query->innerJoin('field_revision_field_project_type', 'pt', 'ws.sid = pt.entity_id');
+     $query->innerJoin('field_data_field_project_type', 'pt', 'ws.sid = pt.entity_id');
     }
     $query->fields('ws', array('sid', 'submitted'));
     $query->fields('n', array('nid', 'type'));
