@@ -45,6 +45,7 @@
 #scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row {
   float: left;
   display: inline;
+  width: 50%;
 }
 #scholarships-landing .view-scholarships.view-display-id-panel_pane_1 .views-row .views-field-field-picture {
   float: left;
@@ -103,5 +104,5 @@
   color: white;
   height: 79px;
   padding: 10px 10px 0 20px;
-  width: 142px;
+  width: 143px;
 }
