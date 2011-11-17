@@ -12,7 +12,7 @@ define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
  */
 function dosomething_pages_menu() {
   $items['causes'] = array(
-    'title callback' => 'dosomething_pages_causes_title',
+    'title' => 'Causes',
     'page callback' => 'dosomething_pages_get_causes',
     'access callback' => TRUE,
     // We don't want this in the navigation menu
@@ -20,12 +20,6 @@ function dosomething_pages_menu() {
     'menu_name' => 'ds-main-menu',
   );
   return $items;
-}
-
-function dosomething_pages_causes_title() {
-  $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
-  $causes = taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = FALSE);
-  return t(count($causes) . ' Great Causes for You to Rock');
 }
 
 function dosomething_pages_get_causes() {
@@ -40,7 +34,7 @@ function dosomething_pages_get_causes() {
   $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
   $causes = array();
   // Set the image, image style, and uri of each cause.
-  foreach (taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = TRUE) as $cause) {
+  foreach (taxonomy_get_tree($vocabulary->vid, 0, 1, TRUE) as $cause) {
     $cause_image = field_get_items('taxonomy_term', $cause, 'field_causes_image');
     $cause->cause_image = isset($cause_image[0]['uri']) ? $cause_image[0] : NULL;
     $cause->image_style = 'find_your_cause';
@@ -48,6 +42,7 @@ function dosomething_pages_get_causes() {
 
     $causes[] = $cause;
   }
+  drupal_set_title(t(count($causes) . ' Great Causes for You to Rock'));
 
   // Spoof the structure of a cause for the Suggest A Cause entry.
   $causes[] = (object) array(
