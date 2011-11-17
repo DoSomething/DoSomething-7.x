@@ -6,22 +6,32 @@
 @import partials/02-extend/all
 @import partials/03-defaults/markup/headers
 
+.action-finder-list
+  +alternating-list
+  .views-row
+    background-position-x: 12%
+  .unimage-wrapper
+    color: $white
+    width: auto
+    p
+      margin: 0
+
 // Find Something Else
 
 @import "impactbubbles/*.png"
 $impactbubbles-sprite-dimensions: true
 @include all-impactbubbles-sprites
 
-.views-exposed-form .views-exposed-widget
-  float: none
-  padding: 0
-.views-exposed-form
-  position: relative
-  left: 185px
-.view-filters
+#views-exposed-form-action-finder-ctools-context-1
   background: $c-impact
   padding-top: 10px
   min-height: 250px
+  .views-exposed-form .views-exposed-widget
+    float: none
+    padding: 0
+  .views-exposed-form
+    position: relative
+    left: 185px
   .views-exposed-widgets
     position: absolute
     padding: 0px 0.5em
@@ -30,7 +40,7 @@ $impactbubbles-sprite-dimensions: true
       color: $white
       .form-required
         @extend .visuallyhidden
-    select
+    select,
     .selectBox-dropdown
       background: $gray-lighter2
       cursor: pointer

@@ -76,13 +76,13 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'scholarships') {
     drupal_add_css($theme_path . '/css/ds/scholarships-landing.css');
   }
-  // action finder page list
-  if ($arg0 == 'action-finder') {
-    drupal_add_css($theme_path . '/css/ds/action-finder-list.css');
-  }
   // user registration page
   if ($arg0 == 'user' || $arg0 == 'user-registration') {
     drupal_add_css($theme_path . '/css/ds/page-user-registration.css');
+  }
+  // action finder page
+  if ($arg0 == 'action-finder') {
+    drupal_add_css($theme_path . '/css/ds/page-action-finder.css');
   }
 }
 
@@ -181,11 +181,11 @@ function ds_breadcrumb($variables) {
 }
 
 /**
- * Add a custon title to the exposed filter form on the action finder page.
+ * Add a custom title to the exposed filter form on the action finder page.
  */
 function ds_preprocess_views_exposed_form(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
-  if ($variables['form']['#id'] == 'views-exposed-form-action-finder-page') {
+  if ($variables['form']['#id'] == 'views-exposed-form-action-finder-ctools-context-1') {
     $obj = new stdClass;
     $obj->label = 'Find Something Else';
     $obj->id = 'filter-title';

@@ -22,7 +22,7 @@
   visibility: hidden;
 }
 
-.visuallyhidden, .view-filters .views-exposed-widgets label .form-required {
+.visuallyhidden, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .form-required {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -33,7 +33,7 @@
   width: 1px;
 }
 
-.visuallyhidden.focusable, .view-filters .views-exposed-widgets label .focusable.form-required {
+.visuallyhidden.focusable, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .focusable.form-required {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -43,7 +43,7 @@
   position: absolute;
   width: 1px;
 }
-.visuallyhidden.focusable:active, .view-filters .views-exposed-widgets label .focusable.form-required:active, .visuallyhidden.focusable:focus, .view-filters .views-exposed-widgets label .focusable.form-required:focus {
+.visuallyhidden.focusable:active, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .focusable.form-required:active, .visuallyhidden.focusable:focus, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .focusable.form-required:focus {
   clip: auto;
   height: auto;
   margin: 0;
@@ -507,7 +507,7 @@ img.goleft {
   letter-spacing: 0.1em;
 }
 
-.headers, .h1, h1, .h2, h2, .h3, h3, .view-filters .views-exposed-widgets label, .view-filters #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
+.headers, .h1, h1, .h2, h2, .h3, h3, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label, #views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -521,7 +521,7 @@ img.goleft {
 
 /* Only use the fancy ampersand in <h#> tags */
 /* Headings -------------------------------------------------------------- */
-.h1, h1, .h2, h2, .h3, h3, .view-filters .views-exposed-widgets label, .view-filters #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
+.h1, h1, .h2, h2, .h3, h3, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label, #views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
   color: #005dab;
@@ -541,7 +541,7 @@ img.goleft {
   margin-top: 0.417em;
 }
 
-.h3, h3, .view-filters .views-exposed-widgets label, .view-filters #filter-title-wrapper {
+.h3, h3, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label, #views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper {
   font-size: 1.5em;
   line-height: 1.333em;
   font-weight: 600;
@@ -565,134 +565,210 @@ img.goleft {
   font-weight: 500;
 }
 
-.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, .view-filters #edit-issues-wrapper, .impactbubbles-impact-bubble-dude, .view-filters .views-submit-button, .impactbubbles-impact-bubble-how-long, .view-filters #edit-time-wrapper, .impactbubbles-impact-bubble-where, .view-filters #edit-where-wrapper, .impactbubbles-impact-bubble-who, .view-filters #edit-who-wrapper {
+.action-finder-list .views-row {
+  *zoom: 1;
+  background: url('../images/triangle-mask-left.png') no-repeat 19% center, #8e8a86;
+  height: 6.5em;
+  margin-bottom: 2em;
+  width: 100%;
+}
+.action-finder-list .views-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.action-finder-list .views-row:nth-of-type(even) {
+  background-color: #5f5c58;
+}
+.action-finder-list .views-field-field-picture img {
+  display: inline;
+  float: left;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  height: 6.5em;
+  margin-right: 1.5em;
+  padding: 0;
+}
+.action-finder-list .views-field-field-picture img {
+  *display: inline;
+}
+.action-finder-list .unimage-wrapper {
+  padding: 0.583em 0;
+  *zoom: 1;
+  width: 455px;
+}
+.action-finder-list .unimage-wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.action-finder-list .unimage-wrapper a {
+  color: white;
+  display: inline;
+  float: left;
+}
+.action-finder-list .unimage-wrapper h2 {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  width: 100%;
+}
+.action-finder-list .unimage-wrapper .fb-social-like-plugin {
+  display: inline;
+  float: right;
+  width: 4.583em;
+}
+.action-finder-list .views-row {
+  background-position-x: 12%;
+}
+.action-finder-list .unimage-wrapper {
+  color: white;
+  width: auto;
+}
+.action-finder-list .unimage-wrapper p {
+  margin: 0;
+}
+
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper, .impactbubbles-impact-bubble-dude, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button, .impactbubbles-impact-bubble-how-long, #views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper, .impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper, .impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
   background: url('../images/impactbubbles-s20f9e531bf.png') no-repeat;
 }
 
-.impactbubbles-impact-bubble-cause, .view-filters #edit-issues-wrapper {
+.impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper {
   background-position: 0 0;
   height: 74px;
   width: 112px;
 }
 
-.impactbubbles-impact-bubble-dude, .view-filters .views-submit-button {
+.impactbubbles-impact-bubble-dude, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
   background-position: 0 -74px;
   height: 73px;
   width: 72px;
 }
 
-.impactbubbles-impact-bubble-how-long, .view-filters #edit-time-wrapper {
+.impactbubbles-impact-bubble-how-long, #views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper {
   background-position: 0 -147px;
   height: 59px;
   width: 120px;
 }
 
-.impactbubbles-impact-bubble-where, .view-filters #edit-where-wrapper {
+.impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper {
   background-position: 0 -206px;
   height: 59px;
   width: 120px;
 }
 
-.impactbubbles-impact-bubble-who, .view-filters #edit-who-wrapper {
+.impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
   background-position: 0 -265px;
   height: 74px;
   width: 112px;
 }
 
-.views-exposed-form .views-exposed-widget {
-  float: none;
-  padding: 0;
-}
-
-.views-exposed-form {
-  position: relative;
-  left: 185px;
-}
-
-.view-filters {
+#views-exposed-form-action-finder-ctools-context-1 {
   background: #222222;
   padding-top: 10px;
   min-height: 250px;
 }
-.view-filters .views-exposed-widgets {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-form .views-exposed-widget {
+  float: none;
+  padding: 0;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-form {
+  position: relative;
+  left: 185px;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets {
   position: absolute;
   padding: 0px 0.5em;
 }
-.view-filters .views-exposed-widgets label {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label {
   color: white;
 }
-.view-filters .views-exposed-widgets .selectBox-dropdown {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown {
   background: #a1a1a1;
   cursor: pointer;
   width: 100px;
   margin-top: 8px;
   color: white;
 }
-.view-filters .views-exposed-widgets .selectBox-dropdown:visited {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select:visited,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown:visited {
   color: white;
 }
-.view-filters .views-exposed-widgets .selectBox-dropdown:hover {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select:hover,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown:hover {
   color: white;
 }
-.view-filters .views-exposed-widgets .selectBox-dropdown:active {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select:active,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown:active {
   color: #222222;
 }
-.view-filters .views-exposed-widgets .selectBox-dropdown .selectBox-label {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select .selectBox-label,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown .selectBox-label {
   width: 95%;
   height: 1.5em;
 }
-.view-filters .views-exposed-widgets .selectBox-dropdown .selectBox-arrow {
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select .selectBox-arrow,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown .selectBox-arrow {
   display: none;
 }
-.view-filters #filter-title-wrapper {
+#views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper {
   position: relative;
   left: 63px;
 }
-.view-filters #filter-title-wrapper label {
+#views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper label {
   cursor: inherit;
 }
-.view-filters #edit-issues-wrapper,
-.view-filters #edit-who-wrapper,
-.view-filters #edit-where-wrapper,
-.view-filters #edit-time-wrapper {
+#views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper,
+#views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper,
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper,
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper {
   position: absolute;
 }
-.view-filters #edit-issues-wrapper label,
-.view-filters #edit-who-wrapper label,
-.view-filters #edit-where-wrapper label,
-.view-filters #edit-time-wrapper label {
+#views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper label,
+#views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper label,
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper label,
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper label {
   cursor: default;
 }
-.view-filters #edit-issues-wrapper {
+#views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper {
   left: 37px;
   padding: 0px 0.5em;
 }
-.view-filters #edit-who-wrapper {
+#views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
   left: 167px;
   padding: 0px 0.5em;
 }
-.view-filters #edit-where-wrapper {
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper {
   top: 114px;
   padding: 0px 0.5em;
 }
-.view-filters #edit-where-wrapper .selectBox-dropdown {
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper .selectBox-dropdown {
   margin-top: 5px;
 }
-.view-filters #edit-time-wrapper {
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper {
   left: 200px;
   top: 114px;
   padding: 0 0.5em 0 14px;
 }
-.view-filters #edit-time-wrapper .selectBox-dropdown {
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper .selectBox-dropdown {
   margin-top: 5px;
 }
-.view-filters .views-submit-button {
+#views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
   position: absolute;
   left: 124px;
   top: 138px;
   height: 67px;
 }
-.view-filters .form-submit {
+#views-exposed-form-action-finder-ctools-context-1 .form-submit {
   position: absolute;
   bottom: -30px;
 }
