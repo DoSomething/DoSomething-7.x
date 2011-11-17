@@ -4056,7 +4056,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '19',
+          'weight' => '21',
         ),
         'teaser' => array(
           'label' => 'above',
