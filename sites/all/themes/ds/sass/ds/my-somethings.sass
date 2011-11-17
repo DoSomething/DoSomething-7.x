@@ -1,0 +1,70 @@
+@import setup
+
+#user-my-somethings
+  h2, h2.pane-title
+    +ds-bevel-single
+    margin: 1em 0
+
+  .view-my-somethings-views-data.view-display-id-panel_pane_1,
+  .view-my-somethings-views-data.view-display-id-panel_pane_2,
+  .view-my-somethings-views-data.view-display-id-panel_pane_3,
+  .view-my-somethings-views-data.view-display-id-panel_pane_4
+    color: $white
+    .views-row
+      +float-left
+      width: 50%
+      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
+      margin-bottom: 2em
+      height: 108px
+      .views-field-field-picture
+        +float-left
+        width: 170px
+        height: 107px
+        .my-somethings-default-img
+          background: image_url('school-and-clubs.jpg') no-repeat
+          width: 170px
+          height: 107px
+      .my-somethings-wrapper
+        padding: 5px 10px 0 20px
+        width: 140px
+        height: 102px
+        +float-left
+        .my-somethings-title
+          +adjust-font-size-to($s2)
+          line-height: 1em
+          font-family: $font-headline
+          text-rendering: optimizeLegibility
+          font-weight: 500
+          height: 80px
+        .my-somethings-link
+          text-align: right
+          a
+            color: $white
+
+  .view-my-somethings.view-display-id-panel_pane_1
+    .views-row:nth-of-type(odd)
+      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
+    .views-row:nth-of-type(even)
+      background: image_url('bg-arrowblock-light.png') no-repeat 98% top
+    .views-row
+      +float-left
+      width: 50%
+      margin-bottom: 2em
+      height: 108px
+      .views-field-field-club-picture
+        +float-left
+      .club-title-container
+        padding: 5px 10px 0 20px
+        width: 140px
+        height: 102px
+        +float-left
+        a
+          +adjust-font-size-to($s2)
+          line-height: 1em
+          font-family: $font-headline
+          color: $white
+          text-rendering: optimizeLegibility
+          font-weight: 500
+
+
+

@@ -80,10 +80,13 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'user' || $arg0 == 'user-registration') {
     drupal_add_css($theme_path . '/css/ds/page-user-registration.css');
   }
+  // user profile
+  if ($arg0 == 'user') {
+    drupal_add_css($theme_path . '/css/ds/my-somethings.css');
+  }
   // action finder page
   if ($arg0 == 'action-finder') {
     drupal_add_css($theme_path . '/css/ds/page-action-finder.css');
-  }
 }
 
 function ds_preprocess_node(&$variables) {
