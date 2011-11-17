@@ -602,7 +602,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
         form_set_error('parent_email', t('Please provide a valid parental email address.'));
       }
     }
-    else if (dosomething_login_person_is_over_age($form_state['values']['birthdate'], 25)) {
+    else if (dosomething_login_person_is_over_age($form_state['values']['birthdate'], 26)) {
       // Don't throw required field errors for captcha and password.
       // We could add errors back if needed.
       form_clear_error();
@@ -666,7 +666,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   entity_form_submit_build_entity('user', $account, $form, $form_state);
 
   // Determine the user's role by their age.
-  if (dosomething_login_person_is_over_age($birthdate, 25)) {
+  if (dosomething_login_person_is_over_age($birthdate, 26)) {
     $role_name = 'old person';
     drupal_set_message(t('You have been signed up for our weekly updates'));
     $account->status = 0;
@@ -790,7 +790,7 @@ function dosomething_login_drupal_user_is_over_age($uid, $age = 13, $end_timesta
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   if (is_object($profile)) {
-    $birthday = field_get_items('profile2', $profile, 'field_user_birthday'); 
+    $birthday = field_get_items('profile2', $profile, 'field_user_birthday');
     if (isset($birthday[0]['value'])) {
       // this is only a a time (no time) so timezone is not important.
       $timestamp = strtotime($birthday[0]['value']);

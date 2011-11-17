@@ -421,7 +421,7 @@ function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
   $grant_update = dosomething_roles_user_submitted_grant($uid, $timestamp);
 
   if (module_exists('dosomething_login')) {
-    if (dosomething_login_drupal_user_is_over_age($uid, 25, $end_timestamp)) {
+    if (dosomething_login_drupal_user_is_over_age($uid, 26, $end_timestamp)) {
       return 'old person';
     }
   }
