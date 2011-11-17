@@ -71,118 +71,6 @@ function dosomething_action_finder_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'mid-right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Start a Project',
-      'title' => '<none>',
-      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
-      'format' => '3',
-      'substitute' => 1,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['mid-right'][0] = 'new-1';
-    $pane = new stdClass;
-    $pane->pid = 'new-2';
-    $pane->panel = 'mid-right';
-    $pane->type = 'views';
-    $pane->subtype = 'project_related_displays';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '3',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'context' => array(
-        0 => '',
-        1 => '',
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['mid-right'][1] = 'new-2';
-    $pane = new stdClass;
-    $pane->pid = 'new-3';
-    $pane->panel = 'mid-right';
-    $pane->type = 'views';
-    $pane->subtype = 'project_related_displays';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '3',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_2',
-      'context' => array(
-        0 => '',
-        1 => '',
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['mid-right'][2] = 'new-3';
-    $pane = new stdClass;
-    $pane->pid = 'new-4';
-    $pane->panel = 'mid-right';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_1';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $display->content['new-4'] = $pane;
-    $display->panels['mid-right'][3] = 'new-4';
-    $pane = new stdClass;
-    $pane->pid = 'new-5';
     $pane->panel = 'top';
     $pane->type = 'views_exposed';
     $pane->subtype = 'views_exposed';
@@ -200,10 +88,10 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][0] = 'new-5';
+    $display->content['new-1'] = $pane;
+    $display->panels['top'][0] = 'new-1';
     $pane = new stdClass;
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-2';
     $pane->panel = 'top';
     $pane->type = 'views_row';
     $pane->subtype = 'views_row';
@@ -238,10 +126,10 @@ function dosomething_action_finder_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][1] = 'new-6';
+    $display->content['new-2'] = $pane;
+    $display->panels['top'][1] = 'new-2';
     $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-3';
     $pane->panel = 'top';
     $pane->type = 'views_pager';
     $pane->subtype = 'views_pager';
@@ -259,8 +147,8 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][2] = 'new-7';
+    $display->content['new-3'] = $pane;
+    $display->panels['top'][2] = 'new-3';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
