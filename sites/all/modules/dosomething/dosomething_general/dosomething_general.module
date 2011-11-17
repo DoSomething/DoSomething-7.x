@@ -57,13 +57,15 @@ function theme_dosomething_general_facebook_friend_pic($var) {
  */
 function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-resources-panel-pane-1') {
-    // Override 'All' value on action-finder content type exposed filter.
+    // Override #option values on action-finder content type exposed filter.
     if ($form_id == 'views_exposed_form' && $form['#info']['filter-type']['value'] == 'type') {
-      $form['type']['#options']['All'] = 'All types'; 
+      $form['type']['#options']['All'] = 'All types';
+      $form['type']['#options']['dsu_guides'] = 'Social Action How-Tos';
+      $form['type']['#options']['tips_and_tools'] = 'Facts and More';
     }
-    // Override 'All' value on action-finder cause exposed filter. 
+    // Override #option values on action-finder cause exposed filter. 
     if ($form_id == 'views_exposed_form' && $form['#info']['filter-taxonomy_vocabulary_5_tid']['value'] == 'cause') {
-      $form['cause']['#options']['All'] = 'All causes';
+      $form['cause']['#options']['All'] = 'All subjects';
     }
   }
 }

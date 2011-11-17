@@ -403,7 +403,6 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'action_guide' => 'action_guide',
-    'dsu_askprof' => 'dsu_askprof',
     'dsu_guides' => 'dsu_guides',
     'tips_and_tools' => 'tips_and_tools',
   );
