@@ -46,18 +46,29 @@
     .field-items
       width: 30%
       +float-right
-    a
-      +float-left
+    .grant-title,
+    .views-field-field-grants-how-much
       color: $white
+      display: block
       font-family: $font-headline
       font-size: 18px
       font-weight: 500
-      margin-top: 1em
-      padding-left: 2em
+      line-height: 2em
+      text-align: center
       text-rendering: optimizeLegibility
       text-transform: uppercase
-      &:hover
+    .grant-title
+      margin-top: 1em
+    .views-field-field-grants-how-much
+      width: 355px
+    .views-field-view-node
+      position: relative
+      top: 4em
+      left: 7em
+      a
         color: $white
+        &:hover
+          color: $white
     img
       +float-left
       width: 170px

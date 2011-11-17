@@ -91,19 +91,33 @@
   display: inline;
   float: right;
 }
-.panel-bottom .pane-content a {
-  display: inline;
-  float: left;
+.panel-bottom .pane-content .grant-title,
+.panel-bottom .pane-content .views-field-field-grants-how-much {
   color: white;
+  display: block;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 18px;
   font-weight: 500;
-  margin-top: 1em;
-  padding-left: 2em;
+  line-height: 2em;
+  text-align: center;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
 }
-.panel-bottom .pane-content a:hover {
+.panel-bottom .pane-content .grant-title {
+  margin-top: 1em;
+}
+.panel-bottom .pane-content .views-field-field-grants-how-much {
+  width: 355px;
+}
+.panel-bottom .pane-content .views-field-view-node {
+  position: relative;
+  top: 4em;
+  left: 7em;
+}
+.panel-bottom .pane-content .views-field-view-node a {
+  color: white;
+}
+.panel-bottom .pane-content .views-field-view-node a:hover {
   color: white;
 }
 .panel-bottom .pane-content img {
