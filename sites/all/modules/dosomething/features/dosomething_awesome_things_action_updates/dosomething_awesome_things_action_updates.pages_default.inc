@@ -38,7 +38,7 @@ function dosomething_awesome_things_action_updates_default_page_manager_pages() 
     'title' => 'Panel',
     'no_blocks' => 0,
     'pipeline' => 'ipe',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),

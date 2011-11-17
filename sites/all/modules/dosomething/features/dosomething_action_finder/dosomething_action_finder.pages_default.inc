@@ -35,7 +35,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     'title' => 'Action Finder Landing',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(
       0 => array(

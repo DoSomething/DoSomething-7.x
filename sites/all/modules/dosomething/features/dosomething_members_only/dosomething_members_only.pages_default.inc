@@ -161,7 +161,7 @@ function dosomething_members_only_default_page_manager_pages() {
     'title' => 'Become a Member',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),

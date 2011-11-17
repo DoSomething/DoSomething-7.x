@@ -309,7 +309,7 @@ function dosomething_clubs_default_page_manager_pages() {
     'title' => 'Panel',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
