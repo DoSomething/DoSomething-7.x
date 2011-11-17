@@ -2887,7 +2887,6 @@ iframe {
 /*Become a member popup window */
 .ui-dialog {
   color: white;
-  font-family: din-web, "Trebuchet MS", sans-serif;
   background: #222222;
   border: 2px solid white;
 }
@@ -2912,14 +2911,20 @@ iframe {
   float: left;
   width: 14px;
 }
-.ui-dialog #dosomething-login-register-popup-form, .ui-dialog #dosomething-login-register-popup-form {
-  font-size: 24px;
-  color: white;
-}
-.ui-dialog #dosomething-login-register-popup-form label[for="edit-title-text"], .ui-dialog #dosomething-login-register-popup-form label[for="edit-title-text"] {
+.ui-dialog label[for="edit-title-text"],
+.ui-dialog label[for="edit-signup-title"] {
+  font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 35px;
   margin-bottom: 12px;
   padding-bottom: 5px;
+  color: white;
+}
+.ui-dialog label[for="edit-title-text"] .description,
+.ui-dialog label[for="edit-signup-title"] .description {
+  color: #ff69b4;
+}
+.ui-dialog #dosomething-login-register-popup-form, .ui-dialog #dosomething-login-register-popup-form {
+  color: white;
 }
 .ui-dialog #dosomething-login-register-popup-form .description, .ui-dialog #dosomething-login-register-popup-form .description {
   color: white;

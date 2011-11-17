@@ -579,7 +579,6 @@ iframe
 /*Become a member popup window*/
 .ui-dialog
   color: $white
-  font-family: $font-headline
   background: $gray-dark
   border: 2px solid $white
   // .ui-dialog-titlebar
@@ -600,14 +599,19 @@ iframe
 
   .form-submit
 
+  label[for="edit-title-text"],
+  label[for="edit-signup-title"]
+    font-family: $font-headline
+    font-size: $s5
+    margin-bottom: 12px
+    padding-bottom: 5px
+    color: $white
+    .description
+      color: $hotpink
+
   #dosomething-login-register-popup-form, #dosomething-login-register-popup-form
-    font-size: $s3
     color: $white
     #edit-title-text, #edit-signup-title
-    label[for="edit-title-text"]
-      font-size: $s5
-      margin-bottom: 12px
-      padding-bottom: 5px
     .description
       color: $white
   .form-item-first-name,
