@@ -642,7 +642,7 @@ function dosomething_profile_field_default_fields() {
       'bundle' => 'main',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'If you would like to receive SMS updates from Do Something, please provide your mobile number. If you\'d rather not receive these updates, leave this field blank.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1072,7 +1072,6 @@ function dosomething_profile_field_default_fields() {
   t('I am over 13');
   t('I have read and accept the <a href="/">Official Rules</a>');
   t('I would also like to receive email updates from DoSomething.org');
-  t('If you would like to receive SMS updates from Do Something, please provide your mobile number. If you\'d rather not receive these updates, leave this field blank.');
   t('Last Name');
   t('Location');
   t('Membership Anniversary');
