@@ -74,6 +74,9 @@
 #block-dosomething-blocks-dosomething-utility-bar .search {
   *display: inline;
 }
+.ie9 #block-dosomething-blocks-dosomething-utility-bar .search {
+  margin-left: 20px;
+}
 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
   -moz-box-shadow: inset 0 0 4px 2px #161616;
   -webkit-box-shadow: inset 0 0 4px 2px #161616;
