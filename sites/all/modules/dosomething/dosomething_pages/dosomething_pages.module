@@ -29,34 +29,45 @@ function dosomething_pages_causes_title() {
 }
 
 function dosomething_pages_get_causes() {
-  global $base_url;
-  drupal_add_js(drupal_get_path('module', 'dosomething_pages') . '/js/dosomething_causes_page_popups.js');
-  //get taxonomy terms
-  $cause_render_array = array();
+  $module_path = drupal_get_path('module', 'dosomething_pages');
+  $element = array(
+    '#attached' => array(
+      'js' => array($module_path . '/js/dosomething_causes_page_popups.js'),
+    ),
+  );
+
+  // Get taxonomy terms.
   $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
-  $causes = taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = TRUE);
-  foreach ($causes as $cause) {
-    $child_causes_raw = taxonomy_get_tree($vocabulary->vid, $cause->tid, $max_depth = NULL, $load_entities = FALSE);
-    $child_causes = array();
-    foreach ($child_causes_raw as $child_cause) {
-      $child_causes[] = l($child_cause->name, 'taxonomy/term/' . $child_cause->tid);
-    }
-    if(!empty($cause->field_causes_image)) {
-      $cause_image = $cause->field_causes_image[field_language('taxonomy_term', $cause, 'field_causes_image')][0]['uri'];
-    }
-    else {
-      $cause_image = NULL;
-    }
-    if (module_exists('fb_social')) {
-      $fbpreset = dosomething_pages_get_fb_preset();
-      $taxonomy_path = taxonomy_term_uri($cause);
-      $facebook = fb_social_preset_view($fbpreset, $base_url . '/' . $taxonomy_path['path']);
-    }
-    else {
-      $facebook = NULL;
-    }
+  $causes = array();
+  // Set the image, image style, and uri of each cause.
+  foreach (taxonomy_get_tree($vocabulary->vid, $parent = 0, $max_depth = 1, $load_entities = TRUE) as $cause) {
+    $cause_image = field_get_items('taxonomy_term', $cause, 'field_causes_image');
+    $cause->cause_image = isset($cause_image[0]['uri']) ? $cause_image[0] : NULL;
+    $cause->image_style = 'find_your_cause';
     $cause->uri = entity_uri('taxonomy_term', $cause);
-    $cause_data_to_render = array(
+
+    $causes[] = $cause;
+  }
+
+  // Spoof the structure of a cause for the Suggest A Cause entry.
+  $causes[] = (object) array(
+    'uri' => array(
+      'path' => 'suggest-a-cause',
+      'options' => array(),
+    ),
+    'cause_image' => array(
+      'alt' => t('Suggest A Cause'),
+      'uri' => $module_path . '/images/submit_a_cause.jpg',
+      'title' => '',
+    ),
+    'name' => t('Suggest A Cause'),
+    'description' => 'Suggest a cause text goes here. EDIT MY TEXT IN THE DOSOMETHING PAGES MODULE FILE. <a href="suggest-a-cause">Suggest a cause &raquo;</a>',
+    'no_popup' => TRUE,
+    'image_style' => FALSE,
+  );
+
+  foreach ($causes as $delta => $cause) {
+    $element[$delta] = array(
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
@@ -72,13 +83,15 @@ function dosomething_pages_get_causes() {
         '#suffix' => '</h2>',
       ),
       'image' => array(
-        '#type' => 'link',
-        '#title' => theme('image_style', array('style_name' => 'find_your_cause', 'path' => $cause_image)),
-        '#href' => $cause->uri['path'],
-        '#options' => $cause->uri['options'] + array(
-          'html' => TRUE,
-          'attributes' => array(
-            'class' => array('cause-image-link'),
+        '#theme' => 'image_formatter',
+        '#item' => $cause->cause_image,
+        '#image_style' => $cause->image_style,
+        '#path' => array(
+          'path' => $cause->uri['path'],
+          'options' => $cause->uri['options'] + array(
+            'attributes' => array(
+              'class' => array('cause-image-link'),
+            ),
           ),
         ),
       ),
@@ -95,19 +108,26 @@ function dosomething_pages_get_causes() {
           '#suffix' => '</p>',
         ),
       ),
-     'pop up content' => array(
+    );
+
+    // Not every cause has a pop-up.
+    if (empty($cause->no_popup)) {
+      $links = array();
+      foreach (taxonomy_get_tree($vocabulary->vid, $cause->tid, $max_depth = NULL, $load_entities = FALSE) as $child_cause) {
+        $links[drupal_html_class($child_cause->name)] = array(
+          'title' => $child_cause->name,
+          'href' => "taxonomy/term/$child_cause->tid",
+        );
+      }
+
+      $element[$delta]['pop_up'] = array(
         '#type' => 'container',
         '#attributes' => array(
           'class' => array(
             'cause-item-pop-up-content',
           ),
         ),
-       'all issues' => array(
-         '#markup' => 'All Issues',
-          '#prefix' => '<h4>',
-          '#suffix' => '</h4>',
-        ),
-        'all issues link' => array(
+        'all_issues_link' => array(
           '#type' => 'link',
           '#title' => t('Go'),
           '#href' => $cause->uri['path'],
@@ -117,40 +137,26 @@ function dosomething_pages_get_causes() {
             ),
           ),
         ),
-        'children' => array(
-          '#theme' => 'item_list',
-          '#items' => $child_causes,
-          '#type' => 'ul',
+        'links' => array(
+          '#theme' => 'links',
+          '#links' => $links,
+          '#heading' => array(
+            'text' => t('All Issues'),
+            'level' => 'h4',
+          ),
         ),
-        'facebook' => array(
-          '#markup' => $facebook,
-        ),
-      ),
-    );
-    $cause_render_array[] = $cause_data_to_render;
+      );
+
+      if (module_exists('fb_social')) {
+        global $base_url;
+        $element[$delta]['pop_up']['facebook']['#markup'] = fb_social_preset_view(dosomething_pages_get_fb_preset(), $base_url . '/' . $cause->uri['path']);
+      }
+    }
+    else {
+      $element[$delta]['description']['#attributes']['class'][] = 'no-popup';
+    }
   }
-  $cause_render_array[] = array(
-    'title'  => array(
-      '#markup' => t('Suggest A Cause'),
-      '#prefix' => '<h2>',
-      '#suffix' => '</h2>',
-    ),
-    'image' => array(
-      '#markup' => '<img alt="submit a cause" src="/' . drupal_get_path('module', 'dosomething_pages') . '/images/submit_a_cause.jpg" />',
-    ),
-    'description' => array(
-      '#markup' => 'Suggest a cause text goes here. EDIT MY TEXT IN THE DOSOMETHING PAGES MODULE FILE. <a href="/suggest-a-cause">Suggest a cause &raquo;</a>',
-      '#prefix' => '<div class="cause-description no-popup"><p>',
-      '#suffix' => '</p></div>',
-    ),
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'cause-item',
-      ),
-    ),
-  );
-  return $cause_render_array;
+  return $element;
 }
 
 /**
