@@ -384,7 +384,7 @@ function dosomething_projects_general_views_default_views() {
   /* Display: Resources Content Pane */
   $handler = $view->new_display('panel_pane', 'Resources Content Pane', 'panel_pane_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Resources';
+  $handler->display->display_options['title'] = 'Related Resources';
   $handler->display->display_options['display_description'] = 'Displays a list of resources.';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
