@@ -6,6 +6,11 @@
 function dosomething_login_schema() {
   $schema['facebook_friends'] = array(
     'fields' => array(
+      'facebook_friends_id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
       'uid' => array(
         'type' => 'int',
         'unsigned' => TRUE,
@@ -20,7 +25,7 @@ function dosomething_login_schema() {
         'size' => 'big',
       ),
     ),
-    'primary key' => array('fbid'),
+    'primary key' => array('facebook_friends_id'),
     'indexes' => array(
       'uid_fbid' => array('uid', 'fbid'),
     ),
