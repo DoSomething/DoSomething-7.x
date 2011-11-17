@@ -327,7 +327,7 @@ function dosomething_projects_general_views_default_views() {
   /* Display: Actions Content Pane */
   $handler = $view->new_display('panel_pane', 'Actions Content Pane', 'panel_pane_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Actions';
+  $handler->display->display_options['title'] = 'Actions You Can Do';
   $handler->display->display_options['display_description'] = 'Displays a list of action guides';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
