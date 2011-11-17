@@ -260,3 +260,75 @@ function ds_preprocess_user_picture(&$variables) {
       }
     }
 }
+
+/**
+ * Overwrites theme_webform_view_messages().
+ */
+function ds_webform_view_messages($variables) {
+  global $user;
+
+  $node = $variables['node'];
+  $teaser = $variables['teaser'];
+  $page = $variables['page'];
+  $submission_count = $variables['submission_count'];
+  $limit_exceeded = $variables['limit_exceeded'];
+  $allowed_roles = $variables['allowed_roles'];
+  $closed = $variables['closed'];
+  $cached = $variables['cached'];
+
+  $type = 'status';
+
+  if ($closed) {
+    $message = t('Submissions for this form are closed.');
+  }
+  // If open and not allowed to submit the form, give an explanation.
+  elseif (array_search(TRUE, $allowed_roles) === FALSE && $user->uid != 1) {
+    if (empty($allowed_roles)) {
+      // No roles are allowed to submit the form.
+      $message = t('Submissions for this form are closed.');
+    }
+    elseif (isset($allowed_roles[2])) {
+      // The "authenticated user" role is allowed to submit and the user is currently logged-out.
+      $login = url('user/login', array('query' => drupal_get_destination()));
+      $register = url('user/registration', array('query' => drupal_get_destination()));
+      if (variable_get('user_register', 1) == 0) {
+        $message = t('You must <a href="!login">login</a> to view this form.', array('!login' => $login));
+      }
+      else {
+        $message = t('You must <a href="!login">login</a> or <a href="!register">register</a> to view this form.', array('!login' => $login, '!register' => $register));
+      }
+    }
+    else {
+      // The user must be some other role to submit.
+      $message = t('You do not have permission to view this form.');
+    }
+  }
+
+  // If the user has exceeded the limit of submissions, explain the limit.
+  elseif ($limit_exceeded && !$cached) {
+    if ($node->webform['submit_interval'] == -1 && $node->webform['submit_limit'] > 1) {
+      $message = t('You have submitted this form the maximum number of times (@count).', array('@count' => $node->webform['submit_limit']));
+    }
+    elseif ($node->webform['submit_interval'] == -1 && $node->webform['submit_limit'] == 1) {
+      $message = t('You have already submitted this form.');
+    }
+    else {
+      $message = t('You may not submit another entry at this time.');
+    }
+    $type = 'error';
+  }
+
+  // If the user has submitted before, give them a link to their submissions.
+  if ($submission_count > 0 && $node->webform['submit_notice'] == 1 && !$cached) {
+    if (empty($message)) {
+      $message = t('You have already submitted this form.') . ' ' . t('<a href="!url">View your previous submissions</a>.', array('!url' => url('node/' . $node->nid . '/submissions')));
+    }
+    else {
+      $message .= ' ' . t('<a href="!url">View your previous submissions</a>.', array('!url' => url('node/' . $node->nid . '/submissions')));
+    }
+  }
+
+  if ($page && isset($message)) {
+    drupal_set_message($message, $type, FALSE);
+  }
+}
