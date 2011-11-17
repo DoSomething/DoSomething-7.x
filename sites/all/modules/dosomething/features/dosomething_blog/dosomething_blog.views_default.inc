@@ -747,11 +747,37 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Blog type */
+  $handler->display->display_options['fields']['field_blog_type']['id'] = 'field_blog_type';
+  $handler->display->display_options['fields']['field_blog_type']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['fields']['field_blog_type']['field'] = 'field_blog_type';
+  $handler->display->display_options['fields']['field_blog_type']['label'] = '';
+  $handler->display->display_options['fields']['field_blog_type']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['element_class'] = '[field_blog_type]-icon';
+  $handler->display->display_options['fields']['field_blog_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_blog_type']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_blog_type']['field_api_classes'] = 0;
   /* Field: Content: Post date */
   $handler->display->display_options['fields']['created_1']['id'] = 'created_1';
   $handler->display->display_options['fields']['created_1']['table'] = 'node';
   $handler->display->display_options['fields']['created_1']['field'] = 'created';
   $handler->display->display_options['fields']['created_1']['label'] = '';
+  $handler->display->display_options['fields']['created_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['created_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['created_1']['alter']['absolute'] = 0;
@@ -770,7 +796,35 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['created_1']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['created_1']['date_format'] = 'custom';
-  $handler->display->display_options['fields']['created_1']['custom_date_format'] = 'M j';
+  $handler->display->display_options['fields']['created_1']['custom_date_format'] = 'M';
+  /* Field: Content: Post date */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = '';
+  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['text'] = '<div class="created-date">
+<span class="month">[created_1]</ br></span>
+<span class="day">[created]</ br></span>
+</div>';
+  $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['created']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['created']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['created']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['custom_date_format'] = 'j';
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';

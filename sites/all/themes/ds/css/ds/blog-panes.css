@@ -21,7 +21,7 @@
   background: url('../images/blog-center-lines.png') no-repeat;
   background-position: 30px 0px;
 }
-.page-awesome-things .pane-blog-center h2.pane-title {
+.page-awesome-things .pane-blog-center h2.pane-title, .node-type-blog .pane-blog-center h2.pane-title {
   line-height: 56px;
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -36,15 +36,15 @@
   -khtml-border-top-right-radius: 4px;
   border-top-right-radius: 4px;
 }
-.page-awesome-things .pane-blog-center .pane-content {
+.page-awesome-things .pane-blog-center .pane-content, .node-type-blog .pane-blog-center .pane-content {
   padding: 8px 10px 20px 40px;
   background: #d2d2d2 url('../images/blog-center-lines.png') bottom no-repeat;
   background-position: 30px 0px;
 }
-.page-awesome-things .pane-blog-center .pane-content p {
+.page-awesome-things .pane-blog-center .pane-content p, .node-type-blog .pane-blog-center .pane-content p {
   margin-bottom: 0;
 }
-.page-awesome-things .pane-blog-center .pane-content .News-icon {
+.page-awesome-things .pane-blog-center .pane-content .News-icon, .node-type-blog .pane-blog-center .pane-content .News-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -58,7 +58,7 @@
   left: -40px;
   z-index: 100;
 }
-.page-awesome-things .pane-blog-center .pane-content .Celebs-Gone-Good-icon {
+.page-awesome-things .pane-blog-center .pane-content .Celebs-Gone-Good-icon, .node-type-blog .pane-blog-center .pane-content .Celebs-Gone-Good-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -72,7 +72,7 @@
   left: -40px;
   z-index: 100;
 }
-.page-awesome-things .pane-blog-center .pane-content .Awe-Some-Ones-icon {
+.page-awesome-things .pane-blog-center .pane-content .Awe-Some-Ones-icon, .node-type-blog .pane-blog-center .pane-content .Awe-Some-Ones-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -86,7 +86,7 @@
   left: -40px;
   z-index: 100;
 }
-.page-awesome-things .pane-blog-center .pane-content .DoSomething-Staff-icon {
+.page-awesome-things .pane-blog-center .pane-content .DoSomething-Staff-icon, .node-type-blog .pane-blog-center .pane-content .DoSomething-Staff-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -100,7 +100,7 @@
   left: -40px;
   z-index: 100;
 }
-.page-awesome-things .pane-blog-center .pane-content .views-field-created, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1, .node-type-blog .pane-blog-center .pane-content .views-field-created, .node-type-blog .pane-blog-center .pane-content .views-field-created-1 {
   display: inline;
   float: left;
   background-color: white;
@@ -112,35 +112,35 @@
   padding-left: 13px;
   padding-top: 0px;
 }
-.page-awesome-things .pane-blog-center .pane-content .views-field-created .month, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 .month {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .month, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 .month, .node-type-blog .pane-blog-center .pane-content .views-field-created .month, .node-type-blog .pane-blog-center .pane-content .views-field-created-1 .month {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 10px;
 }
-.page-awesome-things .pane-blog-center .pane-content .views-field-created .day, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 .day {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .day, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 .day, .node-type-blog .pane-blog-center .pane-content .views-field-created .day, .node-type-blog .pane-blog-center .pane-content .views-field-created-1 .day {
   font-weight: bold;
   font-size: 14px;
 }
-.page-awesome-things .pane-blog-center .pane-content .views-field-created .blog-icon, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 .blog-icon {
+.page-awesome-things .pane-blog-center .pane-content .views-field-created .blog-icon, .page-awesome-things .pane-blog-center .pane-content .views-field-created-1 .blog-icon, .node-type-blog .pane-blog-center .pane-content .views-field-created .blog-icon, .node-type-blog .pane-blog-center .pane-content .views-field-created-1 .blog-icon {
   margin-top: 10px;
 }
-.page-awesome-things .pane-blog-center .pane-content .views-field-field-picture img {
+.page-awesome-things .pane-blog-center .pane-content .views-field-field-picture img, .node-type-blog .pane-blog-center .pane-content .views-field-field-picture img {
   border: 5px white solid;
 }
-.page-awesome-things .pane-blog-center .blog-center-block-attachment {
+.page-awesome-things .pane-blog-center .blog-center-block-attachment, .node-type-blog .pane-blog-center .blog-center-block-attachment {
   padding-top: 20px;
   margin-top: 20px;
   margin-bottom: 30px;
   background: #d2d2d2 url('../images/blog-center-lines.png') bottom no-repeat;
   background-position: 5px 0px;
 }
-.page-awesome-things .pane-blog-center .view-blog-center h2 {
+.page-awesome-things .pane-blog-center .view-blog-center h2, .node-type-blog .pane-blog-center .view-blog-center h2 {
   font-size: 16px;
   line-height: 18px;
   margin-bottom: 5px;
   padding-right: 10px;
 }
-.page-awesome-things .pane-blog-center .view-blog-center h2 a {
+.page-awesome-things .pane-blog-center .view-blog-center h2 a, .node-type-blog .pane-blog-center .view-blog-center h2 a {
   color: black;
 }
 
