@@ -48,10 +48,10 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-news.png');
+  background-image: url('../images/new-icons_news.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 16px;
+  width: 18px;
   height: 18px;
   position: relative;
   top: 65px;
@@ -62,11 +62,11 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-celebs.png');
+  background-image: url('../images/new-icons_celebs-gone-good.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 23px;
-  height: 17px;
+  width: 19px;
+  height: 18px;
   position: relative;
   top: 65px;
   left: -40px;
@@ -76,10 +76,10 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-awesomes.png');
+  background-image: url('../images/new-icons_awesome-ones.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 26px;
+  width: 23px;
   height: 18px;
   position: relative;
   top: 65px;
@@ -90,11 +90,11 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-staff.png');
+  background-image: url('../images/new-icons_staff-stuff.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 21px;
-  height: 16px;
+  width: 19px;
+  height: 18px;
   position: relative;
   top: 65px;
   left: -40px;
@@ -163,41 +163,41 @@
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-news.png');
+  background-image: url('../images/new-icons_news.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 16px;
+  width: 18px;
   height: 18px;
 }
 .view-display-id-panel_pane_1 .Celebs-Gone-Good-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-celebs.png');
+  background-image: url('../images/new-icons_celebs-gone-good.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 23px;
-  height: 17px;
+  width: 19px;
+  height: 18px;
 }
 .view-display-id-panel_pane_1 .Awe-Some-Ones-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-awesomes.png');
+  background-image: url('../images/new-icons_awesome-ones.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 26px;
+  width: 23px;
   height: 18px;
 }
 .view-display-id-panel_pane_1 .DoSomething-Staff-icon {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('../images/icn-subnav-staff.png');
+  background-image: url('../images/new-icons_staff-stuff.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 21px;
-  height: 16px;
+  width: 19px;
+  height: 18px;
 }
 .view-display-id-panel_pane_1 .views-field-created, .view-display-id-panel_pane_1 .views-field-created-1 {
   display: inline;
