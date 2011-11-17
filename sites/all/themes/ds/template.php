@@ -17,7 +17,7 @@ function ds_preprocess_panels_pane(&$variables) {
 
 function ds_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
-  // dsm($variables);
+  dsm($variables);
   // dsm($variables['page']);
 
   // Add Formalize to even out most form elements
@@ -29,6 +29,10 @@ function ds_preprocess_page(&$variables) {
   // load css specific to pages
   // Only call arg(0) once.
   $arg0 = arg(0);
+  // home page
+  if ($variables['is_front'] == TRUE) {
+    dsm("your mom");
+  }
   // causes landing page
   if ($arg0 == 'cause' || $arg0 == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
