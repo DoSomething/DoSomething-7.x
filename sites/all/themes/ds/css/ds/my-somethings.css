@@ -25,6 +25,9 @@
   border-bottom: 1px solid #c7c7c7;
   margin: 1em 0;
 }
+#user-my-somethings .pane-3 {
+  clear: both;
+}
 #user-my-somethings .view-my-somethings-views-data.view-display-id-panel_pane_1,
 #user-my-somethings .view-my-somethings-views-data.view-display-id-panel_pane_2,
 #user-my-somethings .view-my-somethings-views-data.view-display-id-panel_pane_3,
