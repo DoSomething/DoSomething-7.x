@@ -55,37 +55,66 @@ function dosomething_pages_get_causes() {
     else {
       $facebook = NULL;
     }
+    $cause->uri = entity_uri('taxonomy_term', $cause);
     $cause_data_to_render = array(
-      'title'  => array(
-        '#markup' => t($cause->name),
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'cause-item',
+        ),
+      ),
+      'title' => array(
+        '#type' => 'link',
+        '#title' => t($cause->name),
+        '#href' => $cause->uri['path'],
+        '#options' => $cause->uri['options'],
         '#prefix' => '<h2>',
         '#suffix' => '</h2>',
       ),
       'image' => array(
-        '#theme' => 'image_style',
-        '#style_name' => 'find_your_cause',
-        '#path' => $cause_image,
+        '#type' => 'link',
+        '#title' => theme('image_style', array('style_name' => 'find_your_cause', 'path' => $cause_image)),
+        '#href' => $cause->uri['path'],
+        '#options' => $cause->uri['options'] + array(
+          'html' => TRUE,
+          'attributes' => array(
+            'class' => array('cause-image-link'),
+          ),
+        ),
       ),
       'description' => array(
-        '#markup' => $cause->description,
-        '#prefix' => '<div class="cause-description"><p>',
-        '#suffix' => '</p></div>',
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'cause-description',
+          ),
+        ),
+        'markup' => array(
+          '#markup' => $cause->description,
+          '#prefix' => '<p>',
+          '#suffix' => '</p>',
+        ),
       ),
      'pop up content' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'cause-item-pop-up-content',
+          ),
+        ),
        'all issues' => array(
          '#markup' => 'All Issues',
           '#prefix' => '<h4>',
           '#suffix' => '</h4>',
         ),
         'all issues link' => array(
-          '#markup' => l(
-            'Go',
-            'taxonomy/term/' . $cause->tid,
-            array(
-              'attributes' => array(
-                'class' => array('go', 'ds-button-strong')
-              )
-            )
+          '#type' => 'link',
+          '#title' => t('Go'),
+          '#href' => $cause->uri['path'],
+          '#options' => $cause->uri['options'] + array(
+            'attributes' => array(
+              'class' => array('go', 'ds-button-strong')
+            ),
           ),
         ),
         'children' => array(
@@ -96,11 +125,7 @@ function dosomething_pages_get_causes() {
         'facebook' => array(
           '#markup' => $facebook,
         ),
-        '#prefix' => '<div class="cause-item-pop-up-content">',
-        '#suffix' => '</div>',
       ),
-      '#prefix' => '<div class="cause-item">',
-      '#suffix' => '</div>',
     );
     $cause_render_array[] = $cause_data_to_render;
   }
@@ -118,8 +143,12 @@ function dosomething_pages_get_causes() {
       '#prefix' => '<div class="cause-description no-popup"><p>',
       '#suffix' => '</p></div>',
     ),
-    '#prefix' => '<div class="cause-item">',
-    '#suffix' => '</div>',
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'cause-item',
+      ),
+    ),
   );
   return $cause_render_array;
 }
