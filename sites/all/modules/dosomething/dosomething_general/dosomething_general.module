@@ -60,7 +60,6 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
     // Override #option values on action-finder content type exposed filter.
     if ($form_id == 'views_exposed_form' && $form['#info']['filter-type']['value'] == 'type') {
       $form['type']['#options']['All'] = 'All types';
-      $form['type']['#options']['dsu_guides'] = 'Social Action How-Tos';
       $form['type']['#options']['tips_and_tools'] = 'Facts and More';
     }
     // Override #option values on action-finder cause exposed filter. 
