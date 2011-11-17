@@ -525,6 +525,8 @@ img.goleft {
   font-weight: normal;
   text-rendering: optimizeLegibility;
   color: #005dab;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .h1, h1 {
