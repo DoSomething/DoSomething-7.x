@@ -169,6 +169,8 @@ function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
     dosomething_login_set_parental_consent_message();
     drupal_goto('user');
   }
+  // Add custom validation to this form.
+  $form['#validate'][] = 'dosomething_login_profile_form_validate';
 }
 
 /**
@@ -253,6 +255,38 @@ function dosomething_login_user_login_validate($form, &$form_state) {
       if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile.com'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
         form_set_value($form['name'], $name, $form_state);
       }
+    }
+  }
+}
+
+/**
+ * Custom validation for user_profile_form
+ */
+function dosomething_login_profile_form_validate($form, &$form_state) {
+  // Verify that this is a unique cell phone number.
+  $profile = isset($form_state['profiles']['main']) ? $form_state['profiles']['main'] : NULL;
+  if (isset($form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
+    $number = $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
+    if (($number = preg_replace('/[^0-9]/', '', $number)) && strlen($number) >= 10) {
+      // TODO: We need to run replace on the values we're checking against
+      // in mysql.
+      $query = db_select('field_data_field_user_mobile', 'm')
+        ->fields('m', array('entity_id'))
+        ->condition('m.field_user_mobile_value', $number, '=')
+        ->condition('m.entity_type', 'profile2');
+      if (is_object($profile)) {
+        $query->condition('m.entity_id', $profile->pid, '!=');
+      }
+      if ($pid = $query->execute()->fetchField()) {
+        $current_number = dosomething_login_get_cell_phone_number($form['#user'], $profile);
+        // If the number is already in use by this user, then don't
+        // enforce uniqueness.  Currently the values are not all unique.
+        if ($current_number != $number) {
+          form_set_error('profile_main][field_user_mobile][' . LANGUAGE_NONE . '][0', t('The provided cell phone number is already in use by another account.'));
+        }
+      }
+      // Save the version of the phone with only digits.
+      $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'] = $number;
     }
   }
 }
@@ -814,6 +848,21 @@ function dosomething_login_get_user_full_name($account) {
     $full_name = implode(' ', $names);
   }
   return $full_name;
+}
+
+/**
+ * Retrieve a user's cell phone number from their profile.
+ */
+function dosomething_login_get_cell_phone_number($account, $profile = NULL) {
+  $number = FALSE;
+  if (is_null($profile)) {
+    $profile = profile2_load_by_user($account, 'main');
+  }
+  if (is_object($profile)) {
+    $numbers = field_get_items('profile2', $profile, 'field_user_mobile');
+    $number = isset($numbers[0]['value']) ? preg_replace('/[^0-9]/', '', $numbers[0]['value']) : FALSE;
+  }
+  return $number;
 }
 
 /**
