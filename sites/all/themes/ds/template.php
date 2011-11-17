@@ -87,6 +87,7 @@ function ds_preprocess_page(&$variables) {
   // action finder page
   if ($arg0 == 'action-finder') {
     drupal_add_css($theme_path . '/css/ds/page-action-finder.css');
+  }
 }
 
 function ds_preprocess_node(&$variables) {
