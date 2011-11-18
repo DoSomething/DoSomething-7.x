@@ -34,6 +34,9 @@
               var classes = $(this).attr("class").split(" ");
               var menuClass = classes[0];
 
+              $("#main-menu li").removeClass('active-hover');
+              $(this).addClass('active-hover');
+
               // Hide all but related secondary menu
               $secondaryMenu.addClass("hidden");
               $("#secondary-menu-" + menuClass).removeClass("hidden");
@@ -42,7 +45,7 @@
           });
         },
         out: function() {
-          console.log('out');
+          $("#main-menu li").removeClass('active-hover');
           $secondaryMenu.addClass("hidden");
           $("nav .secondary .active").removeClass("hidden");
           },

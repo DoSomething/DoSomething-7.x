@@ -493,7 +493,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->panel = 'mid-right';
     $pane->type = 'node';
     $pane->subtype = 'node';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'nid' => '718331',
@@ -519,6 +519,36 @@ function dosomething_grants_default_page_manager_pages() {
     $display->panels['mid-right'][0] = 'new-6';
     $pane = new stdClass;
     $pane->pid = 'new-7';
+    $pane->panel = 'mid-right';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'Seed Grant Winner',
+      'body' => '<div id="">
+<img src="http://dosomething.zivtech.com/sites/all/themes/ds/css/images/this-weeks-winner.jpg">
+<h3>Coffee Compost</h3>
+<p>Max and Coffee 2Compost are providing an innovative service to collect the remnants of coffee.</p>
+<a class="ds-button-strong" href="">Apply Now</a>
+<a href="">See more winners »</a>
+</div>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane ds-pane-usergen',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-7'] = $pane;
+    $display->panels['mid-right'][1] = 'new-7';
+    $pane = new stdClass;
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -535,8 +565,8 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][0] = 'new-8';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
