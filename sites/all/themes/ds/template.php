@@ -107,6 +107,10 @@ function ds_preprocess_node(&$variables) {
   if ($variables['type'] == 'action_guide') {
     drupal_add_css($theme_path . '/css/ds/page-node-action-guide.css');
   }
+  // Club node page
+  if ($variables['type'] == 'club') {
+    drupal_add_css($theme_path . '/css/ds/page-node-club.css');
+  }
 }
 
 function ds_preprocess_block(&$variables) {
