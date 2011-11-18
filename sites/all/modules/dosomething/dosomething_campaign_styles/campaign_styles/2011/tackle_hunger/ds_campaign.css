@@ -1,0 +1,285 @@
+/* Resets and required styles */
+#page-title { display: none; }
+
+div[role="main"] {
+  background: none;
+}
+
+
+/* Site background */
+body.html {
+  background: #603813;
+}
+
+/* Page background */
+#main-wrapper {
+  background: #d0dfe4;
+  background-image:url('assets/paper_3.jpg');
+  
+}
+
+.panel-campaign .panel-row-top-first {
+  margin-right: 1.4%;
+}
+/**
+ * Top blocks
+ */
+.panel-row-top-first-top .panel-panel {
+  overflow: hidden;
+  font-family: din-web;
+}
+/* Sign-up block */
+
+.ds-panel .panes-2 .panel-top-first-top-second {
+  background: rgba(96, 56, 19, .4);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  padding: 8px;
+  width: 234px;
+}
+
+.panel-top-first-top-second .panel-pane {
+  /*background: #00AB4E;*/
+  border: 5px solid #FDB71A;
+  
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.panel-top-first-top-second h2 {
+  font-size: 42px;
+  border-bottom: 5px solid #FDB71A;
+}
+
+.panel-top-first-top-second .panel-pane .pane-content {
+  padding: 0 10px;
+}
+
+.panel-top-first-top-second .panel-pane label {
+  width: 40%;
+  float: left;
+}
+
+.panel-top-first-top-second .panel-pane label div {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.panel-top-first-top-second .panel-pane input {
+  margin-bottom: 0;
+}
+
+.panel-top-first-top-second .panel-pane input[type="submit"] {
+  border-radius: 15px;
+  background: #06223C;
+  color: white;
+  padding: 1px 10px;
+  border: 0;
+}
+
+.panel-top-first-top-second .panel-pane h2 {
+  font-family: din-web;
+  text-transform: uppercase;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  line-height: 1em;
+  margin: 10px 10px 0 10px;
+}
+/* END sign up block */
+
+/**
+ * Menu
+ */
+.panel-campaign .panel-row-top.panes-2 .panel-top-second {
+  width: 190px;
+}
+
+.panel-top-second {
+  width: 190px;
+}
+
+.pane-campaign-menu {
+  /* The bottom-right 3D effect. Image should be 18x18. */
+  background: url('/files/campaigns_common/nav-triangle-3a3a3a.png') no-repeat right bottom;
+
+  padding-bottom: 18px;
+  position: relative;
+  right: -27px;
+}
+
+.pane-campaign-menu ul {
+  list-style: none;
+  background: #be1e2d;
+  padding: 0;
+  margin: 0;
+  font-family: din-web;
+  font-weight: 600;
+  line-height: 1em;
+  font-size: 24px;
+  line-height: 30px;
+  text-transform: uppercase;
+}
+
+.pane-campaign-menu li {
+  border-bottom: 1px solid white;
+}
+
+.pane-campaign-menu li:last-child {
+  border-bottom: none;
+}
+
+.pane-campaign-menu a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /*color: #307bb1;*/
+  color: #fdb71a;
+  padding-left: 20px;
+}
+
+.pane-campaign-menu a.active {
+  color: white;
+  background-image: url('/files/campaigns_common/nav-arrow-white.png');
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+/**
+ * Node body
+ */
+.pane-node-body {
+  background: #be1e2d;
+  color: white;
+  font-family: din-web;
+}
+
+.pane-node-body .pane-content {
+  font-size: 20px;
+  line-height: 1em;
+  padding: 0px 0px 5px 0px;
+ }
+
+.pane-node-body h2 {
+  /*background: #222222;*/
+  background: #fdb71a;
+  
+  margin: 0;
+  color: white;
+  font-size: 36px;
+  padding: 5px 0 0 5px;
+  line-height: 1em;
+}
+
+.pane-node-body ul {
+  list-style-image: url('/files/campaigns_common/ul-arrow-white.png');
+  margin: 0;
+}
+
+.pane-node-body li {
+  margin: 5px 0;
+}
+
+/**
+ * Bottom blocks
+ */
+.panel-row-middle {
+  margin: 10px 0;
+  color: #ffffff;
+}
+
+.panel-row-middle .panel-pane {
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .3);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+  width: 210px;
+  /*background: #e2e2e2;*/
+  background: rgba(253, 149, 2, .5);
+
+  height: 180px;
+}
+
+.panel-row-middle .pane-content {
+  margin: 10px;
+}
+
+.panel-row-middle h2 {
+  
+  /*background: #00AB4E;*/
+  color: white;
+  padding: 2px 10px;
+  line-height: 1em;
+  margin: 0px 10px 0px 10px;
+  font-size: 28px;
+  /* Apparently the h2 doesn't "inherit" the border of the parent element. */
+  -moz-border-radius-topleft: 15px;
+  -moz-border-radius-topright: 15px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
+  border-bottom: 2px solid white;
+}
+
+
+/**
+ * Sponsor logo
+ */
+.panel-bottom-second .panel-pane {
+  text-align: right;
+  margin: 50px 20px 30px 0;
+}
+
+.panel-bottom-second h2 {
+  line-height: 1em;
+  font-size: 20px;
+  margin: 0;
+  text-transform: uppercase;
+  color: black;
+}
+
+.panel-bottom-second p {
+  margin: 0;
+}
+
+/**
+* Pane Content
+*/
+.pane-content {
+	color:#ffffff;
+}
+
+.panel-top-second .panel-pane:last-child .pane-content {
+  background:#BE1E2D;
+  padding: 8px;
+}
+
+.panel-top-second .panel-pane:last-child h2 {
+  background: #fdb71a;
+  color: white;
+  margin-bottom: 0;
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+  text-shadow: 0px 0px 5px #000000;
+  filter: dropshadow(color=#000000, offx=0, offy=0);
+}
+
+.pane-content div#friendsform{
+background:#be1e2d;
+padding: 8px;
+}
+
+.panel-row-middle .pane-content {
+  font-family: din-web;
+  font-size: 20px; 
+  line-height: 22px;
+}
