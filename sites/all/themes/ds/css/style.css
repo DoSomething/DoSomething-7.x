@@ -2138,292 +2138,6 @@ body.admin-menu {
   border-bottom: none;
 }
 
-nav[role=navigation] {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  text-rendering: optimizeLegibility;
-  text-transform: uppercase;
-  position: relative;
-}
-nav[role=navigation] .primary {
-  background-color: #005ba9;
-  padding-left: 22.162%;
-}
-nav[role=navigation] .primary .wrapper {
-  display: table;
-  width: 100%;
-}
-nav[role=navigation] #main-menu {
-  font-size: 2.417em;
-  line-height: 1.655em;
-  font-weight: 500;
-  display: table-row;
-  min-height: 1.517em;
-  padding-right: 0.103em;
-  padding-left: 0;
-}
-nav[role=navigation] #main-menu li {
-  display: table-cell;
-}
-nav[role=navigation] #main-menu li a {
-  line-height: 1.172;
-  padding-top: 0.345em;
-}
-nav[role=navigation] #main-menu li a.active {
-  color: white;
-}
-nav[role=navigation] #main-menu li.last a {
-  margin-right: 0;
-}
-nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a {
-  background-color: #014e9c;
-  background-image: url('images/arrow-down.png');
-  background-repeat: no-repeat;
-  background-position: center -3px;
-  border-top: 0.069em solid white;
-  padding-top: 0.276em;
-}
-nav[role=navigation] .secondary {
-  background-color: #014e9c;
-  padding-left: 22.162%;
-}
-.front nav[role=navigation] .secondary {
-  position: absolute;
-  width: 78%;
-  z-index: 1;
-}
-nav[role=navigation] .secondary ul {
-  font-size: 1.5em;
-  line-height: 1.333em;
-  font-weight: 500;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  *zoom: 1;
-  line-height: 1.667;
-  min-height: 1.667em;
-  padding-left: 0.333em;
-  padding-right: 1.056em;
-  overflow: visible;
-}
-nav[role=navigation] .secondary ul li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-  white-space: nowrap;
-  display: inline;
-  float: left;
-  padding-left: 0.7em;
-  padding-right: 0.7em;
-}
-nav[role=navigation] .secondary ul li:first-child, nav[role=navigation] .secondary ul li.first {
-  padding-left: 0;
-}
-nav[role=navigation] .secondary ul li:last-child {
-  padding-right: 0;
-}
-nav[role=navigation] .secondary ul li.last {
-  padding-right: 0;
-}
-nav[role=navigation] .secondary ul a.active {
-  color: white;
-}
-nav[role=navigation] .secondary ul:nth-of-type(4n+2) {
-  margin-left: 9.556em;
-}
-nav[role=navigation] .secondary ul:nth-of-type(1n+3) {
-  text-align: right;
-}
-nav[role=navigation] .secondary ul:nth-of-type(1n+3) li {
-  display: inline;
-  float: none;
-}
-nav[role=navigation] .secondary ul:nth-of-type(1n+3) li a {
-  display: inline;
-}
-nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
-  padding-right: 12.222em;
-}
-nav[role=navigation] .causes-dropdown-trigger {
-  position: relative;
-}
-nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
-  top: 10px;
-  left: -9px;
-}
-nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
-nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-}
-nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li {
-  padding: 0;
-  float: none;
-  display: block;
-}
-nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li a {
-  padding: 0.3em 0.5em;
-}
-nav[role=navigation] .causes-dropdown {
-  position: absolute;
-  top: 6em;
-  z-index: 10;
-  text-transform: none;
-  font-size: 0.667em;
-  line-height: 0em;
-  font-weight: 500;
-}
-nav[role=navigation] .causes-dropdown ul {
-  background-color: #014e9c;
-  display: none;
-  margin-bottom: 0;
-}
-nav[role=navigation] .causes-dropdown ul:active {
-  background-color: none;
-}
-nav[role=navigation] .causes-dropdown ul li:hover {
-  background: #005ba9;
-}
-nav[role=navigation] .causes-dropdown ul li a {
-  color: white;
-}
-nav[role=navigation] .causes-dropdown ul li a:visited {
-  color: white;
-}
-nav[role=navigation] .causes-dropdown ul li a:hover {
-  color: white;
-}
-nav[role=navigation] .causes-dropdown ul li a:active {
-  color: white;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
-  margin: 0 0 0 0.5em;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active {
-  position: relative;
-  left: 3em;
-  top: -1.7em;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active li.causes-menu-dropdown-level-2 {
-  position: relative;
-  left: 0;
-  top: 0.1em;
-}
-nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1 {
-  background-color: #014e9c;
-  position: relative;
-  top: -1.8em;
-  left: 5.3em;
-}
-nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1.active {
-  left: 0;
-  top: -0.2em;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 {
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-  padding-left: 5px;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 a {
-  font-size: 14px;
-  margin-top: 0;
-}
-nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2:hover {
-  background-color: #417cb4;
-}
-nav[role=navigation] .causes-dropdown a {
-  line-height: 1.172;
-  margin-right: 0.172em;
-  padding-top: 0.345em;
-  padding-bottom: 0.345em;
-  padding-left: 0.207em;
-  padding-right: 0.207em;
-}
-nav[role=navigation] .causes-dropdown.last a {
-  margin-right: 0;
-}
-nav[role=navigation] .issues-dropover {
-  position: relative;
-}
-nav[role=navigation] .issues-dropover .arrows {
-  position: absolute;
-  left: -0.25em;
-}
-nav[role=navigation] .issues-dropover .issues-dropdown-menu {
-  background: #014e9c;
-  position: absolute;
-  left: 2px;
-  display: none;
-  z-index: 10;
-}
-nav[role=navigation] .issues-dropover ul {
-  font-size: 1em;
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-  padding: 0;
-  text-transform: none;
-}
-nav[role=navigation] .issues-dropover ul li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-}
-nav[role=navigation] .issues-dropover ul li {
-  padding: 0;
-  display: block;
-  float: none;
-  margin-bottom: 0;
-}
-nav[role=navigation] .issues-dropover ul li:hover {
-  background: #005ba9;
-}
-nav[role=navigation] .issues-dropover ul li a {
-  padding: 0.3em 0.5em;
-  margin-bottom: 0;
-  color: white;
-}
-nav[role=navigation] .issues-dropover ul li a:visited {
-  color: white;
-}
-nav[role=navigation] .issues-dropover ul li a:hover {
-  color: white;
-}
-nav[role=navigation] .issues-dropover ul li a:active {
-  color: white;
-}
-nav[role=navigation] a {
-  text-decoration: none;
-  display: block;
-  color: #2c85d0;
-}
-nav[role=navigation] a:visited {
-  color: #2c85d0;
-}
-nav[role=navigation] a:hover {
-  color: white;
-}
-nav[role=navigation] a:active {
-  color: white;
-}
-
-.issues-dropdown {
-  display: none;
-}
-
 div[role=main] {
   padding-left: 1.667%;
   padding-right: 1.667%;
@@ -3027,4 +2741,290 @@ iframe {
 .ui-dialog .ds-login-popup-footer input {
   display: inline;
   float: right;
+}
+
+nav[role=navigation] {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  position: relative;
+}
+nav[role=navigation] .primary {
+  background-color: #005ba9;
+  padding-left: 22.162%;
+}
+nav[role=navigation] .primary .wrapper {
+  display: table;
+  width: 100%;
+}
+nav[role=navigation] #main-menu {
+  font-size: 2.417em;
+  line-height: 1.655em;
+  font-weight: 500;
+  display: table-row;
+  min-height: 1.517em;
+  padding-right: 0.103em;
+  padding-left: 0;
+}
+nav[role=navigation] #main-menu li {
+  display: table-cell;
+}
+nav[role=navigation] #main-menu li a {
+  line-height: 1.172;
+  padding-top: 0.345em;
+}
+nav[role=navigation] #main-menu li a.active {
+  color: white;
+}
+nav[role=navigation] #main-menu li.last a {
+  margin-right: 0;
+}
+nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a {
+  background-color: #014e9c;
+  background-image: url('images/arrow-down.png');
+  background-repeat: no-repeat;
+  background-position: center -3px;
+  border-top: 0.069em solid white;
+  padding-top: 0.276em;
+}
+nav[role=navigation] .secondary {
+  background-color: #014e9c;
+  padding-left: 22.162%;
+}
+.front nav[role=navigation] .secondary {
+  position: absolute;
+  width: 78%;
+  z-index: 1;
+}
+nav[role=navigation] .secondary ul {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+  line-height: 1.667;
+  min-height: 1.667em;
+  padding-left: 0.333em;
+  padding-right: 1.056em;
+  overflow: visible;
+}
+nav[role=navigation] .secondary ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+}
+nav[role=navigation] .secondary ul li:first-child, nav[role=navigation] .secondary ul li.first {
+  padding-left: 0;
+}
+nav[role=navigation] .secondary ul li:last-child {
+  padding-right: 0;
+}
+nav[role=navigation] .secondary ul li.last {
+  padding-right: 0;
+}
+nav[role=navigation] .secondary ul a.active {
+  color: white;
+}
+nav[role=navigation] .secondary ul:nth-of-type(4n+2) {
+  margin-left: 9.556em;
+}
+nav[role=navigation] .secondary ul:nth-of-type(1n+3) {
+  text-align: right;
+}
+nav[role=navigation] .secondary ul:nth-of-type(1n+3) li {
+  display: inline;
+  float: none;
+}
+nav[role=navigation] .secondary ul:nth-of-type(1n+3) li a {
+  display: inline;
+}
+nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
+  padding-right: 12.222em;
+}
+nav[role=navigation] .causes-dropdown-trigger {
+  position: relative;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
+  top: 10px;
+  left: -9px;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li {
+  padding: 0;
+  float: none;
+  display: block;
+}
+nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul li a {
+  padding: 0.3em 0.5em;
+}
+nav[role=navigation] .causes-dropdown {
+  position: absolute;
+  top: 6em;
+  z-index: 10;
+  text-transform: none;
+  font-size: 0.667em;
+  line-height: 0em;
+  font-weight: 500;
+}
+nav[role=navigation] .causes-dropdown ul {
+  background-color: #014e9c;
+  display: none;
+  margin-bottom: 0;
+}
+nav[role=navigation] .causes-dropdown ul:active {
+  background-color: none;
+}
+nav[role=navigation] .causes-dropdown ul li:hover {
+  background: #005ba9;
+}
+nav[role=navigation] .causes-dropdown ul li a {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown ul li a:visited {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown ul li a:hover {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown ul li a:active {
+  color: white;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1 {
+  margin: 0 0 0 0.5em;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active {
+  position: relative;
+  left: 3em;
+  top: -1.7em;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-1.active li.causes-menu-dropdown-level-2 {
+  position: relative;
+  left: 0;
+  top: 0.1em;
+}
+nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1 {
+  background-color: #014e9c;
+  position: relative;
+  top: -1.8em;
+  left: 5.3em;
+}
+nav[role=navigation] .causes-dropdown ul.causes-menu-dropdown-level-1.active {
+  left: 0;
+  top: -0.2em;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding-left: 5px;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2 a {
+  font-size: 14px;
+  margin-top: 0;
+}
+nav[role=navigation] .causes-dropdown li.causes-menu-dropdown-level-2:hover {
+  background-color: #417cb4;
+}
+nav[role=navigation] .causes-dropdown a {
+  line-height: 1.172;
+  margin-right: 0.172em;
+  padding-top: 0.345em;
+  padding-bottom: 0.345em;
+  padding-left: 0.207em;
+  padding-right: 0.207em;
+}
+nav[role=navigation] .causes-dropdown.last a {
+  margin-right: 0;
+}
+nav[role=navigation] .issues-dropover {
+  position: relative;
+}
+nav[role=navigation] .issues-dropover .arrows {
+  position: absolute;
+  left: -0.25em;
+}
+nav[role=navigation] .issues-dropover .issues-dropdown-menu {
+  background: #014e9c;
+  position: absolute;
+  left: 2px;
+  display: none;
+  z-index: 10;
+}
+nav[role=navigation] .issues-dropover ul {
+  font-size: 1em;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding: 0;
+  text-transform: none;
+}
+nav[role=navigation] .issues-dropover ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+nav[role=navigation] .issues-dropover ul li {
+  padding: 0;
+  display: block;
+  float: none;
+  margin-bottom: 0;
+}
+nav[role=navigation] .issues-dropover ul li:hover {
+  background: #005ba9;
+}
+nav[role=navigation] .issues-dropover ul li a {
+  padding: 0.3em 0.5em;
+  margin-bottom: 0;
+  color: white;
+}
+nav[role=navigation] .issues-dropover ul li a:visited {
+  color: white;
+}
+nav[role=navigation] .issues-dropover ul li a:hover {
+  color: white;
+}
+nav[role=navigation] .issues-dropover ul li a:active {
+  color: white;
+}
+nav[role=navigation] a {
+  text-decoration: none;
+  display: block;
+  color: #2c85d0;
+}
+nav[role=navigation] a:visited {
+  color: #2c85d0;
+}
+nav[role=navigation] a:hover {
+  color: white;
+}
+nav[role=navigation] a:active {
+  color: white;
+}
+
+.issues-dropdown {
+  display: none;
 }
