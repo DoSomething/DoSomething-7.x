@@ -52,40 +52,6 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
-    $pane->type = 'ds_user_pic';
-    $pane->subtype = 'ds_user_pic';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
-    $pane = new stdClass;
-    $pane->pid = 'new-2';
-    $pane->panel = 'middle';
-    $pane->type = 'ds_friends_pics';
-    $pane->subtype = 'ds_friends_pics';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
-    $pane = new stdClass;
-    $pane->pid = 'new-3';
-    $pane->panel = 'middle';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
@@ -117,14 +83,48 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['middle'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'middle';
+    $pane->type = 'ds_my_somethings';
+    $pane->subtype = 'ds_my_somethings';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['middle'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'middle';
+    $pane->type = 'ds_user_pic';
+    $pane->subtype = 'ds_user_pic';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['middle'][2] = 'new-3';
     $pane = new stdClass;
     $pane->pid = 'new-4';
     $pane->panel = 'middle';
-    $pane->type = 'ds_my_somethings';
-    $pane->subtype = 'ds_my_somethings';
+    $pane->type = 'ds_friends_pics';
+    $pane->subtype = 'ds_friends_pics';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -145,9 +145,9 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'My Current Somethings Title',
+      'admin_title' => 'Invite Friends Link',
       'title' => '',
-      'body' => '<h2>My Current Somethings</h2>',
+      'body' => '<a href="/node/718309">invite friends »</a>',
       'format' => '3',
       'substitute' => 0,
     );
@@ -163,11 +163,17 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-6';
     $pane->panel = 'middle';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'my_somethings_views_data-panel_pane_1';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'admin_title' => 'My Current Somethings Title',
+      'title' => '',
+      'body' => '<h2>My Current Somethings</h2>',
+      'format' => '3',
+      'substitute' => 0,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -181,7 +187,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->pid = 'new-7';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
-    $pane->subtype = 'my_somethings_views_data-panel_pane_2';
+    $pane->subtype = 'my_somethings_views_data-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -197,9 +203,9 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-8';
     $pane->panel = 'middle';
-    $pane->type = 'ds_current_somethings';
-    $pane->subtype = 'ds_current_somethings';
-    $pane->shown = FALSE;
+    $pane->type = 'views_panes';
+    $pane->subtype = 'my_somethings_views_data-panel_pane_2';
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
