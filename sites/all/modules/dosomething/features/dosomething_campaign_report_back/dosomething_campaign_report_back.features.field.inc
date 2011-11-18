@@ -181,7 +181,6 @@ The content from this field will only be shown to anonymous users.',
           'field_webform_mobile' => 'Mobile Phone Number',
           'field_webform_school' => 'School',
           'field_webform_school_zip' => 'School Zip Code',
-          'field_webform_geocode_zip_code' => 'Geocode Zip Code',
           'field_webform_pictures' => 'Pictures',
           'field_webform_videos' => 'Video',
           'field_webform_issues' => 'Issues',
@@ -208,15 +207,12 @@ The content from this field will only be shown to anonymous users.',
           'value' => 'field_webform_school_zip',
         ),
         4 => array(
-          'value' => 'field_webform_geocode_zip_code',
-        ),
-        5 => array(
           'value' => 'field_webform_pictures',
         ),
-        6 => array(
+        5 => array(
           'value' => 'field_webform_videos',
         ),
-        7 => array(
+        6 => array(
           'value' => 'field_webform_issues',
         ),
       ),
