@@ -96,8 +96,6 @@
     margin-right: 0
     width: percentage(44px / $left-col-width-inner)
   input[type='submit']
-    // clear: left
-    // float: right
     margin-bottom: calc-em(6px, 17px)
   hr
     clear: both
@@ -200,7 +198,7 @@
           list-style-image: image_url("list-triangle-right.png")
           line-height: 1.4
           ul
-            margin-top: 6pxpx
+            margin-top: 6px
             margin-left: -4px
             li
               list-style-type: disc
@@ -210,5 +208,30 @@
       display: block
       text-align: right
 
-
-
+// Not Logged In
+.not-logged-in
+  #block-dosomething-login-become-member
+    background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
+    color: $white
+    padding-bottom: calc-em(15px, $s0)
+    hr.top
+      background: image_url("make-an-impact-home-header.png") no-repeat
+      margin: 1em 0
+    hr.bottom
+      display: none
+    .separator
+      &.split
+        color: gray
+        font-family: $font-sans
+        font-size: 1em
+        font-weight: normal
+        margin: 0.5em 0
+        &:before, &:after
+          background-image: none
+    h3.why-member
+      font-weight: 400
+    span
+      color: gray
+      display: block
+  .why
+    color: $yellow
