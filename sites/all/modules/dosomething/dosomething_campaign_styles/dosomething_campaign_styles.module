@@ -17,8 +17,10 @@ function dosomething_campaign_styles_init() {
           $plugins[] = $parent_plugin;
         }
         while ($plugin_data = array_pop($plugins)) {
+          drupal_add_css($plugin_data['path'] . '/' . 'ds_campaign.css', array('group' => CSS_THEME));
+          drupal_add_js($plugin_data['path'] . '/' . 'ds_campaign.js');
           foreach ($plugin_data['css'] as $css_path) {
-            drupal_add_css($plugin_data['path'] . '/' . $css_path);
+            drupal_add_css($plugin_data['path'] . '/' . $css_path, array('group' => CSS_THEME));
           }
           foreach ($plugin_data['js'] as $js_path) {
             drupal_add_js($plugin_data['path'] . '/' . $js_path);
@@ -58,6 +60,9 @@ function dosomething_campaign_styles_ctools_plugin_directory($owner, $plugin_typ
   if ($owner == 'dosomething_campaign_styles' && $plugin_type == 'campaign_style') {
     return "campaign_styles";
   }
+  else if ($owner == 'ctools') {
+    return 'plugins/' . $plugin_type;
+  }
 }
 
 /**
@@ -85,3 +90,4 @@ function dosomething_campaign_styles_pluginify_path($path) {
   $plugin_name = str_replace('-', '_', $plugin_name);
   return $plugin_name;
 }
+
