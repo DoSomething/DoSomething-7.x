@@ -56,6 +56,10 @@ function theme_dosomething_general_facebook_friend_pic($var) {
  * Implements hook_form_alter().
  */
 function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
+  // Unset N/A option in required field_camp checkboxes.
+  if ($form_id == 'club_node_form') {
+    unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
+  }
   if ($form['#id'] == 'views-exposed-form-resources-panel-pane-1') {
     // Override #option values on action-finder content type exposed filter.
     if ($form_id == 'views_exposed_form' && $form['#info']['filter-type']['value'] == 'type') {
