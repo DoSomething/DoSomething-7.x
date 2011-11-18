@@ -5,3 +5,28 @@
  */
 
 include_once('dosomething_webform.features.inc');
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['#node']) && strpos($form_id, 'webform_client_form_') === 0) {
+    $webform_types = array('grant_application');
+    if (in_array($form['#node']->type, $webform_types)) {
+      $form['#validate'][] = 'dosomething_webform_webform_validate';
+    }
+  }
+}
+
+/**
+ * Custom validation on webforms.
+ */
+function dosomething_webform_webform_validate($form, &$form_state) {
+  // This is here to fix an issue with the webform module which
+  // forces the form to be submitted twice before it will work.
+  // This shouldn't be a problem when the form is invalid.
+  // It is very similar to an issue with the profile2 module
+  // See http://drupal.org/node/1040038 for details.
+  $form_state['rebuild'] = FALSE;
+}
+
