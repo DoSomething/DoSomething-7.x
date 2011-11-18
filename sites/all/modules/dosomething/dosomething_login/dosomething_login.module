@@ -268,12 +268,21 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
   if (isset($form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
     $number = $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
     if (($number = preg_replace('/[^0-9]/', '', $number)) && strlen($number) >= 10) {
-      // TODO: We need to run replace on the values we're checking against
-      // in mysql.
+
+      // Not all of the values in the db are digits only, so we have to
+      // replace the the non-digits in the values that we're searching.
+      // We may have to use this check elsewhere.  If so, we can break
+      // it out into a separate function.
+      $replace_characters = array('+', '.', '-', ' ', ')', '(');
+      $replace = "m.field_user_mobile_value";
+      foreach ($replace_characters as $char) {
+        $replace = "REPLACE(" . $replace . ", '$char', '')";
+      }
+
       $query = db_select('field_data_field_user_mobile', 'm')
         ->fields('m', array('entity_id'))
-        ->condition('m.field_user_mobile_value', $number, '=')
-        ->condition('m.entity_type', 'profile2');
+        ->condition('m.entity_type', 'profile2')
+        ->where("$replace = :number", array(':number' => $number));
       if (is_object($profile)) {
         $query->condition('m.entity_id', $profile->pid, '!=');
       }
@@ -821,7 +830,6 @@ function dosomething_login_person_is_over_age($birthday, $age = 13, $timestamp =
  *  They don't need parental permission at this point.
  */
 function dosomething_login_mark_user_account_over_13($uid) {
-  // TODO: What else needs to be done to graduate the user to being over 13?
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   if (is_object($profile)) {
