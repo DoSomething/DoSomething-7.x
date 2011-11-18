@@ -24,7 +24,7 @@
         <span class="title"><?php print t('Talk to us...'); ?></span><span class="desc"><?php print '(212) 254-2390'; ?></span>
       </div>
       <div class="lets-talk-faq">
-        <span class="title"><?php print l('Frequently Asked Questions', 'NEEDLINK'); ?></span>
+        <span class="title"><?php print l('Frequently Asked Questions', 'faqs'); ?></span>
       </div>
     </div>
   </div> <!-- /#lets-talk -->
