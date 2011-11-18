@@ -7,7 +7,6 @@
     attach: function(context, settings) {
       $('#lets-talk-dialog').hide();
       $("#block-dosomething-blocks-dosomething-utility-bar .utility-items.icons a").click(function() {
-        event.preventDefault();
         $('#lets-talk-dialog').dialog({modal:true, width:617, height:392});
       });
     }
