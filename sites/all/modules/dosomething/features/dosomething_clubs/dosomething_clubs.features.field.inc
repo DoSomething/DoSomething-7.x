@@ -484,6 +484,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_expected_members',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -502,6 +505,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -510,12 +514,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_expected_members][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Please give your best estimate. Numbers only (no letters or symbols).',
       'display' => array(
@@ -557,18 +556,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_expected_members',
       'label' => 'Expected number of club members',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-8',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -586,6 +583,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_intended_role',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -601,6 +601,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -609,11 +610,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -655,18 +652,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_intended_role',
       'label' => 'What is your role?',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '31',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '31',
       ),
@@ -682,6 +677,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_is_school',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -697,6 +695,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -705,11 +704,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -752,18 +747,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_is_school',
       'label' => 'Is this a school address?',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '3',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '3',
       ),
@@ -907,6 +900,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_leader_email',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -925,6 +921,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -933,11 +930,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -979,19 +972,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_leader_email',
       'label' => 'Student Leader Email',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '7',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '7',
@@ -1008,6 +999,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_leader_last_name',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1026,6 +1020,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1034,11 +1029,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1080,19 +1071,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_leader_last_name',
       'label' => 'Student Leader Last Name',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '5',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '5',
@@ -1109,6 +1098,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_member_1_email',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1127,6 +1119,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1135,12 +1128,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_member_1_email][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1182,18 +1170,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_member_1_email',
       'label' => 'Member 1 email',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-7',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -1211,6 +1197,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_member_2_email',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1229,6 +1218,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1237,12 +1227,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_member_2_email][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1284,18 +1269,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_member_2_email',
       'label' => 'Member 2 email',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-5',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -1313,6 +1296,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_member_3_email',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1331,6 +1317,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1339,12 +1326,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_member_3_email][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1386,18 +1368,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_member_3_email',
       'label' => 'Member 3 email',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-3',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -1415,6 +1395,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_member_4_email',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1433,6 +1416,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1441,12 +1425,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_member_4_email][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1488,18 +1467,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_member_4_email',
       'label' => 'Member 4 email',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-1',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -1634,6 +1611,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_project_idea_1',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1652,6 +1632,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1660,12 +1641,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_project_idea_1][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Please write at least 3 sentences here.',
       'display' => array(
@@ -1708,19 +1684,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_project_idea_1',
       'label' => 'Project Idea and Plan of Action 1',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '0',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
           'rows' => '5',
-          'size' => 60,
         ),
         'type' => 'text_textarea',
         'weight' => '0',
@@ -1737,6 +1711,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_project_idea_2',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1755,6 +1732,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1763,12 +1741,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_project_idea_2][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Please write at least 3 sentences here.',
       'display' => array(
@@ -1811,19 +1784,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_project_idea_2',
       'label' => 'Project Idea and Plan of Action 2',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '2',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
           'rows' => '5',
-          'size' => 60,
         ),
         'type' => 'text_textarea',
         'weight' => '2',
@@ -1840,6 +1811,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_project_idea_other',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1858,6 +1832,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1866,11 +1841,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'The more ideas the better! Separate multiple ideas with a semicolon!',
       'display' => array(
@@ -1913,19 +1884,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_project_idea_other',
       'label' => 'Other Project Ideas',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '4',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
           'rows' => '5',
-          'size' => 60,
         ),
         'type' => 'text_textarea',
         'weight' => '4',
@@ -2107,6 +2076,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_student_leader_first',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -2125,6 +2097,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -2133,11 +2106,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2179,19 +2148,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_student_leader_first',
       'label' => 'Student Leader First Name',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '4',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '4',
@@ -2208,6 +2175,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_club_url',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -2226,6 +2196,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -2234,12 +2205,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_club_url][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Put the one or two words that you want to appear at the end of your Club\'s profile page web address.',
       'display' => array(
@@ -2281,18 +2247,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_club_url',
       'label' => 'http://www.DoSomething.org/Club/',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '32',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -2496,6 +2460,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_clubs_meeting_location',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -2514,6 +2481,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -2522,11 +2490,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2568,18 +2532,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_clubs_meeting_location',
       'label' => 'Where does your Club plan to hold meetings?',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '30',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '30',
       ),
@@ -2693,6 +2655,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_field_club_country',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -2711,6 +2676,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -2719,11 +2685,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2766,19 +2728,17 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_field_club_country',
       'label' => 'Country, if outside the U.S. and Canada',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '1',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '1',
@@ -3000,6 +2960,9 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_other_value',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -3018,6 +2981,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -3026,12 +2990,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_other_value][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -3095,18 +3054,16 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'entity_type' => 'node',
       'field_name' => 'field_other_value',
       'label' => 'If Other Selected',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '24',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => 5,
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -3344,6 +3301,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_school',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -3362,6 +3322,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -3370,12 +3331,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_school][0][value',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -3418,18 +3374,16 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'field_school',
       'label' => 'School you attend',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '27',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
           'size' => '60',
         ),
         'type' => 'text_textfield',
@@ -3447,6 +3401,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_school_level',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -3465,6 +3422,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -3473,11 +3431,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -3519,18 +3473,16 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'field_school_level',
       'label' => 'School Level',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '28',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '28',
       ),
@@ -3546,6 +3498,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_yacapp_school_type',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -3566,6 +3521,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -3574,11 +3530,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -3620,18 +3572,16 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'field_yacapp_school_type',
       'label' => 'School Type',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '29',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '29',
       ),
@@ -3733,6 +3683,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
         0 => 'node',
       ),
       'field_name' => 'og_description',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -3748,7 +3701,8 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => 255,
+        'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -3776,15 +3730,16 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'og_description',
       'label' => 'Group description',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
-        'text_processing' => 0,
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '18',
@@ -3801,7 +3756,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_types' => array(),
       'field_name' => 'og_node_link',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -3865,7 +3820,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 33,
+        'weight' => '33',
       ),
       'widget_type' => 'options_select',
     ),
@@ -4025,7 +3980,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'indexes' => array(
         'tid' => array(
@@ -4036,8 +3991,8 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => 0,
             'vocabulary' => 'vocabulary_5',
+            'parent' => 0,
           ),
         ),
         'profile2_private' => FALSE,
@@ -4069,11 +4024,12 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'taxonomy_vocabulary_5',
       'label' => 'Issues',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
@@ -4090,6 +4046,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'taxonomyextra',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
@@ -4181,11 +4140,12 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'taxonomyextra',
       'label' => 'Taxonomy upgrade extras',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 0,
         'module' => 'taxonomy',
         'settings' => array(
           'autocomplete_path' => 'taxonomy/autocomplete',
