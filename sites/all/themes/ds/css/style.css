@@ -2779,8 +2779,10 @@ nav[role=navigation] #main-menu li a.active {
 nav[role=navigation] #main-menu li.last a {
   margin-right: 0;
 }
-nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a {
+nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a, nav[role=navigation] #main-menu li.active-hover a {
   background-color: #014e9c;
+}
+nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a {
   background-image: url('images/arrow-down.png');
   background-repeat: no-repeat;
   background-position: center -3px;

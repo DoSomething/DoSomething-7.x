@@ -23,15 +23,18 @@ nav[role=navigation]
       a
         line-height: ($menu-height - 10px) / $s4
         padding-top: calc-em(10px, $s4)
+        text-align: center
         &.active
           color: white
       &.last
         a
           margin-right: 0
-      &:hover, &.active, &.active-trail
+      &:hover, &.active, &.active-trail, &.active-hover
+        a
+          background-color: $c-menu-secondary-bg
+      &.active, &.active-trail
         a
           background:
-            color: $c-menu-secondary-bg
             image: image_url("arrow-down.png")
             repeat: no-repeat
             position: center -3px
