@@ -266,8 +266,9 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
   // Verify that this is a unique cell phone number.
   $profile = isset($form_state['profiles']['main']) ? $form_state['profiles']['main'] : NULL;
   if (isset($form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
-    $number = $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
-    if (($number = preg_replace('/[^0-9]/', '', $number)) && strlen($number) >= 10) {
+    $entered_number = $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
+    $number = preg_replace('/[^0-9]/', '', $entered_number);
+    if (strlen($number) >= 10) {
 
       // Not all of the values in the db are digits only, so we have to
       // replace the the non-digits in the values that we're searching.
@@ -296,6 +297,9 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
       }
       // Save the version of the phone with only digits.
       $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'] = $number;
+    }
+    else if ($entered_number) {
+      form_set_error('profile_main][field_user_mobile][' . LANGUAGE_NONE . '][0', t('%phone is not a valid cell phone number.', array('%phone' => $entered_number)));
     }
   }
 }
