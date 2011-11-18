@@ -56,6 +56,10 @@ function theme_dosomething_general_facebook_friend_pic($var) {
  * Implements hook_form_alter().
  */
 function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
+  // Override password field description on user login form.
+  if ($form_id == 'user_login') {
+    $form['pass']['#description'] = t('Enter the password that accompanies your email, username, or cell phone number.');
+  }
   // Unset N/A option in required field_camp checkboxes.
   if ($form_id == 'club_node_form') {
     unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
