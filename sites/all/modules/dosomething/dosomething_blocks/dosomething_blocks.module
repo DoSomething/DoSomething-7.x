@@ -60,12 +60,12 @@ function dosomething_blocks_block_view($delta = '') {
       break;
 
     case 'dosomething_make_impact':
-      $block['subject'] = t('Make an Impact');
+      $block['subject'] = t('Action Finder');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
       break;
 
     case 'dosomething_make_impact_front':
-      $block['subject'] = t('Make an Impact');
+      $block['subject'] = t('Action Finder');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form_front');
       break;
 
@@ -618,7 +618,6 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
  */
 function dosomething_blocks_make_an_impact_form_front() {
   $content = dosomething_blocks_make_an_impact_form();
-  $content['description']['#title'] = t("Ready to take action? Choose from the options below and we'll find a whole bunch of Somethings for you to do.");
   return $content;
 }
 
