@@ -7,6 +7,20 @@
 
 .page-causes
   .main-inner
+    .h1
+      margin-top: 0.67em
+      margin-bottom: 0.67em
+    .h2
+      margin-top: 0.83em
+      margin-bottom: 0.83em
+    .h3
+      margin-top: 1em
+      margin-bottom: 1em
+    .h4
+      margin-top: 1.33em
+      margin-bottom: 1.33em
+    p
+      margin-top: 1em
     .cause-item
       position: relative
       margin-right: percentage($kit-gutter / $main-width-w-padding)
@@ -93,6 +107,9 @@
           +border-top-radius
           color: $white
           background: $c-headers
+          a
+            +link-colors($white, $gray6, $gray6, $white, false)
+            text-decoration: none
         img
           position: relative
           z-index: 11

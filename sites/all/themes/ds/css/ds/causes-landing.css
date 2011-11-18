@@ -64,6 +64,25 @@
   font-weight: 500;
 }
 
+.page-causes .main-inner .h1, .page-causes .main-inner h1 {
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+.page-causes .main-inner .h2, .page-causes .main-inner h2 {
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+}
+.page-causes .main-inner .h3, .page-causes .main-inner h3, .page-causes .main-inner .cause-item h2, .page-causes .main-inner .cause-item .cause-item-pop-up-content h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.page-causes .main-inner .h4, .page-causes .main-inner h4 {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+}
+.page-causes .main-inner p {
+  margin-top: 1em;
+}
 .page-causes .main-inner .cause-item {
   position: relative;
   margin-right: 1.739%;
@@ -245,6 +264,19 @@
   border-top-right-radius: 6px;
   color: white;
   background: #005dab;
+}
+.page-causes .main-inner .cause-item.showing h2 a {
+  color: white;
+  text-decoration: none;
+}
+.page-causes .main-inner .cause-item.showing h2 a:visited {
+  color: white;
+}
+.page-causes .main-inner .cause-item.showing h2 a:hover {
+  color: #d2d2d2;
+}
+.page-causes .main-inner .cause-item.showing h2 a:active {
+  color: #d2d2d2;
 }
 .page-causes .main-inner .cause-item.showing img {
   position: relative;
