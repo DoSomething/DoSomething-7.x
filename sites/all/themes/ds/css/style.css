@@ -1823,33 +1823,6 @@ html.js fieldset.collapsed {
   border-bottom: none;
 }
 
-#main-menu {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  *zoom: 1;
-}
-#main-menu li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-  white-space: nowrap;
-  display: inline;
-  float: left;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-#main-menu li:first-child, #main-menu li.first {
-  padding-left: 0;
-}
-#main-menu li:last-child {
-  padding-right: 0;
-}
-#main-menu li.last {
-  padding-right: 0;
-}
-
 ul.tabs {
   padding-top: 20px;
   padding-bottom: 8px;
@@ -2772,6 +2745,7 @@ nav[role=navigation] #main-menu li {
 nav[role=navigation] #main-menu li a {
   line-height: 1.172;
   padding-top: 0.345em;
+  text-align: center;
 }
 nav[role=navigation] #main-menu li a.active {
   color: white;
