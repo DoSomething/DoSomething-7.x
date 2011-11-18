@@ -87,6 +87,93 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-grant_application-field_school'
+  $fields['node-grant_application-field_school'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_school',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'save_our_music',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_school',
+      'label' => 'School you attend',
+      'required' => '0',
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '2',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-grant_application-field_webform_address'
   $fields['webform_submission_entity-grant_application-field_webform_address'] = array(
     'field_config' => array(
@@ -743,82 +830,6 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_project'
-  $fields['webform_submission_entity-grant_application-field_webform_project'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_project',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'referenceable_types' => array(
-          'article' => 0,
-          'campaign_report_back' => 0,
-          'campaign_sign_up' => 0,
-          'grant_application' => 0,
-          'page' => 0,
-          'scholarship_application' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 9,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_project',
-      'label' => 'Your DoSomething project posting',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'node_reference',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'node_reference/autocomplete',
-          'size' => '60',
-        ),
-        'type' => 'node_reference_autocomplete',
-        'weight' => '11',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-grant_application-field_webform_project_dates'
   $fields['webform_submission_entity-grant_application-field_webform_project_dates'] = array(
     'field_config' => array(
@@ -1224,6 +1235,79 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-grant_application-field_weform_project_submission'
+  $fields['webform_submission_entity-grant_application-field_weform_project_submission'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_weform_project_submission',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'entityreference_entity_field',
+        'handler_settings' => array(
+          'author_only' => 1,
+          'target_bundles' => array(
+            'campaign_report_back' => 'campaign_report_back',
+            'project_report' => 'project_report',
+          ),
+          'title_field' => 'field_project_title',
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'webform_submission_entity',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Please enter the submission id of your project.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '7',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_weform_project_submission',
+      'label' => 'Your DoSomething project posting',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'options_select',
+        'weight' => '12',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Address');
@@ -1237,10 +1321,12 @@ function dosomething_grant_application_field_default_fields() {
   t('Name');
   t('Personal project website URL');
   t('Photo album URL');
+  t('Please enter the submission id of your project.');
   t('Project Dates');
   t('Project Summary');
   t('School');
   t('School Zip Code');
+  t('School you attend');
   t('Your DoSomething project posting');
   t('Youtube or video URL');
 
