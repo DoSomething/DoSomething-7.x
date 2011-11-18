@@ -648,7 +648,7 @@ img.goleft {
   line-height: 1.4;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li ul {
-  margin-top: 6pxpx;
+  margin-top: 6px;
   margin-left: -4px;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li ul li {
@@ -659,4 +659,37 @@ img.goleft {
 .logged-in #block-dosomething-login-become-member .dosomething-login-goto-profile {
   display: block;
   text-align: right;
+}
+
+.not-logged-in #block-dosomething-login-become-member {
+  background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
+  color: white;
+  padding-bottom: 1.25em;
+}
+.not-logged-in #block-dosomething-login-become-member hr.top {
+  background: url('../images/make-an-impact-home-header.png') no-repeat;
+  margin: 1em 0;
+}
+.not-logged-in #block-dosomething-login-become-member hr.bottom {
+  display: none;
+}
+.not-logged-in #block-dosomething-login-become-member .separator.split {
+  color: gray;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0.5em 0;
+}
+.not-logged-in #block-dosomething-login-become-member .separator.split:before, .not-logged-in #block-dosomething-login-become-member .separator.split:after {
+  background-image: none;
+}
+.not-logged-in #block-dosomething-login-become-member h3.why-member {
+  font-weight: 400;
+}
+.not-logged-in #block-dosomething-login-become-member span {
+  color: gray;
+  display: block;
+}
+.not-logged-in .why {
+  color: #ffd203;
 }
