@@ -32,38 +32,40 @@
 
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
-        if (blockForm.valid()) {
-          popupForm.dialog({modal:true, width:592});
-          popupForm.find('.dosomething-original-value').each(function() {
-            var name = $(this).attr('name');
-            var value = blockForm.find('input[name="' + name + '"]').val();
-            $(this).val(value);
-            $(this).attr('disabled', 'disabled');
-          });
-          var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
-          // Check if user is over 25.
-          if (date.getTime() - birthDate.getTime() > 819936000000) {
-            popupForm.find('.form-item, .captcha, .age-question').hide();
-            popupForm.find('.ds-signup-always-show .form-item, .over-25-field, .over-25-field .form-item, .form-submit').show();
-          }
-          // Check if user is under 13.
-          else if (date.getTime() - birthDate.getTime() < 409968000000) {
-            // Show/hide parent email based on birthday value.
-            popupForm.find('.form-item, .captcha, .age-question').show();
-            $("#edit-signup-title").hide();
-            $(".under-13-field").show();
-          }
-          else {
-            popupForm.find('.form-item, .captcha, .age-question').show();
-            $(".under-13-field").hide();
-            $("#edit-signup-title").hide();
-          }
+        // TODO: Force user to enter birthday
+        popupForm.dialog({modal:true, width:592});
+        popupForm.find('.dosomething-original-value').each(function() {
+          var name = $(this).attr('name');
+          var value = blockForm.find('input[name="' + name + '"]').val();
+          $(this).val(value);
+          //$(this).attr('disabled', 'disabled');
+        });
+        var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
+        // Check if user is over 25.
+        if (date.getTime() - birthDate.getTime() > 819936000000) {
+          popupForm.find('.form-item, .captcha, .age-question').hide();
+          popupForm.find('.ds-signup-always-show .form-item, .over-25-field, .over-25-field .form-item, .form-submit').show();
         }
+        // Check if user is under 13.
+        else if (date.getTime() - birthDate.getTime() < 409968000000) {
+          // Show/hide parent email based on birthday value.
+          popupForm.find('.form-item, .captcha, .age-question').show();
+          $("#edit-signup-title").hide();
+          $(".under-13-field").show();
+        }
+        else {
+          popupForm.find('.form-item, .captcha, .age-question').show();
+          $(".under-13-field").hide();
+          $("#edit-signup-title").hide();
+        }
+        // TODO: Auto-validate form at this point
+        // without validating new required fields.
+        //popupForm.valid();
         event.preventDefault();
       });
 
       // Validate registration form on keyup and submit
-      blockForm.validate({
+      popupForm.validate({
         rules: {
           first_name: "required",
           last_name: "required",
@@ -83,8 +85,8 @@
             required: true,
             range: [date.getFullYear() - 80, date.getFullYear()]
           },
-        },
-        messages: {
+        }
+        /*messages: {
           day: {
             required: "",
             range: "",
@@ -97,7 +99,7 @@
             required: "",
             range: "",
           }
-        }
+        }*/
       });
     }
   }
