@@ -23,12 +23,16 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
     global $user;
     // Take no action if this user is not authenticated.
     if ($user->uid != 0) {
-      $magic_fields_field = 'field_report_back_magic_fields';
       $node = $form['#node'];
+
+      // Get a shortcut to our part of the form.
       $entity_form = &$form['submitted']['webform_entity_form'];
-      // Make sure no one did something stupid like deleting our field.
-      module_load_include('inc', 'field', 'field.attach');
+
+      // The list field that specifies which fields on this form are enabled.
+      $magic_fields_field = 'field_report_back_magic_fields';
       $enabled_fields = array();
+
+      // Make sure no one did something stupid like deleting our field.
       if (isset($node->{$magic_fields_field})) {
         // Get the allowed values.
         if ($items = field_get_items('node', $node, $magic_fields_field)) {
@@ -56,10 +60,12 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
           $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $mobile[0]['value'];
         }
       }
-      // If we have a profile and don't have a value for the email, provide the one from the user as a default.
-      if ($user->uid != 0 && $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] == '') {
+
+      // If this email isn't actually a magic mobile number, prepopulate the form with it.
+      if (substr($user->mail, -7) != '@mobile' && $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] == '') {
         $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
       }
+
       if ($ref = entity_metadata_wrapper('node', $node)->field_report_back_reference->raw()) {
         if (module_exists('og') && is_object($group = og_get_group('node', $ref))) {
           $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
@@ -67,6 +73,7 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
           $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
         }
       }
+
       $form['#validate'][] = 'dosomething_general_webform_email_and_mail_submit';
       $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
     }
