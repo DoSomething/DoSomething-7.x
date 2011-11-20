@@ -2724,6 +2724,20 @@ nav[role=navigation] {
   text-transform: uppercase;
   position: relative;
 }
+nav[role=navigation] a {
+  text-decoration: none;
+  display: block;
+  color: #2c85d0;
+}
+nav[role=navigation] a:visited {
+  color: #2c85d0;
+}
+nav[role=navigation] a:hover {
+  color: white;
+}
+nav[role=navigation] a:active {
+  color: white;
+}
 nav[role=navigation] .primary {
   background-color: #005ba9;
   padding-left: 22.162%;
@@ -2731,39 +2745,6 @@ nav[role=navigation] .primary {
 nav[role=navigation] .primary .wrapper {
   display: table;
   width: 100%;
-}
-nav[role=navigation] #main-menu {
-  font-size: 2.417em;
-  line-height: 1.655em;
-  font-weight: 500;
-  display: table-row;
-  min-height: 1.517em;
-  padding-right: 0.103em;
-  padding-left: 0;
-}
-nav[role=navigation] #main-menu li {
-  display: table-cell;
-}
-nav[role=navigation] #main-menu li a {
-  line-height: 1.172;
-  padding-top: 0.345em;
-  text-align: center;
-}
-nav[role=navigation] #main-menu li a.active {
-  color: white;
-}
-nav[role=navigation] #main-menu li.last a {
-  margin-right: 0;
-}
-nav[role=navigation] #main-menu li:hover a, nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a, nav[role=navigation] #main-menu li.active-hover a {
-  background-color: #014e9c;
-}
-nav[role=navigation] #main-menu li.active a, nav[role=navigation] #main-menu li.active-trail a {
-  background-image: url('images/arrow-down.png');
-  background-repeat: no-repeat;
-  background-position: center -3px;
-  border-top: 0.069em solid white;
-  padding-top: 0.276em;
 }
 nav[role=navigation] .secondary {
   background-color: #014e9c;
@@ -2827,6 +2808,46 @@ nav[role=navigation] .secondary ul:nth-of-type(1n+3) li a {
 nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   padding-right: 12.222em;
 }
+
+#main-menu {
+  font-size: 2.417em;
+  line-height: 1.655em;
+  font-weight: 500;
+  display: table-row;
+  min-height: 1.517em;
+  padding-right: 0.103em;
+  padding-left: 0;
+}
+#main-menu li {
+  display: table-cell;
+}
+#main-menu li a {
+  line-height: 1.172;
+  padding-top: 0.345em;
+  text-align: center;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+#main-menu li a.active {
+  color: white;
+}
+#main-menu li.first a {
+  margin-left: 0;
+}
+#main-menu li.last a {
+  margin-right: 0;
+}
+#main-menu li:hover a, #main-menu li.active a, #main-menu li.active-trail a, #main-menu li.active-hover a {
+  background-color: #014e9c;
+}
+#main-menu li.active a, #main-menu li.active-trail a {
+  background-image: url('images/arrow-down.png');
+  background-repeat: no-repeat;
+  background-position: center -3px;
+  border-top: 0.069em solid white;
+  padding-top: 0.276em;
+}
+
 nav[role=navigation] .causes-dropdown-trigger {
   position: relative;
 }
@@ -2987,20 +3008,6 @@ nav[role=navigation] .issues-dropover ul li a:hover {
   color: white;
 }
 nav[role=navigation] .issues-dropover ul li a:active {
-  color: white;
-}
-nav[role=navigation] a {
-  text-decoration: none;
-  display: block;
-  color: #2c85d0;
-}
-nav[role=navigation] a:visited {
-  color: #2c85d0;
-}
-nav[role=navigation] a:hover {
-  color: white;
-}
-nav[role=navigation] a:active {
   color: white;
 }
 

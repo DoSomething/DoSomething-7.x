@@ -1,48 +1,20 @@
 // Main navigation Styles
 
-#main-menu
-  // +horizontal-list(0.5em)
-
 nav[role=navigation]
   font-family: $font-headline
   text-rendering: optimizeLegibility
   text-transform: uppercase
   position: relative
+  a
+    text-decoration: none
+    display: block
+    +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
   .primary
     background-color: $c-menu-primary-bg
     padding-left: percentage($left-col-width / $page-width)
     .wrapper
       display: table
       width: 100%
-  #main-menu
-    +adjust-font-size-to($s4)
-    font-weight: 500
-    display: table-row
-    min-height: calc-em($menu-height, $s4)
-    padding-right: calc-em(3px, $s4)
-    padding-left: 0
-    li
-      display: table-cell
-      a
-        line-height: ($menu-height - 10px) / $s4
-        padding-top: calc-em(10px, $s4)
-        text-align: center
-        &.active
-          color: white
-      &.last
-        a
-          margin-right: 0
-      &:hover, &.active, &.active-trail, &.active-hover
-        a
-          background-color: $c-menu-secondary-bg
-      &.active, &.active-trail
-        a
-          background:
-            image: image_url("arrow-down.png")
-            repeat: no-repeat
-            position: center -3px
-          border-top: (calc-em(2px, $s4)) solid $white
-          padding-top: calc-em(8px, $s4)
   .secondary
     background-color: $c-menu-secondary-bg
     padding-left: percentage($left-col-width / $page-width)
@@ -73,6 +45,43 @@ nav[role=navigation]
             display: inline
       &:nth-of-type(4n+3)
         padding-right: calc-em(220px, $s2)
+
+#main-menu
+  +adjust-font-size-to($s4)
+  font-weight: 500
+  display: table-row
+  min-height: calc-em($menu-height, $s4)
+  padding-right: calc-em(3px, $s4)
+  padding-left: 0
+  li
+    display: table-cell
+    a
+      line-height: ($menu-height - 10px) / $s4
+      padding-top: calc-em(10px, $s4)
+      text-align: center
+      margin-left:  2px
+      margin-right: 2px
+      &.active
+        color: white
+    &.first
+      a
+        margin-left: 0
+    &.last
+      a
+        margin-right: 0
+    &:hover, &.active, &.active-trail, &.active-hover
+      a
+        background-color: $c-menu-secondary-bg
+    &.active, &.active-trail
+      a
+        background:
+          image: image_url("arrow-down.png")
+          repeat: no-repeat
+          position: center -3px
+        border-top: (calc-em(2px, $s4)) solid $white
+        padding-top: calc-em(8px, $s4)
+
+nav[role=navigation]
   .causes-dropdown-trigger
     position: relative
     .causes-dropdown
@@ -170,10 +179,7 @@ nav[role=navigation]
           padding: 0.3em 0.5em
           margin-bottom: 0
           +link-colors($white, $white, $white, $white, false)
-  a
-    text-decoration: none
-    display: block
-    +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
+
 
 .issues-dropdown
   display: none
