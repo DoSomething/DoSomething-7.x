@@ -3,6 +3,13 @@
 function ds_preprocess_html(&$variables, $hook) {
   // dsm($hook);
   // dsm($variables);
+  $theme_path = drupal_get_path('theme', 'ds');
+  $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
+  $variables['selectivizr'] .= '<![endif]-->';
+  // mootools-core-1.4.1-full-nocompat-yc.js
+  // selectivizr-1.0.2/selectivizr-min.js
 }
 
 function ds_preprocess_panels_pane(&$variables) {
