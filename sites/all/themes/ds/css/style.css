@@ -2829,7 +2829,7 @@ nav[role=navigation] .causes-dropdown-trigger {
   position: relative;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
-  top: 10px;
+  top: 30px;
   left: -9px;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
@@ -2949,6 +2949,7 @@ nav[role=navigation] .issues-dropover .issues-dropdown-menu {
   left: 2px;
   display: none;
   z-index: 10;
+  min-width: 10em;
 }
 nav[role=navigation] .issues-dropover ul {
   font-size: 1em;
