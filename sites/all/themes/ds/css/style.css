@@ -2120,6 +2120,9 @@ body.admin-menu {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+.ie8 #utility-bar, .ie7 #utility-bar {
+  line-height: 20px;
+}
 #utility-bar .utility-block {
   padding-left: 22.162%;
 }
