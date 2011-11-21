@@ -35,11 +35,10 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['style_options']['fields']['image'] = 'field_causes_image';
   $handler->display->display_options['style_options']['fields']['text'] = 'description';
   $handler->display->display_options['style_options']['settings']['link'] = 1;
-  $handler->display->display_options['style_options']['settings']['image'] = 1;
-  $handler->display->display_options['style_options']['settings']['image_style'] = '';
+  $handler->display->display_options['style_options']['settings']['image'] = 0;
   $handler->display->display_options['style_options']['initial']['default'] = 1;
   $handler->display->display_options['style_options']['initial']['title'] = 'Explore The Issues';
-  $handler->display->display_options['style_options']['initial']['image'] = 'description_1';
+  $handler->display->display_options['style_options']['initial']['image'] = 'field_causes_image_1';
   $handler->display->display_options['style_options']['initial']['text'] = 'description_1';
   /* Relationship: Taxonomy term: Parent term */
   $handler->display->display_options['relationships']['parent']['id'] = 'parent';
