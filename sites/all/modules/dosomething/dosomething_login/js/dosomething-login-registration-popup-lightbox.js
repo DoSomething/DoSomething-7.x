@@ -93,8 +93,8 @@
             required: true,
             range: [date.getFullYear() - dateValidAge, date.getFullYear()]
           },
-        }
-        /*messages: {
+        },
+        messages: {
           day: {
             required: "",
             range: "",
@@ -107,7 +107,7 @@
             required: "",
             range: "",
           }
-        }*/
+        }
       });
     }
   }
