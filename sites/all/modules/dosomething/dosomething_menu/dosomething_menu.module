@@ -33,6 +33,19 @@ function dosomething_menu_preprocess_page(&$variables) {
   if ($term = menu_get_object('taxonomy_term', 2)) {
     if ($term->vid == DS_MENU_ISSUES_VID) {
       $params['term'] = $term;
+
+      // Add active trail to causes menu item if we are on a term.
+      if (count($variables['main_menu'])) {
+        $full_menu = array();
+        foreach ($variables['main_menu'] as $key => $menu_item) {
+          if ($menu_item['href'] == variable_get('dosomething_menu_all_causes_path', 'causes')) {
+            $menu_item['attributes']['class'][] = 'active-trail';
+            $key .= ' active-trail';
+          }
+          $full_menu[$key] = $menu_item;
+        }
+        $variables['main_menu'] = $full_menu;
+      }
     }
   }
 
