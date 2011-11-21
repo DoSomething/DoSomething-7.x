@@ -7,6 +7,11 @@
 include_once('dosomething_projects_general.features.inc');
 
 /**
+ * Set amount of time for projects are editable post submission.
+ */
+define('DS_PROJECTS_EDITABLE_TIME', 86400);
+
+/**
  * Implements hook_webform_submission_access().
  */
 function dosomething_projects_general_webform_submission_access($node, $submission, $op, $account) {
@@ -19,15 +24,29 @@ function dosomething_projects_general_webform_submission_access($node, $submissi
       );
       static $message = NULL;
       if ($submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
-        if (REQUEST_TIME <= ($submission->submitted + 86400)) {
+        if (REQUEST_TIME <= ($submission->submitted + DS_PROJECTS_EDITABLE_TIME)) {
           if (is_null($message)) {
             $message = t('This form will be editable until %date', array('%date' => date('m-d-Y g:ia'))); 
             drupal_set_message($message);
           }
           return TRUE;
-        }  
+        }
       }
       break;
   }
+}
+
+
+/**
+ * Implements hook_node_access().
+ */
+function dosomething_projects_general_node_access($node, $op, $account) {
+  if (is_object($node)) {
+    // Allow node editing for 24 hours passed submission for project_updates.
+    if ($type == 'project_update' && $op == 'edit' && $node->uid == $account->uid) {
+      return REQUEST_TIME <= ($node->created + DS_PROJECTS_EDITABLE_TIME) ? NODE_ACCESS_ALLOW : NODE_ACCESS_DENY;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
 }
 
