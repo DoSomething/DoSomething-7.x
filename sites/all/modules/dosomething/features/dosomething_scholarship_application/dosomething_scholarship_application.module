@@ -7,6 +7,21 @@
 include_once('dosomething_scholarship_application.features.inc');
 
 /**
+ * Implements hook_node_presave().
+ */
+function dosomething_scholarship_application_node_presave($node) {
+  // On node creation, ensure that scholarhsip applications are draftable.
+  if ($node->type == 'scholarship_application') {
+    if ($node->is_new) {
+      if (!isset($node->webform)) {
+        $node->webform = webform_node_defaults();
+      }
+      $node->webform['allow_draft'] = TRUE;
+    }
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function dosomething_scholarship_application_form_alter(&$form, &$form_state, $form_id) {
