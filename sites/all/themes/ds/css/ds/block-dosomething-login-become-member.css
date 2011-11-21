@@ -573,6 +573,7 @@ img.goleft {
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name {
   background: url('../images/cta-left-col-header-bg.png') no-repeat 50% 50%;
   height: 34px;
+  width: 193px;
   margin-left: -6.857%;
   margin-right: -10.286%;
   margin-bottom: 0.286em;
@@ -584,7 +585,7 @@ img.goleft {
   color: #161616;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2 {
-  line-height: 30px;
+  line-height: 28px;
   display: inline;
   font-weight: 600;
 }

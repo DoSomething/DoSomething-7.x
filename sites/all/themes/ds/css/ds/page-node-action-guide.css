@@ -31,15 +31,9 @@
   padding-left: 2em;
 }
 .node-action-guide ul {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
+  margin: 0 auto;
   padding-right: 2em;
-}
-.node-action-guide ul {
-  *display: inline;
+  width: 99%;
 }
 .node-action-guide li {
   margin: 1em 0;

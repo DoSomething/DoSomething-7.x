@@ -567,6 +567,9 @@ img.goleft {
   font-weight: 500;
 }
 
+.action-finder-list {
+  margin-top: 2em;
+}
 .action-finder-list .views-row {
   *zoom: 1;
   background: url('../images/triangle-mask-left.png') no-repeat 19% center, #8e8a86;
