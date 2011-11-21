@@ -1,53 +1,72 @@
 @import setup
 
-h2.pane-title
-  +ds-bevel-single
-  margin: 1em 0
+#webform-component-hidden
+  display: none
 
-.field-label
-  +float-left
-
-.pane-webform-submission
-  .pane-title
-    border: none
-  #webform-component-hidden
-    display: none
-  .pane-content
-    padding-top: 2em !important
-    .field
-      margin-bottom: 0.5em
-    &:last-child
-      margin-bottom: 0
-ul
-  li:nth-of-type(odd)
-    .pane-content
-      +float-left
-      background: image_url('bg-arrowblock-dark.png') no-repeat
-  li:nth-of-type(even)
-    .pane-content
-      background: image_url('bg-arrowblock-light.png') no-repeat
+.pane-content
+  ul
+    padding-left: 3em
 
 .panel-bottom
+  h2.pane-title
+    +ds-bevel-single
+    margin: 1em 0
+    display: block
   .item-list ul
     list-style: none
     margin: 0
     li
       margin: 0
+  ul
+    li:nth-of-type(odd)
+      .pane-content
+        background: image_url('bg-arrowblock-dark.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-left
+    li:nth-of-type(even)
+      .pane-content
+        background: image_url('bg-arrowblock-light.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-right
+        img
+          padding-left: 0.3em
+  li
+    display: block
+    width: 100%
+  ul
+    +pie-clearfix
   .pane-content
-    +adjust-font-size-to($s2)
-    font-family: $font-headline
-    text-rendering: optimizeLegibility
-    text-transform: uppercase
-    font-weight: 500
     +inline-block
     height: 108px
     margin-bottom: 1em
     width: 50%
-  p
-    margin: 2.5em 2em
+    .field-items
+      width: 30%
+      +float-right
+    // Title Styling is an a now but a class could be used
     a
       color: $white
       display: block
+      font-family: $font-headline
       font-size: 18px
-      &:hover
+      font-weight: 500
+      line-height: 4em
+      text-align: center
+      text-rendering: optimizeLegibility
+      text-transform: uppercase
+    .views-field-view-node
+      position: relative
+      top: 4em
+      left: 7em
+      a
         color: $white
+        &:hover
+          color: $white
+    img
+      +float-left
+      width: 170px
+      height: 108px
+    p
+      margin: 0
