@@ -8,6 +8,8 @@
       var popupForm = $("#dosomething-login-register-popup-form");
       var blockForm = $("#dosomething-login-register-block");
       var date = new Date();
+      var dateValidAge = 90;
+      var dateThreshold = new Date(date.getFullYear() - dateValidAge, 0, 1);
 
       popupForm.hide();
       // We need a special validator for the email/mobile number field.
@@ -33,7 +35,6 @@
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
         // TODO: Force user to enter birthday
-        popupForm.dialog({modal:true, width:592});
         popupForm.find('.dosomething-original-value').each(function() {
           var name = $(this).attr('name');
           var value = blockForm.find('input[name="' + name + '"]').val();
@@ -41,6 +42,13 @@
           //$(this).attr('disabled', 'disabled');
         });
         var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
+        if (birthDate.getTime() < dateThreshold.getTime()) {
+          alert("You must enter a valid birthday.");
+          event.preventDefault();
+          return;
+        }
+        popupForm.dialog({modal:true, width:592});
+
         // Check if user is over 25.
         if (date.getTime() - birthDate.getTime() > 819936000000) {
           popupForm.find('.form-item, .captcha, .age-question').hide();
@@ -83,7 +91,7 @@
           },
           year: {
             required: true,
-            range: [date.getFullYear() - 80, date.getFullYear()]
+            range: [date.getFullYear() - dateValidAge, date.getFullYear()]
           },
         }
         /*messages: {
