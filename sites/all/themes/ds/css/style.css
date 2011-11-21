@@ -2621,7 +2621,7 @@ iframe {
   display: inline;
   float: left;
   width: 245px;
-  height: 24px;
+  height: 36px;
   margin-right: 12px;
 }
 .ui-dialog .form-item-first-name input,
@@ -2639,7 +2639,7 @@ iframe {
   display: inline;
   float: left;
   margin-right: 12px;
-  height: 24px;
+  height: 36px;
 }
 .ui-dialog .form-item-cell-or-email input {
   color: white;
