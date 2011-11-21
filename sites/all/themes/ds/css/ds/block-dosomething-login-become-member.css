@@ -421,7 +421,7 @@ img.goleft {
   background-image: url('../images/cta-left-col-become-member-btn.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 204px;
+  width: 205px;
   height: 34px;
   margin-bottom: 0.286em;
 }
@@ -664,7 +664,7 @@ img.goleft {
 .not-logged-in #block-dosomething-login-become-member {
   background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
   color: white;
-  padding-bottom: 1.25em;
+  padding-bottom: 0.917em;
 }
 .not-logged-in #block-dosomething-login-become-member hr.top {
   background: url('../images/make-an-impact-home-header.png') no-repeat;
@@ -674,14 +674,20 @@ img.goleft {
   display: none;
 }
 .not-logged-in #block-dosomething-login-become-member .separator.split {
+  background: url('../images/make-an-impact-home-header.png') bottom center repeat;
   color: gray;
   font-family: "Trebuchet MS", sans-serif;
   font-size: 1em;
   font-weight: normal;
   margin: 0.5em 0;
+  padding-bottom: 0.333em;
 }
 .not-logged-in #block-dosomething-login-become-member .separator.split:before, .not-logged-in #block-dosomething-login-become-member .separator.split:after {
   background-image: none;
+}
+.not-logged-in #block-dosomething-login-become-member .form-item input {
+  background-color: #343434;
+  color: gray;
 }
 .not-logged-in #block-dosomething-login-become-member h3.why-member {
   font-weight: 400;
