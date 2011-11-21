@@ -65,13 +65,15 @@ function dosomething_menu_preprocess_page(&$variables) {
  */
 function dosomething_menu_secondary_links($variables, $term) {
   $secondary_menu_items = dosomething_menu_navigation_links('main-menu', $term);
+  $active_secondary_menu_items = array();
   if (count($secondary_menu_items)) {
     foreach ($secondary_menu_items as $mlid => &$links) {
       $links['attributes']['class'][] = 'links';
-      $links['attributes']['class'][] = $mlid;
+      $links['attributes']['class'][] = str_replace(' active-trail', '', $mlid);
 
       // Make sure proper classes are set on active secondary menu items.
       if (isset($variables['main_menu'][$mlid . ' active-trail'])) {
+        $mlid .= ' active-trail';
         foreach ($links['links'] as $second_mlid => &$second_link) {
           $key = isset($variables['secondary_menu'][$second_mlid . ' active-trail']) ? $second_mlid . ' active-trail' : $second_mlid;
           $classes = $second_link['attributes']['class'];
@@ -90,9 +92,10 @@ function dosomething_menu_secondary_links($variables, $term) {
       else {
         $links['attributes']['class'][] = 'hidden';
       }
+      $active_secondary_menu_items[$mlid] = $links;
     }
   }
-  return $secondary_menu_items;
+  return $active_secondary_menu_items;
 }
 
 /**
