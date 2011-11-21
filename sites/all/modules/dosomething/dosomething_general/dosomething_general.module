@@ -37,10 +37,10 @@ function theme_dosomething_general_facebook_friend_pic($var) {
   $filepath = 'https://graph.facebook.com/' . $var['fbid'] . '/picture?type=small';
   $alt = t("@names's picture", array('@name' => $name));
   if (module_exists('image') && $var['image_style']) {
-    $picture = theme('image_style', array('style_name' => $var['image_style'], 'path' => $filepath, 'alt' => $alt, 'title' => $alt));
+    $picture = theme('image_style', array('style_name' => $var['image_style'], 'path' => $filepath, 'alt' => $alt));
   }
   else {
-    $picture = theme('image', array('path' => $filepath, 'alt' => $alt, 'title' => $alt));
+    $picture = theme('image', array('path' => $filepath, 'alt' => $alt));
   }
   return $picture;
 }
