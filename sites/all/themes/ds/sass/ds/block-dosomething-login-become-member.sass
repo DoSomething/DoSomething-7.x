@@ -213,7 +213,7 @@
   #block-dosomething-login-become-member
     background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
     color: $white
-    padding-bottom: calc-em(15px, $s0)
+    padding-bottom: calc-em(11px, $s0)
     hr.top
       background: image_url("make-an-impact-home-header.png") no-repeat
       margin: 1em 0
@@ -221,13 +221,19 @@
       display: none
     .separator
       &.split
+        background: image_url("make-an-impact-home-header.png") bottom center repeat
         color: gray
         font-family: $font-sans
         font-size: 1em
         font-weight: normal
         margin: 0.5em 0
+        padding-bottom: calc-em(4px, $s0)
         &:before, &:after
           background-image: none
+    .form-item
+      input
+        background-color: $gray-darker
+        color: gray
     h3.why-member
       font-weight: 400
     span
