@@ -113,7 +113,7 @@ function dosomething_action_finder_default_page_manager_pages() {
       'use_fields' => 0,
       'fields' => array(),
       'context' => 'context_view:action_finder-ctools_context_1_1',
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => 'Action Finder',
     );
     $pane->cache = array();
