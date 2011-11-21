@@ -762,6 +762,9 @@ function dosomething_campaign_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_group',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -776,6 +779,7 @@ function dosomething_campaign_field_default_fields() {
           1 => 'Group type',
         ),
         'allowed_values_function' => '',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'list_boolean',
@@ -845,6 +849,7 @@ function dosomething_campaign_field_default_fields() {
   t('Logo');
   t('Main Image');
   t('Please enter the 6 digit hex value without the #.');
+  t('Please select a start and end date for the campaign.');
   t('Relate this Campaign to a Cause or Issue.');
   t('Teaser');
   t('Text to appear in Current Campaigns list');
