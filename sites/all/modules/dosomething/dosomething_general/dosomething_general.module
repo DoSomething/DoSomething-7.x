@@ -22,7 +22,7 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
   return array(
     'dosomething_general_facebook_friend_pic' => array(
       'variables' => array('fbid' => NULL, 'uid' => NULL, 'image_style' => NULL),
-    ), 
+    ),
   );
 }
 
@@ -31,23 +31,16 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
  *   Similar to theme_user_picture but can take unique image style
  *   and doesn't require full user object.
  */
-function theme_dosomething_general_facebook_friend_pic($var) { 
+function theme_dosomething_general_facebook_friend_pic($var) {
   // Less overhead than user_load.
   $name = db_query('SELECT name from {users} WHERE uid = :uid', array(':uid' => $var['uid']))->fetchField();
   $filepath = 'https://graph.facebook.com/' . $var['fbid'] . '/picture?type=small';
   $alt = t("@names's picture", array('@name' => $name));
   if (module_exists('image') && $var['image_style']) {
-    $picture = theme('image_style', array('style_name' => $var['image_style'], 'path' => $filepath, 'alt' => $alt, 'title' => $alt));
+    $picture = theme('image_style', array('style_name' => $var['image_style'], 'path' => $filepath, 'alt' => $alt));
   }
   else {
-    $picture = theme('image', array('path' => $filepath, 'alt' => $alt, 'title' => $alt));
-  }
-  if (user_access('access user profiles')) {
-    $attributes = array(
-      'attributes' => array('title' => t('View user profile.')),
-      'html' => TRUE,
-    );
-    $picture = l($picture, "user/" . $var['uid'], $attributes);
+    $picture = theme('image', array('path' => $filepath, 'alt' => $alt));
   }
   return $picture;
 }
