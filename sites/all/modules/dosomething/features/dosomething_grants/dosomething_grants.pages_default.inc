@@ -399,7 +399,7 @@ function dosomething_grants_default_page_manager_pages() {
       'admin_title' => 'Club Grants',
       'title' => '',
       'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a class="grant-title" href="/club-grants">Club Grants</a>',
+<a class="grant-title" href="/node/718405">Club Grants</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
