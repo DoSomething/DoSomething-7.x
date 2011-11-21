@@ -17,11 +17,6 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
-.submitted,
-.field-label {
-  display: none;
-}
-
 .pane-content ul {
   padding-left: 3em;
 }
