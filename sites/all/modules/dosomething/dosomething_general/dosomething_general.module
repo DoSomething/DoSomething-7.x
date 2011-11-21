@@ -27,6 +27,14 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_user_delete().
+ */
+function dosomething_general_user_delete($account) {
+  // Ommitting $fbid deletes any existing associations.
+  dosomething_login_facebook_friend_process($account->uid);
+}
+
+/**
  * Return formatted photo of Facebook friend.
  *   Similar to theme_user_picture but can take unique image style
  *   and doesn't require full user object.
