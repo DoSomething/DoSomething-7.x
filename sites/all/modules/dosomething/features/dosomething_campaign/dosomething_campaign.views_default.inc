@@ -117,7 +117,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_logo']['field_api_classes'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['exclude'] = TRUE;
@@ -281,7 +281,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node_1']['id'] = 'view_node_1';
-  $handler->display->display_options['fields']['view_node_1']['table'] = 'node';
+  $handler->display->display_options['fields']['view_node_1']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node_1']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node_1']['label'] = '';
   $handler->display->display_options['fields']['view_node_1']['exclude'] = TRUE;
@@ -377,8 +377,8 @@ function dosomething_campaign_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'campaigns';
-  $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Current Campaigns';
+  $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
 
   /* Display: Related Campaigns Content pane */
@@ -455,7 +455,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['title']['link_to_node'] = 0;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['alter']['alter_text'] = 0;

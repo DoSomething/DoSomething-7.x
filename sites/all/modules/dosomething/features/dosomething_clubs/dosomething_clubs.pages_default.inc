@@ -448,7 +448,8 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Start a Club (auth. users)',
       'title' => 'Start or Join a Club',
-      'body' => '<a href="/node/add/club" title="Start a Club">Start a Club</a>',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/node/add/club" title="Start a Club">Start a Club</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -484,7 +485,8 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Start a Club (anon. users)',
       'title' => 'Start or Join a Club',
-      'body' => '<a href="/user" title="Log In">Log in</a>',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/user" title="Log In">Log in</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -507,7 +509,8 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Find a Club',
       'title' => '<none>',
-      'body' => '<a href="/clubs" title="Find a Club">Find a Club</a> ',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/clubs" title="Find a Club">Find a Club</a> ',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -530,7 +533,8 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Club Resources',
       'title' => 'Club Howtos',
-      'body' => '<a href="/clubs/resources" title="Club Resources">Club Resources</a>',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/clubs/resources" title="Club Resources">Club Resources</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -553,7 +557,8 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Club FAQs',
       'title' => '<none>',
-      'body' => '<a href="/clubs/resources/starting-faq" title="Club FAQs">Club FAQs</a>',
+      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/clubs/resources/starting-faq" title="Club FAQs">Club FAQs</a>',
       'format' => '3',
       'substitute' => TRUE,
     );

@@ -1186,7 +1186,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
   // If the user has logged in before, load their account and login.
   if (!$user->uid && $uid && ($account = user_load($uid))) {
     if ($fb_friends = fboauth_graph_query('me/friends', $access_token)) {
-      dosomething_login_facebook_friend_process($fb_friends->data, $uid);
+      dosomething_login_facebook_friend_process($uid, $fb_friends->data);
     }
     fboauth_login_user($account);
   }
@@ -1198,7 +1198,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
     // Logins will be denied if the user's account is blocked.
     if (fboauth_login_user($account)) {
       if ($fb_friends = fboauth_graph_query('me/friends', $access_token)) {
-        dosomething_login_facebook_friend_process($fb_friends->data, $account->uid);
+        dosomething_login_facebook_friend_process($account->uid, $fb_friends->data);
       }
       drupal_set_message(t("You've connected your account with Facebook."));
     }
@@ -1208,7 +1208,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
     if ($user->uid) {
       fboauth_save($user->uid, $fbuser->id);
       if ($fb_friends = fboauth_graph_query('me/friends', $access_token)) {
-        dosomething_login_facebook_friend_process($fb_friends->data, $user->uid);
+        dosomething_login_facebook_friend_process($user->uid, $fb_friends->data);
       }
       drupal_set_message(t("You've connected your account with Facebook."));
     }
@@ -1247,27 +1247,29 @@ function dosomething_login_register_facebook($form, &$form_state) {
 
 /**
  * Save Facebook friends if they have profiles in the system.
- * TODO: 2) delete when user deleted.
+ * Deletes entries for user if facebook_friends array is empty.
  */
-function dosomething_login_facebook_friend_process($facebook_friends = array(), $uid) {
-  // Remove old entries. 
+function dosomething_login_facebook_friend_process($uid, $facebook_friends = array()) {
+  // Remove old entries.
   db_delete('facebook_friends')
     ->condition('uid', $uid)
     ->execute();
 
-  // Get currently users currently registered through Facebook.
-  $local_results = db_select('fboauth_users')
-    ->fields('fboauth_users', array('fbid', 'uid'))
-    ->execute();
-  while ($local_result = $local_results->fetchObject()) {
-    $fb_user[$local_result->fbid] = $local_result->uid;
-  }
-  $query = db_insert('facebook_friends')->fields(array('uid', 'fbid'));
-  foreach($facebook_friends as $friend) {
-    // If user's friend has registered, save.
-    if (isset($fb_user[$friend->id])) {
-      $query->values(array('uid' => $uid, 'fbid' => $friend->id));
+  if (isset($facebook_friends)) {
+    // Get currently users currently registered through Facebook.
+    $local_results = db_select('fboauth_users')
+      ->fields('fboauth_users', array('fbid', 'uid'))
+      ->execute();
+    while ($local_result = $local_results->fetchObject()) {
+      $fb_user[$local_result->fbid] = $local_result->uid;
     }
+    $query = db_insert('facebook_friends')->fields(array('uid', 'fbid'));
+    foreach($facebook_friends as $friend) {
+      // If user's friend has registered, save.
+      if (isset($fb_user[$friend->id])) {
+        $query->values(array('uid' => $uid, 'fbid' => $friend->id));
+      }
+    }
+    $query->execute();
   }
-  $query->execute();
 }
