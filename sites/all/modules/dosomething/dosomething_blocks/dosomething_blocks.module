@@ -37,7 +37,7 @@ function dosomething_blocks_block_info() {
   );
   $blocks['dosomething_utility_bar'] = array(
      'info' => t('DoSomething Utility Bar'),
-      'cache' => DRUPAL_NO_CACHE,
+     'cache' => DRUPAL_NO_CACHE,
    );
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
