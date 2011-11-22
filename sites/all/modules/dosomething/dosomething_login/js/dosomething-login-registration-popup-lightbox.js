@@ -15,7 +15,7 @@
 
       popupForm.hide();
       // We need a special validator for the email/mobile number field.
-      jQuery.validator.addMethod("cell_or_email", function(value, element, params) { 
+      jQuery.validator.addMethod("cell_or_email", function(value, element, params) {
       var email = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i.test(value);
         // Check for no spaces or dashes.
         var phone = /^\d+$/.test(value) && value.length >= 10;
@@ -103,20 +103,20 @@
           year: {
             required: true,
             range: [date.getFullYear() - dateValidAge, date.getFullYear()]
-          },
+          }
         },
         messages: {
           day: {
             required: "",
-            range: "",
+            range: ""
           },
           month: {
             required: "",
-            range: "",
+            range: ""
           },
           year: {
             required: "",
-            range: "",
+            range: ""
           }
         }
       });
@@ -127,7 +127,7 @@
           first_name: "required",
           last_name: "required",
           cell_or_email: {
-            required: true,
+            required: true
           },
           day: {
             required: true,
@@ -140,29 +140,29 @@
           year: {
             required: true,
             range: [date.getFullYear() - dateValidAge, date.getFullYear()]
-          },
+          }
         },
         messages: {
           first_name: {
-            required: "",
+            required: ""
           },
           last_name: {
-            required: "",
+            required: ""
           },
           cell_or_email: {
-            required: "",
+            required: ""
           },
           day: {
             required: "",
-            range: "",
+            range: ""
           },
           month: {
             required: "",
-            range: "",
+            range: ""
           },
           year: {
             required: "",
-            range: "",
+            range: ""
           }
         }
       });

@@ -40,10 +40,6 @@
         interval: 100,
         timeout: 1000,
         over: function() {
-          var classes = $("#main-menu li:hover").attr("class").split(" ");
-          var menuClass = classes[0];
-          $secondaryMenu.addClass("hidden");
-          $("#secondary-menu-" + menuClass).removeClass("hidden");
           $causesMenu.hide();
 
           $("#main-menu li").hoverIntent({
@@ -59,14 +55,15 @@
               $secondaryMenu.addClass("hidden");
               $("#secondary-menu-" + menuClass).removeClass("hidden");
               $causesMenu.hide();
-            }
+            },
+            out: function() {}
           });
         },
         out: function() {
           $("#main-menu li").removeClass('active-hover');
           $secondaryMenu.addClass("hidden");
           $("nav .secondary .active").removeClass("hidden");
-          },
+          }
         });
 
       // Show and hide causes and issues dropdowns
