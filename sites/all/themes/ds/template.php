@@ -104,9 +104,9 @@ function ds_preprocess_page(&$variables) {
   }
   
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
-  if ($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450'] && $arg0 !== 'admin') {
+  if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && $arg0 !== 'admin') {
     // Add additional css class to 'Talk to Us' footer menu item.
-    $variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']['#attributes']['class'][0] .= ' talk-to-us';
+    $variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']['#attributes']['class'][] = 'talk-to-us';
     drupal_add_js(drupal_get_path('module', 'dosomething_blocks') .'/js/lets_talk_dialog.js', 'file');
   }
 }
