@@ -196,7 +196,7 @@ function dosomething_blog_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
@@ -337,10 +337,12 @@ function dosomething_blog_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => NULL,
-          'settings' => array(),
-          'type' => 'media_large',
-          'weight' => 18,
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'media',
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -686,7 +688,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -756,7 +758,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -819,7 +821,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -881,7 +883,7 @@ function dosomething_blog_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_table',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'hidden',

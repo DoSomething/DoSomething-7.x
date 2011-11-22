@@ -93,12 +93,12 @@ function dosomething_blog_default_page_manager_handlers() {
       'links' => 1,
       'page' => 1,
       'no_extras' => 0,
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => '<none>',
       'identifier' => '',
       'link' => 0,
       'leave_node_title' => 0,
-      'context' => 'argument_nid_1',
+      'context' => 'argument_entity_id:node_1',
       'build_mode' => 'full',
     );
     $pane->cache = array();
