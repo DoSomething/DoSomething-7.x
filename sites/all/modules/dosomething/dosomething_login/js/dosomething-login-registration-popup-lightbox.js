@@ -10,6 +10,8 @@
       var date = new Date();
       var dateValidAge = 90;
       var dateThreshold = new Date(date.getFullYear() - dateValidAge, 0, 1);
+      var date26 = new Date(date.getFullYear() - 26, date.getMonth(), date.getDate());
+      var date13 = new Date(date.getFullYear() - 13, date.getMonth(), date.getDate());
 
       popupForm.hide();
       // We need a special validator for the email/mobile number field.
@@ -34,12 +36,10 @@
 
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
-        // TODO: Force user to enter birthday
         popupForm.find('.dosomething-original-value').each(function() {
           var name = $(this).attr('name');
           var value = blockForm.find('input[name="' + name + '"]').val();
           $(this).val(value);
-          //$(this).attr('disabled', 'disabled');
         });
         var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
         if (birthDate.getTime() < dateThreshold.getTime()) {
@@ -50,12 +50,12 @@
         popupForm.dialog({modal:true, width:592});
 
         // Check if user is over 25.
-        if (date.getTime() - birthDate.getTime() > 819936000000) {
+        if (birthDate.getTime() <= date26.getTime()) {
           popupForm.find('.form-item, .captcha, .age-question').hide();
           popupForm.find('.ds-signup-always-show .form-item, .over-25-field, .over-25-field .form-item, .form-submit').show();
         }
         // Check if user is under 13.
-        else if (date.getTime() - birthDate.getTime() < 409968000000) {
+        else if (birthDate.getTime() >= date13.getTime()) {
           // Show/hide parent email based on birthday value.
           popupForm.find('.form-item, .captcha, .age-question').show();
           $("#edit-signup-title").hide();
