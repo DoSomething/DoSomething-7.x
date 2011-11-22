@@ -649,7 +649,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     }
     $form_state['values']['mail'] = $values['cell_or_email'];
   }
-  else if (($number = preg_replace('/[^0-9]/', '', $values['cell_or_email'])) && strlen($number) >= 10) {
+  else if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['cell_or_email']), 1)) && strlen($number) >= 10) {
     if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
     }
