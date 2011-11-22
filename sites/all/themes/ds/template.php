@@ -98,6 +98,10 @@ function ds_preprocess_page(&$variables) {
   if ($arg0 == 'action-finder') {
     drupal_add_css($theme_path . '/css/ds/page-action-finder.css');
   }
+  // project pages
+  if ($arg0 == 'webform-submission') {
+    drupal_add_css($theme_path . '/css/ds/dosomething-projects.css');
+  }
   
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
   if ($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450'] && $arg0 !== 'admin') {
