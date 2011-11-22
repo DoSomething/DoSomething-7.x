@@ -123,7 +123,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'start-a-project',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-3'] = $pane;

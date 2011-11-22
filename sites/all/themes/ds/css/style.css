@@ -2080,6 +2080,12 @@ body.node-type-project [role=main] .main-interior-sidebar {
 #ds-wider-thinner .panes-2 .panel-second {
   width: 25.072%;
 }
+#ds-wider-thinner .panes-2 .ds-internal-sidebar-flush-right #start-a-project, #ds-wider-thinner .panes-2 #blog-archives-pane #start-a-project {
+  text-align: center;
+}
+#ds-wider-thinner .panes-2 .ds-internal-sidebar-flush-right .pane-title, #ds-wider-thinner .panes-2 #blog-archives-pane .pane-title {
+  line-height: 1.5;
+}
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
 body.admin-menu {
