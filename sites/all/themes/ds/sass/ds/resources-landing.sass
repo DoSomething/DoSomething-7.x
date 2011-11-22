@@ -1,7 +1,6 @@
 @import setup
 
 @import partials/lib/extend/helpers
-@import partials/02-extend/dosomething
 @import partials/02-extend/jquery-selectbox
 
 #views-exposed-form-resources-panel-pane-1
@@ -23,7 +22,7 @@
   #edit-cause-wrapper,
   #edit-type-wrapper
     .selectBox-dropdown
-      @extend .ds-dropdown
+      +ds-dropdown
       cursor: pointer
       width: 25%
 
