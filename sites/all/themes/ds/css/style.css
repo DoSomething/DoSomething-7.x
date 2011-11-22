@@ -3043,6 +3043,9 @@ nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
   top: 30px;
   left: -9px;
 }
+.ie7 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
+  top: 23px;
+}
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
   list-style: none;
   margin-left: 0;
