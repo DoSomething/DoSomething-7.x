@@ -43,8 +43,8 @@ function dosomething_projects_general_webform_submission_access($node, $submissi
 function dosomething_projects_general_node_access($node, $op, $account) {
   if (is_object($node)) {
     // Allow node editing for 24 hours passed submission for project_updates.
-    if ($type == 'project_update' && $op == 'edit' && $node->uid == $account->uid) {
-      return REQUEST_TIME <= ($node->created + DS_PROJECTS_EDITABLE_TIME) ? NODE_ACCESS_ALLOW : NODE_ACCESS_DENY;
+    if ($node->type == 'project_update' && $op == 'update' && $node->uid == $account->uid) {
+      return (REQUEST_TIME <= $node->created + DS_PROJECTS_EDITABLE_TIME) ? NODE_ACCESS_ALLOW : NODE_ACCESS_DENY;
     }
   }
   return NODE_ACCESS_IGNORE;
