@@ -23,6 +23,7 @@ files[] = includes/sql_webform.inc
 
 files[] = migrations/campaign_signup.inc
 files[] = migrations/campaign_report_back.inc
+files[] = migrations/file.inc
 files[] = migrations/grant_application.inc
 files[] = migrations/intentions.inc
 files[] = migrations/json_user.inc

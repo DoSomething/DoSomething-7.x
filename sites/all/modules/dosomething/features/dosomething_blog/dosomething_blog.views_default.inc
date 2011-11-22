@@ -614,7 +614,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['arguments']['tid']['field'] = 'tid';
   $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
   $handler->display->display_options['arguments']['tid']['title_enable'] = 1;
-  $handler->display->display_options['arguments']['tid']['title'] = 'Blog Center: %1';
+  $handler->display->display_options['arguments']['tid']['title'] = 'AmazeBlog: %1';
   $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
   $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;

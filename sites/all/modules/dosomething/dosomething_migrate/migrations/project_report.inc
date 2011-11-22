@@ -5,8 +5,8 @@
 class DSProject extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('Project'), 'project');
-
     $this->description .= 'A volunteer project';
+    $this->dependencies[] = 'DSFile';
 
     // $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover')
     //   ->description('Select field keys are unchanged.');
@@ -22,7 +22,8 @@ class DSProject extends DSJsonWebformMigration {
     $this->addFieldMapping('field_num_people_inspired', 'field_num_people_inspired'); # Field: How many people have you inspired to take action? (number_integer)
     $this->addFieldMapping('field_others_involved', 'field_others_involved'); # Field: How Can Others Help? (text_long)
     $this->addFieldMapping('field_picture', 'field_project_photo') # Field: Project Photo (image)
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('field_project_related_campaign', 'field_related_campaign');
     $this->addFieldMapping('field_project_inspiration', 'field_inspired_by_dosomething'); # Field: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (list_text)
     $this->addFieldMapping('field_project_report_zip', 'locations'); # Field: Locations (text)

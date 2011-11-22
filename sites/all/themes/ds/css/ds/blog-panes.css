@@ -262,3 +262,11 @@
 .ds-pane-no-padding .view-content {
   padding-right: 1em;
 }
+
+/*Blog Node Styles */
+.node-type-blog h1 {
+  color: black;
+}
+.node-type-blog .field-name-field-picture img {
+  border: 5px solid white;
+}

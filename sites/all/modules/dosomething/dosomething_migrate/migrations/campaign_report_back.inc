@@ -45,6 +45,7 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
   public function __construct() {
     parent::__construct('campaign_bfb_2011');
     $this->description .= 'Campaign Project - Battle for the Bands 2011';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_school_group_name', 'title');
     $this->addFieldMapping('data_is_this_address_school_or_home', 'field_campaign_address_type')
@@ -80,7 +81,8 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     //NULL Mappings
     $this->addUnmigratedSources(array('field_campaign_group', 'field_campaign_project_type'));
@@ -92,6 +94,7 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
   public function __construct() {
     parent::__construct('campaign_ebd_2011');
     $this->description .= 'Campaign Project - Epic Book Drive 2011';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_school_group_name', 'field_campaign_group');
     $this->addFieldMapping('data_why_is_educational_equality_important_to_you', 'field_campaign_essay_why');
@@ -110,7 +113,8 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
@@ -122,6 +126,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
   public function __construct() {
     parent::__construct('campaign_gys_2011');
     $this->description .= 'Campaign Project - Green Your School 2011';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_your_school', 'title');
     $this->addFieldMapping('data_number_of_people_involved_in_this_project', 'field_campaign_number_of_people');
@@ -134,7 +139,8 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
 
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_issues', 'vocab_5');
@@ -148,6 +154,7 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
   public function __construct() {
     parent::__construct('campaign_hunt_2011');
     $this->description .= 'Campaign Project - Scavenger Hunt 2011';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_which_of_this_days_challenges_did_you_complete', 'field_which_challenge');
     $this->addFieldMapping('data_team_name', 'title');
@@ -165,7 +172,8 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
       ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_issues', 'vocab_5');
@@ -179,6 +187,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
   public function __construct() {
     parent::__construct('canned_food');
     $this->description .= 'Canned Food Drive Report (Tackle Hunger)';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_name_of_school_or_group', 'title');
     $this->addFieldMapping('data_your_first_and_last_name', 'field_cannedfood_contactname');
@@ -200,7 +209,8 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
     $this->addFieldMapping('field_webform_email', 'field_email_1');
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
     $this->addFieldMapping('field_webform_pictures', 'field_fooddrive_photo')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
       ->arguments(array('file_function' => 'file_fid'));
 
@@ -225,6 +235,7 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
   public function __construct() {
     parent::__construct('healthy_schools_report');
     $this->description .= 'Healthy Schools Report Back';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_project_name', 'field_healthy_schools_report_na');
     $this->addFieldMapping('data_city', 'field_campaign_city');
@@ -238,7 +249,8 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
 
     $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone_0');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
 
@@ -284,6 +296,7 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
   public function __construct() {
     parent::__construct('save_our_music');
     $this->description .= 'Save Our Music';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_school_you_attend', 'field_school');
     $this->addFieldMapping('data_first_name', 'field_name');
@@ -311,7 +324,8 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video')
       ->arguments(array('file_function' => 'file_fid'));
     $this->addFieldMapping('field_webform_pictures', 'field_project_photo')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
@@ -323,6 +337,7 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
   public function __construct() {
     parent::__construct('sfs_report_gallery');
     $this->description .= 'Staples for Students Image Submission';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_drive_or_school_name', 'title');
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_school_supply_drive', 'field_campaign_number_of_people');
@@ -332,7 +347,8 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
     $this->addFieldMapping('field_webform_school_zip', 'locations')
       ->description('Pulling the zip code out of the locations in prepareRow()');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'data_pictures_from_your_drive', 'field_webform_issues'));
@@ -365,6 +381,7 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
   public function __construct() {
     parent::__construct('tfj_contest_signup');
     $this->description .= 'Teens for Jeans Contest Signup';
+    $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('data_name_of_your_school_or_group', 'title');
     $this->addFieldMapping('data_full_name', 'field_campaign_name');
@@ -381,7 +398,8 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
-      ->arguments(array('file_function' => 'file_fid'));
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
 
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_videos', 'field_webform_school_zip', 'field_webform_issues'));
