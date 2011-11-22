@@ -17,7 +17,7 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
-.pane-content .block-pair {
+.pane-2 .block-pair {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
@@ -30,20 +30,20 @@
   width: 31%;
   margin-right: 3%;
 }
-.pane-content .block-pair {
+.pane-2 .block-pair {
   *display: inline;
 }
-.pane-content .block-pair:nth-of-type(even) a.members-only {
+.pane-2 .block-pair:nth-of-type(even) a.members-only {
   background-color: #5f5c58;
 }
-.pane-content .block-pair.last {
+.pane-2 .block-pair.last {
   margin-right: 0;
 }
-.pane-content img {
+.pane-2 img {
   width: 215px;
   height: 102px;
 }
-.pane-content a.members-only {
+.pane-2 a.members-only {
   color: white;
   cursor: pointer;
   display: block;
@@ -58,6 +58,6 @@
   text-transform: uppercase;
   font-weight: 500;
 }
-.pane-content a.members-only:visited, .pane-content a.members-only:hover {
+.pane-2 a.members-only:visited, .pane-2 a.members-only:hover {
   color: white;
 }
