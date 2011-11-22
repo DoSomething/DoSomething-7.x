@@ -23,25 +23,33 @@
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  background: #8e8a86 url('../images/triangle-mask-up.png') no-repeat center top;
   color: white;
-  height: 3.75em;
   margin-top: -0.083em;
+  margin-bottom: 2.917em;
   overflow: hidden;
-  padding: 1.333em 1em 0.667em;
-  width: 29%;
+  width: 31%;
+  margin-right: 3%;
 }
 .pane-content .block-pair {
   *display: inline;
 }
-.pane-content .block-pair:nth-of-type(even) {
+.pane-content .block-pair:nth-of-type(even) a.members-only {
   background-color: #5f5c58;
 }
-.pane-content a {
+.pane-content .block-pair.last {
+  margin-right: 0;
+}
+.pane-content img {
+  width: 215px;
+  height: 102px;
+}
+.pane-content a.members-only {
   color: white;
   cursor: pointer;
   display: block;
-  margin-top: 0.7em;
+  height: 1.667em;
+  background: #8e8a86 url('../images/triangle-mask-up.png') no-repeat center top;
+  padding: 1.5em 1em 0.667em;
   text-align: center;
   font-size: 1.5em;
   line-height: 1.333em;
@@ -50,6 +58,6 @@
   text-transform: uppercase;
   font-weight: 500;
 }
-.pane-content a:visited, .pane-content a:hover {
+.pane-content a.members-only:visited, .pane-content a.members-only:hover {
   color: white;
 }
