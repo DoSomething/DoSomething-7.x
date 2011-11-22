@@ -267,6 +267,6 @@
 .node-type-blog h1 {
   color: black;
 }
-.node-type-blog .field-name-field-picture {
-  border: 7px solid white;
+.node-type-blog .field-name-field-picture img {
+  border: 5px solid white;
 }
