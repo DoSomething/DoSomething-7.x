@@ -101,6 +101,7 @@ function dosomething_general_webform_validate($form, &$form_state) {
  * for updating the user profile objects of the author
  */
 function dosomething_general_webform_email_and_mail_validate(&$form, &$form_state) {
+  global $user;
   // If the email is set, make sure we can update the user's email address.
   if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
     $mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
@@ -133,4 +134,42 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
     $user->mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
     user_save($user);
   }
+}
+
+/**
+ * Generic handler that uses field_webform_email and field_webform_mobile
+ * combined with the $node values for inserting values into InfusioSoft
+ * and/or Mobile Commons
+ */
+function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
+  $mc_campaign = $form['#node']->field_mc_campaign[LANGUAGE_NONE][0]['value'];
+  $mc_opt_in = $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'];
+  $inf_action = $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'];
+
+  $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  $cell = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  
+  // make sure all of the required values are set in the node and submission
+  if (!empty($mc_campaign) && !empty($mc_opt_in) && !empty($cell)) {
+    dosomething_general_mobile_commons_subscribe($cell, $mc_campaign, $mc_opt_in);
+  }
+  if (!empty($inf_action) && !empty($email)) {
+    dosomething_general_infusionsoft_subscribe($email, $inf_action);
+  }
+}
+
+/**
+ * Subscribe an email address to InfusionSoft using an action.
+ * Note: tags are assigned in InfusionSoft via the action, not in Drupal.
+ */
+function dosomething_general_infusionsoft_subscribe($email, $action) {
+  // TODO: do work
+}
+
+/**
+ * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
+ * configured opt-in path.
+ */
+function dosomething_general_mobile_commons_subscribe($mobile, $campaign, $opt_in_path) {
+  // TODO: do work
 }
