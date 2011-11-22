@@ -693,6 +693,49 @@ img.goleft {
   padding: 10px;
 }
 
+.stripes-list {
+  border-color: #bcbcbc;
+  border-style: solid;
+  border-width: 1px 0;
+  clear: both;
+}
+.stripes-list > li:nth-child(2n) {
+  background-color: #d1d1d1;
+}
+.stripes-list > li:nth-child(2n+1) {
+  background-color: #e3e3e3;
+}
+
+ol.stripes-list {
+  counter-reset: item;
+  margin-left: 0;
+  padding-left: 0;
+}
+ol.stripes-list > li {
+  display: block;
+  padding-left: 4em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+ol.stripes-list > li:before {
+  color: #005dab;
+  font-size: 1.5em;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  content: counter(item) ".";
+  counter-increment: item;
+  margin-left: -3em;
+  padding-right: 0.5em;
+  width: 2.5em;
+  text-align: right;
+}
+ol.stripes-list > li:before {
+  *display: inline;
+}
+
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
