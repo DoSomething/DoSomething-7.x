@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_awesome_things_action_updates.views_default.inc
+ * dosomething_awesome_things_action_update.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function dosomething_awesome_things_action_updates_views_default_views() {
+function dosomething_awesome_things_action_update_views_default_views() {
   $export = array();
 
   $view = new view;
@@ -62,8 +62,8 @@ function dosomething_awesome_things_action_updates_views_default_views() {
   $handler->display->display_options['fields']['field_webform_pictures']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_webform_pictures']['settings'] = array(
     'image_style' => 'campaign_report_back_style',
-      'image_link' => '',
-      );
+    'image_link' => '',
+  );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_webform_pictures']['delta_reversed'] = 0;
@@ -91,8 +91,8 @@ function dosomething_awesome_things_action_updates_views_default_views() {
   $handler->display->display_options['filters']['type']['relationship'] = 'nid';
   $handler->display->display_options['filters']['type']['value'] = array(
     'campaign_report_back' => 'campaign_report_back',
-      'project_report' => 'project_report',
-      );
+    'project_report' => 'project_report',
+  );
   /* Filter criterion: Webform Submission: Issues (field_webform_issues) */
   $handler->display->display_options['filters']['field_webform_issues_tid']['id'] = 'field_webform_issues_tid';
   $handler->display->display_options['filters']['field_webform_issues_tid']['table'] = 'field_data_field_webform_issues';
@@ -111,8 +111,7 @@ function dosomething_awesome_things_action_updates_views_default_views() {
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['inherit_panels_path'] = '1';
-
-  $export['campain_report_back'] = $view;
+  $export['campaign_report_back'] = $view;
 
   return $export;
 }

@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the dosomething_awesome_things_action_updates feature.
- */
-
-include_once('dosomething_awesome_things_action_updates.features.inc');
