@@ -2858,6 +2858,9 @@ nav[role=navigation] .primary .wrapper {
   display: table;
   width: 100%;
 }
+.ie7 nav[role=navigation] .primary .wrapper {
+  display: block;
+}
 nav[role=navigation] .secondary {
   background-color: #014e9c;
   padding-left: 22.162%;
@@ -2975,6 +2978,11 @@ nav[role=navigation] .secondary ul .ds-nav-dropdown li a:active {
   min-height: 1.517em;
   padding-right: 0.103em;
   padding-left: 0;
+}
+.ie7 #main-menu {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 #main-menu li {
   display: table-cell;
