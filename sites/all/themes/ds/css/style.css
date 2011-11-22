@@ -2175,7 +2175,7 @@ body.admin-menu {
   position: absolute;
   top: -33px;
   left: -17px;
-  z-index: 100;
+  z-index: 1000;
 }
 #site-name a {
   text-indent: -119988px;
@@ -2831,6 +2831,7 @@ nav[role=navigation] {
   position: relative;
   background-color: #005ba9;
   font-weight: 500;
+  z-index: 100;
 }
 .ie8 nav[role=navigation], .ie7 nav[role=navigation] {
   width: 925px;
