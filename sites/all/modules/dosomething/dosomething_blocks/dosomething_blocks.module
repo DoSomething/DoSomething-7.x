@@ -396,7 +396,6 @@ function dosomething_blocks_login() {
   else {
     $output['#markup'] = l('Log out', 'user/logout');
   }
-dsm($output);
   return $output;
 }
 
