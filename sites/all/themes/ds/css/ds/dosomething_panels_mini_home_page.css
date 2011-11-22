@@ -836,6 +836,9 @@ img.goleft {
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
   display: none;
 }
+#dosomething-blocks-make-an-impact-form-front .form-item, #dosomething-blocks-make-an-impact-form-front .form-actions {
+  margin: 0 auto;
+}
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
 #dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
 #dosomething-blocks-make-an-impact-form-front .form-item-where label,
