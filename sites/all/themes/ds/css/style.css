@@ -3011,6 +3011,10 @@ nav[role=navigation] .secondary ul .ds-nav-dropdown li a:active {
 #main-menu li a:active {
   color: white;
 }
+.ie7 #main-menu li a {
+  padding-left: 17px;
+  padding-right: 17px;
+}
 #main-menu li a.active {
   color: white;
 }
