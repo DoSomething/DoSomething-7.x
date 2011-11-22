@@ -305,7 +305,6 @@ function dosomething_user_my_somethings_get_submissions($uid, $type, $title_fiel
   $submissions = array();
   if (is_array($statuses)) {
     $available_statuses = array(
-      1 => 'volunteer experience',
       2 => 'project idea',
       3 => 'ongoing project',
       4 => 'completed project',

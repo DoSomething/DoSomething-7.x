@@ -1930,7 +1930,6 @@ The content from this field will only be shown to anonymous users.',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          1 => 'volunteer experience',
           2 => 'project idea',
           3 => 'ongoing project',
           4 => 'completed project',
