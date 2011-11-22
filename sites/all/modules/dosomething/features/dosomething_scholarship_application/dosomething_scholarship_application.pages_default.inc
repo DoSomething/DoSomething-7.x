@@ -237,27 +237,24 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grant Resources',
-      'title' => 'Grant Resources',
-      'body' => '<div class="grant-resource">
+      'admin_title' => 'Scholarship Resources',
+      'title' => 'Scholarship Resources',
+      'body' => '<div class="scholarship-resource">
 <img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
 <a href="/node/677927" title="FAQ">FAQ</a>
 </div>
 
-<div class="grant-resource">
+<div class="scholarship-resource">
 <img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
 <a href="/node/652078" title="Paying for School">Paying for School</a>
 </div>
 
-<div class="grant-resource">
+<div class="scholarship-resource">
 <img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
 <a href=" " title="Scholarship DB">Scholarships DB</a>
 </div>
 
-<div class="grant-resource">
-<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href="/node/653129" title="Additional Resources">Additional Resources</a>
-</div>
+
 ',
       'format' => '3',
       'substitute' => TRUE,
@@ -268,7 +265,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'grant-resources',
+      'css_class' => 'scholarship-resources',
     );
     $pane->extras = array();
     $pane->position = 1;
@@ -276,6 +273,35 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $display->panels['bottom'][1] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
+    $pane->panel = 'bottom';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Past Winners',
+      'title' => 'Past Winners',
+      'body' => '<div class="scholarship-resource">
+<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+<a href="/awesome-things/action-updates" title="Past Winner">Past Winners</a>
+</div>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'past-winners',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['bottom'][2] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -295,10 +321,10 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['mid-left'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-left'][0] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'editorial_content_scholarships-panel_pane_1';
@@ -315,10 +341,10 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['mid-right'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['mid-right'][0] = 'new-5';
     $pane = new stdClass;
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -335,10 +361,10 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][0] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-4';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['scholarships'] = $page;

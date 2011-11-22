@@ -1153,6 +1153,82 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project'
+  $fields['webform_submission_entity-scholarship_application-field_webform_project'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_project',
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'module' => 'node_reference',
+      'settings' => array(
+        'referenceable_types' => array(
+          'article' => 0,
+          'campaign_report_back' => 0,
+          'campaign_sign_up' => 0,
+          'grant_application' => 0,
+          'page' => 0,
+          'scholarship_application' => 0,
+          'webform' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'node_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => 11,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_project',
+      'label' => 'Your DoSomething project posting',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'node_reference',
+        'settings' => array(
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'node_reference/autocomplete',
+          'size' => '60',
+        ),
+        'type' => 'node_reference_autocomplete',
+        'weight' => '10',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project_summary'
   $fields['webform_submission_entity-scholarship_application-field_webform_project_summary'] = array(
     'field_config' => array(
