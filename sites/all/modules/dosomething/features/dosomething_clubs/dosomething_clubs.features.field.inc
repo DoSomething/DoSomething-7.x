@@ -1512,7 +1512,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => '98651',
+        'default_image' => '98738',
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',
