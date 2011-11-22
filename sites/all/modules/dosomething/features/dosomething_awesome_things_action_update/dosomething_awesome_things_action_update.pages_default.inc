@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_awesome_things_action_updates.pages_default.inc
+ * dosomething_awesome_things_action_update.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_pages().
  */
-function dosomething_awesome_things_action_updates_default_page_manager_pages() {
+function dosomething_awesome_things_action_update_default_page_manager_pages() {
   $page = new stdClass;
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
@@ -70,17 +70,13 @@ function dosomething_awesome_things_action_updates_default_page_manager_pages() 
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['left'][1] = 'new-2';
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left'][0] = 'new-1';
     $pane = new stdClass;
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-2';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -97,10 +93,10 @@ function dosomething_awesome_things_action_updates_default_page_manager_pages() 
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['top'][0] = 'new-3';
+    $display->content['new-2'] = $pane;
+    $display->panels['top'][0] = 'new-2';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['action_updates'] = $page;

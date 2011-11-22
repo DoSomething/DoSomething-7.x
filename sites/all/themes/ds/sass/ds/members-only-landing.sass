@@ -1,22 +1,30 @@
 @import setup
 
-.pane-content
+.pane-2
   .block-pair
     +inline-block
-    background: $gray2 image_url('triangle-mask-up.png') no-repeat center top
     color: $white
-    height: calc-em(45px, $s0)
     margin-top: calc-em(-1px, $s0)
+    margin-bottom: calc-em(35px, $s0)
     overflow: hidden
-    padding: calc-em(16px, $s0) calc-em(12px, $s0) calc-em(8px, $s0)
-    width: 29%
+    width: 31%
+    margin-right: 3%
     &:nth-of-type(even)
-      background-color: $gray
-  a
+      a.members-only
+        background-color: $gray
+    &.last
+      margin-right: 0
+  img
+    width: 215px
+    height: 102px
+  a.members-only
     color: $white
     cursor: pointer
     display: block
-    margin-top: 0.7em
+    height: calc-em(20px, $s0)
+    background: $gray2 image_url('triangle-mask-up.png') no-repeat center top
+    //margin-top: 0.7em
+    padding: calc-em(18px, $s0) calc-em(12px, $s0) calc-em(8px, $s0)
     text-align: center
     +adjust-font-size-to($s2)
     font-family: $font-headline
