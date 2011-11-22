@@ -20,7 +20,9 @@ function dosomething_blog_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
-      'field_permissions' => array(),
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -70,14 +72,15 @@ function dosomething_blog_field_default_fields() {
       'label' => 'Body',
       'required' => 0,
       'settings' => array(
-        'display_summary' => TRUE,
-        'text_processing' => 1,
+        'display_summary' => 1,
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => 20,
+          'rows' => '20',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
@@ -497,7 +500,7 @@ function dosomething_blog_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => NULL,
+        'default_image' => 0,
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',
@@ -721,7 +724,7 @@ function dosomething_blog_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'indexes' => array(
         'tid' => array(
@@ -732,8 +735,8 @@ function dosomething_blog_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => 0,
             'vocabulary' => 'vocabulary_5',
+            'parent' => 0,
           ),
         ),
         'profile2_private' => FALSE,
