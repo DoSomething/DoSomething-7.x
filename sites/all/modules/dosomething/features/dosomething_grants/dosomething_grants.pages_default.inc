@@ -398,7 +398,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Club Grants',
       'title' => '',
-      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+      'body' => '<a href="/node/718405"><img src="sites/all/themes/ds/css/images/grants-club.jpg"></a>
 <a class="grant-title" href="/node/718405">Club Grants</a>',
       'format' => '3',
       'substitute' => TRUE,
@@ -422,8 +422,8 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Grants Judging Criteria',
       'title' => 'Grant Resources',
-      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a class="grant-title" href="">Judging Criteria</a>',
+      'body' => '<a  href="/node/312404"><img src="sites/all/themes/ds/css/images/grants-judging.jpg"></a>
+<a class="grant-title" href="/node/312404">Judging Criteria</a>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -446,7 +446,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Grants FAQ',
       'title' => '',
-      'body' => '<img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
+      'body' => '<a href="/node/433975"><img src="sites/all/themes/ds/css/images/grants-faq.jpg"></a>
 <a class="grant-title" href="/node/433975">Grants FAQ</a>',
       'format' => '3',
       'substitute' => TRUE,
@@ -538,7 +538,9 @@ function dosomething_grants_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'ds-pane ds-pane-usergen',
