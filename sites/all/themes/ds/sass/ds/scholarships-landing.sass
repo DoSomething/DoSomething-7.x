@@ -17,16 +17,20 @@
     .views-field-field-editorial-image
       float: left
       margin-right: 1em
-          
+
+  .pane-scholarships-panel-pane-1
+    width: 100%
+    float: left
   .view-scholarships.view-display-id-panel_pane_1
     .views-row
       float: left
       display: inline
       width: 50%
+      margin-bottom: 2em
       .views-field-field-picture
         float: left
       .scholarships-wrapper
-        background: image_url('bg-arrowblock-dark.png') no-repeat 
+        background: image_url('bg-arrowblock-dark.png') no-repeat
         float: left
         height: 98px
         padding: 10px 10px 0 20px
@@ -37,41 +41,42 @@
         +adjust-font-size-to($s1)
         .scholarships-title
           +adjust-font-size-to($s1)
-          font-weight: 500 
+          font-weight: 500
         a
-          color: $white    
-    .views-row:nth-of-type(odd)  
+          color: $white
+    .views-row:nth-of-type(odd)
       .scholarships-wrapper
         background: image_url('bg-arrowblock-dark.png') no-repeat
-    .views-row:nth-of-type(even)  
+    .views-row:nth-of-type(even)
       .scholarships-wrapper
         background: image_url('bg-arrowblock-light.png') no-repeat
 
-  .grant-resources
+  .scholarship-resources, .past-winners
     clear: both
     float: left
-    .grant-resource
-      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top 
+    width: 100%
+    .scholarship-resource
+      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
       float: left
       width: 50%
       margin-bottom: 2em
-      +adjust-font-size-to($s2)
       font-family: $font-headline
       text-rendering: optimizeLegibility
       text-transform: uppercase
-      font-weight: 500 
+      font-weight: 500
       +inline-block
       img
         width: 170px
         height: 108px
         float: left
       a
+        +adjust-font-size-to($s2)
         float: left
         color: $white
         height: 79px
         padding: 10px 10px 0 20px
         width: 143px
     .grant-resource:nth-of-type(odd)
-      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top 
+      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
     .grant-resource:nth-of-type(even)
-      background: image_url('bg-arrowblock-light.png') no-repeat 98% top 
+      background: image_url('bg-arrowblock-light.png') no-repeat 98% top
