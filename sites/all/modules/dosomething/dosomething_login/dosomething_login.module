@@ -248,7 +248,7 @@ function dosomething_login_user_login_validate($form, &$form_state) {
       form_set_value($form['name'], $name, $form_state);
     }
     // TODO: Only remove spaces, parentheses and dashes in regex
-    else if (($number = preg_replace('/[^0-9]/', '', $form_state['values']['name'])) && strlen($number) >= 10) {
+    else if (($number = ltrim(preg_replace('/[^0-9]/', '', $form_state['values']['name']), 1)) && strlen($number) >= 10) {
       if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile.com'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
         form_set_value($form['name'], $name, $form_state);
       }
@@ -271,7 +271,7 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
   $profile = isset($form_state['profiles']['main']) ? $form_state['profiles']['main'] : NULL;
   if (isset($form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
     $entered_number = $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
-    $number = preg_replace('/[^0-9]/', '', $entered_number);
+    $number = ltrim(preg_replace('/[^0-9]/', '', $entered_number), 1);
     if (strlen($number) >= 10) {
 
       // @see dosomething_login_find_user_by_cell
@@ -322,7 +322,7 @@ function dosomething_login_find_user_by_cell($number) {
   // replace the the non-digits in the values that we're searching.
   // We may have to use this check elsewhere.  If so, we can break
   // it out into a separate function.
-  $number = preg_replace('/[^0-9]/', '', $number);
+  $number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
   $replace_characters = array('+', '.', '-', ' ', ')', '(');
   $replace = "m.field_user_mobile_value";
   foreach ($replace_characters as $char) {
@@ -878,7 +878,7 @@ function dosomething_login_get_cell_phone_number($account, $profile = NULL) {
   }
   if (is_object($profile)) {
     $numbers = field_get_items('profile2', $profile, 'field_user_mobile');
-    $number = isset($numbers[0]['value']) ? preg_replace('/[^0-9]/', '', $numbers[0]['value']) : FALSE;
+    $number = isset($numbers[0]['value']) ? ltrim(preg_replace('/[^0-9]/', '', $numbers[0]['value']), 1) : FALSE;
   }
   return $number;
 }
