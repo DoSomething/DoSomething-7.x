@@ -25,7 +25,19 @@
   float: left;
   width: 530px;
 }
-.panel-2col#project-page .panel-col-first .project-status-ribbon {
+.panel-2col#project-page .panel-col-first #project-status-ribbon {
   width: 100%;
   background-color: #d1d1d1;
+}
+.panel-2col#project-page .panel-col-first #project-status-ribbon div {
+  display: inline;
+  font-size: 1.3em;
+  padding: 0.5em;
+}
+.panel-2col#project-page .panel-col-first #project-status-ribbon span {
+  display: block;
+}
+.panel-2col#project-page .panel-col-first #project-status-ribbon .project-status {
+  color: white;
+  background: #652e72;
 }

@@ -87,7 +87,7 @@ function dosomething_project_report_views_default_views() {
     'prefix_suffix' => 1,
   );
   $handler->display->display_options['fields']['field_update_people_involved']['field_api_classes'] = 0;
-  /* Field: Field: How many people has your project helped?   */
+  /* Field: Field: How many people has your project helped? */
   $handler->display->display_options['fields']['field_num_people_impacted']['id'] = 'field_num_people_impacted';
   $handler->display->display_options['fields']['field_num_people_impacted']['table'] = 'field_data_field_num_people_impacted';
   $handler->display->display_options['fields']['field_num_people_impacted']['field'] = 'field_num_people_impacted';

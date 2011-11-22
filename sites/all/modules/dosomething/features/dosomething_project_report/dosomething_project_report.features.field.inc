@@ -1027,7 +1027,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => NULL,
+        'default_image' => 0,
         'description_field' => '0',
         'list_default' => 1,
         'list_field' => '0',
@@ -2181,7 +2181,7 @@ Use numbers only (no text).',
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'indexes' => array(
         'tid' => array(
@@ -2192,8 +2192,8 @@ Use numbers only (no text).',
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => 0,
             'vocabulary' => 'vocabulary_5',
+            'parent' => 0,
           ),
         ),
         'profile2_private' => FALSE,
