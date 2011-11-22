@@ -470,7 +470,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Past Winners - Grant Winners',
       'title' => 'Past Winners',
-      'body' => '<img src="sites/all/themes/ds/css/images/grants-past-winners.jpg">
+      'body' => '<a href="/awesome-things/action-updates"><img src="sites/all/themes/ds/css/images/grants-past-winners.jpg"></a>
 <a class="grant-title" href="/awesome-things/action-updates" title="Grant Winners">Grant Winners</a>
 ',
       'format' => '3',
@@ -495,7 +495,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Do Something Award Winners',
       'title' => '',
-      'body' => '<img src="sites/all/themes/ds/css/images/grants-past-winners.jpg">
+      'body' => '<a href="/awesome-things/action-updates"><img src="sites/all/themes/ds/css/images/grants-past-winners.jpg"></a>
 <a class="grant-title" href="/awesome-things/action-updates" title="Do Something Award Winners">Do Something Award Winners</a>
 ',
       'format' => '3',
