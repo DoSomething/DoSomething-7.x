@@ -84,7 +84,7 @@ function dosomething_projects_general_views_default_views() {
   /* Display: Get Inspired Block */
   $handler = $view->new_display('block', 'Get Inspired Block', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Get Inspired';
+  $handler->display->display_options['title'] = 'Actions You Can Do';
   $handler->display->display_options['display_description'] = 'Displays a list of action guides';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
@@ -157,7 +157,7 @@ function dosomething_projects_general_views_default_views() {
   /* Display: Get The Facts Block */
   $handler = $view->new_display('block', 'Get The Facts Block', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Get the Facts ';
+  $handler->display->display_options['title'] = 'Related Resources';
   $handler->display->display_options['display_description'] = 'Displays a list of Tips and Tools, 11 Facts content.';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
