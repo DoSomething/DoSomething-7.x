@@ -213,7 +213,7 @@ function dosomething_causes_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'indexes' => array(
         'tid' => array(
@@ -224,8 +224,8 @@ function dosomething_causes_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => 0,
             'vocabulary' => 'vocabulary_5',
+            'parent' => 0,
           ),
         ),
         'profile2_private' => FALSE,
@@ -281,6 +281,9 @@ function dosomething_causes_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'taxonomyextra',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
