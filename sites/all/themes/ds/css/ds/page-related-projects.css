@@ -20,6 +20,7 @@
 .view-related-projects .views-row {
   *zoom: 1;
   background: url('../images/triangle-mask-left.png') no-repeat 19% center, #8e8a86;
+  background-color: #8e8a86;
   height: 6.5em;
   margin-bottom: 2em;
   width: 100%;
