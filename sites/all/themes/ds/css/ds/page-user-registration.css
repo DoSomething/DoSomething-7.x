@@ -49,3 +49,20 @@
 #dosomething-login-register-popup-form .form-submit {
   margin-bottom: 1em;
 }
+#dosomething-login-register-popup-form .ds-registration-form-required {
+  display: inline;
+  float: left;
+}
+#dosomething-login-register-popup-form .form-item-first-name {
+  display: inline;
+  float: left;
+  clear: both;
+}
+#dosomething-login-register-popup-form .form-item-last-name {
+  display: inline;
+  float: left;
+  clear: both;
+}
+#dosomething-login-register-popup-form .form-item-cell-or-email {
+  clear: both;
+}
