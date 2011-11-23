@@ -73,7 +73,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Edit Profile link',
       'title' => '',
-      'body' => '<a href="/user/%user:uid/edit/main" class="ds-button">EDIT PROFILE</a>',
+      'body' => '<a class="ds-button-strong" href="/user/%user:uid/edit/main" class="ds-button">EDIT PROFILE</a>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -81,7 +81,10 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'edit-profile',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
