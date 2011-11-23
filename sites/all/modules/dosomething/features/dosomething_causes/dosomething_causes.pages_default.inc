@@ -22,7 +22,7 @@ function dosomething_causes_default_page_manager_handlers() {
     'title' => 'Cause page',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(
       0 => array(
