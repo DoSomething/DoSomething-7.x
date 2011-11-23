@@ -66,6 +66,9 @@ nav[role=navigation]
         text-transform: none
         left: 2px
         padding: 0 0.5em
+        text-align: left
+        .secondary .first &, .secondary :first-child &
+          left: -10px
         &:active
           background-color: none
         li
@@ -74,8 +77,10 @@ nav[role=navigation]
           list-style-image: none
           white-space: nowrap
           float: none
-          padding-left: 0em
-          padding-right: 0em
+          padding-left: 0.5em
+          padding-right: 0.5em
+          margin-left: -0.5em
+          margin-right: -0.5em
           &:hover
             background: $blue-light
           a
@@ -86,6 +91,8 @@ nav[role=navigation]
             padding-bottom: calc-em(10px, $s4)
             padding-left: 0
             padding-right: 0
+  .secondary .first .ds-nav-dropdown
+    left: -10px
 
 
 .secondary-menu-inactive
