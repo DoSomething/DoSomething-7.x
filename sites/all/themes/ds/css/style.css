@@ -2195,6 +2195,18 @@ body.admin-menu {
   border-bottom: none;
 }
 
+.not-front #main-wrapper {
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(22.162%, #222222), color-stop(22.162%, rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
+  background-image: -moz-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
+  background-image: -o-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
+  background-image: -ms-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
+  background-image: linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
+}
+.ie9 .not-front #main-wrapper, .ie8 .not-front #main-wrapper, .ie7 .not-front #main-wrapper {
+  background-image: url('images/bg-main-wrapper.png');
+}
+
 div[role=main] {
   background-color: #e3e3e3;
   padding-left: 1.667%;

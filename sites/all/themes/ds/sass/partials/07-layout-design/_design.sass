@@ -84,6 +84,11 @@ body
     display: block
     +remove-link-underlines
 
+.not-front #main-wrapper
+  +background-image(linear-gradient(left, $gray-dark percentage($left-col-width / $page-width), rgba($black, 0) percentage($left-col-width / $page-width)))
+  .ie9 &, .ie8 &, .ie7 &
+    background-image: image_url('bg-main-wrapper.png')
+
 div[role=main]
   background-color: $c-content-bg
   padding-left: percentage($s0 / $main-width)
