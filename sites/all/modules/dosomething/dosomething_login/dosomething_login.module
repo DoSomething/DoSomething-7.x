@@ -394,6 +394,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'class' => array('dosomething-original-value'),
     ),
     '#size' => 20,
+    '#suffix' => theme('dosomething_login_form_required_marker', array()),
   );
   $form['birthday'] = array(
     'over_13' => array(
@@ -431,6 +432,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       ),
       '#size' => 4,
       '#maxlength' => 4,
+      '#suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
   );
 
@@ -445,7 +447,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#attributes' => array(
       'placeholder' => t("Parent or Guardian's Email"),
     ),
-    '#suffix' => '</div>',
+    '#suffix' => theme('dosomething_login_form_required_marker', array()) . '</div>',
     '#size' => 20,
   );
 

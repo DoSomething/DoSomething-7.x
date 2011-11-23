@@ -26,6 +26,7 @@
   clear: both;
 }
 #dosomething-login-register-popup-form .age-question {
+  clear: both;
   font-weight: bold;
 }
 #dosomething-login-register-popup-form .form-item-month,
@@ -64,5 +65,14 @@
   clear: both;
 }
 #dosomething-login-register-popup-form .form-item-cell-or-email {
+  display: inline;
+  float: left;
   clear: both;
+}
+#dosomething-login-register-popup-form #edit-parent-email-message {
+  clear: both;
+}
+#dosomething-login-register-popup-form .form-item-parent-email {
+  display: inline;
+  float: left;
 }
