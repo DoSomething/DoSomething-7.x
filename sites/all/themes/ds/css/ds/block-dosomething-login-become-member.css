@@ -321,6 +321,9 @@
   font-weight: 600;
   line-height: 30px;
 }
+.logged-in #block-dosomething-login-become-member .ds-member-name-bar {
+  text-decoration: none;
+}
 .logged-in #block-dosomething-login-become-member h2 {
   font-size: 1.8em;
   line-height: 1.333em;
