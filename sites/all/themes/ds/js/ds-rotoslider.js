@@ -6,7 +6,7 @@ Drupal.behaviors.ds_rotoslider = {
       $('.rotoslider-nav', $(slider))
         .find('li a')
           .click(function() {
-            var href = $(document.querySelectorAll('.rotoslider-text[data-key=' + $(this).data('key') + ']')).find('.heading a').attr('href');
+            var href = $('img[data-key=' + $(this).data('key') + ']').find('.heading a').attr('href');
             $('.do-this-link', $(slider)).attr('href', href);
           })
         .end();
