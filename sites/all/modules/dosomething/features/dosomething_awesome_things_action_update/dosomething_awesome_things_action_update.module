@@ -5,3 +5,27 @@
  */
 
 include_once('dosomething_awesome_things_action_update.features.inc');
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_awesome_things_action_update_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form') {
+  }
+
+}
+function dosomething_awesome_things_action_update_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-campaign-report-back-panel-pane-1') {
+    $vocab = taxonomy_get_tree(5, 0, 1);
+    foreach ($vocab as $tax) {
+      $options[$tax->tid] = $tax->name;
+    }
+    $form['field_webform_issues_tid']['#options'] = $options;
+    // $form['#submit'][['0'] = 'dosomething_awesome_things_action_update_campaign_report_back_panel_form_submit';
+
+  }
+}
+
+function dosomething_awesome_things_action_update_campaign_report_back_panel_form_submit(&$form, &$form_state) {
+
+}
