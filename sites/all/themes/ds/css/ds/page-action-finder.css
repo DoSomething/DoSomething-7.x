@@ -369,8 +369,8 @@
   margin: 0;
 }
 
-.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper, .impactbubbles-impact-bubble-dude, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button, .impactbubbles-impact-bubble-how-long, #views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper, .impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper, .impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
-  background: url('../images/impactbubbles-s20f9e531bf.png') no-repeat;
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper, .impactbubbles-impact-bubble-dude, .impactbubbles-impact-bubble-how-long, #views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper, .impactbubbles-impact-bubble-mohawk, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button, .impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper, .impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
+  background: url('../images/impactbubbles-s1f00ebb755.png') no-repeat;
 }
 
 .impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper {
@@ -379,7 +379,7 @@
   width: 112px;
 }
 
-.impactbubbles-impact-bubble-dude, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
+.impactbubbles-impact-bubble-dude {
   background-position: 0 -74px;
   height: 73px;
   width: 72px;
@@ -391,14 +391,20 @@
   width: 120px;
 }
 
-.impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper {
+.impactbubbles-impact-bubble-mohawk, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
   background-position: 0 -206px;
+  height: 85px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper {
+  background-position: 0 -291px;
   height: 59px;
   width: 120px;
 }
 
 .impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
-  background-position: 0 -265px;
+  background-position: 0 -350px;
   height: 74px;
   width: 112px;
 }
@@ -497,8 +503,7 @@
 #views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
   position: absolute;
   left: 124px;
-  top: 138px;
-  height: 67px;
+  top: 126px;
 }
 #views-exposed-form-action-finder-ctools-context-1 .form-submit {
   position: absolute;

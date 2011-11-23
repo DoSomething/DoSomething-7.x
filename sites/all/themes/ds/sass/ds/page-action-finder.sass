@@ -87,11 +87,14 @@ $impactbubbles-sprite-dimensions: true
     .selectBox-dropdown
       margin-top: 5px
   .views-submit-button
-    @extend .impactbubbles-impact-bubble-dude
+    // Keep these commented styles for when the mohawk is no longer wanted
+    // @extend .impactbubbles-impact-bubble-dude
+    // top: 138px
+    // height: 67px
     position: absolute
     left: 124px
-    top: 138px
-    height: 67px
+    @extend .impactbubbles-impact-bubble-mohawk
+    top: 126px
   .form-submit
     position: absolute
     bottom: -30px
