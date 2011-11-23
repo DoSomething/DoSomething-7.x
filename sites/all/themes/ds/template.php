@@ -25,7 +25,7 @@ function ds_preprocess_panels_pane(&$variables) {
 function ds_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
   if (!isset($variables['secondary_links_theme_function'])) {
-    $variables['secondary_links_theme_function'] = 'links__system_secondary_menu'; 
+    $variables['secondary_links_theme_function'] = 'links__system_secondary_menu';
   }
   // dsm($variables);
   // dsm($variables['page']);

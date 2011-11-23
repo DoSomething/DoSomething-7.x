@@ -546,6 +546,10 @@
 #dosomething-blocks-make-an-impact-form-front .form-type-select label {
   color: white;
 }
+.ie7 #dosomething-blocks-make-an-impact-form-front .form-type-select select {
+  width: 100px;
+  margin-top: 4px;
+}
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown {
   background: #a1a1a1;
   cursor: pointer;

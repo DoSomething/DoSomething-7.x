@@ -154,6 +154,10 @@
 #dosomething-blocks-make-an-impact-form-front .form-type-select label {
   color: white;
 }
+.ie7 #dosomething-blocks-make-an-impact-form-front .form-type-select select {
+  width: 100px;
+  margin-top: 4px;
+}
 #dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown {
   background: #a1a1a1;
   cursor: pointer;
@@ -180,10 +184,7 @@
 #dosomething-blocks-make-an-impact-form-front .form-item, #dosomething-blocks-make-an-impact-form-front .form-actions {
   margin: 0 auto;
 }
-#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
-#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
-#dosomething-blocks-make-an-impact-form-front .form-item-where label,
-#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label, #dosomething-blocks-make-an-impact-form-front .form-item-who-with label, #dosomething-blocks-make-an-impact-form-front .form-item-where label, #dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
   cursor: default;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
