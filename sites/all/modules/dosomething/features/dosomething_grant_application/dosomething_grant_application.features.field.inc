@@ -87,93 +87,6 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_application-field_school'
-  $fields['node-grant_application-field_school'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_school',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'allowed_values' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-      'type_name' => 'save_our_music',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_application',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_school',
-      'label' => 'School you attend',
-      'required' => '0',
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '2',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '1',
-          'size' => 60,
-        ),
-        'type' => 'text_textfield',
-        'weight' => '2',
-      ),
-      'widget_type' => 'text_textfield',
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-grant_application-field_webform_address'
   $fields['webform_submission_entity-grant_application-field_webform_address'] = array(
     'field_config' => array(
@@ -1326,7 +1239,6 @@ function dosomething_grant_application_field_default_fields() {
   t('Project Summary');
   t('School');
   t('School Zip Code');
-  t('School you attend');
   t('Your DoSomething project posting');
   t('Youtube or video URL');
 

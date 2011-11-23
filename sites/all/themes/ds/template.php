@@ -3,6 +3,13 @@
 function ds_preprocess_html(&$variables, $hook) {
   // dsm($hook);
   // dsm($variables);
+  $theme_path = drupal_get_path('theme', 'ds');
+  $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
+  $variables['selectivizr'] .= '<![endif]-->';
+  // mootools-core-1.4.1-full-nocompat-yc.js
+  // selectivizr-1.0.2/selectivizr-min.js
 }
 
 function ds_preprocess_panels_pane(&$variables) {
@@ -55,37 +62,6 @@ function ds_preprocess_page(&$variables) {
         array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
       );
   }
-  // awesome things landing page
-  if ($arg0 == 'awesome-things') {
-    drupal_add_css($theme_path . '/css/ds/page-awesome-things.css');
-  }
-  // grants landing page
-  if ($arg0 == 'grants') {
-    drupal_add_css($theme_path . '/css/ds/grants-landing.css');
-  }
-  // members only landing page
-  if ($arg0 == 'members-only') {
-    drupal_add_css($theme_path . '/css/ds/members-only-landing.css');
-  }
-  // Why Become a Member page.
-  if ($arg0 == 'why-become-a-member') {
-    drupal_add_css($theme_path . '/css/ds/dosomething-members-only.css');
-  }
-  // club hub landing page
-  if ($arg0 == 'clubhub') {
-    drupal_add_css($theme_path . '/css/ds/clubhub-landing.css');
-  }
-  if ($arg0 == 'start-something') {
-    drupal_add_css($theme_path . '/css/ds/dosomething-start-something.css');
-  }
-  // resources landing page
-  if ($arg0 == 'resources') {
-    drupal_add_css($theme_path . '/css/ds/resources-landing.css');
-  }
-  // scholarships landing page
-  if ($arg0 == 'scholarships') {
-    drupal_add_css($theme_path . '/css/ds/scholarships-landing.css');
-  }
   // user registration page
   if ($arg0 == 'user' || $arg0 == 'user-registration') {
     drupal_add_css($theme_path . '/css/ds/page-user-registration.css');
@@ -93,10 +69,6 @@ function ds_preprocess_page(&$variables) {
   // user profile
   if ($arg0 == 'user') {
     drupal_add_css($theme_path . '/css/ds/my-somethings.css');
-  }
-  // action finder page
-  if ($arg0 == 'action-finder') {
-    drupal_add_css($theme_path . '/css/ds/page-action-finder.css');
   }
   // project pages
   if ($arg0 == 'webform-submission') {
@@ -108,6 +80,63 @@ function ds_preprocess_page(&$variables) {
     // Add additional css class to 'Talk to Us' footer menu item.
     $variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']['#attributes']['class'][] = 'talk-to-us';
     drupal_add_js(drupal_get_path('module', 'dosomething_blocks') .'/js/lets_talk_dialog.js', 'file');
+  }
+}
+
+/**
+ * Implements hook_ctools_render_alter().
+ *
+ * This hook gives us access to the panel itself, not just one pane.
+ */
+function ds_ctools_render_alter(&$info, &$page, &$context) {
+  if (!$page || (isset($context['task']['task type']) && $context['task']['task type'] != 'page')) {
+    return;
+  }
+
+  $css_path = drupal_get_path('theme', 'ds') . '/css/ds/';
+
+  // If this is a custom page, the name is the machine name, and is stored as
+  // the name of the subtask. If it is a system page like node/%node, the name
+  // is stored as the name of the handler. These names are global, not per-page.
+  // Unless it is customized upon export, it will be in the form of
+  // NAME_panel_context_DELTA, for example, node_view_panel_context_3.
+  $name = isset($context['subtask']['name']) ? $context['subtask']['name'] : $context['handler']->name;
+  switch ($name) {
+    case 'club_hub':
+      drupal_add_css($css_path . 'clubhub-landing.css');
+      break;
+
+    case 'action_finder':
+      drupal_add_css($css_path . 'page-action-finder.css');
+      break;
+
+    case 'awesome_things':
+      drupal_add_css($css_path . 'page-awesome-things.css');
+      break;
+
+    case 'grants':
+      drupal_add_css($css_path . 'grants-landing.css');
+      break;
+
+    case 'members_only':
+      drupal_add_css($css_path . 'members-only-landing.css');
+      break;
+
+    case 'why_become_a_member_page':
+      drupal_add_css($css_path . 'dosomething-members-only.css');
+      break;
+
+    case 'scholarships':
+      drupal_add_css($css_path . 'scholarships-landing.css');
+      break;
+
+    case 'resources':
+      drupal_add_css($css_path . 'resources-landing.css');
+      break;
+
+    case 'start_something':
+      drupal_add_css($css_path . 'dosomething-start-something.css');
+      break;
   }
 }
 

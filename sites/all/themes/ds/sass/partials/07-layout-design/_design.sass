@@ -71,6 +71,8 @@ body
   height: calc-em($menu-height, $base-font-size)
   line-height: $menu-height / $base-font-size
   +box-sizing(border-box)
+  .ie8 &, .ie7 &
+    line-height: 20px
   .utility-block
     padding-left: percentage($left-col-width / $page-width)
 

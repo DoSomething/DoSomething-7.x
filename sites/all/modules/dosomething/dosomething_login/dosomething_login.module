@@ -577,7 +577,7 @@ function dosomething_login_register_block($form, &$form_state) {
   );
   $form['first_submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Signup'),
+    '#value' => t('Sign up'),
     '#attributes' => array('class' => array('submit')),
   );
   $form['why'] = array(

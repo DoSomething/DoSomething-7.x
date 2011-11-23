@@ -90,7 +90,7 @@ function dosomething_members_only_default_page_manager_pages() {
       'admin_title' => 'Members Only Blocks',
       'title' => '',
       'body' => '        <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-mysomethings-cropped.jpg"></a>
+          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-mysomethings.jpg"></a>
           <a class="members-only" href="/user">MySomethings</a>
         </div>
         <div class="block-pair">
@@ -114,7 +114,7 @@ function dosomething_members_only_default_page_manager_pages() {
           <a class="members-only" href="/scholarships">Scholarships</a>
         </div>
         <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-clubs-cropped.jpg"></a>
+          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-clubs.jpg"></a>
           <a class="members-only" href="/clubhub">Club Hub</a>
         </div>
         <div class="block-pair">

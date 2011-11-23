@@ -93,6 +93,12 @@
   padding: 4px;
   text-transform: lowercase;
 }
+.ie8 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
+  width: 120px;
+  position: relative;
+  top: 12px;
+  float: left;
+}
 #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
@@ -108,6 +114,14 @@
   margin-bottom: 11px;
   padding: 4px 0;
   width: 48px;
+}
+.ie8 #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
+  float: left;
+  position: relative;
+  top: -22px;
+  margin-left: 8em;
+  width: 2em;
+  height: 1em;
 }
 #block-dosomething-blocks-dosomething-utility-bar .form-item-search-block-form {
   margin-left: 1.5em;

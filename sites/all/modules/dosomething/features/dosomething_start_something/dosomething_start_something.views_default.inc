@@ -321,7 +321,7 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['fields']['view_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['view_node']['text'] = 'Learn More &raquo;';
+  $handler->display->display_options['fields']['view_node']['text'] = 'Learn more &raquo;';
   /* Field: Global: Facebook Social Plugin */
   $handler->display->display_options['fields']['fb_social']['id'] = 'fb_social';
   $handler->display->display_options['fields']['fb_social']['table'] = 'views';

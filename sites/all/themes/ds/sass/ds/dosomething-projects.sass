@@ -1,29 +1,32 @@
 @import setup
 // --------------------------------------------------------------------------------------
-.panel-2col#project-page 
+#project-status-ribbon-wrapper
+  margin-top: 1em
+  border-top: 1px solid #B7B7B7
+  border-bottom: 1px solid #B7B7B7
+  
+#project-status-ribbon
+  width: 100%
+  background-color: #d1d1d1
+  padding: 0.5em 0 0.5em
+  border-top: 2px solid white
+  border-bottom: 2px solid white
 
-  .panel-col-last
-    float: left
-    width: 155px
+  div
+    display: inline
+    font-size: 1.3em
 
-  .panel-col-first
-    float: left
-    width: 530px
+  span
+    display: inline
 
-    #project-status-ribbon
-      width: 100%
-      background-color: #d1d1d1
+  .project-status
+    color: white
+    background: #652e72
+    padding: 0.5em
 
-      div
-        display: inline
-        font-size: 1.3em
-        padding: 0.5em
+  .people-involved, .people-impacted
+    span
+      margin-left: 1em
 
-      span
-        display: block
-
-      .project-status
-        color: white
-        background: #652e72
-
-
+.ds-start-project
+  margin: 1em
