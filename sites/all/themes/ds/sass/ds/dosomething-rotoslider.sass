@@ -2,9 +2,14 @@
 .rotoslider
   &.rotoslider-image-nav
     .rotoslider-descriptions
-      & > div
-        background-image: image-url('arrow-do-this.png')
-        padding-top: calc-em(4px, $s0)
+      .do-this-link
+        +replace-text('arrow-do-this.png', right, bottom)
+        height: 65px
+        position: absolute
+        bottom: 0
+        right: 0
+        width: 220px
+        z-index: 100
 
   .rotoslider-text,
   &.rotoslider-image-nav .rotoslider-description
