@@ -2247,6 +2247,9 @@ div[role=main] {
   border-bottom: none;
 }
 
+.not-front .region-sidebar-first {
+  background-color: #8e8a86;
+}
 .region-sidebar-first .block {
   padding: 0 8.78% 0 5.854%;
 }
