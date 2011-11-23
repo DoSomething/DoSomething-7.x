@@ -145,6 +145,9 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
       'variables' => array('full_name' => NULL),
       'template' => 'dosomething-login-parent-permission-denied-email',
     ),
+    'dosomething_login_form_required_marker' => array(
+      'variables' => array(),
+    ),
   );
 }
 
@@ -370,6 +373,8 @@ function dosomething_login_register_popup_form($form, &$form_state) {
         'class' => array('dosomething-original-value'),
       ),
       '#size' => 9,
+      '#required' => TRUE,
+      '#suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
     'last_name' => array(
       '#type' => 'textfield',
@@ -378,6 +383,8 @@ function dosomething_login_register_popup_form($form, &$form_state) {
         'class' => array('dosomething-original-value'),
       ),
       '#size' => 9,
+      '#required' => TRUE,
+      '#suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
   );
   $form['cell_or_email'] = array(
@@ -769,6 +776,25 @@ function dosomething_login_unique_name($name, $i = '') {
   else {
     return $name . $i;
   }
+}
+
+/**
+ * Returns HTML for a marker for required form elements.
+ *  Copied from theme_form_required_marker to allow different class.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ *
+ * @ingroup themeable
+ */
+function theme_dosomething_login_form_required_marker($variables) {
+  $t = get_t();
+  $attributes = array(
+    'class' => array('ds-registration-form-required', 'form-required'),
+    'title' => $t('This field is required.'),
+  );
+  return '<span' . drupal_attributes($attributes) . '>*</span>';
 }
 
 function dosomething_login_mobile_signup_access() {

@@ -2679,6 +2679,11 @@ iframe {
   -khtml-border-radius: 0;
   border-radius: 0;
 }
+.ui-dialog .ds-registration-form-required {
+  display: inline;
+  float: left;
+  margin-left: -10px;
+}
 .ui-dialog .form-item-cell-or-email {
   display: inline;
   float: left;
