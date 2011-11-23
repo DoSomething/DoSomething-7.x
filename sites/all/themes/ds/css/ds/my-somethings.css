@@ -24,6 +24,9 @@
   box-shadow: white 0 1px -1px 1px;
   border-bottom: 1px solid #c7c7c7;
   margin: 1em 0;
+  display: inline;
+  float: left;
+  width: 100%;
 }
 #user-my-somethings .pane-3 {
   clear: both;
