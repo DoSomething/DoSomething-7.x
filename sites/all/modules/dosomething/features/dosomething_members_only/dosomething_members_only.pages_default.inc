@@ -90,35 +90,35 @@ function dosomething_members_only_default_page_manager_pages() {
       'admin_title' => 'Members Only Blocks',
       'title' => '',
       'body' => '        <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-mysomethings.jpg"></a>
+          <a href="/user"><img src="sites/all/themes/ds/css/images/members-only-mysomethings.jpg"></a>
           <a class="members-only" href="/user">MySomethings</a>
         </div>
         <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-whatis.jpg"></a>
+          <a href="/node/718378"><img src="sites/all/themes/ds/css/images/members-only-whatis.jpg"></a>
           <a class="members-only" href="/node/718378">What is Membership</a>
         </div>
         <div class="block-pair last">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-become-member.jpg"></a>
+          <a href="/node/718379"><img src="sites/all/themes/ds/css/images/members-only-become-member.jpg"></a>
           <a class="members-only" href="/node/718379">How to Become a Member</a>
         </div>
         <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-benefits.jpg"></a>
+          <a href="/node/718380"><img src="sites/all/themes/ds/css/images/members-only-benefits.jpg"></a>
           <a class="members-only" href="/node/718380">Membership Benefits</a>
         </div>
         <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-grants.jpg"></a>
+          <a href="/grants"><img src="sites/all/themes/ds/css/images/members-only-grants.jpg"></a>
           <a class="members-only" href="/grants">Grants</a>
         </div>
         <div class="block-pair last">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-scholarships.jpg"></a>
+          <a href="/scholarships"><img src="sites/all/themes/ds/css/images/members-only-scholarships.jpg"></a>
           <a class="members-only" href="/scholarships">Scholarships</a>
         </div>
         <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-clubs.jpg"></a>
+          <a href="/clubhub"><img src="sites/all/themes/ds/css/images/members-only-clubs.jpg"></a>
           <a class="members-only" href="/clubhub">Club Hub</a>
         </div>
         <div class="block-pair">
-          <a href="/node/433975"><img src="sites/all/themes/ds/css/images/members-only-faq.jpg"></a>
+          <a href="/node/718377"><img src="sites/all/themes/ds/css/images/members-only-faq.jpg"></a>
           <a class="members-only" href="/node/718377">FAQs</a>
         </div>',
       'format' => '3',
