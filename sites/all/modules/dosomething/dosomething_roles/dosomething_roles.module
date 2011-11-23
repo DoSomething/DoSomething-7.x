@@ -347,6 +347,15 @@ function dosomething_roles_user_update(&$edit, $account, $category) {
 }
 
 /**
+ * Implements hook_entity_update().
+ */
+function dosomething_roles_entity_update($entity, $type) {
+  if ($type == 'profile2') {
+    dosomething_roles_update_role($entity->uid);
+  }
+}
+
+/**
  * Implements hook_webform_submission_insert().
  */
 function dosomething_roles_webform_submission_insert($node, $submission) {
@@ -419,16 +428,17 @@ function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
   $timestamp = strtotime('-1 year', $end_timestamp);
   $action_update_count = dosomething_roles_get_action_update_count($uid, $timestamp);
   $grant_update = dosomething_roles_user_submitted_grant($uid, $timestamp);
+  $ratio = dosomething_roles_profile_ratio($uid);
 
   if (module_exists('dosomething_login')) {
     if (dosomething_login_drupal_user_is_over_age($uid, 26, $end_timestamp)) {
       return 'old person';
     }
   }
-  if ($action_update_count >= 5 || $grant_update) {
+  if ($action_update_count >= 5 || $grant_update && $ratio >= 1) {
     $role_name = 'varsity';
   }
-  else if ($action_update_count >= 1) {
+  else if ($action_update_count >= 1 && $ratio >= 1) {
     $role_name = 'active member';
   }
   else if ($account->login >= $timestamp) {
