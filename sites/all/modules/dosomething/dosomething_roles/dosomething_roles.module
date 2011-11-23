@@ -9,26 +9,13 @@
  * Implements hook_cron().
  */
 function dosomething_roles_cron() {
-  // Update users roles who have not been assigned to the new roles.
-  // Note: this can be removed once all users have roles.
-  $inactive_user = user_role_load_by_name('inactive user');
-  $member = user_role_load_by_name('member');
-  $active_member = user_role_load_by_name('active member');
-  $rids = $inactive_user->rid . ', ' . $member->rid . ', ' . $active_member->rid;
-  $result = db_query_range("SELECT u.uid, u.access FROM {users} u LEFT JOIN {users_roles} ur ON (ur.uid = u.uid AND ur.rid IN ($rids)) WHERE ur.uid IS NULL AND u.uid > 0 ORDER BY u.access ASC", 0, 100);
-  foreach ($result as $data) {
-    dosomething_roles_update_role($data->uid);
-  }
-
   // Send notifications for users about to lose membership status.
   for ($month = 3; $month > 0; $month--) {
-    // TODO: enable this
-    //dosomething_roles_send_demotion_notifications($i);
+    dosomething_roles_send_demotion_notifications($i);
   }
 
   // Get users whose anniversaries have past and demote them, if necessary.
-  // TODO: Test and enable this
-  //dosomething_roles_demote_expired_users();
+  dosomething_roles_demote_expired_users();
 }
 
 /**
