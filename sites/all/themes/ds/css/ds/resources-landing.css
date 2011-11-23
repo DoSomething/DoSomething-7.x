@@ -269,6 +269,10 @@
   position: relative;
   right: -130px;
   top: -38px;
+  width: 20%;
+}
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .views-widget .form-item a {
+  width: 111px;
 }
 #views-exposed-form-resources-panel-pane-1 .views-submit-button {
   position: relative;
