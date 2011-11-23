@@ -9,13 +9,13 @@
   height: 265px;
   overflow: hidden;
   position: absolute;
+  z-index: 11;
 }
 .rotoslider img.rotoslider-image {
   z-index: 1;
 }
 .rotoslider .rotoslider-images img {
   display: none;
-  z-index: 11;
 }
 .rotoslider .rotoslider-images img.active {
   display: block;
@@ -44,7 +44,7 @@
   margin-bottom: 0;
 }
 .rotoslider .rotoslider-description {
-  z-index: 2;
+  z-index: 12;
 }
 .rotoslider .rotoslider-text {
   bottom: 0;

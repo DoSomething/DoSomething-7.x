@@ -13,11 +13,12 @@
     height: $height
     overflow: hidden
     position: absolute
+    z-index: 11
   img.rotoslider-image
     z-index: 1
   .rotoslider-images img
     display: none
-    z-index: 11
+
     &.active
       display: block
   .rotoslider-descriptions
@@ -40,7 +41,7 @@
         &:last-child
           margin-bottom: 0
   .rotoslider-description
-    z-index: 2
+    z-index: 12
   .rotoslider-text
     bottom: 0
     display: none
