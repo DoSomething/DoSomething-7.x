@@ -24,7 +24,6 @@ nav[role=navigation]
       width: 100%
       .ie7 &
         display: block
-        // height: 1.5em
   .secondary
     background-color: $c-menu-secondary-bg
     padding-left: percentage($left-col-width / $page-width)
@@ -40,6 +39,8 @@ nav[role=navigation]
       padding-left: calc-em(6px, $s2)
       padding-right: calc-em(19px, $s2)
       overflow: visible
+      li
+        position: relative
       a
         &.active
           color: $white
@@ -63,6 +64,7 @@ nav[role=navigation]
         position: absolute
         z-index: 10
         text-transform: none
+        left: -4px
         &:active
           background-color: none
         li
@@ -73,14 +75,17 @@ nav[role=navigation]
           float: none
           &:hover
             background: $blue-light
+          &, &.first, &:first-child, &.last, &:last-child
+            padding-left: 0.5em
+            padding-right: 0.5em
           a
             +link-colors($white, $white, $white, $white, false)
             line-height: ($menu-height - 10px) / $s4
             margin-right: calc-em(5px, $s4)
             padding-top: calc-em(10px, $s4)
             padding-bottom: calc-em(10px, $s4)
-            padding-left: calc-em(6px, $s4)
-            padding-right: calc-em(6px, $s4)
+            padding-left: 0
+            padding-right: 0
 
 
 .secondary-menu-inactive

@@ -2904,6 +2904,9 @@ nav[role=navigation] .secondary ul li:last-child {
 nav[role=navigation] .secondary ul li.last {
   padding-right: 0;
 }
+nav[role=navigation] .secondary ul li {
+  position: relative;
+}
 nav[role=navigation] .secondary ul a.active {
   color: white;
 }
@@ -2933,6 +2936,7 @@ nav[role=navigation] .secondary ul .ds-nav-dropdown {
   position: absolute;
   z-index: 10;
   text-transform: none;
+  left: -4px;
 }
 nav[role=navigation] .secondary ul .ds-nav-dropdown:active {
   background-color: none;
@@ -2947,14 +2951,18 @@ nav[role=navigation] .secondary ul .ds-nav-dropdown li {
 nav[role=navigation] .secondary ul .ds-nav-dropdown li:hover {
   background: #005ba9;
 }
+nav[role=navigation] .secondary ul .ds-nav-dropdown li, nav[role=navigation] .secondary ul .ds-nav-dropdown li.first, nav[role=navigation] .secondary ul .ds-nav-dropdown li:first-child, nav[role=navigation] .secondary ul .ds-nav-dropdown li.last, nav[role=navigation] .secondary ul .ds-nav-dropdown li:last-child {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
 nav[role=navigation] .secondary ul .ds-nav-dropdown li a {
   color: white;
   line-height: 1.172;
   margin-right: 0.172em;
   padding-top: 0.345em;
   padding-bottom: 0.345em;
-  padding-left: 0.207em;
-  padding-right: 0.207em;
+  padding-left: 0;
+  padding-right: 0;
 }
 nav[role=navigation] .secondary ul .ds-nav-dropdown li a:visited {
   color: white;
