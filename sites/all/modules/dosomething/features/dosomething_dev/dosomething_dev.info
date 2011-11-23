@@ -1,0 +1,10 @@
+name = dosomething_dev
+core = 7.x
+package = Dosomething
+php = 5.2.4
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[variable][] = dummyimages_generate
+features[variable][] = dummyimages_service
+features[variable][] = xhprof_enabled

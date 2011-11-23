@@ -14,3 +14,10 @@ function dosomething_clubs_node_presave($node) {
     $node->title .= ' Do Something Club';
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_clubs_form_alter(&$form, $form_state, $form_id) {
+  dpm($form_id);
+}
