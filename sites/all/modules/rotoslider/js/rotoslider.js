@@ -56,7 +56,7 @@ Drupal.behaviors.rotoslider = {
             $(this)
               .toggleClass('active')
               .parent().siblings().children().removeClass('active');
-            $('img[data-key=' + $(this).data('key') + ']').not($(this)).each(function() {
+            $('[data-key=' + $(this).data('key') + ']').not($(this)).each(function() {
               $(this)
                 .toggleClass('active')
                 .siblings().removeClass('active');
