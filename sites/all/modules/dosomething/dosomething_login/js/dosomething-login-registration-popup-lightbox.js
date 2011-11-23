@@ -36,14 +36,14 @@
 
       // Validate the form on click and open the dialog.
       $("#edit-first-submit").click(function(event) {
+        blockForm.valid();
         popupForm.find('.dosomething-original-value').each(function() {
           var name = $(this).attr('name');
           var value = blockForm.find('input[name="' + name + '"]').val();
           $(this).val(value);
         });
         var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
-        if (birthDate.getTime() < dateThreshold.getTime()) {
-          alert("You must enter a valid birthday.");
+        if (!blockForm.valid()) {
           event.preventDefault();
           return;
         }
@@ -72,7 +72,7 @@
         event.preventDefault();
       });
 
-      // Validate registration form on keyup and submit
+      // Validate registration popup form on keyup and submit
       popupForm.validate({
         rules: {
           first_name: "required",
@@ -95,6 +95,52 @@
           },
         },
         messages: {
+          day: {
+            required: "",
+            range: "",
+          },
+          month: {
+            required: "",
+            range: "",
+          },
+          year: {
+            required: "",
+            range: "",
+          }
+        }
+      });
+
+      // Validate visible block form on keyup and submit
+      blockForm.validate({
+        rules: {
+          first_name: "required",
+          last_name: "required",
+          cell_or_email: {
+            required: true,
+          },
+          day: {
+            required: true,
+            range: [01, 31]
+          },
+          month: {
+            required: true,
+            range: [01, 12]
+          },
+          year: {
+            required: true,
+            range: [date.getFullYear() - dateValidAge, date.getFullYear()]
+          },
+        },
+        messages: {
+          first_name: {
+            required: "",
+          },
+          last_name: {
+            required: "",
+          },
+          cell_or_email: {
+            required: "",
+          },
           day: {
             required: "",
             range: "",
