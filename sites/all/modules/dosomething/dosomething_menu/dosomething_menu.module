@@ -92,7 +92,7 @@ function dosomething_menu_secondary_links($variables, $term) {
       else {
         $links['attributes']['class'][] = 'hidden';
       }
-      $active_secondary_menu_items[$mlid] = $links;
+      $active_secondary_menu_items[str_replace(' active-trail', '', $mlid)] = $links;
     }
   }
   return $active_secondary_menu_items;
@@ -255,7 +255,6 @@ function dosomething_menu_taxonomy_listing($variables) {
     }
     if (isset($parent_id)) {
       $tree[$parent_id]['class'][] = 'active';
-      //$tree = array($tree[$parent_id]);
       $title = $tree[$parent_id]['data'];
       $tree = $tree[$parent_id]['children'];
     }
