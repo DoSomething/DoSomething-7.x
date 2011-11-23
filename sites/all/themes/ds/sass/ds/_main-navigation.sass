@@ -64,7 +64,8 @@ nav[role=navigation]
         position: absolute
         z-index: 10
         text-transform: none
-        left: -4px
+        left: 2px
+        padding: 0 0.5em
         &:active
           background-color: none
         li
@@ -73,11 +74,10 @@ nav[role=navigation]
           list-style-image: none
           white-space: nowrap
           float: none
+          padding-left: 0em
+          padding-right: 0em
           &:hover
             background: $blue-light
-          &, &.first, &:first-child, &.last, &:last-child
-            padding-left: 0.5em
-            padding-right: 0.5em
           a
             +link-colors($white, $white, $white, $white, false)
             line-height: ($menu-height - 10px) / $s4
