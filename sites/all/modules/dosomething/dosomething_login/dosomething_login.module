@@ -249,7 +249,7 @@ function dosomething_login_user_login_validate($form, &$form_state) {
     }
     // TODO: Only remove spaces, parentheses and dashes in regex
     else if (($number = ltrim(preg_replace('/[^0-9]/', '', $form_state['values']['name']), 1)) && strlen($number) >= 10) {
-      if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile.com'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+      if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
         form_set_value($form['name'], $name, $form_state);
       }
       else if ($name = dosomething_login_find_user_by_cell($number)) {
@@ -653,11 +653,11 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
     }
-    else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile.com'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+    else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
     }
     $form_state['values']['phone'] = $number;
-    $form_state['values']['mail'] = $number . '@mobile.com';;
+    $form_state['values']['mail'] = $number . '@mobile';
   }
   else {
     form_set_error('cell_or_email', t('Please provide a valid email address or phone number'));
