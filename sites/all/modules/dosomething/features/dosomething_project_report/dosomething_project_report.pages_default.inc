@@ -22,7 +22,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     'title' => 'Project Reports',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => 'project-page',
+    'css_id' => 'ds-wider-thinner',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(
@@ -58,13 +58,14 @@ function dosomething_project_report_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display;
-  $display->layout = 'twocol';
+  $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'left' => NULL,
       'right' => NULL,
+      'top' => NULL,
     ),
   );
   $display->cache = array();
@@ -151,17 +152,8 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Project Status',
       'title' => '',
-      'body' => '<div id="project-status-ribbon">
-  <div class="project-status">Project Status</div>
-  <div class="people-involved">
-    <span class="label">People Involved</span>
-    <span class="number>%sid:field-update-people-involved</span>
-  </div>
-  <div class="people-impacted">
-    <span class="label">People Impacted</span>
-    <span class="number">%webform_submission_entity:field-num-people-impacted</span>
-</div>',
-      'format' => '3',
+      'body' => '<div id="project-status-ribbon-wrapper"><div id="project-status-ribbon"><div class="project-status">Project Status</div><div class="people-involved"><span class="label">People Involved</span><span class="number">%webform_submission_entity:field-update-people-involved</span></div><div class="people-impacted"><span class="label">People Impacted</span><span class="number">%webform_submission_entity:field-num-people-impacted</span></div></div></div>',
+      'format' => '4',
       'substitute' => 1,
     );
     $pane->cache = array();
@@ -251,7 +243,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Start a Project',
       'title' => '',
-      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
+      'body' => '<div class="ds-start-project"><a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a></div>',
       'format' => '3',
       'substitute' => 1,
     );
