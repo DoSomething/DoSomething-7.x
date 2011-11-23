@@ -21,7 +21,7 @@ function dosomething_dev_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'dummyimages_service';
-  $strongarm->value = 'placekitten';
+  $strongarm->value = 'flickholdr';
   $export['dummyimages_service'] = $strongarm;
 
   $strongarm = new stdClass;
