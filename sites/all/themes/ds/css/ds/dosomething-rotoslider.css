@@ -17,9 +17,19 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
-.rotoslider.rotoslider-image-nav .rotoslider-descriptions > div {
+.rotoslider.rotoslider-image-nav .rotoslider-descriptions .do-this-link {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
   background-image: url('../images/arrow-do-this.png');
-  padding-top: 0.333em;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  height: 65px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  z-index: 100;
 }
 .rotoslider .rotoslider-text .heading a, .rotoslider.rotoslider-image-nav .rotoslider-description .heading a {
   color: white;

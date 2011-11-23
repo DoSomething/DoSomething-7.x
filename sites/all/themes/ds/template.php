@@ -273,7 +273,23 @@ function ds_preprocess_views_view(&$variables) {
 
 function ds_preprocess_rotoslider_slider(&$variables) {
   $theme_path = drupal_get_path('theme', 'ds');
-  drupal_add_css($theme_path . '/css/ds/dosomething-rotoslider.css');
+  $variables['element']['#attached']['css'][] = $theme_path . '/css/ds/dosomething-rotoslider.css';
+  $variables['element']['#attached']['js'][] = $theme_path . '/js/ds-rotoslider.js';
+  if (!empty($variables['image'])) {
+    $initial = $variables['items'][0];
+    $variables['element']['descriptions']['do-this'] = array(
+      '#type' => 'link',
+      '#title' => t('Do This'),
+      '#href' => $initial['uri']['path'],
+      '#options' => $initial['uri']['options'] + array(
+        'attributes' => array(
+          'class' => array(
+            'do-this-link',
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 /**
