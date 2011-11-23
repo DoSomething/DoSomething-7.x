@@ -16,8 +16,10 @@ function dosomething_clubs_node_presave($node) {
 }
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_og_ui_get_group_admin_alter().
+ * Removes unwanted items from node/%/group.
  */
-function dosomething_clubs_form_alter(&$form, $form_state, $form_id) {
-  dpm($form_id);
+function dosomething_clubs_og_ui_get_group_admin_alter(&$data, $gid) {
+  unset($data['roles']);
+  unset($data['permissions']);
 }
