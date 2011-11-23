@@ -577,7 +577,7 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'Seed Grant Winner',
-      'body' => '<div id="">
+      'body' => '<div id="seed-grant-winner">
 <img src="http://dosomething.zivtech.com/sites/all/themes/ds/css/images/this-weeks-winner.jpg">
 <h3>Coffee Compost</h3>
 <p>Max and Coffee 2Compost are providing an innovative service to collect the remnants of coffee.</p>

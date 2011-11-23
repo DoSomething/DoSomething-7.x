@@ -1344,7 +1344,7 @@ function dosomething_grants_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'grants_logo',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '1',
