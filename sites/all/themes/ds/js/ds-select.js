@@ -7,6 +7,7 @@
       $("#dosomething-blocks-make-an-impact-form-front select").selectBox();
       $("#views-exposed-form-action-finder-ctools-context-1 select").selectBox();
       $("#views-exposed-form-resources-panel-pane-1 select").selectBox();
+      $("#views-exposed-form-campaign-report-back-panel-pane-1 select").selectBox();
     }
   }
 })(jQuery);

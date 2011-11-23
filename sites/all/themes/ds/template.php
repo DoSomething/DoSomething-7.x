@@ -137,6 +137,10 @@ function ds_ctools_render_alter(&$info, &$page, &$context) {
     case 'start_something':
       drupal_add_css($css_path . 'dosomething-start-something.css');
       break;
+
+    case 'action_updates':
+      drupal_add_css($css_path . 'page-action-updates.css');
+      break;
   }
 }
 
