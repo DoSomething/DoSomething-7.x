@@ -25,10 +25,6 @@ function dosomething_projects_general_webform_submission_access($node, $submissi
       static $message = NULL;
       if ($submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
         if (REQUEST_TIME <= ($submission->submitted + DS_PROJECTS_EDITABLE_TIME)) {
-          if (is_null($message)) {
-            $message = t('This form will be editable until %date', array('%date' => date('m-d-Y g:ia'))); 
-            drupal_set_message($message);
-          }
           return TRUE;
         }
       }
