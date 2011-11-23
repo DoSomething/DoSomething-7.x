@@ -28,16 +28,22 @@
 .panel-2col#project-page .panel-col-first #project-status-ribbon {
   width: 100%;
   background-color: #d1d1d1;
+  padding: 0.5em 0 0.5em;
+  border-top: 3px solid #b7b7b7;
+  border-bottom: 3px solid #b7b7b7;
 }
 .panel-2col#project-page .panel-col-first #project-status-ribbon div {
   display: inline;
   font-size: 1.3em;
-  padding: 0.5em;
 }
 .panel-2col#project-page .panel-col-first #project-status-ribbon span {
-  display: block;
+  display: inline;
 }
 .panel-2col#project-page .panel-col-first #project-status-ribbon .project-status {
   color: white;
   background: #652e72;
+  padding: 0.5em;
+}
+.panel-2col#project-page .panel-col-first #project-status-ribbon .people-involved span, .panel-2col#project-page .panel-col-first #project-status-ribbon .people-impacted span {
+  margin-left: 1em;
 }
