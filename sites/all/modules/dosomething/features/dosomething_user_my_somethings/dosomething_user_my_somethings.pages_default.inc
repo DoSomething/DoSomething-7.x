@@ -150,7 +150,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Invite Friends Link',
       'title' => '',
-      'body' => '<a href="/node/718309">invite friends »</a>',
+      'body' => '<a href="/invite-friends">invite friends »</a>',
       'format' => '3',
       'substitute' => 0,
     );
