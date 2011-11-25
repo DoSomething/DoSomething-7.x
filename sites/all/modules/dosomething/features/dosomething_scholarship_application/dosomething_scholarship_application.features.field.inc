@@ -663,10 +663,15 @@ function dosomething_scholarship_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_address',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'addressfield',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'addressfield',
     ),
@@ -734,6 +739,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_birthdate',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'date',
@@ -746,6 +754,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'second' => 0,
           'year' => 'year',
         ),
+        'profile2_private' => FALSE,
         'repeat' => 0,
         'timezone_db' => '',
         'todate' => '',
@@ -1036,6 +1045,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1052,6 +1064,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -1245,6 +1258,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_project_summary',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1259,7 +1275,9 @@ function dosomething_scholarship_application_field_default_fields() {
         ),
       ),
       'module' => 'text',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'text_long',
     ),

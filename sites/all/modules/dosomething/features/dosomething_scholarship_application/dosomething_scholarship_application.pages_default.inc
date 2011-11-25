@@ -251,7 +251,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
 
 <div class="scholarship-resource">
 <img src="sites/all/themes/ds/css/images/school-and-clubs.jpg">
-<a href=" " title="Scholarship DB">Scholarships DB</a>
+<a href="scholarships/database" title="Scholarship Database">Scholarships Database</a>
 </div>
 
 
