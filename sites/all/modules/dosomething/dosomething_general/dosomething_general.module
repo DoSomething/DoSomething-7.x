@@ -173,19 +173,3 @@ function dosomething_general_infusionsoft_subscribe($email, $action) {
 function dosomething_general_mobile_commons_subscribe($mobile, $campaign, $opt_in_path) {
   // TODO: do work
 }
-
-/**
- * Implements hook_panels_pane_content_alter().
- */
-function dosomething_general_panels_pane_content_alter($content, $pane, $args, $context) {
-  // Alter the "Start a Club" link on the "Start Something" page for anonymous users.  
-  global $user;
-  if (!$user->uid) {
-    $path = arg(0);
-    if ($pane->pid == 'new-3' && $path == 'start-something') {
-     $content->content = '<p><a class="ds-button-strong" href="/project-report/start-project" 
-       title="Start a Project" rel="nofollow">Start a Project</a> <a class="ds-button-strong" 
-       href="user?destination=node/add/club" title="Start a Club" rel="nofollow">Start a Club</a></p>'; 
-    }
-  }
-}
