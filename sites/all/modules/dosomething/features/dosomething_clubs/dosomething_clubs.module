@@ -23,3 +23,90 @@ function dosomething_clubs_og_ui_get_group_admin_alter(&$data, $gid) {
   unset($data['roles']);
   unset($data['permissions']);
 }
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_clubs_theme() {
+  return array(
+    'dosomething_clubs_welcome_email' => array(
+      'variables' => array('name' => NULL),
+      'template' => 'dosomething-clubs-welcome-email',
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function dosomething_clubs_node_insert($node) {
+  if ($node->type == 'club') {
+    $email = field_get_items('node', $node, 'field_email');
+    $names = field_get_items('node', $node, 'field_name');
+    $name = strlen($names[0]['value']) ? $names[0]['value'] : $email[0]['value'] ;
+
+    $params = array(
+      'name' => $name,
+    );
+    global $language;
+    drupal_mail('dosomething_clubs', 'welcome_email', $email[0]['value'], $language, $params);
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function dosomething_clubs_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'welcome_email':
+      $message['subject'] = t('Congratulations, your Club has been created!');
+      $message['body'][] = theme('dosomething_clubs_welcome_email', array('name' => $params['name']));
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+      $message['headers']['Bcc'] = "'clubs+approval@dosomething.org','nadir@dosomething.org'";
+      $message['headers']['From'] = 'Do Something Clubs <clubs@dosomething.org>';
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_og_uid_add_users_alter().
+ */
+function dosomething_clubs_form_og_ui_add_users_alter(&$form, $form_state) {
+  $form['og_user']['og_add_user_state'] = array(
+    '#type' => 'value',
+    '#value' => OG_STATE_ACTIVE,
+  );
+  $form['og_user']['og_add_user_membership_type'] = array(
+    '#type' => 'value',
+    '#value' => OG_MEMBERSHIP_TYPE_DEFAULT,
+  );
+}
+
+/**
+ * Modify the drupal mail system to send HTML emails.
+ */
+class DosomethingClubsMailSystem implements MailSystemInterface {
+  public function format(array $message) {
+    $message['body'] = implode("\n\n", $message['body']);
+    return $message;
+  }
+  public function mail(array $message) {
+    $mimeheaders = array();
+    foreach ($message['headers'] as $name => $value) {
+      $mimeheaders[] = $name . ': ' . mime_header_encode($value);
+    }
+    $line_endings = variable_get('mail_line_endings', MAIL_LINE_ENDINGS);
+    return mail(
+      $message['to'],
+      mime_header_encode($message['subject']),
+      // Note: e-mail uses CRLF for line-endings. PHP's API requires LF
+      // on Unix and CRLF on Windows. Drupal automatically guesses the
+      // line-ending format appropriate for your system. If you need to
+      // override this, adjust $conf['mail_line_endings'] in settings.php.
+      preg_replace('@\r?\n@', $line_endings, $message['body']),
+      // For headers, PHP's API suggests that we use CRLF normally,
+      // but some MTAs incorrectly replace LF with CRLF. See #234403.
+      join("\n", $mimeheaders)
+    );
+  }
+}
