@@ -33,6 +33,8 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('aspca_grant_app');
     $this->description .= 'ASPCA Grant App';
+    $this->dependencies[] = 'DSProject';
+
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
     $this->addFieldMapping('data_essay_1_see_it', 'field_essay_see_it');
     $this->addFieldMapping('data_essay_2_believe_it', 'field_essay_believe_it');
@@ -64,7 +66,8 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
     $this->addFieldMapping('field_webform_name', 'field_your_name');
     $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
-    $this->addFieldMapping('field_webform_project', 'field_your_do_something_project');
+    $this->addFieldMapping('field_webform_project_submission', 'field_your_do_something_project')
+      ->sourceMigration('DSProject');
     $this->addFieldMapping('field_webform_project_dates', 'field_project_dates');
     $this->addFieldMapping('field_webform_project_summary', 'field_description');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
@@ -91,6 +94,8 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
   public function __construct() {
    parent::__construct('general_grant_app');
     $this->description .= 'General Grant Application';
+    $this->dependencies[] = 'DSProject';
+
     $this->addFieldMapping('data_your_school_deans_name', 'field_school_deans_name');
     $this->addFieldMapping('data_deans_email', 'field_deans_email');
     $this->addFieldMapping('data_deans_phone_number', 'field_deans_phone_number');
@@ -124,7 +129,8 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number_1');
     $this->addFieldMapping('field_webform_name', 'field_name');
     $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
-    $this->addFieldMapping('field_webform_project', 'field_project');
+    $this->addFieldMapping('field_webform_project_submission', 'field_project')
+      ->sourceMigration('DSProject');
     $this->addFieldMapping('field_webform_project_dates', 'field_project_date');
     $this->addFieldMapping('field_webform_project_summary', 'field_description');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
@@ -146,6 +152,8 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('grant');
     $this->description .= 'Grant';
+    $this->dependencies[] = 'DSProject';
+
     $this->addFieldMapping('data_your_facebook_page_url', 'field_your_facebook_page_url');
     $this->addFieldMapping('data_your_twitter_handle', 'field_your_twitter_handle');
     $this->addFieldMapping('data_principal_deans_name', 'field_your_school_deans_name');
@@ -191,7 +199,8 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_mobile', 'field_phone_number');
     $this->addFieldMapping('field_webform_name', 'field_name');
     $this->addFieldMapping('field_webform_photo_url', 'field_photo_album_url');
-    $this->addFieldMapping('field_webform_project', 'field_your_project');
+    $this->addFieldMapping('field_webform_project_submission', 'field_your_project')
+      ->sourceMigration('DSProject');
     $this->addFieldMapping('field_webform_project_dates', 'field_project_date');
     $this->addFieldMapping('field_webform_project_summary', 'field_describe');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
