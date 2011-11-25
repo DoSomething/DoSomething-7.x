@@ -13,7 +13,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
   $handler = new stdClass;
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'user_view_panel_context';
+  $handler->name = 'user_view_my_somethings';
   $handler->task = 'user_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
@@ -301,7 +301,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
-  $export['user_view_panel_context'] = $handler;
+  $export['user_view_my_somethings'] = $handler;
 
   return $export;
 }
