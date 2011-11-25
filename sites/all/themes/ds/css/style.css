@@ -2889,6 +2889,16 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   text-align: center;
   margin-left: 2px;
   margin-right: 2px;
+  color: #2c85d0;
+}
+#main-menu li a:visited {
+  color: #2c85d0;
+}
+#main-menu li a:hover {
+  color: white;
+}
+#main-menu li a:active {
+  color: white;
 }
 #main-menu li a.active {
   color: white;
