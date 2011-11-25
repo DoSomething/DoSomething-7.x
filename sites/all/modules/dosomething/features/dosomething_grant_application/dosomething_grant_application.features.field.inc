@@ -117,7 +117,8 @@ function dosomething_grant_application_field_default_fields() {
           'locality' => '',
           'administrative_area' => '',
           'postal_code' => '',
-          'country' => 'CA',
+          'country' => 'US',
+          'organisation_name' => '',
         ),
       ),
       'deleted' => '0',
@@ -250,10 +251,15 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_email',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'email',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'email',
     ),
@@ -562,6 +568,9 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_mobile',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
