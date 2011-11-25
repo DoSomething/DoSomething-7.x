@@ -2785,6 +2785,7 @@ nav[role=navigation] {
   text-transform: uppercase;
   position: relative;
   background-color: #005ba9;
+  width: 100%;
 }
 nav[role=navigation] a {
   text-decoration: none;
