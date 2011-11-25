@@ -848,6 +848,75 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_submission'
+  $fields['webform_submission_entity-grant_application-field_webform_project_submission'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_project_submission',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'entityreference_entity_field',
+        'handler_settings' => array(
+          'author_only' => 1,
+          'target_bundles' => array(
+            'campaign_report_back' => 'campaign_report_back',
+            'project_report' => 'project_report',
+          ),
+          'title_field' => 'field_project_title',
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'webform_submission_entity',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Please enter the submission id of your project.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '7',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_project_submission',
+      'label' => 'Your DoSomething project posting',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '12',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-grant_application-field_webform_project_summary'
   $fields['webform_submission_entity-grant_application-field_webform_project_summary'] = array(
     'field_config' => array(
@@ -1177,75 +1246,6 @@ function dosomething_grant_application_field_default_fields() {
         'settings' => array(),
         'type' => 'link_field',
         'weight' => '14',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-grant_application-field_weform_project_submission'
-  $fields['webform_submission_entity-grant_application-field_weform_project_submission'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_weform_project_submission',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
-        ),
-      ),
-      'module' => 'entityreference',
-      'settings' => array(
-        'handler' => 'entityreference_entity_field',
-        'handler_settings' => array(
-          'author_only' => 1,
-          'target_bundles' => array(
-            'campaign_report_back' => 'campaign_report_back',
-            'project_report' => 'project_report',
-          ),
-          'title_field' => 'field_project_title',
-        ),
-        'handler_submit' => 'Change handler',
-        'profile2_private' => FALSE,
-        'target_type' => 'webform_submission_entity',
-      ),
-      'translatable' => '0',
-      'type' => 'entityreference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Please enter the submission id of your project.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'entityreference',
-          'settings' => array(
-            'link' => 1,
-          ),
-          'type' => 'entityreference_label',
-          'weight' => '7',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_weform_project_submission',
-      'label' => 'Your DoSomething project posting',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '12',
       ),
     ),
   );
