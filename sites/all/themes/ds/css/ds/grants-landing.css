@@ -96,7 +96,7 @@
   float: right;
 }
 .panel-bottom .pane-content .grant-title,
-.panel-bottom .pane-content .views-field-field-grants-how-much {
+.panel-bottom .pane-content .views-field-title {
   color: white;
   display: block;
   font-family: din-web, "Trebuchet MS", sans-serif;
@@ -107,10 +107,20 @@
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
 }
+.panel-bottom .pane-content .grant-title a,
+.panel-bottom .pane-content .views-field-title a {
+  color: white;
+  padding-left: 20px;
+}
+.panel-bottom .pane-content .grant-title a:hover,
+.panel-bottom .pane-content .views-field-title a:hover {
+  color: white;
+}
 .panel-bottom .pane-content .grant-title {
   margin-top: 1em;
 }
-.panel-bottom .pane-content .views-field-field-grants-how-much {
+.panel-bottom .pane-content .views-field-title {
+  text-align: left;
   width: 355px;
 }
 .panel-bottom .pane-content .views-field-view-node {
