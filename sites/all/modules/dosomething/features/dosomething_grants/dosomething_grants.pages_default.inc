@@ -13,7 +13,7 @@ function dosomething_grants_default_page_manager_handlers() {
   $handler = new stdClass;
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'node_view_panel_context_3';
+  $handler->name = 'node_view_grants';
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
@@ -22,7 +22,7 @@ function dosomething_grants_default_page_manager_handlers() {
     'title' => 'Grant',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
     'contexts' => array(
       1 => array(
@@ -301,7 +301,7 @@ function dosomething_grants_default_page_manager_handlers() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
-  $export['node_view_panel_context_3'] = $handler;
+  $export['node_view_grants'] = $handler;
 
   return $export;
 }

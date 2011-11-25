@@ -1,0 +1,26 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.node-type-grants-database .panes-2 .panel-second {
+  background-color: #c6c6c6;
+}
+.node-type-grants-database .panes-2 .panel-second .pane-node-field-grantsdb-eligible,
+.node-type-grants-database .panes-2 .panel-second .pane-node-field-grants-step-apply {
+  padding: 0 2em;
+}

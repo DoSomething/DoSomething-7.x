@@ -141,6 +141,10 @@ function ds_ctools_render_alter(&$info, &$page, &$context) {
     case 'action_updates':
       drupal_add_css($css_path . 'page-action-updates.css');
       break;
+
+    case 'node_view_grants':
+      drupal_add_css($css_path . 'page-node-grants.css');
+      break;
   }
 }
 
