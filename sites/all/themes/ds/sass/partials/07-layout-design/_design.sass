@@ -188,26 +188,30 @@ div[role=main]
 /** Blog Archive Pane **/
 .ds-internal-sidebar-flush-right
   background: $gray6
-  padding: 20px 0 20px 15px
+  padding: 20px 0
   margin-right: -15px
   h2.pane-title
     margin-bottom: 18px
-    margin-left: -15px
     margin-top: -20px
     line-height: 58px
   .views-field-title
     margin-bottom: 12px
     background-position: 0px 3px
-    padding-left: 15px
+    padding-left: 4px
     a
       margin: 0
       font-size: 11px
       font-family: $font-sans
       font-weight: normal
       color: $gray-dark
+  .view-footer
+    text-align: right
 
 #blog-archives-pane
   @extend .ds-internal-sidebar-flush-right
+  padding-left: 15px
+  h2.pane-title
+    margin-left: -15px
 
 /** Blog Menu**/
 #blog-menu
