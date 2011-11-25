@@ -2784,6 +2784,7 @@ nav[role=navigation] {
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
   position: relative;
+  background-color: #005ba9;
 }
 nav[role=navigation] a {
   text-decoration: none;
@@ -2871,8 +2872,7 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 }
 
 #main-menu {
-  font-size: 2.417em;
-  line-height: 1.655em;
+  font-size: 26px;
   font-weight: 500;
   display: table-row;
   min-height: 1.517em;
