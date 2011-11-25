@@ -2901,7 +2901,7 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 }
 #main-menu li:hover a, #main-menu li.active a, #main-menu li.active-trail a, #main-menu li.active-hover a {
   background-color: #014e9c;
-  color: yellow;
+  color: white;
 }
 #main-menu li.active a, #main-menu li.active-trail a {
   background-image: url('images/arrow-down.png');
