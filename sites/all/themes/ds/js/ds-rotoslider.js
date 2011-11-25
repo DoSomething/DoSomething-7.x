@@ -2,7 +2,6 @@
 
 Drupal.behaviors.ds_rotoslider = {
   attach: function(context, settings) {
-    console.log('hleasdf');
     $('.rotoslider').each(function (index, slider) {
       $('.rotoslider-nav', $(slider))
         .find('li a')

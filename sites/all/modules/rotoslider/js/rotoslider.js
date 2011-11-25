@@ -34,10 +34,6 @@ Drupal.behaviors.rotoslider = {
           }
 
           $(this).mousemove(function(e) {
-            if (!Drupal.rotoslider.toggle) {
-              return;
-            }
-
             y_pos = e.pageY - nav_offsetY;
             if (y_pos >= 0 && y_pos <= (slider_nav_height * settings.rotoslider.percentage)) {
               Drupal.rotoslider.animateThis($slider_nav_items, 0);
@@ -86,6 +82,10 @@ Drupal.rotoslider.rotate = function() {
 }
 
 Drupal.rotoslider.animateThis = function($elements, final_pos, speed) {
+  if (!Drupal.rotoslider.toggle) {
+    return;
+  }
+
   speed = speed || Drupal.settings.rotoslider.speed;
   Drupal.rotoslider.toggle = false; // sets "global" toggle
 
