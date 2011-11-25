@@ -2802,7 +2802,7 @@ nav[role=navigation] a:active {
 }
 nav[role=navigation] .primary {
   background-color: #005ba9;
-  padding-left: 22.162%;
+  padding-left: 170px;
 }
 nav[role=navigation] .primary .wrapper {
   display: table;
@@ -2878,6 +2878,7 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   min-height: 1.517em;
   padding-right: 0.103em;
   padding-left: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif;
 }
 #main-menu li {
   display: table-cell;
@@ -2911,7 +2912,6 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 }
 #main-menu li:hover a, #main-menu li.active a, #main-menu li.active-trail a, #main-menu li.active-hover a {
   background-color: #014e9c;
-  color: white;
 }
 #main-menu li.active a, #main-menu li.active-trail a {
   background-image: url('images/arrow-down.png');
