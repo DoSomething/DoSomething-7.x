@@ -345,7 +345,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/action-finder/!1" title="" class="projects-see-all">See all &raquo;</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/action-finder?issues=!1" title="" class="projects-see-all">See all &raquo;</a>';
   $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 1;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
