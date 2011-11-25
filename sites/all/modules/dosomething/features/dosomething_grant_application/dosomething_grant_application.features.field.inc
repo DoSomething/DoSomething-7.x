@@ -140,7 +140,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_address',
       'label' => 'Address',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -157,7 +157,7 @@ function dosomething_grant_application_field_default_fields() {
             'address' => 'address',
             'name-full' => 0,
             'name-oneline' => 0,
-            'organisation' => 'organisation',
+            'organisation' => 0,
           ),
         ),
         'type' => 'addressfield_standard',
@@ -174,6 +174,9 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_birthdate',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'date',
@@ -186,6 +189,7 @@ function dosomething_grant_application_field_default_fields() {
           'second' => 0,
           'year' => 'year',
         ),
+        'profile2_private' => FALSE,
         'repeat' => 0,
         'timezone_db' => '',
         'todate' => '',
@@ -217,7 +221,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_birthdate',
       'label' => 'Birth Date',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'default_value' => 'now',
         'default_value2' => 'blank',
@@ -280,7 +284,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_email',
       'label' => 'Email',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -609,7 +613,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_mobile',
       'label' => 'Mobile Phone Number',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -634,6 +638,9 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -650,6 +657,7 @@ function dosomething_grant_application_field_default_fields() {
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -671,7 +679,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_name',
       'label' => 'Name',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -683,7 +691,7 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -767,6 +775,9 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_project_dates',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'date',
@@ -779,6 +790,7 @@ function dosomething_grant_application_field_default_fields() {
           'second' => 0,
           'year' => 'year',
         ),
+        'profile2_private' => FALSE,
         'repeat' => 0,
         'timezone_db' => '',
         'todate' => 'required',
@@ -810,7 +822,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_project_dates',
       'label' => 'Project Dates',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'default_value' => 'now',
         'default_value2' => 'blank',
@@ -844,6 +856,9 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_project_summary',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -858,7 +873,9 @@ function dosomething_grant_application_field_default_fields() {
         ),
       ),
       'module' => 'text',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'text_long',
     ),
@@ -879,7 +896,7 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_project_summary',
       'label' => 'Project Summary',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -1219,18 +1236,14 @@ function dosomething_grant_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_weform_project_submission',
       'label' => 'Your DoSomething project posting',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'path' => '',
-          'size' => '60',
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '12',
       ),
