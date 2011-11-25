@@ -2872,13 +2872,17 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 }
 
 #main-menu {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  position: relative;
+  background-color: #005ba9;
   font-size: 26px;
   font-weight: 500;
   display: table-row;
   min-height: 1.517em;
   padding-right: 0.103em;
   padding-left: 0;
-  font-family: din-web, "Trebuchet MS", sans-serif;
 }
 #main-menu li {
   display: table-cell;

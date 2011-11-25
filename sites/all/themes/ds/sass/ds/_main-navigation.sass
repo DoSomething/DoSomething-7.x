@@ -50,13 +50,17 @@ nav[role=navigation]
 
 #main-menu
   // +adjust-font-size-to($s4)
+  font-family: $font-headline
+  text-rendering: optimizeLegibility
+  text-transform: uppercase
+  position: relative
+  background-color: $c-menu-primary-bg
   font-size: 26px
   font-weight: 500
   display: table-row
   min-height: calc-em($menu-height, $s4)
   padding-right: calc-em(3px, $s4)
   padding-left: 0
-  font-family: $font-headline
   li
     display: table-cell
     background: $c-menu-primary-bg
