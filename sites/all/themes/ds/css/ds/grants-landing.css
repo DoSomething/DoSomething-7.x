@@ -101,8 +101,6 @@
   display: block;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 18px;
-  font-weight: 500;
-  line-height: 2em;
   text-align: center;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
@@ -117,7 +115,7 @@
   color: white;
 }
 .panel-bottom .pane-content .grant-title {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 .panel-bottom .pane-content .views-field-title {
   text-align: left;
