@@ -30,6 +30,50 @@ function dosomething_login_schema() {
       'uid_fbid' => array('uid', 'fbid'),
     ),
   );
+  $schema['ds_registration_data'] = array(
+    'description' => 'Log of registration data for non-registered users.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'cell' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'default' => 0,
+      ),
+      'first_name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'last_name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'birthday' => array(
+        'type' => 'varchar',
+        'length' => 16,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+    'indexes' => array(
+      'cell' => array('cell'),
+      'email' => array('email'),
+    ),
+  );
   return $schema;
 }
 
@@ -41,3 +85,57 @@ function dosomething_login_update_7000(&$sandbox) {
     drupal_install_schema('dosomething_login');
   }
 }
+
+/**
+ * Create registration table for logging interested users.
+ */
+function dosomething_login_update_7001(&$sandbox) {
+  if (!db_table_exists('ds_registration_data')) {
+    $table = array(
+      'description' => 'Log of registration data for non-registered users.',
+      'fields' => array(
+        'id' => array(
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'email' => array(
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'cell' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'default' => 0,
+        ),
+        'first_name' => array(
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'last_name' => array(
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'birthday' => array(
+          'type' => 'varchar',
+          'length' => 16,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array(
+        'cell' => array('cell'),
+        'email' => array('email'),
+      ),
+    );
+    db_create_table('ds_registration_data', $table);
+  }
+}
+
