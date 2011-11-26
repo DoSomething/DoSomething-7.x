@@ -628,6 +628,7 @@ a.ds-button:active, a.ds-button-strong:active {
 
 .selectBox-options li a {
   white-space: normal;
+  margin-bottom: 5px;
 }
 
 .three-across ul {
