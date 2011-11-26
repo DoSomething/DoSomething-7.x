@@ -108,25 +108,19 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_projects_general-start-a-project';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Start a Project',
-      'title' => '<none>',
-      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
-      'format' => '3',
-      'substitute' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array(
-      'css_id' => 'start-a-project',
-      'css_class' => '',
-    );
+    $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-3'] = $pane;
@@ -277,7 +271,7 @@ function dosomething_projects_general_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display;
-  $display->layout = 'one_two';
+  $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -285,6 +279,9 @@ function dosomething_projects_general_default_page_manager_pages() {
       'top' => NULL,
       'left' => NULL,
       'right' => NULL,
+      'left-top' => NULL,
+      'left-bottom-left' => NULL,
+      'left-bottom-right' => NULL,
     ),
   );
   $display->cache = array();
@@ -293,7 +290,7 @@ function dosomething_projects_general_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'left';
+    $pane->panel = 'left-top';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_1';
     $pane->shown = TRUE;
@@ -311,15 +308,18 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['left'][0] = 'new-1';
+    $display->panels['left-top'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'right';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_2';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_projects_general-start-a-project';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -333,6 +333,26 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-3'] = $pane;
+    $display->panels['right'][1] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
+    $pane->panel = 'right';
+    $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_3';
     $pane->shown = TRUE;
     $pane->access = array();
@@ -341,11 +361,14 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-3'] = $pane;
-    $display->panels['right'][1] = 'new-3';
+    $pane->position = 2;
+    $display->content['new-4'] = $pane;
+    $display->panels['right'][2] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
