@@ -4,32 +4,15 @@
 @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 
+.front #main-wrapper
+  background: none
+
 .left-block-expando-h2
-  border-top:
-    width: calc-em(1px, $s2)
-    style: solid
-    color: $c-thin-line-dark
-    color: rgba($c-thin-line-dark, 0.6)
-  border-bottom:
-    width:  calc-em(1px, $s2)
-    style: solid
-    color: $c-thin-line-dark
-    color: rgba($c-thin-line-dark, 0.6)
   +background-image(linear-gradient(bottom, #403f3d, #5f5c58))
   +box-shadow(rgba($black, 0.5) 0 0 4px inset)
   margin-left: -(percentage($s0 / $left-col-width-inner))
   margin-right: -(percentage($s2 / $left-col-width-inner))
   .inner
-    border-top:
-      width:  calc-em(1px, $s2)
-      style: solid
-      color: $c-thin-line-light
-      color: rgba($c-thin-line-light, 0.6)
-    border-bottom:
-      width:  calc-em(1px, $s2)
-      style: solid
-      color: $c-thin-line-light
-      color: rgba($c-thin-line-light, 0.6)
     padding-left: (percentage($s0 / $left-col-width-inner))
     padding-right: (percentage($s2 / $left-col-width-inner))
     +background(image_url("btn-leftsidebar-feeds-plus.png") no-repeat 171px center)
@@ -37,12 +20,9 @@
     .inner
       +background(image_url("btn-leftsidebar-feeds-minus.png") no-repeat 171px center)
 
-
 #block-dosomething-login-become-member
-  +background-with-css2-fallback(image_url('bg-top-left-fade.png') no-repeat center bottom, image_url('bg-top-left-fade-top.png') no-repeat center top, image_url('bg-diag-1-2-top-left.png') repeat 0 0)
-  //margin-top: -(calc-em(45px, $s0))
-  // @todo fix this to be calc-em
-  padding-top: 89px
+  background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
+  margin-top: 65px
   position: relative
   padding-bottom: calc-em(10px, $s0)
   border-bottom: calc-em(5px, $s0) solid $gray2
@@ -133,7 +113,7 @@
     margin: calc-em(2px, $s2) 0
     color: $white
     a
-      +link-colors($white, $yellow, $yellow, $white, false)
+      +link-colors($white, $white, $white, $white, false)
       +remove-link-underlines
     &.why-member
       a
@@ -141,7 +121,6 @@
         +background(image_url('icn-popup.png') no-repeat right center)
         line-height: 1.15
         display: block
-    &.already-member
   .ds-button
     margin-right: 0px
   .facebook-login
@@ -157,7 +136,7 @@
     color: $white
     +adjust-font-size-to($s-2)
     a
-      +link-colors($yellow, $white, $white, $yellow, false)
+      +link-colors($white, $white, $white, $white, false)
       +remove-link-underlines
     .dosomething-login-user-name
       +background(image_url("cta-left-col-header-bg.png") no-repeat 50% 50%)
@@ -169,7 +148,6 @@
       +adjust-font-size-to($s3, 1, $s2)
       line-height: 1.2em
       padding: 0 0.5em
-      font-family: $font-headline
       color: $black-not
       h2
         line-height: 28px
@@ -181,10 +159,12 @@
         line-height: 30px
     .ds-member-name-bar
       text-decoration: none
-
     h2
       +adjust-font-size-to($s2, 1, $s-2)
       font-weight: 400
+    hr.top
+      background: image_url("make-an-impact-home-header.png") no-repeat
+      margin: 1em 0
     .dosomething-login-profile
       .profile-header
         a
@@ -207,7 +187,6 @@
             +replace-text('profile-percentage-indicator.png')
             background-repeat: repeat-x
             background-position: left center
-            // background-color: rgba($white, 0.3)
             position: relative
             top: -1px
             width: 0%
@@ -220,17 +199,21 @@
         margin-top: 0
     .item-list
       ul
+        font-family: $font-headline
+        font-size: 14px
         margin-left: -6px
         li
-          list-style-image: image_url("list-triangle-right.png")
+          list-style-type: none
+          list-style-image: none
           line-height: 1.4
           ul
             margin-top: 6px
-            margin-left: -4px
             li
-              list-style-type: disc
+              list-style-type: none
               list-style-image: none
               line-height: 1.4
+              &:after
+                content: " »"
     .dosomething-login-goto-profile
       display: block
       text-align: right
@@ -238,9 +221,10 @@
 // Not Logged In
 .not-logged-in
   #block-dosomething-login-become-member
-    background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
     color: $white
     padding-bottom: calc-em(11px, $s0)
+    h2.block-title
+      margin-top: 0
     hr.top
       background: image_url("make-an-impact-home-header.png") no-repeat
       margin: 1em 0
