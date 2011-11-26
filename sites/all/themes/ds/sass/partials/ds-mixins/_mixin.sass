@@ -107,4 +107,50 @@
     a.active
       color: #222222
       background: $white
-      border-color: #CCCCCC  
+      border-color: #CCCCCC
+
+$arrow-dothis: "arrow-statbar-dothis.png"
+$arrow-seedgrants: "arrow-statbar-seedgrants.png"
+$arrow-projectstatus: "arrow-statbar-projectstatus.png"
+
+// Apply to the ul or ul equivalent class
+=status-bar
+  background-color: $gray6
+  +box-shadow(#cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset)
+  border-top: 1px solid $white
+  border-bottom: 1px solid $white
+  +horizontal-list
+  margin: 1em 0
+  li
+    color: $blue
+    font-weight: 600
+    font-size: 14px
+    font-style: italic
+    line-height: 1em
+    margin-left: 0.2em
+    padding-top: 0.5em
+    .label
+      color: $black
+    // &:after
+      background: image_url("bg-statbar-divider.png") no-repeat right center
+    &:first-of-type
+      +replace-text-with-dimensions($arrow-seedgrants, left, bottom)
+      border: none
+      padding-top: 0
+      margin-left: 0
+    &:last-of-type
+      background: none
+      float: right
+      padding-top: 0
+    .ds-button
+      font-family: $font-headline
+      +adjust-font-size-to(17px)
+      line-height: 1.6
+      font-weight: 700
+      font-style: normal
+      text-transform: uppercase
+      background-color: $yellow
+      +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
+      border: 1px solid rgba($gray-dark, 0.3)
+      border-bottom-color: rgba($gray-dark, 0.6)
+      
