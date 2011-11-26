@@ -72,7 +72,7 @@ function ds_preprocess_page(&$variables) {
   }
   // project pages
   if ($arg0 == 'webform-submission') {
-    drupal_add_css($theme_path . '/css/ds/dosomething-projects.css');
+    drupal_add_css($theme_path . '/css/ds/page-node-projects.css');
   }
 
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
@@ -158,6 +158,10 @@ function ds_preprocess_node(&$variables) {
   // Club node page
   if ($variables['type'] == 'club') {
     drupal_add_css($theme_path . '/css/ds/page-node-club.css');
+  }
+  // Project node page
+  if ($variables['type'] == 'project') {
+    drupal_add_css($theme_path . '/css/ds/page-node-projects.css');
   }
 }
 
