@@ -46,6 +46,12 @@ function dosomething_login_menu() {
     'access callback' => 'dosomething_parent_consent_email_access',
     'type' => MENU_CALLBACK,
   );
+  $items['dosomething/ajax/registration-data'] = array(
+    'title' => 'Registration Data',
+    'page callback' => 'dosomething_login_registration_data_page',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -1301,3 +1307,41 @@ function dosomething_login_facebook_friend_process($uid, $facebook_friends = arr
     $query->execute();
   }
 }
+
+/**
+ * Log registration data when a user begins the registration process.
+ */
+function dosomething_login_registration_data_page() {
+  // TODO: Pass key as setting to js.
+  if (isset($_POST['ds_api_key']) && $_POST['ds_api_key'] == variable_get('dosomething_login_api_key', '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ')) {
+    $data = new stdClass;
+    $required_fields = array('first_name', 'last_name', 'birthday', 'cell_or_email');
+    if (!isset($_POST['cell_or_email'])) {
+      exit;
+    }
+    foreach ($required_fields as $field) {
+      if (!isset($_POST[$field]) || !$_POST[$field]) {
+        exit;
+      }
+      $data->{$field} = $_POST[$field];
+    }
+    // Ensure there is no current user with this cell or email.
+    if (valid_email_address($_POST['cell_or_email'])) {
+      if (user_load_by_mail($_POST['cell_or_email'])) {
+        exit;
+      }
+      $data->email = $_POST['cell_or_email'];
+    }
+    else if (($number = ltrim(preg_replace('/[^0-9]/', '', $_POST['cell_or_email']), 1)) && strlen($number) >= 10) {
+      if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+        exit;
+      }
+      $data->cell = $number;
+    }
+
+    // TODO: Dedupe based on cell or email
+    $success = drupal_write_record('ds_registration_data', $data);
+  }
+  exit;
+}
+
