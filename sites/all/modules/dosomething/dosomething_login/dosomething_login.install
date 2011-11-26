@@ -107,6 +107,7 @@ function dosomething_login_update_7001(&$sandbox) {
         ),
         'cell' => array(
           'type' => 'int',
+          'size' => 'big',
           'unsigned' => TRUE,
           'default' => 0,
         ),
