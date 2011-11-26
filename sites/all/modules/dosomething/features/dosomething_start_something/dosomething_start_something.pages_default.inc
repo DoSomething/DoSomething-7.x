@@ -134,7 +134,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'start-a-project',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-4'] = $pane;
@@ -166,7 +169,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-5'] = $pane;
@@ -198,7 +204,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 2;
     $display->content['new-6'] = $pane;
@@ -215,7 +224,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-pane-no-radius ds-pane-usergen ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 3;
     $display->content['new-7'] = $pane;
