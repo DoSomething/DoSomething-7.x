@@ -63,6 +63,7 @@ function dosomething_intentions_node_load($nodes, $types) {
       $nodes[$node->nid]->webform['submit_notice'] = 0;
       $nodes[$node->nid]->webform['redirect_url'] = '<none>';
       $nodes[$node->nid]->webform['submit_limit'] = -1;
+      $nodes[$node->nid]->webform['allow_draft'] = 1;
     }
   }
 }
