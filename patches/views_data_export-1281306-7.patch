@@ -1,0 +1,25 @@
+From 641c1aaafc9fca0da07503f9da26fff498c6fae0 Mon Sep 17 00:00:00 2001
+From: Tim Plunkett <git@plnktt.com>
+Date: Sat, 26 Nov 2011 16:41:01 -0500
+Subject: [PATCH] Issue #1281306 by tim.plunkett: Fixed Notice: Undefined
+ index: type in default_summary_form() line 571.
+
+---
+ views_data_export.views.inc |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+diff --git a/views_data_export.views.inc b/views_data_export.views.inc
+index b546b36..c433c79 100644
+--- a/views_data_export.views.inc
++++ b/views_data_export.views.inc
+@@ -47,6 +47,7 @@ function views_data_export_views_plugins() {
+         'path' => $path . '/plugins',
+         'theme path' => $path . '/theme',
+         'theme file' => 'views_data_export.theme.inc',
++        'type' => 'normal',
+       ),
+       'views_data_export_csv' => array(
+         'title' => t('CSV file'),
+-- 
+1.7.4.4
+
