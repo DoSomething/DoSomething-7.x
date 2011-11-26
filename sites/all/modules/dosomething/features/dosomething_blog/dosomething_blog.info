@@ -1,7 +1,7 @@
 name = "Dosomething Blog"
 description = "Blog content type, views etc."
 core = "7.x"
-package = "Dosomething"
+package = "DoSomething"
 php = "5.2.4"
 dependencies[] = "ctools"
 dependencies[] = "dosomething_project_report"

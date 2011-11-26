@@ -1,7 +1,7 @@
 name = "Dosomething Home"
 description = "homepage panel"
 core = "7.x"
-package = "Dosomething"
+package = "DoSomething"
 php = "5.2.4"
 dependencies[] = "ctools"
 dependencies[] = "dosomething_blog"
