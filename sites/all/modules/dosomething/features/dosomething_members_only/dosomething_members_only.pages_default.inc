@@ -257,8 +257,9 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
          0 => array(
           'name' => 'role',
           'settings' => array(
-          'rids' => array(
-            0 => 1,
+            'rids' => array(
+              0 => 1,
+            ),
           ),
         ),
        'context' => 'logged-in-user',
