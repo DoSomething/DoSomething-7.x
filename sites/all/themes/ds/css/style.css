@@ -633,6 +633,9 @@ a.ds-button:active, a.ds-button-strong:active {
   width: 100%;
 }
 
+.ie8 .selectBox-options, .ie7 .selectBox-options {
+  position: relative;
+}
 .selectBox-options li a {
   white-space: normal;
   margin-bottom: 5px;
