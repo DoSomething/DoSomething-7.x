@@ -47,6 +47,17 @@
           event.preventDefault();
           return;
         }
+
+        // Save registration data in case they don't sign up.
+        var postData = {
+          first_name: $("#edit-first-name").val(),
+          last_name: $("#edit-last-name").val(),
+          cell_or_email: $("#edit-cell-or-email").val(),
+          birthday: (birthDate.getMonth() + 1) + '/' + birthDate.getDate() + '/' + birthDate.getFullYear(),
+          ds_api_key: '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ'
+        };
+        $.post('dosomething/ajax/registration-data', postData);
+
         popupForm.dialog({modal:true, width:592});
 
         // Check if user is over 25.
