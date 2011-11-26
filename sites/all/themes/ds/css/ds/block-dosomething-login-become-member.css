@@ -100,16 +100,6 @@
 }
 
 .left-block-expando-h2, .logged-in #block-dosomething-login-become-member h2.my-somethings, .logged-in #block-dosomething-login-become-member h2.notifications {
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #403f3d), color-stop(100%, #5f5c58));
-  background-image: -webkit-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: -moz-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: -o-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: -ms-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: linear-gradient(bottom, #403f3d, #5f5c58);
-  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
   margin-left: -6.857%;
   margin-right: -10.286%;
 }
