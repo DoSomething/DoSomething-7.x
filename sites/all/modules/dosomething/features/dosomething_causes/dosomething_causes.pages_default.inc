@@ -247,6 +247,9 @@ function dosomething_causes_default_page_manager_handlers() {
       'arguments' => array(
         'term_node_tid_depth' => '%term:tid',
       ),
+      'use_pager' => 0,
+      'pager_id' => '',
+      'items_per_page' => '3',
     );
     $pane->cache = array();
     $pane->style = array(

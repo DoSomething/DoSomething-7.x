@@ -1,7 +1,7 @@
 name = "Dosomething Campaign"
 description = "Campaign content type and related settings"
 core = "7.x"
-package = "Dosomething"
+package = "DoSomething"
 php = "5.2.4"
 dependencies[] = "ctools"
 dependencies[] = "date"

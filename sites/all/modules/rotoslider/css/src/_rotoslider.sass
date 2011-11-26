@@ -23,6 +23,7 @@
   .rotoslider-descriptions
     & > div
       +box-sizing('border-box')
+      background-color: $purple
       background-color: rgba($purple, 0.7)
       color: $white
       left: 0
@@ -81,6 +82,7 @@
       top: 0
       a
         display: block
+        background-color: $black
         background-color: rgba($black, 0.6)
         border-bottom-width: 0
         color: #999
@@ -88,8 +90,10 @@
         text-align: center
         text-decoration: none
         &:hover
+          background-color: $black
           background-color: rgba($black, 0.4)
           color: #ccc
         &.active
+          background-color: $black
           background-color: rgba($black, 0.8)
           color: $white

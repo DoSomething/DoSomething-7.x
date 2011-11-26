@@ -122,35 +122,28 @@ $arrow-projectstatus: "arrow-statbar-projectstatus.png"
   +horizontal-list
   margin: 1em 0
   li
-    color: $blue
-    font-weight: 600
-    font-size: 14px
-    font-style: italic
-    line-height: 1em
-    margin-left: 0.2em
-    padding-top: 0.5em
-    .label
-      color: $black
-    // &:after
-      background: image_url("bg-statbar-divider.png") no-repeat right center
+    &.dynamic
+      color: $blue
+      font-weight: bold
+      font-size: $s1
+      font-style: italic
+      margin-left: 0.2em
+      padding-top: 0.3em
+      .label
+        color: $black
+      &:after
+        background: image_url("bg-statbar-divider.png") no-repeat right center
+        content: "\0020"
+        height: 1em
+        +inline-block
+        width: 1em
+      &:nth-last-of-type(2)
+        &:after
+          display: none
     &:first-of-type
       +replace-text-with-dimensions($arrow-seedgrants, left, bottom)
-      border: none
       padding-top: 0
       margin-left: 0
     &:last-of-type
-      background: none
       float: right
       padding-top: 0
-    .ds-button
-      font-family: $font-headline
-      +adjust-font-size-to(17px)
-      line-height: 1.6
-      font-weight: 700
-      font-style: normal
-      text-transform: uppercase
-      background-color: $yellow
-      +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
-      border: 1px solid rgba($gray-dark, 0.3)
-      border-bottom-color: rgba($gray-dark, 0.6)
-      

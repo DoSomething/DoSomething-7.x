@@ -277,11 +277,9 @@ function dosomething_causes_field_default_fields() {
   // Included for use with string extractors like potx.
   t('580px by 580px max');
   t('Causes/Issues');
-  t('Debris left over after upgrade from Drupal 6');
   t('Picture');
   t('Short Description');
   t('Suggested maximum length 150 characters.');
-  t('Taxonomy upgrade extras');
 
   return $fields;
 }

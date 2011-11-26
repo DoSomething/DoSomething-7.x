@@ -106,7 +106,11 @@
   +box-sizing(content-box)
   padding: 0 10px
   height: 22px
-  border: 1px solid rgba($gray-darker, 0.5)
+  border:
+    width:  1px
+    style: solid
+    color: $gray-darker
+    color: rgba($gray-darker, 0.5)
   border-bottom-color: $gray-darker
   +border-radius
   background-color: $gray-gloss-light
@@ -119,7 +123,12 @@
   @extend .ds-button
   background-color: $yellow
   +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
-  border: 1px solid rgba($gray-dark, 0.3)
+  border:
+    width:  1px
+    style: solid
+    color: $gray-dark
+    color: rgba($gray-dark, 0.3)
+  border-bottom-color: $gray-dark
   border-bottom-color: rgba($gray-dark, 0.6)
 
 a.ds-button
@@ -137,10 +146,12 @@ a.ds-button
     +text-overflow
 
 .selectBox-options
+  .ie8 &, .ie7 &
+    position: relative
   li
     a
       white-space: normal
-
+      margin-bottom: 5px
 
 // grid styles
 .three-across

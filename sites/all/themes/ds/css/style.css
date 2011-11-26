@@ -571,7 +571,10 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: content-box;
   padding: 0 10px;
   height: 22px;
-  border: 1px solid rgba(52, 52, 52, 0.5);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #343434;
+  border-color: rgba(52, 52, 52, 0.5);
   border-bottom-color: #343434;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -600,7 +603,11 @@ h1, h2, h3, h4, h5, h6 {
   background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
   background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
   background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  border: 1px solid rgba(34, 34, 34, 0.3);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #222222;
+  border-color: rgba(34, 34, 34, 0.3);
+  border-bottom-color: #222222;
   border-bottom-color: rgba(34, 34, 34, 0.6);
 }
 
@@ -626,8 +633,12 @@ a.ds-button:active, a.ds-button-strong:active {
   width: 100%;
 }
 
+.ie8 .selectBox-options, .ie7 .selectBox-options {
+  position: relative;
+}
 .selectBox-options li a {
   white-space: normal;
+  margin-bottom: 5px;
 }
 
 .three-across ul {
@@ -993,6 +1004,7 @@ sub {
 
 mark {
   background: red;
+  background-color: #ffd203;
   background-color: rgba(255, 210, 3, 0.5);
   text-shadow: none;
 }
@@ -1727,6 +1739,7 @@ label {
   width: 22.333em;
   max-width: 100%;
   margin-top: 0;
+  border-color: #161616;
   border-color: rgba(22, 22, 22, 0.25);
   height: 2.083em;
   -moz-border-radius: 6px;
@@ -1966,6 +1979,9 @@ body.one-sidebar.sidebar-first [role=main] {
   width: 77.838%;
   float: right;
 }
+.ie7 body.one-sidebar.sidebar-first [role=main] {
+  width: 77%;
+}
 body.node-type-project [role=main] .main-inner {
   float: left;
   width: 73.194%;
@@ -2085,11 +2101,13 @@ body.node-type-project [role=main] .main-interior-sidebar {
 #ds-wider-thinner .panes-2 .panel-second {
   width: 25.072%;
 }
-#ds-wider-thinner .panes-2 #start-a-project {
-  text-align: center;
-}
 #ds-wider-thinner .panes-2 .ds-internal-sidebar-flush-right .pane-title, #ds-wider-thinner .panes-2 #blog-archives-pane .pane-title {
   line-height: 1.5;
+}
+
+.start-a-project {
+  margin-bottom: 2em;
+  text-align: center;
 }
 
 /* SITE-WIDE DESIGN -------------------------------------------------------------- */
@@ -2891,6 +2909,12 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 #main-menu li {
   display: table-cell;
   background: #005ba9;
+}
+.ie8 #main-menu li, .ie7 #main-menu li {
+  display: inline;
+  display: inline;
+  float: left;
+  margin-left: 12px;
 }
 #main-menu li a {
   line-height: 1.172;

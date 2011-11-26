@@ -281,10 +281,10 @@ function dosomething_grants_default_page_manager_handlers() {
       'title' => '',
       'body' => '<ul>
 <li class="grants-title">%node:title</li>
-<li><span class="label">How Much?</span> %node:field-grants-how-much</li>
-<li><span class="label">How Many?</span>  %node:field-grants-how-many</li>
-<li><span class="label">Deadline:</span>  %node:field_application_deadline</li>
-<li><a class="apply-now ds-button" href="/node/%general_grant_app:nid/%node:nid">APPLY NOW</a></li>
+<li class="dynamic"><span class="label">How Much?</span> %node:field-grants-how-much</li>
+<li class="dynamic"><span class="label">How Many?</span> %node:field-grants-how-many</li>
+<li class="dynamic"><span class="label">Deadline:</span> %node:field_application_deadline</li>
+<li><a class="apply-now ds-button-strong" href="/node/%general_grant_app:nid/%node:nid">Apply Now</a></li>
 </ul>',
       'format' => '3',
       'substitute' => 1,
@@ -513,6 +513,26 @@ function dosomething_grants_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-7';
     $pane->panel = 'mid-left';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-7'] = $pane;
+    $display->panels['mid-left'][0] = 'new-7';
+    $pane = new stdClass;
+    $pane->pid = 'new-8';
+    $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
@@ -535,11 +555,11 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['mid-left'][0] = 'new-7';
+    $pane->position = 1;
+    $display->content['new-8'] = $pane;
+    $display->panels['mid-left'][1] = 'new-8';
     $pane = new stdClass;
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'mid-right';
     $pane->type = 'node';
     $pane->subtype = 'node';
@@ -565,10 +585,10 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-8'] = $pane;
-    $display->panels['mid-right'][0] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['mid-right'][0] = 'new-9';
     $pane = new stdClass;
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-10';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -597,28 +617,8 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-9'] = $pane;
-    $display->panels['mid-right'][1] = 'new-9';
-    $pane = new stdClass;
-    $pane->pid = 'new-10';
-    $pane->panel = 'top';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
     $display->content['new-10'] = $pane;
-    $display->panels['top'][0] = 'new-10';
+    $display->panels['mid-right'][1] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

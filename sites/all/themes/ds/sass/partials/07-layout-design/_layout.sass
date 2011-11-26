@@ -28,6 +28,8 @@
   body.one-sidebar.sidebar-first &
     width: percentage($main-width / $page-width)
     float: right
+    .ie7 &
+      width: 77%
   body.node-type-project &
     .main-inner
       float: left
@@ -164,8 +166,10 @@
       width: percentage($two-col-wide3 / $main-width-w-padding)
     .panel-second
       width: percentage($two-col-thin3 / $main-width-w-padding)
-    #start-a-project
-      text-align: center
     .ds-internal-sidebar-flush-right
       .pane-title
         line-height: 1.5
+
+.start-a-project
+  margin-bottom: 2em
+  text-align: center

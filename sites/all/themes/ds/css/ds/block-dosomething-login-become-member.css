@@ -95,25 +95,15 @@
   font-weight: 500;
 }
 
+.front #main-wrapper {
+  background: none;
+}
+
 .left-block-expando-h2, .logged-in #block-dosomething-login-become-member h2.my-somethings, .logged-in #block-dosomething-login-become-member h2.notifications {
-  border-top: 0.056em solid rgba(76, 76, 76, 0.6);
-  border-bottom: 0.056em solid rgba(76, 76, 76, 0.6);
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #403f3d), color-stop(100%, #5f5c58));
-  background-image: -webkit-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: -moz-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: -o-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: -ms-linear-gradient(bottom, #403f3d, #5f5c58);
-  background-image: linear-gradient(bottom, #403f3d, #5f5c58);
-  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
   margin-left: -6.857%;
   margin-right: -10.286%;
 }
 .left-block-expando-h2 .inner, .logged-in #block-dosomething-login-become-member h2.my-somethings .inner, .logged-in #block-dosomething-login-become-member h2.notifications .inner {
-  border-top: 0.056em solid rgba(118, 115, 112, 0.6);
-  border-bottom: 0.056em solid rgba(118, 115, 112, 0.6);
   padding-left: 6.857%;
   padding-right: 10.286%;
   background: url('../images/btn-leftsidebar-feeds-plus.png') no-repeat 171px center;
@@ -123,9 +113,8 @@
 }
 
 #block-dosomething-login-become-member {
-  background: url('../images/bg-diag-1-2-top-left.png') repeat 0 0;
-  background: url('../images/bg-top-left-fade.png') no-repeat center bottom, url('../images/bg-top-left-fade-top.png') no-repeat center top, url('../images/bg-diag-1-2-top-left.png') repeat 0 0;
-  padding-top: 89px;
+  background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
+  margin-top: 65px;
   position: relative;
   padding-bottom: 0.833em;
   border-bottom: 0.417em solid #8e8a86;
@@ -219,6 +208,11 @@
 #block-dosomething-login-become-member input[type='submit'] {
   margin-bottom: 0.353em;
 }
+.ie7 #block-dosomething-login-become-member input[type='submit'] {
+  margin-top: 27px;
+  margin-left: -5em;
+  line-height: 1em;
+}
 #block-dosomething-login-become-member hr {
   clear: both;
   margin: 0;
@@ -246,10 +240,10 @@
   color: white;
 }
 #block-dosomething-login-become-member h3 a:hover {
-  color: #ffd203;
+  color: white;
 }
 #block-dosomething-login-become-member h3 a:active {
-  color: #ffd203;
+  color: white;
 }
 #block-dosomething-login-become-member h3 a {
   border-bottom: none;
@@ -280,10 +274,10 @@
   line-height: 2.4em;
 }
 .logged-in #block-dosomething-login-become-member a {
-  color: #ffd203;
+  color: white;
 }
 .logged-in #block-dosomething-login-become-member a:visited {
-  color: #ffd203;
+  color: white;
 }
 .logged-in #block-dosomething-login-become-member a:hover {
   color: white;
@@ -308,7 +302,6 @@
   line-height: 1em;
   line-height: 1.2em;
   padding: 0 0.5em;
-  font-family: din-web, "Trebuchet MS", sans-serif;
   color: #161616;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2 {
@@ -329,6 +322,10 @@
   line-height: 1.333em;
   font-weight: 400;
 }
+.logged-in #block-dosomething-login-become-member hr.top {
+  background: url('../images/make-an-impact-home-header.png') no-repeat;
+  margin: 1em 0;
+}
 .logged-in #block-dosomething-login-become-member .dosomething-login-profile .profile-header a {
   float: right;
 }
@@ -345,7 +342,10 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
   -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-color: rgba(0, 0, 0, 0.5);
   padding: 0 3px;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage .ratio {
@@ -372,20 +372,25 @@
   margin-top: 0;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 14px;
   margin-left: -6px;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li {
-  list-style-image: url('../images/list-triangle-right.png');
+  list-style-type: none;
+  list-style-image: none;
   line-height: 1.4;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li ul {
   margin-top: 6px;
-  margin-left: -4px;
 }
 .logged-in #block-dosomething-login-become-member .item-list ul li ul li {
-  list-style-type: disc;
+  list-style-type: none;
   list-style-image: none;
   line-height: 1.4;
+}
+.logged-in #block-dosomething-login-become-member .item-list ul li ul li:after {
+  content: " »";
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-goto-profile {
   display: block;
@@ -393,9 +398,11 @@
 }
 
 .not-logged-in #block-dosomething-login-become-member {
-  background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
   color: white;
   padding-bottom: 0.917em;
+}
+.not-logged-in #block-dosomething-login-become-member h2.block-title {
+  margin-top: 0;
 }
 .not-logged-in #block-dosomething-login-become-member hr.top {
   background: url('../images/make-an-impact-home-header.png') no-repeat;

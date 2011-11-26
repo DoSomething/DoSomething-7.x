@@ -1627,6 +1627,14 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['ds_social_plugins']['options'] = array(
     'fb_social_preset' => 'FB Like',
   );
+  $handler->display->display_options['argument_input'] = array(
+    'field_blog_type_tid' => array(
+      'type' => 'panel',
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Blog type (field_blog_type)',
+    ),
+  );
   $export['blog_center'] = $view;
 
   $view = new view;
