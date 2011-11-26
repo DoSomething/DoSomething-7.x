@@ -2907,6 +2907,11 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   display: table-cell;
   background: #005ba9;
 }
+.ie8 #main-menu li, .ie7 #main-menu li {
+  display: inline;
+  display: inline;
+  float: left;
+}
 #main-menu li a {
   line-height: 1.172;
   padding-top: 0.345em;
