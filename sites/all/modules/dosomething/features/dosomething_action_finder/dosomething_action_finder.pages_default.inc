@@ -15,7 +15,7 @@ function dosomething_action_finder_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Action Finder';
   $page->admin_description = 'The action finder landing page.';
-  $page->path = 'action-finder ';
+  $page->path = 'action-finder';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
