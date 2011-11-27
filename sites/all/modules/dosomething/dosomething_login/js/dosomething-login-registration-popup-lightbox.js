@@ -54,7 +54,7 @@
           last_name: $("#edit-last-name").val(),
           cell_or_email: $("#edit-cell-or-email").val(),
           birthday: (birthDate.getMonth() + 1) + '/' + birthDate.getDate() + '/' + birthDate.getFullYear(),
-          ds_api_key: '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ'
+          ds_api_key: Drupal.settings.dosomethingLogin.dsApiKey
         };
         $.post('dosomething/ajax/registration-data', postData);
 

@@ -358,6 +358,13 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     'js' => array(
       // TODO: Only add on user/registration page.
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js',
+      array(
+        'data' => array('dosomethingLogin' => array(
+            'dsApiKey' => variable_get('dosomething_login_api_key', '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ'),
+          ),
+        ),
+        'type' => 'setting',
+      ),
     ),
   );
 
