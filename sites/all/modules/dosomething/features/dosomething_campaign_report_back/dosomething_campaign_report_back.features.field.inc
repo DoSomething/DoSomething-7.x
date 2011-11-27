@@ -183,7 +183,7 @@ The content from this field will only be shown to anonymous users.',
           'field_webform_school_zip' => 'School Zip Code',
           'field_webform_pictures' => 'Pictures',
           'field_webform_videos' => 'Video',
-          'field_webform_issues' => 'Issues',
+          'taxonomy_vocabulary_5' => 'Issues',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,
@@ -213,7 +213,7 @@ The content from this field will only be shown to anonymous users.',
           'value' => 'field_webform_videos',
         ),
         6 => array(
-          'value' => 'field_webform_issues',
+          'value' => 'taxonomy_vocabulary_5',
         ),
       ),
       'deleted' => '0',
@@ -506,14 +506,14 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_issues'
-  $fields['webform_submission_entity-campaign_report_back-field_webform_issues'] = array(
+  // Exported field: 'webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'
+  $fields['webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_webform_issues',
+      'field_name' => 'taxonomy_vocabulary_5',
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -555,7 +555,7 @@ The content from this field will only be shown to anonymous users.',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_issues',
+      'field_name' => 'taxonomy_vocabulary_5',
       'label' => 'Issues',
       'required' => 0,
       'settings' => array(

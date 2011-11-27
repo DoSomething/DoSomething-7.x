@@ -86,7 +86,7 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
 
     //NULL Mappings
     $this->addUnmigratedSources(array('field_campaign_group', 'field_campaign_project_type'));
-    $this->addUnmigratedDestinations(array('data_campaign_project_type', 'field_webform_mobile', 'field_webform_email', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('data_campaign_project_type', 'field_webform_mobile', 'field_webform_email', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -118,7 +118,7 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('data_school_group_name_1', 'field_webform_mobile', 'field_webform_email', 'data_video', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('data_school_group_name_1', 'field_webform_mobile', 'field_webform_email', 'data_video', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -143,7 +143,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
       ->sourceMigration('DSFile');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('field_webform_issues', 'vocab_5');
+    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5');
 
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_email', 'field_webform_school_zip'));
@@ -176,7 +176,7 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
       ->sourceMigration('DSFile');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('field_webform_issues', 'vocab_5');
+    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5');
 
     //Null Mappings
     $this->addUnmigratedDestinations(array('field_webform_mobile'));
@@ -215,7 +215,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
       ->arguments(array('file_function' => 'file_fid'));
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_issues'));
+    $this->addUnmigratedDestinations(array('taxonomy_vocabulary_5'));
   }
 }
 
@@ -256,7 +256,7 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_school_zip', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_school_zip', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -329,7 +329,7 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_school_zip', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('field_webform_school_zip', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -351,7 +351,7 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
       ->sourceMigration('DSFile');
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'data_pictures_from_your_drive', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'data_pictures_from_your_drive', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -373,7 +373,7 @@ class DSCampaignReportBackStaplesReasonMigration extends DSCampaignReportBackMig
     $this->addFieldMapping('data_team', 'vocab_19');
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'field_webform_pictures', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_videos', 'field_webform_pictures', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -402,7 +402,7 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
       ->sourceMigration('DSFile');
 
     //Null Mappings
-    $this->addUnmigratedDestinations(array('field_webform_videos', 'field_webform_school_zip', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('field_webform_videos', 'field_webform_school_zip', 'taxonomy_vocabulary_5'));
   }
 }
 
@@ -418,6 +418,6 @@ class DSCampaignReportBackTroopLetterMigration extends DSCampaignReportBackMigra
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_pictures', 'field_webform_school_zip', 'field_webform_videos', 'field_webform_issues'));
+    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_pictures', 'field_webform_school_zip', 'field_webform_videos', 'taxonomy_vocabulary_5'));
   }
 }
