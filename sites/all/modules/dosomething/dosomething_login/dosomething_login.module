@@ -766,6 +766,16 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   if ($account->status) {
     user_login_submit(array(), $form_state);
   }
+
+  // Clear any logged registration data.
+  $query = db_delete('ds_registration_data');
+  if (isset($form_state['values']['phone'])) {
+    $query->condition('cell', $form_state['values']['phone']);
+  }
+  else {
+    $query->condition('email', $account->mail);
+  }
+  $num_deleted = $query->execute();
 }
 
 /**
