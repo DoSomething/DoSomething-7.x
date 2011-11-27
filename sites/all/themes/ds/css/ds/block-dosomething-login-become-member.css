@@ -114,11 +114,11 @@
 
 #block-dosomething-login-become-member {
   background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
-  margin-top: 65px;
+  margin-top: 95px;
   position: relative;
   padding-bottom: 0.833em;
   border-bottom: 0.417em solid #8e8a86;
-  height: 319px;
+  height: 290px;
   overflow: hidden;
 }
 #block-dosomething-login-become-member h2 {
@@ -273,8 +273,7 @@
   color: white;
   font-size: 0.833em;
   line-height: 2.4em;
-  height: 293px;
-  margin-top: 95px;
+  height: 292px;
 }
 .logged-in #block-dosomething-login-become-member a {
   color: white;
