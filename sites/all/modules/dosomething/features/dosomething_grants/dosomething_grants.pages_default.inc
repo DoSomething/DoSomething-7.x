@@ -277,15 +277,17 @@ function dosomething_grants_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Grants Top Bar',
+      'admin_title' => 'Grants Status Bar',
       'title' => '',
-      'body' => '<ul>
-<li class="grants-title">%node:title</li>
-<li class="dynamic"><span class="label">How Much?</span> %node:field-grants-how-much</li>
-<li class="dynamic"><span class="label">How Many?</span> %node:field-grants-how-many</li>
-<li class="dynamic"><span class="label">Deadline:</span> %node:field_application_deadline</li>
-<li><a class="apply-now ds-button-strong" href="/node/%general_grant_app:nid/%node:nid">Apply Now</a></li>
-</ul>',
+      'body' => '<div class="grant-status-bar">
+<div class="grant-title">%node:title</div>
+<ul>
+<li><span class="label">How Much?</span> %node:field-grants-how-much</li>
+<li><span class="label">How Many?</span> %node:field-grants-how-many</li>
+<li><span class="label">Deadline:</span> %node:field_application_deadline</li>
+</ul>
+<div class="grant-button"><a class="ds-button-strong" href="/node/%general_grant_app:nid/%node:nid">Apply Now</a></div>
+</div>',
       'format' => '3',
       'substitute' => 1,
     );

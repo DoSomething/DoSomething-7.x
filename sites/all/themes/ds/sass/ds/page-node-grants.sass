@@ -1,8 +1,25 @@
 @import setup
 
-.pane-content
+$arrow-dothis: "arrow-statbar-dothis.png"
+$arrow-seedgrants: "arrow-statbar-seedgrants.png"
+$arrow-projectstatus: "arrow-statbar-projectstatus.png"
+
+$grant-image: $arrow-seedgrants
+.grant-status-bar
+  +pie-clearfix
+  background-color: $gray6
+  +box-shadow(#cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset)
+  margin: 1em 0
+  .grant-title
+    +replace-text-with-dimensions($grant-image, left, bottom)
+    +float-left
   ul
     +status-bar
+    +float-left
+    height: image-height($grant-image)
+    margin-left: 1em
+  .grant-button
+    +float-right
 
 .node-type-grants-database
   .panes-2

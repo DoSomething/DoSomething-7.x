@@ -109,41 +109,25 @@
       background: $white
       border-color: #CCCCCC
 
-$arrow-dothis: "arrow-statbar-dothis.png"
-$arrow-seedgrants: "arrow-statbar-seedgrants.png"
-$arrow-projectstatus: "arrow-statbar-projectstatus.png"
-
 // Apply to the ul or ul equivalent class
-=status-bar
-  background-color: $gray6
-  +box-shadow(#cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset)
-  border-top: 1px solid $white
-  border-bottom: 1px solid $white
-  +horizontal-list
-  margin: 1em 0
-  li
-    &.dynamic
-      color: $blue
-      font-weight: bold
-      font-size: $s1
-      font-style: italic
-      margin-left: 0.2em
-      padding-top: 0.3em
-      .label
-        color: $black
+=status-bar($selector: 'li')
+  @if $selector == 'li'
+    +horizontal-list
+  #{$selector}
+    color: $blue
+    font-weight: bold
+    font-size: $s1
+    font-style: italic
+    margin-left: 0.2em
+    padding-top: 0.3em
+    .label
+      color: $black
+    &:after
+      background: image_url("bg-statbar-divider.png") no-repeat right center
+      content: "\0020"
+      height: 1em
+      +inline-block
+      width: 1em
+    &:last-child
       &:after
-        background: image_url("bg-statbar-divider.png") no-repeat right center
-        content: "\0020"
-        height: 1em
-        +inline-block
-        width: 1em
-      &:nth-last-of-type(2)
-        &:after
-          display: none
-    &:first-of-type
-      +replace-text-with-dimensions($arrow-seedgrants, left, bottom)
-      padding-top: 0
-      margin-left: 0
-    &:last-of-type
-      float: right
-      padding-top: 0
+        display: none
