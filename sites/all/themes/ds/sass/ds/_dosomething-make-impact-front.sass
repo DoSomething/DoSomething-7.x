@@ -1,6 +1,8 @@
 // SPRITES
 @import "impactbubbles/*.png"
 $impactbubbles-sprite-dimensions: true
+@import "compass/css3/pie"
+
 @include all-impactbubbles-sprites
 @import partials/02-extend/typography
 @import partials/03-defaults/markup/headers
@@ -71,3 +73,6 @@ $impactbubbles-sprite-dimensions: true
   .form-submit
     position: absolute
     bottom: -30px
+
+.selectBox-dropdown-menu
+  +pie-container(999999, absolute)

@@ -216,6 +216,11 @@
   bottom: -30px;
 }
 
+.selectBox-dropdown-menu {
+  z-index: 999999;
+  position: absolute;
+}
+
 /* Dropdown control */
 .selectBox-dropdown {
   width: 100%;
@@ -246,8 +251,6 @@
 
 /* Dropdown menu */
 .selectBox-dropdown-menu {
-  position: absolute;
-  z-index: 99999;
   max-height: 100%;
   /* should be the same border width as .selectBox-dropdown */
   background-color: #726e6b;

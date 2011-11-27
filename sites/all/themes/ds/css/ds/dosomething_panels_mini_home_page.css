@@ -107,8 +107,6 @@
 
 /* Dropdown menu */
 .selectBox-dropdown-menu {
-  position: absolute;
-  z-index: 99999;
   max-height: 100%;
   /* should be the same border width as .selectBox-dropdown */
   background-color: #726e6b;
@@ -603,6 +601,11 @@
 #dosomething-blocks-make-an-impact-form-front .form-submit {
   position: absolute;
   bottom: -30px;
+}
+
+.selectBox-dropdown-menu {
+  z-index: 999999;
+  position: absolute;
 }
 
 .pane-news-stuff h2.pane-title {
