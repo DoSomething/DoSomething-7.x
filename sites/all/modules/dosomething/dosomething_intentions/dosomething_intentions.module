@@ -21,11 +21,20 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
         );
       }
       else {
-        // If this is not a draft, then we only show the email and only allow a save.
+        // If not a draft, then we only show the email and only allow a save.
         if (!$form['#is_draft'] && $node->webform['allow_draft']) {
+          // Restrict access to custom fields.
           foreach (element_children($form) as $child) {
-            if (!in_array($child, array('actions', 'field_action_intention_email', 'form_build_id', 'form_token', 'form_id', 'details', 'hidden'))) {
+            if (!in_array($child, array('submitted', 'actions', 'form_build_id', 'form_token', 'form_id', 'details', 'hidden'))) {
              $form[$child]['#access'] = FALSE;
+            }
+          }
+          // Restrict access to webform entity fields.
+          if (isset($form['submitted']['webform_entity_form'])) {
+            foreach (element_children($form['submitted']['webform_entity_form']) as $child) {
+              if (!in_array($child, array('field_action_intention_email'))) {
+               $form['submitted']['webform_entity_form'][$child]['#access'] = FALSE;
+              }
             }
           }
           $form['actions']['submit']['#access'] = FALSE;
@@ -34,12 +43,13 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
 
         $form['actions']['submit']['#value'] = t('Absolutely!');
         if ($user->uid) {
-          $lang = $form['field_action_intention_email']['#language'];
-          $form['field_action_intention_email'][$lang][0]['email']['#default_value'] = $user->mail;
+          $lang = $form['submitted']['webform_entity_form']['field_action_intention_email']['#language'];
+          $form['submitted']['webform_entity_form']['field_action_intention_email'][$lang][0]['email']['#default_value'] = $user->mail;
         }
         if (!$user->uid) {
           $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
         }
+        $form['actions']['draft']['#validate'][] = 'dosomething_intentions_webform_submission_draft_validate';
       }
       $form['total'] = array(
         '#markup' => '<p>' . t('!total people have committed to this one.', array('!total' => webform_get_submission_count($node->nid))) . '</p>',
@@ -47,6 +57,25 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
       );
     }
   }
+}
+
+/**
+ * Validation callback for webform draft submissions.
+ */
+function dosomething_intentions_webform_submission_draft_validate(&$form, &$form_state) {
+  // Don't throw required field errors for required fields.
+  // This is a draft and fields should only be required on submission.
+  // Make sure to add back any errors that are not required field related.
+  form_clear_error();
+  $messages = drupal_get_messages('error');
+  if (count($messages['error'])) {
+    foreach ($messages['error'] as $message) {
+      if (!preg_match('/field is required.$/', $message)) {
+        drupal_set_message($message, 'error');
+      }
+    }
+  }
+
 }
 
 function dosomething_intentions_webform_submission_submit(&$form, &$form_state) {
