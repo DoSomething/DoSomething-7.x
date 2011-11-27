@@ -86,7 +86,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->subtype = 'resources-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -230,7 +233,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->position = 3;
     $display->content['new-7'] = $pane;
     $display->panels['right'][3] = 'new-7';
-  $display->hide_title = PANELS_TITLE_NONE;
+  $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
