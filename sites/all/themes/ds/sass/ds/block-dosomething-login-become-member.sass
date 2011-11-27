@@ -4,8 +4,11 @@
 @import partials/03-defaults/markup/headers
 // --------------------------------------------------------------------------------------
 
-.front #main-wrapper
-  background: none
+.front
+  #main-wrapper
+    background: none
+  #block-dosomething-login-become-member
+    margin-top: 95px
 
 .left-block-expando-h2
   margin-left: -(percentage($s0 / $left-col-width-inner))
@@ -20,11 +23,11 @@
 
 #block-dosomething-login-become-member
   background: $c-impact image_url("home-row-2-bg.png") repeat-y 16px top
-  margin-top: 95px
   position: relative
   padding-bottom: calc-em(10px, $s0)
   border-bottom: calc-em(5px, $s0) solid $gray2
-  height: 290px
+  height: 289px
+  margin-top: 65px
   overflow: hidden
   h2
     color: $black
@@ -135,6 +138,7 @@
     color: $white
     +adjust-font-size-to($s-2)
     height: auto
+    min-height: 291px
     a
       +link-colors($white, $white, $white, $white, false)
       +remove-link-underlines

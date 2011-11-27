@@ -61,10 +61,6 @@ body
       margin-top: 0
       margin-bottom: 0
 
-div[role="main"]
-  // background: image_url("bg-page.png") repeat-y center top
-  background-color: $c-content-bg
-
 #utility-bar
   background-color: $c-utility-bar-bg
   color: $white
@@ -89,11 +85,12 @@ div[role="main"]
     +remove-link-underlines
 
 div[role=main]
+  background-color: $c-content-bg
   padding-left: percentage($s0 / $main-width)
   padding-right: percentage($s0 / $main-width)
   +box-sizing(border-box)
   border-top: calc-em(5px, $s0) solid $background-color
-  min-height: 400px
+
 
 #breadcrumb
   +adjust-font-size-to($s-1)

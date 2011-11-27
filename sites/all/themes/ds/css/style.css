@@ -2128,10 +2128,6 @@ body.admin-menu {
   margin-bottom: 0;
 }
 
-div[role="main"] {
-  background-color: #e3e3e3;
-}
-
 #utility-bar {
   background-color: #343434;
   color: white;
@@ -2176,6 +2172,7 @@ div[role="main"] {
 }
 
 div[role=main] {
+  background-color: #e3e3e3;
   padding-left: 1.667%;
   padding-right: 1.667%;
   -moz-box-sizing: border-box;
@@ -2183,7 +2180,6 @@ div[role=main] {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   border-top: 0.417em solid #8e8a86;
-  min-height: 400px;
 }
 
 #breadcrumb {
