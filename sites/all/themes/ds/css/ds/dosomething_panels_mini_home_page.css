@@ -606,6 +606,8 @@
 .selectBox-dropdown-menu {
   z-index: 999999;
   position: absolute;
+  behavior: url('../PIE.htc');
+  z-index: 999999;
 }
 
 .pane-news-stuff h2.pane-title {
