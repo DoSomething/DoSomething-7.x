@@ -118,10 +118,8 @@
   position: relative;
   padding-bottom: 0.833em;
   border-bottom: 0.417em solid #8e8a86;
+  height: 319px;
   overflow: hidden;
-}
-.not-logged-in #block-dosomething-login-become-member {
-  margin-top: 100px;
 }
 #block-dosomething-login-become-member h2 {
   color: black;
