@@ -245,10 +245,37 @@ function dosomething_projects_general_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Related projects';
   $page->admin_description = '';
-  $page->path = 'related-projects';
+  $page->path = 'related-projects/%taxonomy_term';
   $page->access = array();
   $page->menu = array();
-  $page->arguments = array();
+  $page->arguments = array(
+    'taxonomy_term' => array(
+      'id' => 1,
+      'identifier' => 'Taxonomy term: ID',
+      'name' => 'term',
+      'settings' => array(
+        'input_form' => 'term',
+        'vids' => array(
+          5 => '5',
+          1 => 0,
+          9 => 0,
+          20 => 0,
+          6 => 0,
+          11 => 0,
+          18 => 0,
+          17 => 0,
+          15 => 0,
+          19 => 0,
+          4 => 0,
+          16 => 0,
+          2 => 0,
+          3 => 0,
+        ),
+        'breadcrumb' => 1,
+        'transform' => 1,
+      ),
+    ),
+  );
   $page->conf = array(
     'admin_paths' => FALSE,
   );
@@ -292,14 +319,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->pid = 'new-1';
     $pane->panel = 'left-top';
     $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_1';
+    $pane->subtype = 'related_projects-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'use_pager' => 1,
-      'pager_id' => '1',
-      'items_per_page' => '10',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -370,7 +393,7 @@ function dosomething_projects_general_default_page_manager_pages() {
     $display->content['new-4'] = $pane;
     $display->panels['right'][2] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['related_projects'] = $page;
