@@ -308,7 +308,7 @@
 .view-id-action_updates .views-row:last-child {
   margin-right: 0;
 }
-.view-id-action_updates .views-row .views-field-view-submission {
+.view-id-action_updates .views-row .views-field-view-node {
   -moz-border-radius-bottomleft: 6px;
   -webkit-border-bottom-left-radius: 6px;
   -o-border-bottom-left-radius: 6px;
@@ -331,10 +331,10 @@
   text-align: left;
   width: 96%;
 }
-.view-id-action_updates .views-row-odd .views-field-view-submission {
+.view-id-action_updates .views-row-odd .views-field-view-node {
   background-color: #8e8a86;
 }
-.view-id-action_updates .views-row-even .views-field-view-submission {
+.view-id-action_updates .views-row-even .views-field-view-node {
   background-color: #5f5c58;
 }
 .view-id-action_updates a {
