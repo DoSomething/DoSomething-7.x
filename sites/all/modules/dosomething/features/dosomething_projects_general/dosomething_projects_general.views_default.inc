@@ -654,8 +654,8 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['delta']['field'] = 'delta';
   $handler->display->display_options['filters']['delta']['value']['value'] = '0';
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: Landing pane */
+  $handler = $view->new_display('panel_pane', 'Landing pane', 'panel_pane_1');
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
@@ -673,6 +673,95 @@ function dosomething_projects_general_views_default_views() {
       'panel' => '0',
       'fixed' => '',
       'label' => 'Field: Issues (taxonomy_vocabulary_5)',
+    ),
+  );
+
+  /* Display: Sidebar pane */
+  $handler = $view->new_display('panel_pane', 'Sidebar pane', 'panel_pane_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Related Projects';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'See all »';
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'custom_url';
+  $handler->display->display_options['link_url'] = 'projects/%1';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Webform submissions: Sid */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['label'] = '';
+  $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['text'] = 'Learn more »';
+  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['sid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['sid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['sid']['separator'] = '';
+  $handler->display->display_options['fields']['sid']['format_plural'] = 0;
+  /* Field: Webform Submission: Title */
+  $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
+  $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
+  $handler->display->display_options['fields']['field_project_title']['field'] = 'field_project_title';
+  $handler->display->display_options['fields']['field_project_title']['label'] = '';
+  $handler->display->display_options['fields']['field_project_title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['alter']['path'] = 'webform-submission/[sid]';
+  $handler->display->display_options['fields']['field_project_title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['element_class'] = 'views-field-title';
+  $handler->display->display_options['fields']['field_project_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_title']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Webform Submission: Title (field_project_title) */
+  $handler->display->display_options['filters']['field_project_title_value']['id'] = 'field_project_title_value';
+  $handler->display->display_options['filters']['field_project_title_value']['table'] = 'field_data_field_project_title';
+  $handler->display->display_options['filters']['field_project_title_value']['field'] = 'field_project_title_value';
+  $handler->display->display_options['filters']['field_project_title_value']['operator'] = 'not empty';
+  $handler->display->display_options['argument_input'] = array(
+    'taxonomy_vocabulary_5_tid' => array(
+      'type' => 'none',
+      'context' => 'terms.name',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Issue',
     ),
   );
   $export['related_projects'] = $view;

@@ -206,14 +206,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->pid = 'new-6';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_1';
+    $pane->subtype = 'related_projects-panel_pane_2';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'use_pager' => 0,
-      'pager_id' => '',
-      'items_per_page' => '3',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
