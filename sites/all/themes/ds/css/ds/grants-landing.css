@@ -119,6 +119,7 @@
 }
 .panel-bottom .pane-content .views-field-title {
   text-align: left;
+  padding-top: 1em;
   width: 355px;
 }
 .panel-bottom .pane-content .views-field-view-node {
