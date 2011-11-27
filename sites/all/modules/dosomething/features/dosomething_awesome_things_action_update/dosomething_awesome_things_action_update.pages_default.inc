@@ -37,7 +37,7 @@ function dosomething_awesome_things_action_update_default_page_manager_pages() {
   $handler->conf = array(
     'title' => 'Panel',
     'no_blocks' => 0,
-    'pipeline' => 'ipe',
+    'pipeline' => 'standard',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -82,7 +82,7 @@ function dosomething_awesome_things_action_update_default_page_manager_pages() {
     $pane->pid = 'new-2';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
-    $pane->subtype = 'campaign_report_back-panel_pane_1';
+    $pane->subtype = 'action_updates-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
