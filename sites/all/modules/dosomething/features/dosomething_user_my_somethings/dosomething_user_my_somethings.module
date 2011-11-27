@@ -50,7 +50,7 @@ function dosomething_user_my_somethings_member_block() {
     ),
     'name' => array(
       '#type' => 'container',
-      '#prefix' => '<a href="user" class="ds-member-name-bar">',
+      '#prefix' => '<a href="/user" class="ds-member-name-bar">',
       '#suffix' => '</a>',
       '#attributes' => array(
         'class' => array(
