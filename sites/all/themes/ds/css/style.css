@@ -1866,11 +1866,11 @@ html.js fieldset.collapsed {
   border-bottom: none;
 }
 
-ul.tabs {
+ul.tabs.primary {
   padding-top: 20px;
   padding-bottom: 8px;
 }
-ul.tabs li a {
+ul.tabs.primary li a {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fcfdfa), color-stop(100%, #f1f2ef));
   background-image: -webkit-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -moz-linear-gradient(top, #fcfdfa, #f1f2ef);
@@ -1895,7 +1895,7 @@ ul.tabs li a {
   margin-right: 1px;
   border-color: #cccccc;
 }
-ul.tabs li a.active {
+ul.tabs.primary li a.active {
   color: #222222;
   background: white;
   border-color: #cccccc;

@@ -57,7 +57,6 @@ features[field][] = "webform_submission_entity-project_report-field_webform_vide
 features[field][] = "webform_submission_entity-project_report-taxonomy_vocabulary_5"
 features[node][] = "project_report"
 features[page_manager_handlers][] = "webform_submission_view_panel_context"
-features[page_manager_pages][] = "projects"
 features[taxonomy][] = "vocabulary_5"
 features[views_view][] = "project"
 features[webform_submission_entity_type][] = "project_report"

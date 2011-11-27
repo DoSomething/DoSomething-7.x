@@ -218,23 +218,23 @@
   padding: 0;
 }
 
-#views-exposed-form-campaign-report-back-panel-pane-1 {
+#views-exposed-form-action-updates-panel-pane-1 {
   color: white;
   *zoom: 1;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1:after {
+#views-exposed-form-action-updates-panel-pane-1:after {
   content: "";
   display: table;
   clear: both;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-widget {
+#views-exposed-form-action-updates-panel-pane-1 .views-widget {
   background-color: #d2d2d2;
   -moz-box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
   -webkit-box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
   -o-box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
   box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-widget .selectBox-dropdown {
+#views-exposed-form-action-updates-panel-pane-1 .views-widget .selectBox-dropdown {
   background: #8e8a86;
   border: none;
   color: white;
@@ -248,31 +248,31 @@
   cursor: pointer;
   width: 25%;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-widget .selectBox-dropdown .selectBox-arrow {
+#views-exposed-form-action-updates-panel-pane-1 .views-widget .selectBox-dropdown .selectBox-arrow {
   background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-widget .form-item-field-webform-issues-tid {
+#views-exposed-form-action-updates-panel-pane-1 .views-widget .form-item-field-webform-issues-tid {
   padding: 4px 0 0 4px;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-widget-filter-field_webform_issues_tid {
+#views-exposed-form-action-updates-panel-pane-1 .views-widget-filter-field_webform_issues_tid {
   border-bottom: 2px solid white;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-exposed-widgets {
+#views-exposed-form-action-updates-panel-pane-1 .views-exposed-widgets {
   margin-bottom: none;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-exposed-form .views-exposed-widget {
+#views-exposed-form-action-updates-panel-pane-1 .views-exposed-form .views-exposed-widget {
   float: none;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-submit-button {
+#views-exposed-form-action-updates-panel-pane-1 .views-submit-button {
   position: relative;
   top: -33px;
   left: 184px;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 .views-submit-button input {
+#views-exposed-form-action-updates-panel-pane-1 .views-submit-button input {
   margin-top: 0;
 }
-#views-exposed-form-campaign-report-back-panel-pane-1 label[for="edit-field-webform-issues-tid"] {
+#views-exposed-form-action-updates-panel-pane-1 label[for="edit-field-webform-issues-tid"] {
   cursor: default;
   background: #652e72;
   margin-bottom: 0;
@@ -296,19 +296,19 @@
   width: 20%;
 }
 
-.view-id-campaign_report_back {
+.view-id-action_updates {
   text-rendering: optimizeLegibility;
 }
-.view-id-campaign_report_back .views-row {
+.view-id-action_updates .views-row {
   display: inline;
   float: left;
   margin: 0 0.5em 0.5em 0;
   width: 32.4%;
 }
-.view-id-campaign_report_back .views-row:last-child {
+.view-id-action_updates .views-row:last-child {
   margin-right: 0;
 }
-.view-id-campaign_report_back .views-row .views-field-view-submission {
+.view-id-action_updates .views-row .views-field-view-submission {
   -moz-border-radius-bottomleft: 6px;
   -webkit-border-bottom-left-radius: 6px;
   -o-border-bottom-left-radius: 6px;
@@ -331,12 +331,12 @@
   text-align: left;
   width: 96%;
 }
-.view-id-campaign_report_back .views-row-odd .views-field-view-submission {
+.view-id-action_updates .views-row-odd .views-field-view-submission {
   background-color: #8e8a86;
 }
-.view-id-campaign_report_back .views-row-even .views-field-view-submission {
+.view-id-action_updates .views-row-even .views-field-view-submission {
   background-color: #5f5c58;
 }
-.view-id-campaign_report_back a {
+.view-id-action_updates a {
   color: white;
 }
