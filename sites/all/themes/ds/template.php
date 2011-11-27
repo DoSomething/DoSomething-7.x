@@ -146,7 +146,7 @@ function ds_ctools_render_alter(&$info, &$page, &$context) {
       drupal_add_css($css_path . 'page-node-grants.css');
       break;
 
-    case 'related_projects':
+    case 'projects':
       drupal_add_css($css_path . 'page-related-projects.css');
       break;
   }

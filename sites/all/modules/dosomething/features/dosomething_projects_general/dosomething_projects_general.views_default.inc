@@ -264,7 +264,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/related-projects/!1" title="" class="projects-see-all">See all &raquo;</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/projects/!1" title="" class="projects-see-all">See all &raquo;</a>';
   $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -466,6 +466,7 @@ function dosomething_projects_general_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Projects';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -604,7 +605,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_action'] = 'default';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['title_enable'] = 1;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['title'] = 'Projects related to %1';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['title'] = '%1 Projects';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['term_page'] = 1;
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['node'] = 0;
@@ -620,7 +621,7 @@ function dosomething_projects_general_views_default_views() {
   );
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate_options']['type'] = 'convert';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate_options']['transform'] = '1';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate']['fail'] = 'empty';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate']['fail'] = 'ignore';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['not'] = 0;
   /* Filter criterion: Field: Picture (field_picture:delta) */
@@ -631,6 +632,15 @@ function dosomething_projects_general_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'taxonomy_vocabulary_5_tid' => array(
       'type' => 'panel',
