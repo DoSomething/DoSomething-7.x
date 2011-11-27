@@ -2796,6 +2796,10 @@ comments.fb_iframe_widget {
   display: block;
 }
 
+.fb-social-comments-plugin {
+  background-color: #333333;
+}
+
 nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
