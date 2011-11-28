@@ -17,3 +17,37 @@ function dosomething_webform_node_load($nodes, $types) {
      }
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
+  $node_types = array('grant_application', 'scholarship_application');
+  if (strpos($form_id, 'webform_client_form_') === 0) {
+    $node = $form['#node'];
+    if (in_array($node->type, $node_types)) {
+      if (isset($form['actions']['draft'])) {
+        $form['actions']['draft']['#validate'][] = 'dosomething_webform_webform_submission_draft_validate';
+      }
+    }
+  }
+}
+
+/**
+ * Validation callback for webform draft submissions.
+ */
+function dosomething_webform_webform_submission_draft_validate(&$form, &$form_state) {
+  // Don't throw required field errors for required fields.
+  // This is a draft and fields should only be required on submission.
+  // Make sure to add back any errors that are not required field related.
+  form_clear_error();
+  $messages = drupal_get_messages('error');
+  if (count($messages['error'])) {
+    foreach ($messages['error'] as $message) {
+      if (!preg_match('/field is required.$/', $message)) {
+        drupal_set_message($message, 'error');
+      }
+    }
+  }
+}
+
