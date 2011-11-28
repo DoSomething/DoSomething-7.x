@@ -47,47 +47,10 @@ function dosomething_projects_general_node_access($node, $op, $account) {
 }
 
 /**
- * Implements hook_block_info().
+ * Implements hook_ctools_plugin_directory().
  */
-function dosomething_projects_general_block_info() {
-  return array(
-    'start-a-project' => array(
-      'info' => t('Start a Project'),
-    ),
-  );
-}
-
-/**
- * Implements hook_block_view().
- */
-function dosomething_projects_general_block_view($delta = '') {
-  $block = array();
-
-  switch ($delta) {
-    case 'start-a-project':
-      $block['content'] = array(
-        '#type' => 'container',
-        '#attributes' => array(
-          'class' => array(
-            'start-a-project',
-          ),
-        ),
-        'link' => array(
-          '#type' => 'link',
-          '#title' => t('Start a Project'),
-          '#href' => 'project-report/start-project',
-          '#options' => array(
-            'attributes' => array(
-              'title' => t('Start a Project'),
-              'class' => array(
-                'ds-button-strong',
-              ),
-            ),
-          ),
-        ),
-      );
-      break;
+function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools') {
+    return 'plugins/' . $plugin_type;
   }
-
-  return $block;
 }

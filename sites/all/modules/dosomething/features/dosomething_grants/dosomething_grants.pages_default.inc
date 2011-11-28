@@ -603,11 +603,11 @@ function dosomething_grants_default_page_manager_pages() {
 <img src="http://dosomething.zivtech.com/sites/all/themes/ds/css/images/this-weeks-winner.jpg">
 <h3>Coffee Compost</h3>
 <p>Max and Coffee 2Compost are providing an innovative service to collect the remnants of coffee.</p>
-<a class="ds-button-strong" href="">Apply Now</a>
+<a class="ds-button-strong" href="node/718348/718330">Apply Now</a>
 <a href="">See more winners »</a>
 </div>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => NULL,
     );
     $pane->cache = array();
     $pane->style = array(

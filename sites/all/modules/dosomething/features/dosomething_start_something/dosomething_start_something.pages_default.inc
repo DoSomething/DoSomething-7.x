@@ -122,11 +122,14 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-4';
     $pane->panel = 'right';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_projects_general-start-a-project';
+    $pane->type = 'dosomething_start_button';
+    $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'start_button' => array(
+        'project' => TRUE,
+      ),
       'override_title' => 0,
       'override_title_text' => '',
     );
@@ -342,16 +345,17 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'dosomething_start_button';
+    $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Ready To Start Your Own Something?',
-      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">Start a Project</a> <a class="ds-button-strong" href="/node/add/club" title="Start a Club">Start a Club</a>',
-      'format' => '1',
-      'substitute' => TRUE,
+      'start_button' => array(
+        'project' => TRUE,
+        'club' => TRUE,
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Ready To Start Your Own Something?',
     );
     $pane->cache = array();
     $pane->style = array(
