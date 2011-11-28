@@ -3,10 +3,14 @@
 @import partials/lib/extend/helpers
 @import partials/02-extend/jquery-selectbox
 
+// Top filters
 #views-exposed-form-resources-panel-pane-1
+  background-color: $gray6
+  +box-shadow(#cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset)
+  border-top: 1px solid $white
+  border-bottom: 1px solid $white
   color: $white
-  padding-top: percentage(8px / $left-col-width)
-  padding-bottom: 1.5em
+  margin: 1em 0
   +pie-clearfix
   h2.block-title
     color: $white
@@ -20,33 +24,34 @@
   .form-item, .form-actions
     height: auto
   #edit-cause-wrapper,
-  #edit-type-wrapper
+  #edit-type-wrapper,
+  .views-submit-button
+    margin: 0.3em 0 0.3em 0.8em
     .selectBox-dropdown
       +ds-dropdown
       cursor: pointer
+      line-height: inherit
+      margin-bottom: 0
       width: 25%
-
-  .views-exposed-form
-    height: 30px
-
-  .views-exposed-form .views-exposed-widget
-    float: none
-
-  #edit-type-wrapper
-    position: relative
-    right: -130px
-    top: -38px
-    width: 20%
     .views-widget
       .form-item
         a
           width: 111px
-  
-  .views-submit-button
-    position: relative
-    right: -260px
-    top: -102px
-    width: 30px
+  input[type="submit"].form-submit
+    margin-left: 0.8em
+    margin-top: 0
+    padding-bottom: 2px
+  .views-exposed-widgets
+    +status-bar('.views-exposed-widget')
+    display: block
+    margin-bottom: 0
+    .views-exposed-widget
+      font-style: normal
+      margin-left: 0
+      padding: 0
+      .views-widget
+        +float-left
 
+// Content rows
 .pane-resources-panel-pane-1
   +alternating-list

@@ -217,9 +217,15 @@
 }
 
 #views-exposed-form-resources-panel-pane-1 {
+  background-color: #d2d2d2;
+  -moz-box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
+  -webkit-box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
+  -o-box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
+  box-shadow: #cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   color: white;
-  padding-top: 3.902%;
-  padding-bottom: 1.5em;
+  margin: 1em 0;
   *zoom: 1;
 }
 #views-exposed-form-resources-panel-pane-1:after {
@@ -239,8 +245,14 @@
 #views-exposed-form-resources-panel-pane-1 .form-item, #views-exposed-form-resources-panel-pane-1 .form-actions {
   height: auto;
 }
+#views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper,
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper,
+#views-exposed-form-resources-panel-pane-1 .views-submit-button {
+  margin: 0.3em 0 0.3em 0.8em;
+}
 #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown,
-#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown {
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown,
+#views-exposed-form-resources-panel-pane-1 .views-submit-button .selectBox-dropdown {
   background: #8e8a86;
   border: none;
   color: white;
@@ -252,33 +264,66 @@
   line-height: 1.333em;
   margin-bottom: 0.333em;
   cursor: pointer;
+  line-height: inherit;
+  margin-bottom: 0;
   width: 25%;
 }
 #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown .selectBox-arrow,
-#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown .selectBox-arrow {
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown .selectBox-arrow,
+#views-exposed-form-resources-panel-pane-1 .views-submit-button .selectBox-dropdown .selectBox-arrow {
   background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
-#views-exposed-form-resources-panel-pane-1 .views-exposed-form {
-  height: 30px;
-}
-#views-exposed-form-resources-panel-pane-1 .views-exposed-form .views-exposed-widget {
-  float: none;
-}
-#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper {
-  position: relative;
-  right: -130px;
-  top: -38px;
-  width: 20%;
-}
-#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .views-widget .form-item a {
+#views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .views-widget .form-item a,
+#views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .views-widget .form-item a,
+#views-exposed-form-resources-panel-pane-1 .views-submit-button .views-widget .form-item a {
   width: 111px;
 }
-#views-exposed-form-resources-panel-pane-1 .views-submit-button {
-  position: relative;
-  right: -260px;
-  top: -102px;
-  width: 30px;
+#views-exposed-form-resources-panel-pane-1 input[type="submit"].form-submit {
+  margin-left: 0.8em;
+  margin-top: 0;
+  padding-bottom: 2px;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets {
+  display: block;
+  margin-bottom: 0;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget {
+  color: #014e9c;
+  font-weight: bold;
+  font-size: 14px;
+  font-style: italic;
+  margin-left: 0.2em;
+  padding-top: 0.3em;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget .label {
+  color: black;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget:after {
+  background: url('../images/bg-statbar-divider.png') no-repeat right center;
+  content: "\0020";
+  height: 1em;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  width: 1em;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget:after {
+  *display: inline;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget:last-child:after {
+  display: none;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget {
+  font-style: normal;
+  margin-left: 0;
+  padding: 0;
+}
+#views-exposed-form-resources-panel-pane-1 .views-exposed-widgets .views-exposed-widget .views-widget {
+  display: inline;
+  float: left;
 }
 
 .pane-resources-panel-pane-1 .views-row {
