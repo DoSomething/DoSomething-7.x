@@ -135,6 +135,11 @@
 .page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .my-somethings-wrapper .my-somethings-link a {
   color: white;
 }
+.page-user .pane-my-somethings-panel-pane-1 {
+  display: inline;
+  float: left;
+  width: 100%;
+}
 .page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row:nth-of-type(odd) {
   background: url('../images/bg-arrowblock-dark.png') no-repeat 98% top;
 }

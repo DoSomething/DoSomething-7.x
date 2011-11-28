@@ -240,6 +240,14 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'No resources have been found meeting those criteria.';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
@@ -384,6 +392,16 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'action_guide' => 'action_guide',
+    'dsu_guides' => 'dsu_guides',
+    'tips_and_tools' => 'tips_and_tools',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 0;
   /* Filter criterion: Field: Issues (taxonomy_vocabulary_5) */
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
@@ -400,23 +418,28 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['hierarchy'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['error_message'] = 1;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
-  $handler->display->display_options['filters']['type_1']['table'] = 'node';
-  $handler->display->display_options['filters']['type_1']['field'] = 'type';
-  $handler->display->display_options['filters']['type_1']['value'] = array(
-    'action_guide' => 'action_guide',
-    'dsu_guides' => 'dsu_guides',
-    'tips_and_tools' => 'tips_and_tools',
-  );
-  $handler->display->display_options['filters']['type_1']['group'] = 0;
+  /* Filter criterion: Content: DoSomethingU Majors (taxonomy_vocabulary_18) */
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['id'] = 'taxonomy_vocabulary_18_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['table'] = 'field_data_taxonomy_vocabulary_18';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['field'] = 'taxonomy_vocabulary_18_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['group'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_18_tid_op';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['expose']['label'] = 'DoSomethingU Majors';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['expose']['operator'] = 'taxonomy_vocabulary_18_tid_op';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['expose']['identifier'] = 'howtos';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['vocabulary'] = 'vocabulary_18';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_18_tid']['error_message'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'action_guide' => 'action_guide',
-    'dsu_guides' => 'dsu_guides',
     'tips_and_tools' => 'tips_and_tools',
   );
   $handler->display->display_options['filters']['type']['group'] = 0;

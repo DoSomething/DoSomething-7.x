@@ -72,11 +72,10 @@ function dosomething_feedback_unfuddle_feedback_description_alter(&$description,
  * Implements hook_feedback_insert().
  */
 function dosomething_feedback_feedback_insert($entry) {
-  global $user;
   include_once(drupal_get_path('module', 'feedback') . '/feedback.admin.inc');
   $description = drupal_html_to_text(drupal_render(feedback_view($entry)));
   $params['body'] = $description;
-  $emails = array('benji@zivtech.com', 'kfong@dosomething.org', 'jody@zivtech.com');
+  $emails = array('benji@zivtech.com', 'kfong@dosomething.org');
   foreach ($emails as $to) {
     drupal_mail('dosomething_feedback', 'mail', $to, language_default(), $params);
   }
