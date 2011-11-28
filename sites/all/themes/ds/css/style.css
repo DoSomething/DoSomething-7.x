@@ -1045,14 +1045,41 @@ tbody {
   border-top: none;
 }
 
-tr {
-  background-color: none;
+thead tr th {
+  background-color: #005dab;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  padding-top: 0.5em;
+  text-transform: uppercase;
 }
+thead tr th:nth-of-type(odd) {
+  background-color: #014e9c;
+}
+thead tr th a {
+  color: white;
+  font-size: 18px;
+  padding-left: 0.5em;
+}
+thead tr th a:hover {
+  color: white;
+}
+
 tr.odd, tr.even {
   border-bottom: none;
 }
 tr.odd {
+  background-color: #e3e3e3;
+}
+tr.even {
   background-color: #d1d1d1;
+}
+
+td {
+  padding: 0.5em 1em;
+  border-right: 1px solid white;
+}
+td:last-of-type {
+  border-right: none;
 }
 
 th {
