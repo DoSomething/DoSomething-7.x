@@ -597,24 +597,16 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-7';
     $pane->panel = 'mid-right';
-    $pane->type = 'webform_submission';
-    $pane->subtype = 'webform_submission';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'clubs-club_project_pane';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'sid' => '84707',
-      'identifier' => '',
-      'override_title' => 1,
-      'override_title_text' => 'Club Project of The Week',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane ds-pane-usergen',
-    );
+    $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-7'] = $pane;

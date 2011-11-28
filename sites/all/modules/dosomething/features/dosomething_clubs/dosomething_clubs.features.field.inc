@@ -4038,7 +4038,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
-
   // Translatables
   // Included for use with string extractors like potx.
   t('<p>By submitting this club application I understand that I am committing to:</p>
@@ -4056,7 +4055,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Clubs Agreement');
   t('Country, if outside the U.S. and Canada');
   t('Date of birth');
-  t('Debris left over after upgrade from Drupal 6');
   t('Expected number of club members');
   t('First Name');
   t('Group description');
@@ -4089,7 +4087,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Student Leader Email');
   t('Student Leader First Name');
   t('Student Leader Last Name');
-  t('Taxonomy upgrade extras');
   t('The more ideas the better! Separate multiple ideas with a semicolon!');
   t('This is description of the group.');
   t('This is for your Club\'s Profile Page!');

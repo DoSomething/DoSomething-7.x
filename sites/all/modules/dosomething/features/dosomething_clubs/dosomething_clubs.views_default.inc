@@ -314,6 +314,134 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['field_club_zip_value']['expose']['identifier'] = 'zip';
   $handler->display->display_options['filters']['field_club_zip_value']['expose']['required'] = 0;
   $handler->display->display_options['filters']['field_club_zip_value']['expose']['multiple'] = FALSE;
+
+  /* Display: Club Project Content Pane  */
+  $handler = $view->new_display('panel_pane', 'Club Project Content Pane ', 'club_project_pane');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Club Project of The Week';
+  $handler->display->display_options['display_description'] = 'Club Project of The Week content pane displayed on Club Hub page.';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_editorial_image']['id'] = 'field_editorial_image';
+  $handler->display->display_options['fields']['field_editorial_image']['table'] = 'field_data_field_editorial_image';
+  $handler->display->display_options['fields']['field_editorial_image']['field'] = 'field_editorial_image';
+  $handler->display->display_options['fields']['field_editorial_image']['label'] = '';
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_editorial_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_editorial_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_editorial_image']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_editorial_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_editorial_image']['settings'] = array(
+    'image_style' => 'blog_thumbnail',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_editorial_image']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Teaser */
+  $handler->display->display_options['fields']['field_editorial_teaser']['id'] = 'field_editorial_teaser';
+  $handler->display->display_options['fields']['field_editorial_teaser']['table'] = 'field_data_field_editorial_teaser';
+  $handler->display->display_options['fields']['field_editorial_teaser']['field'] = 'field_editorial_teaser';
+  $handler->display->display_options['fields']['field_editorial_teaser']['label'] = '';
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_editorial_teaser']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_editorial_teaser']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_editorial_teaser']['field_api_classes'] = 0;
+  /* Field: Content: Content Reference */
+  $handler->display->display_options['fields']['field_editorial_reference']['id'] = 'field_editorial_reference';
+  $handler->display->display_options['fields']['field_editorial_reference']['table'] = 'field_data_field_editorial_reference';
+  $handler->display->display_options['fields']['field_editorial_reference']['field'] = 'field_editorial_reference';
+  $handler->display->display_options['fields']['field_editorial_reference']['label'] = 'Project Details';
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_editorial_reference']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_editorial_reference']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_editorial_reference']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_editorial_reference']['click_sort_column'] = 'target_id';
+  $handler->display->display_options['fields']['field_editorial_reference']['type'] = 'entityreference_entity_view';
+  $handler->display->display_options['fields']['field_editorial_reference']['settings'] = array(
+    'view_mode' => 'full',
+  );
+  $handler->display->display_options['fields']['field_editorial_reference']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'editorial_content_' => 'editorial_content_',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
   $export['clubs'] = $view;
 
   return $export;
