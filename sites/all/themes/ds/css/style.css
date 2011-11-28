@@ -2128,9 +2128,6 @@ body.node-type-project [role=main] .main-interior-sidebar {
 #ds-wider-thinner .panes-2 .panel-second {
   width: 25.072%;
 }
-#ds-wider-thinner .panes-2 .ds-internal-sidebar-flush-right .pane-title, #ds-wider-thinner .panes-2 #blog-archives-pane .pane-title {
-  line-height: 1.5;
-}
 
 .start-a-project {
   margin-bottom: 2em;
@@ -2341,33 +2338,33 @@ div[role=main] {
   line-height: 120%;
 }
 
-/*Blog Archive Pane */
-.ds-internal-sidebar-flush-right, #blog-archives-pane {
+.ds-internal-sidebar-flush-right {
   background: #d2d2d2;
-  padding: 20px 0;
+  padding-bottom: 1em;
   margin-right: -15px;
 }
-.ds-internal-sidebar-flush-right h2.pane-title, #blog-archives-pane h2.pane-title {
+.ds-internal-sidebar-flush-right h2.pane-title {
   margin-bottom: 18px;
-  margin-top: -20px;
-  line-height: 58px;
+  margin-top: 0;
+  line-height: 1.5;
 }
-.ds-internal-sidebar-flush-right .views-field-title, #blog-archives-pane .views-field-title {
+.ds-internal-sidebar-flush-right .views-field-title {
   margin-bottom: 12px;
   background-position: 0px 3px;
   padding-left: 4px;
 }
-.ds-internal-sidebar-flush-right .views-field-title a, #blog-archives-pane .views-field-title a {
+.ds-internal-sidebar-flush-right .views-field-title a {
   margin: 0;
   font-size: 11px;
   font-family: "Trebuchet MS", sans-serif;
   font-weight: normal;
   color: #222222;
 }
-.ds-internal-sidebar-flush-right .view-footer, #blog-archives-pane .view-footer {
+.ds-internal-sidebar-flush-right .view-footer {
   text-align: right;
 }
 
+/*Blog Archive Pane */
 #blog-archives-pane {
   padding-left: 15px;
 }

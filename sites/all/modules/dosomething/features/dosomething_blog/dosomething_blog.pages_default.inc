@@ -392,7 +392,7 @@ blog/all',
     );
     $pane->css = array(
       'css_id' => 'blog-archives-pane',
-      'css_class' => 'ds-pane-no-radius ds-pane-news',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
     );
     $pane->extras = array();
     $pane->position = 0;
@@ -524,7 +524,7 @@ blog/all',
     );
     $pane->css = array(
       'css_id' => 'blog-archives-pane',
-      'css_class' => 'ds-pane-no-radius ds-pane-news',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
     );
     $pane->extras = array();
     $pane->position = 0;
@@ -651,7 +651,7 @@ blog/all',
     );
     $pane->css = array(
       'css_id' => 'blog-archives-pane',
-      'css_class' => 'ds-pane-no-radius ds-pane-news',
+      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
     );
     $pane->extras = array();
     $pane->position = 0;

@@ -43,7 +43,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display;
-  $display->layout = 'one_two_one';
+  $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -60,7 +60,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'mid-left';
+    $pane->panel = 'left-top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
     $pane->shown = TRUE;
@@ -77,10 +77,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['mid-left'][0] = 'new-1';
+    $display->panels['left-top'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
-    $pane->panel = 'mid-left';
+    $pane->panel = 'left-top';
     $pane->type = 'node_content';
     $pane->subtype = 'node_content';
     $pane->shown = TRUE;
@@ -104,10 +104,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['mid-left'][1] = 'new-2';
+    $display->panels['left-top'][1] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
-    $pane->panel = 'mid-right';
+    $pane->panel = 'right';
     $pane->type = 'dosomething_start_button';
     $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
@@ -127,10 +127,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-3'] = $pane;
-    $display->panels['mid-right'][0] = 'new-3';
+    $display->panels['right'][0] = 'new-3';
     $pane = new stdClass;
     $pane->pid = 'new-4';
-    $pane->panel = 'mid-right';
+    $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'project_related_displays';
     $pane->shown = TRUE;
@@ -166,10 +166,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-4'] = $pane;
-    $display->panels['mid-right'][1] = 'new-4';
+    $display->panels['right'][1] = 'new-4';
     $pane = new stdClass;
     $pane->pid = 'new-5';
-    $pane->panel = 'mid-right';
+    $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'project_related_displays';
     $pane->shown = TRUE;
@@ -204,10 +204,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 2;
     $display->content['new-5'] = $pane;
-    $display->panels['mid-right'][2] = 'new-5';
+    $display->panels['right'][2] = 'new-5';
     $pane = new stdClass;
     $pane->pid = 'new-6';
-    $pane->panel = 'mid-right';
+    $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'related_projects-panel_pane_2';
     $pane->shown = TRUE;
@@ -224,7 +224,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 3;
     $display->content['new-6'] = $pane;
-    $display->panels['mid-right'][3] = 'new-6';
+    $display->panels['right'][3] = 'new-6';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
