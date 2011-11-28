@@ -2922,6 +2922,10 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   padding-right: 12.222em;
 }
 
+.secondary-menu-inactive .secondary {
+  position: absolute;
+}
+
 #main-menu {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
