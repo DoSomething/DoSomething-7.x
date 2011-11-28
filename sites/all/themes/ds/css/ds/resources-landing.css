@@ -247,11 +247,13 @@
 }
 #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper,
 #views-exposed-form-resources-panel-pane-1 #edit-type-wrapper,
+#views-exposed-form-resources-panel-pane-1 #edit-howtos-wrapper,
 #views-exposed-form-resources-panel-pane-1 .views-submit-button {
-  margin: 0.3em 0 0.3em 0.8em;
+  margin: 0.3em 0 0.3em 0.5em;
 }
 #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown,
 #views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown,
+#views-exposed-form-resources-panel-pane-1 #edit-howtos-wrapper .selectBox-dropdown,
 #views-exposed-form-resources-panel-pane-1 .views-submit-button .selectBox-dropdown {
   background: #8e8a86;
   border: none;
@@ -270,12 +272,14 @@
 }
 #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown .selectBox-arrow,
 #views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .selectBox-dropdown .selectBox-arrow,
+#views-exposed-form-resources-panel-pane-1 #edit-howtos-wrapper .selectBox-dropdown .selectBox-arrow,
 #views-exposed-form-resources-panel-pane-1 .views-submit-button .selectBox-dropdown .selectBox-arrow {
   background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
 #views-exposed-form-resources-panel-pane-1 #edit-cause-wrapper .views-widget .form-item a,
 #views-exposed-form-resources-panel-pane-1 #edit-type-wrapper .views-widget .form-item a,
+#views-exposed-form-resources-panel-pane-1 #edit-howtos-wrapper .views-widget .form-item a,
 #views-exposed-form-resources-panel-pane-1 .views-submit-button .views-widget .form-item a {
   width: 111px;
 }
