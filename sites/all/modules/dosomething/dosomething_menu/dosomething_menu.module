@@ -29,6 +29,9 @@ function dosomething_menu_preprocess_page(&$variables) {
   $params = array('tree' => $tree);
   $term = FALSE;
 
+  $secondary_menu_class = &drupal_static('dosomething_menu_secondary_menu_body_class');
+  $secondary_menu_class = empty($variables['secondary_menu']) ? 'secondary-menu-inactive' : 'secondary-menu-active';
+
   // We need to know if we are on an issues page.
   if ($term = menu_get_object('taxonomy_term', 2)) {
     if ($term->vid == DS_MENU_ISSUES_VID) {
@@ -56,6 +59,16 @@ function dosomething_menu_preprocess_page(&$variables) {
   // TODO: Add this as a library or something else for reuse.
   drupal_add_js(drupal_get_path('module', 'dosomething_menu') . '/js/jquery.hoverIntent.minified.js');
   drupal_add_js(drupal_get_path('module', 'dosomething_menu') . '/js/ds-main-menu.js');
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function dosomething_menu_preprocess_html(&$variables) {
+  // Add a class to the body indicating whether the secondary menu
+  // is displayed or not.
+  $secondary_menu_class = &drupal_static('dosomething_menu_secondary_menu_body_class');
+  $variables['classes_array'][] = $secondary_menu_class;
 }
 
 /**
