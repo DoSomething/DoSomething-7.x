@@ -108,11 +108,14 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_projects_general-start-a-project';
+    $pane->type = 'dosomething_start_button';
+    $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'start_button' => array(
+        'project' => TRUE,
+      ),
       'override_title' => 0,
       'override_title_text' => '',
     );
@@ -305,11 +308,14 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'right';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_projects_general-start-a-project';
+    $pane->type = 'dosomething_start_button';
+    $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'start_button' => array(
+        'project' => TRUE,
+      ),
       'override_title' => 0,
       'override_title_text' => '',
     );

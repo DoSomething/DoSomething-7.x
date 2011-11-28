@@ -506,16 +506,16 @@ function dosomething_causes_default_page_manager_pages() {
     $pane = new stdClass;
     $pane->pid = 'new-3';
     $pane->panel = 'right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'dosomething_start_button';
+    $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Start a Project',
-      'title' => '<none>',
-      'body' => '<a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a>',
-      'format' => '3',
-      'substitute' => TRUE,
+      'start_button' => array(
+        'project' => TRUE,
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
     );
     $pane->cache = array();
     $pane->style = array(
