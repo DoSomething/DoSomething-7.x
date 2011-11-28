@@ -96,9 +96,6 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->description .= 'General Grant Application';
     $this->dependencies[] = 'DSProject';
 
-    $this->addFieldMapping('data_your_school_deans_name', 'field_school_deans_name');
-    $this->addFieldMapping('data_deans_email', 'field_deans_email');
-    $this->addFieldMapping('data_deans_phone_number', 'field_deans_phone_number');
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
     $this->addFieldMapping('data_essay_1___see_it', 'field_plumgrant_essay1');
     $this->addFieldMapping('data_essay_2___believe_it', 'field_plumgrant_essay2');
@@ -211,7 +208,7 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
 
     //Null Mappings
-    $this->addUnmigratedSources(array('title'));
+    $this->addUnmigratedSources(array('title', 'field_your_school_deans_name', 'field_deans_email_0', 'field_deans_phone_number_0'));
     $this->addUnmigratedDestinations(array(
       'field_webform_school',
       'field_webform_school_zip',
