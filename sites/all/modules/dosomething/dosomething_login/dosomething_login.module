@@ -277,9 +277,15 @@ function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
   else {
     $account = isset($form_state['values']['account']->uid) ? $form_state['values']['account'] : NULL;
     if(!is_null($account)) {
+      require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
       $reset_link = user_pass_reset_url($account);
+      $pass = user_password(6);
+      $hashed_pass = user_hash_password($pass);
+      $user = user_load($account->uid);
+      $user->pass = $hashed_pass;
+      user_save($user);
       $number = trim($form_state['values']['name']);
-      $message = 'Follow this link to change your DoSomething password. ' . $reset_link;
+      $message = "Your DoSomething password is now " . $pass . " or log right in with: " . $reset_link;
       sms_mobile_commons_send($number, $message, $options = array());
       drupal_set_message(t('Thanks for playing. A text message with reset instructions has been sent to your mobile phone.'));
     }
