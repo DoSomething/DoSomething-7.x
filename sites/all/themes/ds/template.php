@@ -36,16 +36,6 @@ function ds_preprocess_page(&$variables) {
   // load css specific to pages
   // Only call arg(0) once.
   $arg0 = arg(0);
-  // home page
-  if ($variables['is_front'] == TRUE) {
-    drupal_add_js($theme_path . '/js/equalheights.jquery.js', array('scope' => 'footer'));
-    drupal_add_js('(function ($) {
-      $("#dosomething-login-register-popup-form").hide();
-      $("#main-wrapper").equalHeights();
-      })(jQuery);',
-        array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
-      );
-  }
   // causes landing page
   if ($arg0 == 'cause' || $arg0 == 'causes') {
     drupal_add_css($theme_path . '/css/ds/causes-landing.css');
