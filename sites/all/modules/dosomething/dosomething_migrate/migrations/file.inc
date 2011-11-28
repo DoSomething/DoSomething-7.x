@@ -56,8 +56,8 @@ class DSFile extends Migration {
     ));
 
     $this->addSimpleMappings(array('filename', 'filemime', 'status', 'timestamp', 'uid'));
-    $this->addUnmigratedDestinations(array('path', 'contents'));
-    $this->addUnmigratedSources(array('filesize'));
+    $this->addUnmigratedDestinations(array('fid', 'uri', 'path', 'contents'));
+    $this->addUnmigratedSources(array('fid', 'filepath', 'filesize'));
 
     $this->filesPath = variable_get('file_directory_path', conf_path() . '/files');
   }

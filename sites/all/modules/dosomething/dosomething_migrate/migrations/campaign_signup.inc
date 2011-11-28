@@ -6,7 +6,7 @@ abstract class DSCampaignSignupMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignSignup'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'group_audience'));
   }
 
   public function prepare($entity, $row) {
@@ -106,6 +106,7 @@ class DSCampaignSignupIncreaseYourGreenMigration extends DSCampaignSignupMigrati
     $this->addFieldMapping('data_how_did_you_spread_the_word_about_your_efforts_to_your_school_and_community', 'field_iyg_people_spread');
     $this->addFieldMapping('data_how_you_improved_your_school_what_policies_did_you_have_to_change_what_new_programs_practices_did_you_implement', 'field_iyg_waste_info');
     $this->addFieldMapping('data_your_schools_name', 'field_increaseyourgreen_signu_1');
+    $this->addFieldMapping('data_please_select_the_projects_youve_posted_that_are_associated_with_your_schools_increase_your_green_efforts', 'field_iyg_project');
 
     $this->addFieldMapping('field_webform_email', 'title');
     $this->addFieldMapping('field_webform_mobile', 'field_increaseyourgreen_signu_0');
