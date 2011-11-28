@@ -594,7 +594,7 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->pid = 'new-6';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_1';
+    $pane->subtype = 'related_projects-panel_pane_2';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
