@@ -65,15 +65,10 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'club_node_form') {
     unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
   }
-  if ($form['#id'] == 'views-exposed-form-resources-panel-pane-1') {
-    // Override #option values on action-finder content type exposed filter.
-    if ($form_id == 'views_exposed_form' && $form['#info']['filter-type']['value'] == 'type') {
-      $form['type']['#options']['All'] = 'All types';
-      $form['type']['#options']['tips_and_tools'] = 'Facts and More';
-    }
-    // Override #option values on action-finder cause exposed filter. 
-    if ($form_id == 'views_exposed_form' && $form['#info']['filter-taxonomy_vocabulary_5_tid']['value'] == 'cause') {
-      $form['cause']['#options']['All'] = 'All subjects';
+  else if (isset($form['#node']) && strpos($form_id, 'webform_client_form_') === 0) {
+    $webform_types = array('grant_application');
+    if (in_array($form['#node']->type, $webform_types)) {
+      $form['#validate'][] = 'dosomething_general_webform_validate';
     }
   }
 }
