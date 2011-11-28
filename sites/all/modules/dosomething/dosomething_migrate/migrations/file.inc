@@ -4,7 +4,7 @@ class DSFileJsonMigrateItems extends DSJsonMigrateItems {
   public function __construct($base_url) {
     $ts = variable_get('ds_migration_forked_ts', 1317000000);
 
-    $this->listUrl = "{$base_url}/file/list/?page=:page&created_since={$ts}";
+    $this->listUrl = "{$base_url}/file/list?page=:page&created_since={$ts}";
     $this->countUrl = "{$base_url}/file/count?created_since={$ts}";
     $this->getUrl = "{$base_url}/file/get/:id";
     parent::__construct();
@@ -13,15 +13,13 @@ class DSFileJsonMigrateItems extends DSJsonMigrateItems {
 
 class DSFile extends Migration {
   static function fetchFields($base_url) {
-    $url = "$base_url/file/fields/";
-
-    $cid = __CLASS__ . ':' . $url;
+    $cid = __CLASS__ . ':' . $base_url;
     $cache = cache_get($cid);
     if ($cache !== FALSE && isset($cache->data)) {
       return $cache->data;
     }
 
-    $json = file_get_contents($url);
+    $json = file_get_contents("{$base_url}/file/fields");
     if ($json) {
       $fields = drupal_json_decode($json);
       if ($fields && is_array($fields)) {
