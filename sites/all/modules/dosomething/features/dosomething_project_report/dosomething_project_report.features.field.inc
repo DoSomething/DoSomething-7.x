@@ -1415,7 +1415,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_report',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'What is the project? Ex. <i>Reduce litter in my neighborhood by 50%.</i>',
+      'description' => 'What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -2274,7 +2274,7 @@ The content from this field will only be shown to anonymous users.');
   t('Total hours volunteered (to date)');
   t('Video');
   t('Web site link');
-  t('What is the project? Ex. <i>Reduce litter in my neighborhood by 50%.</i>');
+  t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What\'s the problem you are trying to solve?');
   t('What\'s your plan of action?');
   t('Why is it important to you?');
