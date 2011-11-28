@@ -392,3 +392,18 @@ function ds_webform_view_messages($variables) {
     drupal_set_message($message, $type, FALSE);
   }
 }
+
+/**
+ * Implements hook_date_part_label_date();
+ * Set start and end date labels.
+ */
+function ds_date_part_label_date($vars) {
+  $part_type = $vars['part_type'];
+  $element = $vars['element'];
+  if (stripos($element['#date_title'], 'start date')) {
+    return t('Start Date', array(), array('context' => 'datetime'));
+  }
+  if (stripos($element['#date_title'], 'end date')) {
+    return t('End Date', array(), array('context' => 'datetime'));
+  }
+}
