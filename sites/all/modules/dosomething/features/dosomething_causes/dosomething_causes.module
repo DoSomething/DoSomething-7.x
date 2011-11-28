@@ -6,6 +6,8 @@
 
 include_once('dosomething_causes.features.inc');
 
+define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
+
 /**
  * Implements hook_preprocess_views_view().
  */
@@ -18,4 +20,267 @@ function dosomething_causes_preprocess_views_view(&$variables) {
     case 'causes':
       break;
   }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_causes_menu() {
+  $items['causes'] = array(
+    'title' => 'Causes',
+    'page callback' => 'dosomething_causes_get_causes',
+    'access callback' => TRUE,
+    // We don't want this in the navigation menu
+    // See dosomething_menu module under hook_menu_alter().
+    'menu_name' => 'ds-main-menu',
+  );
+  return $items;
+}
+
+function dosomething_causes_get_causes() {
+  $module_path = drupal_get_path('module', 'dosomething_causes');
+  $element = array(
+    '#attached' => array(
+      'js' => array($module_path . '/js/dosomething_causes_page_popups.js'),
+    ),
+  );
+
+  // Get taxonomy terms.
+  $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
+  $causes = array();
+  // Set the image, image style, and uri of each cause.
+  foreach (taxonomy_get_tree($vocabulary->vid, 0, 1, TRUE) as $cause) {
+    $cause_image = field_get_items('taxonomy_term', $cause, 'field_causes_image');
+    $cause->cause_image = isset($cause_image[0]['uri']) ? $cause_image[0] : NULL;
+    $cause->image_style = 'find_your_cause';
+    $cause->uri = entity_uri('taxonomy_term', $cause);
+
+    $causes[] = $cause;
+  }
+  drupal_set_title(t(count($causes) . ' Great Causes for You to Rock'));
+
+  // Spoof the structure of a cause for the Suggest A Cause entry.
+  $causes[] = (object) array(
+    'uri' => array(
+      'path' => 'suggest-a-cause',
+      'options' => array(),
+    ),
+    'cause_image' => array(
+      'alt' => t('Suggest A Cause'),
+      'uri' => $module_path . '/images/submit_a_cause.jpg',
+      'title' => '',
+    ),
+    'name' => t('Suggest A Cause'),
+    'description' => 'Suggest a cause text goes here. EDIT MY TEXT IN THE DOSOMETHING PAGES MODULE FILE. <a href="suggest-a-cause">Suggest a cause &raquo;</a>',
+    'no_popup' => TRUE,
+    'image_style' => FALSE,
+  );
+
+  foreach ($causes as $delta => $cause) {
+    $element[$delta] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'cause-item',
+        ),
+      ),
+      'title' => array(
+        '#type' => 'link',
+        '#title' => t($cause->name),
+        '#href' => $cause->uri['path'],
+        '#options' => $cause->uri['options'],
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+      ),
+      'image' => array(
+        '#theme' => 'image_formatter',
+        '#item' => $cause->cause_image,
+        '#image_style' => $cause->image_style,
+        '#path' => array(
+          'path' => $cause->uri['path'],
+          'options' => $cause->uri['options'] + array(
+            'attributes' => array(
+              'class' => array('cause-image-link'),
+            ),
+          ),
+        ),
+      ),
+      'description' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'cause-description',
+          ),
+        ),
+        'markup' => array(
+          '#markup' => $cause->description,
+          '#prefix' => '<p>',
+          '#suffix' => '</p>',
+        ),
+      ),
+    );
+
+    // Not every cause has a pop-up.
+    if (empty($cause->no_popup)) {
+      $links = array();
+      foreach (taxonomy_get_tree($vocabulary->vid, $cause->tid, $max_depth = NULL, $load_entities = FALSE) as $child_cause) {
+        $links[drupal_html_class($child_cause->name)] = array(
+          'title' => $child_cause->name,
+          'href' => "taxonomy/term/$child_cause->tid",
+        );
+      }
+
+      $element[$delta]['pop_up'] = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'cause-item-pop-up-content',
+          ),
+        ),
+        'all_issues_link' => array(
+          '#type' => 'link',
+          '#title' => t('Go'),
+          '#href' => $cause->uri['path'],
+          '#options' => $cause->uri['options'] + array(
+            'attributes' => array(
+              'class' => array('go', 'ds-button-strong')
+            ),
+          ),
+        ),
+        'links' => array(
+          '#theme' => 'links',
+          '#links' => $links,
+          '#heading' => array(
+            'text' => t('All Issues'),
+            'level' => 'h4',
+          ),
+        ),
+      );
+
+      if (module_exists('fb_social')) {
+        global $base_url;
+        $element[$delta]['pop_up']['facebook']['#markup'] = fb_social_preset_view(dosomething_causes_get_fb_preset(), $base_url . '/' . $cause->uri['path']);
+      }
+    }
+    else {
+      $element[$delta]['description']['#attributes']['class'][] = 'no-popup';
+    }
+  }
+  return $element;
+}
+
+/**
+ * Simple function to create the fb style preset.
+ * This was exported from the page at admin/structure/fb_social_presets
+ */
+function dosomething_causes_get_fb_preset() {
+  $fb_social_preset = new stdClass;
+  $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
+  $fb_social_preset->api_version = 1;
+  $fb_social_preset->name = 'reccommend_cause';
+  $fb_social_preset->description = '';
+  $fb_social_preset->plugin_type = 'like';
+  $fb_social_preset->settings = array(
+    'node_types' => array(
+      'types' => array(
+        '1in3_abuse_old' => 0,
+        'dsaward_app' => 0,
+        '301_redirects' => 0,
+        'abc_family' => 0,
+        'api_key' => 0,
+        'aspca_grant_app' => 0,
+        'action_guide' => 0,
+        'blog' => 0,
+        'bc_bio_form' => 0,
+        'campaign' => 0,
+        'campaign_bfb_2011' => 0,
+        'campaign_bully_2011' => 0,
+        'campaign_ebd_2011' => 0,
+        'campaign_gys_2011' => 0,
+        'campaign_macys_2011' => 0,
+        'campaign_art_2011' => 0,
+        'campaign_hunt_2011' => 0,
+        'campaign_sports_2011' => 0,
+        'campaign_ew_2011' => 0,
+        'campaign_report_back' => 0,
+        'campaign_sign_up' => 0,
+        'cancer_2011_signup' => 0,
+        'canned_food' => 0,
+        'cause' => 0,
+        'cause_video' => 0,
+        'club' => 0,
+        'club_event' => 0,
+        'ds_award_judging' => 0,
+        'awards_archive' => 0,
+        'dsu_askprof' => 0,
+        'dsu_guides' => 0,
+        'decade_2011_signup' => 0,
+        'ds101_action_kit' => 0,
+        'dsaward_rec' => 0,
+        'easy_idea' => 0,
+        'editorial_project' => 0,
+        'ebd_signup' => 0,
+        'feed' => 0,
+        'feed_item' => 0,
+        'final_grant_update' => 0,
+        'general_grant_app' => 0,
+        'general_scholarship_app' => 0,
+        'grant' => 0,
+        'grant_alumni' => 0,
+        'grant_application' => 0,
+        'grant_judge' => 0,
+        'gys_2011' => 0,
+        'healthy_schools' => 0,
+        'healthy_schools_report' => 0,
+        'help_ticket' => 0,
+        'huffpo' => 0,
+        'increaseyourgreen_signup' => 0,
+        'issue' => 0,
+        'page' => 0,
+        'poll' => 0,
+        'press' => 0,
+        'project' => 0,
+        'project_report' => 0,
+        'project_update' => 0,
+        '911_registration' => 0,
+        'save_our_music' => 0,
+        'scavenger_2011_signup' => 0,
+        'scholarship_application' => 0,
+        'scholarship_update' => 0,
+        'scholarships_att' => 0,
+        'school' => 0,
+        'scroller' => 0,
+        'sixflags_scholarships_app' => 0,
+        'staples_2011_signup' => 0,
+        'staples_members' => 0,
+        'staples_reason' => 0,
+        'sfs_report_gallery' => 0,
+        'troop_letter' => 0,
+        'tackle_hunger' => 0,
+        'tfj_contest_signup' => 0,
+        'tips_and_tools' => 0,
+        'webform' => 0,
+        'club_first_meeting_cash' => 0,
+        'ewaste_signup_2011' => 0,
+        'grants_database' => 0,
+        'ididthis' => 0,
+      ),
+    ),
+    'opengraph_tags' => 0,
+    'plugin_location' => array(
+      'location' => '0',
+      'display_teasers' => 0,
+    ),
+    'block' => 0,
+  );
+  $fb_social_preset->fb_attrs = array(
+    'send' => 0,
+    'layout' => 'standard',
+    'show_faces' => 0,
+    'width' => '300',
+    'action' => 'recommend',
+    'font' => 'arial',
+    'colorscheme' => 'light',
+  );
+  return $fb_social_preset;
 }
