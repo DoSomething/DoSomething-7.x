@@ -2924,6 +2924,7 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
 
 .secondary-menu-inactive .secondary {
   position: absolute;
+  width: 78%;
 }
 
 #main-menu {
