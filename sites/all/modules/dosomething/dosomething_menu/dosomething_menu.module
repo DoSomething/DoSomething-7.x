@@ -28,9 +28,8 @@ function dosomething_menu_preprocess_page(&$variables) {
   $tree = dosomething_menu_get_heirarchical_taxonomy_listing(DS_MENU_ISSUES_VID);
   $params = array('tree' => $tree);
   $term = FALSE;
-
-  $secondary_menu_class = &drupal_static('dosomething_menu_secondary_menu_body_class');
-  $secondary_menu_class = empty($variables['secondary_menu']) ? 'secondary-menu-inactive' : 'secondary-menu-active';
+  $secondary_menu_active = &drupal_static('dosomething_menu_secondary_menu_active');
+  $secondary_menu_active = !empty($variables['secondary_menu']);
 
   // We need to know if we are on an issues page.
   if ($term = menu_get_object('taxonomy_term', 2)) {
@@ -49,6 +48,7 @@ function dosomething_menu_preprocess_page(&$variables) {
         }
         $variables['main_menu'] = $full_menu;
       }
+      $secondary_menu_active = TRUE;
     }
   }
 
@@ -67,7 +67,8 @@ function dosomething_menu_preprocess_page(&$variables) {
 function dosomething_menu_preprocess_html(&$variables) {
   // Add a class to the body indicating whether the secondary menu
   // is displayed or not.
-  $secondary_menu_class = &drupal_static('dosomething_menu_secondary_menu_body_class');
+  $secondary_menu_active = &drupal_static('dosomething_menu_secondary_menu_active');
+  $secondary_menu_class = !$secondary_menu_active ? 'secondary-menu-inactive' : 'secondary-menu-active';
   $variables['classes_array'][] = $secondary_menu_class;
 }
 
