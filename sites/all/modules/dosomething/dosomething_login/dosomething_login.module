@@ -215,6 +215,78 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
+  unset($form['#validate']);
+  $form['#validate'] = array('dosomething_login_sms_password_recovery_validate');
+  $form['#submit'] = array('dosomething_login_sms_password_recovery_submit');
+}
+
+/**
+ * Validation function for resetting passwords that adds mobile phone based
+ * signup reset capabilities.
+ */
+function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) {
+  // Assume we do not want to send a SMS text.
+  $form_state['send_sms_reset'] = FALSE;
+
+  // Code pilfered from user_pass_validate in user.pages.inc
+  $name = trim($form_state['values']['name']);
+  // Try to load by email.
+  $users = user_load_multiple(array(), array('mail' => $name, 'status' => '1'));
+  $account = reset($users);
+  if (!$account) {
+    // No success, try to load by name.
+    $users = user_load_multiple(array(), array('name' => $name, 'status' => '1'));
+    $account = reset($users);
+  }
+
+  // If we have an account return.
+  if ($account) {
+    return TRUE;
+  }
+  else {
+    //Okay, maybe they gave us an mobile number. We can handle that.
+    $mobile = $name . '@mobile';
+    $users = user_load_multiple(array(), array('mail' => $mobile, 'status' => '1'));
+    $account = reset($users);
+  }
+  if (isset($account->uid)) {
+    // Send a text message with the reset password.
+    $form_state['send_sms_reset'] = TRUE;
+    form_set_value(array('#parents' => array('account')), $account, $form_state);
+  }
+  //TODO: check again to see if the number was supplied as xxx-xxx-xxxx rather than 5551114444.
+  else {
+    form_set_error('name', t('Sorry, %name is not recognized as a user name, e-mail address, or mobile number.', array('%name' => $name)));
+  }
+}
+
+/**
+ * Submition handler for resetting passwords that adds mobile phone based
+ * signup reset capabilities.
+ */
+function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
+  // Check the incoming form state. If send_sms_reset is false then do what
+  // we do normally.
+  if (!isset($form_state['send_sms_reset']) || !$form_state['send_sms_reset']) {
+    user_pass_submit($form, $form_state);
+    return;
+  }
+  else {
+    $account = isset($form_state['values']['account']->uid) ? $form_state['values']['account'] : NULL;
+    if(!is_null($account)) {
+      $reset_link = user_pass_reset_url($account);
+      $number = trim($form_state['values']['name']);
+      $message = 'Follow this link to change your DoSomething password. ' . $reset_link;
+      sms_mobile_commons_send($number, $message, $options = array());
+      drupal_set_message(t('Thanks for playing. A text message with reset instructions has been sent to your mobile phone.'));
+    }
+  }
+}
+
+/**
  * Implements hook_element_info().
  */
 function dosomething_login_element_info() {
