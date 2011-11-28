@@ -33,40 +33,8 @@ function ds_preprocess_page(&$variables) {
   drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
   drupal_add_js($theme_path . '/js/ds-select.js', array('scope' => 'footer'));
 
-  // load css specific to pages
-  // Only call arg(0) once.
-  $arg0 = arg(0);
-  // causes landing page
-  if ($arg0 == 'cause' || $arg0 == 'causes') {
-    drupal_add_css($theme_path . '/css/ds/causes-landing.css');
-  }
-  // issues pages
-  if (isset($variables['theme_hook_suggestions'][1]) && $variables['theme_hook_suggestions'][1] == 'page__taxonomy__term') {
-    drupal_add_css($theme_path . '/css/ds/dosomething-issues.css');
-    // add jquery to set equal heights
-    drupal_add_js($theme_path . '/js/equalheights.jquery.js', array('scope' => 'footer'));
-    drupal_add_js('(function ($) {
-      $(".panel-row-middle").equalHeights();
-      $(".panel-row-middle").equalHeightsPaneContent();
-      })(jQuery);',
-        array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
-      );
-  }
-  // user registration page
-  if ($arg0 == 'user' || $arg0 == 'user-registration') {
-    drupal_add_css($theme_path . '/css/ds/page-user-registration.css');
-  }
-  // user profile
-  if ($arg0 == 'user') {
-    drupal_add_css($theme_path . '/css/ds/my-somethings.css');
-  }
-  // project pages
-  if ($arg0 == 'webform-submission') {
-    drupal_add_css($theme_path . '/css/ds/dosomething-projects.css');
-  }
-
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
-  if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && $arg0 !== 'admin') {
+  if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && arg(0) !== 'admin') {
     // Add additional css class to 'Talk to Us' footer menu item.
     $variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']['#attributes']['class'][] = 'talk-to-us';
     drupal_add_js(drupal_get_path('module', 'dosomething_blocks') .'/js/lets_talk_dialog.js', 'file');
@@ -138,6 +106,18 @@ function ds_ctools_render_alter(&$info, &$page, &$context) {
 
     case 'projects':
       drupal_add_css($css_path . 'page-related-projects.css');
+      break;
+
+    case 'webform_view_project':
+      drupal_add_css($css_path . 'dosomething-projects.css');
+      break;
+
+    case 'user_view_my_somethings':
+      drupal_add_css($css_path . 'my-somethings.css');
+      break;
+
+    case 'term_view_causes':
+      drupal_add_css($css_path . 'dosomething-issues.css');
       break;
   }
 }
@@ -268,6 +248,10 @@ function ds_preprocess_views_view(&$variables) {
       if ($variables['display_id'] == 'panel_pane_1') {
         drupal_add_css($theme_path . '/css/ds/blog-panes.css');
       }
+      break;
+
+    case 'polls':
+      drupal_add_css($theme_path . '/css/ds/dosomething-polls.css');
       break;
   }
   // dsm($variables);

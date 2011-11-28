@@ -13,7 +13,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $handler = new stdClass;
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'webform_submission_view_panel_context';
+  $handler->name = 'webform_view_project';
   $handler->task = 'webform_submission_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
@@ -259,7 +259,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
-  $export['webform_submission_view_panel_context'] = $handler;
+  $export['webform_view_project'] = $handler;
 
   return $export;
 }

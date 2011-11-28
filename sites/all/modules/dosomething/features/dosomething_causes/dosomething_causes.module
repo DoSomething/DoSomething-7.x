@@ -9,20 +9,6 @@ include_once('dosomething_causes.features.inc');
 define('CAUSE_VOCABULARY_MACHINE_NAME', 'vocabulary_5');
 
 /**
- * Implements hook_preprocess_views_view().
- */
-function dosomething_causes_preprocess_views_view(&$variables) {
-  $theme_path = drupal_get_path('theme', 'ds');
-  switch ($variables['name']) {
-    case 'polls':
-      drupal_add_css($theme_path . '/css/ds/dosomething-polls.css');
-      break;
-    case 'causes':
-      break;
-  }
-}
-
-/**
  * Implements hook_menu().
  */
 function dosomething_causes_menu() {
@@ -42,6 +28,7 @@ function dosomething_causes_get_causes() {
   $element = array(
     '#attached' => array(
       'js' => array($module_path . '/js/dosomething_causes_page_popups.js'),
+      'css' => array(drupal_get_path('theme', 'ds') . '/css/ds/causes-landing.css'),
     ),
   );
 
