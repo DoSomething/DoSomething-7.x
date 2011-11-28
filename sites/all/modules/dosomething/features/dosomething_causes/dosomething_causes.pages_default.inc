@@ -231,7 +231,18 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->type = 'views_panes';
     $pane->subtype = 'related_projects-panel_pane_2';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
