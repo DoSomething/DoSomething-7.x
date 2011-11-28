@@ -221,14 +221,16 @@
     .dosomething-login-goto-profile
       display: block
       text-align: right
-  .secondary-menu-inactive &
-    margin-top: 96px
+    .secondary-menu-inactive
+      margin-top: 96px
 
 // Not Logged In
 .not-logged-in
   #block-dosomething-login-become-member
     color: $white
     padding-bottom: calc-em(11px, $s0)
+    .secondary-menu-inactive
+      margin-top: 95px
     h2.block-title
       margin-top: 0
     hr.top

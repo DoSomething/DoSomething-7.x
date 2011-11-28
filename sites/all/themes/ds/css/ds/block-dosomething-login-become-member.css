@@ -402,13 +402,16 @@
   display: block;
   text-align: right;
 }
-.secondary-menu-inactive #block-dosomething-login-become-member {
+.logged-in #block-dosomething-login-become-member .secondary-menu-inactive {
   margin-top: 96px;
 }
 
 .not-logged-in #block-dosomething-login-become-member {
   color: white;
   padding-bottom: 0.917em;
+}
+.not-logged-in #block-dosomething-login-become-member .secondary-menu-inactive {
+  margin-top: 95px;
 }
 .not-logged-in #block-dosomething-login-become-member h2.block-title {
   margin-top: 0;
