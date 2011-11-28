@@ -229,32 +229,13 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->pid = 'new-6';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_1';
+    $pane->subtype = 'related_projects-panel_pane_2';
     $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'arguments' => array(
-        'term_node_tid_depth' => '%term:tid',
-      ),
-      'use_pager' => 0,
-      'pager_id' => '',
-      'items_per_page' => '3',
-    );
+    $pane->access = array();
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'settings' => NULL,
     );
     $pane->css = array(
       'css_id' => '',
