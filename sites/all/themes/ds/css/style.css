@@ -2175,7 +2175,7 @@ body.admin-menu {
   position: absolute;
   top: -33px;
   left: -17px;
-  z-index: 100;
+  z-index: 1000;
 }
 #site-name a {
   text-indent: -119988px;
@@ -2831,6 +2831,7 @@ nav[role=navigation] {
   position: relative;
   background-color: #005ba9;
   font-weight: 500;
+  z-index: 100;
 }
 .ie8 nav[role=navigation], .ie7 nav[role=navigation] {
   width: 925px;
@@ -2857,6 +2858,9 @@ nav[role=navigation] .primary {
 nav[role=navigation] .primary .wrapper {
   display: table;
   width: 100%;
+}
+.ie7 nav[role=navigation] .primary .wrapper {
+  display: block;
 }
 nav[role=navigation] .secondary {
   background-color: #014e9c;
@@ -2976,6 +2980,11 @@ nav[role=navigation] .secondary ul .ds-nav-dropdown li a:active {
   padding-right: 0.103em;
   padding-left: 0;
 }
+.ie7 #main-menu {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
 #main-menu li {
   display: table-cell;
   background: #005ba9;
@@ -3003,6 +3012,10 @@ nav[role=navigation] .secondary ul .ds-nav-dropdown li a:active {
 #main-menu li a:active {
   color: white;
 }
+.ie7 #main-menu li a {
+  padding-left: 17px;
+  padding-right: 17px;
+}
 #main-menu li a.active {
   color: white;
 }
@@ -3029,6 +3042,9 @@ nav[role=navigation] .causes-dropdown-trigger {
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
   top: 30px;
   left: -9px;
+}
+.ie7 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown {
+  top: 23px;
 }
 nav[role=navigation] .causes-dropdown-trigger .causes-dropdown ul {
   list-style: none;
