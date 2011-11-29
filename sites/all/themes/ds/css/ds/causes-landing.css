@@ -105,6 +105,9 @@
 .page-causes .main-inner .cause-item:nth-of-type(even) .cause-description {
   background-color: #5f5c58;
 }
+.ie7 .page-causes .main-inner .cause-item {
+  width: 206px;
+}
 .page-causes .main-inner .cause-item h2 {
   text-align: center;
   margin: 0 -0.444em 0.056em;
