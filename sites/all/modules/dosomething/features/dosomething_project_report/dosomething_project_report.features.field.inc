@@ -1515,79 +1515,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_project_report_images'
-  $fields['webform_submission_entity-project_report-field_project_report_images'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_report_images',
-      'foreign keys' => array(
-        'fid' => array(
-          'columns' => array(
-            'fid' => 'fid',
-          ),
-          'table' => 'file_managed',
-        ),
-      ),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => 0,
-        'profile2_private' => FALSE,
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '0',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => '24',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_report_images',
-      'label' => 'Photos',
-      'required' => 0,
-      'settings' => array(
-        'alt_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '300x300',
-        'title_field' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'image',
-        'settings' => array(
-          'preview_image_style' => 'thumbnail',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'image_image',
-        'weight' => '9',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-project_report-field_project_report_zip'
   $fields['webform_submission_entity-project_report-field_project_report_zip'] = array(
     'field_config' => array(
@@ -2149,7 +2076,6 @@ The content from this field will only be shown to anonymous users.');
   t('Locations');
   t('Measurable impact');
   t('OPTIONAL - Link DoSomething action guides or fact pages to this project');
-  t('Photos');
   t('Project Photo');
   t('Project Type');
   t('Related Campaign or Program');

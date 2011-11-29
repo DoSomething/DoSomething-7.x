@@ -45,7 +45,6 @@ features[field][] = "webform_submission_entity-project_report-field_project_goal
 features[field][] = "webform_submission_entity-project_report-field_project_impact"
 features[field][] = "webform_submission_entity-project_report-field_project_inspiration"
 features[field][] = "webform_submission_entity-project_report-field_project_related_campaign"
-features[field][] = "webform_submission_entity-project_report-field_project_report_images"
 features[field][] = "webform_submission_entity-project_report-field_project_report_zip"
 features[field][] = "webform_submission_entity-project_report-field_project_start_date"
 features[field][] = "webform_submission_entity-project_report-field_project_title"
