@@ -54,7 +54,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 1,
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -82,7 +82,7 @@ function dosomething_campaign_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '11',
+        'weight' => '14',
       ),
     ),
   );
@@ -127,7 +127,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 8,
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -149,6 +149,78 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'text',
         'settings' => array(
           'size' => '8',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_campaign_call_to_action'
+  $fields['node-campaign-field_campaign_call_to_action'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_call_to_action',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Enter a call to action for this campaign.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '12',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_call_to_action',
+      'label' => 'Call to action',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '6',
@@ -201,7 +273,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 5,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -222,7 +294,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '10',
+        'weight' => '13',
       ),
     ),
   );
@@ -267,7 +339,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 9,
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -291,7 +363,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
@@ -339,7 +411,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 4,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -364,7 +436,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '5',
       ),
     ),
   );
@@ -412,7 +484,7 @@ function dosomething_campaign_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => 3,
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -491,7 +563,7 @@ function dosomething_campaign_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => 6,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -523,6 +595,170 @@ function dosomething_campaign_field_default_fields() {
         ),
         'type' => 'image_image',
         'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_campaign_promo_image'
+  $fields['node-campaign-field_campaign_promo_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_promo_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'deleted' => '0',
+      'description' => 'Upload an image for display on the Start Something landing page slideshow.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '14',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_promo_image',
+      'label' => 'Promo image',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_campaign_psa_image'
+  $fields['node-campaign-field_campaign_psa_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_psa_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '13',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_psa_image',
+      'label' => 'PSA image',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '11',
       ),
     ),
   );
@@ -569,7 +805,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -593,7 +829,7 @@ function dosomething_campaign_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -627,10 +863,12 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => NULL,
-          'settings' => array(),
-          'type' => 'media_large',
-          'weight' => 2,
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'media',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -665,7 +903,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
@@ -716,7 +954,7 @@ function dosomething_campaign_field_default_fields() {
             'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => 11,
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -749,7 +987,7 @@ function dosomething_campaign_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '2',
+        'weight' => '4',
       ),
     ),
   );
@@ -799,7 +1037,7 @@ function dosomething_campaign_field_default_fields() {
           'module' => 'og_ui',
           'settings' => array(),
           'type' => 'og_group_subscribe',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -831,7 +1069,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '9',
+        'weight' => '12',
       ),
       'widget_type' => 'options_select',
     ),
@@ -841,18 +1079,23 @@ function dosomething_campaign_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Background color');
   t('Body');
+  t('Call to action');
   t('Campaign Date');
   t('Causes/Issues');
+  t('Enter a call to action for this campaign.');
   t('Foreground color');
   t('Group type');
   t('Headline');
   t('Logo');
   t('Main Image');
+  t('PSA image');
   t('Please enter the 6 digit hex value without the #.');
   t('Please select a start and end date for the campaign.');
+  t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
   t('Teaser');
   t('Text to appear in Current Campaigns list');
+  t('Upload an image for display on the Start Something landing page slideshow.');
   t('Video');
 
   return $fields;
