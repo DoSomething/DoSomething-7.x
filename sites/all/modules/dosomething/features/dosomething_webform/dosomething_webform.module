@@ -35,7 +35,7 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
       }
     }
 
-    $webform_save_fix_types = array('grant_application');
+    $webform_save_fix_types = array('grant_application', 'scholarship_application');
     if (in_array($form['#node']->type, $webform_save_fix_types)) {
       $form['#validate'][] = 'dosomething_webform_webform_validate';
     }
@@ -49,12 +49,26 @@ function dosomething_webform_webform_submission_draft_validate(&$form, &$form_st
   // Don't throw required field errors for required fields.
   // This is a draft and fields should only be required on submission.
   // Make sure to add back any errors that are not required field related.
+  $errors = form_get_errors();
   form_clear_error();
   $messages = drupal_get_messages('error');
+  $pattern = '/field is required.$/';
+
+  // Add any unrelated errors.
   if (count($messages['error'])) {
     foreach ($messages['error'] as $message) {
-      if (!preg_match('/field is required.$/', $message)) {
-        drupal_set_message($message, 'error');
+      if (!preg_match($pattern, $message)) {
+        if (!in_array($message, $errors)) {
+          drupal_set_message($message, 'error');
+        }
+      }
+    }
+  }
+  // Set the form errors so that the form will not save.
+  if (count($errors)) {
+    foreach ($errors as $name => $error) {
+      if (!preg_match($pattern, $error)) {
+        form_set_error($name, $error);
       }
     }
   }
