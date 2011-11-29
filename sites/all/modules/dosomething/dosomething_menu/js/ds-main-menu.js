@@ -17,6 +17,24 @@
       $(".causes-dropdown-trigger").parent().removeClass("last").after($('.issues-dropover'));
       $(".issues-dropdown").remove();
 
+      // Show and hide basic dropdowns on secondary menu.
+      $(".secondary a.secondary-menu-item").hover(
+        function() {
+          $(this).next('ul').show().removeClass('hidden').hover(
+            function() {
+              $(this).show();
+            },
+            function() {
+              $(this).hide();
+            }
+          );
+        },
+        function() {
+          $(this).next('ul').hide();
+        }
+      );
+
+
       // Show and hide secondary menu.
       $("nav[role=navigation]").hoverIntent({
         interval: 100,
@@ -59,7 +77,6 @@
       $(".issues-dropdown-trigger").mouseover(function() {
         $('.issues-dropdown-menu').show().mouseleave(function() {$(this).hide();});
       });
-
     }
   }
 })(jQuery);
