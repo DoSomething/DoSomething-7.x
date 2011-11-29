@@ -98,6 +98,7 @@ function dosomething_menu_secondary_links($variables, $term) {
       $links['attributes']['class'][] = str_replace(' active-trail', '', $mlid);
 
       // Make sure proper classes are set on active secondary menu items.
+      // Ensure sub links are included with the menu link for dropdowns.
       if (isset($variables['main_menu'][$mlid . ' active-trail'])) {
         $mlid .= ' active-trail';
         foreach ($links['links'] as $second_mlid => &$second_link) {
@@ -107,6 +108,9 @@ function dosomething_menu_secondary_links($variables, $term) {
             $classes = array_merge($second_link['attributes']['class'], $variables['secondary_menu'][$key]['attributes']['class']);
           }
           $variables['secondary_menu'][$key]['attributes']['class'] = $classes;
+          if (isset($second_link['sub_links'])) {
+            $variables['secondary_menu'][$key]['sub_links'] = $second_link['sub_links'];
+          }
         }
         $links['links'] = $variables['secondary_menu'];
         $links['attributes']['class'][] = 'active';
