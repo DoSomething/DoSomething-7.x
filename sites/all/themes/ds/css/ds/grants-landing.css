@@ -142,3 +142,7 @@
 .panel-bottom .pane-content p {
   margin: 0;
 }
+
+.grants-past-winners {
+  clear: both;
+}
