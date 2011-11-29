@@ -44,7 +44,9 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
         $form['actions']['submit']['#value'] = t('Absolutely!');
         if ($user->uid) {
           $lang = $form['submitted']['webform_entity_form']['field_action_intention_email']['#language'];
-          $form['submitted']['webform_entity_form']['field_action_intention_email'][$lang][0]['email']['#default_value'] = $user->mail;
+          if (!isset($form['submitted']['webform_entity_form']['field_action_intention_email'][$lang][0]['email']['#default_value'])) {
+            $form['submitted']['webform_entity_form']['field_action_intention_email'][$lang][0]['email']['#default_value'] = $user->mail;
+          }
         }
         if (!$user->uid) {
           $form['#submit'][] = 'dosomething_intentions_webform_submission_submit';
