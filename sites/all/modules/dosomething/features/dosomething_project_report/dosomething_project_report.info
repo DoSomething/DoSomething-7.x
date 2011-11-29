@@ -35,7 +35,6 @@ features[field][] = "webform_submission_entity-project_report-field_essay_see_it
 features[field][] = "webform_submission_entity-project_report-field_fb_like_count"
 features[field][] = "webform_submission_entity-project_report-field_hours_volunteered"
 features[field][] = "webform_submission_entity-project_report-field_link"
-features[field][] = "webform_submission_entity-project_report-field_locations"
 features[field][] = "webform_submission_entity-project_report-field_num_people_impacted"
 features[field][] = "webform_submission_entity-project_report-field_num_people_inspired"
 features[field][] = "webform_submission_entity-project_report-field_others_involved"
