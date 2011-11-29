@@ -10,7 +10,7 @@
 function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0) {
     $node = $form['#node'];
-    if ($node->type == 'action_guide') {
+    if ($node->type == 'action_guide' && arg(4) != 'edit') {
       global $user;
       if (webform_get_submission_count($node->nid, $user->uid) || isset($_SESSION['dosomething_intentions'][$node->nid])) {
         foreach (element_children($form) as $child) {
@@ -23,7 +23,7 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
       else {
         // If not a draft, then we only show the email and only allow a save.
         // Don't remove these fields on an edit page.
-        if ((!$form['#is_draft'] && $node->webform['allow_draft']) && arg(4) != 'edit') {
+        if (!$form['#is_draft'] && $node->webform['allow_draft']) {
           // Restrict access to custom fields.
           foreach (element_children($form) as $child) {
             if (!in_array($child, array('submitted', 'actions', 'form_build_id', 'form_token', 'form_id', 'details', 'hidden'))) {
@@ -78,6 +78,7 @@ function dosomething_intentions_webform_submission_draft_validate(&$form, &$form
       }
     }
   }
+
 }
 
 function dosomething_intentions_webform_submission_submit(&$form, &$form_state) {
