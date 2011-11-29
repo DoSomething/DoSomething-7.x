@@ -33,6 +33,15 @@ function dosomething_grants_views_api() {
  */
 function dosomething_grants_node_info() {
   $items = array(
+    'grant_judge' => array(
+      'name' => t('Grant Judging Form'),
+      'base' => 'node_content',
+      'description' => t('for judging grant applications'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => t('<b>Thanks for judging!</b>
+'),
+    ),
     'grants_database' => array(
       'name' => t('grant database entry'),
       'base' => 'node_content',

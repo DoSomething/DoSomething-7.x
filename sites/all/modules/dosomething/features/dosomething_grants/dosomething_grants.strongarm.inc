@@ -85,9 +85,25 @@ function dosomething_grants_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_grant_judge';
+  $strongarm->value = array(
+    0 => 'navigation',
+  );
+  $export['menu_options_grant_judge'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_grants_database';
   $strongarm->value = 'navigation:0';
   $export['menu_parent_grants_database'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_grant_judge';
+  $strongarm->value = 'navigation:0';
+  $export['menu_parent_grant_judge'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -99,6 +115,13 @@ function dosomething_grants_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_grant_judge';
+  $strongarm->value = array();
+  $export['node_options_grant_judge'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_grants_database';
   $strongarm->value = 1;
   $export['node_preview_grants_database'] = $strongarm;
@@ -106,9 +129,23 @@ function dosomething_grants_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_grant_judge';
+  $strongarm->value = 1;
+  $export['node_preview_grant_judge'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_grants_database';
   $strongarm->value = 1;
   $export['node_submitted_grants_database'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_grant_judge';
+  $strongarm->value = 1;
+  $export['node_submitted_grant_judge'] = $strongarm;
 
   return $export;
 }

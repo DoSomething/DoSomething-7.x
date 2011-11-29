@@ -48,10 +48,10 @@ function dosomething_projects_general_default_page_manager_handlers() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'top' => NULL,
-      'mid-left' => NULL,
-      'mid-right' => NULL,
-      'bottom' => NULL,
+      'left-top' => NULL,
+      'left-bottom-left' => NULL,
+      'left-bottom-right' => NULL,
+      'right' => NULL,
     ),
   );
   $display->cache = array();
@@ -131,30 +131,11 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-4';
     $pane->panel = 'right';
-    $pane->type = 'views';
-    $pane->subtype = 'project_related_displays';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_2';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '3',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'context' => array(
-        0 => '',
-        1 => '',
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,

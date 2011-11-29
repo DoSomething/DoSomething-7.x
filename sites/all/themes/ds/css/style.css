@@ -2830,9 +2830,11 @@ nav[role=navigation] {
   text-transform: uppercase;
   position: relative;
   background-color: #005ba9;
+  font-weight: 500;
 }
 .ie8 nav[role=navigation], .ie7 nav[role=navigation] {
   width: 925px;
+  font-weight: bold;
 }
 nav[role=navigation] a {
   text-decoration: none;
@@ -2868,7 +2870,6 @@ nav[role=navigation] .secondary {
 nav[role=navigation] .secondary ul {
   font-size: 1.5em;
   line-height: 1.333em;
-  font-weight: 500;
   margin: 0;
   padding: 0;
   border: 0;
@@ -2928,7 +2929,6 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
   font-size: 26px;
-  font-weight: 500;
   display: table-row;
   min-height: 1.517em;
   padding-right: 0.103em;
@@ -2938,7 +2938,7 @@ nav[role=navigation] .secondary ul:nth-of-type(4n+3) {
   display: table-cell;
   background: #005ba9;
 }
-.ie8 #main-menu li, .ie7 #main-menu li {
+.ie7 #main-menu li {
   display: inline;
   display: inline;
   float: left;
@@ -3015,7 +3015,6 @@ nav[role=navigation] .causes-dropdown {
   text-transform: none;
   font-size: 0.667em;
   line-height: 0em;
-  font-weight: 500;
 }
 nav[role=navigation] .causes-dropdown ul {
   background-color: #014e9c;

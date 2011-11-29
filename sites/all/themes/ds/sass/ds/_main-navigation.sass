@@ -6,8 +6,10 @@ nav[role=navigation]
   text-transform: uppercase
   position: relative
   background-color: $c-menu-primary-bg
+  font-weight: 500
   .ie8 &, .ie7 &
     width: 925px
+    font-weight: bold
   a
     text-decoration: none
     display: block
@@ -28,7 +30,6 @@ nav[role=navigation]
       z-index: 1
     ul
       +adjust-font-size-to($s2)
-      font-weight: 500
       +horizontal-list(0.7em)
       line-height: $submenu-height / $s2
       min-height: calc-em($submenu-height, $s2)
@@ -60,7 +61,6 @@ nav[role=navigation]
   font-family: $font-headline
   text-rendering: optimizeLegibility
   font-size: 26px
-  font-weight: 500
   display: table-row
   min-height: calc-em($menu-height, $s4)
   padding-right: calc-em(3px, $s4)
@@ -68,7 +68,7 @@ nav[role=navigation]
   li
     display: table-cell
     background: $c-menu-primary-bg
-    .ie8 &, .ie7 &
+    .ie7 &
       display: inline
       +float-left
       margin-left: 12px
@@ -121,7 +121,6 @@ nav[role=navigation]
     z-index: 10
     text-transform: none
     +adjust-font-size-to($s0, 0, $s2)
-    font-weight: 500
     ul
       background-color: $blue
       display: none
