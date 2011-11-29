@@ -33,10 +33,6 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
       if (isset($form['actions']['draft'])) {
         $form['actions']['draft']['#validate'][] = 'dosomething_webform_webform_submission_draft_validate';
       }
-    }
-
-    $webform_save_fix_types = array('grant_application', 'scholarship_application');
-    if (in_array($form['#node']->type, $webform_save_fix_types)) {
       $form['#validate'][] = 'dosomething_webform_webform_validate';
     }
   }
