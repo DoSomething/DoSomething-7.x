@@ -10,6 +10,1027 @@
 function dosomething_grants_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'node-grant_judge-field_comments_or_suggestions_f'
+  $fields['node-grant_judge-field_comments_or_suggestions_f'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_comments_or_suggestions_f',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Comments will be sent to the grant applicant to help them improve their projects and grant writing skills.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '9',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '9',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '9',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_comments_or_suggestions_f',
+      'label' => 'Comments or Suggestions for Grant Applicant',
+      'required' => '0',
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '9',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '10',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '4',
+      ),
+      'widget_type' => 'text_textarea',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_application'
+  $fields['node-grant_judge-field_grant_judge_application'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_application',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'entityreference_entity_field',
+        'handler_settings' => array(
+          'author_only' => 0,
+          'target_bundles' => array(
+            'grant_application' => 'grant_application',
+          ),
+          'title_field' => 'field_webform_name',
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'webform_submission_entity',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Choose a grant application by searching for the name of the submitter.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 10,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_application',
+      'label' => 'Grant Application',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'entityreference_autocomplete',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_community'
+  $fields['node-grant_judge-field_grant_judge_community'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_community',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant’s project focuses on improving community problems and engaging and involving the community in their project. ',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '3',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '3',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_community',
+      'label' => 'Community focus',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '3',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_creativity'
+  $fields['node-grant_judge-field_grant_judge_creativity'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_creativity',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant’s project is creative and demonstrates an original idea for solving problems and creating change in their local communities.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '5',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '5',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_creativity',
+      'label' => 'Creativity',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '5',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '5',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_diversity'
+  $fields['node-grant_judge-field_grant_judge_diversity'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_diversity',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant\'s project promotes diversity and brings different kinds of people together.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '6',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '6',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_diversity',
+      'label' => 'Diversity',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '6',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '6',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_focus'
+  $fields['node-grant_judge-field_grant_judge_focus'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_focus',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant’s project strives toward tangible results and measurable impact.  The applicant has clear goals and a focused plan of action for reaching them.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_focus',
+      'label' => 'Measurable change',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '2',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_nid'
+  $fields['node-grant_judge-field_grant_judge_nid'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_nid',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_nid',
+      'label' => 'Application Node ID',
+      'required' => '1',
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '1',
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
+      'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_problem'
+  $fields['node-grant_judge-field_grant_judge_problem'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_problem',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant’s project can be a one-time event or an ongoing program; either way, it should strive to make lasting change in his or her community.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '4',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '4',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_problem',
+      'label' => 'Long-term problem solving action',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '4',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '4',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_winner'
+  $fields['node-grant_judge-field_grant_judge_winner'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_winner',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant has met the criteria above and and provides a unique and detailed project plan and will measure impact effectively.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '7',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '7',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '7',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_winner',
+      'label' => 'Grant winner material?',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '7',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '7',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
+  // Exported field: 'node-grant_judge-field_grant_judge_youth'
+  $fields['node-grant_judge-field_grant_judge_youth'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_judge_youth',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => '1',
+          2 => '2',
+          3 => '3',
+          4 => '4',
+          5 => '5',
+          6 => '6',
+          7 => '7',
+          8 => '8',
+          9 => '9',
+          10 => '10',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_integer',
+      'type_name' => 'grant_judge',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_judge',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The grant applicant is in charge of or plays a very active role in designing, leading and implementing the proposed project.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_grant_judge_youth',
+      'label' => 'Youth led and driven',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '1',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '1',
+      ),
+      'widget_type' => 'optionwidgets_select',
+    ),
+  );
+
   // Exported field: 'node-grants_database-field_application_deadline'
   $fields['node-grants_database-field_application_deadline'] = array(
     'field_config' => array(
@@ -1896,18 +2917,29 @@ function dosomething_grants_field_default_fields() {
   t('Amount of grant');
   t('An email that applicants can use if they have questions about the application process. ');
   t('Application Deadline');
+  t('Application Node ID');
   t('Award Focus');
+  t('Choose a grant application by searching for the name of the submitter.');
+  t('Comments or Suggestions for Grant Applicant');
+  t('Comments will be sent to the grant applicant to help them improve their projects and grant writing skills.');
+  t('Community focus');
   t('Contact Name');
+  t('Creativity');
+  t('Diversity');
   t('Email');
   t('FAQ');
   t('File attachments');
+  t('Grant Application');
   t('Grant Description');
   t('Grant Details');
   t('Grant requirements');
   t('Grant status');
+  t('Grant winner material?');
   t('How Many?');
   t('How Much?');
   t('How many grants or how often. Ex. <i>One a week</i>');
+  t('Long-term problem solving action');
+  t('Measurable change');
   t('Name of Award');
   t('Organization Website');
   t('Phone Number');
@@ -1916,9 +2948,17 @@ function dosomething_grants_field_default_fields() {
   t('Poster\'s Email');
   t('Required');
   t('Steps to Apply');
+  t('The grant applicant has met the criteria above and and provides a unique and detailed project plan and will measure impact effectively.');
+  t('The grant applicant is in charge of or plays a very active role in designing, leading and implementing the proposed project.');
+  t('The grant applicant\'s project promotes diversity and brings different kinds of people together.');
+  t('The grant applicant’s project can be a one-time event or an ongoing program; either way, it should strive to make lasting change in his or her community.');
+  t('The grant applicant’s project focuses on improving community problems and engaging and involving the community in their project. ');
+  t('The grant applicant’s project is creative and demonstrates an original idea for solving problems and creating change in their local communities.');
+  t('The grant applicant’s project strives toward tangible results and measurable impact.  The applicant has clear goals and a focused plan of action for reaching them.');
   t('Type of Award');
   t('Website/link for the application');
   t('Winners announced');
+  t('Youth led and driven');
   t('hold down ctrl button to select more than one');
 
   return $fields;
