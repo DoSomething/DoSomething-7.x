@@ -36,8 +36,6 @@ class DSIntentions extends Migration {
     $this->destination = new MigrateDestinationWebformSubmissionEntity($webform_type);
 
     $this->addFieldMapping('nid', 'act_nid');
-    $this->addFieldMapping('sid', 'nid')
-      ->description("Make the node id the submission id for easy redirection if we need to.");
     $this->addFieldMapping('uid', 'uid')
       ->description("User ids should be a direct mapping.");
     $this->addFieldMapping('is_draft')
