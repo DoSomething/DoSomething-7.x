@@ -12,26 +12,15 @@ include_once('dosomething_projects_general.features.inc');
 define('DS_PROJECTS_EDITABLE_TIME', 86400);
 
 /**
- * Implements hook_webform_submission_access().
+ * Implements hook_menu_alter().
  */
-function dosomething_projects_general_webform_submission_access($node, $submission, $op, $account) {
-  switch ($op) {
-    case 'edit':
-      // Allow users to edit project reports for 24 hrs following submission.
-      $types = array(
-        'project_report',
-        'campaign_report_back',
-      );
-      static $message = NULL;
-      if ($submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
-        if (REQUEST_TIME <= ($submission->submitted + DS_PROJECTS_EDITABLE_TIME)) {
-          return TRUE;
-        }
-      }
-      break;
+function dosomething_projects_general_menu_alter(&$items) {
+  // We need custom validation for editing certain types of webforms.
+  if (isset($items['node/%webform_menu/submission/%webform_menu_submission/edit'])) {
+    $item = &$items['node/%webform_menu/submission/%webform_menu_submission/edit'];
+    $item['access callback'] = 'dosomething_projects_general_webform_menu_submission_access';
   }
 }
-
 
 /**
  * Implements hook_node_access().
@@ -54,3 +43,50 @@ function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_ty
     return 'plugins/' . $plugin_type;
   }
 }
+
+/**
+ * Implements_hook_form_alter().
+ */
+function dosomething_projects_general_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  $node_types = array(
+    'project_report',
+    'campaign_report_back',
+  );
+  if (strpos($form_id, 'webform_client_form_') === 0) {
+    if (in_array($form['#node']->type, $node_types)) {
+      // Let users know that they only have access to the form for 24 hours.
+      $submission = isset($form['#submission']) ? $form['#submission'] : NULL;
+      if (!is_null($submission) && $submission->sid && !$submission->is_draft) {
+        if ($user->uid == $submission->uid) {
+          $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
+          if (REQUEST_TIME <= ($timestamp)) {
+            drupal_set_message(t('You may continue to edit this form until %date', array('%date' => date('m/d/Y g:ia', $timestamp))));
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Access callback for webform submissions.
+ */
+function dosomething_projects_general_webform_menu_submission_access($node, $submission, $op = 'view', $account = NULL) {
+  global $user;
+  $account = isset($account) ? $account : $user;
+
+  // Allow users to edit certain types for 24 hrs following submission.
+  $types = array(
+    'project_report',
+    'campaign_report_back',
+  );
+  if ($op == 'edit' && $submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
+    $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
+    if (REQUEST_TIME > $submission->submitted + DS_PROJECTS_EDITABLE_TIME) {
+      return FALSE;
+    }
+  }
+  return webform_submission_access($node, $submission, $op, $account);
+}
+
