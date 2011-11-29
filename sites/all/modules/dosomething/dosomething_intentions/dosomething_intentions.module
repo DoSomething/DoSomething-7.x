@@ -22,7 +22,8 @@ function dosomething_intentions_form_alter(&$form, &$form_state, $form_id) {
       }
       else {
         // If not a draft, then we only show the email and only allow a save.
-        if (!$form['#is_draft'] && $node->webform['allow_draft']) {
+        // Don't remove these fields on an edit page.
+        if ((!$form['#is_draft'] && $node->webform['allow_draft']) && arg(4) != 'edit') {
           // Restrict access to custom fields.
           foreach (element_children($form) as $child) {
             if (!in_array($child, array('submitted', 'actions', 'form_build_id', 'form_token', 'form_id', 'details', 'hidden'))) {
