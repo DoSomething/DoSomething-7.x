@@ -75,7 +75,6 @@ function dosomething_intentions_webform_submission_draft_validate(&$form, &$form
       }
     }
   }
-
 }
 
 function dosomething_intentions_webform_submission_submit(&$form, &$form_state) {
