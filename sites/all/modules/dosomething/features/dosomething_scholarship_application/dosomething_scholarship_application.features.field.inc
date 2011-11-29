@@ -804,7 +804,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'label_position' => 'above',
           'repeat_collapsed' => 0,
           'text_parts' => array(),
-          'year_range' => '-3:+3',
+          'year_range' => '-100:+0',
         ),
         'type' => 'date_select',
         'weight' => '1',
