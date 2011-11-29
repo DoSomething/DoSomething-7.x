@@ -470,6 +470,28 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'admin_title' => 'Grants Database',
+      'title' => '',
+      'body' => '<a href="/grants/database"><img src="sites/all/themes/ds/css/images/grants-database.jpg"></a>
+<a class="grant-title" href="/grants/database">Grants Database</a>',
+      'format' => '3',
+      'substitute' => NULL,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $display->content['new-5'] = $pane;
+    $display->panels['bottom'][4] = 'new-5';
+    $pane = new stdClass;
+    $pane->pid = 'new-6';
+    $pane->panel = 'bottom';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
       'admin_title' => 'Past Winners - Grant Winners',
       'title' => 'Past Winners',
       'body' => '<a href="/awesome-things/action-updates"><img src="sites/all/themes/ds/css/images/grants-past-winners.jpg"></a>
@@ -482,13 +504,16 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'grants-past-winners',
+    );
     $pane->extras = array();
-    $pane->position = 4;
-    $display->content['new-5'] = $pane;
-    $display->panels['bottom'][4] = 'new-5';
+    $pane->position = 5;
+    $display->content['new-6'] = $pane;
+    $display->panels['bottom'][5] = 'new-6';
     $pane = new stdClass;
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -509,11 +534,11 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
-    $display->content['new-6'] = $pane;
-    $display->panels['bottom'][5] = 'new-6';
+    $pane->position = 6;
+    $display->content['new-7'] = $pane;
+    $display->panels['bottom'][6] = 'new-7';
     $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'mid-left';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -530,10 +555,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['mid-left'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['mid-left'][0] = 'new-8';
     $pane = new stdClass;
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -558,10 +583,10 @@ function dosomething_grants_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-8'] = $pane;
-    $display->panels['mid-left'][1] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['mid-left'][1] = 'new-9';
     $pane = new stdClass;
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-10';
     $pane->panel = 'mid-right';
     $pane->type = 'node';
     $pane->subtype = 'node';
@@ -587,10 +612,10 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-9'] = $pane;
-    $display->panels['mid-right'][0] = 'new-9';
+    $display->content['new-10'] = $pane;
+    $display->panels['mid-right'][0] = 'new-10';
     $pane = new stdClass;
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -619,8 +644,8 @@ function dosomething_grants_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-10'] = $pane;
-    $display->panels['mid-right'][1] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['mid-right'][1] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

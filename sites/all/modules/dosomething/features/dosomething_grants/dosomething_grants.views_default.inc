@@ -335,5 +335,224 @@ function dosomething_grants_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $export['grants'] = $view;
 
+  $view = new view;
+  $view->name = 'grants_database';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Grants Database';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Grant Database';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_type_of_award' => 'field_type_of_award',
+    'field_award_focus' => 'field_award_focus',
+    'field_application_deadline_2' => 'field_application_deadline_2',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_type_of_award' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_award_focus' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_application_deadline_2' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 0;
+  $handler->display->display_options['style_options']['empty_table'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Name';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Type of Award */
+  $handler->display->display_options['fields']['field_type_of_award']['id'] = 'field_type_of_award';
+  $handler->display->display_options['fields']['field_type_of_award']['table'] = 'field_data_field_type_of_award';
+  $handler->display->display_options['fields']['field_type_of_award']['field'] = 'field_type_of_award';
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_type_of_award']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_type_of_award']['click_sort_column'] = array(
+    0 => 'value',
+  );
+  $handler->display->display_options['fields']['field_type_of_award']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_type_of_award']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_type_of_award']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_type_of_award']['field_api_classes'] = 0;
+  /* Field: Content: Award Focus */
+  $handler->display->display_options['fields']['field_award_focus']['id'] = 'field_award_focus';
+  $handler->display->display_options['fields']['field_award_focus']['table'] = 'field_data_field_award_focus';
+  $handler->display->display_options['fields']['field_award_focus']['field'] = 'field_award_focus';
+  $handler->display->display_options['fields']['field_award_focus']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_award_focus']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_award_focus']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_award_focus']['click_sort_column'] = array(
+    0 => 'value',
+  );
+  $handler->display->display_options['fields']['field_award_focus']['field_api_classes'] = 0;
+  /* Field: Content: Grant status */
+  $handler->display->display_options['fields']['field_rolling']['id'] = 'field_rolling';
+  $handler->display->display_options['fields']['field_rolling']['table'] = 'field_data_field_rolling';
+  $handler->display->display_options['fields']['field_rolling']['field'] = 'field_rolling';
+  $handler->display->display_options['fields']['field_rolling']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_rolling']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_rolling']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_rolling']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_rolling']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_rolling']['click_sort_column'] = array(
+    0 => 'value',
+  );
+  $handler->display->display_options['fields']['field_rolling']['field_api_classes'] = 0;
+  /* Field: Content: Application Deadline */
+  $handler->display->display_options['fields']['field_application_deadline_2']['id'] = 'field_application_deadline_2';
+  $handler->display->display_options['fields']['field_application_deadline_2']['table'] = 'field_data_field_application_deadline_2';
+  $handler->display->display_options['fields']['field_application_deadline_2']['field'] = 'field_application_deadline_2';
+  $handler->display->display_options['fields']['field_application_deadline_2']['label'] = 'Deadline';
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_application_deadline_2']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_application_deadline_2']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_application_deadline_2']['click_sort_column'] = array(
+    0 => 'value',
+  );
+  $handler->display->display_options['fields']['field_application_deadline_2']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'show',
+  );
+  $handler->display->display_options['fields']['field_application_deadline_2']['field_api_classes'] = 0;
+  /* Sort criterion: Content: Application Deadline (field_application_deadline_2) */
+  $handler->display->display_options['sorts']['field_application_deadline_2_value']['id'] = 'field_application_deadline_2_value';
+  $handler->display->display_options['sorts']['field_application_deadline_2_value']['table'] = 'field_data_field_application_deadline_2';
+  $handler->display->display_options['sorts']['field_application_deadline_2_value']['field'] = 'field_application_deadline_2_value';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'grants_database' => 'grants_database',
+  );
+
+  /* Display: Grants Database Page */
+  $handler = $view->new_display('page', 'Grants Database Page', 'page');
+  $handler->display->display_options['path'] = 'grants/database';
+  $export['grants_database'] = $view;
+
   return $export;
 }
