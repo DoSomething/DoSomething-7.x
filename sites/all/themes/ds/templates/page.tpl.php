@@ -43,7 +43,7 @@
         <?php if (isset($secondary_menu_items) && count($secondary_menu_items)): ?>
         <div class="secondary">
           <?php foreach ($secondary_menu_items as $mlid => $item): ?>
-            <?php print theme('links__system_secondary_menu', array('links' => $item['links'], 'attributes' => array('id' => 'secondary-menu-' . $mlid, 'class' => $item['attributes']['class']))); ?>
+            <?php print theme($secondary_links_theme_function, array('links' => $item['links'], 'attributes' => array('id' => 'secondary-menu-' . $mlid, 'class' => $item['attributes']['class']))); ?>
           <?php endforeach; ?>
         </div>
         <?php endif; ?>
