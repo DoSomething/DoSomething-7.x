@@ -2007,7 +2007,7 @@ body.one-sidebar.sidebar-first [role=main] {
   float: right;
 }
 .ie7 body.one-sidebar.sidebar-first [role=main] {
-  width: 77%;
+  width: 690px;
 }
 body.node-type-project [role=main] .main-inner {
   float: left;
