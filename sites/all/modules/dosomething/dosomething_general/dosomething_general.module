@@ -65,12 +65,6 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'club_node_form') {
     unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
   }
-  else if (isset($form['#node']) && strpos($form_id, 'webform_client_form_') === 0) {
-    $webform_types = array('grant_application');
-    if (in_array($form['#node']->type, $webform_types)) {
-      $form['#validate'][] = 'dosomething_general_webform_validate';
-    }
-  }
 }
 
 /**
