@@ -10,11 +10,16 @@ include_once('dosomething_webform.features.inc');
  * Implements hook_node_load().
  */
 function dosomething_webform_node_load($nodes, $types) {
-  foreach ($nodes as $node) {
+  foreach ($nodes as &$node) {
     // Suppress all 'You have already submitted this form' messages.
-     if (isset($node->webform)) {
-       $node->webform['submit_notice'] = 0;
-     }
+    if (isset($node->webform)) {
+      $node->webform['submit_notice'] = 0;
+
+      $draft_types = array('grant_application', 'scholarship_application');
+      if (in_array($node->type, $draft_types)) {
+        $node->webform['allow_draft'] = 1;
+      }
+    }
   }
 }
 
