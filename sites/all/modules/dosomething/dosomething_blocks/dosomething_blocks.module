@@ -42,10 +42,6 @@ function dosomething_blocks_block_info() {
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
   );
-  $blocks['dosomething_action_update_view'] = array(
-    'info' => t('DoSomething Action Update View Block'),
-    'cache' => DRUPAL_CACHE_GLOBAL,
-  );
   return $blocks;
 }
 
