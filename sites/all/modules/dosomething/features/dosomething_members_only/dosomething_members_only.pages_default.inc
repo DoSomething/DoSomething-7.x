@@ -16,7 +16,10 @@ function dosomething_members_only_default_page_manager_pages() {
   $page->admin_title = 'Members Only';
   $page->admin_description = '';
   $page->path = 'members-only';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -254,16 +257,16 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
-         0 => array(
+        0 => array(
           'name' => 'role',
           'settings' => array(
             'rids' => array(
               0 => 1,
             ),
           ),
+          'context' => 'logged-in-user',
+          'not' => FALSE,
         ),
-       'context' => 'logged-in-user',
-       'not' => FALSE,
       ),
     );
     $pane->configuration = array(
