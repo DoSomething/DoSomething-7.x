@@ -1630,6 +1630,8 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['argument_input'] = array(
     'field_blog_type_tid' => array(
       'type' => 'panel',
+      'context' => 'entity:feedback.field_image',
+      'context_optional' => 0,
       'panel' => '0',
       'fixed' => '',
       'label' => 'Content: Blog type (field_blog_type)',
