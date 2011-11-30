@@ -572,7 +572,10 @@
 #dosomething-blocks-make-an-impact-form-front .form-item, #dosomething-blocks-make-an-impact-form-front .form-actions {
   margin: 0 auto;
 }
-#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label, #dosomething-blocks-make-an-impact-form-front .form-item-who-with label, #dosomething-blocks-make-an-impact-form-front .form-item-where label, #dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label,
+#dosomething-blocks-make-an-impact-form-front .form-item-who-with label,
+#dosomething-blocks-make-an-impact-form-front .form-item-where label,
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
   cursor: default;
 }
 #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
@@ -634,6 +637,9 @@
 }
 .pane-news-stuff .views-row a:active {
   color: #222222;
+}
+.pane-news-stuff .views-row a:hover {
+  text-decoration: none;
 }
 .pane-news-stuff .views-field-title {
   padding-top: 6px;

@@ -242,5 +242,91 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   );
   $export['FB Like'] = $fb_social_preset;
 
+  $fb_social_preset = new stdClass;
+  $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
+  $fb_social_preset->api_version = 1;
+  $fb_social_preset->name = 'small_like';
+  $fb_social_preset->description = 'Small Like';
+  $fb_social_preset->plugin_type = 'like';
+  $fb_social_preset->settings = array(
+    'node_types' => array(
+      'types' => array(
+        'dsaward_app' => 0,
+        '301_redirects' => 0,
+        'api_key' => 0,
+        'action_guide' => 0,
+        'blog' => 0,
+        'bc_bio_form' => 0,
+        'campaign' => 0,
+        'campaign_contact_form' => 0,
+        'campaign_bully_2011' => 0,
+        'campaign_macys_2011' => 0,
+        'campaign_art_2011' => 0,
+        'campaign_sports_2011' => 0,
+        'campaign_ew_2011' => 0,
+        'campaign_cancer_2011' => 0,
+        'campaign_report_back' => 0,
+        'campaign_sign_up' => 0,
+        'cancer_2011_signup' => 0,
+        'cause' => 0,
+        'cause_video' => 0,
+        'club' => 0,
+        'club_event' => 0,
+        'ds_award_judging' => 0,
+        'awards_archive' => 0,
+        'dsu_askprof' => 0,
+        'decade_2011_signup' => 0,
+        'dsaward_rec' => 0,
+        'easy_idea' => 0,
+        'editorial_content_' => 0,
+        'editorial_project' => 0,
+        'feed' => 0,
+        'feed_item' => 0,
+        'final_grant_update' => 0,
+        'grant_alumni' => 0,
+        'grant_application' => 0,
+        'grant_judge' => 0,
+        'help_ticket' => 0,
+        'huffpo' => 0,
+        'issue' => 0,
+        'page' => 0,
+        'poll' => 0,
+        'press' => 0,
+        'project_report' => 0,
+        'project_update' => 0,
+        'scholarship' => 0,
+        'scholarship_application' => 0,
+        'scholarship_update' => 0,
+        'school' => 0,
+        'scroller' => 0,
+        'dsu_guides' => 0,
+        'staff_blog' => 0,
+        'staples_members' => 0,
+        'tips_and_tools' => 0,
+        'webform' => 0,
+        'club_first_meeting_cash' => 0,
+        'ewaste_signup_2011' => 0,
+        'grants_database' => 0,
+        'ididthis' => 0,
+      ),
+    ),
+    'opengraph_tags' => 0,
+    'plugin_location' => array(
+      'location' => '0',
+      'display_teasers' => 0,
+    ),
+    'block' => 0,
+  );
+  $fb_social_preset->fb_attrs = array(
+    'send' => 0,
+    'layout' => 'button_count',
+    'show_faces' => 0,
+    'width' => '55',
+    'action' => 'like',
+    'font' => 'verdana',
+    'colorscheme' => 'dark',
+  );
+  $export['small_like'] = $fb_social_preset;
+
   return $export;
 }
