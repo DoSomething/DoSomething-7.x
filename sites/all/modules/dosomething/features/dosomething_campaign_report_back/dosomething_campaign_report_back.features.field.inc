@@ -183,7 +183,7 @@ The content from this field will only be shown to anonymous users.',
           'field_webform_school_zip' => 'School Zip Code',
           'field_webform_pictures' => 'Pictures',
           'field_webform_videos' => 'Video',
-          'taxonomy_vocabulary_5' => 'Issues',
+          'field_webform_issues' => 'Issues',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,
@@ -213,7 +213,7 @@ The content from this field will only be shown to anonymous users.',
           'value' => 'field_webform_videos',
         ),
         6 => array(
-          'value' => 'taxonomy_vocabulary_5',
+          'value' => 'field_webform_issues',
         ),
       ),
       'deleted' => '0',
@@ -407,6 +407,84 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-campaign_report_back-group_audience'
+  $fields['node-campaign_report_back-group_audience'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'group_audience',
+      'foreign keys' => array(
+        'og' => array(
+          'columns' => array(
+            'gid' => 'gid',
+          ),
+          'table' => 'og',
+        ),
+      ),
+      'indexes' => array(
+        'gid' => array(
+          0 => 'gid',
+        ),
+      ),
+      'module' => 'og',
+      'no_ui' => TRUE,
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'group',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_report_back',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'og',
+          'settings' => array(),
+          'type' => 'og_list_default',
+          'weight' => '8',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'group_audience',
+      'label' => 'Groups audience',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'view modes' => array(
+        'full' => array(
+          'custom settings' => FALSE,
+          'label' => 'Full',
+          'type' => 'og_list_default',
+        ),
+        'teaser' => array(
+          'custom settings' => FALSE,
+          'label' => 'Teaser',
+          'type' => 'og_list_default',
+        ),
+      ),
+      'widget' => array(
+        'module' => 'og',
+        'settings' => array(
+          'opt_group' => 'auto',
+        ),
+        'type' => 'group_audience',
+        'weight' => 31,
+      ),
+      'widget_type' => 'group_audience',
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_email'
   $fields['webform_submission_entity-campaign_report_back-field_webform_email'] = array(
     'field_config' => array(
@@ -415,10 +493,15 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_email',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'email',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'email',
     ),
@@ -506,14 +589,14 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'
-  $fields['webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'] = array(
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_issues'
+  $fields['webform_submission_entity-campaign_report_back-field_webform_issues'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'taxonomy_vocabulary_5',
+      'field_name' => 'field_webform_issues',
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -555,7 +638,7 @@ The content from this field will only be shown to anonymous users.',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
-      'field_name' => 'taxonomy_vocabulary_5',
+      'field_name' => 'field_webform_issues',
       'label' => 'Issues',
       'required' => 0,
       'settings' => array(
@@ -579,6 +662,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_mobile',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -911,6 +997,78 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-campaign_report_back-group_audience'
+  $fields['webform_submission_entity-campaign_report_back-group_audience'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'group_audience',
+      'foreign keys' => array(
+        'og' => array(
+          'columns' => array(
+            'gid' => 'gid',
+          ),
+          'table' => 'og',
+        ),
+      ),
+      'indexes' => array(
+        'gid' => array(
+          0 => 'gid',
+        ),
+      ),
+      'module' => 'og',
+      'no_ui' => TRUE,
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'group',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_report_back',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'og',
+          'settings' => array(),
+          'type' => 'og_list_default',
+          'weight' => 12,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'group_audience',
+      'label' => 'Groups audience',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'view modes' => array(
+        'full' => array(
+          'custom settings' => FALSE,
+          'label' => 'Full',
+          'type' => 'og_list_default',
+        ),
+        'teaser' => array(
+          'custom settings' => FALSE,
+          'label' => 'Teaser',
+          'type' => 'og_list_default',
+        ),
+      ),
+      'widget' => array(
+        'module' => 'og',
+        'settings' => array(
+          'opt_group' => 'auto',
+        ),
+        'type' => 'group_audience',
+        'weight' => 32,
+      ),
+      'widget_type' => 'group_audience',
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body (anonymous user)');
@@ -921,6 +1079,7 @@ The content from this field will only be shown to anonymous users.');
   t('Email');
   t('Enabled Fields');
   t('Geocode Zip Code');
+  t('Groups audience');
   t('Issues');
   t('Mobile Phone Number');
   t('Pictures');
