@@ -42,6 +42,10 @@ function dosomething_blocks_block_info() {
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
   );
+  $blocks['dosomething_action_update_view'] = array(
+    'info' => t('DoSomething Action Update View Block'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   return $blocks;
 }
 
@@ -77,6 +81,10 @@ function dosomething_blocks_block_view($delta = '') {
     case 'dosomething_social_node_buttons':
       $block['subject'] = t('Social Buttons');
       $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, $modules = NULL, $options = array('fb_social_preset' => 'FB Like'));
+      break;
+    case 'dosomething_action_update_view':
+      $block['subject'] = t('Action Update View');
+      $block['content'] = dosomething_awesome_things_action_update_action_update_view_content();
       break;
   }
   return $block;
