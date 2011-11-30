@@ -21,7 +21,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'field_name' => 'body',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -359,7 +359,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'field_name' => 'body',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
