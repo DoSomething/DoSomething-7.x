@@ -21,7 +21,7 @@ function dosomething_editorial_content_field_default_fields() {
       ),
       'field_name' => 'body',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(

@@ -78,6 +78,50 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: awesome_things_slide
+  $styles['awesome_things_slide'] = array(
+    'name' => 'awesome_things_slide',
+    'effects' => array(
+      8 => array(
+        'label' => 'Resize',
+        'help' => 'Resizing will make images an exact set of dimensions. This may cause images to be stretched or shrunk disproportionately.',
+        'effect callback' => 'image_resize_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_resize',
+        'data' => array(
+          'width' => '375',
+          'height' => '270',
+        ),
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported image style: awesome_things_thumb
+  $styles['awesome_things_thumb'] = array(
+    'name' => 'awesome_things_thumb',
+    'effects' => array(
+      9 => array(
+        'label' => 'Resize',
+        'help' => 'Resizing will make images an exact set of dimensions. This may cause images to be stretched or shrunk disproportionately.',
+        'effect callback' => 'image_resize_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_resize',
+        'data' => array(
+          'width' => '68',
+          'height' => '40',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: blog_center_main_image
   $styles['blog_center_main_image'] = array(
     'name' => 'blog_center_main_image',

@@ -126,7 +126,7 @@ function views_galleriffic_history() {
   if (module_exists('libraries')) {
     $libraries = libraries_get_libraries();
     // Libraries 1.x only checks if directory exits. 
-    if ($libraries && $libraries['history'] && file_exists($libraries['history'] . '/jquery.history.js')) {
+    if ($libraries && !empty($libraries['history']) && file_exists($libraries['history'] . '/jquery.history.js')) {
       $history = array(
         'type' => 'select',
         'description' => t('Specifies whether the url\'s hash and the browser\'s history cache should update when the current slideshow image changes.'),

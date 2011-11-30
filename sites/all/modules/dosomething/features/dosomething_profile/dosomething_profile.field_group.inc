@@ -52,13 +52,14 @@ function dosomething_profile_field_group_info() {
     'label' => 'Personal Information',
     'weight' => '1',
     'children' => array(
-      0 => 'field_user_first_name',
-      1 => 'field_user_gender',
-      2 => 'field_user_last_name',
-      3 => 'field_user_birthday',
-      4 => 'field_user_is_over13',
-      5 => 'field_user_preferred_cause',
-      6 => 'field_user_why_do_you',
+      0 => 'field_user_birthday',
+      1 => 'field_user_first_name',
+      2 => 'field_user_gender',
+      3 => 'field_user_is_over13',
+      4 => 'field_user_last_name',
+      5 => 'field_user_mobile',
+      6 => 'field_user_preferred_cause',
+      7 => 'field_user_why_do_you',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -86,9 +87,8 @@ function dosomething_profile_field_group_info() {
     'label' => 'Subscriptions',
     'weight' => '2',
     'children' => array(
-      0 => 'field_user_mobile',
-      1 => 'field_user_mobile_optin',
-      2 => 'field_user_newsletter_optin',
+      0 => 'field_user_mobile_optin',
+      1 => 'field_user_newsletter_optin',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

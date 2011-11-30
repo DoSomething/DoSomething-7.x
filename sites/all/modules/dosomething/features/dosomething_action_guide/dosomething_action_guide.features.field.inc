@@ -21,7 +21,7 @@ function dosomething_action_guide_field_default_fields() {
       ),
       'field_name' => 'body',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -183,6 +183,9 @@ function dosomething_action_guide_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_is_content_general',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -192,11 +195,12 @@ function dosomething_action_guide_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'no',
-          1 => 'yes',
+          'no' => 'no',
+          'yes' => 'yes',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -205,11 +209,7 @@ function dosomething_action_guide_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'action_guide',
-      'default_value' => array(
-        0 => array(
-          'value' => 'no',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Select \'yes\' if the content is general and not specific to any particular cause or issue',
       'display' => array(
@@ -238,18 +238,18 @@ function dosomething_action_guide_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_is_content_general',
       'label' => 'Is content general?',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '0',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '0',
+        'weight' => 0,
       ),
       'widget_type' => 'optionwidgets_select',
     ),
@@ -390,6 +390,9 @@ function dosomething_action_guide_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_redirected_action_guide',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -399,11 +402,12 @@ function dosomething_action_guide_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'no',
-          1 => 'yes',
+          'no' => 'no',
+          'yes' => 'yes',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -412,11 +416,7 @@ function dosomething_action_guide_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'action_guide',
-      'default_value' => array(
-        0 => array(
-          'value' => 'no',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -445,18 +445,18 @@ function dosomething_action_guide_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_redirected_action_guide',
       'label' => 'Is this guide being redirected to another page?',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '0',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '0',
+        'weight' => 0,
       ),
       'widget_type' => 'optionwidgets_buttons',
     ),

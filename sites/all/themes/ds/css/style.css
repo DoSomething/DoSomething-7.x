@@ -2175,7 +2175,7 @@ body.admin-menu {
   position: absolute;
   top: -33px;
   left: -17px;
-  z-index: 1000;
+  z-index: 101;
 }
 #site-name a {
   text-indent: -119988px;

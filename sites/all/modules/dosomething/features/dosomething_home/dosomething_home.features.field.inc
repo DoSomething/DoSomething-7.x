@@ -297,128 +297,12 @@ function dosomething_home_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scroller-taxonomyextra'
-  $fields['node-scroller-taxonomyextra'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'taxonomyextra',
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'vocabulary_1',
-            'parent' => 0,
-          ),
-          1 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_9',
-          ),
-          2 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_5',
-          ),
-          3 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_6',
-          ),
-          4 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_11',
-          ),
-          5 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_18',
-          ),
-          6 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_17',
-          ),
-          7 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_15',
-          ),
-          8 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_19',
-          ),
-          9 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_4',
-          ),
-          10 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_16',
-          ),
-          11 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_2',
-          ),
-          12 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_3',
-          ),
-        ),
-        'profile2_private' => FALSE,
-        'required' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'scroller',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Debris left over after upgrade from Drupal 6',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '10',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'taxonomyextra',
-      'label' => 'Taxonomy upgrade extras',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'taxonomy',
-        'settings' => array(
-          'autocomplete_path' => 'taxonomy/autocomplete',
-          'size' => 60,
-        ),
-        'type' => 'taxonomy_autocomplete',
-        'weight' => 0,
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
-  t('Debris left over after upgrade from Drupal 6');
   t('Link');
   t('Picture');
   t('Short Description');
   t('Suggested maximum length 150 characters.');
-  t('Taxonomy upgrade extras');
   t('WIDTH: 445px HEIGHT: 395px');
 
   return $fields;

@@ -26,7 +26,7 @@ function dosomething_layout_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '1',
     'expanded' => '1',
-    'weight' => '-46',
+    'weight' => '-47',
   );
   // Exported menu link: menu-footer:node/3
   $menu_links['menu-footer:node/3'] = array(
@@ -62,8 +62,8 @@ function dosomething_layout_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-49',
-    'parent_path' => '<front>',
+    'weight' => '-48',
+    'parent_path' => 'causes',
   );
   // Exported menu link: menu-footer:taxonomy/term/29
   $menu_links['menu-footer:taxonomy/term/29'] = array(
@@ -82,7 +82,7 @@ function dosomething_layout_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-50',
-    'parent_path' => '<front>',
+    'parent_path' => 'causes',
   );
   // Translatables
   // Included for use with string extractors like potx.

@@ -81,6 +81,7 @@ function dosomething_grant_application_form_alter(&$form, &$form_state, $form_id
  * Grant Application form submission callback.
  */
 function dosomething_grant_application_form_validate(&$form, &$form_state) {
+  global $user;
   // If the email is set, make sure we can update the user's email address.
   if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
     $mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
