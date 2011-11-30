@@ -70,7 +70,7 @@ function dosomething_member_wall_member_wall_view_content() {
     // Default to all.
     $arg = 'all';
     // If query string exists, override.
-    if (isset($_GET[$filter['id']]) && $_GET[$filter['id']] != 'All') {
+    if (isset($_GET[$filter['id']]) && $_GET[$filter['id']] != 'All' && $_GET[$filter['id']] != '') {
       // Return all children of term instead of just term.
       if ($filter['id'] == 'taxonomy_vocabulary_5_tid') {
         $kids = taxonomy_get_children($_GET[$filter['id']], DS_ISSUES_VOCAB);
