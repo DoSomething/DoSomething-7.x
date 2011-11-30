@@ -114,14 +114,6 @@ function dosomething_campaign_report_back_views_default_views() {
   $handler->display->display_options['fields']['view_submission']['empty_zero'] = 0;
   $handler->display->display_options['fields']['view_submission']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['view_submission']['text'] = 'Campaign Report Back';
-  /* Field: Webform Submission: Photos */
-  $handler->display->display_options['fields']['field_project_report_images']['id'] = 'field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images']['table'] = 'field_data_field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images']['field'] = 'field_project_report_images';
-  /* Field: Webform Submission: Title */
-  $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
-  $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
-  $handler->display->display_options['fields']['field_project_title']['field'] = 'field_project_title';
   /* Sort criterion: Webform submissions: Submitted */
   $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
@@ -140,7 +132,6 @@ function dosomething_campaign_report_back_views_default_views() {
   $handler->display->display_options['filters']['field_webform_issues_tid']['id'] = 'field_webform_issues_tid';
   $handler->display->display_options['filters']['field_webform_issues_tid']['table'] = 'field_data_field_webform_issues';
   $handler->display->display_options['filters']['field_webform_issues_tid']['field'] = 'field_webform_issues_tid';
-  $handler->display->display_options['filters']['field_webform_issues_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['operator_id'] = 'field_webform_issues_tid_op';
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['label'] = 'Causes';
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['operator'] = 'field_webform_issues_tid_op';
@@ -159,7 +150,7 @@ function dosomething_campaign_report_back_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Awesome-things landing gallery', 'panel_pane_2');
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '1';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'views_galleriffic';
   $handler->display->display_options['style_options']['preload'] = '5';
@@ -169,67 +160,11 @@ function dosomething_campaign_report_back_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'gallerifficfields';
-  $handler->display->display_options['row_options']['slide_field'] = 'field_project_report_images';
-  $handler->display->display_options['row_options']['thumbnail_field'] = 'field_project_report_images_1';
+  $handler->display->display_options['row_options']['slide_field'] = 'field_project_report_images_1';
+  $handler->display->display_options['row_options']['thumbnail_field'] = 'field_project_report_images';
   $handler->display->display_options['row_options']['title_field'] = 'field_project_title';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Photos */
-  $handler->display->display_options['fields']['field_project_report_images']['id'] = 'field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images']['table'] = 'field_data_field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images']['field'] = 'field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images']['label'] = 'slide';
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_project_report_images']['settings'] = array(
-    'image_style' => 'awesome_things_slide',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_project_report_images']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Photos */
-  $handler->display->display_options['fields']['field_project_report_images_1']['id'] = 'field_project_report_images_1';
-  $handler->display->display_options['fields']['field_project_report_images_1']['table'] = 'field_data_field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images_1']['field'] = 'field_project_report_images';
-  $handler->display->display_options['fields']['field_project_report_images_1']['label'] = 'thumbnail';
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_project_report_images_1']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_project_report_images_1']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_project_report_images_1']['settings'] = array(
-    'image_style' => 'awesome_things_thumb',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_project_report_images_1']['field_api_classes'] = 0;
   /* Field: Webform Submission: Title */
   $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
   $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
@@ -247,7 +182,7 @@ function dosomething_campaign_report_back_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_project_title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_project_title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_title']['element_class'] = 'galleriffic-title';
+  $handler->display->display_options['fields']['field_project_title']['element_type'] = 'h1';
   $handler->display->display_options['fields']['field_project_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_project_title']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_project_title']['hide_empty'] = 0;
@@ -264,14 +199,7 @@ function dosomething_campaign_report_back_views_default_views() {
     'campaign_report_back' => 'campaign_report_back',
     'project_report' => 'project_report',
   );
-  $handler->display->display_options['filters']['type']['group'] = 0;
-  /* Filter criterion: Webform Submission: Photos (field_project_report_images:fid) */
-  $handler->display->display_options['filters']['field_project_report_images_fid']['id'] = 'field_project_report_images_fid';
-  $handler->display->display_options['filters']['field_project_report_images_fid']['table'] = 'field_data_field_project_report_images';
-  $handler->display->display_options['filters']['field_project_report_images_fid']['field'] = 'field_project_report_images_fid';
-  $handler->display->display_options['filters']['field_project_report_images_fid']['operator'] = 'not empty';
   $export['campaign_report_back'] = $view;
 
   return $export;
 }
-
