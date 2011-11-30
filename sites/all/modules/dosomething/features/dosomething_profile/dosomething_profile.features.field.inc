@@ -89,6 +89,9 @@ function dosomething_profile_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_user_anniversary',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'date',
@@ -237,69 +240,6 @@ function dosomething_profile_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-main-field_user_email_updates'
-  $fields['profile2-main-field_user_email_updates'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_email_updates',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 19,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_email_updates',
-      'label' => 'I would also like to receive email updates from DoSomething.org',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Exported field: 'profile2-main-field_user_first_name'
   $fields['profile2-main-field_user_first_name'] = array(
     'field_config' => array(
@@ -415,7 +355,7 @@ function dosomething_profile_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -491,6 +431,9 @@ function dosomething_profile_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_user_is_over13',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -541,7 +484,7 @@ function dosomething_profile_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -617,6 +560,9 @@ function dosomething_profile_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_user_mobile',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -667,7 +613,7 @@ function dosomething_profile_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -995,7 +941,7 @@ function dosomething_profile_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '13',
+        'weight' => '11',
       ),
     ),
   );
@@ -1057,7 +1003,7 @@ function dosomething_profile_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '15',
+        'weight' => '12',
       ),
     ),
   );
@@ -1071,7 +1017,6 @@ function dosomething_profile_field_default_fields() {
   t('How did you hear about us?');
   t('I am over 13');
   t('I have read and accept the <a href="/">Official Rules</a>');
-  t('I would also like to receive email updates from DoSomething.org');
   t('Last Name');
   t('Location');
   t('Membership Anniversary');
