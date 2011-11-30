@@ -42,7 +42,7 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['relationships']['og_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['og_rel']['field'] = 'og_rel';
   $handler->display->display_options['relationships']['og_rel']['required'] = 1;
-  /* Relationship: Organic groups group: OG membership */
+  /* Relationship: OG group: OG membership */
   $handler->display->display_options['relationships']['og_membership']['id'] = 'og_membership';
   $handler->display->display_options['relationships']['og_membership']['table'] = 'og';
   $handler->display->display_options['relationships']['og_membership']['field'] = 'og_membership';
@@ -630,7 +630,7 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Webform Submission: Project Type (field_project_type) */
+  /* Filter criterion: Webform Submission: Status (field_project_type) */
   $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
   $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
   $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
@@ -788,7 +788,7 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Webform Submission: Project Type (field_project_type) */
+  /* Filter criterion: Webform Submission: Status (field_project_type) */
   $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
   $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
   $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';

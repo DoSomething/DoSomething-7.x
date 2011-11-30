@@ -485,3 +485,19 @@ function dosomething_user_my_somethings_campaign_report_backs() {
   }
   return $incomplete_report_backs;
 }
+
+/**
+ * Implements hook_preprocess_dosomething_profile_info().
+ */
+function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$variables) {
+  // Extract the user and profile objects.
+  $account = $variables['account'];
+  $profile = entity_metadata_wrapper('profile2', $variables['profile']);
+
+  $variables['member_status'] = dosomething_roles_get_current_role($account->uid);
+  $variables['member_since'] = date('m/Y', $account->created);
+
+  // Build the hometown value out of city and state.
+  $address = $profile->field_user_address->value();
+  $variables['hometown'] = $address['locality'] . ', ' . $address['administrative_area'];
+}
