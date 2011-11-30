@@ -425,3 +425,54 @@ function dosomething_user_my_somethings_theme() {
     )
   );
 }
+
+/**
+ * Get a list of campain report backs that a user has not submitted
+ * for that user's campaign groups.
+ */
+function dosomething_user_my_somethings_campaign_report_backs() {
+  global $user;
+  $gids = array();
+  $report_backs = array();
+  $report_backs_entity_ids = array();
+  $user_submissions = array();
+  $incomplete_report_backs = array();
+
+  $groups = dosomething_user_my_somethings_get_user_group_memberships($user->uid, 'campaign');
+  foreach ($groups as $group) {
+    $gids[] = $group->gid;
+  }
+
+  // Check that a campaign report back exists for each user's campaign.
+  // Get campaign title and entity_id of that campaign's report back.
+  $query = db_select('field_data_field_report_back_reference', 'f');
+  $query->innerJoin('og', 'o', 'f.field_report_back_reference_nid = o.etid');
+  $query->innerJoin('node', 'n', 'f.entity_id = n.nid');
+  $query->fields('f', array('entity_id'));
+  $query->fields('o', array('label'));
+  $query->condition('n.type', 'campaign_report_back', '=');
+  $query->condition('o.gid', $gids, 'IN');
+  $results = $query->execute();
+  while ($result = $results->fetchObject()) {
+    $report_backs[] = $result;
+    $report_backs_entity_ids[] = $result->entity_id;
+  }
+
+  // From these existing campaign report backs, get the user's submissions.
+  $db_query = db_select('webform_submissions', 'w');
+  $db_query->fields('w', array('nid'));
+  $db_query->condition('w.uid', $user->uid, '=');
+  $db_query->condition('nid', $report_backs_entity_ids, 'IN');
+  $results = $db_query->execute();
+  while ($result = $results->fetchObject()) {
+    $user_submissions[] = $result->nid;
+  }
+
+  // Check if user has a submission for each report back, if not return that info.
+  foreach($report_backs as $report_back) {
+    if (!in_array($report_back->entity_id, $user_submissions)) {
+      $incomplete_report_backs[$report_back->entity_id] = $report_back->label;
+    }
+  }
+  return $incomplete_report_backs;
+}
