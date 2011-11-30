@@ -23,6 +23,28 @@ function dosomething_projects_general_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_webform_submission_access().
+ */
+function dosomething_projects_general_webform_submission_access($node, $submission, $op, $account) {
+  switch ($op) {
+    case 'edit':
+      // Allow users to edit project reports for 24 hrs following submission.
+      // Note: This access setting is actually overridden by the permission
+      // 'Edit own webform submissions'
+      $types = array(
+        'project_report',
+        'campaign_report_back',
+      );
+      if ($submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
+        if (REQUEST_TIME > ($submission->submitted + DS_PROJECTS_EDITABLE_TIME)) {
+          return FALSE;
+        }
+      }
+      break;
+  }
+}
+
+/**
  * Implements hook_node_access().
  */
 function dosomething_projects_general_node_access($node, $op, $account) {
