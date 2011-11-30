@@ -37,5 +37,55 @@
       padding-left: 0
       padding-right: 0
 
-
-
+// Slideshow at the top
+#galleriffic
+  +background-with-css2-fallback(image_url('bg-diag-footer.png') repeat 0 12px)
+  height: 270px
+  margin-top: 10px
+  +pie-clearfix
+  width: 455px
+  #controls
+    .nav-controls
+      a.prev
+        +replace-text-with-dimensions('icn-topslider-arrow-yellow.png')
+        position: absolute
+        top: 4px
+        right: 26px
+      a.next
+        +replace-text-with-dimensions('icn-bottomslider-arrow-yellow.png')
+        position: absolute
+        bottom: 4px
+        right: 26px
+  #gallery
+    +float-left
+    #slideshow
+      .image-wrapper.current
+        width: 83%
+  #thumbs
+    clear: right
+    +float-right
+    margin-top: 14px
+    width: auto
+  .content
+    float: none
+    width: auto
+  a.thumb
+    +inline-block
+    border: none
+    padding: 3px
+  ul.thumbs 
+    li
+      float: none
+      margin: 0
+      padding: 3px
+      &.selected
+        a.thumb
+          background: none
+          border: 3px solid $white
+          padding: 0
+  a.thumb,
+  .slideshow a.advance-link img,
+  .pagination a,
+  .pagination span.current,
+  span.image-caption
+    border: none
