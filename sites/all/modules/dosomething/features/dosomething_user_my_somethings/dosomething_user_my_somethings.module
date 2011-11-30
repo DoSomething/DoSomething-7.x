@@ -410,3 +410,18 @@ function dosomething_user_my_somethings_get_my_somethings($uid) {
   return $somethings;
 }
 
+/**
+ * Implements hook_theme().
+ */
+function dosomething_user_my_somethings_theme() {
+  return array(
+    'dosomething_profile_info' => array(
+      'template' => 'ds-profile-info',
+      'variables' => array(
+        'profile' => new stdClass,
+        'account' => new stdClass,
+        'dosomething_friends' => '',
+      ),
+    )
+  );
+}
