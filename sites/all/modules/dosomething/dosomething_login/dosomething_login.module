@@ -443,14 +443,14 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   if (arg(0) == 'user' && arg(1) == 'registration') {
     $form['#attached']['css'][] = drupal_get_path('theme', 'ds') . '/css/ds/page-user-registration.css';
     $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js';
-    $form['#attached']['js'][] = array(
-      'data' => array('dosomethingLogin' => array(
-          'dsApiKey' => variable_get('dosomething_login_api_key', '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ'),
-        ),
-      ),
-      'type' => 'setting',
-    );
   }
+  $form['#attached']['js'][] = array(
+    'data' => array('dosomethingLogin' => array(
+        'dsApiKey' => variable_get('dosomething_login_api_key', '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ'),
+      ),
+    ),
+    'type' => 'setting',
+  );
 
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
