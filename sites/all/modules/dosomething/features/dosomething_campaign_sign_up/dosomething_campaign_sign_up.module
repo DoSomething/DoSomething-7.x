@@ -71,6 +71,7 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
           $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
           $entity_form['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
           $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
+          $form['#submit'][] = 'dosomething_campaign_sign_up_webform_submission';
         }
       }
 
@@ -92,3 +93,16 @@ function dosomething_campaign_sign_up_module_implements_alter(&$implementations,
     $implementations['dosomething_campaign_sign_up'] = $group;
   }
 }
+
+/**
+ * Submission callback for campaign signup webforms.
+ */
+function dosomething_campaign_sign_up_webform_submission($form, &$form_state) {
+  // Add users to related organic group when they complete the sign-up.
+  $uid = $form_state['values']['details']['uid'];
+  if (isset($form_state['dosomething_campaign_signup_form_submit']['group'])) {
+    $account = user_load($uid);
+    og_group($form_state['dosomething_campaign_signup_form_submit']['group']->gid, array('entity' => $account));
+  }
+}
+
