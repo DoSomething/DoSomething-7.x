@@ -206,24 +206,12 @@ function dosomething_awesome_things_action_update_views_default_views() {
   $handler->display->display_options['filters']['field_webform_issues_tid']['table'] = 'field_data_field_webform_issues';
   $handler->display->display_options['filters']['field_webform_issues_tid']['field'] = 'field_webform_issues_tid';
   $handler->display->display_options['filters']['field_webform_issues_tid']['relationship'] = 'field_editorial_reference_target_id';
-  $handler->display->display_options['filters']['field_webform_issues_tid']['value'] = array(
-    6983 => '6983',
-    9377 => '9377',
-    65 => '65',
-    6817 => '6817',
-    32 => '32',
-    89 => '89',
-    81 => '81',
-    120 => '120',
-    9379 => '9379',
-    22 => '22',
-  );
   $handler->display->display_options['filters']['field_webform_issues_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['operator_id'] = 'field_webform_issues_tid_op';
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['label'] = 'Issues';
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['operator'] = 'field_webform_issues_tid_op';
   $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['identifier'] = 'field_webform_issues_tid';
-  $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['reduce'] = 1;
+  $handler->display->display_options['filters']['field_webform_issues_tid']['expose']['reduce'] = 0;
   $handler->display->display_options['filters']['field_webform_issues_tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['field_webform_issues_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_webform_issues_tid']['vocabulary'] = 'vocabulary_5';
@@ -277,7 +265,7 @@ function dosomething_awesome_things_action_update_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
-
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['action_updates'] = $view;
 
   return $export;
