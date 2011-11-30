@@ -130,7 +130,7 @@ function dosomething_grants_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_grant_judge';
-  $strongarm->value = '1';
+  $strongarm->value = 1;
   $export['node_preview_grant_judge'] = $strongarm;
 
   $strongarm = new stdClass;
