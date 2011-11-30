@@ -36,7 +36,8 @@ function dosomething_layout_default_fe_block_settings() {
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '<front>',
+    'pages' => '<front>
+start-something',
     'title' => '',
     'cache' => 8,
   );
@@ -66,7 +67,7 @@ function dosomething_layout_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => '1',
+    'cache' => -1,
   );
 
   $theme['dosomething_login-become_member'] = array(
