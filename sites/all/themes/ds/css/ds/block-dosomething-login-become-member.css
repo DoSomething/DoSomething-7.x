@@ -102,6 +102,12 @@
 .front #block-dosomething-login-become-member,
 .not-front.logged-in.secondary-menu-inactive #block-dosomething-login-become-member {
   margin-top: 96px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.ie7 .front #block-dosomething-login-become-member, .ie7
+.not-front.logged-in.secondary-menu-inactive #block-dosomething-login-become-member {
+  height: 350px;
 }
 
 .left-block-expando-h2, .logged-in #block-dosomething-login-become-member h2.my-somethings, .logged-in #block-dosomething-login-become-member h2.notifications {
