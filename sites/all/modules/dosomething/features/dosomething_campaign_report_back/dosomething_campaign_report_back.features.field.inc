@@ -183,7 +183,7 @@ The content from this field will only be shown to anonymous users.',
           'field_webform_school_zip' => 'School Zip Code',
           'field_webform_pictures' => 'Pictures',
           'field_webform_videos' => 'Video',
-          'field_webform_issues' => 'Issues',
+          'taxonomy_vocabulary_5' => 'Issues',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,
@@ -213,7 +213,7 @@ The content from this field will only be shown to anonymous users.',
           'value' => 'field_webform_videos',
         ),
         6 => array(
-          'value' => 'field_webform_issues',
+          'value' => 'taxonomy_vocabulary_5',
         ),
       ),
       'deleted' => '0',
@@ -585,71 +585,6 @@ The content from this field will only be shown to anonymous users.',
         ),
         'type' => 'geocode',
         'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_issues'
-  $fields['webform_submission_entity-campaign_report_back-field_webform_issues'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_issues',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'vocabulary_5',
-            'parent' => '0',
-          ),
-        ),
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign_report_back',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 11,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_issues',
-      'label' => 'Issues',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '8',
       ),
     ),
   );
