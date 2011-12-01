@@ -12,6 +12,8 @@ function dosomething_migrate_drush_help($section) {
   switch ($section) {
     case 'drush:dosomething-migrate-review':
       return dt('Review some random records from one or more migrations');
+    case 'dosomething-migrate-update-noderefs':
+      return dt('Update the references on webform submissions on nodes of type "scholarship application" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
   }
 }
 
@@ -30,6 +32,10 @@ function dosomething_migrate_drush_command() {
     ),
     'drupal dependencies' => array('migrate'),
     'aliases' => array('dsmr'),
+  );
+  $items['dosomething-migrate-update-noderefs'] = array(
+    'description' => 'Update the references on webform submissions',
+    'aliases' => array('dsmunr'),
   );
   return $items;
 }
@@ -80,4 +86,116 @@ function drush_dosomething_migrate_review($args = NULL) {
 // Implement drush_hook_COMMAND_validate().
 function drush_dosomething_migrate_review_validate($args = NULL) {
   return drush_migrate_validate_common($args);
+}
+
+/**
+ * Callback function for drush dosomething-migrade-update-noderefs.
+ */
+function drush_dosomething_migrate_update_noderefs() {
+  drush_log('Starting batch update of webform submissions.', 'ok');
+  $batch = array(
+    'operations' => array(
+      array('dosomething_migrate_update_noderefs', array()),
+    ),
+    'finished' => 'dosomething_migrate_update_nodefres_finished',
+    'title' => t('Processing node refs to entity refs'),
+    'init_message' => t('Updating node refs to entity refs... Begin.'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Error updating node refs... Batch has encountered an error.'),
+  );
+  batch_set($batch);
+  $batch =& batch_get();
+  $batch['progressive'] = FALSE;
+  drush_backend_batch_process();
+}
+
+function dosomething_migrate_update_noderefs(&$context) {
+  require_once(drupal_get_path('module', 'webform') . '/includes/webform.submissions.inc');
+  $records_to_update = 50;
+  if (empty($context['sandbox'])) {
+    // Find the number of records that need to be updated.
+    // Records that need to be updated are those that have a value for a node
+    // reference to a project but not an entity reference to a webform submission
+    // project.
+    $context['sandbox']['max'] = db_query('
+      SELECT COUNT(nr.field_webform_project_nid)
+      FROM {field_data_field_webform_project} nr
+      LEFT JOIN {field_data_field_project_title_reference} er ON nr.entity_id = er.entity_id
+      WHERE er.field_project_title_reference_target_id IS NOT NULL')
+      ->fetchField();
+    if(!$content['sandbox']['max']) {
+      $content['sandbox']['max'] = 0;
+    }
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['current'] = 0;
+  }
+  if ($content['sandbox']['max'] > 0) {
+    $action_mapping_tables = array(
+      'migrate_map_dscampaignreportbackcampaignbfb2011',
+      'migrate_map_dscampaignreportbackcampaignebd2011',
+      'migrate_map_dscampaignreportbackcampaigngys2011',
+      'migrate_map_dscampaignreportbackcampaignhunt2011',
+      'migrate_map_dscampaignreportbackcannedfood',
+      'migrate_map_dscampaignreportbackhealthyschoolsreport',
+      'migrate_map_dscampaignreportbacksaveourmusic',
+      'migrate_map_dscampaignreportbacksfsreportgallery',
+      'migrate_map_dscampaignreportbackstaplesreason',
+      'migrate_map_dscampaignreportbacktfjcontestsignup',
+      'migrate_map_dscampaignreportbacktroopletter',
+      'migrate_map_dsproject',
+    );
+
+    $result = db_query_range('
+      SELECT ws.nid AS nid, nr.entity_id AS sid
+      FROM field_data_field_webform_project nr
+      LEFT JOIN field_data_field_project_title_reference er ON nr.entity_id = er.entity_id
+      LEFT JOIN webform_submissions ws ON ws.sid = nr.entity_id
+      WHERE er.field_project_title_reference_target_id IS NULL
+      AND nr.entity_id > :sid',
+      0, $records_to_update, array(':sid' => $context['sandbox']['current'])
+    );
+    while ($data = $result->fetchAssoc()) {
+      $node = node_load($data['nid']);
+      $submission = webform_get_submission($data['nid'], $data['sid'], $reset = FALSE);
+      $node_to_map = $submission->field_webform_project['und'][0]['nid'];
+
+
+      // Find the mapping of the old node id to the new sid.
+      $query = "SELECT destid1 FROM (";
+      for ($i = 0; $i < count($action_mapping_tables); $i++) {
+        if ($i === 0) {
+          $query .= "SELECT sourceid1, destid1 FROM $action_mapping_tables[$i]";
+        }
+        else {
+          $query .= " UNION SELECT sourceid1, destid1 FROM $action_mapping_tables[$i]";
+        }
+      }
+      $query .= ") t1 WHERE sourceid1 = $node_to_map";
+      $mapping_result = db_query($query)->fetchField();
+      $submission->field_project_title_reference['und'][0]['target_id'] = $mapping_result;
+      $submission->field_project_title_reference['und'][0]['target_type'] = 'webform_submission_entity';
+      webform_submission_update($node, $submission);
+      drush_log('Updating webform submission: ' . $data['sid'] . '. Data is now mapped to: ' . $mapping_result, 'ok');
+      $context['sandbox']['progress'] += 1;
+      $sandbox['sandbox']['current'] = $data['sid'];
+      $context['results'][] = $data['sid'];
+      $context['message'] = 'processed ' . $data['sid'];
+    }
+
+    drush_log($context['sandbox']['progress'] / $context['sandbox']['max'] * 100 . ' percent complete', 'ok');
+    if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    }
+  }
+}
+
+function dosomething_migrate_update_nodefres_finished($success, $results, $operations) {
+  if ($success) {
+    $message = format_plural(count($results), 'One webform submission processed.', '@count webform submissions processed.');
+  }
+  else {
+    $message = 'There was an error. ';
+    $message .= format_plural(count($results), 'One webform submission processed.', '@count webform submissions processed.');
+  }
+  drush_print($message);
 }
