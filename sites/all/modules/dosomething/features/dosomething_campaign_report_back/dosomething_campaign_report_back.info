@@ -32,5 +32,4 @@ features[field][] = "webform_submission_entity-campaign_report_back-field_webfor
 features[field][] = "webform_submission_entity-campaign_report_back-field_webform_videos"
 features[field][] = "webform_submission_entity-campaign_report_back-group_audience"
 features[node][] = "campaign_report_back"
-features[views_view][] = "campaign_report_back"
 features[webform_submission_entity_type][] = "campaign_report_back"
