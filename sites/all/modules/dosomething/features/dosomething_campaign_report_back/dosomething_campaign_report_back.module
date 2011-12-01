@@ -81,10 +81,11 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
       $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
     }
   }
-  $campaign = entity_metadata_wrapper('node', $node)->field_report_back_reference->value();
-  if ($campaign_issues = entity_metadata_wrapper('node', $campaign)->field_campaign_causes_issues->raw()) {
-    $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#default_value'] = $campaign_issues;
-    $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#access'] = FALSE;
+  if ($campaign = entity_metadata_wrapper('node', $node)->field_report_back_reference->value()) {
+    if ($campaign_issues = entity_metadata_wrapper('node', $campaign)->field_campaign_causes_issues->raw()) {
+      $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#default_value'] = $campaign_issues;
+      $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#access'] = FALSE;
+    }
   }
   $form['#validate'][] = 'dosomething_general_webform_email_and_mail_submit';
   $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
