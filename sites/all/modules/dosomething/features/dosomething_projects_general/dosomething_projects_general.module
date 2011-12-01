@@ -67,25 +67,25 @@ function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_ty
 }
 
 /**
- * Implements_hook_form_alter().
+ * Implements_hook_form_BASE_FORM_ID_alter().
  */
-function dosomething_projects_general_form_alter(&$form, &$form_state, $form_id) {
+function dosomething_projects_general_form_webform_client_form_alter(&$form, &$form_state, $form_id) {
   global $user;
   $node_types = array(
     'project_report',
     'campaign_report_back',
   );
-  if (strpos($form_id, 'webform_client_form_') === 0) {
-    if (in_array($form['#node']->type, $node_types)) {
-      // Let users know that they only have access to the form for 24 hours.
-      $submission = isset($form['#submission']) ? $form['#submission'] : NULL;
-      if (!is_null($submission) && $submission->sid && !$submission->is_draft) {
-        if ($user->uid == $submission->uid) {
-          $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
-          if (REQUEST_TIME <= ($timestamp)) {
-            drupal_set_message(t('You may continue to edit this form until %date', array('%date' => date('m/d/Y g:ia', $timestamp))));
-          }
-        }
+  if (!in_array($form['#node']->type, $node_types)) {
+    return;
+  }
+
+  // Let users know that they only have access to the form for 24 hours.
+  $submission = isset($form['#submission']) ? $form['#submission'] : NULL;
+  if (!empty($submission) && $submission->sid && !$submission->is_draft) {
+    if ($user->uid == $submission->uid) {
+      $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
+      if (REQUEST_TIME <= ($timestamp)) {
+        drupal_set_message(t('You may continue to edit this form until %date', array('%date' => date('m/d/Y g:ia', $timestamp))));
       }
     }
   }
