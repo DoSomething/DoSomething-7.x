@@ -1,5 +1,8 @@
 @import setup
 
+.tabs
+  display: none
+
 #user-my-somethings
   h2, h2.pane-title
     +ds-bevel-single
@@ -17,67 +20,98 @@
     padding: 10px 10px 5px 10px
     +border-top-radius(5px)
   .user-picture
+    position: absolute
+    top: -3em
+    right: 1em
     img
-      margin-bottom: 12px
-      margin-top: -40px
-      margin-right: 20px
-      +float-right
+      border: 1px solid $purple
+      +border-radius
+      height: 115px
+      width: 130px
 
+// Member user details
 .pane-ds-profile-info
   background-color: $gray6
   .edit-profile
-    position: relative
-    top: -90px
-    left: 320px
+    position: absolute
+    top: -3em
+    right: 18em
   .member-details
-    border-bottom: 1px $gray dashed
-    margin-bottom: 26px
+    border-bottom: 1px $gray dotted
+    margin-bottom: 40px
     padding: 0.5em
     +pie-clearfix
     ul
       list-style: none
       margin: 0
     ul:first-of-type
+      background: image_url('bg-mysomethings-divider.png') no-repeat right
       +float-left
       display: block
-      margin-right: 0.5em
+      margin-right: 1em
+      padding-right: 1em
     ul:last-of-type
       display: block
     li
       .place
         +float-left
         display: block
-      .stat
     label
       cursor: initial
       +float-left
       font-family: $font-headline
       font-size: 18px
       font-weight: bold
+      margin-right: 0.3em
+  // Related information to member section
   .member-activity
     ul
       list-style: none
       margin: 0
       padding: 0
-    label
-      background-color: #592865
-      color: $white
-      cursor: initial
-      font-family: $font-headline
-      font-weight: normal
-      font-size: 18px
-      line-height: 40px
-      padding-right: 15px
-      text-align: right
-      width: 188px
+      li
+        background-color: $gray3
+        +pie-clearfix
+        label
+          +float-left
+          +background(image_url('bg-mysomethings-bevel-purple.png') right bottom no-repeat, $purple)
+          color: $white
+          cursor: initial
+          font-family: $font-headline
+          font-weight: normal
+          font-size: 18px
+          line-height: 40px
+          padding-right: 15px
+          text-align: right
+          width: 188px
+        span
+          +float-right
+          line-height: 40px
+      li:first-of-type
+        label
+          +border-top-right-radius
+      li:last-of-type
+        label
+          +border-bottom-right-radius
+          +background($purple)
+      li:nth-of-type(even)
+        background-color: $gray6
+        label
+          background-color: #592865
     .invite-friends
       +float-right
       &:after
         content: "»"
 
 .pane-ds-friends-pics
+  position: absolute
+  left: 215px
   ul
     list-style: none
+    +horizontal-list
+  img
+    height: 25px
+    width: 25px
 
 // Bottom sections
 .page-user

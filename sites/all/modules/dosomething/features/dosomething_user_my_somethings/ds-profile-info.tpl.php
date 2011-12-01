@@ -11,6 +11,8 @@
 </div>
 <div class="member-activity">
   <ul>
-    <li><label>My DoSomething friends:</label><a class="invite-friends" href="/invite-friends">invite friends</a></li>
-  </ul>
+    <li><label>Issues I rock:</label><span></span></li>
+    <li><label>My DoSomething friends:</label><span><a class="invite-friends" href="/invite-friends">invite friends</a></span></li>
+    <li><label>Somethings they're doing:</label><span></span></li>
+</ul>
 </div>
