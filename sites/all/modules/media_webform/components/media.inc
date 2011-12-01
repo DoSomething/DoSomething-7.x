@@ -9,15 +9,15 @@
  * Implements _webform_defaults_component().
  */
 function _webform_defaults_media() {
+  $media_widget = module_invoke('media', 'field_widget_info');
+  $settings = isset($media_widget['media_generic']['settings']) ? $media_widget['media_generic']['settings'] : array();
   return array(
     'name' => '',
     'form_key' => NULL,
     'mandatory' => 0,
     'pid' => 0,
     'weight' => 0,
-    'extra' => array(
-      'allowed_types' => array(),
-      'allowed_schemes' => array(),
+    'extra' => $settings + array(
       'description' => '',
       'private' => FALSE,
     ),
