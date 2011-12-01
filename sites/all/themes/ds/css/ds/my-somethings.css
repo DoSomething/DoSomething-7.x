@@ -56,6 +56,52 @@
   display: inline;
   float: right;
 }
+
+.pane-ds-profile-info {
+  background-color: #d2d2d2;
+}
+.pane-ds-profile-info .edit-profile {
+  position: relative;
+  top: -90px;
+  left: 320px;
+}
+.pane-ds-profile-info .member-details {
+  border-bottom: 1px #5f5c58 dashed;
+  padding: 0.5em;
+  *zoom: 1;
+}
+.pane-ds-profile-info .member-details:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.pane-ds-profile-info .member-details ul {
+  list-style: none;
+  margin: 0;
+}
+.pane-ds-profile-info .member-details ul:first-of-type {
+  display: inline;
+  float: left;
+  display: block;
+  margin-right: 0.5em;
+}
+.pane-ds-profile-info .member-details ul:last-of-type {
+  display: block;
+}
+.pane-ds-profile-info .member-details li .place {
+  display: inline;
+  float: left;
+  display: block;
+}
+.pane-ds-profile-info .member-details label {
+  cursor: initial;
+  display: inline;
+  float: left;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .page-user .pane-ds-my-somethings .pane-content {
   margin-bottom: 24px;
   border-bottom: 1px solid #bbbbbb;

@@ -23,6 +23,39 @@
       margin-right: 20px
       +float-right
 
+.pane-ds-profile-info
+  background-color: $gray6
+  .edit-profile
+    position: relative
+    top: -90px
+    left: 320px
+  .member-details
+    border-bottom: 1px $gray dashed
+    padding: 0.5em
+    +pie-clearfix
+    ul
+      list-style: none
+      margin: 0
+    ul:first-of-type
+      +float-left
+      display: block
+      margin-right: 0.5em
+    ul:last-of-type
+      display: block
+    li
+      .place
+        +float-left
+        display: block
+      .stat
+    label
+      cursor: initial
+      +float-left
+      font-family: $font-headline
+      font-size: 18px
+      font-weight: bold
+
+// Bottom sections
+.page-user
   .pane-ds-my-somethings
     .pane-content
       margin-bottom: 24px
@@ -97,6 +130,3 @@
           color: $white
           text-rendering: optimizeLegibility
           font-weight: 500
-
-
-
