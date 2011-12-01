@@ -148,7 +148,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['nid_1']['label'] = '';
   $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid_1']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['text'] = 'GET MORE INFO';
+  $handler->display->display_options['fields']['nid_1']['alter']['text'] = 'MORE INFO';
   $handler->display->display_options['fields']['nid_1']['alter']['make_link'] = 1;
   $handler->display->display_options['fields']['nid_1']['alter']['path'] = 'node/[nid_1]';
   $handler->display->display_options['fields']['nid_1']['alter']['absolute'] = 0;
@@ -176,7 +176,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['nid']['alter']['text'] = 'REPORT BACK';
+  $handler->display->display_options['fields']['nid']['alter']['text'] = 'TELL US WHAT YOU DID';
   $handler->display->display_options['fields']['nid']['alter']['make_link'] = 1;
   $handler->display->display_options['fields']['nid']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
