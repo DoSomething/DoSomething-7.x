@@ -35,58 +35,60 @@ function dosomething_scholarship_application_form_alter(&$form, &$form_state, $f
   // in the other places as well.
 
   // Make sure we're dealing with the right form.
-  if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'scholarship_application') {
-    global $user;
-    // Take no action if this user is not authenticated.
-    if ($user->uid != 0) {
+  if (strpos($form_id, 'webform_client_form_') !== 0 || empty($form_state['webform_entity']) || $form_state['webform_entity']['bundle'] != 'scholarship_application') {
+    return;
+  }
+  global $user;
+  // Take no action if this user is not authenticated.
+  if ($user->uid == 0) {
+    return;
+  }
 
-      // Load data.
-      $profile = profile2_load_by_user($user, 'main');
+  // Load data.
+  $profile = profile2_load_by_user($user, 'main');
 
-      $augmented = FALSE;
+  $augmented = FALSE;
 
-      if ($profile) {
-        $augmented = TRUE;
+  if ($profile) {
+    $augmented = TRUE;
 
-        $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-        // Get a shortcut to our part of the form.
-        $entity_form = &$form['submitted']['webform_entity_form'];
+    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+    // Get a shortcut to our part of the form.
+    $entity_form = &$form['submitted']['webform_entity_form'];
 
-        // If  the name is empty, prepoulate it with the user's name from her profile.
-        if ($entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
-          $entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value() . ' ' . $profile_wrapper->field_user_last_name->value() ;
-        }
-
-        // If we have a birthday, prepopulate the field.
-        if (is_numeric($profile_wrapper->field_user_birthday->raw())) {
-          $entity_form['field_webform_birthdate'][LANGUAGE_NONE][0]['#default_value']['value']  = date('Y-m-d H:i:s', $profile_wrapper->field_user_birthday->raw());
-        }
-
-        // If no address is yet set on this form, prepoulate it with the one from the user's profile.
-        if ($form['#submission'] == array()) {
-          $address_values = $form['submitted']['webform_entity_form']['field_webform_address'][LANGUAGE_NONE][0]['#address'];
-          $form['submitted']['webform_entity_form']['field_webform_address'][LANGUAGE_NONE][0]['#address'] = $profile_wrapper->field_user_address->value();
-        }
-
-
-        // If the mobile number is empty, prepopulate it.
-        if ($entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
-          $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_mobile->value();
-        }
-      } 
-
-      // If this email isn't actually a magic mobile number, prepopulate the form with it.
-      if (substr($user->mail, -7) != '@mobile') {
-        $augmented = TRUE;
-        $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
-      }
-
-      if ($augmented) {
-        // Attach our submit handler to update the user and profile objects with newer data.
-        $form['#submit'][] = 'dosomething_scholarship_application_form_submit';
-        $form['#validate'][] = 'dosomething_scholarship_application_form_validate';
-      }
+    // If  the name is empty, prepoulate it with the user's name from her profile.
+    if ($entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+      $entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value() . ' ' . $profile_wrapper->field_user_last_name->value() ;
     }
+
+    // If we have a birthday, prepopulate the field.
+    if (is_numeric($profile_wrapper->field_user_birthday->raw())) {
+      $entity_form['field_webform_birthdate'][LANGUAGE_NONE][0]['#default_value']['value']  = date('Y-m-d H:i:s', $profile_wrapper->field_user_birthday->raw());
+    }
+
+    // If no address is yet set on this form, prepoulate it with the one from the user's profile.
+    if ($form['#submission'] == array()) {
+      $address_values = $form['submitted']['webform_entity_form']['field_webform_address'][LANGUAGE_NONE][0]['#address'];
+      $form['submitted']['webform_entity_form']['field_webform_address'][LANGUAGE_NONE][0]['#address'] = $profile_wrapper->field_user_address->value();
+    }
+
+
+    // If the mobile number is empty, prepopulate it.
+    if ($entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+      $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_mobile->value();
+    }
+  }
+
+  // If this email isn't actually a magic mobile number, prepopulate the form with it.
+  if (substr($user->mail, -7) != '@mobile') {
+    $augmented = TRUE;
+    $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
+  }
+
+  if ($augmented) {
+    // Attach our submit handler to update the user and profile objects with newer data.
+    $form['#submit'][] = 'dosomething_scholarship_application_form_submit';
+    $form['#validate'][] = 'dosomething_scholarship_application_form_validate';
   }
 }
 
@@ -130,7 +132,7 @@ function dosomething_scholarship_application_form_submit(&$form, &$form_state) {
 
 
 /**
- * Implementation of hook_module_implements_alter().
+ * Implements hook_module_implements_alter().
  *
  * We can only disable our elements if we come after webform_entity, make
  * sure we do.
@@ -140,6 +142,5 @@ function dosomething_scholarship_application_module_implements_alter(&$implement
     $group = $implementations['dosomething_scholarship_application'];
     unset($implementations['dosomething_scholarship_application']);
     $implementations['dosomething_scholarship_application'] = $group;
-
   }
 }
