@@ -373,7 +373,7 @@ function dosomething_menu_create_sub_nav_links($parent) {
   $links = array();
   if (count($parent['below'])) {
     foreach ($parent['below'] as $item) {
-      if (!$item['link']['hidden']) {
+      if (!$item['link']['hidden'] && $item['link']['module'] != 'menu_position') {
         $links['ds-dropdown-menu-' . $item['link']['mlid']] = $item['link'];
       }
     }
