@@ -71,7 +71,7 @@ function dosomething_migrate_add_missing_nodes() {
 
   $fixed_something = FALSE;
   foreach ($problems as $type => $junk) {
-var_dump("addding a missing $path");
+var_dump("addding a missing $type");
     $webform = dosomething_migrate_save_webform_node($path . '/' . $type . '.txt');
     $mapping_array[$type] = $webform->nid;
     $fixed_something = TRUE;
