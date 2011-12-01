@@ -20,7 +20,7 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
           $row->$field = $timestamp;
         }
         else {
-print("Could not parse $field's value: {$row->$field}");
+print("Could not parse $field's value: {$row->$field}\n");
           $row->$field = NULL;
         }
       }
@@ -33,7 +33,7 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('aspca_grant_app');
     $this->description .= 'ASPCA Grant App';
-    $this->dependencies = array('DSProject', 'DSCampaignReportBackStaplesReason', 'DSCampaignReportBackTroopLetter', 'DSCampaignReportBackCampaignBfb2011', 'DSCampaignReportBackCampaignEbd2011', 'DSCampaignReportBackCampaignGys2011', 'DSCampaignReportBackCampaignHunt2011', 'DSCampaignReportBackCannedFood', 'DSCampaignReportBackHealthySchoolsReport', 'DSCampaignReportBackSaveOurMusic', 'DSCampaignReportBackSfsReportGallery', 'DSCampaignReportBackTfjContestSignup');
+    $this->dependencies = array('DSProject');
 
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
     $this->addFieldMapping('data_essay_1_see_it', 'field_essay_see_it');
@@ -95,7 +95,7 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
   public function __construct() {
    parent::__construct('general_grant_app');
     $this->description .= 'General Grant Application';
-    $this->dependencies = array('DSProject', 'DSCampaignReportBackStaplesReason', 'DSCampaignReportBackTroopLetter', 'DSCampaignReportBackCampaignBfb2011', 'DSCampaignReportBackCampaignEbd2011', 'DSCampaignReportBackCampaignGys2011', 'DSCampaignReportBackCampaignHunt2011', 'DSCampaignReportBackCannedFood', 'DSCampaignReportBackHealthySchoolsReport', 'DSCampaignReportBackSaveOurMusic', 'DSCampaignReportBackSfsReportGallery', 'DSCampaignReportBackTfjContestSignup');
+    $this->dependencies = array('DSProject');
 
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
     $this->addFieldMapping('data_essay_1___see_it', 'field_plumgrant_essay1');
@@ -151,7 +151,7 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
   public function __construct() {
     parent::__construct('grant');
     $this->description .= 'Grant';
-    $this->dependencies = array('DSProject', 'DSCampaignReportBackStaplesReason', 'DSCampaignReportBackTroopLetter', 'DSCampaignReportBackCampaignBfb2011', 'DSCampaignReportBackCampaignEbd2011', 'DSCampaignReportBackCampaignGys2011', 'DSCampaignReportBackCampaignHunt2011', 'DSCampaignReportBackCannedFood', 'DSCampaignReportBackHealthySchoolsReport', 'DSCampaignReportBackSaveOurMusic', 'DSCampaignReportBackSfsReportGallery', 'DSCampaignReportBackTfjContestSignup');
+    $this->dependencies = array('DSProject');
 
     $this->addFieldMapping('data_your_facebook_page_url', 'field_your_facebook_page_url');
     $this->addFieldMapping('data_your_twitter_handle', 'field_your_twitter_handle');

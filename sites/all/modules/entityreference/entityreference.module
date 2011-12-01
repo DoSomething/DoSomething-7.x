@@ -685,3 +685,10 @@ function entityreference_views_api() {
     'path' => drupal_get_path('module', 'entityreference') . '/views',
   );
 }
+
+/**
+ * Implements hook_migrate_api().
+ */
+function entityreference_migrate_api() {
+  return array('api' => 2);
+}
