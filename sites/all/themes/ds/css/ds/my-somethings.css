@@ -67,6 +67,7 @@
 }
 .pane-ds-profile-info .member-details {
   border-bottom: 1px #5f5c58 dashed;
+  margin-bottom: 26px;
   padding: 0.5em;
   *zoom: 1;
 }
@@ -100,6 +101,34 @@
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 18px;
   font-weight: bold;
+}
+.pane-ds-profile-info .member-activity ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pane-ds-profile-info .member-activity label {
+  background-color: #592865;
+  color: white;
+  cursor: initial;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 40px;
+  padding-right: 15px;
+  text-align: right;
+  width: 188px;
+}
+.pane-ds-profile-info .member-activity .invite-friends {
+  display: inline;
+  float: right;
+}
+.pane-ds-profile-info .member-activity .invite-friends:after {
+  content: "»";
+}
+
+.pane-ds-friends-pics ul {
+  list-style: none;
 }
 
 .page-user .pane-ds-my-somethings .pane-content {

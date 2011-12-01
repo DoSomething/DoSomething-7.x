@@ -31,6 +31,7 @@
     left: 320px
   .member-details
     border-bottom: 1px $gray dashed
+    margin-bottom: 26px
     padding: 0.5em
     +pie-clearfix
     ul
@@ -53,6 +54,30 @@
       font-family: $font-headline
       font-size: 18px
       font-weight: bold
+  .member-activity
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+    label
+      background-color: #592865
+      color: $white
+      cursor: initial
+      font-family: $font-headline
+      font-weight: normal
+      font-size: 18px
+      line-height: 40px
+      padding-right: 15px
+      text-align: right
+      width: 188px
+    .invite-friends
+      +float-right
+      &:after
+        content: "»"
+
+.pane-ds-friends-pics
+  ul
+    list-style: none
 
 // Bottom sections
 .page-user
