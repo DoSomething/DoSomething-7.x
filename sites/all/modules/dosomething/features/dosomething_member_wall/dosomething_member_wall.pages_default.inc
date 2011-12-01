@@ -16,7 +16,10 @@ function dosomething_member_wall_default_page_manager_pages() {
   $page->admin_title = 'Member Wall';
   $page->admin_description = '';
   $page->path = 'member-wall';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(

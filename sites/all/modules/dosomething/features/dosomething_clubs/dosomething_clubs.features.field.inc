@@ -1534,7 +1534,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'club_profile',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '-6',
@@ -3982,6 +3982,14 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'field_permissions' => array(
         'type' => '2',
       ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
@@ -3992,7 +4000,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'allowed_values' => array(
           0 => array(
             'vocabulary' => 'vocabulary_5',
-            'parent' => 0,
+            'parent' => '0',
           ),
         ),
         'profile2_private' => FALSE,

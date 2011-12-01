@@ -662,6 +662,14 @@ function dosomething_action_guide_field_default_fields() {
       'field_permissions' => array(
         'type' => '2',
       ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
@@ -672,7 +680,7 @@ function dosomething_action_guide_field_default_fields() {
         'allowed_values' => array(
           0 => array(
             'vocabulary' => 'vocabulary_5',
-            'parent' => 0,
+            'parent' => '0',
           ),
         ),
         'profile2_private' => FALSE,

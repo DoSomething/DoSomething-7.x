@@ -309,7 +309,7 @@ function dosomething_member_wall_views_default_views() {
     'awards_archive' => 'awards_archive',
     'grant_application' => 'grant_application',
     'project_report' => 'project_report',
-    'scholarship' => 'scholarship',
+    'scholarship_application' => 'scholarship_application',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 0;
   $handler->display->display_options['filters']['type_1']['exposed'] = TRUE;

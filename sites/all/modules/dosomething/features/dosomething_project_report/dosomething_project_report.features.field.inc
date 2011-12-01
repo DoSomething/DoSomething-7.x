@@ -1163,6 +1163,14 @@ The content from this field will only be shown to anonymous users.',
       'field_permissions' => array(
         'type' => '2',
       ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
       'indexes' => array(
         'tid' => array(
           0 => 'tid',
@@ -1173,7 +1181,7 @@ The content from this field will only be shown to anonymous users.',
         'allowed_values' => array(
           0 => array(
             'vocabulary' => 'vocabulary_5',
-            'parent' => 0,
+            'parent' => '0',
           ),
         ),
         'profile2_private' => FALSE,
@@ -1220,6 +1228,7 @@ The content from this field will only be shown to anonymous users.',
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Describe the steps you will take/took to create your project or organization.');
+  t('Did you do this project with a DoSomething Club?');
   t('Enter the zip codes in which your project made an impact.');
   t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('Goal');
@@ -1232,6 +1241,7 @@ The content from this field will only be shown to anonymous users.');
   t('Start date');
   t('Status');
   t('Tell us about the community you are helping and the problem(s) being solved.');
+  t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
   t('The content from this field will only be shown to logged in users.');
   t('Title');
   t('Video');
