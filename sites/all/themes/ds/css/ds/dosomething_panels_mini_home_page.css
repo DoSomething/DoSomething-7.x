@@ -642,12 +642,11 @@
   text-decoration: none;
 }
 .pane-news-stuff .views-field-title {
-  padding-top: 6px;
+  padding: 6px 0;
 }
 .pane-news-stuff .views-field-fb-social {
-  position: relative;
-  left: 20.6em;
-  bottom: 2.2em;
+  margin-right: -16px;
+  text-align: right;
 }
 .pane-news-stuff .news-image {
   display: inline;
