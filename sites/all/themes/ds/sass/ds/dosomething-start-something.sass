@@ -30,6 +30,8 @@ $upcoming-somethings-width: ($main-width-w-padding - 6 * $upcoming-somethings-gu
     padding-bottom: $upcoming-somethings-gutter
     text-align: center
     width: calc-em($upcoming-somethings-width, $s0)
+    .ie &
+      width: 125px
     &.views-row-first
       margin-left: $upcoming-somethings-gutter
   .views-field-field-campain-date

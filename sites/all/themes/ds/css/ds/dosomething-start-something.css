@@ -403,6 +403,9 @@
   text-align: center;
   width: 10.5em;
 }
+.ie .view-upcoming-somethings .views-row {
+  width: 125px;
+}
 .view-upcoming-somethings .views-row.views-row-first {
   margin-left: 10px;
 }
