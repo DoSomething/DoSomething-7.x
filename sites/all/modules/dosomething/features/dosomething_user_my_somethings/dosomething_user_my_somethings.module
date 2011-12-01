@@ -205,6 +205,13 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       }
     }
   }
+  $report_backs = dosomething_user_my_somethings_campaign_report_backs();
+  if (count($report_backs)) {
+    $items['campaign_report_back'] = array('data' => 'Campaign Sign Ups', 'children' => array());
+    foreach($report_backs as $nid => $title) {
+      $items['campaign_report_back']['children'][] = l($title, 'node/' . $nid);
+    }
+  }
   return $items;
 }
 
@@ -468,7 +475,8 @@ function dosomething_user_my_somethings_campaign_report_backs() {
     $user_submissions[] = $result->nid;
   }
 
-  // Check if user has a submission for each report back, if not return that info.
+  // Check if user has a submission for each report back,
+  // if not return that info.
   foreach($report_backs as $report_back) {
     if (!in_array($report_back->entity_id, $user_submissions)) {
       $incomplete_report_backs[$report_back->entity_id] = $report_back->label;
