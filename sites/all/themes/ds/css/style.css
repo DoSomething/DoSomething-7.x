@@ -2033,16 +2033,31 @@ body.node-type-project [role=main] .main-interior-sidebar {
   width: 100%;
   margin-right: 0;
 }
+.ie7 .ds-panel .panes-1 .panel-panel {
+  width: 450px;
+}
 .ds-panel .panes-2 .panel-panel {
   width: 49.13%;
   float: left;
+}
+.ie7 .ds-panel .panes-2 .panel-panel {
+  width: 450px;
+  float: none;
 }
 .ds-panel .panes-2 .panel-last {
   margin-right: 0;
   float: right;
 }
+.ie7 .ds-panel .panes-2 .panel-last {
+  float: none;
+  width: 225px;
+}
 .ds-panel .panes-3 .panel-panel {
   width: 32.174%;
+}
+.ie7 .ds-panel .panes-3 .panel-panel {
+  width: 225px;
+  float: none;
 }
 .ds-panel .panes-3 .panel-last {
   margin-right: 0;
