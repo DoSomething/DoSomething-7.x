@@ -995,6 +995,7 @@ The content from this field will only be shown to anonymous users.',
        'weight' => '8',
      ),
    ),
+   );
 
   // Exported field: 'webform_submission_entity-campaign_report_back-group_audience'
   $fields['webform_submission_entity-campaign_report_back-group_audience'] = array(
