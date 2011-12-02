@@ -475,6 +475,9 @@ h1, h2, h3, h4, h5, h6 {
   background: #652e72;
   margin-bottom: 0;
 }
+.ds-pane-usergen .pane-content {
+  padding: 1em;
+}
 
 .ds-pane-news h2.pane-title {
   background: #222222;
