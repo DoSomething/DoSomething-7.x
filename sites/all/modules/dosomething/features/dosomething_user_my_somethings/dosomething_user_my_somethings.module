@@ -467,7 +467,7 @@ function dosomething_user_my_somethings_campaign_report_backs($uid) {
     // From these existing campaign report backs, get the user's submissions.
     $db_query = db_select('webform_submissions', 'w');
     $db_query->fields('w', array('nid'));
-    $db_query->condition('w.uid', $user->uid, '=');
+    $db_query->condition('w.uid', $uid, '=');
     $db_query->condition('nid', $report_backs_entity_ids, 'IN');
     $results = $db_query->execute();
     while ($result = $results->fetchObject()) {
