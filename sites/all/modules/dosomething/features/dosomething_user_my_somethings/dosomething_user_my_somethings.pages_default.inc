@@ -69,8 +69,8 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-2';
     $pane->panel = 'middle';
-    $pane->type = 'ds_friends_pics';
-    $pane->subtype = 'ds_friends_pics';
+    $pane->type = 'ds_user_pic';
+    $pane->subtype = 'ds_user_pic';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -85,6 +85,23 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $display->panels['middle'][1] = 'new-2';
     $pane = new stdClass;
     $pane->pid = 'new-3';
+    $pane->panel = 'middle';
+    $pane->type = 'ds_friends_pics';
+    $pane->subtype = 'ds_friends_pics';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['middle'][2] = 'new-3';
+    $pane = new stdClass;
+    $pane->pid = 'new-4';
     $pane->panel = 'middle';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -103,23 +120,6 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['middle'][2] = 'new-3';
-    $pane = new stdClass;
-    $pane->pid = 'new-4';
-    $pane->panel = 'middle';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'my_somethings_views_data-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
     $pane->position = 3;
     $display->content['new-4'] = $pane;
     $display->panels['middle'][3] = 'new-4';
@@ -127,7 +127,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->pid = 'new-5';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
-    $pane->subtype = 'my_somethings_views_data-panel_pane_2';
+    $pane->subtype = 'my_somethings_views_data-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -144,6 +144,23 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->pid = 'new-6';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
+    $pane->subtype = 'my_somethings_views_data-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $display->content['new-6'] = $pane;
+    $display->panels['middle'][5] = 'new-6';
+    $pane = new stdClass;
+    $pane->pid = 'new-7';
+    $pane->panel = 'middle';
+    $pane->type = 'views_panes';
     $pane->subtype = 'my_somethings-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
@@ -158,11 +175,11 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
-    $display->content['new-6'] = $pane;
-    $display->panels['middle'][5] = 'new-6';
+    $pane->position = 6;
+    $display->content['new-7'] = $pane;
+    $display->panels['middle'][6] = 'new-7';
     $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'middle';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -181,11 +198,11 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 6;
-    $display->content['new-7'] = $pane;
-    $display->panels['middle'][6] = 'new-7';
+    $pane->position = 7;
+    $display->content['new-8'] = $pane;
+    $display->panels['middle'][7] = 'new-8';
     $pane = new stdClass;
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'my_somethings_views_data-panel_pane_3';
@@ -198,11 +215,11 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 7;
-    $display->content['new-8'] = $pane;
-    $display->panels['middle'][7] = 'new-8';
+    $pane->position = 8;
+    $display->content['new-9'] = $pane;
+    $display->panels['middle'][8] = 'new-9';
     $pane = new stdClass;
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-10';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'my_somethings_views_data-panel_pane_4';
@@ -215,9 +232,9 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 8;
-    $display->content['new-9'] = $pane;
-    $display->panels['middle'][8] = 'new-9';
+    $pane->position = 9;
+    $display->content['new-10'] = $pane;
+    $display->panels['middle'][9] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
