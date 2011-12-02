@@ -191,10 +191,6 @@ function dosomething_blocks_make_an_impact_form() {
     }
   }
 
-  $form['description'] = array(
-    '#type' => 'item',
-    '#title' => t('This form will help you find a cause that\'s right for you.'),
-  );
   $form['what_cause'] = array(
     '#type' => 'select',
     '#title' => t('What Cause'),
