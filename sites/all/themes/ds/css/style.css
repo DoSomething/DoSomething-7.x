@@ -2075,6 +2075,12 @@ body.node-type-project [role=main] .main-interior-sidebar {
   margin-right: 0;
   float: right;
 }
+.ie7 .panel-twocol-a .panes-2 .panel-outer-right {
+  width: 200px;
+  display: inline;
+  float: right;
+  position: absolute top;
+}
 .panel-twocol-a .panel-outer-left .panel-top {
   width: 100%;
 }

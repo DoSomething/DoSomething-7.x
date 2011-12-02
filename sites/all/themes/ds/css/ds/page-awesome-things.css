@@ -62,7 +62,7 @@
 #dosomething11 div p, #this-weeks-winner div p {
   display: inline;
   float: right;
-  width: 114px;
+  width: 112px;
   font-size: 11px;
   line-height: 14px;
 }
