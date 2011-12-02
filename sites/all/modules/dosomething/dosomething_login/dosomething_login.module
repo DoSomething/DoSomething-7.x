@@ -154,7 +154,19 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
     'dosomething_login_form_required_marker' => array(
       'variables' => array(),
     ),
+    'theme_dosomething_login_facebook_user_info' => array(
+      'variables' => array('account' => NULL),
+    ),
   );
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function dosomething_login_theme_registry_alter(&$vars) {
+  $path =  drupal_get_path('module', 'dosomething_login');
+  $vars['fboauth_user_info']['theme_path'] = $path;
+  $vars['fboauth_user_info']['function'] = 'theme_dosomething_login_facebook_user_info'; 
 }
 
 /**
@@ -1305,7 +1317,34 @@ function dosomething_login_fboauth_actions() {
       'user_birthday',
     ),
   );
+  $actions['ds_deauth'] = array(
+    'title' => t('Deauthorize'),
+    'callback' => 'dosomething_login_facebook_deauth',
+    'theme callback' => 'dosomething_login_facebook_deauth_link',
+  );
   return $actions;
+}
+
+/**
+ * Facebook OAuth callback for deauthorizing the site from Facebook.
+ */
+function dosomething_login_facebook_deauth($app_id, $access_token) {
+  global $user;
+
+  // Deauthorize our application from Facebook.
+  $result = fboauth_method_invoke('auth.revokeAuthorization', $access_token);
+
+  // If successful, also remove the uid-fbid pairing.
+  if (!is_array($result) && $result) {
+    fboauth_save($user->uid, NULL);
+    // Remove friends from user profile.
+    dosomething_login_facebook_friend_process($uid);
+    drupal_set_message(t('Your account has been disconnected from Facebook.'));
+  }
+  else {
+    drupal_set_message(t('There was an error disconnecting from Facebook. The server returned %message.', array('%message' => $result->error_msg)), 'error');
+    watchdog('There was an error disconnecting the user %username from Facebook. The server returned %message.', array('%message' => $result->error_msg, '%username' => $user->name));
+  }
 }
 
 /**
@@ -1407,6 +1446,16 @@ function dosomething_login_facebook_friend_process($uid, $facebook_friends = arr
     }
     $query->execute();
   }
+  // Otherwise remove from friends as well.
+  else {
+    $fbid = fboauth_fbid_load($uid);
+    if ($fbid) {
+      // Remove old entries.
+      db_delete('facebook_friends')
+        ->condition('fbuid', $fbuid)
+        ->execute();
+    }
+  }
 }
 
 /**
@@ -1452,3 +1501,17 @@ function dosomething_login_registration_data_page() {
   exit;
 }
 
+/**
+ * Provided themed information about the user's current Facebook connection.
+ */
+function theme_dosomething_login_facebook_user_info($variables) {
+  $account = $variables['account'];
+
+  $output = '';
+  $output .= '<p>' . t('Your account is current connected with Facebook. Currently this site has access to the following information from Facebook.') . '</p>';
+  $list = array('items' => array('basic' => 'Your basic information (Name, Gender, Picture, etc.)') + fboauth_user_connect_permissions() + array('birthday' => t('Your birthday')));
+  $output .= theme('item_list', $list);
+  $output .= '<p>' . t('You may disconnect your account from Facebook at any time by using the Deauthorize option below. If deauthorized, you will no longer be able to use Facebook to log into this account and must use a normal password. <strong>If you have not yet set a password, you will not be able to log onto this site</strong>.') . '</p>';
+  $output .= fboauth_action_display('ds_deauth');
+  return $output;
+}
