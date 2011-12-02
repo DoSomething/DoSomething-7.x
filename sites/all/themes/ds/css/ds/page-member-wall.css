@@ -249,16 +249,16 @@
 #views-exposed-form-member-wall-panel-pane-1 .form-item, #views-exposed-form-member-wall-panel-pane-1 .form-actions {
   height: auto;
 }
-#views-exposed-form-member-wall-panel-pane-1 #edit-taxonomy-vocabulary-5-tid-wrapper,
+#views-exposed-form-member-wall-panel-pane-1 #edit-cause-wrapper,
 #views-exposed-form-member-wall-panel-pane-1 #edit-type-wrapper,
-#views-exposed-form-member-wall-panel-pane-1 #edit-field-report-back-reference-nid-wrapper,
+#views-exposed-form-member-wall-panel-pane-1 #edit-campaign-wrapper,
 #views-exposed-form-member-wall-panel-pane-1 #edit-date-argument-wrapper,
 #views-exposed-form-member-wall-panel-pane-1 .views-submit-button {
   margin: 0.3em 0 0.3em 0.5em;
 }
-#views-exposed-form-member-wall-panel-pane-1 #edit-taxonomy-vocabulary-5-tid-wrapper .selectBox-dropdown,
+#views-exposed-form-member-wall-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown,
 #views-exposed-form-member-wall-panel-pane-1 #edit-type-wrapper .selectBox-dropdown,
-#views-exposed-form-member-wall-panel-pane-1 #edit-field-report-back-reference-nid-wrapper .selectBox-dropdown,
+#views-exposed-form-member-wall-panel-pane-1 #edit-campaign-wrapper .selectBox-dropdown,
 #views-exposed-form-member-wall-panel-pane-1 #edit-date-argument-wrapper .selectBox-dropdown,
 #views-exposed-form-member-wall-panel-pane-1 .views-submit-button .selectBox-dropdown {
   background: #8e8a86;
@@ -276,20 +276,20 @@
   margin-bottom: 0;
   width: 25%;
 }
-#views-exposed-form-member-wall-panel-pane-1 #edit-taxonomy-vocabulary-5-tid-wrapper .selectBox-dropdown .selectBox-arrow,
+#views-exposed-form-member-wall-panel-pane-1 #edit-cause-wrapper .selectBox-dropdown .selectBox-arrow,
 #views-exposed-form-member-wall-panel-pane-1 #edit-type-wrapper .selectBox-dropdown .selectBox-arrow,
-#views-exposed-form-member-wall-panel-pane-1 #edit-field-report-back-reference-nid-wrapper .selectBox-dropdown .selectBox-arrow,
+#views-exposed-form-member-wall-panel-pane-1 #edit-campaign-wrapper .selectBox-dropdown .selectBox-arrow,
 #views-exposed-form-member-wall-panel-pane-1 #edit-date-argument-wrapper .selectBox-dropdown .selectBox-arrow,
 #views-exposed-form-member-wall-panel-pane-1 .views-submit-button .selectBox-dropdown .selectBox-arrow {
   background: url('../images/icn-leftsidebar-pointer-yellow.png') no-repeat right top;
   width: 27px;
 }
-#views-exposed-form-member-wall-panel-pane-1 #edit-taxonomy-vocabulary-5-tid-wrapper .views-widget .form-item a,
+#views-exposed-form-member-wall-panel-pane-1 #edit-cause-wrapper .views-widget .form-item a,
 #views-exposed-form-member-wall-panel-pane-1 #edit-type-wrapper .views-widget .form-item a,
-#views-exposed-form-member-wall-panel-pane-1 #edit-field-report-back-reference-nid-wrapper .views-widget .form-item a,
+#views-exposed-form-member-wall-panel-pane-1 #edit-campaign-wrapper .views-widget .form-item a,
 #views-exposed-form-member-wall-panel-pane-1 #edit-date-argument-wrapper .views-widget .form-item a,
 #views-exposed-form-member-wall-panel-pane-1 .views-submit-button .views-widget .form-item a {
-  width: 111px;
+  width: 125px;
 }
 #views-exposed-form-member-wall-panel-pane-1 input[type="submit"].form-submit {
   margin-left: 0.8em;

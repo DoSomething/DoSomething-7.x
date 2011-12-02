@@ -54,6 +54,18 @@ function dosomething_member_wall_form_views_exposed_form_alter(&$form, &$form_st
       '#size' => NUll,
       '#options'=> array('' => t('- Any -')) + $years,
     );
+    if ($form['#info']['filter-taxonomy_vocabulary_5_tid']['value'] == 'cause') {
+      $form['cause']['#options']['All'] = t('All Issues');
+    }
+    if ($form['#info']['filter-type_1']['value'] == 'type') {
+      $form['type']['#options']['All'] = t('All Types');
+    }
+    if ($form['#info']['filter-field_report_back_reference_nid']['value'] == 'campaign') {
+      $form['campaign']['#options']['All'] = t('All Campaigns');
+    }
+    if ($form['#info']['filter-submitted']['value'] == 'date_argument') {
+      $form['date_argument']['#options'][''] = t('Any Year');
+    }
   }
 }
 

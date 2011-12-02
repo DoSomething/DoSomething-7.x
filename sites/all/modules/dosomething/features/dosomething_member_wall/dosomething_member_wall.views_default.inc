@@ -28,6 +28,7 @@ function dosomething_member_wall_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = 0;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['pager']['type'] = 'some';
@@ -291,7 +292,7 @@ function dosomething_member_wall_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'Issues';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator'] = 'taxonomy_vocabulary_5_tid_op';
-  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'cause';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 0;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['reduce_duplicates'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['type'] = 'select';
@@ -327,7 +328,7 @@ function dosomething_member_wall_views_default_views() {
   $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['operator_id'] = 'field_report_back_reference_nid_op';
   $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['label'] = 'Campaign';
   $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['operator'] = 'field_report_back_reference_nid_op';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['identifier'] = 'field_report_back_reference_nid';
+  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['identifier'] = 'campaign';
   $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['reduce'] = 0;
   /* Filter criterion: Webform submissions: Submitted */
   $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
