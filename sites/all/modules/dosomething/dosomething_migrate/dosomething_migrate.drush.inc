@@ -12,6 +12,8 @@ function dosomething_migrate_drush_help($section) {
   switch ($section) {
     case 'drush:dosomething-migrate-review':
       return dt('Review some random records from one or more migrations');
+    case 'dosomething-migrate-update-grant-judge':
+      return db('Update the references on grant_judge nodes to point to the webform submissions.');
     case 'dosomething-migrate-update-noderefs':
       return dt('Update the references on webform submissions on nodes of type "scholarship application" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
   }
@@ -33,8 +35,11 @@ function dosomething_migrate_drush_command() {
     'drupal dependencies' => array('migrate'),
     'aliases' => array('dsmr'),
   );
+  $items['dosomething-migrate-update-grant-judge'] = array(
+    'description' => 'Update the references on grant_judge nodes.',
+  );
   $items['dosomething-migrate-update-noderefs'] = array(
-    'description' => 'Update the references on webform submissions',
+    'description' => 'Update the references on scholarship applications webform submissions',
     'aliases' => array('dsmunr'),
   );
   return $items;
@@ -86,6 +91,44 @@ function drush_dosomething_migrate_review($args = NULL) {
 // Implement drush_hook_COMMAND_validate().
 function drush_dosomething_migrate_review_validate($args = NULL) {
   return drush_migrate_validate_common($args);
+}
+
+function drush_dosomething_migrate_update_grant_judge() {
+  drush_print("Updating grant_judge references from nodes to webform submissions...");
+
+  $source_migrations = array('DSGrantApplicationAspca', 'DSGrantApplicationGeneral', 'DSGrantApplicationGrant');
+  $maps = array();
+  foreach ($source_migrations as $key) {
+    $maps[$key] = Migration::getInstance($key)->getMap();
+  }
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'grant_judge')
+    ->fieldCondition('field_grant_judge_nid', 'value', '0', '>');
+  $result = $query->execute();
+  if (empty($result['node'])) {
+    drush_print("No nodes found.");
+    return;
+  }
+  foreach ($result['node'] as $nid => $deets) {
+    $node = node_load($nid);
+    $grant_app_nid = $node->field_grant_judge_nid['und'][0]['value'];
+    drush_print("looking up $node->nid: $node->title - references $grant_app_nid");
+    $sid = NULL;
+    foreach ($maps as $key => $map) {
+      if ($sid = $map->lookupDestinationID(array($grant_app_nid))) {
+        $sid = reset($sid);
+        break;
+      }
+    }
+    if ($sid) {
+      drush_print("found $sid, updating.");
+      $node->field_grant_judge_application['und'][0]['target_type'] = 'webform_submission_entity';
+      $node->field_grant_judge_application['und'][0]['target_id'] = $sid;
+      node_save($node);
+    }
+  }
 }
 
 /**
