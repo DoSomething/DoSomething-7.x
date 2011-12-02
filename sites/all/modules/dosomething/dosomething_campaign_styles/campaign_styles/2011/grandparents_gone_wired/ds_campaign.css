@@ -1,0 +1,252 @@
+/* Resets and required styles */
+#page-title { display: none; }
+
+div[role="main"] {
+  background: none;
+}
+
+
+/* Site background */
+body.html {
+  background: #43b9e5;
+  background-image:url('assets/bg.png');
+}
+
+/* Page background */
+#main-wrapper {
+  /*background: #d0dfe4;*/
+  /*background: #222222;*/
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Logo full width */
+.ds-panel .panes-2 .panel-panel {
+  width: 500px;
+}
+
+/**
+ * Top blocks
+ */
+.panel-row-top-first-top .panel-panel {
+  overflow: hidden;
+  font-family: din-web;
+}
+/* Sign-up block */
+.panel-top-first-top-second .panel-pane {
+  background: #00AB4E;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.panel-top-first-top-second .panel-pane .pane-content {
+  padding: 0 10px;
+}
+
+.panel-top-first-top-second .panel-pane label {
+  width: 40%;
+  float: left;
+}
+
+.panel-top-first-top-second .panel-pane label div {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.panel-top-first-top-second .panel-pane input {
+  margin-bottom: 0;
+}
+
+.panel-top-first-top-second .panel-pane input[type="submit"] {
+  border-radius: 15px;
+  background: #06223C;
+  color: white;
+  padding: 1px 10px;
+  border: 0;
+}
+
+.panel-top-first-top-second .panel-pane h2 {
+  font-family: din-web;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+  line-height: 1em;
+  margin: 10px 10px 0 10px;
+}
+
+/**
+ * Webform Styling
+ */
+.pane-block .pane-content{
+	color:white;
+	background: red;
+}
+/* END sign up block */
+
+/**
+ * Menu
+ */
+.panel-campaign .panel-row-top.panes-2 .panel-top-second {
+  width: 170px;
+}
+
+.pane-campaign-menu {
+  /* The bottom-right 3D effect. Image should be 18x18. */
+  background: url('/files/campaigns_common/nav-triangle-3a3a3a.png') no-repeat right bottom;
+  padding-bottom: 18px;
+  position: relative;
+  right: -52px;
+
+}
+
+.pane-campaign-menu ul {
+  list-style: none;
+  /*background: #041F3D;*/
+  background: #000000;
+  padding: 0;
+  margin: 0;
+  font-family: din-web;
+  font-weight: 600;
+  line-height: 1em;
+  font-size: 24px;
+  line-height: 45px;
+  text-transform: uppercase;
+}
+
+.pane-campaign-menu li {
+  border-bottom: 1px solid white;
+}
+
+.pane-campaign-menu li:last-child {
+  border-bottom: none;
+}
+
+.pane-campaign-menu a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /*color: #307bb1;*/
+  color: #ffffff;
+  padding-left: 20px;
+}
+
+.pane-campaign-menu a.active {
+  color: white;
+  background-image: url('/files/campaigns_common/nav-arrow-white.png');
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+/**
+ * Node body
+ */
+.pane-node-body {
+  /*background: #0C5FA7;*/
+  background: #f2f2f2;
+/*  color: white;*/
+  font-family: din-web; 
+}
+
+
+.pane-node-body .pane-content {
+  font-size: 20px;
+  line-height: 1em;  
+  /*padding: 2px 10px 2px 2px;*/
+}
+
+.pane-node-body h2 {
+  background: #222222;
+  margin: 0;
+  color: white;
+  font-size: 36px;
+  padding: 5px 0 0 5px;
+  line-height: 1em;
+}
+
+.pane-node-body ul {
+  /*list-style-image: url('/files/campaign_assets/tfj/2011/bullet-arrow.png');*/
+  list-style-image: url('/files/campaign_assets/2011/grandparents_gone_wired/assets/arrow2.png');
+  margin: 0;
+  /*color: #4f0000;*/
+  color: #000000;
+}
+
+.pane-node-body li {
+  margin: 5px 0;
+}
+
+/* Bring your Grandparents into the Digital age*/
+.pane-node-body p{  
+  color: red;
+  font-size: 150%;
+  padding: 6px;
+  margin: 1px;
+}
+/**
+ * Bottom blocks
+ */
+.panel-row-middle {
+  margin: 10px 0;
+  color:#000000;
+  
+  
+}
+
+.panel-row-middle .panel-pane {
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .3);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+  width: 210px;
+  background: #e3e3e3;
+  height: 180px;
+}
+
+.panel-row-middle .pane-content {
+  margin: 10px;
+}
+
+.panel-row-middle h2 {
+  /*background: #00AB4E;*/
+  background: #ed1c24;
+  text-align: center;
+  
+  color: white;
+  padding: 0 10px;
+  margin: 0;
+  font-size: 28px;
+  
+  /* Apparently the h2 doesn't "inherit" the border of the parent element. */
+  -moz-border-radius-topleft: 15px;
+  -moz-border-radius-topright: 15px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
+}
+
+
+/**
+ * Sponsor logo
+ */
+.panel-bottom-second .panel-pane {
+  text-align: right;
+  margin: 50px 20px 30px 0;
+}
+
+.panel-bottom-second h2 {
+  line-height: 1em;
+  font-size: 20px;
+  margin: 0;
+  text-transform: uppercase;
+  color: black;
+}
+
+.panel-bottom-second p {
+  margin: 0;
+}
