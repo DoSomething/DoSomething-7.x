@@ -194,7 +194,6 @@ function dosomething_member_wall_views_default_views() {
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['relationship'] = 'field_editorial_reference_target_id';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_action'] = 'default';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['term_page'] = 1;
@@ -309,7 +308,7 @@ function dosomething_member_wall_views_default_views() {
     'awards_archive' => 'awards_archive',
     'grant_application' => 'grant_application',
     'project_report' => 'project_report',
-    'scholarship_application' => 'scholarship_application',
+    'scholarship' => 'scholarship',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 0;
   $handler->display->display_options['filters']['type_1']['exposed'] = TRUE;
