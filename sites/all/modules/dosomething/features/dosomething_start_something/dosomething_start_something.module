@@ -14,12 +14,12 @@ function dosomething_start_something_form_views_exposed_form_alter(&$form, &$for
     drupal_add_js(drupal_get_path('module', 'dosomething_start_something') . '/dosomething-start-something-resources.js');
     // Override #option values on action-finder content type exposed filter.
     if ($form['#info']['filter-type']['value'] == 'type') {
-      $form['type']['#options']['All'] = 'All types';
+      $form['type']['#options']['All'] = 'All Types';
       $form['type']['#options']['tips_and_tools'] = 'Facts and More';
     }
     // Override #option values on action-finder cause exposed filter. 
     if ($form['#info']['filter-taxonomy_vocabulary_5_tid']['value'] == 'cause') {
-      $form['cause']['#options']['All'] = 'All subjects';
+      $form['cause']['#options']['All'] = 'All Causes';
     }
     if ($form['#info']['filter-taxonomy_vocabulary_18_tid']['value'] == 'howtos') {
       $form['howtos']['#options']['All'] = 'All How-Tos';
