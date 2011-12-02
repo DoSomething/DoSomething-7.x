@@ -95,11 +95,10 @@
   font-weight: 500;
 }
 
-.front #main-wrapper,
-.not-front.logged-in.secondary-menu-inactive #main-wrapper,
-.not-front.not-logged-in.secondary-menu-inactive #main-wrapper {
+.front #main-wrapper {
   background: none;
 }
+
 .front #block-dosomething-login-become-member,
 .not-front.logged-in.secondary-menu-inactive #block-dosomething-login-become-member,
 .not-front.not-logged-in.secondary-menu-inactive #block-dosomething-login-become-member {

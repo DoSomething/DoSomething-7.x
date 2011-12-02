@@ -85,7 +85,7 @@ body
     +remove-link-underlines
 
 .not-front #main-wrapper
-  +background-image(linear-gradient(left, $gray-dark percentage($left-col-width / $page-width), rgba($black, 0) percentage($left-col-width / $page-width)))
+  +background-image(linear-gradient(left, $gray-dark percentage($left-col-width / $page-width), rgba($black, 0) percentage($left-col-width / $page-width)), linear-gradient(right, $c-content-bg percentage($main-width / $page-width), rgba($gray-lighter, 0) percentage($main-width / $page-width)))
   .ie9 &, .ie8 &, .ie7 &
     background-image: image_url('bg-main-wrapper.png')
 

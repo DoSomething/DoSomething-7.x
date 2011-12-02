@@ -2211,12 +2211,12 @@ body.admin-menu {
 }
 
 .not-front #main-wrapper {
-  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(22.162%, #222222), color-stop(22.162%, rgba(0, 0, 0, 0)));
-  background-image: -webkit-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
-  background-image: -moz-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
-  background-image: -o-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
-  background-image: -ms-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
-  background-image: linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%);
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(22.162%, #222222), color-stop(22.162%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, 100% 50%, 0% 50%, color-stop(77.838%, #e3e3e3), color-stop(77.838%, rgba(227, 227, 227, 0)));
+  background-image: -webkit-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%), -webkit-linear-gradient(right, #e3e3e3 77.838%, rgba(227, 227, 227, 0) 77.838%);
+  background-image: -moz-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%), -moz-linear-gradient(right, #e3e3e3 77.838%, rgba(227, 227, 227, 0) 77.838%);
+  background-image: -o-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%), -o-linear-gradient(right, #e3e3e3 77.838%, rgba(227, 227, 227, 0) 77.838%);
+  background-image: -ms-linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%), -ms-linear-gradient(right, #e3e3e3 77.838%, rgba(227, 227, 227, 0) 77.838%);
+  background-image: linear-gradient(left, #222222 22.162%, rgba(0, 0, 0, 0) 22.162%), linear-gradient(right, #e3e3e3 77.838%, rgba(227, 227, 227, 0) 77.838%);
 }
 .ie9 .not-front #main-wrapper, .ie8 .not-front #main-wrapper, .ie7 .not-front #main-wrapper {
   background-image: url('images/bg-main-wrapper.png');
