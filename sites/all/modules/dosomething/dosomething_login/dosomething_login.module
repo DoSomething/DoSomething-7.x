@@ -1336,9 +1336,10 @@ function dosomething_login_facebook_deauth($app_id, $access_token) {
 
   // If successful, also remove the uid-fbid pairing.
   if (!is_array($result) && $result) {
-    fboauth_save($user->uid, NULL);
     // Remove friends from user profile.
-    dosomething_login_facebook_friend_process($uid);
+    dosomething_login_facebook_friend_process($user->uid);
+    // Remove users from fboauth.
+    fboauth_save($user->uid, NULL);
     drupal_set_message(t('Your DoSomething account has been disconnected from Facebook.'));
   }
   else {
