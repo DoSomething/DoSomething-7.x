@@ -445,7 +445,7 @@ function dosomething_roles_get_current_role($uid) {
   $account = user_load($uid);
   $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
   $intersection = array_intersect($role_hierarchy, $account->roles);
-  if (is_array($intersection)) {
+  if (!empty($intersection)) {
     // Note: only one of these roles should be in the roles list.
     // If there are more, then the highest level (lowest weight) is grabbed.
     $current_role_name = array_shift($intersection);

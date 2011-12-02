@@ -499,5 +499,12 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 
   // Build the hometown value out of city and state.
   $address = $profile->field_user_address->value();
-  $variables['hometown'] = $address['locality'] . ', ' . $address['administrative_area'];
+  $hometown = array(
+    $address['locality'],
+    $address['administrative_area'],
+  );
+  $variables['hometown'] = implode(', ', array_filter($hometown));
+  if (empty($variables['hometown'])) {
+    $variables['hometown'] = '-';
+  }
 }
