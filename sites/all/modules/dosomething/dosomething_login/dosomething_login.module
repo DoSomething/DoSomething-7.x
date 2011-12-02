@@ -1339,7 +1339,7 @@ function dosomething_login_facebook_deauth($app_id, $access_token) {
     fboauth_save($user->uid, NULL);
     // Remove friends from user profile.
     dosomething_login_facebook_friend_process($uid);
-    drupal_set_message(t('Your account has been disconnected from Facebook.'));
+    drupal_set_message(t('Your DoSomething account has been disconnected from Facebook.'));
   }
   else {
     drupal_set_message(t('There was an error disconnecting from Facebook. The server returned %message.', array('%message' => $result->error_msg)), 'error');
@@ -1429,7 +1429,7 @@ function dosomething_login_facebook_friend_process($uid, $facebook_friends = arr
     ->condition('uid', $uid)
     ->execute();
 
-  if (isset($facebook_friends)) {
+  if ($facebook_friends) {
     // Get currently users currently registered through Facebook.
     $local_results = db_select('fboauth_users')
       ->fields('fboauth_users', array('fbid', 'uid'))
@@ -1452,7 +1452,7 @@ function dosomething_login_facebook_friend_process($uid, $facebook_friends = arr
     if ($fbid) {
       // Remove old entries.
       db_delete('facebook_friends')
-        ->condition('fbuid', $fbuid)
+        ->condition('fbid', $fbid)
         ->execute();
     }
   }
