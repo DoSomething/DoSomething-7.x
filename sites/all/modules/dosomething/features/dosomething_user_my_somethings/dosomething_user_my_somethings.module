@@ -205,7 +205,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       }
     }
   }
-  $report_backs = dosomething_user_my_somethings_campaign_report_backs();
+  $report_backs = dosomething_user_my_somethings_campaign_report_backs($uid);
   if (count($report_backs)) {
     $items['campaign_report_back'] = array('data' => 'Campaign Sign Ups', 'children' => array());
     foreach($report_backs as $nid => $title) {
@@ -437,15 +437,14 @@ function dosomething_user_my_somethings_theme() {
  * Get a list of campain report backs that a user has not submitted
  * for that user's campaign groups.
  */
-function dosomething_user_my_somethings_campaign_report_backs() {
-  global $user;
+function dosomething_user_my_somethings_campaign_report_backs($uid) {
   $gids = array();
   $report_backs = array();
   $report_backs_entity_ids = array();
   $user_submissions = array();
   $incomplete_report_backs = array();
 
-  if ($groups = dosomething_user_my_somethings_get_user_group_memberships($user->uid, 'campaign')) {
+  if ($groups = dosomething_user_my_somethings_get_user_group_memberships($uid, 'campaign')) {
     foreach ($groups as $group) {
       $gids[] = $group->gid;
     }
