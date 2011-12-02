@@ -99,8 +99,8 @@ function ds_ctools_render_alter(&$info, &$page, &$context) {
       drupal_add_css($css_path . 'dosomething-start-something.css');
       break;
 
-    case 'action_updates':
-      drupal_add_css($css_path . 'page-action-updates.css');
+    case 'member_wall':
+      drupal_add_css($css_path . 'page-member-wall.css');
       break;
 
     case 'node_view_grants':

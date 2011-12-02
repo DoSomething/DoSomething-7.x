@@ -1,0 +1,85 @@
+@import setup
+@import partials/lib/extend/helpers
+@import partials/02-extend/jquery-selectbox
+@import partials/01-variables/fonts
+
+.views-exposed-form .views-exposed-widget
+  padding: 0
+
+// Filters
+#views-exposed-form-member-wall-panel-pane-1
+  background-color: $gray6
+  +box-shadow(#cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset)
+  border-top: 1px solid $white
+  border-bottom: 1px solid $white
+  color: $white
+  margin: 1em 0
+  +pie-clearfix
+  h2.block-title
+    color: $white
+    line-height: 2.1
+    margin-bottom: calc-em(4px, $s3)
+    margin-top: 0
+  #edit-description
+    height: 0
+  label
+    @extend .visuallyhidden
+  .form-item, .form-actions
+    height: auto
+  #edit-taxonomy-vocabulary-5-tid-wrapper,
+  #edit-type-wrapper,
+  #edit-field-report-back-reference-nid-wrapper,
+  #edit-date-argument-wrapper,
+  .views-submit-button
+    margin: 0.3em 0 0.3em 0.5em
+    .selectBox-dropdown
+      +ds-dropdown
+      cursor: pointer
+      line-height: inherit
+      margin-bottom: 0
+      width: 25%
+    .views-widget
+      .form-item
+        a
+          width: 111px
+  input[type="submit"].form-submit
+    margin-left: 0.8em
+    margin-top: 0
+    padding-bottom: 2px
+  .views-exposed-widgets
+    +status-bar('.views-exposed-widget')
+    display: block
+    margin-bottom: 0
+    .views-exposed-widget
+      font-style: normal
+      margin-left: 0
+      padding: 0
+      .views-widget
+        +float-left
+
+// Content boxes
+.view-id-member_wall
+  .views-row
+    +float-left
+    margin: 0 0.5em 0.5em 0
+    width: 32.4%
+    &:last-child
+      margin-right: 0
+    .views-field-view-node
+      +border-bottom_radius
+      font-family: $font-headline
+      font-size: 18px
+      font-weight: 500
+      height: calc-em(18px, $s0)
+      line-height: 1em
+      margin-top: 0.2em
+      padding: 8px 0 0 8px
+      text-align: left
+      width: 96%
+  .views-row-odd .views-field-view-node
+    background-color: $gray2
+  .views-row-even .views-field-view-node
+    background-color: $gray
+  text-rendering: optimizeLegibility
+  a
+    color: $white
