@@ -255,6 +255,29 @@ function dosomething_clubs_default_page_manager_handlers() {
     $display->panels['row2-right'][1] = 'new-8';
     $pane = new stdClass;
     $pane->pid = 'new-9';
+    $pane->panel = 'row2-right';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Start a Project',
+      'title' => 'Start a Project',
+      'body' => '<a href="/node/718313/%node:nid">Let\'s Go</a>',
+      'format' => '1',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-9'] = $pane;
+    $display->panels['row2-right'][2] = 'new-9';
+    $pane = new stdClass;
+    $pane->pid = 'new-10';
     $pane->panel = 'row3';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_project_photo';
@@ -278,10 +301,10 @@ function dosomething_clubs_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-9'] = $pane;
-    $display->panels['row3'][0] = 'new-9';
+    $display->content['new-10'] = $pane;
+    $display->panels['row3'][0] = 'new-10';
     $pane = new stdClass;
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'row3';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_club_video';
@@ -304,10 +327,10 @@ function dosomething_clubs_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-10'] = $pane;
-    $display->panels['row3'][1] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['row3'][1] = 'new-11';
     $pane = new stdClass;
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-12';
     $pane->panel = 'row3';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:taxonomy_vocabulary_5';
@@ -328,10 +351,10 @@ function dosomething_clubs_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
-    $display->content['new-11'] = $pane;
-    $display->panels['row3'][2] = 'new-11';
+    $display->content['new-12'] = $pane;
+    $display->panels['row3'][2] = 'new-12';
     $pane = new stdClass;
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-13';
     $pane->panel = 'top';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_club_picture';
@@ -355,8 +378,8 @@ function dosomething_clubs_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-12'] = $pane;
-    $display->panels['top'][0] = 'new-12';
+    $display->content['new-13'] = $pane;
+    $display->panels['top'][0] = 'new-13';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
