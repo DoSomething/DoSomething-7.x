@@ -392,3 +392,10 @@
   float: right;
   width: 4.583em;
 }
+.ie7 .pane-resources-panel-pane-1 .unimage-wrapper {
+  float: none;
+  width: 340px;
+}
+.ie7 .pane-resources-panel-pane-1 .unimage-wrapper h2 {
+  float: none;
+}
