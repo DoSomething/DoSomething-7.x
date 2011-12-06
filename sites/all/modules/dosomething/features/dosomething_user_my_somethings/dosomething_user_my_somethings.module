@@ -493,7 +493,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $account = $variables['account'];
   $profile = entity_metadata_wrapper('profile2', $variables['profile']);
 
-  $variables['member_status'] = dosomething_roles_get_current_role($account->uid);
+  $variables['member_status'] = dosomething_user_my_somethings_user_role($account);
   $variables['member_since'] = date('m/Y', $account->created);
 
   // Build the hometown value out of city and state.
