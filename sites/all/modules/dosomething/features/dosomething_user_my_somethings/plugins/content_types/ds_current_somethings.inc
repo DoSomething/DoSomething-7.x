@@ -21,21 +21,9 @@ function dosomething_user_my_somethings_ds_current_somethings_ctools_content_typ
 function dosomething_user_my_somethings_ds_current_somethings_content_type_render($subtype, $conf, $panel_args, $context) {
   $uid = $context->data->uid;
   $block = new stdClass();
-  $content = dosomething_user_my_somethings_ds_current_somethings_content($uid);
-  $block->content = '<h2>' . t('My Current Somethings') . '</h2>';
-  $block->content .= theme('table', array('rows' => $content));
+  $block->title = t('My Current Somethings');
+  $elements = dosomething_user_my_somethings_current_somethings($uid);
+  $block->content = drupal_render($elements);
   return $block;
 }
 
-/**
- * Return content for My Somethings pane.
- */
-function dosomething_user_my_somethings_ds_current_somethings_content($uid) {
-  $links = array();
-
-  $my_somethings = dosomething_user_my_somethings_current_somethings_links($uid);
-
-
-
-  return $links;
-}
