@@ -32,18 +32,10 @@ function dosomething_user_my_somethings_ds_current_somethings_content_type_rende
  */
 function dosomething_user_my_somethings_ds_current_somethings_content($uid) {
   $links = array();
-  $user = user_load($uid);
-  $my_somethings = dosomething_user_my_somethings_get_my_somethings($uid);
 
-  // Find a user's projects where status is idea or ongoing.
-  if (isset($my_somethings['project_report']) && count($my_somethings['project_report'])) {
-    foreach ($my_somethings['project_report'] as $project) {
-      $links[] = array(
-        'title' => $project->field_project_title_value,
-        'link' => l('Complete this', 'node/' . $project->nid . '/submission/' . $project->sid),
-      );
-    }
-  }
+  $my_somethings = dosomething_user_my_somethings_current_somethings_links($uid);
+
+
 
   return $links;
 }
