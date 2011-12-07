@@ -1237,6 +1237,9 @@ function dosomething_grants_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_award_focus',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -1246,22 +1249,23 @@ function dosomething_grants_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'General Volunteerism',
-          1 => 'General Social Entrepreneurship',
-          2 => 'Animal Welfare',
-          3 => 'Disaster Response and Relief',
-          4 => 'Discrimination',
-          5 => 'Education',
-          6 => 'Environment',
-          7 => 'Health and Fitness',
-          8 => 'HIV and Sexuality',
-          9 => 'International Human Rights',
-          10 => 'Poverty',
-          11 => 'Violence and Bullying',
-          12 => 'War, Peace and Politics',
+          'General Volunteerism' => 'General Volunteerism',
+          'General Social Entrepreneurship' => 'General Social Entrepreneurship',
+          'Animal Welfare' => 'Animal Welfare',
+          'Disaster Response and Relief' => 'Disaster Response and Relief',
+          'Discrimination' => 'Discrimination',
+          'Education' => 'Education',
+          'Environment' => 'Environment',
+          'Health and Fitness' => 'Health and Fitness',
+          'HIV and Sexuality' => 'HIV and Sexuality',
+          'International Human Rights' => 'International Human Rights',
+          'Poverty' => 'Poverty',
+          'Violence and Bullying' => 'Violence and Bullying',
+          'War, Peace and Politics' => 'War, Peace and Politics',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1270,11 +1274,7 @@ function dosomething_grants_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'grants_database',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1303,14 +1303,14 @@ function dosomething_grants_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_award_focus',
       'label' => 'Award Focus',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '2',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
@@ -2501,6 +2501,9 @@ function dosomething_grants_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_rolling',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -2510,12 +2513,13 @@ function dosomething_grants_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'closed',
-          1 => 'open',
-          2 => 'rolling',
+          'closed' => 'closed',
+          'open' => 'open',
+          'rolling' => 'rolling',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -2524,11 +2528,7 @@ function dosomething_grants_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'grants_database',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2557,14 +2557,14 @@ function dosomething_grants_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_rolling',
       'label' => 'Grant status',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '0',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
@@ -2582,6 +2582,9 @@ function dosomething_grants_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_type_of_award',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -2591,17 +2594,18 @@ function dosomething_grants_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'Cash Prize',
-          1 => 'Certificate',
-          2 => 'Conference',
-          3 => 'Fellowship',
-          4 => 'Project Grant',
-          5 => 'Public Recognition',
-          6 => 'Scholarship',
-          7 => 'Trip',
+          'Cash Prize' => 'Cash Prize',
+          'Certificate' => 'Certificate',
+          'Conference' => 'Conference',
+          'Fellowship' => 'Fellowship',
+          'Project Grant' => 'Project Grant',
+          'Public Recognition' => 'Public Recognition',
+          'Scholarship' => 'Scholarship',
+          'Trip' => 'Trip',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -2610,11 +2614,7 @@ function dosomething_grants_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'grants_database',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => 'hold down ctrl button to select more than one',
       'display' => array(
@@ -2643,14 +2643,14 @@ function dosomething_grants_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_type_of_award',
       'label' => 'Type of Award',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '3',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',

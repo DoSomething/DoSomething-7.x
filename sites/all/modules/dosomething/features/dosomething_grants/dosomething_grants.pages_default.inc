@@ -30,6 +30,7 @@ function dosomething_grants_default_page_manager_handlers() {
         'keyword' => 'general_grant_app',
         'name' => 'entity:node',
         'id' => '718348',
+        'entity_id' => '718443',
       ),
     ),
     'relationships' => array(),

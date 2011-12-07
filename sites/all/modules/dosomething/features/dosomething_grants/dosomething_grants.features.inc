@@ -43,7 +43,7 @@ function dosomething_grants_node_info() {
 '),
     ),
     'grants_database' => array(
-      'name' => t('grant database entry'),
+      'name' => t('Grant database entry'),
       'base' => 'node_content',
       'description' => t('Entries of ALL DS and non DS grants teens can apply for.  Users can add. '),
       'has_title' => '1',
