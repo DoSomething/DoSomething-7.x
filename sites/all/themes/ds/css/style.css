@@ -1058,11 +1058,13 @@ thead tr th {
 thead tr th:nth-of-type(odd) {
   background-color: #014e9c;
 }
+thead tr th,
 thead tr th a {
   color: white;
   font-size: 18px;
   padding-left: 0.5em;
 }
+thead tr th:hover,
 thead tr th a:hover {
   color: white;
 }
@@ -3021,7 +3023,7 @@ nav[role=navigation] .secondary .first .ds-nav-dropdown {
   left: -10px;
 }
 
-.secondary-menu-inactive .secondary {
+.secondary-menu-inactive nav[role=navigation] .secondary {
   position: absolute;
   width: 78%;
 }

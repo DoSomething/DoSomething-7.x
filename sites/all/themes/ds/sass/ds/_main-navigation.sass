@@ -94,11 +94,11 @@ nav[role=navigation]
   .secondary .first .ds-nav-dropdown
     left: -10px
 
-
 .secondary-menu-inactive
-  .secondary
-    position: absolute
-    width: 78%
+  nav[role=navigation]
+    .secondary
+      position: absolute
+      width: 78%
 
 #main-menu
   // +adjust-font-size-to($s4)
@@ -249,7 +249,6 @@ nav[role=navigation]
           padding: 0.3em 0.5em
           margin-bottom: 0
           +link-colors($white, $white, $white, $white, false)
-
 
 .issues-dropdown
   display: none
