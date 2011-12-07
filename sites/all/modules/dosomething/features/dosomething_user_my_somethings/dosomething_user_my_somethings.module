@@ -533,6 +533,7 @@ function dosomething_user_my_somethings_campaign_images($uid) {
       $campaigns[$campaign->report_back_entity_id]->image = $image;
     }
     else {
+      // TODO: needs default images.
       $campaigns[$campaign->report_back_entity_id]->image = 'campaign-default'; //Need to work this out.
     }
   }
@@ -542,9 +543,11 @@ function dosomething_user_my_somethings_campaign_images($uid) {
 }
 
 
+// TODO finish this. it blows up if you have no drafts.
+// also needs a default image.
 function dosomething_user_my_somethings_get_images($uid) {
   $grant_nids = array();
-  $somethings = dosomething_user_my_somethings_get_my_somethings($uid);
+  $somethings = dosomething_user_my_somethings_get_my_somethings($uid); // gives project reports and grant apps
   dpm($somethings);
   foreach ($somethings as $type => $data) {
     if ($type == 'grant_application') {
@@ -572,6 +575,9 @@ function dosomething_user_my_somethings_get_images($uid) {
     }
 
     elseif ($type == 'project_report') {
+      // TODO
+      // needs image from project
+      // also needs a default image
     }
   }
 }
@@ -580,5 +586,6 @@ function dosomething_user_my_somethings_current_somethings_links($uid) {
   $campaigns = dosomething_user_my_somethings_campaign_images($uid);
   //dpm($campaigns);
   $somethings = dosomething_user_my_somethings_get_images($uid);
+  // TODO: combine
 
 }

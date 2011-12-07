@@ -29,6 +29,7 @@ function dosomething_user_my_somethings_ds_past_somethings_content_type_render($
 
 /**
  * Return content for My Somethings pane.
+ * TODO: this needs images and should work the same way as 'current somethings'
  */
 function dosomething_user_my_somethings_ds_past_somethings_content($uid) {
   $links = array();
