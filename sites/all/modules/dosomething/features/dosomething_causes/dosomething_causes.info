@@ -3,6 +3,7 @@ description = "Creates the Cause taxonomy term page."
 core = "7.x"
 package = "DoSomething"
 php = "5.2.4"
+files[] = dosomething_causes_views_handler_argument_term_node_tid.inc
 dependencies[] = "ctools"
 dependencies[] = "dosomething_blog"
 dependencies[] = "dosomething_project_report"
