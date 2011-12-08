@@ -218,120 +218,86 @@
   width: 25px;
 }
 
-.page-user .pane-ds-my-somethings .pane-content {
-  margin-bottom: 24px;
-  border-bottom: 1px solid #bbbbbb;
-  padding-bottom: 10px;
+.pane-ds-current-somethings,
+.pane-my-somethings-panel-pane-1,
+.pane-ds-past-somethings {
+  width: 100%;
 }
-.page-user .pane-ds-my-somethings .pane-content span.label {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  margin-right: 5px;
+.pane-ds-current-somethings .pane-content,
+.pane-my-somethings-panel-pane-1 .pane-content,
+.pane-ds-past-somethings .pane-content {
+  *zoom: 1;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 {
-  color: white;
+.pane-ds-current-somethings .pane-content:after,
+.pane-my-somethings-panel-pane-1 .pane-content:after,
+.pane-ds-past-somethings .pane-content:after {
+  content: "";
+  display: table;
+  clear: both;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row {
+
+.something-item, .pane-my-somethings-panel-pane-1 .views-row {
   display: inline;
   float: left;
   width: 50%;
-  background: url('../images/bg-arrowblock-dark.png') no-repeat 98% top;
+  background: url('../images/bg-arrowblock-light.png') no-repeat 98% top;
   margin-bottom: 2em;
   height: 108px;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row .views-field-field-picture,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row .views-field-field-picture,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row .views-field-field-picture,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .views-field-field-picture {
+.something-item:nth-of-type(even), .pane-my-somethings-panel-pane-1 .views-row:nth-of-type(even) {
+  background: url('../images/bg-arrowblock-dark.png') no-repeat 98% top;
+}
+
+.mysomethings-image, .pane-my-somethings-panel-pane-1 .views-field-field-club-picture {
   display: inline;
   float: left;
   width: 170px;
   height: 107px;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row .views-field-field-picture .my-somethings-default-img,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row .views-field-field-picture .my-somethings-default-img,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row .views-field-field-picture .my-somethings-default-img,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .views-field-field-picture .my-somethings-default-img {
+
+.my-somethings-default-img {
   background: url('../images/members-only-clubs-cropped.jpg') no-repeat;
   width: 170px;
   height: 107px;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row .my-somethings-wrapper,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row .my-somethings-wrapper,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row .my-somethings-wrapper,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .my-somethings-wrapper {
-  padding: 5px 10px 0 20px;
-  width: 140px;
-  height: 102px;
+
+.something-description, .pane-my-somethings-panel-pane-1 .club-title-container {
+  width: 162px;
+  height: 107px;
   display: inline;
-  float: left;
+  float: right;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row .my-somethings-wrapper .my-somethings-title,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row .my-somethings-wrapper .my-somethings-title,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row .my-somethings-wrapper .my-somethings-title,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .my-somethings-wrapper .my-somethings-title {
+
+.my-somethings-title a, .pane-my-somethings-panel-pane-1 .club-title-container .field-content a {
   font-size: 1.5em;
   line-height: 1.333em;
-  line-height: 1em;
+  color: white;
   font-family: din-web, "Trebuchet MS", sans-serif;
-  text-rendering: optimizeLegibility;
   font-weight: 500;
   height: 80px;
+  line-height: 2em;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row .my-somethings-wrapper .my-somethings-link,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row .my-somethings-wrapper .my-somethings-link,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row .my-somethings-wrapper .my-somethings-link,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .my-somethings-wrapper .my-somethings-link {
+.my-somethings-title a:hover, .pane-my-somethings-panel-pane-1 .club-title-container .field-content a:hover, .my-somethings-title a:visited, .pane-my-somethings-panel-pane-1 .club-title-container .field-content a:visited {
+  color: white;
+}
+
+.my-somethings-link {
+  padding-right: 10px;
   text-align: right;
 }
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_1 .views-row .my-somethings-wrapper .my-somethings-link a,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_2 .views-row .my-somethings-wrapper .my-somethings-link a,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_3 .views-row .my-somethings-wrapper .my-somethings-link a,
-.page-user .view-my-somethings-views-data.view-display-id-panel_pane_4 .views-row .my-somethings-wrapper .my-somethings-link a {
+.my-somethings-link a {
   color: white;
 }
-.page-user .pane-my-somethings-panel-pane-1 {
-  display: inline;
-  float: left;
+.my-somethings-link a:hover, .my-somethings-link a:visited {
+  color: white;
+}
+
+.pane-my-somethings-panel-pane-1 {
   width: 100%;
 }
-.page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row:nth-of-type(odd) {
-  background: url('../images/bg-arrowblock-dark.png') no-repeat 98% top;
-}
-.page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row:nth-of-type(even) {
-  background: url('../images/bg-arrowblock-light.png') no-repeat 98% top;
-}
-.page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row {
-  display: inline;
-  float: left;
-  width: 50%;
-  margin-bottom: 2em;
-  height: 108px;
-}
-.page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row .views-field-field-club-picture {
-  display: inline;
-  float: left;
-}
-.page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row .club-title-container {
-  padding: 5px 10px 0 20px;
-  width: 140px;
-  height: 102px;
-  display: inline;
-  float: left;
-}
-.page-user .view-my-somethings.view-display-id-panel_pane_1 .views-row .club-title-container a {
-  font-size: 1.5em;
-  line-height: 1.333em;
-  line-height: 1em;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  color: white;
-  text-rendering: optimizeLegibility;
-  font-weight: 500;
+.pane-my-somethings-panel-pane-1 .pane-content {
+  margin-bottom: 24px;
+  padding-bottom: 10px;
 }

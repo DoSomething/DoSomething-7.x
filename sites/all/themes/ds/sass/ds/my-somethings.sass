@@ -1,5 +1,6 @@
 @import setup
 
+// @TODO remove tabs sitewide and then delete this
 .tabs
   display: none
 
@@ -52,10 +53,9 @@
       padding-right: 1em
     ul:last-of-type
       display: block
-    li
-      .place
-        +float-left
-        display: block
+    li .place
+      +float-left
+      display: block
     label
       cursor: initial
       +float-left
@@ -109,83 +109,77 @@
   ul
     list-style: none
     +horizontal-list
+  // @TODO Create and image style and remove this hack
   img
     height: 25px
     width: 25px
 
-// Bottom sections
-.page-user
-  .pane-ds-my-somethings
-    .pane-content
-      margin-bottom: 24px
-      border-bottom: 1px solid #BBB
-      padding-bottom: 10px
-      span.label
-        font-family: $font-headline
-        font-weight: bold
-        font-size: 18px
-        margin-right: 5px
+// Bottom  my sections
+.pane-ds-current-somethings,
+.pane-my-somethings-panel-pane-1,
+.pane-ds-past-somethings
+  width: 100%
+  .pane-content
+    +pie-clearfix
 
-  .view-my-somethings-views-data.view-display-id-panel_pane_1,
-  .view-my-somethings-views-data.view-display-id-panel_pane_2,
-  .view-my-somethings-views-data.view-display-id-panel_pane_3,
-  .view-my-somethings-views-data.view-display-id-panel_pane_4
+.something-item
+  +float-left
+  width: 50%
+  background: image_url('bg-arrowblock-light.png') no-repeat 98% top
+  margin-bottom: 2em
+  height: 108px
+  &:nth-of-type(even)
+    background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
+
+.mysomethings-image
+  +float-left
+  width: 170px
+  height: 107px
+
+.my-somethings-default-img
+  background: image_url('members-only-clubs-cropped.jpg') no-repeat
+  width: 170px
+  height: 107px
+
+.something-description
+  width: 162px
+  height: 107px
+  +float-right
+
+.my-somethings-title,
+  & a
+    +adjust-font-size-to($s2)
     color: $white
-    .views-row
-      +float-left
-      width: 50%
-      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
-      margin-bottom: 2em
-      height: 108px
-      .views-field-field-picture
-        +float-left
-        width: 170px
-        height: 107px
-        .my-somethings-default-img
-          background: image_url('members-only-clubs-cropped.jpg') no-repeat
-          width: 170px
-          height: 107px
-      .my-somethings-wrapper
-        padding: 5px 10px 0 20px
-        width: 140px
-        height: 102px
-        +float-left
-        .my-somethings-title
-          +adjust-font-size-to($s2)
-          line-height: 1em
-          font-family: $font-headline
-          text-rendering: optimizeLegibility
-          font-weight: 500
-          height: 80px
-        .my-somethings-link
-          text-align: right
-          a
-            color: $white
+    font-family: $font-headline
+    font-weight: 500
+    height: 80px
+    line-height: 2em
+    word-wrap: break-word
+    text-rendering: optimizeLegibility
+    &:hover,
+    &:visited
+      color: $white
 
-  .pane-my-somethings-panel-pane-1
-    +float-left
-    width: 100%
-  .view-my-somethings.view-display-id-panel_pane_1
-    .views-row:nth-of-type(odd)
-      background: image_url('bg-arrowblock-dark.png') no-repeat 98% top
-    .views-row:nth-of-type(even)
-      background: image_url('bg-arrowblock-light.png') no-repeat 98% top
-    .views-row
-      +float-left
-      width: 50%
-      margin-bottom: 2em
-      height: 108px
-      .views-field-field-club-picture
-        +float-left
-      .club-title-container
-        padding: 5px 10px 0 20px
-        width: 140px
-        height: 102px
-        +float-left
-        a
-          +adjust-font-size-to($s2)
-          line-height: 1em
-          font-family: $font-headline
-          color: $white
-          text-rendering: optimizeLegibility
-          font-weight: 500
+.my-somethings-link
+  padding-right: 10px
+  text-align: right
+  a
+    color: $white
+    &:hover,
+    &:visited
+      color: $white
+
+// Teams has different classes
+.pane-my-somethings-panel-pane-1
+  width: 100%
+  .pane-content
+    margin-bottom: 24px
+    padding-bottom: 10px
+  .views-row
+    @extend .something-item
+  .views-field-field-club-picture
+    @extend .mysomethings-image
+  .club-title-container
+    @extend .something-description
+    .field-content
+      @extend .my-somethings-title
