@@ -21,9 +21,12 @@ function drush_dosomething_school_load() {
     return drush_set_error(dt('Could not open GreatSchools XML at @path', array('@path' => $path)));
   }
 
-  // Remove all existing records.
-  db_truncate('ds_school_import')->execute();
+#TODO this is a bad idea now that they're entities... deleting should probably
+#be a separate command
+  drush_print(dt('Removing existing school records.'));
+  db_truncate('ds_school')->execute();
 
+  drush_print(dt('Importing records:'));
   $count = 0;
   $fields = array(
     'universal-id',
@@ -48,7 +51,7 @@ function drush_dosomething_school_load() {
       $xml = $r->readOuterXML();
       $xml = preg_replace($ignore, '', $xml);
 
-      $row = array('xml' => $xml);
+      $row = array('uid' => 1);
       foreach ($fields as $name) {
         // Regexes are much faster than XML parsing.
         preg_match("!\<$name\>(.+)\<\/$name\>!", $xml, $matches);
@@ -64,10 +67,11 @@ function drush_dosomething_school_load() {
       $row['lat'] = (float) $row['lat'];
       $row['lon'] = (float) $row['lon'];
 
-      // Rename the id.
-      $row['id'] = $row['universal-id'];
+      // Rename their id.
+      $row['gsid'] = $row['universal-id'];
       unset($row['universal-id']);
-      drupal_write_record('ds_school_import', $row);
+
+      entity_save('ds_school', $row);
 
       $count++;
       if ($count % 10000 == 0) {

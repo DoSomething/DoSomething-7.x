@@ -9,13 +9,25 @@
  * Implements hook_schema().
  */
 function dosomething_school_schema() {
-  $schema['ds_school_import'] = array(
+  $schema['ds_school'] = array(
     'description' => 'Holds GreatSchools data during migration import.',
     'fields' => array(
-      'id' => array(
-        'description' => 'The GreatSchools universal id',
-        'type' => 'int',
+      'sid' => array(
+        'description' => 'Primary Key: Unique school id.',
+        'type' => 'serial',
         'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => "The {users}.uid of the associated user.",
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => NULL,
+      ),
+      'gsid' => array(
+        'description' => 'The GreatSchools universal id. This will be NULL or 0 (I need to choose one) on user generated schools.',
+        'type' => 'int',
+        'not null' => FALSE,
         'unsigned' => TRUE,
       ),
       'name' => array(
@@ -64,16 +76,20 @@ function dosomething_school_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
-      'xml' => array(
-        'description' => "The schools' XML element.",
-        'type' => 'text',
-        'not_null' => TRUE,
-      ),
     ),
-    'primary key' => array('id'),
+    'primary key' => array('sid'),
+    'unique keys' => array(
+      'gsid' => array('gsid'),
+    ),
     'indexes' => array(
       // Should help speed searches.
-      'name_zip' => array('name', 'zip'),
+      'name_state_uid' => array('name', 'state', 'uid'),
+    ),
+    'foreign keys' => array(
+      'users' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'uid'),
+      ),
     ),
   );
   return $schema;
