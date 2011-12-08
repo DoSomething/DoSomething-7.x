@@ -21,11 +21,6 @@ function drush_dosomething_school_load() {
     return drush_set_error(dt('Could not open GreatSchools XML at @path', array('@path' => $path)));
   }
 
-#TODO this is a bad idea now that they're entities... deleting should probably
-#be a separate command
-  drush_print(dt('Removing existing school records.'));
-  db_truncate('ds_school')->execute();
-
   drush_print(dt('Importing records:'));
   $count = 0;
   $fields = array(

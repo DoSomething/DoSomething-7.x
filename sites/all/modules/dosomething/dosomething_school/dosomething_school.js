@@ -21,8 +21,11 @@
               .removeClass('autocomplete-processed')
               // Update autocomplete URL.
               .val(val.substr(0, val.lastIndexOf('/') + 1) + $state.val());
+            // Remove the ARIA element.
+            $('#' + this.id + '-autocomplete-aria-live').remove();
           });
-          Drupal.behaviors.autocomplete.attach($wrapper);
+        // Now re-generate the autocomplete.
+        Drupal.behaviors.autocomplete.attach($wrapper);
       }).addClass('dsschool-processed');
     } //,
   //  detach: function (context) {

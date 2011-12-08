@@ -35,7 +35,6 @@ function dosomething_school_schema() {
         'type' => 'varchar',
         'length' => 127,
         'not null' => TRUE,
-        'default' => '',
       ),
       'level' => array(
         'description' => "Grade span of school. Examples are: 6-8, K-12, 3-5, 4, UG A level of 'UG' or a blank string indicates that the grade span is not known.",
@@ -56,25 +55,22 @@ function dosomething_school_schema() {
         'type' => 'char',
         'length' => 2,
         'not null' => TRUE,
-        'default' => '',
       ),
       'zip' => array(
         'description' => 'Zip code.',
         'type' => 'varchar',
         'length' => 15,
-        'not null' => TRUE,
+        'not null' => FALSE,
       ),
       'lat' => array(
         'description' => 'Latitude.',
         'type' => 'float',
-        'not null' => TRUE,
-        'default' => 0,
+        'not null' => FALSE,
       ),
       'lon' => array(
         'description' => 'Longitude.',
         'type' => 'float',
-        'not null' => TRUE,
-        'default' => 0,
+        'not null' => FALSE,
       ),
     ),
     'primary key' => array('sid'),
@@ -82,8 +78,8 @@ function dosomething_school_schema() {
       'gsid' => array('gsid'),
     ),
     'indexes' => array(
-      // Should help speed searches.
-      'name_state_uid' => array('name', 'state', 'uid'),
+      // Deliberately ordered so that fixed length fields are up front.
+      'uid_state_name' => array('uid', 'state', 'name'),
     ),
     'foreign keys' => array(
       'users' => array(
