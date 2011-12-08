@@ -528,6 +528,9 @@ function dosomething_campaign_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_campaign_main_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -553,7 +556,7 @@ function dosomething_campaign_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'campaign',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Upload an image to be displayed on the campaign list page.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1096,6 +1099,7 @@ function dosomething_campaign_field_default_fields() {
   t('Teaser');
   t('Text to appear in Current Campaigns list');
   t('Upload an image for display on the Start Something landing page slideshow.');
+  t('Upload an image to be displayed on the campaign list page.');
   t('Video');
 
   return $fields;
