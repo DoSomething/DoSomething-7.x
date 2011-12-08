@@ -11,7 +11,7 @@
 function dosomething_roles_cron() {
   // Send notifications for users about to lose membership status.
   for ($month = 3; $month > 0; $month--) {
-    dosomething_roles_send_demotion_notifications($i);
+    dosomething_roles_send_demotion_notifications($month);
   }
 
   // Get users whose anniversaries have past and demote them, if necessary.
