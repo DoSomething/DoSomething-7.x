@@ -101,3 +101,20 @@ function dosomething_projects_callback() {
   print $view->preview($display_id, array($cause, $province, $keyword));
   exit;
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
+  // If this is a webform form and the node type is project lets hide the club
+  // field if and only if it has been set on the form and it matches the query
+  // argument.
+  if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
+    if (!empty($form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
+      && is_numeric(arg(2))
+      && arg(2) == $form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
+      $form['submitted']['webform_entity_form']['field_project_clubs']['#type'] = 'hidden';
+    }
+  }
+}
+
