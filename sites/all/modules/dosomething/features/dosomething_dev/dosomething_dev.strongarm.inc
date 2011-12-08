@@ -14,7 +14,7 @@ function dosomething_dev_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'dummyimages_generate';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['dummyimages_generate'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -35,8 +35,15 @@ function dosomething_dev_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'preprocess_js';
-  $strongarm->value = 1;
+  $strongarm->value = '0';
   $export['preprocess_js'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'stage_file_proxy_origin';
+  $strongarm->value = 'http://zivtech:zivtech@dosomething.zivtech.com';
+  $export['stage_file_proxy_origin'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
