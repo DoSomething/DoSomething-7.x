@@ -22,7 +22,7 @@ function dosomething_user_my_somethings_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'My Clubs';
+  $handler->display->display_options['title'] = 'My Teams';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -36,7 +36,9 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = 'User is not a member of any group.';
+  $handler->display->display_options['empty']['area']['content'] = 'You have not yet joined any clubs.';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Group: Node group */
   $handler->display->display_options['relationships']['og_rel']['id'] = 'og_rel';
   $handler->display->display_options['relationships']['og_rel']['table'] = 'node';

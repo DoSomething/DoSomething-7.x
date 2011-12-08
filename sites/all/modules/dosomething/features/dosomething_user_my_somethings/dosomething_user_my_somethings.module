@@ -647,51 +647,69 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
   else {
     $all_somethings = $cache->data[$era];
   }
-  foreach ($all_somethings as $delta => $something) {
-    $element[$delta] = array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'something-item',
-        ),
-      ),
-      'image' => array(
-        '#theme' => 'image_formatter',
-        '#item' => $something->image,
-        '#image_style' => 'my_somethings',
-        '#path' => array(
-          'path' => $something->uri['path'],
-          'options' => $something->uri['options'] + array(
-            'attributes' => array(
-              'class' => array('mysomethings-image'),
-            ),
-          ),
-        ),
-      ),
-      'description' => array(
+  if (!count($all_somethings)) {
+    switch ($era) {
+      case 'current':
+        $empty_text = t('You do not have any active somethings. Join a campaign, or start a grant application or project!');
+        break;
+      case 'past':
+        $empty_text = t('You do not have any past somethings. Complete a campaign report back, or finish a grant application or project!');
+        break;
+    }
+    $element = array(
+      '#type' => 'markup',
+      '#markup' => $empty_text,
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+    );
+  }
+  else {
+    foreach ($all_somethings as $delta => $something) {
+      $element[$delta] = array(
         '#type' => 'container',
         '#attributes' => array(
           'class' => array(
-            'something-description',
+            'something-item',
           ),
         ),
-        'title' => array(
-          '#type' => 'link',
-          '#title' => t($something->title),
-          '#href' => $something->uri['path'],
-          '#prefix' => '<div class="my-somethings-title">',
-          '#suffix' => '</div>',
+        'image' => array(
+          '#theme' => 'image_formatter',
+          '#item' => $something->image,
+          '#image_style' => 'my_somethings',
+          '#path' => array(
+            'path' => $something->uri['path'],
+            'options' => $something->uri['options'] + array(
+              'attributes' => array(
+                'class' => array('mysomethings-image'),
+              ),
+            ),
+          ),
         ),
-        'complete-this' => array(
-          '#type' => 'link',
-          '#title' => t('Complete this') . ' »',
-          '#href' => $something->uri['path'],
-          '#prefix' => '<div class="my-somethings-link">',
-          '#suffix' => '</div>',
-          '#access' => $era == 'current' ? TRUE : FALSE
+        'description' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'something-description',
+            ),
+          ),
+          'title' => array(
+            '#type' => 'link',
+            '#title' => t($something->title),
+            '#href' => $something->uri['path'],
+            '#prefix' => '<div class="my-somethings-title">',
+            '#suffix' => '</div>',
+          ),
+          'complete-this' => array(
+            '#type' => 'link',
+            '#title' => t('Complete this') . ' »',
+            '#href' => $something->uri['path'],
+            '#prefix' => '<div class="my-somethings-link">',
+            '#suffix' => '</div>',
+            '#access' => $era == 'current' ? TRUE : FALSE
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
   return $element;
 }
