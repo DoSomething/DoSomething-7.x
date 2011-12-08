@@ -22,7 +22,7 @@ function dosomething_user_my_somethings_ds_current_somethings_content_type_rende
   $uid = $context->data->uid;
   $block = new stdClass();
   $block->title = t('My Current Somethings');
-  $elements = dosomething_user_my_somethings_current_somethings($uid);
+  $elements = dosomething_user_my_somethings_display($uid, 'current');
   $block->content = drupal_render($elements);
   return $block;
 }

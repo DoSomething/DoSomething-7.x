@@ -38,6 +38,15 @@ function dosomething_user_my_somethings_webform_submission_update($node, $submis
 }
 
 /**
+ * Implements hook_og_membership_insert().
+ */
+function dosomething_user_my_somethings_og_membership_insert($membership) {
+  if ($membership->entity_type == 'user') {
+    cache_clear_all('dosomething_user_my_somethings_' . $membership->etid, 'cache');
+  }
+}
+
+/**
  * Member dashboard block for logged in users.
  */
 function dosomething_user_my_somethings_member_block() {
@@ -141,7 +150,7 @@ function dosomething_user_my_somethings_profile_completion() {
 }
 
 /**
- * Get markup for My Current Somethings.
+ * Get markup for My Current Somethings (sidebar version).
  */
 function dosomething_user_my_somethings_my_somethings() {
   global $user;
@@ -175,6 +184,7 @@ function dosomething_user_my_somethings_my_somethings() {
 
 /**
  * Get a list of links for the different types of my somethings.
+ * This populates the sidebar list of 'my current somethings'.
  *
  * @param $uid
  *  (int) a user id.
@@ -182,6 +192,10 @@ function dosomething_user_my_somethings_my_somethings() {
  */
 function dosomething_user_my_somethings_my_current_something_links($uid) {
   $items = array();
+
+  $cid = 'dosomething_user_my_somethings_' . $uid;
+  $cache = cache_get($cid);
+
   $somethings_info = array(
     'grant_application' => array(
       'title' => t('Grant Applications'),
@@ -192,8 +206,20 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       'title_field' => 'field_project_title',
     ),
   );
-  // These my somethings are cached.
-  $somethings = dosomething_user_my_somethings_get_my_somethings($uid);
+
+  if (!is_object($cache) || !isset($cache->data['somethings'])) {
+    $somethings = dosomething_user_my_somethings_get_my_somethings($uid, 'current');
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data['somethings'] = $somethings;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $somethings = $cache->data['somethings'];
+  }
+
   if (count($somethings)) {
     foreach ($somethings as $type => $something) {
       if (count($something)) {
@@ -205,7 +231,20 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       }
     }
   }
-  $report_backs = dosomething_user_my_somethings_campaign_report_backs($uid);
+
+  if (!is_object($cache) || !isset($cache->data['report_backs'])) {
+    $report_backs = dosomething_user_my_somethings_campaign_report_backs_needed($uid);
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data['report_backs'] = $report_backs;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $report_backs = $cache->data['report_backs'];
+  }
+
   if (count($report_backs)) {
     $items['campaign_report_back'] = array('data' => 'Campaign Sign Ups', 'children' => array());
     foreach($report_backs as $report_back) {
@@ -216,7 +255,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
 }
 
 /**
- * Get the markup for a list of user's clubs.
+ * Get the markup for a list of user's clubs (sidebar version).
  */
 function dosomething_user_my_somethings_clubs() {
   global $user;
@@ -378,42 +417,34 @@ function dosomething_user_my_somethings_get_user_group_memberships($uid, $node_t
 }
 
 /**
- * Build list of current somethings. These include:
- *   Campaign sign-ups for which the user has not submitted a report-back (links to campaign report-back page)
- *   Incomplete grant applications (link to grant application form)
- *   Projects where status = Idea or Ongoing. (links to project update form)
+ * Build list of current/past somethings. These include:
+ *   Grant applications (link to grant application form)
+ *   Projects (links to project update form)
  *
  * @param $uid
  *  (int) a user id.
+ * @param $era
+ * (string) 'current' or 'past' somethings. 
  * @return array
  */
-function dosomething_user_my_somethings_get_my_somethings($uid) {
-  // TODO: We don't have campaigns modelled here yet, because
-  // the model is changing.
+function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
   $somethings_info = array(
     'grant_application' => array(
       'title_field' => 'field_webform_name',
-      'draft' => TRUE,
+      'draft' => $era == 'current' ? TRUE : FALSE,
       'statuses' => NULL,
     ),
     'project_report' => array(
       'title_field' => 'field_project_title',
       'draft' => FALSE,
-      'statuses' => array('ongoing project', 'project idea'),
+      'statuses' => $era == 'current' ? array('ongoing project', 'project idea') : array('completed project'),
     ),
   );
 
-  $cid = 'dosomething_user_my_somethings_' . $uid;
-  $cache = cache_get($cid);
-  if (!is_object($cache)) {
-    foreach ($somethings_info as $type => $info) {
-      $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title_field'], $info['draft'], $info['statuses']);
-    }
-    cache_set($cid, $somethings);
+  foreach ($somethings_info as $type => $info) {
+    $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title_field'], $info['draft'], $info['statuses']);
   }
-  else {
-    $somethings = $cache->data;
-  }
+
   return $somethings;
 }
 
@@ -437,7 +468,7 @@ function dosomething_user_my_somethings_theme() {
  * Get a list of campain report backs that a user has not submitted
  * for that user's campaign groups.
  */
-function dosomething_user_my_somethings_campaign_report_backs($uid) {
+function dosomething_user_my_somethings_campaign_report_backs_needed($uid) {
   $gids = array();
   $report_backs = array();
   $report_backs_entity_ids = array();
@@ -477,13 +508,25 @@ function dosomething_user_my_somethings_campaign_report_backs($uid) {
 
     // Check if user has a submission for each report back,
     // if not return that info.
-    foreach($report_backs as $report_back) {
+    foreach ($report_backs as $report_back) {
       if (!in_array($report_back->report_back_entity_id, $user_submissions)) {
         $incomplete_report_backs[$report_back->report_back_entity_id] = $report_back;
       }
     }
   }
   return $incomplete_report_backs;
+}
+
+/**
+ * Get a list of campaign report backs completed by user.
+ */
+function dosomething_user_my_somethings_campaign_report_backs_complete($uid) {
+  $report_backs = db_query("SELECT DISTINCT(f.field_report_back_reference_nid) as campaign_entity_id FROM {webform_submissions} w
+                            INNER JOIN {node} n ON w.nid = n.nid
+                            INNER JOIN {field_data_field_report_back_reference} f ON f.entity_id = n.nid
+                            WHERE w.bundle = 'campaign_report_back' AND w.uid = :uid", 
+                            array(':uid' => $uid))->fetchAll();
+  return $report_backs;
 }
 
 /**
@@ -510,28 +553,40 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 }
 
 /**
- * get camapaign images
+ * Get data for /user campaign report backs for current and past my somethings.
  */
-function dosomething_user_my_somethings_campaign_images($uid) {
+function dosomething_user_my_somethings_campaign_list($uid, $era) {
   $somethings = array();
-  $campaigns = dosomething_user_my_somethings_campaign_report_backs($uid);
+  if ($era == 'current') {
+    $campaigns = dosomething_user_my_somethings_campaign_report_backs_needed($uid);
+  }
+  elseif ($era == 'past') {
+    $campaigns = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
+  }
   foreach ($campaigns as $campaign) {
-    $report_backs = entity_load('webform_submission_entity', array($campaign->report_back_entity_id));
-    $report_back = array_shift($report_backs);
-    $campaign = node_load($campaign->campaign_entity_id);
     $something = new stdClass();
+    if (isset($campaign->report_back_entity_id)) {
+      $report_back = node_load($campaign->report_back_entity_id);
+      $something->uri = entity_uri('node', $report_back);
+    }
+    $campaign = node_load($campaign->campaign_entity_id);
+    if (!isset($something->uri)) {
+      $something->uri = entity_uri('node', $campaign);
+    }
     $image = field_get_items('node', $campaign, 'field_campaign_main_image');
     $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
-    $something->uri = entity_uri('webform_submission_entity', $report_back);
     $something->title = $campaign->title;
     $somethings[] = $something;
   }
   return $somethings;
 }
 
-function dosomething_user_my_somethings_get_images($uid) {
+/**
+ * Get data for projects and grant applications for /user current and past my somethings.
+ */
+function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
   $somethings = array();
-  $types = dosomething_user_my_somethings_get_my_somethings($uid); // gives project reports and grant apps
+  $types = dosomething_user_my_somethings_get_my_somethings($uid, $era); // gives project reports and grant apps
   if (count($types)) {
     foreach ($types as $type => $data) {
       if ($type == 'grant_application') {
@@ -572,10 +627,26 @@ function dosomething_user_my_somethings_get_images($uid) {
   return $somethings;
 }
 
-function dosomething_user_my_somethings_current_somethings($uid) {
-  $campaigns = dosomething_user_my_somethings_campaign_images($uid);
-  $somethings = dosomething_user_my_somethings_get_images($uid);
-  $all_somethings = array_merge($campaigns, $somethings);
+/**
+ * Content for the current somethings and past somethings panes.
+ */
+function dosomething_user_my_somethings_display($uid, $era = 'current') {
+  $cid = 'dosomething_user_my_somethings_' . $uid;
+  $cache = cache_get($cid);
+  if (!is_object($cache) || !isset($cache->data[$era])) {
+    $campaigns = dosomething_user_my_somethings_campaign_list($uid, $era);
+    $somethings = dosomething_user_my_somethings_projects_grants_list($uid, $era);
+    $all_somethings = array_merge($campaigns, $somethings);
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data[$era] = $all_somethings;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $all_somethings = $cache->data[$era];
+  }
   foreach ($all_somethings as $delta => $something) {
     $element[$delta] = array(
       '#type' => 'container',
@@ -617,6 +688,7 @@ function dosomething_user_my_somethings_current_somethings($uid) {
           '#href' => $something->uri['path'],
           '#prefix' => '<div class="my-somethings-link">',
           '#suffix' => '</div>',
+          '#access' => $era == 'current' ? TRUE : FALSE
         ),
       ),
     );
