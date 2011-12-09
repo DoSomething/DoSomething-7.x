@@ -50,13 +50,6 @@ function dosomething_project_report_default_page_manager_handlers() {
         'context' => 'argument_entity_id:webform_submission_entity_1',
         'id' => 1,
       ),
-      1 => array(
-        'identifier' => 'Node from Webform Submission (on webform_submissions.node)',
-        'keyword' => 'node',
-        'name' => 'entity_from_schema:nid-webform_submission_entity-node',
-        'context' => 'argument_entity_id:webform_submission_entity_1',
-        'id' => 2,
-      ),
     ),
     'access' => array(
       'plugins' => array(
@@ -273,6 +266,27 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-8'] = $pane;
     $display->panels['right'][0] = 'new-8';
+    $pane = new stdClass;
+    $pane->pid = 'new-9';
+    $pane->panel = 'right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'related_projects-action_sidebar_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'arguments' => array(
+        'dosomething_causes_term_node_tid' => 'Animal Testing',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-9'] = $pane;
+    $display->panels['right'][1] = 'new-9';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
