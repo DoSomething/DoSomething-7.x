@@ -1,7 +1,7 @@
-diff --git a/core/includes/form.inc b/core/includes/form.inc
+diff --git a/includes/form.inc b/includes/form.inc
 index a12fb34..8b1a7d2 100644
---- a/core/includes/form.inc
-+++ b/core/includes/form.inc
+--- a/includes/form.inc
++++ b/includes/form.inc
 @@ -2239,6 +2239,42 @@ function form_type_checkbox_value($element, $input = FALSE) {
  }
  
@@ -56,10 +56,10 @@ index a12fb34..8b1a7d2 100644
          '#attributes' => $element['#attributes'],
          '#parents' => $element['#parents'],
          '#id' => drupal_html_id('edit-' . implode('-', $parents_for_id)),
-diff --git a/core/modules/field/modules/options/options.module b/core/modules/field/modules/options/options.module
+diff --git a/modules/field/modules/options/options.module b/modules/field/modules/options/options.module
 index d4d05ec..04b88d8 100644
---- a/core/modules/field/modules/options/options.module
-+++ b/core/modules/field/modules/options/options.module
+--- a/modules/field/modules/options/options.module
++++ b/modules/field/modules/options/options.module
 @@ -102,10 +102,18 @@ function options_field_widget_form(&$form, &$form_state, $field, $instance, $lan
          reset($options);
          $default_value = array(key($options));
@@ -80,10 +80,10 @@ index d4d05ec..04b88d8 100644
          '#options' => $options,
        );
        break;
-diff --git a/core/modules/field/tests/field.test b/core/modules/field/tests/field.test
+diff --git a/modules/field/tests/field.test b/modules/field/tests/field.test
 index 214eab4..ff508fa 100644
---- a/core/modules/field/tests/field.test
-+++ b/core/modules/field/tests/field.test
+--- a/modules/field/tests/field.test
++++ b/modules/field/tests/field.test
 @@ -1459,6 +1459,47 @@ class FieldFormTestCase extends FieldTestCase {
      // Test with several multiple fields in a form
    }
@@ -132,10 +132,10 @@ index 214eab4..ff508fa 100644
    function testFieldFormJSAddMore() {
      $this->field = $this->field_unlimited;
      $this->field_name = $this->field['field_name'];
-diff --git a/core/modules/simpletest/tests/form.test b/core/modules/simpletest/tests/form.test
+diff --git a/modules/simpletest/tests/form.test b/modules/simpletest/tests/form.test
 index 70ebf86..cd0ba2a 100644
---- a/core/modules/simpletest/tests/form.test
-+++ b/core/modules/simpletest/tests/form.test
+--- a/modules/simpletest/tests/form.test
++++ b/modules/simpletest/tests/form.test
 @@ -122,6 +122,61 @@ class FormsTestCase extends DrupalWebTestCase {
    }
  
@@ -198,10 +198,10 @@ index 70ebf86..cd0ba2a 100644
     * Test default value handling for checkboxes.
     *
     * @see _form_test_checkbox()
-diff --git a/core/modules/simpletest/tests/form_test.module b/core/modules/simpletest/tests/form_test.module
+diff --git a/modules/simpletest/tests/form_test.module b/modules/simpletest/tests/form_test.module
 index 0393b18..73bda37 100644
---- a/core/modules/simpletest/tests/form_test.module
-+++ b/core/modules/simpletest/tests/form_test.module
+--- a/modules/simpletest/tests/form_test.module
++++ b/modules/simpletest/tests/form_test.module
 @@ -23,6 +23,12 @@ function form_test_menu() {
      'access arguments' => array('access content'),
      'type' => MENU_CALLBACK,
