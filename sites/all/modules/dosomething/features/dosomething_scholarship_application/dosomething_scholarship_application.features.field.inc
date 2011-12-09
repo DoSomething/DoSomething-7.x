@@ -679,11 +679,13 @@ function dosomething_scholarship_application_field_default_fields() {
       'bundle' => 'scholarship_application',
       'default_value' => array(
         0 => array(
-          'country' => 'AF',
           'element_key' => 'webform_submission_entity|scholarship_application|field_webform_address|und|0',
-          'locality' => '',
-          'premise' => '',
           'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'administrative_area' => '',
+          'postal_code' => '',
+          'country' => 'US',
         ),
       ),
       'deleted' => '0',
