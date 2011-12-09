@@ -309,6 +309,23 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-10'] = $pane;
     $display->panels['right'][2] = 'new-10';
+    $pane = new stdClass;
+    $pane->pid = 'new-11';
+    $pane->panel = 'right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'related_resources-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $display->content['new-11'] = $pane;
+    $display->panels['right'][3] = 'new-11';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
