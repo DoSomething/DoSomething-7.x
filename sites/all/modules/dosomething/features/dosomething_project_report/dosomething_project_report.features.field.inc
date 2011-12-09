@@ -439,6 +439,139 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+
+  // Exported field: 'webform_submission_entity-project_report-field_num_people_impacted'
+  $fields['webform_submission_entity-project_report-field_num_people_impacted'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_num_people_impacted',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'allowed_values' => array(),
+        'allowed_values_php' => '',
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'profile2_private' => FALSE,
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+      'type_name' => 'project',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '8',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_num_people_impacted',
+      'label' => 'How many people has your project helped?',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '18',
+      ),
+    ),
+  );
+
+
+  // Exported field: 'webform_submission_entity-project_report-field_others_involved'
+  $fields['webform_submission_entity-project_report-field_others_involved'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_others_involved',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'allowed_values' => '',
+        'allowed_values_php' => '',
+        'max_length' => '',
+        'profile2_private' => FALSE,
+        'text_processing' => '1',
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+      'type_name' => 'project',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '14',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_others_involved',
+      'label' => 'How Can Others Help? ',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '22',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-project_report-field_picture'
   $fields['webform_submission_entity-project_report-field_picture'] = array(
     'field_config' => array(
@@ -1078,6 +1211,73 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+
+  // Exported field: 'webform_submission_entity-project_report-field_update_people_involved'
+  $fields['webform_submission_entity-project_report-field_update_people_involved'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_update_people_involved',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'allowed_values' => array(),
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'profile2_private' => FALSE,
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+      'type_name' => 'project_update',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '(i.e. 5 staff and 25 volunteers for a total of 30, or 35 club members.)
+Use numbers only (no text).',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '9',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_update_people_involved',
+      'label' => 'How many people are directly involved in your project?',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '16',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-project_report-field_webform_videos'
   $fields['webform_submission_entity-project_report-field_webform_videos'] = array(
     'field_config' => array(
@@ -1226,6 +1426,10 @@ The content from this field will only be shown to anonymous users.',
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('(i.e. 5 staff and 25 volunteers for a total of 30, or 35 club members.)
+Use numbers only (no text).');
+  t('(i.e. Number of people who donated canned goods to your canned food drive, etc.)');
+  t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
   t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
@@ -1235,6 +1439,8 @@ The content from this field will only be shown to anonymous users.');
   t('Enter the zip codes in which your project made an impact.');
   t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('Goal');
+  t('How many people are directly involved in your project?');
+  t('How many people has your project helped?');
   t('Image');
   t('Issues');
   t('Locations');
