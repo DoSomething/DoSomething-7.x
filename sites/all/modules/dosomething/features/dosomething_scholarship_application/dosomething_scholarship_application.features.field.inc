@@ -707,7 +707,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_address',
       'label' => 'Address',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),

@@ -75,43 +75,11 @@ function dosomething_grant_application_form_alter(&$form, &$form_state, $form_id
 
   if ($augmented) {
     // Attach our submit handler to update the user and profile objects with newer data.
-    $form['#submit'][] = 'dosomething_grant_application_form_validate';
-    $form['#validate'][] = 'dosomething_grant_application_form_submit';
+    // These are the same as dosomething_scholarship_application's handling.
+    $form['#submit'][] = 'dosomething_scholarship_application_form_validate';
+    $form['#validate'][] = 'dosomething_scholarship_application_form_submit';
   }
 }
-
-/**
- * Grant Application form submission callback.
- */
-function dosomething_grant_application_form_validate(&$form, &$form_state) {
-  global $user;
-  // If the email is set, make sure we can update the user's email address.
-  if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
-    $mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
-    $account = user_load_by_mail($mail);
-    // If we found an account with that email address and the email address does not belong to this user, set an error.
-    if ($account && $account->uid != $user->uid) {
-      form_set_error('field_webform_email', t('You may not provide the email address of another user, do you have another account?'));
-    }
-  }
-}
-
-/**
- * Grant Application form submission callback.
- */
-function dosomething_grant_application_form_submit(&$form, &$form_state) {
-  global $user;
-  if (isset($form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
-    $profile = profile2_load_by_user($user, 'main');
-    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-    $profile->save();
-  }
-  if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
-    $user->mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
-    user_save($user);
-  }
-}
-
 
 /**
  * Implements hook_module_implements_alter().
