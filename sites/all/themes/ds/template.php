@@ -111,7 +111,7 @@ function ds_ctools_render_alter(&$info, &$page, &$context) {
       drupal_add_css($css_path . 'page-related-projects.css');
       break;
 
-    case 'webform_view_project':
+    case 'webform_submission_view_panel_context':
       drupal_add_css($css_path . 'dosomething-projects.css');
       break;
 
