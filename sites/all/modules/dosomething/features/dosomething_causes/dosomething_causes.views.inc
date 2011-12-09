@@ -71,3 +71,59 @@ function dosomething_causes_views_break_phrase($str, &$handler = NULL) {
 
   return $handler;
 }
+
+/*
+ * Break x,y,z and x+y+z into an array. Works for strings.
+ *
+ * @param $str
+ *   The string to parse.
+ * @param $object
+ *   The object to use as a base. If not specified one will
+ *   be created.
+ *
+ * @return $object
+ *   An object containing
+ *   - operator: Either 'and' or 'or'
+ *   - value: An array of numeric values.
+ */
+function dosomething_causes_views_break_phrase_string($str, &$handler = NULL) {
+  if (!$handler) {
+    $handler = new stdClass();
+  }
+
+  // Set up defaults:
+  if (!isset($handler->value)) {
+    $handler->value = array();
+  }
+
+  if (!isset($handler->operator)) {
+    $handler->operator = 'or';
+  }
+
+  if ($str == '') {
+    return $handler;
+  }
+
+  if (preg_match('/^(\w+[+])+\w+$/', $str)) {
+    // The '+' character in a query string may be parsed as ' '.
+    $handler->operator = 'or';
+    $handler->value = preg_split('/[+]/', $str);
+  }
+  else if (preg_match('/^((\w|\s)+,)*(\w|\s)+$/', $str)) {
+    $handler->operator = 'and';
+    $handler->value = explode(',', $str);
+  }
+
+  // Keep an 'error' value if invalid strings were given.
+  if (!empty($str) && (empty($handler->value) || !is_array($handler->value))) {
+    $handler->value = array(-1);
+    return $handler;
+  }
+
+  // Doubly ensure that all values are strings only.
+  foreach ($handler->value as $id => $value) {
+    $handler->value[$id] = (string) $value;
+  }
+
+  return $handler;
+}

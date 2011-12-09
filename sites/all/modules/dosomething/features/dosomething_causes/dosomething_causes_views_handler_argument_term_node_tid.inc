@@ -21,20 +21,36 @@ class dosomething_causes_views_handler_argument_term_node_tid extends views_hand
 
   function query($group_by = FALSE) {    
     $this->ensure_my_table();
-
+    $hander = new stdclass;
     if (!empty($this->options['break_phrase'])) {
-      $tids = new stdClass();
-      $tids->value = $this->argument;
-      $tids = dosomething_causes_views_break_phrase($this->argument, $tids);
-      if ($tids->value == -1) {
+      $handler = new stdClass();
+      $handler->value = $this->argument;
+      $handler = dosomething_causes_views_break_phrase_string($this->argument, $handler);
+      if ($handler->value == -1) {
         return FALSE;
       }
-      $tids = $tids->value;
+      $term_names = array();
+      $tids = array();
+      foreach($handler->value as $term) {
+        if (is_numeric($term)) {
+          $tids[] = $term;
+        }
+        else {
+          $term_names[] = trim($term);
+        }
+      }
+      if (count($term_names)) {
+        $query = new EntityFieldQuery();
+        $result = $query
+          ->entityCondition('entity_type', 'taxonomy_term')
+          ->propertyCondition('name', $term_names, 'IN')
+          ->execute();
+        $tids += array_keys($result['taxonomy_term']);
+      }
     }
     else {
       $tids = $this->argument;
     }
-
     // Favor direct tid matches in the sort.
     $direct_tids = implode(', ', $tids);
     $this->field_alias = $this->query->add_field(NULL, "IF($this->table_alias.$this->real_field IN ($direct_tids), 1, 0)", 'direct');
