@@ -471,6 +471,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
@@ -484,6 +485,12 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'No related projects yet.';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  /* Relationship: Field: Issues (taxonomy_vocabulary_5) */
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['label'] = 'issues_and_causes';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['required'] = 0;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
@@ -624,31 +631,19 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
-  /* Contextual filter: Field: Issues (taxonomy_vocabulary_5) */
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['title_enable'] = 1;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['title'] = '%1 Projects';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['term_page'] = 1;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['node'] = 0;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['specify_validation'] = 1;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate_options']['vocabularies'] = array(
-    'vocabulary_5' => 'vocabulary_5',
-  );
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate_options']['type'] = 'convert';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate_options']['transform'] = '1';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['validate']['fail'] = 'ignore';
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['not'] = 0;
+  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['relationship'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['break_phrase'] = 1;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['set_breadcrumb'] = 0;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['use_taxonomy_term_path'] = 0;
   /* Filter criterion: Field: Picture (field_picture:delta) */
   $handler->display->display_options['filters']['delta']['id'] = 'delta';
   $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_picture';
@@ -678,7 +673,7 @@ function dosomething_projects_general_views_default_views() {
   );
 
   /* Display: Sidebar pane */
-  $handler = $view->new_display('panel_pane', 'Sidebar pane', 'panel_pane_2');
+  $handler = $view->new_display('panel_pane', 'Sidebar pane', 'action_sidebar_pane');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Related Projects';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
@@ -755,13 +750,13 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['field_project_title_value']['field'] = 'field_project_title_value';
   $handler->display->display_options['filters']['field_project_title_value']['operator'] = 'not empty';
   $handler->display->display_options['argument_input'] = array(
-    'taxonomy_vocabulary_5_tid' => array(
-      'type' => 'none',
-      'context' => 'terms.name',
+    'dosomething_causes_term_node_tid' => array(
+      'type' => 'user',
+      'context' => 'entity:feedback.field_image',
       'context_optional' => 0,
       'panel' => '0',
       'fixed' => '',
-      'label' => 'Issue',
+      'label' => 'Related taxonomy term:',
     ),
   );
   $export['related_projects'] = $view;
