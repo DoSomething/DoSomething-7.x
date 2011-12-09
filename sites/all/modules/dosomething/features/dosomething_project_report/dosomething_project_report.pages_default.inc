@@ -275,7 +275,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'arguments' => array(
-        'dosomething_causes_term_node_tid' => 'Animal Testing',
+        'dosomething_causes_term_node_tid' => '%webform_submission_entity:taxonomy_vocabulary_5',
       ),
     );
     $pane->cache = array();
@@ -287,6 +287,28 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-9'] = $pane;
     $display->panels['right'][1] = 'new-9';
+    $pane = new stdClass;
+    $pane->pid = 'new-10';
+    $pane->panel = 'right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'related_resources-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'more_link' => 1,
+      'arguments' => array(
+        'dosomething_causes_term_node_tid' => '%webform_submission_entity:taxonomy_vocabulary_5',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-10'] = $pane;
+    $display->panels['right'][2] = 'new-10';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
