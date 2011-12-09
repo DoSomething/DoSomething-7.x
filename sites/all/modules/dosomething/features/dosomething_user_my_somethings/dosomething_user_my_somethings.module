@@ -226,7 +226,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
         $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
         foreach ($something as $submission) {
           $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
-          $items[$type]['children'][] = l($title, 'node/' . $submission->nid . '/submission/' . $submission->sid .'/edit');
+          $items[$type]['children'][] = l($title, 'webform-submission/' . $submission->sid .'/edit');
         }
       }
     }
