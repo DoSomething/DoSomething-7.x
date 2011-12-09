@@ -234,7 +234,6 @@ function user_schema() {
       'access' => array('access'),
       'created' => array('created'),
       'mail' => array('mail'),
-      'picture' => array('picture'),
     ),
     'unique keys' => array(
       'name' => array('name'),
@@ -413,7 +412,7 @@ function _update_7000_user_role_grant_permissions($rid, array $permissions, $mod
 function user_update_7000(&$sandbox) {
   $sandbox['#finished'] = 0;
   // Lower than DRUPAL_HASH_COUNT to make the update run at a reasonable speed.
-  $hash_count_log2 = 5;
+  $hash_count_log2 = 11;
   // Multi-part update.
   if (!isset($sandbox['user_from'])) {
     db_change_field('users', 'pass', 'pass', array('type' => 'varchar', 'length' => 128, 'not null' => TRUE, 'default' => ''));
@@ -886,13 +885,6 @@ function user_update_7017() {
   }
 
   return $message;
-}
-
-/**
- * Add an index to {user}.picture.
- */
-function user_update_7018() {
-  db_add_index('users', 'picture', array('picture'));
 }
 
 /**
