@@ -3980,7 +3980,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'tid' => array(
