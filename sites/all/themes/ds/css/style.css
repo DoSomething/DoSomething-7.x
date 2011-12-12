@@ -597,6 +597,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #161616;
   text-decoration: none;
 }
+.ds-button:visited, .ds-button-strong:visited, button:visited, input[type=button]:visited, input[type=submit]:visited, .ui-dialog .ds-login-popup-footer input:visited {
+  color: #343434;
+}
 
 .ds-button-strong {
   background-color: #ffd203;
@@ -937,6 +940,9 @@ ul {
 }
 li ul {
   list-style-type: circle;
+}
+.view-related-projects ul {
+  list-style-image: url('images/icn-rightsidebar-tri-right-purple.png');
 }
 
 dt {
@@ -2156,7 +2162,7 @@ body.node-type-project [role=main] .main-interior-sidebar {
 }
 
 .start-a-project {
-  margin-bottom: 2em;
+  margin: 2em 0;
   text-align: center;
 }
 
@@ -2390,7 +2396,6 @@ div[role=main] {
   line-height: 1.5;
 }
 .ds-internal-sidebar-flush-right .views-field-title {
-  margin-bottom: 12px;
   background-position: 0px 3px;
   padding-left: 4px;
 }
