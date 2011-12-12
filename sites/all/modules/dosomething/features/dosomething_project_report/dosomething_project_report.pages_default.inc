@@ -270,10 +270,25 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->pid = 'new-9';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
-    $pane->subtype = 'related_projects-action_sidebar_pane';
+    $pane->subtype = 'related_resources-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'more_link' => 1,
+      'arguments' => array(),
+      'context' => array(
+        0 => 'argument_entity_id:webform_submission_entity_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Get Inspired',
+      'link_to_view' => 0,
+      'use_pager' => 0,
+      'pager_id' => '',
+      'items_per_page' => '3',
+      'exposed' => array(
+        'type' => 'action_guide',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -291,8 +306,19 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'link_to_view' => 0,
       'more_link' => 1,
-      'arguments' => array(),
+      'use_pager' => 0,
+      'pager_id' => '',
+      'items_per_page' => '3',
+      'exposed' => array(
+        'type' => 'tips_and_tools',
+      ),
+      'context' => array(
+        0 => 'argument_entity_id:webform_submission_entity_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Get the Facts',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -307,10 +333,18 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->pid = 'new-11';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
-    $pane->subtype = 'related_resources-panel_pane_2';
+    $pane->subtype = 'related_projects-action_sidebar_pane';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'more_link' => 1,
+      'items_per_page' => '3',
+      'context' => array(
+        0 => 'argument_entity_id:webform_submission_entity_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Related Projects',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
