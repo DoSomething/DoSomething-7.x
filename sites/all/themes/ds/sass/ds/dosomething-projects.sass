@@ -1,7 +1,12 @@
 @import setup
 // --------------------------------------------------------------------------------------
 
+// Dotted line
+.pane-webform-submission-entity-field-picture
+  border-bottom: dashed 1px $gray2
+  padding-bottom: 3em
 
+// Project status bar
 $arrow-projectstatus: "arrow-statbar-projectstatus.png"
 $project-image: $arrow-projectstatus
 
@@ -20,5 +25,7 @@ $project-image: $arrow-projectstatus
     +float-left
     height: image-height($project-image)
     margin-left: 1em
-  li
-    color: $purple
+    li
+      color: $purple
+      span
+        padding-right: 1.5em

@@ -17,6 +17,11 @@
  * $dir is 'bottom' for standard tabs
  * 'top' for hanging tabs
  * assumes placement on UL */
+.pane-webform-submission-entity-field-picture {
+  border-bottom: dashed 1px #8e8a86;
+  padding-bottom: 3em;
+}
+
 .project-status-bar {
   *zoom: 1;
   background-color: #d2d2d2;
@@ -103,6 +108,9 @@
 .project-status-bar ul li:last-child:after {
   display: none;
 }
-.project-status-bar li {
+.project-status-bar ul li {
   color: #652e72;
+}
+.project-status-bar ul li span {
+  padding-right: 1.5em;
 }
