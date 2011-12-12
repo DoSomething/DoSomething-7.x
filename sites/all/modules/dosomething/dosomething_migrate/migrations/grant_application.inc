@@ -42,8 +42,12 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_essay_2_believe_it', 'field_essay_believe_it');
     $this->addFieldMapping('data_essay_3_build_it', 'field_essay_build_it');
     $this->addFieldMapping('data_essay_4_next_steps', 'field_essay_next_steps');
-    $this->addFieldMapping('data_500_budget', 'field_500_budget');
-    $this->addFieldMapping('data_total_project_budget', 'field_total_project_budget_0');
+    $this->addFieldMapping('data_500_budget', 'field_500_budget')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
+    $this->addFieldMapping('data_total_project_budget', 'field_total_project_budget_0')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('data_recommenders_name', 'field_recommenders_name_0');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_0');
