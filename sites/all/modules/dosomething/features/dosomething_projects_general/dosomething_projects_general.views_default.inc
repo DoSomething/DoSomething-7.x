@@ -469,7 +469,9 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['title'] = 'Projects';
   $handler->display->display_options['use_more_text'] = 'See all »';
   $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '3600';
+  $handler->display->display_options['cache']['output_lifespan'] = '3600';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
@@ -672,8 +674,8 @@ function dosomething_projects_general_views_default_views() {
     ),
   );
 
-  /* Display: Sidebar pane */
-  $handler = $view->new_display('panel_pane', 'Sidebar pane', 'action_sidebar_pane');
+  /* Display: Action Related Projects Sidebar */
+  $handler = $view->new_display('panel_pane', 'Action Related Projects Sidebar', 'action_sidebar_pane');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Related Projects';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
@@ -743,6 +745,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Webform Submission: Title (field_project_title) */
   $handler->display->display_options['filters']['field_project_title_value']['id'] = 'field_project_title_value';
@@ -751,8 +754,8 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['field_project_title_value']['operator'] = 'not empty';
   $handler->display->display_options['argument_input'] = array(
     'dosomething_causes_term_node_tid' => array(
-      'type' => 'user',
-      'context' => 'entity:feedback.field_image',
+      'type' => 'context',
+      'context' => 'entity:webform_submission_entity.taxonomy_vocabulary_5',
       'context_optional' => 0,
       'panel' => '0',
       'fixed' => '',
