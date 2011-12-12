@@ -293,7 +293,10 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-arrow-list ds-pane ds-pane-no-radius ds-internal-sidebar-flush-right',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-9'] = $pane;
@@ -324,7 +327,10 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-arrow-list ds-pane ds-internal-sidebar-flush-right ds-pane-no-radius',
+    );
     $pane->extras = array();
     $pane->position = 2;
     $display->content['new-10'] = $pane;
@@ -349,7 +355,10 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'ds-arrow-list ds-pane ds-arrow-list ds-pane ds-internal-sidebar-flush-right ds-pane-no-radius ds-pane-usergen',
+    );
     $pane->extras = array();
     $pane->position = 3;
     $display->content['new-11'] = $pane;
