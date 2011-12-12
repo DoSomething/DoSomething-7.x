@@ -162,7 +162,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Project Status',
       'title' => '',
-      'body' => '<div id="project-status-ribbon-wrapper"><div id="project-status-ribbon"><div class="project-status">Project Status</div><div class="people-involved"><span class="label">People Involved</span><span class="number">%webform_submission_entity:field-update-people-involved</span></div><div class="people-impacted"><span class="label">People Impacted</span><span class="number">%webform_submission_entity:field-num-people-impacted</span></div></div></div>',
+      'body' => '<div class="project-status-bar"><div class="project-title">Project Status</div><ul><li><span class="label">People Involved</span>%webform_submission_entity:field-update-people-involved</li><li><span class="label">People Impacted</span>%webform_submission_entity:field-num-people-impacted</li></ul></div>',
       'format' => '4',
       'substitute' => 1,
     );
