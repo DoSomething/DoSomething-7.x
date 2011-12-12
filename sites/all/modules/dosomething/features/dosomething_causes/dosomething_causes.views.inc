@@ -15,65 +15,10 @@ function dosomething_causes_views_data() {
   return $data;
 }
 
-/*
- * Break x,y,z and x+y+z. and x, y, z into an array. Numeric only.
- * This is an alternate version of views_break_phrase() to allow comma-space style input
- * and to treat all inputs as an OR.
- *
- * @param $str
- *   The string to parse.
- * @param $handler
- *   The handler object to use as a base. If not specified one will
- *   be created.
- *
- * @return $handler
- *   The new handler object.
- */
-function dosomething_causes_views_break_phrase($str, &$handler = NULL) {
-  if (!$handler) {
-    $handler = new stdClass();
-  }
-
-  // Set up defaults:
-
-  if (!isset($handler->value)) {
-    $handler->value = array();
-  }
-
-  $handler->operator = 'or';
-
-  if (empty($str)) {
-    return $handler;
-  }
-
-  if (preg_match('/^([0-9]+[+ ])+[0-9]+$/', $str)) {
-    // The '+' character in a query string may be parsed as ' '.
-    $handler->value = preg_split('/[+ ]/', $str);
-  }
-  elseif (preg_match('/^([0-9]+,)*[0-9]+$/', $str)) {
-    $handler->value = explode(',', $str);
-  }
-  elseif (preg_match('/^([0-9]+, )*[0-9]+$/', $str)) {
-    $handler->value = explode(', ', $str);
-  }
-  
-
-  // Keep an 'error' value if invalid strings were given.
-  if (!empty($str) && (empty($handler->value) || !is_array($handler->value))) {
-    $handler->value = array(-1);
-    return $handler;
-  }
-
-  // Doubly ensure that all values are numeric only.
-  foreach ($handler->value as $id => $value) {
-    $handler->value[$id] = intval($value);
-  }
-
-  return $handler;
-}
-
-/*
- * Break x,y,z and x+y+z into an array. Works for strings.
+/**
+ * Break x,y,z and x+y+z, and x, y, z into an array. Numeric or strings.
+  * This is an alternate version of views_break_phrase() to allow comma-space style input
+  * and to treat all inputs as an OR.
  *
  * @param $str
  *   The string to parse.
@@ -96,9 +41,7 @@ function dosomething_causes_views_break_phrase_string($str, &$handler = NULL) {
     $handler->value = array();
   }
 
-  if (!isset($handler->operator)) {
-    $handler->operator = 'or';
-  }
+  $handler->operator = 'or';
 
   if ($str == '') {
     return $handler;
@@ -106,11 +49,9 @@ function dosomething_causes_views_break_phrase_string($str, &$handler = NULL) {
 
   if (preg_match('/^(\w+[+])+\w+$/', $str)) {
     // The '+' character in a query string may be parsed as ' '.
-    $handler->operator = 'or';
     $handler->value = preg_split('/[+]/', $str);
   }
   else if (preg_match('/^((\w|\s)+,)*(\w|\s)+$/', $str)) {
-    $handler->operator = 'and';
     $handler->value = explode(',', $str);
   }
 

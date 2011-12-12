@@ -31,7 +31,8 @@ class dosomething_causes_views_handler_argument_term_node_tid extends views_hand
       }
       $term_names = array();
       $tids = array();
-      foreach($handler->value as $term) {
+      foreach ($handler->value as $term) {
+        $term = trim($term);
         if (is_numeric($term)) {
           $tids[] = $term;
         }
@@ -45,7 +46,9 @@ class dosomething_causes_views_handler_argument_term_node_tid extends views_hand
           ->entityCondition('entity_type', 'taxonomy_term')
           ->propertyCondition('name', $term_names, 'IN')
           ->execute();
-        $tids += array_keys($result['taxonomy_term']);
+        if (isset($result['taxonomy_term'])) {
+          $tids += array_keys($result['taxonomy_term']);
+        }
       }
     }
     else {
