@@ -8,9 +8,10 @@ class DSProject extends DSJsonWebformMigration {
     $this->description .= 'A volunteer project';
     $this->dependencies[] = 'DSFile';
 
+    $this->addFieldMapping('is_draft')
+        ->defaultValue(0);
     // $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover')
     //   ->description('Select field keys are unchanged.');
-
     $this->addFieldMapping('field_essay_build_it', 'field_essay_build_it'); # Field: What's your plan of action? (text_long)
     $this->addFieldMapping('field_essay_see_it', 'field_essay_see_it'); # Field: What's the problem you are trying to solve? (text_long)
     $this->addFieldMapping('field_link', 'field_website_link'); # Field: Web site link (link_field)

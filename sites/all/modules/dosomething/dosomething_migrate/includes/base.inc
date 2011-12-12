@@ -36,8 +36,6 @@ abstract class DSBaseWebformMigration extends Migration {
 
     $this->addFieldMapping('uid', 'uid')
       ->description("User ids should be a direct mapping.");
-    $this->addFieldMapping('is_draft')
-      ->defaultValue(0);
     $this->addFieldMapping('submitted', 'created')
       ->description("Use the node creation date as the webform submission date.");
     $this->addFieldMapping('remote_addr')

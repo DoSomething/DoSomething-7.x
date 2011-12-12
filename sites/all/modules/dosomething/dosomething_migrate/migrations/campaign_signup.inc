@@ -7,6 +7,8 @@ abstract class DSCampaignSignupMigration extends DSJsonWebformMigration {
     parent::__construct(MigrateGroup::getInstance('CampaignSignup'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'group_audience'));
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
   }
 
   public function prepare($entity, $row) {

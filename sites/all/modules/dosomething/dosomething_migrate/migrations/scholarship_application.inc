@@ -33,6 +33,9 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->description .= 'General Scholarship Application';
     $this->dependencies[] = 'DSFile';
 
+    // Invert the old complete setting so an false complete becomes a true draft.
+    $this->addFieldMapping('is_draft', 'field_application_complete')
+      ->callbacks(array($this, 'draftFromComplete'));
     $this->addFieldMapping('data_how_did_you_hear_about_this_opportunity', 'field_how_did_you_hear_about_bo');
     $this->addFieldMapping('data_what_causes_or_issues_are_you_most_passionate_about_and_why', 'field_what_causes_or_issues_are');
     $this->addFieldMapping('data_how_have_you_gotten_involved_with_your_causes_what_leadership_roles_have_you_taken_on', 'field_what_activities_have_you_');
@@ -41,7 +44,6 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_0');
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_0');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_0');
-    $this->addFieldMapping('data_application_complete', 'field_application_complete');
     $this->addFieldMapping('data_picture', 'field_picture')
       ->arguments(array('file_function' => 'file_fid'))
       ->sourceMigration('DSFile');
@@ -68,6 +70,11 @@ class DSScholarshipApplicationGeneralMigration extends DSScholarshipApplicationM
     $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip', 'data_video_optional', 'field_webform_photo_url', 'field_webform_project_summary'));
   }
+
+  public function draftFromComplete($complete) {
+    // complete => not draft, not complete => draft;
+    return (int) empty($complete);
+  }
 }
 
 class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigration {
@@ -76,6 +83,8 @@ class DSScholarshipApplicationAttMigration extends DSScholarshipApplicationMigra
     $this->description .= 'Scholarships ATT';
     $this->dependencies[] = 'DSFile';
 
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
     $this->addFieldMapping('data_why_you_should_be_chosen', 'field_scholarship_att_whyyou');
     $this->addFieldMapping('data_whats_your_favorite_song_to_rock_out_to', 'field_scholarship_att_song');
     $this->addFieldMapping('data_whos_your_celebrity_crush', 'field_scholarship_att_crush');
@@ -100,6 +109,8 @@ class DSScholarshipApplicationSixFlagsMigration extends DSScholarshipApplication
     $this->description .= 'Six Flags Friends Scholarships';
     $this->dependencies[] = 'DSFile';
 
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
     $this->addFieldMapping('data_what_causes_or_issues_are_you_most_passionate_about_and_why', 'field_what_causes_or_issues_are');
     $this->addFieldMapping('data_how_have_you_gotten_involved_with_your_causes_what_leadership_roles_have_you_taken_on', 'field_what_activities_have_you_');
     $this->addFieldMapping('data_what_are_your_future_plans_for_your_community_service_projects_and_goals_for_your_education', 'field_what_are_your_future_plan');

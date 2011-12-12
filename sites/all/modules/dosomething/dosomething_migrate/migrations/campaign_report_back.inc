@@ -7,6 +7,8 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'field_webform_school', 'group_audience'));
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
   }
 
   public function prepareRow($row) {
@@ -137,6 +139,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno')
       ->description('Select field keys are unchanged.');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
+    $this->addFieldMapping('data_school', 'field_signup_nid');
 
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
       ->arguments(array('file_function' => 'file_fid'))

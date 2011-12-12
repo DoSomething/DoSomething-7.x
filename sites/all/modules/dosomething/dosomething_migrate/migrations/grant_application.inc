@@ -7,6 +7,8 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
     parent::__construct(MigrateGroup::getInstance('GrantApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_geocode_zip_code'));
+    $this->addFieldMapping('is_draft')
+      ->defaultValue(0);
   }
 
   public function prepareRow($row) {
