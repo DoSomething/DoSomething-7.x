@@ -246,16 +246,16 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-8';
     $pane->panel = 'right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'dosomething_start_button';
+    $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Start a Project',
-      'title' => '',
-      'body' => '<div class="ds-start-project"><a class="ds-button-strong" href="/project-report/start-project" title="Start a Project">START A PROJECT</a></div>',
-      'format' => '3',
-      'substitute' => 1,
+      'start_button' => array(
+        'project' => TRUE,
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
     );
     $pane->cache = array();
     $pane->style = array(
