@@ -126,6 +126,25 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'action_guide' => 'action_guide',
   );
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 'more_link';
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
+  $handler->display->display_options['argument_input'] = array(
+    'dosomething_causes_term_node_tid' => array(
+      'type' => 'context',
+      'context' => 'entity:webform_submission_entity.taxonomy_vocabulary_5',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID ',
+    ),
+  );
   $export['related_resources'] = $view;
 
   return $export;
