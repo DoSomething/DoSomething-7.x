@@ -1,7 +1,0 @@
-name = "Webform Pathauto"
-description = "Pathauto integration for webform submissions"
-core = 7.x
-dependencies[] = pathauto
-dependencies[] = webform
-package = Webform
-
