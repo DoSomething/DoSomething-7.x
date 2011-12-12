@@ -110,7 +110,9 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_1');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_1');
     $this->addFieldMapping('data_recommendation', 'field_reccomendation');
-    $this->addFieldMapping('data_recommendation_upload', 'field_recommendation_upload');
+    $this->addFieldMapping('data_recommendation_upload', 'field_recommendation_upload')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('data_legal_1', 'field_legal_1_0');
     $this->addFieldMapping('data_legal_2', 'field_legal_2_0');
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
@@ -181,7 +183,9 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_1');
     $this->addFieldMapping('data_recommenders_relationship_to_you', 'field_recommenders_relationsh_1');
     $this->addFieldMapping('data_recommendation', 'field_reccomendation');
-    $this->addFieldMapping('data_recommendation_upload', 'field_recommendation_upload');
+    $this->addFieldMapping('data_recommendation_upload', 'field_recommendation_upload')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('data_legal_1', 'field_legal_1_0');
     $this->addFieldMapping('data_legal_2', 'field_legal_2_0');
     $this->addFieldMapping('data_legal_3', 'field_legal_3_0');
@@ -207,7 +211,9 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_project_summary', 'field_describe');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
     $this->addFieldMapping('field_webform_video_url', 'field_youtube_or_video_url');
-    $this->addFieldMapping('data_please_submit_a_budget_detailing_how_you_would_use_the_grant_money', 'field_budget_0');
+    $this->addFieldMapping('data_please_submit_a_budget_detailing_how_you_would_use_the_grant_money', 'field_budget_0')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
     $this->addFieldMapping('data_high_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_college_if_applicable', 'field_your_college_if_applicabl');
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
