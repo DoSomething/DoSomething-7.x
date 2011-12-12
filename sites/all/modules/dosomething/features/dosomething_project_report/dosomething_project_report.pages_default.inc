@@ -273,11 +273,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->subtype = 'related_projects-action_sidebar_pane';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'arguments' => array(
-        'dosomething_causes_term_node_tid' => '%webform_submission_entity:taxonomy_vocabulary_5',
-      ),
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -296,9 +292,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'more_link' => 1,
-      'arguments' => array(
-        'dosomething_causes_term_node_tid' => '%webform_submission_entity:taxonomy_vocabulary_5',
-      ),
+      'arguments' => array(),
     );
     $pane->cache = array();
     $pane->style = array(

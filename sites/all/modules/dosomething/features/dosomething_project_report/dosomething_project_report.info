@@ -42,6 +42,7 @@ features[field][] = "webform_submission_entity-project_report-field_project_repo
 features[field][] = "webform_submission_entity-project_report-field_project_start_date"
 features[field][] = "webform_submission_entity-project_report-field_project_title"
 features[field][] = "webform_submission_entity-project_report-field_project_type"
+features[field][] = "webform_submission_entity-project_report-field_update_people_involved"
 features[field][] = "webform_submission_entity-project_report-field_webform_videos"
 features[field][] = "webform_submission_entity-project_report-taxonomy_vocabulary_5"
 features[node][] = "project_report"
