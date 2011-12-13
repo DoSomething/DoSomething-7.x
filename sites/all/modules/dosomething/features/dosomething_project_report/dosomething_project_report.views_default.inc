@@ -81,7 +81,10 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['field_embedded_video']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_embedded_video']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_embedded_video']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_embedded_video']['type'] = 'media';
+  $handler->display->display_options['fields']['field_embedded_video']['type'] = 'styles_media_medium';
+  $handler->display->display_options['fields']['field_embedded_video']['settings'] = array(
+    'file_view_mode' => 'media_original',
+  );
   $handler->display->display_options['fields']['field_embedded_video']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_embedded_video']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_embedded_video']['delta_reversed'] = 0;
