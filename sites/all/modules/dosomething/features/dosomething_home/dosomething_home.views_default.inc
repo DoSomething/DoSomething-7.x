@@ -208,10 +208,11 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['max_length'] = '53';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 1;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
   $handler->display->display_options['fields']['title']['element_class'] = 'news-title';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
@@ -220,30 +221,6 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Content: Subtitle */
-  $handler->display->display_options['fields']['field_subtitle']['id'] = 'field_subtitle';
-  $handler->display->display_options['fields']['field_subtitle']['table'] = 'field_data_field_subtitle';
-  $handler->display->display_options['fields']['field_subtitle']['field'] = 'field_subtitle';
-  $handler->display->display_options['fields']['field_subtitle']['label'] = '';
-  $handler->display->display_options['fields']['field_subtitle']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['element_class'] = 'news-subtitle';
-  $handler->display->display_options['fields']['field_subtitle']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_subtitle']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_subtitle']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['field_api_classes'] = 0;
   /* Field: Global: Facebook Social Plugin */
   $handler->display->display_options['fields']['fb_social']['id'] = 'fb_social';
   $handler->display->display_options['fields']['fb_social']['table'] = 'views';
