@@ -347,7 +347,7 @@ function dosomething_grants_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Grant Database';
+  $handler->display->display_options['title'] = 'Grants Database';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -394,6 +394,11 @@ function dosomething_grants_views_default_views() {
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 0;
   $handler->display->display_options['style_options']['empty_table'] = 0;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -548,10 +553,118 @@ function dosomething_grants_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'grants_database' => 'grants_database',
   );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 0;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Keyword';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['required'] = 0;
+  $handler->display->display_options['filters']['title']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: Award Focus (field_award_focus) */
+  $handler->display->display_options['filters']['field_award_focus_value']['id'] = 'field_award_focus_value';
+  $handler->display->display_options['filters']['field_award_focus_value']['table'] = 'field_data_field_award_focus';
+  $handler->display->display_options['filters']['field_award_focus_value']['field'] = 'field_award_focus_value';
+  $handler->display->display_options['filters']['field_award_focus_value']['group'] = 0;
+  $handler->display->display_options['filters']['field_award_focus_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['operator_id'] = 'field_award_focus_value_op';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['label'] = 'Award Focus';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['operator'] = 'field_award_focus_value_op';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['identifier'] = 'field_award_focus_value';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['reduce'] = 0;
+  /* Filter criterion: Content: Type of Award (field_type_of_award) */
+  $handler->display->display_options['filters']['field_type_of_award_value']['id'] = 'field_type_of_award_value';
+  $handler->display->display_options['filters']['field_type_of_award_value']['table'] = 'field_data_field_type_of_award';
+  $handler->display->display_options['filters']['field_type_of_award_value']['field'] = 'field_type_of_award_value';
+  $handler->display->display_options['filters']['field_type_of_award_value']['group'] = 0;
+  $handler->display->display_options['filters']['field_type_of_award_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_type_of_award_value']['expose']['operator_id'] = 'field_type_of_award_value_op';
+  $handler->display->display_options['filters']['field_type_of_award_value']['expose']['label'] = 'Award Type';
+  $handler->display->display_options['filters']['field_type_of_award_value']['expose']['operator'] = 'field_type_of_award_value_op';
+  $handler->display->display_options['filters']['field_type_of_award_value']['expose']['identifier'] = 'field_type_of_award_value';
+  $handler->display->display_options['filters']['field_type_of_award_value']['expose']['reduce'] = 0;
 
   /* Display: Grants Database Page */
   $handler = $view->new_display('page', 'Grants Database Page', 'page');
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = 'Here is a database of available resources for entrepreneurs. We now allow YOU to add resources! <a href="/node/add/grants-database">Submit an award or grant listing</a>.';
+  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['path'] = 'grants/database';
+
+  /* Display: Scholarships Database Page */
+  $handler = $view->new_display('page', 'Scholarships Database Page', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Scholarships Database';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = 'Here is a collection of scholarships that support young people that take action in their community.';
+  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'grants_database' => 'grants_database',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Content: Type of Award (field_type_of_award) */
+  $handler->display->display_options['filters']['field_type_of_award_value']['id'] = 'field_type_of_award_value';
+  $handler->display->display_options['filters']['field_type_of_award_value']['table'] = 'field_data_field_type_of_award';
+  $handler->display->display_options['filters']['field_type_of_award_value']['field'] = 'field_type_of_award_value';
+  $handler->display->display_options['filters']['field_type_of_award_value']['value'] = array(
+    'Scholarship' => 'Scholarship',
+  );
+  $handler->display->display_options['filters']['field_type_of_award_value']['group'] = 0;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 0;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Keyword';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['required'] = 0;
+  $handler->display->display_options['filters']['title']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: Award Focus (field_award_focus) */
+  $handler->display->display_options['filters']['field_award_focus_value']['id'] = 'field_award_focus_value';
+  $handler->display->display_options['filters']['field_award_focus_value']['table'] = 'field_data_field_award_focus';
+  $handler->display->display_options['filters']['field_award_focus_value']['field'] = 'field_award_focus_value';
+  $handler->display->display_options['filters']['field_award_focus_value']['group'] = 0;
+  $handler->display->display_options['filters']['field_award_focus_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['operator_id'] = 'field_award_focus_value_op';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['label'] = 'Award Focus';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['operator'] = 'field_award_focus_value_op';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['identifier'] = 'field_award_focus_value';
+  $handler->display->display_options['filters']['field_award_focus_value']['expose']['reduce'] = 0;
+  $handler->display->display_options['path'] = 'scholarships/database';
   $export['grants_database'] = $view;
 
   return $export;
