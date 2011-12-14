@@ -192,6 +192,7 @@ function dosomething_user_my_somethings_my_somethings() {
  */
 function dosomething_user_my_somethings_my_current_something_links($uid) {
   $items = array();
+  $account = user_load($uid);
 
   $cid = 'dosomething_user_my_somethings_' . $uid;
   $cache = cache_get($cid);
@@ -225,8 +226,13 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       if (count($something)) {
         $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
         foreach ($something as $submission) {
+          // Note: This is not an actual submission object, but it has the right
+          // info, so we're not loading it up as of now.
           $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
-          $items[$type]['children'][] = l($title, 'webform-submission/' . $submission->sid .'/edit');
+          $node = node_load($submission->nid);
+          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
+          $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+          $items[$type]['children'][] = l($title, $link);
         }
       }
     }
@@ -366,7 +372,7 @@ function dosomething_user_my_somethings_get_submissions($uid, $type, $title_fiel
     if (is_array($statuses)) {
      $query->innerJoin('field_data_field_project_type', 'pt', 'ws.sid = pt.entity_id');
     }
-    $query->fields('ws', array('sid', 'submitted'));
+    $query->fields('ws', array('sid', 'submitted', 'uid', 'is_draft'));
     $query->fields('n', array('nid', 'type'));
     $query->fields('t', array($title_field . '_value'));
     $query->condition('ws.uid', $uid, '=');
