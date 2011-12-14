@@ -10,8 +10,6 @@ class DSProject extends DSJsonWebformMigration {
 
     $this->addFieldMapping('is_draft')
         ->defaultValue(0);
-    // $this->addFieldMapping('data_did_you_cover_another_artists_song_in_your_video_or_was_it_an_original', 'field_botb_cover')
-    //   ->description('Select field keys are unchanged.');
     $this->addFieldMapping('field_essay_build_it', 'field_essay_build_it'); # Field: What's your plan of action? (text_long)
     $this->addFieldMapping('field_essay_see_it', 'field_essay_see_it'); # Field: What's the problem you are trying to solve? (text_long)
     $this->addFieldMapping('field_link', 'field_website_link'); # Field: Web site link (link_field)
@@ -24,16 +22,10 @@ class DSProject extends DSJsonWebformMigration {
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video') # Field: Video (media)
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
-    #$this->addFieldMapping('taxonomy_vocabulary_5', ''); # Field: Issues (taxonomy_term_reference)
-
-    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5');
-// field_type_of_project Node: Is this a... (text)
-// field_inspired_by_dosomething Node: Did DoSomething.org’s content or programs inspire you to start, or help you to grow your project? (number_integer)
-// field_project_age Node: Current age (NOTE: this section is for people 25 and younger) (number_integer)
-// field_dosomething_award_winner  Node: DoSomething Award Winner? (text)
-// field_related_action_guide  Node: OPTIONAL - Link DoSomething action guides or fact pages to this project (nodereference)
-// field_related_campaign  Node: Related Campaign or Program (text)
-// field_hours_volunteered Node: Total hours volunteered (to date) (number_integer)
+    $this->addFieldMapping('field_num_people_impacted', 'field_num_people_impacted'); # Field: How many people has your project helped? (number_integer)
+    $this->addFieldMapping('field_others_involved', 'field_others_involved'); # Field: How Can Others Help?  (text_long)
+    $this->addFieldMapping('field_update_people_involved', 'field_num_people_involved');  # Field: How many people are directly involved in your project? (number_integer)
+    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5'); # Field: Issues (taxonomy_term_reference)
 
     $this->addUnmigratedSources(array('changed', 'status'));
   }
