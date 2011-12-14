@@ -108,7 +108,10 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_essay_2___believe_it', 'field_plumgrant_essay2');
     $this->addFieldMapping('data_essay_3___build_it', 'field_plumgrant_essay3');
     $this->addFieldMapping('data_essay_4___next_steps', 'field_plumgrant_essay4');
-    $this->addFieldMapping('data_500_budget', 'field_budget_0');
+    $this->addFieldMapping('data_500_budget', 'field_budget_0')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
+
     $this->addFieldMapping('data_recommenders_name', 'field_recommenders_name_1');
     $this->addFieldMapping('data_recommenders_email', 'field_recommenders_email_1');
     $this->addFieldMapping('data_recommenders_phone_number', 'field_recommenders_phone_numb_1');

@@ -268,12 +268,23 @@ class DSWebform685503 extends DSWebformSubmissionMigration {
 class DSWebform688464 extends DSWebformSubmissionMigration {
   function __construct() {
     parent::__construct(688464);
+    $mappings = $this->getFieldMappings();
+    $mappings['data_file']
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
+    $mappings['data_picture']
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
   }
 }
 
 class DSWebform688536 extends DSWebformSubmissionMigration {
   function __construct() {
     parent::__construct(688536);
+    $mappings = $this->getFieldMappings();
+    $mappings['data_file']
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
   }
 }
 
