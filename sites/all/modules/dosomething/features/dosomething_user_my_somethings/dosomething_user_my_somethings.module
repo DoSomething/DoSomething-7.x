@@ -592,6 +592,7 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
  */
 function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
   $somethings = array();
+  $account = user_load($uid);
   $types = dosomething_user_my_somethings_get_my_somethings($uid, $era); // gives project reports and grant apps
   if (count($types)) {
     foreach ($types as $type => $data) {
@@ -601,12 +602,16 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
             $submissions = entity_load('webform_submission_entity', array($grant_app->sid));
             $submission = array_shift($submissions);
             $grant_ref = field_get_items('webform_submission_entity', $submission, 'field_webform_grant_ref');
+            // Note if the grant application does not reference a grant, it will not be listed.
             if (isset($grant_ref[0]['nid'])) {
               $grant = node_load($grant_ref[0]['nid']);
               $image = field_get_items('node', $grant, 'field_picture');
               $something = new stdClass();
               $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
-              $something->uri = entity_uri('webform_submission_entity', $submission);
+              $node = node_load($submission->nid);
+              $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
+              $something->uri = array('options' => array());
+              $something->uri['path'] = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
               $something->title = $grant->title;
               $somethings[] = $something;
             }
