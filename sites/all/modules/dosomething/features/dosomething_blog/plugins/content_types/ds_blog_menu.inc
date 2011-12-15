@@ -51,7 +51,7 @@ function dosomething_blog_ds_blog_menu_content_type_render($subtype, $conf, $pan
           'all' => array(
             'title' => 'All',
             'html' => TRUE,
-            'href' => 'blog/all', 
+            'href' => 'blog',
           ),  
           'news' => array(
             'title' => 'News',
