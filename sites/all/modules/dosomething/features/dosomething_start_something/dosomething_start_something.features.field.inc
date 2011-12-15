@@ -97,6 +97,9 @@ function dosomething_start_something_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_dsu_guide_type',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -106,13 +109,14 @@ function dosomething_start_something_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'tips',
-          1 => 'how to',
-          2 => 'information',
-          3 => 'video',
+          'tips' => 'tips',
+          'how to' => 'how to',
+          'information' => 'information',
+          'video' => 'video',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -121,11 +125,7 @@ function dosomething_start_something_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'dsu_guides',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Tips',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -154,14 +154,14 @@ function dosomething_start_something_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_dsu_guide_type',
       'label' => 'Type of guide',
-      'required' => '1',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-1',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',

@@ -90,10 +90,10 @@ function dosomething_start_something_node_info() {
       'name' => t('Social Action How-To'),
       'base' => 'node_content',
       'description' => t('DoSomethingU: How to, tips, video, 11 Things to know about...
-<h2>11 Things to know about should be tagged as "information"</h2>'),
+'),
       'has_title' => '1',
       'title_label' => t('Title'),
-      'help' => '',
+      'help' => t('11 Things to know about should be tagged as "information"'),
     ),
   );
   return $items;
