@@ -334,7 +334,8 @@ function ds_webform_view_messages($variables) {
   $teaser = $variables['teaser'];
   $page = $variables['page'];
   $submission_count = $variables['submission_count'];
-  $limit_exceeded = $variables['limit_exceeded'];
+  $user_limit_exceeded = $variables['user_limit_exceeded'];
+  $total_limit_exceeded = $variables['total_limit_exceeded'];
   $allowed_roles = $variables['allowed_roles'];
   $closed = $variables['closed'];
   $cached = $variables['cached'];
@@ -368,7 +369,7 @@ function ds_webform_view_messages($variables) {
   }
 
   // If the user has exceeded the limit of submissions, explain the limit.
-  elseif ($limit_exceeded && !$cached) {
+  elseif ($user_limit_exceeded && !$cached) {
     if ($node->webform['submit_interval'] == -1 && $node->webform['submit_limit'] > 1) {
       $message = t('You have submitted this form the maximum number of times (@count).', array('@count' => $node->webform['submit_limit']));
     }
@@ -379,6 +380,14 @@ function ds_webform_view_messages($variables) {
       $message = t('You may not submit another entry at this time.');
     }
     $type = 'error';
+  }
+  elseif ($total_limit_exceeded && !$cached) {
+    if ($node->webform['total_submit_interval'] == -1 && $node->webform['total_submit_limit'] > 1) {
+      $message = t('This form has received the maximum number of entries.');
+    }
+    else {
+      $message = t('You may not submit another entry at this time.');
+    }
   }
 
   // If the user has submitted before, give them a link to their submissions.
