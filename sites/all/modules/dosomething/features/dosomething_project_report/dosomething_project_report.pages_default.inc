@@ -241,6 +241,9 @@ function dosomething_project_report_default_page_manager_handlers() {
       ),
       'override_title' => 1,
       'override_title_text' => 'Updates',
+      'arguments' => array(
+        'sid' => '',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(

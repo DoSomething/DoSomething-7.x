@@ -35,6 +35,11 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['id'] = 'field_webform_project_submission_target_id_1';
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['table'] = 'field_data_field_webform_project_submission';
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['field'] = 'field_webform_project_submission_target_id';
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['required'] = 0;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -127,18 +132,19 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Project (field_project:target_id) */
-  $handler->display->display_options['arguments']['field_project_target_id']['id'] = 'field_project_target_id';
-  $handler->display->display_options['arguments']['field_project_target_id']['table'] = 'field_data_field_project';
-  $handler->display->display_options['arguments']['field_project_target_id']['field'] = 'field_project_target_id';
-  $handler->display->display_options['arguments']['field_project_target_id']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['field_project_target_id']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_project_target_id']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['field_project_target_id']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_project_target_id']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_project_target_id']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_project_target_id']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['field_project_target_id']['not'] = 0;
+  /* Contextual filter: Webform submissions: Sid */
+  $handler->display->display_options['arguments']['sid']['id'] = 'sid';
+  $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['arguments']['sid']['field'] = 'sid';
+  $handler->display->display_options['arguments']['sid']['relationship'] = 'field_webform_project_submission_target_id_1';
+  $handler->display->display_options['arguments']['sid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['sid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['sid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['sid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['sid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['sid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['sid']['not'] = 0;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -167,13 +173,13 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['allow']['exposed_form'] = 0;
   $handler->display->display_options['allow']['fields_override'] = 'fields_override';
   $handler->display->display_options['argument_input'] = array(
-    'field_project_target_id' => array(
+    'sid' => array(
       'type' => 'context',
       'context' => 'entity:webform_submission_entity.sid',
       'context_optional' => 0,
       'panel' => '0',
       'fixed' => '',
-      'label' => 'Content: Project (field_project:target_id)',
+      'label' => 'Webform submissions: Sid',
     ),
   );
   $export['project_updates'] = $view;

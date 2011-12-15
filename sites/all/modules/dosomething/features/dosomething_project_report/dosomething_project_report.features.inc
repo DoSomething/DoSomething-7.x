@@ -41,6 +41,14 @@ function dosomething_project_report_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'project_update' => array(
+      'name' => t('Project Update'),
+      'base' => 'node_content',
+      'description' => t('An update for an existing project'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   return $items;
 }

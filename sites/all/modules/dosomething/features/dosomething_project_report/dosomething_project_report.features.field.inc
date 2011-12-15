@@ -157,6 +157,787 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-project_update-body'
+  $fields['node-project_update-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'An update for an existing project',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'trim_length' => 600,
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Update',
+      'required' => 0,
+      'settings' => array(
+        'display_summary' => TRUE,
+        'text_processing' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'rows' => 20,
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project_update-field_embedded_video'
+  $fields['node-project_update-field_embedded_video'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_embedded_video',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'mediafield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'media',
+      'type_name' => 'sixflags_scholarships_app',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '3',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'media_large',
+          ),
+          'type' => 'media',
+          'weight' => '-1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_embedded_video',
+      'label' => 'Video (optional)',
+      'required' => 0,
+      'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-1',
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'public' => 'public',
+            'youtube' => 'youtube',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 0,
+            'video' => 'video',
+          ),
+          'browser_plugins' => array(),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project_update-field_project'
+  $fields['node-project_update-field_project'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'module' => 'node_reference',
+      'settings' => array(
+        'profile2_private' => FALSE,
+        'referenceable_types' => array(
+          '301_redirects' => 0,
+          'action_guide' => 0,
+          'api_key' => 0,
+          'awards_archive' => 0,
+          'bc_bio_form' => 0,
+          'blog' => 0,
+          'campaign' => 0,
+          'campaign_art_2011' => 0,
+          'campaign_bully_2011' => 0,
+          'campaign_cancer_2011' => 0,
+          'campaign_contact_form' => 0,
+          'campaign_ew_2011' => 0,
+          'campaign_macys_2011' => 0,
+          'campaign_report_back' => 0,
+          'campaign_sign_up' => 0,
+          'campaign_sports_2011' => 0,
+          'cancer_2011_signup' => 0,
+          'cause' => 0,
+          'cause_video' => 0,
+          'club' => 0,
+          'club_event' => 0,
+          'club_first_meeting_cash' => 0,
+          'decade_2011_signup' => 0,
+          'ds_award_judging' => 0,
+          'dsaward_app' => 0,
+          'dsaward_rec' => 0,
+          'dsu_askprof' => 0,
+          'dsu_guides' => 0,
+          'easy_idea' => 0,
+          'editorial_content_' => 0,
+          'editorial_project' => 0,
+          'ewaste_signup_2011' => 0,
+          'final_grant_update' => 0,
+          'grant_alumni' => 0,
+          'grant_application' => 0,
+          'grant_judge' => 0,
+          'grants_database' => 0,
+          'help_ticket' => 0,
+          'huffpo' => 0,
+          'ididthis' => 0,
+          'issue' => 0,
+          'page' => 0,
+          'poll' => 0,
+          'press' => 0,
+          'project_report' => 0,
+          'project_update' => 0,
+          'scholarship' => 0,
+          'scholarship_application' => 0,
+          'scholarship_update' => 0,
+          'school' => 0,
+          'scroller' => 0,
+          'staples_members' => 0,
+          'tips_and_tools' => 0,
+          'webform' => 0,
+        ),
+        'view' => array(
+          'args' => array(
+            0 => '',
+          ),
+          'display_name' => 'default',
+          'view_name' => '--',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'node_reference',
+      'type_name' => 'sixflags_scholarships_app',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'This an auto complete field.  Start typing in the name of your project. If you haven\'t yet posted a project <a href="/node/add/project"> click here </a>.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => '-4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => '-4',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_project',
+      'label' => 'Project',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-4',
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '4',
+      ),
+      'widget_type' => 'nodereference_select',
+    ),
+  );
+
+  // Exported field: 'node-project_update-field_project_photo'
+  $fields['node-project_update-field_project_photo'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_photo',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'description_field' => '0',
+        'list_default' => 1,
+        'list_field' => '0',
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+      'type_name' => 'save_our_music',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'default_value' => '',
+      'deleted' => '0',
+      'description' => 'Please don\'t use BMP files.
+Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ',
+      'display' => array(
+        'Full' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '-4',
+        ),
+        'Teaser' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '-4',
+        ),
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '-4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '-4',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_project_photo',
+      'label' => 'Project Photo',
+      'required' => '0',
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => 'project_photos',
+        'file_extensions' => '',
+        'max_filesize' => 0,
+        'max_resolution' => '0',
+        'min_resolution' => 0,
+        'title_field' => 1,
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '-4',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'image',
+        'settings' => array(
+          'body_preset' => NULL,
+          'image_path' => 'project_photos',
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+          'teaser_preset' => NULL,
+          'use_default_image' => 0,
+        ),
+        'type' => 'image_image',
+        'weight' => '1',
+      ),
+      'widget_type' => 'imagefield_widget',
+    ),
+  );
+
+  // Exported field: 'node-project_update-field_update_people_impacted'
+  $fields['node-project_update-field_update_people_impacted'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_update_people_impacted',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'allowed_values' => array(),
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+      'type_name' => 'project_update',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_update_people_impacted',
+      'label' => 'Updated number of new people/animals helped',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '0',
+      ),
+      'widget_type' => 'number',
+    ),
+  );
+
+  // Exported field: 'node-project_update-field_update_people_involved'
+  $fields['node-project_update-field_update_people_involved'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_update_people_involved',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'allowed_values' => array(),
+        'allowed_values_php' => '',
+        'append_position' => NULL,
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'profile2_private' => FALSE,
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+      'type_name' => 'project_update',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_update_people_involved',
+      'label' => 'Updated number of new people involved in the project',
+      'required' => '1',
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '0',
+      'widget' => array(
+        'active' => '1',
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '0',
+      ),
+      'widget_type' => 'number',
+    ),
+  );
+
+  // Exported field: 'node-project_update-field_webform_project_submission'
+  $fields['node-project_update-field_webform_project_submission'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_project_submission',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'entityreference_entity_field',
+        'handler_settings' => array(
+          'author_only' => 1,
+          'target_bundles' => array(
+            'project_report' => 'project_report',
+          ),
+          'title_field' => 'field_project_title',
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'webform_submission_entity',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'If you haven\'t yet posted a project <a href="/node/718361"> click here </a>.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => 1,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_webform_project_submission',
+      'label' => 'Project',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project_update-upload'
+  $fields['node-project_update-upload'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'upload',
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'file',
+      'settings' => array(
+        'default_file' => 0,
+        'display_default' => '1',
+        'display_field' => 1,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_update',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => '5',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'rss' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => NULL,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'upload',
+      'label' => 'File attachments',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 1,
+        'file_directory' => '',
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp4 mov mp3 php3',
+        'max_filesize' => '8 MB',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'file',
+        'settings' => array(
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '7',
+      ),
+    ),
+  );
+
   // Exported field: 'taxonomy_term-vocabulary_5-field_causes_image'
   $fields['taxonomy_term-vocabulary_5-field_causes_image'] = array(
     'field_config' => array(
@@ -439,7 +1220,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-
   // Exported field: 'webform_submission_entity-project_report-field_num_people_impacted'
   $fields['webform_submission_entity-project_report-field_num_people_impacted'] = array(
     'field_config' => array(
@@ -503,7 +1283,6 @@ The content from this field will only be shown to anonymous users.',
       ),
     ),
   );
-
 
   // Exported field: 'webform_submission_entity-project_report-field_others_involved'
   $fields['webform_submission_entity-project_report-field_others_involved'] = array(
@@ -1211,7 +1990,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-
   // Exported field: 'webform_submission_entity-project_report-field_update_people_involved'
   $fields['webform_submission_entity-project_report-field_update_people_involved'] = array(
     'field_config' => array(
@@ -1364,7 +2142,7 @@ Use numbers only (no text).',
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'tid' => array(
@@ -1428,8 +2206,8 @@ Use numbers only (no text).',
   // Included for use with string extractors like potx.
   t('(i.e. 5 staff and 25 volunteers for a total of 30, or 35 club members.)
 Use numbers only (no text).');
-  t('(i.e. Number of people who donated canned goods to your canned food drive, etc.)');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
+  t('An update for an existing project');
   t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
@@ -1438,13 +2216,19 @@ The content from this field will only be shown to anonymous users.');
   t('Did you do this project with a DoSomething Club?');
   t('Enter the zip codes in which your project made an impact.');
   t('Ex. <i>Picked up 8 bags of trash.</i>');
+  t('File attachments');
   t('Goal');
+  t('How Can Others Help? ');
   t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
+  t('If you haven\'t yet posted a project <a href="/node/718361"> click here </a>.');
   t('Image');
   t('Issues');
   t('Locations');
   t('Measurable impact');
+  t('Please don\'t use BMP files.
+Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
+  t('Project');
   t('Project Photo');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
   t('Start date');
@@ -1452,8 +2236,13 @@ The content from this field will only be shown to anonymous users.');
   t('Tell us about the community you are helping and the problem(s) being solved.');
   t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
   t('The content from this field will only be shown to logged in users.');
+  t('This an auto complete field.  Start typing in the name of your project. If you haven\'t yet posted a project <a href="/node/add/project"> click here </a>.');
   t('Title');
+  t('Update');
+  t('Updated number of new people involved in the project');
+  t('Updated number of new people/animals helped');
   t('Video');
+  t('Video (optional)');
   t('Web site link');
   t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What\'s the problem you are trying to solve?');
