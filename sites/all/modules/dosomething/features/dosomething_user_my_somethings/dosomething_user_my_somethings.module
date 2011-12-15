@@ -622,6 +622,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
             $something = new stdClass();
             $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
             $something->uri = entity_uri('webform_submission_entity', $submission);
+            $something->check_path = TRUE;
             $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
             $something->title = isset($title[0]['value']) ? $title[0]['value'] : t('New Project');
             $somethings[] = $something;
@@ -671,6 +672,17 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
   }
   else {
     foreach ($all_somethings as $delta => $something) {
+      // Some webform submissions need a conditional path.
+      // We don't want it cached, so we add a flag to check the path.
+      // We can expand this if there are more pieces have conditional paths.
+      if (isset($something->check_path) && $something->check_path && $era == 'current') {
+        if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
+          $submission = $something->uri['options']['entity'];
+          $node = node_load($submission->nid);
+          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
+          $something->uri['path'] = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : $something->uri['path'];
+        }
+      }
       $element[$delta] = array(
         '#type' => 'container',
         '#attributes' => array(
