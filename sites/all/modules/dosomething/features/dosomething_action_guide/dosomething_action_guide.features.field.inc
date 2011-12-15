@@ -382,86 +382,6 @@ function dosomething_action_guide_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-action_guide-field_redirected_action_guide'
-  $fields['node-action_guide-field_redirected_action_guide'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_redirected_action_guide',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          'no' => 'no',
-          'yes' => 'yes',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'profile2_private' => FALSE,
-        'text_processing' => '0',
-      ),
-      'translatable' => '0',
-      'type' => 'list_text',
-      'type_name' => 'action_guide',
-    ),
-    'field_instance' => array(
-      'bundle' => 'action_guide',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_redirected_action_guide',
-      'label' => 'Is this guide being redirected to another page?',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '0',
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
-        'weight' => 0,
-      ),
-      'widget_type' => 'optionwidgets_buttons',
-    ),
-  );
-
   // Exported field: 'node-action_guide-taxonomy_vocabulary_2'
   $fields['node-action_guide-taxonomy_vocabulary_2'] = array(
     'field_config' => array(
@@ -660,7 +580,7 @@ function dosomething_action_guide_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'tid' => array(
@@ -1049,7 +969,6 @@ function dosomething_action_guide_field_default_fields() {
   t('File attachments');
   t('Have you done this');
   t('Is content general?');
-  t('Is this guide being redirected to another page?');
   t('Issues');
   t('Number of people who did this (including you)');
   t('Number of people your action impacted');
