@@ -99,6 +99,12 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['footer']['area']['content'] = '<a href="/action-finder" title="" class="projects-see-all">See all &raquo;</a>';
   $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Field: Issues (taxonomy_vocabulary_5) */
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['required'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -117,41 +123,20 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Has taxonomy term ID */
-  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
-  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 1;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['vocabularies'] = array(
-    'vocabulary_5' => 'vocabulary_5',
-  );
-  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['tid']['specify_validation'] = 1;
-  $handler->display->display_options['arguments']['tid']['validate']['fail'] = 'ignore';
-  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['tid']['add_table'] = 0;
-  $handler->display->display_options['arguments']['tid']['require_value'] = 0;
-  $handler->display->display_options['arguments']['tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['arguments']['tid']['set_breadcrumb'] = 0;
-  /* Contextual filter: Content: Nid */
-  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['table'] = 'node';
-  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
-  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['nid']['not'] = 1;
+  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['relationship'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['break_phrase'] = 1;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['set_breadcrumb'] = 0;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['use_taxonomy_term_path'] = 0;
   $handler->display->display_options['block_description'] = 'Get Inspired Block';
 
   /* Display: Get The Facts Block */
@@ -298,13 +283,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'project' => 'project',
-  );
   $handler->display->display_options['allow']['use_pager'] = 'use_pager';
   $handler->display->display_options['allow']['items_per_page'] = 'items_per_page';
   $handler->display->display_options['allow']['offset'] = 0;
@@ -638,6 +616,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['relationship'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
