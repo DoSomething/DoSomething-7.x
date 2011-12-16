@@ -51,7 +51,7 @@ function dosomething_feeds_theme() {
 
 function dosomething_feeds_news($type, $title, $description) {
   global $base_url;
-  drupal_add_http_header('Content-Type: text/xml; charset=utf-8');
+  drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
   module_load_include('inc', 'dosomething_feeds', 'dosomething_feeds_get_view');
   switch ($type) {
     case 'chatterbox':
