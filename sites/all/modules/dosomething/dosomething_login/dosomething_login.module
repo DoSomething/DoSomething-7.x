@@ -52,6 +52,12 @@ function dosomething_login_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['access-denied'] = array(
+    'title' => 'Access Denied',
+    'page callback' => 'dosomething_login_access_denied_page',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -1515,4 +1521,12 @@ function theme_dosomething_login_facebook_user_info($variables) {
   $output .= '<p>' . t('You may disconnect your account from Facebook at any time by using the Deauthorize option below. If deauthorized, you will no longer be able to use Facebook to log into this account and must use a normal password. <strong>If you have not yet set a password, you will not be able to log onto this site</strong>.') . '</p>';
   $output .= fboauth_action_display('ds_deauth');
   return $output;
+}
+
+/**
+ * Page callback for access denied menu callback.
+ */
+function dosomething_login_access_denied_page() {
+  $form = drupal_get_form('user_login');
+  return $form;
 }
