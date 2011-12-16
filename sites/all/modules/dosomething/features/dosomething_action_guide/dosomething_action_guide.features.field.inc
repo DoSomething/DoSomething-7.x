@@ -781,6 +781,9 @@ function dosomething_action_guide_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_completed_didthis',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -790,11 +793,12 @@ function dosomething_action_guide_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'no',
-          1 => 'yes',
+          'no' => 'no',
+          'yes' => 'yes',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
