@@ -212,9 +212,12 @@
   left: 124px;
   top: 126px;
 }
-#dosomething-blocks-make-an-impact-form-front .form-submit {
+#dosomething-blocks-make-an-impact-form-front .dude .form-submit {
   position: absolute;
   bottom: -30px;
+}
+.ie7 #dosomething-blocks-make-an-impact-form-front .dude .form-submit, .ie8 #dosomething-blocks-make-an-impact-form-front .dude .form-submit {
+  left: 3px;
 }
 
 /* Dropdown control */

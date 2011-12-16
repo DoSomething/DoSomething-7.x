@@ -607,9 +607,12 @@
   left: 124px;
   top: 126px;
 }
-#dosomething-blocks-make-an-impact-form-front .form-submit {
+#dosomething-blocks-make-an-impact-form-front .dude .form-submit {
   position: absolute;
   bottom: -30px;
+}
+.ie7 #dosomething-blocks-make-an-impact-form-front .dude .form-submit, .ie8 #dosomething-blocks-make-an-impact-form-front .dude .form-submit {
+  left: 3px;
 }
 
 .pane-news-stuff h2.pane-title {
@@ -624,6 +627,9 @@
   height: 70px;
 }
 .pane-news-stuff .views-row:not(.views-row-last) {
+  margin-bottom: 7px;
+}
+.ie8 .pane-news-stuff .views-row, .ie7 .pane-news-stuff .views-row {
   margin-bottom: 7px;
 }
 .pane-news-stuff .views-row a {
@@ -656,4 +662,5 @@
   display: inline;
   float: left;
   padding-right: 6px;
+  width: 50%;
 }
