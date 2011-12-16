@@ -14,3 +14,20 @@ function dosomething_profile_ctools_plugin_directory($module, $plugin) {
     return 'plugins/' . $plugin;
   }
 }
+
+function dosomething_profile_my_friends($uid, $image_style = NULL) {
+  $images = array();
+  $results = db_select('facebook_friends')
+    ->fields('facebook_friends', array('fbid'))
+    ->condition('uid', $uid, '=')
+    ->execute();
+  while ($result = $results->fetchObject()) {
+    if ($uid = db_query('SELECT uid from {fboauth_users} WHERE fbid = :fbid', array(':fbid' => $result->fbid))->fetchField()) {
+      $images[] = theme('dosomething_general_facebook_friend_pic', array('fbid' => $result->fbid, 'uid' => $uid, 'image_style' => $image_style));
+    }
+  }
+  if (!empty($images)) {
+    $images = theme('item_list', array('items' => $images));
+  }
+  return $images;
+}

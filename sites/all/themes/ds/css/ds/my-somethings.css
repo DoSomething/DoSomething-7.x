@@ -146,11 +146,6 @@
   text-align: right;
   width: 188px;
 }
-.pane-ds-profile-info .member-activity ul li span {
-  display: inline;
-  float: right;
-  line-height: 40px;
-}
 .pane-ds-profile-info .member-activity ul li:first-of-type label {
   -moz-border-radius-topright: 6px;
   -webkit-border-top-right-radius: 6px;
@@ -174,27 +169,17 @@
 .pane-ds-profile-info .member-activity ul li:nth-of-type(even) label {
   background-color: #592865;
 }
-.pane-ds-profile-info .member-activity .invite-friends {
-  display: inline;
-  float: right;
-}
-.pane-ds-profile-info .member-activity .invite-friends:after {
-  content: "»";
-}
-
-.pane-ds-friends-pics {
-  position: absolute;
-  left: 215px;
-}
-.pane-ds-friends-pics ul {
-  list-style: none;
+.pane-ds-profile-info .member-activity ul li ul {
   margin: 0;
   padding: 0;
   border: 0;
   overflow: hidden;
   *zoom: 1;
+  display: inline;
+  float: left;
+  margin-top: 8px;
 }
-.pane-ds-friends-pics ul li {
+.pane-ds-profile-info .member-activity ul li ul li {
   list-style-image: none;
   list-style-type: none;
   margin-left: 0px;
@@ -204,18 +189,33 @@
   padding-left: 4px;
   padding-right: 4px;
 }
-.pane-ds-friends-pics ul li:first-child, .pane-ds-friends-pics ul li.first {
+.pane-ds-profile-info .member-activity ul li ul li:first-child, .pane-ds-profile-info .member-activity ul li ul li.first {
   padding-left: 0;
 }
-.pane-ds-friends-pics ul li:last-child {
+.pane-ds-profile-info .member-activity ul li ul li:last-child {
   padding-right: 0;
 }
-.pane-ds-friends-pics ul li.last {
+.pane-ds-profile-info .member-activity ul li ul li.last {
   padding-right: 0;
 }
-.pane-ds-friends-pics img {
-  height: 25px;
+.pane-ds-profile-info .member-activity ul li ul li {
+  background-color: transparent !important;
   width: 25px;
+  max-height: 25px;
+  overflow: hidden;
+}
+.pane-ds-profile-info .member-activity ul li ul li img {
+  width: 100%;
+  height: 100%;
+}
+.pane-ds-profile-info .invite-friends {
+  display: inline;
+  float: right;
+  margin-top: 12px;
+  margin-right: 2px;
+}
+.pane-ds-profile-info .invite-friends:after {
+  content: "»";
 }
 
 .pane-ds-current-somethings,

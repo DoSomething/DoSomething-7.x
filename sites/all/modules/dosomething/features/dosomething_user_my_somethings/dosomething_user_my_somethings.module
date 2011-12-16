@@ -545,6 +545,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 
   $variables['member_status'] = dosomething_user_my_somethings_user_role($account);
   $variables['member_since'] = date('m/Y', $account->created);
+  $variables['member_friends'] = $variables['dosomething_friends'];
 
   // Build the hometown value out of city and state.
   $address = $profile->field_user_address->value();

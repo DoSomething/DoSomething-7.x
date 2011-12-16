@@ -12,7 +12,7 @@
 <div class="member-activity">
   <ul>
    <?php /* <li><label>Issues I rock:</label><span></span></li> */ ?>
-    <li><label>My DoSomething friends:</label><span><a class="invite-friends" href="/invite-friends">invite friends</a></span></li>
+    <li><label>My DoSomething friends:</label></label><span><?php print $member_friends; ?><span><a class="invite-friends" href="/invite-friends">invite friends</a></span></li>
    <?php /* <li><label>Somethings they're doing:</label><span></span></li> */ ?>
 </ul>
 </div>

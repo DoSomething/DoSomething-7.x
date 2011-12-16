@@ -29,18 +29,9 @@ function dosomething_profile_ds_friends_pics_content_type_render($subtype, $conf
  * Return friends profile pics.
  */
 function dosomething_profile_ds_friends_pics_content($uid) {
-  $img = array();
-  $results = db_select('facebook_friends')
-    ->fields('facebook_friends', array('fbid'))
-    ->condition('uid', $uid, '=')
-    ->execute();
-  while ($result = $results->fetchObject()) {
-    if ($uid = db_query('SELECT uid from {fboauth_users} WHERE fbid = :fbid', array(':fbid' => $result->fbid))->fetchField()) {
-      $img[] = theme('dosomething_general_facebook_friend_pic', array('fbid' => $result->fbid, 'uid' =>$uid, 'image_style' => NULL));
-    }
-  }
-  if ($img) {
-    return theme('item_list', array('items' => $img));
+  $img = dosomething_profile_my_friends($uid);
+  if (!empty($img)) {
+    return $img;
   }
   // Check if they have connected through Facebook.
   elseif (db_query('SELECT uid from {fboauth_users} WHERE uid = :uid', array(':uid' => $uid))->fetchField()) {

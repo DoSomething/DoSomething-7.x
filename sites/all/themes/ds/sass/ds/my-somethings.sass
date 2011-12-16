@@ -84,9 +84,6 @@
           padding-right: 15px
           text-align: right
           width: 188px
-        span
-          +float-right
-          line-height: 40px
       li:first-of-type
         label
           +border-top-right-radius
@@ -98,21 +95,25 @@
         background-color: $gray6
         label
           background-color: #592865
-    .invite-friends
-      +float-right
-      &:after
-        content: "»"
-
-.pane-ds-friends-pics
-  position: absolute
-  left: 215px
-  ul
-    list-style: none
+  // Friends images
+  .member-activity ul li ul
     +horizontal-list
-  // @TODO Create and image style and remove this hack
-  img
-    height: 25px
-    width: 25px
+    +float-left
+    margin-top: 8px
+    li
+      background-color: transparent !important
+      width: 25px
+      max-height: 25px
+      overflow: hidden
+      img
+        width: 100%
+        height: 100%
+  .invite-friends
+    +float-right
+    margin-top: 12px
+    margin-right: 2px
+    &:after
+      content: "»"
 
 // Bottom  my sections
 .pane-ds-current-somethings,

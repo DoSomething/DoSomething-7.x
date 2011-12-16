@@ -20,8 +20,10 @@ function dosomething_user_my_somethings_ds_profile_info_content_type_render($sub
   $account = isset($context->data) ? clone $context->data : NULL;
   $block = new stdClass();
   if ($account) {
+    $dosomething_friends = dosomething_profile_my_friends($account->uid);
+
     $profile = profile2_load_by_user($account->uid, 'main');
-    $block->content = theme('dosomething_profile_info', array('account' => $account, 'profile' => $profile, 'dosomething_friends' => ''));
+    $block->content = theme('dosomething_profile_info', array('account' => $account, 'profile' => $profile, 'dosomething_friends' => $dosomething_friends));
   }
   else {
     $block->content = '';
@@ -29,4 +31,3 @@ function dosomething_user_my_somethings_ds_profile_info_content_type_render($sub
 
   return $block;
 }
-
