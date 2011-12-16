@@ -8,7 +8,7 @@ function dosomething_feeds_get_news_feed_view() {
   $view->base_table = 'node';
   $view->human_name = 'DoSomething.org News Box';
   $view->core = 7;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
@@ -151,10 +151,35 @@ function dosomething_feeds_get_news_feed_view() {
     'image_style' => 'medium',
     'image_link' => '',
   );
-  /* Field: Content: Issues */
+  /* Field: Field: Issues */
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['id'] = 'taxonomy_vocabulary_5';
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['field'] = 'taxonomy_vocabulary_5';
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['click_sort_column'] = array(
+    0 => 'tid',
+  );
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['group_rows'] = 1;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['taxonomy_vocabulary_5']['field_api_classes'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -172,8 +197,24 @@ function dosomething_feeds_get_news_feed_view() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'chatterbox' => 'chatterbox',
+    'blog' => 'blog',
   );
+  /* Filter criterion: Content: Blog type (field_blog_type) */
+  $handler->display->display_options['filters']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
+  $handler->display->display_options['filters']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['filters']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
+  $handler->display->display_options['filters']['field_blog_type_tid']['value'] = array(
+    9370 => '9370',
+  );
+  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['operator_id'] = 'field_blog_type_tid_op';
+  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['label'] = 'Blog type (field_blog_type)';
+  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['operator'] = 'field_blog_type_tid_op';
+  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['identifier'] = 'field_blog_type_tid';
+  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['field_blog_type_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_blog_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_blog_type_tid']['vocabulary'] = 'blog_type';
+  $handler->display->display_options['filters']['field_blog_type_tid']['error_message'] = 0;
   
   return $view;
 }
@@ -186,7 +227,7 @@ function dosomething_feeds_get_celebs_feed_view() {
   $view->base_table = 'node';
   $view->human_name = 'Celebs Gone Good';
   $view->core = 7;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
@@ -329,7 +370,7 @@ function dosomething_feeds_get_celebs_feed_view() {
   $handler->display->display_options['fields']['upload']['delta_offset'] = '0';
   $handler->display->display_options['fields']['upload']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['upload']['field_api_classes'] = 0;
-  /* Field: Content: Picture */
+  /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
@@ -359,7 +400,7 @@ function dosomething_feeds_get_celebs_feed_view() {
   $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
-  /* Field: Content: Issues */
+  /* Field: Field: Issues */
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['id'] = 'taxonomy_vocabulary_5';
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['fields']['taxonomy_vocabulary_5']['field'] = 'taxonomy_vocabulary_5';
@@ -380,8 +421,18 @@ function dosomething_feeds_get_celebs_feed_view() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'celebs_gone_good' => 'celebs_gone_good',
+    'blog' => 'blog',
   );
+  /* Filter criterion: Content: Blog type (field_blog_type) */
+  $handler->display->display_options['filters']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
+  $handler->display->display_options['filters']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['filters']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
+  $handler->display->display_options['filters']['field_blog_type_tid']['value'] = array(
+    9369 => '9369',
+  );
+  $handler->display->display_options['filters']['field_blog_type_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_blog_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_blog_type_tid']['vocabulary'] = 'blog_type';
   
   return $view;
 }
