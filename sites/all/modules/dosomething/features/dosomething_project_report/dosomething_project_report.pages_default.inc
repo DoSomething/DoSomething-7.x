@@ -378,6 +378,7 @@ function dosomething_project_report_default_page_manager_handlers() {
       'items_per_page' => '3',
       'context' => array(
         0 => 'argument_entity_id:webform_submission_entity_1',
+        1 => 'argument_entity_id:webform_submission_entity_1',
       ),
       'override_title' => 1,
       'override_title_text' => 'Related Projects',

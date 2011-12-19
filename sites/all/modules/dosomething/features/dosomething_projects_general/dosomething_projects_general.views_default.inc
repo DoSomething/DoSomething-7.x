@@ -616,7 +616,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['relationship'] = 'taxonomy_vocabulary_5_tid';
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
@@ -725,6 +724,31 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['relationship'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['break_phrase'] = 1;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['set_breadcrumb'] = 0;
+  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['use_taxonomy_term_path'] = 0;
+  /* Contextual filter: Webform submissions: Sid */
+  $handler->display->display_options['arguments']['sid']['id'] = 'sid';
+  $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['arguments']['sid']['field'] = 'sid';
+  $handler->display->display_options['arguments']['sid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['sid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['sid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['sid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['sid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['sid']['not'] = 1;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Webform Submission: Title (field_project_title) */
   $handler->display->display_options['filters']['field_project_title_value']['id'] = 'field_project_title_value';
@@ -748,6 +772,14 @@ function dosomething_projects_general_views_default_views() {
       'panel' => '0',
       'fixed' => '',
       'label' => 'Related taxonomy term:',
+    ),
+    'sid' => array(
+      'type' => 'context',
+      'context' => 'entity:webform_submission_entity.sid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Webform submissions: Sid',
     ),
   );
   $export['related_projects'] = $view;
