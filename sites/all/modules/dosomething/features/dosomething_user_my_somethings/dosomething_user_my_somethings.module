@@ -686,7 +686,6 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
           $submission = $something->uri['options']['entity'];
           $node = node_load($submission->nid);
           $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
-          $something->uri['path'] = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : $something->uri['path'];
         }
       }
       $element[$delta] = array(
@@ -733,6 +732,9 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
           ),
         ),
       );
+	  if ($edit_access) {
+	    $element[$delta]['complete-this']['#href'] = "node/{$node->nid}/submission/{$submission->sid}/edit";
+	  }
     }
   }
   return $element;
