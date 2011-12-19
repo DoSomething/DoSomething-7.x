@@ -732,9 +732,9 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
           ),
         ),
       );
-	  if ($edit_access) {
-	    $element[$delta]['complete-this']['#href'] = "node/{$node->nid}/submission/{$submission->sid}/edit";
-	  }
+      if ($edit_access) {
+        $element[$delta]['description']['complete-this']['#href'] = "node/{$node->nid}/submission/{$submission->sid}/edit";
+      }
     }
   }
   return $element;
