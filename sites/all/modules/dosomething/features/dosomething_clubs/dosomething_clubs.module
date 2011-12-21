@@ -139,8 +139,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
     // If we have a birthday, prepopulate the field.
     if (is_numeric($profile_wrapper->field_user_birthday->raw())) {
       $form['field_club_leader_birthdate'][LANGUAGE_NONE][0]['#default_value']['value']  = date('Y-m-d H:i:s', $profile_wrapper->field_user_birthday->raw());
-      // Due to the fact that this form allows only two digit birthday years,
-      // we have to ensure that they don't try to update the date here.
+      // We want to capture birthdates but we don't want them updated here.
       // We'll set a form error below if they somehow manage to do this.
       $form['field_club_leader_birthdate']['#disabled'] = TRUE;
     }
@@ -177,7 +176,7 @@ function dosomething_clubs_form_validate(&$form, &$form_state) {
       form_set_error('field_email', t('The email address provided is not a valid email address.'));
     }
   }
-  // Don't let them change their birthdate on this form because the date parser keeps freaking out.
+  // Don't let them change their birthdate on this form.
   if (isset($form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value'] != '') {
     if ($form['field_club_leader_birthdate'][LANGUAGE_NONE][0]['#default_value']['value'] != $form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) {
       form_set_error('field_club_leader_birthdate', 'Sorry you can\'t change your birthdate on this form. Please edit your profile to change your birthdate');
@@ -212,9 +211,6 @@ function dosomething_clubs_form_submit(&$form, &$form_state) {
   if (isset($values['field_name_last'][LANGUAGE_NONE][0]['value']) && $values['field_name_last'][LANGUAGE_NONE][0]['value'] != '') {
     $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['field_name_last'][LANGUAGE_NONE][0]['value'];
   }
-  //if (isset($values['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) && $values['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value'] != '') {
-  //  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $values['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value'];
-  //}
   $profile->save();
 
   if (isset($values['field_email'][LANGUAGE_NONE][0]['value']) && $values['field_email'][LANGUAGE_NONE][0]['value'] != '' && $values['field_email'][LANGUAGE_NONE][0]['value'] != $user->mail) {
