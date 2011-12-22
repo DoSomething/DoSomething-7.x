@@ -508,8 +508,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     'field_instance' => array(
       'bundle' => 'club',
       'deleted' => '0',
-      'description' => 'mm/dd/yy
-',
+      'description' => 'mm/dd/yyyy',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -593,8 +592,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
           'default_value_custom' => '',
           'default_value_custom2' => '',
           'increment' => 1,
-          'input_format' => 'Y-m-d H:i:s',
-          'input_format_custom' => 'm/d/y',
+          'input_format' => 'm/d/Y - H:i:s',
           'label_position' => 'above',
           'repeat_collapsed' => '',
           'text_parts' => array(),
@@ -2053,8 +2051,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('ZIP/Postal Code');
   t('hold down ctrl button to select more than one');
   t('http://www.DoSomething.org/Club/');
-  t('mm/dd/yy
-');
+  t('mm/dd/yyyy');
 
   return $fields;
 }

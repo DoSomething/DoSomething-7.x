@@ -110,3 +110,120 @@ class DosomethingClubsMailSystem implements MailSystemInterface {
     );
   }
 }
+
+/**
+ * Impelments hook_form_alter().
+ */
+function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  // Take no action if this user is not authenticated.
+  if ($user->uid == 0) {
+    return;
+  }
+  // Only fill in data on forms that are ours or new forms.
+  elseif ($form['nid']['#value'] == NULL || $form['#node']->uid == $user->uid) {
+    // Load data.
+    $profile = profile2_load_by_user($user, 'main');
+    $augmented = FALSE;
+    if ($profile) {
+      $augmented = TRUE;
+      $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+      if ($form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+        $form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value();
+      }
+      if ($form['field_name_last'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+        $form['field_name_last'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_last_name->value();
+      }
+      // If the mobile number is empty, prepopulate it.
+      if ($form['field_phone_required'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+        $form['field_phone_required'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_mobile->value();
+      }
+      // If we have a birthday, prepopulate the field.
+      if (is_numeric($profile_wrapper->field_user_birthday->raw())) {
+        $form['field_club_leader_birthdate'][LANGUAGE_NONE][0]['#default_value']['value']  = date('Y-m-d H:i:s', $profile_wrapper->field_user_birthday->raw());
+        // We want to capture birthdates but we don't want them updated here.
+        // We'll set a form error below if they somehow manage to do this.
+        $form['field_club_leader_birthdate']['#disabled'] = TRUE;
+      }
+    }
+    // If this email isn't actually a magic mobile number, prepopulate the form
+    // with it.
+    if (substr($user->mail, -7) != '@mobile') {
+      $augmented = TRUE;
+      $form['field_email'][LANGUAGE_NONE][0]['value']['#default_value'] = $user->mail;
+    }
+    if ($augmented) {
+      // Attach our submit handler to update the user and profile objects with
+      // newer data.
+      $form['#submit'][] = 'dosomething_clubs_form_submit';
+      $form['#validate'][] = 'dosomething_clubs_form_validate';
+    }
+  }
+}
+
+/**
+ * Scholarship Application form validation callback.
+ */
+function dosomething_clubs_form_validate(&$form, &$form_state) {
+  global $user;
+  // If the email is set, make sure we can update the user's email address.
+  if (isset($form_state['values']['field_email'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_email'][LANGUAGE_NONE][0]['value'] != '') {
+    $mail = $form_state['values']['field_email'][LANGUAGE_NONE][0]['value'];
+    $account = user_load_by_mail($mail);
+    // If we found an account with that email address and the email address does
+    // not belong to this user, set an error.
+    if ($account && $account->uid != $user->uid) {
+      form_set_error('field_email', t('You may not provide the email address of another user, do you have another account?'));
+    }
+    if (!valid_email_address($mail)) {
+      form_set_error('field_email', t('The email address provided is not a valid email address.'));
+    }
+  }
+  // Don't let them change their birthdate on this form.
+  if (isset($form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value'] != '') {
+    if ($form['field_club_leader_birthdate'][LANGUAGE_NONE][0]['#default_value']['value'] != $form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) {
+      form_set_error('field_club_leader_birthdate', 'Sorry you can\'t change your birthdate on this form. Please edit your profile to change your birthdate');
+    }
+  }
+  if (isset($form_state['values']['field_phone_required'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_phone_required'][LANGUAGE_NONE][0]['value'] != '') {
+    $number = $form_state['values']['field_phone_required'][LANGUAGE_NONE][0]['value'];
+    $number = preg_replace('/\D/', '', $number);
+    if (strlen($number) != 10) {
+      form_set_error('field_phone_required', t('We need a valid phone number with area code.'));
+    }
+  }
+}
+
+/**
+ * Scholarship Application form submission callback.
+ */
+function dosomething_clubs_form_submit(&$form, &$form_state) {
+  global $user;
+  $values = $form_state['values'];
+  // Update profile values with contact info from the application.
+  $profile = profile2_load_by_user($user, 'main');
+  if (isset($values['field_phone_required'][LANGUAGE_NONE][0]['value']) && $values['field_phone_required'][LANGUAGE_NONE][0]['value'] != '') {
+    //Strip junk from the phone number:
+    $number = $values['field_phone_required'][LANGUAGE_NONE][0]['value'];
+    $number = preg_replace('/\D/', '', $number);
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['field_phone_required'][LANGUAGE_NONE][0]['value'];
+  }
+  if (isset($values['field_name'][LANGUAGE_NONE][0]['value']) && $values['field_name'][LANGUAGE_NONE][0]['value'] != '') {
+    $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['field_name'][LANGUAGE_NONE][0]['value'];
+  }
+  if (isset($values['field_name_last'][LANGUAGE_NONE][0]['value']) && $values['field_name_last'][LANGUAGE_NONE][0]['value'] != '') {
+    $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['field_name_last'][LANGUAGE_NONE][0]['value'];
+  }
+  $profile->save();
+
+  if (isset($values['field_email'][LANGUAGE_NONE][0]['value']) && $values['field_email'][LANGUAGE_NONE][0]['value'] != '' && $values['field_email'][LANGUAGE_NONE][0]['value'] != $user->mail) {
+    $variables = array(
+      '@username' => $user->name,
+      '@old_mail' => $user->mail,
+      '@new_mail' => $values['field_email'][LANGUAGE_NONE][0]['value'],
+    );
+    watchdog('dosomething_clubs', 'Updating the email address for @username from @old_mail to @new_mail upon club creation', $variables);
+    $user->mail = $values['field_email'][LANGUAGE_NONE][0]['value'];
+    user_save($user);
+  }
+}
