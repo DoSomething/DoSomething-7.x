@@ -26,7 +26,7 @@ function dosomething_school_entity_info() {
     'ds_school' => array(
       'label' => t('School'),
       'plural label' => t('Schools'),
-      'description' => t('An school entity, most are from the Great Schools dataset but some are user added.'),
+      'description' => t('A school entity, most are from the Great Schools dataset but some are user added.'),
       'entity class' => 'Entity',
       'controller class' => 'EntityAPIController',
       'base table' => 'ds_school',
@@ -39,7 +39,6 @@ function dosomething_school_entity_info() {
       // 'uri callback' => 'entity_class_uri',
     ),
   );
-
   return $return;
 }
 
@@ -82,7 +81,7 @@ function dosomething_school_field_widget_settings_form($field, $instance) {
       'STARTS_WITH' => t('Starts with'),
       'CONTAINS' => t('Contains'),
     ),
-    '#description' => t('Select the method used to collect autocomplete suggestions. Note that <em>Contains</em> can cause performance issues on sites with thousands of nodes.'),
+    '#description' => t('Select the method used to collect autocomplete suggestions. Note that <em>Contains</em> can cause performance issues on sites with thousands of entities.'),
   );
   $form['size'] = array(
     '#type' => 'textfield',
@@ -102,12 +101,14 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   $default_state = '--';
   $default_school = '';
   if (empty($items[0]['target_id'])) {
+	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
     // Try to use the profile's state.
     $profile = profile2_load_by_user($GLOBALS['user'], 'main');
     if (!empty($profile->field_user_address['und'][0]['administrative_area'])) {
       $default_state = $profile->field_user_address['und'][0]['administrative_area'];
     }
   }
+  // TODO: Why use the target_type when we're hardcoding it to only work with schools?
   elseif ($entity = entity_load_single($field['settings']['target_type'], $items[0]['target_id'])) {
     $default_state = $entity->state;
     $default_school = dosomething_school_make_label($entity);

@@ -10,7 +10,7 @@
  */
 function dosomething_school_schema() {
   $schema['ds_school'] = array(
-    'description' => 'Holds GreatSchools data during migration import.',
+    'description' => 'Holds school data, both imported from GreatSchools and user generated.',
     'fields' => array(
       'sid' => array(
         'description' => 'Primary Key: Unique school id.',
@@ -18,13 +18,14 @@ function dosomething_school_schema() {
         'not null' => TRUE,
       ),
       'uid' => array(
-        'description' => "The {users}.uid of the associated user.",
+        'description' => "The {users}.uid of the associated user, 1 for imported or otherwise approved public data.",
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => FALSE,
         'default' => NULL,
       ),
       'gsid' => array(
+        // TODO: Choose one.
         'description' => 'The GreatSchools universal id. This will be NULL or 0 (I need to choose one) on user generated schools.',
         'type' => 'int',
         'not null' => FALSE,
