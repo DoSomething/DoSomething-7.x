@@ -10,6 +10,66 @@
 function dosomething_profile_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'profile2-main-field_school_reference'
+  $fields['profile2-main-field_school_reference'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_school_reference',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(),
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 19,
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_school_reference',
+      'label' => 'School',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'dosomething_school',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => 60,
+        ),
+        'type' => 'dosomething_school_autocomplete',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'profile2-main-field_user_address'
   $fields['profile2-main-field_user_address'] = array(
     'field_config' => array(
@@ -148,6 +208,7 @@ function dosomething_profile_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
+          'display_all_day' => 0,
           'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
@@ -226,6 +287,7 @@ function dosomething_profile_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
+          'display_all_day' => 0,
           'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
@@ -1020,6 +1082,7 @@ function dosomething_profile_field_default_fields() {
   t('Last Name');
   t('Location');
   t('Membership Anniversary');
+  t('School');
   t('Subscribe to newsletter');
   t('What\'s Your Something?');
   t('Why Do You Do Something?');
