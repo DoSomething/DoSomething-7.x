@@ -181,7 +181,7 @@ function dosomething_clubs_form_validate(&$form, &$form_state) {
   }
   // Don't let them change their birthdate on this form.
   if (isset($form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value'] != '') {
-    if ($form['field_club_leader_birthdate'][LANGUAGE_NONE][0]['#default_value']['value'] != $form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value']) {
+    if (substr($form['field_club_leader_birthdate'][LANGUAGE_NONE][0]['#default_value']['value'], 0, 10) != substr($form_state['values']['field_club_leader_birthdate'][LANGUAGE_NONE][0]['value'], 0, 10)) {
       form_set_error('field_club_leader_birthdate', 'Sorry you can\'t change your birthdate on this form. Please edit your profile to change your birthdate');
     }
   }
