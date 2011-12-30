@@ -18,6 +18,9 @@ function dosomething_profile_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_school_reference',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'target_entity' => array(
@@ -28,8 +31,14 @@ function dosomething_profile_field_default_fields() {
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
-        'handler_settings' => array(),
-        'target_type' => 'node',
+        'handler_settings' => array(
+          'target_bundles' => array(
+            'ds_school' => 'ds_school',
+          ),
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => 0,
+        'target_type' => 'ds_school',
       ),
       'translatable' => '0',
       'type' => 'entityreference',
@@ -53,16 +62,17 @@ function dosomething_profile_field_default_fields() {
       'entity_type' => 'profile2',
       'field_name' => 'field_school_reference',
       'label' => 'School',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'dosomething_school',
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'dosomething_school_autocomplete',
         'weight' => '31',
