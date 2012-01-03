@@ -43,6 +43,11 @@ abstract class DSJsonUserMigration extends Migration {
       self::fetchFields($base_url)
     );
   }
+
+  public function prepareRow($row) {
+    // The destination just expects role ids.
+    $row->roles = array_keys($row->roles);
+  }
 }
 
 class DSJsonNewUser extends DSJsonUserMigration {
@@ -73,6 +78,7 @@ class DSJsonNewUser extends DSJsonUserMigration {
       'signature_format',
       'status',
       'init',
+      'roles',
     ));
     $this->addUnmigratedSources(array(
       'created',  // Shouldn't be changing.
@@ -127,6 +133,7 @@ class DSJsonChangedUser extends DSJsonUserMigration {
       'signature_format',
       'status',
       'init',
+      'roles',
     ));
     $this->addUnmigratedSources(array(
       'created',  // Shouldn't be changing.
@@ -158,7 +165,6 @@ class DSJsonChangedUser extends DSJsonUserMigration {
       'pathauto', // Let it happen.
     ));
     #$this->addFieldMapping('pass', ''); # User: Password (plain text)
-    #$this->addFieldMapping('roles', ''); # User: Role IDs
   }
 }
 
