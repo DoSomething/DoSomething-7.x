@@ -130,7 +130,7 @@ function dosomething_roles_mail($key, &$message, $params) {
   switch ($key) {
     case 'dosomething-roles-old-person-email':
       $params['full_name'] = module_exists('dosomething_login') ? dosomething_login_get_user_full_name($params['account']) : $params['account']->name;
-      $message['subject'] = t('You\'re membership has expired.');
+      $message['subject'] = t('Your membership has expired.');
       $message['body'][] = drupal_html_to_text(theme('dosomething_roles_old_person_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
