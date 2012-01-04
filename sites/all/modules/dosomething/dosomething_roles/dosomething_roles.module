@@ -95,26 +95,22 @@ function dosomething_roles_send_demotion_notifications($month) {
         continue;
       }
       // Don't mess with the roles of staff members.
-      else if (dosomething_roles_user_is_staff_member($account->uid)) {
-        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
-        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary);
-        continue;
-      }
+      else if (!dosomething_roles_user_is_staff_member($account->uid)) {
+        // Find what a user's role will be when they're anniversary has passed.
+        $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
+        $new_role_weight = array_search($new_role_name, $role_hierarchy);
+        $current_role_name = dosomething_roles_get_current_role($account->uid);
+        $current_role_weight = array_search($current_role_name, $role_hierarchy);
 
-      // Find what a user's role will be when they're anniversary has passed.
-      $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
-      $new_role_weight = array_search($new_role_name, $role_hierarchy);
-      $current_role_name = dosomething_roles_get_current_role($account->uid);
-      $current_role_weight = array_search($current_role_name, $role_hierarchy);
-
-      if ($current_role_weight < $new_role_weight) {
-        global $language;
-        $params = array(
-          'months' => $month,
-          'new_role' => $new_role_name,
-          'current_role' => $current_role_name,
-        );
-        drupal_mail('dosomething_roles', 'dosomething-roles-impending-demotion', $account->mail, $language, $params);
+        if ($current_role_weight < $new_role_weight) {
+          global $language;
+          $params = array(
+            'months' => $month,
+            'new_role' => $new_role_name,
+            'current_role' => $current_role_name,
+          );
+          drupal_mail('dosomething_roles', 'dosomething-roles-impending-demotion', $account->mail, $language, $params);
+        }
       }
       // Mark this user as done by setting the last uid and last anniversary checked.
       variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
