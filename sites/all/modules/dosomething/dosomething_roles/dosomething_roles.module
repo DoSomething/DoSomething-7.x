@@ -20,12 +20,11 @@ function dosomething_roles_cron() {
 
 /**
  * Update roles for users whose anniversaries have passed.
- * Note: this should only do 10 at a time based on 
- * dosomething_roles_get_users_by_anniversary.
  */
 function dosomething_roles_demote_expired_users() {
   $last_checked_timestamp = variable_get('dosomething_roles_member_demotion_last_timestamp', 0);
   $last_uid = variable_get('dosomething_roles_member_demotion_last_uid', 0);
+  // Let dosomething_roles_get_users_by_anniversary() decide how many we do at a time.
   $results = dosomething_roles_get_users_by_anniversary($last_checked_timestamp, REQUEST_TIME);
   if (isset($results['profile2']) && count($results['profile2'])) {
     foreach ($results['profile2'] as $profile_data) {
@@ -60,7 +59,7 @@ function dosomething_roles_demote_expired_users() {
  *  Lookup people whose anniversary is x months away.  This will run through
  *   anyone's membership whose anniversary takes place in the month that
  *   is x months away.  On the first of the month, it will move on to the
- *   next month, so the previous month should be finisehd by that point.
+ *   next month, so the previous month should be finished by that point.
  *
  * @param $month
  *  (int) number of months away.
@@ -257,21 +256,23 @@ function dosomething_roles_get_action_update_types() {
 }
 
 /**
- * Get a list of the mebership roles in order from highest level
- *  to lowest level.  Lower weight = Higher level.
+ * Get a list of the member roles in order from highest level to lowest level.
+ * Lower weight = Higher level.
  */
 function dosomething_roles_get_membership_role_hierarchy() {
   return  array(
     'varsity',
     'active member',
     'member',
-    'inactive user',
-    'old person',
+    'alumni',
   );
 }
 
 /**
- * Determine if athe given user is a staff member.
+ * Determine if a given user is a staff member.
+ *
+ * @param $account
+ *   Mixed, integer user id or user object.
  */
 function dosomething_roles_user_is_staff_member($account) {
   if (is_numeric($account)) {
@@ -308,10 +309,11 @@ function dosomething_roles_node_insert($node) {
 }
 
 /**
- * Implements hook_user_login()r
+ * Implements hook_user_login().
  */
 function dosomething_roles_user_login(&$edit, $account) {
-  // Don't run this on the first login.
+  // Don't run this on the first login, dosomething_login should be setting
+  // roles.
   if ($account->access) {
     dosomething_roles_update_role($account->uid);
   }
@@ -322,8 +324,9 @@ function dosomething_roles_user_login(&$edit, $account) {
  */
 function dosomething_roles_user_update(&$edit, $account, $category) {
   global $user;
-  // To prevent infinite loop, add no_dosomething_role_update if running
-  // user_save while updating a role.
+  // If dosomething_roles_update_role() doesn't currently call user_save() but
+  // in case they do we're checking for a no_dosomething_role_update property
+  // to avoid infinite recursion. Yes, this is probably unnecessarily confusing.
   if ($user->uid == $account->uid && !isset($account->no_dosomething_role_update)) {
     dosomething_roles_update_role($account->uid);
   }
@@ -385,7 +388,7 @@ function dosomething_roles_webform_submission_update($node, $submission) {
 
 /**
  * Determine a user's role level without considering their 'Aniversary Date'
- *  when the role to actually change.
+ * when the role is to actually change.
  *
  *  Rules:
  *  old person - user over 25.
@@ -393,7 +396,7 @@ function dosomething_roles_webform_submission_update($node, $submission) {
  *  member - continue to be under 26.
  *  active member - one action update within year.
  *    They also must provide their school name and zipcode,
- *      but that's conatined in the action update.
+ *      but that's contained in the action update.
  *    If their action update is unpublished, then they should
  *      immediately fall to 'member'. (See hook_webform_submission_update).
  *  varsity - 5 action updates or win grant and submit grant update.
@@ -453,7 +456,11 @@ function dosomething_roles_get_current_role($uid) {
  * This will get the number of action updates since the given time.
  *
  * @param $uid
+ *   User id.
  * @param $timestamp
+ *   UNIX timestamp, count submissions after this time.
+ * @param $draft
+ *   Boolean, TRUE counts drafts, FALSE only counts finished submissions.
  * @return mixed
  *  Returns int or NULL if unsuccessful.
  */
@@ -465,51 +472,59 @@ function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FA
     $query = db_select('webform_submissions', 'w');
     $query->innerJoin('node', 'n', 'w.nid = n.nid');
     $query->leftJoin('field_data_field_project_type', 'pt', 'w.sid = pt.entity_id');
-    $count = $query->fields('w', array('sid'))
-    ->condition('w.uid', $uid, '=')
-    ->condition('n.type', $node_types, 'IN')
-    ->condition('w.is_draft', (int) $draft)
-    ->condition('w.submitted', $timestamp, '>')
-    // field_project_type cannot be 2 (project idea)
-    // We can directly place in the values with the where.
-    ->where('pt.field_project_type_value IS NULL OR pt.field_project_type_value != 2')
-    ->where("pt.entity_type IS NULL OR pt.entity_type = 'webform_submission_entity'")
-    ->execute()
-    ->rowCount();
+    $query->fields('w', array('sid'))
+      ->condition('w.uid', $uid, '=')
+      ->condition('n.type', $node_types, 'IN')
+      ->condition('w.is_draft', (int) $draft)
+      ->condition('w.submitted', $timestamp, '>')
+      // field_project_type cannot be 2 (project idea)
+      // We can directly place in the values with the where.
+      ->where('pt.field_project_type_value IS NULL OR pt.field_project_type_value != 2')
+      ->where("pt.entity_type IS NULL OR pt.entity_type = 'webform_submission_entity'");
+    return $query->execute()->rowCount();
   }
   catch (Exception $e) {
-    $count = NULL;
+    return NULL;
   }
-
-  return $count;
 }
 
 /**
- * Determine if a user has submitted a grant update within
- *  the given span of time.
+ * Determine if a user has submitted a grant update since a given time.
+ *
+ * @param $uid
+ *   User id.
+  * @param $timestamp
+ *   UNIX timestamp, submitted after this time.
+ * @return
+ *   Integer count of final_grant_update node entities or NULL on error.
  */
 function dosomething_roles_user_submitted_grant($uid, $timestamp) {
   // TODO: Verify that this is the grant update.
-  $query = new EntityFieldQuery;
   try {
-    $count = $query
+    $query = new EntityFieldQuery;
+    $query
       ->entityCondition('entity_type', 'node')
       ->propertyCondition('uid', $uid)
       ->propertyCondition('type', 'final_grant_update')
       ->propertyCondition('status', NODE_PUBLISHED)
       ->propertyCondition('created', $timestamp, '>')
-      ->count()
-      ->execute();
+      ->count();
+    return $query->execute();
   }
   catch (Exception $e) {
     return NULL;
   }
-  return $count;
 }
 
 /**
  * Get the anniversary of this user's member level.
- *  When a user increases their role, they get it for one year.
+ *
+ * When a user increases their role, they get it for one year.
+ *
+ * @param $uid
+ *   User id.
+ * @return
+ *   UNIX timestamp of their anniversary or the current time if none was found.
  */
 function dosomething_roles_get_anniversary($uid) {
   $account = user_load($uid);
@@ -525,6 +540,11 @@ function dosomething_roles_get_anniversary($uid) {
 
 /**
  * Set a new membership anniversary for a user.
+ *
+ * @param $uid
+ *   User id.
+ * @param $timestamp
+ *   UNIX timestamp.
  */
 function dosomething_roles_set_anniversary($uid, $timestamp) {
   $account = user_load($uid);
@@ -546,6 +566,11 @@ function dosomething_roles_set_anniversary($uid, $timestamp) {
 
 /**
  * Determine how close a user is from moving to the next level.
+ *
+ * @param $uid
+ *   User id.
+ * @return
+ *   Integer 0-100.
  */
 function dosomething_roles_get_user_percentage($uid) {
   $account = user_load($uid);
@@ -576,8 +601,12 @@ function dosomething_roles_get_user_percentage($uid) {
 }
 
 /**
- * Figure out how much of a user's profile has
- *  been committed.
+ * Figure out how much of a user's profile has been committed.
+ *
+ * @param $uid
+ *   User id.
+ * @return
+ *   Float 0.0-1.0.
  */
 function dosomething_roles_profile_ratio($uid) {
   $account = user_load($uid);
@@ -630,26 +659,34 @@ function dosomething_roles_profile_ratio($uid) {
 
 /**
  * Load an array of users with anniversary dates between the start and end date.
+ *
+ * @param $start_date
+ *   UNIX timestamp start date.
+ * @param $end_date
+ *   Optional UNIX timestamp for the end date. If none is provided the current
+ *   time is used.
+ * @param $limit
+ *   Integer, maximum number of records to return.
+ * @return
+ *   Array of profile2 entities or NULL on error.
  */
 function dosomething_roles_get_users_by_anniversary($start_date, $end_date = NULL, $limit = 10) {
   if (is_null($end_date)) {
     $end_date = REQUEST_TIME;
   }
-  $query = new EntityFieldQuery;
   try {
-    $results = $query
+    $query = new EntityFieldQuery;
+    $query
       ->entityCondition('entity_type', 'profile2')
       ->propertyCondition('type', 'main', '=')
       ->fieldCondition('field_user_anniversary', 'value', array($start_date, $end_date), 'BETWEEN')
       ->fieldOrderBy('field_user_anniversary', 'value')
       ->propertyOrderBy('uid')
-      ->range(0, $limit)
-      ->execute();
-    return $results;
+      ->range(0, $limit);
+    return $query->execute();
   }
   catch (Exception $e) {
     return NULL;
   }
-  return $count;
 }
 
