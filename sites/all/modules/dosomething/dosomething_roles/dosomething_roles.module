@@ -629,19 +629,7 @@ function dosomething_roles_profile_ratio($uid) {
 }
 
 /**
- * Implements hook_form_profile2_edit_TYPE_form_alter().
- */
-function dosomething_roles_form_profile2_edit_main_form_alter(&$form, &$form_state) {
-  // Disable access to anniversary field.  This could be done with
-  // field permissions, but until we need more fine grained permissions
-  // on other fields, let's not add more overhead to this site.
-  if (isset($form['profile_main']['field_user_anniversary'])) {
-    unset($form['profile_main']['field_user_anniversary']);
-  }
-}
-
-/**
- * TODO: Comment this stuff.
+ * Load an array of users with anniversary dates between the start and end date.
  */
 function dosomething_roles_get_users_by_anniversary($start_date, $end_date = NULL, $limit = 10) {
   if (is_null($end_date)) {
