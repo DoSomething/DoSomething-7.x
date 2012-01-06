@@ -182,3 +182,40 @@ class DSCampaignSignupTackleHungerMigration extends DSCampaignSignupMigration {
     $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_school', 'field_webform_school_zip'));
   }
 }
+
+class DSCampaignSignupDecadeOfThanksMigration extends DSCampaignSignupMigration {
+  public function __construct() {
+    parent::__construct('decade_2011_signup');
+    $this->description .= 'Decade of thanks 9/11 Signup';
+
+    // Duplicate some of the work the constructor is doing since we need to add some
+    // extra fields
+    $node_type = 'decade_2011_signup';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['zip_code'] = 'Zip Code';
+    $fields['country'] = 'Country';
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
+
+    $this->addFieldMapping('data_first_name', 'field_campaign_first_name');
+    $this->addFieldMapping('data_last_name', 'field_campaign_last_name');
+    $this->addFieldMapping('field_webform_email', 'field_email');
+    $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
+    $this->addFieldMapping('data_message', 'body');
+    $this->addFieldMapping('data_postal_code', 'zip_code');
+    $this->addFieldMapping('data_country', 'country');
+    $this->addFieldMapping('data_subscriptions', 'field_hunt_subscriptions');
+
+    //Null Mappings
+    $this->addUnmigratedSources(array('title', 'format', 'teaser', 'locations'));
+    $this->addUnmigratedDestinations(array('data_location', 'group_group', 'field_webform_school_reference'));
+  }
+  public function prepareRow($row) {
+    // Extract the zip code from the location:
+    $row->zip_code = empty($row->locations[0]->postal_code) ? NULL : $row->locations[0]->postal_code;
+    $row->country = empty($row->locations[0]->country) ? NULL : $row->locations[0]->country;
+  }
+}

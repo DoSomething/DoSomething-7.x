@@ -58,6 +58,29 @@ function dosomething_migrate_regenerate_webform_nodes() {
   variable_set('webform_migrate_webform_mapping', $mapping_array);
 }
 
+/**
+ * Regenerate a single node from a file name.
+ */
+function dosomething_migrate_regenerate_webform_node_from_file($filename, $directory = FALSE) {
+  if (!$directory) {
+    $directory = drupal_get_path('module', 'dosomething_migrate') . '/nodes';
+  }
+  //Get mapping array.
+  $mapping_array = variable_get('webform_migrate_webform_mapping');
+
+  // Get the file from the directory. Only serialized text files.
+  $file = $directory . '/' . $filename;
+
+  //Get the node data and save it into drupal
+  $webform = dosomething_migrate_save_webform_node($file->uri);
+  //Update the mapping
+  $mapping_array[$key] = $webform->nid;
+  //Set the variable mapping the old array types to new node ids.
+  $variable_set('webform_migrate_webform_mapping', $mapping_array);
+}
+
+
+
 function dosomething_migrate_add_missing_nodes() {
   $path = drupal_get_path('module', 'dosomething_migrate') . '/nodes';
 
@@ -148,7 +171,15 @@ function dosomething_migrate_return_content_type_mapping() {
     'general_scholarship_app' => 'General Scholarship Application',
     'scholarships_att' => 'Scholarships ATT',
     'sixflags_scholarships_app' => 'Six Flags Friends Scholarships',
-    'project' => 'Projects'
+    'project' => 'Projects',
+    'decade_2011_signup' => 'Decade of thanks 9/11 Signup',
+    'campaign_bully_2011' => 'Campaign Project - Bullying 2011',
+    'ewaste_signup_2011' => 'ewaste 2011 signup',
+    'campaign_macys_2011' => 'Campaign Project - Macys Membership 2011',
+    'campaign_art_2011' => 'Campaign Project - Make Art Save Art 2011',
+    'campaign_sports_2011' => 'Campaign Project - Sports Equipment 2011',
+    'campaign_cancer_2011' => 'Campaign Project -Give a Spit about Cancer 2011',
+    'campaign_ew_2011' => 'Campaign Project - ewaste 2011',
   );
   return $array;
 }
