@@ -6,7 +6,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'field_webform_school', 'group_audience'));
+    $this->addUnmigratedDestinations(array('field_webform_school_reference', 'field_webform_geocode_zip_code', 'group_audience'));
     $this->addFieldMapping('is_draft')
       ->defaultValue(0);
   }
@@ -421,6 +421,229 @@ class DSCampaignReportBackTroopLetterMigration extends DSCampaignReportBackMigra
 
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
-    $this->addUnmigratedDestinations(array('field_webform_mobile', 'field_webform_pictures', 'field_webform_school_zip', 'field_webform_videos', 'taxonomy_vocabulary_5'));
+    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_mobile', 'field_webform_pictures', 'field_webform_school_zip', 'field_webform_videos', 'taxonomy_vocabulary_5'));
+  }
+}
+
+class DSCampaignReportBackMakeArtSaveArtMigration extends DSCampaignReportBackMigration {
+  public function __construct() {
+    parent::__construct('campaign_art_2011');
+    $this->description .= 'Campaign Project - Make Art Save Art 2011';
+
+    // Duplicate some of the work the constructor is doing since we need to add
+    // some extra fields.
+    $node_type = 'campaign_art_2011';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['country'] = 'Country';
+    $fields['street'] = 'Address';
+    $fields['additional'] = 'Additional';
+    $fields['latitude'] = 'Latitude';
+    $fields['longitude'] = 'Longitude';
+    $fields['loc_name'] = 'Location Name';
+
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
+
+    $this->addFieldMapping('data_first_name', 'field_art2011_first');
+    $this->addFieldMapping('data_last_name', 'field_art2011_last');
+    $this->addFieldMapping('field_webform_email', 'field_art2011_email');
+    $this->addFieldMapping('field_webform_mobile', 'field_art2011_cell');
+    $this->addFieldMapping('data_why_did_you_choose_this_design', 'field_art2011_why');
+    $this->addFieldMapping('data_why_is_art_education_important_to_you', 'field_art2011_whyart');
+    $this->addFieldMapping('data_date_of_birth', 'field_art2011_dob');
+    $this->addFieldMapping('data_title_of_artwork', 'title');
+    $this->addFieldMapping('data_zipcode', 'field_art2011_zipcode');
+    $this->addFieldMapping('field_webform_school', 'field_art2011_school');
+    $this->addFieldMapping('field_webform_pictures', 'field_art2011_file');
+    $this->addFieldMapping('data_location_name', 'loc_name');
+    $this->addFieldMapping('data_street', 'street');
+    $this->addFieldMapping('data_additional', 'additional');
+    $this->addFieldMapping('data_country', 'country');
+    $this->addFieldMapping('data_longitude', 'longitude');
+    $this->addFieldMapping('data_latitude', 'latitude');
+
+    //Null Mappings
+    $this->addUnmigratedSources(array('locations'));
+    $this->addUnmigratedDestinations(array('data_location', 'field_webform_school_zip', 'field_webform_videos', 'taxonomy_vocabulary_5'));
+  }
+  public function prepareRow($row) {
+    $location = $row->locations[0];
+    parent::prepareRow($row);
+    // Extract the zip code from the location:
+    $row->location_name = empty($location->name) ? NULL : $location->name;
+    $row->zip_code = empty($location->postal_code) ? NULL : $location->postal_code;
+    $row->country = empty($location->country) ? NULL : $location->country;
+    $row->street = empty($location->street) ? NULL : $location->street;
+    $row->additional = empty($location->additional) ? NULL : $location->additional;
+    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+  }
+}
+
+class DSCampaignReportBackSportsMigration extends DSCampaignReportBackMigration {
+  public function __construct() {
+    parent::__construct('campaign_sports_2011');
+    $this->description .= 'Campaign Project - Sports Equipment 2011';
+
+    // Duplicate some of the work the constructor is doing since we need to add some
+    // extra fields.
+    $node_type = 'campaign_sports_2011';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['country'] = 'Country';
+    $fields['location_name'] = 'Location Name';
+    $fields['street'] = 'Street';
+    $fields['additional'] = 'Additional';
+    $fields['longitude'] = 'Longitude';
+    $fields['latitude'] = 'Latitude';
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
+    $this->addFieldMapping('data_participants_emails', 'field_participant_emails');
+    $this->addFieldMapping('field_webform_school_zip', 'field_zip_campaign');
+    $this->addFieldMapping('data_how_many_people_were_involved_in_your_sports_equipment_drive', 'field_campaign_number_of_people');
+    $this->addFieldMapping('field_webform_school', 'title');
+    $this->addFieldMapping('data_location_name', 'location_name');
+    $this->addFieldMapping('data_street', 'street');
+    $this->addFieldMapping('data_additional', 'additional');
+    $this->addFieldMapping('data_country', 'country');
+    $this->addFieldMapping('data_longitude', 'longitude');
+    $this->addFieldMapping('data_latitude', 'latitude');
+    $this->addFieldMapping('data_how_many_pieces_of_sports_equipment_did_you_collect', 'field_campaign_pieces');
+    $this->addFieldMapping('data_what_awesome_things_did_you_do_to_make_your_drive_particularly_successful', 'field_campaign_essay');
+    $this->addFieldMapping('data_anything_else_we_should_know_about_your_sports_equipment_drive_project', 'field_anything_else');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
+    $this->addFieldMapping('data_short_url', 'field_short_url');
+    $this->addFieldMapping('data_votes', 'field_votes');
+    $this->addFieldMapping('data_total_votes', 'field_total_votes');
+
+
+    //Null Mappings
+    $this->addUnmigratedSources(array('locations'));
+    $this->addUnmigratedDestinations(array(
+      'data_location',
+      'field_webform_email',
+      'field_webform_mobile',
+      'field_webform_videos',
+      'taxonomy_vocabulary_5'
+    ));
+  }
+  public function prepareRow($row) {
+    // Extract the location from the location:
+    $location = $row->locations[0];
+    parent::prepareRow($row);
+    $row->location_name = empty($location->name) ? NULL : $location->name;
+    $row->country = empty($location->country) ? NULL : $location->country;
+    $row->street = empty($location->street) ? NULL : $location->street;
+    $row->additional = empty($location->additional) ? NULL : $location->additional;
+    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+    if (is_array($row->field_participant_emails)) {
+      $row->field_participant_emails = implode("\n", $row->field_participant_emails);
+    }
+  }
+}
+
+class DSCampaignReportBackBullying extends DSCampaignReportBackMigration {
+  public function __construct() {
+    parent::__construct('campaign_bully_2011');
+    $this->description .= 'Campaign Project - Bullying 2011';
+
+    // Duplicate some of the work the constructor is doing since we need to add some
+    // extra fields.
+    $node_type = 'campaign_bully_2011';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['postal_code'] = 'Postal Code';
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
+    $this->addFieldMapping('data_postal_code', 'postal_code');
+    $this->addFieldMapping('data_what_did_you_do_to_step_up_to_bullying', 'body');
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
+
+    //Null Mappings
+    $this->addUnmigratedSources(array('locations', 'title', 'format', 'teaser'));
+    $this->addUnmigratedDestinations(array(
+      'data_location',
+      'field_webform_email',
+      'field_webform_mobile',
+      'taxonomy_vocabulary_5',
+      'field_webform_school_zip',
+      'field_webform_school',
+    ));
+  }
+  public function prepareRow($row) {
+    // Extract the location from the location:
+    $location = $row->locations[0];
+    parent::prepareRow($row);
+    $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
+  }
+}
+
+class DSCampaignReportBackMacys2011Migration extends DSCampaignReportBackMigration {
+  public function __construct() {
+    parent::__construct('campaign_macys_2011');
+    $this->description .= 'Campaign Project - Macys Membership 2011';
+
+    // Duplicate some of the work the constructor is doing since we need to add some
+    // extra fields.
+    $node_type = 'campaign_macys_2011';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['country'] = 'Country';
+    $fields['location_name'] = 'Location Name';
+    $fields['street'] = 'Street';
+    $fields['additional'] = 'Additional';
+    $fields['longitude'] = 'Longitude';
+    $fields['latitude'] = 'Latitude';
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
+    $this->addFieldMapping('data_location_name', 'location_name');
+    $this->addFieldMapping('data_street', 'street');
+    $this->addFieldMapping('data_additional', 'additional');
+    $this->addFieldMapping('data_country', 'country');
+    $this->addFieldMapping('data_longitude', 'longitude');
+    $this->addFieldMapping('data_latitude', 'latitude');
+    $this->addFieldMapping('field_webform_email', 'field_email');
+    $this->addFieldMapping('data_your_name', 'title');
+    $this->addFieldMapping('data_tell_us_more_about_how_you_completed_the_project', 'field_campaign_essay_how');
+    $this->addFieldMapping('data_how_many_people_were_involved_in_completing_the_project', 'field_campaign_number_of_people');
+    $this->addFieldMapping('data_why_is_taking_action_important_to_you', 'field_campaign_essay_why');
+    $this->addFieldMapping('data_what_was_the_biggest_challenge_you_faced', 'field_campaign_essay_challenge');
+    $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
+    $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
+   
+    //Null Mappings
+    $this->addUnmigratedSources(array('locations'));
+    $this->addUnmigratedDestinations(array(
+      'data_location',
+      'field_webform_mobile',
+      'taxonomy_vocabulary_5',
+      'field_webform_school_zip',
+      'field_webform_school',
+      'data_share_more_optional',
+    ));
+  }
+  public function prepareRow($row) {
+     // Extract the location from the location:
+    $location = $row->locations[0];
+    parent::prepareRow($row);
+    $row->location_name = empty($location->name) ? NULL : $location->name;
+    $row->country = empty($location->country) ? NULL : $location->country;
+    $row->street = empty($location->street) ? NULL : $location->street;
+    $row->additional = empty($location->additional) ? NULL : $location->additional;
+    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
   }
 }

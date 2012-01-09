@@ -189,7 +189,7 @@ class DSCampaignSignupDecadeOfThanksMigration extends DSCampaignSignupMigration 
     $this->description .= 'Decade of thanks 9/11 Signup';
 
     // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields
+    // extra fields.
     $node_type = 'decade_2011_signup';
     $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
     $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
