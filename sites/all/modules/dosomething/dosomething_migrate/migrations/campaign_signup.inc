@@ -6,7 +6,7 @@ abstract class DSCampaignSignupMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('CampaignSignup'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'group_audience'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'group_audience', 'group_group', 'field_webform_school_reference'));
     $this->addFieldMapping('is_draft')
       ->defaultValue(0);
   }
@@ -54,13 +54,64 @@ class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
     parent::__construct('gys_2011');
     $this->description .= 'Green Your School 2011';
 
+    // Duplicate some of the work the constructor is doing since we need to add some
+    // extra fields.
+    $node_type = 'gys_2011';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['country'] = 'Country';
+    $fields['location_name'] = 'Location Name';
+    $fields['street'] = 'Street';
+    $fields['additional'] = 'Additional';
+    $fields['longitude'] = 'Longitude';
+    $fields['latitude'] = 'Latitude';
+    $fields['country'] = 'Country';
+    $fields['state'] = 'State';
+    $fields['postal_code'] = 'Postal Code';
+    $fields['city'] = 'City';
+
+
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
+
+
+    $this->addFieldMapping('data_country', 'country');
+    $this->addFieldMapping('data_location_name', 'location_name');
+    $this->addFieldMapping('data_street', 'street');
+    $this->addFieldMapping('data_additional', 'additional');
+    $this->addFieldMapping('data_longitude', 'longitude');
+    $this->addFieldMapping('data_latitude', 'latitude');
+    $this->addFieldMapping('data_postal_code', 'postal_code');
+    $this->addFieldMapping('data_state_province', 'state');
+    $this->addFieldMapping('data_city', 'city');
     $this->addFieldMapping('data_how_will_you_green_your_school', 'body');
     $this->addFieldMapping('data_great_school_id', 'field_great_schools_id');
     $this->addFieldMapping('data_school', 'title');
 
     //Null Mappings
-    $this->addUnmigratedSources(array('format', 'teaser'));
-    $this->addUnmigratedDestinations(array('field_webform_email', 'field_webform_mobile', 'field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedSources(array('format', 'teaser', 'locations'));
+    $this->addUnmigratedDestinations(array(
+      'field_webform_email',
+      'field_webform_mobile',
+      'field_webform_school',
+      'field_webform_school_zip',
+      'data_location',
+    ));
+  }
+  public function prepareRow($row) {
+    // Extract the location from the location:
+    $location = $row->locations[0];
+    $row->location_name = empty($location->name) ? NULL : $location->name;
+    $row->country = empty($location->country) ? NULL : $location->country;
+    $row->street = empty($location->street) ? NULL : $location->street;
+    $row->additional = empty($location->additional) ? NULL : $location->additional;
+    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+    $row->city = empty($location->city) ? NULL : $location->city;
+    $row->state = empty($location->state) ? NULL : $location->state;
+    $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
   }
 }
 
@@ -115,7 +166,16 @@ class DSCampaignSignupIncreaseYourGreenMigration extends DSCampaignSignupMigrati
 
     //Null Mappings
     //$this->addUnmigratedSources(array(''));
-    $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
+    $this->addUnmigratedDestinations(array(
+      'field_webform_school',
+      'field_webform_school_zip',
+      'data_resultscarbon_calculator',
+      'data_results_energy_saved',
+      'data_registration_info',
+      'data_results_people',
+      'data_results_waste',
+      'data_other_fun_stuff',
+    ));
   }
 }
 
@@ -123,6 +183,18 @@ class DSCampaignSignupScavengerMigration extends DSCampaignSignupMigration {
   public function __construct() {
     parent::__construct('scavenger_2011_signup');
     $this->description .= 'Scavenger Hunt 2011 Signup';
+
+    // Duplicate some of the work the constructor is doing since we need to add some
+    // extra fields.
+    $node_type = 'scavenger_2011_signup';
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
+    $fields['postal_code'] = 'Postal Code';
+
+    $this->source = new MigrateSourceMultiItems(
+      new DSNodeJsonMigrateItems($base_url, $node_type),
+      $fields
+    );
 
     $this->addFieldMapping('data_team_name', 'title');
     $this->addFieldMapping('data_first_name', 'field_campaign_first_name');
@@ -133,11 +205,22 @@ class DSCampaignSignupScavengerMigration extends DSCampaignSignupMigration {
 
     $this->addFieldMapping('field_webform_email', 'field_email');
     $this->addFieldMapping('field_webform_mobile', 'field_campaign_phone');
+    $this->addFieldMapping('data_postal_code', 'postal_code');
 
     //Null Mappings
-    //$this->addUnmigratedSources(array(''));
+    $this->addUnmigratedSources(array('locations'));
     $this->addUnmigratedDestinations(array('field_webform_school', 'field_webform_school_zip'));
   }
+
+  public function prepareRow($row) {
+    // Extract the location from the location:
+    $location = $row->locations[0];
+    $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
+  }
+
+
+
+
 }
 
 class DSCampaignSignupStaplesMigration extends DSCampaignSignupMigration {
@@ -211,7 +294,12 @@ class DSCampaignSignupDecadeOfThanksMigration extends DSCampaignSignupMigration 
 
     //Null Mappings
     $this->addUnmigratedSources(array('title', 'format', 'teaser', 'locations'));
-    $this->addUnmigratedDestinations(array('data_location', 'group_group', 'field_webform_school_reference'));
+    $this->addUnmigratedDestinations(
+      array(
+        'data_location',
+        'field_webform_school',
+         'field_webform_school_zip',
+      ));
   }
   public function prepareRow($row) {
     // Extract the zip code from the location:
@@ -271,10 +359,9 @@ class DSCampaignSignupCancer2011Migration extends DSCampaignSignupMigration {
     $this->addUnmigratedDestinations(
       array(
         'data_location',
-        'group_group',
-        'field_webform_school_reference',
         'data_personal_mailing_address',
-        'data_special_contest'
+        'data_special_contest',
+        'field_webform_school_zip',
       ));
   }
   public function prepareRow($row) {
@@ -330,8 +417,6 @@ class DSCampaignSignupEWaste2011Migration extends DSCampaignSignupMigration {
     $this->addUnmigratedDestinations(
       array(
         'data_location',
-        'group_group',
-        'field_webform_school_reference',
       ));
   }
   public function prepareRow($row) {
