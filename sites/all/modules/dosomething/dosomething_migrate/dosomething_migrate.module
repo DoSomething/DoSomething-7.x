@@ -181,6 +181,7 @@ function dosomething_migrate_return_content_type_mapping() {
     'campaign_sports_2011' => 'Campaign Project - Sports Equipment 2011',
     'campaign_cancer_2011' => 'Campaign Project -Give a Spit about Cancer 2011',
     'campaign_ew_2011' => 'Campaign Project - ewaste 2011',
+    'cancer_2011_signup' => 'Cancer 2011 Signup',
   );
   return $array;
 }
