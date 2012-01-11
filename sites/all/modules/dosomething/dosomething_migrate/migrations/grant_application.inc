@@ -6,7 +6,7 @@ abstract class DSGrantApplicationMigration extends DSJsonWebformMigration {
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('GrantApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_geocode_zip_code'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_school_reference', 'field_webform_geocode_zip_code'));
     $this->addFieldMapping('is_draft')
       ->defaultValue(0);
   }
@@ -145,15 +145,25 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('field_webform_project_summary', 'field_description');
     $this->addFieldMapping('field_webform_project_website', 'field_personal_project_website');
     $this->addFieldMapping('field_webform_video_url', 'field_plumgrant_videourl');
-    $this->addFieldMapping('data_email', 'title');
-    $this->addFieldMapping('data_your_high_school', 'field_plumgrant_highschool');
+    $this->addFieldMapping('field_webform_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_your_college_if_applicable', 'field_your_college_if_applicabl');
+    $this->addFieldMapping('data_your_school_deans_name', 'field_school_deans_name');
+    $this->addFieldMapping('data_deans_email', 'field_deans_email');
+    $this->addFieldMapping('data_deans_phone_number', 'field_deans_phone_number');
 
     //Null Mappings
+    // Currently the title is an email address on the D6 site. But there is also
+    // a 'your email address field'. So we're going to throw this one away.
+    $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array(
-      'field_webform_school',
       'field_webform_school_zip',
       'field_webform_grant_ref',
+      'data_personal_info',
+      'data_essay',
+      'data_budget',
+      'data_project_info',
+      'data_recommendation_fieldset',
+      'data_boring_legal_stuff',
     ));
   }
 }
@@ -221,24 +231,21 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     $this->addFieldMapping('data_please_submit_a_budget_detailing_how_you_would_use_the_grant_money', 'field_budget_0')
       ->arguments(array('file_function' => 'file_fid'))
       ->sourceMigration('DSFile');
-    $this->addFieldMapping('data_high_school', 'field_plumgrant_highschool');
+    $this->addFieldMapping('field_webform_school', 'field_plumgrant_highschool');
     $this->addFieldMapping('data_college_if_applicable', 'field_your_college_if_applicabl');
     $this->addFieldMapping('data_where_did_you_hear_about_us', 'field_where_did_you_hear');
 
     //Null Mappings
-    $this->addUnmigratedSources(array('title', 'field_your_school_deans_name', 'field_deans_email_0', 'field_deans_phone_number_0'));
+    $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array(
-      'field_webform_school',
       'field_webform_school_zip',
       'field_webform_grant_ref',
+      'data_personal_info',
+      'data_project_numbers',
+      'data_essays',
+      'data_recommendation_fieldset',
+      'data_boring_legal_stuff',
+      'data_project_info',
     ));
   }
 }
-/*
-class DSGrantApplicationGrantJudgeMigration extends DSGrantApplicationMigration {
-  public function __construct() {
-    parent::__construct('grant_judge');
-    $this->description .= 'Grant Judging Form';
-  }
-}
-*/
