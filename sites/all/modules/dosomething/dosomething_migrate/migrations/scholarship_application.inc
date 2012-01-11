@@ -6,7 +6,7 @@ abstract class DSScholarshipApplicationMigration extends DSJsonWebformMigration 
   public function __construct($node_type) {
     parent::__construct(MigrateGroup::getInstance('ScholarshipApplication'), $node_type);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_geocode_zip_code'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_address', 'field_webform_school_reference', 'field_webform_geocode_zip_code', 'field_project_title_reference'));
   }
 
   public function prepareRow($row) {
