@@ -69,7 +69,7 @@ function dosomething_roles_demote_expired_users() {
       $profile = profile2_load($profile_data->pid);
       $account = user_load($profile->uid);
       $anniversary = dosomething_roles_get_anniversary($account->uid);
-      if (!dosomething_roles_user_is_staff_member($account->uid)) {
+      if (!dosomething_roles_user_is_staff_member($account) && !dosomething_roles_user_is_too_old($account)) {
         if ($account->uid > $last_uid || $last_checked_timestamp < $anniversary) {
           // Find what a user's role will be after updating.
           $new_role_name = dosomething_roles_get_member_role($account->uid);
@@ -132,7 +132,7 @@ function dosomething_roles_send_demotion_notifications($month) {
         continue;
       }
       // Don't mess with the roles of staff members.
-      else if (!dosomething_roles_user_is_staff_member($account->uid)) {
+      else if (!dosomething_roles_user_is_staff_member($account) && !dosomething_roles_user_is_too_old($account)) {
         // Find what a user's role will be when they're anniversary has passed.
         $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
         $new_role_weight = array_search($new_role_name, $role_hierarchy);
@@ -163,7 +163,7 @@ function dosomething_roles_mail($key, &$message, $params) {
     case 'dosomething-roles-alumni-email':
       $params['full_name'] = module_exists('dosomething_login') ? dosomething_login_get_user_full_name($params['account']) : $params['account']->name;
       $message['subject'] = t('Your membership has expired.');
-      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_alumni_person_email', $params));
+      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_alumni_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-roles-demotion':
