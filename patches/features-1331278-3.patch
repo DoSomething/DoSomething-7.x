@@ -1,0 +1,118 @@
+diff --git a/features.drush.inc b/features.drush.inc
+index 24238dc..3df6429 100644
+--- a/features.drush.inc
++++ b/features.drush.inc
+@@ -33,6 +33,17 @@ function features_drush_command() {
+     'drupal dependencies' => array('features'),
+     'aliases' => array('fe'),
+   );
++  $items['features-components'] = array(
++    'description' => 'List features components by type.',
++    'arguments' => array(
++      'type' => 'The features components type to list. Omit this argument to choose from available component types.',
++    ),
++    'options' => array(
++      'exported' => 'Show only components that have been exported.',
++      'not-exported' => 'Show only components that have not been exported.',
++    ),
++    'aliases' => array('fc'),
++  );
+   $items['features-add'] = array(
+     'description' => "Add a component to a feature module.",
+     'drupal dependencies' => array('features'),
+@@ -148,6 +159,86 @@ function drush_features_list() {
+ }
+ 
+ /**
++ * List components, with a prompt for component type.
++ */
++function drush_features_components($type = NULL) {
++  // Get a list of all the component types.
++  $types = array_keys(features_get_feature_components());
++  $components = array();
++  $components_map = features_get_component_map();
++  // If a type is passed explicitly, make sure it's a valid type.
++  if ($type) {
++    if ($type == 'all') {
++      $components = $types;
++    }
++    elseif (!in_array($type, $types)) {
++      return;
++    }
++    else {
++      $components[] = $type;
++    }
++  }
++  else {
++    // Add an 'all' option and prompt for type.
++    array_unshift($types, 'all');
++    $choice = drush_choice($types, 'Enter a number to choose which component type to list.');
++    if ($choice === FALSE) {
++      return;
++    }
++
++    // If they selected 'all', use all component types.
++    if ($choice == 0) {
++      array_shift($types);
++      $components = $types;
++    }
++    // Otherwise just use the one.
++    else {
++      $components[] = $types[$choice];
++    }
++  }
++
++  $exported = drush_get_option('exported', NULL);
++  $not_exported = drush_get_option('not-exported', NULL);
++  if (!empty($not_exported)) {
++    // If someone passes --exported and --not-exported, show all.
++    if (!empty($exported)) {
++      $exported = NULL;
++    }
++    // In case someone passes '--not-exported=true'.
++    else {
++      $exported = FALSE;
++    }
++  }
++  // In case someone passes '--exported=true'.
++  if (!empty($exported)) {
++    $exported = TRUE;
++  }
++
++  // Loop through the component types to use, getting their components.
++  $rows = array(array(dt('Available sources')));
++  foreach ($components as $component) {
++    if ($options = features_invoke($component, 'features_export_options')) {
++      foreach ($options as $key => $value) {
++        // Skip non-exported componenets if --exported was set.
++        if ($exported === TRUE && !isset($components_map[$component][$key][0])) {
++          continue;
++        }
++        // Skip exported componenets if --not-exported was set.
++        elseif ($exported === FALSE && isset($components_map[$component][$key][0])) {
++          continue;
++        }
++        $row = array($component .':'. $key);
++        if (isset($components_map[$component][$key][0])) {
++          $row[] = dt('Provided by') . ': ' . $components_map[$component][$key][0];
++        }
++        $rows[] = $row;
++      }
++    }
++  }
++  drush_print_table($rows, TRUE);
++}
++
++/**
+  * Create a feature module based on a list of components.
+  */
+ function drush_features_export() {
+@@ -256,7 +347,7 @@ function drush_features_add() {
+       _features_drush_set_error($module, 'FEATURES_FEATURE_NOT_ENABLED');
+     }
+     else {
+-      _features_drush_set_error($module);
++      call_user_func_array('drush_features_export', func_get_args());
+     }
+   }
+   else {
