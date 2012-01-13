@@ -13,3 +13,116 @@ function dosomething_migrate_install() {
   dosomething_migrate_set_webform_types();
   dosomething_migrate_regenerate_webform_nodes();
 }
+
+/**
+ * Implements hook_schema().
+ */
+
+function dosomething_migrate_schema() {
+  $schema = array();
+  $schema['dosomething_project_nid_sid_map'] = array(
+    'description' => 'Stores some backup data of project node to project webform sid mappings',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The {node}.nid is the primary identifier.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'ref_nid' => array(
+        'description' => 'The old node reference node id.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'ref_sid' => array(
+        'description' => 'The {webform_submission}.sid that the node ref mapped to.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+    'indexes' => array(
+      'node' => array('nid'),
+      'ref_nid' => array('ref_nid'),
+      'ref_sid' => array('ref_sid'),
+    ),
+  );
+  $schema['dosomething_project_nid_sid_fails'] = array(
+    'description' => 'Stores {node}.nid that failed to properly map a project node ref to a preject webform submission ref.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The {node}.nid is the primary identifier.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+    'indexes' => array(
+      'node' => array('nid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function dosomething_migrate_update_7000() {
+  $name = 'dosomething_project_nid_sid_map';
+  $table = array(
+    'description' => 'Stores some backup data of project node to project webform sid mappings',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The {node}.nid is the primary identifier.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'ref_nid' => array(
+        'description' => 'The old node reference node id.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'ref_sid' => array(
+        'description' => 'The {webform_submission}.sid that the node ref mapped to.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+    'indexes' => array(
+      'node' => array('nid'),
+      'ref_nid' => array('ref_nid'),
+      'ref_sid' => array('ref_sid'),
+    ),
+  );
+  db_create_table($name, $table);
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function dosomething_migrate_update_7001() {
+  $name = 'dosomething_project_nid_sid_fails';
+  $table = array(
+    'description' => 'Stores {node}.nid that failed to properly map a project node ref to a preject webform submission ref.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The {node}.nid is the primary identifier.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+    'indexes' => array(
+      'node' => array('nid'),
+    ),
+  );
+  db_create_table($name, $table);
+}

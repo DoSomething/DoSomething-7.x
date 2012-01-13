@@ -16,6 +16,8 @@ function dosomething_migrate_drush_help($section) {
       return db('Update the references on grant_judge nodes to point to the webform submissions.');
     case 'dosomething-migrate-update-noderefs':
       return dt('Update the references on webform submissions on nodes of type "scholarship application" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
+    case 'dosomething-migrate-noderef-to-entityref-update':
+      return dt('Update references on nodes of type "project_update", "grant_alumni", "final_grant_update", "awards_archive", "dsaward_app" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
   }
 }
 
@@ -41,6 +43,10 @@ function dosomething_migrate_drush_command() {
   $items['dosomething-migrate-update-noderefs'] = array(
     'description' => 'Update the references on scholarship applications webform submissions',
     'aliases' => array('dsmunr'),
+  );
+  $items['dosomething-migrate-noderef-to-entityref-update'] = array(
+    'description' => 'Update the node references and convert them to webform references',
+    'aliases' => array('dsmneu'),
   );
   return $items;
 }
@@ -166,13 +172,13 @@ function dosomething_migrate_update_noderefs(&$context) {
       LEFT JOIN {field_data_field_project_title_reference} er ON nr.entity_id = er.entity_id
       WHERE er.field_project_title_reference_target_id IS NOT NULL')
       ->fetchField();
-    if(!$content['sandbox']['max']) {
-      $content['sandbox']['max'] = 0;
+    if(!$context['sandbox']['max']) {
+      $context['sandbox']['max'] = 0;
     }
     $context['sandbox']['progress'] = 0;
     $context['sandbox']['current'] = 0;
   }
-  if ($content['sandbox']['max'] > 0) {
+  if ($context['sandbox']['max'] > 0) {
     $action_mapping_tables = array(
       'migrate_map_dscampaignreportbackcampaignbfb2011',
       'migrate_map_dscampaignreportbackcampaignebd2011',
@@ -220,7 +226,7 @@ function dosomething_migrate_update_noderefs(&$context) {
       webform_submission_update($node, $submission);
       drush_log('Updating webform submission: ' . $data['sid'] . '. Data is now mapped to: ' . $mapping_result, 'ok');
       $context['sandbox']['progress'] += 1;
-      $sandbox['sandbox']['current'] = $data['sid'];
+      $context['sandbox']['current'] = $data['sid'];
       $context['results'][] = $data['sid'];
       $context['message'] = 'processed ' . $data['sid'];
     }
@@ -242,3 +248,200 @@ function dosomething_migrate_update_nodefres_finished($success, $results, $opera
   }
   drush_print($message);
 }
+
+/**
+ * Callback function for drush dosomething-migrate-noderef-to-entityref-update.
+ */
+function drush_dosomething_migrate_noderef_to_entityref_update() {
+  drush_log('Starting batch update. Converting node references into webform submission references.', 'ok');
+  $batch = array(
+    'operations' => array(
+      array('dosomething_migrate_update_nodref_entref', array()),
+    ),
+    'finished' => 'dosomething_migrate_update_noderef_entref_finished',
+    'title' => t('Processing node refs to entity refs'),
+    'init_message' => t('Updating node refs. Adding entity refs... Begin.'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Error updating node refs... Batch has encountered an error.'),
+  );
+  batch_set($batch);
+  $batch =& batch_get();
+  $batch['progressive'] = FALSE;
+  drush_backend_batch_process();
+}
+
+function dosomething_migrate_update_nodref_entref(&$context) {
+  $records_to_update = 10;
+  if (empty($context['sandbox'])) {
+    drush_log('empty', 'ok');
+    // Find the number of records that need to be updated.
+    // Records that need to be updated are those that have a value for a node
+    // reference to a project but not an entity reference to a webform
+    // submission project.
+    $context['sandbox']['max'] = (int) db_query("
+      SELECT
+        COUNT(f.nid)
+      FROM (
+        (SELECT
+          n.type,
+          n.nid,
+          r.entity_id,
+          n.title,
+          r.field_alumni_project_nid source_nid
+        FROM
+          {node} n,
+          {field_data_field_alumni_project} r
+        WHERE
+          n.nid = r.entity_id
+        AND (type = 'awards_archive' OR type ='grant_alumni'))
+
+        UNION
+
+        (SELECT
+          n.type,
+          n.nid,
+          r.entity_id,
+          n.title,
+          r.field_project_nid source_nid
+        FROM
+          {node} n,
+          {field_data_field_project} r
+        WHERE
+          n.nid = r.entity_id
+        AND (type = 'final_grant_update' OR type ='project_update'))
+
+        UNION
+
+        (SELECT
+          n.type,
+          n.nid,
+          r.entity_id,
+          n.title,
+          r.field_plumgrant_project_nid source_nid
+        FROM
+          {node} n,
+          {field_data_field_plumgrant_project} r
+        WHERE
+          n.nid = r.entity_id
+        AND type = 'dsaward_app')
+      ) AS f
+
+    LEFT JOIN
+      {field_data_field_webform_project_submission} er ON er.entity_id = f.nid
+    WHERE
+      f.source_nid IS NOT NULL
+    AND er.field_webform_project_submission_target_id IS NULL")
+          ->fetchField();
+    if(!$context['sandbox']['max']) {
+      $context['sandbox']['max'] = 0;
+    }
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['current'] = 0;
+  }
+  if ($context['sandbox']['max'] > 0) {
+    $result = db_query_range("
+      SELECT
+        f.nid nid,
+        f.type,
+        f.source_nid source_nid,
+        er.field_webform_project_submission_target_id
+      FROM
+        ((SELECT
+          n.type,
+          n.nid,
+          r.entity_id,
+          n.title,
+          r.field_alumni_project_nid source_nid
+        FROM
+          {node} n,
+          {field_data_field_alumni_project} r
+        WHERE
+          n.nid = r.entity_id
+        AND (type = 'awards_archive' OR type ='grant_alumni')
+        )
+        UNION
+        (SELECT
+          n.type,
+          n.nid,
+          r.entity_id,
+          n.title,
+          r.field_project_nid source_nid
+        FROM
+          {node} n,
+          {field_data_field_project} r
+        WHERE
+          n.nid = r.entity_id
+        AND (type = 'final_grant_update' OR type ='project_update'))
+        UNION
+        (SELECT
+          n.type,
+          n.nid,
+          r.entity_id,
+          n.title,
+          r.field_plumgrant_project_nid source_nid
+        FROM
+          {node} n,
+          {field_data_field_plumgrant_project} r
+        WHERE
+          n.nid = r.entity_id
+        AND type = 'dsaward_app')) AS f
+      LEFT JOIN
+        {field_data_field_webform_project_submission} er ON er.entity_id = f.nid
+      WHERE f.source_nid IS NOT NULL
+      AND er.field_webform_project_submission_target_id IS NULL
+      AND nid > :nid
+      ORDER BY nid", 0, $records_to_update, array(':nid' => $context['sandbox']['current'])
+    );
+    while ($data = $result->fetchAssoc()) {
+      $node = node_load($data['nid']);
+      $node_to_map = $data['source_nid'];
+      // Find the mapping of the old node id to the new sid.
+      $query = "SELECT destid1 FROM {migrate_map_dsproject} WHERE sourceid1 = :nid";
+      $mapping_result = db_query($query, array(':nid' => $node_to_map))->fetchField();
+      if ($mapping_result) {
+        $node->field_webform_project_submission[LANGUAGE_NONE][0]['target_id'] = $mapping_result;
+        //They should all be webform submission entities.
+        $node->field_webform_project_submission[LANGUAGE_NONE][0]['target_type'] = 'webform_submission_entity';
+        node_save($node);
+        // Update the mapping table
+        $record = array(
+          'nid' => $node->nid,
+          'ref_nid' => $node_to_map,
+          'ref_sid' => $mapping_result,
+        );
+        db_delete('dosomething_project_nid_sid_map')->condition('nid', $node->nid)->execute();
+        drupal_write_record('dosomething_project_nid_sid_map', $record);
+        // Drop the record from the fail table if it is there.
+        db_delete('dosomething_project_nid_sid_fails')->condition('nid', $node->nid)->execute();
+      }
+      else {
+        // Log to the fail table
+        $record = array('nid' => $node->nid);
+        db_delete('dosomething_project_nid_sid_fails')->condition('nid', $node->nid)->execute();
+        drupal_write_record('dosomething_project_nid_sid_fails', $record);
+        drush_log("Could not find mapping for reference on node $node->nid. See failure table for full list.", 'warning');
+      }
+      $context['sandbox']['progress'] += 1;
+      $context['sandbox']['current'] = $node->nid;
+      $context['results'][] = $node->nid;
+      $context['message'] = 'processed ' . $node->nid;
+    }
+
+    drush_log($context['sandbox']['progress'] / $context['sandbox']['max'] * 100 . ' percent complete', 'ok');
+    if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    }
+  }
+}
+
+function dosomething_migrate_update_noderef_entref_finished($success, $results, $operations) {
+  if ($success) {
+    $message = format_plural(count($results), 'One node reference to webform submission mapping processed.', '@count node reference to webform submission mappings processed.');
+  }
+  else {
+    $message = 'There was an error. ';
+    $message .= format_plural(count($results), 'One node reference to webform submission mapping processed.', '@count node reference to webform submission mappings processed.');
+  }
+  drush_print($message);
+}
+
