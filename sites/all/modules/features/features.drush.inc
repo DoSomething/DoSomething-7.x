@@ -28,7 +28,7 @@ function features_drush_command() {
       'components' => '(optional) List of components to include, like source:component [source2:component2]...'
     ),
     'options' => array(
-      '--destination' => "Destination path (from Drupal root) of the exported feature. Defaults to 'sites/all/modules'",
+      'destination' => "Destination path (from Drupal root) of the exported feature. Defaults to 'sites/all/modules'",
     ),
     'drupal dependencies' => array('features'),
     'aliases' => array('fe'),
@@ -64,7 +64,7 @@ function features_drush_command() {
       'feature' => 'A space delimited list of features.',
     ),
     'options' => array(
-      '--force' => "Force revert even if Features assumes components' state are default.",
+      'force' => "Force revert even if Features assumes components' state are default.",
     ),
     'drupal dependencies' => array('features'),
     'aliases' => array('fr'),
@@ -75,7 +75,7 @@ function features_drush_command() {
       'feature_exclude' => 'A space-delimited list of features to exclude from being reverted.',
     ),
     'options' => array(
-      '--force' => "Force revert even if Features assumes components' state are default.",
+      'force' => "Force revert even if Features assumes components' state are default.",
     ),
     'drupal dependencies' => array('features'),
     'aliases' => array('fr-all', 'fra'),
@@ -180,7 +180,7 @@ function drush_features_export() {
   }
   else {
     $rows = array(array(dt('Available sources')));
-    foreach (features_get_components(TRUE) as $component => $info) {
+    foreach (features_get_feature_components() as $component => $info) {
       if ($options = features_invoke($component, 'features_export_options')) {
         foreach ($options as $key => $value) {
           $rows[] = array($component .':'. $key);
@@ -198,7 +198,7 @@ function drush_features_add() {
   if ($args = func_get_args()) {
     // Get a complete list of components.
     $all_components = array();
-    foreach (features_get_components(TRUE) as $source => $info) {
+    foreach (features_get_feature_components() as $source => $info) {
       if ($options = features_invoke($source, 'features_export_options')) {
         foreach ($options as $key => $value) {
           $all_components[$key][] = $source;
@@ -329,7 +329,7 @@ function _drush_features_component_list($arg = NULL, $source = NULL, $render = T
   $index .= empty($arg) ? 'all' : $arg;
 
   if (empty($items[$index])) {
-    $components = features_get_components(TRUE);
+    $components = features_get_feature_components();
     if ($arg) {
       $heading = dt('Components similar to "!arg"', array('!arg' => $arg));
     }
@@ -407,7 +407,7 @@ function drush_features_update_all() {
   drush_print(dt('The following modules will be updated: !modules', array('!modules' => implode(', ', $features_to_update))));
   if (drush_confirm(dt('Do you really want to continue?'))) {
     foreach ($features_to_update as $module_name) {
-      drush_backend_invoke('features-update '. $module_name);
+      drush_invoke_process(drush_sitealias_get_record('@self'), 'features-update', array($module_name));
     }
   }
   else {
@@ -539,7 +539,7 @@ function drush_features_revert_all() {
   drush_print(dt('The following modules will be reverted: !modules', array('!modules' => implode(', ', $features_to_revert))));
   if (drush_confirm(dt('Do you really want to continue?'))) {
     foreach ($features_to_revert as $module_name) {
-      drush_backend_invoke('features-revert '. $module_name, array('force' => $force));
+      drush_invoke_process(drush_sitealias_get_record('@self'), 'features-revert', array($module_name), array('force' => $force, '#integrate' => TRUE));
     }
   }
   else {
@@ -573,11 +573,11 @@ function drush_features_diff() {
     if (drush_confirm(dt('It seems that the Diff module is not available. Would you like to download and enable it?'))) {
       // Download it if it's not already here.
       $project_info = drush_get_projects();
-      if (empty($project_info['diff']) && !drush_backend_invoke('dl diff')) {
+      if (empty($project_info['diff']) && !drush_invoke_process(drush_sitealias_get_record('@self'), 'dl', array('diff'), array('#integrate' => TRUE))) {
         return drush_set_error(dt('Diff module could not be downloaded.'));
       }
 
-      if (!drush_backend_invoke('en diff')) {
+      if (!drush_invoke_process(drush_sitealias_get_record('@self'), 'en', array('diff'), array('#integrate' => TRUE))) {
         return drush_set_error(dt('Diff module could not be enabled.'));
       }
     }
