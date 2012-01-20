@@ -1,10 +1,9 @@
 <?php
 
 // Campaign Report Back
-
 abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
-  public function __construct($node_type) {
-    parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type);
+  public function __construct($node_type, $additional_fields = array()) {
+    parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type, $additional_fields);
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_school_reference', 'field_webform_geocode_zip_code', 'group_audience'));
     $this->addFieldMapping('is_draft')
@@ -475,25 +474,14 @@ class DSCampaignReportBackTroopLetterMigration extends DSCampaignReportBackMigra
 
 class DSCampaignReportBackMakeArtSaveArtMigration extends DSCampaignReportBackMigration {
   public function __construct() {
-    parent::__construct('campaign_art_2011');
-    $this->description .= 'Campaign Project - Make Art Save Art 2011';
-
-    // Duplicate some of the work the constructor is doing since we need to add
-    // some extra fields.
-    $node_type = 'campaign_art_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['street'] = 'Address';
     $fields['additional'] = 'Additional';
     $fields['latitude'] = 'Latitude';
     $fields['longitude'] = 'Longitude';
     $fields['loc_name'] = 'Location Name';
-
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('campaign_art_2011', $fields);
+    $this->description .= 'Campaign Project - Make Art Save Art 2011';
 
     $this->addFieldMapping('data_first_name', 'field_art2011_first');
     $this->addFieldMapping('data_last_name', 'field_art2011_last');
@@ -533,24 +521,15 @@ class DSCampaignReportBackMakeArtSaveArtMigration extends DSCampaignReportBackMi
 
 class DSCampaignReportBackSportsMigration extends DSCampaignReportBackMigration {
   public function __construct() {
-    parent::__construct('campaign_sports_2011');
-    $this->description .= 'Campaign Project - Sports Equipment 2011';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'campaign_sports_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
     $fields['additional'] = 'Additional';
     $fields['longitude'] = 'Longitude';
     $fields['latitude'] = 'Latitude';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('campaign_sports_2011', $fields);
+    $this->description .= 'Campaign Project - Sports Equipment 2011';
+
     $this->addFieldMapping('data_participants_emails', 'field_participant_emails');
     $this->addFieldMapping('field_webform_school_zip', 'field_zip_campaign');
     $this->addFieldMapping('data_how_many_people_were_involved_in_your_sports_equipment_drive', 'field_campaign_number_of_people');
@@ -598,19 +577,10 @@ class DSCampaignReportBackSportsMigration extends DSCampaignReportBackMigration 
 
 class DSCampaignReportBackBullying extends DSCampaignReportBackMigration {
   public function __construct() {
-    parent::__construct('campaign_bully_2011');
+    $fields['postal_code'] = 'Postal Code';
+    parent::__construct('campaign_bully_2011', $fields);
     $this->description .= 'Campaign Project - Bullying 2011';
 
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'campaign_bully_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
-    $fields['postal_code'] = 'Postal Code';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
     $this->addFieldMapping('data_postal_code', 'postal_code');
     $this->addFieldMapping('data_what_did_you_do_to_step_up_to_bullying', 'body');
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
@@ -637,24 +607,15 @@ class DSCampaignReportBackBullying extends DSCampaignReportBackMigration {
 
 class DSCampaignReportBackMacys2011Migration extends DSCampaignReportBackMigration {
   public function __construct() {
-    parent::__construct('campaign_macys_2011');
-    $this->description .= 'Campaign Project - Macys Membership 2011';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'campaign_macys_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
     $fields['additional'] = 'Additional';
     $fields['longitude'] = 'Longitude';
     $fields['latitude'] = 'Latitude';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('campaign_macys_2011', $fields);
+    $this->description .= 'Campaign Project - Macys Membership 2011';
+
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
     $this->addFieldMapping('data_location_name', 'location_name');
@@ -671,7 +632,7 @@ class DSCampaignReportBackMacys2011Migration extends DSCampaignReportBackMigrati
     $this->addFieldMapping('data_what_was_the_biggest_challenge_you_faced', 'field_campaign_essay_challenge');
     $this->addFieldMapping('data_do_you_plan_on_doing_this_campaign_again_next_year', 'field_campaign_next_year_yesno');
     $this->addFieldMapping('data_why_or_why_not', 'field_campaign_why_participate');
-   
+
     //Null Mappings
     $this->addUnmigratedSources(array('locations'));
     $this->addUnmigratedDestinations(array(
@@ -698,24 +659,15 @@ class DSCampaignReportBackMacys2011Migration extends DSCampaignReportBackMigrati
 
 class DSCampaignReportBackEWaste2011Migration extends DSCampaignReportBackMigration {
   public function __construct() {
-    parent::__construct('campaign_ew_2011');
-    $this->description .= 'Campaign Project - ewaste 2011';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'campaign_ew_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
     $fields['additional'] = 'Additional';
     $fields['longitude'] = 'Longitude';
     $fields['latitude'] = 'Latitude';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('campaign_ew_2011', $fields);
+    $this->description .= 'Campaign Project - ewaste 2011';
+
     $this->addFieldMapping('field_webform_videos', 'field_campaign_video_single');
     $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures');
     $this->addFieldMapping('data_location_name', 'location_name');
@@ -737,7 +689,7 @@ class DSCampaignReportBackEWaste2011Migration extends DSCampaignReportBackMigrat
     $this->addFieldMapping('data_anything_else_we_should_know', 'field_campaign_anything_else');
     $this->addFieldMapping('data_age', 'field_project_age');
     $this->addFieldMapping('data_what_awesome_things_did_you_do_to_plan_and_promote_your_drive_that_made_it_super_successful', 'field_campaign_essay');
-   
+
     //Null Mappings
     $this->addUnmigratedSources(array('locations'));
     $this->addUnmigratedDestinations(array(
@@ -762,24 +714,15 @@ class DSCampaignReportBackEWaste2011Migration extends DSCampaignReportBackMigrat
 
 class DSCampaignReportBackCancer2011 extends DSCampaignReportBackMigration {
   public function __construct() {
-    parent::__construct('campaign_cancer_2011');
-    $this->description .= 'Campaign Project -Give a Spit about Cancer 2011';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'campaign_cancer_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
     $fields['additional'] = 'Additional';
     $fields['longitude'] = 'Longitude';
     $fields['latitude'] = 'Latitude';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('campaign_cancer_2011', $fields);
+    $this->description .= 'Campaign Project -Give a Spit about Cancer 2011';
+
     $this->addFieldMapping('data_how_many_new_donors_did_you_get_to_give_a_spit_by_joining_the_marrow_donor_registry', 'field_cancer_donors');
     $this->addFieldMapping('data_how_many_volunteers_helped_organize_your_drive', 'field_cancer_volunteers');
     $this->addFieldMapping('data_location_name', 'location_name');
@@ -794,7 +737,7 @@ class DSCampaignReportBackCancer2011 extends DSCampaignReportBackMigration {
     $this->addFieldMapping('field_webform_email', 'field_cancer_email');
     $this->addFieldMapping('field_webform_school', 'title');
     // $this->addFieldMapping('data_what_awesome_things_did_you_do_to_plan_and_promote_your_drive_that_made_it_super_successful', 'field_campaign_essay');
-   
+
     //Null Mappings
     $this->addUnmigratedSources(array('locations', 'field_embedded_video'));
     $this->addUnmigratedDestinations(array(

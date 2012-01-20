@@ -1,15 +1,6 @@
 <?php
 
 
-class DSUserJsonMigrateItems extends DSJsonMigrateItems {
-  public function __construct($base_url, $query_arg) {
-    $this->listUrl = "{$base_url}/user/list?&page=:page&{$query_arg}";
-    $this->countUrl = "{$base_url}/user/count&{$query_arg}";
-    $this->getUrl = "{$base_url}/user/get/:id";
-    parent::__construct();
-  }
-}
-
 abstract class DSJsonUserMigration extends Migration {
   static function fetchFields($base_url) {
     $cid = "DSJsonUserMigration:$base_url";

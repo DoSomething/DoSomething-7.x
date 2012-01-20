@@ -3,8 +3,8 @@
 // Campaign Signup
 
 abstract class DSCampaignSignupMigration extends DSJsonWebformMigration {
-  public function __construct($node_type) {
-    parent::__construct(MigrateGroup::getInstance('CampaignSignup'), $node_type);
+  public function __construct($node_type, $additional_fields = array()) {
+    parent::__construct(MigrateGroup::getInstance('CampaignSignup'), $node_type, $additional_fields);
     $this->addUnmigratedSources(array('changed', 'status'));
     $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'group_audience', 'group_group', 'field_webform_school_reference'));
     $this->addFieldMapping('is_draft')
@@ -51,14 +51,6 @@ class DSCampaignSignupEbdMigration extends DSCampaignSignupMigration {
 
 class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
   public function __construct() {
-    parent::__construct('gys_2011');
-    $this->description .= 'Green Your School 2011';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'gys_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
@@ -69,13 +61,8 @@ class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
     $fields['state'] = 'State';
     $fields['postal_code'] = 'Postal Code';
     $fields['city'] = 'City';
-
-
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
-
+    parent::__construct('gys_2011', $fields);
+    $this->description .= 'Green Your School 2011';
 
     $this->addFieldMapping('data_country', 'country');
     $this->addFieldMapping('data_location_name', 'location_name');
@@ -181,20 +168,9 @@ class DSCampaignSignupIncreaseYourGreenMigration extends DSCampaignSignupMigrati
 
 class DSCampaignSignupScavengerMigration extends DSCampaignSignupMigration {
   public function __construct() {
-    parent::__construct('scavenger_2011_signup');
-    $this->description .= 'Scavenger Hunt 2011 Signup';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'scavenger_2011_signup';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['postal_code'] = 'Postal Code';
-
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('scavenger_2011_signup', $fields);
+    $this->description .= 'Scavenger Hunt 2011 Signup';
 
     $this->addFieldMapping('data_team_name', 'title');
     $this->addFieldMapping('data_first_name', 'field_campaign_first_name');
@@ -268,20 +244,10 @@ class DSCampaignSignupTackleHungerMigration extends DSCampaignSignupMigration {
 
 class DSCampaignSignupDecadeOfThanksMigration extends DSCampaignSignupMigration {
   public function __construct() {
-    parent::__construct('decade_2011_signup');
-    $this->description .= 'Decade of thanks 9/11 Signup';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'decade_2011_signup';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['zip_code'] = 'Zip Code';
     $fields['country'] = 'Country';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('decade_2011_signup', $fields);
+    $this->description .= 'Decade of thanks 9/11 Signup';
 
     $this->addFieldMapping('data_first_name', 'field_campaign_first_name');
     $this->addFieldMapping('data_last_name', 'field_campaign_last_name');
@@ -310,14 +276,6 @@ class DSCampaignSignupDecadeOfThanksMigration extends DSCampaignSignupMigration 
 
 class DSCampaignSignupCancer2011Migration extends DSCampaignSignupMigration {
   public function __construct() {
-    parent::__construct('cancer_2011_signup');
-    $this->description .= 'Cancer 2011 Signup';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'cancer_2011_signup';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
@@ -325,10 +283,8 @@ class DSCampaignSignupCancer2011Migration extends DSCampaignSignupMigration {
     $fields['longitude'] = 'Longitude';
     $fields['latitude'] = 'Latitude';
     $fields['country'] = 'Country';
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('cancer_2011_signup', $fields);
+    $this->description .= 'Cancer 2011 Signup';
 
     $this->addFieldMapping('field_webform_school', 'title');
     $this->addFieldMapping('data_location_name', 'location_name');
@@ -378,14 +334,6 @@ class DSCampaignSignupCancer2011Migration extends DSCampaignSignupMigration {
 
 class DSCampaignSignupEWaste2011Migration extends DSCampaignSignupMigration {
   public function __construct() {
-    parent::__construct('ewaste_signup_2011');
-    $this->description .= 'ewaste 2011 signup';
-
-    // Duplicate some of the work the constructor is doing since we need to add some
-    // extra fields.
-    $node_type = 'ewaste_signup_2011';
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
-    $fields = DSJsonWebformMigration::fetchFields($base_url, $node_type);
     $fields['country'] = 'Country';
     $fields['location_name'] = 'Location Name';
     $fields['street'] = 'Street';
@@ -393,11 +341,8 @@ class DSCampaignSignupEWaste2011Migration extends DSCampaignSignupMigration {
     $fields['longitude'] = 'Longitude';
     $fields['latitude'] = 'Latitude';
     $fields['country'] = 'Country';
-
-    $this->source = new MigrateSourceMultiItems(
-      new DSNodeJsonMigrateItems($base_url, $node_type),
-      $fields
-    );
+    parent::__construct('ewaste_signup_2011', $fields);
+    $this->description .= 'ewaste 2011 signup';
 
     $this->addFieldMapping('data_name', 'title');
     $this->addFieldMapping('data_location_name', 'location_name');

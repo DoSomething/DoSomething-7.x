@@ -19,6 +19,7 @@ dependencies[] = dosomething_intentions
 dependencies[] = dosomething_scholarship_application
 files[] = includes/base.inc
 files[] = includes/json.inc
+files[] = includes/json_node.inc
 files[] = includes/json_webform.inc
 files[] = includes/sql_webform.inc
 

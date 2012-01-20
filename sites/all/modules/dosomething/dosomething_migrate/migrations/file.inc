@@ -1,16 +1,5 @@
 <?php
 
-class DSFileJsonMigrateItems extends DSJsonMigrateItems {
-  public function __construct($base_url) {
-    $ts = variable_get('ds_migration_forked_ts', 1317000000);
-
-    $this->listUrl = "{$base_url}/file/list?page=:page&created_since={$ts}";
-    $this->countUrl = "{$base_url}/file/count?created_since={$ts}";
-    $this->getUrl = "{$base_url}/file/get/:id";
-    parent::__construct();
-  }
-}
-
 class DSFile extends Migration {
   static function fetchFields($base_url) {
     $cid = __CLASS__ . ':' . $base_url;

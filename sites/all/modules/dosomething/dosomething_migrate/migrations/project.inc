@@ -3,8 +3,8 @@
 // Project
 
 class DSProject extends DSJsonWebformMigration {
-  public function __construct($node_type) {
-    parent::__construct(MigrateGroup::getInstance('Project'), 'project');
+  public function __construct($node_type, $additional_fields = array()) {
+    parent::__construct(MigrateGroup::getInstance('Project'), 'project', $additional_fields);
     $this->description .= 'A volunteer project';
     $this->dependencies[] = 'DSFile';
 

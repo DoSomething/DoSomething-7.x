@@ -1,41 +1,5 @@
 <?php
 
-class DSWebformSubmissionJsonMigrateItems extends DSJsonMigrateItems {
-  // Which webform are we looking at?
-  protected $key;
-
-  public function __construct($base_url, $key) {
-    $ts = variable_get('ds_migration_forked_ts', 1317000000);
-
-    $this->key = $key;
-    $this->listUrl = "{$base_url}/webform/list/{$key}?page=:page&created_since={$ts}";
-    $this->countUrl = "{$base_url}/webform/count?created_since={$ts}";
-    $this->getUrl = "{$base_url}/webform/get/:id";
-    parent::__construct();
-  }
-
-  public function computeCount() {
-    $counts = &drupal_static(__METHOD__, NULL);
-
-    migrate_instrument_start(__METHOD__);
-
-    if (is_null($counts)) {
-      // Try and fetch it.
-      migrate_instrument_start("Retrieve $this->countUrl");
-      $json = file_get_contents($this->countUrl);
-      migrate_instrument_stop("Retrieve $this->countUrl");
-
-      if ($json) {
-        $counts = drupal_json_decode($json);
-      }
-    }
-
-    migrate_instrument_stop(__METHOD__);
-
-    return isset($counts[$this->key]) ? $counts[$this->key] : 0;
-  }
-}
-
 abstract class DSWebformSubmissionMigration extends Migration {
   protected $nid;
 
