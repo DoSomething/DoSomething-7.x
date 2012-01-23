@@ -256,12 +256,15 @@ class SearchApiSolrService extends SearchApiAbstractService {
       views_invalidate_cache();
     }
     $id = is_object($index) ? $index->machine_name : $index;
-    try {
-      $this->connect();
-      $this->solr->deleteByQuery("index_id:" . $id);
-    }
-    catch (Exception $e) {
-      watchdog('search_api_solr', t("An error occurred while deleting an index' data: !msg.", array('!msg' => $e->getMessage())));
+    // Only delete the index's data if the index isn't read-only.
+    if (!is_object($index) || empty($index->read_only)) {
+      try {
+        $this->connect();
+        $this->solr->deleteByQuery("index_id:" . $id);
+      }
+      catch (Exception $e) {
+        watchdog('search_api_solr', t("An error occurred while deleting an index' data: !msg.", array('!msg' => $e->getMessage())));
+      }
     }
   }
 
@@ -343,12 +346,6 @@ class SearchApiSolrService extends SearchApiAbstractService {
       // Add the names of any "fields" configured on the index.
       $fields = (isset($index->options['fields']) ? $index->options['fields'] : array());
       foreach ($fields as $key => $field) {
-        // Since this determines which fields can be searched and filtered on,
-        // don't include fields that aren't indexed.
-        if (empty($field['indexed'])) {
-          continue;
-        }
-
         // Generate a field name; this corresponds with naming conventions in
         // our schema.xml
         $type = $field['type'];
@@ -577,7 +574,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
       $this->connect();
       drupal_alter('search_api_solr_query', $call_args, $query);
       $this->preQuery($call_args, $query);
-      $response = $this->solr->search($keys, $offset, $limit, $params, Apache_Solr_Service::METHOD_POST);
+      $response = $this->solr->search($keys, $offset, $limit, $params);
       $time_query_done = microtime(TRUE);
 
       if ($response->getHttpStatus() != 200) {
@@ -749,10 +746,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
       $extract_facets = ($extract_facets ? $extract_facets : array());
 
       foreach ($extract_facets as $delta => $info) {
-        $field = $fields[$info['field']];
-        if ($field[0] == 's') {
-          $field = 'f_' . $field;
-        }
+        $field = $this->getFacetField($fields[$info['field']]);
         if (!empty($facet_fields->$field)) {
           $min_count = $info['min_count'];
           $terms = $facet_fields->$field;
@@ -803,6 +797,16 @@ class SearchApiSolrService extends SearchApiAbstractService {
 
       return $facets;
     }
+  }
+
+  /**
+   * Return the facet field corresponding to a normal Solr field name.
+   *
+   * In the default configuration, string fields have additional fields
+   * specifically for facetting purposes, prefixed with an additional 'f_'.
+   */
+  protected function getFacetField($field) {
+    return ($field[0] == 's') ? 'f_' . $field : $field;
   }
 
   /**
@@ -892,7 +896,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
     $fq = array();
     foreach ($filter->getFilters() as $f) {
       if (is_array($f)) {
-        if (!isset($fields[$f[0]]) || empty($fields[$f[0]]['indexed'])) {
+        if (!isset($fields[$f[0]])) {
           throw new SearchApiException(t('Filter term on unknown or unindexed field !field.', array('!field' => $f[0])));
         }
         if ($f[1] !== '') {
@@ -978,15 +982,12 @@ class SearchApiSolrService extends SearchApiAbstractService {
       if (empty($fields[$info['field']])) {
         continue;
       }
-      $field = $f = $fields[$info['field']];
       // String fields have their own corresponding facet fields.
-      if ($field[0] == 's') {
-        $field = 'f_' . $field;
-      }
+      $field = $this->getFacetField($fields[$info['field']]);
       // Check for the "or" operator.
       if (isset($info['operator']) && $info['operator'] === 'or') {
         // Remember that filters for this field should be tagged.
-        $escaped = SearchApiSolrConnection::escapeFieldName($f);
+        $escaped = SearchApiSolrConnection::escapeFieldName($fields[$info['field']]);
         $taggedFields[$escaped] = "{!tag=$escaped}";
         // Add the facet field.
         $facet_params['facet.field'][] = "{!ex=$escaped}$field";
@@ -1348,7 +1349,6 @@ class SearchApiSolrService extends SearchApiAbstractService {
     $fields = array(
       'search_api_multi_index' => array(
         'type' => 'string',
-        'indexed' => TRUE,
       ),
     );
     foreach ($query->getIndexes() as $index_id => $index) {
@@ -1426,7 +1426,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
         'params' => &$params,
       );
       drupal_alter('search_api_solr_multi_query', $call_args, $query);
-      $response = $this->solr->search($keys, $offset, $limit, $params, Apache_Solr_Service::METHOD_POST);
+      $response = $this->solr->search($keys, $offset, $limit, $params);
       $time_query_done = microtime(TRUE);
 
       if ($response->getHttpStatus() != 200) {
@@ -1452,10 +1452,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
         $results['search_api_facets'] = array();
         $facet_fields = $response->facet_counts->facet_fields;
         foreach ($facets as $delta => $info) {
-          $field = $solr_fields[$info['field']];
-          if ($field[0] == 's') {
-            $field = 'f_' . $field;
-          }
+          $field = $this->getFacetField($solr_fields[$info['field']]);
           if (!empty($facet_fields->$field)) {
             $min_count = $info['min_count'];
             $terms = $facet_fields->$field;

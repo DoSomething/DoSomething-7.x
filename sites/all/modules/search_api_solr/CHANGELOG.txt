@@ -1,6 +1,13 @@
 Search API Solr search 1.0, dev (xx/xx/xxxx):
 ---------------------------------------------
 
+Search API Solr search 1.0, RC 1 (11/10/2011):
+----------------------------------------------
+- #1308638 by drunken monkey: Adapted to new structure of field settings.
+- #1308498 by zenlan, drunken monkey: Added flexibility for facet fields.
+- #1319544 by drunken monkey: Fixed never delete contents of read-only indexes.
+- #1309650 by jonhattan, drunken monkey: Added support for the Libraries API.
+
 Search API Solr search 1.0, Beta 4 (09/08/2011):
 ------------------------------------------------
 - #1230536 by thegreat, drunken monkey: Added support for OR facets.
