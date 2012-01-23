@@ -271,9 +271,8 @@ function drush_dosomething_migrate_noderef_to_entityref_update() {
 }
 
 function dosomething_migrate_update_nodref_entref(&$context) {
-  $records_to_update = 10;
+  $records_to_update = 100;
   if (empty($context['sandbox'])) {
-    drush_log('empty', 'ok');
     // Find the number of records that need to be updated.
     // Records that need to be updated are those that have a value for a node
     // reference to a project but not an entity reference to a webform
@@ -392,39 +391,70 @@ function dosomething_migrate_update_nodref_entref(&$context) {
       AND nid > :nid
       ORDER BY nid", 0, $records_to_update, array(':nid' => $context['sandbox']['current'])
     );
-    while ($data = $result->fetchAssoc()) {
-      $node = node_load($data['nid']);
-      $node_to_map = $data['source_nid'];
-      // Find the mapping of the old node id to the new sid.
-      $query = "SELECT destid1 FROM {migrate_map_dsproject} WHERE sourceid1 = :nid";
-      $mapping_result = db_query($query, array(':nid' => $node_to_map))->fetchField();
-      if ($mapping_result) {
-        $node->field_webform_project_submission[LANGUAGE_NONE][0]['target_id'] = $mapping_result;
+    $data = $result->fetchAllAssoc('nid');
+    $node_to_old_nid_ref = array();
+    foreach ($data as $nid => $node_info) {
+      $node_to_old_nid_ref[$nid] = $node_info->source_nid;
+    }
+    $nodes = node_load_multiple(array_keys($node_to_old_nid_ref));
+    // Find the mapping of the old node id to the new sid.
+    $node_ref_to_sid_map = db_select('migrate_map_dsproject', 'mm')
+      ->fields('mm', array('sourceid1', 'destid1'))
+      ->condition('sourceid1', array_values($node_to_old_nid_ref), 'IN')
+      ->execute()
+      ->fetchAllKeyed();
+
+    foreach ($nodes as $nid => $node) {
+      if (isset($node_to_old_nid_ref[$nid]) && isset($node_ref_to_sid_map[$node_to_old_nid_ref[$nid]])) {
+        $node->field_webform_project_submission[LANGUAGE_NONE][0]['target_id'] = $node_ref_to_sid_map[$node_to_old_nid_ref[$nid]];
         //They should all be webform submission entities.
         $node->field_webform_project_submission[LANGUAGE_NONE][0]['target_type'] = 'webform_submission_entity';
         node_save($node);
         // Update the mapping table
-        $record = array(
-          'nid' => $node->nid,
-          'ref_nid' => $node_to_map,
-          'ref_sid' => $mapping_result,
+        $success_records[$node->nid] = array(
+          'nid' => $nid,
+          'ref_nid' => $node_to_old_nid_ref[$nid],
+          'ref_sid' => $node_ref_to_sid_map[$node_to_old_nid_ref[$nid]],
         );
-        db_delete('dosomething_project_nid_sid_map')->condition('nid', $node->nid)->execute();
-        drupal_write_record('dosomething_project_nid_sid_map', $record);
-        // Drop the record from the fail table if it is there.
-        db_delete('dosomething_project_nid_sid_fails')->condition('nid', $node->nid)->execute();
       }
       else {
         // Log to the fail table
-        $record = array('nid' => $node->nid);
-        db_delete('dosomething_project_nid_sid_fails')->condition('nid', $node->nid)->execute();
-        drupal_write_record('dosomething_project_nid_sid_fails', $record);
-        drush_log("Could not find mapping for reference on node $node->nid. See failure table for full list.", 'warning');
+        $fail_records[] = $node->nid;
       }
       $context['sandbox']['progress'] += 1;
       $context['sandbox']['current'] = $node->nid;
       $context['results'][] = $node->nid;
       $context['message'] = 'processed ' . $node->nid;
+    }
+
+    if (count($success_records)) {
+      db_delete('dosomething_project_nid_sid_map')
+        ->condition('nid', array_keys($success_records), 'IN')
+        ->execute();
+      $query = db_insert('dosomething_project_nid_sid_map')
+        ->fields(array('nid', 'ref_nid', 'ref_sid'));
+      foreach($success_records as $record) {
+        $query->values($record);
+      }
+      $query->execute();
+      // Drop the record from the fail table if it is there.
+      db_delete('dosomething_project_nid_sid_fails')
+        ->condition('nid', array_keys($success_records), 'IN')
+        ->execute();
+    }
+    if (count($fail_records)) {
+      db_delete('dosomething_project_nid_sid_fails')
+        ->condition('nid', $fail_records, 'IN')
+        ->execute();
+      $query = db_insert('dosomething_project_nid_sid_fails')
+        ->fields(array('nid'));
+      foreach($fail_records as $record) {
+        $query->values(array('nid' => $record));
+      }
+      $query->execute();
+      drupal_write_record('dosomething_project_nid_sid_fails', $record);
+      drush_log("Could not find mapping for reference on node $node->nid. See failure table for full list.", 'warning');
+
     }
 
     drush_log($context['sandbox']['progress'] / $context['sandbox']['max'] * 100 . ' percent complete', 'ok');
