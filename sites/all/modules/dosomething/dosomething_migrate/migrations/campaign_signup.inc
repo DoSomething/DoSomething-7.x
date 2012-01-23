@@ -89,16 +89,18 @@ class DSCampaignSignupGysMigration extends DSCampaignSignupMigration {
   }
   public function prepareRow($row) {
     // Extract the location from the location:
-    $location = $row->locations[0];
-    $row->location_name = empty($location->name) ? NULL : $location->name;
-    $row->country = empty($location->country) ? NULL : $location->country;
-    $row->street = empty($location->street) ? NULL : $location->street;
-    $row->additional = empty($location->additional) ? NULL : $location->additional;
-    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
-    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
-    $row->city = empty($location->city) ? NULL : $location->city;
-    $row->state = empty($location->state) ? NULL : $location->state;
-    $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
+    if (isset($row->locations[0])) {
+      $location = $row->locations[0];
+      $row->location_name = empty($location->name) ? NULL : $location->name;
+      $row->country = empty($location->country) ? NULL : $location->country;
+      $row->street = empty($location->street) ? NULL : $location->street;
+      $row->additional = empty($location->additional) ? NULL : $location->additional;
+      $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+      $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+      $row->city = empty($location->city) ? NULL : $location->city;
+      $row->state = empty($location->state) ? NULL : $location->state;
+      $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
+    }
   }
 }
 
@@ -190,13 +192,8 @@ class DSCampaignSignupScavengerMigration extends DSCampaignSignupMigration {
 
   public function prepareRow($row) {
     // Extract the location from the location:
-    $location = $row->locations[0];
-    $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
+    $row->postal_code = empty($row->locations[0]->postal_code) ? NULL : $row->locations[0]->postal_code;
   }
-
-
-
-
 }
 
 class DSCampaignSignupStaplesMigration extends DSCampaignSignupMigration {
@@ -321,14 +318,16 @@ class DSCampaignSignupCancer2011Migration extends DSCampaignSignupMigration {
       ));
   }
   public function prepareRow($row) {
-     // Extract the location from the location:
-    $location = $row->locations[0];
-    $row->location_name = empty($location->name) ? NULL : $location->name;
-    $row->country = empty($location->country) ? NULL : $location->country;
-    $row->street = empty($location->street) ? NULL : $location->street;
-    $row->additional = empty($location->additional) ? NULL : $location->additional;
-    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
-    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+    // Extract the location from the location:
+    if (isset($row->locations[0])) {
+      $location = $row->locations[0];
+      $row->location_name = empty($location->name) ? NULL : $location->name;
+      $row->country = empty($location->country) ? NULL : $location->country;
+      $row->street = empty($location->street) ? NULL : $location->street;
+      $row->additional = empty($location->additional) ? NULL : $location->additional;
+      $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+      $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+    }
   }
 }
 
@@ -365,13 +364,15 @@ class DSCampaignSignupEWaste2011Migration extends DSCampaignSignupMigration {
       ));
   }
   public function prepareRow($row) {
-     // Extract the location from the location:
-    $location = $row->locations[0];
-    $row->location_name = empty($location->name) ? NULL : $location->name;
-    $row->country = empty($location->country) ? NULL : $location->country;
-    $row->street = empty($location->street) ? NULL : $location->street;
-    $row->additional = empty($location->additional) ? NULL : $location->additional;
-    $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
-    $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+    // Extract the location from the location:
+    if (isset($row->locations[0])) {
+      $location = $row->locations[0];
+      $row->location_name = empty($location->name) ? NULL : $location->name;
+      $row->country = empty($location->country) ? NULL : $location->country;
+      $row->street = empty($location->street) ? NULL : $location->street;
+      $row->additional = empty($location->additional) ? NULL : $location->additional;
+      $row->latitude = empty($location->latitude) ? NULL : $location->latitude;
+      $row->longitude = empty($location->longitude) ? NULL : $location->longitude;
+    }
   }
 }

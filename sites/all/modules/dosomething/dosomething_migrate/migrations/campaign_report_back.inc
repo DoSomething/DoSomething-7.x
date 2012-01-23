@@ -506,7 +506,7 @@ class DSCampaignReportBackMakeArtSaveArtMigration extends DSCampaignReportBackMi
     $this->addUnmigratedDestinations(array('data_location', 'field_webform_school_zip', 'field_webform_videos', 'taxonomy_vocabulary_5'));
   }
   public function prepareRow($row) {
-    $location = $row->locations[0];
+    $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
     parent::prepareRow($row);
     // Extract the zip code from the location:
     $row->location_name = empty($location->name) ? NULL : $location->name;
@@ -561,7 +561,7 @@ class DSCampaignReportBackSportsMigration extends DSCampaignReportBackMigration 
   }
   public function prepareRow($row) {
     // Extract the location from the location:
-    $location = $row->locations[0];
+    $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
     parent::prepareRow($row);
     $row->location_name = empty($location->name) ? NULL : $location->name;
     $row->country = empty($location->country) ? NULL : $location->country;
@@ -599,7 +599,7 @@ class DSCampaignReportBackBullying extends DSCampaignReportBackMigration {
   }
   public function prepareRow($row) {
     // Extract the location from the location:
-    $location = $row->locations[0];
+    $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
     parent::prepareRow($row);
     $row->postal_code = empty($location->postal_code) ? NULL : $location->postal_code;
   }
@@ -646,7 +646,7 @@ class DSCampaignReportBackMacys2011Migration extends DSCampaignReportBackMigrati
   }
   public function prepareRow($row) {
      // Extract the location from the location:
-    $location = $row->locations[0];
+    $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
     parent::prepareRow($row);
     $row->location_name = empty($location->name) ? NULL : $location->name;
     $row->country = empty($location->country) ? NULL : $location->country;
@@ -701,7 +701,7 @@ class DSCampaignReportBackEWaste2011Migration extends DSCampaignReportBackMigrat
   }
   public function prepareRow($row) {
      // Extract the location from the location:
-    $location = $row->locations[0];
+    $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
     parent::prepareRow($row);
     $row->location_name = empty($location->name) ? NULL : $location->name;
     $row->country = empty($location->country) ? NULL : $location->country;
@@ -749,7 +749,7 @@ class DSCampaignReportBackCancer2011 extends DSCampaignReportBackMigration {
   }
   public function prepareRow($row) {
      // Extract the location from the location:
-    $location = $row->locations[0];
+    $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
     parent::prepareRow($row);
     $row->location_name = empty($location->name) ? NULL : $location->name;
     $row->country = empty($location->country) ? NULL : $location->country;

@@ -151,7 +151,6 @@ class DSJsonMigrateItems extends MigrateItems implements Iterator {
 
     if (!$json) {
       migrate_instrument_stop(__METHOD__);
-
       $migration = Migration::currentMigration();
       $message =  t('Loading of !objecturl failed:', array('!objecturl' => $url));
       $migration->getMap()->saveMessage(
@@ -159,8 +158,18 @@ class DSJsonMigrateItems extends MigrateItems implements Iterator {
       return NULL;
     }
 
+    $values = drupal_json_decode($json);
+    if (is_null($values)) {
+      migrate_instrument_stop(__METHOD__);
+      $migration = Migration::currentMigration();
+      $message =  t('Decoding of !objecturl failed:', array('!objecturl' => $url));
+      $migration->getMap()->saveMessage(
+        array($id), $message, MigrationBase::MESSAGE_ERROR);
+      return NULL;
+    }
+
     $cache = array();
-    foreach (drupal_json_decode($json) as $k => $v) {
+    foreach ($values as $k => $v) {
       $cache[$k] = (object) $v;
     }
 
