@@ -812,16 +812,14 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   if (dosomething_login_person_is_over_age($birthdate, 26)) {
     $role_name = 'old person';
     drupal_set_message(t('You have been signed up for our weekly updates'));
-    $account->status = 0;
   }
   else if (!dosomething_login_person_is_over_age($birthdate, 13)) {
     $role_name = 'pending member';
-    $account->status = 1;
   }
   else {
     $role_name = 'member';
-    $account->status = 1;
   }
+  $account->status = 1;
   $role = user_role_load_by_name($role_name);
   $account->roles[$role->rid] = $role->name;
   $account = user_save($account, $edit); 
