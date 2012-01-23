@@ -416,7 +416,7 @@ function dosomething_migrate_update_nodref_entref(&$context) {
           'ref_nid' => $node_to_old_nid_ref[$nid],
           'ref_sid' => $node_ref_to_sid_map[$node_to_old_nid_ref[$nid]],
         );
-        drush_log("Reference pointint to nid {$node_to_old_nid_ref[$nid]} has been remapped to sid $node_ref_to_sid_map[$node_to_old_nid_ref[$nid]].", 'ok');
+        drush_log("Reference pointint to nid {$node_to_old_nid_ref[$nid]} has been remapped to sid {$node_ref_to_sid_map[$node_to_old_nid_ref[$nid]]}.", 'ok');
       }
       else {
         // Log to the fail table
