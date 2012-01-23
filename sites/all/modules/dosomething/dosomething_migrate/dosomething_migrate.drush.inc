@@ -416,10 +416,12 @@ function dosomething_migrate_update_nodref_entref(&$context) {
           'ref_nid' => $node_to_old_nid_ref[$nid],
           'ref_sid' => $node_ref_to_sid_map[$node_to_old_nid_ref[$nid]],
         );
+        drush_log("Reference pointint to nid {$node_to_old_nid_ref[$nid]} has been remapped to sid $node_ref_to_sid_map[$node_to_old_nid_ref[$nid]].", 'ok');
       }
       else {
         // Log to the fail table
         $fail_records[] = $node->nid;
+        drush_log("Could not find mapping for reference on node $node->nid. See failure table for full list.", 'warning');
       }
       $context['sandbox']['progress'] += 1;
       $context['sandbox']['current'] = $node->nid;
@@ -452,8 +454,6 @@ function dosomething_migrate_update_nodref_entref(&$context) {
         $query->values(array('nid' => $record));
       }
       $query->execute();
-      drupal_write_record('dosomething_project_nid_sid_fails', $record);
-      drush_log("Could not find mapping for reference on node $node->nid. See failure table for full list.", 'warning');
 
     }
 
