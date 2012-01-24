@@ -16,7 +16,7 @@ function dosomething_login_menu() {
     'page callback' => 'dosomething_login_mobile_signup',
     'access callback' => 'dosomething_login_mobile_signup_access',
   );
-  $items['user/fb/registration'] = array(
+  $items['user/registration/fb'] = array(
     'title' => 'Registration',
     'description' => 'Register through your Facebook account.',
     'page callback' => 'drupal_get_form',
@@ -1397,7 +1397,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
     else {
       // The fboauth module requires a redirect.
       $_SESSION['fbuser'] = $fbuser;
-      return 'user/fb/registration';
+      return 'user/registration/fb';
     }
   }
 }
@@ -1408,7 +1408,8 @@ function dosomething_login_action_prereg($app_id, $access_token) {
  */
 function dosomething_login_register_facebook($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
-  $form['#action'] = '/user/fb/registration?destination=front';
+  $form['#action'] = '/user/registration/fb/?destination=front';
+  dpm($_SESSION);
   if (isset($_SESSION['fbuser'])) {
     $fbuser = $_SESSION['fbuser'];
     $form['cell_or_email']['#value'] = $fbuser->email;
@@ -1421,6 +1422,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['year']['#value'] = $date[2];
   }
   else {
+    dpm('wtf');
     drupal_set_message("There was a problem receiving your information from Facebook, please register below to create an account.");
   }
   return $form;
