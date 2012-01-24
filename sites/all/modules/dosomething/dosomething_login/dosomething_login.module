@@ -1409,7 +1409,6 @@ function dosomething_login_action_prereg($app_id, $access_token) {
 function dosomething_login_register_facebook($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
   $form['#action'] = '/user/registration/fb/?destination=front';
-  dpm($_SESSION);
   if (isset($_SESSION['fbuser'])) {
     $fbuser = $_SESSION['fbuser'];
     $form['cell_or_email']['#value'] = $fbuser->email;
@@ -1422,7 +1421,6 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['year']['#value'] = $date[2];
   }
   else {
-    dpm('wtf');
     drupal_set_message("There was a problem receiving your information from Facebook, please register below to create an account.");
   }
   return $form;
