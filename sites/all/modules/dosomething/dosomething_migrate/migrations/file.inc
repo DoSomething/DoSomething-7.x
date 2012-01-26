@@ -66,33 +66,44 @@ class DSFile extends Migration {
         touch($row->filepath);
       }
     }
-
-    $entity->uri = file_stream_wrapper_uri_normalize('public://' . str_replace($this->filesPath, '', $row->filepath));
+    // We know that all file paths in the old site start with "files/" so we
+    // strip it off.
+    $entity->uri = file_stream_wrapper_uri_normalize('public://' . substr($row->filepath, 6));
   }
 
   protected function createStub($migration, $source_key) {
     $fid = $source_key[0];
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
 
-    // First check for an existing file.
-    $file = file_load($fid);
-    if ($file) {
-      print "found existing $fid\n";
-      return array($file->fid);
+    $x = new DSFileJsonMigrateItems($base_url);
+    $old_file = $x->getItem($fid);
+    if (!$old_file) {
+      return NULL;
     }
 
-    // Check if it wasn't upgraded yet.
-    $file = db_select('files', 'f')
-      ->fields('f')
-      ->condition('fid', $fid)
+    // We know that all file paths in the old site start with "files/" so we
+    // strip it off.
+    $uri = file_stream_wrapper_uri_normalize('public://' . substr($old_file->filepath, 6));
+    //var_dump($fid, $old_file, $uri);
+
+    // Check if this uri is in the files table.
+    $new_fid = db_select('file_managed', 'f')
+      ->fields('f', array('fid'))
+      ->condition('uri', $uri)
       ->execute()
-      ->fetchAssoc();
-    if ($file) {
-      // Migrate record from files to files_managed.
-      $file['uri'] = file_stream_wrapper_uri_normalize('public://' . str_replace($this->filesPath, '', $file['filepath']));
-      if (drupal_write_record('file_managed', $file)) {
-        print "migrated fid $fid from {files} to {file_managed}\n";
-        return array($file['fid']);
-      }
+      ->fetchField();
+    if($new_fid) {
+      print "found fid {$old_file->fid}\n";
+      return array($new_fid);
+    }
+
+    // Create a new one since there is not an existing one.
+    $new_file = $old_file;
+    $new_file->uri = $uri;
+    unset($new_file->fid, $new_file->filepath);
+    if (drupal_write_record('file_managed', $new_file)) {
+      print "migrated fid {$old_file->fid} to new fid {$new_file->fid}\n";
+      return array($new_file->fid);
     }
   }
 }
