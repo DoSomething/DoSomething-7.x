@@ -148,7 +148,7 @@ function search_api_page_admin_add(array $form, array &$form_state) {
   );
 
   $fields = array();
-  $index_fields = $index->getFields();
+  $index_fields = $index->query()->getFields();
   foreach ($index->getFulltextFields() as $name) {
     $fields[$name] = $index_fields[$name]['name'];
   }
