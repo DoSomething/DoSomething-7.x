@@ -329,7 +329,7 @@ function search_api_page_admin_edit(array $form, array &$form_state, Entity $pag
   );
 
   $fields = array();
-  $index_fields = $index->getFields();
+  $index_fields = $index->query()->getFields();
   foreach ($index->getFulltextFields() as $name) {
     $fields[$name] = $index_fields[$name]['name'];
   }
