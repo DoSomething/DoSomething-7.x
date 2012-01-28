@@ -49,6 +49,23 @@ class DSFile extends Migration {
     $this->filesPath = variable_get('file_directory_path', conf_path() . '/files');
   }
 
+  // Helper function to convert disc file paths into URIs.
+  static function convertPathToURI($path) {
+    // We know that all file paths in the old site start with "files/" so we
+    // strip it off.
+    return file_stream_wrapper_uri_normalize('public://' . substr($path, 6));
+  }
+
+  // Helper function to a file id from a known uri.
+  static function getFIDFromURI($uri) {
+    $fid = db_select('file_managed', 'f')
+      ->fields('f', array('fid'))
+      ->condition('uri', $uri)
+      ->execute()
+      ->fetchField();
+    return $fid;
+  }
+
   public function prepare($entity, $row) {
     if (!is_file($row->filepath)) {
       $dir = dirname($row->filepath);
@@ -66,9 +83,17 @@ class DSFile extends Migration {
         touch($row->filepath);
       }
     }
-    // We know that all file paths in the old site start with "files/" so we
-    // strip it off.
-    $entity->uri = file_stream_wrapper_uri_normalize('public://' . substr($row->filepath, 6));
+    $entity->uri = self::convertPathToURI($row->filepath);
+
+    if (empty($entity->fid)) {
+      // If the file is already in the file_managed table trick this migrate into
+      // becoming an update rather than an insert.
+      $fid = self::getFIDFromURI($entity->uri);
+      if ($fid) {
+        var_dump("we would expect a pdo error.");
+        $entity->fid = $fid;
+      }
+    }
   }
 
   protected function createStub($migration, $source_key) {
@@ -81,17 +106,10 @@ class DSFile extends Migration {
       return NULL;
     }
 
-    // We know that all file paths in the old site start with "files/" so we
-    // strip it off.
-    $uri = file_stream_wrapper_uri_normalize('public://' . substr($old_file->filepath, 6));
-    //var_dump($fid, $old_file, $uri);
+    $uri = self::convertPathToURI($old_file->filepath);
 
     // Check if this uri is in the files table.
-    $new_fid = db_select('file_managed', 'f')
-      ->fields('f', array('fid'))
-      ->condition('uri', $uri)
-      ->execute()
-      ->fetchField();
+    $new_fid = self::getFIDFromURI($uri);
     if($new_fid) {
       print "found fid {$old_file->fid}\n";
       return array($new_fid);
