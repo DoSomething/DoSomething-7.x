@@ -3,6 +3,43 @@
 /**
  * @file
  * Custom functionality to change roles of users depending on their activity.
+ *
+ * The module uses the following logic for determining user's roles. The first
+ * step is checking their age.
+ *
+ * 'old person'
+ *   Checked at registration time by the dosomething_login module. If they're
+ *   26 they get this role. We don't actually set this role, dosomething_login
+ *   should be assigning that when they register.
+ * 'alumni'
+ *   If they turn 26 but joined the site before that point, they get this role.
+ *
+ * So of the remaining people who are under 26 (or for legacy reasons, have not
+ * entered a birthday) these are the possible transitions:
+ *
+ * 'member' (default role)
+ *   -> 'alumni' Birthday indicates they're 26 or older.
+ *   -> 'active member' Submit an action report (Specs call for them providing a
+ *      DOB, school name and zip code, but since they're required fields in the
+ *      action reports we just need to check for non-draft submissions).
+ *
+ * 'active member'
+ *   -> 'alumni' Birthday indicates they're 26 or older.
+ *   -> 'member' If their only action update is marked as a draft.
+ *   -> 'member' During yearly check of posts since promotion anniversary.
+ *   -> 'varsity' Post 5 action updates.
+ *   -> 'varsity' Win grant and submit grant update (since they can only submit
+ *      a grant update after winning a grant we just look for the update).
+ *
+ * 'varsity'
+ *   -> 'alumni' Birthday indicates they're 26 or older.
+ *   -> 'member' During yearly check of posts since promotion anniversary.
+ *   -> 'active member' During yearly check of posts since promotion anniversary.
+ *
+ * So the typical pattern is that promotions happen immediately and most
+ * demotions happen at the end of the year of publishing, though the glaring
+ * inconsistency is when submissions are marked as a draft it should cause a
+ * recomputing of their role.
  */
 
 /**
@@ -20,19 +57,19 @@ function dosomething_roles_cron() {
 
 /**
  * Update roles for users whose anniversaries have passed.
- * Note: this should only do 10 at a time based on 
- * dosomething_roles_get_users_by_anniversary.
  */
 function dosomething_roles_demote_expired_users() {
+  global $language;
   $last_checked_timestamp = variable_get('dosomething_roles_member_demotion_last_timestamp', 0);
   $last_uid = variable_get('dosomething_roles_member_demotion_last_uid', 0);
+  // Let dosomething_roles_get_users_by_anniversary() decide how many we do at a time.
   $results = dosomething_roles_get_users_by_anniversary($last_checked_timestamp, REQUEST_TIME);
   if (isset($results['profile2']) && count($results['profile2'])) {
     foreach ($results['profile2'] as $profile_data) {
       $profile = profile2_load($profile_data->pid);
       $account = user_load($profile->uid);
       $anniversary = dosomething_roles_get_anniversary($account->uid);
-      if (!dosomething_roles_user_is_staff_member($account->uid)) {
+      if (!dosomething_roles_user_is_staff_member($account) && !dosomething_roles_user_is_too_old($account)) {
         if ($account->uid > $last_uid || $last_checked_timestamp < $anniversary) {
           // Find what a user's role will be after updating.
           $new_role_name = dosomething_roles_get_member_role($account->uid);
@@ -41,7 +78,6 @@ function dosomething_roles_demote_expired_users() {
           dosomething_roles_update_role($account->uid);
 
           if ($new_role_name != $current_role_name) {
-            global $language;
             $params = array(
               'new_role' => $new_role_name,
             );
@@ -60,12 +96,13 @@ function dosomething_roles_demote_expired_users() {
  *  Lookup people whose anniversary is x months away.  This will run through
  *   anyone's membership whose anniversary takes place in the month that
  *   is x months away.  On the first of the month, it will move on to the
- *   next month, so the previous month should be finisehd by that point.
+ *   next month, so the previous month should be finished by that point.
  *
  * @param $month
  *  (int) number of months away.
  */
 function dosomething_roles_send_demotion_notifications($month) {
+  global $language;
   $current_timestamp = strtotime("+$month month", REQUEST_TIME);
   $current_month = date('n', $current_timestamp);
   $current_year = date('Y', $current_timestamp);
@@ -95,26 +132,21 @@ function dosomething_roles_send_demotion_notifications($month) {
         continue;
       }
       // Don't mess with the roles of staff members.
-      else if (dosomething_roles_user_is_staff_member($account->uid)) {
-        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
-        variable_set('dosomething_roles_member_demotion_notice_' . $month . '_timestamp', $anniversary);
-        continue;
-      }
+      else if (!dosomething_roles_user_is_staff_member($account) && !dosomething_roles_user_is_too_old($account)) {
+        // Find what a user's role will be when they're anniversary has passed.
+        $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
+        $new_role_weight = array_search($new_role_name, $role_hierarchy);
+        $current_role_name = dosomething_roles_get_current_role($account->uid);
+        $current_role_weight = array_search($current_role_name, $role_hierarchy);
 
-      // Find what a user's role will be when they're anniversary has passed.
-      $new_role_name = dosomething_roles_get_member_role($account->uid, $end_timestamp);
-      $new_role_weight = array_search($new_role_name, $role_hierarchy);
-      $current_role_name = dosomething_roles_get_current_role($account->uid);
-      $current_role_weight = array_search($current_role_name, $role_hierarchy);
-
-      if ($current_role_weight < $new_role_weight) {
-        global $language;
-        $params = array(
-          'months' => $month,
-          'new_role' => $new_role_name,
-          'current_role' => $current_role_name,
-        );
-        drupal_mail('dosomething_roles', 'dosomething-roles-impending-demotion', $account->mail, $language, $params);
+        if ($current_role_weight < $new_role_weight) {
+          $params = array(
+            'months' => $month,
+            'new_role' => $new_role_name,
+            'current_role' => $current_role_name,
+          );
+          drupal_mail('dosomething_roles', 'dosomething-roles-impending-demotion', $account->mail, $language, $params);
+        }
       }
       // Mark this user as done by setting the last uid and last anniversary checked.
       variable_set('dosomething_roles_member_demotion_notice_' . $month . '_uid', $account->uid);
@@ -128,10 +160,10 @@ function dosomething_roles_send_demotion_notifications($month) {
  */
 function dosomething_roles_mail($key, &$message, $params) {
   switch ($key) {
-    case 'dosomething-roles-old-person-email':
+    case 'dosomething-roles-alumni-email':
       $params['full_name'] = module_exists('dosomething_login') ? dosomething_login_get_user_full_name($params['account']) : $params['account']->name;
-      $message['subject'] = t('You\'re membership has expired.');
-      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_old_person_email', $params));
+      $message['subject'] = t('Your membership has expired.');
+      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_alumni_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-roles-demotion':
@@ -152,10 +184,10 @@ function dosomething_roles_mail($key, &$message, $params) {
  */
 function dosomething_roles_theme() {
   return array(
-    'dosomething_roles_old_person_email' => array(
+    'dosomething_roles_alumni_email' => array(
       'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
       'arguments' => array('full_name' => NULL),
-      'template' => 'dosomething-roles-old-person-email',
+      'template' => 'dosomething-roles-alumni-email',
     ),
     'dosomething_roles_demotion_email' => array(
       'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
@@ -165,6 +197,13 @@ function dosomething_roles_theme() {
         'months' => NULL,
       ),
       'template' => 'dosomething-roles-demotion-email',
+    ),
+    'dosomething_roles_impending_alumni_email' => array(
+      'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
+      'arguments' => array(
+        'months' => NULL,
+      ),
+      'template' => 'dosomething-roles-impending-demotion-email',
     ),
     'dosomething_roles_impending_demotion_email' => array(
       'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
@@ -182,10 +221,10 @@ function dosomething_roles_theme() {
  * Update a user's membership role.
  */
 function dosomething_roles_update_role($uid) {
+  global $language;
   if (!$uid || $uid == 1) {
     return;
   }
-  global $language;
   $account = user_load($uid);
 
   // Don't make the user a full member if they are currently pendig.
@@ -226,16 +265,14 @@ function dosomething_roles_update_role($uid) {
     }
   }
 
-  // If a user turns 26, then they are immediately set to 'old person'.
-  if ($new_role_name == 'old person' && $new_role_name != $current_role_name) {
+  // If a user turns 26, then they are immediately set to 'alumni'.
+  if ($new_role_name == 'alumni' && $new_role_name != $current_role_name) {
     // Note: It may be better to user_save here.  If we decide to, then we need
     //  to add a flag to the account object (no_dosomething_role_update) to
     //  prevent an infinite loop.
-    global $language;
     $new_rid = $rids[$new_role_name];
-    db_update('users')->fields(array('status' => 0))->condition('uid', $account->uid)->execute();
     $params = array('account' => $account);
-    drupal_mail('dosomething_roles', 'dosomething-roles-old-person-email', $account->mail, $language, $params);
+    drupal_mail('dosomething_roles', 'dosomething-roles-alumni-email', $account->mail, $language, $params);
   }
 
   if (isset($new_rid)) {
@@ -261,21 +298,23 @@ function dosomething_roles_get_action_update_types() {
 }
 
 /**
- * Get a list of the mebership roles in order from highest level
- *  to lowest level.  Lower weight = Higher level.
+ * Get a list of the member roles in order from highest level to lowest level.
+ * Lower weight = Higher level.
  */
 function dosomething_roles_get_membership_role_hierarchy() {
   return  array(
     'varsity',
     'active member',
     'member',
-    'inactive user',
-    'old person',
+    'alumni',
   );
 }
 
 /**
- * Determine if athe given user is a staff member.
+ * Determine if a given user is a staff member.
+ *
+ * @param $account
+ *   Mixed, integer user id or user object.
  */
 function dosomething_roles_user_is_staff_member($account) {
   if (is_numeric($account)) {
@@ -293,10 +332,24 @@ function dosomething_roles_user_is_staff_member($account) {
     'moderator',
     'project_police',
   );
-  if (count(array_intersect($staff_roles, $account->roles))) {
-    return TRUE;
+  return (boolean) array_intersect($staff_roles, $account->roles);
+}
+
+/**
+ * Determine if a given user has been put in the "alumni" or "old person" role.
+ *
+ * @param $account
+ *   Mixed, integer user id or user object.
+ */
+function dosomething_roles_user_is_too_old($account) {
+  if (is_numeric($account)) {
+    $account = user_load($account);
   }
-  return FALSE;
+  $old_roles = array(
+    'alumni',
+    'old person',
+  );
+  return (boolean) array_intersect($old_roles, $account->roles);
 }
 
 /**
@@ -312,10 +365,11 @@ function dosomething_roles_node_insert($node) {
 }
 
 /**
- * Implements hook_user_login()r
+ * Implements hook_user_login().
  */
 function dosomething_roles_user_login(&$edit, $account) {
-  // Don't run this on the first login.
+  // Don't run this on the first login, dosomething_login should be setting
+  // roles.
   if ($account->access) {
     dosomething_roles_update_role($account->uid);
   }
@@ -326,8 +380,9 @@ function dosomething_roles_user_login(&$edit, $account) {
  */
 function dosomething_roles_user_update(&$edit, $account, $category) {
   global $user;
-  // To prevent infinite loop, add no_dosomething_role_update if running
-  // user_save while updating a role.
+  // If dosomething_roles_update_role() doesn't currently call user_save() but
+  // in case they do we're checking for a no_dosomething_role_update property
+  // to avoid infinite recursion. Yes, this is probably unnecessarily confusing.
   if ($user->uid == $account->uid && !isset($account->no_dosomething_role_update)) {
     dosomething_roles_update_role($account->uid);
   }
@@ -359,7 +414,12 @@ function dosomething_roles_webform_submission_insert($node, $submission) {
  */
 function dosomething_roles_webform_submission_update($node, $submission) {
   if (in_array($node->type, dosomething_roles_get_action_update_types())) {
+    // Skip staff members...
     if (dosomething_roles_user_is_staff_member($submission->uid)) {
+      return;
+    }
+    // ...and old people.
+    if (dosomething_roles_user_is_too_old($submission->uid)) {
       return;
     }
     // If a submission is a draft, then make sure any previous credit
@@ -389,18 +449,8 @@ function dosomething_roles_webform_submission_update($node, $submission) {
 
 /**
  * Determine a user's role level without considering their 'Aniversary Date'
- *  when the role to actually change.
- *
- *  Rules:
- *  old person - user over 25.
- *  inactive user - under 26, hasn't logged in during the last year.
- *  member - continue to be under 26.
- *  active member - one action update within year.
- *    They also must provide their school name and zipcode,
- *      but that's conatined in the action update.
- *    If their action update is unpublished, then they should
- *      immediately fall to 'member'. (See hook_webform_submission_update).
- *  varsity - 5 action updates or win grant and submit grant update.
+ * when the role is to actually change. See the file's documentation for more
+ * detail on the logic of this module.
  *
  * @param $uid
  *  (int) uid from account object.
@@ -413,35 +463,34 @@ function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
   $account = user_load($uid);
   $end_timestamp = is_null($end_timestamp) ? REQUEST_TIME : $end_timestamp;
   $timestamp = strtotime('-1 year', $end_timestamp);
+
+  // Bounce the old folks before bothering with any counts.
+  if (module_exists('dosomething_login')) {
+    if (dosomething_login_drupal_user_is_over_age($uid, 26, $end_timestamp)) {
+      // We're relying on dosomething_login set the 'old person' role for anyone
+      // who's registering and over 26. So anyone we see at this point was
+      // already a member and considered alumni.
+      return 'alumni';
+    }
+  }
+
   $action_update_count = dosomething_roles_get_action_update_count($uid, $timestamp);
   $grant_update = dosomething_roles_user_submitted_grant($uid, $timestamp);
   $ratio = dosomething_roles_profile_ratio($uid);
-
-  if (module_exists('dosomething_login')) {
-    if (dosomething_login_drupal_user_is_over_age($uid, 26, $end_timestamp)) {
-      return 'old person';
-    }
-  }
   if ($action_update_count >= 5 || $grant_update && $ratio >= 1) {
-    $role_name = 'varsity';
+    return 'varsity';
   }
   else if ($action_update_count >= 1 && $ratio >= 1) {
-    $role_name = 'active member';
+    return 'active member';
   }
-  else if ($account->login >= $timestamp) {
-    $role_name = 'member';
-  }
-  else {
-    $role_name = 'inactive user';
-  }
-  return $role_name;
+  return 'member';
 }
 
 /**
  * Get a user's current membership role.
  */
 function dosomething_roles_get_current_role($uid) {
-  $current_role_name = 'inactive user';
+  $current_role_name = 'member';
   $account = user_load($uid);
   $role_hierarchy = dosomething_roles_get_membership_role_hierarchy();
   $intersection = array_intersect($role_hierarchy, $account->roles);
@@ -457,7 +506,11 @@ function dosomething_roles_get_current_role($uid) {
  * This will get the number of action updates since the given time.
  *
  * @param $uid
+ *   User id.
  * @param $timestamp
+ *   UNIX timestamp, count submissions after this time.
+ * @param $draft
+ *   Boolean, TRUE counts drafts, FALSE only counts finished submissions.
  * @return mixed
  *  Returns int or NULL if unsuccessful.
  */
@@ -469,51 +522,59 @@ function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FA
     $query = db_select('webform_submissions', 'w');
     $query->innerJoin('node', 'n', 'w.nid = n.nid');
     $query->leftJoin('field_data_field_project_type', 'pt', 'w.sid = pt.entity_id');
-    $count = $query->fields('w', array('sid'))
-    ->condition('w.uid', $uid, '=')
-    ->condition('n.type', $node_types, 'IN')
-    ->condition('w.is_draft', (int) $draft)
-    ->condition('w.submitted', $timestamp, '>')
-    // field_project_type cannot be 2 (project idea)
-    // We can directly place in the values with the where.
-    ->where('pt.field_project_type_value IS NULL OR pt.field_project_type_value != 2')
-    ->where("pt.entity_type IS NULL OR pt.entity_type = 'webform_submission_entity'")
-    ->execute()
-    ->rowCount();
+    $query->fields('w', array('sid'))
+      ->condition('w.uid', $uid, '=')
+      ->condition('n.type', $node_types, 'IN')
+      ->condition('w.is_draft', (int) $draft)
+      ->condition('w.submitted', $timestamp, '>')
+      // field_project_type cannot be 2 (project idea)
+      // We can directly place in the values with the where.
+      ->where('pt.field_project_type_value IS NULL OR pt.field_project_type_value != 2')
+      ->where("pt.entity_type IS NULL OR pt.entity_type = 'webform_submission_entity'");
+    return $query->execute()->rowCount();
   }
   catch (Exception $e) {
-    $count = NULL;
+    return NULL;
   }
-
-  return $count;
 }
 
 /**
- * Determine if a user has submitted a grant update within
- *  the given span of time.
+ * Determine if a user has submitted a grant update since a given time.
+ *
+ * @param $uid
+ *   User id.
+  * @param $timestamp
+ *   UNIX timestamp, submitted after this time.
+ * @return
+ *   Integer count of final_grant_update node entities or NULL on error.
  */
 function dosomething_roles_user_submitted_grant($uid, $timestamp) {
   // TODO: Verify that this is the grant update.
-  $query = new EntityFieldQuery;
   try {
-    $count = $query
+    $query = new EntityFieldQuery;
+    $query
       ->entityCondition('entity_type', 'node')
       ->propertyCondition('uid', $uid)
       ->propertyCondition('type', 'final_grant_update')
       ->propertyCondition('status', NODE_PUBLISHED)
       ->propertyCondition('created', $timestamp, '>')
-      ->count()
-      ->execute();
+      ->count();
+    return $query->execute();
   }
   catch (Exception $e) {
     return NULL;
   }
-  return $count;
 }
 
 /**
  * Get the anniversary of this user's member level.
- *  When a user increases their role, they get it for one year.
+ *
+ * When a user increases their role, they get it for one year.
+ *
+ * @param $uid
+ *   User id.
+ * @return
+ *   UNIX timestamp of their anniversary or the current time if none was found.
  */
 function dosomething_roles_get_anniversary($uid) {
   $account = user_load($uid);
@@ -529,6 +590,11 @@ function dosomething_roles_get_anniversary($uid) {
 
 /**
  * Set a new membership anniversary for a user.
+ *
+ * @param $uid
+ *   User id.
+ * @param $timestamp
+ *   UNIX timestamp.
  */
 function dosomething_roles_set_anniversary($uid, $timestamp) {
   $account = user_load($uid);
@@ -550,6 +616,11 @@ function dosomething_roles_set_anniversary($uid, $timestamp) {
 
 /**
  * Determine how close a user is from moving to the next level.
+ *
+ * @param $uid
+ *   User id.
+ * @return
+ *   Integer 0-100.
  */
 function dosomething_roles_get_user_percentage($uid) {
   $account = user_load($uid);
@@ -580,8 +651,12 @@ function dosomething_roles_get_user_percentage($uid) {
 }
 
 /**
- * Figure out how much of a user's profile has
- *  been committed.
+ * Figure out how much of a user's profile has been committed.
+ *
+ * @param $uid
+ *   User id.
+ * @return
+ *   Float 0.0-1.0.
  */
 function dosomething_roles_profile_ratio($uid) {
   $account = user_load($uid);
@@ -633,39 +708,35 @@ function dosomething_roles_profile_ratio($uid) {
 }
 
 /**
- * Implements hook_form_profile2_edit_TYPE_form_alter().
- */
-function dosomething_roles_form_profile2_edit_main_form_alter(&$form, &$form_state) {
-  // Disable access to anniversary field.  This could be done with
-  // field permissions, but until we need more fine grained permissions
-  // on other fields, let's not add more overhead to this site.
-  if (isset($form['profile_main']['field_user_anniversary'])) {
-    unset($form['profile_main']['field_user_anniversary']);
-  }
-}
-
-/**
- * TODO: Comment this stuff.
+ * Load an array of users with anniversary dates between the start and end date.
+ *
+ * @param $start_date
+ *   UNIX timestamp start date.
+ * @param $end_date
+ *   Optional UNIX timestamp for the end date. If none is provided the current
+ *   time is used.
+ * @param $limit
+ *   Integer, maximum number of records to return.
+ * @return
+ *   Array of profile2 entities or NULL on error.
  */
 function dosomething_roles_get_users_by_anniversary($start_date, $end_date = NULL, $limit = 10) {
   if (is_null($end_date)) {
     $end_date = REQUEST_TIME;
   }
-  $query = new EntityFieldQuery;
   try {
-    $results = $query
+    $query = new EntityFieldQuery;
+    $query
       ->entityCondition('entity_type', 'profile2')
       ->propertyCondition('type', 'main', '=')
       ->fieldCondition('field_user_anniversary', 'value', array($start_date, $end_date), 'BETWEEN')
       ->fieldOrderBy('field_user_anniversary', 'value')
       ->propertyOrderBy('uid')
-      ->range(0, $limit)
-      ->execute();
-    return $results;
+      ->range(0, $limit);
+    return $query->execute();
   }
   catch (Exception $e) {
     return NULL;
   }
-  return $count;
 }
 
