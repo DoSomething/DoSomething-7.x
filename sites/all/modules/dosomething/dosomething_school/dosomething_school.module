@@ -19,6 +19,16 @@ function dosomething_school_menu() {
 }
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dosomething_school_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'entityreference' && $plugin_type) {
+    return 'plugins/entityreference_handler';
+  }
+}
+
+
+/**
  * Implements hook_entity_info().
  */
 function dosomething_school_entity_info() {
@@ -78,7 +88,7 @@ function dosomething_school_field_widget_settings_form($field, $instance) {
     '#title' => t('Autocomplete matching'),
     '#default_value' => $settings['match_operator'],
     '#options' => array(
-      'STARTS_WITH' => t('Starts with'),
+//      'STARTS_WITH' => t('Starts with'),
       'CONTAINS' => t('Contains'),
     ),
     '#description' => t('Select the method used to collect autocomplete suggestions. Note that <em>Contains</em> can cause performance issues on sites with thousands of entities.'),
@@ -250,7 +260,7 @@ function dosomething_school_autocomplete_callback($state, $name) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', $entity_type)
     ->propertyCondition('state', drupal_strtoupper($state))
-    ->propertyCondition('name', '%' . db_like($name) . '%', 'like')
+    ->propertyCondition('name', $name, 'CONTAINS')
     // Only let them see schools owned by themselves or admin.
     ->propertyCondition('uid', array(1, $user->uid), 'IN')
     // Put the user's schools ahead of the admin's.
