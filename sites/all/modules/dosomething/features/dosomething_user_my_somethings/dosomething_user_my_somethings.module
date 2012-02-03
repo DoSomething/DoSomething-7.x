@@ -678,6 +678,8 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
   }
   else {
     foreach ($all_somethings as $delta => $something) {
+      // Set default access for the edit link to FALSE.
+      $edit_access = FALSE;
       // Some webform submissions need a conditional path.
       // We don't want it cached, so we add a flag to check the path.
       // We can expand this if there are more pieces have conditional paths.
