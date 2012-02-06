@@ -1,0 +1,101 @@
+@import setup
+@import dosomething-make-impact-front
+@import partials/02-extend/jquery-selectbox
+
+.pane-dosomething-blocks-dosomething-make-impact-front
+  form
+    min-height: calc-em(240px, $s0)
+  .pane-content
+    +clearfix
+
+$upcoming-somethings-background: #f2f2f2
+$upcoming-somethings-gutter: 10px
+$upcoming-somethings-width: ($main-width-w-padding - 6 * $upcoming-somethings-gutter) / 5
+#upcoming-somethings
+  .pane-content
+    background: transparent
+.view-upcoming-somethings
+  .view-content
+    +pie-clearfix
+    +border-bottom-radius
+    background-color: $gray6
+    padding:
+      bottom: $upcoming-somethings-gutter
+      top: $upcoming-somethings-gutter
+  .views-row
+    +box-shadow($gray2 0 2px 4px)
+    background-color: $upcoming-somethings-background
+    +float-left
+    margin-right: $upcoming-somethings-gutter
+    padding-bottom: $upcoming-somethings-gutter
+    text-align: center
+    width: calc-em($upcoming-somethings-width, $s0)
+    .ie &
+      width: 125px
+    &.views-row-first
+      margin-left: $upcoming-somethings-gutter
+  .views-field-field-campain-date
+    color: $blue2
+    letter-spacing: -1px
+    +ds-bevel-single($upcoming-somethings-background)
+    margin-bottom: 0.5em
+    padding-bottom: 0.25em
+
+#ready-to-start
+  .pane-content
+    padding: 1em
+    text-align: center
+    a
+      padding:
+        left: 1em
+        right: 1em
+      margin-right: 0.5em
+
+#explore-action-guides
+  .pane-content
+    background: transparent
+  .views-row
+    background-color: $purple
+    +pie-clearfix
+  .views-field-title,
+  .do-this-link
+    +box-sizing('border-box')
+    +clearfix
+    +float-left
+    height: 48px
+    width: 50%
+  .views-field-title
+    color: $white
+    padding: 0.25em 1em
+    .views-label
+      +adjust-font-size-to($s3)
+      display: block
+      font-family: $font-headline
+      line-height: 1
+  .do-this-link
+    a
+      display: block
+      +replace-text('arrow-do-this.png', right, bottom)
+      height: inherit
+      +background-size('contain')
+
+$campaign-width: 690px
+$campaign-height: 325px
+$campaign-nav-height: $campaign-height - 65px
+$num-of-images: 4
+.view-featured-campaign
+  .rotoslider,
+  img.rotoslider-image,
+  .rotoslider-images,
+  .rotoslider-images img
+    height: $campaign-height
+    width: $campaign-width
+  .rotoslider-descriptions
+    & > div
+      width: $campaign-width
+  .rotoslider-menu
+    height: $campaign-nav-height
+  .rotoslider-nav
+    height: $campaign-nav-height
+    img
+      height: $campaign-nav-height / $num-of-images

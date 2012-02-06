@@ -1,0 +1,72 @@
+/* Tables --------------------------------------------------------------
+/* tables still need 'cellspacing="0"' in the markup
+
+table
+  // +trailer
+  // width: 100%
+  max-width: 100%
+
+table, td, th
+  // vertical-align: top
+
+th, thead th
+  // @extend .bold
+
+th, td, caption
+  // padding: $base-rhythm-unit * 0.5
+  // text-align: left
+
+table, th
+  // +trailing-border(1px, 0.5)
+  // border-color: $gray
+  // border-style: dotted
+
+tr.even
+  td
+    // background-color: $gray
+
+tfoot
+  // @extend .bold
+
+caption
+  // @extend .allcaps
+
+colgroup
+
+col
+
+tbody
+  border-top: none
+
+thead tr th
+  background-color: $blue2
+  font-family: $font-headline
+  font-weight: 500
+  padding-top: 0.5em
+  text-transform: uppercase
+  &:nth-of-type(odd)
+    background-color: $blue
+  &,
+  a
+    color: $white
+    font-size: 18px
+    padding-left: 0.5em
+    &:hover
+      color: $white
+
+tr
+  &.odd, &.even
+    border-bottom: none
+  &.odd
+    background-color: $gray-lighter
+  &.even
+    background-color: $gray-light
+
+td
+  padding: 0.5em 1em
+  border-right: 1px solid $white
+  &:last-of-type
+    border-right: none
+
+th
+  border-bottom: none

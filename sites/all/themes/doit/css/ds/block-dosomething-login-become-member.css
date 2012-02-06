@@ -1,0 +1,461 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
+/* Headings -------------------------------------------------------------- */
+.h1, h1, .h2, h2, .h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question, .h4, h4, .h5, h5, .h6, h6 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  color: #005dab;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.h1, h1 {
+  font-size: 2.917em;
+  line-height: 1.029em;
+  font-weight: 500;
+  margin-top: 0.286em;
+}
+
+.h2, h2 {
+  font-size: 2em;
+  line-height: 1.25em;
+  font-weight: 600;
+  margin-top: 0.417em;
+}
+
+.h3, h3, #block-dosomething-login-become-member .separator.split, #block-dosomething-login-become-member .age-question {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
+}
+
+.front #main-wrapper {
+  background: none;
+}
+
+.front #block-dosomething-login-become-member,
+.not-front.logged-in.secondary-menu-inactive #block-dosomething-login-become-member,
+.not-front.not-logged-in.secondary-menu-inactive #block-dosomething-login-become-member {
+  margin-top: 96px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.ie7 .front #block-dosomething-login-become-member, .ie7
+.not-front.logged-in.secondary-menu-inactive #block-dosomething-login-become-member, .ie7
+.not-front.not-logged-in.secondary-menu-inactive #block-dosomething-login-become-member {
+  height: 350px;
+}
+
+.left-block-expando-h2, .logged-in #block-dosomething-login-become-member h2.my-somethings, .logged-in #block-dosomething-login-become-member h2.notifications {
+  margin-left: -6.857%;
+  margin-right: -10.286%;
+}
+.left-block-expando-h2 .inner, .logged-in #block-dosomething-login-become-member h2.my-somethings .inner, .logged-in #block-dosomething-login-become-member h2.notifications .inner {
+  padding-left: 6.857%;
+  padding-right: 10.286%;
+  background: url('../images/btn-leftsidebar-feeds-plus.png') no-repeat 171px center;
+}
+.left-block-expando-h2.active .inner, .logged-in #block-dosomething-login-become-member h2.active.my-somethings .inner, .logged-in #block-dosomething-login-become-member h2.active.notifications .inner {
+  background: url('../images/btn-leftsidebar-feeds-minus.png') no-repeat 171px center;
+}
+
+#block-dosomething-login-become-member {
+  background: #222222 url('../images/home-row-2-bg.png') repeat-y 16px top;
+  position: relative;
+  padding-bottom: 0.833em;
+  border-bottom: 0.417em solid #8e8a86;
+  height: 289px;
+  margin-top: 66px;
+  overflow: hidden;
+}
+#block-dosomething-login-become-member h2 {
+  color: black;
+}
+#block-dosomething-login-become-member .dosomething-user-block-collapsible h2 {
+  color: white;
+}
+#block-dosomething-login-become-member h2.block-title {
+  margin-left: -6.857%;
+  margin-right: -10.286%;
+  text-align: center;
+  line-height: 1.2em;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/cta-left-col-become-member-btn.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 205px;
+  height: 34px;
+  margin-bottom: 0.286em;
+}
+#block-dosomething-login-become-member .separator {
+  background: url('../images/hr-dark.png') repeat-x 50% 50%;
+}
+#block-dosomething-login-become-member .separator.split {
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  background: none;
+  position: relative;
+}
+#block-dosomething-login-become-member .separator.split:before, #block-dosomething-login-become-member .separator.split:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 41.143%;
+  height: 1.3em;
+  background: url('../images/hr-dark.png') repeat-x 50% 50%;
+}
+#block-dosomething-login-become-member .separator.split:before {
+  left: 0;
+}
+#block-dosomething-login-become-member .separator.split:after {
+  right: 0;
+}
+#block-dosomething-login-become-member .form-item {
+  height: auto;
+}
+#block-dosomething-login-become-member .form-item label.error {
+  float: left;
+}
+#block-dosomething-login-become-member .form-item-first-name, #block-dosomething-login-become-member .form-item-last-name {
+  width: 49.143%;
+  float: left;
+}
+#block-dosomething-login-become-member .form-item-first-name {
+  margin-right: 1.143%;
+}
+#block-dosomething-login-become-member .form-item-cell-or-email {
+  clear: left;
+}
+#block-dosomething-login-become-member .age-question {
+  font-weight: 600;
+  color: white;
+  line-height: 0.8em;
+  float: left;
+  margin-left: 1.714%;
+  margin-right: 4%;
+}
+#block-dosomething-login-become-member .form-item-month, #block-dosomething-login-become-member .form-item-day, #block-dosomething-login-become-member .form-item-year {
+  float: left;
+  width: 18.286%;
+  margin-right: 1.143%;
+  position: relative;
+  margin-top: -0.583em;
+  height: 2.167em;
+}
+#block-dosomething-login-become-member .form-item-month input, #block-dosomething-login-become-member .form-item-day input, #block-dosomething-login-become-member .form-item-year input {
+  margin-top: -1.714%;
+  margin-bottom: 0;
+}
+#block-dosomething-login-become-member .form-item-year {
+  margin-right: 0;
+  width: 25.143%;
+}
+#block-dosomething-login-become-member input[type='submit'] {
+  margin-bottom: 0.353em;
+}
+.ie7 #block-dosomething-login-become-member input[type='submit'] {
+  margin-top: 27px;
+  margin-left: -5em;
+  line-height: 1em;
+}
+#block-dosomething-login-become-member hr {
+  clear: both;
+  margin: 0;
+  border: none;
+  width: 100%;
+  height: 0.167em;
+}
+#block-dosomething-login-become-member hr.top {
+  background: url('../images/hr-light-up.png') repeat-x 0 0;
+}
+#block-dosomething-login-become-member hr.bottom {
+  background: url('../images/hr-light-down.png') repeat-x 0 0;
+  margin-bottom: 0.583em;
+}
+#block-dosomething-login-become-member h3 {
+  clear: both;
+  font-weight: 600;
+  margin: 0.111em 0;
+  color: white;
+}
+#block-dosomething-login-become-member h3 a {
+  color: white;
+}
+#block-dosomething-login-become-member h3 a:visited {
+  color: white;
+}
+#block-dosomething-login-become-member h3 a:hover {
+  color: white;
+}
+#block-dosomething-login-become-member h3 a:active {
+  color: white;
+}
+#block-dosomething-login-become-member h3 a {
+  border-bottom: none;
+}
+#block-dosomething-login-become-member h3 a:hover {
+  border-bottom: none;
+}
+#block-dosomething-login-become-member h3.why-member a {
+  padding: 0.111em 0;
+  background: url('../images/icn-popup.png') no-repeat right center;
+  line-height: 1.15;
+  display: block;
+}
+#block-dosomething-login-become-member .ds-button {
+  margin-right: 0px;
+}
+#block-dosomething-login-become-member .facebook-login {
+  margin-right: 0.353em;
+}
+#block-dosomething-login-become-member .fb-icon {
+  background: url('../images/btn-leftsidebar-feeds-facebook.png') no-repeat left 0.118em;
+  padding-left: 1.471em;
+  margin-left: -0.294em;
+}
+.logged-in #block-dosomething-login-become-member {
+  color: white;
+  font-size: 0.833em;
+  line-height: 2.4em;
+  height: auto;
+  min-height: 291px;
+}
+.logged-in #block-dosomething-login-become-member a {
+  color: white;
+}
+.logged-in #block-dosomething-login-become-member a:visited {
+  color: white;
+}
+.logged-in #block-dosomething-login-become-member a:hover {
+  color: white;
+}
+.logged-in #block-dosomething-login-become-member a:active {
+  color: white;
+}
+.logged-in #block-dosomething-login-become-member a {
+  border-bottom: none;
+}
+.logged-in #block-dosomething-login-become-member a:hover {
+  border-bottom: none;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-user-name {
+  background: url('../images/cta-left-col-header-bg.png') no-repeat 50% 50%;
+  height: 34px;
+  width: 193px;
+  margin-left: -6.857%;
+  margin-right: -10.286%;
+  margin-bottom: 0.286em;
+  font-size: 1.333em;
+  line-height: 1em;
+  line-height: 1.2em;
+  padding: 0 0.5em;
+  color: #161616;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2 {
+  line-height: 28px;
+  display: inline;
+  font-weight: 600;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-user-name span {
+  float: right;
+  font-weight: 600;
+  line-height: 30px;
+}
+.logged-in #block-dosomething-login-become-member .ds-member-name-bar {
+  text-decoration: none;
+}
+.logged-in #block-dosomething-login-become-member h2 {
+  font-size: 1.8em;
+  line-height: 1.333em;
+  font-weight: 400;
+}
+.logged-in #block-dosomething-login-become-member hr.top {
+  background: url('../images/make-an-impact-home-header.png') no-repeat;
+  margin: 1em 0;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .profile-header a {
+  float: right;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage {
+  background: #a1a1a1 url('../images/profile-percentage-icon.png') no-repeat 3px center;
+  height: 22px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 4px inset;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-color: rgba(0, 0, 0, 0.5);
+  padding: 0 3px;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage .ratio {
+  width: 152px;
+  margin-left: 17px;
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-profile .dosomething-login-percentage .ratio .inner {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/profile-percentage-indicator.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-repeat: repeat-x;
+  background-position: left center;
+  position: relative;
+  top: -1px;
+  width: 0%;
+}
+.logged-in #block-dosomething-login-become-member h2.my-somethings {
+  margin-bottom: 0.3em;
+}
+.logged-in #block-dosomething-login-become-member h2.notifications {
+  margin-top: 0;
+}
+.logged-in #block-dosomething-login-become-member .item-list ul {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 14px;
+  margin-left: -6px;
+}
+.logged-in #block-dosomething-login-become-member .item-list ul li {
+  list-style-type: none;
+  list-style-image: none;
+  line-height: 1.4;
+}
+.logged-in #block-dosomething-login-become-member .item-list ul li ul {
+  margin-top: 6px;
+}
+.logged-in #block-dosomething-login-become-member .item-list ul li ul li {
+  list-style-type: none;
+  list-style-image: none;
+  line-height: 1.4;
+}
+.logged-in #block-dosomething-login-become-member .item-list ul li ul li:after {
+  content: " »";
+}
+.logged-in #block-dosomething-login-become-member .dosomething-login-goto-profile {
+  display: block;
+  text-align: right;
+}
+.logged-in #block-dosomething-login-become-member .secondary-menu-inactive {
+  margin-top: 96px;
+}
+
+.not-logged-in #block-dosomething-login-become-member {
+  color: white;
+  padding-bottom: 0.917em;
+}
+.not-logged-in #block-dosomething-login-become-member .secondary-menu-inactive {
+  margin-top: 95px;
+}
+.not-logged-in #block-dosomething-login-become-member h2.block-title {
+  margin-top: 0;
+}
+.not-logged-in #block-dosomething-login-become-member hr.top {
+  background: url('../images/make-an-impact-home-header.png') no-repeat;
+  margin: 1em 0;
+}
+.not-logged-in #block-dosomething-login-become-member hr.bottom {
+  display: none;
+}
+.not-logged-in #block-dosomething-login-become-member .separator.split {
+  background: url('../images/make-an-impact-home-header.png') bottom center repeat;
+  color: gray;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0.5em 0;
+  padding-bottom: 0.333em;
+}
+.not-logged-in #block-dosomething-login-become-member .separator.split:before, .not-logged-in #block-dosomething-login-become-member .separator.split:after {
+  background-image: none;
+}
+.not-logged-in #block-dosomething-login-become-member .form-item input {
+  background-color: #343434;
+  color: gray;
+}
+.not-logged-in #block-dosomething-login-become-member h3.why-member {
+  font-weight: 400;
+}
+.not-logged-in #block-dosomething-login-become-member span {
+  color: gray;
+  display: block;
+}
+.not-logged-in .why {
+  color: #ffd203;
+}

@@ -1,0 +1,53 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.rotoslider.rotoslider-image-nav .rotoslider-descriptions .do-this-link {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/arrow-do-this.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  height: 65px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  z-index: 100;
+}
+.rotoslider .rotoslider-text .heading a, .rotoslider.rotoslider-image-nav .rotoslider-description .heading a {
+  color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 2em;
+}
+
+.front #main-wrapper {
+  background: #5f5c58;
+  border-bottom: 0.417em solid #8e8a86;
+}
+.front [role="main"] {
+  margin: 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 0.417em 0 0 0.417em;
+  border-color: #8e8a86;
+}
+.front #block-dosomething-login-become-member {
+  border-bottom: none;
+}

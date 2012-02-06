@@ -1,0 +1,92 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+#dosomething-login-register-facebook,
+#dosomething-login-register-popup-form {
+  *zoom: 1;
+}
+#dosomething-login-register-facebook:after,
+#dosomething-login-register-popup-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#dosomething-login-register-facebook .age-question,
+#dosomething-login-register-popup-form .age-question {
+  clear: both;
+  font-weight: bold;
+}
+#dosomething-login-register-facebook .form-item-month,
+#dosomething-login-register-facebook .form-item-day,
+#dosomething-login-register-popup-form .form-item-month,
+#dosomething-login-register-popup-form .form-item-day {
+  display: inline;
+  float: left;
+  margin-right: 1em;
+  margin-top: 0;
+  width: 5%;
+}
+#dosomething-login-register-facebook .form-item-year,
+#dosomething-login-register-popup-form .form-item-year {
+  display: inline;
+  float: left;
+  margin-top: 0;
+  width: 8%;
+}
+#dosomething-login-register-facebook #edit-signup,
+#dosomething-login-register-popup-form #edit-signup {
+  display: inline;
+  float: left;
+}
+#dosomething-login-register-facebook .form-submit,
+#dosomething-login-register-popup-form .form-submit {
+  margin-bottom: 1em;
+}
+#dosomething-login-register-facebook .ds-registration-form-required,
+#dosomething-login-register-popup-form .ds-registration-form-required {
+  display: inline;
+  float: left;
+}
+#dosomething-login-register-facebook .form-item-first-name,
+#dosomething-login-register-popup-form .form-item-first-name {
+  display: inline;
+  float: left;
+  clear: both;
+}
+#dosomething-login-register-facebook .form-item-last-name,
+#dosomething-login-register-popup-form .form-item-last-name {
+  display: inline;
+  float: left;
+  clear: both;
+}
+#dosomething-login-register-facebook .form-item-cell-or-email,
+#dosomething-login-register-popup-form .form-item-cell-or-email {
+  display: inline;
+  float: left;
+  clear: both;
+}
+#dosomething-login-register-facebook #edit-parent-email-message,
+#dosomething-login-register-popup-form #edit-parent-email-message {
+  clear: both;
+}
+#dosomething-login-register-facebook .form-item-parent-email,
+#dosomething-login-register-popup-form .form-item-parent-email {
+  display: inline;
+  float: left;
+}
