@@ -87,11 +87,9 @@ class DSGrantApplicationAspcaMigration extends DSGrantApplicationMigration {
     //$this->addUnmigratedSources(array(''));
     $this->addUnmigratedDestinations(array(
       'data_how_did_you_hear_about_us',
-      'data_birth_date', 'data_school',
-      'data_school_zip_code',
+      'data_birth_date',
       'field_webform_birthdate',
       'field_webform_school',
-      'field_webform_school_zip',
       'field_webform_grant_ref',
     ));
   }
@@ -156,7 +154,6 @@ class DSGrantApplicationGeneralMigration extends DSGrantApplicationMigration {
     // a 'your email address field'. So we're going to throw this one away.
     $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array(
-      'field_webform_school_zip',
       'field_webform_grant_ref',
       'data_personal_info',
       'data_essay',
@@ -238,7 +235,6 @@ class DSGrantApplicationGrantMigration extends DSGrantApplicationMigration {
     //Null Mappings
     $this->addUnmigratedSources(array('title'));
     $this->addUnmigratedDestinations(array(
-      'field_webform_school_zip',
       'field_webform_grant_ref',
       'data_personal_info',
       'data_project_numbers',

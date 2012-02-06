@@ -283,16 +283,23 @@ function dosomething_school_autocomplete_callback($state, $name) {
  * Implements hook_form_alter().
  */
 function dosomething_school_form_alter(&$form, &$form_state, $form_id) {
-  if (strpos($form_id, 'webform_client_form') !== FALSE) {
-    // We're going to set the legacy fields to hidden.
-    $types = array('scholarship_application', 'grant_application');
-    if (in_array($form['#node']->type, $types)) {
-      $form['submitted']['webform_entity_form']['field_webform_school']['#type'] = 'hidden';
-      $form['submitted']['webform_entity_form']['field_webform_school_zip']['#type'] = 'hidden';
+  //TODO: We were originally going to do this on clubs as well but this needs
+  // some input from dosomething. See
+  // https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/849
+  // for more.
+  if (strpos($form_id, 'webform_client_form') !== FALSE  || $form_id == 'club_node_form') {
 
-      // We also want to auto set the school reference on the user's profile if
-      // they change it here.
-      $form['#submit'][] = 'dosomething_school_update_user_profile_school';
+    // We're going to set the legacy fields to hidden. But they're in different
+    // places depending on the type.
+    if (strpos($form_id, 'webform_client_form') !== FALSE) {
+      $types = array('scholarship_application', 'grant_application');
+      if (in_array($form['#node']->type, $types)) {
+        $form['submitted']['webform_entity_form']['field_webform_school']['#type'] = 'hidden';
+
+        // We also want to auto set the school reference on the user's profile
+        // if they change it here.
+        $form['#submit'][] = 'dosomething_school_update_user_profile_school';
+      }
     }
   }
 }
