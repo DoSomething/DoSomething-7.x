@@ -278,3 +278,45 @@ function dosomething_school_autocomplete_callback($state, $name) {
 
   drupal_json_output($matches);
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_school_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form') !== FALSE) {
+    // We're going to set the legacy fields to hidden.
+    $types = array('scholarship_application', 'grant_application');
+    if (in_array($form['#node']->type, $types)) {
+      $form['submitted']['webform_entity_form']['field_webform_school']['#type'] = 'hidden';
+      $form['submitted']['webform_entity_form']['field_webform_school_zip']['#type'] = 'hidden';
+
+      // We also want to auto set the school reference on the user's profile if
+      // they change it here.
+      $form['#submit'][] = 'dosomething_school_update_user_profile_school';
+    }
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function dosomething_school_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dosomething_school'];
+    unset($implementations['dosomething_school']);
+    $implementations['dosomething_school'] = $group;
+  }
+}
+
+/**
+ * Submission callback that updates the user's school on his or her profile when
+ * it is saved in other kinds of forms.
+ */
+function dosomething_school_update_user_profile_school($form, &$form_state) {
+  $account = user_load($form_state['values']['details']['uid']);
+  $profile = profile2_load_by_user($account);
+  $profile = $profile['main'];
+  //set the school reference and save the profile
+  $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'];
+  profile2_save($profile);
+}
