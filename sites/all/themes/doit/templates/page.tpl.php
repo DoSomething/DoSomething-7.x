@@ -14,6 +14,31 @@
     </div>
   </div>
 <?php endif; ?>
+
+<?php if (isset($main_menu) || isset($secondary_menu_items)): ?>
+  <nav role="navigation">
+    <?php if (isset($main_menu)): ?>
+    <div class="primary">
+      <div class="wrapper">
+        <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links')))); ?>
+      </div>
+    </div>
+    <?php endif; ?>
+    <?php if (isset($secondary_menu_items) && count($secondary_menu_items)): ?>
+    <div class="secondary">
+      <?php foreach ($secondary_menu_items as $mlid => $item): ?>
+        <?php print theme($secondary_links_theme_function, array('links' => $item['links'], 'attributes' => array('id' => 'secondary-menu-' . $mlid, 'class' => $item['attributes']['class']))); ?>
+      <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+    <?php if (isset($causes_dropdown_menu)): ?>
+      <div class="<?php print $cause_or_issue_dropdown; ?>">
+        <?php print render($causes_dropdown_menu); ?>
+      </div>
+    <?php endif; ?>
+  </nav> <!-- /nav -->
+<?php endif; ?>
+
 <div id="page" class="container">
   <header role="banner">
 
@@ -30,30 +55,6 @@
     <?php endif; ?>
 
     <?php print render($page['header']); ?>
-
-    <?php if (isset($main_menu) || isset($secondary_menu_items)): ?>
-      <nav role="navigation">
-        <?php if (isset($main_menu)): ?>
-        <div class="primary">
-          <div class="wrapper">
-            <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links')))); ?>
-          </div>
-        </div>
-        <?php endif; ?>
-        <?php if (isset($secondary_menu_items) && count($secondary_menu_items)): ?>
-        <div class="secondary">
-          <?php foreach ($secondary_menu_items as $mlid => $item): ?>
-            <?php print theme($secondary_links_theme_function, array('links' => $item['links'], 'attributes' => array('id' => 'secondary-menu-' . $mlid, 'class' => $item['attributes']['class']))); ?>
-          <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-        <?php if (isset($causes_dropdown_menu)): ?>
-          <div class="<?php print $cause_or_issue_dropdown; ?>">
-            <?php print render($causes_dropdown_menu); ?>
-          </div>
-        <?php endif; ?>
-      </nav> <!-- /nav -->
-    <?php endif; ?>
 
   </header>
 
@@ -87,9 +88,9 @@
 
   </div> <!-- /#main-wrapper -->
 
-  <?php print render($page['footer']); ?>
-
 </div>
+
+<?php print render($page['footer']); ?>
 
 
 

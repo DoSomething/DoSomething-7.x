@@ -1,0 +1,44 @@
+// Main navigation Styles
+
+nav[role=navigation]
+  font-family: $font-headline
+  text-rendering: optimizeLegibility
+  text-transform: uppercase
+  position: relative
+  background-color: $blue
+  font-size: $s9
+  line-height: 45px / $s9
+  font-weight: 500
+  z-index: 100
+  ul
+    margin-top: 0
+  a
+    +link-colors($gold, $white, $white, $gold, false)
+    &:hover, &:active
+      text-decoration: none
+  .primary
+    @extend .container
+    .wrapper
+      width: 100%
+      padding-left: $left-col-width + $s-1
+      display: table
+    #main-menu
+      display: table-row
+      li
+        display: table-cell
+        text-align: center
+        width: 12%
+        &.first
+          text-align: left
+        &.last
+          text-align: right
+
+
+////////////////////////////
+// TEMPORARY
+// hide secondary menu
+////////////////////////////
+nav[role=navigation]
+  .secondary
+    display: none
+

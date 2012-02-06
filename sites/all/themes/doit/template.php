@@ -12,15 +12,15 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
 }
 
-function doit_preprocess_panels_pane(&$variables) {
-  $theme_path = drupal_get_path('theme', 'doit');
-  // load css specific to panes
-  // blog panes
-  if ($variables['pane']->type == 'views' && $variables['pane']->subtype == 'blog_center') {
-    drupal_add_css($theme_path . '/css/doit/blog-panes.css');
-  }
-  // dsm($variables);
-}
+// function doit_preprocess_panels_pane(&$variables) {
+//   $theme_path = drupal_get_path('theme', 'doit');
+//   // load css specific to panes
+//   // blog panes
+//   if ($variables['pane']->type == 'views' && $variables['pane']->subtype == 'blog_center') {
+//     drupal_add_css($theme_path . '/css/doit/blog-panes.css');
+//   }
+//   // dsm($variables);
+// }
 
 function doit_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
@@ -44,99 +44,99 @@ function doit_preprocess_page(&$variables) {
   }
 }
 
-/**
- * Implements hook_ctools_render_alter().
- *
- * This hook gives us access to the panel itself, not just one pane.
- */
-function doit_ctools_render_alter(&$info, &$page, &$context) {
-  if (!$page || (isset($context['task']['task type']) && $context['task']['task type'] != 'page')) {
-    return;
-  }
+// /**
+//  * Implements hook_ctools_render_alter().
+//  *
+//  * This hook gives us access to the panel itself, not just one pane.
+//  */
+// function doit_ctools_render_alter(&$info, &$page, &$context) {
+//   if (!$page || (isset($context['task']['task type']) && $context['task']['task type'] != 'page')) {
+//     return;
+//   }
 
-  $css_path = drupal_get_path('theme', 'doit') . '/css/doit/';
+//   $css_path = drupal_get_path('theme', 'doit') . '/css/doit/';
 
-  // If this is a custom page, the name is the machine name, and is stored as
-  // the name of the subtask. If it is a system page like node/%node, the name
-  // is stored as the name of the handler. These names are global, not per-page.
-  // Unless it is customized upon export, it will be in the form of
-  // NAME_panel_context_DELTA, for example, node_view_panel_context_3.
-  $name = isset($context['subtask']['name']) ? $context['subtask']['name'] : $context['handler']->name;
-  switch ($name) {
-    case 'club_hub':
-      drupal_add_css($css_path . 'clubhub-landing.css');
-      break;
+//   // If this is a custom page, the name is the machine name, and is stored as
+//   // the name of the subtask. If it is a system page like node/%node, the name
+//   // is stored as the name of the handler. These names are global, not per-page.
+//   // Unless it is customized upon export, it will be in the form of
+//   // NAME_panel_context_DELTA, for example, node_view_panel_context_3.
+//   $name = isset($context['subtask']['name']) ? $context['subtask']['name'] : $context['handler']->name;
+//   switch ($name) {
+//     case 'club_hub':
+//       drupal_add_css($css_path . 'clubhub-landing.css');
+//       break;
 
-    case 'action_finder':
-      drupal_add_css($css_path . 'page-action-finder.css');
-      break;
+//     case 'action_finder':
+//       drupal_add_css($css_path . 'page-action-finder.css');
+//       break;
 
-    case 'awesome_things':
-      drupal_add_css($css_path . 'page-awesome-things.css');
-      break;
+//     case 'awesome_things':
+//       drupal_add_css($css_path . 'page-awesome-things.css');
+//       break;
 
-    case 'grants':
-      drupal_add_css($css_path . 'grants-landing.css');
-      break;
+//     case 'grants':
+//       drupal_add_css($css_path . 'grants-landing.css');
+//       break;
 
-    case 'members_only':
-      drupal_add_css($css_path . 'members-only-landing.css');
-      break;
+//     case 'members_only':
+//       drupal_add_css($css_path . 'members-only-landing.css');
+//       break;
 
-    case 'why_become_a_member_page':
-      drupal_add_css($css_path . 'dosomething-members-only.css');
-      break;
+//     case 'why_become_a_member_page':
+//       drupal_add_css($css_path . 'dosomething-members-only.css');
+//       break;
 
-    case 'scholarships':
-      drupal_add_css($css_path . 'scholarships-landing.css');
-      break;
+//     case 'scholarships':
+//       drupal_add_css($css_path . 'scholarships-landing.css');
+//       break;
 
-    case 'resources':
-      drupal_add_css($css_path . 'resources-landing.css');
-      break;
+//     case 'resources':
+//       drupal_add_css($css_path . 'resources-landing.css');
+//       break;
 
-    case 'start_something':
-      drupal_add_css($css_path . 'dosomething-start-something.css');
-      break;
+//     case 'start_something':
+//       drupal_add_css($css_path . 'dosomething-start-something.css');
+//       break;
 
-    case 'member_wall':
-      drupal_add_css($css_path . 'page-member-wall.css');
-      break;
+//     case 'member_wall':
+//       drupal_add_css($css_path . 'page-member-wall.css');
+//       break;
 
-    case 'node_view_grants':
-      drupal_add_css($css_path . 'page-node-grants.css');
-      break;
+//     case 'node_view_grants':
+//       drupal_add_css($css_path . 'page-node-grants.css');
+//       break;
 
-    case 'projects':
-      drupal_add_css($css_path . 'page-related-projects.css');
-      break;
+//     case 'projects':
+//       drupal_add_css($css_path . 'page-related-projects.css');
+//       break;
 
-    case 'webform_submission_view_panel_context':
-      drupal_add_css($css_path . 'dosomething-projects.css');
-      break;
+//     case 'webform_submission_view_panel_context':
+//       drupal_add_css($css_path . 'dosomething-projects.css');
+//       break;
 
-    case 'user_view_my_somethings':
-      drupal_add_css($css_path . 'my-somethings.css');
-      break;
+//     case 'user_view_my_somethings':
+//       drupal_add_css($css_path . 'my-somethings.css');
+//       break;
 
-    case 'term_view_causes':
-      drupal_add_css($css_path . 'dosomething-issues.css');
-      break;
-  }
-}
+//     case 'term_view_causes':
+//       drupal_add_css($css_path . 'dosomething-issues.css');
+//       break;
+//   }
+// }
 
-function doit_preprocess_node(&$variables) {
-  $theme_path = drupal_get_path('theme', 'doit');
+// function doit_preprocess_node(&$variables) {
+//   $theme_path = drupal_get_path('theme', 'doit');
 
-  // Action Tip node page
-  if ($variables['type'] == 'action_guide') {
-    drupal_add_css($theme_path . '/css/doit/page-node-action-guide.css');
-  }
-  // Club node page
-  if ($variables['type'] == 'club') {
-    drupal_add_css($theme_path . '/css/doit/page-node-club.css');
-  }
-}
+//   // Action Tip node page
+//   if ($variables['type'] == 'action_guide') {
+//     drupal_add_css($theme_path . '/css/doit/page-node-action-guide.css');
+//   }
+//   // Club node page
+//   if ($variables['type'] == 'club') {
+//     drupal_add_css($theme_path . '/css/doit/page-node-club.css');
+//   }
+// }
 
 function doit_preprocess_block(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
@@ -145,33 +145,33 @@ function doit_preprocess_block(&$variables) {
   // set a .block-title class on the title
   $variables['title_attributes_array']['class'][] = 'block-title';
 
-  // load css specific to blocks
-  if($variables['elements']['#block']->module == 'dosomething_login') {
-    // block-dosomething-login-become-member
-    if($variables['elements']['#block']->delta == 'become_member') {
-      drupal_add_css($theme_path . '/css/doit/block-dosomething-login-become-member.css');
-    }
-  }
-  if($variables['elements']['#block']->module == 'dosomething_blocks') {
-    // dosomething_make_impact
-    if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
-      drupal_add_css($theme_path . '/css/doit/dosomething_make_impact.css');
-    }
-    // dosomething_facebook_activity
-    if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
-      drupal_add_css($theme_path . '/css/doit/dosomething_facebook_activity.css');
-    }
-    // block-dosomething-blocks-dosomething-twitter-stream
-    if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
-      drupal_add_css($theme_path . '/css/doit/block-dosomething-blocks-dosomething-twitter-stream.css');
-    }
-  }
-  if($variables['elements']['#block']->module == 'panels_mini') {
-    if($variables['elements']['#block']->delta == 'home_page') {
-      // home page panels_mini second row
-      drupal_add_css($theme_path . '/css/doit/dosomething_panels_mini_home_page.css');
-    }
-  }
+  // // load css specific to blocks
+  // if($variables['elements']['#block']->module == 'dosomething_login') {
+  //   // block-dosomething-login-become-member
+  //   if($variables['elements']['#block']->delta == 'become_member') {
+  //     drupal_add_css($theme_path . '/css/doit/block-dosomething-login-become-member.css');
+  //   }
+  // }
+  // if($variables['elements']['#block']->module == 'dosomething_blocks') {
+  //   // dosomething_make_impact
+  //   if($variables['elements']['#block']->delta == 'dosomething_make_impact') {
+  //     drupal_add_css($theme_path . '/css/doit/dosomething_make_impact.css');
+  //   }
+  //   // dosomething_facebook_activity
+  //   if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
+  //     drupal_add_css($theme_path . '/css/doit/dosomething_facebook_activity.css');
+  //   }
+  //   // block-dosomething-blocks-dosomething-twitter-stream
+  //   if($variables['elements']['#block']->delta == 'dosomething_facebook_activity') {
+  //     drupal_add_css($theme_path . '/css/doit/block-dosomething-blocks-dosomething-twitter-stream.css');
+  //   }
+  // }
+  // if($variables['elements']['#block']->module == 'panels_mini') {
+  //   if($variables['elements']['#block']->delta == 'home_page') {
+  //     // home page panels_mini second row
+  //     drupal_add_css($theme_path . '/css/doit/dosomething_panels_mini_home_page.css');
+  //   }
+  // }
 
   // dsm($variables);
 }
@@ -236,29 +236,29 @@ function doit_preprocess_views_exposed_form(&$variables) {
     $obj->widget = NULL;
     $title = array('title' => $obj);
     $variables['widgets'] = $title + $variables['widgets'];
-    drupal_add_css($theme_path . '/css/doit/page-action-finder.css');
+    // drupal_add_css($theme_path . '/css/doit/page-action-finder.css');
   }
 }
 
-function doit_preprocess_views_view(&$variables) {
-  $theme_path = drupal_get_path('theme', 'doit');
-  switch ($variables['name']) {
-    case 'current_campaigns':
-      drupal_add_css($theme_path . '/css/doit/dosomething-campaigns.css');
-      break;
+// function doit_preprocess_views_view(&$variables) {
+//   $theme_path = drupal_get_path('theme', 'doit');
+//   switch ($variables['name']) {
+//     case 'current_campaigns':
+//       drupal_add_css($theme_path . '/css/doit/dosomething-campaigns.css');
+//       break;
 
-    case 'blog_center':
-      if ($variables['display_id'] == 'panel_pane_1') {
-        drupal_add_css($theme_path . '/css/doit/blog-panes.css');
-      }
-      break;
+//     case 'blog_center':
+//       if ($variables['display_id'] == 'panel_pane_1') {
+//         drupal_add_css($theme_path . '/css/doit/blog-panes.css');
+//       }
+//       break;
 
-    case 'polls':
-      drupal_add_css($theme_path . '/css/doit/dosomething-polls.css');
-      break;
-  }
-  // dsm($variables);
-}
+//     case 'polls':
+//       drupal_add_css($theme_path . '/css/doit/dosomething-polls.css');
+//       break;
+//   }
+//   // dsm($variables);
+// }
 
 function doit_preprocess_rotoslider_slider(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');

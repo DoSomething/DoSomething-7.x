@@ -26,88 +26,78 @@
 
 [role=main]
   body.one-sidebar.sidebar-first &
-    width: percentage($main-width / $page-width)
+    width: $main-width
     float: right
-    .ie7 &
-      width: 690px
-  body.node-type-project &
-    .main-inner
-      float: left
-      width: percentage($main-inner / $main-width)
-    .main-interior-sidebar
-      width: percentage($main-interior-sidebar / $main-width)
-      float: right
 
 .region-sidebar-first
-  //width: percentage($left-col-width / $page-width)
   width: $left-col-width
   float: left
 
 // PANELS OVERRIDE -----------------------------------------------------
-.ds-panel
-  .panel-panel
-    margin-right: percentage($kit-gutter / $main-width-w-padding)
-    &.panel-full
-      margin-right: 0
-  .panes-1
-    .panel-panel
-      width: 100%
-      .ie7 &
-        width: 450px
-      margin-right: 0
-  .panes-2
-    .panel-panel
-      width: percentage($two-col-even / $main-width-w-padding)
-      float: left
-      .ie7 &
-        width: 450px
-        float: none
-    .panel-last
-      margin-right: 0
-      float: right
-      .ie7 &
-        float: none
-        width: 225px
-  .panes-3
-    .panel-panel
-      width: percentage($three-col-even / $main-width-w-padding)
-      .ie7 &
-        width: 225px
-        float: none
-    .panel-last
-      margin-right: 0
-      float: right
+// .ds-panel
+//   .panel-panel
+//     margin-right: percentage($kit-gutter / $main-width-w-padding)
+//     &.panel-full
+//       margin-right: 0
+//   .panes-1
+//     .panel-panel
+//       width: 100%
+//       .ie7 &
+//         width: 450px
+//       margin-right: 0
+//   .panes-2
+//     .panel-panel
+//       width: percentage($two-col-even / $main-width-w-padding)
+//       float: left
+//       .ie7 &
+//         width: 450px
+//         float: none
+//     .panel-last
+//       margin-right: 0
+//       float: right
+//       .ie7 &
+//         float: none
+//         width: 225px
+//   .panes-3
+//     .panel-panel
+//       width: percentage($three-col-even / $main-width-w-padding)
+//       .ie7 &
+//         width: 225px
+//         float: none
+//     .panel-last
+//       margin-right: 0
+//       float: right
 
-.panel-twocol-a
-  .panes-2
-    .panel-outer-left
-      // +box-sizing(border-box)
-      // width: percentage($two-col-wide2 / $main-width-w-padding)
-      width: 66%
-    .panel-outer-right
-      // +box-sizing(border-box)
-      // width: percentage($two-col-thin2 / $main-width-w-padding)
-      width: 32%
-      margin-right: 0
-      float: right
-      .ie7 &
-        width: 200px
-        +float-right
-        position: absolute top
-  .panel-outer-left
-    .panel-top
-      width: 100%
-    .panes-1
-      .panel-panel
-        width: 100%
-        margin-right: 0
-    .panes-2
-      .panel-panel
-        width: percentage(226px / $two-col-wide2)
-        float: left
-      .panel-last
-        margin-right: 0
-        float: right
+// .panel-twocol-a
+//   .panes-2
+//     .panel-outer-left
+//       // +box-sizing(border-box)
+//       // width: percentage($two-col-wide2 / $main-width-w-padding)
+//       width: 66%
+//     .panel-outer-right
+//       // +box-sizing(border-box)
+//       // width: percentage($two-col-thin2 / $main-width-w-padding)
+//       width: 32%
+//       margin-right: 0
+//       float: right
+//       .ie7 &
+//         width: 200px
+//         +float-right
+//         position: absolute top
+//   .panel-outer-left
+//     .panel-top
+//       width: 100%
+//     .panes-1
+//       .panel-panel
+//         width: 100%
+//         margin-right: 0
+//     .panes-2
+//       .panel-panel
+//         width: percentage(226px / $two-col-wide2)
+//         float: left
+//       .panel-last
+//         margin-right: 0
+//         float: right
 
 // CAMPAIGNS
 // .panel-campaign
@@ -149,39 +139,39 @@
 
 
 // panels hacks
-.panels-flexible-region-new-top_
-  width: 100%
+// .panels-flexible-region-new-top_
+//   width: 100%
 
 
 // alternate column dimensions
 // apply the ID to the panel page
 // unfortunately panels doesn't allow classes so we need to resort to IDs
 
-#ds-wide-thin
-  .panes-2
-    .panel-first
-      width: percentage($two-col-wide / $main-width-w-padding)
-      // width: 100px
-    .panel-second
-      width: percentage($two-col-thin / $main-width-w-padding)
-      width: 36.237%
-      input
-        &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
-        &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
-        &[type=number], &[type=range], &[type=search], &[type=color]
-          @extend .textinput-thin
-      select
-        @extend .textinput-thin
-      .views-exposed-form .views-exposed-widget .form-submit
-        margin-top: 0
+// #ds-wide-thin
+//   .panes-2
+//     .panel-first
+//       width: percentage($two-col-wide / $main-width-w-padding)
+//       // width: 100px
+//     .panel-second
+//       width: percentage($two-col-thin / $main-width-w-padding)
+//       width: 36.237%
+//       input
+//         &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+//         &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+//         &[type=number], &[type=range], &[type=search], &[type=color]
+//           @extend .textinput-thin
+//       select
+//         @extend .textinput-thin
+//       .views-exposed-form .views-exposed-widget .form-submit
+//         margin-top: 0
 
-#ds-wider-thinner
-  .panes-2
-    .panel-first
-      width: percentage($two-col-wide3 / $main-width-w-padding)
-    .panel-second
-      width: percentage($two-col-thin3 / $main-width-w-padding)
+// #ds-wider-thinner
+//   .panes-2
+//     .panel-first
+//       width: percentage($two-col-wide3 / $main-width-w-padding)
+//     .panel-second
+//       width: percentage($two-col-thin3 / $main-width-w-padding)
 
-.start-a-project
-  margin: 2em 0
-  text-align: center
+// .start-a-project
+//   margin: 2em 0
+//   text-align: center
