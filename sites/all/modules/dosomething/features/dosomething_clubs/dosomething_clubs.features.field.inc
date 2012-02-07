@@ -476,9 +476,6 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
   );
 
-
-
-
   // Exported field: 'node-club-field_club_leader_birthdate'
   $fields['node-club-field_club_leader_birthdate'] = array(
     'field_config' => array(
@@ -591,8 +588,10 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'settings' => array(
           'default_value_custom' => '',
           'default_value_custom2' => '',
+          'display_all_day' => 0,
           'increment' => 1,
           'input_format' => 'm/d/Y - H:i:s',
+          'input_format_custom' => '',
           'label_position' => 'above',
           'repeat_collapsed' => '',
           'text_parts' => array(),
@@ -604,8 +603,6 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'widget_type' => 'date_text',
     ),
   );
-
-
 
   // Exported field: 'node-club-field_club_picture'
   $fields['node-club-field_club_picture'] = array(
@@ -723,8 +720,6 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'widget_type' => 'imagefield_widget',
     ),
   );
-
-
 
   // Exported field: 'node-club-field_club_state'
   $fields['node-club-field_club_state'] = array(
@@ -891,6 +886,75 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
   );
 
+  // Exported field: 'node-club-field_club_verified'
+  $fields['node-club-field_club_verified'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_club_verified',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'yes' => 'Yes',
+          'no' => 'No',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 'no',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 25,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_club_verified',
+      'label' => 'Verified',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '34',
+      ),
+    ),
+  );
 
   // Exported field: 'node-club-field_club_video'
   $fields['node-club-field_club_video'] = array(
@@ -1078,8 +1142,6 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
   );
 
-
-
   // Exported field: 'node-club-field_email'
   $fields['node-club-field_email'] = array(
     'field_config' => array(
@@ -1177,8 +1239,6 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'widget_type' => 'text_textfield',
     ),
   );
-
-
 
   // Exported field: 'node-club-field_name'
   $fields['node-club-field_name'] = array(
@@ -1384,8 +1444,6 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
       'widget_type' => 'text_textfield',
     ),
   );
-
-
 
   // Exported field: 'node-club-field_phone_required'
   $fields['node-club-field_phone_required'] = array(
@@ -1606,7 +1664,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'widget_type' => 'imagefield_widget',
     ),
   );
-
 
   // Exported field: 'node-club-group_group'
   $fields['node-club-group_group'] = array(
@@ -2006,51 +2063,26 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('City');
   t('Club Photos');
   t('Clubs Agreement');
-  t('Country, if outside the U.S. and Canada');
   t('Date of birth');
-  t('Expected number of club members');
   t('First Name');
-  t('Group description');
   t('Group roles and permissions');
   t('Group type');
   t('How did you hear about Do Something Clubs?');
-  t('If Other Selected');
-  t('Is this a school address?');
   t('Issues');
   t('Last Name');
-  t('Member 1 email');
-  t('Member 2 email');
-  t('Member 3 email');
-  t('Member 4 email');
   t('My Do Something Club is going to work on');
   t('Official club photo');
-  t('Other Project Ideas');
   t('Please don\'t use BMP files.
 Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
   t('Please give us an email address you check often so we can let you know when your application has been approved and notify you if you win any grants/prizes!');
-  t('Please give your best estimate. Numbers only (no letters or symbols).');
-  t('Please write at least 3 sentences here.');
-  t('Project Idea and Plan of Action 1');
-  t('Project Idea and Plan of Action 2');
-  t('Put the one or two words that you want to appear at the end of your Club\'s profile page web address.');
-  t('School Level');
-  t('School Type');
-  t('School you attend');
   t('State');
-  t('Student Leader Email');
-  t('Student Leader First Name');
-  t('Student Leader Last Name');
-  t('The more ideas the better! Separate multiple ideas with a semicolon!');
-  t('This is description of the group.');
   t('This is for your Club\'s Profile Page!');
+  t('Verified');
   t('Video (optional)');
-  t('What is your role?');
-  t('Where does your Club plan to hold meetings?');
   t('Your Cell Phone');
   t('Your Email');
   t('ZIP/Postal Code');
   t('hold down ctrl button to select more than one');
-  t('http://www.DoSomething.org/Club/');
   t('mm/dd/yyyy');
 
   return $fields;
