@@ -873,7 +873,7 @@ ul.inline, ul.inline li {
   outline: 1px dashed #80ff00;
 }
 
-.container, .region-footer #block-menu-menu-footer .content, nav[role=navigation] .primary {
+.container, #block-menu-menu-footer .content, nav[role=navigation] .primary {
   width: 1030px;
   max-width: 1030px;
   margin: 0 auto;
@@ -890,7 +890,6 @@ body.one-sidebar.sidebar-first [role=main] {
   float: left;
 }
 
-/* SITE-WIDE DESIGN -------------------------------------------------------------- */
 body {
   background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(5%, #18408b), color-stop(20%, #2b63b1), color-stop(80%, #2b63b1), color-stop(95%, #18408b));
   background-image: -webkit-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
@@ -899,11 +898,7 @@ body {
   background-image: -ms-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
   background-image: linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
 }
-body.admin-menu {
-  background-position: center 29px;
-}
 
-/* GENERAL STYLES -------------------------------------------------------------- */
 #utility-bar {
   background-color: #333131;
   color: white;
@@ -947,22 +942,6 @@ div[role=main] {
   box-sizing: border-box;
 }
 
-.region-sidebar-first {
-  margin-top: 104px;
-}
-.region-sidebar-first .block {
-  background-color: #1e1d1c;
-  color: white;
-  padding: 0 15px;
-  margin-bottom: 5px;
-}
-.region-sidebar-first h2.block-title {
-  color: white;
-  background-color: #18408b;
-  padding: 0 15px;
-  margin: 0 -15px;
-}
-
 #breadcrumb {
   font-size: 0.833em;
   line-height: 2.4em;
@@ -986,7 +965,23 @@ div[role=main] {
   color: #d4d2d1;
 }
 
-.region-footer #block-menu-menu-footer {
+.region-sidebar-first {
+  margin-top: 104px;
+}
+.region-sidebar-first .block {
+  background-color: #1e1d1c;
+  color: white;
+  padding: 0 15px;
+  margin-bottom: 5px;
+}
+.region-sidebar-first h2.block-title {
+  color: white;
+  background-color: #18408b;
+  padding: 0 15px;
+  margin: 0 -15px;
+}
+
+#block-menu-menu-footer {
   overflow: hidden;
   *zoom: 1;
   background-color: #333131;
@@ -994,11 +989,11 @@ div[role=main] {
   padding-bottom: 20px;
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
-.region-footer #block-menu-menu-footer .content ul.menu {
+#block-menu-menu-footer .content ul.menu {
   padding: 0;
   margin: 0;
 }
-.region-footer #block-menu-menu-footer .content ul.menu li {
+#block-menu-menu-footer .content ul.menu li {
   list-style: none;
   margin-left: 0;
   padding: 0;
@@ -1008,12 +1003,12 @@ div[role=main] {
   display: inline;
   float: left;
 }
-.region-footer #block-menu-menu-footer .content ul.menu li li {
+#block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
   margin-left: 0;
 }
-.region-footer #block-menu-menu-footer .content ul.menu li a {
+#block-menu-menu-footer .content ul.menu li a {
   color: white;
   padding: 0;
   line-height: 33px;
@@ -1021,31 +1016,33 @@ div[role=main] {
   font-size: 11px;
   padding-left: 16px;
 }
-.region-footer #block-menu-menu-footer .content ul.menu li > a {
+#block-menu-menu-footer .content ul.menu li > a {
   font-size: 1.5em;
   line-height: 1.333em;
   text-transform: uppercase;
   font-weight: 500;
 }
-.region-footer #block-menu-menu-footer .content ul.menu ul {
+#block-menu-menu-footer .content ul.menu ul {
   padding-left: 0;
   font-size: 1.167em;
   line-height: 1.714em;
 }
-.region-footer #block-menu-menu-footer .content ul.menu ul li {
+#block-menu-menu-footer .content ul.menu ul li {
   width: auto;
   float: none;
   display: block;
   padding-top: 0;
   height: 21px;
 }
-.region-footer #block-menu-menu-footer .content ul.menu ul li a {
+#block-menu-menu-footer .content ul.menu ul li a {
   color: white;
   line-height: 18px;
   font-size: 11px;
   text-transform: none;
 }
 
+/* SITE-WIDE DESIGN -------------------------------------------------------------- */
+/* GENERAL STYLES -------------------------------------------------------------- */
 nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;

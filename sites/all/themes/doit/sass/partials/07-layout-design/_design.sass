@@ -2,11 +2,7 @@
 /* SITE-WIDE DESIGN --------------------------------------------------------------
 
 // GUIDE IMAGE - NOT FOR PRODUCITON
-body
-  // background: rgba($black, 0) image_url("guide-pages/23-DSM_Logged-in_Member_Dashboard.png") scroll no-repeat center top
-  +background-image(linear-gradient(left, $blue 5%, $blue-light 20%, $blue-light 80%, $blue 95%))
-  &.admin-menu
-    background-position: center 29px
+
 
 
 /* GENERAL STYLES --------------------------------------------------------------
@@ -22,56 +18,14 @@ body
 //       margin-top: 0
 //       margin-bottom: 0
 
-#utility-bar
-  background-color: $gray2
-  color: $white
-  height: $menu-height
-  line-height: $menu-height / $base-font-size
-  +box-sizing(border-box)
-  .utility-block
-    padding-left: $left-col-width
 
-#site-name
-  margin: 0
-  padding: 0
-  position: absolute
-  top: -78px
-  left: -17px
-  z-index: 101
-  a
-    +replace-text-with-dimensions("ds-logo.png")
-    display: block
-    // +remove-link-underlines
 
-div[role=main]
-  background-color: $gray6
-  padding: $s6
-  +box-sizing(border-box)
-  // border-top: 5px solid $background-color
 
-.region-sidebar-first
-  margin-top: 104px
-  .block
-    background-color: $gray1
-    color: $white
-    padding: 0 $s2
-    margin-bottom: $s-2
-  h2.block-title
-    color: $white
-    background-color: $blue
-    padding: 0 $s2
-    margin: 0 -#{$s2}
 
-#breadcrumb
-  +adjust-font-size-to($s-1)
-  i
-    margin: 0 0.75em
-  b
-    // color: $blue
-    font-weight: bold
-  a
-    +link-colors($gray4, $gray5, $gray5, $gray4, false)
-    // +remove-link-underlines
+
+
+
+
 
 // .region-sidebar-first
 //   .not-front &
@@ -89,57 +43,7 @@ div[role=main]
 //     margin-left: auto
 //     margin-right: auto
 
-// footer block
-.region-footer
-  #block-menu-menu-footer
-    // +background-with-css2-fallback(image_url('bg-diag-footer-line.png') repeat 0 12px)
-    +clearfix
-    background-color: $gray2
-    padding-top: $s0
-    padding-bottom: 20px
-    font-family: $font-din
-    .content
-      @extend .container
-      ul.menu
-        padding: 0
-        margin: 0
-        li
-          +no-bullets
-          // background: $gray2
-          margin-left: 0
-          padding: 0
-          display: block
-          margin-right: 0
-          width: 185px
-          +float-left
-          a
-            color: $white
-            padding: 0
-            line-height: 33px
-            text-transform: uppercase
-            font-size: 11px
-            padding-left: 16px
-          > a
-            +adjust-font-size-to($s4)
-            text-transform: uppercase
-            font-weight: 500
-        ul
-          padding-left: 0
-          +adjust-font-size-to($s1)
-          li
-            width: auto
-            // +background-with-css2-fallback(image_url('bg-diag-footer-line.png') repeat 0 0)
-            // +border($gray5, 1px, bottom)
-            float: none
-            display: block
-            padding-top: 0
-            height: 21px
-            // margin-left: 20px
-            a
-              color: $white
-              line-height: 18px
-              font-size: 11px
-              text-transform: none
+
 
 
 // /** Blog Archive Block **/
