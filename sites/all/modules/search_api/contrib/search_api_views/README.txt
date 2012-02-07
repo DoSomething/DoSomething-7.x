@@ -63,12 +63,9 @@ Note: If you want to display the block not only on a few pages, you should in
 any case take care that it isn't displayed on the search page, since that might
 confuse users.
 
-Make fields in greater depths available
----------------------------------------
-Currently, field handlers are only generated up to a nesting level of 2. E.g.,
-for an index of nodes, you can display fields from the author's profile, but not
-the URL of an image in that profile.
-There are currently plans to solve this problem by providing proper
-"relationships" to nested entities. However, until then, you can circumvent this
-problem by setting the "search_api_views_max_fields_depth" variable to the
-maximum level to generate field handlers for. The default behaviour is 2.
+FAQ: Why „*Indexed* Node“?
+--------------------------
+The group name used for the search result itself (in fields, filters, etc.) is
+prefixed with „Indexed“ in order to be distinguishable from fields on referenced
+nodes (or other entities). The data displayed normally still comes from the
+entity, not from the search index.

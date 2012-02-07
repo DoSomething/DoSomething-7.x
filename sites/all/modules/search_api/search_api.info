@@ -29,10 +29,3 @@ files[] = includes/server_entity.inc
 files[] = includes/service.inc
 
 configure = admin/config/search/search_api
-
-; Information added by drupal.org packaging script on 2011-09-24
-version = "7.x-1.x-dev"
-core = "7.x"
-project = "search_api"
-datestamp = "1316824929"
-

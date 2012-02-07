@@ -1,10 +1,55 @@
-Search API 1.0, dev (xx/xx/xxxx):
+Search API 1.x, dev (xx/xx/xxxx):
 ---------------------------------
+
+Search API 1.0 (12/15/2011):
+---------------------------------
+- #1350322 by drunken monkey: Fixed regressions introduced with cron queue
+  indexing.
+- #1352292 by das-peter, drunken monkey: Use Search API specific table groups in
+  Views integration.
+- #1351524 by das-peter: Made Views result row indexing more robust.
+- #1194362 by Damien Tournoud: Fixed click sort added to non-existent Views
+  fields.
+- #1347150 by drunken monkey: Fixed fields access of Views facets block display.
+- #1345972 by Krasnyj, drunken monkey: Added handling of large item amounts to
+  trackItemInsert().
+- #1324182 by dereine, drunken monkey: Fixed indexing author when node access is
+  enabled.
+- #1215526 by cpliakas, drunken monkey: Added support for the "Bundle" facet
+  dependency plugin.
+- #1337292 by drunken monkey: Fixed facet dependency system.
+
+Search API 1.0, RC 1 (11/10/2011):
+----------------------------------
 API changes:
+- #1260834 by drunken monkey: Added a way to define custom data types.
+- #1308638 by drunken monkey: Reduce size of stored index settings.
+- #1291346 by drunken monkey: Expose SearchApiQuery::preExecute() and
+  postExecute().
 - #955088 by dereine, drunken monkey: Provide (additional) access functionality.
 - #1064884 by drunken monkey: Added support for indexing non-entities.
 
 Others:
+- #1304026 by drunken monkey: Utilize Facet API's 'include default facets' key
+  in searcher definitions.
+- #1231512 by drunken monkey: Use real Relationships instead of level magic in
+  Views integration.
+- #1260768 by drunken monkey: Move "Search pages" into its own project.
+- #1260812 by drunken monkey: Move "Database search" into its own project.
+- #1287602 by drunken monkey: Fixed „Index items immediately“ to delay indexing
+  on insert, too.
+- #1319500 by drunken monkey: Remove items after unsuccessful loads.
+- #1297958 by drunken monkey: Fixed wrong facet operator used for range facets.
+- #1305736 by drunken monkey: Fixed notice for unset Views group operator.
+- #1263214 by drunken monkey: Fixed indexing with „Index items immediately“
+  indexes old entity state.
+- #1228726 by drunken monkey, mh86: Increased size of 'options' fields in
+  database.
+- #1295144 by katbailey: Added alter hook for Facet API search keys.
+- #1294828 by drunken monkey: Fixed accidental presence of good OOP coding
+  standards in Views integration.
+- #1291376 by drunken monkey: Expose
+  SearchApiFacetapiAdapter::getCurrentSearch().
 - #1198764 by morningtime, drunken monkey: Fixed handling of Views filter
   groups.
 - #1286500 by drunken monkey: Fixed „Search IDs” setting for facets not saved.

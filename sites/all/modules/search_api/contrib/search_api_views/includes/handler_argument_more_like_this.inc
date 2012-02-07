@@ -24,10 +24,8 @@ class SearchApiViewsHandlerArgumentMoreLikeThis extends SearchApiViewsHandlerArg
     $index = search_api_index_load(substr($this->table, 17));
     if (!empty($index->options['fields'])) {
       $fields = array();
-      foreach ($index->options['fields'] as $key => $field) {
-        if ($field['indexed']) {
-          $fields[$key] = $field['name'];
-        }
+      foreach ($index->getFields() as $key => $field) {
+        $fields[$key] = $field['name'];
       }
     }
     if (!empty($fields)) {
@@ -65,9 +63,7 @@ class SearchApiViewsHandlerArgumentMoreLikeThis extends SearchApiViewsHandlerArg
     $fields = $this->options['fields'] ? $this->options['fields'] : array();
     if (empty($fields)) {
       foreach($this->query->getIndex()->options['fields'] as $key => $field) {
-        if ($field['indexed']) {
-          $fields[] = $key;
-        }
+        $fields[] = $key;
       }
     }
     $mlt = array(

@@ -666,6 +666,7 @@ function search_api_admin_index_view(SearchApiIndex $index = NULL, $action = NUL
     '#enabled' => $index->enabled,
     '#server' => $index->server(),
     '#options' => $index->options,
+    '#fields' => $index->getFields(),
     '#status' => $index->status,
     '#read_only' => $index->read_only,
   );
@@ -686,6 +687,7 @@ function search_api_admin_index_view(SearchApiIndex $index = NULL, $action = NUL
  *   - enabled: Boolean indicating whether the index is enabled.
  *   - server: The server this index currently rests on, if any.
  *   - options: The index' options, like cron limit.
+ *   - fields: All indexed fields of the index.
  *   - indexed_items: The number of items already indexed in their latest
  *     version on this index.
  *   - total_items: The total number of items that have to be indexed for this
@@ -751,21 +753,19 @@ function theme_search_api_index(array $variables) {
       $output .= '<dd>' . format_plural($options['cron_limit'], '1 item per cron batch.', '@count items per cron batch.') . '</dd>' . "\n";
     }
 
-    if (!empty($options['fields'])) {
-      $fields = array();
-      foreach ($options['fields'] as $name => $field) {
-        if ($field['indexed']) {
-          if (search_api_is_text_type($field['type'])) {
-            $fields[] = t('@field (@boost x)', array('@field' => $field['name'], '@boost' => $field['boost']));
-          }
-          else {
-            $fields[] = $field['name'];
-          }
+    if (!empty($fields)) {
+      $fields_list = array();
+      foreach ($fields as $name => $field) {
+        if (search_api_is_text_type($field['type'])) {
+          $fields_list[] = t('@field (@boost x)', array('@field' => $field['name'], '@boost' => $field['boost']));
+        }
+        else {
+          $fields_list[] = $field['name'];
         }
       }
-      if ($fields) {
+      if ($fields_list) {
         $output .= '<dt>' . t('Indexed fields') . '</dt>' . "\n";
-        $output .= '<dd>' . implode(', ', $fields) . '</dd>' . "\n";
+        $output .= '<dd>' . implode(', ', $fields_list) . '</dd>' . "\n";
       }
     }
 
@@ -850,16 +850,33 @@ function search_api_admin_index_status_form(array $form, array &$form_state, Sea
         '#attributes' => array('class' => array('container-inline')),
         '#collapsible' => TRUE,
       );
-      $form['index']['limit'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Number of items:'),
-        '#default_value' => empty($index->options['cron_limit']) ? SEARCH_API_DEFAULT_CRON_LIMIT : $index->options['cron_limit'],
-        '#size' => 4,
-        '#attributes' => array('class' => array('search-api-cron-limit')),
-      );
+      $limit = empty($index->options['cron_limit']) ? SEARCH_API_DEFAULT_CRON_LIMIT : $index->options['cron_limit'];
+      if ($limit > 0) {
+        $form['index']['limit'] = array(
+          '#type' => 'textfield',
+          '#title' => t('Number of batches:'),
+          '#default_value' => -1,
+          '#size' => 4,
+          '#attributes' => array('class' => array('search-api-cron-limit')),
+        );
+        $desc = format_plural($limit,
+              'Each batch contains 1 item. Set to -1 for no limit.',
+              'Each batch contains @count items. Set to -1 for no limit.');
+      }
+      else {
+        $form['index']['limit'] = array(
+          '#type' => 'value',
+          '#value' => -1,
+        );
+        $desc = t("This will immediately index all items that haven't been indexed in their latest version yet.");
+      }
       $form['index']['button'] = array(
         '#type' => 'submit',
         '#value' => t('Index now'),
+      );
+      $form['index']['description'] = array(
+        '#type' => 'item',
+        '#description' => '<br />' . $desc,
       );
       $form['index']['total'] = array(
         '#type' => 'value',
@@ -935,9 +952,10 @@ function search_api_admin_index_status_form_submit(array $form, array &$form_sta
       break;
     case t('Index now'):
       $limit = $values['limit'];
+      $batch_size = empty($index->options['cron_limit']) ? SEARCH_API_DEFAULT_CRON_LIMIT : $index->options['cron_limit'];
       // @todo Batch API?
       try {
-        $ret = search_api_index_items($index, $limit);
+        $ret = search_api_index_items($index, ($limit < 0 || $batch_size < 0) ? -1 : $limit * $batch_size);
       }
       catch (SearchApiException $e) {
         $ret = FALSE;
@@ -1396,10 +1414,7 @@ function search_api_admin_index_workflow_submit(array $form, array &$form_state)
             }
           }
           $index->options['fields'][$key] = array(
-            'name' => $field['label'],
             'type' => $type,
-            'boost' => '1.0',
-            'indexed' => 1,
           );
         }
       }
@@ -1449,9 +1464,7 @@ function search_api_admin_element_compare($a, $b) {
  *   The index to edit.
  */
 function search_api_admin_index_fields(array $form, array &$form_state, SearchApiIndex $index) {
-  $wrapper = $index->entityWrapper();
-
-  $options = _search_api_admin_get_fields($index, $wrapper);
+  $options = $index->getFields(FALSE, TRUE);
   $fields = $options['fields'];
   $additional = $options['additional fields'];
 
@@ -1459,6 +1472,7 @@ function search_api_admin_index_fields(array $form, array &$form_state, SearchAp
   $types = array(0 => search_api_field_types());
   $fulltext_type = array(0 => 'text');
   $entity_types = entity_get_info();
+  $default_types = search_api_default_field_types();
   $boosts = drupal_map_assoc(array('0.1', '0.2', '0.3', '0.5', '0.8', '1.0', '2.0', '3.0', '5.0', '8.0', '13.0', '21.0'));
 
   $form_state['index'] = $index;
@@ -1478,10 +1492,6 @@ function search_api_admin_index_fields(array $form, array &$form_state, SearchAp
   }
   foreach ($fields as $key => $info) {
     $form['fields'][$key]['title']['#markup'] = check_plain($info['name']);
-    $form['fields'][$key]['name'] = array(
-      '#type' => 'value',
-      '#value' => $info['name'],
-    );
     if (isset($info['description'])) {
       $form['fields'][$key]['description'] = array(
         '#type' => 'value',
@@ -1492,8 +1502,7 @@ function search_api_admin_index_fields(array $form, array &$form_state, SearchAp
       '#type' => 'checkbox',
       '#default_value' => $info['indexed'],
     );
-    $inner_type = search_api_extract_inner_type($info['type']);
-    if (isset($types[0][$inner_type])) {
+    if (empty($info['entity_type'])) {
       // Determine the correct type options (i.e., with the correct nesting level).
       $level = search_api_list_nesting_level($info['type']);
       if (empty($types[$level])) {
@@ -1510,7 +1519,7 @@ function search_api_admin_index_fields(array $form, array &$form_state, SearchAp
       $form['fields'][$key]['type'] = array(
         '#type' => 'select',
         '#options' => $types[$level],
-        '#default_value' => $info['type'],
+        '#default_value' => isset($info['real_type']) ? $info['real_type'] : $info['type'],
         '#states' => array(
           'visible' => array(
             $css_key . '-indexed' => array('checked' => TRUE),
@@ -1531,25 +1540,26 @@ function search_api_admin_index_fields(array $form, array &$form_state, SearchAp
     }
     else {
       // This is an entity.
+      $label = $entity_types[$info['entity_type']]['label'];
       if (!isset($entity_description_added)) {
         $form['description']['#description'] .= '<p>' .
             t('Note that indexing an entity-valued field (like %field, which has type %type) directly will only index the entity ID. ' .
             'This will be used for filtering and also sorting (which might not be what you expect). ' .
             'The entity label will usually be used when displaying the field, though. ' .
             'Use the "Add related fields" option at the bottom for indexing other fields of related entities.',
-            array('%field' => $info['name'], '%type' => $entity_types[$inner_type]['label'])) . '</p>';
+            array('%field' => $info['name'], '%type' => $label)) . '</p>';
         $entity_description_added = TRUE;
       }
       $form['fields'][$key]['type'] = array(
         '#type' => 'value',
-        '#value' => search_api_nest_type('integer', $info['type']),
+        '#value' => $info['type'],
       );
       $form['fields'][$key]['entity_type'] = array(
         '#type' => 'value',
-        '#value' => search_api_extract_inner_type($info['type']),
+        '#value' => $info['entity_type'],
       );
       $form['fields'][$key]['type_name'] = array(
-        '#markup' => check_plain($entity_types[$inner_type]['label']),
+        '#markup' => check_plain($label),
       );
       $form['fields'][$key]['boost'] = array(
         '#type' => 'value',
@@ -1597,13 +1607,13 @@ function search_api_admin_index_fields(array $form, array &$form_state, SearchAp
     );
   }
 
-  // @todo Provide a way to remove a related entity's fields again?
-
   return $form;
 }
 
 /**
  * Helper function for building the field list for an index.
+ *
+ * @deprecated Use SearchApiIndex::getFields() instead.
  */
 function _search_api_admin_get_fields(SearchApiIndex $index, EntityMetadataWrapper $wrapper) {
   $fields = empty($index->options['fields']) ? array() : $index->options['fields'];
@@ -1627,7 +1637,7 @@ function _search_api_admin_get_fields(SearchApiIndex $index, EntityMetadataWrapp
     // The list nesting level for entities with a certain prefix
   $nesting_levels = array('' => 0);
 
-  $types = search_api_field_types();
+  $types = search_api_default_field_types();
   $flat = array();
   while ($wrappers) {
     foreach ($wrappers as $prefix => $wrapper) {
@@ -1651,7 +1661,7 @@ function _search_api_admin_get_fields(SearchApiIndex $index, EntityMetadataWrapp
         $type = search_api_extract_inner_type($info['type']);
         // Treat Entity API type "token" as our "string" type.
         // Also let text fields with limited options be of type "string" by default.
-        if ($type == 'token' || ($type == 'text' && $value->optionsList('view'))) {
+        if ($type == 'token' || ($type == 'text' && !empty($info['options list']))) {
           // Inner type is changed to "string".
           $type = 'string';
           // Set the field type accordingly.
@@ -1672,7 +1682,9 @@ function _search_api_admin_get_fields(SearchApiIndex $index, EntityMetadataWrapp
             }
             else {
               // Else, only update the nesting level.
-              $flat[$key]['type'] = search_api_nest_type(search_api_extract_inner_type($flat[$key]['type']), $info['type']);
+              $set_type = search_api_extract_inner_type(isset($flat[$key]['real_type']) ? $flat[$key]['real_type'] : $flat[$key]['type']);
+              $flat[$key]['type'] = $info['type'];
+              $flat[$key]['real_type'] = search_api_nest_type($set_type, $info['type']);
             }
           }
           else {
@@ -1681,7 +1693,7 @@ function _search_api_admin_get_fields(SearchApiIndex $index, EntityMetadataWrapp
               'description' => empty($info['description']) ? NULL : $info['description'],
               'type'    => $info['type'],
               'boost' => '1.0',
-              'indexed' => 0,
+              'indexed' => FALSE,
             );
           }
         }
@@ -1768,10 +1780,30 @@ function search_api_admin_index_fields_submit(array $form, array &$form_state) {
   $options = isset($index->options) ? $index->options : array();
   if ($form_state['values']['op'] == t('Save changes')) {
     $fields = $form_state['values']['fields'];
-    foreach ($fields as $name => &$field) {
-      unset($field['description']);
+    $default_types = search_api_default_field_types();
+    $custom_types = search_api_get_data_type_info();
+    foreach ($fields as $name => $field) {
+      if (empty($field['indexed'])) {
+        unset($fields[$name]);
+      }
+      else {
+        // Don't store the description. "indexed" is implied.
+        unset($fields[$name]['description'], $fields[$name]['indexed']);
+        // For non-default types, set type to the fallback and only real_type to
+        // the custom type.
+        $inner_type = search_api_extract_inner_type($field['type']);
+        if (!isset($default_types[$inner_type])) {
+          $fields[$name]['real_type'] = $field['type'];
+          $fields[$name]['type'] = search_api_nest_type($custom_types[$inner_type]['fallback'], $field['type']);
+        }
+        // Boost defaults to 1.0.
+        if ($field['boost'] == '1.0') {
+          unset($fields[$name]['boost']);
+        }
+      }
     }
     $options['fields'] = $fields;
+    unset($options['additional fields']);
     $ret = $index->update(array('options' => $options));
 
     if ($ret) {
@@ -1791,56 +1823,8 @@ function search_api_admin_index_fields_submit(array $form, array &$form_state) {
     return;
   }
   // Adding a related entity's fields.
-  $wrapper = $orig_wrapper = $index->entityWrapper();
   $prefix = $form_state['values']['additional']['field'];
-  $types = search_api_field_types();
-  $name_prefix = '';
-  $type_prefix = $type_suffix = '';
-
-  foreach (explode(':', $prefix) as $element) {
-    if (!isset($wrapper->$element)) {
-      $wrapper = NULL;
-      break;
-    }
-    $wrapper = $wrapper->$element;
-    $wrapper_info = $wrapper->info();
-    $level = search_api_list_nesting_level($wrapper_info['type']);
-    for ($i = 0; $i < $level; ++$i) {
-      $wrapper = $wrapper[0];
-    }
-    // For each nesting level, wrap the field types in an additional "list<*>".
-    $type_prefix .= str_repeat('list<', $level);
-    $type_suffix .= str_repeat('>', $level);
-    $name_prefix .= $wrapper_info['label'] . ' » ';
-  }
-  if (!$wrapper) {
-    drupal_set_message(t("An error occurred while trying to add the related entity's fields."), 'error');
-    return;
-  }
-
-  if (!empty($options['fields'])) {
-    $fields = $options['fields'];
-  }
-  else {
-    $fields = _search_api_admin_get_fields($index, $orig_wrapper);
-    $fields = $fields['fields'];
-  }
-
-  $prefix .= ':';
-  foreach ($wrapper as $field => $value) {
-    $info = $value->info();
-    $type = $type_prefix . $info['type'] . $type_suffix;
-    $key = $prefix . $field;
-    if (isset($types[$info['type']]) && empty($fields[$key])) {
-      $fields[$key] = array(
-        'name' => $name_prefix . $info['label'],
-        'type' => $type,
-        'boost' => '1.0',
-        'indexed' => 0,
-      );
-    }
-  }
-  $options['fields'] = $fields;
+  $options['additional fields'][$prefix] = $prefix;
   $ret = $index->update(array('options' => $options));
 
   if ($ret) {
