@@ -268,9 +268,9 @@ function dosomething_blocks_utility_bar() {
   $image_path = base_path() . $path . '/css/images';
   $output = array(
     '#attached' => array(
-      'css' => array(
-        $path . '/css/ds/block-dosomething-blocks-dosomething-utility-bar.css',
-      ),
+      // 'css' => array(
+      //   $path . '/css/ds/block-dosomething-blocks-dosomething-utility-bar.css',
+      // ),
       'js' => array(
         drupal_get_path('module', 'dosomething_blocks') . '/js/lets_talk_dialog.js',
       ),
@@ -285,52 +285,52 @@ function dosomething_blocks_utility_bar() {
         ),
       ),
       'here' => array(
-        '#markup' => t("We're here to help"),
+        '#markup' => t("Help Center"),
       ),
     ),
-    'icons' => array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'utility-items',
-          'icons',
-        ),
-      ),
-      'links' => array(
-        '#theme' => 'links',
-        '#links' => array(
-          'chat' => array(
-            'title' => '<img src="' . $image_path . '/icn-chat.png" alt="Chat">',
-            'html' => TRUE,
-            'href' => '',
-            'fragment' => ' ',
-          ),
-          'text' => array(
-            'title' => '<img src="' . $image_path . '/icn-text.png" alt="Text">',
-            'html' => TRUE,
-            'href' => '',
-            'fragment' => ' ',
-          ),
-          'call' => array(
-            'title' => '<img src="' . $image_path . '/icn-call.png" alt="Call">',
-            'html' => TRUE,
-            'href' => '',
-            'fragment' => ' ',
-          ),
-          'email' => array(
-            'title' => '<img src="' . $image_path . '/icn-email.png" alt="Email">',
-            'html' => TRUE,
-            'href' => '',
-            'fragment' => ' ',
-          ),
-        ),
-        '#attributes' => array(
-          'class' => array(
-            'connect-icons',
-          ),
-        ),
-      ),
-    ),
+    // 'icons' => array(
+    //   '#type' => 'container',
+    //   '#attributes' => array(
+    //     'class' => array(
+    //       'utility-items',
+    //       'icons',
+    //     ),
+    //   ),
+    //   'links' => array(
+    //     '#theme' => 'links',
+    //     '#links' => array(
+    //       'chat' => array(
+    //         'title' => '<img src="' . $image_path . '/icn-chat.png" alt="Chat">',
+    //         'html' => TRUE,
+    //         'href' => '',
+    //         'fragment' => ' ',
+    //       ),
+    //       'text' => array(
+    //         'title' => '<img src="' . $image_path . '/icn-text.png" alt="Text">',
+    //         'html' => TRUE,
+    //         'href' => '',
+    //         'fragment' => ' ',
+    //       ),
+    //       'call' => array(
+    //         'title' => '<img src="' . $image_path . '/icn-call.png" alt="Call">',
+    //         'html' => TRUE,
+    //         'href' => '',
+    //         'fragment' => ' ',
+    //       ),
+    //       'email' => array(
+    //         'title' => '<img src="' . $image_path . '/icn-email.png" alt="Email">',
+    //         'html' => TRUE,
+    //         'href' => '',
+    //         'fragment' => ' ',
+    //       ),
+    //     ),
+    //     '#attributes' => array(
+    //       'class' => array(
+    //         'connect-icons',
+    //       ),
+    //     ),
+    //   ),
+    // ),
     'search' => array(
       '#type' => 'container',
       '#attributes' => array(
@@ -351,29 +351,29 @@ function dosomething_blocks_utility_bar() {
       ),
       'login' => dosomething_blocks_login(),
     ),
-    'fbconnect' => array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'utility-items',
-          'fbconnect',
-        ),
-      ),
-      '#access' => user_is_anonymous(),
-      'link' => array(
-        '#theme' => 'link',
-        '#text' => '<img src="' . $image_path . '/btn-fbconnect.png" alt="Facebook Connect">',
-        '#path' => $fb_url,
-        '#options' => array(
-          'attributes' => array(
-            'class' => array(
-              'fbconnect',
-            ),
-          ),
-          'html' => TRUE,
-        ),
-      ),
-    ),
+    // 'fbconnect' => array(
+    //   '#type' => 'container',
+    //   '#attributes' => array(
+    //     'class' => array(
+    //       'utility-items',
+    //       'fbconnect',
+    //     ),
+    //   ),
+    //   '#access' => user_is_anonymous(),
+    //   'link' => array(
+    //     '#theme' => 'link',
+    //     '#text' => '<img src="' . $image_path . '/btn-fbconnect.png" alt="Facebook Connect">',
+    //     '#path' => $fb_url,
+    //     '#options' => array(
+    //       'attributes' => array(
+    //         'class' => array(
+    //           'fbconnect',
+    //         ),
+    //       ),
+    //       'html' => TRUE,
+    //     ),
+    //   ),
+    // ),
     'lightbox' => array(
       '#theme' => 'dosomething_blocks_lets_talk_dialog',
     ),
@@ -387,7 +387,7 @@ function dosomething_blocks_utility_bar() {
 function dosomething_blocks_login() {
   global $user;
   if (!$user->uid) {
-    $output['#markup'] = l('Log in', 'user', array('query' => user_login_destination()));
+    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination()));
   }
   else {
     $output['#markup'] = l('Log out', 'user/logout');
@@ -402,7 +402,7 @@ function dosomething_blocks_login() {
  */
 function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $form_id) {
   $form['actions']['submit']['#value'] = t('Go');
-  $form['search_block_form']['#placeholder'] = t('Search');
+  // $form['search_block_form']['#placeholder'] = t('Search');
 }
 
 /**

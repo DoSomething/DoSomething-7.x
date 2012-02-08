@@ -3,9 +3,78 @@
 ////////////////////////////
 #utility-bar
   background-color: $gray2
-  color: $white
-  height: $menu-height
-  line-height: $menu-height / $base-font-size
+  color: lighten($gray, 40.0)
+  height: 40px
+  padding-top: 6px
+  font-weight: bold
   +box-sizing(border-box)
   .utility-block
     padding-left: $left-col-width
+  #block-dosomething-blocks-dosomething-utility-bar
+    +float-right
+    height: 40px
+    #edit-actions // This is not the ideal solution to hide the 'Go' submit button
+      display: none
+    .utility-items
+      +inline-block
+    .search
+      input[type="search"]
+        +single-box-shadow(lighten($gray2, 10.0), 0, 0, 4px, 1px, inset)
+        background:
+          color: lighten($gray2, 25.0)
+          repeat: no-repeat
+          position: 97% 50%
+        +background-image(image_url('icn-utility-search-magnify.png'))
+        border: 1px solid lighten($gray2, 10.0)
+        color: $white
+        font-size: 10px
+        height: 18px
+        padding: 4px
+      .form-actions
+        input[type="submit"]
+          margin-bottom: 11px
+          padding: 4px 0
+          width: 48px
+    .form-item-search-block-form
+      margin-left: 1.5em
+      margin-right: 1.5em
+    .login
+      a
+        color: lighten($gray, 40.0)
+        font-size: 12px
+    .utility-items.fbconnect
+      +float-right
+      margin: 1em 8px 1em 0
+
+  .ui-dialog
+    padding: 10px
+    background: $black
+    background: rgba($black, 0.5)
+    border: 0
+    +border-radius(5px)
+    top: 10% !important
+    .ui-dialog-titlebar
+      background: none
+      border: 0
+      // .ui-dialog-titlebar-close, .ui-dialog-titlebar-close
+      //   background: none
+      //   position: absolute
+      //   top: 18px
+      //   right: 0.3em
+        a
+          background: none
+          padding: 0
+          text-decoration: none
+          &:hover
+            padding: 0 !important
+            text-decoration: none
+        .ui-icon
+          background: image_url("x-box.png") no-repeat $gray
+          height: 12px
+          width: 12px
+    .ui-icon-closethick
+      border: 0
+    .ui-corner-all
+      +border-radius(0)
+      a
+        border: 0
