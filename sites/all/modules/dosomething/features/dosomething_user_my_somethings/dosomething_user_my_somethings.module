@@ -502,7 +502,7 @@ function dosomething_user_my_somethings_campaign_report_backs_needed($uid) {
       $report_backs_entity_ids[] = $result->report_back_entity_id;
     }
 
-    if (!empty($report_backs_entity_ids)) {
+    if (count($report_backs_entity_ids)) {
       // From these existing campaign report backs, get the user's submissions.
       $db_query = db_select('webform_submissions', 'w');
       $db_query->fields('w', array('nid'));
