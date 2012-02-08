@@ -23,6 +23,7 @@ label
 
 .textinput
   @extend .sans
+  @extend .constrain-to-parent
   +adjust-font-size-to($s0, 1)
   +rhythm-borders(1px, 0.25, $s0)
   border-width: 1px
@@ -30,7 +31,6 @@ label
   +box-sizing(border-box)
   // width: ($kit-col-width * 2) + ($kit-gutter * 1)
   width: calc-em(268px, $s0)
-  max-width: 100%
   margin-top: 0
   border-color: $base-color
   border-color: rgba($base-color, 0.25)
@@ -98,7 +98,7 @@ input
     margin-right: 0.25em
 
 textarea, input:not([type="radio"])
-  max-width: 100%
+  @extend .constrain-to-parent
 
 .region-sidebar-first
   .form-item, .form-actions

@@ -366,6 +366,10 @@ h1, h2, h3, h4, h5, h6 {
   visibility: hidden;
 }
 
+.constrain-to-parent, img, table, iframe {
+  max-width: 100%;
+}
+
 .italic, address, em, cite, q, dfn, i {
   font-style: italic;
 }
@@ -705,7 +709,6 @@ del {
 img {
   border: 0;
   vertical-align: middle;
-  max-width: 100%;
   height: auto;
   -ms-interpolation-mode: bicubic;
 }
@@ -720,10 +723,6 @@ img.right {
 
 /* Tables -------------------------------------------------------------- */
 /* tables still need 'cellspacing="0"' in the markup */
-table {
-  max-width: 100%;
-}
-
 tbody {
   border-top: none;
 }
