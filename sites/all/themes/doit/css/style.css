@@ -375,7 +375,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
-.bold, b, strong, .purple-ribbon, .h1, h1, dfn, #breadcrumb b {
+.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .h1, h1, dfn, #breadcrumb b {
   font-weight: bold;
   font-weight: 600;
 }
@@ -411,7 +411,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.1em;
 }
 
-.headers, .purple-ribbon, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
+.headers, .purple-ribbon, .dothis-button-large, .share-of-the-day, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -428,6 +428,16 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 33px;
   color: white;
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
+}
+
+.dothis-button-large {
+  font-size: 68px;
+  color: yellow;
+  text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
+}
+
+.share-of-the-day {
+  font-size: 21px;
 }
 
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
@@ -560,6 +570,9 @@ body {
 .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
+}
+.content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .h4, .content h4, .content .h5, .content .h6 {
+  color: #18408b;
 }
 
 .h1, h1 {
