@@ -1006,7 +1006,7 @@ div[role=main] {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   color: white;
@@ -1023,6 +1023,7 @@ div[role=main] {
   font-weight: 500;
 }
 #block-menu-menu-footer .content ul.menu ul {
+  border-top: 1px #938d88 solid;
   padding-left: 0;
   font-size: 1.167em;
   line-height: 1.714em;
