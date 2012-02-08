@@ -411,7 +411,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.1em;
 }
 
-.headers, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
+.headers, .purple-ribbon, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -424,6 +424,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Only use the fancy ampersand in <h#> tags */
+.purple-ribbon {
+  font-size: 33px;
+  color: white;
+  text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
+}
+
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
