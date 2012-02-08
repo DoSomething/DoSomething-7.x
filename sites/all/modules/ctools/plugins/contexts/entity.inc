@@ -42,9 +42,9 @@ function ctools_context_entity_get_children($plugin, $parent) {
     $child_plugin['context name'] = $entity_type;
     $child_plugin['name'] = $parent . ':' . $entity_type;
     $child_plugin['description'] = t('Creates @entity context from an entity ID.', array('@entity' => $entity_type));
-    $plugin_id = $parent . ':' . $entity_type;
-    drupal_alter('ctools_entity_context', $child_plugin, $entity, $plugin_id);
-    $plugins[$plugin_id] = $child_plugin;
+    $child_plugin_id = $parent . ':' . $entity_type;
+    drupal_alter('ctools_entity_context', $child_plugin, $entity, $child_plugin_id);
+    $plugins[$child_plugin_id] = $child_plugin;
   }
   drupal_alter('ctools_entity_contexts', $plugins);
   return $plugins;
@@ -89,7 +89,7 @@ function ctools_context_create_entity($empty, $data = NULL, $conf = FALSE, $plug
 
   if (!empty($data)) {
     $context->data     = $data;
-    if (isset($entity['entity keys']['label'])) {
+    if (!empty($entity['entity keys']['label'])) {
       $context->title    = $data->{$entity['entity keys']['label']};
     }
     $context->argument = $id;

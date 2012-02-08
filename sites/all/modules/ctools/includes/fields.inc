@@ -83,6 +83,34 @@ function ctools_fields_get_field_formatter_settings_form($field, $formatter_type
       $form += $settings_form;
     }
   }
+
+  if (isset($field['cardinality']) && $field['cardinality'] != 1) {
+    list($prefix, $suffix) = explode('@count', t('Skip the first @count item(s)'));
+    $form['delta_offset'] = array(
+      '#type' => 'textfield',
+      '#size' => 5,
+      '#field_prefix' => $prefix,
+      '#field_suffix' => $suffix,
+      '#default_value' => $conf['delta_offset'],
+    );
+
+    list($prefix, $suffix) = explode('@count', t('Then display at most @count item(s)'));
+    $form['delta_limit'] = array(
+      '#type' => 'textfield',
+      '#size' => 5,
+      '#field_prefix' => $prefix,
+      '#field_suffix' => $suffix,
+      '#description' => t('Enter 0 to display all items.'),
+      '#default_value' => $conf['delta_limit'],
+    );
+
+    $form['delta_reversed'] = array(
+      '#title' => t('Display in reverse order'),
+      '#type' => 'checkbox',
+      '#default_value' => $conf['delta_reversed'],
+      '#description' => t('(start from last values)'),
+    );
+  }
 }
 
 /**
@@ -258,4 +286,23 @@ function ctools_field_invoke_field($field_name, $op, $entity_type, $entity, &$a 
 function ctools_field_invoke_field_default($field_name, $op, $entity_type, $entity, &$a = NULL, &$b = NULL, $options = array()) {
   $options['default'] = TRUE;
   return ctools_field_invoke_field($field_name, $op, $entity_type, $entity, $a, $b, $options);
+}
+
+/**
+ * Returns a list of field definitions of a specified type.
+ *
+ * @param string $field_type
+ *   A field type name; e.g. 'text' or 'date'.
+ *
+ * @return array
+ *   An array of field definitions of the specified type, keyed by field name.
+ */
+function ctools_fields_get_fields_by_type($field_type) {
+  $fields = array();
+  foreach (field_info_fields() as $field_name => $field_info) {
+    if ($field_info['type'] == $field_type) {
+      $fields[$field_name] = $field_info;
+    }
+  }
+  return $fields;
 }
