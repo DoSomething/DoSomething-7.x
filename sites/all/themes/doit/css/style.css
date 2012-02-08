@@ -1199,5 +1199,6 @@ div[role=main] {
   text-transform: none;
 }
 
-/* SITE-WIDE DESIGN -------------------------------------------------------------- */
-/* GENERAL STYLES -------------------------------------------------------------- */
+comments.fb_iframe_widget {
+  display: block;
+}
