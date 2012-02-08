@@ -98,10 +98,6 @@ abbr[title] {
 }
 
 /* Addresses style set to 'bolder' in FF3/4, S4/5, Chrome */
-b, strong {
-  font-weight: bold;
-}
-
 blockquote {
   margin: 1em 40px;
 }
@@ -374,8 +370,14 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-.bold, strong, dfn, b {
+.medium, thead tr th, #utility-bar, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
   font-weight: bold;
+  font-weight: 500;
+}
+
+.bold, b, strong, .purple-ribbon, .h1, h1, dfn, #breadcrumb b {
+  font-weight: bold;
+  font-weight: 600;
 }
 
 .wireframe {
@@ -557,7 +559,6 @@ body {
 .h1, h1 {
   font-size: 3.333em;
   line-height: 1.2em;
-  font-weight: 600;
 }
 
 .h2, h2 {
@@ -736,7 +737,6 @@ tbody {
 
 thead tr th {
   font-family: din-web, "Trebuchet MS", sans-serif;
-  font-weight: 500;
   padding-top: 0.5em;
   text-transform: uppercase;
 }
@@ -910,7 +910,6 @@ body {
   color: #e6e6e6;
   height: 40px;
   padding-top: 6px;
-  font-weight: bold;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -1010,7 +1009,6 @@ nav[role=navigation] {
   background-color: #18408b;
   font-size: 34px;
   line-height: 1.324;
-  font-weight: 500;
   z-index: 100;
 }
 nav[role=navigation] ul {
@@ -1090,9 +1088,6 @@ div[role=main] {
 }
 #breadcrumb i {
   margin: 0 0.75em;
-}
-#breadcrumb b {
-  font-weight: bold;
 }
 #breadcrumb a {
   color: #807a75;
@@ -1177,7 +1172,6 @@ div[role=main] {
   font-size: 1.5em;
   line-height: 1.333em;
   text-transform: uppercase;
-  font-weight: 500;
 }
 #block-menu-menu-footer .content ul.menu ul {
   border-top: 1px #938d88 solid;
