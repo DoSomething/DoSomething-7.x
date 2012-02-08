@@ -879,7 +879,7 @@ ul.inline, ul.inline li {
   outline: 1px dashed #80ff00;
 }
 
-.container, #block-menu-menu-footer .content, nav[role=navigation] .primary {
+.container, nav[role=navigation] .primary, #block-menu-menu-footer .content {
   width: 1030px;
   max-width: 1030px;
   margin: 0 auto;
@@ -1002,137 +1002,6 @@ body {
   border: 0;
 }
 
-#site-name {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: -78px;
-  left: -17px;
-  z-index: 101;
-}
-#site-name a {
-  text-indent: -119988px;
-  overflow: hidden;
-  text-align: left;
-  background-image: url('images/ds-logo.png');
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  width: 219px;
-  height: 172px;
-  display: block;
-}
-
-div[role=main] {
-  background-color: #efefef;
-  padding: 23px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-#breadcrumb {
-  font-size: 0.833em;
-  line-height: 2.4em;
-}
-#breadcrumb i {
-  margin: 0 0.75em;
-}
-#breadcrumb b {
-  font-weight: bold;
-}
-#breadcrumb a {
-  color: #807a75;
-}
-#breadcrumb a:visited {
-  color: #807a75;
-}
-#breadcrumb a:hover {
-  color: #d4d2d1;
-}
-#breadcrumb a:active {
-  color: #d4d2d1;
-}
-
-.region-sidebar-first {
-  margin-top: 104px;
-}
-.region-sidebar-first .block {
-  background-color: #1e1d1c;
-  color: white;
-  padding: 0 15px;
-  margin-bottom: 5px;
-}
-.region-sidebar-first h2.block-title {
-  color: white;
-  background-color: #18408b;
-  padding: 0 15px;
-  margin: 0 -15px;
-}
-
-#block-menu-menu-footer {
-  overflow: hidden;
-  *zoom: 1;
-  background-color: #333131;
-  padding-top: 12px;
-  padding-bottom: 20px;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-}
-#block-menu-menu-footer .content ul.menu {
-  padding: 0;
-  margin: 0;
-}
-#block-menu-menu-footer .content ul.menu li {
-  list-style: none;
-  margin-left: 0;
-  padding: 0;
-  display: block;
-  margin-right: 0;
-  width: 185px;
-  display: inline;
-  float: left;
-}
-#block-menu-menu-footer .content ul.menu li li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-}
-#block-menu-menu-footer .content ul.menu li a {
-  color: white;
-  padding: 0;
-  line-height: 33px;
-  text-transform: uppercase;
-  font-size: 11px;
-  padding-left: 16px;
-}
-#block-menu-menu-footer .content ul.menu li > a {
-  font-size: 1.5em;
-  line-height: 1.333em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-#block-menu-menu-footer .content ul.menu ul {
-  border-top: 1px #938d88 solid;
-  padding-left: 0;
-  font-size: 1.167em;
-  line-height: 1.714em;
-}
-#block-menu-menu-footer .content ul.menu ul li {
-  width: auto;
-  float: none;
-  display: block;
-  padding-top: 0;
-  height: 21px;
-}
-#block-menu-menu-footer .content ul.menu ul li a {
-  color: white;
-  line-height: 18px;
-  font-size: 11px;
-  text-transform: none;
-}
-
-/* SITE-WIDE DESIGN -------------------------------------------------------------- */
-/* GENERAL STYLES -------------------------------------------------------------- */
 nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
@@ -1185,3 +1054,150 @@ nav[role=navigation] .primary #main-menu li.last {
 nav[role=navigation] .secondary {
   display: none;
 }
+
+#site-name {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -78px;
+  left: -17px;
+  z-index: 101;
+}
+#site-name a {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/ds-logo.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 219px;
+  height: 172px;
+  display: block;
+}
+
+div[role=main] {
+  background-color: #efefef;
+  padding: 23px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#breadcrumb {
+  font-size: 0.833em;
+  line-height: 2.4em;
+}
+#breadcrumb i {
+  margin: 0 0.75em;
+}
+#breadcrumb b {
+  font-weight: bold;
+}
+#breadcrumb a {
+  color: #807a75;
+}
+#breadcrumb a:visited {
+  color: #807a75;
+}
+#breadcrumb a:hover {
+  color: #d4d2d1;
+}
+#breadcrumb a:active {
+  color: #d4d2d1;
+}
+
+.connect-thru-facebook a {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/btn-facebook-dashboard-login.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 156px;
+  height: 22px;
+  display: block;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.region-sidebar-first {
+  margin-top: 104px;
+}
+.region-sidebar-first .block {
+  background-color: #1e1d1c;
+  color: white;
+  padding: 0 15px;
+  margin-bottom: 5px;
+}
+.region-sidebar-first h2.block-title {
+  color: white;
+  background-color: #18408b;
+  padding: 0 15px;
+  margin: 0 -15px;
+}
+
+#block-menu-menu-footer {
+  overflow: hidden;
+  *zoom: 1;
+  background-color: #333131;
+  padding-top: 12px;
+  padding-bottom: 20px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+#block-menu-menu-footer .content ul.menu {
+  padding: 0;
+  margin: 0;
+}
+#block-menu-menu-footer .content ul.menu li {
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+  display: block;
+  margin-right: 0;
+  width: 185px;
+  display: inline;
+  float: left;
+}
+#block-menu-menu-footer .content ul.menu li li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+#block-menu-menu-footer .content ul.menu li a {
+  color: white;
+  padding: 0;
+  line-height: 33px;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding-left: 16px;
+}
+#block-menu-menu-footer .content ul.menu li > a {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+#block-menu-menu-footer .content ul.menu ul {
+  border-top: 1px #938d88 solid;
+  padding-left: 0;
+  font-size: 1.167em;
+  line-height: 1.714em;
+}
+#block-menu-menu-footer .content ul.menu ul li {
+  width: auto;
+  float: none;
+  display: block;
+  padding-top: 0;
+  height: 21px;
+}
+#block-menu-menu-footer .content ul.menu ul li a {
+  color: white;
+  line-height: 18px;
+  font-size: 11px;
+  text-transform: none;
+}
+
+/* SITE-WIDE DESIGN -------------------------------------------------------------- */
+/* GENERAL STYLES -------------------------------------------------------------- */
