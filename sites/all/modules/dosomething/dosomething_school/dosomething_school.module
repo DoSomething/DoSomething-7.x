@@ -288,7 +288,6 @@ function dosomething_school_form_alter(&$form, &$form_state, $form_id) {
   // https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/849
   // for more.
   if (strpos($form_id, 'webform_client_form') !== FALSE  || $form_id == 'club_node_form') {
-dpm($form);
     // We're going to set the legacy fields to hidden. But they're in different
     // places depending on the type.
     if (strpos($form_id, 'webform_client_form') !== FALSE) {
