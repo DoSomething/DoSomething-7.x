@@ -1355,6 +1355,7 @@ div[role=main] {
 #block-menu-menu-footer .content ul.menu ul li a {
   line-height: 18px;
   font-size: 14px;
+  font-weight: 100;
   text-transform: none;
 }
 
