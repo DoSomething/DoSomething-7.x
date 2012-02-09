@@ -392,12 +392,12 @@ h1, h2, h3, h4, h5, h6 {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .allcaps, .smallcaps {
+.caps, .allcaps, .smallcaps, .main-nav-dropdown, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .main-nav, .main-footer-nav, .filter-dropdowns, .counter-labels {
   font-size: 0.9em;
   letter-spacing: 0.1em;
 }
 
-.headers, .purple-ribbon, .dothis-button-large, .share-of-the-day, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
+.headers, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -405,7 +405,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-.smallcaps {
+.smallcaps, .main-nav-dropdown, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a {
   font-variant: small-caps;
 }
 
@@ -414,17 +414,17 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-.medium, thead tr th, #utility-bar, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
+.medium, .footer-links, thead tr th, #utility-bar, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .h1, h1, dfn, #breadcrumb b {
+.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, dfn, #breadcrumb b {
   font-weight: bold;
   font-weight: 600;
 }
 
-.blue, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .h4, .content h4, .content .h5, .content .h6 {
+.blue, .page-links a, .page-content-text a, .headlines a, .right-sidebar .headlines a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .h4, .content h4, .content .h5, .content .h6 {
   color: #18408b;
 }
 
@@ -436,8 +436,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .block, .region-sidebar-first h2.block-title, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
+.white, .purple-ribbon, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .block, .region-sidebar-first h2.block-title, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
   color: white;
+}
+
+.black, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+  color: black;
 }
 
 .gray1 {
@@ -468,6 +472,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #2b63b1;
 }
 
+.small {
+  font-size: 10px;
+}
+
 .purple-ribbon {
   font-size: 33px;
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
@@ -480,6 +488,110 @@ h1, h2, h3, h4, h5, h6 {
 
 .share-of-the-day {
   font-size: 21px;
+}
+
+.dropdown-catefories {
+  font-size: 14px;
+}
+
+.dropdown-choices {
+  font-size: 12px;
+  line-height: 21px;
+}
+
+.sponsors-who-rock {
+  font-size: 14px;
+}
+
+.main-nav {
+  font-size: 34px;
+}
+
+.main-nav-dropdown {
+  font-size: 18px;
+  line-height: 38px;
+}
+
+.main-footer-nav, .filter-dropdowns {
+  font-size: 18px;
+}
+
+.footer-links {
+  font-size: 14px;
+}
+
+.page-links a, .page-content-text a {
+  font-size: 12px;
+}
+.page-links a, .page-content-text a {
+  border-bottom: none;
+}
+.page-links a:hover, .page-content-text a:hover {
+  border-bottom: none;
+}
+.page-links a.hover, .page-content-text a.hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs {
+  font-size: 10px;
+  color: #938d88;
+  text-transform: lowercase;
+}
+
+.counter-labels {
+  font-size: 21px;
+  color: black;
+}
+
+.page-content-text {
+  line-height: 14px;
+  color: black;
+  text-transform: none;
+}
+
+h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead {
+  font-size: 40px;
+}
+
+h2 .subhead {
+  font-size: 21px;
+}
+
+h3 .subhead {
+  font-size: 14px;
+}
+
+.module-titles {
+  font-size: 21px;
+}
+
+.headlines a {
+  font-size: 14px;
+}
+.headlines a {
+  border-bottom: none;
+}
+.headlines a:hover {
+  border-bottom: none;
+}
+.headlines a.hover {
+  text-decoration: underline;
+}
+
+.content-text, .right-sidebar .content-text {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.right-sidebar .headlines a {
+  border-bottom: none;
+}
+.right-sidebar .headlines a:hover {
+  border-bottom: none;
+}
+.right-sidebar .headlines a.hover {
+  text-decoration: underline;
 }
 
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units

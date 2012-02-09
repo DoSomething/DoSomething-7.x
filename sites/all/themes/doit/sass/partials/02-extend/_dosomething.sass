@@ -27,6 +27,8 @@
   color: $purple
 .white
   color: $white
+.black
+  color: $black
 .gray1
   color: $gray1
 .gray2
@@ -41,6 +43,9 @@
   color: $gray6
 .blue-light
   color: $blue-light
+
+.small
+  font-size: $s-1
 
 
 ////////////////////////////
@@ -86,6 +91,42 @@
 ////////////////////////////
 .field-text
   @extend .gray5
+
+////////////////////////////
+// DROPDOWNS
+////////////////////////////
+.dropdown
+  @extend .headers
+  @extend .bold
+  @extend .white
+
+.dropdown-catefories
+  @extend .dropdown
+  font-size: $s1
+
+.dropdown-choices
+  @extend .dropdown
+  font-size: $s0
+  line-height: $s5
+
+////////////////////////////
+// SPONSORS WHO ROCK
+////////////////////////////
+.sponsors-who-rock
+  @extend .headers
+  @extend .bold
+  @extend .white
+  font-size: $s1
+
+////////////////////////////
+//
+////////////////////////////
+
+
+
+
+
+
 
 
 
@@ -180,7 +221,7 @@ h3
   @extend .white
   @extend .smallcaps
   font-size: $s5
-  
+
 .headlines
   a
     @extend .headers
