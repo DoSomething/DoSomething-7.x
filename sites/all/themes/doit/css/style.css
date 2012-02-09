@@ -436,7 +436,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
+.white, .purple-ribbon, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .block, .region-sidebar-first h2.block-title, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
   color: white;
 }
 
@@ -1179,12 +1179,10 @@ div[role=main] {
 }
 .region-sidebar-first .block {
   background-color: #1e1d1c;
-  color: white;
   padding: 0 15px;
   margin-bottom: 5px;
 }
 .region-sidebar-first h2.block-title {
-  color: white;
   background-color: #18408b;
   padding: 0 15px;
   margin: 0 -15px;
