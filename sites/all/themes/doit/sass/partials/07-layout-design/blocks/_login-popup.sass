@@ -1,0 +1,175 @@
+////////////////////////////
+// LOGIN POPUP
+// gray
+////////////////////////////
+
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
+  color: $white
+  background: $gray3
+  border: none
+  padding: 23px
+  +clearfix
+  #dosomething-login-register-popup-form
+    overflow: hidden
+  .form-item,
+  .form-actions
+    margin: 0
+  .ui-dialog .ui-dialog-content
+    border: 0
+    position: initial !important
+    padding: 0 !important
+  .ui-dialog-title
+    margin: 0
+  .ui-dialog-titlebar
+    display: inline
+    height: 0
+    margin: 0
+    padding: 0
+  .ui-widget-header
+    background: none
+    border: none
+  .ui-dialog-titlebar-close
+    right: -400px !important
+    span
+      background-color: $gray5
+      margin: 0
+    .ui-icon
+      padding: 2px
+  .ui-state-hover
+    border: none
+  input
+    background: $gray2
+    +border-radius(0)
+    border: none
+    color: $white
+    +float-left
+    height: 27px
+    padding-left: 5px
+  ::-webkit-input-placeholder,
+  :-moz-placeholder
+    color: $white
+  #edit-title-text, #edit-signup-title
+  .description
+    color: $white
+
+  #edit-title-text
+    margin-top: 0
+    margin-bottom: 12px
+    label[for="edit-title-text"]
+      color: $white
+      font-family: $font-headline
+      font-size: 40px
+      font-weight: 500
+      border-bottom: 1px $gray-border-alt solid
+      line-height: 40px
+      padding-bottom: 12px
+    .description
+      border-top: 1px $gray-border solid
+      color: $white
+      padding-top: 12px
+
+  // Field required asterisk
+  .ds-registration-form-required
+    +float-left
+    margin-left: -10px
+    position: relative
+    z-index: 2000
+
+  // First and last name fields
+  .form-item-first-name,
+  .form-item-last-name
+    +float-left
+    input
+      margin-top: 0
+      margin-bottom: 12px
+      width: 163px
+  .form-item-last-name
+    +clearfix
+    margin-left: 25px
+
+  // Cell or email field
+  .form-item-cell-or-email
+    input
+      margin-bottom: 12px
+      width: 356px
+
+  // Birthday fields
+  .form-item-month,
+  .form-item-day,
+  .form-item-year
+    +float-left
+    margin-bottom: 30px
+    input
+      width: 60px
+      margin-right: 12px
+      padding: 0
+      text-align: center
+  .form-item-year
+    input
+      width: 90px
+
+  // Password fields
+  input.password-processed,
+  input.password-confirm
+    margin-bottom: 12px
+
+  div.password-confirm
+    float: none !important
+    width: 20px
+    margin: 0 !important
+
+  .password-strength
+    width: 155px
+    float: none
+    margin-top: 0
+    position: relative
+    left: 230px
+    top: 41px
+
+  .password-suggestions
+    clear: both
+    height: 130px
+    margin: 0
+    width: 343px !important
+
+  .captcha
+    border-bottom: 1px $gray-border-alt solid
+    padding-bottom: 12px
+    margin-top: 45px
+
+  label[for='edit-captcha-response']
+    margin-bottom: 12px
+    color: $white
+    font-weight: 500
+
+  .form-item-captcha-response
+    margin: 12px 0
+
+  #edit-captcha-response
+    margin-right: 25px
+
+  .ds-signup-always-show
+    border-top: 1px $gray-border solid
+    padding-top: 12px
+    margin-bottom: 30px
+
+  .form-item-signup
+    .description
+      font-size: 12px
+
+// Yellow GO button
+input#edit-final-submit
+  background-color: $gold
+  +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
+  +border-radius(12px)
+  +box-sizing(content-box)
+  color: $gray2
+  +float-right
+  font-family: $font-headline
+  font-size: 18px
+  font-weight: 700
+  height: 30px
+  padding: 1px 10px 0
+  text-transform: uppercase
+  &:hover, &:active
+    text-decoration: none

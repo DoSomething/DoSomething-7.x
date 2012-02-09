@@ -459,7 +459,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['#validate'][] = 'dosomething_login_register_block_validate';
   $form['#submit'][] = 'dosomething_login_register_block_submit';
   if (arg(0) == 'user' && arg(1) == 'registration') {
-    $form['#attached']['css'][] = drupal_get_path('theme', 'ds') . '/css/ds/page-user-registration.css';
     $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js';
   }
   $form['#attached']['js'][] = array(
@@ -478,7 +477,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['title_text'] = array(
     '#type' => 'item',
     '#title' => t("You're almost there."),
-    '#description' => t("Fill out the rest of the information below and you'll be a member in no time."),
   );
   $form['name'] = array(
     'first_name' => array(
@@ -519,7 +517,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
           'age-question',
         ),
       ),
-      '#children' => t('Birthday'),
     ),
     'month' => array(
       '#type' => 'textfield',
@@ -554,7 +551,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['parent_email_message'] = array(
     '#type' => 'item',
     '#title' => t('What a Rock Star!'),
-    '#description' => t("Since you're under the age of 13, you'll need to get a parent or guradian's permission."),
+    '#description' => t("Since you're under the age of 13, you'll need to get a parent or guardian's permission."),
     '#prefix' => '<div class="under-13-field">',
   );
   $form['parent_email'] = array(
@@ -599,7 +596,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#prefix' => '<div class="ds-login-popup-footer">',
     '#suffix' => '</div>',
     '#type' => 'submit',
-    '#value' => t('Submit'),
+    '#value' => t('Go'),
   );
   return $form;
 }

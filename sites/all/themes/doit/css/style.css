@@ -428,6 +428,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #18408b;
 }
 
+.black, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+  color: black;
+}
+
 .gold, .dothis-button-large, .highlight-on-dark {
   color: #fed100;
 }
@@ -440,7 +444,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-.black, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+.black, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
   color: black;
 }
 
@@ -541,12 +545,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .counter-labels {
   font-size: 21px;
-  color: black;
 }
 
 .page-content-text {
   line-height: 14px;
-  color: black;
   text-transform: none;
 }
 
@@ -1325,7 +1327,7 @@ div[role=main] {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -1357,6 +1359,214 @@ div[role=main] {
   font-size: 14px;
   font-weight: 100;
   text-transform: none;
+}
+
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
+  color: white;
+  background: #4b4744;
+  border: none;
+  padding: 23px;
+  overflow: hidden;
+  *zoom: 1;
+  -moz-placeholder-color: white;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #dosomething-login-register-popup-form {
+  overflow: hidden;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-actions {
+  margin: 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog .ui-dialog-content {
+  border: 0;
+  position: initial !important;
+  padding: 0 !important;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-title {
+  margin: 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar {
+  display: inline;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-widget-header {
+  background: none;
+  border: none;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close {
+  right: -400px !important;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close span {
+  background-color: #d4d2d1;
+  margin: 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close .ui-icon {
+  padding: 2px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-state-hover {
+  border: none;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input {
+  background: #333131;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  color: white;
+  display: inline;
+  float: left;
+  height: 27px;
+  padding-left: 5px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description {
+  color: white;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"] {
+  color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  border-bottom: 1px #292726 solid;
+  line-height: 40px;
+  padding-bottom: 12px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text .description {
+  border-top: 1px #938d88 solid;
+  color: white;
+  padding-top: 12px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-registration-form-required {
+  display: inline;
+  float: left;
+  margin-left: -10px;
+  position: relative;
+  z-index: 2000;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
+  display: inline;
+  float: left;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name input {
+  margin-top: 0;
+  margin-bottom: 12px;
+  width: 163px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
+  overflow: hidden;
+  *zoom: 1;
+  margin-left: 25px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell-or-email input {
+  margin-bottom: 12px;
+  width: 356px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-day,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year {
+  display: inline;
+  float: left;
+  margin-bottom: 30px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-day input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year input {
+  width: 60px;
+  margin-right: 12px;
+  padding: 0;
+  text-align: center;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year input {
+  width: 90px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-processed,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-confirm {
+  margin-bottom: 12px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] div.password-confirm {
+  float: none !important;
+  width: 20px;
+  margin: 0 !important;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength {
+  width: 155px;
+  float: none;
+  margin-top: 0;
+  position: relative;
+  left: 230px;
+  top: 41px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-suggestions {
+  clear: both;
+  height: 130px;
+  margin: 0;
+  width: 343px !important;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .captcha {
+  border-bottom: 1px #292726 solid;
+  padding-bottom: 12px;
+  margin-top: 45px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
+  margin-bottom: 12px;
+  color: white;
+  font-weight: 500;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-captcha-response {
+  margin: 12px 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-captcha-response {
+  margin-right: 25px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-signup-always-show {
+  border-top: 1px #938d88 solid;
+  padding-top: 12px;
+  margin-bottom: 30px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-signup .description {
+  font-size: 12px;
+}
+
+input#edit-final-submit {
+  background-color: #fed100;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
+  background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -moz-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -o-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -khtml-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+  color: #333131;
+  display: inline;
+  float: right;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  height: 30px;
+  padding: 1px 10px 0;
+  text-transform: uppercase;
+}
+input#edit-final-submit:hover, input#edit-final-submit:active {
+  text-decoration: none;
 }
 
 comments.fb_iframe_widget {
