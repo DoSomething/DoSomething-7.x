@@ -91,237 +91,130 @@
 // GLOBAL ITEMS FROM
 // THE STYLE GUIDE
 ////////////////////////////
+.main-nav
+  @extend .headers
+  @extend .yellow
+  @extend .bold
+  @extend .caps
+  font-size: $s9
+  &.hover
+    @extend .white
 
+.main-nav-dropdown
+  @extend .headers
+  @extend .white
+  @extend .bold
+  @extend .smallcaps
+  font-size: $s4
+  line-height: 38px
+  &.hover
+    @extend .yellow
 
+.main-footer-nav
+  @extend .headers
+  @extend .white
+  @extend .caps
+  font-size: $s4
+
+.footer-links
+  @extend .headers
+  @extend .white
+  @extend .medium
+  @extend .smallcaps
+  font-size: $s1
+
+.page-links
+  a
+    @extend .blue
+    font-size: $s0
+    +remove-link-underlines
+    &.hover
+      text-decoration: underline
+
+.breadcrumbs
+  font-size: $s-1
+  color: $gray-border
+  text-transform: lowercase
+
+.counter-labels
+  @extend .headers
+  @extend .bold
+  @extend .caps
+  font-size: $s5
+  color: $black
+
+.filter-dropdowns
+  @extend .main-footer-nav
+
+.page-content-text
+  @extend .page-links
+  line-height: 14px
+  color: $black
+  text-transform: none
+
+h1
+  .page-headline
+    @extend .headers
+    @extend .bold
+    @extend .black
+    @extend .smallcaps
+    font-size: $s10
+
+h2
+  .subhead
+    @extend .page-headline
+    font-size: $s5
+
+h3
+  .subhead
+    @extend .headers
+    @extend .bold
+    @extend .black
+    font-size: $s1
+
+.module-titles
+  @extend .headers
+  @extend .bold
+  @extend .white
+  @extend .smallcaps
+  font-size: $s5
+  
+.headlines
+  a
+    @extend .headers
+    @extend .bold
+    @extend .blue
+    @extend .smallcaps
+    +remove-link-underlines
+    font-size: $s1
+    &.hover
+      text-decoration: underline
+
+.content-text
+  @extend .black
+  font-size: $s0
+  line-height: 14px
+
+.right-sidebar
+  .sidebar-title
+    @extend .headers
+    @extend .bold
+    @extend .white
+    @extend .smallcaps
+  .headlines
+    a
+      @extend .headers
+      @extend .bold
+      @extend .blue
+      @extend .smallcaps
+      +remove-link-underlines
+      &.hover
+        text-decoration: underline
+  .content-text
+    @extend .content-text
 
 ////////////////////////////
 // OLD EXTENDABLE CLASSES
 // refactor or remove
 ////////////////////////////
 
-// // dosomething headers
-// .ds-pane-title
-//   display: block
-//   color: $white
-//   // background: $c-headers
-//   +adjust-font-size-to($s3)
-//   line-height: 1.65
-//   font-weight: 500
-//   padding: calc-em(3px, $s3) 0.5em 0 !important
-//   +border-top-left-radius
-
-// .ds-pane
-//   h2.pane-title
-//     @extend .ds-pane-title
-//     display: block
-//     color: $white
-//     background: $c-headers
-//     margin-bottom: 0
-//     +adjust-font-size-to($s3)
-//     line-height: 1.65
-//     font-weight: 500
-//     padding: calc-em(3px, $s3) 0.5em 0 !important
-//     +border-top-left-radius
-//   .pane-content
-//     padding-left: calc-em(12px, $s0)
-//     padding-right: calc-em(12px, $s0)
-//     // padding: 5px 0px 10px 20px
-//     background: $gray6
-//     p
-//       margin-top: 0
-//       &:last-child
-//         margin-bottom: 0
-//     h3
-//       color: $black
-//       margin-top: 0
-//       margin-bottom: 5px
-//       border-bottom: 1px dotted $white
-// .ds-pane-usergen
-//   @extend .ds-pane
-//   h2.pane-title
-//     background: $purple
-//     margin-bottom: 0
-//   .pane-content
-//     padding: 1em
-
-// .ds-pane-news
-//   @extend .ds-pane
-//   h2.pane-title
-//     background: $gray-dark
-// .ds-pane-top-radius
-//   @extend .ds-pane
-//   h2.pane-title
-//     +border-top-radius
-// .ds-pane-top-right-radius
-//   @extend .ds-pane
-//   h2.pane-title
-//     +border-top-left-radius(0)
-//     +border-top-right-radius
-// .ds-pane-no-radius
-//   @extend .ds-pane
-//   h2.pane-title
-//     +border-radius(0)
-// .ds-pane-center
-//   h2.pane-title
-//     text-align: center
-// .ds-pane-fat
-//   h2.pane-title
-//     line-height: 40px
-// .ds-pane-campaign
-//   @extend .ds-pane
-//   h2.pane-title
-//     background-color: $yellow
-//     +background-image(linear-gradient(top, $yellow-gloss-light, $yellow-gloss-dark))
-//     color: $black-not
-// .ds-pane-no-padding
-//   .pane-content
-//     padding-left: 0
-//     padding-right: 0
-
-// // arrow lists with faded lines in panels panes
-// .ds-arrow-list
-//   ul
-//     li
-//       margin-left: calc-em(12px, $s0)
-//       .views-field-title
-//         background:
-//           image: image_url('bg-polls-divider-left.png')
-//           position: left top
-//           repeat: no-repeat
-//         margin-left: calc-em(-24px, $s0)
-//         padding: 0.25em 0 0.25em calc-em(26px, $s0)
-//       &.views-row-first
-//         .views-field-title
-//           background: none
-
-
-// // dosomething buttons
-// .ds-button
-//   font-family: $font-headline
-//   +adjust-font-size-to(17px)
-//   line-height: 1.6
-//   font-weight: 700
-//   // text-shadow: none
-//   text-transform: uppercase
-//   color: $c-button-dark
-//   +box-sizing(content-box)
-//   padding: 0 10px
-//   height: 22px
-//   border:
-//     width:  1px
-//     style: solid
-//     color: $gray-darker
-//     color: rgba($gray-darker, 0.5)
-//   border-bottom-color: $gray-darker
-//   +border-radius
-//   background-color: $gray-gloss-light
-//   +background-image(linear-gradient(top, $gray-gloss-light 49%, $gray-gloss-dark 51%))
-//   &:hover, &:active
-//     color: $c-button-dark-active
-//     text-decoration: none
-//   &:visited
-//     color: $c-button-dark
-
-// .ds-button-strong
-//   @extend .ds-button
-//   background-color: $yellow
-//   +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
-//   border:
-//     width:  1px
-//     style: solid
-//     color: $gray-dark
-//     color: rgba($gray-dark, 0.3)
-//   border-bottom-color: $gray-dark
-//   border-bottom-color: rgba($gray-dark, 0.6)
-
-// a.ds-button
-//   +link-colors($c-button-dark $c-button-dark-active, $c-button-dark-active, $c-button-dark, false)
-//   // +undo-better-links
-//   display: inline-block
-
-
-// // .selectBox-options
-// //   @extend .h3
-
-// .selectBox-dropdown
-//   .selectBox-label
-//     width: 80%
-//     +text-overflow
-
-// .selectBox-options
-//   .ie8 &, .ie7 &
-//     position: relative
-//   li
-//     a
-//       white-space: normal
-//       margin-bottom: 5px
-
-// // grid styles
-// .three-across
-//   ul
-//     +no-bullets
-//     li
-//       width: percentage($three-col-even / $main-width-w-padding)
-//       float: left
-//       margin-right: percentage($kit-gutter / $main-width-w-padding)
-//       background: $red
-//       &:nth-child(3n+3)
-//         float: right
-//         margin-right: 0
-//         background: $pink
-//       &:nth-child(3n+4)
-//         clear: both
-//         background: $purple
-
-
-// /* legacy DoSomething classes (modified)
-// .box
-//   position: relative
-//   margin: 1em 0
-//   padding: 0px $kit-gutter $kit-baseline $kit-gutter
-
-// .blue
-//   padding: 0 $kit-gutter
-//   background-color: $gray-light
-
-// .goright
-//   float: right
-//   padding: $s-2
-
-
-// img.goleft
-//   float: left
-//   padding: $s-2
-
-// .stripes-list
-//   border:
-//     color: $gray3
-//     style: solid
-//     width: 1px 0
-//   clear: both
-//   > li
-//     &:nth-child(2n)
-//       background-color: $gray-light
-//     &:nth-child(2n+1)
-//       background-color: $gray-lighter
-
-// ol.stripes-list
-//   counter-reset: item
-//   margin-left: 0
-//   padding-left: 0
-//   > li
-//     display: block
-//     padding:
-//       left: 4em
-//       top: 5px
-//       bottom: 5px
-//     &:before
-//       color: $blue2
-//       font-size: 1.5em
-//       +inline-block
-//       content: counter(item) "."
-//       counter-increment: item
-//       margin-left: -3em
-//       padding-right: 0.5em
-//       width: 2.5em
-//       text-align: right
