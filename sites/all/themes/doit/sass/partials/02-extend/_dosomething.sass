@@ -19,6 +19,8 @@
 
 .blue
   color: $blue
+.black
+  color: $black
 .gold
   color: $gold
 .purple
@@ -139,17 +141,17 @@
 .counter-labels
   @extend .headers
   @extend .bold
+  @extend .black
   @extend .caps
   font-size: $s5
-  color: $black
 
 .filter-dropdowns
   @extend .main-footer-nav
 
 .page-content-text
   @extend .page-links
+  @extend .black
   line-height: 14px
-  color: $black
   text-transform: none
 
 h1
