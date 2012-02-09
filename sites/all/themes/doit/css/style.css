@@ -366,20 +366,6 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
 }
 
-.italic, address, em, cite, q, dfn, i {
-  font-style: italic;
-}
-
-.medium, thead tr th, #utility-bar, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
-  font-weight: bold;
-  font-weight: 500;
-}
-
-.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .h1, h1, dfn, #breadcrumb b {
-  font-weight: bold;
-  font-weight: 600;
-}
-
 .wireframe {
   outline: 1px dashed red;
 }
@@ -391,10 +377,6 @@ h1, h2, h3, h4, h5, h6 {
   content: "";
   display: table;
   clear: both;
-}
-
-.gold, .dothis-button-large, .highlight-on-dark {
-  color: #fed100;
 }
 
 .serif {
@@ -428,6 +410,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Only use the fancy ampersand in <h#> tags */
+.italic, address, em, cite, q, dfn, i {
+  font-style: italic;
+}
+
+.medium, thead tr th, #utility-bar, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
+  font-weight: bold;
+  font-weight: 500;
+}
+
+.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .h1, h1, dfn, #breadcrumb b {
+  font-weight: bold;
+  font-weight: 600;
+}
+
+.gold, .dothis-button-large, .highlight-on-dark {
+  color: #fed100;
+}
+
+.white, .purple-ribbon {
+  color: white;
+}
+
 .purple-ribbon {
   font-size: 33px;
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
