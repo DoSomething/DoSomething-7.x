@@ -1473,6 +1473,11 @@ h2.block-title, h2.pane-title {
   text-transform: none;
 }
 
+.ui-widget-overlay {
+  background: black;
+  opacity: 0.83;
+}
+
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
   background: #4b4744;
   border: none;
@@ -1485,6 +1490,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
   -ms-border-radius: 0;
   -khtml-border-radius: 0;
   border-radius: 0;
+  top: 188px !important;
   -moz-placeholder-color: white;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #dosomething-login-register-popup-form {
