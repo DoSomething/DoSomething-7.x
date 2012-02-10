@@ -438,7 +438,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first h2.block-title, .region-sidebar-first h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], h2.block-title, h2.pane-title, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   color: white;
 }
@@ -1392,6 +1392,14 @@ div[role=main] {
   margin-right: auto;
 }
 
+h2.block-title, h2.pane-title {
+  background-color: #18408b;
+  padding: 0 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.714;
+}
+
 .region-sidebar-first {
   margin-top: 104px;
 }
@@ -1400,11 +1408,9 @@ div[role=main] {
   margin-bottom: 5px;
 }
 .region-sidebar-first h2.block-title {
-  background-color: #18408b;
-  padding: 0 15px;
   margin: 0 -15px;
 }
-.region-sidebar-first h2 {
+.region-sidebar-first .content h2 {
   font-size: 14px;
 }
 
@@ -1433,7 +1439,7 @@ div[role=main] {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
