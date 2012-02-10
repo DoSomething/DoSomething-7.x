@@ -407,6 +407,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Only use the fancy ampersand in <h#> tags */
+/* ABSTRACT EXTENDABLES */
 .italic, address, em, cite, q, dfn, i {
   font-style: italic;
 }
@@ -486,10 +487,12 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
+/* GENERAL EXTENDABLES */
 .large-bold-caps {
   font-size: 21px;
 }
 
+/* MORE SPECIFIC EXTENDABLES */
 .large-profile-info {
   font-size: 21px;
 }
