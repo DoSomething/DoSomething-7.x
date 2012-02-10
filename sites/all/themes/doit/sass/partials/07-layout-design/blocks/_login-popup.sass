@@ -10,6 +10,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   padding: 23px
   +clearfix
   #dosomething-login-register-popup-form
+    padding: 0
     overflow: hidden
   .form-item,
   .form-actions
@@ -18,6 +19,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     border: 0
     position: initial !important
     padding: 0 !important
+
+  // Exit square overrides
   .ui-dialog-title
     margin: 0
   .ui-dialog-titlebar
@@ -29,30 +32,44 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     background: none
     border: none
   .ui-dialog-titlebar-close
-    right: -400px !important
+    margin: 0
+    padding: 0
+    position: inherit
     span
       background-color: $gray5
       margin: 0
     .ui-icon
+      float: right
       padding: 2px
   .ui-state-hover
+    background: none
     border: none
+    outline: none
+    text-decoration: none
+
+  // Description text
+  .description
+    color: $white
+    font-size: 12px
+
+  // General input style
   input
     background: $gray2
-    +border-radius(0)
     border: none
     color: $white
     +float-left
     height: 27px
     padding-left: 5px
+    &:focus
+      outline: none
   ::-webkit-input-placeholder,
   :-moz-placeholder
     color: $white
-  #edit-title-text, #edit-signup-title
-  .description
-    color: $white
 
+  // Title and border
   #edit-title-text
+    border-bottom: 1px $gray-border solid
+    color: $white
     margin-top: 0
     margin-bottom: 12px
     label[for="edit-title-text"]
@@ -63,17 +80,18 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       border-bottom: 1px $gray-border-alt solid
       line-height: 40px
       padding-bottom: 12px
-    .description
-      border-top: 1px $gray-border solid
-      color: $white
-      padding-top: 12px
 
-  // Field required asterisk
+  // Field required asterisk and error message
   .ds-registration-form-required
     +float-left
     margin-left: -10px
     position: relative
     z-index: 2000
+
+  .error
+    color: red
+    font-size: 12px
+    font-weight: 300
 
   // First and last name fields
   .form-item-first-name,
@@ -85,7 +103,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       width: 163px
   .form-item-last-name
     +clearfix
-    margin-left: 25px
+    margin-left: 32px
 
   // Cell or email field
   .form-item-cell-or-email
@@ -109,13 +127,22 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       width: 90px
 
   // Password fields
+  label[for='edit-pass-pass1']
+    display: none
+
+  .form-type-password
+    +clearfix
+
+  .ok
+    color: green
+
   input.password-processed,
   input.password-confirm
     margin-bottom: 12px
 
   div.password-confirm
-    float: none !important
-    width: 20px
+    float: right
+    width: 19em
     margin: 0 !important
 
   .password-strength
@@ -124,18 +151,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     margin-top: 0
     position: relative
     left: 230px
-    top: 41px
+    top: 23px
+
+  .password-strength-text
+    display: none
 
   .password-suggestions
     clear: both
     height: 130px
-    margin: 0
+    margin: 0 0 12px 0 !important
     width: 343px !important
 
+  // Captcha
   .captcha
     border-bottom: 1px $gray-border-alt solid
     padding-bottom: 12px
-    margin-top: 45px
+    &:focus
+      outline: none
 
   label[for='edit-captcha-response']
     margin-bottom: 12px
@@ -148,14 +180,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   #edit-captcha-response
     margin-right: 25px
 
+  // Weekly updates
   .ds-signup-always-show
     border-top: 1px $gray-border solid
     padding-top: 12px
     margin-bottom: 30px
-
-  .form-item-signup
-    .description
-      font-size: 12px
 
 // Yellow GO button
 input#edit-final-submit

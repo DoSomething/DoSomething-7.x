@@ -1371,6 +1371,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
   -moz-placeholder-color: white;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #dosomething-login-register-popup-form {
+  padding: 0;
   overflow: hidden;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item,
@@ -1396,26 +1397,30 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui
   border: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close {
-  right: -400px !important;
+  margin: 0;
+  padding: 0;
+  position: inherit;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close span {
   background-color: #d4d2d1;
   margin: 0;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close .ui-icon {
+  float: right;
   padding: 2px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-state-hover {
+  background: none;
   border: none;
+  outline: none;
+  text-decoration: none;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description {
+  color: white;
+  font-size: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input {
   background: #333131;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  -o-border-radius: 0;
-  -ms-border-radius: 0;
-  -khtml-border-radius: 0;
-  border-radius: 0;
   border: none;
   color: white;
   display: inline;
@@ -1423,10 +1428,12 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
   height: 27px;
   padding-left: 5px;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description {
-  color: white;
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input:focus {
+  outline: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text {
+  border-bottom: 1px #938d88 solid;
+  color: white;
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -1439,17 +1446,17 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #ed
   line-height: 40px;
   padding-bottom: 12px;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text .description {
-  border-top: 1px #938d88 solid;
-  color: white;
-  padding-top: 12px;
-}
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-registration-form-required {
   display: inline;
   float: left;
   margin-left: -10px;
   position: relative;
   z-index: 2000;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error {
+  color: red;
+  font-size: 12px;
+  font-weight: 300;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
@@ -1465,7 +1472,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
   overflow: hidden;
   *zoom: 1;
-  margin-left: 25px;
+  margin-left: 32px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell-or-email input {
   margin-bottom: 12px;
@@ -1489,13 +1496,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year input {
   width: 90px;
 }
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-pass-pass1'] {
+  display: none;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
+  overflow: hidden;
+  *zoom: 1;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ok {
+  color: green;
+}
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-processed,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-confirm {
   margin-bottom: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] div.password-confirm {
-  float: none !important;
-  width: 20px;
+  float: right;
+  width: 19em;
   margin: 0 !important;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength {
@@ -1504,18 +1521,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   margin-top: 0;
   position: relative;
   left: 230px;
-  top: 41px;
+  top: 23px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-text {
+  display: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-suggestions {
   clear: both;
   height: 130px;
-  margin: 0;
+  margin: 0 0 12px 0 !important;
   width: 343px !important;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .captcha {
   border-bottom: 1px #292726 solid;
   padding-bottom: 12px;
-  margin-top: 45px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .captcha:focus {
+  outline: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   margin-bottom: 12px;
@@ -1532,9 +1554,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds
   border-top: 1px #938d88 solid;
   padding-top: 12px;
   margin-bottom: 30px;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-signup .description {
-  font-size: 12px;
 }
 
 input#edit-final-submit {
