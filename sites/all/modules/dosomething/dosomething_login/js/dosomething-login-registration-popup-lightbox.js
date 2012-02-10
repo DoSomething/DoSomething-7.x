@@ -58,7 +58,12 @@
         };
         $.post('dosomething/ajax/registration-data', postData);
 
-        popupForm.dialog({modal:true, width:436});
+        popupForm.dialog({
+          resizable: false,
+          draggable: false,
+          modal: true,
+          width: 436
+        });
 
         // Check if user is over 25.
         if (birthDate.getTime() <= date26.getTime()) {
