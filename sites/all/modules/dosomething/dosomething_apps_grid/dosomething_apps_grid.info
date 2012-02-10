@@ -1,0 +1,7 @@
+name = DoSomething Apps Grid
+core = 7.x
+package = DoSomething
+
+dependencies[] = views
+
+files[] = includes/dosomething_apps_grid_plugin_style.inc
