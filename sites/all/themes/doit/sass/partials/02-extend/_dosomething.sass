@@ -47,24 +47,43 @@
 .small
   font-size: $s-1
 
+.tight-leading
+  font-size: $s0
+  line-height: $s1
+
 .text-shadow
   +text-shadow($gray2-trans, 1px, 1px, 2px)
 
 ////////////////////////////
 // GENERAL EXTENDABLES
 ////////////////////////////
-.large-bold-caps
+.bold-caps-header
   @extend .headers
   @extend .bold
   @extend .caps
 
+.large-bold-caps
+  @extend .bold-caps-header
+  font-size: $s5
+
+
 ////////////////////////////
-// MEDIUM PROFILE INFO
-// din, 17px
+// PROFILE INFO
+// din, 21px, 17px
 ////////////////////////////
+.large-profile-info
+  @extend .headers
+  font-size: $s5
 .medium-profile-info
   @extend .headers
   font-size: $s3
+
+.member-stats
+  @extend .medium-profile-info
+  line-height: $s4
+.member-stats-label
+  @extend .member-stats
+  @extend .caps
 
 ////////////////////////////
 // PURPLE RIBBON
@@ -193,9 +212,24 @@
 
 
 
+////////////////////////////
+// TEASER HEADING
+// din, blue, 18px
+////////////////////////////
+.teaser-heading
+  @extend .headers
+  @extend .bold
+  @extend .blue
+  font-size: $s4
 
-
-
+////////////////////////////
+// TEASER DATE
+// din, medium, gray4
+////////////////////////////
+.teaser-date
+  @extend .headers
+  @extend .medium
+  @extend .gray4
 
 
 ////////////////////////////
@@ -213,12 +247,6 @@
 // EXTENDABLES FOR
 // "APP STYLE" LAYOUTS
 ////////////////////////////
-////////////////////////////
-// APP MODULES
-// normal, 14px line height
-////////////////////////////
-.app-module
-  line-height: $s1
 
 ////////////////////////////
 // APP FOOTER
@@ -242,17 +270,23 @@
 
 
 ////////////////////////////
-// EXTENDABLES FOR
-// PROJECT PAGES
+// ACCORDIAN SELECTED CATEGORY
+// din, bold, white
 ////////////////////////////
-////////////////////////////
-// START A PROJECT PROMPT / INVITE A FRIEND
-// din, 21px, bold, black, caps
-////////////////////////////
-.start-project, .invite-friend
-  @extend .large-bold-caps
-  font-size: $s5
+.accordian
+  @extend .white
+.accordian-selected-category
+  @extend .headers
+  @extend .bold
+  @extend .white
+  font-size: $s4
 
+
+
+
+////////////////////////////
+// BOX-DETAILS LAYOUTS
+////////////////////////////
 
 
 

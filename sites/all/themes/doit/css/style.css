@@ -392,13 +392,13 @@ h1, h2, h3, h4, h5, h6 {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .large-bold-caps, .start-project, .invite-friend, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.headers, .large-bold-caps, .start-project, .invite-friend, .medium-profile-info, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
+.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -411,17 +411,17 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-.medium, .member-expanded, .app-footer, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
+.medium, .member-expanded, .teaser-date, .app-footer, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .large-bold-caps, .start-project, .invite-friend, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, dfn, #utility-bar, #breadcrumb b {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, dfn, #utility-bar, #breadcrumb b {
   font-weight: bold;
   font-weight: 600;
 }
 
-.blue, .page-links a, .page-content-text a, .headlines a, .right-sidebar .headlines a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .h4, .content h4, .content .h5, .content .h6 {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar .headlines a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .h4, .content h4, .content .h5, .content .h6 {
   color: #18408b;
 }
 
@@ -437,7 +437,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first h2.block-title, .region-sidebar-first h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first h2.block-title, .region-sidebar-first h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
   color: white;
 }
 
@@ -457,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #4b4744;
 }
 
-.gray4 {
+.gray4, .teaser-date {
   color: #807a75;
 }
 
@@ -477,12 +477,29 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 10px;
 }
 
+.tight-leading {
+  font-size: 12px;
+  line-height: 14px;
+}
+
 .text-shadow, .purple-ribbon, .dothis-button-large, .app-purple-ribbon {
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
-.medium-profile-info {
+.large-bold-caps {
+  font-size: 21px;
+}
+
+.large-profile-info {
+  font-size: 21px;
+}
+
+.medium-profile-info, .member-stats, .member-stats-label {
   font-size: 17px;
+}
+
+.member-stats, .member-stats-label {
+  line-height: 18px;
 }
 
 .purple-ribbon {
@@ -539,20 +556,20 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 21px;
 }
 
-.sponsors-who-rock {
-  font-size: 14px;
+.teaser-heading {
+  font-size: 18px;
 }
 
-.app-module {
-  line-height: 14px;
+.sponsors-who-rock {
+  font-size: 14px;
 }
 
 .app-purple-ribbon {
   background-color: #502862;
 }
 
-.start-project, .invite-friend {
-  font-size: 21px;
+.accordian-selected-category {
+  font-size: 18px;
 }
 
 .main-nav {
