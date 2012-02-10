@@ -392,20 +392,17 @@ h1, h2, h3, h4, h5, h6 {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .allcaps, .smallcaps, .main-nav-dropdown, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .main-nav, .main-footer-nav, .filter-dropdowns, .counter-labels {
+.caps, .smallcaps, .app-purple-ribbon, .start-project, .invite-friend, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a {
   font-size: 0.9em;
   letter-spacing: 0.1em;
-}
-
-.headers, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-}
-
-.allcaps {
   text-transform: uppercase;
 }
 
-.smallcaps, .main-nav-dropdown, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a {
+.headers, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .start-project, .invite-friend, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.smallcaps {
   font-variant: small-caps;
 }
 
@@ -414,12 +411,12 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-.medium, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
+.medium, .app-footer, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, dfn, #utility-bar, #breadcrumb b {
+.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .start-project, .invite-friend, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, dfn, #utility-bar, #breadcrumb b {
   font-weight: bold;
   font-weight: 600;
 }
@@ -428,7 +425,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #18408b;
 }
 
-.black, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+.black, .start-project, .invite-friend, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
   color: black;
 }
 
@@ -440,11 +437,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .block, .region-sidebar-first h2.block-title, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first h2.block-title, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
   color: white;
 }
 
-.black, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+.black, .start-project, .invite-friend, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
   color: black;
 }
 
@@ -480,18 +477,36 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 10px;
 }
 
+.text-shadow, .purple-ribbon, .dothis-button-large, .app-purple-ribbon {
+  text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
+}
+
 .purple-ribbon {
   font-size: 33px;
-  text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
 .dothis-button-large {
   font-size: 68px;
-  text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
 .share-of-the-day {
   font-size: 21px;
+}
+
+.dark-background, .region-sidebar-first .block {
+  background-color: #1e1d1c;
+}
+.dark-background a, .region-sidebar-first .block a {
+  color: #efefef;
+}
+.dark-background a:visited, .region-sidebar-first .block a:visited {
+  color: #efefef;
+}
+.dark-background a:hover, .region-sidebar-first .block a:hover {
+  color: #fed100;
+}
+.dark-background a:active, .region-sidebar-first .block a:active {
+  color: #fed100;
 }
 
 .dropdown-catefories {
@@ -505,6 +520,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .sponsors-who-rock {
   font-size: 14px;
+}
+
+.app-module {
+  line-height: 14px;
+}
+
+.app-purple-ribbon {
+  background-color: #502862;
+}
+
+.start-project, .invite-friend {
+  font-size: 21px;
 }
 
 .main-nav {
@@ -825,10 +852,10 @@ a:visited {
   color: #18408b;
 }
 a:hover {
-  color: #fed100;
+  color: #18408b;
 }
 a:active {
-  color: #fed100;
+  color: #18408b;
 }
 a:hover, a:active {
   text-decoration: underline;
@@ -1293,7 +1320,6 @@ div[role=main] {
   margin-top: 104px;
 }
 .region-sidebar-first .block {
-  background-color: #1e1d1c;
   padding: 0 15px;
   margin-bottom: 5px;
 }
@@ -1328,7 +1354,7 @@ div[role=main] {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;

@@ -47,31 +47,37 @@
 .small
   font-size: $s-1
 
+.text-shadow
+  +text-shadow($gray2-trans, 1px, 1px, 2px)
+
 
 ////////////////////////////
 // PURPLE RIBBON
 // home page
+// din, 33px, bold, white
 ////////////////////////////
 .purple-ribbon
   @extend .headers
   @extend .bold
   @extend .white
+  @extend .text-shadow
   font-size: $s8
-  +text-shadow($gray2-trans, 1px, 1px, 2px)
 
 ////////////////////////////
 // DO THIS BUTTON
 // large like on the home page
+// din, 69px, bold, gold
 ////////////////////////////
 .dothis-button-large
   @extend .headers
   @extend .bold
   @extend .gold
+  @extend .text-shadow
   font-size: $s11
-  +text-shadow($gray2-trans, 1px, 1px, 2px)
 
 ////////////////////////////
 // SHARE OF THE DAY
+// din, 31px, bold, black
 ////////////////////////////
 .share-of-the-day
   @extend .headers
@@ -79,31 +85,60 @@
   font-size: $s5
 
 ////////////////////////////
+// TEXT ON DARK BACKGROUND
+// normal, white
+////////////////////////////
+.text-on-dark
+  @extend .white
+
+////////////////////////////
 // HILIGHT ON DARK
 // hilight text (gold) for dark backgrounds
+// normal, gold
 ////////////////////////////
 .highlight-on-dark
   @extend .gold
 
+////////////////////////////
+// DARK BACKGROUNDS
+// white text
+// links: light gray, gold hover
+////////////////////////////
+.dark-background
+  background-color: $gray1
+  @extend .text-on-dark
+  a
+    +link-colors($gray6, $gold, $gold, $gray6, false)
+
 
 ////////////////////////////
 // SIDE BAR FORMS
+// light gray
 ////////////////////////////
 .field-text
   @extend .gray5
 
 ////////////////////////////
 // DROPDOWNS
+// din, bold, white
 ////////////////////////////
 .dropdown
   @extend .headers
   @extend .bold
   @extend .white
 
+////////////////////////////
+// DROPDOWN CATEGORIES
+// 14px
+////////////////////////////
 .dropdown-catefories
   @extend .dropdown
   font-size: $s1
 
+////////////////////////////
+// DROPDOWN CHOICES
+// 12px / 21px
+////////////////////////////
 .dropdown-choices
   @extend .dropdown
   font-size: $s0
@@ -111,6 +146,7 @@
 
 ////////////////////////////
 // SPONSORS WHO ROCK
+// din, bold, white, 14px
 ////////////////////////////
 .sponsors-who-rock
   @extend .headers
@@ -118,14 +154,57 @@
   @extend .white
   font-size: $s1
 
+
+////////////////////////////
+// EXTENDABLES FOR
+// "APP STYLE" LAYOUTS
+////////////////////////////
+////////////////////////////
+// APP MODULES
+// normal, 14px line height
+////////////////////////////
+.app-module
+  line-height: $s1
+
+////////////////////////////
+// APP FOOTER
+// din, medium
+////////////////////////////
+.app-footer
+  @extend .headers
+  @extend .medium
+
+////////////////////////////
+// APP PURPLE RIBBON
+// purple, bg, din, bold, white, caps, shadow
+////////////////////////////
+.app-purple-ribbon
+  @extend .headers
+  @extend .bold
+  @extend .white
+  @extend .caps
+  @extend .text-shadow
+  background-color: $purple
+
+
+////////////////////////////
+// EXTENDABLES FOR
+// PROJECT PAGES
+////////////////////////////
+////////////////////////////
+// START A PROJECT PROMPT / INVITE A FRIEND
+// din, 21px, bold, black, caps
+////////////////////////////
+.start-project, .invite-friend
+  @extend .headers
+  @extend .bold
+  @extend .black
+  @extend .caps
+  font-size: $s5
+
 ////////////////////////////
 //
 ////////////////////////////
-
-
-
-
-
 
 
 
@@ -147,7 +226,7 @@
   @extend .headers
   @extend .white
   @extend .bold
-  @extend .smallcaps
+  @extend .caps
   font-size: $s4
   line-height: 38px
   &.hover
@@ -163,7 +242,7 @@
   @extend .headers
   @extend .white
   @extend .medium
-  @extend .smallcaps
+  @extend .caps
   font-size: $s1
 
 .page-links
@@ -200,7 +279,7 @@ h1
     @extend .headers
     @extend .bold
     @extend .black
-    @extend .smallcaps
+    @extend .caps
     font-size: $s10
 
 h2
@@ -219,7 +298,7 @@ h3
   @extend .headers
   @extend .bold
   @extend .white
-  @extend .smallcaps
+  @extend .caps
   font-size: $s5
 
 .headlines
@@ -227,7 +306,7 @@ h3
     @extend .headers
     @extend .bold
     @extend .blue
-    @extend .smallcaps
+    @extend .caps
     +remove-link-underlines
     font-size: $s1
     &.hover
@@ -243,13 +322,13 @@ h3
     @extend .headers
     @extend .bold
     @extend .white
-    @extend .smallcaps
+    @extend .caps
   .headlines
     a
       @extend .headers
       @extend .bold
       @extend .blue
-      @extend .smallcaps
+      @extend .caps
       +remove-link-underlines
       &.hover
         text-decoration: underline
