@@ -477,6 +477,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['title_text'] = array(
     '#type' => 'item',
     '#title' => t("You're almost there."),
+    '#description' => t("Fill out the rest of the information below and you'll be a member in no time."),
   );
   $form['name'] = array(
     'first_name' => array(

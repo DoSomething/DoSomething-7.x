@@ -9,18 +9,17 @@
 .status, .warning, .error
   @extend .messages
 .status
-  border-color: $green
-  color: $green
+  border-color: $alert-green
+  color: $alert-green
 .warning
   border-color: $orange
   color: $orange
 .error
-  border-color: $red
-  color: $red
+  border-color: $alert-red
+  color: $alert-red
 
 // PAGERS
 ul.pager
   +horizontal-list(0.5em)
   a
     +remove-link-underlines
-

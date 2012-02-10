@@ -45,6 +45,11 @@
 .blue-light
   color: $blue-light
 
+.alert-green
+  color: $alert-green
+.alert-red
+  color: red
+
 .small
   font-size: $s-1
 
@@ -110,6 +115,26 @@
   @extend .gold
   @extend .text-shadow
   font-size: $s11
+
+////////////////////////////
+// GO BUTTON
+// small with 2-tone gold like on log in overlay
+////////////////////////////
+.go-button
+  @extend .gray2
+  @extend .bold
+  background-color: $gold
+  +background-image(linear-gradient(top, $yellow-gloss-light 49%, $yellow-gloss-dark 51%))
+  +border-radius(12px)
+  +box-sizing(content-box)
+  +float-right
+  font-family: $font-headline
+  font-size: 18px
+  height: 30px
+  padding: 1px 10px 0
+  text-transform: uppercase
+  &:hover, &:active
+    text-decoration: none
 
 ////////////////////////////
 // SHARE OF THE DAY

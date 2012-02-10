@@ -412,12 +412,12 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-.medium, .member-expanded, .teaser-date, .app-footer, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
+.medium, .member-expanded, .teaser-date, .app-footer, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, dfn, #utility-bar, #breadcrumb b {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, dfn, #utility-bar, #breadcrumb b, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"] {
   font-weight: bold;
   font-weight: 600;
 }
@@ -438,7 +438,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first h2.block-title, .region-sidebar-first h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a {
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first h2.block-title, .region-sidebar-first h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   color: white;
 }
 
@@ -450,7 +451,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #1e1d1c;
 }
 
-.gray2 {
+.gray2, .go-button, input#edit-final-submit {
   color: #333131;
 }
 
@@ -472,6 +473,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .blue-light {
   color: #2b63b1;
+}
+
+.alert-green, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ok {
+  color: #47c965;
+}
+
+.alert-red, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error {
+  color: red;
 }
 
 .small {
@@ -511,6 +520,36 @@ h1, h2, h3, h4, h5, h6 {
 
 .dothis-button-large {
   font-size: 68px;
+}
+
+.go-button, input#edit-final-submit {
+  background-color: #fed100;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
+  background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -moz-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -o-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -khtml-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
+  display: inline;
+  float: right;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  height: 30px;
+  padding: 1px 10px 0;
+  text-transform: uppercase;
+}
+.go-button:hover, input#edit-final-submit:hover, .go-button:active, input#edit-final-submit:active {
+  text-decoration: none;
 }
 
 .share-of-the-day {
@@ -836,7 +875,7 @@ blockquote {
 
 /* Lists -------------------------------------------------------------- */
 ol, ul {
-  padding-left: 1em;
+  padding-left: 2em;
 }
 
 dl {
@@ -850,13 +889,9 @@ ol {
 
 ul {
   list-style: disc;
-  list-style-image: url('images/icn-rightsidebar-tri-right-blue.png');
 }
 li ul {
   list-style-type: circle;
-}
-.view-related-projects ul {
-  list-style-image: url('images/icn-rightsidebar-tri-right-purple.png');
 }
 
 dt {
@@ -1398,7 +1433,7 @@ div[role=main] {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -1433,12 +1468,17 @@ div[role=main] {
 }
 
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
-  color: white;
   background: #4b4744;
   border: none;
   padding: 23px;
   overflow: hidden;
   *zoom: 1;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
   -moz-placeholder-color: white;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #dosomething-login-register-popup-form {
@@ -1472,28 +1512,31 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui
   padding: 0;
   position: inherit;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close span {
-  background-color: #d4d2d1;
-  margin: 0;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog-titlebar-close .ui-icon {
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-icon.ui-icon-closethick {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/close.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 16px;
+  height: 16px;
+  display: inline;
   float: right;
-  padding: 2px;
+  margin: -13px -9px 0 0;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-state-hover {
-  background: none;
+  background-image: none;
   border: none;
   outline: none;
   text-decoration: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description {
-  color: white;
   font-size: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input {
   background: #333131;
   border: none;
-  color: white;
   display: inline;
   float: left;
   height: 27px;
@@ -1503,19 +1546,19 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
   outline: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text {
-  border-bottom: 1px #938d88 solid;
-  color: white;
   margin-top: 0;
   margin-bottom: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"] {
-  color: white;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 40px;
-  font-weight: 500;
   border-bottom: 1px #292726 solid;
   line-height: 40px;
   padding-bottom: 12px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text .description {
+  border-top: 1px #938d88 solid;
+  padding-top: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-registration-form-required {
   display: inline;
@@ -1525,9 +1568,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds
   z-index: 2000;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error {
-  color: red;
   font-size: 12px;
-  font-weight: 300;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
@@ -1574,16 +1615,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
   overflow: hidden;
   *zoom: 1;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ok {
-  color: green;
-}
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-processed,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-confirm {
   margin-bottom: 12px;
+  width: 211px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] div.password-confirm {
   float: right;
-  width: 19em;
+  width: 211;
   margin: 0 !important;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength {
@@ -1594,13 +1633,21 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   left: 230px;
   top: 23px;
 }
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm {
+  font-size: 12px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] div.password-confirm {
+  width: 249px !important;
+}
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-text {
   display: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-suggestions {
+  border: none !important;
   clear: both;
   height: 130px;
-  margin: 0 0 12px 0 !important;
+  margin: 0 !important;
   width: 343px !important;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .captcha {
@@ -1611,9 +1658,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ca
   outline: none;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
+  font-size: 12px;
   margin-bottom: 12px;
-  color: white;
-  font-weight: 500;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-captcha-response {
   margin: 12px 0;
@@ -1625,38 +1671,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds
   border-top: 1px #938d88 solid;
   padding-top: 12px;
   margin-bottom: 30px;
-}
-
-input#edit-final-submit {
-  background-color: #fed100;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
-  background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: -moz-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -o-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -khtml-border-radius: 12px;
-  border-radius: 12px;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  -ms-box-sizing: content-box;
-  box-sizing: content-box;
-  color: #333131;
-  display: inline;
-  float: right;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  height: 30px;
-  padding: 1px 10px 0;
-  text-transform: uppercase;
-}
-input#edit-final-submit:hover, input#edit-final-submit:active {
-  text-decoration: none;
 }
 
 comments.fb_iframe_widget {
