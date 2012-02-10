@@ -45,7 +45,7 @@
           float: none
           display: block
           padding-top: 0
-          height: 21px
+          line-height: 21px
           // margin-left: 20px
           a
             @extend .white
@@ -53,3 +53,11 @@
             font-size: 14px
             font-weight: 100
             text-transform: none
+          a[href="http://www.facebook.com/dosomething"]
+            background: image_url("icn-footer-fb.png") no-repeat 23% 50%
+          a[href="https://twitter.com/#!/dosomething"]
+            background: image_url("icn-footer-twtr.png") no-repeat 27% 50%
+          a[href="http://www.facebook.com/dosomething"],
+          a[href="https://twitter.com/#!/dosomething"]
+            padding-left: 55px
+            line-height: 30px

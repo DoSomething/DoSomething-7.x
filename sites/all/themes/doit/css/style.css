@@ -1464,13 +1464,24 @@ h2.block-title, h2.pane-title {
   float: none;
   display: block;
   padding-top: 0;
-  height: 21px;
+  line-height: 21px;
 }
 #block-menu-menu-footer .content ul.menu ul li a {
   line-height: 18px;
   font-size: 14px;
   font-weight: 100;
   text-transform: none;
+}
+#block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"] {
+  background: url('images/icn-footer-fb.png') no-repeat 23% 50%;
+}
+#block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
+  background: url('images/icn-footer-twtr.png') no-repeat 27% 50%;
+}
+#block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"],
+#block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
+  padding-left: 55px;
+  line-height: 30px;
 }
 
 .ui-widget-overlay {
