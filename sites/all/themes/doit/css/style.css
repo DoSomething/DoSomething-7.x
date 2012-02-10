@@ -414,12 +414,12 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-.medium, .footer-links, thead tr th, #utility-bar, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
+.medium, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, dfn, #breadcrumb b {
+.bold, b, strong, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-catefories, .dropdown-choices, .sponsors-who-rock, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, dfn, #utility-bar, #breadcrumb b {
   font-weight: bold;
   font-weight: 600;
 }
@@ -1082,6 +1082,8 @@ body {
   color: #e6e6e6;
   height: 40px;
   padding-top: 6px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 14px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -1115,7 +1117,7 @@ body {
   box-shadow: inset 0 0 4px 1px #4d4a4a;
   background-color: #746f6f;
   background-repeat: no-repeat;
-  background-position: 97% 50%;
+  background-position: 93% 50%;
   background-image: url('images/icn-utility-search-magnify.png');
   border: 1px solid #4d4a4a;
   font-size: 10px;
@@ -1133,7 +1135,6 @@ body {
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login a {
   color: #e6e6e6;
-  font-size: 12px;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .utility-items.fbconnect {
   display: inline;
