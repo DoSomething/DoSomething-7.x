@@ -50,6 +50,21 @@
 .text-shadow
   +text-shadow($gray2-trans, 1px, 1px, 2px)
 
+////////////////////////////
+// GENERAL EXTENDABLES
+////////////////////////////
+.large-bold-caps
+  @extend .headers
+  @extend .bold
+  @extend .caps
+
+////////////////////////////
+// MEDIUM PROFILE INFO
+// din, 17px
+////////////////////////////
+.medium-profile-info
+  @extend .headers
+  font-size: $s3
 
 ////////////////////////////
 // PURPLE RIBBON
@@ -83,6 +98,8 @@
   @extend .headers
   @extend .bold
   font-size: $s5
+  .attribution
+    font-size: $s5
 
 ////////////////////////////
 // TEXT ON DARK BACKGROUND
@@ -126,23 +143,60 @@
   @extend .headers
   @extend .bold
   @extend .white
-
 ////////////////////////////
 // DROPDOWN CATEGORIES
 // 14px
 ////////////////////////////
-.dropdown-catefories
+.dropdown-categories
   @extend .dropdown
-  font-size: $s1
-
+  font-size: $s5
 ////////////////////////////
 // DROPDOWN CHOICES
 // 12px / 21px
 ////////////////////////////
 .dropdown-choices
   @extend .dropdown
+  @extend .gray6
+  font-size: $s3
+  line-height: $s6
+  &:hover
+    @extend .gold
+
+
+////////////////////////////
+// SIDEBAR DROPDOWNS
+////////////////////////////
+.sidebar-dropdown-categories
+  @extend .dropdown
+  font-size: $s1
+.sidebar-dropdown-choices
+  @extend .dropdown
+  @extend .gray5
   font-size: $s0
   line-height: $s5
+  &:hover
+    @extend .gold
+
+
+
+////////////////////////////
+// MEMBER DROPDOWN CHOICES
+////////////////////////////
+.member-expanded
+  @extend .headers
+  @extend .medium
+  @extend .gray5
+  font-size: $s0
+  line-height: $s5
+  &:hover
+    @extend .gold
+
+
+
+
+
+
+
 
 ////////////////////////////
 // SPONSORS WHO ROCK
@@ -196,15 +250,9 @@
 // din, 21px, bold, black, caps
 ////////////////////////////
 .start-project, .invite-friend
-  @extend .headers
-  @extend .bold
-  @extend .black
-  @extend .caps
+  @extend .large-bold-caps
   font-size: $s5
 
-////////////////////////////
-//
-////////////////////////////
 
 
 
