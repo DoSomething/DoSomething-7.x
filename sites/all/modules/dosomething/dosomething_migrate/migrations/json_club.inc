@@ -42,15 +42,9 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
 
-    //$this->addFieldMapping('field_club_agreement', '');
-    //$this->addFieldMapping('path', '');
-    //$this->addFieldMapping('redirect', '');
-    //$this->addFieldMapping('field_club_verified', '');
     $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5')
-      ->arguments(array('source_type' => 'tid'))
       ->separator(',');
     $this->addFieldMapping('taxonomy_vocabulary_17', 'vocab_17')
-      ->arguments(array('source_type' => 'tid'))
       ->separator(',');
 
 
@@ -104,25 +98,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     ));
   }
   public function prepare($entity, $row) {
-    /*if (!empty($row->vocab_5)) {
-      $terms = "";
-      foreach ($row->vocab_5 as $key => $term) {
-        $terms .= $key . ',';
-      }
-      var_dump('TERMS', $terms);
-      $row->vocab_5 = $terms;
-      var_dump('nid', $row->nid, 'vocab 5', $row->vocab_5, 'dest', $entity->taxonomy_vocabulary_5);
-    }
-
-    if (!empty($row->vocab_17)) {
-      $terms = "";
-      foreach ($row->vocab_17 as $key => $term) {
-        $terms .= $key . ',';
-      }
-      var_dump('TERMS', $terms);
-      $entity->taxonomy_vocabulary_17 = $terms;
-      var_dump('nid', $row->nid, 'vocab 17', $row->vocab_17, 'dest', $entity->taxonomy_vocabulary_17);
-    }*/
   }
 
   public function prepareRow($row) {
@@ -148,28 +123,22 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
         }
       }
     }
-//if (!empty($row->vocab_5)) {var_dump('nid', $row->nid, 'vocab 5', $row->vocab_5);}
-//if (!empty($row->vocab_17)) {var_dump('nid', $row->nid, 'vocab 17', $row->vocab_17);}
     $terms = "";
     if (!empty($row->vocab_5)) {
-      foreach ($row->vocab_5 as $key => $term) {
-        $terms .= $key . ',';
+      foreach ($row->vocab_5 as $term) {
+        $terms .= $term . ',';
       }
-      $row->vocab_5 = $terms;
-      var_dump('nid', $row->nid, 'vocab 5', $row->vocab_5);
+      $row->vocab_5 = trim($terms, ',');
     }
 
     $terms = "";
     if (!empty($row->vocab_17)) {
-      foreach ($row->vocab_17 as $key => $term) {
-        $terms .= $key . ',';
+      foreach ($row->vocab_17 as $term) {
+        $terms .= $term . ',';
       }
-      var_dump('TERMS', $terms);
-      $row->vocab_17 = $terms;
-      var_dump('nid', $row->nid, 'vocab 17', $row->vocab_17);
+      $row->vocab_17 = trim($terms, ',');
     }
- 
-}
+  }
 
   protected function fidFromEmField($value, $uid) {
     $wrappers = file_get_stream_wrappers();
