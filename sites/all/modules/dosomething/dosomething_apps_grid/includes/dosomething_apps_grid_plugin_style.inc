@@ -6,95 +6,100 @@
  */
 
 class dosomething_apps_grid_plugin_style extends views_plugin_style {
-
-  /**
-   * Check if there are no results behaviors set.
-   */
-  function even_empty() {
-    return empty($this->view->empty) ? !empty($this->definition['even empty']) : FALSE;
-  }
-
   function option_definition() {
     $options = array(
-      'image' => array('default' => ''),
-      'text' => array('default' => ''),
-      'link' => array('default' => ''),
-      'footer' => array('default' => ''),
-      'banner' => array('default' => ''),
+      'fields' => array(
+        'contains' => array(
+          'banner' => array('default' => ''),
+          'image' => array('default' => ''),
+          'text' => array('default' => ''),
+          'footer' => array('default' => ''),
+          'link' => array('default' => ''),
+        ),
+      ),
+      'settings' => array(
+        'contains' => array(
+          'last_adjust' => array('default' => FALSE, 'bool' => TRUE),
+          'last_every_nth' => array('default' => ''),
+        ),
+      ),
     );
     return $options;
   }
 
   function options_form(&$form, &$form_state) {
+    parent::options_form($form, $form_state);
+    $form['#pre_render'][] = 'views_ui_pre_render_add_fieldset_markup';
+    $form['fields'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Fields'),
+    );
+    $form['settings'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Settings'),
+    );
+
     $fields = $this->dosomething_apps_grid_fields();
-    $form['image'] = array(
-     '#type' => 'select',
-     '#title' => t('Image'),
-     '#description' => t('Choose the field for the image'),
-     '#options' => $this->dosomething_apps_grid_fields('image'),
-     '#default_value' => $this->options['image'],
-     '#required' => TRUE,
+    $fields_optional = array('' => t('- None -')) + $fields;
+
+    $form['fields']['banner'] = array(
+      '#type' => 'select',
+      '#title' => t('Banner'),
+      '#description' => t("Choose the field for the banner."),
+      '#options' => $fields_optional,
+      '#default_value' => $this->options['fields']['banner'],
     );
-    $form['text'] = array(
-     '#type' => 'select',
-     '#title' => t('Text'),
-     '#description' => t('Choose the field for the text'),
-     '#options' => $this->dosomething_apps_grid_fields(),
-     '#default_value' => $this->options['text'],
-     '#required' => TRUE,
+    $form['fields']['image'] = array(
+      '#type' => 'select',
+      '#title' => t('Image'),
+      '#description' => t('Choose the field for the image'),
+      '#options' => $this->dosomething_apps_grid_fields('image'),
+      '#default_value' => $this->options['fields']['image'],
+      '#required' => TRUE,
     );
-    $form['footer'] = array(
-     '#type' => 'select',
-     '#title' => t('Footer'),
-     '#description' => t("Choose the field for the footer."),
-     '#options' => array('' => t('- None -')) + $this->dosomething_apps_grid_fields(),
-     '#default_value' => $this->options['footer'],
+    $form['fields']['text'] = array(
+      '#type' => 'select',
+      '#title' => t('Text'),
+      '#description' => t('Choose the field for the text'),
+      '#options' => $fields,
+      '#default_value' => $this->options['fields']['text'],
+      '#required' => TRUE,
     );
-    $form['link'] = array(
-     '#type' => 'select',
-     '#title' => t('Link'),
-     '#description' => t("Choose the value for the 'Go' button."),
-     '#options' => array('' => t('- None -')) + $this->dosomething_apps_grid_fields(),
-     '#default_value' => $this->options['link'],
+    $form['fields']['footer'] = array(
+      '#type' => 'select',
+      '#title' => t('Footer'),
+      '#description' => t("Choose the field for the footer."),
+      '#options' => $fields_optional,
+      '#default_value' => $this->options['fields']['footer'],
     );
-    $form['banner'] = array(
-     '#type' => 'select',
-     '#title' => t('Banner'),
-     '#description' => t("Choose the field for the banner."),
-     '#options' => array('' => t('- None -')) + $this->dosomething_apps_grid_fields(),
-     '#default_value' => $this->options['banner'],
+    $form['fields']['link'] = array(
+      '#type' => 'select',
+      '#title' => t('Link'),
+      '#description' => t("Choose the value for the 'Go' button."),
+      '#options' => $fields_optional,
+      '#default_value' => $this->options['fields']['link'],
+    );
+
+    $form['settings']['last_adjust'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Adjust the first/last class'),
+      '#default_value' => $this->options['settings']['last_adjust'],
+    );
+    $form['settings']['last_every_nth'] = array(
+      '#type' => 'textfield',
+      '#size' => 3,
+      '#title' => t('FIRST/LAST every n<sup>th</sup>'),
+      '#default_value' => $this->options['settings']['last_every_nth'],
+      '#dependency' => array('edit-style-options-settings-last-adjust' => array(1)),
     );
   }
 
-  function dosomething_apps_grid_fields_value($field, $field_name, $row, $delta) {
-    $item = '';
-    if (isset($field->field_info)) {
-      $items = $field->get_items($row);
-      if (!empty($items)) {
-        $item = reset($items);
-      }
+  function options_submit(&$form, &$form_state) {
+    parent::options_submit($form, $form_state);
+    $options = &$form_state['values']['style_options'];
+    if (empty($options['settings']['last_adjust'])) {
+      $options['settings']['last_every_nth'] = 0;
     }
-    else {
-      $item = $view->style_plugin->get_field($delta, $field_name);
-    }
-
-    if (!is_array($item)) {
-      $item = array('rendered' => array('#markup' => $item));
-    }
-
-    $element_type = $field->element_type();
-    $class = $field->element_classes($delta);
-    $prefix = '<' . $element_type;
-    if ($class) {
-      $prefix .= ' class="' . $class . '"';
-    }
-    $prefix .= '>';
-    $suffix = '</' . $element_type . '>';
-
-    $item['rendered']['#prefix'] = $prefix;
-    $item['rendered']['#suffix'] = $suffix;
-
-    return $item;
   }
 
   function dosomething_apps_grid_fields($type = NULL) {

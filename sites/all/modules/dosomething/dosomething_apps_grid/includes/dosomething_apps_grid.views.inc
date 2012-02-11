@@ -11,7 +11,7 @@
 function dosomething_apps_grid_views_plugins() {
   $path = drupal_get_path('module', 'dosomething_apps_grid') . '/includes';
   return array(
-    //'module' => 'dosomething_apps_grid',
+    'module' => 'dosomething_apps_grid',
     'style' => array(
       'dosomething_apps_grid' => array(
         'title' => t('DoSomething Apps Grid'),

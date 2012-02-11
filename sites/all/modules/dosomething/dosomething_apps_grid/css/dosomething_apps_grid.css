@@ -1,4 +1,12 @@
 .apps-grid {
+  overflow: hidden;
+}
+.apps-box {
   float: left;
-  width: 25%;
+}
+.apps-box.first {
+  clear: left;
+}
+.apps-box.last {
+  clear: right;
 }
