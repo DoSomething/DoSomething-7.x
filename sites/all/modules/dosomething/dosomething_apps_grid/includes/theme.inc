@@ -18,6 +18,10 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
   $count = 0;
   foreach ($rows as $delta => $row) {
     foreach ($options['fields'] as $type => $field_name) {
+      if (empty($view->field[$field_name])) {
+        continue;
+      }
+
       $field = $view->style_plugin->get_field($delta, $field_name);
       if (!is_array($field)) {
         $field = array('#markup' => $field);

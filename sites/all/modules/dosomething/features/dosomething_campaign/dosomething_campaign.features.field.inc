@@ -82,7 +82,7 @@ function dosomething_campaign_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '14',
+        'weight' => '15',
       ),
     ),
   );
@@ -151,7 +151,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -223,7 +223,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -294,7 +294,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '13',
+        'weight' => '14',
       ),
     ),
   );
@@ -363,7 +363,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -436,7 +436,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -761,7 +761,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -832,7 +832,7 @@ function dosomething_campaign_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '7',
+        'weight' => '5',
       ),
     ),
   );
@@ -906,7 +906,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -981,6 +981,7 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
+          'display_all_day' => 0,
           'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
@@ -990,7 +991,7 @@ function dosomething_campaign_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -1072,7 +1073,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '12',
+        'weight' => '13',
       ),
       'widget_type' => 'options_select',
     ),

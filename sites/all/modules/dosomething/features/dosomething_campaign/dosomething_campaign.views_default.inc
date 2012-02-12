@@ -29,10 +29,13 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['row_options']['hide_empty'] = 0;
-  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
+  $handler->display->display_options['style_options']['fields']['banner'] = 'field_campaign_call_to_action';
+  $handler->display->display_options['style_options']['fields']['image'] = 'field_campaign_main_image';
+  $handler->display->display_options['style_options']['fields']['text'] = 'field_campaign_teaser_1';
+  $handler->display->display_options['style_options']['fields']['footer'] = 'field_campain_date';
+  $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
+  $handler->display->display_options['style_options']['settings']['last_every_nth'] = '3';
   /* Relationship: Content: Campaign (field_report_back_reference) - reverse */
   $handler->display->display_options['relationships']['reverse_field_report_back_reference_node']['id'] = 'reverse_field_report_back_reference_node';
   $handler->display->display_options['relationships']['reverse_field_report_back_reference_node']['table'] = 'node';
@@ -377,6 +380,11 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'campaign' => 'campaign',
   );
+  /* Filter criterion: Content: Main Image (field_campaign_main_image:fid) */
+  $handler->display->display_options['filters']['field_campaign_main_image_fid']['id'] = 'field_campaign_main_image_fid';
+  $handler->display->display_options['filters']['field_campaign_main_image_fid']['table'] = 'field_data_field_campaign_main_image';
+  $handler->display->display_options['filters']['field_campaign_main_image_fid']['field'] = 'field_campaign_main_image_fid';
+  $handler->display->display_options['filters']['field_campaign_main_image_fid']['operator'] = 'not empty';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -716,6 +724,58 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['fb_social']['empty_zero'] = 0;
   $handler->display->display_options['fields']['fb_social']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['fb_social']['fb_social_plugins'] = 'FB Like';
+  /* Field: Content: Campaign Date */
+  $handler->display->display_options['fields']['field_campain_date']['id'] = 'field_campain_date';
+  $handler->display->display_options['fields']['field_campain_date']['table'] = 'field_data_field_campain_date';
+  $handler->display->display_options['fields']['field_campain_date']['field'] = 'field_campain_date';
+  $handler->display->display_options['fields']['field_campain_date']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['text'] = 'Ends [field_campain_date]';
+  $handler->display->display_options['fields']['field_campain_date']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campain_date']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_campain_date']['settings'] = array(
+    'format_type' => 'month_day',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_campain_date']['field_api_classes'] = 0;
+  /* Field: Content: Teaser */
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['id'] = 'field_campaign_teaser_1';
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['table'] = 'field_data_field_campaign_teaser';
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['field'] = 'field_campaign_teaser';
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser_1']['field_api_classes'] = 0;
   $handler->display->display_options['path'] = 'campaigns';
   $handler->display->display_options['menu']['title'] = 'Current Campaigns';
   $handler->display->display_options['menu']['weight'] = '0';
