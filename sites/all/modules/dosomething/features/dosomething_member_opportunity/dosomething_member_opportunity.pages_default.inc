@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_grants.pages_default.inc
+ * dosomething_member_opportunity.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_handlers().
  */
-function dosomething_grants_default_page_manager_handlers() {
+function dosomething_member_opportunity_default_page_manager_handlers() {
   $export = array();
 
   $handler = new stdClass;
@@ -312,7 +312,7 @@ function dosomething_grants_default_page_manager_handlers() {
 /**
  * Implements hook_default_page_manager_pages().
  */
-function dosomething_grants_default_page_manager_pages() {
+function dosomething_member_opportunity_default_page_manager_pages() {
   $page = new stdClass;
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;

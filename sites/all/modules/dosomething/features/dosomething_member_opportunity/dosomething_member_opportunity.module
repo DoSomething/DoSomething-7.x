@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_member_opportunity feature.
+ */
+
+include_once('dosomething_member_opportunity.features.inc');

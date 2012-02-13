@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_grants.views_default.inc
+ * dosomething_member_opportunity.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function dosomething_grants_views_default_views() {
+function dosomething_member_opportunity_views_default_views() {
   $export = array();
 
   $view = new view;

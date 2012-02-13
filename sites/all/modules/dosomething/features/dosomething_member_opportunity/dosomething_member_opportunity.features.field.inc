@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_grants.features.field.inc
+ * dosomething_member_opportunity.features.field.inc
  */
 
 /**
  * Implements hook_field_default_fields().
  */
-function dosomething_grants_field_default_fields() {
+function dosomething_member_opportunity_field_default_fields() {
   $fields = array();
 
   // Exported field: 'node-grant_judge-field_comments_or_suggestions_f'

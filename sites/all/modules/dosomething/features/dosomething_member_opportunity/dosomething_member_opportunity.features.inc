@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_grants.features.inc
+ * dosomething_member_opportunity.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function dosomething_grants_ctools_plugin_api() {
+function dosomething_member_opportunity_ctools_plugin_api() {
   list($module, $api) = func_get_args();
   if ($module == "page_manager" && $api == "pages_default") {
     return array("version" => "1");
@@ -21,7 +21,7 @@ function dosomething_grants_ctools_plugin_api() {
 /**
  * Implements hook_views_api().
  */
-function dosomething_grants_views_api() {
+function dosomething_member_opportunity_views_api() {
   list($module, $api) = func_get_args();
   if ($module == "views" && $api == "views_default") {
     return array("version" => "3.0");
@@ -31,7 +31,7 @@ function dosomething_grants_views_api() {
 /**
  * Implements hook_node_info().
  */
-function dosomething_grants_node_info() {
+function dosomething_member_opportunity_node_info() {
   $items = array(
     'grant_judge' => array(
       'name' => t('Grant Judging Form'),

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_grants.strongarm.inc
+ * dosomething_member_opportunity.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function dosomething_grants_strongarm() {
+function dosomething_member_opportunity_strongarm() {
   $export = array();
 
   $strongarm = new stdClass;
