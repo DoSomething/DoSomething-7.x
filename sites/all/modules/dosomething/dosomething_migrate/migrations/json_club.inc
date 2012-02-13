@@ -101,17 +101,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
   }
 
   public function prepareRow($row) {
-    
-    if (!$row->field_club_picture) {
-      $row->field_club_picture = array();
-    }
-    if (!$row->field_project_photo) {
-      $row->field_project_photo = array();
-    }
-    if (!$row->field_club_video) {
-      $row->field_club_video = array();
-    }
-    
     // Fix bad dates caused by only storing 2 digits for the year.
     $date = $row->field_club_leader_birthdate;
     $year = substr($date, 0, 4);
@@ -136,28 +125,18 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     }
     $terms = "";
     if (!empty($row->vocab_5)) {
-      if (is_array($row->vocab_5)) {
-        foreach ($row->vocab_5 as $term) {
-          $terms .= $term . ',';
-        }
-        $row->vocab_5 = trim($terms, ',');
+      foreach ($row->vocab_5 as $term) {
+        $terms .= $term . ',';
       }
-      else {
-        var_dump($row->vocab_5);
-      }
+      $row->vocab_5 = trim($terms, ',');
     }
 
     $terms = "";
     if (!empty($row->vocab_17)) {
-      if (is_array($row->vocab_17)) {
-        foreach ($row->vocab_17 as $term) {
-          $terms .= $term . ',';
-        }
-        $row->vocab_17 = trim($terms, ',');
+      foreach ($row->vocab_17 as $term) {
+        $terms .= $term . ',';
       }
-      else {
-        var_dump($row->vocab_5);
-      }
+      $row->vocab_17 = trim($terms, ',');
     }
   }
 
