@@ -619,6 +619,15 @@ function dosomething_login_register_block($form, &$form_state) {
 
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
+  $form['why'] = array(
+    '#theme' => 'link',
+    '#path' => 'why-become-a-member',
+    '#text' => t("Why become a member?"),
+    '#options' => array(
+      'attributes' => array('class' => array('why')),
+      'html' => FALSE,
+    ),
+  );
   $form['#action'] = url('user/registration', array('query' => $query));
   $form['connect'] = array(
     '#type' => 'container',
@@ -658,7 +667,7 @@ function dosomething_login_register_block($form, &$form_state) {
   $form['cell_or_email'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
-      'placeholder' => t('Cell Number or E-mail'),
+      'placeholder' => t('Cell or email'),
     ),
     '#size' => 20,
   );
@@ -670,7 +679,7 @@ function dosomething_login_register_block($form, &$form_state) {
           'age-question',
         ),
       ),
-      '#children' => t('Birthday'),
+      // '#children' => t('Birthday'),
     ),
     'month' => array(
       '#type' => 'textfield',
@@ -699,22 +708,21 @@ function dosomething_login_register_block($form, &$form_state) {
   );
   $form['first_submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Sign up'),
+    '#value' => t('Go'),
     '#attributes' => array('class' => array('submit')),
   );
-  $form['why'] = array(
-    '#prefix' => '<hr class="top"/><h3 class="why-member">',
-    '#markup' => t('Why be a member?') . '</h3>' . '<span>' . t('Benefits. Benefits. Benefits.') . '</span>',
-  );
-  $form['learn'] = array(
+  // $form['why'] = array(
+    // '#prefix' => '<hr class="top"/><h3 class="why-member">',
+    // '#markup' => t('Why be a member?') . '</h3>' . '<span>' . t('Benefits. Benefits. Benefits.') . '</span>',
+  // );
+  $form['user'] = array(
     '#theme' => 'link',
-    '#path' => 'why-become-a-member',
-    '#text' => t("Learn more >>"),
+    '#path' => 'user',
+    '#text' => t("or sign in"),
     '#options' => array(
-      'attributes' => array('class' => array('why')),
+      'attributes' => array('class' => array('or-sign-in')),
       'html' => FALSE,
     ),
-    '#suffix' => '<hr class="bottom"/>',
   );
   return $form;
 }

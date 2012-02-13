@@ -417,7 +417,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, dfn, #utility-bar, #breadcrumb b, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"] {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, dfn, #utility-bar, #breadcrumb b, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"] {
   font-weight: bold;
   font-weight: 600;
 }
@@ -451,7 +451,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: #1e1d1c;
 }
 
-.gray2, .go-button, input#edit-final-submit {
+.gray2, .go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, input#edit-final-submit {
   color: #333131;
 }
 
@@ -522,7 +522,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   font-size: 68px;
 }
 
-.go-button, input#edit-final-submit {
+.go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, input#edit-final-submit {
   background-color: #fed100;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
   background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
@@ -548,7 +548,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   padding: 1px 10px 0;
   text-transform: uppercase;
 }
-.go-button:hover, input#edit-final-submit:hover, .go-button:active, input#edit-final-submit:active {
+.go-button:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, input#edit-final-submit:hover, .go-button:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, input#edit-final-submit:active {
   text-decoration: none;
 }
 
@@ -1482,6 +1482,42 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
   padding-left: 55px;
   line-height: 30px;
+}
+
+.not-logged-in #dosomething-login-register-block .why {
+  color: #fed100;
+  line-height: 30px;
+  margin-left: 30px;
+}
+.not-logged-in #dosomething-login-register-block #edit-or {
+  line-height: 22px;
+  text-align: center;
+}
+.not-logged-in #dosomething-login-register-block .form-item, .not-logged-in #dosomething-login-register-block .form-actions {
+  margin: 0;
+}
+.not-logged-in #dosomething-login-register-block #edit-first-name {
+  margin-right: 5px;
+}
+.not-logged-in #dosomething-login-register-block #edit-first-name,
+.not-logged-in #dosomething-login-register-block #edit-last-name {
+  margin-bottom: 5px;
+  width: 96px;
+}
+.not-logged-in #dosomething-login-register-block #edit-cell-or-email {
+  margin-bottom: 5px;
+  width: 197px;
+}
+.not-logged-in #dosomething-login-register-block #edit-first-submit {
+  clear: both;
+  margin-right: 5px;
+}
+.not-logged-in #dosomething-login-register-block .or-sign-in {
+  clear: both;
+  color: #fed100;
+  display: block;
+  padding-bottom: 15px;
+  text-align: right;
 }
 
 input {
