@@ -438,7 +438,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], h2.block-title, h2.pane-title, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, input, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], h2.block-title, h2.pane-title, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, input[type="text"],
+input[type="password"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   color: white;
 }
@@ -524,18 +525,19 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 
 .go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, input#edit-final-submit {
   background-color: #fed100;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(49%, #fbdf61), color-stop(51%, #fbc013));
-  background-image: -webkit-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: -moz-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: -o-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: -ms-linear-gradient(top, #fbdf61 49%, #fbc013 51%);
-  background-image: linear-gradient(top, #fbdf61 49%, #fbc013 51%);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
+  background-image: -webkit-linear-gradient(top, #ffffff, #fed100);
+  background-image: -moz-linear-gradient(top, #ffffff, #fed100);
+  background-image: -o-linear-gradient(top, #ffffff, #fed100);
+  background-image: -ms-linear-gradient(top, #ffffff, #fed100);
+  background-image: linear-gradient(top, #ffffff, #fed100);
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
   -o-border-radius: 12px;
   -ms-border-radius: 12px;
   -khtml-border-radius: 12px;
   border-radius: 12px;
+  border: none;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   -ms-box-sizing: content-box;
@@ -1520,7 +1522,8 @@ h2.block-title, h2.pane-title {
   text-align: right;
 }
 
-input {
+input[type="text"],
+input[type="password"] {
   background: #333131;
   border: none;
   display: inline;
@@ -1529,7 +1532,8 @@ input {
   padding-left: 5px;
   -moz-placeholder-color: white;
 }
-input:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   outline: none;
 }
 
