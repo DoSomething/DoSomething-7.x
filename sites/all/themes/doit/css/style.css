@@ -1475,10 +1475,10 @@ h2.block-title, h2.pane-title {
   text-transform: none;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"] {
-  background: url('images/icn-footer-fb.png') no-repeat 23% 50%;
+  background: url('images/icn-footer-fb.png') no-repeat 13% 50%;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
-  background: url('images/icn-footer-twtr.png') no-repeat 27% 50%;
+  background: url('images/icn-footer-twtr.png') no-repeat 13% 50%;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"],
 #block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
