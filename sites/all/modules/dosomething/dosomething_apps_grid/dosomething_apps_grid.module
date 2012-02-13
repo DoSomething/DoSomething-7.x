@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Provides a views style plugin for DoSomething Apps Grid.
+ * Provides a Views style plugin for DoSomething Apps Grid.
  */
 
 /**
@@ -12,18 +12,5 @@ function dosomething_apps_grid_views_api() {
   return array(
     'api' => '3',
     'path' => drupal_get_path('module', 'dosomething_apps_grid') . '/includes',
-  );
-}
-
-/**
- * Implements hook_theme().
- */
-function dosomething_apps_grid_theme($existing, $type, $theme, $path) {
-  return array(
-    'dosomething_apps_grid' => array(
-      'render element' => 'element',
-      'file' => 'theme.inc',
-      'path' => $path . '/includes',
-    ),
   );
 }

@@ -122,7 +122,7 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
 }
 
 /**
- * Render the event.
+ * Render the element.
  */
 function theme_dosomething_apps_grid($variables) {
   return drupal_render($variables['element']);

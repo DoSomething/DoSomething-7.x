@@ -102,21 +102,31 @@ class dosomething_apps_grid_plugin_style extends views_plugin_style {
     }
   }
 
+  /**
+   * Wrapper around views_plugin_display::get_field_labels().
+   *
+   * @param array|string|null $type
+   *   Either a string or array of field types.
+   *
+   * @return array
+   *   An associative array of field labels, keyed by their field id.
+   *
+   */
   function dosomething_apps_grid_fields($type = NULL) {
     $this->view->init_handlers();
     $labels = $this->display->handler->get_field_labels();
-    $fields = array();
-    foreach ($this->view->field as $id => $field) {
-      if (isset($type)) {
-        if (!is_array($type)) {
-          $type = array($type);
-        }
+    // If specific field types are needed, restrict the options.
+    if (isset($type)) {
+      // Allow both single and multiple types.
+      if (!is_array($type)) {
+        $type = array($type);
+      }
+      foreach ($this->view->field as $id => $field) {
         if (!isset($field->field_info) || !in_array($field->field_info['type'], $type)) {
-          continue;
+          unset($labels[$id]);
         }
       }
-      $fields[$id] = $labels[$id];
     }
-    return $fields;
+    return $labels;
   }
 }
