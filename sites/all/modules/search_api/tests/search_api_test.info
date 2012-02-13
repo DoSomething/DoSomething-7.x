@@ -9,3 +9,10 @@ dependencies[] = search_api
 files[] = search_api_test.module
 
 hidden = TRUE
+
+; Information added by drupal.org packaging script on 2011-12-16
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "search_api"
+datestamp = "1323996249"
+

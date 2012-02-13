@@ -10,7 +10,7 @@
 function dosomething_scholarship_application_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view_scholarship';
@@ -42,7 +42,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -60,7 +60,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'block';
@@ -80,7 +80,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
     $pane->type = 'node_body';
@@ -101,7 +101,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
@@ -128,7 +128,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-3'] = $pane;
     $display->panels['right'][0] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
@@ -161,7 +161,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_scholarship_application_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'scholarships';
@@ -179,7 +179,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_scholarships_panel_context';
@@ -196,7 +196,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -212,7 +212,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
   $display->title = 'Scholarships';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
     $pane->type = 'views_panes';
@@ -229,7 +229,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -271,7 +271,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['bottom'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -300,7 +300,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['bottom'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
@@ -323,7 +323,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-4'] = $pane;
     $display->panels['mid-left'][0] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
@@ -343,7 +343,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-5'] = $pane;
     $display->panels['mid-right'][0] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
