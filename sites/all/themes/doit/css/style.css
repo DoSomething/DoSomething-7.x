@@ -1736,6 +1736,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds
   padding-top: 12px;
   margin-bottom: 30px;
 }
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-signup-always-show .description {
+  display: inline;
+}
 
 comments.fb_iframe_widget {
   display: block;
