@@ -225,7 +225,7 @@ The content from this field will only be shown to anonymous users.',
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'member_opportunity' => 0,
+          'grants_database' => 0,
           'gys_2011' => 0,
           'healthy_schools' => 0,
           'help_ticket' => 0,
@@ -456,6 +456,61 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_geocode_data'
+  $fields['webform_submission_entity-campaign_sign_up-field_geocode_data'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_geocode_data',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'geofield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'geofield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '7',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_geocode_data',
+      'label' => 'Geocode Data',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'geocoder',
+        'settings' => array(
+          'geocoder_field' => array(
+            'field_webform_school_zip' => 'field_webform_school_zip',
+          ),
+          'geocoder_handler' => 'google',
+        ),
+        'type' => 'geocoder',
+        'weight' => '6',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_email'
   $fields['webform_submission_entity-campaign_sign_up-field_webform_email'] = array(
     'field_config' => array(
@@ -487,7 +542,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'email',
           'settings' => array(),
           'type' => 'email_default',
-          'weight' => 4,
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -505,62 +560,6 @@ The content from this field will only be shown to anonymous users.',
         ),
         'type' => 'email_textfield',
         'weight' => '0',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_geocode_zip_code'
-  $fields['webform_submission_entity-campaign_sign_up-field_webform_geocode_zip_code'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_geocode_zip_code',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'geofield',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'geofield',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign_sign_up',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 8,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_geocode_zip_code',
-      'label' => 'Geocode Zip Code',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'geocoder',
-        'settings' => array(
-          'geocoder_field' => array(
-            'field_webform_school_zip' => 'field_webform_school_zip',
-          ),
-          'geocoder_handler' => 'google',
-        ),
-        'type' => 'geocoder',
-        'weight' => '6',
       ),
     ),
   );
@@ -608,7 +607,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 5,
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -674,7 +673,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 9,
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -739,7 +738,7 @@ The content from this field will only be shown to anonymous users.',
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 12,
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -802,7 +801,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 7,
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -863,7 +862,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'og',
           'settings' => array(),
           'type' => 'og_list_default',
-          'weight' => 10,
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -891,7 +890,7 @@ The content from this field will only be shown to anonymous users.',
           'opt_group' => 'auto',
         ),
         'type' => 'group_audience',
-        'weight' => '8',
+        'weight' => '9',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -942,7 +941,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'og_ui',
           'settings' => array(),
           'type' => 'og_group_subscribe',
-          'weight' => 11,
+          'weight' => '5',
         ),
       ),
       'display_label' => 1,
@@ -986,7 +985,7 @@ The content from this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
   t('Email');
   t('Enabled Fields');
-  t('Geocode Zip Code');
+  t('Geocode Data');
   t('Group');
   t('Groups audience');
   t('Mobile Phone Number');

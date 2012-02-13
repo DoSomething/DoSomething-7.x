@@ -506,7 +506,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'member_opportunity' => 0,
+          'grants_database' => 0,
           'gys_2011' => 0,
           'healthy_schools' => 0,
           'healthy_schools_report' => 0,
@@ -589,6 +589,61 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-scholarship_application-field_geocode_data'
+  $fields['webform_submission_entity-scholarship_application-field_geocode_data'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_geocode_data',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'geofield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'geofield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '15',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_geocode_data',
+      'label' => 'Geocode Data',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'geocoder',
+        'settings' => array(
+          'geocoder_field' => array(
+            'field_webform_address' => 'field_webform_address',
+          ),
+          'geocoder_handler' => 'google',
+        ),
+        'type' => 'geocoder',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-scholarship_application-field_project_title_reference'
   $fields['webform_submission_entity-scholarship_application-field_project_title_reference'] = array(
     'field_config' => array(
@@ -637,7 +692,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'link' => 1,
           ),
           'type' => 'entityreference_label',
-          'weight' => '9',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -652,7 +707,7 @@ function dosomething_scholarship_application_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );
@@ -703,7 +758,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 16,
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -722,7 +777,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'dosomething_school_autocomplete',
-        'weight' => '18',
+        'weight' => '16',
       ),
     ),
   );
@@ -773,7 +828,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '12',
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -851,7 +906,6 @@ function dosomething_scholarship_application_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
           'weight' => '1',
@@ -935,65 +989,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_geocode_address'
-  $fields['webform_submission_entity-scholarship_application-field_webform_geocode_address'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_geocode_address',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'geofield',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'geofield',
-    ),
-    'field_instance' => array(
-      'bundle' => 'scholarship_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'geofield',
-          'settings' => array(
-            'data' => '',
-          ),
-          'type' => 'geofield_wkt',
-          'weight' => '13',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_geocode_address',
-      'label' => 'Geocode Address',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'geocoder',
-        'settings' => array(
-          'geocoder_field' => array(
-            'field_webform_address' => 'field_webform_address',
-          ),
-          'geocoder_handler' => 'google',
-        ),
-        'type' => 'geocoder',
-        'weight' => '3',
+        'weight' => '5',
       ),
     ),
   );
@@ -1059,7 +1055,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -1196,7 +1192,7 @@ function dosomething_scholarship_application_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '14',
+        'weight' => '13',
       ),
     ),
   );
@@ -1253,7 +1249,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'node_reference',
           'settings' => array(),
           'type' => 'node_reference_default',
-          'weight' => 11,
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1272,7 +1268,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -1337,7 +1333,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '10',
+        'weight' => '9',
       ),
     ),
   );
@@ -1408,7 +1404,7 @@ function dosomething_scholarship_application_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '13',
+        'weight' => '12',
       ),
     ),
   );
@@ -1456,7 +1452,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '14',
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1474,7 +1470,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -1523,7 +1519,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 15,
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1542,7 +1538,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'dosomething_school_autocomplete',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -1613,7 +1609,7 @@ function dosomething_scholarship_application_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '15',
+        'weight' => '14',
       ),
     ),
   );
@@ -1626,7 +1622,7 @@ function dosomething_scholarship_application_field_default_fields() {
   t('Closing Date');
   t('Description');
   t('Email');
-  t('Geocode Address');
+  t('Geocode Data');
   t('Mobile Phone Number');
   t('Name');
   t('Open Date');
