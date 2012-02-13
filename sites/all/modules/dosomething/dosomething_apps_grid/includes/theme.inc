@@ -16,13 +16,22 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
 
   $row_count = count($rows) - 1;
   $count = 0;
+  $order = array_flip(array('banner', 'image', 'text', 'footer', 'link'));
   foreach ($rows as $delta => $row) {
+    $element = array();
     foreach ($options['fields'] as $type => $field_name) {
+      // If the selected field is not in the results, return.
       if (empty($view->field[$field_name])) {
         continue;
       }
 
       $field = $view->style_plugin->get_field($delta, $field_name);
+      // If the field is empty, return.
+      if (empty($field)) {
+        continue;
+      }
+
+      // If the results are a string, create a render array.
       if (!is_array($field)) {
         $field = array('#markup' => $field);
       }
@@ -57,6 +66,8 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
           ),
         );
       }
+      // Ensure the elements are in the correct order.
+      $element[$type]['#weight'] = $order[$type];
     }
 
     // Assign 'first' and 'last' classes.
