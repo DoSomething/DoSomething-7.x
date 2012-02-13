@@ -155,7 +155,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'grants_database' => 0,
+          'member_opportunity' => 0,
           'gys_2011' => 0,
           'healthy_schools' => 0,
           'help_ticket' => 0,

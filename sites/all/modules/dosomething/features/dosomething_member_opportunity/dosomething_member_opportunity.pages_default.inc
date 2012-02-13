@@ -40,7 +40,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
           'name' => 'node_type',
           'settings' => array(
             'type' => array(
-              'grants_database' => 'grants_database',
+              'member_opportunity' => 'member_opportunity',
             ),
           ),
           'context' => 'argument_entity_id:node_1',

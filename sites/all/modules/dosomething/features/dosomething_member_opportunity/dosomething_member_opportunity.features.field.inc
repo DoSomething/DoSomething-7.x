@@ -1031,8 +1031,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_application_deadline'
-  $fields['node-grants_database-field_application_deadline'] = array(
+  // Exported field: 'node-member_opportunity-field_application_deadline'
+  $fields['node-member_opportunity-field_application_deadline'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1061,10 +1061,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -1118,8 +1118,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_application_deadline_2'
-  $fields['node-grants_database-field_application_deadline_2'] = array(
+  // Exported field: 'node-member_opportunity-field_application_deadline_2'
+  $fields['node-member_opportunity-field_application_deadline_2'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1146,10 +1146,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'date',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1229,8 +1229,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_award_focus'
-  $fields['node-grants_database-field_award_focus'] = array(
+  // Exported field: 'node-member_opportunity-field_award_focus'
+  $fields['node-member_opportunity-field_award_focus'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1270,10 +1270,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'list_text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1320,8 +1320,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_email_0'
-  $fields['node-grants_database-field_email_0'] = array(
+  // Exported field: 'node-member_opportunity-field_email_0'
+  $fields['node-member_opportunity-field_email_0'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1350,10 +1350,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -1407,8 +1407,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grants_details'
-  $fields['node-grants_database-field_grants_details'] = array(
+  // Exported field: 'node-member_opportunity-field_grants_details'
+  $fields['node-member_opportunity-field_grants_details'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1439,7 +1439,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type' => 'text_long',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1478,8 +1478,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grants_faq'
-  $fields['node-grants_database-field_grants_faq'] = array(
+  // Exported field: 'node-member_opportunity-field_grants_faq'
+  $fields['node-member_opportunity-field_grants_faq'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1510,7 +1510,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type' => 'text_long',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1549,8 +1549,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grants_how_many'
-  $fields['node-grants_database-field_grants_how_many'] = array(
+  // Exported field: 'node-member_opportunity-field_grants_how_many'
+  $fields['node-member_opportunity-field_grants_how_many'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1582,7 +1582,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'How many grants or how often. Ex. <i>One a week</i>',
@@ -1621,8 +1621,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grants_how_much'
-  $fields['node-grants_database-field_grants_how_much'] = array(
+  // Exported field: 'node-member_opportunity-field_grants_how_much'
+  $fields['node-member_opportunity-field_grants_how_much'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1654,7 +1654,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Amount of grant',
@@ -1693,8 +1693,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grants_step_apply'
-  $fields['node-grants_database-field_grants_step_apply'] = array(
+  // Exported field: 'node-member_opportunity-field_grants_step_apply'
+  $fields['node-member_opportunity-field_grants_step_apply'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1725,7 +1725,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type' => 'text_long',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1764,8 +1764,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grantsdb_award_name'
-  $fields['node-grants_database-field_grantsdb_award_name'] = array(
+  // Exported field: 'node-member_opportunity-field_grantsdb_award_name'
+  $fields['node-member_opportunity-field_grantsdb_award_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1794,10 +1794,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -1851,8 +1851,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grantsdb_contact_name'
-  $fields['node-grants_database-field_grantsdb_contact_name'] = array(
+  // Exported field: 'node-member_opportunity-field_grantsdb_contact_name'
+  $fields['node-member_opportunity-field_grantsdb_contact_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1881,10 +1881,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -1938,8 +1938,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grantsdb_eligible'
-  $fields['node-grants_database-field_grantsdb_eligible'] = array(
+  // Exported field: 'node-member_opportunity-field_grantsdb_eligible'
+  $fields['node-member_opportunity-field_grantsdb_eligible'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1972,10 +1972,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text_long',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Grant requirements',
@@ -2024,8 +2024,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_grantsdb_link'
-  $fields['node-grants_database-field_grantsdb_link'] = array(
+  // Exported field: 'node-member_opportunity-field_grantsdb_link'
+  $fields['node-member_opportunity-field_grantsdb_link'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2051,10 +2051,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'link_field',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'attributes' => 'N;',
@@ -2117,8 +2117,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_organization_website'
-  $fields['node-grants_database-field_organization_website'] = array(
+  // Exported field: 'node-member_opportunity-field_organization_website'
+  $fields['node-member_opportunity-field_organization_website'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2144,10 +2144,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'link_field',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'attributes' => 'N;',
@@ -2210,8 +2210,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_phone_number_1'
-  $fields['node-grants_database-field_phone_number_1'] = array(
+  // Exported field: 'node-member_opportunity-field_phone_number_1'
+  $fields['node-member_opportunity-field_phone_number_1'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2240,10 +2240,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -2297,8 +2297,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_picture'
-  $fields['node-grants_database-field_picture'] = array(
+  // Exported field: 'node-member_opportunity-field_picture'
+  $fields['node-member_opportunity-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -2335,7 +2335,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type_name' => 'tips_and_tools',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => '',
       'deleted' => '0',
       'description' => '',
@@ -2406,8 +2406,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_posters_email'
-  $fields['node-grants_database-field_posters_email'] = array(
+  // Exported field: 'node-member_opportunity-field_posters_email'
+  $fields['node-member_opportunity-field_posters_email'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2436,10 +2436,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -2493,8 +2493,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_rolling'
-  $fields['node-grants_database-field_rolling'] = array(
+  // Exported field: 'node-member_opportunity-field_rolling'
+  $fields['node-member_opportunity-field_rolling'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2524,10 +2524,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'list_text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -2574,8 +2574,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_type_of_award'
-  $fields['node-grants_database-field_type_of_award'] = array(
+  // Exported field: 'node-member_opportunity-field_type_of_award'
+  $fields['node-member_opportunity-field_type_of_award'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -2610,10 +2610,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'list_text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'hold down ctrl button to select more than one',
@@ -2660,8 +2660,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_what_you_win'
-  $fields['node-grants_database-field_what_you_win'] = array(
+  // Exported field: 'node-member_opportunity-field_what_you_win'
+  $fields['node-member_opportunity-field_what_you_win'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2694,10 +2694,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text_long',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -2746,8 +2746,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-field_winners_announced'
-  $fields['node-grants_database-field_winners_announced'] = array(
+  // Exported field: 'node-member_opportunity-field_winners_announced'
+  $fields['node-member_opportunity-field_winners_announced'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -2776,10 +2776,10 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'translatable' => '0',
       'type' => 'text',
-      'type_name' => 'grants_database',
+      'type_name' => 'member_opportunity',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'default_value' => array(
         0 => array(
           'value' => '',
@@ -2833,8 +2833,8 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grants_database-upload'
-  $fields['node-grants_database-upload'] = array(
+  // Exported field: 'node-member_opportunity-upload'
+  $fields['node-member_opportunity-upload'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -2857,7 +2857,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'type' => 'file',
     ),
     'field_instance' => array(
-      'bundle' => 'grants_database',
+      'bundle' => 'member_opportunity',
       'deleted' => '0',
       'description' => '',
       'display' => array(

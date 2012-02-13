@@ -42,7 +42,7 @@ function dosomething_member_opportunity_node_info() {
       'help' => t('<b>Thanks for judging!</b>
 '),
     ),
-    'grants_database' => array(
+    'member_opportunity' => array(
       'name' => t('Member Opportunity'),
       'base' => 'node_content',
       'description' => t('Entries of ALL DS and non DS grants teens can apply for. Users can add.'),

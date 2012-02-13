@@ -480,7 +480,7 @@ function dosomething_grant_application_field_default_fields() {
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'grants_database' => 'grants_database',
+          'member_opportunity' => 'member_opportunity',
           'gys_2011' => 0,
           'healthy_schools' => 0,
           'healthy_schools_report' => 0,

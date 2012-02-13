@@ -323,7 +323,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'grants_database' => 'grants_database',
+    'member_opportunity' => 'member_opportunity',
   );
   /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
@@ -336,7 +336,7 @@ function dosomething_member_opportunity_views_default_views() {
   $export['grants'] = $view;
 
   $view = new view;
-  $view->name = 'grants_database';
+  $view->name = 'member_opportunity';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
@@ -551,7 +551,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'grants_database' => 'grants_database',
+    'member_opportunity' => 'member_opportunity',
   );
   $handler->display->display_options['filters']['type']['group'] = 0;
   /* Filter criterion: Content: Title */
@@ -598,7 +598,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'Here is a database of available resources for entrepreneurs. We now allow YOU to add resources! <a href="/node/add/grants-database">Submit an award or grant listing</a>.';
+  $handler->display->display_options['header']['area']['content'] = 'Here is a database of available resources for entrepreneurs. We now allow YOU to add resources! <a href="/node/add/member-opportunity">Submit an award or grant listing</a>.';
   $handler->display->display_options['header']['area']['format'] = '1';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['path'] = 'grants/database';
@@ -629,7 +629,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'grants_database' => 'grants_database',
+    'member_opportunity' => 'member_opportunity',
   );
   $handler->display->display_options['filters']['type']['group'] = 0;
   /* Filter criterion: Content: Type of Award (field_type_of_award) */
@@ -665,7 +665,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['filters']['field_award_focus_value']['expose']['identifier'] = 'field_award_focus_value';
   $handler->display->display_options['filters']['field_award_focus_value']['expose']['reduce'] = 0;
   $handler->display->display_options['path'] = 'scholarships/database';
-  $export['grants_database'] = $view;
+  $export['member_opportunity'] = $view;
 
   return $export;
 }
