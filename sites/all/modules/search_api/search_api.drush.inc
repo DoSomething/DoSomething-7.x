@@ -49,6 +49,9 @@ function search_api_drush_command() {
       'index_id' => dt('The numeric ID or machine name of an index.'),
       'limit' => dt("The number of items to index. Use 0 to index all items. Defaults to the index's cron batch size."),
     ),
+    'options' => array(
+      'ids' => dt('An comma separated list of speicific IDs to index.'),
+    ),
     'aliases' => array('sapi-i'),
   );
 
@@ -170,6 +173,12 @@ function drush_search_api_index($index_id = NULL, $limit = NULL) {
   if (empty($indexes)) {
     return;
   }
+  if ($ids = drush_get_option('ids', FALSE)) {
+    $ids = explode(',', $ids);
+    if (count($ids) && is_null($index_id)) {
+      return;
+    }
+  }
   $limit_string = $limit;
   foreach ($indexes as $index) {
     if (is_null($limit)) {
@@ -180,8 +189,14 @@ function drush_search_api_index($index_id = NULL, $limit = NULL) {
       $limit = -1;
       $limit_string = t('all');
     }
-    drush_print(dt('Indexing a maximum number of !limit items for index !index.', array('!index' => $index->name, '!limit' => $limit_string)));
-    search_api_index_items($index, $limit);
+    if (count($ids)) {
+      drush_print(dt('Indexing items with the selected ids (!items) for index !index.', array('!index' => $index->name, '!items' => implode(',', $ids))));
+      search_api_index_specific_items($index, $ids);
+    }
+    else {
+      drush_print(dt('Indexing a maximum number of !limit items for index !index.', array('!index' => $index->name, '!limit' => $limit_string)));
+      search_api_index_items($index, $limit);
+    }
   }
 }
 
