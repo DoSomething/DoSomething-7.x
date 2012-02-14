@@ -6,29 +6,29 @@
   Drupal.behaviors.doSomethingMemberItems = {
     attach: function(context, settings) {
       // initially hide my somethings and notifications
-      $("#block-dosomething-login-become-member ul.my-somethings").hide();
-      $("#block-dosomething-login-become-member ul.notifications").hide();
+      $("#block-dosomething-login-become-member ul.doing-it").hide();
+      $("#block-dosomething-login-become-member ul.done-it").hide();
       // set cursors to hand
-      $("#block-dosomething-login-become-member h2.my-somethings, #block-dosomething-login-become-member h2.notifications").css('cursor', 'pointer').css('cursor', 'hand');
-      $("#block-dosomething-login-become-member h2.my-somethings").click(function() {
+      $("#block-dosomething-login-become-member h2.doing-it, #block-dosomething-login-become-member h2.done-it").css('cursor', 'pointer').css('cursor', 'hand');
+      $("#block-dosomething-login-become-member h2.doing-it").click(function() {
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
-          $("#block-dosomething-login-become-member ul.my-somethings").slideUp('400');
+          $("#block-dosomething-login-become-member ul.doing-it").slideUp('400');
         }
         else {
           $(this).addClass('active');
-          $("#block-dosomething-login-become-member ul.my-somethings").slideDown('400');
+          $("#block-dosomething-login-become-member ul.doing-it").slideDown('400');
         }
       });
 
-      $("#block-dosomething-login-become-member h2.notifications").click(function() {
+      $("#block-dosomething-login-become-member h2.done-it").click(function() {
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
-          $("#block-dosomething-login-become-member ul.notifications").slideUp('400');
+          $("#block-dosomething-login-become-member ul.done-it").slideUp('400');
         }
         else {
           $(this).addClass('active');
-          $("#block-dosomething-login-become-member ul.notifications").slideDown('400');
+          $("#block-dosomething-login-become-member ul.done-it").slideDown('400');
         }
       });
     }

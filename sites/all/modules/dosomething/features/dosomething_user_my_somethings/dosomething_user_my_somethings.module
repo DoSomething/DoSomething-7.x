@@ -71,11 +71,11 @@ function dosomething_user_my_somethings_member_block() {
         '#suffix' => '</h2>',
         '#markup' => dosomething_user_my_somethings_get_full_name($user),
       ),
-      'role' => array(
-        '#prefix' => '<span class="user-role">( ',
-        '#suffix' => ' )</span>',
-        '#markup' => dosomething_user_my_somethings_user_role(),
-      ),
+      // 'role' => array(
+        // '#prefix' => '<span class="user-role">( ',
+        // '#suffix' => ' )</span>',
+        // '#markup' => dosomething_user_my_somethings_user_role(),
+      // ),
     ),
     'collapsible' => array(
       '#type' => 'container',
@@ -110,15 +110,6 @@ function dosomething_user_my_somethings_profile_completion() {
   }
 
   return array(
-    'header' => array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'profile-header',
-        ),
-      ),
-      '#children' => t('My profile: %percent', array('%percent' => number_format($ratio, 0) . '%')) . l('Complete >>', 'user/' . $user->uid . '/edit/main'),
-    ),
     'percentage' => array(
       '#type' => 'container',
       '#attributes' => array(
@@ -142,15 +133,49 @@ function dosomething_user_my_somethings_profile_completion() {
             ),
             'style' => 'width: ' . $ratio . '%',
           ),
-          '#children' => $ratio,
         ),
+        'label' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'label',
+            ),
+          ),
+          '#children' => t('Profile %percent complete', array('%percent' => number_format($ratio, 0) . '%')),
+        ),
+      ),
+    ),
+    'footer' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'profile-footer',
+        ),
+      ),
+      'complete-profile' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'complete-profile',
+          ),
+        ),
+        '#children' => t('Complete your profile now'),
+      ),
+      'complete-link' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'complete-link',
+          ),
+        ),
+        '#children' => l('Go', 'user/' . $user->uid . '/edit/main'),
       ),
     ),
   );
 }
 
 /**
- * Get markup for My Current Somethings (sidebar version).
+ * Get markup for my somethings (sidebar version). Renamed 'Doing It' for theming purposes.
  */
 function dosomething_user_my_somethings_my_somethings() {
   global $user;
@@ -160,14 +185,14 @@ function dosomething_user_my_somethings_my_somethings() {
 
   return array(
     'title' => array(
-      '#prefix' => '<h2 class="my-somethings">',
+      '#prefix' => '<h2 class="doing-it">',
       '#suffix' => '</h2>',
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
           'class' => 'inner',
         ),
-        '#children' => t('My Current Somethings'),
+        '#children' => t('Doing It'),
       ),
     ),
     'list' => array(
@@ -175,7 +200,7 @@ function dosomething_user_my_somethings_my_somethings() {
       '#items' => $items,
       '#attributes' => array(
         'class' => array(
-          'my-somethings',
+          'doing-it',
         ),
       ),
     ),
@@ -261,7 +286,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
 }
 
 /**
- * Get the markup for a list of user's clubs (sidebar version).
+ * Get the markup for a list of user's clubs (sidebar version). Renamed 'Done It' for theming purposes.
  */
 function dosomething_user_my_somethings_clubs() {
   global $user;
@@ -280,14 +305,14 @@ function dosomething_user_my_somethings_clubs() {
 
   return array(
     'title' => array(
-      '#prefix' => '<h2 class="notifications">',
+      '#prefix' => '<h2 class="done-it">',
       '#suffix' => '</h2>',
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
           'class' => 'inner',
         ),
-        '#children' => t('My Clubs'),
+        '#children' => t('Done It'),
       ),
     ),
     'list' => array(
@@ -295,7 +320,7 @@ function dosomething_user_my_somethings_clubs() {
       '#items' => $items,
       '#attributes' => array(
         'class' => array(
-          'notifications',
+          'done-it',
         ),
       ),
     ),
