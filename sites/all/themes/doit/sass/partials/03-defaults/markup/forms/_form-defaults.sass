@@ -1,133 +1,135 @@
 /* Forms --------------------------------------------------------------
 
-// USE FORMALIZE TO EVEN FORMS ACROSS BROWSERS
-@import _formalize
 
 // aditional form styles
 
 fieldset
   +trailer
-  +rhythm-borders(1px)
-  border-color: $base-color
-  border-style: dotted
+  // +rhythm-borders(1px)
+  border-width: 1px
+  border-color: $gray2-trans
+  // border-style: dashed
+  &.filter-wrapper
+    border-color: $gray4-trans
 
 legend
-  padding: 0 0.25em
+  // padding: 0 0.25em
 
 label, input[type=button], input[type=submit], button
   cursor: pointer
 
 label
   @extend .bold
-  margin-right: 0.5em
+  // margin-right: 0.5em
 
 .textinput
-  @extend .sans
+  // @extend .sans
   @extend .constrain-to-parent
-  +adjust-font-size-to($s0, 1)
-  +rhythm-borders(1px, 0.25, $s0)
+  // +adjust-font-size-to($s0, 1)
+  // +rhythm-borders(1px, 0.25, $s0)
   border-width: 1px
-  +trailer(0.5)
-  +box-sizing(border-box)
+  // +trailer(0.5)
+  // +box-sizing(border-box)
   // width: ($kit-col-width * 2) + ($kit-gutter * 1)
-  width: calc-em(268px, $s0)
-  margin-top: 0
-  border-color: $base-color
-  border-color: rgba($base-color, 0.25)
+  // width: calc-em(268px, $s0)
+  // margin-top: 0
+  border-color: $gray3
+  border-color: $gray2-trans
+  // border-color: rgba($base-color, 0.25)
   // height: $base-line-height / ms(0) * 1.5em
-  height: calc-em(25px, $s0)
-  +border-radius
-  line-height: 1em
-  .region-sidebar-first &
-    +adjust-font-size-to($s-1, 1)
-    line-height: 1em
-    +rhythm-borders(1px, 0.25, $s-1)
-    width: 100%
-    height: $base-line-height / $s-1 * 0.9em
+  // height: calc-em(25px, $s0)
+  // +border-radius
+  // line-height: 1em
+  // .region-sidebar-first &
+  //   +adjust-font-size-to($s-1, 1)
+  //   line-height: 1em
+  //   +rhythm-borders(1px, 0.25, $s-1)
+  //   width: 100%
+  //   height: $base-line-height / $s-1 * 0.9em
 
-.ie7
-  .region-sidebar-first
-    input
-      &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
-      &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
-      &[type=number], &[type=range], &[type=search], &[type=color]
-        height: auto
+// .ie7
+//   .region-sidebar-first
+//     input
+//       &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+//       &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+//       &[type=number], &[type=range], &[type=search], &[type=color]
+//         height: auto
 
-.textinput-thin
-  width: calc-em(251px, $s0)
-  // width: 251px
+// .textinput-thin
+//   width: calc-em(251px, $s0)
+//   // width: 251px
 
-textarea
-  @extend .textinput
-  min-height: 8em
+// textarea
+//   @extend .textinput
+//   min-height: 8em
 
 input
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
   &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
   &[type=number], &[type=range], &[type=search], &[type=color]
     @extend .textinput
-  // reset webkit search styles
-  &[type=search]
-    -webkit-appearance: none
-    &::-webkit-search-decoration
-      display: none
-  &[type=number]
-    line-height: 1em
+//   // reset webkit search styles
+//   &[type=search]
+//     -webkit-appearance: none
+//     &::-webkit-search-decoration
+//       display: none
+//   &[type=number]
+//     line-height: 1em
 
-select
-  @extend .textinput
-  line-height: 1
-  .form-item-date &
-    width: auto
-    padding-right: 2em
+// select
+//   @extend .textinput
+//   line-height: 1
+//   .form-item-date &
+//     width: auto
+//     padding-right: 2em
 
-button, input[type=button], input[type=submit]
-  width: auto
-  overflow: visible
-  // DoSomething styles
-  @extend .ds-button
+// button, input[type=button], input[type=submit]
+//   width: auto
+//   overflow: visible
+//   // DoSomething styles
+//   @extend .ds-button
 
 
-textarea
-  +box-sizing(border-box)
-  // width: ($kit-col-width * 2) + ($kit-gutter * 1)
+// textarea
+//   +box-sizing(border-box)
+//   // width: ($kit-col-width * 2) + ($kit-gutter * 1)
 
-input
-  &[type="radio"], &[type="checkbox"]
-    margin-left: 0.25em
-    margin-right: 0.25em
+// input
+//   &[type="radio"], &[type="checkbox"]
+//     margin-left: 0.25em
+//     margin-right: 0.25em
 
-textarea, input:not([type="radio"])
-  @extend .constrain-to-parent
+// textarea, input:not([type="radio"])
+//   @extend .constrain-to-parent
 
-.region-sidebar-first
-  .form-item, .form-actions
-    height: calc-em(28px, $s-1)
-    margin-top: 0
-    margin-bottom: 0
-  input[type='submit']
-    clear: left
-    float: right
+// .region-sidebar-first
+//   .form-item, .form-actions
+//     height: calc-em(28px, $s-1)
+//     margin-top: 0
+//     margin-bottom: 0
+//   input[type='submit']
+//     clear: left
+//     float: right
 
-// drupal throbber
-html.js input.form-autocomplete
-  background-position: 100% 5px
-html.js input.throbbing
-  background-position: 100% -15px
+// // drupal throbber
+// html.js input.form-autocomplete
+//   background-position: 100% 5px
+// html.js input.throbbing
+//   background-position: 100% -15px
 
-// drupal passwords
-.password-strength, div.password-confirm
-  width: 13em
-.form-item .description
-  font-size: 1em
-  color: $gray
+// // drupal passwords
+// .password-strength, div.password-confirm
+//   width: 13em
+// .form-item .description
+//   font-size: 1em
+//   color: $gray
 
-// drupal fieldsets
-fieldset
-  // border-color: $gray-light
-  border-style: solid
-  +border-radius
+// // drupal fieldsets
+// fieldset
+//   // border-color: $gray-light
+//   border-style: solid
+//   +border-radius
 
-html.js fieldset.collapsed
-  +border-radius(0)
+// html.js fieldset.collapsed
+//   +border-radius(0)
 

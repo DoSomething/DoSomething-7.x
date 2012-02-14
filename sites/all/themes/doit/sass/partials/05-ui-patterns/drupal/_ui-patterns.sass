@@ -35,7 +35,7 @@
 // TABS
 ul.tabs.primary
   +ds-tabs
-  
+
 // NEW USER FORM
 .form-required
   color: $alert-red
@@ -46,10 +46,13 @@ ul.tabs.primary
 
 // PAGERS
 // uncomment to override or replace styles from _ui-patterns-common
-// ul.pager
-//   +horizontal-list(0.5em)
-//   a
-//     +remove-link-underlines
+ul.pager
+  margin-top: 0.5em
+  li
+    &.pager-current
+      position: relative
+      font-size: 1.5em
+      top: 0.125em
 
 // RSS LINK
 a.feed-icon

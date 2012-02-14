@@ -22,8 +22,7 @@ table, th
   // border-style: dotted
 
 tr.even
-  td
-    // background-color: $gray
+  background-color: $gray5
 
 tfoot
   // @extend .bold
@@ -42,7 +41,7 @@ thead tr th
   // background-color: $blue2
   font-family: $font-headline
   @extend .medium
-  padding-top: 0.5em
+  // padding-top: 0.5em
   text-transform: uppercase
   &:nth-of-type(odd)
     background-color: $blue
@@ -51,6 +50,7 @@ thead tr th
     color: $white
     font-size: 18px
     padding-left: 0.5em
+    line-height: 1.5
     &:hover
       color: $white
 
@@ -70,3 +70,23 @@ td
 
 th
   border-bottom: none
+
+thead
+  tr
+    th
+      background-color: $gray5
+      &:nth-of-type(odd)
+        background-color: $gray5
+
+#edit-field-picture-und-table
+  thead
+    tr
+      th
+        background-color: transparent
+        @extend .sans
+        @extend .gray1
+        #extend .bold
+        font-size: $s0
+        text-transform: none
+        &:nth-of-type(odd)
+          background-color: transparent
