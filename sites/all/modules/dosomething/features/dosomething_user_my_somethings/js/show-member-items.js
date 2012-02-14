@@ -9,8 +9,8 @@
       $("#block-dosomething-login-become-member ul.doing-it").hide();
       $("#block-dosomething-login-become-member ul.done-it").hide();
       // set cursors to hand
-      $("#block-dosomething-login-become-member h2.doing-it, #block-dosomething-login-become-member h2.done-it").css('cursor', 'pointer').css('cursor', 'hand');
-      $("#block-dosomething-login-become-member h2.doing-it").click(function() {
+      $("#block-dosomething-login-become-member h3.doing-it, #block-dosomething-login-become-member h3.done-it").css('cursor', 'pointer').css('cursor', 'hand');
+      $("#block-dosomething-login-become-member h3.doing-it").click(function() {
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
           $("#block-dosomething-login-become-member ul.doing-it").slideUp('400');
@@ -21,7 +21,7 @@
         }
       });
 
-      $("#block-dosomething-login-become-member h2.done-it").click(function() {
+      $("#block-dosomething-login-become-member h3.done-it").click(function() {
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
           $("#block-dosomething-login-become-member ul.done-it").slideUp('400');
@@ -34,4 +34,3 @@
     }
   }
 }(jQuery));
-

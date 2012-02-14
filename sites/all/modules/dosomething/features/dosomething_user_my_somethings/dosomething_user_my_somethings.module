@@ -185,8 +185,8 @@ function dosomething_user_my_somethings_my_somethings() {
 
   return array(
     'title' => array(
-      '#prefix' => '<h2 class="doing-it">',
-      '#suffix' => '</h2>',
+      '#prefix' => '<h3 class="doing-it">',
+      '#suffix' => '</h3>',
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
@@ -305,8 +305,8 @@ function dosomething_user_my_somethings_clubs() {
 
   return array(
     'title' => array(
-      '#prefix' => '<h2 class="done-it">',
-      '#suffix' => '</h2>',
+      '#prefix' => '<h3 class="done-it">',
+      '#suffix' => '</h3>',
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
