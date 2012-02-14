@@ -27,7 +27,15 @@ dl
 
 ol
   list-style: decimal
-  padding-left: 2em
+  padding-left: 0
+  +replace-list-numbers
+  li
+    // text-indent: -1.2em
+    margin-bottom: $kit-baseline
+    &:before
+      @extend .headers
+      @extend .bold
+      font-size: $s4
 
 ul
   list-style: disc

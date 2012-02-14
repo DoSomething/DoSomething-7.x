@@ -75,3 +75,12 @@
   text-overflow:    $method
   .ie &
     width: 100%
+
+// replace OL > LI numbers so they can be styled
+=replace-list-numbers
+  counter-reset: li
+  list-style-type: none
+  li
+    &:before
+      content: counter(li) ". "
+      counter-increment: li
