@@ -1,0 +1,73 @@
+////////////////////////////
+// left sidebar blocks
+// LOGGED IN
+// member block
+////////////////////////////
+
+.logged-in #block-dosomething-login-become-member
+  padding: 0
+  .dosomething-login-user-name
+    @extend .block-header
+    height: 36px
+    padding: 0 15px
+    h2
+      line-height: 35px !important
+      font-size: 23px !important
+  .ds-member-name-bar
+    text-decoration: none
+    &:hover
+      text-decoration: none
+  .dosomething-user-block-collapsible
+    padding: 0 15px
+  .dosomething-login-percentage
+    background-color: $white
+    border: 1px $gray5 solid
+    margin-top: 15px
+    margin-bottom: 5px
+    .ratio
+      height: 5px
+      width: 207px
+      .inner
+        background-color: $purple
+        height: 6px
+        margin: -1px 0 5px -1px
+        max-width: 100%
+        width: 0%
+      .label
+        @extend .highlight-on-dark
+        @extend .small
+  .profile-footer
+    margin-top: 25px
+    margin-bottom: 15px
+    +clearfix
+    .complete-profile
+      @extend .h3
+      @extend .white
+      display: inline
+      line-height: 30px
+    .complete-link
+      display: inline
+      float: right
+      margin-top: 6px
+      a
+        @extend .go-button
+        float: none
+        padding: 1px 13px 0
+  .dosomething-login-profile
+    border-bottom: 1px $black solid
+    margin-bottom: 10px
+  .doing-it,
+  .done-it
+    @extend .white
+    .inner
+      padding: 0 5px
+      +background(image_url("btn-leftsidebar-feeds-plus.png") no-repeat 168px center)
+    &.active
+      .inner
+        +background(image_url("btn-leftsidebar-feeds-minus.png") no-repeat 168px center)
+    ul,
+    li
+      @extend .member-expanded
+      list-style: none
+    li
+      margin-left: 5px

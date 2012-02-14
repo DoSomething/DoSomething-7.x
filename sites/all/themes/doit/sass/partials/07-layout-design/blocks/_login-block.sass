@@ -1,18 +1,17 @@
 ////////////////////////////
 // left sidebar blocks
-// log in block
+// LOGGED OUT
+// member block log in block
 ////////////////////////////
 
-// Logged out
 .not-logged-in #dosomething-login-register-block
   .why
-    color: $gold
+    @extend .highlight-on-dark
     line-height: 30px
     margin-left: 30px
   #edit-or
     line-height: 22px
     text-align: center
-
   .form-item, .form-actions
     margin: 0
   #edit-first-name
@@ -24,86 +23,13 @@
   #edit-cell-or-email
     margin-bottom: 5px
     width: 197px
-
   #edit-first-submit
     @extend .go-button
     clear: both
     margin-right: 5px
-
   .or-sign-in
+    @extend .highlight-on-dark
     clear: both
-    color: $gold
     display: block
     padding-bottom: 15px
     text-align: right
-
-
-// Logged in
-.logged-in #block-dosomething-login-become-member
-  padding: 0
-  .dosomething-login-user-name
-    @extend .white
-    background-color: $blue
-    height: 36px
-    margin-top: 0
-    margin-bottom: 0
-    padding: 0 15px
-    h2
-      line-height: 35px !important
-      font-size: 23px !important
-  .ds-member-name-bar
-    text-decoration: none
-    &:hover
-      text-decoration: none
-  .dosomething-user-block-collapsible
-    padding: 0 15px
-  .dosomething-login-percentage
-    background-color: $white
-    border: 1px $gray5 solid
-    margin-top: 15px
-    margin-bottom: 5px
-    .ratio
-      height: 5px
-      width: 207px
-      .inner
-        background-color: $purple
-        height: 6px
-        margin: -1px 0 5px -1px
-        max-width: 100%
-        width: 0%
-      .label
-        @extend .gold
-        font-size: 10px
-  .profile-footer
-    font-family: $font-headline
-    font-size: 15px
-    margin-top: 25px
-    margin-bottom: 15px
-    +clearfix
-    .complete-profile
-      display: inline
-      line-height: 30px
-    .complete-link
-      display: inline
-      float: right
-      margin-top: 6px
-      a
-        @extend .go-button
-        float: none
-        padding: 1px 13px 0
-  .dosomething-login-profile
-    border-bottom: 1px $black solid
-  .doing-it,
-  .done-it
-    .inner
-      padding: 0 5px
-      +background(image_url("btn-leftsidebar-feeds-plus.png") no-repeat 168px center)
-    &.active
-      .inner
-        +background(image_url("btn-leftsidebar-feeds-minus.png") no-repeat 168px center)
-    ul,
-    li
-      font-family: $font-headline
-      list-style: none
-    li
-      margin-left: 5px

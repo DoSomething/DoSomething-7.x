@@ -426,6 +426,15 @@ h3
     &.hover
       text-decoration: underline
 
+// Block header white title style with blue background
+.block-header
+  @extend .white
+  background-color: $blue
+  padding: 0 $s2
+  margin-top: 0
+  margin-bottom: 0
+  line-height: 1.714285714
+
 .content-text
   @extend .black
   font-size: $s0
@@ -449,6 +458,7 @@ h3
   .content-text
     @extend .content-text
 
+// White Headline title style used in modal popups
 .popup-title
   @extend .white
   @extend .bold
@@ -458,6 +468,7 @@ h3
   line-height: 40px
   padding-bottom: 12px
 
+// Gray second border under title in modal popups
 .popup-title-border
   border-top: 1px $gray-border solid
   padding-top: 12px
