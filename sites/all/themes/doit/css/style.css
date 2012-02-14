@@ -444,8 +444,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], h2.block-title, h2.pane-title, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .ui-dialog, input[type="text"],
-input[type="password"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], h2.block-title, h2.pane-title, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .ui-dialog, input[name="first_name"], input[name="last_name"], input[name="cell_or_email"], input[name="month"], input[name="day"], input[name="year"], input[name="pass[pass1]"], input[name="pass[pass2]"], input[name="captcha_response"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
 #lets-talk-dialog .detail {
   color: white;
@@ -1638,18 +1637,18 @@ h2.block-title, h2.pane-title {
   text-decoration: none;
 }
 
-input[type="text"],
-input[type="password"] {
+input {
+  -moz-placeholder-color: white;
+}
+input[name="first_name"], input[name="last_name"], input[name="cell_or_email"], input[name="month"], input[name="day"], input[name="year"], input[name="pass[pass1]"], input[name="pass[pass2]"], input[name="captcha_response"] {
   background: #333131;
   border: none;
   display: inline;
   float: left;
   height: 27px;
   padding-left: 5px;
-  -moz-placeholder-color: white;
 }
-input[type="text"]:focus,
-input[type="password"]:focus {
+input[name="first_name"]:focus, input[name="last_name"]:focus, input[name="cell_or_email"]:focus, input[name="month"]:focus, input[name="day"]:focus, input[name="year"]:focus, input[name="pass[pass1]"]:focus, input[name="pass[pass2]"]:focus, input[name="captcha_response"]:focus {
   outline: none;
 }
 

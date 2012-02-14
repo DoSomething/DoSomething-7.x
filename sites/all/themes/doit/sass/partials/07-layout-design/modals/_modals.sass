@@ -45,16 +45,24 @@
   text-decoration: none
 
 // General input style
-input[type="text"],
-input[type="password"]
-  @extend .white
-  background: $gray2
-  border: none
-  +float-left
-  height: 27px
-  padding-left: 5px
-  &:focus
-    outline: none
+input
+  &[name="first_name"],
+  &[name="last_name"],
+  &[name="cell_or_email"],
+  &[name="month"],
+  &[name="day"],
+  &[name="year"],
+  &[name="pass[pass1]"],
+  &[name="pass[pass2]"],
+  &[name="captcha_response"]
+    @extend .white
+    background: $gray2
+    border: none
+    +float-left
+    height: 27px
+    padding-left: 5px
+    &:focus
+      outline: none
   ::-webkit-input-placeholder,
   :-moz-placeholder
     color: $white
