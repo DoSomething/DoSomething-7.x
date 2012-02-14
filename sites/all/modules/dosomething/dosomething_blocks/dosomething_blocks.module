@@ -273,61 +273,18 @@ function dosomething_blocks_utility_bar() {
       ),
       'library' => array(array('system', 'ui.dialog')),
     ),
-    'here' => array(
+    'help' => array(
       '#type' => 'container',
       '#attributes' => array(
+        'id' => array(
+          'help-center',
+        ),
         'class' => array(
           'utility-items',
-          'here-to-help',
         ),
       ),
-      'here' => array(
-        '#markup' => t("Help Center"),
-      ),
+      'help' => dosomething_blocks_help(),
     ),
-    // 'icons' => array(
-    //   '#type' => 'container',
-    //   '#attributes' => array(
-    //     'class' => array(
-    //       'utility-items',
-    //       'icons',
-    //     ),
-    //   ),
-    //   'links' => array(
-    //     '#theme' => 'links',
-    //     '#links' => array(
-    //       'chat' => array(
-    //         'title' => '<img src="' . $image_path . '/icn-chat.png" alt="Chat">',
-    //         'html' => TRUE,
-    //         'href' => '',
-    //         'fragment' => ' ',
-    //       ),
-    //       'text' => array(
-    //         'title' => '<img src="' . $image_path . '/icn-text.png" alt="Text">',
-    //         'html' => TRUE,
-    //         'href' => '',
-    //         'fragment' => ' ',
-    //       ),
-    //       'call' => array(
-    //         'title' => '<img src="' . $image_path . '/icn-call.png" alt="Call">',
-    //         'html' => TRUE,
-    //         'href' => '',
-    //         'fragment' => ' ',
-    //       ),
-    //       'email' => array(
-    //         'title' => '<img src="' . $image_path . '/icn-email.png" alt="Email">',
-    //         'html' => TRUE,
-    //         'href' => '',
-    //         'fragment' => ' ',
-    //       ),
-    //     ),
-    //     '#attributes' => array(
-    //       'class' => array(
-    //         'connect-icons',
-    //       ),
-    //     ),
-    //   ),
-    // ),
     'search' => array(
       '#type' => 'container',
       '#attributes' => array(
@@ -375,6 +332,17 @@ function dosomething_blocks_utility_bar() {
       '#theme' => 'dosomething_blocks_lets_talk_dialog',
     ),
   );
+  return $output;
+}
+
+/**
+ * Creates renderable array of Help Center link.
+ */
+function dosomething_blocks_help() {
+  global $link;
+  if (!$link) {
+    $output['#markup'] = l('Help Center', '');
+  }
   return $output;
 }
 
