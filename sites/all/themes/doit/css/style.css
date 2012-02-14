@@ -80,7 +80,7 @@ a:visited {
   color: #551a8b;
 }
 a:focus {
-  outline: thin dotted;
+  outline: none;
 }
 a:hover, a:active {
   outline: 0;
@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6 {
@@ -423,14 +423,18 @@ h1, h2, h3, h4, h5, h6 {
 .medium, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, dfn, label, #utility-bar, #breadcrumb b {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options .selectBox-optgroup, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title {
   font-weight: bold;
   font-weight: 600;
+}
+
+.yellow, .main-nav, .main-nav-dropdown.hover {
+  color: yellow;
 }
 
 .blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar .headlines a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6 {
@@ -444,7 +448,7 @@ h1, h2, h3, h4, h5, h6 {
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -453,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, .ui-dialog, input[name="first_name"], input[name="last_name"], input[name="cell_or_email"], input[name="month"], input[name="day"], input[name="year"], input[name="pass[pass1]"], input[name="pass[pass2]"], input[name="captcha_response"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
 #lets-talk-dialog .detail {
@@ -468,7 +472,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: #1e1d1c;
 }
 
-.gray2, .go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit {
+.gray2, .go-button, input#edit-submit--2, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit {
   color: #333131;
 }
 
@@ -543,7 +547,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   font-size: 68px;
 }
 
-.go-button, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit {
+.go-button, input#edit-submit--2, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit {
   background-color: #fed100;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
   background-image: -webkit-linear-gradient(top, #ffffff, #fed100);
@@ -570,7 +574,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   padding: 1px 10px 0;
   text-transform: uppercase;
 }
-.go-button:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, input#edit-final-submit:hover, .go-button:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, input#edit-final-submit:active {
+.go-button:hover, input#edit-submit--2:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, input#edit-final-submit:hover, .go-button:active, input#edit-submit--2:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, input#edit-final-submit:active {
   text-decoration: none;
 }
 
@@ -597,7 +601,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: #fed100;
 }
 
-.dropdown-categories {
+.dropdown-categories, .selectBox-dropdown {
   font-size: 21px;
 }
 
@@ -747,6 +751,125 @@ h3 .subhead {
 .popup-title-border, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text .description, #lets-talk-dialog #content {
   border-top: 1px #938d88 solid;
   padding-top: 12px;
+}
+
+/* Dropdown control */
+.form-type-select label {
+  display: none;
+}
+
+.selectBox-dropdown {
+  width: 100%;
+  background: #807a75;
+}
+.selectBox-dropdown .selectBox-label {
+  padding: 7px 14px;
+  border: 1px solid white;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: -1px;
+  background-image: url('images/gold-arrow.png');
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+.selectBox-dropdown .selectBox-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+  position: absolute;
+  z-index: 99999;
+  max-height: 100%;
+  border: solid 1px white;
+  border-top: 0;
+  /* should be the same border width as .selectBox-dropdown */
+  background-color: #807a75;
+  overflow: auto;
+}
+
+/* Inline control */
+.selectBox-inline {
+  width: 250px;
+  outline: none;
+  border: solid 1px #bbbbbb;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: auto;
+}
+.selectBox-inline:focus {
+  border-color: #666666;
+}
+
+/* Options */
+.selectBox-options {
+  font-size: 17px;
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li {
+  padding-left: 14px;
+  margin-bottom: 6px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+.selectBox-options li a {
+  border-bottom: none;
+}
+.selectBox-options li a:hover {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-hover a {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-hover a:hover {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-disabled a {
+  color: #888888;
+  background-color: #292727;
+}
+.selectBox-options li.selectBox-selected a {
+  background-color: #333131;
+  display: none;
+}
+.selectBox-options .selectBox-optgroup {
+  color: #666666;
+  background: #eeeeee;
+  line-height: 1.5;
+  padding: 0 0.3em;
+  white-space: nowrap;
+}
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+  color: #888888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  border-color: #666666;
+}
+
+.selectBox-inline.selectBox-disabled {
+  color: #888888 !important;
+}
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+  background-color: transparent !important;
+}
+
+input#edit-submit--2 {
+  margin-top: 14px;
 }
 
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
@@ -986,6 +1109,22 @@ a:hover, a:active {
   text-decoration: underline;
 }
 
+a.selectBox, .selectBox-dropdown-menu a {
+  color: white;
+}
+a.selectBox:visited, .selectBox-dropdown-menu a:visited {
+  color: white;
+}
+a.selectBox:hover, .selectBox-dropdown-menu a:hover {
+  color: #fed100;
+}
+a.selectBox:active, .selectBox-dropdown-menu a:active {
+  color: #fed100;
+}
+a.selectBox:hover, a.selectBox:active, .selectBox-dropdown-menu a:hover, .selectBox-dropdown-menu a:active {
+  text-decoration: none;
+}
+
 small {
   font-size: 0.618em;
   line-height: 3.236em;
@@ -1002,7 +1141,6 @@ q:after {
 }
 
 abbr, acronym {
-  border-bottom: 1px dotted;
   cursor: help;
 }
 
@@ -1462,6 +1600,14 @@ div[role=main] {
   margin-bottom: 2px;
   margin-left: auto;
   margin-right: auto;
+}
+
+h2.block-title, h2.pane-title {
+  background-color: #18408b;
+  padding: 0 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.714;
 }
 
 .region-sidebar-first {

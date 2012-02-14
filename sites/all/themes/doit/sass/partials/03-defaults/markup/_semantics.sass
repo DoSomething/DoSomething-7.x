@@ -6,6 +6,12 @@ a
   +link-transitions(0.3s)
   &:hover, &:active
     text-decoration: underline
+ 
+a.selectBox, .selectBox-dropdown-menu a
+  +link-colors($white, $gold, $gold, $white, false)
+  &:hover, &:active
+    text-decoration: none
+  
 
 em
   @extend .italic
@@ -34,7 +40,7 @@ dfn
   @extend .italic
 
 abbr, acronym
-  border-bottom: 1px dotted
+  // border-bottom: 1px dotted
   cursor: help
 
 time
