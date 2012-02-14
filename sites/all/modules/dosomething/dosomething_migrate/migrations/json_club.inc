@@ -98,6 +98,7 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     ));
   }
   public function prepare($entity, $row) {
+    $entity->uid = !$entity->uid ? $row->uid : $entity->uid;
   }
 
   public function prepareRow($row) {
