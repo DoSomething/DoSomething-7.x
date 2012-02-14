@@ -1630,7 +1630,6 @@ h2.block-title, h2.pane-title {
 }
 .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a {
   float: none;
-  background-image: none;
   padding: 1px 13px 0;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-profile {
