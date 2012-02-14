@@ -23,7 +23,8 @@
 .panel-row-outer.panes-2 .panel-outer-left {
   width: 66%; }
 .panel-row-outer.panes-2 .panel-outer-right {
-  width: 33%; }
+  width: 33%;
+  float: right; }
 
 .panel-outer-left .panel-top {
   width: 100%; }

@@ -1490,6 +1490,15 @@ body.one-sidebar.sidebar-first [role=main] {
   float: left;
 }
 
+.panel-twocol-a .panes-2 .panel-outer-left {
+  width: 550px;
+}
+.panel-twocol-a .panes-2 .panel-outer-right {
+  width: 186px;
+  margin-right: 0;
+  float: right;
+}
+
 body {
   background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(5%, #18408b), color-stop(20%, #2b63b1), color-stop(80%, #2b63b1), color-stop(95%, #18408b));
   background-image: -webkit-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
@@ -1889,6 +1898,10 @@ h2.block-title, h2.pane-title {
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it li {
   margin-left: 5px;
+}
+
+.panel-pane {
+  margin-bottom: 2em;
 }
 
 .ui-dialog {
