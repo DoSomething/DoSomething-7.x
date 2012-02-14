@@ -10,6 +10,10 @@
 .italic
   font-style: italic
 
+.normal
+  font-weight: normal
+  font-weight: 300
+
 .medium
   font-weight: bold
   font-weight: 500
@@ -444,6 +448,19 @@ h3
         text-decoration: underline
   .content-text
     @extend .content-text
+
+.popup-title
+  @extend .white
+  @extend .bold
+  font-family: $font-headline
+  font-size: 40px
+  border-bottom: 1px $gray-border-alt solid
+  line-height: 40px
+  padding-bottom: 12px
+
+.popup-title-border
+  border-top: 1px $gray-border solid
+  padding-top: 12px
 
 ////////////////////////////
 // OLD EXTENDABLE CLASSES

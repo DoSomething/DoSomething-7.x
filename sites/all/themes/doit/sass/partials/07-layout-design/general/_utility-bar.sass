@@ -45,26 +45,10 @@
     .form-item-search-block-form
       margin-left: 1.5em
       margin-right: 1.5em
-    .login
+    .login,
+    #help-center
       a
-        color: lighten($gray, 40.0)
+        @extend .gray5
     .utility-items.fbconnect
       +float-right
       margin: 1em 8px 1em 0
-
-  .ui-dialog
-    padding: 10px
-    background: $black
-    background: rgba($black, 0.5)
-    border: 0
-    +border-radius(5px)
-    top: 10% !important
-    .ui-dialog-titlebar
-      background: none
-      border: 0
-    .ui-icon-closethick
-      border: 0
-    .ui-corner-all
-      +border-radius(0)
-      a
-        border: 0
