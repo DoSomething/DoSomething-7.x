@@ -1279,6 +1279,77 @@ label, input[type=button], input[type=submit], button {
   border-bottom: none;
 }
 
+.messages, .status, .warning, .error,
+div.status, div.warning, div.error, div.messages, div.status, div.warning, div.error {
+  border: 2px solid #1e1d1c;
+  padding: 0.5em;
+  background-position: 0 0;
+}
+.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child,
+div.status p:last-child, div.warning p:last-child, div.error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
+  margin-bottom: 0;
+}
+
+.status, div.status {
+  border-color: green;
+  background-color: #e5f2e5;
+  background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
+  background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
+  background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
+  background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
+  color: green;
+  color: green;
+}
+.status:visited, div.status:visited {
+  color: green;
+}
+.status:hover, div.status:hover {
+  color: green;
+}
+.status:active, div.status:active {
+  color: green;
+}
+
+.warning, div.warning {
+  border-color: #ffa500;
+  background-color: #fff6e5;
+  background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
+  background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
+  background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
+  background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
+  color: #ffa500;
+  color: #ffa500;
+}
+.warning:visited, div.warning:visited {
+  color: #ffa500;
+}
+.warning:hover, div.warning:hover {
+  color: #ffa500;
+}
+.warning:active, div.warning:active {
+  color: #ffa500;
+}
+
+.error, div.error {
+  border-color: red;
+  background-color: #ffe5e5;
+  background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #ffd8d8 25px, #ffd8d8 50px);
+  background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #ffd8d8 25px, #ffd8d8 50px);
+  background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #ffd8d8 25px, #ffd8d8 50px);
+  background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #ffd8d8 25px, #ffd8d8 50px);
+  color: red;
+  color: red;
+}
+.error:visited, div.error:visited {
+  color: red;
+}
+.error:hover, div.error:hover {
+  color: red;
+}
+.error:active, div.error:active {
+  color: red;
+}
+
 ul.tabs.primary {
   padding-top: 20px;
   padding-bottom: 8px;
@@ -1649,7 +1720,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;

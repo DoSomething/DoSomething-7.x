@@ -21,4 +21,6 @@ preferred_syntax = :sass
 # To enable relative paths to assets via compass helper functions. Uncomment:
 relative_assets = true
 
+Compass::BrowserSupport.add_support("repeating-linear-gradient", "webkit", "moz", "ms")
+
 asset_cache_buster :none
