@@ -56,7 +56,7 @@
         border-top: $width solid transparent;
         border-bottom: $width solid $color;
         border-left: $width solid $color;
-        border-right: $width solid transparent;   
+        border-right: $width solid transparent;
     }
     @elseif ($direction == 'bottom-right')
     {

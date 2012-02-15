@@ -1,2 +1,53 @@
 // DEVELOPMENT STYLES ALL NEED REFACTORING --------------------------------------------------------------
 
+.apps-grid
+  width: 682px
+  margin-left: 33px
+  overflow: visible
+  // @extend .wireframe
+  .apps-box
+    width: 216px
+    height: 216px
+    margin-right: 17px
+    margin-bottom: 16px
+    background-color: $white
+    position: relative
+    @extend .box-shadow
+    &.last
+      float: right
+      margin-right: 0
+    .apps-banner
+      position: absolute
+      @extend .headers
+      @extend .white
+      width: 115px
+      height: 24px
+      background-color: $purple
+      font-size: $s4a
+      line-height: 24px
+      left: -7px
+      top: 6px
+      padding-left: 14px
+      &:before
+        +triangle(top-right, 4px, 4px, $black)
+        content: "\0020"
+        position: absolute
+        left: 0px
+        bottom: -8px
+    .apps-image
+      // margin-bottom: $s1
+    .apps-text
+      text-align: center
+      padding: $s1 0.5em
+    .apps-footer
+      @extend .headers
+      float: left
+      margin-left: 0.5em
+      width: 150px
+    .apps-link
+      @extend .headers
+      float: right
+      margin-right: 0.5em
+      width: 33px
+      height: 28px
+      @extend .go-button
