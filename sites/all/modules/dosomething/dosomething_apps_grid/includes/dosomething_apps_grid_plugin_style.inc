@@ -10,6 +10,7 @@ class dosomething_apps_grid_plugin_style extends views_plugin_style {
     $options = array(
       'fields' => array(
         'contains' => array(
+          'title' => array('default' => ''),
           'banner' => array('default' => ''),
           'image' => array('default' => ''),
           'text' => array('default' => ''),
@@ -42,6 +43,13 @@ class dosomething_apps_grid_plugin_style extends views_plugin_style {
     $fields = $this->dosomething_apps_grid_fields();
     $fields_optional = array('' => t('- None -')) + $fields;
 
+    $form['fields']['title'] = array(
+      '#type' => 'select',
+      '#title' => t('Title'),
+      '#description' => t("Choose the field for the title."),
+      '#options' => $fields_optional,
+      '#default_value' => $this->options['fields']['title'],
+    );
     $form['fields']['banner'] = array(
       '#type' => 'select',
       '#title' => t('Banner'),

@@ -16,7 +16,7 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
 
   $row_count = count($rows) - 1;
   $count = 0;
-  $order = array_flip(array('banner', 'image', 'text', 'footer', 'link'));
+  $order = array_flip(array('title', 'banner', 'image', 'text', 'footer', 'link'));
   foreach ($rows as $delta => $row) {
     $element = array();
     foreach ($options['fields'] as $type => $field_name) {
