@@ -130,18 +130,16 @@
 // small with 2-tone gold like on log in overlay
 ////////////////////////////
 .go-button
-  @extend .gray2
+  @extend .headers
   @extend .bold
+  @extend .gray2
+  +border-radius($s0)
+  border: none
+  height: $s7
+  padding: 1px 10px 0
   background-color: $gold
   +background-image(linear-gradient(top, $white, $gold))
-  +border-radius(12px)
-  border: none
-  +box-sizing(content-box)
-  +float-right
-  font-family: $font-headline
-  font-size: 18px
-  height: 30px
-  padding: 1px 10px 0
+  font-size: $s4
   text-transform: uppercase
   &:hover, &:active
     text-decoration: none
