@@ -378,8 +378,7 @@ input[type=time],
 input[type=number],
 input[type=range],
 input[type=search],
-input[type=color],
-.form-select, iframe {
+input[type=color], iframe {
   max-width: 100%;
 }
 
@@ -416,8 +415,7 @@ input[type=time],
 input[type=number],
 input[type=range],
 input[type=search],
-input[type=color],
-.form-select, .description {
+input[type=color], .description {
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -432,7 +430,7 @@ input[type=color],
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .share-of-the-day, .dropdown, .dropdown-categories, .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before {
@@ -457,12 +455,12 @@ input[type=color],
 .medium, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, #block-dosomething-blocks-dosomething-make-impact .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'] {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options .selectBox-optgroup, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .share-of-the-day, .dropdown, .dropdown-categories, .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .right-sidebar .headlines a, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title {
   font-weight: bold;
   font-weight: 600;
 }
@@ -482,7 +480,7 @@ input[type=color],
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, #block-dosomething-blocks-dosomething-make-impact .selectBox-options li.selectBox-hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -491,7 +489,7 @@ input[type=color],
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, #block-dosomething-blocks-dosomething-make-impact .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, .ui-dialog, input[name="first_name"], input[name="last_name"], input[name="cell_or_email"], input[name="month"], input[name="day"], input[name="year"], input[name="pass[pass1]"], input[name="pass[pass2]"], input[name="captcha_response"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
 #lets-talk-dialog .detail {
@@ -635,7 +633,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: #fed100;
 }
 
-.dropdown-categories, .selectBox-dropdown {
+.dropdown-categories, .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
   font-size: 21px;
 }
 
@@ -787,7 +785,6 @@ h3 .subhead {
   padding-top: 12px;
 }
 
-/* Dropdown control */
 .form-type-select label {
   display: none;
 }
@@ -797,6 +794,7 @@ h3 .subhead {
   background: #807a75;
 }
 .selectBox-dropdown .selectBox-label {
+  background-image: url('images/gold-arrow.png');
   padding: 7px 14px;
   border: 1px solid white;
   width: 100%;
@@ -804,50 +802,25 @@ h3 .subhead {
   white-space: nowrap;
   overflow: hidden;
   margin-bottom: -1px;
-  background-image: url('images/gold-arrow.png');
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-.selectBox-dropdown .selectBox-arrow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-}
 
-/* Dropdown menu */
 .selectBox-dropdown-menu {
   position: absolute;
   z-index: 99999;
   max-height: 100%;
   border: solid 1px white;
   border-top: 0;
-  /* should be the same border width as .selectBox-dropdown */
   background-color: #807a75;
   overflow: auto;
 }
 
-/* Inline control */
-.selectBox-inline {
-  width: 250px;
-  outline: none;
-  border: solid 1px #bbbbbb;
-  display: inline-block;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  overflow: auto;
-}
-.selectBox-inline:focus {
-  border-color: #666666;
-}
-
-/* Options */
 .selectBox-options {
   font-size: 17px;
   list-style: none;
   display: block;
-  cursor: default;
+  cursor: pointer;
   padding: 0;
   margin: 0;
 }
@@ -868,44 +841,66 @@ h3 .subhead {
 .selectBox-options li.selectBox-hover a:hover {
   border-bottom: none;
 }
-.selectBox-options li.selectBox-disabled a {
-  color: #888888;
-  background-color: #292727;
-}
-.selectBox-options li.selectBox-selected a {
-  background-color: #333131;
+
+#block-dosomething-blocks-dosomething-make-impact .form-type-select label {
   display: none;
 }
-.selectBox-options .selectBox-optgroup {
-  color: #666666;
-  background: #eeeeee;
-  line-height: 1.5;
-  padding: 0 0.3em;
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
+  width: 100%;
+  background: #807a75;
+}
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  background-image: url('images/gold-arrow.png');
+  padding: 7px 14px;
+  border: 1px solid white;
+  width: 100%;
+  display: inline-block;
   white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: -1px;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
 }
-
-/* Disabled state */
-.selectBox.selectBox-disabled {
-  color: #888888 !important;
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown-menu {
+  position: absolute;
+  z-index: 99999;
+  max-height: 100%;
+  border: solid 1px white;
+  border-top: 0;
+  background-color: #807a75;
+  overflow: auto;
 }
-
-.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  border-color: #666666;
+#block-dosomething-blocks-dosomething-make-impact .selectBox-options {
+  font-size: 17px;
+  list-style: none;
+  display: block;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
-
-.selectBox-inline.selectBox-disabled {
-  color: #888888 !important;
+#block-dosomething-blocks-dosomething-make-impact .selectBox-options li {
+  padding-left: 14px;
+  margin-bottom: 6px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
 }
-.selectBox-inline.selectBox-disabled .selectBox-options A {
-  background-color: transparent !important;
+#block-dosomething-blocks-dosomething-make-impact .selectBox-options li a {
+  border-bottom: none;
+}
+#block-dosomething-blocks-dosomething-make-impact .selectBox-options li a:hover {
+  border-bottom: none;
+}
+#block-dosomething-blocks-dosomething-make-impact .selectBox-options li.selectBox-hover a {
+  border-bottom: none;
+}
+#block-dosomething-blocks-dosomething-make-impact .selectBox-options li.selectBox-hover a:hover {
+  border-bottom: none;
 }
 
 input#edit-submit--2 {
   margin-top: 14px;
 }
 
+/* Dropdown menu */
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
@@ -1129,18 +1124,10 @@ dd {
 a {
   color: #18408b;
   text-decoration: none;
-  -moz-transition-property: all;
-  -webkit-transition-property: all;
-  -o-transition-property: all;
-  transition-property: all;
-  -moz-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-timing-function: ease-out;
-  -o-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
+  -moz-transition: "all" 0.3s "ease-out";
+  -webkit-transition: "all" 0.3s "ease-out";
+  -o-transition: "all" 0.3s "ease-out";
+  transition: "all" 0.3s "ease-out";
 }
 a:visited {
   color: #18408b;
@@ -1342,8 +1329,7 @@ input[type=time],
 input[type=number],
 input[type=range],
 input[type=search],
-input[type=color],
-.form-select {
+input[type=color] {
   border: none;
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
