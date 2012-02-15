@@ -1,4 +1,55 @@
 // Front page Action Block
+// Side bar Action Finder block
+#block-dosomething-blocks-dosomething-make-impact
+  .content
+    padding: 28px 0
+    +clearfix
+    .form-type-select
+      label
+        display: none
+    .selectBox-dropdown
+      @extend .dropdown-categories
+      width: 100%
+      background: $gray2
+      font-size: $s1
+      margin-bottom: 5px
+      .selectBox-label
+        +background-image(image_url('gold-arrow.png'))
+        padding: 7px 7px
+        border: 0
+        width: 100%
+        display: inline-block
+        white-space: nowrap
+        overflow: hidden
+        background-repeat: no-repeat
+        background-position: 95% 50%
+    .selectBox-dropdown-menu
+      position: absolute
+      z-index: 99999
+      max-height: 100%
+      border: 0
+      border-top: 0
+      background-color: $gray2
+      overflow: auto
+    .selectBox-options
+      font-size: $s1
+      list-style: none
+      display: block
+      cursor: pointer
+      padding: 0
+      margin: 0
+      li
+        padding-left: 14px
+        margin-bottom: 6px
+        font-family: $font-headline
+        @extend .medium
+        a
+          +remove-link-underlines
+          @extend .white
+        &.selectBox-hover a
+          +remove-link-underlines
+          @extend .gold
+
 // #dosomething-blocks-make-an-impact-form-front
 .form-type-select
   label
@@ -45,56 +96,8 @@
       +remove-link-underlines
       @extend .gold
 
-// Side bar Action Finder block
-#block-dosomething-blocks-dosomething-make-impact
-  .form-type-select
-    label
-      display: none
-  .selectBox-dropdown
-    @extend .dropdown-categories
-    width: 100%
-    background: $gray4
-    .selectBox-label
-      +background-image(image_url('gold-arrow.png'))
-      padding: 7px 14px
-      border: 1px solid white
-      width: 100%
-      display: inline-block
-      white-space: nowrap
-      overflow: hidden
-      margin-bottom: -1px
-      background-repeat: no-repeat
-      background-position: 95% 50%
-  .selectBox-dropdown-menu
-    position: absolute
-    z-index: 99999
-    max-height: 100%
-    border: solid 1px $white
-    border-top: 0
-    background-color: $gray4
-    overflow: auto
-  .selectBox-options
-    font-size: $s3
-    list-style: none
-    display: block
-    cursor: pointer
-    padding: 0
-    margin: 0
-    li
-      padding-left: 14px
-      margin-bottom: 6px
-      font-family: $font-headline
-      @extend .medium
-      a
-        +remove-link-underlines
-        @extend .white
-      &.selectBox-hover a
-        +remove-link-underlines
-        @extend .gold
-
-
 // Gold 'Go' button
-input#edit-submit--2
+input#edit-submit--2, input#edit-submit--3
   @extend .go-button
   margin-top: 14px
 
