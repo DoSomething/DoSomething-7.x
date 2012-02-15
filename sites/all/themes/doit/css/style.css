@@ -1673,58 +1673,6 @@ body {
   margin: 1em 8px 1em 0;
 }
 
-nav[role=navigation] {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  text-rendering: optimizeLegibility;
-  text-transform: uppercase;
-  position: relative;
-  background-color: #18408b;
-  font-size: 34px;
-  line-height: 1.324;
-  z-index: 100;
-}
-nav[role=navigation] ul {
-  margin-top: 0;
-}
-nav[role=navigation] a {
-  color: #fed100;
-}
-nav[role=navigation] a:visited {
-  color: #fed100;
-}
-nav[role=navigation] a:hover {
-  color: white;
-}
-nav[role=navigation] a:active {
-  color: white;
-}
-nav[role=navigation] a:hover, nav[role=navigation] a:active {
-  text-decoration: none;
-}
-nav[role=navigation] .primary .wrapper {
-  width: 100%;
-  padding-left: 238px;
-  display: table;
-}
-nav[role=navigation] .primary #main-menu {
-  display: table-row;
-}
-nav[role=navigation] .primary #main-menu li {
-  display: table-cell;
-  text-align: center;
-  width: 12%;
-}
-nav[role=navigation] .primary #main-menu li.first {
-  text-align: left;
-}
-nav[role=navigation] .primary #main-menu li.last {
-  text-align: right;
-}
-
-nav[role=navigation] .secondary {
-  display: none;
-}
-
 #site-name {
   margin: 0;
   padding: 0;
@@ -1787,6 +1735,58 @@ div[role=main] {
   margin-bottom: 2px;
   margin-left: auto;
   margin-right: auto;
+}
+
+nav[role=navigation] {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  position: relative;
+  background-color: #18408b;
+  font-size: 34px;
+  line-height: 1.324;
+  z-index: 100;
+}
+nav[role=navigation] ul {
+  margin-top: 0;
+}
+nav[role=navigation] a {
+  color: #fed100;
+}
+nav[role=navigation] a:visited {
+  color: #fed100;
+}
+nav[role=navigation] a:hover {
+  color: white;
+}
+nav[role=navigation] a:active {
+  color: white;
+}
+nav[role=navigation] a:hover, nav[role=navigation] a:active {
+  text-decoration: none;
+}
+nav[role=navigation] .primary .wrapper {
+  width: 100%;
+  padding-left: 238px;
+  display: table;
+}
+nav[role=navigation] .primary #main-menu {
+  display: table-row;
+}
+nav[role=navigation] .primary #main-menu li {
+  display: table-cell;
+  text-align: center;
+  width: 12%;
+}
+nav[role=navigation] .primary #main-menu li.first {
+  text-align: left;
+}
+nav[role=navigation] .primary #main-menu li.last {
+  text-align: right;
+}
+
+nav[role=navigation] .secondary {
+  display: none;
 }
 
 h2.block-title, h2.pane-title {
