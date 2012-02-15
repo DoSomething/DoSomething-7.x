@@ -362,7 +362,24 @@ h1, h2, h3, h4, h5, h6 {
   visibility: hidden;
 }
 
-.constrain-to-parent, img, table, .textinput, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color], iframe {
+.constrain-to-parent, img, table, .text-full,
+.textinput,
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=number],
+input[type=range],
+input[type=search],
+input[type=color],
+.form-select, iframe {
   max-width: 100%;
 }
 
@@ -383,7 +400,24 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, serif;
 }
 
-.sans, #edit-field-picture-und-table thead tr th {
+.sans, #edit-field-picture-und-table thead tr th, .text-full,
+.textinput,
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=number],
+input[type=range],
+input[type=search],
+input[type=color],
+.form-select, .description {
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -480,7 +514,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: #4b4744;
 }
 
-.gray4, .teaser-date {
+.gray4, .teaser-date, .description {
   color: #807a75;
 }
 
@@ -1265,6 +1299,11 @@ thead tr th:nth-of-type(odd) {
 }
 
 /* Forms -------------------------------------------------------------- */
+.form-item,
+.form-actions {
+  margin: 0;
+}
+
 fieldset {
   margin-bottom: 2em;
   border-width: 1px;
@@ -1278,10 +1317,66 @@ label, input[type=button], input[type=submit], button {
   cursor: pointer;
 }
 
+form.node-form {
+  border: 1px white solid;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+  padding: 12px;
+}
+
+.text-full,
+.textinput,
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=number],
+input[type=range],
+input[type=search],
+input[type=color],
+.form-select {
+  border: none;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  outline: none;
+  padding-left: 5px;
+}
+
 .textinput, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
-  border-width: 1px;
-  border-color: #4b4744;
-  border-color: rgba(51, 49, 49, 0.5);
+  height: 27px;
+}
+
+input::-webkit-input-placeholder {
+  color: #d4d2d1;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #d4d2d1;
+}
+
+input.placeholder-text,
+textarea.placeholder-text {
+  color: #d4d2d1;
+}
+
+.description {
+  font-size: 13px;
+}
+
+.form-textarea {
+  padding: 10px;
 }
 
 #site-name a {
@@ -1794,9 +1889,6 @@ h2.block-title, h2.pane-title {
   line-height: 22px;
   text-align: center;
 }
-.not-logged-in #dosomething-login-register-block .form-item, .not-logged-in #dosomething-login-register-block .form-actions {
-  margin: 0;
-}
 .not-logged-in #dosomething-login-register-block #edit-first-name {
   margin-right: 5px;
 }
@@ -1918,12 +2010,7 @@ h2.block-title, h2.pane-title {
   border-radius: 0;
 }
 
-.form-item,
-.form-actions {
-  margin: 0;
-}
-
-.ui-dialog .ui-dialog-content {
+.ui-dialog-content {
   border: 0;
   position: initial !important;
   padding: 0 !important;
@@ -1973,16 +2060,14 @@ h2.block-title, h2.pane-title {
   text-decoration: none;
 }
 
-input {
-  -moz-placeholder-color: white;
-}
 input[name="first_name"], input[name="last_name"], input[name="cell_or_email"], input[name="month"], input[name="day"], input[name="year"], input[name="pass[pass1]"], input[name="pass[pass2]"], input[name="captcha_response"] {
   background: #333131;
-  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
   display: inline;
   float: left;
-  height: 27px;
-  padding-left: 5px;
 }
 input[name="first_name"]:focus, input[name="last_name"]:focus, input[name="cell_or_email"]:focus, input[name="month"]:focus, input[name="day"]:focus, input[name="year"]:focus, input[name="pass[pass1]"]:focus, input[name="pass[pass2]"]:focus, input[name="captcha_response"]:focus {
   outline: none;

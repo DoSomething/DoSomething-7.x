@@ -188,7 +188,7 @@ function doit_breadcrumb($variables) {
 
     // Return the breadcrumb with separators.
     if (!empty($breadcrumb)) {
-      $breadcrumb_separator = '<i>//</i>';
+      $breadcrumb_separator = '<i>/</i>';
       $trailing_separator = $title = '';
 
       $item = menu_get_item();

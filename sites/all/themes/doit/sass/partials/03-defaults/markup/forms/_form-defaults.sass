@@ -3,12 +3,15 @@
 
 // aditional form styles
 
+.form-item,
+.form-actions
+  margin: 0
+
 fieldset
   +trailer
   // +rhythm-borders(1px)
   border-width: 1px
   border-color: $gray2-trans
-  // border-style: dashed
   &.filter-wrapper
     border-color: $gray4-trans
 
@@ -22,30 +25,25 @@ label
   @extend .bold
   // margin-right: 0.5em
 
-.textinput
-  // @extend .sans
+form.node-form
+  border: 1px $white solid
+  +box-shadow(rgba($black, .3) 0 0 6px)
+  padding: 12px
+
+// General field styles
+.text-full,
+.textinput,
+.form-select
+  @extend .sans
   @extend .constrain-to-parent
-  // +adjust-font-size-to($s0, 1)
-  // +rhythm-borders(1px, 0.25, $s0)
-  border-width: 1px
-  // +trailer(0.5)
-  // +box-sizing(border-box)
-  // width: ($kit-col-width * 2) + ($kit-gutter * 1)
-  // width: calc-em(268px, $s0)
-  // margin-top: 0
-  border-color: $gray3
-  border-color: $gray2-trans
-  // border-color: rgba($base-color, 0.25)
-  // height: $base-line-height / ms(0) * 1.5em
-  // height: calc-em(25px, $s0)
-  // +border-radius
-  // line-height: 1em
-  // .region-sidebar-first &
-  //   +adjust-font-size-to($s-1, 1)
-  //   line-height: 1em
-  //   +rhythm-borders(1px, 0.25, $s-1)
-  //   width: 100%
-  //   height: $base-line-height / $s-1 * 0.9em
+  border: none
+  +box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
+  outline: none
+  padding-left: 5px
+
+// Single field height
+.textinput
+  height: 27px
 
 // .ie7
 //   .region-sidebar-first
@@ -75,6 +73,35 @@ input
 //       display: none
 //   &[type=number]
 //     line-height: 1em
+
+// Field placeholder color
+input::-webkit-input-placeholder
+  color: $gray5
+
+input:-moz-placeholder,
+textarea:-moz-placeholder
+  color: $gray5
+
+input.placeholder-text,
+textarea.placeholder-text
+  color: $gray5
+
+// Help text
+.description
+  @extend .sans
+  @extend .gray4
+  font-size: 13px
+
+// Text area styles
+.form-textarea
+  padding: 10px
+
+// Resizable area - Grippie style
+.resizable-textarea
+  .grippie
+    border-
+
+// Old styles
 
 // select
 //   @extend .textinput
@@ -132,4 +159,3 @@ input
 
 // html.js fieldset.collapsed
 //   +border-radius(0)
-
