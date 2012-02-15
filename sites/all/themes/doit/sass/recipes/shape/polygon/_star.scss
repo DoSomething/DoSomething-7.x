@@ -76,7 +76,7 @@
         border-left: $width/2 solid transparent;
         border-right: $width/2 solid transparent;
         border-top: $width solid $background-color;
-        
+
         top: $width*0.3;
         left: - $width /2;
     }
@@ -131,7 +131,7 @@
         left: 0;
         z-index: $z-index - 1;
     }
-    
+
     &:before
     {
         @include transform(rotate(30deg));
