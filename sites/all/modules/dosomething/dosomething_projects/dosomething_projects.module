@@ -67,13 +67,43 @@ function dosomething_projects_permission() {
  * Menu callback for the API hits.
  */
 function dosomething_projects_callback() {
-  $display_id = 'views_data_export_1';
-  $view = views_get_view('dosomething_projects');
+  $display_id = 'page';
+  //$display_id = 'views_data_export_1';
+  $view = views_get_view('dosomething_api');
 
   // TODO: Projects do not currently store provinces...
   $province = isset($_GET['province']) ? $_GET['province'] : 'all';
-  $cause = isset($_GET['cause']) ? $_GET['cause'] : 'all';
-  $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '*';
+
+  if (isset($_GET['cause'])) {
+    $cause = $_GET['cause'];
+    $terms = taxonomy_get_term_by_name($cause);
+    foreach ($terms as $tid => $term) {
+      if ($term->vid == '5') {
+        $issue_tid = $term->tid;
+      }
+    }
+    $filter = $view->get_item($display_id, 'filter', 'taxonomy_vocabulary_5');
+    $filter['value'] = array($issue_tid => $issue_tid);
+    $view->set_item($display_id, 'filter', 'taxonomy_vocabulary_5', $filter);
+  }
+
+  if (isset($_GET['keyword'])) {
+    $keyword = $_GET['keyword'];
+    $filter = $view->get_item($display_id,'filter','search_api_views_fulltext');
+    $filter['value'] = $keyword;
+    $view->set_item($display_id, 'filter', 'search_api_views_fulltext', $filter);
+  }
+
+  if (isset($_GET['zip'])) {
+    $zip = $_GET['zip'];
+    $distance = isset($_GET['distance']) ? $_GET['distance'] : 10;
+    $filter = $view->get_item($display_id,'filter','field_geocode_data');
+    //TODO translate zip to lat/lang.
+    $filter['radius'] = $distance;
+    // Setting radius measure in the view seems to be broken.
+    $filter['radius_measure'] = 'mi';
+    $view->set_item($display_id, 'filter', 'field_geocode_data', $filter);
+  }
 
   $page = 0;
   if (isset($_GET['page']) && preg_match('/^\d+$/', $_GET['page']) && $_GET['page'] > 0) {
@@ -83,22 +113,15 @@ function dosomething_projects_callback() {
   if ($maxnum > 100 || $maxnum < 1) {
     $maxnum = 100;
   }
-
-  if (isset($_GET['zip'])) {
-    $zip = $_GET['zip'];
-    $distance = isset($_GET['distance']) ? $_GET['distance'] : 10;
-    $filter = $view->get_item($display_id,'filter','distance');
-    $filter['value']['postal_code'] = $zip;
-    $filter['value']['search_distance'] = $distance;
-    $view->set_item($display_id, 'filter', 'distance', $filter);
-  }
-  
   $view->set_items_per_page($maxnum);
+  $view->set_current_page($page);
   if ($page) {
     $view->set_offset($page * $maxnum);
   }
+  dpm($view->get_items('filter', $display_id));
 
-  print $view->preview($display_id, array($cause, $province, $keyword));
+  return $view->preview($display_id, array($province));
+  //print $view->preview($display_id, array($province));
   exit;
 }
 
