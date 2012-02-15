@@ -2154,8 +2154,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] div.password-confirm {
   float: right;
-  width: 211;
   margin: 0 !important;
+  width: 211px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength {
   width: 155px;
@@ -2205,7 +2205,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds
   margin-bottom: 30px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-signup-always-show .description {
-  display: inline;
+  margin-top: -17px;
 }
 
 #lets-talk-dialog {
