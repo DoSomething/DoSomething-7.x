@@ -1,0 +1,5 @@
+name = Dosomething Club Migration
+package = DoSomething
+core = 7.x
+description = Provides drush commands for replaying OG actions on clubs as part of migration functions.
+dependencies[] = migrate
