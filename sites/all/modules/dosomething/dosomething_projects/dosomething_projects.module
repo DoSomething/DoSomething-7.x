@@ -71,8 +71,7 @@ function dosomething_projects_callback() {
   //$display_id = 'views_data_export_1';
   $view = views_get_view('dosomething_api');
 
-  // TODO: Projects do not currently store provinces...
-  $province = isset($_GET['province']) ? $_GET['province'] : 'all';
+
 
   if (isset($_GET['cause'])) {
     $cause = $_GET['cause'];
@@ -94,11 +93,24 @@ function dosomething_projects_callback() {
     $view->set_item($display_id, 'filter', 'search_api_views_fulltext', $filter);
   }
 
+  // It doesn't make sense to have province and zip filters.
+  if (isset($_GET['province']) && !isset($_GET['zip'])) {
+    // First remove geocode filter.
+    $view->set_item($display_id, 'filter', 'field_geocode_data', NULL);
+    $filter = $view->get_item($display_id,'filter','field_webform_address_administrative_area');
+    $province = $_GET['province'];
+    $filter['value'] = $province;
+    $view->set_item($display_id, 'filter', 'field_webform_address_administrative_area', $filter);
+  }
+
   if (isset($_GET['zip'])) {
     $zip = $_GET['zip'];
+    // This query relies on the zipcodes table provided by location module.
     $distance = isset($_GET['distance']) ? $_GET['distance'] : 10;
+    $data = db_query("SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip", array(':zip' => $zip))->fetchObject();
     $filter = $view->get_item($display_id,'filter','field_geocode_data');
-    //TODO translate zip to lat/lang.
+    $filter['lat'] = $data->latitude;
+    $filter['lng'] = $data->longitude;
     $filter['radius'] = $distance;
     // Setting radius measure in the view seems to be broken.
     $filter['radius_measure'] = 'mi';
@@ -118,10 +130,10 @@ function dosomething_projects_callback() {
   if ($page) {
     $view->set_offset($page * $maxnum);
   }
-  dpm($view->get_items('filter', $display_id));
+  //dpm($view->get_items('filter', $display_id));
 
-  return $view->preview($display_id, array($province));
-  //print $view->preview($display_id, array($province));
+  return $view->preview($display_id);
+  //print $view->preview($display_id);
   exit;
 }
 
