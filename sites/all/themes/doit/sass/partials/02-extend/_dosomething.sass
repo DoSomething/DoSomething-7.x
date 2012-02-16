@@ -67,7 +67,7 @@
   +text-shadow($gray2-trans 1px 1px 2px)
 
 .box-shadow
-  +box-shadow($gray4-trans 0px 6px 12px)
+  +box-shadow($gray3-trans 0px 6px 12px)
 
 ////////////////////////////
 // GENERAL EXTENDABLES
@@ -143,6 +143,21 @@
   text-transform: uppercase
   &:hover, &:active
     text-decoration: none
+
+.go-button-logo
+  @extend .headers
+  @extend .bold
+  @extend .gray2
+  display: block
+  background-image: image-url("go-button-logo.png")
+  background-repeat: no-repeat
+  width: image-width("go-button-logo.png")
+  height: image-height("go-button-logo.png")
+  font-size: $s4
+  line-height: 2
+  text-align: center
+  text-transform: uppercase
+
 
 ////////////////////////////
 // SHARE OF THE DAY

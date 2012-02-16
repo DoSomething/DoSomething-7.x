@@ -38,17 +38,19 @@
       // margin-bottom: $s1
     .apps-text
       text-align: center
-      padding: $s1 0.5em
+      padding: $s-1 $s-1 0
+      max-height: 5em
     .apps-footer
       @extend .headers
-      float: left
-      margin-left: 0.5em
+      @extend .medium
+      position: absolute
+      bottom: 0
       width: 150px
+      padding-left: $s-1
     .apps-link
-      // @extend .headers
-      // float: right
-      // margin-right: 0.5em
-      // width: 33px
-      // height: 28px
+      position: absolute
+      bottom: $s-2
+      right: 0
+      padding-right: $s-1
       a
-        @extend .go-button
+        @extend .go-button-logo
