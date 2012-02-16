@@ -16,29 +16,52 @@ nav[role=navigation]
     +link-colors($gold, $white, $white, $gold, false)
     &:hover, &:active
       text-decoration: none
-  .primary
+  .region-navigation
     @extend .container
-    .wrapper
+    .block-menu-block
       width: 100%
       padding-left: $left-col-width + $s-1
       display: table
-    #main-menu
-      display: table-row
-      li
-        display: table-cell
-        text-align: center
-        width: 12%
-        &.first
-          text-align: left
-        &.last
-          text-align: right
-
-
-////////////////////////////
-// TEMPORARY
-// hide secondary menu
-////////////////////////////
-nav[role=navigation]
-  .secondary
-    display: none
-
+      ul.menu
+        display: table-row
+        li
+          display: table-cell
+          // text-align: left
+          width: 12%
+          position: relative
+          &.first
+            ul
+              left: -5px
+          &.last
+            ul
+              width: 238px
+          &:hover
+            ul
+              opacity: 1
+              height: auto
+        ul
+          position: absolute
+          top: 0
+          left: -28px
+          display: block
+          padding-top: 45px
+          padding-left: 0
+          width: 204px
+          height: 0
+          overflow: hidden
+          opacity: 0
+          font-size: $s4
+          line-height: 38px
+          text-transform: capitalize
+          +transition(opacity, 0.2s, 'ease-out')
+          li
+            display: block
+            width: 100%
+            background-color: $gray1-trans
+            text-align: left
+            a
+              +link-colors($white, $gold, $gold, $white, false)
+              padding: 0 28px
+              display: block
+              &:hover
+                background-color: $gray1-trans

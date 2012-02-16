@@ -10,6 +10,7 @@ stylesheets[all][] = css/tweetbutton.css
 
 ; regions
 regions[utility] = Utility Bar
+regions[navigation] = Navigation
 regions[header] = Header
 regions[highlighted] = Highlighted
 regions[help] = Help

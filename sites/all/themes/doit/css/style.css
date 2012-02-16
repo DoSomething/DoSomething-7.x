@@ -1614,7 +1614,7 @@ ul.inline, ul.inline li {
   outline: 1px dashed #80ff00;
 }
 
-.container, .content, nav[role=navigation] .primary, #block-menu-menu-footer .content {
+.container, .content, nav[role=navigation] .region-navigation, #block-menu-menu-footer .content {
   max-width: 1030px;
   margin: 0 auto;
   position: relative;
@@ -1782,6 +1782,16 @@ div[role=main] {
   margin-right: auto;
 }
 
+ul.menu li {
+  margin: 0 0 0 0;
+}
+ul.menu li.expanded {
+  list-style-image: none;
+}
+ul.menu li.expanded, ul.menu li.collapsed, ul.menu li.leaf {
+  padding: 0 0 0 0;
+}
+
 nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-rendering: optimizeLegibility;
@@ -1810,28 +1820,78 @@ nav[role=navigation] a:active {
 nav[role=navigation] a:hover, nav[role=navigation] a:active {
   text-decoration: none;
 }
-nav[role=navigation] .primary .wrapper {
+nav[role=navigation] .region-navigation .block-menu-block {
   width: 100%;
   padding-left: 238px;
   display: table;
 }
-nav[role=navigation] .primary #main-menu {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu {
   display: table-row;
 }
-nav[role=navigation] .primary #main-menu li {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: table-cell;
-  text-align: center;
   width: 12%;
+  position: relative;
 }
-nav[role=navigation] .primary #main-menu li.first {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
+  left: -5px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
+  width: 238px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
+  opacity: 1;
+  height: auto;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul {
+  position: absolute;
+  top: 0;
+  left: -28px;
+  display: block;
+  padding-top: 45px;
+  padding-left: 0;
+  width: 204px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 18px;
+  line-height: 38px;
+  text-transform: capitalize;
+  -moz-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+  -moz-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li {
+  display: block;
+  width: 100%;
+  background-color: rgba(30, 29, 28, 0.75);
   text-align: left;
 }
-nav[role=navigation] .primary #main-menu li.last {
-  text-align: right;
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a {
+  color: white;
+  padding: 0 28px;
+  display: block;
 }
-
-nav[role=navigation] .secondary {
-  display: none;
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:visited {
+  color: white;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover {
+  color: #fed100;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:active {
+  color: #fed100;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover {
+  background-color: rgba(30, 29, 28, 0.75);
 }
 
 h2.block-title, h2.pane-title {

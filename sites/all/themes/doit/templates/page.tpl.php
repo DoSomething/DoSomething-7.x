@@ -15,7 +15,7 @@
   </div>
 <?php endif; ?>
 
-<?php if (isset($main_menu) || isset($secondary_menu_items)): ?>
+<?php /* if (isset($main_menu) || isset($secondary_menu_items)): ?>
   <nav role="navigation">
     <?php if (isset($main_menu)): ?>
     <div class="primary">
@@ -37,7 +37,11 @@
       </div>
     <?php endif; ?>
   </nav> <!-- /nav -->
-<?php endif; ?>
+<?php endif; */ ?>
+
+<nav role="navigation">
+  <?php print render($page['navigation']); ?>
+</nav> <!-- /nav -->
 
 <div id="page" class="container">
   <header role="banner">
