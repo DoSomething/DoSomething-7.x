@@ -2262,7 +2262,6 @@ comments.fb_iframe_widget {
 .apps-grid {
   width: 682px;
   margin-left: 33px;
-  overflow: visible;
 }
 .apps-grid .apps-box {
   width: 216px;
