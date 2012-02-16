@@ -19,12 +19,8 @@ define('DS_TIME_VOCABULARY_ID', 4);
  * Implements hook_block_info().
  */
 function dosomething_blocks_block_info() {
-  $blocks['dosomething_facebook_activity'] = array(
-    'info' => t('DoSomething Facebook Activity'),
-    'cache' => DRUPAL_CACHE_GLOBAL,
-  );
-  $blocks['dosomething_twitter_stream'] = array(
-    'info' => t('DoSomething Twitter Stream'),
+  $blocks['dosomething_social_skyscraper'] = array(
+    'info' => t('DoSomething Social Skysraper'),
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['dosomething_make_impact'] = array(
@@ -49,22 +45,16 @@ function dosomething_blocks_block_info() {
  * Implements hook_block_view().
  */
 function dosomething_blocks_block_view($delta = '') {
+  $block = array();
   switch ($delta) {
-    case 'dosomething_facebook_activity':
-      $block['subject'] = t('Recent Activity');
-      $block['content'] = dosomething_blocks_facebook_activity_block_content();
+    case 'dosomething_social_skyscraper':
+      $block['subject'] = t('Module 3');
+      $block['content'] = dosomething_blocks_social_skyscraper_block_content();
       break;
-
-    case 'dosomething_twitter_stream':
-      $block['subject'] = t('Twitter Stream');
-      $block['content'] = dosomething_blocks_twitter_stream_block_content();
-      break;
-
     case 'dosomething_make_impact':
       $block['subject'] = t('Action Finder');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
       break;
-
     case 'dosomething_make_impact_front':
       $block['subject'] = t('Action Finder');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form_front');
@@ -81,6 +71,36 @@ function dosomething_blocks_block_view($delta = '') {
   }
   return $block;
 }
+
+
+/**
+ * Return array of "Social Skyscraper" block.
+ */
+function dosomething_blocks_social_skyscraper_block_content() {
+  return array(
+    'twitter' => array(
+      'title' => array(
+        '#prefix' => '<h3>',
+        '#suffix' => '</h3>',
+        '#markup' => t('Twitter Stream'),
+      ),
+      'content' => array(
+        dosomething_blocks_twitter_stream_block_content()
+      ),
+    ),
+    'facebook' => array(
+      'title' => array(
+        '#prefix' => '<h3>',
+        '#suffix' => '</h3>',
+        '#markup' => t('Recent Activity'),
+      ),
+      'content' => array(
+        dosomething_blocks_facebook_activity_block_content()
+      ),
+    ),
+  );
+}
+
 
 /**
  * Generate the contents of the facebook activity block.
