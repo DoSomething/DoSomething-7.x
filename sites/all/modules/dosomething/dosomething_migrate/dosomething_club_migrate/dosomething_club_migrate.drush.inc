@@ -133,7 +133,7 @@ function dosomething_club_migrate_batch_start(&$context) {
            }
             catch (Exception $e) {
               drush_log('Attempted to duplicate a membership. Adding role to membership instead.', 'warning');
-              //Add admin member role to group user for group
+              // Add admin member role to group user for group.
               $default_roles = og_get_global_roles();
               $default_roles_array = array_keys($default_roles, OG_ADMINISTRATOR_ROLE);
               $default_admin_role_id = $default_roles_array[0];
@@ -144,7 +144,7 @@ function dosomething_club_migrate_batch_start(&$context) {
             break;
 
           case 'user approve' :
-            // First find the membership id for this use and group.
+            // First find the membership id for this user and group.
             $membership = og_get_group_membership($gid, 'user', $uid);
             if ($membership) {
               $membership->state = OG_STATE_ACTIVE;
