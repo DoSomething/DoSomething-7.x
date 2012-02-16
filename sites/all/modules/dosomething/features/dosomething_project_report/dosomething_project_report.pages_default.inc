@@ -10,7 +10,7 @@
 function dosomething_project_report_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'webform_submission_view_http_response';
@@ -27,7 +27,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   );
   $export['webform_submission_view_http_response'] = $handler;
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'webform_submission_view_panel_context';
@@ -67,7 +67,7 @@ function dosomething_project_report_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -82,7 +82,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'custom';
@@ -105,7 +105,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
     $pane->type = 'block';
@@ -125,7 +125,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -152,7 +152,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['left'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'custom';
@@ -175,7 +175,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 3;
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -199,7 +199,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 4;
     $display->content['new-5'] = $pane;
     $display->panels['left'][4] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -223,7 +223,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 5;
     $display->content['new-6'] = $pane;
     $display->panels['left'][5] = 'new-6';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-7';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
@@ -254,7 +254,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 6;
     $display->content['new-7'] = $pane;
     $display->panels['left'][6] = 'new-7';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-8';
     $pane->panel = 'left';
     $pane->type = 'block';
@@ -274,7 +274,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 7;
     $display->content['new-8'] = $pane;
     $display->panels['left'][7] = 'new-8';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-9';
     $pane->panel = 'right';
     $pane->type = 'dosomething_start_button';
@@ -297,7 +297,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-9'] = $pane;
     $display->panels['right'][0] = 'new-9';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-10';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
@@ -332,7 +332,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-10'] = $pane;
     $display->panels['right'][1] = 'new-10';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-11';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
@@ -366,7 +366,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-11'] = $pane;
     $display->panels['right'][2] = 'new-11';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-12';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
@@ -400,7 +400,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $handler->conf['display'] = $display;
   $export['webform_submission_view_panel_context'] = $handler;
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'webform_view_project';
@@ -447,7 +447,7 @@ function dosomething_project_report_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -462,7 +462,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'custom';
@@ -485,7 +485,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
     $pane->type = 'block';
@@ -505,7 +505,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -532,7 +532,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['left'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'custom';
@@ -555,7 +555,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 3;
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -579,7 +579,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 4;
     $display->content['new-5'] = $pane;
     $display->panels['left'][4] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -603,7 +603,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 5;
     $display->content['new-6'] = $pane;
     $display->panels['left'][5] = 'new-6';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-7';
     $pane->panel = 'left';
     $pane->type = 'block';
@@ -623,7 +623,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->position = 6;
     $display->content['new-7'] = $pane;
     $display->panels['left'][6] = 'new-7';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-8';
     $pane->panel = 'right';
     $pane->type = 'dosomething_start_button';

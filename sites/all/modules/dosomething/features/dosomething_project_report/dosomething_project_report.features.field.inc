@@ -243,6 +243,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_embedded_video',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'fid' => array(
@@ -386,7 +389,7 @@ The content from this field will only be shown to anonymous users.',
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'member_opportunity' => 0,
+          'grants_database' => 0,
           'help_ticket' => 0,
           'huffpo' => 0,
           'ididthis' => 0,
@@ -1057,7 +1060,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '13',
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1075,7 +1078,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -1124,7 +1127,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '11',
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1142,7 +1145,62 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '10',
+        'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_geocode_data'
+  $fields['webform_submission_entity-project_report-field_geocode_data'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_geocode_data',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'geofield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'geofield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_geocode_data',
+      'label' => 'Geocode Data',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'geocoder',
+        'settings' => array(
+          'geocoder_field' => array(
+            'field_webform_address' => 'field_webform_address',
+          ),
+          'geocoder_handler' => 'google',
+        ),
+        'type' => 'geocoder',
+        'weight' => '16',
       ),
     ),
   );
@@ -1188,7 +1246,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'link',
           'settings' => array(),
           'type' => 'default',
-          'weight' => '3',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1215,7 +1273,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -1260,7 +1318,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => '8',
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1279,7 +1337,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '18',
+        'weight' => '12',
       ),
     ),
   );
@@ -1328,7 +1386,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '14',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1346,7 +1404,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '22',
+        'weight' => '17',
       ),
     ),
   );
@@ -1401,7 +1459,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '2',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1503,7 +1561,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'member_opportunity' => 0,
+          'grants_database' => 0,
           'gys_2011' => 0,
           'healthy_schools' => 0,
           'healthy_schools_report' => 0,
@@ -1555,7 +1613,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'node_reference',
           'settings' => array(),
           'type' => 'node_reference_default',
-          'weight' => '17',
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1577,7 +1635,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'nodereference_url',
-        'weight' => '19',
+        'weight' => '13',
       ),
     ),
   );
@@ -1624,7 +1682,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 27,
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1689,7 +1747,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 26,
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1708,72 +1766,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
         ),
         'type' => 'text_textarea',
         'weight' => '2',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_project_report_zip'
-  $fields['webform_submission_entity-project_report-field_project_report_zip'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_report_zip',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Enter the zip codes in which your project made an impact.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '20',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_report_zip',
-      'label' => 'Locations',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '22',
       ),
     ),
   );
@@ -1824,10 +1816,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => 28,
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1845,6 +1836,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'active' => 1,
         'module' => 'date',
         'settings' => array(
+          'display_all_day' => 0,
           'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
@@ -1902,7 +1894,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '19',
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2032,7 +2024,7 @@ Use numbers only (no text).',
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => '9',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2051,7 +2043,81 @@ Use numbers only (no text).',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '16',
+        'weight' => '11',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_webform_address'
+  $fields['webform_submission_entity-project_report-field_webform_address'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_address',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'addressfield',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'webform_submission_entity|project_report|field_webform_address|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'administrative_area' => '',
+          'postal_code' => '',
+          'country' => 'US',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 18,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_address',
+      'label' => 'Address',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(),
+          'format_handlers' => array(
+            'address' => 'address',
+            'name-full' => 0,
+            'name-oneline' => 0,
+            'organisation' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '15',
       ),
     ),
   );
@@ -2092,7 +2158,7 @@ Use numbers only (no text).',
             'file_view_mode' => 'media_small',
           ),
           'type' => 'media',
-          'weight' => '25',
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2128,7 +2194,7 @@ Use numbers only (no text).',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -2182,7 +2248,7 @@ Use numbers only (no text).',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '5',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2207,6 +2273,7 @@ Use numbers only (no text).',
   t('(i.e. 5 staff and 25 volunteers for a total of 30, or 35 club members.)
 Use numbers only (no text).');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
+  t('Address');
   t('An update for an existing project');
   t('Body (anonymous user)');
   t('Body (logged in user)');
@@ -2214,9 +2281,9 @@ Use numbers only (no text).');
 The content from this field will only be shown to anonymous users.');
   t('Describe the steps you will take/took to create your project or organization.');
   t('Did you do this project with a DoSomething Club?');
-  t('Enter the zip codes in which your project made an impact.');
   t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('File attachments');
+  t('Geocode Data');
   t('Goal');
   t('How Can Others Help? ');
   t('How many people are directly involved in your project?');
@@ -2224,7 +2291,6 @@ The content from this field will only be shown to anonymous users.');
   t('If you haven\'t yet posted a project <a href="/node/718361"> click here </a>.');
   t('Image');
   t('Issues');
-  t('Locations');
   t('Measurable impact');
   t('Please don\'t use BMP files.
 Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
