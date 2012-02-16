@@ -817,7 +817,6 @@ function system_schema() {
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
-        'binary' => TRUE,
       ),
       'filemime' => array(
         'description' => "The file's MIME type.",
@@ -2181,7 +2180,6 @@ function system_update_7034() {
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
-        'binary' => TRUE,
       ),
       'filemime' => array(
         'description' => "The file's MIME type.",
@@ -2244,10 +2242,6 @@ function system_update_7036() {
     ));
   }
   $insert->execute();
-
-  // Remove obsolete variable 'site_offline_message'. See
-  // update_fix_d7_requirements().
-  variable_del('site_offline_message');
 }
 
 /**
@@ -2973,6 +2967,15 @@ function system_update_7071() {
     'length' => 255,
     'not null' => TRUE,
   ));
+}
+
+/**
+ * Remove the obsolete 'site_offline_message' variable.
+ *
+ * @see update_fix_d7_requirements()
+ */
+function system_update_7072() {
+  variable_del('site_offline_message');
 }
 
 /**

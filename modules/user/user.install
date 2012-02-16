@@ -234,7 +234,6 @@ function user_schema() {
       'access' => array('access'),
       'created' => array('created'),
       'mail' => array('mail'),
-      'picture' => array('picture'),
     ),
     'unique keys' => array(
       'name' => array('name'),
@@ -744,7 +743,7 @@ function user_update_7012(&$sandbox) {
         // Create a file object.
         $file = new stdClass();
         $file->uri      = $user->picture;
-        $file->filename = basename($file->uri);
+        $file->filename = drupal_basename($file->uri);
         $file->filemime = file_get_mimetype($file->uri);
         $file->uid      = $user->uid;
         $file->status   = FILE_STATUS_PERMANENT;
@@ -886,13 +885,6 @@ function user_update_7017() {
   }
 
   return $message;
-}
-
-/**
- * Add an index to {user}.picture.
- */
-function user_update_7018() {
-  db_add_index('users', 'picture', array('picture'));
 }
 
 /**
