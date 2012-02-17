@@ -72,7 +72,6 @@ function dosomething_blocks_block_view($delta = '') {
   return $block;
 }
 
-
 /**
  * Return array of "Social Skyscraper" block.
  */
@@ -85,7 +84,9 @@ function dosomething_blocks_social_skyscraper_block_content() {
         '#markup' => t('Twitter Stream'),
       ),
       'content' => array(
-        dosomething_blocks_twitter_stream_block_content()
+        'content' => dosomething_blocks_twitter_stream_block_content(),
+        '#prefix' => '<div class="social-activity-content">',
+        '#suffix' => '</div>',
       ),
     ),
     'facebook' => array(
@@ -95,7 +96,9 @@ function dosomething_blocks_social_skyscraper_block_content() {
         '#markup' => t('Recent Activity'),
       ),
       'content' => array(
-        dosomething_blocks_facebook_activity_block_content()
+        'content' => dosomething_blocks_facebook_activity_block_content(),
+        '#prefix' => '<div class="social-activity-content">',
+        '#suffix' => '</div>',
       ),
     ),
   );
