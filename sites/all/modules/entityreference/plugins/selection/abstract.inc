@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Abstraction of the business logic of an entity reference field.
+ * Abstraction of the selection logic of an entity reference field.
  *
  * Implementations that wish to provide an implementation of this should
  * register it using CTools' plugin system.
  */
-interface EntityReferenceHandler {
+interface EntityReference_SelectionHandler {
   /**
    * Factory function: create a new instance of this handler for a given field.
    *
@@ -14,7 +14,7 @@ interface EntityReferenceHandler {
    *   A field datastructure.
    * @return EntityReferenceHandler
    */
-  public static function getInstance($field);
+  public static function getInstance($field, $instance);
 
   /**
    * Return a list of referencable entities.
@@ -47,24 +47,25 @@ interface EntityReferenceHandler {
   /**
    * Generate a settings form for this handler.
    */
-  public static function settingsForm($field);
+  public static function settingsForm($field, $instance);
 }
 
 /**
- * A null implementation of EntityReferenceHandler.
+ * A null implementation of EntityReference_SelectionHandler.
  */
-class EntityReferenceHandler_broken implements EntityReferenceHandler {
-  public static function getInstance($field) {
-    return new EntityReferenceHandler_broken($field);
+class EntityReference_SelectionHandler_Broken implements EntityReference_SelectionHandler {
+  public static function getInstance($field, $instance) {
+    return new EntityReference_SelectionHandler_Broken($field, $instance);
   }
 
-  protected function __construct($field) {
+  protected function __construct($field, $instance) {
     $this->field = $field;
+    $this->instance = $instance;
   }
 
-  public static function settingsForm($field) {
-    $form['handler'] = array(
-      '#markup' => t('The selected handler is broken.'),
+  public static function settingsForm($field, $instance) {
+    $form['selection_handler'] = array(
+      '#markup' => t('The selected selection handler is broken.'),
     );
     return $form;
   }

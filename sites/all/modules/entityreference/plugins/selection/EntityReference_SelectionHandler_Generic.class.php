@@ -1,55 +1,127 @@
 <?php
 
-$plugin = array(
-  'title' => t('Simple (with optional filter by bundle)'),
-  'handler' => 'EntityReferenceHandler_base',
-  'weight' => -100,
-);
-
 /**
  * A generic Entity handler.
  *
  * The generic base implementation has a variety of overrides to workaround
  * core's largely deficient entity handling.
  */
-class EntityReferenceHandler_base implements EntityReferenceHandler {
+class EntityReference_SelectionHandler_Generic implements EntityReference_SelectionHandler {
 
   /**
    * Implements EntityReferenceHandler::getInstance().
    */
-  public static function getInstance($field) {
+  public static function getInstance($field, $instance) {
     $entity_type = $field['settings']['target_type'];
-    if (class_exists($class_name = 'EntityReferenceHandler_' . $entity_type)) {
-      return new $class_name($field);
+
+    // Check if the entity type does exist and has a base table.
+    $entity_info = entity_get_info($entity_type);
+    if (empty($entity_info['base table'])) {
+      return EntityReference_SelectionHandler_Broken::getInstance($field, $instance);
+    }
+
+    if (class_exists($class_name = 'EntityReference_SelectionHandler_Generic_' . $entity_type)) {
+      return new $class_name($field, $instance);
     }
     else {
-      return new EntityReferenceHandler_base($field);
+      return new EntityReference_SelectionHandler_Generic($field, $instance);
     }
   }
 
-  protected function __construct($field) {
+  protected function __construct($field, $instance) {
     $this->field = $field;
+    $this->instance = $instance;
   }
 
   /**
    * Implements EntityReferenceHandler::settingsForm().
    */
-  public static function settingsForm($field) {
+  public static function settingsForm($field, $instance) {
     $entity_info = entity_get_info($field['settings']['target_type']);
-    $bundles = array();
-    foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {
-      $bundles[$bundle_name] = $bundle_info['label'];
+
+    if (!empty($entity_info['entity keys']['bundle'])) {
+      $bundles = array();
+      foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {
+        $bundles[$bundle_name] = $bundle_info['label'];
+      }
+
+      $form['target_bundles'] = array(
+        '#type' => 'select',
+        '#title' => t('Target bundles'),
+        '#options' => $bundles,
+        '#default_value' => isset($field['settings']['handler_settings']['target_bundles']) ? $field['settings']['handler_settings']['target_bundles'] : array(),
+        '#size' => 6,
+        '#multiple' => TRUE,
+        '#description' => t('The bundles of the entity type that can be referenced. Optional, leave empty for all bundles.')
+      );
+    }
+    else {
+      $form['target_bundles'] = array(
+        '#type' => 'value',
+        '#value' => array(),
+      );
     }
 
-    $form['target_bundles'] = array(
-      '#type' => 'select',
-      '#title' => t('Target bundles'),
-      '#options' => $bundles,
-      '#default_value' => isset($field['settings']['handler_settings']['target_bundles']) ? $field['settings']['handler_settings']['target_bundles'] : array(),
-      '#size' => 6,
-      '#multiple' => TRUE,
-      '#description' => t('The bundles of the entity type that can be referenced. Optional, leave empty for all bundles.')
+    $form['sort']['type'] = array(
+      '#type' => 'radios',
+      '#title' => t('Sort by'),
+      '#options' => array(
+        'none' => t("Don't sort"),
+        'property' => t('A property of the base table of the entity'),
+        'field' => t('A field attached to this entity'),
+      ),
+      '#default_value' => isset($field['settings']['handler_settings']['sort']['type']) ? $field['settings']['handler_settings']['sort']['type'] : 'none',
     );
+
+    $form['sort']['property'] = array(
+      '#type' => 'select',
+      '#title' => t('Sort property'),
+      '#options' => drupal_map_assoc($entity_info['schema_fields_sql']['base table']),
+      '#default_value' => isset($field['settings']['handler_settings']['sort']['property']) ? $field['settings']['handler_settings']['sort']['property'] : '',
+      '#states' => array(
+        'visible' => array(
+          ':input[name="field[settings][handler_settings][sort][type]"]' => array('value' => 'property'),
+        ),
+      ),
+    );
+
+    $fields = array();
+    foreach (field_info_instances($field['settings']['target_type']) as $bundle_name => $bundle_instances) {
+      foreach ($bundle_instances as $instance_name => $instance_info) {
+        $field_info = field_info_field($instance_name);
+        foreach ($field_info['columns'] as $column_name => $column_info) {
+          $fields[$instance_name . ':' . $column_name] = t('@label (column @column)', array('@label' => $instance_info['label'], '@column' => $column_name));
+        }
+      }
+    }
+
+    $form['sort']['field'] = array(
+      '#type' => 'select',
+      '#title' => t('Sort field'),
+      '#options' => $fields,
+      '#default_value' => isset($field['settings']['handler_settings']['sort']['type']) ? $field['settings']['handler_settings']['sort']['type'] : '',
+      '#states' => array(
+        'visible' => array(
+          ':input[name="field[settings][handler_settings][sort][type]"]' => array('value' => 'field'),
+        ),
+      ),
+    );
+
+    $form['sort']['direction'] = array(
+      '#type' => 'select',
+      '#title' => t('Sort direction'),
+      '#options' => array(
+        'ASC' => t('Ascending'),
+        'DESC' => t('Descending'),
+      ),
+      '#default_value' => isset($field['settings']['handler_settings']['sort']['direction']) ? $field['settings']['handler_settings']['sort']['direction'] : 'ASC',
+      '#states' => array(
+        'invisible' => array(
+          ':input[name="field[settings][handler_settings][sort][type]"]' => array('value' => 'none'),
+        ),
+      ),
+    );
+
     return $form;
   }
 
@@ -110,7 +182,7 @@ class EntityReferenceHandler_base implements EntityReferenceHandler {
   protected function buildEntityFieldQuery($match = NULL, $match_operator = 'CONTAINS') {
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', $this->field['settings']['target_type']);
-    if ($this->field['settings']['handler_settings']['target_bundles']) {
+    if (!empty($this->field['settings']['handler_settings']['target_bundles'])) {
       $query->entityCondition('bundle', $this->field['settings']['handler_settings']['target_bundles'], 'IN');
     }
     if (isset($match)) {
@@ -124,6 +196,18 @@ class EntityReferenceHandler_base implements EntityReferenceHandler {
     $query->addTag($this->field['settings']['target_type'] . '_access');
     $query->addTag('entityreference');
     $query->addMetaData('field', $this->field);
+
+    // Add the sort option.
+    if (!empty($this->field['settings']['handler_settings']['sort'])) {
+      $sort_settings = $this->field['settings']['handler_settings']['sort'];
+      if ($sort_settings['type'] == 'property') {
+        $query->propertyOrderBy($sort_settings['property'], $sort_settings['direction']);
+      }
+      elseif ($sort_settings['type'] == 'field') {
+        list($field, $column) = explode(':', $sort_settings['field'], 2);
+        $query->fieldOrderBy($field, $column, $sort_settings['direction']);
+      }
+    }
 
     return $query;
   }
@@ -169,7 +253,7 @@ class EntityReferenceHandler_base implements EntityReferenceHandler {
  *
  * This only exists to workaround core bugs.
  */
-class EntityReferenceHandler_node extends EntityReferenceHandler_base {
+class EntityReference_SelectionHandler_Generic_node extends EntityReference_SelectionHandler_Generic {
   public function entityFieldQueryAlter(SelectQueryInterface $query) {
     // Adding the 'node_access' tag is sadly insufficient for nodes: core
     // requires us to also know about the concept of 'published' and
@@ -188,7 +272,7 @@ class EntityReferenceHandler_node extends EntityReferenceHandler_base {
  *
  * This only exists to workaround core bugs.
  */
-class EntityReferenceHandler_user extends EntityReferenceHandler_base {
+class EntityReference_SelectionHandler_Generic_user extends EntityReference_SelectionHandler_Generic {
   public function buildEntityFieldQuery($match = NULL, $match_operator = 'CONTAINS') {
     $query = parent::buildEntityFieldQuery($match, $match_operator);
 
@@ -246,7 +330,7 @@ class EntityReferenceHandler_user extends EntityReferenceHandler_base {
  *
  * This only exists to workaround core bugs.
  */
-class EntityReferenceHandler_comment extends EntityReferenceHandler_base {
+class EntityReference_SelectionHandler_Generic_comment extends EntityReference_SelectionHandler_Generic {
   public function entityFieldQueryAlter(SelectQueryInterface $query) {
     // Adding the 'comment_access' tag is sadly insufficient for comments: core
     // requires us to also know about the concept of 'published' and
@@ -295,7 +379,7 @@ class EntityReferenceHandler_comment extends EntityReferenceHandler_base {
  *
  * This only exists to workaround core bugs.
  */
-class EntityReferenceHandler_file extends EntityReferenceHandler_base {
+class EntityReference_SelectionHandler_Generic_file extends EntityReference_SelectionHandler_Generic {
   public function entityFieldQueryAlter(SelectQueryInterface $query) {
     // Core forces us to know about 'permanent' vs. 'temporary' files.
     $tables = $query->getTables();
@@ -320,7 +404,7 @@ class EntityReferenceHandler_file extends EntityReferenceHandler_base {
  *
  * This only exists to workaround core bugs.
  */
-class EntityReferenceHandler_taxonomy_term extends EntityReferenceHandler_base {
+class EntityReference_SelectionHandler_Generic_taxonomy_term extends EntityReference_SelectionHandler_Generic {
   public function entityFieldQueryAlter(SelectQueryInterface $query) {
     // The Taxonomy module doesn't implement any proper taxonomy term access,
     // and as a consequence doesn't make sure that taxonomy terms cannot be viewed

@@ -74,6 +74,31 @@ function media_browser($selected = NULL) {
         );
       }
     }
+
+    // We need to get a submit and cancel button on each tab. If the plugin
+    // is not returning a form element we need to add a submit button.
+    // This is a fairly broad assumption.
+    if (empty($plugin_output[$key]['#form']) && ! empty($plugin_output[$key]['#markup'])) {
+      $plugin_output[$key]['#markup'] .= l(t('Submit'), '', array(
+        'attributes' => array('class' => array('button', 'fake-submit', $key))
+      ));
+      $plugin_output[$key]['#markup'] .= l(t('Cancel'), '', array(
+      'attributes' => array('class' => array('button', 'fake-cancel', $key))
+      ));
+    }
+
+    // I'm not sure if it is ever the case that a plugin form will ever have
+    // the correct cancel button so we add it here. Put it inline with the
+    // current submit button. This is a fairly broad assumption.
+    if (!empty($plugin_output[$key]['form']['actions']) && !isset($plugin_output[$key]['form']['actions']['cancel'])) {
+      $plugin_output[$key]['form']['actions']['cancel'] = array(
+        '#type' => 'link',
+        '#title' => t('Cancel'),
+        '#href' => '',
+        '#attributes' => array('class' => array('button', 'fake-cancel', $key)),
+        '#weight' => 100,
+      );
+    }
   }
 
   // Allow modules to change the tab names or whatever else they want to change
@@ -114,7 +139,7 @@ EOS;
     '#suffix' => '</div>',
   );
   $output['tabset']['list'] = array(
-    '#markup' => '<ul><li>' . implode('</li><li>', $tabs) . '</li></ul>'
+    '#markup' => theme('item_list', array('items' => $tabs)),
   );
 
   $output['tabset']['plugins'] = $plugin_output;
@@ -199,17 +224,17 @@ function media_browser_list() {
   }
 
   if ($url_include_patterns) {
-    $query->condition('f.uri', '%' . db_like($v) . '%', 'LIKE');
+    $query->condition('f.uri', '%' . db_like($url_include_patterns) . '%', 'LIKE');
     // Insert stream related restrictions here.
   }
   if ($url_exclude_patterns) {
-    $query->condition('f.uri', '%' . db_like($v) . '%', 'NOT LIKE');
+    $query->condition('f.uri', '%' . db_like($url_exclude_patterns) . '%', 'NOT LIKE');
   }
 
   // @todo Implement granular editorial access: http://drupal.org/node/696970.
   //   In the meantime, protect information about private files from being
   //   discovered by unprivileged users. See also media_view_page().
-  if (!user_access('administer media')) {
+  if (!user_access('administer files')) {
     $query->condition('f.uri', db_like('private://') . '%', 'NOT LIKE');
   }
 
@@ -370,54 +395,6 @@ function media_browser_build_media_item($file) {
   $preview = media_get_thumbnail_preview($file);
   $file->preview = drupal_render($preview);
   $file->url = file_create_url($file->uri);
-}
-
-/**
- * Implements hook_media_browser_plugin_info().
- */
-function media_media_browser_plugin_info() {
-  $plugins = array();
-
-  $plugins['upload'] = array(
-    'title' => t('Upload'),
-    'weight' => -10,
-    'handler' => 'MediaBrowserUpload',
-    // @todo Replace with appropriate file access function when that gets
-    //   committed to File Entity project.
-    'access callback' => 'media_access',
-    'access arguments' => array('edit'),
-  );
-
-  $plugins['library'] = array(
-    'title' => t('Library'),
-    'weight' => 10,
-    'handler' => 'MediaBrowserLibrary',
-    // @todo Replace with appropriate file access function when that gets
-    //   committed to File Entity project.
-    'access callback' => 'media_access',
-    'access arguments' => array('view'),
-  );
-
-  // Add a plugin for each View display using the 'media_browser' display type.
-  foreach (views_get_enabled_views() as $view) {
-    foreach ($view->display as $display) {
-      if ($display->display_plugin == 'media_browser') {
-        $title = $display->display_title;
-        if (!empty($display->display_options['title'])) {
-          $title = $display->display_options['title'];
-        }
-        $plugins["{$view->name}--{$display->id}"] = array(
-          'title' => $title,
-          'weight' => 11, // @TODO make this configurable.
-          'handler' => 'MediaBrowserView',
-          'view_name' => $view->name,
-          'view_display_id' => $display->id,
-        );
-      }
-    }
-  }
-
-  return $plugins;
 }
 
 /**

@@ -57,15 +57,13 @@ function file_entity_admin_files($form, &$form_state) {
     'operations' => array('data' => t('Operations')),
   );
 
-  $query = db_select('file_managed', 'f');
+  $query = db_select('file_managed', 'f')->extend('PagerDefault')->extend('TableSort');
   $query->join('users', 'u', 'f.uid = u.uid');
-  $query->extend('PagerDefault')
-    ->extend('TableSort')
-    ->fields('f', array('fid'))
-    ->fields('u', array('uid'))
-    ->condition('f.status', FILE_STATUS_PERMANENT)
-    ->limit($limit)
-    ->orderByHeader($header);
+  $query->fields('f', array('fid'));
+  $query->fields('u', array('uid'));
+  $query->condition('f.status', FILE_STATUS_PERMANENT);
+  $query->limit($limit);
+  $query->orderByHeader($header);
 
   foreach (array_keys(file_entity_get_hidden_stream_wrappers()) as $name) {
     $query->condition('f.uri', $name . '%', 'NOT LIKE');
@@ -130,9 +128,9 @@ function file_entity_admin_files($form, &$form_state) {
  * 'Update option' on.
  */
 function file_entity_admin_files_validate($form, &$form_state) {
-  $files = array_filter($form_state['values']['files']);
-  if (count($files) == 0) {
-    form_set_error('', t('Update operation failed: no files were selected.'));
+  // Error if there are no items to select.
+  if (!is_array($form_state['values']['files']) || !count(array_filter($form_state['values']['files']))) {
+    form_set_error('', t('No files selected.'));
   }
 }
 
