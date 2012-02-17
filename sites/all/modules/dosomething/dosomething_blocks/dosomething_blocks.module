@@ -79,25 +79,25 @@ function dosomething_blocks_social_skyscraper_block_content() {
   return array(
     'twitter' => array(
       'title' => array(
-        '#prefix' => '<h3>',
+        '#prefix' => '<h3 class="twitter">',
         '#suffix' => '</h3>',
         '#markup' => t('Twitter Stream'),
       ),
       'content' => array(
         'content' => dosomething_blocks_twitter_stream_block_content(),
-        '#prefix' => '<div class="social-activity-content">',
+        '#prefix' => '<div class="social-activity-content twitter">',
         '#suffix' => '</div>',
       ),
     ),
     'facebook' => array(
       'title' => array(
-        '#prefix' => '<h3>',
+        '#prefix' => '<h3 class="facebook">',
         '#suffix' => '</h3>',
         '#markup' => t('Recent Activity'),
       ),
       'content' => array(
         'content' => dosomething_blocks_facebook_activity_block_content(),
-        '#prefix' => '<div class="social-activity-content">',
+        '#prefix' => '<div class="social-activity-content facebook">',
         '#suffix' => '</div>',
       ),
     ),
