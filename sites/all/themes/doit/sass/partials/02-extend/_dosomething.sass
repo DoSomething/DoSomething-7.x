@@ -394,13 +394,6 @@
   color: $gray-border
   text-transform: lowercase
 
-.counter-labels
-  @extend .headers
-  @extend .bold
-  @extend .black
-  @extend .caps
-  font-size: $s5
-
 .filter-dropdowns
   @extend .main-footer-nav
 
@@ -481,6 +474,31 @@ h3
     @extend .right-sidebar-headlines
   .content-text
     @extend .content-text
+
+// Label styling for vital stats counter
+.counter-labels
+  @extend .headers
+  @extend .bold
+  @extend .black
+  @extend .caps
+  font-size: $s5
+  letter-spacing: 0
+  padding-right: $s2
+  vertical-align: bottom
+
+// Number styling for vital stats counter
+.digits
+  span
+    @extend .counter-labels
+    background: image_url("counter.png") no-repeat -1px -1px
+    border: 1px $gray5 solid
+    font-size: 27px
+    height: 27px
+    +inline-block
+    line-height: $s7
+    padding: 0
+    text-align: center
+    width: 29px
 
 // White Headline title style used in modal popups
 .popup-title

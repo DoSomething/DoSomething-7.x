@@ -6,7 +6,7 @@
 #vital-stats
   @extend .border-and-shadow
   +clearfix
-  padding: $s2
+  padding: $s1 $s8 $s4a $s8
   ul
     list-style: none
     padding-left: 0
@@ -14,7 +14,11 @@
   .name
     @extend .large-profile-info
     @extend .bold
+  .title
+    margin-bottom: $s6
   .info
     +float-left
   .counter
     +float-right
+    li
+      margin-bottom: $s-1

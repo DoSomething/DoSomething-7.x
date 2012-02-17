@@ -130,8 +130,8 @@ function dosomething_project_report_default_page_manager_handlers() {
   </div>
   <div class="counter">
     <ul>
-      <li><span class="counter-labels">People Helped</span>%webform_submission_entity:field-num-people-impacted</li>
-      <li><span class="counter-labels">People Doing It</span>%webform_submission_entity:field-update-people-involved</li>
+      <li><span class="counter-labels">People Helped</span><span class="digits">%webform_submission_entity:field-num-people-impacted</span></li>
+      <li><span class="counter-labels">People Doing It</span><span class="digits">%webform_submission_entity:field-update-people-involved</span></li>
     </ul>
   </div>
 </div>',

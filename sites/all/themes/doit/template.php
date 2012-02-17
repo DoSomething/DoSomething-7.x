@@ -42,6 +42,9 @@ function doit_preprocess_page(&$variables) {
     $variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']['#attributes']['class'][] = 'talk-to-us';
     drupal_add_js(drupal_get_path('module', 'dosomething_blocks') .'/js/lets_talk_dialog.js', 'file');
   }
+  // Add lettering.js for vital stat counter.
+  drupal_add_js($theme_path . '/js/jquery.lettering-0.6.min.js');
+  drupal_add_js($theme_path . '/js/doit-lettering.js');
 }
 
 // /**

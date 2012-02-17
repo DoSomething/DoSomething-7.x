@@ -424,7 +424,7 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -434,7 +434,7 @@ input[type=color], .description {
 #vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -461,7 +461,7 @@ input[type=color], .description {
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #vital-stats .title,
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #vital-stats .title,
 #vital-stats .name {
   font-weight: bold;
   font-weight: 600;
@@ -475,7 +475,7 @@ input[type=color], .description {
   color: #18408b;
 }
 
-.black, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span {
   color: black;
 }
 
@@ -498,7 +498,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: white;
 }
 
-.black, .counter-labels, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text {
+.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span {
   color: black;
 }
 
@@ -734,10 +734,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   text-transform: lowercase;
 }
 
-.counter-labels {
-  font-size: 21px;
-}
-
 .page-content-text {
   line-height: 14px;
   text-transform: none;
@@ -793,6 +789,32 @@ h3 .subhead {
 }
 .right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-related-projects-action-sidebar-pane .views-field-title a.hover {
   text-decoration: underline;
+}
+
+.counter-labels, .digits span {
+  font-size: 21px;
+  letter-spacing: 0;
+  padding-right: 15px;
+  vertical-align: bottom;
+}
+
+.digits span {
+  background: url('images/counter.png') no-repeat -1px -1px;
+  border: 1px #d4d2d1 solid;
+  font-size: 27px;
+  height: 27px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  line-height: 30px;
+  padding: 0;
+  text-align: center;
+  width: 29px;
+}
+.digits span {
+  *display: inline;
 }
 
 .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2 {
@@ -2037,11 +2059,14 @@ h2.block-title, h2.pane-title {
 #vital-stats {
   overflow: hidden;
   *zoom: 1;
-  padding: 15px;
+  padding: 14px 33px 20px 33px;
 }
 #vital-stats ul {
   list-style: none;
   padding-left: 0;
+}
+#vital-stats .title {
+  margin-bottom: 23px;
 }
 #vital-stats .info {
   display: inline;
@@ -2050,6 +2075,9 @@ h2.block-title, h2.pane-title {
 #vital-stats .counter {
   display: inline;
   float: right;
+}
+#vital-stats .counter li {
+  margin-bottom: 10px;
 }
 
 .ui-dialog {
