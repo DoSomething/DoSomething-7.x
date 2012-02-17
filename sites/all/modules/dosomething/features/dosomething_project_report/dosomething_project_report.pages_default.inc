@@ -117,9 +117,24 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Project Status',
+      'admin_title' => 'Vital Stats',
       'title' => '',
-      'body' => '<div class="project-status-bar"><div class="project-title">Project Status</div><ul><li><span class="label">People Involved</span>%webform_submission_entity:field-update-people-involved</li><li><span class="label">People Impacted</span>%webform_submission_entity:field-num-people-impacted</li></ul></div>',
+      'body' => '<div id="vital-stats">
+  <div class="title">Vital Stats</div>
+  <div class="info">
+    <ul>
+      <li class="name">%webform_submission_entity:author</li>
+      <li class="medium-profile-info">%webform_submission_entity:field_webform_school_zip</li>
+      <li class="member-stats"></li>
+    </ul>
+  </div>
+  <div class="counter">
+    <ul>
+      <li><span class="counter-labels">People Helped</span>%webform_submission_entity:field-num-people-impacted</li>
+      <li><span class="counter-labels">People Doing It</span>%webform_submission_entity:field-update-people-involved</li>
+    </ul>
+  </div>
+</div>',
       'format' => '4',
       'substitute' => 1,
     );

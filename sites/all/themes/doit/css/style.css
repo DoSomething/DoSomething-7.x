@@ -430,7 +430,8 @@ input[type=color], .description {
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.headers, .bold-caps-header, .large-bold-caps, .large-profile-info, #vital-stats .title,
+#vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
@@ -460,7 +461,8 @@ input[type=color], .description {
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, input#edit-submit--2, input#edit-submit--3, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .counter-labels, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #vital-stats .title,
+#vital-stats .name {
   font-weight: bold;
   font-weight: 600;
 }
@@ -560,7 +562,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
 }
 
-.border-and-shadow, form.node-form, .pane-related-projects-action-sidebar-pane .project-related-thumb img {
+.border-and-shadow, form.node-form, .pane-related-projects-action-sidebar-pane .project-related-thumb img, #vital-stats {
   border: 1px white solid;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
@@ -574,7 +576,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 /* MORE SPECIFIC EXTENDABLES */
-.large-profile-info {
+.large-profile-info, #vital-stats .title,
+#vital-stats .name {
   font-size: 21px;
 }
 
@@ -2010,11 +2013,6 @@ h2.block-title, h2.pane-title {
   margin-bottom: 2em;
 }
 
-.pane-related-projects-action-sidebar-pane {
-  display: inline;
-  float: right;
-  width: 180px;
-}
 .pane-related-projects-action-sidebar-pane ul {
   list-style: none;
 }
@@ -2034,6 +2032,24 @@ h2.block-title, h2.pane-title {
 }
 .pane-related-projects-action-sidebar-pane .project-related-thumb img {
   margin-right: 12px;
+}
+
+#vital-stats {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 15px;
+}
+#vital-stats ul {
+  list-style: none;
+  padding-left: 0;
+}
+#vital-stats .info {
+  display: inline;
+  float: left;
+}
+#vital-stats .counter {
+  display: inline;
+  float: right;
 }
 
 .ui-dialog {

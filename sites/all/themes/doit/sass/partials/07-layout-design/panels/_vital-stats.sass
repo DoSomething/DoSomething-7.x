@@ -1,0 +1,20 @@
+////////////////////////////
+// VITAL STATS
+// Stats pane on projects pages
+////////////////////////////
+
+#vital-stats
+  @extend .border-and-shadow
+  +clearfix
+  padding: $s2
+  ul
+    list-style: none
+    padding-left: 0
+  .title,
+  .name
+    @extend .large-profile-info
+    @extend .bold
+  .info
+    +float-left
+  .counter
+    +float-right
