@@ -1793,14 +1793,14 @@ ul.menu li.expanded, ul.menu li.collapsed, ul.menu li.leaf {
 }
 
 nav[role=navigation] {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  text-rendering: optimizeLegibility;
-  text-transform: uppercase;
   position: relative;
+  z-index: 100;
   background-color: #18408b;
   font-size: 34px;
   line-height: 1.324;
-  z-index: 100;
+  text-rendering: optimizeLegibility;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
 }
 nav[role=navigation] ul {
   margin-top: 0;
@@ -1832,6 +1832,10 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: table-cell;
   width: 12%;
   position: relative;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li a {
+  position: relative;
+  z-index: 1;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
   left: -5px;

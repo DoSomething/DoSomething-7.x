@@ -1,15 +1,15 @@
 // Main navigation Styles
 
 nav[role=navigation]
-  font-family: $font-headline
-  text-rendering: optimizeLegibility
-  text-transform: uppercase
+  @extend .medium
   position: relative
+  z-index: 100
   background-color: $blue
   font-size: $s9
   line-height: 45px / $s9
-  @extend .medium
-  z-index: 100
+  text-rendering: optimizeLegibility
+  font-family: $font-headline
+  text-transform: uppercase
   ul
     margin-top: 0
   a
@@ -29,6 +29,9 @@ nav[role=navigation]
           // text-align: left
           width: 12%
           position: relative
+          a
+            position: relative
+            z-index: 1
           &.first
             ul
               left: -5px
