@@ -1857,18 +1857,10 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul {
   font-size: 18px;
   line-height: 38px;
   text-transform: capitalize;
-  -moz-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-  -moz-transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-timing-function: ease-out;
-  -o-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
+  -moz-transition: opacity 0.2s "ease-out";
+  -webkit-transition: opacity 0.2s "ease-out";
+  -o-transition: opacity 0.2s "ease-out";
+  transition: opacity 0.2s "ease-out";
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li {
   display: block;
