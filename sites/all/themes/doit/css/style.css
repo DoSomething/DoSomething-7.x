@@ -595,7 +595,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   border-radius: 12px;
   border: none;
   height: 30px;
-  padding: 1px 10px 0;
+  padding: 1px 13px 0;
   background-color: #fed100;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
   background-image: -webkit-linear-gradient(top, #ffffff, #fed100);
@@ -797,8 +797,12 @@ h3 .subhead {
   padding-top: 12px;
 }
 
-body.not-front .content {
-  padding: 28px 0;
+#block-panels-mini-home-page .content {
+  background: #efefef;
+}
+
+body.not-front #block-dosomething-blocks-dosomething-make-impact .content {
+  padding: 14px 0px;
   overflow: hidden;
   *zoom: 1;
 }
@@ -860,6 +864,9 @@ body.not-front .selectBox-options li.selectBox-hover a:hover {
 
 body.front .form-type-select label {
   display: none;
+}
+body.front .pane-dosomething-blocks-dosomething-make-impact-front {
+  width: 100%;
 }
 body.front .selectBox-dropdown {
   width: 100%;
@@ -1572,8 +1579,7 @@ ul.inline, ul.inline li {
   outline: 1px dashed #80ff00;
 }
 
-.container, nav[role=navigation] .primary, #block-menu-menu-footer .content {
-  width: 1030px;
+.container, .content, nav[role=navigation] .primary, #block-menu-menu-footer .content {
   max-width: 1030px;
   margin: 0 auto;
   position: relative;
@@ -1840,7 +1846,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -1972,7 +1978,6 @@ h2.block-title, h2.pane-title {
 }
 .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a {
   float: none;
-  padding: 1px 13px 0;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-profile {
   border-bottom: 1px black solid;
