@@ -63,8 +63,10 @@ class SearchApiViewsHandlerFilterLocation extends SearchApiViewsHandlerFilter {
 
     unset($form['operator']);
     unset($form['value']);
-    $form['label'] = $form['expose']['label'];
-    unset($form['expose']);
+    if (isset($form['expose']['label'])) {
+      $form['label'] = $form['expose']['label'];
+      unset($form['expose']);
+    }
 
     $form['spatial'] = array(
       '#type' => 'search_api_location_pick',
@@ -87,14 +89,21 @@ class SearchApiViewsHandlerFilterLocation extends SearchApiViewsHandlerFilter {
   public function query() {
 
     $field = str_replace(":", "_", $this->real_field);
-
-    if (isset($this->view->exposed_input[$field]['radius'])) {
-
+    $options = FALSE;
+    if ($this->options['exposed']) {
+      if (isset($this->view->exposed_input[$field]['radius'])) {
+        $options = $this->view->exposed_input[$field];
+      }
+    }
+    else {
+      $options = $this->options;
+    }
+    if ($options) {
       $spatial = array();
-      $spatial['lat'] = $this->view->exposed_input[$field]['lat'];
-      $spatial['lng'] = $this->view->exposed_input[$field]['lng'];
-      $spatial['radius'] = $this->view->exposed_input[$field]['radius'];
-      $spatial['radius_measure'] = $this->options['radius_measure'];
+      $spatial['lat'] = $options['lat'];
+      $spatial['lng'] = $options['lng'];
+      $spatial['radius'] = $options['radius'];
+      $spatial['radius_measure'] = $options['radius_measure'];
       $spatial['field'] = $this->real_field;
 
       $this->query->setOption('spatial', $spatial);
