@@ -69,6 +69,10 @@
 .box-shadow
   +box-shadow($gray3-trans 0px 6px 12px)
 
+.border-and-shadow
+  border: 1px $white solid
+  +box-shadow(rgba($black, .3) 0 0 6px)
+
 ////////////////////////////
 // GENERAL EXTENDABLES
 ////////////////////////////
@@ -458,6 +462,15 @@ h3
   font-size: $s0
   line-height: 14px
 
+.right-sidebar-headlines
+  a
+    @extend .headers
+    @extend .bold
+    @extend .blue
+    +remove-link-underlines
+    &.hover
+      text-decoration: underline
+
 .right-sidebar
   .sidebar-title
     @extend .headers
@@ -465,14 +478,7 @@ h3
     @extend .white
     @extend .caps
   .headlines
-    a
-      @extend .headers
-      @extend .bold
-      @extend .blue
-      @extend .caps
-      +remove-link-underlines
-      &.hover
-        text-decoration: underline
+    @extend .right-sidebar-headlines
   .content-text
     @extend .content-text
 

@@ -123,7 +123,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  /* Contextual filter: Broken/missing handler */
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
@@ -134,9 +134,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['break_phrase'] = 1;
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['set_breadcrumb'] = 0;
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['use_taxonomy_term_path'] = 0;
   $handler->display->display_options['block_description'] = 'Get Inspired Block';
 
   /* Display: Get The Facts Block */
@@ -371,7 +368,7 @@ function dosomething_projects_general_views_default_views() {
   /* Display: Resources Content Pane */
   $handler = $view->new_display('panel_pane', 'Resources Content Pane', 'panel_pane_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Related Resources';
+  $handler->display->display_options['title'] = 'Related  Stuff';
   $handler->display->display_options['display_description'] = 'Displays a list of resources.';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
@@ -611,7 +608,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
-  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  /* Contextual filter: Broken/missing handler */
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
@@ -621,9 +618,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['break_phrase'] = 1;
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['set_breadcrumb'] = 0;
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['use_taxonomy_term_path'] = 0;
   /* Filter criterion: Field: Picture (field_picture:delta) */
   $handler->display->display_options['filters']['delta']['id'] = 'delta';
   $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_picture';
@@ -655,23 +649,63 @@ function dosomething_projects_general_views_default_views() {
   /* Display: Action Related Projects Sidebar */
   $handler = $view->new_display('panel_pane', 'Action Related Projects Sidebar', 'action_sidebar_pane');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Related Projects';
+  $handler->display->display_options['title'] = 'Related Stuff';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'projects/%1';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'field_picture' => 'field_picture',
+    'sid' => 'sid',
+    'field_project_title' => 'field_project_title',
+    'field_webform_project_summary' => 'field_webform_project_summary',
+  );
+  $handler->display->display_options['row_options']['hide_empty'] = 0;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Field: Picture */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_class'] = 'project-related-thumb';
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'project_related_thumb',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
   /* Field: Webform submissions: Sid */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
@@ -723,9 +757,33 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Project Summary */
+  $handler->display->display_options['fields']['field_webform_project_summary']['id'] = 'field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['table'] = 'field_data_field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['field'] = 'field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['label'] = '';
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['max_length'] = '35';
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['trim'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_webform_project_summary']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  /* Contextual filter: Broken/missing handler */
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
@@ -735,9 +793,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['break_phrase'] = 1;
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['set_breadcrumb'] = 0;
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['use_taxonomy_term_path'] = 0;
   /* Contextual filter: Webform submissions: Sid */
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
   $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';

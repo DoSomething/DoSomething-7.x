@@ -5,3 +5,22 @@
 
 
 .pane-related-projects-action-sidebar-pane
+  +float-right
+  width: 180px
+  ul
+    list-style: none
+  .item-list ul li
+    margin: 0
+  .views-row
+    border-top: 1px $gray5 solid
+    border-bottom: 1px $white solid
+    padding: $s2 0
+    &:first-of-type
+      border-top: none
+    &:last-of-type
+      border-bottom: none
+  .views-field-title
+    @extend .right-sidebar-headlines
+  .project-related-thumb img
+    @extend .border-and-shadow
+    margin-right: $s0
