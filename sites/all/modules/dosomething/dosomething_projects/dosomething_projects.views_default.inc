@@ -299,7 +299,6 @@ function dosomething_projects_views_default_views() {
     'lng' => '3.7125661000000036',
   );
   $handler->display->display_options['filters']['field_geocode_data']['group'] = 0;
-  $handler->display->display_options['filters']['field_geocode_data']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_geocode_data']['expose']['operator_id'] = 'field_geocode_data_op';
   $handler->display->display_options['filters']['field_geocode_data']['expose']['label'] = 'Geocode Data';
   $handler->display->display_options['filters']['field_geocode_data']['expose']['use_operator'] = FALSE;
