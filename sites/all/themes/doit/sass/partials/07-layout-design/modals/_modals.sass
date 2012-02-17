@@ -42,19 +42,13 @@
   text-decoration: none
 
 // Dark input style
-input
-  &[name="first_name"],
-  &[name="last_name"],
-  &[name="cell_or_email"],
-  &[name="month"],
-  &[name="day"],
-  &[name="year"],
-  &[name="pass[pass1]"],
-  &[name="pass[pass2]"],
-  &[name="captcha_response"]
-    @extend .white
-    background: $gray2
-    +box-shadow(none)
-    +float-left
-    &:focus
-      outline: none
+.region-sidebar-first, .ui-dialog
+  input
+    &[type="text"],
+    &[type="textarea"]
+      @extend .white
+      background: $gray2
+      +box-shadow(none)
+      +float-left
+      &:focus
+        outline: none
