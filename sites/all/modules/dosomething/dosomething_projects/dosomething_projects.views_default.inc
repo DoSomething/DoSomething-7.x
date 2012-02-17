@@ -302,8 +302,12 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['filters']['field_geocode_data']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_geocode_data']['expose']['operator_id'] = 'field_geocode_data_op';
   $handler->display->display_options['filters']['field_geocode_data']['expose']['label'] = 'Geocode Data';
+  $handler->display->display_options['filters']['field_geocode_data']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['field_geocode_data']['expose']['operator'] = 'field_geocode_data_op';
   $handler->display->display_options['filters']['field_geocode_data']['expose']['identifier'] = 'field_geocode_data';
+  $handler->display->display_options['filters']['field_geocode_data']['expose']['required'] = FALSE;
+  $handler->display->display_options['filters']['field_geocode_data']['expose']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_geocode_data']['expose']['multiple'] = FALSE;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_webform_submission_index';
