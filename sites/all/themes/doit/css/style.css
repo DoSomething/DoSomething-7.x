@@ -1960,7 +1960,7 @@ h2.block-title, h2.pane-title {
 }
 
 .logged-in #block-dosomething-login-become-member {
-  padding: 0;
+  padding: 0 0 5px 0;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name {
   height: 36px;
