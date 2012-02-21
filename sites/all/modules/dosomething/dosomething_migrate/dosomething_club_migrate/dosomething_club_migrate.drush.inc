@@ -159,7 +159,19 @@ function dosomething_club_migrate_batch_start(&$context) {
               }
             }
             else {
-              drush_log("No membership found for user $uid in group $gid as part of change $cid", 'error');
+              // The membership didn't exist. We should create it.
+              drush_log("Tried to approve a user that had no membership. Attempting to create membership for user $uid in group $gid as part of change $cid",
+                'warning');
+              try {
+                $membership = og_membership_create($gid, 'user', $uid);
+                $membership_saved = og_membership_save($membership);
+                drush_log('membership saved:  ' . (string) $membership_saved, 'ok');
+                // Record what we've done for tracking and reference.
+                dosomething_club_migrate_update_changelog($cid);
+              }
+              catch (Exception $e) {
+                drush_log("This is weird. We tried to approve a membership and it didn\'t exist so we tried to create the membership but we got an error that the memembership already existed. You should investigate this. Change $cid", 'error');
+              }
             }
             break;
 
