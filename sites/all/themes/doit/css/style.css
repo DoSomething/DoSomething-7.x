@@ -2098,6 +2098,9 @@ h2.block-title, h2.pane-title {
   margin-bottom: 2em;
 }
 
+.pane-related-projects-action-sidebar-pane .pane-title {
+  text-align: center;
+}
 .pane-related-projects-action-sidebar-pane ul {
   list-style: none;
 }
