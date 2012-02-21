@@ -21,7 +21,7 @@ function dosomething_home_default_panels_mini() {
   $mini->contexts = array();
   $mini->relationships = array();
   $display = new panels_display();
-  $display->layout = 'threecol_33_34_33';
+  $display->layout = 'twocol';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -77,7 +77,7 @@ function dosomething_home_default_panels_mini() {
     $display->panels['left'][1] = 'new-2';
     $pane = new stdClass();
     $pane->pid = 'new-3';
-    $pane->panel = 'middle';
+    $pane->panel = 'left';
     $pane->type = 'views';
     $pane->subtype = 'news_stuff';
     $pane->shown = TRUE;
@@ -104,9 +104,9 @@ function dosomething_home_default_panels_mini() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $display->content['new-3'] = $pane;
-    $display->panels['middle'][0] = 'new-3';
+    $display->panels['left'][2] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'right';
