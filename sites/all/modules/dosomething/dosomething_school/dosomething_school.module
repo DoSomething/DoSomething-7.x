@@ -23,7 +23,7 @@ function dosomething_school_menu() {
  */
 function dosomething_school_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'entityreference' && $plugin_type) {
-    return 'plugins/entityreference_handler';
+    return 'plugins/entityreference/' . $plugin_type;
   }
 }
 
