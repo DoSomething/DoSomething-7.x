@@ -105,13 +105,13 @@ function dosomething_projects_callback() {
     // This query relies on the zipcodes table provided by location module.
     $distance = isset($_GET['distance']) ? $_GET['distance'] : 10;
     $data = db_query("SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip", array(':zip' => $zip))->fetchObject();
-    $filter = $view->get_item($display_id,'filter','field_geocode_data');
+    $filter = $view->get_item($display_id,'filter','field_geocode_data_latlon');
     $filter['lat'] = $data->latitude;
     $filter['lng'] = $data->longitude;
     $filter['radius'] = $distance;
     // Setting radius measure in the view seems to be broken.
     $filter['radius_measure'] = 'mi';
-    $view->set_item($display_id, 'filter', 'field_geocode_data', $filter);
+    $view->set_item($display_id, 'filter', 'field_geocode_data_latlon', $filter);
   }
 
   $page = 0;
