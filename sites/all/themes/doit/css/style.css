@@ -868,6 +868,25 @@ h3 .subhead {
   background: #efefef;
 }
 
+.pane-news-stuff .pane-content .views-row {
+  padding: 20px;
+  clear: both;
+  overflow: hidden;
+  *zoom: 1;
+}
+.pane-news-stuff .pane-content .views-row .news-image {
+  display: inline;
+  float: left;
+  margin-right: 14px;
+}
+.pane-news-stuff .pane-content .views-row .news-image img {
+  border: 1px solid white;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
+  box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
+}
+
 body.not-front #block-dosomething-blocks-dosomething-make-impact .content {
   padding: 14px 0px;
   overflow: hidden;
