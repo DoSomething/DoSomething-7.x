@@ -33,7 +33,7 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Webform Submission: Rendered Webform Submission */
+  /* Field: Webform submissions: Rendered Webform Submission */
   $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_webform_submission_entity';
   $handler->display->display_options['fields']['rendered_entity']['field'] = 'rendered_entity';
@@ -288,25 +288,11 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['fields']['taxonomy_vocabulary_5_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['taxonomy_vocabulary_5_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['taxonomy_vocabulary_5_name']['link_to_entity'] = 0;
-  /* Filter criterion: Indexed Webform Submission: Geocode Data */
-  $handler->display->display_options['filters']['field_geocode_data']['id'] = 'field_geocode_data';
-  $handler->display->display_options['filters']['field_geocode_data']['table'] = 'search_api_index_webform_submission_index';
-  $handler->display->display_options['filters']['field_geocode_data']['field'] = 'field_geocode_data';
-  $handler->display->display_options['filters']['field_geocode_data']['value'] = array(
-    'address' => '',
-    'radius' => '5',
-    'lat' => '51.03826129999999',
-    'lng' => '3.7125661000000036',
-  );
-  $handler->display->display_options['filters']['field_geocode_data']['group'] = 0;
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['operator_id'] = 'field_geocode_data_op';
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['label'] = 'Geocode Data';
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['use_operator'] = FALSE;
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['operator'] = 'field_geocode_data_op';
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['identifier'] = 'field_geocode_data';
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['required'] = FALSE;
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['remember'] = FALSE;
-  $handler->display->display_options['filters']['field_geocode_data']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Geocode Data: LatLong Pair (indexed) */
+  $handler->display->display_options['filters']['field_geocode_data_latlon']['id'] = 'field_geocode_data_latlon';
+  $handler->display->display_options['filters']['field_geocode_data_latlon']['table'] = 'search_api_index_webform_submission_index';
+  $handler->display->display_options['filters']['field_geocode_data_latlon']['field'] = 'field_geocode_data_latlon';
+  $handler->display->display_options['filters']['field_geocode_data_latlon']['group'] = 0;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_webform_submission_index';
@@ -335,15 +321,6 @@ function dosomething_projects_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'dosomething_api';
-
-  /* Display: Data export */
-  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['style_plugin'] = 'views_data_export_xml';
-  $handler->display->display_options['style_options']['provide_file'] = 0;
-  $handler->display->display_options['style_options']['parent_sort'] = 0;
-  $handler->display->display_options['style_options']['transform'] = 1;
-  $handler->display->display_options['path'] = 'api/xml';
   $export['dosomething_api'] = $view;
 
   $view = new view;
