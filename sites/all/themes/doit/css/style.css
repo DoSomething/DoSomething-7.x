@@ -1937,7 +1937,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2048,7 +2048,7 @@ h2.block-title, h2.pane-title {
 .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .inner {
   background-color: #502862;
   height: 6px;
-  margin: -1px 0 5px -1px;
+  margin: -2px 0 5px -2px;
   max-width: 100%;
   width: 0%;
 }
