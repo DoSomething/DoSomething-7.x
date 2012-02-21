@@ -435,7 +435,7 @@ input[type=color], .description {
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -463,7 +463,7 @@ input[type=color], .description {
 }
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
 #vital-stats .name {
   font-weight: bold;
   font-weight: 600;
@@ -473,7 +473,7 @@ input[type=color], .description {
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6 {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6 {
   color: #18408b;
 }
 
@@ -565,7 +565,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
 }
 
-.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-projects-action-sidebar-pane .project-related-thumb img, #vital-stats {
+.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats {
   border: 1px white solid;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
@@ -815,13 +815,13 @@ h3 .subhead {
   line-height: 14px;
 }
 
-.right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-projects-action-sidebar-pane .views-field-title a {
+.right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a {
   border-bottom: none;
 }
-.right-sidebar-headlines a:hover, .right-sidebar .headlines a:hover, .pane-related-projects-action-sidebar-pane .views-field-title a:hover {
+.right-sidebar-headlines a:hover, .right-sidebar .headlines a:hover, .pane-related-stuff .views-field-title a:hover {
   border-bottom: none;
 }
-.right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-related-projects-action-sidebar-pane .views-field-title a.hover {
+.right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-related-stuff .views-field-title a.hover {
   text-decoration: underline;
 }
 
@@ -2145,27 +2145,27 @@ h2.block-title, h2.pane-title {
   margin-bottom: 2em;
 }
 
-.pane-related-projects-action-sidebar-pane .pane-title {
+.pane-related-stuff .pane-title {
   text-align: center;
 }
-.pane-related-projects-action-sidebar-pane ul {
+.pane-related-stuff ul {
   list-style: none;
 }
-.pane-related-projects-action-sidebar-pane .item-list ul li {
+.pane-related-stuff .item-list ul li {
   margin: 0;
 }
-.pane-related-projects-action-sidebar-pane .views-row {
+.pane-related-stuff .views-row {
   border-top: 1px #d4d2d1 solid;
   border-bottom: 1px white solid;
   padding: 15px 0;
 }
-.pane-related-projects-action-sidebar-pane .views-row:first-of-type {
+.pane-related-stuff .views-row:first-of-type {
   border-top: none;
 }
-.pane-related-projects-action-sidebar-pane .views-row:last-of-type {
+.pane-related-stuff .views-row:last-of-type {
   border-bottom: none;
 }
-.pane-related-projects-action-sidebar-pane .project-related-thumb img {
+.pane-related-stuff .project-related-thumb img {
   margin-right: 12px;
 }
 
