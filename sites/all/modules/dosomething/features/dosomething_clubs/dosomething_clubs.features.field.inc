@@ -951,7 +951,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '34',
+        'weight' => '14',
       ),
     ),
   );
@@ -1665,6 +1665,82 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
+  // Exported field: 'node-club-field_school_reference'
+  $fields['node-club-field_school_reference'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_school_reference',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'ds_school',
+        'handler_settings' => array(
+          'target_bundles' => array(
+            'ds_school' => 'ds_school',
+          ),
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'ds_school',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 26,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_school_reference',
+      'label' => 'School',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'dosomething_school',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'dosomething_school_autocomplete',
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported field: 'node-club-group_group'
   $fields['node-club-group_group'] = array(
     'field_config' => array(
@@ -1743,7 +1819,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '15',
+        'weight' => '11',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1822,7 +1898,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '33',
+        'weight' => '13',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1905,7 +1981,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '16',
+        'weight' => '12',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1968,7 +2044,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -2043,7 +2119,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -2075,6 +2151,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Please don\'t use BMP files.
 Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
   t('Please give us an email address you check often so we can let you know when your application has been approved and notify you if you win any grants/prizes!');
+  t('School');
   t('State');
   t('This is for your Club\'s Profile Page!');
   t('Verified');
