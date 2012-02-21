@@ -565,7 +565,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
 }
 
-.border-and-shadow, form.node-form, .pane-related-projects-action-sidebar-pane .project-related-thumb img, #vital-stats {
+.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-projects-action-sidebar-pane .project-related-thumb img, #vital-stats {
   border: 1px white solid;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
@@ -702,6 +702,34 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 
 .accordian-selected-category {
   font-size: 18px;
+}
+
+.action-finder-list .views-row {
+  overflow: hidden;
+  *zoom: 1;
+  margin-bottom: 12px;
+  width: 50%;
+}
+.action-finder-list .views-field-field-picture img {
+  float: left;
+  margin-right: 5px;
+}
+.action-finder-list .unimage-wrapper {
+  float: left;
+  background-color: white;
+  height: 120px;
+  padding: 23px 0 0 12px;
+  width: 242px;
+}
+.action-finder-list .pane-content {
+  overflow: hidden;
+  *zoom: 1;
+}
+.action-finder-list .views-row-odd {
+  float: left;
+}
+.action-finder-list .views-row-even {
+  float: right;
 }
 
 .main-nav {

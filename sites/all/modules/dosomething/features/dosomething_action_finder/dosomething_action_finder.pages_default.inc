@@ -8,7 +8,7 @@
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_action_finder_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'action_finder';
@@ -23,7 +23,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_action_finder_panel_context';
@@ -53,7 +53,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     ),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -69,7 +69,7 @@ function dosomething_action_finder_default_page_manager_pages() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'top';
     $pane->type = 'views_exposed';
@@ -90,7 +90,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['top'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'top';
     $pane->type = 'views_row';
@@ -128,27 +128,6 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['top'][1] = 'new-2';
-    $pane = new stdClass;
-    $pane->pid = 'new-3';
-    $pane->panel = 'top';
-    $pane->type = 'views_pager';
-    $pane->subtype = 'views_pager';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'context' => 'context_view:action_finder-ctools_context_1_1',
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['top'][2] = 'new-3';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

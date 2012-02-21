@@ -335,8 +335,32 @@
   @extend .white
   font-size: $s4
 
-
-
+////////////////////////////
+// TWO COLUMN GRID
+// Used on the action guides landing
+////////////////////////////
+.action-finder-list
+  .views-row
+    +clearfix
+    margin-bottom: $s0
+    width: 50%
+  .views-field-field-picture img
+    float: left
+    margin-right: $s-2
+    @extend .border-and-shadow
+  .unimage-wrapper
+    @extend .border-and-shadow
+    float: left
+    background-color: $white
+    height: 120px
+    padding: $s6 0 0 $s0
+    width: 242px
+  .pane-content
+    +clearfix
+  .views-row-odd
+    float: left
+  .views-row-even
+    float: right
 
 ////////////////////////////
 // BOX-DETAILS LAYOUTS
