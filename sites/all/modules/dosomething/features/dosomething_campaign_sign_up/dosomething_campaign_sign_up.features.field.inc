@@ -494,6 +494,11 @@ The content from this field will only be shown to anonymous users.',
       'label' => 'Geocode Data',
       'required' => 0,
       'settings' => array(
+        'local_solr' => array(
+          'enabled' => FALSE,
+          'lat_field' => 'lat',
+          'lng_field' => 'lng',
+        ),
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -707,8 +712,8 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
