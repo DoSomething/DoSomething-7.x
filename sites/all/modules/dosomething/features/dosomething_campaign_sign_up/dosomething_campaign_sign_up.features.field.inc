@@ -708,7 +708,6 @@ The content from this field will only be shown to anonymous users.',
       'foreign keys' => array(),
       'indexes' => array(
         'target_entity' => array(
-          0 => 'target_type',
           1 => 'target_id',
         ),
       ),

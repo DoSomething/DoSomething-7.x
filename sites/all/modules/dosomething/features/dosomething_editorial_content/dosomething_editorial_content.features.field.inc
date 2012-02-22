@@ -256,7 +256,6 @@ function dosomething_editorial_content_field_default_fields() {
       'foreign keys' => array(),
       'indexes' => array(
         'target_entity' => array(
-          0 => 'target_type',
           1 => 'target_id',
         ),
       ),

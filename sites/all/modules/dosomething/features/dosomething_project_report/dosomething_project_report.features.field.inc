@@ -798,7 +798,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'foreign keys' => array(),
       'indexes' => array(
         'target_entity' => array(
-          0 => 'target_type',
           1 => 'target_id',
         ),
       ),
