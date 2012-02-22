@@ -125,6 +125,11 @@ function dosomething_grant_application_field_default_fields() {
       'label' => 'Geocode Data',
       'required' => 0,
       'settings' => array(
+        'local_solr' => array(
+          'enabled' => FALSE,
+          'lat_field' => 'lat',
+          'lng_field' => 'lng',
+        ),
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -814,8 +819,8 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -1083,8 +1088,8 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',

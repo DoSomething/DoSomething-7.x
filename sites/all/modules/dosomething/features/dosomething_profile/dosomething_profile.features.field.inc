@@ -26,17 +26,24 @@ function dosomething_profile_field_default_fields() {
         'target_entity' => array(
           1 => 'target_id',
         ),
+        'target_id' => array(
+          0 => 'target_id',
+        ),
       ),
       'module' => 'entityreference',
       'settings' => array(
-        'handler' => 'base',
+        'handler' => 'ds_school',
         'handler_settings' => array(
-          'target_bundles' => array(
-            'ds_school' => 'ds_school',
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'none',
+            'property' => 'sid',
+            'type' => 'none',
           ),
+          'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
-        'profile2_private' => 0,
+        'profile2_private' => FALSE,
         'target_type' => 'ds_school',
       ),
       'translatable' => '0',
@@ -947,7 +954,6 @@ function dosomething_profile_field_default_fields() {
           'grant' => 0,
           'grant_alumni' => 0,
           'grant_judge' => 0,
-          'member_opportunity' => 0,
           'gys_2011' => 0,
           'healthy_schools' => 0,
           'healthy_schools_report' => 0,
@@ -955,6 +961,7 @@ function dosomething_profile_field_default_fields() {
           'ididthis' => 0,
           'increaseyourgreen_signup' => 0,
           'issue' => 0,
+          'member_opportunity' => 0,
           'page' => 0,
           'poll' => 0,
           'press' => 0,

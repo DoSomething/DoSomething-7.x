@@ -10,7 +10,7 @@
 function dosomething_profile_field_group_info() {
   $export = array();
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_profile_other|profile2|main|form';
@@ -39,7 +39,7 @@ function dosomething_profile_field_group_info() {
   );
   $export['group_profile_other|profile2|main|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_profile_personal|profile2|main|form';
@@ -74,7 +74,7 @@ function dosomething_profile_field_group_info() {
   );
   $export['group_profile_personal|profile2|main|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_profile_subscriptions|profile2|main|form';

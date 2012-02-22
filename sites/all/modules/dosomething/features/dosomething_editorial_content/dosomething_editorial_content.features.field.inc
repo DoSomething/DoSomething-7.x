@@ -60,7 +60,7 @@ function dosomething_editorial_content_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'node',
@@ -212,7 +212,7 @@ function dosomething_editorial_content_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'blog_thumbnail',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -253,10 +253,13 @@ function dosomething_editorial_content_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_editorial_reference',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -288,10 +291,10 @@ function dosomething_editorial_content_field_default_fields() {
           'weight' => '3',
         ),
         'teaser' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'node',
@@ -441,7 +444,7 @@ function dosomething_editorial_content_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'node',

@@ -311,7 +311,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'grants_logo',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -627,6 +627,11 @@ function dosomething_scholarship_application_field_default_fields() {
       'label' => 'Geocode Data',
       'required' => 0,
       'settings' => array(
+        'local_solr' => array(
+          'enabled' => FALSE,
+          'lat_field' => 'lat',
+          'lng_field' => 'lng',
+        ),
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -657,8 +662,8 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -727,14 +732,21 @@ function dosomething_scholarship_application_field_default_fields() {
         'target_entity' => array(
           1 => 'target_id',
         ),
+        'target_id' => array(
+          0 => 'target_id',
+        ),
       ),
       'module' => 'entityreference',
       'settings' => array(
-        'handler' => 'base',
+        'handler' => 'ds_school',
         'handler_settings' => array(
-          'target_bundles' => array(
-            'ds_school' => 'ds_school',
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'none',
+            'property' => 'sid',
+            'type' => 'none',
           ),
+          'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
         'profile2_private' => FALSE,
@@ -1486,8 +1498,8 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',

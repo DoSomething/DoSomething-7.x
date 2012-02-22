@@ -8,7 +8,7 @@
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_awesome_things_landing_page_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'awesome_things';
@@ -16,14 +16,17 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
   $page->admin_title = 'Awesome Things';
   $page->admin_description = '';
   $page->path = 'awesome-things';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_awesome_things_panel_context';
@@ -40,7 +43,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -56,7 +59,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
   $display->title = 'Awesome-Things';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left-bottom-left';
     $pane->type = 'custom';
@@ -88,7 +91,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left-bottom-left'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left-bottom-right';
     $pane->type = 'custom';
@@ -119,7 +122,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-2'] = $pane;
     $display->panels['left-bottom-right'][0] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'left-top';
     $pane->type = 'views_panes';
@@ -136,7 +139,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-3'] = $pane;
     $display->panels['left-top'][0] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'left-top';
     $pane->type = 'custom';
@@ -166,7 +169,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-4'] = $pane;
     $display->panels['left-top'][1] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'views';

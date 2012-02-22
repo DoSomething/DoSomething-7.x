@@ -10,7 +10,7 @@
 function dosomething_member_opportunity_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view_grants';
@@ -50,7 +50,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -68,7 +68,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'block';
@@ -88,7 +88,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -112,7 +112,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -136,7 +136,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['left'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -160,7 +160,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 3;
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
@@ -187,7 +187,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-5'] = $pane;
     $display->panels['right'][0] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
@@ -211,7 +211,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-6'] = $pane;
     $display->panels['right'][1] = 'new-6';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-7';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
@@ -235,7 +235,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-7'] = $pane;
     $display->panels['right'][2] = 'new-7';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-8';
     $pane->panel = 'right';
     $pane->type = 'views';
@@ -270,7 +270,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->position = 3;
     $display->content['new-8'] = $pane;
     $display->panels['right'][3] = 'new-8';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-9';
     $pane->panel = 'top';
     $pane->type = 'custom';
@@ -313,7 +313,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_member_opportunity_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'grants';
@@ -331,7 +331,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_grants_panel_context';
@@ -348,7 +348,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -374,7 +374,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->title = 'Grants';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
     $pane->type = 'views_panes';
@@ -391,7 +391,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -415,7 +415,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['bottom'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -439,7 +439,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['bottom'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -463,7 +463,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 3;
     $display->content['new-4'] = $pane;
     $display->panels['bottom'][3] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -485,7 +485,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 4;
     $display->content['new-5'] = $pane;
     $display->panels['bottom'][4] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -513,7 +513,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 5;
     $display->content['new-6'] = $pane;
     $display->panels['bottom'][5] = 'new-6';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-7';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
@@ -538,7 +538,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 6;
     $display->content['new-7'] = $pane;
     $display->panels['bottom'][6] = 'new-7';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-8';
     $pane->panel = 'mid-left';
     $pane->type = 'block';
@@ -558,7 +558,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-8'] = $pane;
     $display->panels['mid-left'][0] = 'new-8';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-9';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
@@ -586,7 +586,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-9'] = $pane;
     $display->panels['mid-left'][1] = 'new-9';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-10';
     $pane->panel = 'mid-right';
     $pane->type = 'node';
@@ -615,7 +615,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-10'] = $pane;
     $display->panels['mid-right'][0] = 'new-10';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-11';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';

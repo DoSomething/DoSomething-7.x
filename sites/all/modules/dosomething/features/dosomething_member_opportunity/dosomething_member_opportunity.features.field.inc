@@ -109,8 +109,8 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -1213,6 +1213,7 @@ function dosomething_member_opportunity_field_default_fields() {
         'settings' => array(
           'default_value_custom' => '',
           'default_value_custom2' => '',
+          'display_all_day' => 0,
           'increment' => '1',
           'input_format' => 'site-wide',
           'input_format_custom' => '',
