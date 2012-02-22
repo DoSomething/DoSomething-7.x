@@ -10,22 +10,70 @@
 function dosomething_layout_default_fe_block_settings() {
   $export = array();
 
-  // ds
+  // doit
   $theme = array();
 
-  $theme['dosomething_blocks-dosomething_facebook_activity'] = array(
+  $theme['dosomething_blocks-dosomething_make_impact'] = array(
     'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_facebook_activity',
-    'theme' => 'ds',
+    'delta' => 'dosomething_make_impact',
+    'theme' => 'doit',
     'status' => '1',
-    'weight' => '-21',
+    'weight' => '-34',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '<front>',
+    'pages' => '<front>
+start-something',
     'title' => '',
     'cache' => 8,
   );
+
+  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_utility_bar',
+    'theme' => 'doit',
+    'status' => '1',
+    'weight' => '-22',
+    'region' => 'utility',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['dosomething_login-become_member'] = array(
+    'module' => 'dosomething_login',
+    'delta' => 'become_member',
+    'theme' => 'doit',
+    'status' => '1',
+    'weight' => '-35',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['menu-menu-footer'] = array(
+    'module' => 'menu',
+    'delta' => 'menu-footer',
+    'theme' => 'doit',
+    'status' => '1',
+    'weight' => '-30',
+    'region' => 'footer',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $export['doit'] = $theme;
+
+  // ds
+  $theme = array();
 
   $theme['dosomething_blocks-dosomething_make_impact'] = array(
     'module' => 'dosomething_blocks',
@@ -38,20 +86,6 @@ function dosomething_layout_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '<front>
 start-something',
-    'title' => '',
-    'cache' => 8,
-  );
-
-  $theme['dosomething_blocks-dosomething_twitter_stream'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_twitter_stream',
-    'theme' => 'ds',
-    'status' => '1',
-    'weight' => '-22',
-    'region' => 'sidebar_first',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '<front>',
     'title' => '',
     'cache' => 8,
   );

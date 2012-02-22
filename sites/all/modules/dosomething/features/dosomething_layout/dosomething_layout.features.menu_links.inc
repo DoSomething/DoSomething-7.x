@@ -15,7 +15,7 @@ function dosomething_layout_menu_default_menu_links() {
     'menu_name' => 'menu-footer',
     'link_path' => 'node/21',
     'router_path' => 'node/%',
-    'link_title' => 'About Us',
+    'link_title' => 'FAQ',
     'options' => array(
       'attributes' => array(
         'title' => '',
@@ -26,14 +26,15 @@ function dosomething_layout_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '1',
     'expanded' => '1',
-    'weight' => '-47',
+    'weight' => '-50',
+    'parent_path' => 'node/718408',
   );
   // Exported menu link: menu-footer:node/3
   $menu_links['menu-footer:node/3'] = array(
     'menu_name' => 'menu-footer',
     'link_path' => 'node/3',
     'router_path' => 'node/%',
-    'link_title' => 'Help',
+    'link_title' => 'Help Center',
     'options' => array(
       'attributes' => array(
         'title' => '',
@@ -42,9 +43,10 @@ function dosomething_layout_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-48',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-50',
+    'parent_path' => '<front>',
   );
   // Exported menu link: menu-footer:taxonomy/term/27
   $menu_links['menu-footer:taxonomy/term/27'] = array(
@@ -58,38 +60,18 @@ function dosomething_layout_menu_default_menu_links() {
       ),
     ),
     'module' => 'menu',
-    'hidden' => '0',
+    'hidden' => '1',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-48',
-    'parent_path' => 'causes',
-  );
-  // Exported menu link: menu-footer:taxonomy/term/29
-  $menu_links['menu-footer:taxonomy/term/29'] = array(
-    'menu_name' => 'menu-footer',
-    'link_path' => 'taxonomy/term/29',
-    'router_path' => 'taxonomy/term/%',
-    'link_title' => 'Animal Welfare',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-50',
-    'parent_path' => 'causes',
+    'weight' => '-46',
+    'parent_path' => '<front>',
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('About Us');
-  t('Animal Welfare');
   t('Disaster Response and Relief');
-  t('Help');
+  t('FAQ');
+  t('Help Center');
 
 
   return $menu_links;
