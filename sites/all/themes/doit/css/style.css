@@ -464,7 +464,7 @@ input[type=color], .description {
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
-#vital-stats .name {
+#vital-stats .name, .node-action-guide h2 {
   font-weight: bold;
   font-weight: 600;
 }
@@ -477,7 +477,7 @@ input[type=color], .description {
   color: #18408b;
 }
 
-.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span {
+.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .node-action-guide h2 {
   color: black;
 }
 
@@ -500,7 +500,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: white;
 }
 
-.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span {
+.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .node-action-guide h2 {
   color: black;
 }
 
@@ -565,7 +565,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
 }
 
-.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats {
+.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats, .node-action-guide .field-type-image img {
   border: 1px white solid;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
@@ -1216,7 +1216,7 @@ ol li {
   margin-bottom: 14.0px;
 }
 ol li:before {
-  font-size: 18px;
+  font-size: 21px;
 }
 
 ul {
@@ -2512,4 +2512,11 @@ comments.fb_iframe_widget {
   bottom: 5px;
   right: 0;
   padding-right: 10px;
+}
+
+.node-action-guide h2 {
+  display: inline;
+}
+.node-action-guide li p {
+  margin-left: 18px;
 }
