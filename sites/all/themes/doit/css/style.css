@@ -463,7 +463,7 @@ input[type=color], .description {
 }
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
 #vital-stats .name {
   font-weight: bold;
   font-weight: 600;
@@ -549,7 +549,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   font-size: 10px;
 }
 
-.tight-leading {
+.tight-leading, .action-finder-list .unimage-wrapper p {
   font-size: 12px;
   line-height: 14px;
 }
@@ -718,8 +718,15 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   float: left;
   background-color: white;
   height: 120px;
-  padding: 23px 0 0 12px;
+  padding: 23px 12px 0 12px;
   width: 242px;
+}
+.action-finder-list .unimage-wrapper h2 {
+  line-height: 1;
+  margin-bottom: 18px;
+}
+.action-finder-list .unimage-wrapper p {
+  margin-bottom: 0;
 }
 .action-finder-list .pane-content {
   overflow: hidden;

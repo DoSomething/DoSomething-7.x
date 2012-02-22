@@ -338,6 +338,8 @@
 ////////////////////////////
 // TWO COLUMN GRID
 // Used on the action guides landing
+// 120px square image
+// h2 title and description
 ////////////////////////////
 .action-finder-list
   .views-row
@@ -353,8 +355,15 @@
     float: left
     background-color: $white
     height: 120px
-    padding: $s6 0 0 $s0
+    padding: $s6 $s0 0 $s0
     width: 242px
+    h2
+      @extend .bold
+      line-height: 1
+      margin-bottom: $s4
+    p
+      @extend .tight-leading
+      margin-bottom: 0
   .pane-content
     +clearfix
   .views-row-odd
