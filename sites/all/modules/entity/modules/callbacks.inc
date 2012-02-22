@@ -84,12 +84,26 @@ function entity_metadata_comment_get_node_properties($node, array $options, $nam
 }
 
 /**
+ * Getter callback for getting global languages.
+ */
+function entity_metadata_locale_get_languages($data, array $options, $name) {
+  return isset($GLOBALS[$name]) ? $GLOBALS[$name]->language : NULL;
+}
+
+/**
+ * Getter callback for getting the preferred user language.
+ */
+function entity_metadata_locale_get_user_language($account, array $options, $name) {
+  return user_preferred_language($account)->language;
+}
+
+/**
  * Return the options lists for the node and comment status property.
  */
 function entity_metadata_status_options_list() {
   return array(
-    0 => t('Published'),
-    1 => t('Unpublished'),
+    NODE_PUBLISHED => t('Published'),
+    NODE_NOT_PUBLISHED => t('Unpublished'),
   );
 }
 
@@ -524,6 +538,11 @@ function entity_metadata_field_file_create_item($property_name, $context) {
  * Callback for validating file field $items.
  */
 function entity_metadata_field_file_validate_item($items, $context) {
+  // Allow NULL values.
+  if (!isset($items)) {
+    return TRUE;
+  }
+
   // Stream-line $items for multiple vs non-multiple fields.
   $items = !entity_property_list_extract_type($context['type']) ? array($items) : (array) $items;
 
@@ -568,7 +587,7 @@ function entity_metadata_user_access($op, $entity = NULL, $account = NULL, $enti
   if (isset($entity) && $op != 'delete' && (($entity->uid == $account->uid && $entity->uid) || (!$entity->uid && $op == 'view'))) {
     return TRUE;
   }
-  if (user_access('administer users', $account) || user_access('access user profiles', $account) && $op == 'view') {
+  if (user_access('administer users', $account) || user_access('access user profiles', $account) && $op == 'view' && $entity->status) {
     return TRUE;
   }
   return FALSE;
@@ -622,7 +641,7 @@ function entity_metadata_taxonomy_access($op, $entity = NULL, $account = NULL, $
   if ($entity_type == 'taxonomy_vocabulary') {
     return user_access('administer taxonomy', $account);
   }
-  if (isset($entity) && $op == 'edit' && !isset($account) && taxonomy_term_edit_access($entity)) {
+  if (isset($entity) && $op == 'update' && !isset($account) && taxonomy_term_edit_access($entity)) {
     return TRUE;
   }
   if (user_access('administer taxonomy', $account) || user_access('access content', $account) && $op == 'view') {
@@ -813,7 +832,7 @@ function entity_metadata_form_taxonomy_vocabulary($term) {
  */
 function entity_metadata_form_entity_ui($entity, $entity_type) {
   $info = entity_get_info($entity_type);
-  $form_state = array();
+  $form_state = form_state_defaults();
   // Add in the include file as the form API does else with the include file
   // specified for the active menu item.
   if (!empty($info['admin ui']['file'])) {
