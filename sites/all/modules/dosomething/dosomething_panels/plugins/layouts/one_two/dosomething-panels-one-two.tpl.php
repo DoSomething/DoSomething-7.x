@@ -13,7 +13,7 @@
         </div>
       <?php endif; ?>
       <?php if ($content['right']): ?>
-        <div class="panel-second panel-last panel-panel">
+        <div class="panel-second panel-last panel-panel pane-related-stuff">
           <?php print $content['right']; ?>
         </div>
       <?php endif; ?>
