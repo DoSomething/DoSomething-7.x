@@ -934,7 +934,7 @@ function dosomething_login_mobile_signup_access() {
   //TODO: REMOVE ME BEFORE PRODUCTION!!!
   //For testing allow ip of zivtech office and local dev machines
   $ip = ip_address();
-  if ($ip == '192.168.56.1' || $ip == '173.161.182.250') {
+  if ($ip == '192.168.56.1' || $ip == '173.161.182.250' || $ip == '33.33.33.1') {
     $valid = TRUE;
   }
   if (!$valid) {
