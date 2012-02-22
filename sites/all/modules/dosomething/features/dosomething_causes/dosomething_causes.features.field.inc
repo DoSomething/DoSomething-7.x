@@ -213,7 +213,7 @@ function dosomething_causes_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'taxonomy_vocabulary_5',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'tid' => array(
