@@ -10,7 +10,7 @@
 function dosomething_blog_field_group_info() {
   $export = array();
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_media|node|blog|form';
@@ -34,7 +34,7 @@ function dosomething_blog_field_group_info() {
   );
   $export['group_media|node|blog|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_path|node|blog|form';
@@ -63,7 +63,7 @@ function dosomething_blog_field_group_info() {
   );
   $export['group_path|node|blog|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_tags|node|blog|form';

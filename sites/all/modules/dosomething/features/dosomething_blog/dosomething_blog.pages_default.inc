@@ -10,7 +10,7 @@
 function dosomething_blog_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view_blog';
@@ -42,7 +42,7 @@ function dosomething_blog_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -62,7 +62,7 @@ function dosomething_blog_default_page_manager_handlers() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left-top';
     $pane->type = 'node_content';
@@ -90,7 +90,7 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left-top';
     $pane->type = 'views';
@@ -125,7 +125,7 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left-top'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'left-top';
     $pane->type = 'block';
@@ -145,7 +145,7 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane->position = 2;
     $display->content['new-3'] = $pane;
     $display->panels['left-top'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'right';
     $pane->type = 'views';
@@ -183,7 +183,7 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-4'] = $pane;
     $display->panels['right'][0] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'views';
@@ -230,7 +230,7 @@ function dosomething_blog_default_page_manager_handlers() {
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_blog_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'blog_center';
@@ -274,7 +274,7 @@ function dosomething_blog_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_blog_center_panel_context_2';
@@ -306,7 +306,7 @@ blog/all',
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -323,7 +323,7 @@ blog/all',
   $display->title = 'AmazeBlog';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left-top';
     $pane->type = 'ds_blog_menu';
@@ -343,7 +343,7 @@ blog/all',
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left-top';
     $pane->type = 'views_panes';
@@ -363,7 +363,7 @@ blog/all',
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left-top'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'views';
@@ -402,7 +402,7 @@ blog/all',
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_blog_center_panel_context_3';
@@ -443,7 +443,7 @@ blog/all',
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -460,7 +460,7 @@ blog/all',
   $display->title = '%tid:name';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left-top';
     $pane->type = 'views';
@@ -495,7 +495,7 @@ blog/all',
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'right';
     $pane->type = 'views';
@@ -534,7 +534,7 @@ blog/all',
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_blog_center_panel_context';
@@ -565,7 +565,7 @@ blog/all',
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_a';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -582,7 +582,7 @@ blog/all',
   $display->title = '%tid:name';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left-top';
     $pane->type = 'ds_blog_menu';
@@ -602,7 +602,7 @@ blog/all',
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left-top';
     $pane->type = 'views_panes';
@@ -622,7 +622,7 @@ blog/all',
     $pane->position = 1;
     $display->content['new-2'] = $pane;
     $display->panels['left-top'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'views';
