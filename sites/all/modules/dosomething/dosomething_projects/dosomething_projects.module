@@ -70,8 +70,9 @@ function dosomething_projects_callback() {
   $display_id = 'page';
   $view = views_get_view('dosomething_api');
 
-  if (isset($_GET['cause'])) {
-    $cause = $_GET['cause'];
+  // Issue filter.
+  if (isset($_GET['issue'])) {
+    $cause = $_GET['issue'];
     $terms = taxonomy_get_term_by_name($cause);
     foreach ($terms as $tid => $term) {
       if ($term->vid == '5') {
@@ -82,24 +83,34 @@ function dosomething_projects_callback() {
     $filter['value'] = array($issue_tid => $issue_tid);
     $view->set_item($display_id, 'filter', 'taxonomy_vocabulary_5', $filter);
   }
+  else {
+    $view->set_item($display_id, 'filter', 'taxonomy_vocabulary_5', NULL);
+  }
 
+  // Keyword filter.
   if (isset($_GET['keyword'])) {
     $keyword = $_GET['keyword'];
     $filter = $view->get_item($display_id,'filter','search_api_views_fulltext');
     $filter['value'] = $keyword;
     $view->set_item($display_id, 'filter', 'search_api_views_fulltext', $filter);
   }
+  else {
+    $view->set_item($display_id, 'filter', 'search_api_views_fulltext', NULL);
+  }
 
+  // Province (state) filter.
   // It doesn't make sense to have province and zip filters.
   if (isset($_GET['province']) && !isset($_GET['zip'])) {
-    // First remove geocode filter.
-    $view->set_item($display_id, 'filter', 'field_geocode_data', NULL);
     $filter = $view->get_item($display_id,'filter','field_webform_address_administrative_area');
     $province = $_GET['province'];
     $filter['value'] = $province;
     $view->set_item($display_id, 'filter', 'field_webform_address_administrative_area', $filter);
   }
+  else {
+    $view->set_item($display_id, 'filter', 'field_webform_address_administrative_area', NULL);
+  }
 
+  // Zip code proximity filter.
   if (isset($_GET['zip'])) {
     $zip = $_GET['zip'];
     // This query relies on the zipcodes table provided by location module.
@@ -113,11 +124,17 @@ function dosomething_projects_callback() {
     $filter['radius_measure'] = 'mi';
     $view->set_item($display_id, 'filter', 'field_geocode_data_latlon', $filter);
   }
+  else {
+    $view->set_item($display_id, 'filter', 'field_geocode_data_latlon', NULL);
+  }
 
+  // Page number filter.
   $page = 0;
   if (isset($_GET['page']) && preg_match('/^\d+$/', $_GET['page']) && $_GET['page'] > 0) {
     $page = $_GET['page'] - 1;
   }
+
+  // Maxnum items filter.
   $maxnum = isset($_GET['maxnum']) ? trim($_GET['maxnum']) : 10;
   if ($maxnum > 100 || $maxnum < 1) {
     $maxnum = 100;
@@ -128,7 +145,8 @@ function dosomething_projects_callback() {
     $view->set_offset($page * $maxnum);
   }
 
-  // Create XML. Might want to move this to its function.
+  // Create XML.
+  // Might want to move this to a separate function.
   header("content-type: application/xml; charset=utf-8" );
   $doc = new DOMDocument('1.0', 'utf-8');
   $xml = $doc->createElement('xml');
@@ -140,58 +158,50 @@ function dosomething_projects_callback() {
 
     $node = $doc->createElement('node');
 
-    if (isset($entity->field_project_title)) {
-      $title = $doc->createElement('title');
-      $title->appendChild($doc->createTextNode($entity->field_project_title[LANGUAGE_NONE][0]['safe_value']));
-      $node->appendChild($title);
-    }
+    $field_project_title = isset($entity->field_project_title) ? $entity->field_project_title[LANGUAGE_NONE][0]['safe_value'] : '';
+    $title = $doc->createElement('title');
+    $title->appendChild($doc->createTextNode($field_project_title));
+    $node->appendChild($title);
 
-    if (isset($entity->field_essay_see_it)) {
-      $essay_see_it = $doc->createElement('essay_see_it');
-      $essay_see_it->appendChild($doc->createTextNode($entity->field_essay_see_it[LANGUAGE_NONE][0]['safe_value']));
-      $node->appendChild($essay_see_it);
-    }
+    $field_essay_see_it = isset($entity->field_essay_see_it) ? $entity->field_essay_see_it[LANGUAGE_NONE][0]['safe_value'] : '';
+    $essay_see_it = $doc->createElement('essay_see_it');
+    $essay_see_it->appendChild($doc->createTextNode($field_essay_see_it));
+    $node->appendChild($essay_see_it);
 
-   if (isset($entity->field_essay_build_it)) {
-      $essay_build_it = $doc->createElement('essay_build_it');
-      $essay_build_it->appendChild($doc->createTextNode($entity->field_essay_build_it[LANGUAGE_NONE][0]['safe_value']));
-      $node->appendChild($essay_build_it);
-    }
+    $field_essay_build_it = isset($entity->field_essay_build_it) ? $entity->field_essay_build_it[LANGUAGE_NONE][0]['safe_value'] : '';
+    $essay_build_it = $doc->createElement('essay_build_it');
+    $essay_build_it->appendChild($doc->createTextNode($field_essay_build_it));
+    $node->appendChild($essay_build_it);
 
     $submitted = date('Y-m-d', $entity->submitted);
     $date_created = $doc->createElement('date_created');
     $date_created->appendChild($doc->createTextNode($submitted));
     $node->appendChild($date_created);
 
-    if (isset($entity->field_webform_address[LANGUAGE_NONE][0]['postal_code'])) {
-      $location_postal = $doc->createElement('location_postal');
-      $location_postal->appendChild($doc->createTextNode($entity->field_webform_address[LANGUAGE_NONE][0]['postal_code']));
-      $node->appendChild($location_postal);
-    }
+    $zip_code = isset($entity->field_webform_address[LANGUAGE_NONE][0]['postal_code']) ? $entity->field_webform_address[LANGUAGE_NONE][0]['postal_code'] : '';
+    $location_postal = $doc->createElement('location_postal');
+    $location_postal->appendChild($doc->createTextNode($zip_code));
+    $node->appendChild($location_postal);
 
-    if (isset($entity->field_geocode_data[LANGUAGE_NONE][0]['lat'])) {
-      $location_lat = $doc->createElement('location_lat');
-      $location_lat->appendChild($doc->createTextNode($entity->field_geocode_data[LANGUAGE_NONE][0]['lat']));
-      $node->appendChild($location_lat);
-    }
+    $field_lat = isset($entity->field_geocode_data[LANGUAGE_NONE][0]['lat']) ? $entity->field_geocode_data[LANGUAGE_NONE][0]['lat'] : '';
+    $location_lat = $doc->createElement('location_lat');
+    $location_lat->appendChild($doc->createTextNode($field_lat));
+    $node->appendChild($location_lat);
 
-    if (isset($entity->field_geocode_data[LANGUAGE_NONE][0]['lon'])) {
-      $location_long = $doc->createElement('location_long');
-      $location_long->appendChild($doc->createTextNode($entity->field_geocode_data[LANGUAGE_NONE][0]['lon']));
-      $node->appendChild($location_long);
-    }
+    $field_long = isset($entity->field_geocode_data[LANGUAGE_NONE][0]['lon']) ? $entity->field_geocode_data[LANGUAGE_NONE][0]['lon'] : '';
+    $location_long = $doc->createElement('location_long');
+    $location_long->appendChild($doc->createTextNode($field_long));
+    $node->appendChild($location_long);
 
-    if (!empty($entity->field_num_people_impacted)) {
-      $num_people_impacted = $doc->createElement('num_people_impacted');
-      $num_people_impacted->appendChild($doc->createTextNode($entity->field_num_people_impacted[LANGUAGE_NONE][0]['value']));
-      $node->appendChild($num_people_impacted);
-    }
+    $field_num_people_impacted = !empty($entity->field_num_people_impacted) ? $entity->field_num_people_impacted[LANGUAGE_NONE][0]['value'] : '';
+    $num_people_impacted = $doc->createElement('num_people_impacted');
+    $num_people_impacted->appendChild($doc->createTextNode($field_num_people_impacted ));
+    $node->appendChild($num_people_impacted);
 
-    if (!empty($entity->field_update_people_involved)) {
-      $num_people_involved = $doc->createElement('num_people_involved');
-      $num_people_involved->appendChild($doc->createTextNode($entity->field_update_people_involved[LANGUAGE_NONE][0]['value']));
-      $node->appendChild($num_people_involved);
-    }
+    $field_update_people_involved = !empty($entity->field_update_people_involved) ? $entity->field_update_people_involved[LANGUAGE_NONE][0]['value'] : '';
+    $num_people_involved = $doc->createElement('num_people_involved');
+    $num_people_involved->appendChild($doc->createTextNode($field_update_people_involved));
+    $node->appendChild($num_people_involved);
 
     if (!empty($entity->taxonomy_vocabulary_5)) {
       $names = array();
@@ -200,22 +210,33 @@ function dosomething_projects_callback() {
         $names[] = $term->name;
       }
       $names = implode(', ', $names);
-      $issues = $doc->createElement('issues');
-      $issues->appendChild($doc->createTextNode($names));
-      $node->appendChild($issues);
     }
+    else {
+      $names = '';
+    }
+    $allterms = $doc->createElement('allterms');
+    $allterms->appendChild($doc->createTextNode($names));
+    $node->appendChild($allterms);
 
-    if (!empty($entity->field_update_people_involved)) {
-      global $base_url;
-      $path = $base_url . '/' . $entity->nid . '/submission/' . $entity->sid;
-      $url = $doc->createElement('url');
-      $url->appendChild($doc->createTextNode($path));
-      $node->appendChild($url);
+    global $base_url;
+    $path = $base_url . '/' . $entity->nid . '/submission/' . $entity->sid;
+    $url = $doc->createElement('Path');
+    $url->appendChild($doc->createTextNode($path));
+    $node->appendChild($url);
+
+    if (isset($entity->field_picture[LANGUAGE_NONE][0]['uri'])) {
+      $uri = $entity->field_picture[LANGUAGE_NONE][0]['uri'];
+      $photo_path = file_create_url($uri);
     }
+    else {
+      $photo_path = '';
+    }
+    $photo = $doc->createElement('photo');
+    $photo->appendChild($doc->createTextNode($photo_path));
+    $node->appendChild($photo);
 
     $xml->appendChild($node);
   }
-
   print $doc->saveXML();
   return NULL;
 }
