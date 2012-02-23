@@ -895,7 +895,7 @@ h3 .subhead {
 }
 
 body.not-front #block-dosomething-blocks-dosomething-make-impact .content {
-  padding: 14px 0px;
+  padding: 32px 0px 52px 0;
   overflow: hidden;
   *zoom: 1;
 }
@@ -910,7 +910,7 @@ body.not-front .selectBox-dropdown {
 }
 body.not-front .selectBox-dropdown .selectBox-label {
   background-image: url('images/gold-arrow.png');
-  padding: 7px 7px;
+  padding: 4px 7px;
   border: 0;
   width: 100%;
   display: inline-block;
@@ -1016,7 +1016,7 @@ body.front .selectBox-options li.selectBox-hover a:hover {
 #dosomething-blocks-make-an-impact-form-front input[type="submit"] {
   display: inline;
   float: right;
-  margin-top: 14px;
+  margin-top: 8px;
 }
 
 /* Dropdown menu */
