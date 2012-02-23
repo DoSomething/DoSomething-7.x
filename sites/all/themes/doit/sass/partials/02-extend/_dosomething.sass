@@ -86,6 +86,25 @@
   @extend .bold-caps-header
   font-size: $s5
 
+.page-headline
+  @extend .headers
+  @extend .bold
+  @extend .black
+  font-size: $s10
+  text-transform: capitalize
+
+h1.title
+  @extend .page-headline
+
+h2.subhead
+  @extend .page-headline
+  font-size: $s5
+
+h3.subhead
+  @extend .page-headline
+  font-size: $s1
+  text-transform: none
+
 /* MORE SPECIFIC EXTENDABLES
 ////////////////////////////
 // PROFILE INFO
@@ -435,26 +454,6 @@
   @extend .black
   line-height: 14px
   text-transform: none
-
-h1
-  .page-headline
-    @extend .headers
-    @extend .bold
-    @extend .black
-    @extend .caps
-    font-size: $s10
-
-h2
-  .subhead
-    @extend .page-headline
-    font-size: $s5
-
-h3
-  .subhead
-    @extend .headers
-    @extend .bold
-    @extend .black
-    font-size: $s1
 
 .module-titles
   @extend .headers
