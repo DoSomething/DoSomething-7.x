@@ -348,7 +348,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Title',
       'title' => '',
-      'body' => '<h1>%webform_submission_entity:field_project_title</h1>',
+      'body' => '<h1 class="title" id="page-title">%webform_submission_entity:field_project_title</h1>',
       'format' => '3',
       'substitute' => 1,
     );
