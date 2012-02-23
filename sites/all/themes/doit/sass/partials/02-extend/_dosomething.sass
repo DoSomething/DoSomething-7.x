@@ -554,10 +554,18 @@ h3.subhead
     // padding: 20px
 
 // News & Stuff panel
+.view-news-stuff
+  border: 1px solid $white
+  padding-bottom: 24px
 .pane-news-stuff
   .pane-content
+    .news-title
+      @extend .bold
+      font-size: $s4
+      a
+        padding-top: 12px
     .views-row
-      padding: 20px
+      padding: 30px 24px 0 24px
       clear: both
       +clearfix
       .news-image
