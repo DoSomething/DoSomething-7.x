@@ -63,6 +63,7 @@ function dosomething_projects_permission() {
     ),
   );
 }
+
 /**
  * Menu callback for the API hits.
  */
@@ -145,8 +146,30 @@ function dosomething_projects_callback() {
     $view->set_offset($page * $maxnum);
   }
 
-  // Create XML.
-  // Might want to move this to a separate function.
+  $xml = dosomething_projects_create_xml($view, $display_id);
+  print $xml;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
+  // If this is a webform form and the node type is project lets hide the club
+  // field if and only if it has been set on the form and it matches the query
+  // argument.
+  if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
+    if (!empty($form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
+      && is_numeric(arg(2))
+      && arg(2) == $form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
+      $form['submitted']['webform_entity_form']['field_project_clubs']['#type'] = 'hidden';
+    }
+  }
+}
+
+/**
+ * Create XML for DS project api callback.
+ */
+function dosomething_projects_create_xml($view, $display_id) {
   header("content-type: application/xml; charset=utf-8" );
   $doc = new DOMDocument('1.0', 'utf-8');
   $xml = $doc->createElement('xml');
@@ -177,6 +200,11 @@ function dosomething_projects_callback() {
     $date_created = $doc->createElement('date_created');
     $date_created->appendChild($doc->createTextNode($submitted));
     $node->appendChild($date_created);
+
+    $updated = dosomething_projects_updated_date($entity);
+    $date_updated = $doc->createElement('date_updated');
+    $date_updated->appendChild($doc->createTextNode($updated));
+    $node->appendChild($date_updated);
 
     $zip_code = isset($entity->field_webform_address[LANGUAGE_NONE][0]['postal_code']) ? $entity->field_webform_address[LANGUAGE_NONE][0]['postal_code'] : '';
     $location_postal = $doc->createElement('location_postal');
@@ -237,23 +265,35 @@ function dosomething_projects_callback() {
 
     $xml->appendChild($node);
   }
-  print $doc->saveXML();
-  return NULL;
+
+ return $doc->saveXML();
+
 }
 
 /**
- * Implements hook_form_alter().
+ * Returns the created date of latest project update or
+ * the created date of the project report.
  */
-function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
-  // If this is a webform form and the node type is project lets hide the club
-  // field if and only if it has been set on the form and it matches the query
-  // argument.
-  if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
-    if (!empty($form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
-      && is_numeric(arg(2))
-      && arg(2) == $form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
-      $form['submitted']['webform_entity_form']['field_project_clubs']['#type'] = 'hidden';
-    }
+function dosomething_projects_updated_date($entity) {
+  // Updated date is created date of latest project update.
+  $query = new EntityFieldQuery();
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'project_update')
+    ->fieldCondition('field_webform_project_submission', 'target_id', $entity->sid, '=')
+    ->propertyOrderBy('created', 'DESC')
+    ->range(0, 1);
+  $result = $query->execute();
+  if ($result) {
+    $nid = array_keys($result['node']);
+    $node = node_load($nid[0]);
+    $updated = date('Y-m-d', $node->created);
   }
+  // If there are no project updates, use created date of project report.
+  else {
+    $updated = date('Y-m-d', $entity->submitted);
+  }
+
+  return $updated;
 }
 
