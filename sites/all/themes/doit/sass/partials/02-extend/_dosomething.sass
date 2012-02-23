@@ -568,6 +568,15 @@ h3
           border: 1px solid $white
           +box-shadow($gray3-trans 0px 0px 12px)
 
+// Start a project link on project submission pages
+.start-a-project
+  text-align: right
+  &:before
+    content: 'Start a Project'
+    @extend .counter-labels
+  a:visited
+    @extend .gray2
+
 ////////////////////////////
 // OLD EXTENDABLE CLASSES
 // refactor or remove

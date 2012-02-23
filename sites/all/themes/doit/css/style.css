@@ -424,7 +424,7 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -435,7 +435,7 @@ input[type=color], .description {
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -463,8 +463,8 @@ input[type=color], .description {
 }
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, .purple-ribbon, .dothis-button-large, .go-button, #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
-#vital-stats .name, .node-action-guide h2 {
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, #vital-stats .title,
+#vital-stats .name, .node-action-guide h2, .page-webform-submission .panel-first h2 {
   font-weight: bold;
   font-weight: 600;
 }
@@ -477,7 +477,7 @@ input[type=color], .description {
   color: #18408b;
 }
 
-.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .node-action-guide h2 {
+.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .node-action-guide h2, .page-webform-submission .panel-first h2 {
   color: black;
 }
 
@@ -500,7 +500,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: white;
 }
 
-.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .node-action-guide h2 {
+.black, .page-content-text, h1 .page-headline, h1 h2 .subhead, h2 h1 .subhead, h3 .subhead, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .node-action-guide h2, .page-webform-submission .panel-first h2 {
   color: black;
 }
 
@@ -509,7 +509,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 .gray2, .go-button, #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a {
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited {
   color: #333131;
 }
 
@@ -565,7 +565,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
 }
 
-.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats, .node-action-guide .field-type-image img {
+.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats, .node-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
   border: 1px white solid;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
@@ -832,7 +832,7 @@ h3 .subhead {
   text-decoration: underline;
 }
 
-.counter-labels, .digits span {
+.counter-labels, .digits span, .start-a-project:before {
   font-size: 21px;
   letter-spacing: 0;
   padding-right: 15px;
@@ -892,6 +892,13 @@ h3 .subhead {
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
+}
+
+.start-a-project {
+  text-align: right;
+}
+.start-a-project:before {
+  content: "Start a Project";
 }
 
 body.not-front #block-dosomething-blocks-dosomething-make-impact .content {
@@ -2519,4 +2526,9 @@ comments.fb_iframe_widget {
 }
 .node-action-guide li p {
   margin-left: 18px;
+}
+
+.page-webform-submission .panel-first h2 {
+  background: none;
+  padding-left: 0;
 }

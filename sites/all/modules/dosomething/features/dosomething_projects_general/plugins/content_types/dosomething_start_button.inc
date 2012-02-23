@@ -27,13 +27,13 @@ function dosomething_start_button_content_type_render($subtype, $conf, $args, $c
   if (!empty($conf['start_button']['project'])) {
     $element['project'] = array(
       '#type' => 'link',
-      '#title' => t('Start a Project'),
+      '#title' => t('Go'),
       '#href' => 'project-report/start-project',
       '#options' => array(
         'attributes' => array(
-          'title' => t('Start a Project'),
+          'title' => t('Go'),
           'class' => array(
-            'ds-button-strong',
+            'go-button',
           ),
         ),
       ),
