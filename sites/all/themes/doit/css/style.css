@@ -728,6 +728,7 @@ h3.subhead {
 }
 .two-column-grid .views-row-odd, .action-finder-list .views-row-odd {
   float: left;
+  clear: left;
 }
 .two-column-grid .views-row-even, .action-finder-list .views-row-even {
   float: right;
