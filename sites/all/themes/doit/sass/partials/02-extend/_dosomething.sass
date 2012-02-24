@@ -583,6 +583,27 @@ h3.subhead
           border: 1px solid $white
           +box-shadow($gray3-trans 0px 0px 12px)
 
+// Narrow block with header, thumbnail, and title with teaser
+// i.e. related stuff, doing it, done it, club members
+.pane-narrow-block
+  ul
+    list-style: none
+  .item-list ul li
+    margin: 0
+  .views-row
+    border-top: 1px $gray5 solid
+    border-bottom: 1px $white solid
+    padding: $s2 0
+    &:first-of-type
+      border-top: none
+    &:last-of-type
+      border-bottom: none
+  .views-field-title
+    @extend .right-sidebar-headlines
+  .project-related-thumb img
+    @extend .border-and-shadow
+    margin-right: $s0
+
 // Start a project link on project submission pages
 .start-a-project
   text-align: right

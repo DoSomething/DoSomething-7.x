@@ -176,6 +176,26 @@ function dosomething_panels_preprocess_dosomething_panels_one_three_two(&$variab
   $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
 }
 
+function dosomething_panels_preprocess_dosomething_panels_one_three_one(&$variables) {
+  $content = $variables['content'];
+
+  $mid_row_classes = array();
+  if ($content['mid-left']) {
+    $mid_row_classes[] = 'mid-first';
+  }
+  if ($content['mid-center']) {
+    $mid_row_classes[] = 'mid-second';
+  }
+  if ($content['mid-right']) {
+    $mid_row_classes[] = 'mid-third';
+  }
+  $mid_row_classes[] = 'panes-' . count($mid_row_classes);
+  if ($content['mid-left'] && $content['mid-center'] && $content['mid-right']) {
+    $mid_row_classes[] = 'all';
+  }
+  $variables['mid_row_classes'] = implode(' ', $mid_row_classes);
+}
+
 function dosomething_panels_preprocess_dosomething_panels_campaign(&$variables) {
   $content = $variables['content'];
 

@@ -1,0 +1,18 @@
+=clearfix
+  *zoom: 1
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+.panel-row
+  +clearfix
+
+.panes-3
+  .panel-second
+    margin: 0 50px
+  .panel-panel
+    width: 216px
+    float: left
+    &.panel-last
+      float: right

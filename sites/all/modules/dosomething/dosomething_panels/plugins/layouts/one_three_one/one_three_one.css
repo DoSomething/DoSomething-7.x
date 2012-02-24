@@ -1,0 +1,15 @@
+.panel-row {
+  *zoom: 1; }
+  .panel-row:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.panes-3 .panel-panel {
+  width: 216px;
+  float: left; }
+  .panes-3 .panel-second {
+    margin: 0 50px;
+  }
+  .panes-3 .panel-panel.panel-last {
+    float: right; }
