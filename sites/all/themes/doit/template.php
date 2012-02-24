@@ -229,19 +229,19 @@ function doit_breadcrumb($variables) {
 /**
  * Add a custom title to the exposed filter form on the action finder page.
  */
-function doit_preprocess_views_exposed_form(&$variables) {
-  $theme_path = drupal_get_path('theme', 'doit');
-  if ($variables['form']['#id'] == 'views-exposed-form-action-finder-ctools-context-1') {
-    $obj = new stdClass;
-    $obj->label = 'Find Something Else';
-    $obj->id = 'filter-title';
-    $obj->operator = NULL;
-    $obj->widget = NULL;
-    $title = array('title' => $obj);
-    $variables['widgets'] = $title + $variables['widgets'];
-    // drupal_add_css($theme_path . '/css/doit/page-action-finder.css');
-  }
-}
+// function doit_preprocess_views_exposed_form(&$variables) {
+//   $theme_path = drupal_get_path('theme', 'doit');
+//   if ($variables['form']['#id'] == 'views-exposed-form-action-finder-ctools-context-1') {
+//     $obj = new stdClass;
+//     $obj->label = 'Find Something Else';
+//     $obj->id = 'filter-title';
+//     $obj->operator = NULL;
+//     $obj->widget = NULL;
+//     $title = array('title' => $obj);
+//     $variables['widgets'] = $title + $variables['widgets'];
+//     // drupal_add_css($theme_path . '/css/doit/page-action-finder.css');
+//   }
+// }
 
 // function doit_preprocess_views_view(&$variables) {
 //   $theme_path = drupal_get_path('theme', 'doit');
