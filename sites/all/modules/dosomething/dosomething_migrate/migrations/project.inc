@@ -42,14 +42,7 @@ class DSProject extends DSJsonWebformMigration {
     // Null mappings
     $this->addUnmigratedSources(array(
       'changed',
-      'status'
-      'country',
-      'address',
-      'address2',
-      'city',
-      'state',
-      'zip',
-      'point',
+      'status',
     ));
 
     $this->addUnmigratedDestinations(array(
