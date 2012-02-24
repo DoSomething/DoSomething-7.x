@@ -463,7 +463,7 @@ input[type=color], .description {
 }
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content .news-title, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-related-stuff .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content .news-title, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #vital-stats .title,
 #vital-stats .name, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .node-action-guide h2, .page-webform-submission .panel-first h2 {
   font-weight: bold;
@@ -550,7 +550,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   font-size: 10px;
 }
 
-.tight-leading, .action-finder-list .unimage-wrapper p {
+.tight-leading, .image-teaser-module-teaser p, .action-finder-list .unimage-wrapper p {
   font-size: 12px;
   line-height: 14px;
 }
@@ -566,7 +566,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
 }
 
-.border-and-shadow, .action-finder-list .views-field-field-picture img, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats, .node-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
+.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, form.node-form, .pane-related-stuff .project-related-thumb img, #vital-stats, .node-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
   border: 1px white solid;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
@@ -719,39 +719,44 @@ h3.subhead {
   font-size: 18px;
 }
 
-.action-finder-list .views-row {
+.two-column-grid .views-row, .action-finder-list .views-row {
+  width: 49%;
+}
+.two-column-grid .pane-content, .action-finder-list .pane-content {
+  overflow: hidden;
+  *zoom: 1;
+}
+.two-column-grid .views-row-odd, .action-finder-list .views-row-odd {
+  float: left;
+}
+.two-column-grid .views-row-even, .action-finder-list .views-row-even {
+  float: right;
+}
+
+.image-teaser-module, .action-finder-list .views-row {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 12px;
-  width: 50%;
 }
-.action-finder-list .views-field-field-picture img {
+
+.image-teaser-module-image, .action-finder-list .views-field-field-picture {
   float: left;
-  margin-right: 5px;
-}
-.action-finder-list .unimage-wrapper {
-  float: left;
-  background-color: white;
+  width: 120px;
   height: 120px;
-  padding: 23px 12px 0 12px;
-  width: 242px;
 }
-.action-finder-list .unimage-wrapper h2 {
+
+.image-teaser-module-teaser, .action-finder-list .unimage-wrapper {
+  background-color: white;
+  min-height: 120px;
+  padding: 23px 12px 0 12px;
+  margin-left: 125px;
+}
+.image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2 {
   line-height: 1;
   margin-bottom: 18px;
 }
-.action-finder-list .unimage-wrapper p {
+.image-teaser-module-teaser p, .action-finder-list .unimage-wrapper p {
   margin-bottom: 0;
-}
-.action-finder-list .pane-content {
-  overflow: hidden;
-  *zoom: 1;
-}
-.action-finder-list .views-row-odd {
-  float: left;
-}
-.action-finder-list .views-row-even {
-  float: right;
 }
 
 .main-nav {
@@ -2012,7 +2017,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;

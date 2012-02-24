@@ -357,38 +357,46 @@ h3.subhead
 ////////////////////////////
 // TWO COLUMN GRID
 // Used on the action guides landing
-// 120px square image
-// h2 title and description
 ////////////////////////////
-.action-finder-list
+.two-column-grid
   .views-row
-    +clearfix
-    margin-bottom: $s0
-    width: 50%
-  .views-field-field-picture img
-    float: left
-    margin-right: $s-2
-    @extend .border-and-shadow
-  .unimage-wrapper
-    @extend .border-and-shadow
-    float: left
-    background-color: $white
-    height: 120px
-    padding: $s6 $s0 0 $s0
-    width: 242px
-    h2
-      @extend .bold
-      line-height: 1
-      margin-bottom: $s4
-    p
-      @extend .tight-leading
-      margin-bottom: 0
+    width: 49%
   .pane-content
     +clearfix
   .views-row-odd
     float: left
   .views-row-even
     float: right
+
+
+////////////////////////////
+// IMAGE TEASER MODULE
+// square image, teaser in
+// white box filling the
+// rest of the space
+////////////////////////////
+.image-teaser-module
+  +clearfix
+  margin-bottom: $s0
+.image-teaser-module-image
+  @extend .border-and-shadow
+  float: left
+  width: 120px
+  height: 120px
+.image-teaser-module-teaser
+  @extend .border-and-shadow
+  background-color: $white
+  min-height: 120px
+  padding: $s6 $s0 0 $s0
+  margin-left: 120px + $s-2
+  h2
+    @extend .bold
+    line-height: 1
+    margin-bottom: $s4
+  p
+    @extend .tight-leading
+    margin-bottom: 0
+
 
 ////////////////////////////
 // BOX-DETAILS LAYOUTS
