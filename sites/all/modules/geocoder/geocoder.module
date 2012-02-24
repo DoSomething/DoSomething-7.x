@@ -318,7 +318,7 @@ function geocoder_field_attach_presave($entity_type, $entity) {
             $values = array();
           }
           foreach ($items as $delta => $item) {
-            if (isset($item['no_geocode']) && $item['no_geocode'] == TRUE) {
+            if (isset($item['geocoder_no_code']) && $item['geocoder_no_code'] == TRUE) {
               $handler = geocoder_get_handler('wkt');
             }
             else {

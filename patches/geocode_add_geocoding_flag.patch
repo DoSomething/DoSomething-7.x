@@ -17,7 +17,7 @@ index 0d8154c..b856aad 100644
 -            // Geocode (or re-geocode in case of a change) any value from our source field.
 -            try {
 -              $geometry = call_user_func($handler['field_callback'], $field_info, $item);
-+            if (isset($item['no_geocode']) && $item['no_geocode'] == TRUE) {
++            if (isset($item['geocoder_no_code']) && $item['geocoder_no_code'] == TRUE) {
 +              $handler = geocoder_get_handler('wkt');
              }
 -            catch (Exception $e) {

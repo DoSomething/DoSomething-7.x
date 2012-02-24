@@ -39,7 +39,21 @@ class DSProject extends DSJsonWebformMigration {
     // We prepared the point data as WKT in the preparerow function.
     $this->addFieldMapping('field_geocode_data', 'point');
 
-    $this->addUnmigratedSources(array('changed', 'status'));
+    // Null mappings
+    $this->addUnmigratedSources(array(
+      'changed',
+      'status'
+      'country',
+      'address',
+      'address2',
+      'city',
+      'state',
+      'zip',
+      'point',
+    ));
+
+    $this->addUnmigratedDestinations(array(
+    ));
   }
 
   public function prepareRow($row) {
@@ -87,11 +101,11 @@ class DSProject extends DSJsonWebformMigration {
       $entity->field_geocode_data['und'][0]['lat'] = $row->lat;
       $entity->field_geocode_data['und'][0]['lon'] = $row->lon;
       $entity->field_geocode_data['und'][0]['wkt'] = "POINT($row->lon $row->lat)";
-      $entity->field_webform_address['und'][0]['no_geocode'] = TRUE;
+      $entity->field_webform_address['und'][0]['geocoder_no_code'] = TRUE;
     }
     else {
       $row->field_geocode_data['und'][0]['wkt'] = NULL;
-      $entity->field_webform_address['und'][0]['no_geocode'] = FALSE;
+      $entity->field_webform_address['und'][0]['geocoder_no_code'] = FALSE;
     }
   }
 }
