@@ -71,9 +71,9 @@ function dosomething_projects_callback() {
   $display_id = 'page';
   $view = views_get_view('dosomething_api');
 
-  // Issue filter.
-  if (isset($_GET['issue'])) {
-    $cause = $_GET['issue'];
+  // Cause filter.
+  if (isset($_GET['cause'])) {
+    $cause = $_GET['cause'];
     $terms = taxonomy_get_term_by_name($cause);
     foreach ($terms as $tid => $term) {
       if ($term->vid == '5') {
