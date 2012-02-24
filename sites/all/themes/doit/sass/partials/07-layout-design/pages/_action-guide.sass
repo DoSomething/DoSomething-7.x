@@ -4,12 +4,21 @@
 // requires h2s and an ol
 ////////////////////////////
 
-.node-action-guide
+.node-type-action-guide
   .field-type-image img
     @extend .border-and-shadow
-  h2
-    @extend .black
-    @extend .bold
-    display: inline
-  li p
-    margin-left: $s4
+  .field-name-body
+    h2
+      @extend .black
+      @extend .bold
+      display: inline
+    li p,
+    li ul li
+      margin-left: $s4
+  .field-name-taxonomy-vocabulary-5
+    .field-item
+      &:after
+        content: ', '
+      &:last-of-type
+        &:after
+          content: ''
