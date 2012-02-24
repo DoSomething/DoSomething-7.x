@@ -304,6 +304,7 @@ function geocoder_field_attach_presave($entity_type, $entity) {
     if ($field_instance['widget']['type'] === 'geocoder') {
       // Required settings
       if (isset($field_instance['widget']['settings']['geocoder_handler']) && isset($field_instance['widget']['settings']['geocoder_field'])) {
+
         $handler = geocoder_get_handler($field_instance['widget']['settings']['geocoder_handler']);
         $field_name = is_array($field_instance['widget']['settings']['geocoder_field']) ? reset($field_instance['widget']['settings']['geocoder_field']) : $field_instance['widget']['settings']['geocoder_field'];
         $field_info = field_info_field($field_name);
@@ -317,16 +318,21 @@ function geocoder_field_attach_presave($entity_type, $entity) {
             $values = array();
           }
           foreach ($items as $delta => $item) {
-            // Geocode (or re-geocode in case of a change) any value from our source field.
-            try {
-              $geometry = call_user_func($handler['field_callback'], $field_info, $item);
+            if (isset($item['no_geocode']) && $item['no_geocode'] == TRUE) {
+              $handler = geocoder_get_handler('wkt');
             }
-            catch (Exception $e) {
-              drupal_set_message($e->getMessage(), 'error');
+            else {
+              // Geocode (or re-geocode in case of a change) any value from our
+              // source field.
+              try {
+                $geometry = call_user_func($handler['field_callback'], $field_info, $item);
+              }
+              catch (Exception $e) {
+                drupal_set_message($e->getMessage(), 'error');
+              }
+              $values[$delta] = ($geometry instanceof Geometry ) ? geofield_get_values_from_geometry($geometry) : NULL;
             }
-            $values[$delta] = ($geometry instanceof Geometry ) ? geofield_get_values_from_geometry($geometry) : NULL;
           }
-          // Filter out any exisitng geofield value without a value in the source field
           $entity->{$field_instance['field_name']}[$langcode] = array_intersect_key($values, $items);
         }
       }
