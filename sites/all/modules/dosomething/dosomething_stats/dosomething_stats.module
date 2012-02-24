@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * @todo.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_stats_theme($existing, $type, $theme, $path) {
+  return array(
+    'dosomething_stats_counter' => array(
+      'variables' => array('items' => NULL),
+      'path' => "$path/includes",
+      'file' => 'theme.inc',
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dosomething_stats_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools') {
+    return 'plugins/' . $plugin_type;
+  }
+}
