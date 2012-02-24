@@ -1689,8 +1689,8 @@ ul.inline, ul.inline li {
   outline: 1px dashed #80ff00;
 }
 
-.container, .content, nav[role=navigation] .region-navigation, #block-menu-menu-footer .content {
-  max-width: 1030px;
+.container, nav[role=navigation] .region-navigation, #block-menu-menu-footer .content {
+  width: 1030px;
   margin: 0 auto;
   position: relative;
 }
