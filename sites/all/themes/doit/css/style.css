@@ -2615,11 +2615,3 @@ comments.fb_iframe_widget {
   background: none;
   padding-left: 0;
 }
-
-.node-type-club .panes-3 .panel-panel {
-  border: 1px white solid;
-  min-height: 475px;
-}
-.node-type-club .panes-3 .panel-panel .view-content {
-  padding: 0 18px;
-}
