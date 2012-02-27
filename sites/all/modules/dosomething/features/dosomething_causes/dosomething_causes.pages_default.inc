@@ -87,7 +87,7 @@ function dosomething_causes_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '%term:name';
+  $display->title = 'Cause: %term:name';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
@@ -148,8 +148,8 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'causes-panel_pane_1';
+    $pane->type = 'page_breadcrumb';
+    $pane->subtype = 'page_breadcrumb';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -162,6 +162,23 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->position = 0;
     $display->content['new-4'] = $pane;
     $display->panels['top'][0] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'causes-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][1] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
