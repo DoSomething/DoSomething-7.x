@@ -431,8 +431,7 @@ input[type=color], .description {
 }
 
 .headers, .bold-caps-header, .large-bold-caps, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
-#vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
+#vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -463,8 +462,7 @@ input[type=color], .description {
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content .news-title, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #vital-stats .title,
 #vital-stats .name, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
@@ -511,8 +509,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: #1e1d1c;
 }
 
-.gray2, .go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
+.gray2, .go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited {
   color: #333131;
 }
@@ -618,8 +615,7 @@ h3.subhead {
   font-size: 68px;
 }
 
-.go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
+.go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit {
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -640,10 +636,8 @@ h3.subhead {
   font-size: 18px;
   text-transform: uppercase;
 }
-.go-button:hover, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"]:hover,
-#dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
-#dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, input#edit-final-submit:hover, .go-button:active, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"]:active,
-#dosomething-blocks-make-an-impact-form input[type="submit"]:active,
+.go-button:hover, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"]:hover, #dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, input#edit-final-submit:hover, .go-button:active, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"]:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, input#edit-final-submit:active {
   text-decoration: none;
 }
@@ -974,7 +968,7 @@ body.not-front .selectBox-dropdown .selectBox-label {
   background-image: url('images/gold-arrow.png');
   padding: 4px 7px;
   border: 0;
-  min-width: 175px;
+  min-width: 195px;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -1074,7 +1068,27 @@ body.front .selectBox-options li.selectBox-hover a:hover {
   border-bottom: none;
 }
 
-#views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
+#views-exposed-form-member-wall-panel-pane-1 .views-exposed-form .views-exposed-widget {
+  padding-right: 10px;
+}
+#views-exposed-form-member-wall-panel-pane-1 .views-exposed-form .views-exposed-widget label {
+  display: none;
+}
+#views-exposed-form-member-wall-panel-pane-1 .views-exposed-form .views-exposed-widget .selectBox-dropdown .selectBox-label {
+  background-image: url('images/gold-arrow.png');
+  padding: 4px 7px;
+  border: 0;
+  min-width: 163px;
+}
+#views-exposed-form-member-wall-panel-pane-1 .views-submit-button {
+  display: inline;
+  float: right;
+  clear: right;
+}
+#views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"] {
+  margin-top: -3px;
+}
+
 #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"] {
   display: inline;
@@ -2062,7 +2076,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2502,6 +2516,7 @@ input#edit-final-submit {
 
 #lets-talk-dialog {
   overflow: visible;
+  padding-top: 12px;
 }
 #lets-talk-dialog h2 {
   margin: 0;

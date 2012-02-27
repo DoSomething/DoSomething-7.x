@@ -20,7 +20,7 @@ body.not-front
       padding: 4px 7px
       border: 0
       // width: 100%
-      min-width: 175px
+      min-width: 195px
       display: inline-block
       white-space: nowrap
       overflow: hidden
@@ -104,12 +104,28 @@ body.front
         +remove-link-underlines
         @extend .gold
 
-
+#views-exposed-form-member-wall-panel-pane-1
+  .views-exposed-form .views-exposed-widget
+    padding-right: 10px
+    label
+      display: none
+    .selectBox-dropdown
+      .selectBox-label
+        +background-image(image_url('gold-arrow.png'))
+        padding: 4px 7px
+        border: 0
+        // width: 100%
+        min-width: 163px
+  .views-submit-button
+    +float-right
+    clear: right
+    input[type="submit"]
+      @extend .go-button
+      margin-top: -3px
 
 // Gold 'Go' button
-#views-exposed-form-action-finder-ctools-context-1,
 #dosomething-blocks-make-an-impact-form,
-#dosomething-blocks-make-an-impact-form-front
+#dosomething-blocks-make-an-impact-form-front,
   input[type="submit"]
     @extend .go-button
     +float-right
