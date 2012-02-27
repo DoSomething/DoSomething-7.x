@@ -1697,6 +1697,7 @@ function dosomething_blog_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Featured';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -1866,6 +1867,141 @@ function dosomething_blog_views_default_views() {
   /* Display: Causes/Issues Blog Content pane */
   $handler = $view->new_display('panel_pane', 'Causes/Issues Blog Content pane', 'panel_pane_1');
   $handler->display->display_options['display_description'] = 'Displays Cause/Issues related Blog posts';
+
+  /* Display: Featured Blog posts */
+  $handler = $view->new_display('block', 'Featured Blog posts', 'block_1');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'featured_blog_posts' => 'featured_blog_posts',
+    'queue1' => 0,
+    'queue2' => 0,
+    'queue3' => 0,
+    'queue4' => 0,
+    'queue5' => 0,
+    'queue6' => 0,
+    'queue7' => 0,
+    'queue8' => 0,
+    'queue9' => 0,
+    'queue10' => 0,
+    'queue11' => 0,
+    'queue12' => 0,
+    'queue13' => 0,
+    'queue14' => 0,
+    'queue15' => 0,
+    'queue16' => 0,
+    'queue17' => 0,
+    'queue18' => 0,
+    'queue19' => 0,
+    'queue20' => 0,
+    'queue21' => 0,
+    'queue22' => 0,
+    'queue23' => 0,
+    'queue24' => 0,
+    'queue25' => 0,
+    'queue26' => 0,
+    'queue27' => 0,
+    'queue28' => 0,
+    'queue29' => 0,
+    'queue30' => 0,
+    'queue31' => 0,
+    'queue32' => 0,
+    'queue33' => 0,
+    'queue34' => 0,
+    'queue35' => 0,
+    'queue36' => 0,
+    'queue37' => 0,
+    'queue38' => 0,
+    'queue40' => 0,
+    'queue41' => 0,
+    'queue42' => 0,
+    'queue43' => 0,
+    'queue44' => 0,
+    'queue45' => 0,
+    'queue46' => 0,
+    'queue47' => 0,
+    'queue48' => 0,
+    'queue49' => 0,
+    'queue50' => 0,
+    'queue51' => 0,
+    'queue52' => 0,
+    'queue53' => 0,
+    'queue54' => 0,
+    'queue55' => 0,
+    'queue56' => 0,
+    'queue57' => 0,
+    'queue58' => 0,
+    'queue59' => 0,
+    'queue60' => 0,
+    'queue61' => 0,
+    'queue62' => 0,
+    'queue63' => 0,
+    'queue64' => 0,
+    'queue65' => 0,
+    'queue66' => 0,
+    'projects_police_personal_info' => 0,
+    'projects_police_solicitation' => 0,
+    'projects_police_volunteer_opp' => 0,
+    'projects_police_not_a_project' => 0,
+    'projects_police_offensive' => 0,
+    'projects_police_blank_project' => 0,
+    'action_of_the_week' => 0,
+    'featured_campaign' => 0,
+    'recent_scholarship_winner' => 0,
+    'scholarships_past_winners' => 0,
+    'action_updates' => 0,
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'blog' => 'blog',
+  );
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
   $export['blogs'] = $view;
 
   return $export;
