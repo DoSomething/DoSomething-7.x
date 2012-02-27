@@ -43,9 +43,25 @@ class DSProject extends DSJsonWebformMigration {
     $this->addUnmigratedSources(array(
       'changed',
       'status',
+      'field_inspired_by_dosomething',
+      'field_project_age',
+      'field_dosomething_award_winner',
+      'field_related_action_guide',
+      'field_related_campaign',
+      'field_fb_like_count',
+      'field_hours_volunteered',
+      'field_essay_believe_it',
+      'field_num_people_inspired',
+      'locations',
     ));
 
+
     $this->addUnmigratedDestinations(array(
+      'field_project_clubs',
+      'field_project_report_zip',
+      'field_project_goal',
+      'field_project_impact',
+      'field_project_start_date',
     ));
   }
 
