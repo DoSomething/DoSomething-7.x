@@ -50,7 +50,7 @@ function dosomething_causes_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'one_three_two';
+  $display->layout = 'one_three_one';
   $display->layout_settings = '';
   $display->panel_settings = array(
     'style_settings' => array(
@@ -92,28 +92,41 @@ function dosomething_causes_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'bottom-left';
+    $pane->panel = 'mid-center';
     $pane->type = 'views_panes';
-    $pane->subtype = 'blog_center-panel_pane_1';
+    $pane->subtype = 'project_related_displays-panel_pane_3';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'settings' => NULL,
     );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane-news ds-pane-no-padding',
-    );
+    $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['bottom-left'][0] = 'new-1';
+    $display->panels['mid-center'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'bottom-right';
+    $pane->panel = 'mid-left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-2'] = $pane;
+    $display->panels['mid-left'][0] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'polls-panel_pane_1';
     $pane->shown = TRUE;
@@ -130,155 +143,10 @@ function dosomething_causes_default_page_manager_handlers() {
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-2'] = $pane;
-    $display->panels['bottom-right'][0] = 'new-2';
-    $pane = new stdClass();
-    $pane->pid = 'new-3';
-    $pane->panel = 'footer';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'current_campaigns-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => TRUE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
     $display->content['new-3'] = $pane;
-    $display->panels['footer'][0] = 'new-3';
+    $display->panels['mid-right'][0] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
-    $pane->panel = 'mid-center';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_3';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane-top-right-radius ds-arrow-list',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['mid-center'][0] = 'new-4';
-    $pane = new stdClass();
-    $pane->pid = 'new-5';
-    $pane->panel = 'mid-left';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_2';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane ds-arrow-list',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['mid-left'][0] = 'new-5';
-    $pane = new stdClass();
-    $pane->pid = 'new-6';
-    $pane->panel = 'mid-right';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'related_projects-panel_pane_2';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane-top-right-radius ds-pane-usergen ds-arrow-list',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-6'] = $pane;
-    $display->panels['mid-right'][0] = 'new-6';
-    $pane = new stdClass();
-    $pane->pid = 'new-7';
-    $pane->panel = 'top';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '<none>',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][0] = 'new-7';
-    $pane = new stdClass();
-    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'causes-panel_pane_1';
@@ -287,115 +155,13 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-8'] = $pane;
-    $display->panels['top'][1] = 'new-8';
-    $pane = new stdClass();
-    $pane->pid = 'new-9';
-    $pane->panel = 'top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'current_campaigns-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-9'] = $pane;
-    $display->panels['top'][2] = 'new-9';
-    $pane = new stdClass();
-    $pane->pid = 'new-10';
-    $pane->panel = 'top';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'taxonomy_term:field_causes_image';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'image',
-      'formatter_settings' => array(
-        'image_style' => 'issue_main',
-        'image_link' => '',
-      ),
-      'context' => 'argument_term_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'style' => 'default',
       'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
-    $display->content['new-10'] = $pane;
-    $display->panels['top'][3] = 'new-10';
-    $pane = new stdClass();
-    $pane->pid = 'new-11';
-    $pane->panel = 'top';
-    $pane->type = 'term_description';
-    $pane->subtype = 'term_description';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'term_parent',
-          'settings' => array(
-            'vid' => '5',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'context' => 'argument_term_1',
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'style' => 'default',
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 4;
-    $display->content['new-11'] = $pane;
-    $display->panels['top'][4] = 'new-11';
+    $pane->position = 0;
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][0] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
