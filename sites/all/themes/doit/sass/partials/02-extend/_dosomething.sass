@@ -592,6 +592,7 @@ h3.subhead
   .item-list ul li
     margin: 0
   .views-row
+    +clearfix
     border-top: 1px $gray5 solid
     border-bottom: 1px $white solid
     padding: $s2 0
@@ -601,9 +602,13 @@ h3.subhead
       border-bottom: none
   .views-field-title
     @extend .right-sidebar-headlines
-  .project-related-thumb img
-    @extend .border-and-shadow
-    margin-right: $s0
+  .project-related-thumb
+    float: left
+    img
+      @extend .border-and-shadow
+      margin-right: $s0
+  .views-field-field-description p
+    margin-left: 72px
 
 // Start a project link on project submission pages
 .start-a-project
