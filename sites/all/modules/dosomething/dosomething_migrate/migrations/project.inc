@@ -25,6 +25,7 @@ class DSProject extends DSJsonWebformMigration {
     $this->addFieldMapping('field_others_involved', 'field_others_involved'); # Field: How Can Others Help?  (text_long)
     $this->addFieldMapping('field_update_people_involved', 'field_num_people_involved');  # Field: How many people are directly involved in your project? (number_integer)
     $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5'); # Field: Issues (taxonomy_term_reference)
+    $this->addFieldMapping('field_action_guide_reference', 'field_dosomething_award_winner');
 
     // Handle locative data.
     $this->addAddressFieldMapping('field_webform_address', NULL, array(
@@ -45,7 +46,6 @@ class DSProject extends DSJsonWebformMigration {
       'status',
       'field_inspired_by_dosomething',
       'field_project_age',
-      'field_dosomething_award_winner',
       'field_related_action_guide',
       'field_related_campaign',
       'field_fb_like_count',
@@ -58,7 +58,6 @@ class DSProject extends DSJsonWebformMigration {
 
     $this->addUnmigratedDestinations(array(
       'field_project_clubs',
-      'field_project_report_zip',
       'field_project_goal',
       'field_project_impact',
       'field_project_start_date',
