@@ -51,7 +51,7 @@ function webform_components_form($form, $form_state, $node) {
     '#type' => 'value',
     '#value' => $node->nid,
   );
-  dpm($node->webform['components'][27]);
+  
 
   $options = array();
   foreach ($node->webform['components'] as $cid => $component) {
@@ -80,7 +80,6 @@ function webform_components_form($form, $form_state, $node) {
       $max_weight = $component['weight'];
     }
   }
-dpm($form['components'][27]);
   $form['add']['name'] = array(
     '#type' => 'textfield',
     '#size' => 24,
@@ -275,7 +274,6 @@ function theme_webform_components_form($variables) {
 }
 
 function webform_components_form_validate($form, &$form_state) {
-  dpm($form_state['values']['components'][27]);
   // Check that the entered component name is valid.
   if ($form_state['values']['op'] == t('Add') && drupal_strlen(trim($form_state['values']['add']['name'])) <= 0) {
     form_error($form['add']['name'], t('When adding a new component, the name field is required.'));
@@ -312,16 +310,10 @@ function webform_components_form_validate($form, &$form_state) {
 
 function webform_components_form_submit($form, &$form_state) {
   $node = node_load($form_state['values']['nid']);
-dpm($form_state['values']['components']);
   // Update all mandatory and weight values.
   foreach ($node->webform['components'] as $cid => $component) {
 
     if ($component['pid'] != $form_state['values']['components'][$cid]['pid'] || $component['weight'] != $form_state['values']['components'][$cid]['weight'] || $component['mandatory'] != $form_state['values']['components'][$cid]['mandatory']) {
-      if (!isset($component['webform_entity'])) {
-     dpm($component);
-     dpm($form_state['values']['components'][$cid]);   
-      }
-
       $component['weight'] = $form_state['values']['components'][$cid]['weight'];
       $component['mandatory'] = $form_state['values']['components'][$cid]['mandatory'];
       $component['pid'] = $form_state['values']['components'][$cid]['pid'];
