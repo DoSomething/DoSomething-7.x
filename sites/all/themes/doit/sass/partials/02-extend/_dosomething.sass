@@ -67,11 +67,11 @@
   +text-shadow($gray2-trans 1px 1px 2px)
 
 .box-shadow
-  +box-shadow($gray3-trans 0px 6px 12px)
+  +box-shadow($gray3-trans 0 6px 12px)
 
 .border-and-shadow
   border: 1px $white solid
-  +box-shadow(rgba($black, .3) 0 0 6px)
+  +box-shadow($gray3-trans 0 0 12px)
 
 ////////////////////////////
 // GENERAL EXTENDABLES
@@ -587,8 +587,7 @@ h3.subhead
         +float-left
         margin-right: 14px
         img
-          border: 1px solid $white
-          +box-shadow($gray3-trans 0px 0px 12px)
+          @extend .border-and-shadow
 
 // Narrow block with header, thumbnail, and title with teaser
 // i.e. related stuff, doing it, done it, club members, act now, resources
@@ -627,4 +626,3 @@ h3.subhead
 // OLD EXTENDABLE CLASSES
 // refactor or remove
 ////////////////////////////
-

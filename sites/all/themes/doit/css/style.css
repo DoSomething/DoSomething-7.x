@@ -560,18 +560,18 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 .box-shadow, .apps-grid .apps-box {
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
-  box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
+  box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
 }
 
-.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.node-form, #vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
+.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content .views-row .news-image img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.node-form, #vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
   border: 1px white solid;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
 /* GENERAL EXTENDABLES */
@@ -915,13 +915,6 @@ h3.subhead {
   display: inline;
   float: left;
   margin-right: 14px;
-}
-.pane-news-stuff .pane-content .views-row .news-image img {
-  border: 1px solid white;
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
-  box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
 }
 
 .pane-narrow-block ul, .panes-2 .panel-second ul {
