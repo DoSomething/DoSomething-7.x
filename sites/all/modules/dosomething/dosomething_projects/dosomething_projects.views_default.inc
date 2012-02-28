@@ -14,7 +14,7 @@ function dosomething_projects_views_default_views() {
   $view->name = 'dosomething_api';
   $view->description = '';
   $view->tag = 'default';
-  $view->base_table = 'search_api_index_webform_submission_index';
+  $view->base_table = 'search_api_index_project_api_index';
   $view->human_name = 'dosomething_api';
   $view->core = 7;
   $view->api_version = '3.0';
@@ -60,12 +60,12 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'full';
   /* Filter criterion: Geocode Data: LatLong Pair (indexed) */
   $handler->display->display_options['filters']['field_geocode_data_latlon']['id'] = 'field_geocode_data_latlon';
-  $handler->display->display_options['filters']['field_geocode_data_latlon']['table'] = 'search_api_index_webform_submission_index';
+  $handler->display->display_options['filters']['field_geocode_data_latlon']['table'] = 'search_api_index_project_api_index';
   $handler->display->display_options['filters']['field_geocode_data_latlon']['field'] = 'field_geocode_data_latlon';
   $handler->display->display_options['filters']['field_geocode_data_latlon']['group'] = 0;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_webform_submission_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_project_api_index';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 0;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
@@ -74,13 +74,13 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
   /* Filter criterion: Indexed Webform Submission: Issues */
   $handler->display->display_options['filters']['taxonomy_vocabulary_5']['id'] = 'taxonomy_vocabulary_5';
-  $handler->display->display_options['filters']['taxonomy_vocabulary_5']['table'] = 'search_api_index_webform_submission_index';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5']['table'] = 'search_api_index_project_api_index';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5']['field'] = 'taxonomy_vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5']['value'] = array();
   $handler->display->display_options['filters']['taxonomy_vocabulary_5']['group'] = 0;
   /* Filter criterion: Address: Administrative area (i.e. State / Province) (indexed) */
   $handler->display->display_options['filters']['field_webform_address_administrative_area']['id'] = 'field_webform_address_administrative_area';
-  $handler->display->display_options['filters']['field_webform_address_administrative_area']['table'] = 'search_api_index_webform_submission_index';
+  $handler->display->display_options['filters']['field_webform_address_administrative_area']['table'] = 'search_api_index_project_api_index';
   $handler->display->display_options['filters']['field_webform_address_administrative_area']['field'] = 'field_webform_address_administrative_area';
   $handler->display->display_options['filters']['field_webform_address_administrative_area']['group'] = 0;
   $handler->display->display_options['filters']['field_webform_address_administrative_area']['expose']['operator_id'] = 'field_webform_address_administrative_area_op';
