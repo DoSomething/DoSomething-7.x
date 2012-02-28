@@ -111,7 +111,7 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->pid = 'new-2';
     $pane->panel = 'mid-left';
     $pane->type = 'views_panes';
-    $pane->subtype = 'project_related_displays-panel_pane_2';
+    $pane->subtype = 'current_campaigns-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -165,11 +165,17 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'causes-panel_pane_1';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'admin_title' => 'Cause page title',
+      'title' => '',
+      'body' => '<h1 class="title">Cause: %term:name</h1>',
+      'format' => '3',
+      'substitute' => 1,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -179,7 +185,28 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->position = 1;
     $display->content['new-5'] = $pane;
     $display->panels['top'][1] = 'new-5';
-  $display->hide_title = PANELS_TITLE_FIXED;
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
+    $pane->panel = 'top';
+    $pane->type = 'term_description';
+    $pane->subtype = 'term_description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][2] = 'new-6';
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['term_view_causes'] = $handler;
