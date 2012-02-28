@@ -74,17 +74,16 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
     $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
   }
 
-  if ($ref = entity_metadata_wrapper('node', $node)->field_report_back_reference->raw()) {
-    if (module_exists('og') && is_object($group = og_get_group('node', $ref))) {
+  if (isset($node->group_audience)) {
+    if (module_exists('og') && is_object($group = og_load($node->group_audience[LANGUAGE_NONE][0]['gid']))) {
       $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
       $entity_form['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
       $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
-    }
-  }
-  if ($campaign = entity_metadata_wrapper('node', $node)->field_report_back_reference->value()) {
-    if ($campaign_issues = entity_metadata_wrapper('node', $campaign)->field_campaign_causes_issues->raw()) {
-      $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#default_value'] = $campaign_issues;
-      $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#access'] = FALSE;
+
+      if ($campaign_issues = entity_metadata_wrapper('node', $group->etid)->field_campaign_causes_issues->raw()) {
+        $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#default_value'] = $campaign_issues;
+        $entity_form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#access'] = FALSE;
+      }
     }
   }
   $form['#validate'][] = 'dosomething_general_webform_email_and_mail_submit';
