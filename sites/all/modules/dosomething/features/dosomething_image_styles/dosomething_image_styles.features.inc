@@ -598,7 +598,7 @@ function dosomething_image_styles_image_default_styles() {
   $styles['tips_tools_node'] = array(
     'name' => 'tips_tools_node',
     'effects' => array(
-      6 => array(
+      7 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -608,7 +608,7 @@ function dosomething_image_styles_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '500',
+          'width' => '550',
           'height' => '',
           'upscale' => 0,
         ),
