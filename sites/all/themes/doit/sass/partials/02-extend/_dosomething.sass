@@ -95,6 +95,7 @@
 
 h1.title
   @extend .page-headline
+  border-bottom: 2px $white ridge
 
 h2.subhead
   @extend .page-headline
@@ -450,6 +451,11 @@ h3.subhead
     &.hover
       text-decoration: underline
 
+.more-link-right
+  float: right
+  padding-right: $s4
+  margin-bottom: $s0
+
 .breadcrumbs
   font-size: $s-1
   color: $gray-border
@@ -585,7 +591,7 @@ h3.subhead
           +box-shadow($gray3-trans 0px 0px 12px)
 
 // Narrow block with header, thumbnail, and title with teaser
-// i.e. related stuff, doing it, done it, club members
+// i.e. related stuff, doing it, done it, club members, act now, resources
 .pane-narrow-block
   ul
     list-style: none
@@ -593,11 +599,8 @@ h3.subhead
     margin: 0
   .views-row
     +clearfix
-    border-top: 1px $gray5 solid
-    border-bottom: 1px $white solid
+    border-bottom: 2px $white ridge
     padding: $s2 0
-    &:first-of-type
-      border-top: none
     &:last-of-type
       border-bottom: none
   .views-field-title
@@ -607,7 +610,8 @@ h3.subhead
     img
       @extend .border-and-shadow
       margin-right: $s0
-  .views-field-field-description p
+  .views-field-field-description p,
+  .views-field-field-campaign-teaser p
     margin-left: 72px
 
 // Start a project link on project submission pages

@@ -584,6 +584,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   text-transform: capitalize;
 }
 
+h1.title {
+  border-bottom: 2px white ridge;
+}
+
 h2.subhead {
   font-size: 21px;
 }
@@ -790,6 +794,12 @@ h3.subhead {
   text-decoration: underline;
 }
 
+.more-link-right {
+  float: right;
+  padding-right: 18px;
+  margin-bottom: 12px;
+}
+
 .breadcrumbs {
   font-size: 10px;
   color: #938d88;
@@ -923,12 +933,8 @@ h3.subhead {
 .pane-narrow-block .views-row, .panes-2 .panel-second .views-row {
   overflow: hidden;
   *zoom: 1;
-  border-top: 1px #d4d2d1 solid;
-  border-bottom: 1px white solid;
+  border-bottom: 2px white ridge;
   padding: 15px 0;
-}
-.pane-narrow-block .views-row:first-of-type, .panes-2 .panel-second .views-row:first-of-type {
-  border-top: none;
 }
 .pane-narrow-block .views-row:last-of-type, .panes-2 .panel-second .views-row:last-of-type {
   border-bottom: none;
@@ -939,7 +945,10 @@ h3.subhead {
 .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img {
   margin-right: 12px;
 }
-.pane-narrow-block .views-field-field-description p, .panes-2 .panel-second .views-field-field-description p {
+.pane-narrow-block .views-field-field-description p, .panes-2 .panel-second .views-field-field-description p,
+.pane-narrow-block .views-field-field-campaign-teaser p,
+.panes-2 .panel-second .views-field-field-campaign-teaser p, .panes-2
+.panel-second .views-field-field-campaign-teaser p {
   margin-left: 72px;
 }
 
