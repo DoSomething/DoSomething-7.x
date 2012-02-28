@@ -72,8 +72,8 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
   }
 
-  if ($ref = entity_metadata_wrapper('node', $node)->field_campaign->raw()) {
-    if (module_exists('og') && is_object($group = og_get_group('node', $ref))) {
+  if (isset($node->group_audience)) {
+    if (module_exists('og') && is_object($group = og_load($node->group_audience[LANGUAGE_NONE][0]['gid']))) {
       $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
       $entity_form['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
       $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
