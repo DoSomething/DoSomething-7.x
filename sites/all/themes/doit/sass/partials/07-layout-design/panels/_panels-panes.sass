@@ -16,3 +16,30 @@
   a
     @extend .go-button
 
+.panel-outer-right
+  .pane-title
+    text-align: center
+    line-height: 1.2em
+    // margin-bottom: 12px
+  .views-field-title
+    @extend .bold
+    margin-bottom: 0
+    line-height: 2em
+    padding-top: 12px
+    +background(image_url('sidebar-title-separator-line.png') no-repeat center 10%)
+  .views-row-first
+    .views-field-title
+      background: none
+
+#blog-archives-pane
+  h3
+    @extend .bold
+    margin-bottom: 0
+    line-height: 1em
+    padding-top: 12px
+  .views-row-first
+    .views-field-title
+      background: none
+
+
+

@@ -684,7 +684,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created_1']['label'] = '';
   $handler->display->display_options['fields']['created_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['created_1']['alter']['text'] = '<span class="collapse-icon">►</span> [created_1]';
   $handler->display->display_options['fields']['created_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['created_1']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['created_1']['alter']['external'] = 0;
@@ -1361,7 +1360,6 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created_1']['label'] = '';
   $handler->display->display_options['fields']['created_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['created_1']['alter']['text'] = '<span class="collapse-icon">►</span> [created_1]';
   $handler->display->display_options['fields']['created_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['created_1']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['created_1']['alter']['external'] = 0;
