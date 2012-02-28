@@ -485,7 +485,7 @@ input[type=color], .description {
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, body.not-front .selectBox-options li.selectBox-hover a, body.front .selectBox-options li.selectBox-hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, body.not-front .selectBox-options li.selectBox-hover a, body.front .selectBox-options li.selectBox-hover a, #block-menu-block-2 li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -2042,6 +2042,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 
 #block-menu-block-2 {
   background-color: #efefef;
+  padding: 0;
 }
 #block-menu-block-2 ul.menu {
   margin-bottom: 0;
@@ -2055,6 +2056,12 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 }
 #block-menu-block-2 li:last-of-type {
   border-bottom: none;
+}
+#block-menu-block-2 li:hover {
+  background-color: #4b4744;
+}
+#block-menu-block-2 li:hover a {
+  text-decoration: none;
 }
 #block-menu-block-2 li a {
   letter-spacing: 0;

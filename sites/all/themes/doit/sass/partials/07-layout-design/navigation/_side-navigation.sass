@@ -4,6 +4,7 @@
 
 #block-menu-block-2
   background-color: $gray6
+  padding: 0
   ul.menu
     margin-bottom: 0
     padding-left: 0
@@ -14,8 +15,12 @@
     text-align: right
     &:last-of-type
       border-bottom: none
+    &:hover
+      background-color: $gray3
+      a
+        @extend .gold
+        text-decoration: none
     a
       @extend .large-bold-caps
       @extend .blue
       letter-spacing: 0
-
