@@ -2289,6 +2289,8 @@ h2.block-title, h2.pane-title {
   *zoom: 1;
   margin-bottom: 12px;
   width: 100%;
+  min-height: 124px;
+  padding-left: 12px;
 }
 .blog-landing-pane-post p {
   margin-bottom: 0;
@@ -2297,6 +2299,7 @@ h2.block-title, h2.pane-title {
   display: inline;
   float: left;
   margin-right: 12px;
+  margin-left: -12px;
   border: 1px solid white;
 }
 .blog-landing-pane-post .views-field-title h2 {
