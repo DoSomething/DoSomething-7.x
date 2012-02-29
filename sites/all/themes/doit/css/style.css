@@ -2287,6 +2287,9 @@ h2.block-title, h2.pane-title {
   margin-bottom: 12px;
   width: 100%;
 }
+.blog-landing-pane-post p {
+  margin-bottom: 0;
+}
 .blog-landing-pane-post .blog-large-thumbnail img {
   display: inline;
   float: left;
@@ -2295,6 +2298,7 @@ h2.block-title, h2.pane-title {
 }
 .blog-landing-pane-post .views-field-title h2 {
   line-height: 1.2em;
+  margin-top: 18px;
 }
 
 .panes-2 .panel-second .pane-title {
