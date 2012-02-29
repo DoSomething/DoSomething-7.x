@@ -58,11 +58,16 @@ ul.tabs.primary
 // uncomment to override or replace styles from _ui-patterns-common
 ul.pager
   margin-top: 0.5em
+  color: $blue
+  a
+    color: $blue
   li
     &.pager-current
+      @extend .bold
       position: relative
-      font-size: 1.5em
-      top: 0.125em
+      color: $gray
+      // font-size: 1.5em
+      // top: 0.125em
 
 // RSS LINK
 a.feed-icon
