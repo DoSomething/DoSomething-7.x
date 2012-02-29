@@ -424,13 +424,13 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, #block-menu-block-2 li a, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, #block-menu-block-2 li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
+.headers, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
 #vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
@@ -449,7 +449,7 @@ input[type=color], .description {
   font-style: italic;
 }
 
-.normal {
+.normal, #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
   font-weight: normal;
   font-weight: 300;
 }
@@ -462,7 +462,7 @@ input[type=color], .description {
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, #block-menu-block-2 li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
+.bold, b, strong, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-member-wall-panel-pane-1 .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content .news-title, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
 #vital-stats .name, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
@@ -474,7 +474,7 @@ input[type=color], .description {
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, #block-menu-block-2 li a {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, #block-menu-block-2 .content li a {
   color: #18408b;
 }
 
@@ -485,8 +485,7 @@ input[type=color], .description {
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, body.not-front .selectBox-options li.selectBox-hover a, body.front .selectBox-options li.selectBox-hover a, #block-menu-block-2 li:hover a, #block-menu-block-2 li.active-trail a:hover,
-#block-menu-block-2 li.active a:hover, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, body.not-front .selectBox-options li.selectBox-hover a, body.front .selectBox-options li.selectBox-hover a, #block-menu-block-2 .content li:hover a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -495,8 +494,8 @@ input[type=color], .description {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options li a, body.front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], #block-menu-block-2 li.active-trail a,
-#block-menu-block-2 li.active a, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options li a, body.front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], #block-menu-block-2 .content li.active a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail a,
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active a, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], #block-dosomething-blocks-dosomething-social-skyscraper .content h3, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
 #lets-talk-dialog .detail, .apps-grid .apps-box .apps-banner {
@@ -507,7 +506,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: black;
 }
 
-.gray1, #edit-field-picture-und-table thead tr th {
+.gray1, #edit-field-picture-und-table thead tr th, #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
   color: #1e1d1c;
 }
 
@@ -577,7 +576,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 /* GENERAL EXTENDABLES */
-.large-bold-caps, #block-menu-block-2 li a {
+.large-bold-caps, #block-menu-block-2 .content li a {
   font-size: 21px;
 }
 
@@ -2046,31 +2045,52 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   background-color: #efefef;
   padding: 0;
 }
-#block-menu-block-2 ul.menu {
+#block-menu-block-2 .content ul.menu {
   margin-bottom: 0;
   padding-left: 0;
 }
-#block-menu-block-2 li {
+#block-menu-block-2 .content li {
   border-bottom: 2px white ridge;
   list-style: none;
   padding: 15px 0;
   text-align: right;
+  overflow: hidden;
 }
-#block-menu-block-2 li:last-of-type {
+#block-menu-block-2 .content li:last-of-type {
   border-bottom: none;
 }
-#block-menu-block-2 li:hover {
+#block-menu-block-2 .content li:hover {
   background-color: #4b4744;
 }
-#block-menu-block-2 li:hover a {
+#block-menu-block-2 .content li:hover a {
   text-decoration: none;
 }
-#block-menu-block-2 li a {
+#block-menu-block-2 .content li a {
   letter-spacing: 0;
+  margin-right: 15px;
 }
-#block-menu-block-2 li.active-trail,
-#block-menu-block-2 li.active {
+#block-menu-block-2 .content li.active {
   background-color: #4b4744;
+}
+#block-menu-block-2 .content ul.menu li.expanded {
+  padding-bottom: 0;
+}
+#block-menu-block-2 .content ul.menu li.expanded ul.menu {
+  background-color: #efefef;
+}
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li {
+  border-bottom: none;
+  height: 23px;
+  padding: 0;
+}
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail,
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active {
+  background-color: #4b4744;
+}
+#block-menu-block-2 .content ul.menu li.expanded ul.menu a {
+  font-size: 15px;
+  line-height: 23px;
+  text-transform: none;
 }
 
 h2.block-title, h2.pane-title {
