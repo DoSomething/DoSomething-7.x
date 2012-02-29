@@ -1526,13 +1526,13 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created_2']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['created_2']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['created_2']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created_2']['element_class'] = 'blog-post-date';
   $handler->display->display_options['fields']['created_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['created_2']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['created_2']['hide_empty'] = 0;
   $handler->display->display_options['fields']['created_2']['empty_zero'] = 0;
   $handler->display->display_options['fields']['created_2']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['created_2']['date_format'] = 'custom';
-  $handler->display->display_options['fields']['created_2']['custom_date_format'] = 'F n, Y';
+  $handler->display->display_options['fields']['created_2']['date_format'] = 'month_day_year';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
