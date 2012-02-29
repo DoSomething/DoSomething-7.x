@@ -2044,53 +2044,95 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 {
   background-color: #efefef;
   padding: 0;
+  margin-right: -5px;
 }
 #block-menu-block-2 .content ul.menu {
-  margin-bottom: 0;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
+  background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
+  margin: 0;
   padding-left: 0;
 }
 #block-menu-block-2 .content li {
-  border-bottom: 2px white ridge;
   list-style: none;
-  padding: 15px 0;
   text-align: right;
-  overflow: hidden;
+  width: 100%;
 }
-#block-menu-block-2 .content li:last-of-type {
+#block-menu-block-2 .content li:first-of-type a {
+  border-top: none;
+}
+#block-menu-block-2 .content li:last-of-type a {
   border-bottom: none;
 }
 #block-menu-block-2 .content li:hover {
   background-color: #4b4744;
 }
+#block-menu-block-2 .content li:hover:first-of-type a {
+  border-top: none;
+}
+#block-menu-block-2 .content li:hover:last-of-type a {
+  border-bottom: none;
+}
 #block-menu-block-2 .content li:hover a {
+  border: 1px solid #4b4744;
   text-decoration: none;
 }
 #block-menu-block-2 .content li a {
   letter-spacing: 0;
-  margin-right: 15px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  border-bottom: 1px white solid;
+  border-top: 1px #d4d2d1 solid;
+  padding: 15px 0;
+  padding-right: 19px;
+  margin: 0 auto;
+  width: 95%;
+}
+#block-menu-block-2 .content li a {
+  *display: inline;
 }
 #block-menu-block-2 .content li.active {
   background-color: #4b4744;
 }
+#block-menu-block-2 .content li.active a {
+  border: none;
+}
 #block-menu-block-2 .content ul.menu li.expanded {
   padding-bottom: 0;
+}
+#block-menu-block-2 .content ul.menu li.expanded a {
+  border-bottom: none;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu {
   background-color: #efefef;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li {
-  border-bottom: none;
   height: 23px;
   padding: 0;
+}
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li:hover a {
+  border: none;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail,
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active {
   background-color: #4b4744;
 }
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail a,
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active a {
+  border: none;
+}
 #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
+  border: none;
   font-size: 15px;
   line-height: 23px;
   text-transform: none;
+  padding-top: 0;
 }
 
 h2.block-title, h2.pane-title {
