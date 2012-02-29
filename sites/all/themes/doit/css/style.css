@@ -2059,26 +2059,27 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li {
   list-style: none;
   text-align: right;
-  width: 100%;
-}
-#block-menu-block-2 .content li:first-of-type a {
-  border-top: none;
 }
 #block-menu-block-2 .content li:last-of-type a {
   border-bottom: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
 }
 #block-menu-block-2 .content li:hover {
   background-color: #4b4744;
-}
-#block-menu-block-2 .content li:hover:first-of-type a {
-  border-top: none;
 }
 #block-menu-block-2 .content li:hover:last-of-type a {
   border-bottom: none;
 }
 #block-menu-block-2 .content li:hover a {
-  border: 1px solid #4b4744;
+  border-bottom: 1px solid #4b4744;
   text-decoration: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
 }
 #block-menu-block-2 .content li a {
   letter-spacing: 0;
@@ -2087,12 +2088,14 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  border-bottom: 1px white solid;
-  border-top: 1px #d4d2d1 solid;
   padding: 15px 0;
   padding-right: 19px;
-  margin: 0 auto;
   width: 95%;
+  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
+  box-shadow: #d4d2d1 0 1px -5px 5px;
+  border-bottom: 1px white solid;
 }
 #block-menu-block-2 .content li a {
   *display: inline;
@@ -2103,36 +2106,24 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li.active a {
   border: none;
 }
-#block-menu-block-2 .content ul.menu li.expanded {
-  padding-bottom: 0;
-}
 #block-menu-block-2 .content ul.menu li.expanded a {
   border-bottom: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu {
   background-color: #efefef;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li {
   height: 23px;
-  padding: 0;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li:hover a {
-  border: none;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail,
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active {
-  background-color: #4b4744;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail a,
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active a {
-  border: none;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
-  border: none;
   font-size: 15px;
   line-height: 23px;
-  text-transform: none;
   padding-top: 0;
+  text-transform: none;
 }
 
 h2.block-title, h2.pane-title {

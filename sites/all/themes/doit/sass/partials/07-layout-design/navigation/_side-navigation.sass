@@ -14,61 +14,60 @@
     li
       list-style: none
       text-align: right
-      width: 100%
-      &:first-of-type a
-        border-top: none
       &:last-of-type a
         border-bottom: none
+        -moz-box-shadow: none
+        -webkit-box-shadow: none
+        -o-box-shadow: none
+        box-shadow: none
       &:hover
         background-color: $gray3
-        &:first-of-type a
-          border-top: none
         &:last-of-type a
           border-bottom: none
         a
           @extend .gold
-          border: 1px solid $gray3
+          border-bottom: 1px solid $gray3
           text-decoration: none
+          -moz-box-shadow: none
+          -webkit-box-shadow: none
+          -o-box-shadow: none
+          box-shadow: none
       a
         @extend .large-bold-caps
         @extend .blue
         letter-spacing: 0
         +inline-block
-        border-bottom: 1px $white solid
-        border-top: 1px $gray5 solid
         padding: $s2 0
         padding-right: 19px
-        margin: 0 auto
         width: 95%
+        +ds-bevel-single
     li.active
       background-color: $gray3
       a
         @extend .white
         border: none
     ul.menu li.expanded
-      padding-bottom: 0
       a
         border-bottom: none
+        -moz-box-shadow: none
+        -webkit-box-shadow: none
+        -o-box-shadow: none
+        box-shadow: none
       ul.menu
         background-color: $gray6
         li
           height: $s6
-          padding: 0
           &:hover
             a
               @extend .gold
-              border: none
         li.active-trail,
         li.active
-          background-color: $gray3
           a
             @extend .white
-            border: none
         a
           @extend .normal
           @extend .gray1
-          border: none
           font-size: $s2
           line-height: $s6
-          text-transform: none
           padding-top: 0
+          text-transform: none
