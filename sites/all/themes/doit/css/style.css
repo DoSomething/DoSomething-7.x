@@ -1694,6 +1694,12 @@ ul.pager li.pager-current {
   position: relative;
   color: gray;
 }
+ul.pager .pager-first,
+ul.pager .pager-item,
+ul.pager .pager-last,
+ul.pager .pager-ellipsis {
+  display: none;
+}
 
 a.feed-icon {
   border-bottom: none;
