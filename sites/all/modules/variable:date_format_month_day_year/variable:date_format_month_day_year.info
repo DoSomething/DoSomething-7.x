@@ -1,3 +1,0 @@
-name = "variable:date_format_month_day_year"
-core = "7.x"
-package = "Features"
