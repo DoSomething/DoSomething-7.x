@@ -2044,6 +2044,8 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 {
   background-color: #efefef;
   padding: 0;
+}
+#block-menu-block-2 .content {
   margin-right: -5px;
 }
 #block-menu-block-2 .content ul.menu {
@@ -2059,6 +2061,8 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li {
   list-style: none;
   text-align: right;
+  border-top: 1px transparent solid;
+  border-bottom: 1px transparent solid;
 }
 #block-menu-block-2 .content li:last-of-type a {
   border-bottom: none;
@@ -2069,6 +2073,8 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 }
 #block-menu-block-2 .content li:hover {
   background-color: #4b4744;
+  border-top: 1px #4b4744 solid;
+  border-bottom: 1px #4b4744 solid;
 }
 #block-menu-block-2 .content li:hover:last-of-type a {
   border-bottom: none;
@@ -2102,9 +2108,24 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 }
 #block-menu-block-2 .content li.active {
   background-color: #4b4744;
+  border-bottom: none;
 }
 #block-menu-block-2 .content li.active a {
   border: none;
+}
+#block-menu-block-2 .content ul.menu li.expanded {
+  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
+  box-shadow: #d4d2d1 0 1px -5px 5px;
+  border-bottom: 1px white solid;
+}
+#block-menu-block-2 .content ul.menu li.expanded:hover {
+  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
+  box-shadow: #d4d2d1 0 1px -5px 5px;
+  border-bottom: 1px white solid;
 }
 #block-menu-block-2 .content ul.menu li.expanded a {
   border-bottom: none;
@@ -2118,6 +2139,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li {
   height: 23px;
+}
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li:last-of-type a {
+  border-top: none;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
   font-size: 15px;

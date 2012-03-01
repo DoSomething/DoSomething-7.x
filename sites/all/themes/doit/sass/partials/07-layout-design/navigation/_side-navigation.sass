@@ -5,8 +5,8 @@
 #block-menu-block-2
   background-color: $gray6
   padding: 0
-  margin-right: -5px
   .content
+    margin-right: -5px
     ul.menu
       +background-image(linear-gradient(left, $gray6 90%, $gray5))
       margin: 0
@@ -14,6 +14,8 @@
     li
       list-style: none
       text-align: right
+      border-top: 1px transparent solid
+      border-bottom: 1px transparent solid
       &:last-of-type a
         border-bottom: none
         -moz-box-shadow: none
@@ -22,6 +24,8 @@
         box-shadow: none
       &:hover
         background-color: $gray3
+        border-top: 1px $gray3 solid
+        border-bottom: 1px $gray3 solid
         &:last-of-type a
           border-bottom: none
         a
@@ -43,10 +47,14 @@
         +ds-bevel-single
     li.active
       background-color: $gray3
+      border-bottom: none
       a
         @extend .white
         border: none
     ul.menu li.expanded
+      +ds-bevel-single
+      &:hover
+        +ds-bevel-single
       a
         border-bottom: none
         -moz-box-shadow: none
@@ -60,6 +68,8 @@
           &:hover
             a
               @extend .gold
+          &:last-of-type a
+            border-top: none
         li.active-trail,
         li.active
           a
