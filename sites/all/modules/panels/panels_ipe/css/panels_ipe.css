@@ -153,11 +153,6 @@ div.panels-ipe-draghandle {
   visibility: hidden;
 }
 
-/* counteract panels_dnd.css - temporary */
-div.panels-ipe-display-container .panel-pane .pane-title {
-  padding: 0;
-}
-
 /** ============================================================================
  * Controller form markup
  */
