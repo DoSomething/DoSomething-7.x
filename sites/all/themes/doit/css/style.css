@@ -2080,7 +2080,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   border-bottom: none;
 }
 #block-menu-block-2 .content li:hover a {
-  border-bottom: 1px solid #4b4744;
+  border-bottom: 1px #4b4744 solid;
   text-decoration: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -2114,18 +2114,10 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   border: none;
 }
 #block-menu-block-2 .content ul.menu li.expanded {
-  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
-  box-shadow: #d4d2d1 0 1px -5px 5px;
-  border-bottom: 1px white solid;
+  border-bottom: 1px #efefef solid;
 }
 #block-menu-block-2 .content ul.menu li.expanded:hover {
-  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
-  box-shadow: #d4d2d1 0 1px -5px 5px;
-  border-bottom: 1px white solid;
+  border-bottom: 1px #efefef solid;
 }
 #block-menu-block-2 .content ul.menu li.expanded a {
   border-bottom: none;
