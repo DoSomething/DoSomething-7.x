@@ -44,8 +44,14 @@
     bottom: 1px solid $darker
 
 =ds-bevel-single
-  +box-shadow($gray5 0 1px -5px 5px)
+  +box-shadow($gray5 0 1px 0 0)
   border-bottom: 1px $white solid
+
+=box-shadow-none
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+  -o-box-shadow: none
+  box-shadow: none
 
 =ds-dropdown
   background: $c-select-field-bg

@@ -575,6 +575,15 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
+.gray3-border, #block-menu-block-2 .content li:hover, #block-menu-block-2 .content li:hover a, #block-menu-block-2 .content li.active:hover {
+  border-bottom: 1px #4b4744 solid;
+}
+
+.gray6-border, #block-menu-block-2 .content ul.menu li.expanded, #block-menu-block-2 .content ul.menu li.expanded:hover, #block-menu-block-2 .content ul.menu li.expanded ul.menu li:last-of-type a:hover, #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail .last,
+#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active .last {
+  border-bottom: 1px #efefef solid;
+}
+
 /* GENERAL EXTENDABLES */
 .large-bold-caps, #block-menu-block-2 .content li a {
   font-size: 21px;
@@ -586,10 +595,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 h1.title {
-  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
-  box-shadow: #d4d2d1 0 1px -5px 5px;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
 }
 
@@ -931,10 +940,10 @@ h3.subhead {
 .pane-narrow-block .views-row, .panes-2 .panel-second .views-row {
   overflow: hidden;
   *zoom: 1;
-  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
-  box-shadow: #d4d2d1 0 1px -5px 5px;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding: 15px 0;
 }
@@ -2082,13 +2091,11 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li:hover {
   background-color: #4b4744;
   border-top: 1px #4b4744 solid;
-  border-bottom: 1px #4b4744 solid;
 }
 #block-menu-block-2 .content li:hover:last-of-type a {
   border-bottom: none;
 }
 #block-menu-block-2 .content li:hover a {
-  border-bottom: 1px #4b4744 solid;
   text-decoration: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -2105,10 +2112,10 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   padding: 15px 0;
   padding-right: 19px;
   width: 95%;
-  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
-  box-shadow: #d4d2d1 0 1px -5px 5px;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
 }
 #block-menu-block-2 .content li a {
@@ -2117,21 +2124,12 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li.active {
   background-color: #4b4744;
 }
-#block-menu-block-2 .content li.active:hover {
-  border-bottom: 1px #4b4744 solid;
-}
 #block-menu-block-2 .content li.active a {
   border: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   -o-box-shadow: none;
   box-shadow: none;
-}
-#block-menu-block-2 .content ul.menu li.expanded {
-  border-bottom: 1px #efefef solid;
-}
-#block-menu-block-2 .content ul.menu li.expanded:hover {
-  border-bottom: 1px #efefef solid;
 }
 #block-menu-block-2 .content ul.menu li.expanded a {
   border-bottom: none;
@@ -2147,22 +2145,15 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   height: 23px;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li:last-of-type a {
-  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
-  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
-  box-shadow: #d4d2d1 0 1px -5px 5px;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   line-height: 22px;
   padding-bottom: 0;
   padding-right: 19px;
   width: 95%;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li:last-of-type a:hover {
-  border-bottom: 1px #efefef solid;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail .last,
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active .last {
-  border-bottom: 1px #efefef solid;
 }
 #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
   font-size: 15px;
