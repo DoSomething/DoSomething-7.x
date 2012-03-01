@@ -586,7 +586,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 h1.title {
-  border-bottom: 2px white ridge;
+  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
+  box-shadow: #d4d2d1 0 1px -5px 5px;
+  border-bottom: 1px white solid;
 }
 
 h2.subhead {
@@ -927,7 +931,11 @@ h3.subhead {
 .pane-narrow-block .views-row, .panes-2 .panel-second .views-row {
   overflow: hidden;
   *zoom: 1;
-  border-bottom: 2px white ridge;
+  -moz-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -webkit-box-shadow: #d4d2d1 0 1px -5px 5px;
+  -o-box-shadow: #d4d2d1 0 1px -5px 5px;
+  box-shadow: #d4d2d1 0 1px -5px 5px;
+  border-bottom: 1px white solid;
   padding: 15px 0;
 }
 .pane-narrow-block .views-row:last-of-type, .panes-2 .panel-second .views-row:last-of-type {

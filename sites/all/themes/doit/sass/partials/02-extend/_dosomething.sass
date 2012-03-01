@@ -95,7 +95,7 @@
 
 h1.title
   @extend .page-headline
-  border-bottom: 2px $white ridge
+  +ds-bevel-single
 
 h2.subhead
   @extend .page-headline
@@ -598,7 +598,7 @@ h3.subhead
     margin: 0
   .views-row
     +clearfix
-    border-bottom: 2px $white ridge
+    +ds-bevel-single
     padding: $s2 0
     &:last-of-type
       border-bottom: none
