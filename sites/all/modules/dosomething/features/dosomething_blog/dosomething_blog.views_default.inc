@@ -1510,40 +1510,11 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Field: Content: Post date */
-  $handler->display->display_options['fields']['created_1']['id'] = 'created_1';
-  $handler->display->display_options['fields']['created_1']['table'] = 'node';
-  $handler->display->display_options['fields']['created_1']['field'] = 'created';
-  $handler->display->display_options['fields']['created_1']['label'] = '';
-  $handler->display->display_options['fields']['created_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['created_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['created_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['created_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['created_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['created_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['created_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['created_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['created_1']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['created_1']['date_format'] = 'custom';
-  $handler->display->display_options['fields']['created_1']['custom_date_format'] = 'M';
-  /* Field: Content: Post date */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'node';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['label'] = '';
-  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['created']['alter']['text'] = '<div class="created-date">
-<span class="month">[created_1]</ br></span>
-<span class="day">[created]</ br></span>
-</div>';
+  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['created']['alter']['external'] = 0;
@@ -1555,13 +1526,13 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['created']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created']['element_class'] = 'blog-post-date';
   $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['created']['hide_empty'] = 0;
   $handler->display->display_options['fields']['created']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['created']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['created']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['created']['date_format'] = 'month_day_year';
-  $handler->display->display_options['fields']['created']['custom_date_format'] = 'j';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
