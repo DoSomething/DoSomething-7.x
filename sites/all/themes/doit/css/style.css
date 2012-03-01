@@ -2081,6 +2081,11 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   border-top: 1px transparent solid;
   border-bottom: 1px transparent solid;
 }
+#block-menu-block-2 .content li li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
 #block-menu-block-2 .content li:last-of-type a {
   border-bottom: none;
   -moz-box-shadow: none;
