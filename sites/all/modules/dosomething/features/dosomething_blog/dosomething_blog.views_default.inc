@@ -1560,7 +1560,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created']['hide_empty'] = 0;
   $handler->display->display_options['fields']['created']['empty_zero'] = 0;
   $handler->display->display_options['fields']['created']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['date_format'] = 'month_day_year';
   $handler->display->display_options['fields']['created']['custom_date_format'] = 'j';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
