@@ -47,10 +47,15 @@
         +ds-bevel-single
     li.active
       background-color: $gray3
-      border-bottom: none
+      &:hover
+        border-bottom: 1px $gray3 solid
       a
         @extend .white
         border: none
+        -moz-box-shadow: none
+        -webkit-box-shadow: none
+        -o-box-shadow: none
+        box-shadow: none
     ul.menu li.expanded
       border-bottom: 1px $gray6 solid
       &:hover
@@ -69,11 +74,19 @@
             a
               @extend .gold
           &:last-of-type a
-            border-top: none
+            +ds-bevel-single
+            line-height: 22px
+            padding-bottom: 0
+            padding-right: 19px
+            width: 95%
+            &:hover
+              border-bottom: 1px $gray6 solid
         li.active-trail,
         li.active
           a
             @extend .white
+          & .last
+            border-bottom: 1px $gray6 solid
         a
           @extend .normal
           @extend .gray1
