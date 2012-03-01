@@ -16,42 +16,42 @@
       margin: 0
       li
         +no-bullets
-        // background: $gray2
         margin-left: 0
         padding: 0
         display: block
         margin-right: 0
-        width: 185px
+        width: 206px
         +float-left
         a
           @extend .white
           padding: 0
           line-height: 33px
           text-transform: uppercase
-          font-size: 18px
+          font-size: $s4
           padding-left: 16px
         > a
           +adjust-font-size-to($s4)
           text-transform: uppercase
           @extend .medium
+          line-height: $s3
+          margin-bottom: $s0
+          +inline-block
       ul
         border-top: 1px $gray-border solid
         padding-left: 0
+        padding-top: $s0
         +adjust-font-size-to($s1)
         li
           width: auto
-          // +background-with-css2-fallback(image_url('bg-diag-footer-line.png') repeat 0 0)
-          // +border($gray5, 1px, bottom)
           float: none
           display: block
           padding-top: 0
-          line-height: 21px
-          // margin-left: 20px
+          line-height: $s5
           a
             @extend .white
-            line-height: 18px
-            font-size: 14px
-            font-weight: 100
+            line-height: $s4
+            font-size: $s1
+            @extend .normal
             text-transform: none
           a[href="http://www.facebook.com/dosomething"]
             background: image_url("icn-footer-fb.png") no-repeat 13% 50%
