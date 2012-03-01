@@ -1589,6 +1589,7 @@ function dosomething_blog_views_default_views() {
     'trim_length' => '200',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1636,6 +1637,15 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['filters']['field_blog_causes_tid']['vocabulary'] = 'vocabulary_5';
   $handler->display->display_options['filters']['field_blog_causes_tid']['hierarchy'] = 1;
   $handler->display->display_options['filters']['field_blog_causes_tid']['error_message'] = 1;
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'field_blog_type_tid' => array(
       'type' => 'panel',
@@ -1646,6 +1656,7 @@ function dosomething_blog_views_default_views() {
       'label' => 'Content: Blog type (field_blog_type)',
     ),
   );
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['blog_center'] = $view;
 
   $view = new view;
