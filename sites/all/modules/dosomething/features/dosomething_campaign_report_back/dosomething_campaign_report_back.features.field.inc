@@ -250,139 +250,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_report_back-field_report_back_reference'
-  $fields['node-campaign_report_back-field_report_back_reference'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_report_back_reference',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'profile2_private' => FALSE,
-        'referenceable_types' => array(
-          '301_redirects' => 0,
-          'action_guide' => 0,
-          'api_key' => 0,
-          'awards_archive' => 0,
-          'bc_bio_form' => 0,
-          'blog' => 0,
-          'campaign' => 'campaign',
-          'campaign_art_2011' => 0,
-          'campaign_bully_2011' => 0,
-          'campaign_cancer_2011' => 0,
-          'campaign_contact_form' => 0,
-          'campaign_ew_2011' => 0,
-          'campaign_macys_2011' => 0,
-          'campaign_report_back' => 0,
-          'campaign_sign_up' => 0,
-          'campaign_sports_2011' => 0,
-          'cancer_2011_signup' => 0,
-          'cause' => 0,
-          'cause_video' => 0,
-          'club' => 0,
-          'club_event' => 0,
-          'club_first_meeting_cash' => 0,
-          'decade_2011_signup' => 0,
-          'ds_award_judging' => 0,
-          'dsaward_app' => 0,
-          'dsaward_rec' => 0,
-          'dsu_askprof' => 0,
-          'dsu_guides' => 0,
-          'easy_idea' => 0,
-          'editorial_content_' => 0,
-          'editorial_project' => 0,
-          'ewaste_signup_2011' => 0,
-          'final_grant_update' => 0,
-          'grant_alumni' => 0,
-          'grant_application' => 0,
-          'grant_judge' => 0,
-          'grants_database' => 0,
-          'help_ticket' => 0,
-          'huffpo' => 0,
-          'ididthis' => 0,
-          'issue' => 0,
-          'page' => 0,
-          'poll' => 0,
-          'press' => 0,
-          'project_report' => 0,
-          'project_update' => 0,
-          'scholarship' => 0,
-          'scholarship_application' => 0,
-          'scholarship_update' => 0,
-          'school' => 0,
-          'scroller' => 0,
-          'staples_members' => 0,
-          'tips_and_tools' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign_report_back',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'The campaign that this report back refers to.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '7',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_report_back_reference',
-      'label' => 'Campaign',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'node_reference',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'node_reference/autocomplete',
-          'size' => '60',
-        ),
-        'type' => 'node_reference_autocomplete',
-        'weight' => '1',
-      ),
-    ),
-  );
-
   // Exported field: 'node-campaign_report_back-group_audience'
   $fields['node-campaign_report_back-group_audience'] = array(
     'field_config' => array(
@@ -391,6 +258,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'og' => array(
           'columns' => array(
@@ -406,7 +276,9 @@ The content from this field will only be shown to anonymous users.',
       ),
       'module' => 'og',
       'no_ui' => TRUE,
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'group',
     ),
@@ -997,6 +869,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'og' => array(
           'columns' => array(
@@ -1012,7 +887,9 @@ The content from this field will only be shown to anonymous users.',
       ),
       'module' => 'og',
       'no_ui' => TRUE,
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'group',
     ),
@@ -1134,7 +1011,6 @@ The content from this field will only be shown to anonymous users.',
   // Included for use with string extractors like potx.
   t('Body (anonymous user)');
   t('Body (logged in user)');
-  t('Campaign');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Email');
@@ -1146,7 +1022,6 @@ The content from this field will only be shown to anonymous users.');
   t('Pictures');
   t('School');
   t('School Zip Code');
-  t('The campaign that this report back refers to.');
   t('The content from this field will only be shown to logged in users.');
   t('Videos');
 
