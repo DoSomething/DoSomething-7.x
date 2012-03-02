@@ -680,8 +680,6 @@ h3.subhead {
 .submit-right, .views-exposed-widgets .views-submit-button {
   float: right;
   clear: none;
-  position: relative;
-  top: -3px;
 }
 
 .share-of-the-day {
