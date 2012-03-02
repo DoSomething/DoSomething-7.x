@@ -1,5 +1,12 @@
 <?php
 
+function dosomething_sms_conductor_sms_keywords() {
+  return array(
+    'zivtech' => 'ds_sms_user_registration',
+    'zivtech2' => 'ds_sms_project_report_back',
+  );
+}
+
 /**
  * Implements hook_ctools_plugin_api().
  */
@@ -135,28 +142,40 @@ function dosomething_sms_default_conductor_workflows() {
     'start',
   );
   $activity->outputs = array(
-    'last_name'
+    'goal'
   );
   $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 180;
   $activity->y = 100;
-  $activity->name = 'zip';
-  $activity->title = 'Zip code';
-  $activity->question = 'Great! Two more questions!  What is your last name?';
+  $activity->name = 'goal';
+  $activity->title = 'Project Goal';
+  $activity->question = 'Awesome, what\'s the goal of your project?';
   $activity->inputs = array(
-    'first_name',
+    'title',
   );
   $activity->outputs = array(
-    'birthday'
+    'involved'
   );
   $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 180;
   $activity->y = 100;
-  $activity->name = 'birthday';
-  $activity->title = 'Birth Day';
-  $activity->question = 'Awesome!  What is your birthday (mm/dd/yyyy)?';
+  $activity->name = 'involved';
+  $activity->title = 'People involved';
+  $activity->question = 'Great, how many people are involved?';
   $activity->inputs = array(
-    'last_name',
+    'goal',
+  );
+  $activity->outputs = array(
+    'helped'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'helped';
+  $activity->title = 'People helped';
+  $activity->question = 'Amazing, how many people did you help?';
+  $activity->inputs = array(
+    'involved',
   );
   $activity->outputs = array(
     'signature_remover'
@@ -167,16 +186,16 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->name = 'signature_remover';
   $activity->title = 'Remove the signature from all sms context.';
   $activity->inputs = array(
-    'birthday',
+    'helped',
   );
   $activity->outputs = array(
-    'user_creator'
+    'create_report_back'
   );
-  $activity = $workflow->newActivity('ds_create_user');
+  $activity = $workflow->newActivity('ds_create_report_back');
   $activity->x = 180;
   $activity->y = 100;
-  $activity->name = 'user_creator';
-  $activity->title = 'Create a user from the existing context.';
+  $activity->name = 'create_report_back';
+  $activity->title = 'Create a campaign report back from the existing context.';
   $activity->inputs = array(
     'signature_remover',
   );
@@ -189,7 +208,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->name = 'end';
   $activity->title = 'End';
   $activity->inputs = array(
-    'user_creator'
+    'create_report_back'
   );
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
