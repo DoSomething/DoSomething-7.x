@@ -426,13 +426,13 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
+.headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
 #vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
@@ -452,7 +452,7 @@ input[type=color], .description {
   font-style: italic;
 }
 
-.normal, #block-menu-block-2 .content ul.menu li.expanded ul.menu a, #block-menu-menu-footer .content ul.menu ul li a {
+.normal, #block-menu-menu-footer .content ul.menu ul li a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu a {
   font-weight: normal;
   font-weight: 300;
 }
@@ -465,7 +465,7 @@ input[type=color], .description {
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
@@ -478,7 +478,7 @@ input[type=color], .description {
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, #block-menu-block-2 .content li a {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, .region-sidebar-first .block-menu-block .content li a {
   color: #18408b;
 }
 
@@ -489,7 +489,7 @@ input[type=color], .description {
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, #block-menu-block-2 .content li:hover a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -499,9 +499,9 @@ input[type=color], .description {
 }
 
 .white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], #block-menu-block-2 .content li.active a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail a,
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active a, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
 #lets-talk-dialog .detail, .apps-grid .apps-box .apps-banner {
   color: white;
@@ -511,7 +511,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: black;
 }
 
-.gray1, #edit-field-picture-und-table thead tr th, #block-menu-block-2 .content ul.menu li.expanded ul.menu a {
+.gray1, #edit-field-picture-und-table thead tr th, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu a {
   color: #1e1d1c;
 }
 
@@ -580,17 +580,17 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
-.gray3-border, #block-menu-block-2 .content li:hover, #block-menu-block-2 .content li:hover a, #block-menu-block-2 .content li.active:hover {
+.gray3-border, .region-sidebar-first .block-menu-block .content li:hover, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content li.active:hover {
   border-bottom: 1px #4b4744 solid;
 }
 
-.gray6-border, #block-menu-block-2 .content ul.menu li.expanded, #block-menu-block-2 .content ul.menu li.expanded:hover, #block-menu-block-2 .content ul.menu li.expanded ul.menu li:last-of-type a:hover, #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail .last,
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li.active .last {
+.gray6-border, .region-sidebar-first .block-menu-block .content ul.menu li.expanded, .region-sidebar-first .block-menu-block .content ul.menu li.expanded:hover, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:last-of-type a:hover, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail .last,
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active .last {
   border-bottom: 1px #efefef solid;
 }
 
 /* GENERAL EXTENDABLES */
-.large-bold-caps, #block-menu-block-2 .content li a {
+.large-bold-caps, .region-sidebar-first .block-menu-block .content li a {
   font-size: 21px;
 }
 
@@ -680,8 +680,6 @@ h3.subhead {
 .submit-right, .views-exposed-widgets .views-submit-button {
   float: right;
   clear: none;
-  position: relative;
-  top: -3px;
 }
 
 .share-of-the-day {
@@ -1770,6 +1768,9 @@ ul.inline, ul.inline li {
   display: inline;
   margin-right: 0.75em;
 }
+.field-type-taxonomy-term-reference .field-item:after:not(:last-child) {
+  content: ", ";
+}
 
 .field-label-above .field-label {
   display: block;
@@ -2090,115 +2091,6 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
   background-color: rgba(30, 29, 28, 0.75);
 }
 
-#block-menu-block-2 {
-  background-color: #efefef;
-  padding: 0;
-}
-#block-menu-block-2 .content {
-  margin-right: -5px;
-}
-#block-menu-block-2 .content ul.menu {
-  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
-  background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
-  background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
-  background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
-  background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
-  background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
-  margin: 0;
-  padding-left: 0;
-}
-#block-menu-block-2 .content li {
-  list-style: none;
-  text-align: right;
-  border-top: 1px transparent solid;
-  border-bottom: 1px transparent solid;
-}
-#block-menu-block-2 .content li li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0px;
-}
-#block-menu-block-2 .content li:last-of-type a {
-  border-bottom: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
-}
-#block-menu-block-2 .content li:hover {
-  background-color: #4b4744;
-  border-top: 1px #4b4744 solid;
-}
-#block-menu-block-2 .content li:hover:last-of-type a {
-  border-bottom: none;
-}
-#block-menu-block-2 .content li:hover a {
-  text-decoration: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
-}
-#block-menu-block-2 .content li a {
-  letter-spacing: 0;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  padding: 15px 0;
-  padding-right: 19px;
-  width: 95%;
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
-  box-shadow: #d4d2d1 0 1px 0 0;
-  border-bottom: 1px white solid;
-}
-#block-menu-block-2 .content li a {
-  *display: inline;
-}
-#block-menu-block-2 .content li.active {
-  background-color: #4b4744;
-}
-#block-menu-block-2 .content li.active a {
-  border: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
-}
-#block-menu-block-2 .content ul.menu li.expanded a {
-  border-bottom: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu {
-  background-color: #efefef;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li {
-  height: 23px;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu li:last-of-type a {
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
-  box-shadow: #d4d2d1 0 1px 0 0;
-  border-bottom: 1px white solid;
-  line-height: 22px;
-  padding-bottom: 0;
-  padding-right: 19px;
-  width: 95%;
-}
-#block-menu-block-2 .content ul.menu li.expanded ul.menu a {
-  font-size: 15px;
-  line-height: 23px;
-  padding-top: 0;
-  text-transform: none;
-}
-
 h2.block-title, h2.pane-title {
   background-color: #18408b;
   padding: 0 15px;
@@ -2244,7 +2136,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2427,6 +2319,115 @@ h2.block-title, h2.pane-title {
 }
 #block-dosomething-blocks-dosomething-social-skyscraper .content h3.facebook.active {
   background: url('images/ds-social-icons.png') no-repeat -2px -48px;
+}
+
+.region-sidebar-first .block-menu-block {
+  background-color: #efefef;
+  padding: 0;
+}
+.region-sidebar-first .block-menu-block .content {
+  margin-right: -5px;
+}
+.region-sidebar-first .block-menu-block .content ul.menu {
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
+  background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
+  margin: 0;
+  padding-left: 0;
+}
+.region-sidebar-first .block-menu-block .content li {
+  list-style: none;
+  text-align: right;
+  border-top: 1px transparent solid;
+  border-bottom: 1px transparent solid;
+}
+.region-sidebar-first .block-menu-block .content li li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+.region-sidebar-first .block-menu-block .content li:last-of-type a {
+  border-bottom: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content li:hover {
+  background-color: #4b4744;
+  border-top: 1px #4b4744 solid;
+}
+.region-sidebar-first .block-menu-block .content li:hover:last-of-type a {
+  border-bottom: none;
+}
+.region-sidebar-first .block-menu-block .content li:hover a {
+  text-decoration: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content li a {
+  letter-spacing: 0;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  padding: 15px 0;
+  padding-right: 19px;
+  width: 95%;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
+}
+.region-sidebar-first .block-menu-block .content li a {
+  *display: inline;
+}
+.region-sidebar-first .block-menu-block .content li.active {
+  background-color: #4b4744;
+}
+.region-sidebar-first .block-menu-block .content li.active a {
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded a {
+  border-bottom: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu {
+  background-color: #efefef;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li {
+  height: 23px;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:last-of-type a {
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
+  line-height: 22px;
+  padding-bottom: 0;
+  padding-right: 19px;
+  width: 95%;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu a {
+  font-size: 15px;
+  line-height: 23px;
+  padding-top: 0;
+  text-transform: none;
 }
 
 .panel-pane {
