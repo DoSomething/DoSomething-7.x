@@ -1,0 +1,6 @@
+name = "Dosomething Campaign Counter Block"
+description = "This module provides a ctools plugin system for counting campaign sign-ups and tracking an aggregate of a field on the report backs."
+core = "7.x"
+package = "Dosomething"
+dependencies[] = dosomething_campaign
+dependencies[] = og_context
