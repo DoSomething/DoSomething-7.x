@@ -581,20 +581,20 @@ h3.subhead
   padding-bottom: 24px
 .pane-news-stuff
   .pane-content
-    .news-title
+    h3
       @extend .bold
-      font-size: $s4
-      a
-        padding-top: 12px
-    .views-row
-      padding: 30px 24px 0 24px
-      clear: both
-      +clearfix
-      .news-image
-        +float-left
-        margin-right: 14px
-        img
-          @extend .border-and-shadow
+      +adjust-font-size-to($s5, 1)
+      margin-bottom: 0.25em
+    p
+      +adjust-font-size-to($s2)
+      line-height: 1.3em
+    img
+      +float-left
+      margin-right: 14px
+      @extend .border-and-shadow
+  .views-row
+    @extend .clearfix
+    padding: 30px 24px 0 24px
 
 // Narrow block with header, thumbnail, and title with teaser
 // i.e. related stuff, doing it, done it, club members, act now, resources

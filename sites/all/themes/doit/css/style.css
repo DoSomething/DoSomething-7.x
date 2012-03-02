@@ -386,10 +386,10 @@ input[type=color], iframe {
   outline: 1px dashed red;
 }
 
-.clearfix, .region-sidebar-first .block {
+.clearfix, .pane-news-stuff .views-row, .region-sidebar-first .block {
   *zoom: 1;
 }
-.clearfix:after, .region-sidebar-first .block:after {
+.clearfix:after, .pane-news-stuff .views-row:after, .region-sidebar-first .block:after {
   content: "";
   display: table;
   clear: both;
@@ -465,7 +465,7 @@ input[type=color], .description {
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content .news-title, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
 #vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
   font-weight: bold;
@@ -570,7 +570,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
 }
 
-.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content .views-row .news-image img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.node-form, #vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
+.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.node-form, #vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
   border: 1px white solid;
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -917,22 +917,23 @@ h3.subhead {
   padding-bottom: 24px;
 }
 
-.pane-news-stuff .pane-content .news-title {
-  font-size: 18px;
+.pane-news-stuff .pane-content h3 {
+  font-size: 1.75em;
+  line-height: 1.143em;
+  margin-bottom: 0.25em;
 }
-.pane-news-stuff .pane-content .news-title a {
-  padding-top: 12px;
+.pane-news-stuff .pane-content p {
+  font-size: 1.25em;
+  line-height: 1.6em;
+  line-height: 1.3em;
 }
-.pane-news-stuff .pane-content .views-row {
-  padding: 30px 24px 0 24px;
-  clear: both;
-  overflow: hidden;
-  *zoom: 1;
-}
-.pane-news-stuff .pane-content .views-row .news-image {
+.pane-news-stuff .pane-content img {
   display: inline;
   float: left;
   margin-right: 14px;
+}
+.pane-news-stuff .views-row {
+  padding: 30px 24px 0 24px;
 }
 
 .pane-narrow-block ul, .panes-2 .panel-second ul {
