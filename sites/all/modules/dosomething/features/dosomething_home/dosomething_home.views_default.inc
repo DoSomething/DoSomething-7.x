@@ -217,6 +217,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_class'] = 'news-title';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
@@ -239,9 +240,10 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['field_subtitle']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_subtitle']['element_type'] = 'h4';
+  $handler->display->display_options['fields']['field_subtitle']['element_type'] = 'p';
   $handler->display->display_options['fields']['field_subtitle']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_subtitle']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_subtitle']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_subtitle']['element_default_classes'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['hide_alter_empty'] = 1;
