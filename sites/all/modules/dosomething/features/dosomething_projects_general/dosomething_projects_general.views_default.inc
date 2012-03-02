@@ -936,6 +936,30 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_webform_project_summary']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_webform_project_summary']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_webform_project_summary']['field_api_classes'] = 0;
+  /* Field: Webform Submission: What's the problem you are trying to solve? */
+  $handler->display->display_options['fields']['field_essay_see_it']['id'] = 'field_essay_see_it';
+  $handler->display->display_options['fields']['field_essay_see_it']['table'] = 'field_data_field_essay_see_it';
+  $handler->display->display_options['fields']['field_essay_see_it']['field'] = 'field_essay_see_it';
+  $handler->display->display_options['fields']['field_essay_see_it']['label'] = '';
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['max_length'] = '50';
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['trim'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_essay_see_it']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Broken/missing handler */
