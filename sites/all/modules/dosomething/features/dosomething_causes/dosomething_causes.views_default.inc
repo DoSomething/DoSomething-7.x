@@ -220,9 +220,9 @@ function dosomething_causes_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
-  $handler->display->display_options['style_options']['fields']['banner'] = 'name';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_causes_image';
-  $handler->display->display_options['style_options']['fields']['text'] = 'description';
+  $handler->display->display_options['style_options']['fields']['text'] = 'name';
+  $handler->display->display_options['style_options']['fields']['footer'] = 'description';
   $handler->display->display_options['style_options']['fields']['link'] = 'nothing';
   $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
   $handler->display->display_options['style_options']['settings']['last_every_nth'] = '3';
