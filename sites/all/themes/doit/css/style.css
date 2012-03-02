@@ -1766,6 +1766,7 @@ ul.inline, ul.inline li {
 
 .field-type-taxonomy-term-reference .field-item {
   display: inline;
+  margin-right: 0.75em;
 }
 
 .field-label-above .field-label {
@@ -2113,7 +2114,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-block-2 .content li:last-of-type a {
   border-bottom: none;
@@ -2243,7 +2244,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
