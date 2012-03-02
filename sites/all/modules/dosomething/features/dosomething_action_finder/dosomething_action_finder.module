@@ -5,3 +5,15 @@
  */
 
 include_once('dosomething_action_finder.features.inc');
+
+/**
+ * Implements hook_form_FORMID_alter().
+ */
+function dosomething_action_finder_form_views_exposed_form_alter(&$form, $form_state) {
+  if (substr($form['#id'], 0, 32) == 'views-exposed-form-action-finder') {
+    $form['issues']['#options']['All'] = $form['#info']['filter-taxonomy_vocabulary_5_tid']['label'];
+    $form['who']['#options']['All'] = $form['#info']['filter-taxonomy_vocabulary_3_tid']['label'];
+    $form['where']['#options']['All'] = $form['#info']['filter-taxonomy_vocabulary_2_tid']['label'];
+    $form['time']['#options']['All'] = $form['#info']['filter-taxonomy_vocabulary_4_tid']['label'];
+  }
+}
