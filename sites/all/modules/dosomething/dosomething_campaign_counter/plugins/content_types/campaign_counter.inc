@@ -13,18 +13,73 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   $block = new stdClass();
   $sign_up_count = webform_get_submission_count($conf['signup_nid']);
+  $count_text = $conf['counter_label'];
   if ($conf['count_field'] == '#count') {
     $count = webform_get_submission_count($conf['report_back_nid']);
+    $count_text = 'people did it';
   }
   else {
     // load all webform entities for this node
-    // aggregate the count of the fields
-    // cache this somehow. dunno how yet.
-  }
-  $block->content = $count;
+    $query = new EntityFieldQuery;
+    $result = $query
+      ->entityCondition('entity_type', 'webform_submission_entity')
+      ->propertyCondition('bundle', 'campaign_report_back')
+      ->propertyCondition('nid', $conf['report_back_nid'])
+      ->execute();
+    $subs = array_keys($result['webform_submission_entity']);
 
-  //$context->etid
+    $node = node_load($conf['report_back_nid']);
+    foreach ($node->webform['components'] as $component) {
+      if ($component['form_key'] == $conf['count_field']) {
+        $fid = $component['cid'];
+        break;
+      }
+    }
+    if (isset($fid)) {
+      $count = dosomething_campaign_counter_campaign_counter_get_count($conf['report_back_nid'], $fid, $subs);
+    }
+  }
+  $args = array(
+    'top_label' => $count_text,
+    'top_number' => $count,
+    'bottom_label' => 'people doing it',
+    'bottom_number' => $sign_up_count,
+  );
+  $block->content = theme('ds_counter', $args);
+
   return $block;
+}
+
+function dosomething_campaign_counter_campaign_counter_get_count($nid, $field, &$subs, $reset = false) {
+  $data = array();
+  $count = 0;
+  if (!$reset && ($cache = cache_get('dosomething_campaign_counter', 'cache_block')) && !empty($cache->data)) {
+    $data = $cache->data;
+    if (isset($data[$nid]) && $data[$nid]['field'] == $field) {
+      $count = $data[$nid]['count'];
+      foreach ($subs as $key => $sub) {
+        if ($sub <= $data[$nid]['last']) {
+          unset($subs[$key]);
+        }
+      }
+    }
+  }
+  if (!empty($subs)) {
+    $subs = webform_get_submissions($nid, $subs);
+    $biggest = 0;
+    foreach ($subs as $sub) {
+      $count += $sub->data[$field]['value'][0];
+      if ($sub->sid > $biggest) $biggest = $sub->sid;
+    }
+    $data[$nid]['last'] = $biggest;
+  }
+
+  $data[$nid]['field'] = $field;
+  $data[$nid]['count'] = $count;
+
+  cache_set('dosomething_campaign_counter', $data, 'cache_block');
+
+  return $count;
 }
 
 function dosomething_campaign_counter_campaign_counter_content_type_admin_title($subtype, $conf, $context) {
@@ -49,6 +104,13 @@ function dosomething_campaign_counter_campaign_counter_content_type_edit_form($f
     '#options' => dosomething_campaign_counter_campaign_counter_list('campaign_report_back'),
   );
 
+  $form['counter_label'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Counter Label'),
+    '#description' => t('Label to display for the \'thing\' counter'),
+    '#default_value' => $conf['counter_label'],
+  );
+
   $form['count_field'] = array(
     '#type' => 'textfield',
     '#title' => t('Report Back Counter'),
@@ -60,7 +122,7 @@ function dosomething_campaign_counter_campaign_counter_content_type_edit_form($f
 }
 
 function dosomething_campaign_counter_campaign_counter_content_type_edit_form_submit(&$form, &$form_state) {
-  foreach (array('signup_nid', 'report_back_nid', 'count_field') as $key) {
+  foreach (array('signup_nid', 'report_back_nid', 'count_field', 'counter_label') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
 }

@@ -30,3 +30,26 @@ function dosomething_campaign_counter_ctools_plugin_directory($module, $plugin) 
   }
 }
 
+/**
+ * Implements hook_theme().
+ */
+
+function dosomething_campaign_counter_theme() {
+  $theme['ds_counter'] = array(
+    'variables' => array(
+      'top_label' => NULL,
+      'top_number' => NULL,
+      'bottom_label' => NULL,
+      'bottom_number' => NULL,
+    ),
+    'template' => 'templates/ds_counter',
+  );
+
+  return $theme;
+}
+
+function dosomething_campaign_counter_ds_counter_preprocess(&$variables) {
+  echo 'test';
+  $variables['top_label'] = 'banana';
+  $variables['top_number'] = 'test';
+}
