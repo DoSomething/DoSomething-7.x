@@ -386,10 +386,12 @@ input[type=color], iframe {
   outline: 1px dashed red;
 }
 
-.clearfix, .two-column-grid .pane-content, .action-finder-list .pane-content, .image-teaser-module, .action-finder-list .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .blog-landing-pane-post, #vital-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
+.clearfix, .two-column-grid .pane-content, .action-finder-list .pane-content, .image-teaser-module, .action-finder-list .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widgets .content,
+.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .blog-landing-pane-post, #vital-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
   *zoom: 1;
 }
-.clearfix:after, .two-column-grid .pane-content:after, .action-finder-list .pane-content:after, .image-teaser-module:after, .action-finder-list .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .blog-landing-pane-post:after, #vital-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after {
+.clearfix:after, .two-column-grid .pane-content:after, .action-finder-list .pane-content:after, .image-teaser-module:after, .action-finder-list .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widgets .content:after,
+.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .blog-landing-pane-post:after, #vital-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after {
   content: "";
   display: table;
   clear: both;
@@ -432,7 +434,7 @@ input[type=color], .description {
 
 .headers, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
 #vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -458,13 +460,13 @@ input[type=color], .description {
 .medium, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, body.front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
 
 .bold, b, strong, .bold-caps-header, .large-bold-caps, #block-menu-block-2 .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
 #vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
@@ -487,7 +489,7 @@ input[type=color], .description {
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, body.front .selectBox-options li.selectBox-hover a, #block-menu-block-2 .content li:hover a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, #block-menu-block-2 .content li:hover a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -496,8 +498,8 @@ input[type=color], .description {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, body.front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], #block-menu-block-2 .content li.active a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail a,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], #block-menu-block-2 .content li.active a, #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active-trail a,
 #block-menu-block-2 .content ul.menu li.expanded ul.menu li.active a, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
@@ -698,7 +700,7 @@ h3.subhead {
   color: #fed100;
 }
 
-.dropdown-categories, body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown {
   font-size: 21px;
 }
@@ -967,32 +969,6 @@ h3.subhead {
   content: "Start a Project";
 }
 
-body.not-front #block-dosomething-blocks-dosomething-make-impact .content {
-  padding: 32px 0px 52px 0;
-  overflow: hidden;
-  *zoom: 1;
-}
-body.not-front #block-dosomething-blocks-dosomething-make-impact .form-type-select label {
-  display: none;
-}
-body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
-  width: 100%;
-  background: #333131;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
-  background-image: url('images/gold-arrow.png');
-  padding: 4px 7px;
-  border: 0;
-  min-width: 195px;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-}
-
 .selectBox-dropdown-menu {
   position: absolute;
   z-index: 99999;
@@ -1030,17 +1006,41 @@ body.not-front #block-dosomething-blocks-dosomething-make-impact .selectBox-drop
   border-bottom: none;
 }
 
-body.front .form-type-select label {
+#block-dosomething-blocks-dosomething-make-impact .content {
+  padding: 32px 0px 52px 0;
+}
+#block-dosomething-blocks-dosomething-make-impact .form-type-select label {
   display: none;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front {
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
+  width: 100%;
+  background: #333131;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  background-image: url('images/gold-arrow.png');
+  padding: 4px 7px;
+  border: 0;
+  min-width: 195px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.pane-dosomething-blocks-dosomething-make-impact-front .form-type-select label {
+  display: none;
+}
+.pane-dosomething-blocks-dosomething-make-impact-front .pane-dosomething-blocks-dosomething-make-impact-front {
   width: 100%;
 }
-body.front .selectBox-dropdown {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown {
   width: 100%;
   background: #807a75;
 }
-body.front .selectBox-dropdown .selectBox-label {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown .selectBox-label {
   background-image: url('images/gold-arrow.png');
   padding: 7px 14px;
   border: 1px solid white;
@@ -1052,7 +1052,7 @@ body.front .selectBox-dropdown .selectBox-label {
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-body.front .selectBox-dropdown-menu {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown-menu {
   position: absolute;
   z-index: 99999;
   max-height: 100%;
@@ -1061,7 +1061,7 @@ body.front .selectBox-dropdown-menu {
   background-color: #807a75;
   overflow: auto;
 }
-body.front .selectBox-options {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options {
   font-size: 17px;
   list-style: none;
   display: block;
@@ -1069,21 +1069,21 @@ body.front .selectBox-options {
   padding: 0;
   margin: 0;
 }
-body.front .selectBox-options li {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li {
   padding-left: 14px;
   margin-bottom: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
-body.front .selectBox-options li a {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a {
   border-bottom: none;
 }
-body.front .selectBox-options li a:hover {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a:hover {
   border-bottom: none;
 }
-body.front .selectBox-options li.selectBox-hover a {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a {
   border-bottom: none;
 }
-body.front .selectBox-options li.selectBox-hover a:hover {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a:hover {
   border-bottom: none;
 }
 
@@ -1100,11 +1100,9 @@ body.front .selectBox-options li.selectBox-hover a:hover {
 .views-exposed-widget label {
   display: none;
 }
-.views-exposed-widgets label .content,
-.views-exposed-widget label .content {
+.views-exposed-widgets .content,
+.views-exposed-widget .content {
   padding: 32px 0px 52px 0;
-  overflow: hidden;
-  *zoom: 1;
 }
 .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown {
@@ -2111,7 +2109,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 #block-menu-block-2 .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-block-2 .content li:last-of-type a {
   border-bottom: none;
@@ -2239,7 +2237,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
