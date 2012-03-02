@@ -6,54 +6,54 @@ body.not-front
     .content
       padding: 32px 0px 52px 0
       +clearfix
-  .form-type-select
-    label
-      display: none
-  .selectBox-dropdown
-    @extend .dropdown-categories
-    width: 100%
-    background: $gray2
-    font-size: $s1
-    margin-bottom: 5px
-    .selectBox-label
-      +background-image(image_url('gold-arrow.png'))
-      padding: 4px 7px
-      border: 0
-      // width: 100%
-      min-width: 195px
-      display: inline-block
-      white-space: nowrap
-      overflow: hidden
-      background-repeat: no-repeat
-      background-position: 95% 50%
-  .selectBox-dropdown-menu
-    position: absolute
-    z-index: 99999
-    max-height: 100%
-    border: 0
-    border-top: 0
-    background-color: $gray2 !important
-    overflow: auto
-  .selectBox-options
-    @extend .bold
-    font-size: $s1
-    list-style: none
-    display: block
-    cursor: pointer
-    padding: 0
-    margin: 0
-    li
-      padding-left: 7px
-      margin-bottom: 6px
-      font-family: $font-headline
-      font-size: $s0
-      @extend .medium
-      a
-        +remove-link-underlines
-        @extend .white
-      &.selectBox-hover a
-        +remove-link-underlines
-        @extend .gold
+    .form-type-select
+      label
+        display: none
+    .selectBox-dropdown
+      @extend .dropdown-categories
+      width: 100%
+      background: $gray2
+      font-size: $s1
+      margin-bottom: 5px
+      .selectBox-label
+        +background-image(image_url('gold-arrow.png'))
+        padding: 4px 7px
+        border: 0
+        // width: 100%
+        min-width: 195px
+        display: inline-block
+        white-space: nowrap
+        overflow: hidden
+        background-repeat: no-repeat
+        background-position: 95% 50%
+.selectBox-dropdown-menu
+  position: absolute
+  z-index: 99999
+  max-height: 100%
+  border: 0
+  border-top: 0
+  background-color: $gray2 !important
+  overflow: auto
+.selectBox-options
+  @extend .bold
+  font-size: $s1
+  list-style: none
+  display: block
+  cursor: pointer
+  padding: 0
+  margin: 0
+  li
+    padding-left: 7px
+    margin-bottom: 6px
+    font-family: $font-headline
+    font-size: $s0
+    @extend .medium
+    a
+      +remove-link-underlines
+      @extend .white
+    &.selectBox-hover a
+      +remove-link-underlines
+      @extend .gold
 
 // #dosomething-blocks-make-an-impact-form-front
 body.front
@@ -104,24 +104,42 @@ body.front
         +remove-link-underlines
         @extend .gold
 
-#views-exposed-form-member-wall-panel-pane-1
-  .views-exposed-form .views-exposed-widget
-    padding-right: 10px
-    label
-      display: none
-    .selectBox-dropdown
-      .selectBox-label
-        +background-image(image_url('gold-arrow.png'))
-        padding: 4px 7px
-        border: 0
-        // width: 100%
-        min-width: 163px
-  .views-submit-button
-    +float-right
-    clear: right
-    input[type="submit"]
-      @extend .go-button
-      margin-top: -3px
+.views-exposed-widgets
+  // .views-exposed-form .views-exposed-widget
+  padding-right: 10px
+  // width: 200px
+  label
+    // display: none
+    .content
+      padding: 32px 0px 52px 0
+      +clearfix
+  // .form-type-select
+  //   label
+  //     display: none
+  .selectBox-dropdown
+    @extend .dropdown-categories
+    width: 100%
+    background: $gray2
+    font-size: $s1
+    margin-bottom: 5px
+    .selectBox-label
+      +background-image(image_url('gold-arrow.png'))
+      padding: 4px 7px
+      border: 0
+      // width: 100%
+      min-width: 155px
+      display: inline-block
+      white-space: nowrap
+      overflow: hidden
+      background-repeat: no-repeat
+      background-position: 95% 50%
+
+.views-submit-button
+  +float-right
+  clear: right
+  input[type="submit"]
+    @extend .go-button
+    margin-top: -3px
 
 // Gold 'Go' button
 #dosomething-blocks-make-an-impact-form,
