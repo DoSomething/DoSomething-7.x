@@ -45,7 +45,6 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 100;
   $activity->name = 'first_name';
   $activity->title = 'First Name';
-  $activity->attribute = 'first';
   $activity->question = 'Thanks for registering! Just a few questions: what is your first name?';
   $activity->inputs = array(
     'start',
@@ -58,7 +57,6 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 100;
   $activity->name = 'last_name';
   $activity->title = 'Last Name';
-  $activity->attribute = 'last';
   $activity->question = 'Great! Two more questions!  What is your last name?';
   $activity->inputs = array(
     'first_name',
@@ -71,8 +69,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 100;
   $activity->name = 'birthday';
   $activity->title = 'Birth Day';
-  $activity->attribute = 'birthday';
-  $activity->question = 'Awesome!  What is your birthday (dd/mm/yyyy)?';
+  $activity->question = 'Awesome!  What is your birthday (mm/dd/yyyy)?';
   $activity->inputs = array(
     'last_name',
   );
@@ -114,9 +111,9 @@ function dosomething_sms_default_conductor_workflows() {
 
   $workflow = new ConductorWorkflow;
   $workflow->wid = 'new';
-  $workflow->name = 'simple_suspend_resume_test';
-  $workflow->title = 'Simple suspend and resume test';
-  $workflow->description = 'A simple workflow that suspends and then resumes an activity.';
+  $workflow->name = 'ds_sms_project_report_back';
+  $workflow->title = 'User Registration';
+  $workflow->description = 'Allows users to register for the site via SMS.';
   $workflow->api_version = '1.0';
   // Add and configure workflow activities.
   $activity = $workflow->newActivity('start');
@@ -125,29 +122,63 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->name = 'start';
   $activity->title = 'Start';
   $activity->outputs = array(
-    'activity_2',
-    'activity_3'
+    'title',
   );
   $activity->inputs = array();
-  // Implement a new test for pausing, we shouldn't reuse the current test.
-  $activity = $workflow->newActivity('test');
+  $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 180;
   $activity->y = 100;
-  $activity->name = 'activity_2';
-  $activity->title = 'Activity 2';
+  $activity->name = 'title';
+  $activity->title = 'Project title';
+  $activity->question = 'Thanks for telling us about your project, what is the title?';
   $activity->inputs = array(
     'start',
   );
   $activity->outputs = array(
-    'end'
+    'last_name'
   );
-  $activity = $workflow->newActivity('test');
+  $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 180;
   $activity->y = 100;
-  $activity->name = 'activity_3';
-  $activity->title = 'Activity 3';
+  $activity->name = 'zip';
+  $activity->title = 'Zip code';
+  $activity->question = 'Great! Two more questions!  What is your last name?';
   $activity->inputs = array(
-    'start',
+    'first_name',
+  );
+  $activity->outputs = array(
+    'birthday'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'birthday';
+  $activity->title = 'Birth Day';
+  $activity->question = 'Awesome!  What is your birthday (mm/dd/yyyy)?';
+  $activity->inputs = array(
+    'last_name',
+  );
+  $activity->outputs = array(
+    'signature_remover'
+  );
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'signature_remover';
+  $activity->title = 'Remove the signature from all sms context.';
+  $activity->inputs = array(
+    'birthday',
+  );
+  $activity->outputs = array(
+    'user_creator'
+  );
+  $activity = $workflow->newActivity('ds_create_user');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'user_creator';
+  $activity->title = 'Create a user from the existing context.';
+  $activity->inputs = array(
+    'signature_remover',
   );
   $activity->outputs = array(
     'end'
@@ -158,11 +189,11 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->name = 'end';
   $activity->title = 'End';
   $activity->inputs = array(
-    'activity_2',
-    'activity_3'
+    'user_creator'
   );
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
+
 
 
   return $workflows;
