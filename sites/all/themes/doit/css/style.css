@@ -1096,6 +1096,10 @@ body.front .selectBox-options li.selectBox-hover a:hover {
 .views-exposed-widget {
   padding-right: 10px;
 }
+.views-exposed-widgets label,
+.views-exposed-widget label {
+  display: none;
+}
 .views-exposed-widgets label .content,
 .views-exposed-widget label .content {
   padding: 32px 0px 52px 0;
