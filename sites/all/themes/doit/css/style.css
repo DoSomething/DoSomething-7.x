@@ -1768,6 +1768,9 @@ ul.inline, ul.inline li {
   display: inline;
   margin-right: 0.75em;
 }
+.field-type-taxonomy-term-reference .field-item:after:not(:last-child) {
+  content: ", ";
+}
 
 .field-label-above .field-label {
   display: block;
