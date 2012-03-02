@@ -326,8 +326,8 @@ function dosomething_blog_default_page_manager_pages() {
       'args' => '',
       'url' => '',
       'display' => 'block_1',
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Most Popular',
     );
     $pane->cache = array();
     $pane->style = array(
