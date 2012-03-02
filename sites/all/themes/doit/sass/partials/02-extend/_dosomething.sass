@@ -370,7 +370,7 @@ h3.subhead
   .views-row
     width: 49%
   .pane-content
-    +clearfix
+    @extend .clearfix
   .views-row-odd
     float: left
     clear: left
@@ -385,7 +385,7 @@ h3.subhead
 // rest of the space
 ////////////////////////////
 .image-teaser-module
-  +clearfix
+  @extend .clearfix
   margin-bottom: $s0
 .image-teaser-module-image
   @extend .border-and-shadow
@@ -605,7 +605,7 @@ h3.subhead
   .item-list ul li
     margin: 0
   .views-row
-    +clearfix
+    @extend .clearfix
     +ds-bevel-single
     padding: $s2 0
     &:last-of-type

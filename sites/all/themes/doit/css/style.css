@@ -386,10 +386,10 @@ input[type=color], iframe {
   outline: 1px dashed red;
 }
 
-.clearfix, .pane-news-stuff .views-row, .region-sidebar-first .block {
+.clearfix, .two-column-grid .pane-content, .action-finder-list .pane-content, .image-teaser-module, .action-finder-list .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .blog-landing-pane-post, #vital-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
   *zoom: 1;
 }
-.clearfix:after, .pane-news-stuff .views-row:after, .region-sidebar-first .block:after {
+.clearfix:after, .two-column-grid .pane-content:after, .action-finder-list .pane-content:after, .image-teaser-module:after, .action-finder-list .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .blog-landing-pane-post:after, #vital-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after {
   content: "";
   display: table;
   clear: both;
@@ -744,10 +744,6 @@ h3.subhead {
 .two-column-grid .views-row, .action-finder-list .views-row {
   width: 49%;
 }
-.two-column-grid .pane-content, .action-finder-list .pane-content {
-  overflow: hidden;
-  *zoom: 1;
-}
 .two-column-grid .views-row-odd, .action-finder-list .views-row-odd {
   float: left;
   clear: left;
@@ -757,8 +753,6 @@ h3.subhead {
 }
 
 .image-teaser-module, .action-finder-list .views-row {
-  overflow: hidden;
-  *zoom: 1;
   margin-bottom: 12px;
 }
 
@@ -943,8 +937,6 @@ h3.subhead {
   margin: 0;
 }
 .pane-narrow-block .views-row, .panes-2 .panel-second .views-row {
-  overflow: hidden;
-  *zoom: 1;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -o-box-shadow: #d4d2d1 0 1px 0 0;
@@ -2221,8 +2213,6 @@ h2.block-title, h2.pane-title {
 }
 
 #block-menu-menu-footer {
-  overflow: hidden;
-  *zoom: 1;
   background-color: #333131;
   padding-top: 12px;
   padding-bottom: 20px;
@@ -2373,8 +2363,6 @@ h2.block-title, h2.pane-title {
 .logged-in #block-dosomething-login-become-member .profile-footer {
   margin-top: 25px;
   margin-bottom: 15px;
-  overflow: hidden;
-  *zoom: 1;
 }
 .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile {
   display: inline;
@@ -2483,8 +2471,6 @@ h2.block-title, h2.pane-title {
   box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
   display: inline;
   float: left;
-  overflow: hidden;
-  *zoom: 1;
   margin-bottom: 12px;
   width: 100%;
   min-height: 124px;
@@ -2515,8 +2501,6 @@ h2.block-title, h2.pane-title {
 }
 
 #vital-stats {
-  overflow: hidden;
-  *zoom: 1;
   padding: 14px 33px 20px 33px;
 }
 #vital-stats ul {
@@ -2542,8 +2526,6 @@ h2.block-title, h2.pane-title {
   background: #4b4744;
   border: none;
   padding: 23px;
-  overflow: hidden;
-  *zoom: 1;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   -o-border-radius: 0;
@@ -2656,8 +2638,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
   width: 163px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
-  overflow: hidden;
-  *zoom: 1;
   margin-left: 32px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell-or-email input {
@@ -2684,10 +2664,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-pass-pass1'] {
   display: none;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
-  overflow: hidden;
-  *zoom: 1;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-processed,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-confirm {
