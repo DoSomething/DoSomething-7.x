@@ -49,6 +49,6 @@ function dosomething_campaign_counter_theme() {
 }
 
 function dosomething_campaign_counter_preprocess_ds_counter(&$variables) {
+  drupal_add_css(drupal_get_path('module', 'dosomething_campaign_counter') . '/css/ds_counter.css');
   $variables['top_label'] = 'banana';
-  $variables['top_number'] = 'test';
 }
