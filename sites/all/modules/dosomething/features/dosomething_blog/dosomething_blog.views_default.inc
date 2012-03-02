@@ -1450,6 +1450,16 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'No Results Text ';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'Sorry, there are currently no blog posts listed under this category. <strong><a href="/blog" title="Blog Center">Click here</a></strong> to return to the Blog Center.';
+  $handler->display->display_options['empty']['area']['format'] = '3';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
