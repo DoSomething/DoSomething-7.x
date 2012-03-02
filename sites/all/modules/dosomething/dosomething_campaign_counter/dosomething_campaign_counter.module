@@ -48,8 +48,7 @@ function dosomething_campaign_counter_theme() {
   return $theme;
 }
 
-function dosomething_campaign_counter_ds_counter_preprocess(&$variables) {
-  echo 'test';
+function dosomething_campaign_counter_preprocess_ds_counter(&$variables) {
   $variables['top_label'] = 'banana';
   $variables['top_number'] = 'test';
 }
