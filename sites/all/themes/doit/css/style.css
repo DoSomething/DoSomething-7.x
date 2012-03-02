@@ -677,6 +677,13 @@ h3.subhead {
   text-transform: uppercase;
 }
 
+.submit-right, .views-exposed-widgets .views-submit-button {
+  float: right;
+  clear: none;
+  position: relative;
+  top: -3px;
+}
+
 .share-of-the-day {
   font-size: 21px;
 }
