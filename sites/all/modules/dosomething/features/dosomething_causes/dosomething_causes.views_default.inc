@@ -41,6 +41,14 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['style_options']['initial']['title'] = 'Explore The Issues';
   $handler->display->display_options['style_options']['initial']['image'] = 'field_causes_image_1';
   $handler->display->display_options['style_options']['initial']['text'] = 'description_1';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = 'Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tumblr brunch aesthetic twee farm-to-table. High life locavore +1, messenger bag terry richardson butcher salvia.';
+  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Relationship: Taxonomy term: Parent term */
   $handler->display->display_options['relationships']['parent']['id'] = 'parent';
   $handler->display->display_options['relationships']['parent']['table'] = 'taxonomy_term_hierarchy';
