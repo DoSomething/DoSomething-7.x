@@ -469,17 +469,20 @@ function dosomething_clubs_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = 'Clubs';
+  $display->title = 'Find a Club';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'mid-left';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'clubs-panel_pane_1';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -488,10 +491,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['mid-left'][0] = 'new-1';
+    $display->panels['top'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'mid-right';
+    $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'views--exp-clubs-panel_pane_1';
     $pane->shown = TRUE;
@@ -507,9 +510,26 @@ function dosomething_clubs_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['mid-right'][0] = 'new-2';
+    $display->panels['top'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'clubs-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['top'][2] = 'new-3';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
