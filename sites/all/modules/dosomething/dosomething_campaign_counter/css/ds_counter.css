@@ -1,0 +1,11 @@
+.campaign-counter {
+  background: red;
+}
+
+.campaign-counter-labels {
+  float: left;
+}
+
+.campaign-counter-numbers {
+  float: right;
+}
