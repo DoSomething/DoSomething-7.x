@@ -1531,6 +1531,12 @@ function theme_dosomething_login_facebook_user_info($variables) {
  * Page callback for access denied menu callback.
  */
 function dosomething_login_access_denied_page() {
-  $form = drupal_get_form('user_login');
-  return $form;
+  global $user;
+  if ($user->uid == 0) {
+    $form = drupal_get_form('user_login');
+    return $form;
+  }
+  else {
+    return t('You are not authorized to access this page.');
+  }
 }
