@@ -53,7 +53,7 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
     $fields['assignee-id'] = 48329;
   }
   $fields['description-format'] = 'markdown';
-  $fields['milestone-id'] = 413;
+  $fields['milestone-id'] = 419;
 }
 
 /**
