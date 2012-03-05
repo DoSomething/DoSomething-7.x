@@ -1,6 +1,7 @@
 name = "dosomething_polls"
 core = "7.x"
 package = "Features"
+php = "5.2.4"
 dependencies[] = "ctools"
 dependencies[] = "page_manager"
 dependencies[] = "views"
