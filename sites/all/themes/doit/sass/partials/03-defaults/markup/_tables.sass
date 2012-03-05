@@ -3,8 +3,7 @@
 
 table
   @extend .constrain-to-parent
-  // +trailer
-  // width: 100%
+  border: 1px $gray5 solid
 
 table, td, th
   // vertical-align: top
@@ -21,7 +20,7 @@ table, th
   // border-color: $gray
   // border-style: dotted
 
-tr.even
+// tr.even
   background-color: $gray5
 
 tfoot
@@ -38,45 +37,34 @@ tbody
   border-top: none
 
 thead tr th
-  // background-color: $blue2
+  background-color: $blue
+  border-right: 1px $gray5 solid
   font-family: $font-headline
+  height: $s9
   @extend .medium
-  // padding-top: 0.5em
-  text-transform: uppercase
-  &:nth-of-type(odd)
-    background-color: $blue
+  padding-left: $s0
+  &:last-of-type
+    border-right: none
   &,
   a
     color: $white
-    font-size: 18px
-    padding-left: 0.5em
+    font-size: $s5
     line-height: 1.5
     &:hover
       color: $white
 
 tr
   &.odd, &.even
-    border-bottom: none
-  &.odd
-    // background-color: $gray-lighter
-  &.even
-    // background-color: $gray-light
+    padding: 0
 
 td
-  padding: 0.5em 1em
-  border-right: 1px solid $white
+  border-right: 1px solid $gray5
+  padding: $s0
   &:last-of-type
     border-right: none
 
 th
   border-bottom: none
-
-thead
-  tr
-    th
-      background-color: $gray5
-      &:nth-of-type(odd)
-        background-color: $gray5
 
 #edit-field-picture-und-table
   thead
@@ -90,3 +78,8 @@ thead
         text-transform: none
         &:nth-of-type(odd)
           background-color: transparent
+
+// Column width for clubs list table
+.view-id-clubs
+  td
+    width: 25%

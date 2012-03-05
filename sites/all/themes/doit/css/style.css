@@ -596,7 +596,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 
 .page-headline, h1.title, h2.subhead, h3.subhead {
   font-size: 40px;
-  text-transform: capitalize;
 }
 
 h1.title {
@@ -1479,8 +1478,8 @@ img.right {
 
 /* Tables -------------------------------------------------------------- */
 /* tables still need 'cellspacing="0"' in the markup */
-tr.even {
-  background-color: #d4d2d1;
+table {
+  border: 1px #d4d2d1 solid;
 }
 
 tbody {
@@ -1488,17 +1487,19 @@ tbody {
 }
 
 thead tr th {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  text-transform: uppercase;
-}
-thead tr th:nth-of-type(odd) {
   background-color: #18408b;
+  border-right: 1px #d4d2d1 solid;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  height: 34px;
+  padding-left: 12px;
+}
+thead tr th:last-of-type {
+  border-right: none;
 }
 thead tr th,
 thead tr th a {
   color: white;
-  font-size: 18px;
-  padding-left: 0.5em;
+  font-size: 21px;
   line-height: 1.5;
 }
 thead tr th:hover,
@@ -1507,12 +1508,12 @@ thead tr th a:hover {
 }
 
 tr.odd, tr.even {
-  border-bottom: none;
+  padding: 0;
 }
 
 td {
-  padding: 0.5em 1em;
-  border-right: 1px solid white;
+  border-right: 1px solid #d4d2d1;
+  padding: 12px;
 }
 td:last-of-type {
   border-right: none;
@@ -1522,13 +1523,6 @@ th {
   border-bottom: none;
 }
 
-thead tr th {
-  background-color: #d4d2d1;
-}
-thead tr th:nth-of-type(odd) {
-  background-color: #d4d2d1;
-}
-
 #edit-field-picture-und-table thead tr th {
   background-color: transparent;
   font-size: 12px;
@@ -1536,6 +1530,10 @@ thead tr th:nth-of-type(odd) {
 }
 #edit-field-picture-und-table thead tr th:nth-of-type(odd) {
   background-color: transparent;
+}
+
+.view-id-clubs td {
+  width: 25%;
 }
 
 /* Forms -------------------------------------------------------------- */
