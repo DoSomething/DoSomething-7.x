@@ -1020,6 +1020,12 @@ h3.subhead {
   border-bottom: none;
 }
 
+body.not-front .selectBox-options {
+  border-left: 1px solid #333131;
+  border-right: 1px solid #333131;
+  border-bottom: 1px solid #333131;
+}
+
 #block-dosomething-blocks-dosomething-make-impact .content {
   padding: 32px 0px 52px 0;
 }
