@@ -568,23 +568,22 @@ form[enctype="multipart/form-data"] #edit-submit, .not-logged-in #dosomething-lo
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
-.box-shadow, .apps-grid .apps-box {
+.box-shadow, .apps-grid .apps-box, .field-name-field-picture img {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
 }
 
-.white-border, .blog-landing-pane-post .blog-large-thumbnail img, .field-name-field-picture img {
-  border: 1px white solid;
-}
-
-.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
-  border: 1px white solid;
+.box-shadow-center, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+}
+
+.white-border, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .blog-landing-pane-post .blog-large-thumbnail img, .field-name-field-picture img {
+  border: 1px white solid;
 }
 
 .gray3-border, .region-sidebar-first .block-menu-block .content li:hover, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content li.active:hover {
@@ -3101,11 +3100,4 @@ comments.fb_iframe_widget {
 
 .page-causes .content .apps-text {
   padding-top: 6px;
-}
-
-.field-name-field-picture img {
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0px 4px 12px;
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 4px 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 4px 12px;
-  box-shadow: rgba(75, 71, 68, 0.35) 0px 4px 12px;
 }
