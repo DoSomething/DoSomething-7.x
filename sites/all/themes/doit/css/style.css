@@ -457,21 +457,16 @@ input[type=color], .description {
   font-weight: 300;
 }
 
-.medium, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
+#vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .page-causes .content h3, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
-}
-
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
-#vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .page-causes .content h3 {
-  font-weight: bold;
-  font-weight: 600;
 }
 
 .yellow, .main-nav, .main-nav-dropdown.hover {
@@ -2134,7 +2129,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2345,7 +2340,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
