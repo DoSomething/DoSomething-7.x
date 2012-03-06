@@ -49,10 +49,12 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
       $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
       $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
     }
+    else {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'dosomething_campaign_contact_form_test',
+      );
+    }
   }
-  $form['actions']['submit']['#ajax'] = array(
-    'callback' => 'dosomething_campaign_contact_form_test',
-  );
 }
 
 function dosomething_campaign_contact_form_form($form_state, $email, $mobile) {
@@ -65,7 +67,7 @@ function dosomething_campaign_contact_form_form($form_state, $email, $mobile) {
       '#type' => 'hidden',
       '#value' => $mobile,
     ),
-    'password' => array(
+    'pass' => array(
       '#type' => 'password',
       '#title' => 'Password',
     ),
@@ -78,37 +80,59 @@ function dosomething_campaign_contact_form_form($form_state, $email, $mobile) {
   return $form;
 }
 
-function dosomething_campaign_contact_form_test(&$form, &$form_state) {
+function dosomething_campaign_contact_form_test($form, &$form_state) {
   ctools_include('ajax');
 
   $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $mobile = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-  $new_form = drupal_get_form('dosomething_campaign_contact_form_form', $email, $mobile);
-  $return = <<<EOM
-<div id="password-prompt">
-<h1>Hey! It looks like you already have an account.</h1>
-<p>Log in by typing your password below</p>
+
+  if (!empty($email) && dosomething_login_find_user_by_email($email)) {
+    $valid = $email;
+  }
+  else if (!empty($mobile) && dosomething_login_find_user_by_cell($mobile)) {
+    $valid = $mobile;
+  }
+  if (isset($valid)) {
+    $new_form = drupal_get_form('user_login');
+    $new_form['name']['#value'] = $valid;
+    $redirect = drupal_encode_path($form_state['redirect'][0]);
+    $new_form['#action'] = "/user/login?destination=$redirect";
+    $return = <<<EOM
+  <div id="password-prompt">
+  <h1>Hey! It looks like you already have an account.</h1>
 EOM;
-  $return.= drupal_render($new_form).'</div>';
+    $return.= $name;
+    $return.= drupal_render($new_form).'</div>';
+    $return.= print_r($form_state['redirect'], true);
 
-  // There's no elegant way to do this that I could see, because the parameter array
-  // gets converted to a string, and passed as a string instead of a JS object to
-  // a function call. I could write my own JS to handle this, but that's no fun :)
-  //
-  // This may hic-cup on older browsers.
-  $actions = array(
-    ajax_command_append('body', $return),
-    ajax_command_invoke('#password-prompt', 'dialog'),
-    ajax_command_invoke('#password-prompt', 'dialog', array('close')),
-    ajax_command_invoke('#password-prompt', 'dialog', array('option', 'modal', true)),
-    ajax_command_invoke('#password-prompt', 'dialog', array('option', 'resizable', false)),
-    ajax_command_invoke('#password-prompt', 'dialog', array('open')),
-  );
+    // There's no elegant way to do this that I could see, because the parameter array
+    // gets converted to a string, and passed as a string instead of a JS object to
+    // a function call. I could write my own JS to handle this, but that's no fun :)
+    //
+    // This may hic-cup on older browsers.
+    $actions = array(
+      ajax_command_append('body', $return),
+      ajax_command_invoke('#password-prompt', 'dialog'),
+      ajax_command_invoke('#password-prompt', 'dialog', array('close')),
+      ajax_command_invoke('#password-prompt', 'dialog', array('option', 'modal', true)),
+      ajax_command_invoke('#password-prompt', 'dialog', array('option', 'resizable', false)),
+      ajax_command_invoke('#password-prompt', 'dialog', array('open')),
+    );
 
-  return array(
-    '#type' => 'ajax',
-    '#commands' => $actions,
-  );
+    return array(
+      '#type' => 'ajax',
+      '#commands' => $actions,
+    );
+  }
+  else {
+    $options = $form_state['redirect'][1];
+    $options['absolute'] = true;
+    $url = url($form_state['redirect'][0], $options);
+    return array(
+      '#type' => 'ajax',
+      '#commands' => array(ctools_ajax_command_redirect($url)),
+    );
+  }
 }
 
 function dosomething_campaign_contact_form_module_implements_alter(&$implementations, $hook) {
