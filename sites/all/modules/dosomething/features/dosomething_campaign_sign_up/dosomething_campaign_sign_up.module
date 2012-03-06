@@ -10,7 +10,6 @@ include_once('dosomething_campaign_sign_up.features.inc');
  * Implements hook_form_alter().
  */
 function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id) {
-
   // Note that dosomething_grant_application,
   // dosomething_scholarship_application, dosomething_campaign_report_back, and
   // dosomething_campaign_sign_up all prepopulate data from the user's user and
@@ -26,6 +25,7 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
   global $user;
   // Take no action if this user is not authenticated.
   if ($user->uid == 0) {
+    drupal_get_form('dosomething_login_register_popup_form');
     return;
   }
 
