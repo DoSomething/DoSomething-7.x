@@ -57,6 +57,15 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
       $form['submitted']['dosomething_webform_numbering'] = array(
         '#weight' => -100,
         '#type' => 'container',
+        'numbering' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'dosomething-webform-page-number',
+            ),
+          ),
+          '#children' => t('Page !page_num of !page_count', array('!page_num' => $page_num, '!page_count' => $page_count)),
+        ),
         'percentage' => array(
           '#type' => 'container',
           '#attributes' => array(
@@ -91,9 +100,6 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
               '#children' => t('!percent complete', array('!percent' => number_format($ratio, 0) . '%')),
             ),
           ),
-        ),
-        'numbering' => array(
-          '#markup' => t('Page !page_num of !page_count', array('!page_num' => $page_num, '!page_count' => $page_count)),
         ),
       );
     }
