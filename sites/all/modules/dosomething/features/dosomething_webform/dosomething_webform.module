@@ -35,6 +35,20 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
       }
       $form['#validate'][] = 'dosomething_webform_webform_validate';
     }
+    // Alter the button values for all webforms.
+    if (isset($form['actions']['previous'])) {
+      $form['actions']['previous']['#value'] = t('BACK');
+    }
+    if (isset($form['actions']['next'])) {
+      $form['actions']['next']['#value'] = t('NEXT');
+    }
+    if (isset($form['actions']['submit'])) {
+      $form['actions']['submit']['#value'] = t('SUBMIT');
+    }
+    if (isset($form['actions']['draft'])) {
+      $form['actions']['draft']['#value'] = t('or save draft');
+      $form['actions']['draft']['#weight'] = 100;
+    }
   }
 }
 
