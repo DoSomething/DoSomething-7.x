@@ -253,19 +253,6 @@ function dosomething_member_wall_views_default_views() {
   $handler->display->display_options['arguments']['type']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['type']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['type']['summary_options']['items_per_page'] = '25';
-  /* Contextual filter: Content: Campaign (field_report_back_reference) */
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['id'] = 'field_report_back_reference_nid';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['table'] = 'field_data_field_report_back_reference';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['field'] = 'field_report_back_reference_nid';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['relationship'] = 'nid';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['field_report_back_reference_nid']['not'] = 0;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['table'] = 'node';
@@ -350,18 +337,6 @@ function dosomething_member_wall_views_default_views() {
   $handler->display->display_options['filters']['type_1']['expose']['operator'] = 'type_1_op';
   $handler->display->display_options['filters']['type_1']['expose']['identifier'] = 'type';
   $handler->display->display_options['filters']['type_1']['expose']['reduce'] = 1;
-  /* Filter criterion: Content: Campaign (field_report_back_reference) */
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['id'] = 'field_report_back_reference_nid';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['table'] = 'field_data_field_report_back_reference';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['field'] = 'field_report_back_reference_nid';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['relationship'] = 'nid';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['group'] = 0;
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['operator_id'] = 'field_report_back_reference_nid_op';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['label'] = 'Campaign';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['operator'] = 'field_report_back_reference_nid_op';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['identifier'] = 'campaign';
-  $handler->display->display_options['filters']['field_report_back_reference_nid']['expose']['reduce'] = 0;
   /* Filter criterion: Webform submissions: Submitted */
   $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
   $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';

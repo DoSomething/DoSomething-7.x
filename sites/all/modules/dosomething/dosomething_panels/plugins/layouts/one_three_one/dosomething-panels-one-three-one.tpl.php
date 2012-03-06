@@ -8,12 +8,12 @@
   <?php if ($content['mid-left'] || $content['mid-center'] || $content['mid-right']): ?>
     <div class="panel-row panel-row-middle <?php print $mid_row_classes?>">
       <?php if ($content['mid-left']): ?>
-        <div class="panel-first panel-panel pane-related-stuff">
+        <div class="panel-first panel-panel pane-narrow-block">
            <?php print $content['mid-left']; ?>
         </div>
       <?php endif; ?>
       <?php if ($content['mid-center']): ?>
-        <div class="panel-second panel-panel pane-related-stuff">
+        <div class="panel-second panel-panel pane-narrow-block">
            <?php print $content['mid-center']; ?>
         </div>
       <?php endif; ?>

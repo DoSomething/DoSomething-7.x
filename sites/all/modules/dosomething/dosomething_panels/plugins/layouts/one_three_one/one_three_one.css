@@ -6,10 +6,17 @@
     clear: both; }
 
 .panes-3 .panel-panel {
+  border: 1px #ffffff solid;
+  float: left;
   width: 216px;
-  float: left; }
-  .panes-3 .panel-second {
-    margin: 0 50px;
   }
-  .panes-3 .panel-panel.panel-last {
-    float: right; }
+
+.panes-3 .panel-panel .view-content {
+  padding: 0 18px;
+}
+
+.panes-3 .panel-second {
+  margin: 0 50px;
+}
+.panes-3 .panel-panel.panel-last {
+  float: right; }

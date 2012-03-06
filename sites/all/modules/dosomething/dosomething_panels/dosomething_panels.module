@@ -199,4 +199,9 @@ function dosomething_panels_preprocess_dosomething_panels_one_three_one(&$variab
 function dosomething_panels_preprocess_dosomething_panels_campaign(&$variables) {
   $content = $variables['content'];
   // TODO: Make this work with the new variable names. This is NOT NECESSARY FOR LAUNCH
+  $variables['top_row_classes']
+    = $variables['top_right_classes']
+    = $variables['ad_classes']
+    = $variables['actions_classes']
+    = '';
 }

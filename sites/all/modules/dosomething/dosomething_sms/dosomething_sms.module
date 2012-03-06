@@ -1,0 +1,219 @@
+<?php
+
+function dosomething_sms_conductor_sms_keywords() {
+  return array(
+    'zivtech' => 'ds_sms_user_registration',
+    'zivtech2' => 'ds_sms_project_report_back',
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function dosomething_sms_ctools_plugin_api($owner, $api) {
+  // TODO: $api should be workflow, not conductor but that messes with features file naming.
+  if ($owner == 'conductor' && $api == 'conductor') {
+    return array('version' => 1.0);
+  }
+}
+
+/**
+ *
+ */
+function dosomething_sms_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'conductor') {
+    return "plugins/$plugin_type";
+  }
+}
+
+/**
+ * Implements hook_default_conductor_default_workflows().
+ */
+function dosomething_sms_default_conductor_workflows() {
+  $workflows = array();
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'ds_sms_user_registration';
+  $workflow->title = 'User Registration';
+  $workflow->description = 'Allows users to register for the site via SMS.';
+  $workflow->api_version = '1.0';
+  // Add and configure workflow activities.
+  $activity = $workflow->newActivity('start');
+  $activity->x = 280;
+  $activity->y = 200;
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->outputs = array(
+    'first_name',
+  );
+  $activity->inputs = array();
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'first_name';
+  $activity->title = 'First Name';
+  $activity->question = 'Thanks for registering! Just a few questions: what is your first name?';
+  $activity->inputs = array(
+    'start',
+  );
+  $activity->outputs = array(
+    'last_name'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'last_name';
+  $activity->title = 'Last Name';
+  $activity->question = 'Great! Two more questions!  What is your last name?';
+  $activity->inputs = array(
+    'first_name',
+  );
+  $activity->outputs = array(
+    'birthday'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'birthday';
+  $activity->title = 'Birth Day';
+  $activity->question = 'Awesome!  What is your birthday (mm/dd/yyyy)?';
+  $activity->inputs = array(
+    'last_name',
+  );
+  $activity->outputs = array(
+    'signature_remover'
+  );
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'signature_remover';
+  $activity->title = 'Remove the signature from all sms context.';
+  $activity->inputs = array(
+    'birthday',
+  );
+  $activity->outputs = array(
+    'user_creator'
+  );
+  $activity = $workflow->newActivity('ds_create_user');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'user_creator';
+  $activity->title = 'Create a user from the existing context.';
+  $activity->inputs = array(
+    'signature_remover',
+  );
+  $activity->outputs = array(
+    'end'
+  );
+  $activity = $workflow->newActivity('end');
+  $activity->x = 380;
+  $activity->y = 200;
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array(
+    'user_creator'
+  );
+  $activity->outputs = array();
+  $workflows[$workflow->name] = $workflow;
+
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'ds_sms_project_report_back';
+  $workflow->title = 'User Registration';
+  $workflow->description = 'Allows users to register for the site via SMS.';
+  $workflow->api_version = '1.0';
+  // Add and configure workflow activities.
+  $activity = $workflow->newActivity('start');
+  $activity->x = 280;
+  $activity->y = 200;
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->outputs = array(
+    'title',
+  );
+  $activity->inputs = array();
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'title';
+  $activity->title = 'Project title';
+  $activity->question = 'Thanks for telling us about your project, what is the title?';
+  $activity->inputs = array(
+    'start',
+  );
+  $activity->outputs = array(
+    'goal'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'goal';
+  $activity->title = 'Project Goal';
+  $activity->question = 'Awesome, what\'s the goal of your project?';
+  $activity->inputs = array(
+    'title',
+  );
+  $activity->outputs = array(
+    'involved'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'involved';
+  $activity->title = 'People involved';
+  $activity->question = 'Great, how many people are involved?';
+  $activity->inputs = array(
+    'goal',
+  );
+  $activity->outputs = array(
+    'helped'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'helped';
+  $activity->title = 'People helped';
+  $activity->question = 'Amazing, how many people did you help?';
+  $activity->inputs = array(
+    'involved',
+  );
+  $activity->outputs = array(
+    'signature_remover'
+  );
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'signature_remover';
+  $activity->title = 'Remove the signature from all sms context.';
+  $activity->inputs = array(
+    'helped',
+  );
+  $activity->outputs = array(
+    'create_report_back'
+  );
+  $activity = $workflow->newActivity('ds_create_report_back');
+  $activity->x = 180;
+  $activity->y = 100;
+  $activity->name = 'create_report_back';
+  $activity->title = 'Create a campaign report back from the existing context.';
+  $activity->inputs = array(
+    'signature_remover',
+  );
+  $activity->outputs = array(
+    'end'
+  );
+  $activity = $workflow->newActivity('end');
+  $activity->x = 380;
+  $activity->y = 200;
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array(
+    'create_report_back'
+  );
+  $activity->outputs = array();
+  $workflows[$workflow->name] = $workflow;
+
+
+
+  return $workflows;
+}

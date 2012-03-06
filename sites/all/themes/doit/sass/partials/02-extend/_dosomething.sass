@@ -67,11 +67,18 @@
   +text-shadow($gray2-trans 1px 1px 2px)
 
 .box-shadow
-  +box-shadow($gray3-trans 0px 6px 12px)
+  +box-shadow($gray3-trans 0 6px 12px)
 
 .border-and-shadow
   border: 1px $white solid
-  +box-shadow(rgba($black, .3) 0 0 6px)
+  +box-shadow($gray3-trans 0 0 12px)
+
+// Extendable bottom borders
+.gray3-border
+  border-bottom: 1px $gray3 solid
+
+.gray6-border
+  border-bottom: 1px $gray6 solid
 
 ////////////////////////////
 // GENERAL EXTENDABLES
@@ -95,6 +102,7 @@
 
 h1.title
   @extend .page-headline
+  +ds-bevel-single
 
 h2.subhead
   @extend .page-headline
@@ -181,6 +189,13 @@ h3.subhead
   text-align: center
   text-transform: uppercase
 
+////////////////////////////
+// float submit buttons to
+// right on inline forms
+////////////////////////////
+.submit-right
+  float: right
+  clear: none
 
 ////////////////////////////
 // SHARE OF THE DAY
@@ -362,7 +377,7 @@ h3.subhead
   .views-row
     width: 49%
   .pane-content
-    +clearfix
+    @extend .clearfix
   .views-row-odd
     float: left
     clear: left
@@ -377,7 +392,7 @@ h3.subhead
 // rest of the space
 ////////////////////////////
 .image-teaser-module
-  +clearfix
+  @extend .clearfix
   margin-bottom: $s0
 .image-teaser-module-image
   @extend .border-and-shadow
@@ -449,6 +464,11 @@ h3.subhead
     +remove-link-underlines
     &.hover
       text-decoration: underline
+
+.more-link-right
+  float: right
+  padding-right: $s4
+  margin-bottom: $s0
 
 .breadcrumbs
   font-size: $s-1
@@ -568,42 +588,45 @@ h3.subhead
   padding-bottom: 24px
 .pane-news-stuff
   .pane-content
-    .news-title
+    h3
       @extend .bold
-      font-size: $s4
-      a
-        padding-top: 12px
-    .views-row
-      padding: 30px 24px 0 24px
-      clear: both
-      +clearfix
-      .news-image
-        +float-left
-        margin-right: 14px
-        img
-          border: 1px solid $white
-          +box-shadow($gray3-trans 0px 0px 12px)
+      +adjust-font-size-to($s5, 1)
+      margin-bottom: 0.25em
+    p
+      +adjust-font-size-to($s2)
+      line-height: 1.3em
+    img
+      +float-left
+      margin-right: 14px
+      @extend .border-and-shadow
+  .views-row
+    @extend .clearfix
+    padding: 30px 24px 0 24px
+
 
 // Narrow block with header, thumbnail, and title with teaser
-// i.e. related stuff, doing it, done it, club members
+// i.e. related stuff, doing it, done it, club members, act now, resources
 .pane-narrow-block
   ul
     list-style: none
   .item-list ul li
     margin: 0
   .views-row
-    border-top: 1px $gray5 solid
-    border-bottom: 1px $white solid
+    @extend .clearfix
+    +ds-bevel-single
     padding: $s2 0
-    &:first-of-type
-      border-top: none
     &:last-of-type
       border-bottom: none
   .views-field-title
     @extend .right-sidebar-headlines
-  .project-related-thumb img
-    @extend .border-and-shadow
-    margin-right: $s0
+  .project-related-thumb
+    float: left
+    img
+      @extend .border-and-shadow
+      margin-right: $s0
+  .views-field-field-description p,
+  .views-field-field-campaign-teaser p
+    margin-left: 72px
 
 // Start a project link on project submission pages
 .start-a-project
@@ -618,4 +641,3 @@ h3.subhead
 // OLD EXTENDABLE CLASSES
 // refactor or remove
 ////////////////////////////
-

@@ -58,11 +58,21 @@ ul.tabs.primary
 // uncomment to override or replace styles from _ui-patterns-common
 ul.pager
   margin-top: 0.5em
+  color: $blue
+  a
+    color: $blue
   li
     &.pager-current
+      @extend .bold
       position: relative
-      font-size: 1.5em
-      top: 0.125em
+      color: $gray
+      // font-size: 1.5em
+      // top: 0.125em
+  .pager-first,
+  .pager-item,
+  .pager-last,
+  .pager-ellipsis
+    display: none
 
 // RSS LINK
 a.feed-icon
@@ -76,6 +86,9 @@ ul.inline
 .field-type-taxonomy-term-reference
   .field-item
     display: inline
+    margin-right: 0.75em
+    &:after:not(:last-child)
+      content: ", "
 
 // FIELDS
 .field-label-above

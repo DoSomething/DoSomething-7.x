@@ -13,3 +13,9 @@
 [submodule "sites/all/modules/migrate_extras"]
 	path = sites/all/modules/migrate_extras
 	url = git@git.drupal.org:project/migrate_extras.git
+[submodule "sites/all/modules/conductor"]
+	path = sites/all/modules/conductor
+	url = git://github.com/tizzo/Conductor.git
+[submodule "sites/all/modules/conductor_sms"]
+	path = sites/all/modules/conductor_sms
+	url = git://github.com/tizzo/conductor_sms.git

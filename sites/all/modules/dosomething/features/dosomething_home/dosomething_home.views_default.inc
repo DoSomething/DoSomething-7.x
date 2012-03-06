@@ -152,7 +152,7 @@ function dosomething_home_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'News & Stuff';
+  $handler->display->display_options['title'] = 'What\'s Happening Now';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -214,13 +214,40 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim'] = 1;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_class'] = 'news-title';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Subtitle */
+  $handler->display->display_options['fields']['field_subtitle']['id'] = 'field_subtitle';
+  $handler->display->display_options['fields']['field_subtitle']['table'] = 'field_data_field_subtitle';
+  $handler->display->display_options['fields']['field_subtitle']['field'] = 'field_subtitle';
+  $handler->display->display_options['fields']['field_subtitle']['label'] = '';
+  $handler->display->display_options['fields']['field_subtitle']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['element_type'] = 'p';
+  $handler->display->display_options['fields']['field_subtitle']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_subtitle']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_subtitle']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_subtitle']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_subtitle']['field_api_classes'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

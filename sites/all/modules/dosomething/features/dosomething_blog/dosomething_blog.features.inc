@@ -46,7 +46,7 @@ function dosomething_blog_image_default_styles() {
   $styles['blog_large_thumbnail'] = array(
     'name' => 'blog_large_thumbnail',
     'effects' => array(
-      1 => array(
+      7 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -56,8 +56,8 @@ function dosomething_blog_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '188',
-          'height' => '148',
+          'width' => '124',
+          'height' => '124',
         ),
         'weight' => '1',
       ),

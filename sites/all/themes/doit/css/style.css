@@ -386,10 +386,12 @@ input[type=color], iframe {
   outline: 1px dashed red;
 }
 
-.clearfix, .region-sidebar-first .block {
+.clearfix, .two-column-grid .pane-content, .action-finder-list .pane-content, .image-teaser-module, .action-finder-list .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widgets .content,
+.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .blog-landing-pane-post, #vital-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
   *zoom: 1;
 }
-.clearfix:after, .region-sidebar-first .block:after {
+.clearfix:after, .two-column-grid .pane-content:after, .action-finder-list .pane-content:after, .image-teaser-module:after, .action-finder-list .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widgets .content:after,
+.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .blog-landing-pane-post:after, #vital-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after {
   content: "";
   display: table;
   clear: both;
@@ -424,19 +426,19 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
-#vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, #vital-stats .title,
+#vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .blog-post-date, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -450,7 +452,7 @@ input[type=color], .description {
   font-style: italic;
 }
 
-.normal {
+.normal, #block-menu-menu-footer .content ul.menu ul li a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu a {
   font-weight: normal;
   font-weight: 300;
 }
@@ -458,16 +460,16 @@ input[type=color], .description {
 .medium, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.not-front .selectBox-options li, body.front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
 
-.bold, b, strong, .bold-caps-header, .large-bold-caps, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
-#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .pane-related-projects-action-sidebar-pane .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content .news-title, body.not-front .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #vital-stats .title,
-#vital-stats .name, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
+.bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
+#dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, #vital-stats .title,
+#vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
   font-weight: bold;
   font-weight: 600;
 }
@@ -476,7 +478,7 @@ input[type=color], .description {
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .pane-related-projects-action-sidebar-pane .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6 {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, .region-sidebar-first .block-menu-block .content li a {
   color: #18408b;
 }
 
@@ -487,7 +489,7 @@ input[type=color], .description {
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, body.not-front .selectBox-options li.selectBox-hover a, body.front .selectBox-options li.selectBox-hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, .selectBox-options li.selectBox-hover a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a {
   color: #fed100;
 }
@@ -496,8 +498,10 @@ input[type=color], .description {
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, body.not-front .selectBox-options li a, body.front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], #block-dosomething-blocks-dosomething-social-skyscraper .content h3, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
 #lets-talk-dialog .detail, .apps-grid .apps-box .apps-banner {
   color: white;
@@ -507,12 +511,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: black;
 }
 
-.gray1, #edit-field-picture-und-table thead tr th {
+.gray1, #edit-field-picture-und-table thead tr th, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu a {
   color: #1e1d1c;
 }
 
-.gray2, .go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
+.gray2, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited {
   color: #333131;
 }
@@ -563,28 +566,45 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
 }
 
 .box-shadow, .apps-grid .apps-box {
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
-  box-shadow: rgba(75, 71, 68, 0.35) 0px 6px 12px;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
+  box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
 }
 
-.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-narrow-block .project-related-thumb img, .pane-related-projects-action-sidebar-pane .project-related-thumb img, form.node-form, #vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
+.border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.node-form, #vital-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
   border: 1px white solid;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+}
+
+.gray3-border, .region-sidebar-first .block-menu-block .content li:hover, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content li.active:hover {
+  border-bottom: 1px #4b4744 solid;
+}
+
+.gray6-border, .region-sidebar-first .block-menu-block .content ul.menu li.expanded, .region-sidebar-first .block-menu-block .content ul.menu li.expanded:hover, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:last-of-type a:hover, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail .last,
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active .last {
+  border-bottom: 1px #efefef solid;
 }
 
 /* GENERAL EXTENDABLES */
-.large-bold-caps {
+.large-bold-caps, .region-sidebar-first .block-menu-block .content li a {
   font-size: 21px;
 }
 
 .page-headline, h1.title, h2.subhead, h3.subhead {
   font-size: 40px;
   text-transform: capitalize;
+}
+
+h1.title {
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
 }
 
 h2.subhead {
@@ -618,8 +638,7 @@ h3.subhead {
   font-size: 68px;
 }
 
-.go-button, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
-#dosomething-blocks-make-an-impact-form input[type="submit"],
+.go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit {
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -640,10 +659,8 @@ h3.subhead {
   font-size: 18px;
   text-transform: uppercase;
 }
-.go-button:hover, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"]:hover,
-#dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
-#dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, input#edit-final-submit:hover, .go-button:active, #views-exposed-form-action-finder-ctools-context-1 input[type="submit"]:active,
-#dosomething-blocks-make-an-impact-form input[type="submit"]:active,
+.go-button:hover, .views-submit-button input[type="submit"]:hover, #dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
+#dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, input#edit-final-submit:hover, .go-button:active, .views-submit-button input[type="submit"]:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, input#edit-final-submit:active {
   text-decoration: none;
 }
@@ -658,6 +675,11 @@ h3.subhead {
   line-height: 2;
   text-align: center;
   text-transform: uppercase;
+}
+
+.submit-right, .views-exposed-widgets .views-submit-button {
+  float: right;
+  clear: none;
 }
 
 .share-of-the-day {
@@ -683,7 +705,8 @@ h3.subhead {
   color: #fed100;
 }
 
-.dropdown-categories, body.not-front .selectBox-dropdown, body.front .selectBox-dropdown {
+.dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown {
   font-size: 21px;
 }
 
@@ -728,10 +751,6 @@ h3.subhead {
 .two-column-grid .views-row, .action-finder-list .views-row {
   width: 49%;
 }
-.two-column-grid .pane-content, .action-finder-list .pane-content {
-  overflow: hidden;
-  *zoom: 1;
-}
 .two-column-grid .views-row-odd, .action-finder-list .views-row-odd {
   float: left;
   clear: left;
@@ -741,8 +760,6 @@ h3.subhead {
 }
 
 .image-teaser-module, .action-finder-list .views-row {
-  overflow: hidden;
-  *zoom: 1;
   margin-bottom: 12px;
 }
 
@@ -796,6 +813,12 @@ h3.subhead {
   text-decoration: underline;
 }
 
+.more-link-right {
+  float: right;
+  padding-right: 18px;
+  margin-bottom: 12px;
+}
+
 .breadcrumbs {
   font-size: 10px;
   color: #938d88;
@@ -837,13 +860,13 @@ h3.subhead {
   line-height: 14px;
 }
 
-.right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .pane-related-projects-action-sidebar-pane .views-field-title a {
+.right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a {
   border-bottom: none;
 }
-.right-sidebar-headlines a:hover, .right-sidebar .headlines a:hover, .pane-narrow-block .views-field-title a:hover, .pane-related-projects-action-sidebar-pane .views-field-title a:hover {
+.right-sidebar-headlines a:hover, .right-sidebar .headlines a:hover, .pane-narrow-block .views-field-title a:hover, .panes-2 .panel-second .views-field-title a:hover {
   border-bottom: none;
 }
-.right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-narrow-block .views-field-title a.hover, .pane-related-projects-action-sidebar-pane .views-field-title a.hover {
+.right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-narrow-block .views-field-title a.hover, .panes-2 .panel-second .views-field-title a.hover {
   text-decoration: underline;
 }
 
@@ -895,50 +918,53 @@ h3.subhead {
   padding-bottom: 24px;
 }
 
-.pane-news-stuff .pane-content .news-title {
-  font-size: 18px;
+.pane-news-stuff .pane-content h3 {
+  font-size: 1.75em;
+  line-height: 1.143em;
+  margin-bottom: 0.25em;
 }
-.pane-news-stuff .pane-content .news-title a {
-  padding-top: 12px;
+.pane-news-stuff .pane-content p {
+  font-size: 1.25em;
+  line-height: 1.6em;
+  line-height: 1.3em;
 }
-.pane-news-stuff .pane-content .views-row {
-  padding: 30px 24px 0 24px;
-  clear: both;
-  overflow: hidden;
-  *zoom: 1;
-}
-.pane-news-stuff .pane-content .views-row .news-image {
+.pane-news-stuff .pane-content img {
   display: inline;
   float: left;
   margin-right: 14px;
 }
-.pane-news-stuff .pane-content .views-row .news-image img {
-  border: 1px solid white;
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
-  box-shadow: rgba(75, 71, 68, 0.35) 0px 0px 12px;
+.pane-news-stuff .views-row {
+  padding: 30px 24px 0 24px;
 }
 
-.pane-narrow-block ul, .pane-related-projects-action-sidebar-pane ul {
+.pane-narrow-block ul, .panes-2 .panel-second ul {
   list-style: none;
 }
-.pane-narrow-block .item-list ul li, .pane-related-projects-action-sidebar-pane .item-list ul li {
+.pane-narrow-block .item-list ul li, .panes-2 .panel-second .item-list ul li {
   margin: 0;
 }
-.pane-narrow-block .views-row, .pane-related-projects-action-sidebar-pane .views-row {
-  border-top: 1px #d4d2d1 solid;
+.pane-narrow-block .views-row, .panes-2 .panel-second .views-row {
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding: 15px 0;
 }
-.pane-narrow-block .views-row:first-of-type, .pane-related-projects-action-sidebar-pane .views-row:first-of-type {
-  border-top: none;
-}
-.pane-narrow-block .views-row:last-of-type, .pane-related-projects-action-sidebar-pane .views-row:last-of-type {
+.pane-narrow-block .views-row:last-of-type, .panes-2 .panel-second .views-row:last-of-type {
   border-bottom: none;
 }
-.pane-narrow-block .project-related-thumb img, .pane-related-projects-action-sidebar-pane .project-related-thumb img {
+.pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb {
+  float: left;
+}
+.pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img {
   margin-right: 12px;
+}
+.pane-narrow-block .views-field-field-description p, .panes-2 .panel-second .views-field-field-description p,
+.pane-narrow-block .views-field-field-campaign-teaser p,
+.panes-2 .panel-second .views-field-field-campaign-teaser p, .panes-2
+.panel-second .views-field-field-campaign-teaser p {
+  margin-left: 72px;
 }
 
 .start-a-project {
@@ -948,32 +974,7 @@ h3.subhead {
   content: "Start a Project";
 }
 
-body.not-front #block-dosomething-blocks-dosomething-make-impact .content {
-  padding: 32px 0px 52px 0;
-  overflow: hidden;
-  *zoom: 1;
-}
-body.not-front .form-type-select label {
-  display: none;
-}
-body.not-front .selectBox-dropdown {
-  width: 100%;
-  background: #333131;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-body.not-front .selectBox-dropdown .selectBox-label {
-  background-image: url('images/gold-arrow.png');
-  padding: 4px 7px;
-  border: 0;
-  min-width: 175px;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-}
-body.not-front .selectBox-dropdown-menu {
+.selectBox-dropdown-menu {
   position: absolute;
   z-index: 99999;
   max-height: 100%;
@@ -982,7 +983,8 @@ body.not-front .selectBox-dropdown-menu {
   background-color: #333131 !important;
   overflow: auto;
 }
-body.not-front .selectBox-options {
+
+.selectBox-options {
   font-size: 14px;
   list-style: none;
   display: block;
@@ -990,36 +992,60 @@ body.not-front .selectBox-options {
   padding: 0;
   margin: 0;
 }
-body.not-front .selectBox-options li {
+.selectBox-options li {
   padding-left: 7px;
   margin-bottom: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 12px;
 }
-body.not-front .selectBox-options li a {
+.selectBox-options li a {
   border-bottom: none;
 }
-body.not-front .selectBox-options li a:hover {
+.selectBox-options li a:hover {
   border-bottom: none;
 }
-body.not-front .selectBox-options li.selectBox-hover a {
+.selectBox-options li.selectBox-hover a {
   border-bottom: none;
 }
-body.not-front .selectBox-options li.selectBox-hover a:hover {
+.selectBox-options li.selectBox-hover a:hover {
   border-bottom: none;
 }
 
-body.front .form-type-select label {
+#block-dosomething-blocks-dosomething-make-impact .content {
+  padding: 32px 0px 52px 0;
+}
+#block-dosomething-blocks-dosomething-make-impact .form-type-select label {
   display: none;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front {
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
+  width: 100%;
+  background: #333131;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  background-image: url('images/gold-arrow.png');
+  padding: 4px 7px;
+  border: 0;
+  min-width: 195px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.pane-dosomething-blocks-dosomething-make-impact-front .form-type-select label {
+  display: none;
+}
+.pane-dosomething-blocks-dosomething-make-impact-front .pane-dosomething-blocks-dosomething-make-impact-front {
   width: 100%;
 }
-body.front .selectBox-dropdown {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown {
   width: 100%;
   background: #807a75;
 }
-body.front .selectBox-dropdown .selectBox-label {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown .selectBox-label {
   background-image: url('images/gold-arrow.png');
   padding: 7px 14px;
   border: 1px solid white;
@@ -1031,7 +1057,7 @@ body.front .selectBox-dropdown .selectBox-label {
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-body.front .selectBox-dropdown-menu {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown-menu {
   position: absolute;
   z-index: 99999;
   max-height: 100%;
@@ -1040,7 +1066,7 @@ body.front .selectBox-dropdown-menu {
   background-color: #807a75;
   overflow: auto;
 }
-body.front .selectBox-options {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options {
   font-size: 17px;
   list-style: none;
   display: block;
@@ -1048,25 +1074,70 @@ body.front .selectBox-options {
   padding: 0;
   margin: 0;
 }
-body.front .selectBox-options li {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li {
   padding-left: 14px;
   margin-bottom: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
-body.front .selectBox-options li a {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a {
   border-bottom: none;
 }
-body.front .selectBox-options li a:hover {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a:hover {
   border-bottom: none;
 }
-body.front .selectBox-options li.selectBox-hover a {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a {
   border-bottom: none;
 }
-body.front .selectBox-options li.selectBox-hover a:hover {
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a:hover {
   border-bottom: none;
 }
 
-#views-exposed-form-action-finder-ctools-context-1 input[type="submit"],
+.views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: -3px;
+  margin-bottom: 12px;
+}
+
+.views-exposed-widgets,
+.views-exposed-widget {
+  padding-right: 10px;
+}
+.views-exposed-widgets label,
+.views-exposed-widget label {
+  display: none;
+}
+.views-exposed-widgets .content,
+.views-exposed-widget .content {
+  padding: 32px 0px 52px 0;
+}
+.views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown {
+  width: 100%;
+  background: #333131;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.views-exposed-widgets .selectBox-dropdown .selectBox-label,
+.views-exposed-widget .selectBox-dropdown .selectBox-label {
+  background-image: url('images/gold-arrow.png');
+  padding: 4px 7px;
+  border: 0;
+  min-width: 155px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.views-submit-button {
+  display: inline;
+  float: right;
+  clear: right;
+}
+.views-submit-button input[type="submit"] {
+  margin-top: 0;
+}
+
 #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"] {
   display: inline;
@@ -1661,11 +1732,20 @@ ul.tabs.primary li a.active {
 
 ul.pager {
   margin-top: 0.5em;
+  color: #18408b;
+}
+ul.pager a {
+  color: #18408b;
 }
 ul.pager li.pager-current {
   position: relative;
-  font-size: 1.5em;
-  top: 0.125em;
+  color: gray;
+}
+ul.pager .pager-first,
+ul.pager .pager-item,
+ul.pager .pager-last,
+ul.pager .pager-ellipsis {
+  display: none;
 }
 
 a.feed-icon {
@@ -1686,6 +1766,10 @@ ul.inline, ul.inline li {
 
 .field-type-taxonomy-term-reference .field-item {
   display: inline;
+  margin-right: 0.75em;
+}
+.field-type-taxonomy-term-reference .field-item:after:not(:last-child) {
+  content: ", ";
 }
 
 .field-label-above .field-label {
@@ -2030,8 +2114,6 @@ h2.block-title, h2.pane-title {
 }
 
 #block-menu-menu-footer {
-  overflow: hidden;
-  *zoom: 1;
   background-color: #333131;
   padding-top: 12px;
   padding-bottom: 20px;
@@ -2047,7 +2129,7 @@ h2.block-title, h2.pane-title {
   padding: 0;
   display: block;
   margin-right: 0;
-  width: 185px;
+  width: 206px;
   display: inline;
   float: left;
 }
@@ -2067,10 +2149,21 @@ h2.block-title, h2.pane-title {
   font-size: 1.5em;
   line-height: 1.333em;
   text-transform: uppercase;
+  line-height: 17px;
+  margin-bottom: 12px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+#block-menu-menu-footer .content ul.menu li > a {
+  *display: inline;
 }
 #block-menu-menu-footer .content ul.menu ul {
   border-top: 1px #938d88 solid;
   padding-left: 0;
+  padding-top: 12px;
   font-size: 1.167em;
   line-height: 1.714em;
 }
@@ -2084,7 +2177,6 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu ul li a {
   line-height: 18px;
   font-size: 14px;
-  font-weight: 100;
   text-transform: none;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"] {
@@ -2172,8 +2264,6 @@ h2.block-title, h2.pane-title {
 .logged-in #block-dosomething-login-become-member .profile-footer {
   margin-top: 25px;
   margin-bottom: 15px;
-  overflow: hidden;
-  *zoom: 1;
 }
 .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile {
   display: inline;
@@ -2211,6 +2301,135 @@ h2.block-title, h2.pane-title {
   margin-left: 5px;
 }
 
+#block-dosomething-blocks-dosomething-social-skyscraper .content {
+  padding: 32px 0px 52px 0;
+}
+#block-dosomething-blocks-dosomething-social-skyscraper .content h3 {
+  padding-left: 32px;
+  margin-bottom: 5px;
+}
+#block-dosomething-blocks-dosomething-social-skyscraper .content h3.twitter {
+  background: url('images/ds-social-icons.png') no-repeat -2px -23px;
+}
+#block-dosomething-blocks-dosomething-social-skyscraper .content h3.twitter.active {
+  background: url('images/ds-social-icons.png') no-repeat -2px 1px;
+}
+#block-dosomething-blocks-dosomething-social-skyscraper .content h3.facebook {
+  background: url('images/ds-social-icons.png') no-repeat -2px -73px;
+}
+#block-dosomething-blocks-dosomething-social-skyscraper .content h3.facebook.active {
+  background: url('images/ds-social-icons.png') no-repeat -2px -48px;
+}
+
+.region-sidebar-first .block-menu-block {
+  background-color: #efefef;
+  padding: 0;
+}
+.region-sidebar-first .block-menu-block .content {
+  margin-right: -5px;
+}
+.region-sidebar-first .block-menu-block .content ul.menu {
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
+  background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
+  margin: 0;
+  padding-left: 0;
+}
+.region-sidebar-first .block-menu-block .content li {
+  list-style: none;
+  text-align: right;
+  border-top: 1px transparent solid;
+  border-bottom: 1px transparent solid;
+}
+.region-sidebar-first .block-menu-block .content li li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+.region-sidebar-first .block-menu-block .content li:last-of-type a {
+  border-bottom: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content li:hover {
+  background-color: #4b4744;
+  border-top: 1px #4b4744 solid;
+}
+.region-sidebar-first .block-menu-block .content li:hover:last-of-type a {
+  border-bottom: none;
+}
+.region-sidebar-first .block-menu-block .content li:hover a {
+  text-decoration: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content li a {
+  letter-spacing: 0;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  padding: 15px 0;
+  padding-right: 19px;
+  width: 95%;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
+}
+.region-sidebar-first .block-menu-block .content li a {
+  *display: inline;
+}
+.region-sidebar-first .block-menu-block .content li.active {
+  background-color: #4b4744;
+}
+.region-sidebar-first .block-menu-block .content li.active a {
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded a {
+  border-bottom: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu {
+  background-color: #efefef;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li {
+  height: 23px;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:last-of-type a {
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
+  line-height: 22px;
+  padding-bottom: 0;
+  padding-right: 19px;
+  width: 95%;
+}
+.region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu a {
+  font-size: 15px;
+  line-height: 23px;
+  padding-top: 0;
+  text-transform: none;
+}
+
 .panel-pane {
   margin-bottom: 2em;
 }
@@ -2224,16 +2443,73 @@ h2.block-title, h2.pane-title {
 .views-submit-button {
   display: inline;
   float: left;
-  clear: both;
 }
 
-.pane-related-projects-action-sidebar-pane .pane-title {
+.panel-outer-right .pane-title {
+  text-align: center;
+  line-height: 1.2em;
+}
+.panel-outer-right .views-field-title {
+  margin-bottom: 0;
+  line-height: 2em;
+  padding-top: 12px;
+  background: url('images/sidebar-title-separator-line.png') no-repeat center 10%;
+}
+.panel-outer-right .views-row-first .views-field-title {
+  background: none;
+}
+
+#blog-archives-pane h3 {
+  margin-bottom: 0;
+  line-height: 1em;
+  padding-top: 12px;
+}
+#blog-archives-pane .views-row-first .views-field-title {
+  background: none;
+}
+#blog-archives-pane .liketext {
+  display: inline;
+  float: right;
+}
+
+.blog-landing-pane-post {
+  background: white;
+  -moz-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  -webkit-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  -o-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  display: inline;
+  float: left;
+  margin-bottom: 12px;
+  width: 100%;
+  min-height: 124px;
+  padding-left: 12px;
+}
+.blog-landing-pane-post p {
+  margin-bottom: 0;
+}
+.blog-landing-pane-post .blog-large-thumbnail img {
+  display: inline;
+  float: left;
+  margin-right: 12px;
+  margin-left: -12px;
+  border: 1px solid white;
+}
+.blog-landing-pane-post .views-field-title h2 {
+  line-height: 1.2em;
+  margin-top: 18px;
+}
+
+.blog-post-date {
+  font-size: 14px;
+  color: #807a75;
+}
+
+.panes-2 .panel-second .pane-title {
   text-align: center;
 }
 
 #vital-stats {
-  overflow: hidden;
-  *zoom: 1;
   padding: 14px 33px 20px 33px;
 }
 #vital-stats ul {
@@ -2259,8 +2535,6 @@ h2.block-title, h2.pane-title {
   background: #4b4744;
   border: none;
   padding: 23px;
-  overflow: hidden;
-  *zoom: 1;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   -o-border-radius: 0;
@@ -2332,26 +2606,6 @@ h2.block-title, h2.pane-title {
   outline: none;
 }
 
-#block-dosomething-blocks-dosomething-social-skyscraper .content {
-  padding: 32px 0px 52px 0;
-}
-#block-dosomething-blocks-dosomething-social-skyscraper .content h3 {
-  padding-left: 32px;
-  margin-bottom: 5px;
-}
-#block-dosomething-blocks-dosomething-social-skyscraper .content h3.twitter {
-  background: url('images/ds-social-icons.png') no-repeat -2px -23px;
-}
-#block-dosomething-blocks-dosomething-social-skyscraper .content h3.twitter.active {
-  background: url('images/ds-social-icons.png') no-repeat -2px 1px;
-}
-#block-dosomething-blocks-dosomething-social-skyscraper .content h3.facebook {
-  background: url('images/ds-social-icons.png') no-repeat -2px -73px;
-}
-#block-dosomething-blocks-dosomething-social-skyscraper .content h3.facebook.active {
-  background: url('images/ds-social-icons.png') no-repeat -2px -48px;
-}
-
 .ui-widget-overlay {
   background: black;
   opacity: 0.83;
@@ -2393,8 +2647,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
   width: 163px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
-  overflow: hidden;
-  *zoom: 1;
   margin-left: 32px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell-or-email input {
@@ -2421,10 +2673,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .fo
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-pass-pass1'] {
   display: none;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
-  overflow: hidden;
-  *zoom: 1;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-processed,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input.password-confirm {
@@ -2494,6 +2742,7 @@ input#edit-final-submit {
 
 #lets-talk-dialog {
   overflow: visible;
+  padding-top: 12px;
 }
 #lets-talk-dialog h2 {
   margin: 0;
@@ -2530,6 +2779,46 @@ input#edit-final-submit {
 
 comments.fb_iframe_widget {
   display: block;
+}
+
+.twtr-widget .twtr-doc {
+  background-color: transparent !important;
+}
+.twtr-widget .twtr-hd, .twtr-widget .twtr-ft {
+  display: none;
+}
+.twtr-widget .twtr-timeline {
+  min-height: 300px;
+  height: auto !important;
+}
+.twtr-widget .twtr-tweet {
+  border-bottom: none !important;
+}
+.twtr-widget .twtr-tweet-wrap {
+  padding: 6px 0 6px 8px !important;
+}
+.twtr-widget .twtr-avatar {
+  width: auto;
+  height: auto;
+}
+.twtr-widget .twtr-avatar .twtr-img {
+  width: auto;
+  height: auto;
+}
+.twtr-widget .twtr-avatar .twtr-img img {
+  width: 32px;
+  height: 32px;
+}
+
+.social-activity-content #twtr-widget-1 .twtr-new-results, .social-activity-content #twtr-widget-1 .twtr-results-inner, .social-activity-content #twtr-widget-1 .twtr-timeline,
+.social-activity-content #twtr-widget-1 .twtr-doc, .social-activity-content #twtr-widget-1 .twtr-hd a, .social-activity-content #twtr-widget-1 h3, .social-activity-content #twtr-widget-1 h4 {
+  background: transparent !important;
+}
+.social-activity-content #twtr-widget-1 .twtr-tweet a {
+  color: white !important;
+}
+.social-activity-content #twtr-widget-1 .twtr-bd, .social-activity-content #twtr-widget-1 .twtr-timeline i a, .social-activity-content #twtr-widget-1 .twtr-bd p {
+  color: #d4d2d1 !important;
 }
 
 .apps-grid {

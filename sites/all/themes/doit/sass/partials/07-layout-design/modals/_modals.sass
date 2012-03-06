@@ -7,7 +7,7 @@
   background: $gray3
   border: none
   padding: 23px
-  +clearfix
+  @extend .clearfix
   +border-radius(0)
 
 .ui-dialog-content
@@ -53,19 +53,3 @@
       &:focus
         outline: none
 
-#block-dosomething-blocks-dosomething-social-skyscraper
-  .content
-    padding: 32px 0px 52px 0
-    h3
-      @extend .white
-      @extend .bold
-      padding-left: 32px
-      margin-bottom: 5px
-    h3.twitter
-      +background(image_url("ds-social-icons.png") no-repeat -2px -23px)
-      &.active
-        +background(image_url("ds-social-icons.png") no-repeat -2px 1px)
-    h3.facebook
-      +background(image_url("ds-social-icons.png") no-repeat -2px -73px)
-      &.active
-        +background(image_url("ds-social-icons.png") no-repeat -2px -48px)
