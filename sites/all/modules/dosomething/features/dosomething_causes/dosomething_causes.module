@@ -271,3 +271,21 @@ function dosomething_causes_get_fb_preset() {
   );
   return $fb_social_preset;
 }
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function dosomething_causes_views_post_execute(&$view) {
+  if ($view->name == 'causes') {
+    $last_row = count($view->result);
+    // Use a workaround for clone since its shallow.
+    $view->result[$last_row] = unserialize(serialize($view->result[0]));
+    $newEntry = $view->result[$last_row];
+    $newEntry->taxonomy_term_data_name = 'Suggest a Cause';
+    $newEntry->taxonomy_term_data_description = 'Have an idea? Care about something not listed here? Tell us about it.';
+    $item['uri'] = 'public://sex_9.jpg';
+    $item['alt'] = 'Suggest a Cause';
+    $item['title'] = '';
+    $newEntry->field_field_causes_image[0]['rendered'] = theme('image_formatter', array('item' => $item, 'image_style' => 'issue_main'));
+  }
+}
