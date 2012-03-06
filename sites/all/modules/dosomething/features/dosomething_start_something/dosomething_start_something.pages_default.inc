@@ -8,7 +8,7 @@
  * Implements hook_default_page_manager_pages().
  */
 function dosomething_start_something_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'resources';
@@ -26,7 +26,7 @@ function dosomething_start_something_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_resources_panel_context';
@@ -38,13 +38,26 @@ function dosomething_start_something_default_page_manager_pages() {
     'title' => 'Resources',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => '',
+    'css_id' => 'ds-wide-thin',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'View: Resources',
+        'keyword' => 'view',
+        'name' => 'view:resources-ctools_context_1',
+        'id' => 1,
+      ),
+      1 => array(
+        'identifier' => 'View: Resources',
+        'keyword' => 'view',
+        'name' => 'view:resources-ctools_context_1',
+        'id' => 2,
+      ),
+    ),
     'relationships' => array(),
   );
-  $display = new panels_display;
-  $display->layout = 'twocol_a';
+  $display = new panels_display();
+  $display->layout = 'one_two_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -53,21 +66,25 @@ function dosomething_start_something_default_page_manager_pages() {
       'left-bottom-left' => NULL,
       'left-bottom-right' => NULL,
       'right' => NULL,
+      'top' => NULL,
+      'mid-left' => NULL,
+      'mid-right' => NULL,
+      'bottom' => NULL,
     ),
   );
   $display->cache = array();
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'left-top';
+    $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
     );
     $pane->cache = array();
@@ -78,10 +95,10 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass;
+    $display->panels['top'][0] = 'new-1';
+    $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'left-top';
+    $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'resources-panel_pane_1';
     $pane->shown = TRUE;
@@ -94,116 +111,21 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'action-finder-list',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['left-top'][1] = 'new-2';
-    $pane = new stdClass;
-    $pane->pid = 'new-3';
-    $pane->panel = 'left-top';
-    $pane->type = 'block';
-    $pane->subtype = 'fb_social-FB Comments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['left-top'][2] = 'new-3';
-    $pane = new stdClass;
-    $pane->pid = 'new-4';
-    $pane->panel = 'right';
-    $pane->type = 'dosomething_start_button';
-    $pane->subtype = 'dosomething_start_button';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'start_button' => array(
-        'project' => TRUE,
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['right'][0] = 'new-4';
-    $pane = new stdClass;
-    $pane->pid = 'new-5';
-    $pane->panel = 'right';
-    $pane->type = 'views';
-    $pane->subtype = 'project_related_displays';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '3',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
-    );
-    $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-5'] = $pane;
-    $display->panels['right'][1] = 'new-5';
-    $pane = new stdClass;
-    $pane->pid = 'new-6';
-    $pane->panel = 'right';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'related_projects-panel_pane_2';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane-no-radius ds-pane-usergen ds-internal-sidebar-flush-right',
-    );
-    $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-6'] = $pane;
-    $display->panels['right'][2] = 'new-6';
-  $display->hide_title = PANELS_TITLE_PANE;
+    $display->panels['top'][1] = 'new-2';
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['resources'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'start_something';
@@ -221,7 +143,7 @@ function dosomething_start_something_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_start_something_panel_context';
@@ -241,7 +163,7 @@ function dosomething_start_something_default_page_manager_pages() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'one_two_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
@@ -257,7 +179,7 @@ function dosomething_start_something_default_page_manager_pages() {
   $display->title = 'Get Started on Your Own Something';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'mid-left';
     $pane->type = 'block';
@@ -280,7 +202,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-1'] = $pane;
     $display->panels['mid-left'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
@@ -303,7 +225,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-2'] = $pane;
     $display->panels['mid-right'][0] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
     $pane->type = 'dosomething_start_button';
@@ -330,7 +252,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-3'] = $pane;
     $display->panels['mid-right'][1] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
@@ -347,7 +269,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->position = 0;
     $display->content['new-4'] = $pane;
     $display->panels['top'][0] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'top';
     $pane->type = 'views_panes';

@@ -473,6 +473,11 @@ function dosomething_start_something_views_default_views() {
     ),
   );
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Context */
+  $handler = $view->new_display('ctools_context', 'Context', 'ctools_context_1');
+  $handler->display->display_options['style_plugin'] = 'ctools_context';
+  $handler->display->display_options['row_plugin'] = 'fields';
   $export['resources'] = $view;
 
   $view = new view;
