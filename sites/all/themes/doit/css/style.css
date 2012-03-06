@@ -3101,3 +3101,11 @@ comments.fb_iframe_widget {
 .page-causes .content .apps-text {
   padding-top: 6px;
 }
+
+.field-name-field-picture img {
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+.node-blog .field-name-field-picture {
+  float: left;
+}
