@@ -985,9 +985,12 @@ h3.subhead {
   cursor: pointer;
   padding: 0;
   margin: 0;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
 }
 .selectBox-options li {
-  padding-left: 7px;
+  padding-left: 14px;
   margin-bottom: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 12px;
@@ -1050,6 +1053,9 @@ h3.subhead {
   margin-bottom: -1px;
   background-repeat: no-repeat;
   background-position: 95% 50%;
+}
+.pane-dosomething-blocks-dosomething-make-impact-front .selectBox-menuShowing {
+  background: #333131;
 }
 .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown-menu {
   position: absolute;
