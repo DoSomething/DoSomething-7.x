@@ -22,6 +22,8 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'campaign_contact_form') {
     global $user;
 
+    ctools_add_js('ajax-responder');
+
     // Take no action if this user is not authenticated.
     if ($user->uid != 0) {
       $node = $form['#node'];
@@ -48,6 +50,65 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
       $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
     }
   }
+  $form['actions']['submit']['#ajax'] = array(
+    'callback' => 'dosomething_campaign_contact_form_test',
+  );
+}
+
+function dosomething_campaign_contact_form_form($form_state, $email, $mobile) {
+  $form = array(
+    'email' => array(
+      '#type' => 'hidden',
+      '#value' => $email,
+    ),
+    'mobile' => array(
+      '#type' => 'hidden',
+      '#value' => $mobile,
+    ),
+    'password' => array(
+      '#type' => 'password',
+      '#title' => 'Password',
+    ),
+    'submit' => array(
+      '#type' => 'submit',
+      '#value' => t('Log in'),
+    ),
+  );
+
+  return $form;
+}
+
+function dosomething_campaign_contact_form_test(&$form, &$form_state) {
+  ctools_include('ajax');
+
+  $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  $mobile = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  $new_form = drupal_get_form('dosomething_campaign_contact_form_form', $email, $mobile);
+  $return = <<<EOM
+<div id="password-prompt">
+<h1>Hey! It looks like you already have an account.</h1>
+<p>Log in by typing your password below</p>
+EOM;
+  $return.= drupal_render($new_form).'</div>';
+
+  // There's no elegant way to do this that I could see, because the parameter array
+  // gets converted to a string, and passed as a string instead of a JS object to
+  // a function call. I could write my own JS to handle this, but that's no fun :)
+  //
+  // This may hic-cup on older browsers.
+  $actions = array(
+    ajax_command_append('body', $return),
+    ajax_command_invoke('#password-prompt', 'dialog'),
+    ajax_command_invoke('#password-prompt', 'dialog', array('close')),
+    ajax_command_invoke('#password-prompt', 'dialog', array('option', 'modal', true)),
+    ajax_command_invoke('#password-prompt', 'dialog', array('option', 'resizable', false)),
+    ajax_command_invoke('#password-prompt', 'dialog', array('open')),
+  );
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $actions,
+  );
 }
 
 function dosomething_campaign_contact_form_module_implements_alter(&$implementations, $hook) {
