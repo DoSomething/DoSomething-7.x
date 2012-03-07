@@ -37,12 +37,17 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'one_three_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'top' => NULL,
+      'mid-left' => NULL,
+      'mid-center' => NULL,
+      'mid-right' => NULL,
+      'footer' => NULL,
     ),
   );
   $display->cache = array();
@@ -51,9 +56,9 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'middle';
-    $pane->type = 'ds_profile_info';
-    $pane->subtype = 'ds_profile_info';
+    $pane->panel = 'footer';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'member_profile-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -65,12 +70,12 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $display->panels['footer'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'middle';
-    $pane->type = 'ds_user_pic';
-    $pane->subtype = 'ds_user_pic';
+    $pane->panel = 'mid-center';
+    $pane->type = 'ds_past_somethings';
+    $pane->subtype = 'ds_past_somethings';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -80,12 +85,12 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $display->panels['mid-center'][0] = 'new-2';
     $pane = new stdClass();
     $pane->pid = 'new-3';
-    $pane->panel = 'middle';
+    $pane->panel = 'mid-left';
     $pane->type = 'ds_current_somethings';
     $pane->subtype = 'ds_current_somethings';
     $pane->shown = TRUE;
@@ -97,12 +102,12 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 0;
     $display->content['new-3'] = $pane;
-    $display->panels['middle'][2] = 'new-3';
+    $display->panels['mid-left'][0] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
-    $pane->panel = 'middle';
+    $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'my_somethings-panel_pane_1';
     $pane->shown = TRUE;
@@ -118,14 +123,14 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 0;
     $display->content['new-4'] = $pane;
-    $display->panels['middle'][3] = 'new-4';
+    $display->panels['mid-right'][0] = 'new-4';
     $pane = new stdClass();
     $pane->pid = 'new-5';
-    $pane->panel = 'middle';
-    $pane->type = 'ds_past_somethings';
-    $pane->subtype = 'ds_past_somethings';
+    $pane->panel = 'top';
+    $pane->type = 'ds_profile_info';
+    $pane->subtype = 'ds_profile_info';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -135,14 +140,14 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 0;
     $display->content['new-5'] = $pane;
-    $display->panels['middle'][4] = 'new-5';
+    $display->panels['top'][0] = 'new-5';
     $pane = new stdClass();
     $pane->pid = 'new-6';
-    $pane->panel = 'middle';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'member_profile-panel_pane_1';
+    $pane->panel = 'top';
+    $pane->type = 'ds_user_pic';
+    $pane->subtype = 'ds_user_pic';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -152,9 +157,9 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 1;
     $display->content['new-6'] = $pane;
-    $display->panels['middle'][5] = 'new-6';
+    $display->panels['top'][1] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
