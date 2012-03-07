@@ -93,6 +93,26 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
+    $pane->type = 'dosomething_stats_counter';
+    $pane->subtype = 'dosomething_stats_counter';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['left'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'left';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
     $pane->shown = TRUE;
@@ -114,11 +134,11 @@ function dosomething_action_guide_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['left'][1] = 'new-2';
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['left'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:taxonomy_vocabulary_5';
@@ -141,11 +161,11 @@ function dosomething_action_guide_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['left'][2] = 'new-3';
+    $pane->position = 3;
+    $display->content['new-4'] = $pane;
+    $display->panels['left'][3] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_2';
@@ -159,10 +179,10 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['right'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['right'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -179,9 +199,9 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][0] = 'new-5';
-  $display->hide_title = PANELS_TITLE_PANE;
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][0] = 'new-6';
+  $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view_action_guide'] = $handler;

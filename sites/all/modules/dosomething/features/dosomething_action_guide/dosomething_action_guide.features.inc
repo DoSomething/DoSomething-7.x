@@ -40,4 +40,3 @@ class="goright"  class="goleft"  gives img src="" padding and floats it to the l
   );
   return $items;
 }
-

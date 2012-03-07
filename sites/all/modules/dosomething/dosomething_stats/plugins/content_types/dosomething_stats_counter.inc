@@ -13,6 +13,7 @@ $plugin = array(
 );
 
 function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $context) {
+  global $user;
   $block = new stdClass();
 
   if (empty($context)) {
@@ -25,30 +26,96 @@ function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $
     return $block;
   }
 
-  $field_labels = array(
-    'field_num_people_impacted' => t('People Helped'),
-    'field_update_people_involved' => t('People Involved'),
-  );
-
-  $instances = field_info_instances($entity_type);
   $wrapper = entity_metadata_wrapper($entity_type, $args[0]);
   $entity_id = $wrapper->getIdentifier();
+  $bundle = $wrapper->getBundle();
+
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'dosomething-stats',
+      ),
+    ),
+  );
   $items = array();
-  foreach ($argument->restrictions['type'] as $bundle) {
-    foreach ($instances[$bundle] as $field_name => $field) {
-      if (isset($field_labels[$field_name])) {
-        $items[$field_name] = array(
-          'title' => $field_labels[$field_name],
-          'value' => $wrapper->{$field_name}->value(),
-        );
+
+  if ($entity_type == 'node' && $bundle == 'action_guide') {
+    $message = t('I WANT TO DO THIS!');
+    $href = 'node/718313';
+    $query = array('action_guide' => $entity_id);
+
+    if ($user->uid) {
+      // Check for any existing references to this action guide for this user (from project webforms).
+      $result = db_query("SELECT f.entity_id, p.field_project_type_value 
+                          FROM {field_data_field_action_guide_reference} f 
+                          INNER JOIN {webform_submissions} w ON w.sid = f.entity_id 
+                          LEFT JOIN {field_data_field_project_type} p ON p.entity_id = f.entity_id 
+                          AND p.entity_type = 'webform_submission_entity'
+                          WHERE f.field_action_guide_reference_target_id = :nid 
+                          AND w.uid = :uid", 
+                          array(':nid' => $entity_id, ':uid' => $user->uid));
+      if (count($result)) {
+        $message = t('DO THIS AGAIN!');
+        foreach ($result as $record) {
+          if ($record->field_project_type_value != DOSOMETHING_PROJECTS_COMPLETED) {
+            $message = t('TELL US ABOUT IT!');
+            $href = "node/718313/submission/$record->entity_id/edit";
+            $query = array();
+          }
+        }
+      }
+    }
+
+    $output['action_guide'] =  array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-stats-action-guide',
+        ),
+      ),
+      'message' => array(
+        '#markup' => $message,
+      ),
+      'go' => array(
+        '#type' => 'link',
+        '#title' => t('GO'),
+        '#href' => $href,
+        '#options' => array(
+          'query' => $query,
+        ),
+      ),
+    );
+    // Show the number of action guide references for this action guide (from project_report webforms).
+    $count = db_query("SELECT entity_id FROM {field_data_field_action_guide_reference} WHERE field_action_guide_reference_target_id = :nid", array(':nid' => $entity_id))->rowCount();
+    $items[] = array(
+      'title' => t('PEOPLE DOING IT'),
+      'value' => $count,
+    );
+  }
+  elseif ($entity_type == 'webform_submission_entity' && $bundle == 'project_report') {
+    $instances = field_info_instances($entity_type);
+    $field_labels = array(
+      'field_num_people_impacted' => t('People Helped'),
+      'field_update_people_involved' => t('People Involved'),
+    );
+    foreach ($argument->restrictions['type'] as $bundle) {
+      foreach ($instances[$bundle] as $field_name => $field) {
+        if (isset($field_labels[$field_name])) {
+          $items[$field_name] = array(
+            'title' => $field_labels[$field_name],
+            'value' => $wrapper->{$field_name}->value(),
+          );
+        }
       }
     }
   }
 
-  $block->content = array(
+  $output[] = array(
     '#theme' => 'dosomething_stats_counter',
     '#items' => $items,
   );
+  $block->content = $output;
   return $block;
 }
 
@@ -68,5 +135,3 @@ function dosomething_stats_counter_content_type_edit_form($form, &$form_state) {
   return $form;
 }
 
-function dosomething_stats_counter_content_type_edit_form_submit(&$form, &$form_state) {
-}

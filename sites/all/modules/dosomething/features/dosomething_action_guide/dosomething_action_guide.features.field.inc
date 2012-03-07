@@ -730,13 +730,9 @@ function dosomething_action_guide_field_default_fields() {
   t('580px by 580px max');
   t('An action guide.');
   t('Body');
-  t('Email');
   t('File attachments');
-  t('Have you done this');
   t('Is content general?');
   t('Issues');
-  t('Number of people who did this (including you)');
-  t('Number of people your action impacted');
   t('Picture');
   t('Select \'yes\' if the content is general and not specific to any particular cause or issue');
   t('Short Description');
