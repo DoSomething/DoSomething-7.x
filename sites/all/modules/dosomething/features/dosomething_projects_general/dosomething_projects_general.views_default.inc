@@ -105,6 +105,11 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project_report' => 'project_report',
   );
+  /* Filter criterion: Field: Picture (field_picture:fid) */
+  $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
 
   /* Display: Member project gallery pane */
   $handler = $view->new_display('panel_pane', 'Member project gallery pane', 'panel_pane_1');
@@ -167,6 +172,11 @@ function dosomething_projects_general_views_default_views() {
     'project_report' => 'project_report',
   );
   $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Field: Picture (field_picture:fid) */
+  $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
   $handler->display->display_options['inherit_panels_path'] = '1';
 
   /* Display: Cause project gallery pane */
