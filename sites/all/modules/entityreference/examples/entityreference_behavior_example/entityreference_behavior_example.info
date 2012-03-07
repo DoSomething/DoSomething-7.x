@@ -4,9 +4,9 @@ core = 7.x
 package = Fields
 dependencies[] = entityreference
 
-; Information added by drupal.org packaging script on 2012-02-13
-version = "7.x-1.0-beta4"
+; Information added by drupal.org packaging script on 2012-02-26
+version = "7.x-1.0-beta5"
 core = "7.x"
 project = "entityreference"
-datestamp = "1329149138"
+datestamp = "1330297849"
 
