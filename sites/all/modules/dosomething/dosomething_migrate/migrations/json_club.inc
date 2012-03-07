@@ -5,7 +5,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     parent::__construct(MigrateGroup::getInstance('Club'), 'club');
     $this->description = 'club migration';
     $this->dependencies = array('DSJsonNewUser', 'DSJsonChangedUser', 'DSFile');
-
     $this->addFieldMapping('uid', 'uid')->sourceMigration(array('DSJsonNewUser', 'DSJsonChangedUser'));
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('created', 'created');
@@ -15,6 +14,7 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     $this->addFieldMapping('sticky', 'sticky');
     $this->addFieldMapping('language', 'language');
     $this->addFieldMapping('path', 'path');
+    $this->addFieldMapping('field_club_group_description', 'group_desc');
     $this->addSimpleMappings(array(
       'field_name_last',
       'field_name',
@@ -102,6 +102,9 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
   }
 
   public function prepareRow($row) {
+    $group_description = !empty($row->og_description) ? $row->og_description : NULL;
+    $row->group_desc = $group_description;
+
     // Fix bad dates caused by only storing 2 digits for the year.
     $date = $row->field_club_leader_birthdate;
     $year = substr($date, 0, 4);
