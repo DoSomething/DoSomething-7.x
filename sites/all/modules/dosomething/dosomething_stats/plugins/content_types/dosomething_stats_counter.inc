@@ -55,7 +55,7 @@ function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $
                           WHERE f.field_action_guide_reference_target_id = :nid 
                           AND w.uid = :uid", 
                           array(':nid' => $entity_id, ':uid' => $user->uid));
-      if (count($result)) {
+      if ($result->rowCount()) {
         $message = t('DO THIS AGAIN!');
         foreach ($result as $record) {
           if ($record->field_project_type_value != DOSOMETHING_PROJECTS_COMPLETED) {
