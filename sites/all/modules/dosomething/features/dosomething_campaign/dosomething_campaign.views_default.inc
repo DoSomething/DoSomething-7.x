@@ -612,7 +612,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_logo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_campaign_logo']['settings'] = array(
     'image_style' => 'project_related_thumb',
-    'image_link' => '',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_campaign_logo']['field_api_classes'] = 0;
   /* Field: Content: Title */
