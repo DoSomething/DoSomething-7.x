@@ -57,29 +57,6 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
   }
 }
 
-function dosomething_campaign_contact_form_form($form_state, $email, $mobile) {
-  $form = array(
-    'email' => array(
-      '#type' => 'hidden',
-      '#value' => $email,
-    ),
-    'mobile' => array(
-      '#type' => 'hidden',
-      '#value' => $mobile,
-    ),
-    'pass' => array(
-      '#type' => 'password',
-      '#title' => 'Password',
-    ),
-    'submit' => array(
-      '#type' => 'submit',
-      '#value' => t('Log in'),
-    ),
-  );
-
-  return $form;
-}
-
 function dosomething_campaign_contact_form_test($form, &$form_state) {
   ctools_include('ajax');
 
