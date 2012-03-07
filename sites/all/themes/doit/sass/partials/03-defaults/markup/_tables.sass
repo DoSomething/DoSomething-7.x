@@ -39,6 +39,7 @@ tbody
 thead tr th
   background-color: $blue
   border-right: 1px $gray5 solid
+  border-bottom: none
   font-family: $font-headline
   height: $s9
   @extend .medium
@@ -47,11 +48,11 @@ thead tr th
     border-right: none
   &,
   a
-    color: $white
+    @extend .white
     font-size: $s5
     line-height: 1.5
     &:hover
-      color: $white
+      @extend .white
 
 tr
   &.odd, &.even
@@ -63,8 +64,21 @@ td
   &:last-of-type
     border-right: none
 
-th
-  border-bottom: none
+th.field-label
+  background-color: transparent
+  border-bottom: 1px $gray5 solid
+  color: $base-color
+  font-family: $font-body
+  font-size: $s0
+  label
+    color: $base-color
+    padding-left: $s-2
+    &:hover
+      color: $base-color
+
+select.form-select
+  @extend .constrain-to-parent
+  max-width: 525px
 
 #edit-field-picture-und-table
   thead

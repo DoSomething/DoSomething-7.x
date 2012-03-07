@@ -362,7 +362,7 @@ h1, h2, h3, h4, h5, h6 {
   visibility: hidden;
 }
 
-.constrain-to-parent, img, table, .text-full,
+.constrain-to-parent, img, table, select.form-select, .text-full,
 .textinput,
 input[type=text],
 input[type=password],
@@ -498,7 +498,9 @@ input[type=color], .description {
 }
 
 .white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
+thead tr th a, thead tr th:hover,
+thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
@@ -1508,6 +1510,7 @@ tbody {
 thead tr th {
   background-color: #18408b;
   border-right: 1px #d4d2d1 solid;
+  border-bottom: none;
   font-family: din-web, "Trebuchet MS", sans-serif;
   height: 34px;
   padding-left: 12px;
@@ -1517,13 +1520,8 @@ thead tr th:last-of-type {
 }
 thead tr th,
 thead tr th a {
-  color: white;
   font-size: 21px;
   line-height: 1.5;
-}
-thead tr th:hover,
-thead tr th a:hover {
-  color: white;
 }
 
 tr.odd, tr.even {
@@ -1538,8 +1536,23 @@ td:last-of-type {
   border-right: none;
 }
 
-th {
-  border-bottom: none;
+th.field-label {
+  background-color: transparent;
+  border-bottom: 1px #d4d2d1 solid;
+  color: #1e1d1c;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 12px;
+}
+th.field-label label {
+  color: #1e1d1c;
+  padding-left: 5px;
+}
+th.field-label label:hover {
+  color: #1e1d1c;
+}
+
+select.form-select {
+  max-width: 525px;
 }
 
 #edit-field-picture-und-table thead tr th {
@@ -2158,7 +2171,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2445,7 +2458,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
