@@ -696,10 +696,10 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
   if (!count($all_somethings)) {
     switch ($era) {
       case 'current':
-        $empty_text = t('You do not have any active somethings. Join a campaign, or start a grant application or project!');
+        $empty_text = t('You are not doing anything. Join a campaign, or start a grant application or project!');
         break;
       case 'past':
-        $empty_text = t('You do not have any past somethings. Complete a campaign report back, or finish a grant application or project!');
+        $empty_text = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
         break;
     }
     $element = array(
@@ -727,18 +727,18 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
         '#type' => 'container',
         '#attributes' => array(
           'class' => array(
-            'something-item',
+            'views-row',
           ),
         ),
         'image' => array(
           '#theme' => 'image_formatter',
           '#item' => $something->image,
-          '#image_style' => 'my_somethings',
+          '#image_style' => 'project_related_thumb',
           '#path' => array(
             'path' => $something->uri['path'],
             'options' => $something->uri['options'] + array(
               'attributes' => array(
-                'class' => array('mysomethings-image'),
+                'class' => array('project-related-thumb'),
               ),
             ),
           ),
@@ -754,16 +754,8 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
             '#type' => 'link',
             '#title' => t($something->title),
             '#href' => $something->uri['path'],
-            '#prefix' => '<div class="my-somethings-title">',
+            '#prefix' => '<div class="views-field-title">',
             '#suffix' => '</div>',
-          ),
-          'complete-this' => array(
-            '#type' => 'link',
-            '#title' => t('Complete this') . ' »',
-            '#href' => $something->uri['path'],
-            '#prefix' => '<div class="my-somethings-link">',
-            '#suffix' => '</div>',
-            '#access' => $era == 'current' ? TRUE : FALSE
           ),
         ),
       );
