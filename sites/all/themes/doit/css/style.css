@@ -1699,6 +1699,14 @@ input[type=color] {
   height: 27px;
 }
 
+html.js input.form-autocomplete {
+  background-position: 100% 7px;
+}
+
+html.js input.throbbing {
+  background-position: 100% -13px;
+}
+
 input::-webkit-input-placeholder {
   color: #d4d2d1;
 }
