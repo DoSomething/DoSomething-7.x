@@ -32,6 +32,11 @@ function dosomething_login_menu() {
     'access callback' => 'user_register_access',
     'type' => MENU_CALLBACK,
   );
+  $items['user/registration/ajax'] = array(
+    'page callback' => 'dosomething_login_ajax',
+    'access callback' => 'user_register_access',
+    'type' => MENU_CALLBACK,
+  );
   $items['dosomething/under-13/permission/%/%/%'] = array(
     'title' => 'Parental Permission',
     'page callback' => 'drupal_get_form',
@@ -77,6 +82,10 @@ function dosomething_login_block_info() {
     'info' => t('Become a Member'),
     'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['register_block'] = array(
+    'info' => t('User registration block'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
   return $blocks;
 }
 
@@ -103,6 +112,16 @@ function dosomething_login_block_view($delta = '') {
         // TODO: This should go in dosomething_user_my_somethings module
         // but we will have to redo a bunch of theming to get that working.
         $block['content'] = dosomething_user_my_somethings_member_block();
+      }
+      break;
+    case 'register_block':
+      global $user;
+      if (!$user->uid) {
+        drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
+        drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-block.js');
+        drupal_add_css(drupal_get_path('module', 'dosomething_login') . '/css/dosomething-login-registration-block.css');
+        $block['subject'] = t('Register for an account');
+        $block['content'] = drupal_get_form('dosomething_login_register_popup_form');
       }
       break;
   }
@@ -475,6 +494,8 @@ function _dosomething_login_find_user_by_cell_helper($number) {
  * The form for the 'Become a Member' block.
  */
 function dosomething_login_register_popup_form($form, &$form_state) {
+  // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
+  $form_state['cache'] = true;
   $form['#validate'][] = 'dosomething_login_register_block_validate';
   $form['#submit'][] = 'dosomething_login_register_block_submit';
   if (arg(0) == 'user' && arg(1) == 'registration') {
@@ -1552,4 +1573,22 @@ function theme_dosomething_login_facebook_user_info($variables) {
 function dosomething_login_access_denied_page() {
   $form = drupal_get_form('user_login');
   return $form;
+}
+
+function dosomething_login_ajax() {
+  list($form, $form_state, $form_id, $form_build_id) = ajax_get_form();
+  drupal_process_form($form['#form_id'], $form, $form_state);
+  if ($errors = form_get_errors()) {
+    $return = array(
+      'success' => false,
+      'missing' => $errors,
+    );
+  }
+  else {
+    $return = array(
+      'success' => true,
+    );
+  }
+  drupal_get_messages('error');
+  drupal_json_output($return);
 }
