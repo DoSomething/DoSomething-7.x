@@ -85,6 +85,26 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
+    $pane->type = 'dosomething_stats_counter';
+    $pane->subtype = 'dosomething_stats_counter';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left'][0] = 'new-1';
+    $pane = new stdClass();
+    $pane->pid = 'new-2';
+    $pane->panel = 'left';
     $pane->type = 'entity_field';
     $pane->subtype = 'webform_submission_entity:field_picture';
     $pane->shown = TRUE;
@@ -102,44 +122,6 @@ function dosomething_project_report_default_page_manager_handlers() {
       'delta_limit' => '0',
       'delta_offset' => '0',
       'delta_reversed' => 0,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left'][0] = 'new-1';
-    $pane = new stdClass();
-    $pane->pid = 'new-2';
-    $pane->panel = 'left';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Vital Stats',
-      'title' => '',
-      'body' => '<div id="vital-stats">
-  <div class="title">Vital Stats</div>
-  <div class="info">
-    <ul>
-      <li class="name">%webform_submission_entity:author</li>
-      <li class="medium-profile-info">%webform_submission_entity:field_webform_school_zip</li>
-      <li class="member-stats"></li>
-    </ul>
-  </div>
-  <div class="counter">
-    <ul>
-      <li><span class="counter-labels">People Helped</span><span class="digits">%webform_submission_entity:field-num-people-impacted</span></li>
-      <li><span class="counter-labels">People Doing It</span><span class="digits">%webform_submission_entity:field-update-people-involved</span></li>
-    </ul>
-  </div>
-</div>',
-      'format' => '4',
-      'substitute' => 1,
     );
     $pane->cache = array();
     $pane->style = array(
