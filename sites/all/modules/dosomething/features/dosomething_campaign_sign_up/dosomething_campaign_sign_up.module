@@ -22,10 +22,13 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     return;
   }
 
+  // We don't really care about XSRF here, and this is required because a new user
+  // won't be authenticated until they hit submit via ajax.
+  unset($form['#token']);
+
   global $user;
   // Take no action if this user is not authenticated.
   if ($user->uid == 0) {
-    drupal_get_form('dosomething_login_register_popup_form');
     return;
   }
 
