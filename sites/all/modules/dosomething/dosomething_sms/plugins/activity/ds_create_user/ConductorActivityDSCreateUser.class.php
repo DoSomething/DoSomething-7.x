@@ -78,6 +78,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
 
     $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $firstName;
     $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $lastName;
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
 
     profile2_save($profile);
 
