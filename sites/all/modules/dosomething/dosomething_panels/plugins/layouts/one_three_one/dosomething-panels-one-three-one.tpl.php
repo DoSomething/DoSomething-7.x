@@ -1,4 +1,4 @@
-<div class="panel-one-three-two panel-display ds-panel" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
+<div class="panel-one-three-one panel-display ds-panel" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <?php if ($content['top']): ?>
     <div class="panel-top panel-panel panel-full panel-row">
       <?php print $content['top']; ?>
