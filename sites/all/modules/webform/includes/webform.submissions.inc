@@ -54,6 +54,7 @@ function webform_submission_update($node, $submission) {
     $function = $module . '_webform_submission_presave';
     $function($node, $submission);
   }
+
   // Update the main submission info.
   drupal_write_record('webform_submissions', $submission, 'sid');
 
@@ -390,10 +391,10 @@ function webform_submission_page($node, $submission, $format) {
 
   // Determine the mode in which we're displaying this submission.
   $mode = ($format != 'form') ? 'display' : 'form';
-  if (strpos($_SERVER['REQUEST_URI'], 'print/') !== FALSE) {
+  if (strpos(request_uri(), 'print/') !== FALSE) {
     $mode = 'print';
   }
-  if (strpos($_SERVER['REQUEST_URI'], 'printpdf/') !== FALSE) {
+  if (strpos(request_uri(), 'printpdf/') !== FALSE) {
     $mode = 'pdf';
   }
 
@@ -663,14 +664,14 @@ function webform_get_submissions($filters = array(), $header = NULL, $pager_coun
   }
 
   // Query the required submission data.
-  $query = db_select('webform_submitted_data', 'sd');
-  $query->leftJoin('webform_submissions', 's', 's.sid = sd.sid');
+  $query = db_select('webform_submissions', 's');
+  $query->leftJoin('webform_submitted_data', 'sd', 'sd.sid = s.sid');
   $query->leftJoin('users', 'u', 'u.uid = s.uid');
   $query
     ->fields('s')
     ->fields('sd', array('cid', 'no', 'data'))
     ->fields('u', array('name'))
-    ->condition('sd.sid', $sids, 'IN')
+    ->condition('s.sid', $sids, 'IN')
     ->orderBy('sd.sid', 'ASC')
     ->orderBy('sd.cid', 'ASC')
     ->orderBy('sd.no', 'ASC');
@@ -678,7 +679,7 @@ function webform_get_submissions($filters = array(), $header = NULL, $pager_coun
   // By adding the NID to this query we allow MySQL to use the primary key on
   // in webform_submitted_data for sorting (nid_sid_cid_no).
   if (isset($filters['nid'])) {
-    $query->condition('sd.nid', $filters['nid']);
+    $query->condition('s.nid', $filters['nid']);
   }
 
   $result = $query->execute();
@@ -826,7 +827,8 @@ function _webform_submission_user_limit_check($node) {
       foreach ($_COOKIE[$cookie_name] as $key => $timestamp) {
         if ($node->webform['submit_interval'] != -1 && $timestamp <= REQUEST_TIME - $node->webform['submit_interval']) {
           // Remove the cookie if past the required time interval.
-          setcookie($cookie_name . '[' . $key . ']', '', 0);
+          $params = session_get_cookie_params();
+          setcookie($cookie_name . '[' . $key . ']', '', 0, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
         }
       }
       // Count the number of submissions recorded in cookies.
