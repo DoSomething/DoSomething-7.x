@@ -11,6 +11,7 @@
         progressBar.appendTo(webform.find('.form-actions'));
         $.post('/user/registration/ajax', registerForm.serialize(), function (data) {
           if (!data.success) {
+            $('input').removeClass('error');
             $.each(data.missing, function (key, value) {
               $('input[name^='+key+']').addClass('error');
             });

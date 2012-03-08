@@ -120,8 +120,10 @@ function dosomething_login_block_view($delta = '') {
         drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
         drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-block.js');
         drupal_add_css(drupal_get_path('module', 'dosomething_login') . '/css/dosomething-login-registration-block.css');
+        $form = drupal_get_form('dosomething_login_register_popup_form');
+        unset($form['final_submit']);
         $block['subject'] = t('Register for an account');
-        $block['content'] = drupal_get_form('dosomething_login_register_popup_form');
+        $block['content'] = $form;
       }
       break;
   }
