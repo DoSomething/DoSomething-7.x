@@ -387,11 +387,11 @@ input[type=color], select.form-select, iframe {
 }
 
 .clearfix, .two-column-grid .pane-content, .action-finder-list .pane-content, .image-teaser-module, .action-finder-list .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widgets .content,
-.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .blog-landing-pane-post, .dosomething-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
+.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password, .blog-landing-pane-post {
   *zoom: 1;
 }
 .clearfix:after, .two-column-grid .pane-content:after, .action-finder-list .pane-content:after, .image-teaser-module:after, .action-finder-list .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widgets .content:after,
-.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .blog-landing-pane-post:after, .dosomething-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after {
+.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after, .blog-landing-pane-post:after {
   content: "";
   display: table;
   clear: both;
@@ -440,7 +440,7 @@ form[enctype="multipart/form-data"] #edit-submit, .not-logged-in #dosomething-lo
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .blog-post-date, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .node-poll .poll .text {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .node-poll .poll .text, .blog-post-date {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -464,8 +464,8 @@ form[enctype="multipart/form-data"] #edit-submit, .not-logged-in #dosomething-lo
 form[enctype="multipart/form-data"] #edit-previous,
 form[enctype="multipart/form-data"] #edit-submit, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .node-poll input[type="submit"], .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, .vital-stats .title,
-.vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, .vital-stats .title,
+.vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, .pane-blog-center .pane-content a, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-post-date, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
@@ -591,7 +591,7 @@ form[enctype="multipart/form-data"] #edit-submit:visited, .not-logged-in #dosome
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
-.white-border, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .blog-landing-pane-post .blog-large-thumbnail img, .field-name-field-picture img {
+.white-border, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .field-name-field-picture img {
   border: 1px white solid;
 }
 
@@ -2259,7 +2259,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2473,7 +2473,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -2583,51 +2583,6 @@ h2.block-title, h2.pane-title {
 }
 .panel-outer-right .views-row-first .views-field-title {
   background: none;
-}
-
-#blog-archives-pane h3 {
-  margin-bottom: 0;
-  line-height: 1em;
-  padding-top: 12px;
-}
-#blog-archives-pane .views-row-first .views-field-title {
-  background: none;
-}
-#blog-archives-pane .liketext {
-  display: inline;
-  float: right;
-}
-
-.blog-landing-pane-post {
-  background: white;
-  -moz-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
-  -webkit-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
-  -o-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
-  box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
-  display: inline;
-  float: left;
-  margin-bottom: 12px;
-  width: 100%;
-  min-height: 124px;
-  padding-left: 12px;
-}
-.blog-landing-pane-post p {
-  margin-bottom: 0;
-}
-.blog-landing-pane-post .blog-large-thumbnail img {
-  display: inline;
-  float: left;
-  margin-right: 12px;
-  margin-left: -12px;
-}
-.blog-landing-pane-post .views-field-title h2 {
-  line-height: 1.2em;
-  margin-top: 18px;
-}
-
-.blog-post-date {
-  font-size: 14px;
-  color: #807a75;
 }
 
 .panes-2 .panel-second .pane-title {
@@ -3124,6 +3079,71 @@ comments.fb_iframe_widget {
 
 .page-causes .content .apps-text {
   padding-top: 6px;
+}
+
+.node-blog .field-name-field-picture img {
+  margin-bottom: 12px;
+}
+
+.pane-blog-center .pane-content {
+  padding: 15px 0;
+}
+.pane-blog-center .pane-content .views-field-field-picture {
+  display: inline;
+  float: left;
+  margin-right: 12px;
+}
+.pane-blog-center .pane-content .views-field-title {
+  padding-left: 72px;
+  padding-top: 0;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+#blog-archives-pane h3 {
+  margin-bottom: 0;
+  line-height: 1em;
+  padding-top: 12px;
+}
+#blog-archives-pane .views-row-first .views-field-title {
+  background: none;
+}
+#blog-archives-pane .liketext {
+  display: inline;
+  float: right;
+}
+
+.blog-landing-pane-post {
+  background: white;
+  -moz-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  -webkit-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  -o-box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  box-shadow: rgba(51, 49, 49, 0.5) 0px 0px 10px;
+  display: inline;
+  float: left;
+  margin-bottom: 12px;
+  width: 100%;
+  min-height: 124px;
+  padding-left: 12px;
+}
+.blog-landing-pane-post p {
+  margin-bottom: 0;
+}
+.blog-landing-pane-post .blog-large-thumbnail img {
+  display: inline;
+  float: left;
+  margin-right: 12px;
+  margin-left: -12px;
+  border: 1px solid white;
+}
+.blog-landing-pane-post .views-field-title h2 {
+  line-height: 1.2em;
+  margin-top: 18px;
+}
+
+.blog-post-date {
+  font-size: 14px;
+  color: #807a75;
 }
 
 .field-name-field-picture img {
