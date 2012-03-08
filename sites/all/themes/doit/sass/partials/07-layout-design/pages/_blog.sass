@@ -1,21 +1,37 @@
 .node-type-blog
+  .print-link
+    display: none
 
 .node-blog
   .field-name-field-picture
     img
-      margin-bottom: 12px
+      margin-bottom: 24px
+  
+.views-field-field-blog-type
+  .field-content
+    a
+      font-weight: bold
 
 .pane-blog-center
   .pane-content
-    padding: 15px 0
+    .views-row
+      @extend .clearfix
+      padding: 15px 0
+      +background(image_url('sidebar-title-separator-line.png') no-repeat center top)
+    .views-row-first
+      background-image: none
     .views-field-field-picture
       +float-left
       margin-right: 12px
+      img
+        border: 1px solid $white
+        @extend .box-shadow-center
     .views-field-title
       padding-left: 72px
       padding-top: 0
       font-size: $s-1
       line-height: 14px
+      background-image: none
     a
       @extend .bold
 

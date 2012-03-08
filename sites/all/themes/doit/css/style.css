@@ -387,11 +387,11 @@ input[type=color], select.form-select, iframe {
 }
 
 .clearfix, .two-column-grid .pane-content, .action-finder-list .pane-content, .image-teaser-module, .action-finder-list .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widgets .content,
-.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password, .blog-landing-pane-post {
+.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password, .pane-blog-center .pane-content .views-row, .blog-landing-pane-post {
   *zoom: 1;
 }
 .clearfix:after, .two-column-grid .pane-content:after, .action-finder-list .pane-content:after, .image-teaser-module:after, .action-finder-list .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widgets .content:after,
-.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after, .blog-landing-pane-post:after {
+.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after, .pane-blog-center .pane-content .views-row:after, .blog-landing-pane-post:after {
   content: "";
   display: table;
   clear: both;
@@ -584,7 +584,7 @@ form[enctype="multipart/form-data"] #edit-submit:visited, .not-logged-in #dosome
   box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
 }
 
-.box-shadow-center, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img {
+.box-shadow-center, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .pane-blog-center .pane-content .views-field-field-picture img {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -2259,7 +2259,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2473,7 +2473,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -3081,23 +3081,39 @@ comments.fb_iframe_widget {
   padding-top: 6px;
 }
 
-.node-blog .field-name-field-picture img {
-  margin-bottom: 12px;
+.node-type-blog .print-link {
+  display: none;
 }
 
-.pane-blog-center .pane-content {
+.node-blog .field-name-field-picture img {
+  margin-bottom: 24px;
+}
+
+.views-field-field-blog-type .field-content a {
+  font-weight: bold;
+}
+
+.pane-blog-center .pane-content .views-row {
   padding: 15px 0;
+  background: url('images/sidebar-title-separator-line.png') no-repeat center top;
+}
+.pane-blog-center .pane-content .views-row-first {
+  background-image: none;
 }
 .pane-blog-center .pane-content .views-field-field-picture {
   display: inline;
   float: left;
   margin-right: 12px;
 }
+.pane-blog-center .pane-content .views-field-field-picture img {
+  border: 1px solid white;
+}
 .pane-blog-center .pane-content .views-field-title {
   padding-left: 72px;
   padding-top: 0;
   font-size: 10px;
   line-height: 14px;
+  background-image: none;
 }
 
 #blog-archives-pane h3 {
