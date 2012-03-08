@@ -75,7 +75,15 @@ function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $
         ),
       ),
       'message' => array(
-        '#markup' => $message,
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'counter-labels',
+          ),
+        ),
+        'wants' => array(
+          '#markup' => $message,
+        ),
       ),
       'go' => array(
         '#type' => 'link',
@@ -83,6 +91,11 @@ function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $
         '#href' => $href,
         '#options' => array(
           'query' => $query,
+          'attributes' => array(
+            'class' => array(
+              'go-button',
+            ),
+          ),
         ),
       ),
     );
