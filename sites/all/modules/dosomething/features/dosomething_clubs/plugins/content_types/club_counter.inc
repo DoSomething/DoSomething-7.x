@@ -16,18 +16,52 @@ function dosomething_clubs_club_counter_ctools_content_types() {
  * Query and render array for club counters.
  */
 function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $panel_args, $context) {
+  $block = new stdClass();
   $group = og_context();
 
-  $query = new EntityFieldQuery();
-  $member_count = $query
-    ->entityCondition('entity_type', 'og_membership')
-    ->propertyCondition('entity_type', 'user', '=')
-    ->propertyCondition('gid', $group->gid, '=')
-    ->propertyCondition('state', OG_STATE_ACTIVE, '=')
-    ->count()
-    ->execute();
-  $query = new EntityFieldQuery();
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'dosomething-stats',
+      ),
+    ),
+  );
+  $items = array();
 
+  // Get all users for the group.
+  $query = db_select('og_membership', 'om');
+  $query->addField('om', 'etid');
+  $query->condition('om.entity_type', 'user', '=');
+  $query->condition('om.gid', $group->gid, '=');
+  $query->condition('om.state', OG_STATE_ACTIVE, '=');
+  $results = $query->execute();
+  $members = array();
+  while ($result = $results->fetchObject()) {
+    $members[] = $result->etid;
+  }
+  $member_count = count($members);
+
+  $items['total_members'] = array(
+    'title' => t('Total Members'),
+    'value' => $member_count,
+  );
+
+  // From those members, count all their Campaign Reports Backs
+  $query = db_select('webform_submissions', 'w');
+  $query->innerJoin('node', 'n', 'w.nid = n.nid');
+  $query->condition('n.type', 'campaign_report_back', '=');
+  $query->condition('w.uid', $members, 'IN');
+  $count = $query->countQuery()->execute()->fetchObject();
+  $campaigns_count = $count->expression;
+
+  $items['campaigns_completed'] = array(
+    'title' => t('Campaigns Completed'),
+    'value' => $campaigns_count,
+  );
+
+  // Get count of Project Reports that reference this Club.
+  $query = new EntityFieldQuery();
   $projects_count = $query
     ->entityCondition('entity_type', 'webform_submission_entity')
     ->entityCondition('bundle', 'project_report')
@@ -35,41 +69,16 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     ->count()
     ->execute();
 
-  $output = new stdClass();
-  $output->content = array(
-    'total-members' => array(
-      'content' => array(
-        '#prefix' => '<div class="club-counter-row">',
-        '#suffix' => '</div>',
-        'title' => array(
-          '#prefix' => '<span class="club-counter-title">',
-          '#suffix' => '</span>',
-          '#markup' => t('Total Members'),
-        ),
-        'count' => array(
-          '#prefix' => '<span class="club-counter">',
-          '#suffix' => '</span>',
-          '#markup' => $member_count,
-        ),
-      ),
-    ),
-    'projects-uploaded' => array(
-      'content' => array(
-        '#prefix' => '<div class="club-counter-row">',
-        '#suffix' => '</div>',
-        'title' => array(
-          '#prefix' => '<span class="club-counter-title">',
-          '#suffix' => '</span>',
-          '#markup' => t('Projects Uploaded'),
-        ),
-        'count' => array(
-          '#prefix' => '<span class="club-counter">',
-          '#suffix' => '</span>',
-          '#markup' => $projects_count,
-        ),
-      ),
-    ),
+  $items['projects_uploaded'] = array(
+    'title' => t('Projects Uploaded'),
+    'value' => $projects_count,
   );
 
-  return $output;
+  $output[] = array(
+    '#theme' => 'dosomething_stats_counter',
+    '#items' => $items,
+  );
+  $block->content = $output;
+  return $block;
+
 }
