@@ -33,7 +33,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = 'last';
-  $handler->display->display_options['style_options']['visible'] = '';
+  $handler->display->display_options['style_options']['visible'] = '5';
   $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['autoPause'] = 1;
   $handler->display->display_options['style_options']['easing'] = '';
@@ -70,7 +70,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => 'blog_large_thumbnail',
+    'image_style' => 'member_photo_gallery',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
@@ -83,19 +83,13 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
-  /* Contextual filter: User: Uid */
-  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['table'] = 'users';
-  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['relationship'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
   /* Filter criterion: Webform submissions: Draft */
   $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
   $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
   $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
   $handler->display->display_options['filters']['is_draft']['value'] = array(
     0 => '0',
+    1 => '1',
   );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
