@@ -43,9 +43,8 @@ function dosomething_grant_application_form_alter(&$form, &$form_state, $form_id
     $entity_form = &$form['submitted']['webform_entity_form'];
 
     $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-
     // If  the name is empty, prepoulate it with the user's name from her profile.
-    if ($entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+    if (!isset($entity_form['field_webform_name']) || $entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
       $entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value() . ' ' . $profile_wrapper->field_user_last_name->value() ;
     }
 
@@ -56,7 +55,7 @@ function dosomething_grant_application_form_alter(&$form, &$form_state, $form_id
 
 
     // If the mobile number is empty, prepopulate it.
-    if ($entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+    if (!isset($entity_form['field_webform_mobile']) || $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
       $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_mobile->value();
     }
 
