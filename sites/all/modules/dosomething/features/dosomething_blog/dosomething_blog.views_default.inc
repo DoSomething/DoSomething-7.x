@@ -829,9 +829,8 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['field_blog_type']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_blog_type']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_blog_type']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_blog_type']['element_class'] = '[field_blog_type]-icon';
   $handler->display->display_options['fields']['field_blog_type']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_blog_type']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_blog_type']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_blog_type']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_blog_type']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_blog_type']['hide_alter_empty'] = 0;
