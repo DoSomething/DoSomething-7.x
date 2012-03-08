@@ -445,12 +445,17 @@ function dosomething_blog_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'image',
+          'module' => 'imagecache_proportions',
           'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
+            'enable_link' => 'none',
+            'horizontal_preset' => 'blog_landscape',
+            'looseness' => '0',
+            'modal_style' => '',
+            'squared_preset' => 'blog_square',
+            'style' => '',
+            'vertical_preset' => 'blog_portrait',
           ),
-          'type' => 'image',
+          'type' => 'vertical_horizontal',
           'weight' => '-2',
         ),
         'full' => array(
