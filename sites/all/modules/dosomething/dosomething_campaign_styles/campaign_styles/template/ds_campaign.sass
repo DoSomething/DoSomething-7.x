@@ -1,0 +1,66 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #18408B
+$complement: #ffffff
+
+// fonts
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('assets/bg.jpg')
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: rgba(0,0,0,.5)
+
+// top and bottom border for elements
+@mixin insetBorder
+  ::before, ::after
+    +clearfix
+    display: block
+    content: ''
+  ::before
+    border-top: 1px solid rgba(0,0,0,.9)
+    border-bottom: 1px solid rgba(0,0,0,.6)
+  ::after
+    border-top: 1px solid rgba(0,0,0,.6)
+    border-bottom: 1px solid rgba(0,0,0,.9)
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+.panel-row-actions
+  .pane-title
+    background: $baseColor
+
+.blog
+  +insetBorder
+  .pane-title
+    color: $baseColor
+
+.panel-row-top-right
+  +insetBorder
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+    .pane-content
+      font-size: 1.2em
+      line-height: 1.4em

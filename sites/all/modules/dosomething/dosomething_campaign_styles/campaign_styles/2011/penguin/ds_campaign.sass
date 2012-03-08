@@ -1,0 +1,89 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #18408B
+$complement: #ffffff
+
+// borders
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('assets/bg.jpg')
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: rgba(0,0,0,.5)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+
+h1.title
+  display: none
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// top right wrapper
+.panel-row-top-right
+  &:before, &:after
+    +insetBorder
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+    .pane-content
+      font-size: 1.2em
+      line-height: 1.4em
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  +block
+  .pane-title
+    background: $baseColor
+
+.panel-row-flexible
+  .panel-pane
+    +block
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    .pane-title
+      color: $baseColor
+    &:before,&:after
+      +insetBorder
+
+// logos
+.panel-row-logos
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
