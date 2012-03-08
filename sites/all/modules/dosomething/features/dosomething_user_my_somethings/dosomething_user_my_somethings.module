@@ -603,20 +603,24 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
   elseif ($era == 'past') {
     $campaigns = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
   }
-  foreach ($campaigns as $campaign) {
-    $something = new stdClass();
-    if (isset($campaign->report_back_entity_id)) {
-      $report_back = node_load($campaign->report_back_entity_id);
-      $something->uri = entity_uri('node', $report_back);
+  if ($campaigns) {
+    foreach ($campaigns as $campaign) {
+      $something = new stdClass();
+      if (isset($campaign->report_back_entity_id)) {
+        $report_back = node_load($campaign->report_back_entity_id);
+        $something->uri = entity_uri('node', $report_back);
+      }
+      $campaign = node_load($campaign->campaign_entity_id);
+      if (!isset($something->uri)) {
+        $something->uri = entity_uri('node', $campaign);
+      }
+      $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+      $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
+      $something->title = $campaign->title;
+      $teaser = field_get_items('node', $campaign, 'field_campaign_teaser');
+      $something->teaser = isset($teaser) ? $teaser[0]['value'] : '';
+      $somethings[] = $something;
     }
-    $campaign = node_load($campaign->campaign_entity_id);
-    if (!isset($something->uri)) {
-      $something->uri = entity_uri('node', $campaign);
-    }
-    $image = field_get_items('node', $campaign, 'field_campaign_main_image');
-    $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
-    $something->title = $campaign->title;
-    $somethings[] = $something;
   }
   return $somethings;
 }
@@ -640,8 +644,10 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
             if (isset($grant_ref[0]['nid'])) {
               $grant = node_load($grant_ref[0]['nid']);
               $image = field_get_items('node', $grant, 'field_picture');
+              $description = field_get_items('node', $grant, 'field_what_you_win');
               $something = new stdClass();
               $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
+              $something->teaser = isset($description) ? $description[0]['value'] : '';
               $node = node_load($submission->nid);
               $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
               $something->uri = array('options' => array());
@@ -664,6 +670,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
             $something->check_path = TRUE;
             $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
             $something->title = isset($title[0]['value']) ? $title[0]['value'] : t('New Project');
+            $something->teaser = ''; //TODO
             $somethings[] = $something;
           }
         }
@@ -676,7 +683,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
 /**
  * Content for the current somethings and past somethings panes.
  */
-function dosomething_user_my_somethings_display($uid, $era = 'current') {
+function dosomething_user_my_somethings_display($uid, $era = 'current', $all = TRUE) {
   $cid = 'dosomething_user_my_somethings_' . $uid;
   $cache = cache_get($cid);
   if (!is_object($cache) || !isset($cache->data[$era])) {
@@ -710,6 +717,19 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
     );
   }
   else {
+    if ($all) {
+      $image_style = 'project_related_thumb';//TODO: update this
+      $more_link = '';
+    }
+    else {
+      if (count($all_somethings) > 4) {
+        $path = ($era == 'current') ? 'doing-it' : 'done-it';
+        $more_link = l('More »', 'user/' . $uid . '/' . $path);
+      }
+      $all_somethings = array_slice($all_somethings, 0, 4);
+      $image_style = 'project_related_thumb';
+    }
+
     foreach ($all_somethings as $delta => $something) {
       // Set default access for the edit link to FALSE.
       $edit_access = FALSE;
@@ -733,7 +753,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
         'image' => array(
           '#theme' => 'image_formatter',
           '#item' => $something->image,
-          '#image_style' => 'project_related_thumb',
+          '#image_style' => $image_style,
           '#path' => array(
             'path' => $something->uri['path'],
             'options' => $something->uri['options'] + array(
@@ -757,12 +777,22 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
             '#prefix' => '<div class="views-field-title">',
             '#suffix' => '</div>',
           ),
+          'teaser' => array(
+            '#markup' => $something->teaser,
+            '#prefix' => '<div class="something-teaser">',
+            '#suffix' => '</div>',
+          ),
         ),
       );
       if ($edit_access) {
         $element[$delta]['description']['complete-this']['#href'] = "node/{$node->nid}/submission/{$submission->sid}/edit";
       }
     }
+    $element['more'] = array(
+      '#prefix' => '<div class="more-link-right">',
+      '#suffix' => '</div>',
+      '#markup' => $more_link,
+    );
   }
   return $element;
 }
