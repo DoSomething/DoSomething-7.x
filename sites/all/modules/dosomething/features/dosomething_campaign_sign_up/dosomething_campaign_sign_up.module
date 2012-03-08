@@ -62,17 +62,17 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
   if ($profile) {
     // If we have a profile and don't have a value for the mobile number, provide the one from the profile as a default.
     $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
-    if (isset($mobile[0]['value']) && $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
+    if (isset($mobile[0]['value']) && (!isset($entity_form['field_webform_mobile']) || $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '')) {
       $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $mobile[0]['value'];
     }
   }
 
   // If this email isn't actually a magic mobile number, prepopulate the form with it.
-  if (substr($user->mail, -7) != '@mobile' && $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] == '') {
+  if (substr($user->mail, -7) != '@mobile' && (!isset($entity_form['field_webform_email']) || $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] == '')) {
     $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
   }
 
-  if (isset($node->group_audience)) {
+  if (isset($node->group_audience[LANGUAGE_NONE][0]['gid'])) {
     if (module_exists('og') && is_object($group = og_load($node->group_audience[LANGUAGE_NONE][0]['gid']))) {
       $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
       $entity_form['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
