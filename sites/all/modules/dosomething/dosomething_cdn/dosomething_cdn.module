@@ -5,12 +5,28 @@
  * See: http://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_file_url_alter/7
  */
 function dosomething_cdn_file_url_alter(&$uri) {
-  $cdn = 'http://files.dosomething.org/';
-  $schemes = array('public');
+  // define two CDNs--one for images etc. and one for css/js
+  $assets = 'http://assets.dosomething.org/';
+  $files = 'http://files.dosomething.org/';
 
+  // asset types to put to $assets
+  $asset_types = array('css', 'js');
+
+  // get a URI with the scheme (public://, etc)
   $scheme = file_uri_scheme($uri);
-  if (in_array($scheme, $schemes)) {
-    $path = $uri;
-    $uri = $cdn . file_uri_target($uri);
+
+  if ($scheme == 'public') {
+    // construct a file path for this and get some info about it
+    $path = file_uri_target($uri);
+    $pathinfo = pathinfo($path);
+
+    // if we're dealing with an asset type, use the asset CDN
+    if (isset($pathinfo['extension']) && in_array($pathinfo['extension'], $asset_types)) {
+      $uri = $assets . $path;
+    }
+    // otherwise, use standard file cdn
+    else {
+      $uri = $files . $path;
+    }
   }
 }
