@@ -175,7 +175,7 @@ function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
       // TODO: Determine if this field should also be hidden and uncomment this if so.
       // $form['submitted']['webform_entity_form']['field_action_guide_reference']['#type'] = 'hidden';
     }
-    elseif (!$form['submitted']['webform_entity_form']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) {
+    elseif (!isset($form['submitted']['webform_entity_form']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) || !$form['submitted']['webform_entity_form']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) {
       $form['submitted']['webform_entity_form']['field_action_guide_reference']['#type'] = 'hidden';
     }
   }
