@@ -50,7 +50,7 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
       $form['actions']['draft']['#weight'] = 100;
     }
     // Add page numbering to all multistep forms.
-    if (isset($form['details']['page_count']['#value']) && $form['details']['page_count']['#value']) {
+    if (isset($form['details']['page_count']['#value']) && $form['details']['page_count']['#value'] > 1) {
       $page_count = $form['details']['page_count']['#value'];
       $page_num = $form['details']['page_num']['#value'];
       $ratio = 100 * ($page_num - 1) / $page_count;
