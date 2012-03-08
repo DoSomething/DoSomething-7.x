@@ -124,27 +124,6 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $display->panels['mid-right'][0] = 'new-4';
     $pane = new stdClass();
     $pane->pid = 'new-5';
-    $pane->panel = 'mid-right';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'my_somethings-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'arguments' => array(
-        'etid' => '%user:uid',
-      ),
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-5'] = $pane;
-    $display->panels['mid-right'][1] = 'new-5';
-    $pane = new stdClass();
-    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'ds_profile_info';
     $pane->subtype = 'ds_profile_info';
@@ -158,10 +137,10 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][0] = 'new-6';
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'ds_user_pic';
     $pane->subtype = 'ds_user_pic';
@@ -175,8 +154,8 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][1] = 'new-7';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][1] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
