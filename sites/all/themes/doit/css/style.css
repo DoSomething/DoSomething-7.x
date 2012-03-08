@@ -3109,3 +3109,13 @@ comments.fb_iframe_widget {
 .node-blog .field-name-field-picture {
   float: left;
 }
+.field-name-field-picture .field-item:after {
+  content: attr(data-img-title);
+  display: block;
+  position: relative;
+  top: -1em;
+  color: gray;
+  width: 92%;
+  font-size: 0.833em;
+  line-height: 2.4em;
+}

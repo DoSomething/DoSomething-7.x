@@ -10,3 +10,13 @@
     margin-bottom: 1em
   .node-blog &
     float: left
+  .field-item
+    &:after
+      content: attr(data-img-title)
+      display: block
+      position: relative
+      top: -1em
+      color: $gray
+      width: 92%
+      +adjust-font-size-to($s-1)
+
