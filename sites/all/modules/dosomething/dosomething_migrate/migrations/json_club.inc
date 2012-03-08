@@ -5,6 +5,7 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     parent::__construct(MigrateGroup::getInstance('Club'), 'club');
     $this->description = 'club migration';
     $this->dependencies = array('DSJsonNewUser', 'DSJsonChangedUser', 'DSFile');
+
     $this->addFieldMapping('uid', 'uid')->sourceMigration(array('DSJsonNewUser', 'DSJsonChangedUser'));
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('created', 'created');
@@ -14,7 +15,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     $this->addFieldMapping('sticky', 'sticky');
     $this->addFieldMapping('language', 'language');
     $this->addFieldMapping('path', 'path');
-    $this->addFieldMapping('field_club_group_description', 'group_desc');
     $this->addSimpleMappings(array(
       'field_name_last',
       'field_name',
@@ -50,7 +50,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
 
     $this->addUnmigratedSources(array(
       'nid',
-
       'field_club_expected_members',
       'field_club_member_1_email',
       'field_club_picture',
@@ -83,14 +82,8 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
       'revision',
       'log',
       'tnid',
-      /*'group_club_leader_info',
-      'group_what_campaigns',
-      'group_where_should_we_send_the',
-      'group_club_photos_and_albums',
-      'group_clubs_agreement',*/
       'og_roles_permissions',
       'og_node_link',
-
       'group_group',
       'field_club_verified',
       'comment',
@@ -102,9 +95,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
   }
 
   public function prepareRow($row) {
-    $group_description = !empty($row->og_description) ? $row->og_description : NULL;
-    $row->group_desc = $group_description;
-
     // Fix bad dates caused by only storing 2 digits for the year.
     $date = $row->field_club_leader_birthdate;
     $year = substr($date, 0, 4);
