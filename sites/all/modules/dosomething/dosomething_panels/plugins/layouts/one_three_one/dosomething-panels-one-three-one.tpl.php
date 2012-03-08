@@ -26,7 +26,7 @@
   <?php endif; ?>
 
   <?php if ($content['footer']): ?>
-    <div class="panel-footer panel-panel panel-full panel-row">
+    <div class="panel-footer panel-panel panel-full panel-row border-and-shadow">
       <?php print $content['footer']; ?>
     </div>
   <?php endif; ?>
