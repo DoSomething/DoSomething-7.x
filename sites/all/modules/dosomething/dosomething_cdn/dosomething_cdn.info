@@ -1,0 +1,4 @@
+name = DoSomething CDN
+description = Rewrite /files requests.
+package = DoSomething
+core = 7.x

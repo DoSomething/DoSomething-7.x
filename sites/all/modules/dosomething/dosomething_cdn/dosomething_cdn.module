@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_file_url_alter(&$uri).
+ * See: http://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_file_url_alter/7
+ */
+function dosomething_cdn_file_url_alter(&$uri) {
+  $cdn = 'http://files.dosomething.org/';
+  $schemes = array('public');
+
+  $scheme = file_uri_scheme($uri);
+  if (in_array($scheme, $schemes)) {
+    $path = $uri;
+    $uri = $cdn . file_uri_target($uri);
+  }
+}
