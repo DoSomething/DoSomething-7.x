@@ -19,7 +19,7 @@ function dosomething_blog_ctools_plugin_directory($module, $plugin) {
  * Implements hook_form_FORM_ID_alter().
  */
 function dosomething_blog_form_views_exposed_form_alter(&$form, $form_state) {
-  if (substr($form['#id'], 0, 43) == 'views-exposed-form-blog-center-panel-pane-3') {
+  if ($form['#id'] == 'views-exposed-form-blog-center-panel-pane-3') {
     $form['field_blog_type_tid']['#options']['All'] = $form['#info']['filter-field_blog_type_tid']['label'];
     $form['field_blog_causes_tid']['#options']['All'] = $form['#info']['filter-field_blog_causes_tid']['label'];
   }
