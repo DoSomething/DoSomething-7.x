@@ -2650,6 +2650,72 @@ h2.block-title, h2.pane-title {
   margin-bottom: 10px;
 }
 
+.pane-member-profile-panel-pane-1 {
+  margin-bottom: 0;
+}
+
+.jcarousel-container .jcarousel-clip-horizontal {
+  width: 652px;
+  height: 121px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.jcarousel-container .jcarousel-item {
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+.jcarousel-container .jcarousel-item img {
+  border: 1px white solid;
+  height: 121px;
+  width: 121px;
+}
+.jcarousel-container .jcarousel-item-horizontal {
+  margin: 0 5px;
+}
+.jcarousel-container .jcarousel-next,
+.jcarousel-container .jcarousel-prev {
+  display: block;
+  height: 55px;
+  width: 35px;
+}
+.jcarousel-container .jcarousel-next {
+  background: url('images/arrows/arrow-next.png');
+}
+.jcarousel-container .jcarousel-next:hover {
+  background: url('images/arrows/arrow-next-hover.png');
+}
+.jcarousel-container .jcarousel-prev {
+  background: url('images/arrows/arrow-prev.png');
+}
+.jcarousel-container .jcarousel-prev:hover {
+  background: url('images/arrows/arrow-prev-hover.png');
+}
+.jcarousel-container .jcarousel-next-disabled,
+.jcarousel-container .jcarousel-prev-disabled {
+  display: none;
+}
+.jcarousel-container .jcarousel-prev-horizontal {
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  background-position: 0 0;
+}
+.jcarousel-container .jcarousel-prev-horizontal:hover,
+.jcarousel-container .jcarousel-prev-horizontal:active {
+  background-position: 0 0;
+}
+.jcarousel-container .jcarousel-next-horizontal {
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  background-position: 0 -55px;
+}
+.jcarousel-container .jcarousel-next-horizontal:hover,
+.jcarousel-container .jcarousel-next-horizontal:active {
+  background-position: 0 -55px;
+}
+
 .ui-dialog {
   background: #4b4744;
   border: none;
