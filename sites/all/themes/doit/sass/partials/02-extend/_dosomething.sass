@@ -178,7 +178,8 @@ h3.subhead
   +background-image(linear-gradient(top, $white, $gold))
   font-size: $s4
   text-transform: uppercase
-  &:hover, &:active
+  &:hover, &:active, &:visited
+    @extend .gray2
     text-decoration: none
 
 .go-button-logo
@@ -548,13 +549,16 @@ h3.subhead
   @extend .bold
   @extend .black
   @extend .caps
+  display: inline
   font-size: $s5
   letter-spacing: 0
   padding-right: $s2
-  vertical-align: bottom
+
 
 // Number styling for vital stats counter
 .digits
+  position: relative
+  top: -6px
   span
     @extend .counter-labels
     background: image_url("counter.png") no-repeat -1px -1px
