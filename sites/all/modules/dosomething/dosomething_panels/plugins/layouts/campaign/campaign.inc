@@ -17,7 +17,7 @@ $plugin = array(
     'flexible-top' => t('Top Flexible Region'),
     'flexible-mid' => t('Middle Flexible Region'),
     'flexible-bot' => t('Bottom Flexible Region'),
-    'logos' => t('Logos'),
+    'logos' => t('Sponsor Logos'),
   ),
 );
 
