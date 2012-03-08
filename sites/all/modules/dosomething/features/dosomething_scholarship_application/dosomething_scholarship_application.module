@@ -54,7 +54,7 @@ function dosomething_scholarship_application_form_alter(&$form, &$form_state, $f
 
     $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
     // Get a shortcut to our part of the form.
-    $entity_form = &$form['submitted']['webform_entity_form'];
+    $entity_form = &$form['submitted'];
 
     // If  the name is empty, prepoulate it with the user's name from her profile.
     if ($entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
@@ -68,8 +68,8 @@ function dosomething_scholarship_application_form_alter(&$form, &$form_state, $f
 
     // If no address is yet set on this form, prepoulate it with the one from the user's profile.
     if ($form['#submission'] == array()) {
-      $address_values = $form['submitted']['webform_entity_form']['field_webform_address'][LANGUAGE_NONE][0]['#address'];
-      $form['submitted']['webform_entity_form']['field_webform_address'][LANGUAGE_NONE][0]['#address'] = $profile_wrapper->field_user_address->value();
+      $address_values = $form['submitted']['field_webform_address'][LANGUAGE_NONE][0]['#address'];
+      $form['submitted']['field_webform_address'][LANGUAGE_NONE][0]['#address'] = $profile_wrapper->field_user_address->value();
     }
 
 

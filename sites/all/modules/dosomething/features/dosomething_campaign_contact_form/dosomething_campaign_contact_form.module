@@ -27,7 +27,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
       $node = $form['#node'];
 
       // Get a shortcut to our part of the form.
-      $entity_form = &$form['submitted']['webform_entity_form'];
+      $entity_form = &$form['submitted'];
 
       $profile = profile2_load_by_user($user, 'main');
       if ($profile) {
