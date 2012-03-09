@@ -15,13 +15,13 @@ $secondaryLink: black
 $borderTop: 1px solid rgba(0,0,0,.5)
 $borderBot: 1px solid rgba(255,255,255,.5)
 
-// fonts
+// fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.jpg')
-$bgFallback: #F4C16C
+$bgFallback: blue
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -68,6 +68,20 @@ div[role="main"]
   &:last-child
     margin-right: 0
 
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
 #block-dosomething-campaign-styles-campaign-nav
   background: transparent
   margin-right: -5px
@@ -87,18 +101,6 @@ div[role="main"]
       &:hover, .active
         color: $baseColor
         text-decoration: none
-
-.line-top
-  &:before
-    +insetBorder
-.line-bottom
-  &:after
-    +insetBorder
-
-
-//////////////////////////////////////////
-////////////// sections /////////////////
-////////////////////////////////////////
 
 // top right wrapper
 .panel-row-top-right
@@ -123,6 +125,7 @@ div[role="main"]
   .pane-content
     padding: 18px
 
+// ad row (quick info and psa)
 .panel-row-ad-quick-info
   .pane-title
     font-size: 35px
