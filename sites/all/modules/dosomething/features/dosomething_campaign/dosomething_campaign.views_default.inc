@@ -43,7 +43,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  /* Field: Content: Background color */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_campaign_background_color']['id'] = 'field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['table'] = 'field_data_field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['field'] = 'field_campaign_background_color';
@@ -66,8 +66,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_campaign_background_color']['field_api_classes'] = 0;
-  /* Field: Content: Foreground color */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_campaign_foreground_color']['id'] = 'field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['table'] = 'field_data_field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['field'] = 'field_campaign_foreground_color';
@@ -90,7 +89,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_foreground_color']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_foreground_color']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_foreground_color']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_campaign_foreground_color']['field_api_classes'] = 0;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_campaign_logo']['id'] = 'field_campaign_logo';
   $handler->display->display_options['fields']['field_campaign_logo']['table'] = 'field_data_field_campaign_logo';
