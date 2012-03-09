@@ -822,7 +822,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'bundle' => 'project_update',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'If you haven\'t yet posted a project <a href="/node/718361"> click here </a>.',
+      'description' => 'If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -2374,7 +2374,7 @@ The content from this field will only be shown to anonymous users.');
   t('How Can Others Help? ');
   t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
-  t('If you haven\'t yet posted a project <a href="/node/718361"> click here </a>.');
+  t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
   t('Issues');
   t('Measurable impact');
