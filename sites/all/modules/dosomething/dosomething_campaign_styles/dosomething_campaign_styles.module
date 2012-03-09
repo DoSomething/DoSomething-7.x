@@ -106,8 +106,6 @@ function dosomething_campaign_styles_block_info() {
 }
 
 function dosomething_campaign_styles_block_view($delta) {
-  if ($delta != 'campaign_nav') return;
-
   if ($context = og_context()) {
     if ($context->entity_type == 'node' && ($node = node_load($context->etid))) {
       $plugin_name = dosomething_campaign_styles_pluginify_path(drupal_get_path_alias('node/' . $context->etid));

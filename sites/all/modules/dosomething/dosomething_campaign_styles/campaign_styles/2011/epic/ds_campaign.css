@@ -28,26 +28,6 @@ div[role="main"] {
   .three-boxes:last-child {
     margin-right: 0; }
 
-#block-dosomething-campaign-styles-campaign-nav {
-  background: transparent;
-  margin-right: -5px;
-  padding: 0; }
-  #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: rgba(188, 134, 70, 0.4);
-    background-image: none;
-    text-align: right; }
-    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
-      display: inline-block;
-      width: 100%;
-      padding: 10px 19px 10px 0;
-      font-size: 21px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: black; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #d33936;
-        text-decoration: none; }
-
 .line-top:before {
   overflow: hidden;
   *zoom: 1;
@@ -63,6 +43,27 @@ div[role="main"] {
   content: "";
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+#block-dosomething-campaign-styles-campaign-nav {
+  background: transparent;
+  margin-right: -5px;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    background: rgba(188, 134, 70, 0.4);
+    background-image: none;
+    text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: black; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #d33936;
+        text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
