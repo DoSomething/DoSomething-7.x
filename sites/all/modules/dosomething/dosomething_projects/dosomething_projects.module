@@ -8,6 +8,9 @@
 define('DOSOMETHING_PROJECTS_API_LIMIT', 300);
 // The value for field_project_type's completed status.
 define('DOSOMETHING_PROJECTS_COMPLETED', 4);
+// The value for field_project_type's project idea status.
+define('DOSOMETHING_PROJECTS_IDEA', 2);
+
 
 include_once('dosomething_projects.features.inc');
 
@@ -172,6 +175,7 @@ function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
       $action_guide_wrapper = entity_metadata_wrapper('node', $_GET['action_guide']);
       $value = $action_guide_wrapper->label() . ' ('. $action_guide_wrapper->getIdentifier() . ')';
       $form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $value;
+      $form['submitted']['field_project_type'][LANGUAGE_NONE]['#default_value'] = DOSOMETHING_PROJECTS_IDEA;
       // TODO: Determine if this field should also be hidden and uncomment this if so.
       // $form['submitted']['field_action_guide_reference']['#type'] = 'hidden';
     }
