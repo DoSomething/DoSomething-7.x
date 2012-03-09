@@ -753,7 +753,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
             'path' => $something->uri['path'],
             'options' => $something->uri['options'] + array(
               'attributes' => array(
-                'class' => array('project-related-thumb'),
+                'class' => array('pane-narrow-thumb'),
               ),
             ),
           ),
