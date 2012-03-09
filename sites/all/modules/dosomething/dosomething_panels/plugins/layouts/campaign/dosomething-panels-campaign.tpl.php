@@ -54,14 +54,12 @@
   <?php endif; ?>
 
   <?php if (isset($content['flexible-mid'])):?>
-    middle
     <div class="panel-row-flexible panel-row-flexible-mid panel-row panel-panel">
       <?php print $content['flexible-mid']; ?>
     </div>
   <?php endif; ?>
 
   <?php if (isset($content['flexible-bot'])):?>
-    bottom
     <div class="panel-row-flexible panel-row-flexible-bot panel-row panel-panel">
       <?php print $content['flexible-bot']; ?>
     </div>
