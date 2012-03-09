@@ -24,6 +24,19 @@ function dosomething_project_report_default_page_manager_handlers() {
     'relationships' => array(),
     'code' => '404',
     'destination' => '',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'access all webform results',
+          ),
+          'context' => 'logged-in-user',
+          'not' => TRUE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $export['webform_submission_view_http_response'] = $handler;
 
