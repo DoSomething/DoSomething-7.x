@@ -84,7 +84,8 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'user/*/doing-it
-user/*/done-it',
+user/*/done-it
+user/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -114,7 +115,8 @@ user/*/done-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'user/*/doing-it
-user/*/done-it',
+user/*/done-it
+user/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -144,7 +146,8 @@ user/*/done-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'user/*/doing-it
-user/*/done-it',
+user/*/done-it
+user/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -253,6 +256,35 @@ user/*/done-it',
     $pane->position = 3;
     $display->content['new-8'] = $pane;
     $display->panels['top'][3] = 'new-8';
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'profile-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'user/*/picks',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][4] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
