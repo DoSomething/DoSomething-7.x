@@ -1,0 +1,31 @@
+////////////////////////////
+// MEMBER MORE PAGES
+// two column grid
+// image teaser module
+////////////////////////////
+.pane-ds-current-somethings-all,
+.pane-ds-past-somethings-all
+  @extend .two-column-grid
+  h2.pane-title
+    @extend .headers
+    @extend .bold
+    @extend .black
+    display: inline
+    font-size: $s5
+    letter-spacing: 0
+    background-color: transparent !important
+    padding: 0 !important
+  a.back
+    position: absolute
+    top: 265px
+    right: 0
+  .views-row
+    @extend .image-teaser-module
+  .pane-narrow-thumb
+    @extend .image-teaser-module-image
+  .something-description
+    @extend .image-teaser-module-teaser
+    .views-field-title
+      @extend .headers
+      @extend .bold
+      font-size: $s5

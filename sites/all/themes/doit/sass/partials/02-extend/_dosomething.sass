@@ -378,18 +378,20 @@ h3.subhead
 
 ////////////////////////////
 // TWO COLUMN GRID
-// Used on the action guides landing
+// Used on the action guides landing, and member profile more pages
 ////////////////////////////
 .two-column-grid
   .views-row
     width: 49%
+    &:nth-of-type(odd),
+    .views-row-odd
+      float: left
+      clear: left
+    &:nth-of-type(even),
+    .views-row-even
+      float: right
   .pane-content
     @extend .clearfix
-  .views-row-odd
-    float: left
-    clear: left
-  .views-row-even
-    float: right
 
 
 ////////////////////////////
@@ -630,11 +632,14 @@ h3.subhead
       border-bottom: none
   .views-field-title
     @extend .right-sidebar-headlines
-  .project-related-thumb
+  .project-related-thumb,
+  .pane-narrow-thumb
     float: left
     img
       @extend .border-and-shadow
       margin-right: $s0
+      height: 60px
+      width: 60px
   .views-field-field-description p,
   .views-field-field-campaign-teaser p
     margin-left: 72px

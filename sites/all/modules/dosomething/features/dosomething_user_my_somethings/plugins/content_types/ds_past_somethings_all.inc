@@ -23,7 +23,7 @@ function dosomething_user_my_somethings_ds_past_somethings_all_content_type_rend
   $block = new stdClass();
   $block->title = t('Done It');
   $elements = dosomething_user_my_somethings_display($uid, 'past');
-  $block->content = l('<< Back to profile', 'user/' . $uid);
+  $block->content = l('<< Back to profile', 'user/' . $uid, array('attributes' => array('class' => 'back')));
   $block->content .= drupal_render($elements);
   return $block;
 }
