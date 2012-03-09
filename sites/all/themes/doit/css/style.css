@@ -874,7 +874,9 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
 
 .more-link-right {
   float: right;
-  padding-right: 18px;
+}
+
+.view-footer .more-link-right {
   margin-bottom: 12px;
 }
 

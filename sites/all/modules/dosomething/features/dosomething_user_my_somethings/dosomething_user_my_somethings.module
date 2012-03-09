@@ -779,8 +779,8 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
       }
     }
     $element['more'] = array(
-      '#prefix' => '<div class="more-link-right">',
-      '#suffix' => '</div>',
+      '#prefix' => '<span class="more-link-right">',
+      '#suffix' => '</span>',
       '#markup' => $more_link,
     );
   }
