@@ -354,7 +354,7 @@ function doit_webform_view_messages($variables) {
       // No roles are allowed to submit the form.
       $message = t('Submissions for this form are closed.');
     }
-    elseif (isset($allowed_roles[2])) {
+    elseif (isset($allowed_roles[2]) || !$user->uid) {
       // The "authenticated user" role is allowed to submit and the user is currently logged-out.
       $login = url('user/login', array('query' => drupal_get_destination()));
       $register = url('user/registration', array('query' => drupal_get_destination()));
