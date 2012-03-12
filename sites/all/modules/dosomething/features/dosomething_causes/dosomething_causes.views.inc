@@ -12,13 +12,20 @@ function dosomething_causes_views_data() {
       'accept depth modifier' => TRUE,
     ),
   );
+  $data['views']['dosomething_causes_link'] = array(
+    'title' => t('DoSomething Cause Link'),
+    'help' => t('Display a link to a DoSomething Cause.'),
+    'field' => array(
+      'handler' => 'dosomething_causes_handler_field_link',
+    ),
+  );
   return $data;
 }
 
 /**
  * Break x,y,z and x+y+z, and x, y, z into an array. Numeric or strings.
-  * This is an alternate version of views_break_phrase() to allow comma-space style input
-  * and to treat all inputs as an OR.
+ * This is an alternate version of views_break_phrase() to allow comma-space style input
+ * and to treat all inputs as an OR.
  *
  * @param $str
  *   The string to parse.
