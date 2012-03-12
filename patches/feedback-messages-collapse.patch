@@ -1,0 +1,15 @@
+diff --git a/feedback.module b/feedback.module
+index 9e0f5e9..1296c3d 100644
+--- a/feedback.module
++++ b/feedback.module
+@@ -217,6 +217,10 @@ function feedback_form($form, &$form_state) {
+     }
+     if ($feedbacks) {
+       $form['messages'] = array(
++        '#type' => 'fieldset',
++        '#title' => t('Feedback messages'),
++        '#collapsible' => TRUE,
++        '#collapsed' => TRUE,
+         '#prefix' => '<div class="feedback-messages">',
+         '#suffix' => '</div>',
+       );

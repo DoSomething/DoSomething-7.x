@@ -18,8 +18,11 @@
   cursor: pointer
   padding: 0
   margin: 0
+  border-left: 1px solid $white
+  border-right: 1px solid $white
+  border-bottom: 1px solid $white
   li
-    padding-left: 7px
+    padding-left: 14px
     margin-bottom: 6px
     font-family: $font-headline
     font-size: $s0
@@ -30,6 +33,12 @@
     &.selectBox-hover a
       +remove-link-underlines
       @extend .gold
+
+body.not-front
+  .selectBox-options
+    border-left: 1px solid $gray2
+    border-right: 1px solid $gray2
+    border-bottom: 1px solid $gray2
 
 #block-dosomething-blocks-dosomething-make-impact
   .content
@@ -77,6 +86,8 @@
       margin-bottom: -1px
       background-repeat: no-repeat
       background-position: 95% 50%
+  .selectBox-menuShowing
+    background: $gray2
   .selectBox-dropdown-menu
     position: absolute
     z-index: 99999

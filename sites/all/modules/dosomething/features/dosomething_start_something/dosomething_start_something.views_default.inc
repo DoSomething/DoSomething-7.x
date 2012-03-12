@@ -273,7 +273,7 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
     'image_style' => 'action_results_thumbnail',
-    'image_link' => '',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_picture']['delta_limit'] = '1';
@@ -306,7 +306,7 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -362,7 +362,6 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="unimage-wrapper">
 <h2>[title]</h2>
 [view_node]
-[fb_social]
 </div>';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
@@ -473,6 +472,11 @@ function dosomething_start_something_views_default_views() {
     ),
   );
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Context */
+  $handler = $view->new_display('ctools_context', 'Context', 'ctools_context_1');
+  $handler->display->display_options['style_plugin'] = 'ctools_context';
+  $handler->display->display_options['row_plugin'] = 'fields';
   $export['resources'] = $view;
 
   $view = new view;

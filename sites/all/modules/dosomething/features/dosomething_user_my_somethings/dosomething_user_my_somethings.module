@@ -554,18 +554,12 @@ function dosomething_user_my_somethings_campaign_report_backs_needed($uid) {
  * Get a list of campaign report backs completed by user.
  */
 function dosomething_user_my_somethings_campaign_report_backs_complete($uid) {
-  //TODO: If we are keeping past My Somethings user page: completed report backs,
-  // then this query needs to be updated to use the group context as
-  // field_report_back_reference has been deprecated.
-  /**
-  $report_backs = db_query("SELECT DISTINCT(f.field_report_back_reference_nid) as campaign_entity_id FROM {webform_submissions} w
-                            INNER JOIN {node} n ON w.nid = n.nid
-                            INNER JOIN {field_data_field_report_back_reference} f ON f.entity_id = n.nid
-                            WHERE w.bundle = 'campaign_report_back' AND w.uid = :uid", 
+  $report_backs = db_query("SELECT DISTINCT(o.etid) as campaign_entity_id FROM {webform_submissions} w
+                            INNER JOIN {og_membership} om ON w.sid = om.etid
+                            INNER JOIN {og} o ON om.gid = o.gid
+                            WHERE w.bundle = 'campaign_report_back' AND o.entity_type = 'node' AND w.uid = :uid", 
                             array(':uid' => $uid))->fetchAll();
   return $report_backs;
-  */
-  return NULL;
 }
 
 /**
@@ -603,20 +597,22 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
   elseif ($era == 'past') {
     $campaigns = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
   }
-  foreach ($campaigns as $campaign) {
-    $something = new stdClass();
-    if (isset($campaign->report_back_entity_id)) {
-      $report_back = node_load($campaign->report_back_entity_id);
-      $something->uri = entity_uri('node', $report_back);
+  if ($campaigns) {
+    foreach ($campaigns as $campaign) {
+      $something = new stdClass();
+      if (isset($campaign->report_back_entity_id)) {
+        $report_back = node_load($campaign->report_back_entity_id);
+        $something->uri = entity_uri('node', $report_back);
+      }
+      $campaign = node_load($campaign->campaign_entity_id);
+      if (!isset($something->uri)) {
+        $something->uri = entity_uri('node', $campaign);
+      }
+      $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+      $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
+      $something->title = $campaign->title;
+      $somethings[] = $something;
     }
-    $campaign = node_load($campaign->campaign_entity_id);
-    if (!isset($something->uri)) {
-      $something->uri = entity_uri('node', $campaign);
-    }
-    $image = field_get_items('node', $campaign, 'field_campaign_main_image');
-    $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
-    $something->title = $campaign->title;
-    $somethings[] = $something;
   }
   return $somethings;
 }
@@ -676,7 +672,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
 /**
  * Content for the current somethings and past somethings panes.
  */
-function dosomething_user_my_somethings_display($uid, $era = 'current') {
+function dosomething_user_my_somethings_display($uid, $era = 'current', $all = TRUE) {
   $cid = 'dosomething_user_my_somethings_' . $uid;
   $cache = cache_get($cid);
   if (!is_object($cache) || !isset($cache->data[$era])) {
@@ -696,10 +692,10 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
   if (!count($all_somethings)) {
     switch ($era) {
       case 'current':
-        $empty_text = t('You do not have any active somethings. Join a campaign, or start a grant application or project!');
+        $empty_text = t('You are not doing anything. Join a campaign, or start a grant application or project!');
         break;
       case 'past':
-        $empty_text = t('You do not have any past somethings. Complete a campaign report back, or finish a grant application or project!');
+        $empty_text = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
         break;
     }
     $element = array(
@@ -710,6 +706,19 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
     );
   }
   else {
+    if ($all) {
+      $image_style = 'my_somethings';
+      $more_link = '';
+    }
+    else {
+      if (count($all_somethings) > 4) {
+        $path = ($era == 'current') ? 'doing-it' : 'done-it';
+        $more_link = l('More »', 'user/' . $uid . '/' . $path);
+      }
+      $all_somethings = array_slice($all_somethings, 0, 4);
+      $image_style = 'project_related_thumb';
+    }
+
     foreach ($all_somethings as $delta => $something) {
       // Set default access for the edit link to FALSE.
       $edit_access = FALSE;
@@ -727,18 +736,18 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
         '#type' => 'container',
         '#attributes' => array(
           'class' => array(
-            'something-item',
+            'views-row',
           ),
         ),
         'image' => array(
           '#theme' => 'image_formatter',
           '#item' => $something->image,
-          '#image_style' => 'my_somethings',
+          '#image_style' => $image_style,
           '#path' => array(
             'path' => $something->uri['path'],
             'options' => $something->uri['options'] + array(
               'attributes' => array(
-                'class' => array('mysomethings-image'),
+                'class' => array('pane-narrow-thumb'),
               ),
             ),
           ),
@@ -754,16 +763,8 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
             '#type' => 'link',
             '#title' => t($something->title),
             '#href' => $something->uri['path'],
-            '#prefix' => '<div class="my-somethings-title">',
+            '#prefix' => '<div class="views-field-title">',
             '#suffix' => '</div>',
-          ),
-          'complete-this' => array(
-            '#type' => 'link',
-            '#title' => t('Complete this') . ' »',
-            '#href' => $something->uri['path'],
-            '#prefix' => '<div class="my-somethings-link">',
-            '#suffix' => '</div>',
-            '#access' => $era == 'current' ? TRUE : FALSE
           ),
         ),
       );
@@ -771,6 +772,11 @@ function dosomething_user_my_somethings_display($uid, $era = 'current') {
         $element[$delta]['description']['complete-this']['#href'] = "node/{$node->nid}/submission/{$submission->sid}/edit";
       }
     }
+    $element['more'] = array(
+      '#prefix' => '<span class="more-link-right">',
+      '#suffix' => '</span>',
+      '#markup' => $more_link,
+    );
   }
   return $element;
 }

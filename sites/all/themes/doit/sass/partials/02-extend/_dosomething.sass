@@ -19,8 +19,10 @@
   font-weight: 500
 
 .bold
-  font-weight: bold
-  font-weight: 600
+  // As discussed on 3/1/12, please globally switch from DIN bold font to medium.
+  // font-weight: bold
+  // font-weight: 600
+  @extend .medium
 
 .yellow
   color: $yellow
@@ -68,10 +70,18 @@
 
 .box-shadow
   +box-shadow($gray3-trans 0 6px 12px)
+.box-shadow-center
+  +box-shadow($gray3-trans 0 0 12px)
+.box-shadow-none
+  +box-shadow($gray3-trans 0 0px 0px)
+
+
+.white-border
+  border: 1px $white solid
 
 .border-and-shadow
-  border: 1px $white solid
-  +box-shadow($gray3-trans 0 0 12px)
+  @extend .white-border
+  @extend .box-shadow-center
 
 // Extendable bottom borders
 .gray3-border
@@ -98,7 +108,6 @@
   @extend .bold
   @extend .black
   font-size: $s10
-  text-transform: capitalize
 
 h1.title
   @extend .page-headline
@@ -172,7 +181,8 @@ h3.subhead
   +background-image(linear-gradient(top, $white, $gold))
   font-size: $s4
   text-transform: uppercase
-  &:hover, &:active
+  &:hover, &:active, &:visited
+    @extend .gray2
     text-decoration: none
 
 .go-button-logo
@@ -371,18 +381,20 @@ h3.subhead
 
 ////////////////////////////
 // TWO COLUMN GRID
-// Used on the action guides landing
+// Used on the action guides landing, and member profile more pages
 ////////////////////////////
 .two-column-grid
   .views-row
     width: 49%
+    &:nth-of-type(odd),
+    .views-row-odd
+      float: left
+      clear: left
+    &:nth-of-type(even),
+    .views-row-even
+      float: right
   .pane-content
     @extend .clearfix
-  .views-row-odd
-    float: left
-    clear: left
-  .views-row-even
-    float: right
 
 
 ////////////////////////////
@@ -465,9 +477,12 @@ h3.subhead
     &.hover
       text-decoration: underline
 
+// More link when in custom panel
 .more-link-right
   float: right
-  padding-right: $s4
+
+// More link when in view footer
+.view-footer .more-link-right
   margin-bottom: $s0
 
 .breadcrumbs
@@ -542,13 +557,16 @@ h3.subhead
   @extend .bold
   @extend .black
   @extend .caps
+  display: inline
   font-size: $s5
   letter-spacing: 0
   padding-right: $s2
-  vertical-align: bottom
+
 
 // Number styling for vital stats counter
 .digits
+  position: relative
+  top: -6px
   span
     @extend .counter-labels
     background: image_url("counter.png") no-repeat -1px -1px
@@ -616,14 +634,18 @@ h3.subhead
     +ds-bevel-single
     padding: $s2 0
     &:last-of-type
+      +box-shadow-none
       border-bottom: none
   .views-field-title
     @extend .right-sidebar-headlines
-  .project-related-thumb
+  .project-related-thumb,
+  .pane-narrow-thumb
     float: left
     img
       @extend .border-and-shadow
       margin-right: $s0
+      height: 60px
+      width: 60px
   .views-field-field-description p,
   .views-field-field-campaign-teaser p
     margin-left: 72px

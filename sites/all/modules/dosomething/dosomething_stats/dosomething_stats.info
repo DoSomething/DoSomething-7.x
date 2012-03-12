@@ -1,0 +1,6 @@
+name = DoSomething - Counter
+description = Creates the stats counter plugin and theme function.
+core = 7.x
+package = DoSomething
+
+dependencies[] = ctools

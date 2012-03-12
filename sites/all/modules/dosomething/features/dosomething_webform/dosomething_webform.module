@@ -35,6 +35,74 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
       }
       $form['#validate'][] = 'dosomething_webform_webform_validate';
     }
+    // Alter the button values for all webforms.
+    if (isset($form['actions']['previous'])) {
+      $form['actions']['previous']['#value'] = t('BACK');
+    }
+    if (isset($form['actions']['next'])) {
+      $form['actions']['next']['#value'] = t('NEXT');
+    }
+    if (isset($form['actions']['submit'])) {
+      $form['actions']['submit']['#value'] = t('SUBMIT');
+    }
+    if (isset($form['actions']['draft'])) {
+      $form['actions']['draft']['#value'] = t('or save draft');
+      $form['actions']['draft']['#weight'] = 100;
+    }
+    // Add page numbering to all multistep forms.
+    if (isset($form['details']['page_count']['#value']) && $form['details']['page_count']['#value'] > 1) {
+      $page_count = $form['details']['page_count']['#value'];
+      $page_num = $form['details']['page_num']['#value'];
+      $ratio = 100 * ($page_num - 1) / $page_count;
+      $form['submitted']['dosomething_webform_numbering'] = array(
+        '#weight' => -100,
+        '#type' => 'container',
+        'numbering' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'dosomething-webform-page-number',
+            ),
+          ),
+          '#children' => t('Page !page_num of !page_count', array('!page_num' => $page_num, '!page_count' => $page_count)),
+        ),
+        'percentage' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'dosomething-webform-percentage',
+            ),
+          ),
+          'ratio' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array(
+                'ratio',
+              ),
+              'data-ratio' => $ratio,
+            ),
+            'inner' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array(
+                  'inner',
+                ),
+                'style' => 'width: ' . $ratio . '%',
+              ),
+            ),
+            'label' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array(
+                  'label',
+                ),
+              ),
+              '#children' => t('!percent complete', array('!percent' => number_format($ratio, 0) . '%')),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }
 

@@ -354,7 +354,7 @@ function doit_webform_view_messages($variables) {
       // No roles are allowed to submit the form.
       $message = t('Submissions for this form are closed.');
     }
-    elseif (isset($allowed_roles[2])) {
+    elseif (isset($allowed_roles[2]) || !$user->uid) {
       // The "authenticated user" role is allowed to submit and the user is currently logged-out.
       $login = url('user/login', array('query' => drupal_get_destination()));
       $register = url('user/registration', array('query' => drupal_get_destination()));
@@ -422,3 +422,80 @@ function doit_date_part_label_date($vars) {
     return t('End Date', array(), array('context' => 'datetime'));
   }
 }
+
+
+function doit_image_formatter($variables) {
+  // dsm('doit_image_formatter');
+  // dsm($variables);
+  $item = $variables['item'];
+  $image = array(
+    'path' => $item['uri'],
+    'alt' => $item['alt'],
+  );
+
+  if (isset($item['attributes'])) {
+    $image['attributes'] = $item['attributes'];
+  }
+
+  if (isset($item['width']) && isset($item['height'])) {
+    $image['width'] = $item['width'];
+    $image['height'] = $item['height'];
+  }
+
+  // Do not output an empty 'title' attribute.
+  if (drupal_strlen($item['title']) > 0) {
+    $image['title'] = $item['title'];
+  }
+
+  if ($variables['image_style']) {
+    $image['style_name'] = $variables['image_style'];
+    $output = theme('image_style', $image);
+  }
+  else {
+    $output = theme('image', $image);
+  }
+
+  if (!empty($variables['path']['path'])) {
+    $path = $variables['path']['path'];
+    $options = $variables['path']['options'];
+    // When displaying an image inside a link, the html option must be TRUE.
+    $options['html'] = TRUE;
+    $output = l($output, $path, $options);
+  }
+
+  return $output;
+}
+
+
+function doit_field($variables) {
+  // dsm($variables);
+  $output = '';
+
+  // Render the label, if it's not hidden.
+  if (!$variables['label_hidden']) {
+    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+  }
+
+  // Render the items.
+  $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
+  foreach ($variables['items'] as $delta => $item) {
+    // dsm($variables['element']['#field_type']);
+    if ($variables['element']['#field_type'] == 'image') {
+      // dsm($item);
+      // dsm($item['#item']['title']);
+      // dsm(strlen($item['title']));
+      if (strlen($item['#item']['title']) > 0) {
+        $variables['item_attributes'][$delta] .= ' data-img-title="' . $item['#item']['title'] . '" ';
+      }
+    }
+    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+    $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
+  }
+  $output .= '</div>';
+
+  // Render the top-level DIV.
+  $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
+
+  return $output;
+}
+

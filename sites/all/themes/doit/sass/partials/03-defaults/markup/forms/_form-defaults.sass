@@ -1,33 +1,31 @@
 /* Forms --------------------------------------------------------------
 
-
-// aditional form styles
-
 .form-item,
 .form-actions
   margin: 0
 
+.form-wrapper
+  margin-bottom: $s4a
+
 fieldset
   +trailer
-  // +rhythm-borders(1px)
-  border-width: 1px
-  border-color: $gray2-trans
-  &.filter-wrapper
-    border-color: $gray4-trans
-
-legend
-  // padding: 0 0.25em
+  padding-left: 0
+  margin-left: 0
+  border: none
+  legend
+    @extend .large-profile-info
+    @extend .bold
+    padding: $s4a 0
 
 label, input[type=button], input[type=submit], button
   cursor: pointer
 
 label
   @extend .bold
-  // margin-right: 0.5em
 
-form.node-form
+form.webform-client-form
   @extend .border-and-shadow
-  padding: 12px
+  padding: $s0
 
 // General field styles
 .text-full,
@@ -43,21 +41,16 @@ form.node-form
 .textinput
   height: 27px
 
-// .ie7
-//   .region-sidebar-first
-//     input
-//       &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
-//       &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
-//       &[type=number], &[type=range], &[type=search], &[type=color]
-//         height: auto
+// Throbber position for single field height
+html.js input.form-autocomplete
+  background-position: 100% 7px
 
-// .textinput-thin
-//   width: calc-em(251px, $s0)
-//   // width: 251px
+html.js input.throbbing
+  background-position: 100% -13px
 
-// textarea
-//   @extend .textinput
-//   min-height: 8em
+// Height for collapsed fieldset
+html.js fieldset.collapsed
+  height: 3em
 
 input
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
@@ -99,7 +92,27 @@ textarea.placeholder-text
   .grippie
     border-
 
+select.form-select
+  @extend .constrain-to-parent
+  max-width: 525px
+
 // Old styles
+
+// .ie7
+//   .region-sidebar-first
+//     input
+//       &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+//       &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+//       &[type=number], &[type=range], &[type=search], &[type=color]
+//         height: auto
+
+// .textinput-thin
+//   width: calc-em(251px, $s0)
+//   // width: 251px
+
+// textarea
+//   @extend .textinput
+//   min-height: 8em
 
 // select
 //   @extend .textinput

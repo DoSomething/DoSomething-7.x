@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_polls feature.
+ */
+
+include_once('dosomething_polls.features.inc');
+
+/**
+ * Implements hook_form_FORMID_alter().
+ */
+function dosomething_polls_form_views_exposed_form_alter(&$form, $form_state) {
+  if (substr($form['#id'], 0, 32) == 'views-exposed-form-polls-landing') {
+    $form['taxonomy_vocabulary_5_tid']['#options']['All'] = $form['#info']['filter-taxonomy_vocabulary_5_tid']['label'];
+  }
+}

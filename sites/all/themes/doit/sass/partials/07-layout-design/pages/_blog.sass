@@ -1,0 +1,115 @@
+.node-type-blog
+  .print-link
+    display: none
+
+.node-blog
+  .field-name-field-picture
+    img
+      margin-bottom: 24px
+  
+.views-field-field-blog-type
+  .field-content
+    a
+      font-weight: bold
+
+.pane-blog-center
+  .pane-content
+    .views-row
+      @extend .clearfix
+      padding: 15px 0
+      +background(image_url('sidebar-title-separator-line.png') no-repeat center top)
+    .views-row-first
+      background-image: none
+    .views-field-field-picture
+      +float-left
+      margin-right: 12px
+      img
+        border: 1px solid $white
+        @extend .box-shadow-center
+    .views-field-title
+      // padding-left: 72px
+      padding-top: 0
+      font-size: $s-1
+      line-height: 14px
+      background-image: none
+    a
+      @extend .bold
+
+// .panel-outer-right
+//   .pane-title
+//     text-align: center
+//     line-height: 1.2em
+//     // margin-bottom: 12px
+//   .views-field-title
+//     @extend .bold
+//     margin-bottom: 0
+//     line-height: 2em
+//     padding-top: 12px
+//     +background(image_url('sidebar-title-separator-line.png') no-repeat center 10%)
+//   .views-row-first
+//     .views-field-title
+//       background: none
+
+#blog-archives-pane
+  h3
+    @extend .bold
+    margin-bottom: 0
+    line-height: 1em
+    padding-top: 12px
+  .views-row-first
+    .views-field-title
+      background: none
+  .liketext
+    +float-right
+
+.blog-landing-pane-post
+  background: $white
+  +box-shadow($gray2-trans 0px 0px 10px)
+  +float-left
+  @extend .clearfix
+  margin-bottom: 12px
+  width: 100%
+  min-height: 124px
+  padding-left: 12px
+  p
+    margin-bottom: 0
+  .blog-large-thumbnail
+    img
+      +float-left
+      margin-right: 12px
+      margin-left: -12px
+      border: 1px solid $white
+  .views-field-title
+    h2
+      @extend .bold
+      line-height: 1.2em
+      margin-top: 18px
+
+.blog-post-date
+  @extend .headers
+  @extend .bold
+  font-size: 14px
+  color: $gray4
+
+.page-taxonomy-term
+  .field-name-field-picture
+    img
+      @extend .box-shadow-none
+      margin-bottom: 0
+  .region-content
+    .node-teaser
+      background: $white
+      margin-bottom: 12px
+      padding: 0 12px 12px 12px
+      @extend .box-shadow-center
+      h2
+        @extend .headers
+        @extend .bold
+        a
+          @extend .views-field-title
+      .field-type-text-with-summary
+        p
+          margin-bottom: 12px
+
+
+

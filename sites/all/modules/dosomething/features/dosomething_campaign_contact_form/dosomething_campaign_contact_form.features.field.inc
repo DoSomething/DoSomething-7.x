@@ -434,6 +434,9 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'og' => array(
           'columns' => array(
@@ -449,7 +452,9 @@ function dosomething_campaign_contact_form_field_default_fields() {
       ),
       'module' => 'og',
       'no_ui' => TRUE,
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'group',
     ),

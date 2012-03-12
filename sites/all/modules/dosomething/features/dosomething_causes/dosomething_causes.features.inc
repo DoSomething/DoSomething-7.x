@@ -19,16 +19,6 @@ function dosomething_causes_ctools_plugin_api() {
 }
 
 /**
- * Implements hook_views_api().
- */
-function dosomething_causes_views_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "views" && $api == "views_default") {
-    return array("version" => "3.0");
-  }
-}
-
-/**
  * Implements hook_image_default_styles().
  */
 function dosomething_causes_image_default_styles() {
@@ -38,7 +28,7 @@ function dosomething_causes_image_default_styles() {
   $styles['issue_main'] = array(
     'name' => 'issue_main',
     'effects' => array(
-      3 => array(
+      8 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -48,7 +38,7 @@ function dosomething_causes_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '690',
+          'width' => '530',
           'height' => '264',
         ),
         'weight' => '1',

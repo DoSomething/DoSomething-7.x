@@ -227,3 +227,13 @@ function dosomething_clubs_form_submit(&$form, &$form_state) {
     user_save($user);
   }
 }
+
+/**
+* Implementation of hook_ctools_plugin_directory().
+*/
+function dosomething_clubs_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+

@@ -459,6 +459,28 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: member_photo_gallery
+  $styles['member_photo_gallery'] = array(
+    'name' => 'member_photo_gallery',
+    'effects' => array(
+      6 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '121',
+          'height' => '121',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: members_section_image
   $styles['members_section_image'] = array(
     'name' => 'members_section_image',
@@ -476,6 +498,28 @@ function dosomething_image_styles_image_default_styles() {
           'width' => '215',
           'height' => '',
           'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: my_somethings
+  $styles['my_somethings'] = array(
+    'name' => 'my_somethings',
+    'effects' => array(
+      2 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '120',
+          'height' => '120',
         ),
         'weight' => '1',
       ),
@@ -598,21 +642,20 @@ function dosomething_image_styles_image_default_styles() {
   $styles['related-posts'] = array(
     'name' => 'related-posts',
     'effects' => array(
-      1 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
+      9 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
         'module' => 'image',
-        'name' => 'image_scale',
+        'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '135',
-          'height' => '',
-          'upscale' => 0,
+          'width' => '60',
+          'height' => '60',
         ),
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );

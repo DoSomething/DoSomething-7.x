@@ -262,7 +262,7 @@ function dosomething_feedback_field_default_fields() {
       'entity_type' => 'feedback',
       'field_name' => 'field_summary',
       'label' => 'Summary',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -274,7 +274,7 @@ function dosomething_feedback_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => 0,
       ),
     ),
   );

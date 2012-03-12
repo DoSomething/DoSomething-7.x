@@ -476,6 +476,77 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
   );
 
+  // Exported field: 'node-club-field_club_group_description'
+  $fields['node-club-field_club_group_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_club_group_description',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 28,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_club_group_description',
+      'label' => 'Group Description',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '24',
+      ),
+    ),
+  );
+
   // Exported field: 'node-club-field_club_leader_birthdate'
   $fields['node-club-field_club_leader_birthdate'] = array(
     'field_config' => array(
@@ -2147,6 +2218,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Clubs Agreement');
   t('Date of birth');
   t('First Name');
+  t('Group Description');
   t('Group roles and permissions');
   t('Group type');
   t('How did you hear about Do Something Clubs?');

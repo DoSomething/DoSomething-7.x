@@ -6,6 +6,11 @@
  */
 
 define('DOSOMETHING_PROJECTS_API_LIMIT', 300);
+// The value for field_project_type's completed status.
+define('DOSOMETHING_PROJECTS_COMPLETED', 4);
+// The value for field_project_type's project idea status.
+define('DOSOMETHING_PROJECTS_IDEA', 2);
+
 
 include_once('dosomething_projects.features.inc');
 
@@ -155,13 +160,27 @@ function dosomething_projects_callback() {
  */
 function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
   // If this is a webform form and the node type is project lets hide the club
-  // field if and only if it has been set on the form and it matches the query
-  // argument.
+  // field if and only if it has been set on the form and it matches the third
+  // parameter.
+  // This uses nodereference_url module to set the default value.
   if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
-    if (!empty($form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
+    if (!empty($form['submitted']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
       && is_numeric(arg(2))
-      && arg(2) == $form['submitted']['webform_entity_form']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
-      $form['submitted']['webform_entity_form']['field_project_clubs']['#type'] = 'hidden';
+      && arg(2) == $form['submitted']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
+      $form['submitted']['field_project_clubs']['#type'] = 'hidden';
+    }
+    // If an action guide nid is in the query, default and hide the action guide field.
+    // This query string is set by dosomething_stats.counter.inc.
+    if (isset($_GET['action_guide']) && is_numeric($_GET['action_guide'])) {
+      $action_guide_wrapper = entity_metadata_wrapper('node', $_GET['action_guide']);
+      $value = $action_guide_wrapper->label() . ' ('. $action_guide_wrapper->getIdentifier() . ')';
+      $form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $value;
+      $form['submitted']['field_project_type'][LANGUAGE_NONE]['#default_value'] = DOSOMETHING_PROJECTS_IDEA;
+      // TODO: Determine if this field should also be hidden and uncomment this if so.
+      // $form['submitted']['field_action_guide_reference']['#type'] = 'hidden';
+    }
+    elseif (!isset($form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) || !$form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) {
+      $form['submitted']['field_action_guide_reference']['#type'] = 'hidden';
     }
   }
 }

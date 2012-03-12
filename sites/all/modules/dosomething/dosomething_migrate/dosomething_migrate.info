@@ -15,7 +15,6 @@ dependencies[] = dosomething_action_guide
 dependencies[] = dosomething_campaign_report_back
 dependencies[] = dosomething_campaign_sign_up
 dependencies[] = dosomething_grant_application
-dependencies[] = dosomething_intentions
 dependencies[] = dosomething_scholarship_application
 files[] = includes/base.inc
 files[] = includes/json.inc

@@ -6,9 +6,9 @@
 function dosomething_user_my_somethings_ds_current_somethings_ctools_content_types() {
   return array(
     'single' => TRUE,
-    'title' => t('DS User Current Somethings'),
+    'title' => t('DS User Doing It'),
     'icon' => 'icon_user.png',
-    'description' => t('Current Somethings on user profiled'),
+    'description' => t('Current Doing It items on user profile'),
     'required context' => new ctools_context_required(t('User'), 'user'),
     'category' => t('User'),
     'defaults' => '',
@@ -21,8 +21,8 @@ function dosomething_user_my_somethings_ds_current_somethings_ctools_content_typ
 function dosomething_user_my_somethings_ds_current_somethings_content_type_render($subtype, $conf, $panel_args, $context) {
   $uid = $context->data->uid;
   $block = new stdClass();
-  $block->title = t('My Current Somethings');
-  $elements = dosomething_user_my_somethings_display($uid, 'current');
+  $block->title = t('Doing It');
+  $elements = dosomething_user_my_somethings_display($uid, 'current', FALSE);
   $block->content = drupal_render($elements);
   return $block;
 }

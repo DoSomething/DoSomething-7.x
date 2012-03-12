@@ -23,6 +23,13 @@ function dosomething_causes_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_views_api().
+ */
+function dosomething_causes_views_api() {
+  return array("version" => "3.0");
+}
+
 function dosomething_causes_get_causes() {
   $module_path = drupal_get_path('module', 'dosomething_causes');
   $element = array(
@@ -271,3 +278,23 @@ function dosomething_causes_get_fb_preset() {
   );
   return $fb_social_preset;
 }
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function dosomething_causes_views_post_execute(&$view) {
+  if ($view->name == 'causes') {
+    $last_row = count($view->result);
+    // Use a workaround for clone since its shallow.
+    $view->result[$last_row] = unserialize(serialize($view->result[0]));
+    $newEntry = $view->result[$last_row];
+    $newEntry->dosomething_causes_link = 'suggest-a-cause';
+    $newEntry->taxonomy_term_data_name = 'Suggest a Cause';
+    $newEntry->taxonomy_term_data_description = 'Have an idea? Care about something not listed here? Tell us about it.';
+    $item['uri'] = 'public://submit_a_cause.jpg';
+    $item['alt'] = 'Suggest a Cause';
+    $item['title'] = '';
+    $newEntry->field_field_causes_image[0]['rendered'] = theme('image_formatter', array('item' => $item, 'image_style' => 'issue_main'));
+  }
+}
+

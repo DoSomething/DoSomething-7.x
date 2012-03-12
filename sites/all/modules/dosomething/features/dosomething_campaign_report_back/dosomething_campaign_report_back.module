@@ -32,7 +32,7 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
   $node = $form['#node'];
 
   // Get a shortcut to our part of the form.
-  $entity_form = &$form['submitted']['webform_entity_form'];
+  $entity_form = &$form['submitted'];
 
   // The list field that specifies which fields on this form are enabled.
   $magic_fields_field = 'field_report_back_magic_fields';

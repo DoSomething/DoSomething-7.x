@@ -11,6 +11,199 @@ function dosomething_projects_general_views_default_views() {
   $export = array();
 
   $view = new view;
+  $view->name = 'member_profile';
+  $view->description = 'Responsible for displaying photo gallery content around the site.';
+  $view->tag = 'default';
+  $view->base_table = 'webform_submissions';
+  $view->human_name = 'Photo Galleries';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Photo Gallery';
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'jcarousel';
+  $handler->display->display_options['style_options']['wrap'] = '0';
+  $handler->display->display_options['style_options']['skin'] = '';
+  $handler->display->display_options['style_options']['visible'] = '5';
+  $handler->display->display_options['style_options']['scroll'] = '1';
+  $handler->display->display_options['style_options']['auto'] = '0';
+  $handler->display->display_options['style_options']['autoPause'] = 1;
+  $handler->display->display_options['style_options']['easing'] = '';
+  $handler->display->display_options['style_options']['vertical'] = 0;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['hide_empty'] = 1;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  /* Relationship: Webform submissions: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = 0;
+  /* Field: Field: Picture */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'member_photo_gallery',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
+  /* Filter criterion: Webform submissions: Draft */
+  $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['value'] = array(
+    0 => '0',
+    1 => '1',
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'nid';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project_report' => 'project_report',
+  );
+  /* Filter criterion: Field: Picture (field_picture:fid) */
+  $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
+
+  /* Display: Member project gallery pane */
+  $handler = $view->new_display('panel_pane', 'Member project gallery pane', 'panel_pane_1');
+  $handler->display->display_options['display_description'] = 'Per member gallery displaying member\'s project images';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Webform submissions: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = 0;
+  /* Relationship: Webform submissions: User */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['required'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['relationship'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'user';
+  $handler->display->display_options['arguments']['uid']['default_argument_options']['user'] = FALSE;
+  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['uid']['not'] = 0;
+  $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Cause project gallery pane */
+  $handler = $view->new_display('panel_pane', 'Cause project gallery pane', 'panel_pane_2');
+  $handler->display->display_options['display_description'] = 'Displays project images from user submitted projects on Cause pages ';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Field: Issues (taxonomy_vocabulary_5) */
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['term_page'] = 1;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['node'] = 0;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_options']['limit'] = 0;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['taxonomy_vocabulary_5_tid']['not'] = 0;
+  $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Club project gallery pane */
+  $handler = $view->new_display('panel_pane', 'Club project gallery pane', 'panel_pane_3');
+  $handler->display->display_options['display_description'] = 'Displays project images from club related projects on Club pages ';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_project_clubs_nid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Webform submissions: Draft */
+  $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['value'] = array(
+    0 => '0',
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['is_draft']['group'] = 0;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'nid';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project_report' => 'project_report',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Field: Picture (field_picture:fid) */
+  $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_picture_fid']['group'] = 0;
+  $handler->display->display_options['inherit_panels_path'] = '1';
+  $export['member_profile'] = $view;
+
+  $view = new view;
   $view->name = 'project_related_displays';
   $view->description = 'Displays related the projects';
   $view->tag = 'default';
@@ -362,7 +555,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
     'image_style' => 'project_related_thumb',
-    'image_link' => '',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
@@ -489,7 +682,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_picture']['element_class'] = 'project-related-thumb';
+  $handler->display->display_options['fields']['field_picture']['element_class'] = 'pane-narrow-thumb';
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
@@ -498,7 +691,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
     'image_style' => 'project_related_thumb',
-    'image_link' => '',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
@@ -521,29 +714,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Content: Short Description */
-  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
-  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['label'] = '';
-  $handler->display->display_options['fields']['field_description']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_description']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_description']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_description']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_description']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_description']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_description']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_description']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_description']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Has taxonomy term ID */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';

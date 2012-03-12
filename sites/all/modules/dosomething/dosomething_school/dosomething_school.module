@@ -293,7 +293,7 @@ function dosomething_school_form_alter(&$form, &$form_state, $form_id) {
     if (strpos($form_id, 'webform_client_form') !== FALSE) {
       $types = array('scholarship_application', 'grant_application');
       if (in_array($form['#node']->type, $types)) {
-        $form['submitted']['webform_entity_form']['field_webform_school']['#access'] = FALSE;
+        $form['submitted']['field_webform_school']['#access'] = FALSE;
 
         // We also want to auto set the school reference on the user's profile
         // if they change it here.

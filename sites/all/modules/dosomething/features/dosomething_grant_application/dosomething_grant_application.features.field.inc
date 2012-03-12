@@ -131,6 +131,10 @@ function dosomething_grant_application_field_default_fields() {
           'lng_field' => 'lng',
         ),
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -203,6 +207,10 @@ function dosomething_grant_application_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -287,6 +295,10 @@ function dosomething_grant_application_field_default_fields() {
         'default_value_code' => '',
         'default_value_code2' => '',
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -347,6 +359,10 @@ function dosomething_grant_application_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -500,6 +516,10 @@ function dosomething_grant_application_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -575,6 +595,10 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -641,6 +665,10 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -714,6 +742,10 @@ function dosomething_grant_application_field_default_fields() {
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 0,
@@ -786,6 +818,10 @@ function dosomething_grant_application_field_default_fields() {
         'default_value_code' => '',
         'default_value_code2' => '',
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -828,6 +864,12 @@ function dosomething_grant_application_field_default_fields() {
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'field_essay_build_it:value',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(
             'project_report' => 'project_report',
           ),
@@ -862,6 +904,10 @@ function dosomething_grant_application_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -925,6 +971,10 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -998,6 +1048,10 @@ function dosomething_grant_application_field_default_fields() {
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 0,
@@ -1062,6 +1116,10 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 0,
@@ -1127,6 +1185,10 @@ function dosomething_grant_application_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -1202,6 +1264,10 @@ function dosomething_grant_application_field_default_fields() {
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
+        'webform_entity' => array(
+          'pid' => '',
+          'weight' => '',
+        ),
       ),
       'widget' => array(
         'active' => 0,

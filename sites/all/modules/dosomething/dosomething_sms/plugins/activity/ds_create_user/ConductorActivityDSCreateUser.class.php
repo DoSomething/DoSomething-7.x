@@ -5,6 +5,9 @@
  */
 class ConductorActivityDSCreateUser extends ConductorActivity {
 
+  const OLD_PERSON_ROLE = 'old person';
+  const OLD_PERSON_RID = 20;
+
   public function option_definition() {
     $options = parent::option_definition();
     // The attribute to set in context.
@@ -29,7 +32,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     // If the user is younger than 13 (give or take a day), reject the
     // application (that's (60 * 60 * 24 * 365 * 13) - (60 * 60 * 24)).
     if ($birthday !== FALSE && $birthday > (REQUEST_TIME - 409881600)) {
-      $state->setContext('sms_response', t('We\'re sorry, you must be 13 to register!'));
+      $state->setContext('sms_response', t('Sorry if you\'re under 13 you must register through DoSomething.org.'));
       $state->markCompeted();
       return;
     }
@@ -48,6 +51,12 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     while (user_load_by_name($account->name)) {
       $suffix++;
       $account->name = $base_name . '-' . $suffix;
+    }
+
+    // If the user is older than 26 add the old person role.
+    // application (that's (60 * 60 * 24 * 365 * 26)).
+    if ($birthday !== FALSE && $birthday < (REQUEST_TIME - 819936000)) {
+      $account->roles[self::OLD_PERSON_RID] = self::OLD_PERSON_ROLE;
     }
 
     user_save($account);
@@ -78,6 +87,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
 
     $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $firstName;
     $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $lastName;
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
 
     profile2_save($profile);
 

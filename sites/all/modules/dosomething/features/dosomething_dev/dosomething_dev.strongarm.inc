@@ -42,7 +42,7 @@ function dosomething_dev_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'stage_file_proxy_origin';
-  $strongarm->value = 'http://zivtech:zivtech@dosomething.zivtech.com';
+  $strongarm->value = 'http://zivtech:zivtech@dosomething.dev.zivtech.com';
   $export['stage_file_proxy_origin'] = $strongarm;
 
   $strongarm = new stdClass();

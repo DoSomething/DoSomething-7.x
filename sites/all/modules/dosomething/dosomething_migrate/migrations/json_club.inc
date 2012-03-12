@@ -50,7 +50,6 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
 
     $this->addUnmigratedSources(array(
       'nid',
-
       'field_club_expected_members',
       'field_club_member_1_email',
       'field_club_picture',
@@ -83,14 +82,8 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
       'revision',
       'log',
       'tnid',
-      /*'group_club_leader_info',
-      'group_what_campaigns',
-      'group_where_should_we_send_the',
-      'group_club_photos_and_albums',
-      'group_clubs_agreement',*/
       'og_roles_permissions',
       'og_node_link',
-
       'group_group',
       'field_club_verified',
       'comment',

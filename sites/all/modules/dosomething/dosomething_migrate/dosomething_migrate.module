@@ -22,7 +22,6 @@ function dosomething_migrate_set_webform_types() {
     'campaign_sign_up',
     'grant_application',
     'scholarship_application',
-    'action_guide',
     'project_report',
   );
   $webform_types = webform_variable_get('webform_node_types');
@@ -32,7 +31,6 @@ function dosomething_migrate_set_webform_types() {
     }
   }
   variable_set('webform_node_types', $webform_types);
-
 }
 
 /**
