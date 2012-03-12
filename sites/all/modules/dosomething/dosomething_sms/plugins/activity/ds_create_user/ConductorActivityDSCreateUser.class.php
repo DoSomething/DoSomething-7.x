@@ -63,6 +63,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
 
     // If birthday is is a timestampe (and they didn't send garbage) add it to
     // the profile.
+    $profile_values = array();
     if ($birthday) {
       $field_value = array(
         LANGUAGE_NONE => array(
