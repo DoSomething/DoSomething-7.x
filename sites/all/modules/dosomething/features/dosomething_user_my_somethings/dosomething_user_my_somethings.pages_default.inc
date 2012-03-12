@@ -51,7 +51,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Member Profile';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
