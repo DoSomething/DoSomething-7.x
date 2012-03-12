@@ -444,10 +444,10 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .panes-2 .panel-second a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .node-poll .poll .text, .blog-post-date, .page-taxonomy-term .region-content h2, .pane-ds-current-somethings-all h2.pane-title,
-.pane-ds-past-somethings-all h2.pane-title, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .pane-ds-current-somethings-all .something-description a,
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .node-poll .poll .text, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all h2.pane-title,
+.pane-ds-past-somethings-all h2.pane-title, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-past-somethings-all .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -472,12 +472,12 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .node-poll input[type="submit"], .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .pane-ds-current-somethings-all .something-description h2,
-.pane-ds-past-somethings-all .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .panes-2 .panel-second a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .panel-outer-right a, .vital-stats .title,
-.vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, .pane-blog-center .pane-content a, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-landing-pane-post .page-taxonomy-term .region-content h2 a h2, .page-taxonomy-term .region-content h2 .blog-landing-pane-post a h2, .blog-post-date, .page-taxonomy-term .region-content h2, .pane-ds-current-somethings-all h2.pane-title,
-.pane-ds-past-somethings-all h2.pane-title, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .pane-ds-current-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right a, .vital-stats .title,
+.vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, .pane-blog-center .pane-content a, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-landing-pane-post .page-taxonomy-term .region-content .node-teaser h2 a h2, .page-taxonomy-term .region-content .node-teaser h2 .blog-landing-pane-post a h2, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all h2.pane-title,
+.pane-ds-past-somethings-all h2.pane-title, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-past-somethings-all .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -490,7 +490,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .panes-2 .panel-second a a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, form.webform-client-form #edit-draft, .region-sidebar-first .block-menu-block .content li a {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, form.webform-client-form #edit-draft, .region-sidebar-first .block-menu-block .content li a {
   color: #18408b;
 }
 
@@ -604,11 +604,18 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
 .pane-ds-past-somethings-all .pane-narrow-thumb, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .pane-blog-center .pane-content .views-field-field-picture img {
+.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .pane-blog-center .pane-content .views-field-field-picture img, .page-taxonomy-term .region-content .node-teaser {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+}
+
+.box-shadow-none, .page-taxonomy-term .field-name-field-picture img {
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
+  box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
 }
 
 .white-border, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .pane-ds-current-somethings-all .pane-narrow-thumb,
@@ -925,13 +932,13 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
   line-height: 14px;
 }
 
-.right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content h2 a a, .page-taxonomy-term .region-content h2 .panes-2 .panel-second a a {
+.right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a {
   border-bottom: none;
 }
-.right-sidebar-headlines a:hover, .right-sidebar .headlines a:hover, .pane-narrow-block .views-field-title a:hover, .panes-2 .panel-second .views-field-title a:hover, .pane-narrow-block .page-taxonomy-term .region-content h2 a a:hover, .page-taxonomy-term .region-content h2 .pane-narrow-block a a:hover, .panes-2 .panel-second .page-taxonomy-term .region-content h2 a a:hover, .page-taxonomy-term .region-content h2 .panes-2 .panel-second a a:hover {
+.right-sidebar-headlines a:hover, .right-sidebar .headlines a:hover, .pane-narrow-block .views-field-title a:hover, .panes-2 .panel-second .views-field-title a:hover, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a:hover, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a:hover, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a:hover, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a:hover {
   border-bottom: none;
 }
-.right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-narrow-block .views-field-title a.hover, .panes-2 .panel-second .views-field-title a.hover, .pane-narrow-block .page-taxonomy-term .region-content h2 a a.hover, .page-taxonomy-term .region-content h2 .pane-narrow-block a a.hover, .panes-2 .panel-second .page-taxonomy-term .region-content h2 a a.hover, .page-taxonomy-term .region-content h2 .panes-2 .panel-second a a.hover {
+.right-sidebar-headlines a.hover, .right-sidebar .headlines a.hover, .pane-narrow-block .views-field-title a.hover, .panes-2 .panel-second .views-field-title a.hover, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a.hover, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a.hover, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a.hover, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a.hover {
   text-decoration: underline;
 }
 
@@ -2320,7 +2327,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2534,7 +2541,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -2636,13 +2643,13 @@ h2.block-title, h2.pane-title {
   text-align: center;
   line-height: 1.2em;
 }
-.panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .panel-outer-right a {
+.panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right a {
   margin-bottom: 0;
   line-height: 2em;
   padding-top: 12px;
   background: url('images/sidebar-title-separator-line.png') no-repeat center 10%;
 }
-.panel-outer-right .views-row-first .views-field-title, .panel-outer-right .views-row-first .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .panel-outer-right .views-row-first a {
+.panel-outer-right .views-row-first .views-field-title, .panel-outer-right .views-row-first .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right .views-row-first a {
   background: none;
 }
 
@@ -3168,7 +3175,7 @@ comments.fb_iframe_widget {
 .pane-blog-center .pane-content .views-field-field-picture img {
   border: 1px solid white;
 }
-.pane-blog-center .pane-content .views-field-title, .pane-blog-center .pane-content .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .pane-blog-center .pane-content a {
+.pane-blog-center .pane-content .views-field-title, .pane-blog-center .pane-content .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center .pane-content a {
   padding-top: 0;
   font-size: 10px;
   line-height: 14px;
@@ -3180,7 +3187,7 @@ comments.fb_iframe_widget {
   line-height: 1em;
   padding-top: 12px;
 }
-#blog-archives-pane .views-row-first .views-field-title, #blog-archives-pane .views-row-first .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 #blog-archives-pane .views-row-first a {
+#blog-archives-pane .views-row-first .views-field-title, #blog-archives-pane .views-row-first .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 #blog-archives-pane .views-row-first a {
   background: none;
 }
 #blog-archives-pane .liketext {
@@ -3211,7 +3218,7 @@ comments.fb_iframe_widget {
   margin-left: -12px;
   border: 1px solid white;
 }
-.blog-landing-pane-post .views-field-title h2, .blog-landing-pane-post .page-taxonomy-term .region-content h2 a h2, .page-taxonomy-term .region-content h2 .blog-landing-pane-post a h2 {
+.blog-landing-pane-post .views-field-title h2, .blog-landing-pane-post .page-taxonomy-term .region-content .node-teaser h2 a h2, .page-taxonomy-term .region-content .node-teaser h2 .blog-landing-pane-post a h2 {
   line-height: 1.2em;
   margin-top: 18px;
 }
@@ -3221,7 +3228,12 @@ comments.fb_iframe_widget {
   color: #807a75;
 }
 
-.page-taxonomy-term .region-content .field-type-text-with-summary p {
+.page-taxonomy-term .region-content .node-teaser {
+  background: white;
+  margin-bottom: 12px;
+  padding: 0 12px;
+}
+.page-taxonomy-term .region-content .node-teaser .field-type-text-with-summary p {
   margin-bottom: 12px;
 }
 
@@ -3239,9 +3251,9 @@ comments.fb_iframe_widget {
   top: 265px;
   right: 0;
 }
-.pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2 .pane-ds-current-somethings-all .something-description a,
+.pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content h2 a, .page-taxonomy-term .region-content h2
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-past-somethings-all .something-description a {
   font-size: 21px;
 }

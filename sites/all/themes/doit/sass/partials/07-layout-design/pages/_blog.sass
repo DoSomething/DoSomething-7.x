@@ -92,15 +92,23 @@
   color: $gray4
 
 .page-taxonomy-term
+  .field-name-field-picture
+    img
+      @extend .box-shadow-none
   .region-content
-    h2
-      @extend .headers
-      @extend .bold
-      a
-        @extend .views-field-title
-    .field-type-text-with-summary
-      p
-        margin-bottom: 12px
+    .node-teaser
+      background: $white
+      margin-bottom: 12px
+      padding: 0 12px
+      @extend .box-shadow-center
+      h2
+        @extend .headers
+        @extend .bold
+        a
+          @extend .views-field-title
+      .field-type-text-with-summary
+        p
+          margin-bottom: 12px
 
 
 
