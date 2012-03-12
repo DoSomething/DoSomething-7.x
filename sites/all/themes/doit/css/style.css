@@ -3228,10 +3228,13 @@ comments.fb_iframe_widget {
   color: #807a75;
 }
 
+.page-taxonomy-term .field-name-field-picture img {
+  margin-bottom: 0;
+}
 .page-taxonomy-term .region-content .node-teaser {
   background: white;
   margin-bottom: 12px;
-  padding: 0 12px;
+  padding: 0 12px 12px 12px;
 }
 .page-taxonomy-term .region-content .node-teaser .field-type-text-with-summary p {
   margin-bottom: 12px;
