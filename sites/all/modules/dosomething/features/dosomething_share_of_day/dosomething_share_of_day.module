@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_share_of_day feature.
+ */
+
+include_once('dosomething_share_of_day.features.inc');
