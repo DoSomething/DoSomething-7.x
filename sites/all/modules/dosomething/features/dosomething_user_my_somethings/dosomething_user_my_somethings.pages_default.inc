@@ -280,7 +280,10 @@ user/*/picks',
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'pane-ds-editors-picks-all',
+    );
     $pane->extras = array();
     $pane->position = 4;
     $display->content['new-9'] = $pane;
