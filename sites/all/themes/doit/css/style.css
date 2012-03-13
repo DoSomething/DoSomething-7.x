@@ -430,14 +430,14 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .member-stats-label, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .member-profile .mem-stat {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .large-profile-info, fieldset legend, .vital-stats .title,
-.vital-stats .name, .medium-profile-info, .member-stats, .member-stats-label, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
+.vital-stats .name, .member-profile .mem-name, .medium-profile-info, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], form.webform-client-form #edit-next,
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .node-poll input[type="submit"], .go-button-logo, .apps-grid .apps-box .apps-link a, .share-of-the-day, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
@@ -474,7 +474,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .action-finder-list .unimage-wrapper h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right a, .vital-stats .title,
-.vital-stats .name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, .pane-blog-center .pane-content a, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-landing-pane-post .page-taxonomy-term .region-content .node-teaser h2 a h2, .page-taxonomy-term .region-content .node-teaser h2 .blog-landing-pane-post a h2, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all h2.pane-title,
+.vital-stats .name, .member-profile .mem-name, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, .pane-blog-center .pane-content a, #blog-archives-pane h3, .blog-landing-pane-post .views-field-title h2, .blog-landing-pane-post .page-taxonomy-term .region-content .node-teaser h2 a h2, .page-taxonomy-term .region-content .node-teaser h2 .blog-landing-pane-post a h2, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
 .pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
@@ -604,7 +604,7 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
 .pane-ds-past-somethings-all .pane-narrow-thumb, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .pane-blog-center .pane-content .views-field-field-picture img, .page-taxonomy-term .region-content .node-teaser {
+.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .pane-blog-center .pane-content .views-field-field-picture img, .page-taxonomy-term .region-content .node-teaser {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -622,7 +622,7 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
 .pane-ds-past-somethings-all .pane-narrow-thumb, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .field-name-field-picture img {
+.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .field-name-field-picture img {
   border: 1px white solid;
 }
 
@@ -663,16 +663,12 @@ h3.subhead {
 
 /* MORE SPECIFIC EXTENDABLES */
 .large-profile-info, fieldset legend, .vital-stats .title,
-.vital-stats .name {
+.vital-stats .name, .member-profile .mem-name {
   font-size: 21px;
 }
 
-.medium-profile-info, .member-stats, .member-stats-label {
+.medium-profile-info {
   font-size: 17px;
-}
-
-.member-stats, .member-stats-label {
-  line-height: 18px;
 }
 
 .purple-ribbon {
@@ -2748,6 +2744,65 @@ h2.block-title, h2.pane-title {
 .jcarousel-container .jcarousel-next-horizontal:hover,
 .jcarousel-container .jcarousel-next-horizontal:active {
   background-position: 0 -55px;
+}
+
+.member-profile {
+  padding: 15px;
+}
+.member-profile ul {
+  margin: 0;
+  padding: 0;
+}
+.member-profile li {
+  list-style: none;
+}
+.member-profile .mem-img {
+  float: left;
+  height: 120px;
+  margin-right: 12px;
+  width: 120px;
+}
+.member-profile .mem-details {
+  float: left;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  width: 230px;
+}
+.member-profile .mem-name {
+  line-height: 23px;
+}
+.member-profile .upper {
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
+  padding-bottom: 5px;
+}
+.member-profile .lower {
+  padding-top: 5px;
+}
+.member-profile .mem-clubs li {
+  display: inline;
+  margin: 0;
+}
+.member-profile .mem-clubs li:after {
+  content: ", ";
+}
+.member-profile .mem-clubs li:last-of-type:after,
+.member-profile .mem-clubs li .last:after {
+  content: "";
+}
+.member-profile .mem-stat {
+  letter-spacing: 0;
+  margin-left: 20px;
+}
+.member-profile .mem-since {
+  margin-left: 25px;
+}
+.member-profile .update-profile {
+  font-size: 10px;
+  font-family: "Trebuchet MS", sans-serif;
 }
 
 .ui-dialog {

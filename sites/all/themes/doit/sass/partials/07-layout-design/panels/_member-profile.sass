@@ -1,0 +1,52 @@
+////////////////////////////
+// MEMBER PROFILE PANE
+// Variation of dosomething-stats on /user
+////////////////////////////
+
+.member-profile
+  padding: $s2
+  ul
+    margin: 0
+    padding: 0
+  li
+    list-style: none
+  .dosomething-login-percentage
+  .mem-img
+    @extend .border-and-shadow
+    float: left
+    height: 120px
+    margin-right: $s0
+    width: 120px
+  .mem-details
+    float: left
+    font-family: $font-headline
+    font-size: $s2
+    width: 230px
+  .mem-name
+    @extend .large-profile-info
+    @extend .bold
+    line-height: $s6
+  .upper
+    +ds-bevel-single
+    padding-bottom: $s-2
+  .lower
+    padding-top: $s-2
+  .mem-clubs
+    li
+      display: inline
+      margin: 0
+      &:after
+        content: ', '
+      &:last-of-type,
+      .last
+        &:after
+          content: ''
+  .mem-stat
+    letter-spacing: 0
+    margin-left: 20px
+    @extend .caps
+  .mem-since
+    margin-left: 25px
+  .update-profile
+    font-size: $s-1
+    font-family: $font-body

@@ -288,12 +288,15 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
 /**
  * Get the markup for a list of user's clubs (sidebar version). Renamed 'Done It' for theming purposes.
  */
-function dosomething_user_my_somethings_clubs() {
+function dosomething_user_my_somethings_clubs($account = NULL) {
   global $user;
+  if (empty($account)) {
+    $account = clone $user;
+  }
   $items = array();
 
   // TODO: It would be nice to cache these memberships.
-  $groups = dosomething_user_my_somethings_get_user_group_memberships($user->uid, 'club');
+  $groups = dosomething_user_my_somethings_get_user_group_memberships($account->uid, 'club');
   if (count($groups)) {
     foreach ($groups as $group) {
      $items[] = l(filter_xss($group->title), 'node/' . $group->nid);
@@ -570,9 +573,14 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $account = $variables['account'];
   $profile = entity_metadata_wrapper('profile2', $variables['profile']);
 
+  $variables['member_fullname'] = dosomething_user_my_somethings_get_full_name($account);
   $variables['member_status'] = dosomething_user_my_somethings_user_role($account);
-  $variables['member_since'] = date('m/Y', $account->created);
-  $variables['member_friends'] = $variables['dosomething_friends'];
+  $variables['member_since'] = date('m/d/Y', $account->created);
+  $variables['member_clubs'] = dosomething_user_my_somethings_clubs($account);
+  $variables['member_clubs']['title']['#access'] = FALSE;
+  $profile_completion = dosomething_user_my_somethings_profile_completion();
+  $variables['member_percentage'] = $profile_completion['percentage'];
+  $variables['member_school'] = $profile->field_school_reference->value();
 
   // Build the hometown value out of city and state.
   $address = $profile->field_user_address->value();
