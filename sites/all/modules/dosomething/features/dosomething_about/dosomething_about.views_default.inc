@@ -236,7 +236,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 1;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  $handler->display->display_options['path'] = 'about-us';
+  $handler->display->display_options['path'] = 'about';
   $export['about_us'] = $view;
 
   return $export;
