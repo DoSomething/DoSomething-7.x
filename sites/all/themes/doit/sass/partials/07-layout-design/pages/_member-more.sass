@@ -4,7 +4,8 @@
 // image teaser module
 ////////////////////////////
 .pane-ds-current-somethings-all,
-.pane-ds-past-somethings-all
+.pane-ds-past-somethings-all,
+.pane-ds-editors-picks-all
   @extend .two-column-grid
   h2.pane-title
     @extend .headers
@@ -13,11 +14,11 @@
     display: inline
     font-size: $s5
     letter-spacing: 0
-    background-color: transparent !important
-    padding: 0 !important
+    background-color: transparent
+    padding: 0
   a.back
     position: absolute
-    top: 265px
+    top: 244px
     right: 0
   .views-row
     @extend .image-teaser-module
@@ -29,3 +30,14 @@
       @extend .headers
       @extend .bold
       font-size: $s5
+
+.pane-ds-editors-picks-all
+  .item-list
+    ul
+      margin: 0
+      padding: 0
+      li
+        list-style: none
+        margin: 0 0 12px 0
+  a.back
+    top: -25px

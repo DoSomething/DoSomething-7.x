@@ -721,7 +721,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
     else {
       if (count($all_somethings) > 4) {
         $path = ($era == 'current') ? 'doing-it' : 'done-it';
-        $more_link = l('More »', 'user/' . $uid . '/' . $path);
+        $more_link = l('More >>', 'user/' . $uid . '/' . $path);
       }
       $all_somethings = array_slice($all_somethings, 0, 4);
       $image_style = 'project_related_thumb';
