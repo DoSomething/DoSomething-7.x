@@ -1,6 +1,6 @@
 <div class="dosomething-stats member-profile">
   <?php print render($member_percentage); ?>
-  <div>
+  <div class="mem-profile">
     <img class="mem-img" />
     <div class="mem-details">
       <span class="mem-name"><?php print $member_fullname; ?></span>

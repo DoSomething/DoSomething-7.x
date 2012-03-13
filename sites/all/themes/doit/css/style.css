@@ -490,7 +490,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, form.webform-client-form #edit-draft, .region-sidebar-first .block-menu-block .content li a {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .content .h1, .content h1, .content .h2, .content h2, .content .h3, .content h3, .content .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .profile-footer .content .complete-profile, .content .h4, .content h4, .content .h5, .content .h6, form.webform-client-form #edit-draft, .region-sidebar-first .block-menu-block .content li a, .member-profile .dosomething-login-percentage .label {
   color: #18408b;
 }
 
@@ -579,7 +579,7 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
   color: red;
 }
 
-.small, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label {
+.small, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .member-profile .dosomething-login-percentage .label {
   font-size: 10px;
 }
 
@@ -1696,7 +1696,7 @@ form.webform-client-form #edit-submitted-dosomething-webform-numbering .dosometh
 form.webform-client-form #edit-submitted-dosomething-webform-numbering .dosomething-webform-percentage .inner {
   background-color: #502862;
   height: 7px;
-  margin: 0;
+  margin: 0 0 2px 0;
   max-width: 100%;
   width: 0%;
 }
@@ -2436,18 +2436,16 @@ h2.block-title, h2.pane-title {
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-percentage {
   background-color: white;
-  border: 1px #d4d2d1 solid;
   margin-top: 15px;
   margin-bottom: 5px;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio {
-  height: 5px;
-  width: 207px;
+  height: 7px;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .inner {
   background-color: #502862;
-  height: 6px;
-  margin: -2px 0 5px -2px;
+  height: 7px;
+  margin: 0 0 2px 0;
   max-width: 100%;
   width: 0%;
 }
@@ -2746,6 +2744,10 @@ h2.block-title, h2.pane-title {
   background-position: 0 -55px;
 }
 
+.pane-ds-profile-info {
+  margin-bottom: 21px;
+}
+
 .member-profile {
   padding: 15px;
 }
@@ -2755,6 +2757,23 @@ h2.block-title, h2.pane-title {
 }
 .member-profile li {
   list-style: none;
+}
+.member-profile .dosomething-login-percentage {
+  background-color: white;
+  border: 1px #d4d2d1 solid;
+}
+.member-profile .dosomething-login-percentage .ratio {
+  height: 7px;
+}
+.member-profile .dosomething-login-percentage .inner {
+  background-color: #502862;
+  height: 7px;
+  margin: 0 0 2px 0;
+  max-width: 100%;
+  width: 0%;
+}
+.member-profile .mem-profile {
+  margin-top: 28px;
 }
 .member-profile .mem-img {
   float: left;
@@ -2801,8 +2820,8 @@ h2.block-title, h2.pane-title {
   margin-left: 25px;
 }
 .member-profile .update-profile {
-  font-size: 10px;
   font-family: "Trebuchet MS", sans-serif;
+  font-size: 10px;
 }
 
 .ui-dialog {
