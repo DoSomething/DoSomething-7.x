@@ -230,7 +230,7 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_causes_image';
-  $handler->display->display_options['style_options']['fields']['title'] = 'name';
+  $handler->display->display_options['style_options']['fields']['title'] = 'dosomething_causes_link_1';
   $handler->display->display_options['style_options']['fields']['text'] = 'description';
   $handler->display->display_options['style_options']['fields']['link'] = 'dosomething_causes_link';
   $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
@@ -262,7 +262,7 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['fields']['name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = 1;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = 0;
   /* Field: Taxonomy term: Image */
   $handler->display->display_options['fields']['field_causes_image']['id'] = 'field_causes_image';
   $handler->display->display_options['fields']['field_causes_image']['table'] = 'field_data_field_causes_image';
@@ -387,10 +387,11 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['fields']['tid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['tid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['tid']['format_plural'] = 0;
-  /* Field: Global: DoSomething Cause Link */
+  /* Field: Go link */
   $handler->display->display_options['fields']['dosomething_causes_link']['id'] = 'dosomething_causes_link';
   $handler->display->display_options['fields']['dosomething_causes_link']['table'] = 'views';
   $handler->display->display_options['fields']['dosomething_causes_link']['field'] = 'dosomething_causes_link';
+  $handler->display->display_options['fields']['dosomething_causes_link']['ui_name'] = 'Go link';
   $handler->display->display_options['fields']['dosomething_causes_link']['label'] = '';
   $handler->display->display_options['fields']['dosomething_causes_link']['alter']['text'] = 'taxonomy/term/[tid]';
   $handler->display->display_options['fields']['dosomething_causes_link']['alter']['make_link'] = 0;
@@ -409,6 +410,32 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['fields']['dosomething_causes_link']['hide_empty'] = 0;
   $handler->display->display_options['fields']['dosomething_causes_link']['empty_zero'] = 0;
   $handler->display->display_options['fields']['dosomething_causes_link']['hide_alter_empty'] = 0;
+  /* Field: Title link */
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['id'] = 'dosomething_causes_link_1';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['table'] = 'views';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['field'] = 'dosomething_causes_link';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['ui_name'] = 'Title link';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['label'] = '';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['text'] = '[name]';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['path'] = 'taxonomy/term/[tid]';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link_1']['dosomething_causes_link_type'] = 'title';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Taxonomy term: Parent term */
   $handler->display->display_options['arguments']['parent']['id'] = 'parent';
