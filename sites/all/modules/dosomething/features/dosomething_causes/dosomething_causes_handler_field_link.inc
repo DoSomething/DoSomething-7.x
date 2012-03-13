@@ -23,10 +23,12 @@ class dosomething_causes_handler_field_link extends views_handler_field_custom {
   function render($values) {
     // If we set a custom value, use that.
     if (!empty($values->dosomething_causes_link)) {
+      // If this is on the 'Go' link then return the link.
       if ($this->options['dosomething_causes_link_type'] == 'go') {
         $this->options['alter'] = array();
         return $values->dosomething_causes_link;
       }
+      // Otherwise, just set the path.
       $this->options['alter']['path'] = $values->dosomething_causes_link;
     }
 
