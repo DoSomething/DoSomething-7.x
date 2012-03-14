@@ -10,7 +10,7 @@
 function dosomething_fb_social_plugins_fb_social_default_presets() {
   $export = array();
 
-  $fb_social_preset = new stdClass;
+  $fb_social_preset = new stdClass();
   $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
   $fb_social_preset->api_version = 1;
   $fb_social_preset->name = 'FB Activity Feed';
@@ -31,7 +31,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   );
   $export['FB Activity Feed'] = $fb_social_preset;
 
-  $fb_social_preset = new stdClass;
+  $fb_social_preset = new stdClass();
   $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
   $fb_social_preset->api_version = 1;
   $fb_social_preset->name = 'FB Comments';
@@ -134,7 +134,43 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   );
   $export['FB Comments'] = $fb_social_preset;
 
-  $fb_social_preset = new stdClass;
+  $fb_social_preset = new stdClass();
+  $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
+  $fb_social_preset->api_version = 1;
+  $fb_social_preset->name = 'FB Facepile General';
+  $fb_social_preset->description = 'Facepile used across site';
+  $fb_social_preset->plugin_type = 'facepile';
+  $fb_social_preset->settings = array(
+    'block' => 1,
+  );
+  $fb_social_preset->fb_attrs = array(
+    'href' => 'https://www.facebook.com/dosomething',
+    'size' => 'small',
+    'width' => '144',
+    'numrows' => '2',
+    'colorscheme' => 'light',
+  );
+  $export['FB Facepile General'] = $fb_social_preset;
+
+  $fb_social_preset = new stdClass();
+  $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
+  $fb_social_preset->api_version = 1;
+  $fb_social_preset->name = 'FB Facepile Profile';
+  $fb_social_preset->description = 'Facepile on member profile';
+  $fb_social_preset->plugin_type = 'facepile';
+  $fb_social_preset->settings = array(
+    'block' => 1,
+  );
+  $fb_social_preset->fb_attrs = array(
+    'href' => 'https://www.facebook.com/dosomething',
+    'size' => 'small',
+    'width' => '264',
+    'numrows' => '2',
+    'colorscheme' => 'light',
+  );
+  $export['FB Facepile Profile'] = $fb_social_preset;
+
+  $fb_social_preset = new stdClass();
   $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
   $fb_social_preset->api_version = 1;
   $fb_social_preset->name = 'FB Like';
@@ -242,7 +278,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   );
   $export['FB Like'] = $fb_social_preset;
 
-  $fb_social_preset = new stdClass;
+  $fb_social_preset = new stdClass();
   $fb_social_preset->disabled = FALSE; /* Edit this to true to make a default fb_social_preset disabled initially */
   $fb_social_preset->api_version = 1;
   $fb_social_preset->name = 'small_like';
