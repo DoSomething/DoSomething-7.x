@@ -146,7 +146,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   $fb_social_preset->fb_attrs = array(
     'href' => 'https://www.facebook.com/dosomething',
     'size' => 'small',
-    'width' => '144',
+    'width' => '156',
     'numrows' => '2',
     'colorscheme' => 'light',
   );
@@ -164,7 +164,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   $fb_social_preset->fb_attrs = array(
     'href' => 'https://www.facebook.com/dosomething',
     'size' => 'small',
-    'width' => '264',
+    'width' => '286',
     'numrows' => '2',
     'colorscheme' => 'light',
   );
