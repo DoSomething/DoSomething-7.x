@@ -8,6 +8,38 @@
   @extend .border-and-shadow
   @extend .clearfix
   padding: 33px 23px 15px 23px
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+  li
+    list-style: none
+
+// Styling for the left side member details
+.dosomething-member-facts
+  float: left
+  font-family: $font-headline
+  font-size: $s2
+  h2
+    @extend .large-profile-info
+    @extend .bold
+    @extend .black
+    line-height: $s6
+  .dosomething-member-misc
+    list-style: none
+    li
+      margin: 0
+    .item-list ul li
+      display: inline
+      list-style: none
+      margin: 0
+      padding: 0
+      &:after
+        content: ', '
+      &:last-of-type,
+      .last
+        &:after
+          content: ''
 
 // Styling for the right side labels and counter
 .vital-stats
