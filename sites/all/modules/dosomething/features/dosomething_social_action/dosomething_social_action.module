@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_social_action feature.
+ */
+
+include_once('dosomething_social_action.features.inc');
