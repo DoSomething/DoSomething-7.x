@@ -13,11 +13,13 @@ function dosomething_migrate_drush_help($section) {
     case 'drush:dosomething-migrate-review':
       return dt('Review some random records from one or more migrations');
     case 'dosomething-migrate-update-grant-judge':
-      return db('Update the references on grant_judge nodes to point to the webform submissions.');
+      return dt('Update the references on grant_judge nodes to point to the webform submissions.');
     case 'dosomething-migrate-update-noderefs':
       return dt('Update the references on webform submissions on nodes of type "scholarship application" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
     case 'dosomething-migrate-noderef-to-entityref-update':
       return dt('Update references on nodes of type "project_update", "grant_alumni", "final_grant_update", "awards_archive", "dsaward_app" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
+    case 'dosomething-sql-profile-rollback':
+      return dt('temp function to help rollback profiles');
   }
 }
 
@@ -48,8 +50,29 @@ function dosomething_migrate_drush_command() {
     'description' => 'Update the node references and convert them to webform references',
     'aliases' => array('dsmneu'),
   );
+  $items['dosomething-migrate-sql-profile-rollback'] = array(
+    'description' => 'temp function to help rollback profiles',
+    'aliases' => array('dsspr'),
+  );
   return $items;
 }
+
+function drush_dosomething_migrate_sql_profile_rollback() {
+  $confirm = drush_confirm('Are you sure you want to delete all profiles. This cannot be undone.');
+  if ($confirm === FALSE) {
+    return;
+  }
+  drush_print('deleting all profiles -- this is not a joke.');
+  $pids = db_select('profile', 'p')
+    ->fields('p', array('pid'))
+    ->execute()
+    ->fetchCol();
+  $chunks = array_chunk($pids, 50);
+  foreach ($chunks as $chunk) {
+    profile2_delete_multiple($chunk);
+  }
+}
+
 
 function drush_dosomething_migrate_review($args = NULL) {
   try {
