@@ -298,3 +298,23 @@ function dosomething_causes_views_post_execute(&$view) {
   }
 }
 
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function dosomething_causes_ctools_plugin_type() {
+  return array(
+    'causes_filter' => array(
+      'load themes' => TRUE,
+      'cache' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dosomething_causes_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
