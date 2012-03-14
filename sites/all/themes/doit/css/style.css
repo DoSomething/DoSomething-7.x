@@ -609,20 +609,20 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
-.box-shadow, .apps-grid .apps-box, .field-name-field-picture img {
+.box-shadow, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.pane-ds-past-somethings-all .pane-narrow-thumb,
+.pane-ds-editors-picks-all .pane-narrow-thumb, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-ds-current-somethings-all .something-description,
+.pane-ds-past-somethings-all .something-description,
+.pane-ds-editors-picks-all .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img,
+.pane-narrow-block .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .apps-grid .apps-box, .field-name-field-picture img {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
 }
 
-.box-shadow-center, .border-and-shadow, .image-teaser-module-image, .action-finder-list .views-field-field-picture, .pane-ds-current-somethings-all .pane-narrow-thumb,
-.pane-ds-past-somethings-all .pane-narrow-thumb,
-.pane-ds-editors-picks-all .pane-narrow-thumb, .image-teaser-module-teaser, .action-finder-list .unimage-wrapper, .pane-ds-current-somethings-all .something-description,
-.pane-ds-past-somethings-all .something-description,
-.pane-ds-editors-picks-all .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img,
-.pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .pane-blog-center .pane-content .views-field-field-picture img, .page-taxonomy-term .region-content .node-teaser {
+.box-shadow-center, .border-and-shadow-center, .pane-blog-center .pane-content .views-field-field-picture img, .page-taxonomy-term .region-content .node-teaser {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -642,7 +642,7 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .field-name-field-picture img {
+.panes-2 .panel-second .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .node-type-action-guide .field-type-image img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .border-and-shadow-center, .field-name-field-picture img {
   border: 1px white solid;
 }
 
