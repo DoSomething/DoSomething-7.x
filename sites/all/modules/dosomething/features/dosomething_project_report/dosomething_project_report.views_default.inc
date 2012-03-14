@@ -95,38 +95,6 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['field_embedded_video']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_embedded_video']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_embedded_video']['field_api_classes'] = 0;
-  /* Field: Content: Project Photo */
-  $handler->display->display_options['fields']['field_project_photo']['id'] = 'field_project_photo';
-  $handler->display->display_options['fields']['field_project_photo']['table'] = 'field_data_field_project_photo';
-  $handler->display->display_options['fields']['field_project_photo']['field'] = 'field_project_photo';
-  $handler->display->display_options['fields']['field_project_photo']['label'] = '';
-  $handler->display->display_options['fields']['field_project_photo']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_project_photo']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_project_photo']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_project_photo']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_project_photo']['settings'] = array(
-    'image_style' => '',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_project_photo']['group_rows'] = 1;
-  $handler->display->display_options['fields']['field_project_photo']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_project_photo']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['delta_first_last'] = 0;
-  $handler->display->display_options['fields']['field_project_photo']['field_api_classes'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

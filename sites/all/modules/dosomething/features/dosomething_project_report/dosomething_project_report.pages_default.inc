@@ -115,23 +115,14 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'webform_submission_entity:field_picture';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_photo_slider-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'image',
-      'formatter_settings' => array(
-        'image_style' => 'content_main',
-        'image_link' => '',
+      'context' => array(
+        0 => 'argument_entity_id:webform_submission_entity_1',
       ),
-      'context' => 'argument_entity_id:webform_submission_entity_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'delta_limit' => '0',
-      'delta_offset' => '0',
-      'delta_reversed' => 0,
     );
     $pane->cache = array();
     $pane->style = array(
