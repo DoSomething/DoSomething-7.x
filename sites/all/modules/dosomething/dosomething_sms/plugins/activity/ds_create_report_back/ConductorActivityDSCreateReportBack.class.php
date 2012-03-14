@@ -80,7 +80,8 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
       $state->setContext('sms_response', t('Thanks!  We are thrilled to hear about your project!'));
     }
     else {
-      $state->setContext('sms_response', t('Thanks!  We\'d love to learn more about your, to register text ZIVTECH to 38383!'));
+      // TODO Update me to the final text!
+      $state->setContext('sms_response', t('Thanks!  We\'d love to learn more about your, to register text ZIVTECH to 30644!'));
     }
 
     $wrapper->save();
