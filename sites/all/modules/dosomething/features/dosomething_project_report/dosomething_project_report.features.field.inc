@@ -806,6 +806,12 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'field_essay_build_it:value',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(
             'project_report' => 'project_report',
           ),
