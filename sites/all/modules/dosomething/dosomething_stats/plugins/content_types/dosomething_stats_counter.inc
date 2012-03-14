@@ -106,23 +106,6 @@ function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $
       'value' => $count,
     );
   }
-  elseif ($entity_type == 'webform_submission_entity' && $bundle == 'project_report') {
-    $instances = field_info_instances($entity_type);
-    $field_labels = array(
-      'field_num_people_impacted' => t('People Helped'),
-      'field_update_people_involved' => t('People Involved'),
-    );
-    foreach ($argument->restrictions['type'] as $bundle) {
-      foreach ($instances[$bundle] as $field_name => $field) {
-        if (isset($field_labels[$field_name])) {
-          $items[$field_name] = array(
-            'title' => $field_labels[$field_name],
-            'value' => $wrapper->{$field_name}->value(),
-          );
-        }
-      }
-    }
-  }
 
   $output[] = array(
     '#theme' => 'dosomething_stats_counter',

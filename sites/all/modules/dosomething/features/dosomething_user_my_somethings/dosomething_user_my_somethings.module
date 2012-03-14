@@ -584,15 +584,21 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 
   // Build the hometown value out of city and state.
   $address = $profile->field_user_address->value();
+  $variables['hometown'] = dosomething_user_my_somethings_hometown($address);
+}
+
+function dosomething_user_my_somethings_hometown($address) {
   $hometown = array(
     $address['locality'],
     $address['administrative_area'],
   );
-  $variables['hometown'] = implode(', ', array_filter($hometown));
-  if (empty($variables['hometown'])) {
-    $variables['hometown'] = '-';
+  $hometown = implode(', ', array_filter($hometown));
+  if (empty($hometown)) {
+    $hometown = '-';
   }
+  return check_plain($hometown);
 }
+
 
 /**
  * Get data for /user campaign report backs for current and past my somethings.
