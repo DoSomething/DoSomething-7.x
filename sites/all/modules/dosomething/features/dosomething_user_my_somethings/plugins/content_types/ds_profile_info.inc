@@ -24,7 +24,6 @@ function dosomething_user_my_somethings_ds_profile_info_content_type_render($sub
 
     $profile = profile2_load_by_user($account->uid, 'main');
     $block->content = theme('dosomething_profile_info', array('account' => $account, 'profile' => $profile, 'dosomething_friends' => $dosomething_friends));
-    $block->content .= dosomething_user_my_somethings_counter($account->uid);
   }
   else {
     $block->content = '';

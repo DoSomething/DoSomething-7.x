@@ -581,6 +581,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $profile_completion = dosomething_user_my_somethings_profile_completion();
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_school'] = $profile->field_school_reference->value();
+  $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
 
   // Build the hometown value out of city and state.
   $address = $profile->field_user_address->value();
