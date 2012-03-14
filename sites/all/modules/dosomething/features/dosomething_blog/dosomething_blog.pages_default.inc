@@ -65,6 +65,26 @@ function dosomething_blog_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left-top';
+    $pane->type = 'block';
+    $pane->subtype = 'fb_social-FB Facepile General';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left-top'][0] = 'new-1';
+    $pane = new stdClass();
+    $pane->pid = 'new-2';
+    $pane->panel = 'left-top';
     $pane->type = 'node_content';
     $pane->subtype = 'node_content';
     $pane->shown = TRUE;
@@ -87,11 +107,11 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left-top'][0] = 'new-1';
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['left-top'][1] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-3';
     $pane->panel = 'left-top';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
@@ -122,11 +142,11 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['left-top'][1] = 'new-2';
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['left-top'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'left-top';
     $pane->type = 'block';
     $pane->subtype = 'fb_social-FB Comments';
@@ -142,11 +162,11 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['left-top'][2] = 'new-3';
+    $pane->position = 3;
+    $display->content['new-4'] = $pane;
+    $display->panels['left-top'][3] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
@@ -181,10 +201,10 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['right'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['right'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $export['node_view_blog'] = $handler;
 
