@@ -296,6 +296,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_project_photo']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_project_photo']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_project_photo']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['separator'] = '';
   $handler->display->display_options['fields']['field_project_photo']['field_api_classes'] = 0;
   /* Contextual filter: Webform submissions: Sid */
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
