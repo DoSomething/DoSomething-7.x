@@ -231,9 +231,12 @@ function dosomething_sms_load_user_by_cell($mobile) {
   $query = new EntityFieldQuery('profile2');
   $results = $query->entityCondition('entity_type', 'profile2')
     ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
+    ->deleted(FALSE)
     ->execute();
   if (count($results)) {
-    $pid = reset(reset($results))->pid;
+    $profiles = reset($results);
+    ksort($profiles);
+    $pid = array_pop($profiles)->pid;
     $profile = profile2_load($pid);
     if ($profile) {
       $uid = $profile->uid;
