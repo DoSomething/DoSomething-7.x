@@ -58,7 +58,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
-          'dosomething-project-facts',
+          'dosomething-member-facts',
         ),
       ),
       'name' => array(
@@ -79,7 +79,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
         '#items' => $misc,
         '#attributes' => array(
           'class' => array(
-            'dosomething-project-misc',
+            'dosomething-member-misc',
           ),
         ),
       ),
@@ -88,7 +88,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
     $instances = field_info_instances($entity_type);
     $field_labels = array(
       'field_num_people_impacted' => t('People Helped'),
-      'field_update_people_involved' => t('People Involved'),
+      'field_update_people_involved' => t('People Doing It'),
     );
     foreach ($argument->restrictions['type'] as $bundle) {
       foreach ($instances[$bundle] as $field_name => $field) {
