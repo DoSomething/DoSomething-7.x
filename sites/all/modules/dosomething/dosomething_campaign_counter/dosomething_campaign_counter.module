@@ -5,7 +5,7 @@
  */
 function dosomething_campaign_counter_ctools_plugin_type() {
   return array(
-    'campaign_style' => array(
+    'campaign_counter' => array(
       'load themes' => TRUE,
       'cache' => TRUE,
     ),
