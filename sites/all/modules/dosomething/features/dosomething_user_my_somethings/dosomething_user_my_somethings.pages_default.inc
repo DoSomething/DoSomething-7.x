@@ -167,11 +167,14 @@ user/*/picks',
     $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'top';
-    $pane->type = 'ds_profile_info';
-    $pane->subtype = 'ds_profile_info';
+    $pane->type = 'block';
+    $pane->subtype = 'fb_social-FB Facepile Profile';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -184,8 +187,8 @@ user/*/picks',
     $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'top';
-    $pane->type = 'ds_user_pic';
-    $pane->subtype = 'ds_user_pic';
+    $pane->type = 'ds_profile_info';
+    $pane->subtype = 'ds_profile_info';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -200,6 +203,23 @@ user/*/picks',
     $display->panels['top'][1] = 'new-6';
     $pane = new stdClass();
     $pane->pid = 'new-7';
+    $pane->panel = 'top';
+    $pane->type = 'ds_user_pic';
+    $pane->subtype = 'ds_user_pic';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][2] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'ds_current_somethings_all';
     $pane->subtype = 'ds_current_somethings_all';
@@ -224,11 +244,11 @@ user/*/picks',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][2] = 'new-7';
+    $pane->position = 3;
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][3] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'top';
     $pane->type = 'ds_past_somethings_all';
     $pane->subtype = 'ds_past_somethings_all';
@@ -253,11 +273,11 @@ user/*/picks',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
-    $display->content['new-8'] = $pane;
-    $display->panels['top'][3] = 'new-8';
+    $pane->position = 4;
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][4] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-10';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'profile-panel_pane_2';
@@ -285,9 +305,9 @@ user/*/picks',
       'css_class' => 'pane-ds-editors-picks-all',
     );
     $pane->extras = array();
-    $pane->position = 4;
-    $display->content['new-9'] = $pane;
-    $display->panels['top'][4] = 'new-9';
+    $pane->position = 5;
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][5] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
