@@ -171,7 +171,7 @@ class DSJsonProfile extends DSJsonUserMigration {
 
     $this->destination = new MigrateDestinationProfile2('main');
 
-    $this->map = new MigrateSQLMap($this->machineName,
+    $this->map = new MigrateSQLMap($this->machineName, // change this to 'DSSqlUserProfile',
       MigrateDestinationUser::getKeySchema(),
       MigrateDestinationProfile2::getKeySchema()
     );
