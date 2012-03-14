@@ -98,14 +98,11 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
-    $pane->type = 'dosomething_stats_counter';
-    $pane->subtype = 'dosomething_stats_counter';
+    $pane->type = 'ds_project_stats';
+    $pane->subtype = 'ds_project_stats';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
