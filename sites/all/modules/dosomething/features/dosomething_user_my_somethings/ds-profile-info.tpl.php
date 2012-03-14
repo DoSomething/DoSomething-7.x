@@ -14,6 +14,6 @@
       </ul>
       <a class="update-profile" href="/user/<?php print $account->uid; ?>/edit/main">Update profile >></a>
     </div>
-    <div class="vital-stats"></div>
+    <?php print render($member_vitals); ?>
   </div>
 </div>
