@@ -13,6 +13,10 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
   if ($view->name == 'blog_center' && $display_id == 'blog_archive_block') {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/blog-archive.js'); 
   }
+  // Add project-photo-slider.js file to the project_photo_slider views content pane.
+  if ($view->name == 'project_photo_slider' && $display_id == 'panel_pane_1') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-photo-slider.js');
+  }
 }
 
 /**
