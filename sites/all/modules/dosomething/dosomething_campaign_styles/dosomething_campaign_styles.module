@@ -112,9 +112,11 @@ function dosomething_campaign_styles_block_view($delta) {
       $plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin_name);
 
       $campaign_links = array();
-      foreach ($plugin['menu'] as $num => $link) {
-        $link['href'] = drupal_lookup_path('source', $link['href']);
-        $campaign_links['campaign_nav_'.$num] = $link;
+      if (count($plugin['menu'])) {
+        foreach ($plugin['menu'] as $num => $link) {
+          $link['href'] = drupal_lookup_path('source', $link['href']);
+          $campaign_links['campaign_nav_'.$num] = $link;
+        }
       }
       $block['content'] = theme('links', array(
         'links' => $campaign_links,
