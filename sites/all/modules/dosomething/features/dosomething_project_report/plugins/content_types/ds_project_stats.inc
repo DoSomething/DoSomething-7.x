@@ -46,8 +46,8 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
     $profile = entity_metadata_wrapper('profile2', $profile);
     $address = $profile->field_user_address->value();
     $hometown = dosomething_user_my_somethings_hometown($address);
-    $misc = array();
-    // TODO: add any grants, awards, or scholarships received to misc.
+    $misc = dosomething_project_report_get_vital_stats_queues($entity_id);
+
     if ($clubs = $wrapper->field_project_clubs->value()) {
       foreach ($clubs as $club) {
         $misc[] = l($club->title, "node/$club->nid");
