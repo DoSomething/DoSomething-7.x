@@ -491,7 +491,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
 .pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.pane-ds-editors-picks-all .something-description a, .main-inner .content .panel-panel .pane-content h2, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
@@ -3394,6 +3394,16 @@ comments.fb_iframe_widget {
 }
 .pane-ds-editors-picks-all a.back {
   top: -25px;
+}
+
+.main-inner .content .panel-panel .pane-content h2 {
+  color: black;
+}
+.main-inner .content .panel-panel .pane-content p {
+  margin-bottom: 6px;
+}
+.main-inner .content .panel-panel .pane-content ul {
+  margin: 0;
 }
 
 .field-name-field-picture img {
