@@ -5,6 +5,10 @@
  */
 class ConductorActivityDSCreateReportBack extends ConductorActivity {
 
+  // This is the nid of the webform node that all project reports should
+  // be associated with.
+  const REPORT_BACK_NID = 718313;
+
   public function option_definition() {
     $options = parent::option_definition();
     // The attribute to set in context.
@@ -17,17 +21,50 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
   public function run() {
     $state = $this->getState();
 
-    $firstName = $state->getContext('first_name:message');
-    $lastName = $state->getContext('last_name:message');
-    $birthDate = $state->getContext('birthday:message');
     $mobile = $state->getContext('sms_number');
+
+    $userAccountFound = FALSE;
+
+    // If we have a user with this mobile, lets update their info.
+    $state->markCompeted();
+    $account = dosomething_sms_load_user_by_cell($mobile);
+
+    // If we haven't found an account, let's create one.
+    if (!$account) {
+      $account = new stdClass;
+      $account->name = $mobile;
+
+      $suffix = 0;
+      $base_name = $account->name;
+      while (user_load_by_name($account->name)) {
+        $suffix++;
+        $account->name = $base_name . '-' . $suffix;
+      }
+      $account->mail = $mobile . '@mobile';
+      $account->status = 1;
+      user_save($account);
+
+      $profile_values = array(
+        'type' => 'main',
+        'field_user_mobile' =>  array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => $mobile,
+            ),
+          ),
+        ),
+      );
+      $profile = profile2_create($profile_values);
+      $profile->uid = $account->uid;
+      profile2_save($profile);
+    }
 
     $submission = new stdClass;
     $submission->bundle = 'project_report';
-    $submission->nid = 718313;
+    // Always use the project report webform.
+    $submission->nid = self::REPORT_BACK_NID;
     $submission->data = array();
-    // TODO: try to look up the uid from the phone number.
-    $submission->uid = 0;
+    $submission->uid = $account->uid;
     $submission->submitted = REQUEST_TIME;
     $submission->remote_addr = ip_address();
     $submission->is_draft = TRUE;
@@ -39,8 +76,12 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
     $wrapper->field_project_goal->set($state->getContext('goal:message'));
     $wrapper->field_update_people_involved->set($state->getContext('involved:message'));
     $wrapper->field_num_people_impacted->set($state->getContext('helped:message'));
-
-    $state->setContext('sms_response', 'Thanks!  We are thrilled to hear about your project!');
+    if ($userAccountFound) {
+      $state->setContext('sms_response', t('Thanks!  We are thrilled to hear about your project!'));
+    }
+    else {
+      $state->setContext('sms_response', t('Thanks!  We\'d love to learn more about your, to register text ZIVTECH to 38383!'));
+    }
 
     $wrapper->save();
 

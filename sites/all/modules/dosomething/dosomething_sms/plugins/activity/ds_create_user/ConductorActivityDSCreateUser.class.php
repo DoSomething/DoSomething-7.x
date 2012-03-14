@@ -21,12 +21,19 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
   public function run() {
     $state = $this->getState();
 
-    $account = new stdClass;
-
     $firstName = $state->getContext('first_name:message');
     $lastName = $state->getContext('last_name:message');
     $birthDate = $state->getContext('birthday:message');
     $mobile = $state->getContext('sms_number');
+
+    // If we have a user with this mobile, lets update their info.
+    $account = dosomething_sms_load_user_by_cell($mobile);
+
+    $newAccount = FALSE;
+    if (!$account) {
+      $account = new stdClass;
+      $newAccount = TRUE;
+    }
 
     $birthday = strtotime($birthDate);
     // If the user is younger than 13 (give or take a day), reject the
@@ -43,14 +50,18 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
 
     $name = $account->name = $firstName . ' ' . $lastName;
     $account->pass = $hashed_pass;
-    $account->mail = $mobile . '@mobile';
-    $account->status = 1;
+    if ($newAccount) {
+      $account->mail = $mobile . '@mobile';
+      $account->status = 1;
+    }
 
-    $suffix = 0;
-    $base_name = $account->name;
-    while (user_load_by_name($account->name)) {
-      $suffix++;
-      $account->name = $base_name . '-' . $suffix;
+    if ($newAccount || $account->name == $mobile) {
+      $suffix = 0;
+      $base_name = $account->name;
+      while (user_load_by_name($account->name)) {
+        $suffix++;
+        $account->name = $base_name . '-' . $suffix;
+      }
     }
 
     // If the user is older than 26 add the old person role.
@@ -58,33 +69,30 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     if ($birthday !== FALSE && $birthday < (REQUEST_TIME - 819936000)) {
       $account->roles[self::OLD_PERSON_RID] = self::OLD_PERSON_ROLE;
     }
-
     user_save($account);
 
-    // If birthday is is a timestampe (and they didn't send garbage) add it to
-    // the profile.
-    $profile_values = array();
-    if ($birthday) {
-      $field_value = array(
-        LANGUAGE_NONE => array(
-          array(
-            'value' => date(DATE_FORMAT_DATETIME, $birthday),
-            'timezone' => 'America/New_York',
-            'timezone_db' => 'America/New_York',
-            'date_type' => 'datetime',
-          ),
-        ),
-      );
-      $field_name = 'field_user_birthday';
-      $type_name = 'main';
-      $profile_values = array(
-        'type' => $type_name,
-        $field_name => $field_value,
-      );
+    $profile_values = array(
+      'type' => 'main',
+    );
+
+    if (!$newAccount) {
+      $profile = profile2_load_by_user($account, 'main');
+    }
+    if (!isset($profile) || is_object($profile)) {
+      $profile = profile2_create(array('type' => 'main'));
+      $profile->uid = $account->uid;
     }
 
-    $profile = profile2_create($profile_values);
-    $profile->uid = $account->uid;
+    // If birthday is is a timestamp (and they didn't send garbage) add it to
+    // the profile.
+    if ($birthday) {
+      $profile->field_user_birthday[LANGUAGE_NONE][0] = array(
+        'value' => date(DATE_FORMAT_DATETIME, $birthday),
+        'timezone' => 'America/New_York',
+        'timezone_db' => 'America/New_York',
+        'date_type' => 'datetime',
+      );
+    }
 
     $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $firstName;
     $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $lastName;
