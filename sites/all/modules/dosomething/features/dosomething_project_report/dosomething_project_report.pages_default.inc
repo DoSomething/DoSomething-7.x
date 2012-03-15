@@ -98,11 +98,15 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
-    $pane->type = 'ds_project_stats';
-    $pane->subtype = 'ds_project_stats';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_photo_slider-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:webform_submission_entity_1',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -115,15 +119,11 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'project_photo_slider-panel_pane_1';
+    $pane->type = 'ds_project_stats';
+    $pane->subtype = 'ds_project_stats';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'context' => array(
-        0 => 'argument_entity_id:webform_submission_entity_1',
-      ),
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
