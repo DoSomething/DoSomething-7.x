@@ -84,6 +84,10 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_pic']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_pic']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_share_of_day_pic']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_share_of_day_pic']['settings'] = array(
+    'file_view_mode' => 'media_preview',
+  );
   $handler->display->display_options['fields']['field_share_of_day_pic']['field_api_classes'] = 0;
   /* Field: Content: Attribution */
   $handler->display->display_options['fields']['field_share_of_day_attr_pic']['id'] = 'field_share_of_day_attr_pic';
