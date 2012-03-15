@@ -61,6 +61,7 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
 
     $submission = new stdClass;
     $submission->bundle = 'project_report';
+
     // Always use the project report webform.
     $submission->nid = self::REPORT_BACK_NID;
     $submission->data = array();
