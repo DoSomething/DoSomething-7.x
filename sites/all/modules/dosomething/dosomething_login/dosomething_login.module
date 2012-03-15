@@ -1031,7 +1031,7 @@ function dosomething_login_drupal_user_is_over_age($uid, $age = 13, $end_timesta
  */
 function dosomething_login_person_is_over_age($birthday, $age = 13, $timestamp = NULL) {
   $timestamp = is_null($timestamp) ? REQUEST_TIME : $timestamp;
-  return $birthday < strtotime("-$age year", $timestamp) ? TRUE : FALSE;
+  return $birthday < strtotime(sprintf("-%d year", $age), $timestamp);
 }
 
 /**
