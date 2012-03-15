@@ -35,6 +35,8 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
       $newAccount = TRUE;
     }
 
+    // TODO: use dosomething_login_person_is_over_age if possible
+    // This doesn't work out to 13 years because of leap years.
     $birthday = strtotime($birthDate);
     // If the user is younger than 13 (give or take a day), reject the
     // application (that's (60 * 60 * 24 * 365 * 13) - (60 * 60 * 24)).
@@ -64,6 +66,8 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
       }
     }
 
+    // TODO: use dosomething_login_person_is_over_age if possible
+    // This doesn't work out to 26 years because of leap years.
     // If the user is older than 26 add the old person role.
     // application (that's (60 * 60 * 24 * 365 * 26)).
     if ($birthday !== FALSE && $birthday < (REQUEST_TIME - 819936000)) {

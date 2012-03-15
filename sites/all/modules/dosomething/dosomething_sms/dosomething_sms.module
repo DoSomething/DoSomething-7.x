@@ -19,6 +19,7 @@ function dosomething_sms_ctools_plugin_api($owner, $api) {
 
 /**
  *
+ * TODO: Does this implement a hook?
  */
 function dosomething_sms_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'conductor') {
@@ -47,6 +48,8 @@ function dosomething_sms_default_conductor_workflows() {
     'first_name',
   );
   $activity->inputs = array();
+
+  // TODO: Should this qustion be named prompt?
   $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 180;
   $activity->y = 100;
@@ -59,6 +62,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->outputs = array(
     'last_name'
   );
+
   $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 180;
   $activity->y = 100;
@@ -83,6 +87,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->outputs = array(
     'signature_remover'
   );
+
   $activity = $workflow->newActivity('sms_strip_signature');
   $activity->x = 180;
   $activity->y = 100;
@@ -94,6 +99,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->outputs = array(
     'user_creator'
   );
+
   $activity = $workflow->newActivity('ds_create_user');
   $activity->x = 180;
   $activity->y = 100;
@@ -105,6 +111,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->outputs = array(
     'end'
   );
+
   $activity = $workflow->newActivity('end');
   $activity->x = 380;
   $activity->y = 200;
@@ -119,6 +126,7 @@ function dosomething_sms_default_conductor_workflows() {
   $workflow = new ConductorWorkflow;
   $workflow->wid = 'new';
   $workflow->name = 'ds_sms_project_report_back';
+  // TODO: Are these the proper title and desription for this workflow?
   $workflow->title = 'User Registration';
   $workflow->description = 'Allows users to register for the site via SMS.';
   $workflow->api_version = '1.0';
@@ -212,7 +220,6 @@ function dosomething_sms_default_conductor_workflows() {
   );
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
-
 
 
   return $workflows;
