@@ -10,6 +10,72 @@
 function dosomething_project_report_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'entityqueue-webform_submission_entity-field_vital_stats'
+  $fields['entityqueue-webform_submission_entity-field_vital_stats'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vital_stats',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'webform_submission_entity',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Should this queue be used to populate a project\'s \'Vital Stats\'? If checked, the title of this queue will appear in the Vital Stats section of the projects within the queue.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'entityqueue',
+      'field_name' => 'field_vital_stats',
+      'label' => 'Vital Stats',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project_report-field_body_anonymous'
   $fields['node-project_report-field_body_anonymous'] = array(
     'field_config' => array(
@@ -2390,6 +2456,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Project Photo');
   t('Related Action Guide');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
+  t('Should this queue be used to populate a project\'s \'Vital Stats\'? If checked, the title of this queue will appear in the Vital Stats section of the projects within the queue.');
   t('Start date');
   t('Status');
   t('Tell us about the community you are helping and the problem(s) being solved.');
@@ -2402,6 +2469,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Updated number of new people/animals helped');
   t('Video');
   t('Video (optional)');
+  t('Vital Stats');
   t('Web site link');
   t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What\'s the problem you are trying to solve?');
