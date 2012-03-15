@@ -10,6 +10,66 @@
 function dosomething_feedback_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'feedback-feedback-field_component'
+  $fields['feedback-feedback-field_component'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_component',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Theme' => 'Theme',
+          'Functionality' => 'Functionality',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'feedback',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 4,
+        ),
+      ),
+      'entity_type' => 'feedback',
+      'field_name' => 'field_component',
+      'label' => 'Component',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+    ),
+  );
+
   // Exported field: 'feedback-feedback-field_image'
   $fields['feedback-feedback-field_image'] = array(
     'field_config' => array(
@@ -281,6 +341,7 @@ function dosomething_feedback_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Component');
   t('Image');
   t('Name');
   t('Priority');
