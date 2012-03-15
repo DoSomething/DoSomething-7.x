@@ -1,10 +1,10 @@
 (function($) {
-  Drupal.ajax.prototype.refreshViews = function (tid) {
+  Drupal.ajax.prototype.refreshViews = function (tid, t_parent) {
     var ajax = this;
 
     if (ajax.ajaxing) return false;
 
-    ajax.options.url = '/causes/ajax/'+tid;
+    ajax.options.url = '/causes/ajax/'+tid+'/'+t_parent;
 
     try {
       $.ajax(ajax.options);
@@ -27,12 +27,13 @@
 
   $(document).ready(function () {
     var selector = $('#cause-filter a');
+    var t_parent = $('#cause-filter').attr('data-tid');
     selector.click(function (event) {
       var clicked = $(event.target);
       history.pushState({}, 'Issue', clicked.attr('href'));
       selector.removeClass('active');
       clicked.addClass('active');
-      return Drupal.ajax['dosomething_causes'].refreshViews(clicked.attr('data-tid'));
+      return Drupal.ajax['dosomething_causes'].refreshViews(clicked.attr('data-tid'), t_parent);
     });
   });
 })(jQuery);

@@ -35,7 +35,6 @@ function dosomething_causes_cause_filter_content_type_render($subtype, $conf, $p
   $block = new stdClass();
 
   $tid = $panel_args[0];
-  $tid = 62;
   $vocabulary = taxonomy_vocabulary_machine_name_load(CAUSE_VOCABULARY_MACHINE_NAME);
 
   $tree = taxonomy_get_tree($vocabulary->vid, $tid, 1, true);
@@ -50,6 +49,7 @@ function dosomething_causes_cause_filter_content_type_render($subtype, $conf, $p
     'links' => array(),
     'attributes' => array(
       'id' => 'cause-filter',
+      'data-tid' => $tid,
     ),
   );
 

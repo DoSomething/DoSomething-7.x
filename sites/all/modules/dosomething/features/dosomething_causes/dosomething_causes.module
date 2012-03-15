@@ -325,17 +325,32 @@ function dosomething_causes_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Update content of the /cause/* page with whatever term is being requested.
+ */
 function dosomething_causes_ajax($tid, $parent = null) {
-  $view1 = views_embed_view('current_campaigns', 'panel_pane_1', $tid);
-  $view2 = views_embed_view('project_related_displays', 'panel_pane_3', $tid);
-  $view3 = views_embed_view('polls', 'panel_pane_1', $tid);
+  $view_params = array(
+    'current_campaigns' => 'panel_pane_1',
+    'project_related_displays' => 'panel_pane_3',
+    'polls' => 'panel_pane_1',
+  );
 
+  $views = array();
+  foreach ($view_params as $key => $param) {
+    $view = views_get_view($key);
+    $return = $view->preview($param, array($tid));
+    if (!$view->result) {
+      $view = views_get_view($key);
+      $return = $view->preview($param, array($parent));
+    }
+    $views[] = $return;
+  }
   $term = taxonomy_term_load($tid);
 
   $commands = array(
-    ajax_command_html('.pane-current-campaigns-panel-pane-1 .pane-content', $view1),
-    ajax_command_html('.pane-project-related-displays-panel-pane-3 .pane-content', $view2),
-    ajax_command_html('.pane-polls-panel-pane-1 .pane-content', $view3),
+    ajax_command_html('.pane-current-campaigns-panel-pane-1 .pane-content', $views[0]),
+    ajax_command_html('.pane-project-related-displays-panel-pane-3 .pane-content', $views[1]),
+    ajax_command_html('.pane-polls-panel-pane-1 .pane-content', $views[2]),
     ajax_command_html('h1.title', 'Issue: '.$term->name),
     ajax_command_html('.pane-term-description .pane-content', $term->description),
   );
