@@ -43,7 +43,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Background color */
   $handler->display->display_options['fields']['field_campaign_background_color']['id'] = 'field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['table'] = 'field_data_field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['field'] = 'field_campaign_background_color';
@@ -66,7 +66,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_alter_empty'] = 0;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Foreground color */
   $handler->display->display_options['fields']['field_campaign_foreground_color']['id'] = 'field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['table'] = 'field_data_field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['field'] = 'field_campaign_foreground_color';
@@ -388,6 +388,12 @@ function dosomething_campaign_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Campaign (field_campaign) - reverse */
+  $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
+  $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';
+  $handler->display->display_options['relationships']['reverse_field_campaign_node']['required'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Main Image */
   $handler->display->display_options['fields']['field_campaign_main_image']['id'] = 'field_campaign_main_image';
@@ -441,12 +447,37 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_call_to_action']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['field_api_classes'] = 0;
+  /* Field: Content: Webform submission count */
+  $handler->display->display_options['fields']['webform_submission_count_node']['id'] = 'webform_submission_count_node';
+  $handler->display->display_options['fields']['webform_submission_count_node']['table'] = 'node';
+  $handler->display->display_options['fields']['webform_submission_count_node']['field'] = 'webform_submission_count_node';
+  $handler->display->display_options['fields']['webform_submission_count_node']['relationship'] = 'reverse_field_campaign_node';
+  $handler->display->display_options['fields']['webform_submission_count_node']['label'] = 'Campaign Participants';
+  $handler->display->display_options['fields']['webform_submission_count_node']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['text'] = 'Campaign Participants: [webform_submission_count_node]';
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['strip_tags'] = 1;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['webform_submission_count_node']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['webform_submission_count_node']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['webform_submission_count_node']['hide_alter_empty'] = 1;
   /* Field: Content: Campaign Date */
   $handler->display->display_options['fields']['field_campain_date']['id'] = 'field_campain_date';
   $handler->display->display_options['fields']['field_campain_date']['table'] = 'field_data_field_campain_date';
   $handler->display->display_options['fields']['field_campain_date']['field'] = 'field_campain_date';
   $handler->display->display_options['fields']['field_campain_date']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_campain_date']['alter']['text'] = 'Ends [field_campain_date]';
+  $handler->display->display_options['fields']['field_campain_date']['alter']['text'] = 'Ends [field_campain_date]<br /> [webform_submission_count_node] ';
   $handler->display->display_options['fields']['field_campain_date']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_campain_date']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_campain_date']['alter']['external'] = 0;
