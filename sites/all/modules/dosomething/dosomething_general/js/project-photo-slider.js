@@ -8,7 +8,7 @@ Drupal.behaviors.featuredNews = {
     Drupal.settings.dosomething = new Array();
     Drupal.settings.dosomething.photoSliderIndex = 0;
 
-    $(".view-project-photo-slider .view-content .views-row:not(:first-child)").hide(); 
+    $(".view-project-photo-slider .view-content img:not(:first)").hide(); 
   
     // Keep track of hover state.
     $(".view-project-photo-slider").hover(
@@ -23,7 +23,7 @@ Drupal.behaviors.featuredNews = {
     // Add the numbered tabs.
     $(".view-project-photo-slider").append('<div class="slide-count"></div>');
     var slider_items;
-    slider_items = $(".view-project-photo-slider .view-content .views-row").length;
+    slider_items = $(".view-project-photo-slider .view-content img").length;
     for (i = 1; i <= slider_items; i++) {
       $(".slide-count").prepend('<span>' + i + '</span>');
     }  
@@ -31,12 +31,12 @@ Drupal.behaviors.featuredNews = {
   
     // Switch on tab click.
     $(".slide-count span").click(function() {
-      $(".view-project-photo-slider .view-content .views-row").hide();      
+      $(".view-project-photo-slider .view-content img").hide();      
       $('.slide-count span').removeClass('active');
       var num;
       num = $(this).html() - 1;
       Drupal.settings.dosomething.photoSliderIndex = num;
-      $(".view-project-photo-slider .views-row:eq(" + num + ")").show(); 
+      $(".view-project-photo-slider img:eq(" + num + ")").show(); 
       $(this).addClass('active');
     });
   }
@@ -47,14 +47,14 @@ Drupal.behaviors.featuredNews = {
  */
 function feature_cycle() {
   if (!$(".view-project-photo-slider").is(".photo-slider-hover")) { // Don't cycle during hover.
-    if (!$(".view-project-photo-slider .views-row:eq(" + Drupal.settings.dosomething.photoSliderIndex + ")").next().length) {
+    if (!$(".view-project-photo-slider img:eq(" + Drupal.settings.dosomething.photoSliderIndex + ")").next().length) {
       var next = 0;
     }
     else {
       var next = Drupal.settings.dosomething.photoSliderIndex + 1;
     }
-    $(".view-project-photo-slider .views-row:eq(" + Drupal.settings.dosomething.photoSliderIndex + ")").hide();
-    $(".view-project-photo-slider .views-row:eq(" + next + ")").show();
+    $(".view-project-photo-slider img:eq(" + Drupal.settings.dosomething.photoSliderIndex + ")").hide();
+    $(".view-project-photo-slider img:eq(" + next + ")").show();
     $('.slide-count span').removeClass('active');
     $(".slide-count span:eq(" + ($(".slide-count span").length - (next + 1)) + ")").addClass('active');
     Drupal.settings.dosomething.photoSliderIndex = next;
