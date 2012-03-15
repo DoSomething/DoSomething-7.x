@@ -1,0 +1,20 @@
+////////////////////////////
+// PROJECT PAGE SLIDESHOW
+// goes with custom views slideshow
+////////////////////////////
+
+.pane-project-photo-slider-panel-pane-1
+  margin-bottom: 4em
+  .view-content img
+    @extend .border-and-shadow-center
+.slide-count
+  float: right
+  +inline-block
+  span
+    cursor: pointer
+    display: block
+    float: left
+    +replace-text-with-dimensions("circle-inactive.png")
+    width: 25px
+    &.active
+      +replace-text-with-dimensions("circle-active.png")
