@@ -167,7 +167,7 @@ function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
     if (!empty($form['submitted']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
       && is_numeric(arg(2))
       && arg(2) == $form['submitted']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
-      $form['submitted']['field_project_clubs']['#type'] = 'hidden';
+      $form['submitted']['field_project_clubs']['#access'] = FALSE;
     }
     // If an action guide nid is in the query, default and hide the action guide field.
     // This query string is set by dosomething_stats.counter.inc.
@@ -177,10 +177,10 @@ function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
       $form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $value;
       $form['submitted']['field_project_type'][LANGUAGE_NONE]['#default_value'] = DOSOMETHING_PROJECTS_IDEA;
       // TODO: Determine if this field should also be hidden and uncomment this if so.
-      // $form['submitted']['field_action_guide_reference']['#type'] = 'hidden';
+      // $form['submitted']['field_action_guide_reference']['#access'] = FALSE;
     }
     elseif (!isset($form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) || !$form['submitted']['field_action_guide_reference'][LANGUAGE_NONE][0]['target_id']['#default_value']) {
-      $form['submitted']['field_action_guide_reference']['#type'] = 'hidden';
+      $form['submitted']['field_action_guide_reference']['#access'] = FALSE;
     }
   }
 }
