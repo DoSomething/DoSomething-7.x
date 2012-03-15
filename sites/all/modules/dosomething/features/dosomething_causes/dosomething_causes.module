@@ -20,6 +20,12 @@ function dosomething_causes_menu() {
     // See dosomething_menu module under hook_menu_alter().
     'menu_name' => 'ds-main-menu',
   );
+  $items['causes/ajax/%'] = array(
+    'page callback' => 'dosomething_causes_ajax',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -317,4 +323,22 @@ function dosomething_causes_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
   }
+}
+
+function dosomething_causes_ajax($tid, $parent = null) {
+  $view1 = views_embed_view('current_campaigns', 'panel_pane_1', $tid);
+  $view2 = views_embed_view('project_related_displays', 'panel_pane_3', $tid);
+  $view3 = views_embed_view('polls', 'panel_pane_1', $tid);
+
+  $term = taxonomy_term_load($tid);
+
+  $commands = array(
+    ajax_command_html('.pane-current-campaigns-panel-pane-1 .pane-content', $view1),
+    ajax_command_html('.pane-project-related-displays-panel-pane-3 .pane-content', $view2),
+    ajax_command_html('.pane-polls-panel-pane-1 .pane-content', $view3),
+    ajax_command_html('h1.title', 'Issue: '.$term->name),
+    ajax_command_html('.pane-term-description .pane-content', $term->description),
+  );
+  $page = array('#type' => 'ajax', '#commands' => $commands);
+  ajax_deliver($page);
 }
