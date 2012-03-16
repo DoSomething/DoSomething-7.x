@@ -1409,6 +1409,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
@@ -1433,6 +1434,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['created']['table'] = 'node';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['label'] = '';
+  $handler->display->display_options['fields']['created']['exclude'] = TRUE;
   $handler->display->display_options['fields']['created']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
@@ -1457,7 +1459,12 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['text'] = '<div class="blog-landing-box">
+<h2>[title]</h2>
+<span class="blog-post-date">[created]</span>
+[body]
+</div>';
   $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['body']['alter']['external'] = 0;
