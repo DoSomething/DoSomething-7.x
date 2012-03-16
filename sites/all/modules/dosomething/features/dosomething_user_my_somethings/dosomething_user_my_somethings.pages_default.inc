@@ -85,7 +85,8 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
             'visibility_setting' => '0',
             'paths' => 'user/*/doing-it
 user/*/done-it
-user/*/picks',
+user/*/picks
+user/*/complete-profile',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -116,7 +117,8 @@ user/*/picks',
             'visibility_setting' => '0',
             'paths' => 'user/*/doing-it
 user/*/done-it
-user/*/picks',
+user/*/picks
+user/*/complete-profile',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -147,7 +149,8 @@ user/*/picks',
             'visibility_setting' => '0',
             'paths' => 'user/*/doing-it
 user/*/done-it
-user/*/picks',
+user/*/picks
+user/*/complete-profile',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -291,6 +294,39 @@ user/*/picks',
     $pane->position = 4;
     $display->content['new-9'] = $pane;
     $display->panels['top'][4] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'profile_incomplete_fields-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'user/*/complete-profile',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:user_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][5] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
