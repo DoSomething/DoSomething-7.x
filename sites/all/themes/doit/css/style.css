@@ -2285,7 +2285,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li {
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a {
   color: white;
-  padding: 0 28px;
+  padding: 12px 28px;
   display: block;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:visited {
