@@ -674,6 +674,7 @@ h1.title {
 
 h2.subhead {
   font-size: 21px;
+  line-height: 22px;
 }
 
 h3.subhead {
@@ -1411,6 +1412,7 @@ body {
 .h2, h2 {
   font-size: 1.75em;
   line-height: 1.143em;
+  line-height: 22px;
 }
 
 .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile {
@@ -2279,6 +2281,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li {
   width: 100%;
   background-color: rgba(30, 29, 28, 0.75);
   text-align: left;
+  line-height: 22px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a {
   color: white;
@@ -2300,7 +2303,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 
 h2.block-title, h2.pane-title {
   background-color: #18408b;
-  padding: 6px;
+  padding: 6px 12px 6px 12px;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 22px;
