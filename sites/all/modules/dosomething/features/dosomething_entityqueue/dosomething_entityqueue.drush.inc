@@ -58,20 +58,19 @@ function drush_dosomething_entityqueue_migrate() {
     }
   }
 
-  /*
   // Find the nodes for each queue.
   $nodes = db_select('nodequeue_nodes', 'nn')
     ->fields('nn')
     ->execute();
   foreach ($nodes as $delta => $row) {
-    $nodequeues[$row->qid]->nodes[$row->position] = $row->nid;
+    $nodequeues[$row->qid]->nodes[$row->position]['target_id'] = $row->nid;
   }
-  //*/
 
   foreach ($nodequeues as $nodequeue) {
     $nodequeue = (array) $nodequeue;
-    // Don't create a queue if there is no type.
-    if (!isset($nodequeue['type'])) {
+    // Don't create a queue if there is missing data.
+    $missing = array_diff_key(array_flip(array('type', 'title', 'nodes')), $nodequeue);
+    if (!empty($missing)) {
       continue;
     }
     // Don't create a queue if there is more than one type.
@@ -85,6 +84,9 @@ function drush_dosomething_entityqueue_migrate() {
 
     // Set the entity type.
     $nodequeue['type'] = reset($nodequeue['type']);
+    $field_name = _entityqueue_get_target_field_name($nodequeue['type']);
+    $nodequeue[$field_name][LANGUAGE_NONE] = array_values($nodequeue['nodes']);
+    unset($nodequeue['nodes']);
     // Move the size into the data array.
     $nodequeue['data']['max_size'] = $nodequeue['size'];
 
