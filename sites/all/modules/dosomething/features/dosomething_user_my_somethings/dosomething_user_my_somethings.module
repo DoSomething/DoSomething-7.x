@@ -102,12 +102,14 @@ function dosomething_user_my_somethings_member_block() {
 /**
  * Markup for how much of the profile is finished.
  */
-function dosomething_user_my_somethings_profile_completion() {
+function dosomething_user_my_somethings_profile_completion($sidebar = TRUE) {
   global $user;
   $ratio = 0;
   if (module_exists('dosomething_roles')) {
     $ratio = dosomething_roles_get_user_percentage($user->uid);
   }
+
+  $complete_text = !empty($sidebar) ? 'Profile %percent complete' : '%percent complete';
 
   return array(
     'percentage' => array(
@@ -141,7 +143,7 @@ function dosomething_user_my_somethings_profile_completion() {
               'label',
             ),
           ),
-          '#children' => t('Profile %percent complete', array('%percent' => number_format($ratio, 0) . '%')),
+          '#children' => t($complete_text, array('%percent' => number_format($ratio, 0) . '%')),
         ),
       ),
     ),
@@ -578,7 +580,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_since'] = date('m/d/Y', $account->created);
   $variables['member_clubs'] = dosomething_user_my_somethings_clubs($account);
   $variables['member_clubs']['title']['#access'] = FALSE;
-  $profile_completion = dosomething_user_my_somethings_profile_completion();
+  $profile_completion = dosomething_user_my_somethings_profile_completion(FALSE);
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_school'] = $profile->field_school_reference->value();
   $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
