@@ -3208,6 +3208,10 @@ comments.fb_iframe_widget {
   line-height: 12px;
   margin-top: 12px;
 }
+.apps-grid .apps-box .apps-image img {
+  max-height: 125px;
+  max-width: 219px;
+}
 .apps-grid .apps-box .apps-text {
   text-align: center;
   padding: 10px 10px 0;
@@ -3219,6 +3223,26 @@ comments.fb_iframe_widget {
   bottom: 0;
   width: 150px;
   padding-left: 10px;
+}
+.apps-grid .apps-box .doingit-icon {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/doing-it-guy.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 10px;
+  height: 11px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+.apps-grid .apps-box .doingit-icon {
+  *display: inline;
 }
 .apps-grid .apps-box .apps-link {
   position: absolute;
