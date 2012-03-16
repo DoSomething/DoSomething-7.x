@@ -63,27 +63,30 @@
     +float-right
 
 .blog-landing-pane-post
-  background: $white
-  +box-shadow($gray2-trans 0px 0px 10px)
-  +float-left
-  @extend .clearfix
-  margin-bottom: 12px
-  width: 100%
-  min-height: 124px
-  padding-left: 12px
-  p
-    margin-bottom: 0
+  clear: both
   .blog-large-thumbnail
-    img
-      +float-left
-      margin-right: 12px
-      margin-left: -12px
-      border: 1px solid $white
-  .views-field-title
-    h2
-      @extend .bold
-      line-height: 1.2em
-      margin-top: 18px
+    @extend .box-shadow-center
+    +float-left
+    margin-right: 4px
+    margin-left: -12px
+    border: 1px solid $white
+  .views-field-body
+    @extend .box-shadow-center
+    @extend .clearfix
+    +float-right
+    +box-sizing(border-box)
+    background: $white
+    margin-bottom: 12px
+    width: 430px
+    min-height: 124px
+    padding: 12px
+    p
+      margin-bottom: 0
+    .views-field-title
+      h2
+        @extend .bold
+        line-height: 1.2em
+        margin-top: 18px
 
 .blog-post-date
   @extend .headers
