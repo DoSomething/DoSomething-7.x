@@ -656,7 +656,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
               $node = node_load($submission->nid);
               $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
               $something->uri = array('options' => array());
-              $something->uri['path'] = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+              $something->uri['path'] = ($edit_access && $era == 'current') ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
               $something->title = $grant->title;
               $somethings[] = $something;
             }
