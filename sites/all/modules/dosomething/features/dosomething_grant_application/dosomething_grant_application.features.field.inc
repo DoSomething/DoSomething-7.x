@@ -132,7 +132,7 @@ function dosomething_grant_application_field_default_fields() {
         ),
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -208,7 +208,7 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -296,7 +296,7 @@ function dosomething_grant_application_field_default_fields() {
         'default_value_code2' => '',
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -360,7 +360,7 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -404,87 +404,50 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'profile2_private' => FALSE,
         'referenceable_types' => array(
-          '1in3_abuse_old' => 0,
-          '301_redirects' => 0,
-          '911_registration' => 0,
-          'abc_family' => 0,
           'action_guide' => 0,
           'api_key' => 0,
-          'aspca_grant_app' => 0,
           'awards_archive' => 0,
           'bc_bio_form' => 0,
           'blog' => 0,
           'campaign' => 0,
           'campaign_art_2011' => 0,
-          'campaign_bfb_2011' => 0,
           'campaign_bully_2011' => 0,
-          'campaign_ebd_2011' => 0,
+          'campaign_cancer_2011' => 0,
+          'campaign_contact_form' => 0,
           'campaign_ew_2011' => 0,
-          'campaign_gys_2011' => 0,
-          'campaign_hunt_2011' => 0,
           'campaign_macys_2011' => 0,
           'campaign_report_back' => 0,
           'campaign_sign_up' => 0,
           'campaign_sports_2011' => 0,
           'cancer_2011_signup' => 0,
-          'canned_food' => 0,
-          'cause' => 0,
           'cause_video' => 0,
           'club' => 0,
           'club_event' => 0,
-          'club_first_meeting_cash' => 0,
           'decade_2011_signup' => 0,
-          'ds101_action_kit' => 0,
           'ds_award_judging' => 0,
           'dsaward_app' => 0,
           'dsaward_rec' => 0,
           'dsu_askprof' => 0,
           'dsu_guides' => 0,
           'easy_idea' => 0,
-          'ebd_signup' => 0,
           'editorial_content_' => 0,
-          'editorial_project' => 0,
           'ewaste_signup_2011' => 0,
-          'feed' => 0,
-          'feed_item' => 0,
           'final_grant_update' => 0,
-          'forum' => 0,
-          'general_grant_app' => 0,
-          'general_scholarship_app' => 0,
-          'grant' => 0,
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'grants_database' => 'grants_database',
-          'gys_2011' => 0,
-          'healthy_schools' => 0,
-          'healthy_schools_report' => 0,
           'help_ticket' => 0,
-          'huffpo' => 0,
-          'ididthis' => 0,
-          'increaseyourgreen_signup' => 0,
-          'issue' => 0,
+          'member_opportunity' => 'member_opportunity',
           'page' => 0,
           'poll' => 0,
           'press' => 0,
-          'project' => 0,
           'project_report' => 0,
           'project_update' => 0,
-          'save_our_music' => 0,
-          'scavenger_2011_signup' => 0,
+          'scholarship' => 0,
           'scholarship_application' => 0,
-          'scholarship_update' => 0,
-          'scholarships_att' => 0,
+          'school' => 0,
           'scroller' => 0,
-          'sfs_report_gallery' => 0,
-          'sixflags_scholarships_app' => 0,
-          'staples_2011_signup' => 0,
-          'staples_members' => 0,
-          'staples_reason' => 0,
-          'tackle_hunger' => 0,
-          'tfj_contest_signup' => 0,
           'tips_and_tools' => 0,
-          'troop_letter' => 0,
           'webform' => 0,
         ),
         'view' => array(
@@ -512,12 +475,12 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_grant_ref',
-      'label' => 'Grant Reference',
+      'label' => 'Grant',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -527,7 +490,7 @@ function dosomething_grant_application_field_default_fields() {
         'settings' => array(
           'autocomplete_match' => 'contains',
           'edit_fallback' => 0,
-          'fallback' => 'leave_blank',
+          'fallback' => 'select',
           'node_link' => array(
             'destination' => 'default',
             'full' => 0,
@@ -596,7 +559,7 @@ function dosomething_grant_application_field_default_fields() {
         'text_processing' => '0',
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -666,7 +629,7 @@ function dosomething_grant_application_field_default_fields() {
         'text_processing' => '0',
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -743,7 +706,7 @@ function dosomething_grant_application_field_default_fields() {
         'url' => 0,
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -819,7 +782,7 @@ function dosomething_grant_application_field_default_fields() {
         'default_value_code2' => '',
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -905,7 +868,7 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -972,7 +935,7 @@ function dosomething_grant_application_field_default_fields() {
         'text_processing' => '0',
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -1049,7 +1012,7 @@ function dosomething_grant_application_field_default_fields() {
         'url' => 0,
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -1117,7 +1080,7 @@ function dosomething_grant_application_field_default_fields() {
         'text_processing' => '0',
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -1186,7 +1149,7 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -1265,7 +1228,7 @@ function dosomething_grant_application_field_default_fields() {
         'url' => 0,
         'user_register_form' => FALSE,
         'webform_entity' => array(
-          'pid' => '',
+          'pid' => '0',
           'weight' => '',
         ),
       ),
@@ -1286,7 +1249,7 @@ function dosomething_grant_application_field_default_fields() {
   t('Body');
   t('Email');
   t('Geocode Data');
-  t('Grant Reference');
+  t('Grant');
   t('Mobile Phone Number');
   t('Name');
   t('Personal project website URL');
