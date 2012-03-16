@@ -2300,7 +2300,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover 
 
 h2.block-title, h2.pane-title {
   background-color: #18408b;
-  padding: 0 15px;
+  padding: 6px;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 22px;
@@ -2343,7 +2343,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2564,7 +2564,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
