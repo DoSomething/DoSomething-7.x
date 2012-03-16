@@ -15,6 +15,7 @@ function dosomething_login_menu() {
     'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
     'page callback' => 'dosomething_login_mobile_signup',
     'access callback' => 'dosomething_login_mobile_signup_access',
+    'type' => MENU_CALLBACK,
   );
   $items['user/registration/fb'] = array(
     'title' => 'Registration',
