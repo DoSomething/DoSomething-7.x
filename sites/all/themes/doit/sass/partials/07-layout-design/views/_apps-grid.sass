@@ -41,6 +41,9 @@
       line-height: 12px
       margin-top: 12px
     .apps-image
+      img
+        max-height: 125px
+        max-width: 219px
     .apps-text
       text-align: center
       padding: $s-1 $s-1 0
@@ -53,6 +56,11 @@
       bottom: 0
       width: 150px
       padding-left: $s-1
+    .doingit-icon
+      +replace-text-with-dimensions("doing-it-guy.png")
+      +inline-block
+      margin-bottom: 5px
+      margin-right: 5px
     .apps-link
       position: absolute
       bottom: $s-2
