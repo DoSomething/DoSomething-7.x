@@ -528,7 +528,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .selectBox-options li a, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
 thead tr th a, thead tr th:hover,
-thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .description, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-strength-title,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .password-confirm, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], #lets-talk-dialog .title,
@@ -2442,11 +2442,15 @@ h2.block-title, h2.pane-title {
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name {
   height: 36px;
-  padding: 0 15px;
+  padding: 0;
 }
 .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2 {
-  line-height: 35px !important;
+  padding: 6px 12px 6px 12px;
+  line-height: 22px !important;
   font-size: 23px !important;
+  background-color: #18408b;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .logged-in #block-dosomething-login-become-member .ds-member-name-bar {
   text-decoration: none;
