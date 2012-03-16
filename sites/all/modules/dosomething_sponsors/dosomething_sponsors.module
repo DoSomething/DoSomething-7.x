@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_sponsors feature.
+ */
+
+include_once('dosomething_sponsors.features.inc');
