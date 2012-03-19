@@ -66,10 +66,21 @@ function dosomething_blocks_block_view($delta = '') {
 
     case 'dosomething_social_node_buttons':
       $block['subject'] = t('Social Buttons');
-      $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, $modules = NULL, $options = array('fb_social_preset' => 'FB Like'));
+      $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), $options = array('fb_social_preset' => 'FB Like Box'));
       break;
   }
   return $block;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function dosomething_blocks_node_view($node, $view_mode, $langcode) {
+  // Show the social action buttons on certain content types.
+  if (in_array($node->type, variable_get('dosoomething_social_action_node_types', array('project_report', 'action_guide', 'blog', 'tipsandtools', 'dsuguides')))) {
+    $node->content['dosomething_social_action_buttons'] = dosomething_blocks_social_node_plugins(NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), array('fb_social_preset' => 'FB Like Box'));
+    $node->content['dosomething_social_action_buttons']['#weight'] = -5;
+  }
 }
 
 /**
@@ -406,17 +417,23 @@ function dosomething_blocks_form_search_block_form_alter(&$form, &$form_state, $
  * @see dosomething_blocks_social_plugins_modules().
  */
 function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(), $options = array()) {
+  global $base_url;
   $element = array(
     '#theme' => 'dosomething_blocks_social_node_plugins',
   );
 
   if ($url) {
-    global $base_url;
     $path_array = explode($base_url . '/', $url);
     $path = $path_array[1];
   }
   else {
     $path = NULL;
+  }
+
+  // Get the current path.
+  $curent_path = $_GET['q'];
+  if ($alias = drupal_lookup_path('alias', $_GET['q'])) {
+    $current_path = $alias;
   }
 
   // If modules is empty, add all of them.
@@ -456,15 +473,25 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
       ),
     );
   }
+  if (module_exists('sharethis') && isset($modules['sharethis'])) {
+    // Force the sharethis module to only use ShareThis.
+    $data_options = get_options_array();
+    $data_options['services'] = '"ShareThis:sharethis"';
+
+    $element['#sharethis'] = array(
+      '#markup' => get_button_HTML($data_options, $base_url . '/' . $current_path, drupal_get_title()),
+      '#weight' => 3,
+    );
+  }
   if (module_exists('print') && isset($modules['print'])) {
     $element['#print'] = array(
-      '#weight' => 4,
+      '#weight' => 5,
       '#markup' => $url ? print_insert_link('print/' . $path) : print_insert_link(),
     );
   }
   if (module_exists('print_mail') && isset($modules['print_mail'])) {
     $element['#email'] = array(
-      '#weight' => 3,
+      '#weight' => 4,
       '#markup' => $url ? print_mail_insert_link('printmail/' . $path) : print_mail_insert_link(),
     );
   }
@@ -482,6 +509,7 @@ function dosomething_blocks_social_plugins_modules() {
     'tweetbutton' => t('Twitter'), 
     'print' => t('Print'), 
     'print_mail' => t('Email'),
+    'sharethis' => t('Sharethis'),
   );
 }
 
@@ -491,7 +519,7 @@ function dosomething_blocks_social_plugins_modules() {
 function dosomething_blocks_theme() {
   return array(
     'dosomething_blocks_social_node_plugins' => array(
-      'variables' => array('facebook' => NULL, 'google' => NULL, 'twitter' => NULL, 'print' => NULL, 'email' => NULL),
+      'variables' => array('facebook' => NULL, 'google' => NULL, 'twitter' => NULL, 'sharethis' => NULL, 'print' => NULL, 'email' => NULL),
     ),
     'dosomething_blocks_lets_talk_dialog' => array(
       'variables' => array(),
