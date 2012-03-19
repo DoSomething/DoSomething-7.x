@@ -43,7 +43,7 @@ function dosomething_blog_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'twocol_a';
+  $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -56,6 +56,7 @@ function dosomething_blog_default_page_manager_handlers() {
       'left-bottom-left' => NULL,
       'left-bottom-right' => NULL,
       'right' => NULL,
+      'left' => NULL,
     ),
   );
   $display->cache = array();
@@ -64,27 +65,7 @@ function dosomething_blog_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'left-top';
-    $pane->type = 'block';
-    $pane->subtype = 'fb_social-FB Facepile General';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass();
-    $pane->pid = 'new-2';
-    $pane->panel = 'left-top';
+    $pane->panel = 'left';
     $pane->type = 'node_content';
     $pane->subtype = 'node_content';
     $pane->shown = TRUE;
@@ -107,12 +88,12 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['left-top'][1] = 'new-2';
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
-    $pane->panel = 'left-top';
+    $pane->pid = 'new-2';
+    $pane->panel = 'left';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
     $pane->shown = TRUE;
@@ -142,12 +123,12 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['left-top'][2] = 'new-3';
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['left'][1] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
-    $pane->panel = 'left-top';
+    $pane->pid = 'new-3';
+    $pane->panel = 'left';
     $pane->type = 'block';
     $pane->subtype = 'fb_social-FB Comments';
     $pane->shown = TRUE;
@@ -162,11 +143,11 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
-    $display->content['new-4'] = $pane;
-    $display->panels['left-top'][3] = 'new-4';
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['left'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-4';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
@@ -201,10 +182,30 @@ function dosomething_blog_default_page_manager_handlers() {
     );
     $pane->extras = array();
     $pane->position = 0;
+    $display->content['new-4'] = $pane;
+    $display->panels['right'][0] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'fb_social-FB Facepile General';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
     $display->content['new-5'] = $pane;
-    $display->panels['right'][0] = 'new-5';
+    $display->panels['top'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-2';
+  $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
   $export['node_view_blog'] = $handler;
 
@@ -255,7 +256,7 @@ function dosomething_blog_default_page_manager_pages() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'twocol_a';
+  $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -265,6 +266,8 @@ function dosomething_blog_default_page_manager_pages() {
       'left-bottom-left' => NULL,
       'left-bottom-right' => NULL,
       'right' => NULL,
+      'top' => NULL,
+      'left' => NULL,
     ),
   );
   $display->cache = array();
@@ -273,7 +276,7 @@ function dosomething_blog_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'left-top';
+    $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'blog_center-panel_pane_3';
     $pane->shown = TRUE;
@@ -290,7 +293,7 @@ function dosomething_blog_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['left-top'][0] = 'new-1';
+    $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'right';
@@ -358,6 +361,27 @@ function dosomething_blog_default_page_manager_pages() {
     $pane->position = 1;
     $display->content['new-3'] = $pane;
     $display->panels['right'][1] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'views--exp-blog_center-panel_pane_3';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 1,
+      'override_title_text' => 'Sort by:',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][0] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
