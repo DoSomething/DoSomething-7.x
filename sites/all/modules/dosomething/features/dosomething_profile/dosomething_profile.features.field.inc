@@ -885,145 +885,6 @@ function dosomething_profile_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-main-field_user_preferred_cause'
-  $fields['profile2-main-field_user_preferred_cause'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_preferred_cause',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'profile2_private' => 1,
-        'referenceable_types' => array(
-          '1in3_abuse_old' => 0,
-          '301_redirects' => 0,
-          '911_registration' => 0,
-          'abc_family' => 0,
-          'action_guide' => 0,
-          'api_key' => 0,
-          'aspca_grant_app' => 0,
-          'awards_archive' => 0,
-          'bc_bio_form' => 0,
-          'campaign_bfb_2011' => 0,
-          'campaign_bully_2011' => 0,
-          'campaign_ebd_2011' => 0,
-          'campaign_ew_2011' => 0,
-          'campaign_gys_2011' => 0,
-          'campaign_hunt_2011' => 0,
-          'campaign_macys_2011' => 0,
-          'campaign_sports_2011' => 0,
-          'canned_food' => 0,
-          'cause' => 'cause',
-          'cause_video' => 0,
-          'celebs_gone_good' => 0,
-          'chatterbox' => 0,
-          'club' => 0,
-          'club_event' => 0,
-          'club_first_meeting_cash' => 0,
-          'custom_voting' => 0,
-          'decade_2011_signup' => 0,
-          'ds101_action_kit' => 0,
-          'ds_award_judging' => 0,
-          'dsaward_app' => 0,
-          'dsaward_rec' => 0,
-          'dsu_askprof' => 0,
-          'dsu_guides' => 0,
-          'easy_idea' => 0,
-          'ebd_signup' => 0,
-          'editorial_project' => 0,
-          'ewaste_signup_2011' => 0,
-          'final_grant_update' => 0,
-          'forum' => 0,
-          'general_grant_app' => 0,
-          'general_scholarship_app' => 0,
-          'grant' => 0,
-          'grant_alumni' => 0,
-          'grant_judge' => 0,
-          'gys_2011' => 0,
-          'healthy_schools' => 0,
-          'healthy_schools_report' => 0,
-          'help_ticket' => 0,
-          'ididthis' => 0,
-          'increaseyourgreen_signup' => 0,
-          'issue' => 0,
-          'member_opportunity' => 0,
-          'page' => 0,
-          'poll' => 0,
-          'press' => 0,
-          'project' => 0,
-          'project_update' => 0,
-          'save_our_music' => 0,
-          'scavenger_2011_signup' => 0,
-          'scholarship_update' => 0,
-          'scholarships_att' => 0,
-          'scroller' => 0,
-          'sfs_report_gallery' => 0,
-          'sixflags_scholarships_app' => 0,
-          'staff_blog' => 0,
-          'staples_2011_signup' => 0,
-          'staples_members' => 0,
-          'staples_reason' => 0,
-          'tackle_hunger' => 0,
-          'tfj_contest_signup' => 0,
-          'tips_and_tools' => 0,
-          'troop_letter' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 10,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_preferred_cause',
-      'label' => 'What\'s Your Something?',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '11',
-      ),
-    ),
-  );
-
   // Exported field: 'profile2-main-field_user_why_do_you'
   $fields['profile2-main-field_user_why_do_you'] = array(
     'field_config' => array(
@@ -1081,6 +942,75 @@ function dosomething_profile_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
+        'weight' => '12',
+      ),
+    ),
+  );
+
+  // Exported field: 'profile2-main-taxonomy_vocabulary_5'
+  $fields['profile2-main-taxonomy_vocabulary_5'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'taxonomy_vocabulary_5',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_5',
+            'parent' => '0',
+          ),
+        ),
+        'profile2_private' => 1,
+        'required' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 20,
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'taxonomy_vocabulary_5',
+      'label' => 'What\'s Your Something?',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
         'weight' => '12',
       ),
     ),
