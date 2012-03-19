@@ -35,12 +35,8 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
       $newAccount = TRUE;
     }
 
-    // TODO: use dosomething_login_person_is_over_age if possible
-    // This doesn't work out to 13 years because of leap years.
     $birthday = strtotime($birthDate);
-    // If the user is younger than 13 (give or take a day), reject the
-    // application (that's (60 * 60 * 24 * 365 * 13) - (60 * 60 * 24)).
-    if ($birthday !== FALSE && $birthday > (REQUEST_TIME - 409881600)) {
+    if ($birthday !== FALSE && !dosomething_login_person_is_over_age($birthday, 13)) {
       $state->setContext('sms_response', t('Sorry if you\'re under 13 you must register through DoSomething.org.'));
       $state->markCompeted();
       return;
@@ -66,11 +62,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
       }
     }
 
-    // TODO: use dosomething_login_person_is_over_age if possible
-    // This doesn't work out to 26 years because of leap years.
-    // If the user is older than 26 add the old person role.
-    // application (that's (60 * 60 * 24 * 365 * 26)).
-    if ($birthday !== FALSE && $birthday < (REQUEST_TIME - 819936000)) {
+    if ($birthday !== FALSE && dosomething_login_person_is_over_age($birthday, 26)) {
       $account->roles[self::OLD_PERSON_RID] = self::OLD_PERSON_ROLE;
     }
     user_save($account);
