@@ -47,6 +47,9 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
       case 'Functionality':
         $fields['assignee-id'] = 48346;
         break;
+      case 'Content':
+        $fields['assignee-id'] = 48356;
+        break;
     }
   }
   else {
