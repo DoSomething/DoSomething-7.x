@@ -63,30 +63,15 @@
     +float-right
 
 .blog-landing-pane-post
-  clear: both
+  @extend .image-teaser-module
   .blog-large-thumbnail
-    @extend .box-shadow-center
-    +float-left
-    margin-right: 4px
-    margin-left: -12px
-    border: 1px solid $white
+    @extend .image-teaser-module-image
   .views-field-body
-    @extend .box-shadow-center
-    @extend .clearfix
-    +float-right
-    +box-sizing(border-box)
-    background: $white
-    margin-bottom: 12px
-    width: 430px
-    min-height: 124px
-    padding: 12px
-    p
+    @extend .image-teaser-module-teaser
+    h2
       margin-bottom: 0
-    .views-field-title
-      h2
-        @extend .bold
-        line-height: 1.2em
-        margin-top: 18px
+    p
+      margin-top: $s0
 
 .blog-post-date
   @extend .headers
