@@ -33,7 +33,7 @@ fi
 #Assuming we got the file now test the md5sum
 ERROR=$(expr $ERROR + 1)
 LOCALSUM=`md5sum $BACKDIR/ds6-daily-backup.sql.gz | awk '{ print $1 }'`
-if  [ -z $LOCALSUM || -z $SERVERSUM ]
+if  [ -z $LOCALSUM ] || [ -z $SERVERSUM ]
 then
   DIFF=$(expr `date +%s` - $START)
   echo "Error" $ERROR "encountered after" $DIFF "seconds. Failed to get a checksum."
