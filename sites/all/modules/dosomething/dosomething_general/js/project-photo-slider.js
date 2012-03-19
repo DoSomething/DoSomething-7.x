@@ -1,15 +1,15 @@
 /**
  * Photo slider on project pages.
  */
- 
+
 (function ($) {
 Drupal.behaviors.featuredNews = {
   attach: function(context) {
     Drupal.settings.dosomething = new Array();
     Drupal.settings.dosomething.photoSliderIndex = 0;
 
-    $(".view-project-photo-slider .view-content img:not(:first)").hide(); 
-  
+    $(".view-project-photo-slider .view-content img:not(:first)").hide();
+
     // Keep track of hover state.
     $(".view-project-photo-slider").hover(
       function(){$(this).addClass("photo-slider-hover")},
@@ -28,17 +28,17 @@ Drupal.behaviors.featuredNews = {
     slider_items = $(".view-project-photo-slider .view-content img").length;
     for (i = 1; i <= slider_items; i++) {
       $(".slide-count").prepend('<span>' + i + '</span>');
-    }  
+    }
     $(".view-project-photo-slider .slide-count span:last-child").addClass('active');
-  
+
     // Switch on tab click.
     $(".slide-count span").click(function() {
-      $(".view-project-photo-slider .view-content img").hide();      
+      $(".view-project-photo-slider .view-content img").hide();
       $('.slide-count span').removeClass('active');
       var num;
       num = $(this).html() - 1;
       Drupal.settings.dosomething.photoSliderIndex = num;
-      $(".view-project-photo-slider img:eq(" + num + ")").show(); 
+      $(".view-project-photo-slider img:eq(" + num + ")").show();
       $(this).addClass('active');
     });
   }
