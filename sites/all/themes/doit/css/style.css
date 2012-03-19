@@ -2705,7 +2705,7 @@ h2.block-title, h2.pane-title {
   font-size: 15px;
 }
 .dosomething-member-facts h2 {
-  line-height: 23px;
+  height: 24px;
 }
 .dosomething-member-facts .dosomething-member-misc {
   list-style: none;
@@ -3319,9 +3319,13 @@ comments.fb_iframe_widget {
 .page-webform-submission .panel-first h2 {
   background: none;
   padding-left: 0;
+  height: 36px;
 }
 .page-webform-submission .pane-ds-project-stats {
   padding: 15px 23px 15px 23px;
+}
+.page-webform-submission .pane-ds-project-stats .dosomething-member-facts h2 {
+  height: 24px;
 }
 
 .node-poll .field-type-image {
