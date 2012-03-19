@@ -32,7 +32,7 @@ fi
 
 #Assuming we got the file now test the md5sum
 ERROR=$(expr $ERROR + 1)
-LOCALSUM=`md5sum ds6-daily-backup.sql.gz | awk '{ print $1 }'`
+LOCALSUM=`md5sum $BACKDIR/ds6-daily-backup.sql.gz | awk '{ print $1 }'`
 if  [ -z $LOCALSUM || -z $SERVERSUM ]
 then
   DIFF=$(expr `date +%s` - $START)
@@ -94,7 +94,7 @@ fi
 
 echo "dropping the og history table from the d7 site."
 ERROR=$(expr $ERROR + 1)
-mysql $D7DATABASE -e "DROP TABLE dosome_migrating_og_membership_change;"
+mysql $D7DATABASE -e "DROP TABLE IF EXISTS dosome_migrating_og_membership_change;"
 if [ $? -ne 0 ]
 then
   DIFF=$(expr `date +%s` - $START)
@@ -137,6 +137,18 @@ else
   echo "caches flushed"
 fi
 
+# Enable the migration module
+echo "enabling dosomething migration module"
+ERROR=$(expr $ERROR + 1)
+drush $D7ALIAS en dosomething_migrate -y
+if [ $? -ne 0 ]
+then
+  DIFF=$(expr `date +%s` - $START)
+  echo "Error" $ERROR "encountered after" $DIFF "seconds"
+  exit $ERROR
+else
+  echo "module enabled successfully"
+fi
 
 # List of migrations to run.
 echo "running new user migration"
