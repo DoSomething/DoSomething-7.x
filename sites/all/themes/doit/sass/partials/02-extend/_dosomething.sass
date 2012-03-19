@@ -149,6 +149,15 @@ h3.subhead
   @extend .member-stats
   @extend .caps
 
+// Commas after taxonmy terms
+.field-name-taxonomy-vocabulary-5
+  .field-item
+    &:after
+      content: ', '
+    &:last-of-type
+      &:after
+        content: ''
+
 ////////////////////////////
 // PURPLE RIBBON
 // home page
