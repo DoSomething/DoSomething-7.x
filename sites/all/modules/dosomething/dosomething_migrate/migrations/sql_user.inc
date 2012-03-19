@@ -57,11 +57,12 @@ class DSSqlUserProfile extends Migration {
     $this->addFieldMapping('field_user_last_name', 'profile_lname');
     $this->addFieldMapping('field_user_birthday', 'profile_bday')->defaultValue(NULL);
     $this->addFieldMapping('field_user_gender', 'profile_gender');
-    $this->addFieldMapping('field_user_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
+    //$this->addFieldMapping('field_user_preferred_cause', 'profile_preferred_cause')->description('Mapped to node ids in prepareRow().');
     $this->addFieldMapping('field_user_why_do_you', 'profile_why_do_you');
     $this->addFieldMapping('field_user_mobile', 'profile_cell')->defaultValue('');
     $this->addFieldMapping('field_user_mobile_optin', 'profile_receive')->defaultValue(0);
     $this->addFieldMapping('field_user_newsletter_optin', 'profile_newsletter')->defaultValue(0);
+    $this->addFieldMapping('taxonomy_vocabulary_5', 'profile_preferred_cause')->arguments(array('source_type' => 'tid'));
 
     $this->addUnmigratedDestinations(array(
       'revision_uid', 'language', 'path',
@@ -83,7 +84,23 @@ class DSSqlUserProfile extends Migration {
       'Violence & Bullying' => 29128,
       'War Peace & Politics' => 29148,
     );
-    $row->profile_preferred_cause = isset($map[$row->profile_preferred_cause]) ? $map[$row->profile_preferred_cause] : NULL;
+
+    // map the orginial node id to the new term id.
+    $nid_to_tid_map = array(
+      '29060' => '29',
+      '29085' => '27',
+      '29086' => '23',
+      '29102' => '25',
+      '29109' => '20',
+      '29111' => '26',
+      '29113' => '22',
+      '29124' => '73',
+      '29150' => '21',
+      '29128' => '28',
+      '29148' => '24',
+    );
+
+    $row->profile_preferred_cause = isset($map[$row->profile_preferred_cause]) ? $nid_to_tid_map[$map[$row->profile_preferred_cause]] : NULL;
 
     // Make sure these an integers.
     $row->profile_receive = isset($row->profile_receive) ? (int) $row->profile_receive : 0;
@@ -91,6 +108,8 @@ class DSSqlUserProfile extends Migration {
 
     // Trim long cellphone numbers.
     $row->profile_cell = substr($row->profile_cell, 0, 32);
+    // We're going to remove any non-numeric characters from the phone number.
+    $row->profile_cell = preg_replace('/\D/', '', $row->profile_cell);
 
     // There's a lot of garbage in the birthday field. Excude anything that
     // doesn't have a number (other than zero to filter out 0/0/0) and some
