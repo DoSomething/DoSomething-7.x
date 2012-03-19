@@ -1011,7 +1011,7 @@ function dosomething_profile_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );

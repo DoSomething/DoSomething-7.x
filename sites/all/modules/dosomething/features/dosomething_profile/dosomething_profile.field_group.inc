@@ -58,8 +58,8 @@ function dosomething_profile_field_group_info() {
       3 => 'field_user_is_over13',
       4 => 'field_user_last_name',
       5 => 'field_user_mobile',
-      6 => 'field_user_preferred_cause',
-      7 => 'field_user_why_do_you',
+      6 => 'field_user_why_do_you',
+      7 => 'taxonomy_vocabulary_5',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
