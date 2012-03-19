@@ -431,7 +431,7 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
   }
 
   // Get the current path.
-  $curent_path = $_GET['q'];
+  $current_path = $_GET['q'];
   if ($alias = drupal_lookup_path('alias', $_GET['q'])) {
     $current_path = $alias;
   }
