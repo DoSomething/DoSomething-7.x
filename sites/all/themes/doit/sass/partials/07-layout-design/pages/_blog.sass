@@ -12,43 +12,9 @@
     a
       font-weight: bold
 
+// Right sidebar
 .pane-blog-center
-  .pane-content
-    .views-row
-      @extend .clearfix
-      padding: 15px 0
-      +background(image_url('sidebar-title-separator-line.png') no-repeat center top)
-    .views-row-first
-      background-image: none
-    .views-field-field-picture
-      +float-left
-      margin-right: 12px
-      img
-        border: 1px solid $white
-        @extend .box-shadow-center
-    .views-field-title
-      // padding-left: 72px
-      padding-top: 0
-      font-size: $s-1
-      line-height: 14px
-      background-image: none
-    a
-      @extend .bold
-
-// .panel-outer-right
-//   .pane-title
-//     text-align: center
-//     line-height: 1.2em
-//     // margin-bottom: 12px
-//   .views-field-title
-//     @extend .bold
-//     margin-bottom: 0
-//     line-height: 2em
-//     padding-top: 12px
-//     +background(image_url('sidebar-title-separator-line.png') no-repeat center 10%)
-//   .views-row-first
-//     .views-field-title
-//       background: none
+  @extend .pane-narrow-block
 
 #blog-archives-pane
   h3
