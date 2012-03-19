@@ -129,7 +129,7 @@ function dosomething_blog_field_default_fields() {
       'description' => 'If relevant, select the Cause(s) or Issue(s) that this blog post relates to.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
@@ -690,7 +690,7 @@ function dosomething_blog_field_default_fields() {
       'description' => 'hold down ctrl button to select more than one',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
