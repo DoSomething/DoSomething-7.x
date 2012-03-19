@@ -3170,6 +3170,14 @@ comments.fb_iframe_widget {
   color: #d4d2d1 !important;
 }
 
+.views-exposed-widgets {
+  margin-bottom: 30px;
+}
+
+.views-exposed-form .views-exposed-widget {
+  padding-top: 0;
+}
+
 .apps-grid {
   width: 682px;
   margin-left: 33px;
