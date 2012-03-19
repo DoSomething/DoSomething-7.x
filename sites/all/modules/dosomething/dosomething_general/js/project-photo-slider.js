@@ -16,9 +16,11 @@ Drupal.behaviors.featuredNews = {
       function(){$(this).removeClass("photo-slider-hover")}
     );
     // Cycle.
-    setTimeout(function() {
+    // Note: Cycling was not working but was also not requested.
+    // It may be requested in the future, so we're leaving this here.
+    /*setTimeout(function() {
       feature_cycle();
-    }, 10000);
+    }, 10000);*/
 
     // Add the numbered tabs.
     $(".view-project-photo-slider").append('<div class="slide-count"></div>');
