@@ -23,6 +23,7 @@ function dosomething_user_my_somethings_ds_stuff_you_need_content_type_render($s
   $block = new stdClass();
   $block->title = t('Complete Your Profile');
   $elements = dosomething_user_my_somethings_stuff_need_display($uid, 'current');
+  $block->content = l('<< Back to profile', 'user/' . $uid, array('attributes' => array('class' => 'back')));
   $block->content .= drupal_render($elements);
   return $block;
 }

@@ -170,7 +170,7 @@ function dosomething_user_my_somethings_profile_completion($sidebar = TRUE) {
             'complete-link',
           ),
         ),
-        '#children' => l('Go', 'user/' . $user->uid . '/edit/main'),
+        '#children' => l('Go', 'user/' . $user->uid . '/complete-profile'),
       ),
     ),
   );
