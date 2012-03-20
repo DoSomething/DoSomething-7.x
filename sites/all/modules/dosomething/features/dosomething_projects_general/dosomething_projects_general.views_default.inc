@@ -1080,8 +1080,9 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['delta']['field'] = 'delta';
   $handler->display->display_options['filters']['delta']['value']['value'] = '0';
 
-  /* Display: Landing pane */
-  $handler = $view->new_display('panel_pane', 'Landing pane', 'panel_pane_1');
+  /* Display: Projects Landing pane */
+  $handler = $view->new_display('panel_pane', 'Projects Landing pane', 'panel_pane_1');
+  $handler->display->display_options['display_description'] = 'Displays a list of projects.';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
@@ -1318,6 +1319,64 @@ function dosomething_projects_general_views_default_views() {
       'label' => 'Webform submissions: Sid',
     ),
   );
+
+  /* Display: Causes Projects Landing pane */
+  $handler = $view->new_display('panel_pane', 'Causes Projects Landing pane', 'panel_pane_2');
+  $handler->display->display_options['display_description'] = 'Displays a list of projects sortable by Cause.';
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'There are no projects listed under this Cause yet.';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Field: Picture (field_picture:delta) */
+  $handler->display->display_options['filters']['delta']['id'] = 'delta';
+  $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['filters']['delta']['field'] = 'delta';
+  $handler->display->display_options['filters']['delta']['value']['value'] = '0';
+  $handler->display->display_options['filters']['delta']['group'] = 0;
+  /* Filter criterion: Field: Issues (taxonomy_vocabulary_5) */
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'Causes';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator'] = 'taxonomy_vocabulary_5_tid_op';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['error_message'] = 1;
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
+  $handler->display->display_options['argument_input'] = array(
+    'taxonomy_vocabulary_5_tid' => array(
+      'type' => 'panel',
+      'context' => 'entity:feedback.field_image',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Field: Issues (taxonomy_vocabulary_5)',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['related_projects'] = $view;
 
   return $export;
