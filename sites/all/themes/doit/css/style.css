@@ -3468,6 +3468,29 @@ comments.fb_iframe_widget {
   margin-bottom: 12px;
 }
 
+.content .fb-social-like-plugin {
+  display: inline;
+  float: left;
+}
+.content .connect_widget_number_cloud {
+  margin-right: 6px;
+}
+.content .twitter-plugin {
+  display: inline;
+  float: left;
+  margin-left: -12px;
+  margin-right: 24px;
+}
+.content .sharethis-plugin {
+  display: inline;
+  float: left;
+  margin-top: -8px;
+}
+.content .field {
+  display: inline;
+  float: left;
+}
+
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title {
