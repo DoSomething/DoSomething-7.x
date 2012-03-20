@@ -1955,6 +1955,30 @@ ul.tabs.primary li a.active {
 ul.pager {
   margin-top: 0.5em;
   color: #18408b;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+}
+ul.pager li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 0;
+  padding-right: 0;
+}
+ul.pager li:first-child, ul.pager li.first {
+  padding-left: 0;
+}
+ul.pager li:last-child {
+  padding-right: 0;
+}
+ul.pager li.last {
+  padding-right: 0;
 }
 ul.pager a {
   color: #18408b;
