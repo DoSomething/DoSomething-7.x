@@ -440,7 +440,7 @@ input[type=color], .description {
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
+.headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-views-exp-blog-center-panel-pane-3 h2.pane-title h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title, .large-profile-info, fieldset legend, .dosomething-member-facts h2, .vital-stats .title,
 .vital-stats .name, .medium-profile-info, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
@@ -456,7 +456,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
 .pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -475,7 +475,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
   font-weight: 300;
 }
 
-.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
+.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-views-exp-blog-center-panel-pane-3 h2.pane-title h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title, .purple-ribbon, .dothis-button-large, .go-button, .views-submit-button input[type="submit"], #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], form.webform-client-form #edit-next,
@@ -491,7 +491,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
 .pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, .page-why-become-a-member .main-inner .content .panel-panel .pane-content h2, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.pane-ds-editors-picks-all .something-description a, .page-why-become-a-member .main-inner .content .panel-panel .pane-content h2, h3 .stuff-header, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, .selectBox-options li, .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label[for='edit-captcha-response'], .apps-grid .apps-box .apps-footer {
@@ -507,9 +507,9 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
   color: #18408b;
 }
 
-.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
+.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-views-exp-blog-center-panel-pane-3 h2.pane-title h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
-.pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
+.pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header {
   color: black;
 }
 
@@ -536,9 +536,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: white;
 }
 
-.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
+.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-views-exp-blog-center-panel-pane-3 h2.pane-title h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
-.pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2 {
+.pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header {
   color: black;
 }
 
@@ -662,7 +662,7 @@ form.webform-client-form #edit-submit:visited, .not-logged-in #dosomething-login
   font-size: 21px;
 }
 
-.page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
+.page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2.pane-title, .pane-views-exp-blog-center-panel-pane-3 h2.pane-title h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title {
   font-size: 40px;
@@ -688,7 +688,7 @@ h3.subhead {
   text-transform: none;
 }
 
-.black-h2 h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
+.black-h2 h2.pane-title, .pane-views-exp-blog-center-panel-pane-3 h2.pane-title h2.pane-title, .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title, .pane-ds-stuff-you-need h2.pane-title {
   background-color: transparent;
@@ -3544,10 +3544,30 @@ comments.fb_iframe_widget {
   margin: 0;
 }
 
+.pane-ds-stuff-you-need .pane-content {
+  -moz-box-shadow: #d4d2d1 0 1px 0 inset;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 inset;
+  -o-box-shadow: #d4d2d1 0 1px 0 inset;
+  box-shadow: #d4d2d1 0 1px 0 inset;
+  border-top: 1px white solid;
+}
 .pane-ds-stuff-you-need a.back {
   position: absolute;
   top: 283px;
   right: 0;
+}
+
+h3 .stuff-header {
+  font-size: 14px;
+  padding: 12px 0;
+}
+
+.item-list ul.profile-stuff {
+  margin: 0;
+  padding: 0;
+}
+.item-list ul.profile-stuff li {
+  margin-bottom: 12px;
 }
 
 .field-name-field-picture img {
