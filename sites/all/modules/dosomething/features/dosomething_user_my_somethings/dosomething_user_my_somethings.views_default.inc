@@ -705,34 +705,6 @@ function dosomething_user_my_somethings_views_default_views() {
     ),
   );
   $handler->display->display_options['fields']['field_user_address']['field_api_classes'] = 0;
-  /* Field: Profile: What's Your Something? */
-  $handler->display->display_options['fields']['field_user_preferred_cause']['id'] = 'field_user_preferred_cause';
-  $handler->display->display_options['fields']['field_user_preferred_cause']['table'] = 'field_data_field_user_preferred_cause';
-  $handler->display->display_options['fields']['field_user_preferred_cause']['field'] = 'field_user_preferred_cause';
-  $handler->display->display_options['fields']['field_user_preferred_cause']['label'] = '';
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['text'] = ' ';
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['empty'] = '<a href="/user/!1/edit/main">Add What\'s Your Something?</a>';
-  $handler->display->display_options['fields']['field_user_preferred_cause']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_user_preferred_cause']['click_sort_column'] = array(
-    0 => 'nid',
-  );
-  $handler->display->display_options['fields']['field_user_preferred_cause']['field_api_classes'] = 0;
   /* Field: Profile: Why Do You Do Something? */
   $handler->display->display_options['fields']['field_user_why_do_you']['id'] = 'field_user_why_do_you';
   $handler->display->display_options['fields']['field_user_why_do_you']['table'] = 'field_data_field_user_why_do_you';
