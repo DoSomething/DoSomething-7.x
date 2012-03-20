@@ -128,3 +128,46 @@ function dosomething_campaign_styles_block_view($delta) {
     }
   }
 }
+
+/**
+ * Implements hook_og_context_negotiation_info().
+ */
+function dosomething_campaign_styles_og_context_negotiation_info() {
+  $providers = array();
+  $providers['campaign_panelizer'] = array(
+    'name' => t('Campaign Panelizer'),
+    'description' => t('Determine context by checking if there is context provided by something like panels or panelizer'),
+    'callback' => 'dosomething_campaign_styles_og_context_handler',
+  );
+  return $providers;
+}
+
+/**
+ * OG context handler callback.
+ */
+function dosomething_campaign_styles_og_context_handler() {
+  $context = array();
+  $item = menu_get_item();
+  foreach ($item['map'] as $map) {
+    if (is_object($map) && get_class($map) == 'ctools_context') {
+      if ($map->plugin == 'entity:node') {
+        $gid = og_get_group('node', $map->data->nid)->gid;
+        $context[] = array($gid);
+      }
+    }
+  }
+  return $context;
+}
+
+function dosomething_campaign_styles_theme() {
+  $theme['ds_campaign_social'] = array(
+    'variables' => array(
+      'url' => NULL,
+      'facebook_language' => NULL,
+      'twitter_language' => NULL,
+    ),
+    'template' => 'templates/ds_campaign_social',
+  );
+
+  return $theme;
+}
