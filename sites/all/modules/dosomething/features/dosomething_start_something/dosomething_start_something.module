@@ -25,4 +25,11 @@ function dosomething_start_something_form_views_exposed_form_alter(&$form, &$for
       $form['howtos']['#options']['All'] = 'All How-Tos';
     }
   }
+  
+  if ($form['#id'] == 'views-exposed-form-related-projects-panel-pane-2') {
+    // Override "All" option value on project Causes exposed filter.
+    if ($form['#info']['filter-taxonomy_vocabulary_5_tid']['value'] == 'taxonomy_vocabulary_5_tid') {
+      $form['taxonomy_vocabulary_5_tid']['#options']['All'] = 'All Causes';
+    }
+  }
 }
