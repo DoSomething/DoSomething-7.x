@@ -539,7 +539,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campain_date']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campain_date']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campain_date']['settings'] = array(
-    'format_type' => 'field_publication_date_default',
+    'format_type' => 'campaign',
     'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -969,7 +969,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campain_date']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campain_date']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campain_date']['settings'] = array(
-    'format_type' => 'field_publication_date_default',
+    'format_type' => 'campaign',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1192,7 +1192,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campain_date']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campain_date']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campain_date']['settings'] = array(
-    'format_type' => 'field_publication_date_default',
+    'format_type' => 'campaign',
     'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
