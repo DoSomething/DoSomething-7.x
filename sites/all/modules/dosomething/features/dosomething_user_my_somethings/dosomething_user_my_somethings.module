@@ -850,7 +850,6 @@ function dosomething_user_my_somethings_action_guides_complete($uid) {
 function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current') {
   $cid = 'dosomething_user_my_somethings_' . $uid;
   $cache = cache_get($cid);
-  $cache = NULL;
   if (!is_object($cache) || !isset($cache->data[$era])) {
     $campaigns = dosomething_user_my_somethings_campaign_list($uid, $era);
     $somethings = dosomething_user_my_somethings_projects_grants_list($uid, $era);
@@ -1022,7 +1021,7 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
         }
       }
       else {
-        if (isset($profile->$field_name)) {
+        if (!empty($profile->$field_name)) {
           $field_info = field_info_instance('profile2', $field_name, 'main');
           $label = $field_info['label'];
           $something = new stdClass();
