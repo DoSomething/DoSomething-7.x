@@ -348,7 +348,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
     'width' => '100',
     'action' => 'like',
     'font' => 'verdana',
-    'colorscheme' => 'dark',
+    'colorscheme' => 'light',
   );
   $export['FB Like Box'] = $fb_social_preset;
 
