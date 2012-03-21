@@ -4,3 +4,5 @@ core = "7.x"
 package = "Dosomething"
 dependencies[] = dosomething_campaign
 dependencies[] = og_context
+dependencies[] = dosomething_campaign_contact_form
+dependencies[] = dosomething_campaign_sign_up
