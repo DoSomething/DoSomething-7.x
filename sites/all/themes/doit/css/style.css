@@ -1158,6 +1158,8 @@ body.front .selectBox-dropdown-menu {
   border-top: 0;
   background-color: #807a75;
   overflow: auto;
+  border: 1px solid white;
+  border-top: 0;
 }
 body.front .pane-dosomething-blocks-dosomething-make-impact-front .form-type-select label {
   display: none;
