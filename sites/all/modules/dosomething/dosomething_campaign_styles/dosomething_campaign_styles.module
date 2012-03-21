@@ -148,11 +148,13 @@ function dosomething_campaign_styles_og_context_negotiation_info() {
 function dosomething_campaign_styles_og_context_handler() {
   $context = array();
   $item = menu_get_item();
-  foreach ($item['map'] as $map) {
-    if (is_object($map) && get_class($map) == 'ctools_context') {
-      if ($map->plugin == 'entity:node') {
-        $gid = og_get_group('node', $map->data->nid)->gid;
-        $context[] = array($gid);
+  if (isset($item['map']) && is_array($item['map'])) {
+    foreach ($item['map'] as $map) {
+      if (is_object($map) && get_class($map) == 'ctools_context') {
+        if ($map->plugin == 'entity:node') {
+          $gid = og_get_group('node', $map->data->nid)->gid;
+          $context[] = array($gid);
+        }
       }
     }
   }
