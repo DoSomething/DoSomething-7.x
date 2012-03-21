@@ -1910,89 +1910,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
-  // Exported field: 'node-club-og_roles_permissions'
-  $fields['node-club-og_roles_permissions'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'og_roles_permissions',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'no_ui' => TRUE,
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'Use default roles and permissions',
-          1 => 'Override default roles and permissions',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '0',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '24',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'og_roles_permissions',
-      'label' => 'Group roles and permissions',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'view modes' => array(
-        'full' => array(
-          'custom settings' => FALSE,
-          'label' => 'Full',
-          'type' => 'list_default',
-        ),
-        'teaser' => array(
-          'custom settings' => FALSE,
-          'label' => 'Teaser',
-          'type' => 'list_default',
-        ),
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
-        'weight' => '13',
-      ),
-      'widget_type' => 'options_select',
-    ),
-  );
-
   // Exported field: 'node-club-taxonomy_vocabulary_17'
   $fields['node-club-taxonomy_vocabulary_17'] = array(
     'field_config' => array(
@@ -2087,7 +2004,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
             'parent' => '0',
           ),
         ),
-        'profile2_private' => FALSE,
+        'profile2_private' => 1,
         'required' => FALSE,
       ),
       'translatable' => '0',
@@ -2147,7 +2064,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Clubs Agreement');
   t('Date of birth');
   t('First Name');
-  t('Group roles and permissions');
   t('Group type');
   t('How did you hear about Do Something Clubs?');
   t('Issues');

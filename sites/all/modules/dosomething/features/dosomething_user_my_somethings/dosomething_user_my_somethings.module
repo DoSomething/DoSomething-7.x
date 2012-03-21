@@ -170,7 +170,7 @@ function dosomething_user_my_somethings_profile_completion($sidebar = TRUE) {
             'complete-link',
           ),
         ),
-        '#children' => l('Go', 'user/' . $user->uid . '/edit/main'),
+        '#children' => l('Go', 'user/' . $user->uid . '/complete-profile'),
       ),
     ),
   );
@@ -629,6 +629,7 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
       $image = field_get_items('node', $campaign, 'field_campaign_main_image');
       $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
       $something->title = $campaign->title;
+      $something->type= 'campaign';
       $somethings[] = $something;
     }
   }
@@ -661,6 +662,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
               $something->uri = array('options' => array());
               $something->uri['path'] = ($edit_access && $era == 'current') ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
               $something->title = $grant->title;
+              $something->type = 'grant_application';
               $somethings[] = $something;
             }
           }
@@ -678,6 +680,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
             $something->check_path = TRUE;
             $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
             $something->title = isset($title[0]['value']) ? $title[0]['value'] : t('New Project');
+            $something->type = 'project_report';
             $somethings[] = $something;
           }
         }
@@ -840,3 +843,195 @@ function dosomething_user_my_somethings_action_guides_complete($uid) {
                             array(':status' => DOSOMETHING_PROJECTS_COMPLETED, ':uid' => $uid))->fetchAll();
   return $action_guides;
 }
+
+/*
+ * Content for stuff you need to do and stuff you've done.
+ */
+function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current') {
+  $cid = 'dosomething_user_my_somethings_' . $uid;
+  $cache = cache_get($cid);
+  if (!is_object($cache) || !isset($cache->data[$era])) {
+    $campaigns = dosomething_user_my_somethings_campaign_list($uid, $era);
+    $somethings = dosomething_user_my_somethings_projects_grants_list($uid, $era);
+    $all_somethings = array_merge($campaigns, $somethings);
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data[$era] = $all_somethings;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $all_somethings = $cache->data[$era];
+  }
+
+  $profile_fields = dosomething_user_my_somethings_profile_fields_complete($uid, $era);
+  $all_somethings = array_merge($profile_fields, $all_somethings);
+
+  if ($era == 'past') {
+    $clubs = dosomething_user_my_somethings_clubs_list($uid);
+    $all_somethings = array_merge($all_somethings, $clubs);
+  }
+
+  // Get output ready.
+  if (count($all_somethings)) {
+    $items = array();
+    foreach ($all_somethings as $delta => $something) {
+      // Set default access for the edit link to FALSE.
+      $edit_access = FALSE;
+      // Some webform submissions need a conditional path.
+      // We don't want it cached, so we add a flag to check the path.
+      // We can expand this if there are more pieces have conditional paths.
+      if (isset($something->check_path) && $something->check_path && $era == 'current') {
+        if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
+          $submission = $something->uri['options']['entity'];
+          $node = node_load($submission->nid);
+          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
+        }
+      }
+
+      if ($era == 'current') {
+        if ($something->type == 'campaign') {
+          $items[] = l(t('Report back on @title', array('@title' => $something->title)), $something->uri['path']);
+        }
+        elseif ($something->type == 'project_report') {
+          $items[] = l(t('Complete project @title', array('@title' => $something->title)), $something->uri['path']);
+        }
+        elseif ($something->type == 'grant_application') {
+          $items[] = l(t('Complete grant application @title', array('@title' => $something->title)), $something->uri['path']);
+        }
+        elseif ($something->type == 'profile_field') {
+          $items[] = l(t('Add !title', array('!title' => $something->title)), "user/$uid/edit/main");
+        }
+        $output = array(
+          'title' => array(
+            '#prefix' => '<h3>',
+            '#suffix' => '</h3>',
+            'inner' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => 'stuff-header',
+              ),
+              '#children' => t("Stuff You Need To Do"),
+            ),
+          ),
+          'list' => array(
+            '#theme' => 'item_list',
+            '#items' => $items,
+            '#attributes' => array(
+              'class' => array(
+                'profile-stuff',
+              ),
+            ),
+          ),
+        );
+      }
+      else {
+        if ($something->type == 'campaign') {
+          $items[] = t('Reported back on @title', array('@title' => $something->title));
+        }
+        elseif ($something->type == 'project_report') {
+          $items[] = t('Completed project @title', array('@title' => $something->title));
+        }
+        elseif ($something->type == 'grant_application') {
+          $items[] = t('Completed application @title', array('@title' => $something->title));
+        }
+        elseif ($something->type == 'club') {
+          $items[] = t('Joined @title', array('@title' => $something->title));
+        }
+        elseif ($something->type == 'profile_field') {
+          $items[] = t('Added !title', array('!title' => $something->title));
+        }
+        $output = array(
+          'title' => array(
+            '#prefix' => '<h3>',
+            '#suffix' => '</h3>',
+            'inner' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => 'stuff-header',
+              ),
+              '#children' => t("Stuff You've Done"),
+            ),
+          ),
+          'list' => array(
+            '#theme' => 'item_list',
+            '#items' => $items,
+            '#attributes' => array(
+              'class' => array(
+                'profile-stuff',
+              ),
+            ),
+          ),
+        );
+      }
+    }
+  }
+
+  return $output;
+}
+
+/**
+ * Get and format a user's clubs for 'Stuff Youve Done'.
+ */
+function dosomething_user_my_somethings_clubs_list($uid) {
+  $somethings = array();
+  $clubs = dosomething_user_my_somethings_get_user_group_memberships($uid, 'club');
+  if ($clubs) {
+    foreach ($clubs as $club) {
+      $something = new stdClass();
+      $something->title = $club->title;
+      $something->type = 'club';
+      $somethings[] = $something;
+    }
+  }
+  return $somethings;
+}
+
+/**
+ * Figure out which user profile fields are complete.
+ */
+function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
+  $fields = array();
+  $account = user_load($uid);
+  $profile = profile2_load_by_user($account, 'main');
+  $check_fields = array(
+    'field_user_address',
+    'field_user_birthday',
+    'field_user_first_name',
+    'field_user_last_name',
+    'field_user_hearabout',
+    'field_user_official_rules',
+    'field_user_preferred_cause',
+    'field_user_why_do_you',
+    'field_user_mobile',
+    'field_school_reference',
+  );
+
+  if (is_object($profile)) {
+    foreach ($check_fields as $field_name) {
+      if ($era == 'current') {
+        if (empty($profile->$field_name)) {
+          $field_info = field_info_instance('profile2', $field_name, 'main');
+          $label = $field_info['label'];
+          $something = new stdClass();
+          $something->title = $label;
+          $something->type = 'profile_field';
+          $fields[] = $something;
+        }
+      }
+      else {
+        if (!empty($profile->$field_name)) {
+          $field_info = field_info_instance('profile2', $field_name, 'main');
+          $label = $field_info['label'];
+          $something = new stdClass();
+          $something->title = $label;
+          $something->type = 'profile_field';
+          $fields[] = $something;
+        }
+      }
+    }
+  }
+  return $fields;
+}
+

@@ -60,7 +60,19 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->type = 'views_panes';
     $pane->subtype = 'member_profile-panel_pane_1';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '0',
+            'paths' => 'user/*',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
@@ -297,8 +309,8 @@ user/*/complete-profile',
     $pane = new stdClass();
     $pane->pid = 'new-10';
     $pane->panel = 'top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'profile_incomplete_fields-panel_pane_1';
+    $pane->type = 'ds_stuff_you_need';
+    $pane->subtype = 'ds_stuff_you_need';
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
@@ -313,11 +325,7 @@ user/*/complete-profile',
         ),
       ),
     );
-    $pane->configuration = array(
-      'context' => array(
-        0 => 'argument_entity_id:user_1',
-      ),
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -327,6 +335,35 @@ user/*/complete-profile',
     $pane->position = 5;
     $display->content['new-10'] = $pane;
     $display->panels['top'][5] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
+    $pane->panel = 'top';
+    $pane->type = 'ds_stuff_youve_done';
+    $pane->subtype = 'ds_stuff_youve_done';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'user/*/complete-profile',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $display->content['new-11'] = $pane;
+    $display->panels['top'][6] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

@@ -130,6 +130,19 @@ h3.subhead
   font-size: $s1
   text-transform: none
 
+// Alternate h2.title for panels
+// Black and no background or padding
+.black-h2
+  h2,
+  h2.pane-title
+    @extend .page-headline
+    background-color: transparent
+    display: inline
+    font-size: $s5
+    letter-spacing: 0
+    line-height: 1.7
+    padding: 0
+
 /* MORE SPECIFIC EXTENDABLES
 ////////////////////////////
 // PROFILE INFO
@@ -142,12 +155,14 @@ h3.subhead
   @extend .headers
   font-size: $s3
 
-// .member-stats
-  @extend .medium-profile-info
-  line-height: $s4
-// .member-stats-label
-  @extend .member-stats
-  @extend .caps
+// Commas after taxonomy terms
+.field-name-taxonomy-vocabulary-5
+  .field-item
+    &:after
+      content: ', '
+    &:last-of-type
+      &:after
+        content: ''
 
 // Commas after taxonmy terms
 .field-name-taxonomy-vocabulary-5
@@ -223,17 +238,6 @@ h3.subhead
 .submit-right
   float: right
   clear: none
-
-////////////////////////////
-// SHARE OF THE DAY
-// din, 31px, bold, black
-////////////////////////////
-.share-of-the-day
-  @extend .headers
-  @extend .bold
-  font-size: $s5
-  .attribution
-    font-size: $s5
 
 ////////////////////////////
 // TEXT ON DARK BACKGROUND
