@@ -347,7 +347,7 @@ function dosomething_projects_general_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'twocol_a';
+  $display->layout = 'one_two';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -356,6 +356,8 @@ function dosomething_projects_general_default_page_manager_pages() {
       'left-bottom-left' => NULL,
       'left-bottom-right' => NULL,
       'right' => NULL,
+      'top' => NULL,
+      'left' => NULL,
     ),
   );
   $display->cache = array();
@@ -364,27 +366,7 @@ function dosomething_projects_general_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'left-top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'related_projects-panel_pane_1';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left-top'][0] = 'new-1';
-    $pane = new stdClass();
-    $pane->pid = 'new-2';
-    $pane->panel = 'right';
+    $pane->panel = 'top';
     $pane->type = 'dosomething_start_button';
     $pane->subtype = 'dosomething_start_button';
     $pane->shown = TRUE;
@@ -403,10 +385,30 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['top'][0] = 'new-1';
+    $pane = new stdClass();
+    $pane->pid = 'new-2';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'related_projects-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['right'][0] = 'new-2';
+    $display->panels['top'][1] = 'new-2';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['projects'] = $page;
