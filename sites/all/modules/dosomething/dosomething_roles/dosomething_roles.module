@@ -667,7 +667,6 @@ function dosomething_roles_profile_ratio($uid) {
     'field_user_last_name',
     'field_user_hearabout',
     'field_user_official_rules',
-    'field_user_preferred_cause',
     'field_user_why_do_you',
     'field_user_mobile',
     'field_school_reference',
