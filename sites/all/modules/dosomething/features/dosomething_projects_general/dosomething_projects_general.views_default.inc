@@ -1648,8 +1648,8 @@ function dosomething_projects_general_views_default_views() {
     ),
   );
 
-  /* Display: Causes Projects Landing pane */
-  $handler = $view->new_display('panel_pane', 'Causes Projects Landing pane', 'panel_pane_2');
+  /* Display: Causes Projects pane */
+  $handler = $view->new_display('panel_pane', 'Causes Projects pane', 'panel_pane_2');
   $handler->display->display_options['display_description'] = 'Displays a list of projects sortable by Cause.';
   $handler->display->display_options['defaults']['cache'] = FALSE;
   $handler->display->display_options['cache']['type'] = 'none';
