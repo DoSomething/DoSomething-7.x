@@ -38,6 +38,9 @@ function dosomething_blocks_block_info() {
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
   );
+  $blocks['dosomething_facepile_general'] = array(
+    'info' => t('DoSomething Facepile General'),
+  );
   return $blocks;
 }
 
@@ -68,6 +71,9 @@ function dosomething_blocks_block_view($delta = '') {
       $block['subject'] = t('Social Buttons');
       $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), $options = array('fb_social_preset' => 'FB Like Box'));
       break;
+    case 'dosomething_facepile_general':
+      $block['content'] = dosomething_blocks_facepile();
+      break;
   }
   return $block;
 }
@@ -77,7 +83,7 @@ function dosomething_blocks_block_view($delta = '') {
  */
 function dosomething_blocks_node_view($node, $view_mode, $langcode) {
   // Show the social action buttons on certain content types.
-  if (in_array($node->type, variable_get('dosoomething_social_action_node_types', array('project_report', 'action_guide', 'blog', 'tipsandtools', 'dsuguides')))) {
+  if (in_array($node->type, variable_get('dosoomething_social_action_node_types', array('project_report', 'action_guide', 'tipsandtools', 'dsuguides')))) {
     $node->content['dosomething_social_action_buttons'] = dosomething_blocks_social_node_plugins(NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), array('fb_social_preset' => 'FB Like Box'));
     $node->content['dosomething_social_action_buttons']['#weight'] = -5;
   }
@@ -182,6 +188,22 @@ function dosomething_blocks_twitter_stream_block_content() {
     ),
   );
   return array('element' => $element);
+}
+
+/**
+ * Facebook Pile block disaply.
+ */
+function dosomething_blocks_facepile() {
+  if (module_exists('fb_social')) {
+    // In order to send the link from the current page,
+    // we need to pass in the url.
+    global $base_url;
+    $preset = fb_social_get_presets('FB Facepile General');
+    if (empty($preset->fb_attrs['href'])) {
+      $url = empty($preset->fb_attrs['href']) ? fb_social_url($_GET['q']) : $preset->fb_attrs['href'];
+    }
+    return fb_social_preset_view($preset, $url);
+  }
 }
 
 /**
