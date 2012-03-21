@@ -205,11 +205,11 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'block';
-    $pane->subtype = 'fb_social-FB Facepile General';
+    $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 0,
+      'override_title' => 1,
       'override_title_text' => '',
     );
     $pane->cache = array();
