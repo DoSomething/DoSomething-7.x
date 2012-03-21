@@ -644,7 +644,7 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
       $image = field_get_items('node', $campaign, 'field_campaign_main_image');
       $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
       $something->title = $campaign->title;
-      $something->type= 'campaign';
+      $something->type = 'campaign';
       $somethings[] = $something;
     }
   }
@@ -760,7 +760,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
       $edit_access = FALSE;
       // Some webform submissions need a conditional path.
       // We don't want it cached, so we add a flag to check the path.
-      // We can expand this if there are more pieces have conditional paths.
+      // We can expand this if there are more pieces that have conditional paths.
       if (isset($something->check_path) && $something->check_path && $era == 'current') {
         if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
           $submission = $something->uri['options']['entity'];
@@ -987,7 +987,7 @@ function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current
 }
 
 /**
- * Get and format a user's clubs for 'Stuff Youve Done'.
+ * Get and format a user's clubs for 'Stuff You've Done'.
  */
 function dosomething_user_my_somethings_clubs_list($uid) {
   $somethings = array();
