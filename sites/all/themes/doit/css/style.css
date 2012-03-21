@@ -3615,8 +3615,14 @@ h3 .stuff-header {
   margin-bottom: 12px;
 }
 
+.view-current-campaigns .view-header h2 {
+  clear: both;
+  display: block;
+}
 .view-current-campaigns .view-footer a {
   margin-right: 35px;
+  clear: both;
+  display: block;
 }
 
 .field-name-field-picture img {
