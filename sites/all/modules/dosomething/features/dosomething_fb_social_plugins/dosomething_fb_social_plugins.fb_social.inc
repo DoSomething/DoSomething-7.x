@@ -144,7 +144,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
     'block' => 1,
   );
   $fb_social_preset->fb_attrs = array(
-    'href' => 'https://www.facebook.com/dosomething',
+    'href' => '',
     'size' => 'small',
     'width' => '156',
     'numrows' => '2',
