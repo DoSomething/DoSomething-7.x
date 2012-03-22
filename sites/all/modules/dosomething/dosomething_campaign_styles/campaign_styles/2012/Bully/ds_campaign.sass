@@ -1,0 +1,224 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #0f87c9
+$complement: #ffffff
+$secondaryLink: black
+$contentBG: #bfdae8
+
+// borders
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('assets/bg.jpg')
+$bgFallback: #2387c7
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: rgba(249,246,243,.99)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+
+h1.title
+  display: none
+
+body
+  background-color: $bgFallback
+  background-image: $imageBackground
+  background-repeat: repeat-y
+  background-position: center top
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 8px
+  padding-top: 10px
+
+.three-boxes
+  width: 29%
+  float: left
+  margin-right: 6.5%
+  &:last-child
+    margin-right: 0
+
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+/* universal declarations to be overridden per block if necessary */
+
+.pane-content
+  background: $contentBG
+  padding: 1.5em
+  ul
+    margin-bottom: 1em
+    padding: 1em
+    background: $contentBG
+    +clearfix
+  li
+    list-style-image: url('assets/list-dot.png')
+    list-style-position: outside
+    font-weight: bold
+    text-decoration: underline
+    font-size: 20px
+    float: left
+    line-height: 26px
+    width: 310px
+    margin: 0 20px 0 10px
+    padding-left: 10px
+  br
+    clear: left
+
+.pane-title
+  background: $baseColor
+  
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: transparent
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: $secondaryLink
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+// top right wrapper
+.panel-row-top-right
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+      padding: 0
+      font-size: 26px
+      line-height: 1em
+    .pane-content
+      font-size: 21px
+      line-height: 1.4em
+      background: none
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  +block
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+
+// ad row (quick info and psa)
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    line-height: 1.3em
+    font-weight: 500
+  .pane-content
+    padding: 0
+    background: transparent
+    h3
+      color: $baseColor
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
+    p
+      margin: 0
+    &:before
+      +insetBorder
+      margin-bottom: 20px
+      background: transparent
+
+.panel-row-ad-psa
+  background: transparent
+  .pane-title
+    background: $baseColor
+  .pane-content
+    background: none  
+    padding: 0
+  	
+.panel-row-flexible
+  .panel-pane
+    +block
+    .pane-title
+      background: $baseColor
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    &:before,&:after
+      +insetBorder
+
+// logos
+.panel-row-logos
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+  .pane-content
+    background: none
+    padding: 0  
+
+.panel-row-top-logo
+  .pane-content
+    padding: 0
+    background: none
+  p
+    color: $baseColor
+    font-size: 28px 
+    font-weight: bold
+    margin: 0 0 0 20px
+    
