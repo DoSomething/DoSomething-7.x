@@ -5,4 +5,18 @@
  * Handles custom services for DoSomething.org
  */
 
+/** 
+ * Chuck -- Big challenge for login and reg is in bypassing CAPTCHA since we'll actually submit forms through the Service.
+ * One approach might be to temporarily increase access level. For registration, something like...)
+ * <?php global $user;
+ *       $tmp_user = $user;
+ *       session_save_session(FALSE);
+ *       $user['access'] (???not sure???) = $user_load(1)['access']; /// prolly screwy syntax...
+ *       drupal_execute('user_register', $form_state);
+ *       $user = $tmp_user;
+ *       session_save_sesion(TRUE);
+ *       $account = $form_state['user'];
+ * ?>
+ */
+
 
