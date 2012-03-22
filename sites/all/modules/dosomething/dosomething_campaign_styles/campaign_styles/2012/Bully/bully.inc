@@ -27,12 +27,12 @@ $plugin = array(
 
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
-  'menu' => array(
+/*  'menu' => array(
     array('title' => 'home', 'href' => 'bully'),
     array('title' => 'take action', 'href' => 'bully/take-action'),
     array('title' => 'store locator', 'href' => '#'),
     array('title' => 'contests', 'href' => '#'),
     array('title' => 'report back', 'href' => 'bully/report-back'),
     array('title' => 'photo gallery', 'href' => '#'),
-  ),
+  ), */
 );

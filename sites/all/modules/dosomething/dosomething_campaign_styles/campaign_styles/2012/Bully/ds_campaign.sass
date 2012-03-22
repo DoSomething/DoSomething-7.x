@@ -7,14 +7,14 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #0f87c9
+$baseColor: #b196b7
 $complement: #ffffff
 $secondaryLink: black
-$contentBG: #bfdae8
+$contentBG: rgba(255,255,255,.6)
 
 // borders
-$borderTop: 1px solid rgba(0,0,0,.5)
-$borderBot: 1px solid rgba(255,255,255,.5)
+$borderTop: 1px solid rgba(216,217,221,.5)
+$borderBot: 2px solid rgba(144,93,166,.5)
 
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
@@ -26,7 +26,7 @@ $bgFallback: #2387c7
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: rgba(249,246,243,.99)
+  background: rgba(249,246,243,.7)
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -80,8 +80,8 @@ div[role="main"]
 /* universal declarations to be overridden per block if necessary */
 
 .pane-content
-  background: $contentBG
-  padding: 1.5em
+  background: transparent
+  padding: 1 em
   ul
     margin-bottom: 1em
     padding: 1em
@@ -102,7 +102,8 @@ div[role="main"]
     clear: left
 
 .pane-title
-  background: $baseColor
+  background: black
+  color: white
   
 
 //////////////////////////////////////////
@@ -135,6 +136,7 @@ div[role="main"]
 .panel-row-top-right
   // mini-info panel
   .panel-top-right-mini-info
+    padding: 5px 0 3px 0
     font-family: $accent
     .pane-title
       background: none
@@ -151,9 +153,13 @@ div[role="main"]
 .panel-row-actions
   +block
   .pane-title
-    background: $baseColor
+    background: black
+    color: white
+    width: 100%
   .pane-content
-    padding: 18px
+    background: rgba(177, 150, 183, .7)
+    background: $baseColor
+    opacity: 50%  
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -162,17 +168,17 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
+    color: rgba(252,207,43,.99)
     line-height: 1.3em
-    font-weight: 500
+    font-weight: 550
   .pane-content
     padding: 0
     background: transparent
     h3
-      color: $baseColor
-      font-size: 26px
+      color: black
+      font-size: 24px
       text-transform: uppercase
-      font-weight: 600
+      font-weight: 500
       line-height: 1em
     p
       margin: 0
@@ -216,9 +222,19 @@ div[role="main"]
   .pane-content
     padding: 0
     background: none
-  p
+  p /* in case we need text to go with the logo */
     color: $baseColor
     font-size: 28px 
     font-weight: bold
     margin: 0 0 0 20px
+  img /* mainly for positioning */
+    margin-top: 75px
     
+/* social buttons */
+
+.panel-top-right-social
+  &:before, &:after
+    +insetBorder
+  .panel-pane
+    margin: 0
+    padding: 5px 0

@@ -13,4 +13,3 @@ Use assets/save-music.png as the promo image, then stick it in the logo panel on
 Use assets/battle-logo.png as the logo
 
 **OTHER PANELS**
-There are a lot of other panels in this layout.  A lot will depend on config.
