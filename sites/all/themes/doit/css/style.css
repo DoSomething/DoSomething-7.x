@@ -3509,8 +3509,9 @@ comments.fb_iframe_widget {
   width: 25px;
 }
 
-.view-home-slideshow .slide-count {
-  width: 100%;
+.view-home-slideshow {
+  overflow: hidden;
+  *zoom: 1;
 }
 
 .ribbon-front {
