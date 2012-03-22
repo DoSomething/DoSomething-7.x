@@ -28,11 +28,11 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => 'trashtest2'),
-    array('title' => 'take action', 'href' => 'trashtest2/take-action'),
+    array('title' => 'home', 'href' => 'trashy'),
+    array('title' => 'take action', 'href' => 'trashy/take-action'),
     array('title' => 'store locator', 'href' => '#'),
     array('title' => 'contests', 'href' => '#'),
-    array('title' => 'report back', 'href' => 'trashtest2/report-back'),
+    array('title' => 'report back', 'href' => 'trashy/report-back'),
     array('title' => 'photo gallery', 'href' => '#'),
   ),
 );

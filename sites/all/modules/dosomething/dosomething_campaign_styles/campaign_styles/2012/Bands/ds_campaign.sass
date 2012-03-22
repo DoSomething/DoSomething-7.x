@@ -224,6 +224,7 @@ div[role="main"]
     margin: 0 0 0 20px
 
 /* need to isolate images in logo area */
+
 .field.field-name-field-campaign-promo-image 
   position: relative
   top: 5em
@@ -235,4 +236,12 @@ div[role="main"]
   top: -23px
   left: 7em
   float: left
+  
+  /* social buttons */
 
+.panel-top-right-social
+  &:before, &:after
+    +insetBorder
+  .panel-pane
+    margin: 0
+    padding: 5px 0
