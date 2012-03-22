@@ -1,0 +1,238 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #feca29
+$complement: #ffffff
+$secondaryLink: white
+$contentBG: raba(254,238,131,.5)
+
+// borders
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('assets/bg.jpg')
+$bgFallback: #2387c7
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: rgba(254,228,131,.3)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+
+h1.title
+  display: none
+
+body
+  background-color: $bgFallback
+  background-image: $imageBackground
+  background-repeat: repeat-y
+  background-position: center top
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 8px
+  padding-top: 10px
+
+.three-boxes
+  width: 29%
+  float: left
+  margin-right: 6.5%
+  &:last-child
+    margin-right: 0
+
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+/* universal declarations to be overridden per block if necessary */
+
+.pane-content
+  background: $contentBG
+  ul
+    margin: 10px 5px 
+    padding: 1em
+    background: $contentBG
+    +clearfix
+  li
+    list-style-image: url('assets/list-dot.png')
+    list-style-position: outside
+    font-weight: bold
+    text-decoration: underline
+    font-size: 14px
+    float: left
+    line-height: 20px
+    width: 310px
+    margin: 0 20px 0 10px
+    padding-left: 10px
+  br
+    clear: left
+
+.pane-title
+  background: black
+  
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: black
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background: black
+    text-align: right
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 400
+      text-transform: uppercase
+      color: $secondaryLink
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+// top right wrapper
+.panel-row-top-right
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+      padding: 0
+      font-size: 26px
+      line-height: 1em
+    .pane-content
+      font-size: 21px
+      line-height: 1.4em
+      background: none
+      color: white
+      padding: 0
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  +block
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+
+// ad row (quick info and psa)
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: black
+    line-height: 1em
+    font-weight: 600
+  .pane-content
+    padding: 0
+    background: transparent
+    h2
+      color: black
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 500
+      line-height: 1em
+    p
+      margin: 0
+    &:before
+      +insetBorder
+      margin-bottom: 20px
+      background: transparent
+
+.panel-row-ad-psa
+  background: transparent
+  .pane-title
+    background: black
+  .pane-content
+    background: none  
+    padding: 0 5px
+  	
+.panel-row-flexible
+  .panel-pane
+    +block
+    .pane-title
+      background: $baseColor
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    &:before,&:after
+      +insetBorder
+
+// logos
+.panel-row-logos
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+  .pane-content
+    background: none
+    padding: 0  
+
+.panel-row-top-logo
+  .pane-content
+    padding: 0
+    background: none
+  p
+    color: $baseColor
+    font-size: 28px 
+    font-weight: bold
+    margin: 0 0 0 20px
+
+/* need to isolate images in logo area */
+.field.field-name-field-campaign-promo-image 
+  position: relative
+  top: 5em
+  left: 4em
+  float: left
+  
+.field.field-name-field-campaign-logo
+  position: relative
+  top: -23px
+  left: 7em
+  float: left
+
