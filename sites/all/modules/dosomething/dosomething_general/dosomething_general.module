@@ -17,6 +17,10 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
   if ($view->name == 'project_photo_slider' && $display_id == 'panel_pane_1') {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-photo-slider.js');
   }
+  // Add homepage-photo-slider.js file to the home_slideshow views content pane.
+  if ($view->name == 'home_slideshow' && $display_id == 'panel_pane_1') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/homepage-photo-slider.js');
+  }
 }
 
 /**

@@ -1,0 +1,50 @@
+////////////////////////////
+// FRONT PAGE SLIDESHOW
+// views slideshow on front page
+////////////////////////////
+
+@import compass
+
+.view-home-slideshow
+  .home-slide img
+    @extend .border-and-shadow-center
+  .slide-count
+    width: 100%
+
+.ribbon-front
+  @extend .headers
+  @extend .gold
+  +box-shadow(rgba(#000, 0.8) -5px 3px 10px)
+  background-color: $purple
+  font-size: 33px
+  height: 65px
+  position: absolute
+  right: 8px
+  top: 259px
+  width: 624px
+  .logged-in &
+    right: -15px
+    top: 236px
+  &:before
+    +triangle(top-left, 8px, 8px, $black)
+    content: "\0020"
+    position: absolute
+    right: 0
+    bottom: -16px
+  .dothis-title
+    font-weight: 600
+    font-size: 68px
+    position: absolute
+    left: 4px
+    top: 30px
+    +text-shadow(rgba(#000, 0.8) 0 0 10px)
+    text-transform: uppercase
+  a,
+  a:hover,
+  a:visited
+    @extend .white
+    @extend .bold
+    line-height: 70px
+    margin-left: 210px
+    text-decoration: none
+  
