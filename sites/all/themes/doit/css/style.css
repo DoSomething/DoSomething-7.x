@@ -3510,8 +3510,12 @@ comments.fb_iframe_widget {
 }
 
 .view-home-slideshow {
-  overflow: hidden;
   *zoom: 1;
+}
+.view-home-slideshow:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .ribbon-front {
