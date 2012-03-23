@@ -3679,6 +3679,9 @@ comments.fb_iframe_widget {
 .node-poll .poll {
   background: #807a75;
   padding: 12px;
+  clear: both;
+  display: inline;
+  float: left;
 }
 .node-poll .poll .text {
   font-size: 15px;
