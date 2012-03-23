@@ -3362,17 +3362,57 @@ comments.fb_iframe_widget {
   color: #d4d2d1 !important;
 }
 
+.pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
+  *display: inline;
+}
+
 .views-exposed-widgets {
   margin-bottom: 30px;
+  *zoom: 1;
+}
+.views-exposed-widgets:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .views-exposed-form .views-exposed-widget {
-  padding-top: 0;
+  display: inline;
+  float: left;
+}
+.views-exposed-form .form-item,
+.views-exposed-form .form-submit {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
-  height: 24px;
-  line-height: 8px;
+.views-align-left {
+  text-align: left;
+}
+
+.views-align-right {
+  text-align: right;
+}
+
+.views-align-center {
+  text-align: center;
+}
+
+.views-view-grid tbody {
+  border-top: none;
+}
+
+.view .progress-disabled {
+  float: none;
 }
 
 .apps-grid {
