@@ -498,7 +498,7 @@ form.webform-client-form #edit-submit, .not-logged-in #dosomething-login-registe
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .pane-resources-panel-pane-1 .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2,
 .pane-ds-editors-picks-all .something-description h2, .pane-related-projects-panel-pane-1 .unimage-wrapper h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .popup-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label[for="edit-title-text"], #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right a, .dosomething-member-facts h2, .vital-stats .title,
+.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
 .vital-stats .name, .pane-share-of-day, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
@@ -2823,28 +2823,23 @@ h2.block-title, h2.pane-title {
 }
 
 .pane-dosomething-blocks-dosomething-social-node-buttons {
-  border-top: 1px solid #d8d5d4;
-  border-bottom: 1px solid white;
-  width: 752px;
+  *zoom: 1;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  box-shadow: #d4d2d1 0 1px 0 0;
+  border-bottom: 1px white solid;
+  margin-bottom: 0;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .views-submit-button {
   display: inline;
   float: left;
-}
-
-.panel-outer-right .pane-title {
-  text-align: center;
-  line-height: 1.2em;
-}
-.panel-outer-right .views-field-title, .panel-outer-right .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right a {
-  margin-bottom: 0;
-  line-height: 2em;
-  padding-top: 12px;
-  background: url('images/sidebar-title-separator-line.png') no-repeat center 10%;
-}
-.panel-outer-right .views-row-first .views-field-title, .panel-outer-right .views-row-first .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panel-outer-right .views-row-first a {
-  background: none;
 }
 
 .panes-2 .panel-second .pane-title {

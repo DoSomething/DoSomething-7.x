@@ -5,9 +5,9 @@
   +trailer
 
 .pane-dosomething-blocks-dosomething-social-node-buttons
-  border-top: 1px solid #D8D5D4
-  border-bottom: 1px solid $white
-  width: 752px
+  +pie-clearfix
+  +ds-bevel-single
+  margin-bottom: 0
 
 // #edit-submit-action-finder
 .views-submit-button
@@ -18,21 +18,3 @@
 .views-exposed-widgets
   .views-submit-button
     @extend .submit-right
-
-.panel-outer-right
-  .pane-title
-    text-align: center
-    line-height: 1.2em
-    // margin-bottom: 12px
-  .views-field-title
-    @extend .bold
-    margin-bottom: 0
-    line-height: 2em
-    padding-top: 12px
-    +background(image_url('sidebar-title-separator-line.png') no-repeat center 10%)
-  .views-row-first
-    .views-field-title
-      background: none
-
-
-
