@@ -3,15 +3,14 @@
 // used for filters on blog center and causes pages and search on projects
 ////////////////////////////
 
-// Use Pane title instead of label for sort by:
+// Use Pane title instead of label for 'sort by:' dropdowns
 .pane-views-exp-blog-center-panel-pane-3
   @extend .black-h2
   h2.pane-title
     +inline-block
     line-height: 1
 
-// Blanked out views.css in order to slim down exposed filter overrides
-
+// Blanked out views.css in order to cut out exposed filter overrides
 .views-exposed-form
   margin-top: 12px
   .views-exposed-widgets
@@ -21,7 +20,16 @@
     display: inline
     float: left
 
-// table style column align
+// If label is displayed, it will use these styles
+// the default is not displayed from action finder labels
+.views-exposed-widget label
+  @extend .page-headline
+  font-size: $s2
+  letter-spacing: 0
+  line-height: 1.5
+
+// From views.css
+// Table style column align
 .views-align-left
   text-align: left
 
