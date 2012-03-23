@@ -3369,30 +3369,26 @@ comments.fb_iframe_widget {
   vertical-align: middle;
   *vertical-align: auto;
   line-height: 1;
-  margin-bottom: 8px;
 }
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
   *display: inline;
 }
 
-.views-exposed-widgets {
+.views-exposed-form {
+  margin-top: 12px;
+}
+.views-exposed-form .views-exposed-widgets {
   margin-bottom: 30px;
   *zoom: 1;
 }
-.views-exposed-widgets:after {
+.views-exposed-form .views-exposed-widgets:after {
   content: "";
   display: table;
   clear: both;
 }
-
 .views-exposed-form .views-exposed-widget {
   display: inline;
   float: left;
-}
-.views-exposed-form .form-item,
-.views-exposed-form .form-submit {
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .views-align-left {
