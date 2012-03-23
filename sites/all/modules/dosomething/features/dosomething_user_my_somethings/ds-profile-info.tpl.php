@@ -12,7 +12,7 @@
         <li><span>Member Status</span><span class="mem-stat"><?php print $member_status; ?></span></li>
         <li><span>Member Since</span><span class="mem-since"><?php print $member_since; ?></span></li>
       </ul>
-      <a class="update-profile" href="/user/<?php print $account->uid; ?>/edit/main">Update profile >></a>
+      <a class="update-profile" href="/user/<?php print $account->uid; ?>/edit/main">Update profile »</a>
     </div>
     <?php print render($member_vitals); ?>
   </div>

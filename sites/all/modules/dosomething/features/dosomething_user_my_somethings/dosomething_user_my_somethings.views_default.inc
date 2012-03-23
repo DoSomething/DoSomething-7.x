@@ -283,7 +283,7 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/user/[uid]/picks" title="" class="more-link-right">More >></a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/user/[uid]/picks" title="" class="more-link-right">More »</a>';
   $handler->display->display_options['footer']['area']['format'] = '4';
   $handler->display->display_options['footer']['area']['tokenize'] = 1;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -477,7 +477,7 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/users/admin" class="back">&lt;&lt; Back to profile</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/users/admin" class="back">« Back to profile</a>';
   $handler->display->display_options['footer']['area']['format'] = '4';
   $handler->display->display_options['footer']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
