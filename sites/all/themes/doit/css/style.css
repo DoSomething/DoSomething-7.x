@@ -1585,6 +1585,7 @@ body {
   font-size: 3.333em;
   line-height: 0.6em;
   margin-bottom: 12px;
+  line-height: 1;
 }
 
 .h2, h2 {
