@@ -23,7 +23,7 @@ function dosomething_user_my_somethings_ds_current_somethings_all_content_type_r
   $block = new stdClass();
   $block->title = t('Doing It');
   $elements = dosomething_user_my_somethings_display($uid, 'current');
-  $block->content = l('<< Back to profile', 'user/' . $uid, array('attributes' => array('class' => 'back')));
+  $block->content = l('« Back to profile', 'user/' . $uid, array('attributes' => array('class' => 'back')));
   $block->content .= drupal_render($elements);
   return $block;
 }

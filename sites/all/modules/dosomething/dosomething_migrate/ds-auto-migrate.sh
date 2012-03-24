@@ -153,6 +153,8 @@ fi
 # List of migrations to run.
 echo "running new user migration"
 ERROR=$(expr $ERROR + 1)
+# Stop previously running dsjsonnewuesr migrations then start it again to avoid an error.
+drush $D7ALIAS mrs dsjsonnewuser
 drush $D7ALIAS mi dsjsonnewuser
 if [ $? -ne 0 ]
 then
