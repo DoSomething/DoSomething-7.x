@@ -3561,7 +3561,7 @@ comments.fb_iframe_widget {
 .slide-count span {
   cursor: pointer;
   display: block;
-  float: left;
+  float: right;
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
