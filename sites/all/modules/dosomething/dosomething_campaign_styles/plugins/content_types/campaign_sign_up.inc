@@ -34,11 +34,16 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_render($subty
         ->propertyCondition('nid', $campaign_sign_up)
         ->execute();
 
-      if (!empty($sign_ups) || true) {
+      if (!empty($sign_ups)) {
         $block = new stdClass();
         $block->content = $conf['report_back_html'];
       }
+
     }
+    if (empty($block->content)) {
+      $block->content = 'There was a problem loading the sign up form for this campaign. Please email help@dosomething.org if you see this message.';
+    }
+
     return $block;
   }
 }
@@ -51,8 +56,8 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form($fo
   $conf = $form_state['conf'];
   $form['report_back_html'] = array(
     '#type' => 'textarea',
-    '#title' => t('Signup Form NID'),
-    '#description' => t('The webform for the campaign short form'),
+    '#title' => t('Report Back HTML'),
+    '#description' => t('Report back HTML for when someone has reported back.'),
     '#default_value' => $conf['report_back_html'],
   );
 

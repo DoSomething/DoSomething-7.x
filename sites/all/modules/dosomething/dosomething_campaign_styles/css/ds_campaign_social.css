@@ -1,0 +1,19 @@
+.socialButton {
+  width: 70px;
+  float: left;
+  text-align: center;
+}
+
+.socialWrapper {
+  margin: 8px 0 8px 18px;
+}
+
+.fb-facepile:before {
+  overflow: hidden;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+  background: transparent;
+}
