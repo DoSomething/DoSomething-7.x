@@ -3624,15 +3624,10 @@ comments.fb_iframe_widget {
   -o-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   background-color: #502862;
-  font-size: 33px;
   height: 65px;
   position: absolute;
-  right: 8px;
-  top: 259px;
   width: 624px;
-}
-.logged-in .ribbon-front {
-  right: -15px;
+  right: -16px;
   top: 236px;
 }
 .ribbon-front:before {
@@ -3659,6 +3654,7 @@ comments.fb_iframe_widget {
 .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited {
+  font-size: 33px;
   line-height: 70px;
   margin-left: 210px;
   text-decoration: none;
