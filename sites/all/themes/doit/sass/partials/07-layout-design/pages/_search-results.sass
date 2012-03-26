@@ -1,0 +1,50 @@
+////////////////////////////
+// SEARCH RESULTS
+////////////////////////////
+
+#search-api-page-search-form
+  label[for="edit-keys-1"]
+    display: none
+
+  input[type="text"]
+    float: left
+    width: 275px
+
+  #edit-submit-1
+    @extend .go-button
+    display: inline
+    margin-left: 5px
+
+  .search-performance
+    font-size: 12px
+
+.block.block-facetapi
+  @extend .black-h2
+  h2
+    margin: 0
+    text-transform: uppercase
+  background-color: $gray6
+  padding: 0
+  margin-right: -5px
+  ul.facetapi-facetapi-checkbox-links
+    +background-image(linear-gradient(left, $gray6 90%, $gray5))
+    margin: 0
+    padding-left: 0
+    li
+      +no-bullets
+      text-align: right
+      border-top: 1px transparent solid
+      border-bottom: 1px transparent solid
+      a
+        @extend .black
+        @extend .headers
+        float: left
+        font-size: 16px
+        text-transform: capitalize
+        text-decoration: none
+        &:hover
+          @extend .black
+          text-decoration: none
+      &:last-of-type a
+        border-bottom: none
+        +box-shadow-none
