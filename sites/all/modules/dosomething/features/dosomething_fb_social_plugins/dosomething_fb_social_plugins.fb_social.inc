@@ -129,7 +129,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   $fb_social_preset->fb_attrs = array(
     'numposts' => '0',
     'width' => '550',
-    'colorscheme' => 'dark',
+    'colorscheme' => 'light',
     'migrated' => 0,
   );
   $export['FB Comments'] = $fb_social_preset;
