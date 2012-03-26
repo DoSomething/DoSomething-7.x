@@ -2870,7 +2870,6 @@ h2.block-title, h2.pane-title {
   -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
-  margin-bottom: 0;
 }
 .pane-dosomething-blocks-dosomething-social-node-buttons:after {
   content: "";
@@ -3585,6 +3584,10 @@ comments.fb_iframe_widget {
   width: 35px;
   height: 35px;
   width: 25px;
+}
+
+.pane-home-slideshow-panel-pane-1 {
+  margin-bottom: 0;
 }
 
 .view-home-slideshow {
