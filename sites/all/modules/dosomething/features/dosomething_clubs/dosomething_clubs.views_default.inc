@@ -11,6 +11,231 @@ function dosomething_clubs_views_default_views() {
   $export = array();
 
   $view = new view;
+  $view->name = 'club_projects';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'webform_submissions';
+  $view->human_name = 'Club Projects';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Doing It';
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'Start a project';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  /* Relationship: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
+  $handler->display->display_options['relationships']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
+  $handler->display->display_options['relationships']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
+  $handler->display->display_options['relationships']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
+  $handler->display->display_options['relationships']['field_project_clubs_nid']['required'] = 1;
+  $handler->display->display_options['relationships']['field_project_clubs_nid']['delta'] = '-1';
+  /* Field: Field: Picture */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'project_related_thumb',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_picture']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_picture']['separator'] = '';
+  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
+  /* Field: Webform submissions: Sid */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['label'] = '';
+  $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['sid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['sid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['sid']['separator'] = '';
+  $handler->display->display_options['fields']['sid']['format_plural'] = 0;
+  /* Field: Webform Submission: Title */
+  $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
+  $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
+  $handler->display->display_options['fields']['field_project_title']['field'] = 'field_project_title';
+  $handler->display->display_options['fields']['field_project_title']['label'] = '';
+  $handler->display->display_options['fields']['field_project_title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['alter']['path'] = 'webform-submission/[sid]';
+  $handler->display->display_options['fields']['field_project_title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Goal */
+  $handler->display->display_options['fields']['field_project_goal']['id'] = 'field_project_goal';
+  $handler->display->display_options['fields']['field_project_goal']['table'] = 'field_data_field_project_goal';
+  $handler->display->display_options['fields']['field_project_goal']['field'] = 'field_project_goal';
+  $handler->display->display_options['fields']['field_project_goal']['label'] = '';
+  $handler->display->display_options['fields']['field_project_goal']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['strip_tags'] = 1;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_goal']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_project_goal']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_goal']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_goal']['type'] = 'text_trimmed';
+  $handler->display->display_options['fields']['field_project_goal']['settings'] = array(
+    'trim_length' => '200',
+  );
+  $handler->display->display_options['fields']['field_project_goal']['field_api_classes'] = 0;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_project_clubs_nid';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['nid']['not'] = 0;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project_report' => 'project_report',
+  );
+  /* Filter criterion: Webform Submission: Status (field_project_type) */
+  $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
+  $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
+  $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
+  $handler->display->display_options['filters']['field_project_type_value']['value'] = array(
+    2 => '2',
+    3 => '3',
+  );
+
+  /* Display: Doing It pane */
+  $handler = $view->new_display('panel_pane', 'Doing It pane', 'panel_pane_1');
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Nid',
+    ),
+  );
+
+  /* Display: Done It pane */
+  $handler = $view->new_display('panel_pane', 'Done It pane', 'panel_pane_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Done It';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project_report' => 'project_report',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Webform Submission: Status (field_project_type) */
+  $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
+  $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
+  $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
+  $handler->display->display_options['filters']['field_project_type_value']['value'] = array(
+    4 => '4',
+  );
+  $handler->display->display_options['filters']['field_project_type_value']['group'] = 0;
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Nid',
+    ),
+  );
+  $export['club_projects'] = $view;
+
+  $view = new view;
   $view->name = 'clubs';
   $view->description = 'Club related displays.';
   $view->tag = 'default';
