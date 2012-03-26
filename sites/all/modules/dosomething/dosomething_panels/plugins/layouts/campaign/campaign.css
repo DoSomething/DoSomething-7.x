@@ -16,13 +16,17 @@
 .panel-row-right {
   float: right; }
 
-.panel-row-actions .panel-panel {
-  width: 50%;
-  float: left; }
+.panel-row-actions {
+  margin: 18px 0; }
+  .panel-row-actions .panel-panel {
+    width: 50%;
+    float: left; }
 
-.panel-row-ad .panel-row-ad-quick-info {
-  width: 33%;
-  float: left; }
-.panel-row-ad .panel-row-ad-psa {
-  float: right;
-  width: 64%; }
+.panel-row-ad {
+  margin: 18px 0; }
+  .panel-row-ad .panel-row-ad-quick-info {
+    width: 33%;
+    float: left; }
+  .panel-row-ad .panel-row-ad-psa {
+    float: right;
+    width: 64%; }
