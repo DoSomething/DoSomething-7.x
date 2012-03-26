@@ -163,7 +163,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['fields']['field_about_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_about_image']['settings'] = array(
     'image_style' => 'issue_main',
-    'image_link' => '',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_about_image']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Path */
