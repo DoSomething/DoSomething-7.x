@@ -1,7 +1,7 @@
 a {
-  color: #feca29; }
+  color: black; }
   a:hover {
-    color: white; }
+    color: #ff130a; }
 
 h1.title {
   display: none; }
@@ -14,8 +14,9 @@ body {
 
 div[role="main"] {
   background: rgba(254, 228, 131, 0.3);
-  -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -o-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
   padding-top: 10px; }
@@ -56,7 +57,6 @@ div[role="main"] {
     list-style-image: url("assets/list-dot.png");
     list-style-position: outside;
     font-weight: bold;
-    text-decoration: underline;
     font-size: 14px;
     float: left;
     line-height: 20px;
@@ -85,16 +85,16 @@ div[role="main"] {
       font-size: 21px;
       font-weight: 400;
       text-transform: uppercase;
-      color: white; }
+      color: #ff130a; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #feca29;
+        color: black;
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
-    color: #feca29;
+    color: black;
     padding: 0;
     font-size: 26px;
     line-height: 1em; }
@@ -108,7 +108,7 @@ div[role="main"] {
 .panel-row-actions {
   background: rgba(254, 228, 131, 0.3); }
   .panel-row-actions .pane-title {
-    background: #feca29; }
+    background: black; }
   .panel-row-actions .pane-content {
     padding: 18px; }
 
@@ -152,7 +152,7 @@ div[role="main"] {
 .panel-row-flexible .panel-pane {
   background: rgba(254, 228, 131, 0.3); }
   .panel-row-flexible .panel-pane .pane-title {
-    background: #feca29; }
+    background: black; }
 .panel-row-flexible .blog {
   background: transparent; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
@@ -171,7 +171,7 @@ div[role="main"] {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
 .panel-row-logos .pane-title {
-  color: #feca29;
+  color: black;
   background: none;
   margin: 0;
   padding: 0; }
@@ -183,7 +183,7 @@ div[role="main"] {
   padding: 0;
   background: none; }
 .panel-row-top-logo p {
-  color: #feca29;
+  color: black;
   font-size: 28px;
   font-weight: bold;
   margin: 0 0 0 20px; }
@@ -196,10 +196,7 @@ div[role="main"] {
   float: left; }
 
 .field.field-name-field-campaign-logo {
-  position: relative;
-  top: -23px;
-  left: 7em;
-  float: left;
+  margin-bottom: -30px;
   /* social buttons */ }
 
 .panel-top-right-social:before, .panel-top-right-social:after {

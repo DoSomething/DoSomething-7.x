@@ -29,10 +29,12 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'battle'),
-    array('title' => 'take action', 'href' => 'battle/take-action'),
-    array('title' => 'store locator', 'href' => '#'),
-    array('title' => 'contests', 'href' => '#'),
-    array('title' => 'report back', 'href' => 'battle/report-back'),
-    array('title' => 'photo gallery', 'href' => '#'),
+    array('title' => 'share your video', 'href' => 'battle/share-your-video'),
+    array('title' => 'video gallery', 'href' => 'battle/video-gallery'),
+    array('title' => 'celebrity gallery', 'href' => 'battle/celeb-gallery'),
+    array('title' => 'contests', 'href' => 'battle/contests'),
+    array('title' => 'scholarships', 'href' => 'battle/scholarships', 'fragment' => 'scholarships'),
+    array('title' => 'faq', 'href' => 'battle/faq'),
+    array('title' => 'blog', 'href=' => 'battle/blog'),
   ),
 );
