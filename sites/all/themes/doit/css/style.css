@@ -3590,6 +3590,19 @@ comments.fb_iframe_widget {
   margin-bottom: 0;
 }
 
+.photo-slider {
+  position: relative;
+  height: 365px;
+}
+.photo-slider .slide-count {
+  position: relative;
+  top: 330px;
+}
+.photo-slider .photo-slider-row {
+  position: absolute;
+  top: 0;
+}
+
 .view-home-slideshow {
   *zoom: 1;
 }

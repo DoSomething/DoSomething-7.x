@@ -8,6 +8,10 @@ Drupal.behaviors.featuredNews = {
     Drupal.settings.dosomething = new Array();
     Drupal.settings.dosomething.photoSliderIndex = 0;
 
+    // Add Classes so JS degrades when JS disabled.
+    $(".view-home-slideshow").addClass('photo-slider');
+    $(".view-home-slideshow .view-content .views-row").addClass('photo-slider-row');
+    
     $(".view-home-slideshow .view-content .views-row:not(:first)").hide();
 
     // Keep track of hover state.
@@ -53,8 +57,8 @@ function feature_cycle() {
     else {
       var next = Drupal.settings.dosomething.photoSliderIndex + 1;
     }
-    $(".view-home-slideshow .views-row:eq(" + Drupal.settings.dosomething.photoSliderIndex + ")").hide();
-    $(".view-home-slideshow .views-row:eq(" + next + ")").show();
+    $(".view-home-slideshow .views-row:eq(" + Drupal.settings.dosomething.photoSliderIndex + ")").fadeOut(2000);
+    $(".view-home-slideshow .views-row:eq(" + next + ")").fadeIn(2000);
     $('.slide-count span').removeClass('active');
     $(".slide-count span:eq(" + ($(".slide-count span").length - (next + 1)) + ")").addClass('active');
     Drupal.settings.dosomething.photoSliderIndex = next;
