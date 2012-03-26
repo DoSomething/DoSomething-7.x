@@ -1,3 +1,6 @@
+.content .field {
+  float: none; }
+
 a {
   color: black; }
   a:hover {
