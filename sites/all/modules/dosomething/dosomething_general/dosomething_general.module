@@ -152,3 +152,9 @@ function dosomething_general_infusionsoft_subscribe($email, $action) {
 function dosomething_general_mobile_commons_subscribe($mobile, $campaign, $opt_in_path) {
   // TODO: do work
 }
+
+function dosomething_general_user_presave(&$edit, $account, $category) {
+  if (isset($edit['pass'])) {
+    dsm(t('Your password has been updated.'));
+  }
+}
