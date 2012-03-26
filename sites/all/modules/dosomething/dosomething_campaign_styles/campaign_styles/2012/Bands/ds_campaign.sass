@@ -84,6 +84,13 @@ div[role="main"]
   margin-right: 0
   float: left
 
+.white-box
+  background: white
+.black-border
+  border: 1px solid black
+.yay-shadow
+  @include box-shadow(black 0 0 20px -10px)
+
 .line-top
   &:before
     +insetBorder
@@ -108,15 +115,7 @@ div[role="main"]
     background: $contentBG
     +clearfix
   li
-    list-style-image: url('assets/list-dot.png')
-    list-style-position: outside
-    font-weight: bold
     font-size: 14px
-    float: left
-    line-height: 20px
-    width: 310px
-    margin: 0 20px 0 10px
-    padding-left: 10px
   br
     clear: left
 

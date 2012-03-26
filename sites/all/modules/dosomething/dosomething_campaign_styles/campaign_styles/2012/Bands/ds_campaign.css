@@ -41,6 +41,18 @@ div[role="main"] {
   margin-right: 0;
   float: left; }
 
+.white-box {
+  background: white; }
+
+.black-border {
+  border: 1px solid black; }
+
+.yay-shadow {
+  -moz-box-shadow: black 0 0 20px -10px;
+  -webkit-box-shadow: black 0 0 20px -10px;
+  -o-box-shadow: black 0 0 20px -10px;
+  box-shadow: black 0 0 20px -10px; }
+
 .line-top:before {
   overflow: hidden;
   *zoom: 1;
@@ -73,15 +85,7 @@ div[role="main"] {
     overflow: hidden;
     *zoom: 1; }
   .pane-content li {
-    list-style-image: url("assets/list-dot.png");
-    list-style-position: outside;
-    font-weight: bold;
-    font-size: 14px;
-    float: left;
-    line-height: 20px;
-    width: 310px;
-    margin: 0 20px 0 10px;
-    padding-left: 10px; }
+    font-size: 14px; }
   .pane-content br {
     clear: left; }
 
