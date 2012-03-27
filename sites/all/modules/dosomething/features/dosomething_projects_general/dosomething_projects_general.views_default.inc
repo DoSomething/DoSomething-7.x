@@ -247,6 +247,49 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['allow']['exposed_form'] = 0;
   $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Grant Winners */
+  $handler = $view->new_display('panel_pane', 'Grant Winners', 'panel_pane_2');
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    0 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Entityqueue: Grant Winner (field_grant_winner) */
+  $handler->display->display_options['filters']['field_grant_winner_value']['id'] = 'field_grant_winner_value';
+  $handler->display->display_options['filters']['field_grant_winner_value']['table'] = 'field_data_field_grant_winner';
+  $handler->display->display_options['filters']['field_grant_winner_value']['field'] = 'field_grant_winner_value';
+  $handler->display->display_options['filters']['field_grant_winner_value']['relationship'] = 'entityqueue_relationship';
+  $handler->display->display_options['filters']['field_grant_winner_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_grant_winner_value']['group'] = 0;
+
+  /* Display: Club Projects */
+  $handler = $view->new_display('panel_pane', 'Club Projects', 'panel_pane_3');
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    0 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
+  $handler->display->display_options['filters']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
+  $handler->display->display_options['filters']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
+  $handler->display->display_options['filters']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
+  $handler->display->display_options['filters']['field_project_clubs_nid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_project_clubs_nid']['group'] = 0;
+
+  /* Display: Projects of the Day */
+  $handler = $view->new_display('panel_pane', 'Projects of the Day', 'panel_pane_4');
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    0 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Entityqueue: queue type */
+  $handler->display->display_options['filters']['entityqueue_type']['id'] = 'entityqueue_type';
+  $handler->display->display_options['filters']['entityqueue_type']['table'] = 'entityqueue';
+  $handler->display->display_options['filters']['entityqueue_type']['field'] = 'entityqueue_type';
+  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship_1';
+  $handler->display->display_options['filters']['entityqueue_type']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['entityqueue_type']['group'] = 0;
   $export['featured_projects'] = $view;
 
   $view = new view;
