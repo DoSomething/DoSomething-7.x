@@ -609,3 +609,46 @@ function doit_pager(&$variables) {
     ));
   }
 }
+
+/**
+ * Override of theme_search_api_page_results().
+ */
+function doit_search_api_page_results(array $variables) {
+  drupal_add_css(drupal_get_path('module', 'search_api_page') . '/search_api_page.css');
+
+  $index = $variables['index'];
+  $results = $variables['results'];
+  $items = $variables['items'];
+  $keys = $variables['keys'];
+
+  $search_performance = '<p class="search-performance">' . format_plural($results['result count'],
+      'The search found 1 result in @sec seconds.',
+      'The search found @count results in @sec seconds.',
+      array('@sec' => round($results['performance']['complete'], 3))) . '</p>';
+
+  if (!$results['result count']) {
+    $output = "<h2>" . t('Your search yielded no results') . "</h2>";
+    $output .= $search_performance;
+    return $output;
+  }
+
+  $output = "<h2>" . t('You Searched ') . t('“') . $keys . t('”') . "</h2>";
+  $output .= $search_performance;
+
+  if ($variables['view_mode'] == 'search_api_page_result') {
+    $output .= '<ul class="search-results">';
+    foreach ($results['results'] as $item) {
+      $output .= '<li class="search-result">' . theme('search_api_page_result', array('index' => $index, 'result' => $item, 'item' => isset($items[$item['id']]) ? $items[$item['id']] : NULL, 'keys' => $keys)) . '</li>';
+    }
+    $output .= '</ul>';
+  }
+  else {
+    // This option can only be set when the items are entities.
+    $output .= '<div class="search-results">';
+    $render = entity_view($index->item_type, $items, $variables['view_mode']);
+    $output .= render($render);
+    $output .= '</div>';
+  }
+
+  return $output;
+}
