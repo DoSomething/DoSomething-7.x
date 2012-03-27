@@ -448,11 +448,11 @@ input[type=color], .description {
   text-transform: uppercase;
 }
 
-.headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block.block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
+.headers, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
 .pane-ds-past-somethings-all h2,
 .pane-ds-editors-picks-all h2, .pane-ds-stuff-you-need h2, .view-current-campaigns .view-header h2,
 .black-h2 h2.pane-title,
-.block.block-facetapi h2.pane-title,
+.block-facetapi h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
@@ -467,7 +467,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block.block-facetapi ul.facetapi-facetapi-checkbox-links li a, .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
 .pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
 .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
@@ -492,11 +492,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
   font-weight: 300;
 }
 
-.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block.block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
+.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
 .pane-ds-past-somethings-all h2,
 .pane-ds-editors-picks-all h2, .pane-ds-stuff-you-need h2, .view-current-campaigns .view-header h2,
 .black-h2 h2.pane-title,
-.block.block-facetapi h2.pane-title,
+.block-facetapi h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
@@ -537,17 +537,17 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
   color: #18408b;
 }
 
-.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block.block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
+.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
 .pane-ds-past-somethings-all h2,
 .pane-ds-editors-picks-all h2, .pane-ds-stuff-you-need h2, .view-current-campaigns .view-header h2,
 .black-h2 h2.pane-title,
-.block.block-facetapi h2.pane-title,
+.block-facetapi h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .block.block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block.block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header, .page-search-demo h2.title {
+.view-current-campaigns .view-header h2.pane-title, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header, .page-search-demo h2.title {
   color: black;
 }
 
@@ -576,17 +576,17 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .pa
   color: white;
 }
 
-.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block.block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
+.black, .page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
 .pane-ds-past-somethings-all h2,
 .pane-ds-editors-picks-all h2, .pane-ds-stuff-you-need h2, .view-current-campaigns .view-header h2,
 .black-h2 h2.pane-title,
-.block.block-facetapi h2.pane-title,
+.block-facetapi h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .block.block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block.block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header, .page-search-demo h2.title {
+.view-current-campaigns .view-header h2.pane-title, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .start-a-project:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header, .page-search-demo h2.title {
   color: black;
 }
 
@@ -724,11 +724,11 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   font-size: 21px;
 }
 
-.page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block.block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
+.page-headline, h1.title, h2.subhead, h3.subhead, .black-h2 h2, .block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
 .pane-ds-past-somethings-all h2,
 .pane-ds-editors-picks-all h2, .pane-ds-stuff-you-need h2, .view-current-campaigns .view-header h2,
 .black-h2 h2.pane-title,
-.block.block-facetapi h2.pane-title,
+.block-facetapi h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
@@ -758,11 +758,11 @@ h3.subhead {
   text-transform: none;
 }
 
-.black-h2 h2, .block.block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
+.black-h2 h2, .block-facetapi h2, .pane-views-exp-blog-center-panel-pane-3 h2, .pane-ds-current-somethings-all h2,
 .pane-ds-past-somethings-all h2,
 .pane-ds-editors-picks-all h2, .pane-ds-stuff-you-need h2, .view-current-campaigns .view-header h2,
 .black-h2 h2.pane-title,
-.block.block-facetapi h2.pane-title,
+.block-facetapi h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
@@ -2753,6 +2753,14 @@ h2.block-title, h2.pane-title {
 }
 
 .block.block-facetapi {
+  padding: 0;
+}
+.block.block-facetapi h2.block-title {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.block-facetapi {
   background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
   background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
@@ -2760,52 +2768,63 @@ h2.block-title, h2.pane-title {
   background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
   background-color: #efefef;
-  padding: 0;
   margin-right: -5px;
+  margin-bottom: 0;
 }
-.block.block-facetapi h2 {
+.block-facetapi:last-of-type {
+  margin-bottom: 5px;
+}
+.block-facetapi h2 {
   height: 32px;
+  line-height: 48px;
   margin: 0;
   padding-right: 50px;
   position: relative;
-  right: -85px;
+  right: -70px;
   text-transform: uppercase;
-  background: url('images/btn-leftsidebar-feeds-plus.png') no-repeat 122px center;
+  background: url('images/btn-leftsidebar-feeds-plus.png') no-repeat 137px center;
 }
-.block.block-facetapi h2.active {
-  background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 122px center;
+.block-facetapi h2.active {
+  background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 137px center;
 }
-.block.block-facetapi ul.facetapi-facetapi-checkbox-links {
+.block-facetapi ul.facetapi-facetapi-checkbox-links {
   margin: 0;
   padding-left: 0;
+  margin-bottom: 15px;
 }
-.block.block-facetapi ul.facetapi-facetapi-checkbox-links li {
+.block-facetapi ul.facetapi-facetapi-checkbox-links li {
   list-style: none;
   text-align: right;
   border-top: 1px transparent solid;
   border-bottom: 1px transparent solid;
-}
-.block.block-facetapi ul.facetapi-facetapi-checkbox-links li li {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0;
-}
-.block.block-facetapi ul.facetapi-facetapi-checkbox-links li a {
   font-size: 16px;
   text-transform: capitalize;
   text-decoration: none;
 }
-.block.block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover {
+.block-facetapi ul.facetapi-facetapi-checkbox-links li li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+.block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
 }
-.block.block-facetapi ul.facetapi-facetapi-checkbox-links li:last-of-type a {
+.block-facetapi ul.facetapi-facetapi-checkbox-links li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+.block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited {
+  text-decoration: none;
+}
+.block-facetapi ul.facetapi-facetapi-checkbox-links li:last-of-type a {
   border-bottom: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   -o-box-shadow: none;
   box-shadow: none;
 }
-.block.block-facetapi .facetapi-checkbox {
+.block-facetapi .facetapi-checkbox {
   float: right;
   margin-right: 10px;
   margin-left: 30px;
