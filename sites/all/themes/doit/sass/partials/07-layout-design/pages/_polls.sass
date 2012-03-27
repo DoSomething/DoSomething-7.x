@@ -1,23 +1,35 @@
+// Styling for Polls
+
+// Poll node page
 .node-poll
   .field-type-image
     margin-bottom: 12px
+    max-width: 260px
+    max-height: 260px
   .poll
     background: $gray4
     padding: 12px
-    clear: both
-    +float-left
-    .text
+    width: 100%
+    .text,
+    .total
       @extend .headers
       @extend .bold
       font-size: $s2
       color: white
     .percent
       color: $gray5
-    .total
-      @extend .bold
+    .bar,
+    .foreground
+      height: 7px
   input[type="submit"]
     @extend .go-button
+    float: right
 
-
-
-
+// Poll landing page
+.page-pollc
+  .views-row
+    @extend .image-teaser-module
+  .views-field-field-picture
+    @extend .image-teaser-module-image
+  .unimage-wrapper
+    @extend .image-teaser-module-teaser
