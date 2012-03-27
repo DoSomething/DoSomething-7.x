@@ -2451,7 +2451,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu {
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: table-cell;
-  width: 12%;
+  width: 300px;
   position: relative;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li a {
