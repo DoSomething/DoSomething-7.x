@@ -10,6 +10,72 @@
 function dosomething_project_report_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'entityqueue-webform_submission_entity-field_grant_winner'
+  $fields['entityqueue-webform_submission_entity-field_grant_winner'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_winner',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'webform_submission_entity',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'If this queue represents a list of grant winners (to appear on the Featured Projects page), check here.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 2,
+        ),
+      ),
+      'entity_type' => 'entityqueue',
+      'field_name' => 'field_grant_winner',
+      'label' => 'Grant Winner',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '32',
+      ),
+    ),
+  );
+
   // Exported field: 'entityqueue-webform_submission_entity-field_vital_stats'
   $fields['entityqueue-webform_submission_entity-field_vital_stats'] = array(
     'field_config' => array(
@@ -2443,9 +2509,11 @@ The content from this field will only be shown to anonymous users.');
   t('File attachments');
   t('Geocode Data');
   t('Goal');
+  t('Grant Winner');
   t('How Can Others Help? ');
   t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
+  t('If this queue represents a list of grant winners (to appear on the Featured Projects page), check here.');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
   t('Issues');
