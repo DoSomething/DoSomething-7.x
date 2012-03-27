@@ -390,7 +390,7 @@ input[type=color], select.form-select, iframe {
 .pane-ds-past-somethings-all .pane-content,
 .pane-ds-editors-picks-all .pane-content, .pane-related-projects-panel-pane-1 .pane-content,
 .pane-resources-panel-pane-1 .pane-content,
-.pane-projects-by-state-panel-pane-1 .pane-content, .image-teaser-module, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
+.pane-projects-by-state-panel-pane-1 .pane-content, .image-teaser-module, .page-pollc .views-row, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
 .pane-ds-past-somethings-all .views-row,
 .pane-ds-editors-picks-all .views-row, .pane-related-projects-panel-pane-1 .views-row,
 .pane-resources-panel-pane-1 .views-row,
@@ -402,7 +402,7 @@ input[type=color], select.form-select, iframe {
 .pane-ds-past-somethings-all .pane-content:after,
 .pane-ds-editors-picks-all .pane-content:after, .pane-related-projects-panel-pane-1 .pane-content:after,
 .pane-resources-panel-pane-1 .pane-content:after,
-.pane-projects-by-state-panel-pane-1 .pane-content:after, .image-teaser-module:after, .blog-landing-pane-post:after, .pane-ds-current-somethings-all .views-row:after,
+.pane-projects-by-state-panel-pane-1 .pane-content:after, .image-teaser-module:after, .page-pollc .views-row:after, .blog-landing-pane-post:after, .pane-ds-current-somethings-all .views-row:after,
 .pane-ds-past-somethings-all .views-row:after,
 .pane-ds-editors-picks-all .views-row:after, .pane-related-projects-panel-pane-1 .views-row:after,
 .pane-resources-panel-pane-1 .views-row:after,
@@ -467,7 +467,8 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
+.node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
 .pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-past-somethings-all .something-description a,
@@ -508,7 +509,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
 form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, input#edit-final-submit, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
+.views-exposed-widget .selectBox-dropdown, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .page-pollc .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2,
 .pane-ds-editors-picks-all .something-description h2, .pane-related-projects-panel-pane-1 .unimage-wrapper h2,
 .pane-resources-panel-pane-1 .unimage-wrapper h2,
@@ -516,7 +517,8 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
 .vital-stats .name, .pane-share-of-day, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
 .ribbon-front a:hover,
-.ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text, .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
+.ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
+.node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
 .pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-past-somethings-all .something-description a,
@@ -654,7 +656,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   font-size: 10px;
 }
 
-.tight-leading, .image-teaser-module-teaser p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
+.tight-leading, .image-teaser-module-teaser p, .page-pollc .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
 .pane-ds-past-somethings-all .something-description p,
 .pane-ds-editors-picks-all .something-description p, .pane-related-projects-panel-pane-1 .unimage-wrapper p,
 .pane-resources-panel-pane-1 .unimage-wrapper p,
@@ -667,11 +669,11 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
-.box-shadow, .border-and-shadow, .image-teaser-module-image, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.box-shadow, .border-and-shadow, .image-teaser-module-image, .page-pollc .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
 .pane-ds-past-somethings-all .pane-narrow-thumb,
 .pane-ds-editors-picks-all .pane-narrow-thumb, .pane-related-projects-panel-pane-1 .views-field-field-picture,
 .pane-resources-panel-pane-1 .views-field-field-picture,
-.pane-projects-by-state-panel-pane-1 .views-field-field-picture, .image-teaser-module-teaser, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
+.pane-projects-by-state-panel-pane-1 .views-field-field-picture, .image-teaser-module-teaser, .page-pollc .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-related-projects-panel-pane-1 .unimage-wrapper,
 .pane-resources-panel-pane-1 .unimage-wrapper,
@@ -699,11 +701,11 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
 }
 
-.white-border, .border-and-shadow, .image-teaser-module-image, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.white-border, .border-and-shadow, .image-teaser-module-image, .page-pollc .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
 .pane-ds-past-somethings-all .pane-narrow-thumb,
 .pane-ds-editors-picks-all .pane-narrow-thumb, .pane-related-projects-panel-pane-1 .views-field-field-picture,
 .pane-resources-panel-pane-1 .views-field-field-picture,
-.pane-projects-by-state-panel-pane-1 .views-field-field-picture, .image-teaser-module-teaser, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
+.pane-projects-by-state-panel-pane-1 .views-field-field-picture, .image-teaser-module-teaser, .page-pollc .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-related-projects-panel-pane-1 .unimage-wrapper,
 .pane-resources-panel-pane-1 .unimage-wrapper,
@@ -960,7 +962,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   float: right;
 }
 
-.image-teaser-module, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
+.image-teaser-module, .page-pollc .views-row, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
 .pane-ds-past-somethings-all .views-row,
 .pane-ds-editors-picks-all .views-row, .pane-related-projects-panel-pane-1 .views-row,
 .pane-resources-panel-pane-1 .views-row,
@@ -968,7 +970,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   margin-bottom: 12px;
 }
 
-.image-teaser-module-image, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.image-teaser-module-image, .page-pollc .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
 .pane-ds-past-somethings-all .pane-narrow-thumb,
 .pane-ds-editors-picks-all .pane-narrow-thumb, .pane-related-projects-panel-pane-1 .views-field-field-picture,
 .pane-resources-panel-pane-1 .views-field-field-picture,
@@ -978,7 +980,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   height: 120px;
 }
 
-.image-teaser-module-teaser, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
+.image-teaser-module-teaser, .page-pollc .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-related-projects-panel-pane-1 .unimage-wrapper,
 .pane-resources-panel-pane-1 .unimage-wrapper,
@@ -988,7 +990,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
-.image-teaser-module-teaser h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
+.image-teaser-module-teaser h2, .page-pollc .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2,
 .pane-ds-editors-picks-all .something-description h2, .pane-related-projects-panel-pane-1 .unimage-wrapper h2,
 .pane-resources-panel-pane-1 .unimage-wrapper h2,
@@ -996,7 +998,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   line-height: 1;
   margin-bottom: 18px;
 }
-.image-teaser-module-teaser p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
+.image-teaser-module-teaser p, .page-pollc .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
 .pane-ds-past-somethings-all .something-description p,
 .pane-ds-editors-picks-all .something-description p, .pane-related-projects-panel-pane-1 .unimage-wrapper p,
 .pane-resources-panel-pane-1 .unimage-wrapper p,
@@ -2762,6 +2764,10 @@ h2.block-title, h2.pane-title {
 
 .block.block-facetapi {
   padding: 0;
+  margin-bottom: 0;
+}
+.block.block-facetapi:last-of-type {
+  margin-bottom: 5px;
 }
 .block.block-facetapi h2.block-title {
   margin-right: 0;
@@ -2779,11 +2785,7 @@ h2.block-title, h2.pane-title {
   margin-right: -5px;
   margin-bottom: 0;
 }
-.block-facetapi:last-of-type {
-  margin-bottom: 5px;
-}
 .block-facetapi h2 {
-  height: 32px;
   line-height: 48px;
   margin: 0;
   padding-right: 50px;
@@ -3778,20 +3780,28 @@ comments.fb_iframe_widget {
 
 .node-poll .field-type-image {
   margin-bottom: 12px;
+  max-width: 260px;
+  max-height: 260px;
 }
 .node-poll .poll {
   background: #807a75;
   padding: 12px;
-  clear: both;
-  display: inline;
-  float: left;
+  width: 100%;
 }
-.node-poll .poll .text {
+.node-poll .poll .text,
+.node-poll .poll .total {
   font-size: 15px;
   color: white;
 }
 .node-poll .poll .percent {
   color: #d4d2d1;
+}
+.node-poll .poll .bar,
+.node-poll .poll .foreground {
+  height: 7px;
+}
+.node-poll input[type="submit"] {
+  float: right;
 }
 
 .page-causes .content .apps-text {
@@ -3868,10 +3878,6 @@ comments.fb_iframe_widget {
   display: inline;
   float: left;
   margin-top: -8px;
-}
-.content .field {
-  display: inline;
-  float: left;
 }
 
 .pane-ds-current-somethings-all a.back,

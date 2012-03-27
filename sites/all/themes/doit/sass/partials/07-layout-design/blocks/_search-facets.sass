@@ -3,7 +3,9 @@
 ////////////////////////////
 .block.block-facetapi
   padding: 0
-
+  margin-bottom: 0
+  &:last-of-type
+    margin-bottom: 5px
   h2.block-title
     margin-right: 0
     margin-left: 0
@@ -12,11 +14,8 @@
   background-color: $gray6
   margin-right: -5px
   margin-bottom: 0
-  &:last-of-type
-    margin-bottom: 5px
   @extend .black-h2
   h2
-    height: 32px
     line-height: 48px
     margin: 0
     padding-right: 50px

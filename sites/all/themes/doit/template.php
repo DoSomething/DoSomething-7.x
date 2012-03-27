@@ -614,7 +614,6 @@ function doit_pager(&$variables) {
  * Override of theme_search_api_page_results().
  */
 function doit_search_api_page_results(array $variables) {
-  drupal_add_css(drupal_get_path('module', 'search_api_page') . '/search_api_page.css');
 
   $index = $variables['index'];
   $results = $variables['results'];
