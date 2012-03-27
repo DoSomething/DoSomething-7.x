@@ -11,6 +11,149 @@ function dosomething_clubs_views_default_views() {
   $export = array();
 
   $view = new view;
+  $view->name = 'club_members';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'users';
+  $view->human_name = 'Club Members';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Club Members';
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'More >>';
+  $handler->display->display_options['link_display'] = 'custom_url';
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Group membership: User group membership */
+  $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'users';
+  $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['required'] = 0;
+  /* Relationship: OG membership: Group gid */
+  $handler->display->display_options['relationships']['group']['id'] = 'group';
+  $handler->display->display_options['relationships']['group']['table'] = 'og_membership';
+  $handler->display->display_options['relationships']['group']['field'] = 'group';
+  $handler->display->display_options['relationships']['group']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['group']['required'] = 0;
+  /* Relationship: User: Profile */
+  $handler->display->display_options['relationships']['profile']['id'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['table'] = 'users';
+  $handler->display->display_options['relationships']['profile']['field'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['required'] = 1;
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'main' => 'main',
+  );
+  /* Field: OG membership: Created */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'og_membership';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['fields']['created']['label'] = '';
+  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['text'] = 'Joined [created] ';
+  $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['created']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['created']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['created']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['custom_date_format'] = 'n/Y';
+  /* Sort criterion: OG membership: Created */
+  $handler->display->display_options['sorts']['created_1']['id'] = 'created_1';
+  $handler->display->display_options['sorts']['created_1']['table'] = 'og_membership';
+  $handler->display->display_options['sorts']['created_1']['field'] = 'created';
+  $handler->display->display_options['sorts']['created_1']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['sorts']['created_1']['order'] = 'DESC';
+  /* Contextual filter: OG membership: Group gid */
+  $handler->display->display_options['arguments']['group']['id'] = 'group';
+  $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
+  $handler->display->display_options['arguments']['group']['field'] = 'group';
+  $handler->display->display_options['arguments']['group']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['arguments']['group']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group']['default_argument_type'] = 'og_context';
+  $handler->display->display_options['arguments']['group']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group']['not'] = 0;
+  /* Filter criterion: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+  /* Display: Club Members */
+  $handler = $view->new_display('panel_pane', 'Club Members', 'panel_pane_1');
+  $handler->display->display_options['link_url'] = 'club/!1/members';
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
+
+  /* Display: Club Members All */
+  $handler = $view->new_display('panel_pane', 'Club Members All', 'panel_pane_2');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'More >>';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
+  $handler->display->display_options['argument_input'] = array(
+    'group' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'OG membership: Group gid',
+    ),
+  );
+  $export['club_members'] = $view;
+
+  $view = new view;
   $view->name = 'club_projects';
   $view->description = '';
   $view->tag = 'default';
@@ -32,7 +175,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';

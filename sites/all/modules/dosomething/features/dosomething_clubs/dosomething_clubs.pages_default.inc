@@ -25,7 +25,15 @@ function dosomething_clubs_default_page_manager_handlers() {
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
-    'relationships' => array(),
+    'relationships' => array(
+      0 => array(
+        'identifier' => 'OG group from node',
+        'keyword' => 'group',
+        'name' => 'og_group_from_node',
+        'context' => 'argument_entity_id:node_1',
+        'id' => 1,
+      ),
+    ),
     'access' => array(
       'plugins' => array(
         0 => array(
@@ -135,11 +143,26 @@ node/*/doing-it',
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_1';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '0',
+            'paths' => 'node/*/done-it
+node/*/doing-it',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),
+      'more_link' => 1,
+      'path' => 'test',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -153,12 +176,71 @@ node/*/doing-it',
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'mid-right';
-    $pane->type = 'club_third_column';
-    $pane->subtype = 'club_third_column';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'club_members-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '0',
+            'paths' => 'node/*/done-it
+node/*/doing-it',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+        2 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'more_link' => 0,
+      'path' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-right'][0] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'mid-right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'profile-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => FALSE,
+        ),
+        1 => array(
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '0',
@@ -177,11 +259,11 @@ node/*/doing-it',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['mid-right'][0] = 'new-4';
+    $pane->position = 1;
+    $display->content['new-5'] = $pane;
+    $display->panels['mid-right'][1] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'page_breadcrumb';
     $pane->subtype = 'page_breadcrumb';
@@ -195,10 +277,10 @@ node/*/doing-it',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'club_counter';
     $pane->subtype = 'club_counter';
@@ -212,10 +294,10 @@ node/*/doing-it',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][1] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][1] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_3';
@@ -245,10 +327,10 @@ node/*/doing-it',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][2] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][2] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_4';
@@ -278,8 +360,8 @@ node/*/doing-it',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
-    $display->content['new-8'] = $pane;
-    $display->panels['top'][3] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][3] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -567,6 +649,96 @@ function dosomething_clubs_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['club_hub'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'club_members';
+  $page->task = 'page';
+  $page->admin_title = 'Club Members';
+  $page->admin_description = '';
+  $page->path = 'club/%gid/members';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array(
+    'gid' => array(
+      'id' => 1,
+      'identifier' => 'OG group: ID',
+      'name' => 'entity_id:group',
+      'settings' => array(),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_club_members_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'club_members';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(
+      0 => array(
+        'identifier' => 'Node from OG group',
+        'keyword' => 'node',
+        'name' => 'og_node_from_group',
+        'context' => 'argument_entity_id:group_1',
+        'id' => 1,
+      ),
+    ),
+    'access' => array(
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'one_three_one';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'mid-left' => NULL,
+      'mid-center' => NULL,
+      'mid-right' => NULL,
+      'footer' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%node:title';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-1';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'club_members-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['top'][0] = 'new-1';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['club_members'] = $page;
 
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
