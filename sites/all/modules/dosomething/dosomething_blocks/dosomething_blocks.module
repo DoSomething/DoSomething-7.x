@@ -83,7 +83,7 @@ function dosomething_blocks_block_view($delta = '') {
  */
 function dosomething_blocks_node_view($node, $view_mode, $langcode) {
   // Show the social action buttons on certain content types.
-  if (in_array($node->type, variable_get('dosoomething_social_action_node_types', array('project_report', 'action_guide', 'tipsandtools', 'dsuguides')))) {
+  if (in_array($node->type, variable_get('dosomething_social_action_node_types', array('project_report', 'action_guide', 'tipsandtools', 'dsuguides')))) {
     $node->content['dosomething_social_action_buttons'] = dosomething_blocks_social_node_plugins(NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), array('fb_social_preset' => 'FB Like Box'));
     $node->content['dosomething_social_action_buttons']['#weight'] = -5;
   }
