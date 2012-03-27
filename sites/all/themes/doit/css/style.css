@@ -3807,6 +3807,7 @@ comments.fb_iframe_widget {
 }
 .node-blog .field-name-upload {
   clear: both;
+  padding-bottom: 15px;
 }
 
 .views-field-field-blog-type .field-content a {
