@@ -45,6 +45,8 @@ function doit_preprocess_page(&$variables) {
   // Add lettering.js for vital stat counter.
   drupal_add_js($theme_path . '/js/jquery.lettering-0.6.min.js');
   drupal_add_js($theme_path . '/js/doit-lettering.js');
+  // Add search facets js
+  drupal_add_js($theme_path . '/js/show-search-facets.js');
 }
 
 // /**
