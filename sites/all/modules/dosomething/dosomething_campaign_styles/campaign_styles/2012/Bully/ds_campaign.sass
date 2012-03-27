@@ -10,7 +10,7 @@
 $baseColor: #b196b7
 $complement: #ffffff
 $secondaryLink: black
-$contentBG: rgba(255,255,255,.6)
+$contentBG: rgba(177, 150, 183, 0.7)
 
 // borders
 $borderTop: 1px solid rgba(216,217,221,.5)
@@ -23,10 +23,6 @@ $body: "Trebuchet MS",sans-serif
 // page background
 $imageBackground: url('assets/bg.jpg')
 $bgFallback: #2387c7
-
-// block definition (all blocks--don't define width or float here)
-@mixin block
-  background: rgba(249,246,243,.7)
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -57,7 +53,6 @@ body
   background-position: center top
 
 div[role="main"]
-  +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
   padding-top: 10px
@@ -80,12 +75,15 @@ div[role="main"]
 /* universal declarations to be overridden per block if necessary */
 
 .pane-content
-  background: transparent
-  padding: 1 em
+  h3
+    font-size: 26px
+    font-weight: 600
+    line-height: 1.1em
+    color: black
+    text-transform: uppercase
   ul
     margin-bottom: 1em
     padding: 1em
-    background: $contentBG
     +clearfix
   li
     list-style-image: url('assets/list-dot.png')
@@ -117,7 +115,6 @@ div[role="main"]
   padding: 0
   font-family: $accent
   ul.menu
-    +block
     background-image: none
     text-align: right
     a
@@ -151,15 +148,14 @@ div[role="main"]
 
 // actions panel (sign-up and counter)
 .panel-row-actions
-  +block
   .pane-title
     background: black
     color: white
     width: 100%
+  .panel-pane
+    background: $contentBG
   .pane-content
-    background: rgba(177, 150, 183, .7)
-    background: $baseColor
-    opacity: 50%  
+    padding: 8px 12px
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -197,7 +193,6 @@ div[role="main"]
   	
 .panel-row-flexible
   .panel-pane
-    +block
     .pane-title
       background: $baseColor
   .blog
@@ -238,3 +233,6 @@ div[role="main"]
   .panel-pane
     margin: 0
     padding: 5px 0
+.fb-facepile
+  &:before
+    +insetBorder
