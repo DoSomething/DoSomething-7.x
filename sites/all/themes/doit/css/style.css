@@ -3805,6 +3805,9 @@ comments.fb_iframe_widget {
 .node-blog .field-name-field-picture img {
   margin-bottom: 24px;
 }
+.node-blog .field-name-upload {
+  clear: both;
+}
 
 .views-field-field-blog-type .field-content a {
   font-weight: bold;
