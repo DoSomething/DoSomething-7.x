@@ -2762,6 +2762,10 @@ h2.block-title, h2.pane-title {
 
 .block.block-facetapi {
   padding: 0;
+  margin-bottom: 0;
+}
+.block.block-facetapi:last-of-type {
+  margin-bottom: 5px;
 }
 .block.block-facetapi h2.block-title {
   margin-right: 0;
@@ -2779,11 +2783,7 @@ h2.block-title, h2.pane-title {
   margin-right: -5px;
   margin-bottom: 0;
 }
-.block-facetapi:last-of-type {
-  margin-bottom: 5px;
-}
 .block-facetapi h2 {
-  height: 32px;
   line-height: 48px;
   margin: 0;
   padding-right: 50px;
