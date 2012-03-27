@@ -115,6 +115,8 @@ class DosomethingClubsMailSystem implements MailSystemInterface {
  * Impelments hook_form_alter().
  */
 function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['state']['#title'] = 'What state is your school in?';
+  $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['name']['#title'] = 'School name';
   global $user;
   // Take no action if this user is not authenticated.
   if ($user->uid == 0) {
