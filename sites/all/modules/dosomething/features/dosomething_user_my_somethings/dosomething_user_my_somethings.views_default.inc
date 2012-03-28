@@ -160,6 +160,7 @@ function dosomething_user_my_somethings_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_text'] = 'More »';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -273,19 +274,12 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['title'] = 'Editors Picks For You';
   $handler->display->display_options['display_description'] = 'Editors picks content pane on Member Profiles';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Footer: Global: Text area */
-  $handler->display->display_options['footer']['area']['id'] = 'area';
-  $handler->display->display_options['footer']['area']['table'] = 'views';
-  $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/user/[uid]/picks" title="" class="more-link-right">More »</a>';
-  $handler->display->display_options['footer']['area']['format'] = '4';
-  $handler->display->display_options['footer']['area']['tokenize'] = 1;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Nodequeue: Queue */
   $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
@@ -448,6 +442,15 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['fields']['uid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['uid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['uid']['link_to_user'] = 0;
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 'more_link';
+  $handler->display->display_options['allow']['path_override'] = 'path_override';
+  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
 
   /* Display: Editors picks pane all */
   $handler = $view->new_display('panel_pane', 'Editors picks pane all', 'panel_pane_2');
