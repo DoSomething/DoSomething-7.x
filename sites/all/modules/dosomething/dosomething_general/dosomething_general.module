@@ -73,7 +73,7 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'club_node_form') {
     unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
   }
-  if ($form_id == 'webform_client_form_718361') {
+  if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-row-weights.js');
   }
 }
