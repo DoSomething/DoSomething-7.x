@@ -1,28 +1,43 @@
 ////////////////////////////
 // LOGIN POPUP
-// gray
+// white version
 ////////////////////////////
+
+#dosomething-login-register-popup-form
+  height: auto !important
 
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   top: 188px !important
-  #dosomething-login-register-popup-form
-    padding: 0
-    overflow: hidden
+  background: $white
+  padding: 25px 33px
+  input
+    &[type="text"],
+    &[type="textarea"]
+      +box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
+      @extend .black
+      background: $white
+      &:focus
+        outline: none
 
   // Title and border
   #edit-title-text
-    @extend .white
     margin-top: 0
-    margin-bottom: 12px
-    label[for="edit-title-text"]
-      @extend .popup-title
-    .description
-      @extend .popup-title-border
+    margin-bottom: 15px
+    label
+      @extend .black
+      font-weight: 600
+      font-family: $font-headline
+      font-size: 40px
+      border-bottom: 1px $gray6 solid
+      line-height: 40px
+      padding-bottom: 12px
 
-  // Description text
-  .description
-    @extend .white
-    font-size: 12px
+  .separator
+    text-align: center
+    font-size: 21px
+    @extend .bold
+    font-family: $font-headline
+    margin-bottom: 15px
 
   // Field required asterisk and error message
   .ds-registration-form-required
@@ -41,110 +56,71 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   .form-item-last-name
     +float-left
     input
-      margin-top: 0
+      margin-top: 15px
       margin-bottom: 12px
-      width: 163px
+      width: 212px
+      margin-left: 15px
   .form-item-last-name
     @extend .clearfix
-    margin-left: 32px
 
   // Cell or email field
   .form-item-cell-or-email
     input
       margin-bottom: 12px
-      width: 356px
+      margin-left: 15px
+      width: 212px
 
   // Birthday fields
   .form-item-month,
   .form-item-day,
   .form-item-year
-    +float-left
-    margin-bottom: 30px
+    clear: right
+    float: left
     input
-      width: 60px
+      width: 40px
       margin-right: 12px
       padding: 0
       text-align: center
-  .form-item-year
-    input
-      width: 90px
+  .form-item-month
+    clear: both
+    margin-left: 15px
 
   // Password fields
-  label[for='edit-pass-pass1']
-    display: none
 
   .form-type-password
     @extend .clearfix
+    clear: both
+    margin-left: 15px
 
   .ok
     @extend .alert-green
 
-  input.password-processed,
-  input.password-confirm
-    margin-bottom: 12px
-    width: 211px
-    color: black
-
-  div.password-confirm
-    float: right
-    margin: 0 !important
-    width: 211px
-
-  .password-strength
-    width: 155px
-    float: none
-    margin-top: 0
-    position: relative
-    left: 230px
-    top: 23px
-
-  .password-strength-title,
-  .password-confirm
-    @extend .white
-    color: black
-    font-size: 12px
-
-  div.password-confirm
-    width: 249px !important
-
-  .password-strength-text
-    display: none
-
-  .password-suggestions
-    border: none !important
-    clear: both
-    height: 130px
-    margin: 0 !important
-    width: 343px !important
-
-  // Captcha
-  .captcha
-    border-bottom: 1px $gray-border-alt solid
-    padding-bottom: 12px
-    &:focus
-      outline: none
-
-  label[for='edit-captcha-response']
-    @extend .white
-    @extend .medium
-    font-size: 12px
-    margin-bottom: 12px
-
-  .form-item-captcha-response
-    margin: 12px 0
-
-  #edit-captcha-response
-    margin-right: 25px
-
   // Weekly updates
-  .ds-signup-always-show
-    border-top: 1px $gray-border solid
-    padding-top: 12px
-    margin-bottom: 30px
+  .disclaimer
+    background: $gray6
+    margin-top: -140px
+    height: 250px
+    @extend .box-shadow
+    padding: 15px
     .description
-      margin-top: -17px
+      float: left
+      @extend .black
+      font-size: 12px
+      padding-top: 10px
+
+  .already-member
+    font-size: 18px
+    padding-top: 15px
+    padding-bottom: 6px
+    @extend .bold
+    font-family: $font-headline
+    float: right
+    a
+      text-decoration: underline
 
 // Yellow GO button
 input#edit-final-submit
   @extend .go-button
-  +float-right
+  float: right
+  margin-top: -38px
+  margin-right: 8px
