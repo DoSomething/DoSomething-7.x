@@ -628,7 +628,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $form['signup'] = array(
     '#type' => 'item',
-    '#description' => t("Clicking ‘Finish’ won't sell your soul, but it means you agree to our terms of service and want to receive our weekly update."),
+    '#description' => t("Clicking ‘Finish’ won't sell your soul, but it means you agree to our <a href='www.dosomething.org/privacy'>terms of service</a> and want to receive our weekly update."),
     '#prefix' => '<div class="disclaimer">',
     '#suffix' => '</div>',
   );
