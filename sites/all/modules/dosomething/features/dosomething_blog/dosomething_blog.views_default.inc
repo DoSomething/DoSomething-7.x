@@ -1461,6 +1461,17 @@ function dosomething_blog_views_default_views() {
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Blog type (field_blog_type) */
+  $handler->display->display_options['arguments']['field_blog_type_tid']['id'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['table'] = 'field_data_field_blog_type';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['field'] = 'field_blog_type_tid';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_blog_type_tid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_blog_type_tid']['not'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
