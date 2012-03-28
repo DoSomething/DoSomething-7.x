@@ -29,6 +29,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
@@ -124,8 +125,6 @@ function dosomething_clubs_views_default_views() {
   /* Display: Club Members All */
   $handler = $view->new_display('panel_pane', 'Club Members All', 'panel_pane_2');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'More >>';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -276,33 +275,6 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Goal */
-  $handler->display->display_options['fields']['field_project_goal']['id'] = 'field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['table'] = 'field_data_field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['field'] = 'field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['label'] = '';
-  $handler->display->display_options['fields']['field_project_goal']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['strip_tags'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_project_goal']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['field_project_goal']['settings'] = array(
-    'trim_length' => '200',
-  );
-  $handler->display->display_options['fields']['field_project_goal']['field_api_classes'] = 0;
   /* Sort criterion: Webform submissions: Submitted */
   $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
@@ -363,7 +335,6 @@ function dosomething_clubs_views_default_views() {
   /* Display: Doing It pane - All */
   $handler = $view->new_display('panel_pane', 'Doing It pane - All', 'panel_pane_3');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'More >>';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -456,33 +427,6 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Goal */
-  $handler->display->display_options['fields']['field_project_goal']['id'] = 'field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['table'] = 'field_data_field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['field'] = 'field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['label'] = '';
-  $handler->display->display_options['fields']['field_project_goal']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['strip_tags'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_project_goal']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['field_project_goal']['settings'] = array(
-    'trim_length' => '200',
-  );
-  $handler->display->display_options['fields']['field_project_goal']['field_api_classes'] = 0;
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
@@ -543,7 +487,6 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Done It';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'More >>';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -636,33 +579,6 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Goal */
-  $handler->display->display_options['fields']['field_project_goal']['id'] = 'field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['table'] = 'field_data_field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['field'] = 'field_project_goal';
-  $handler->display->display_options['fields']['field_project_goal']['label'] = '';
-  $handler->display->display_options['fields']['field_project_goal']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['strip_tags'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_project_goal']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_project_goal']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_project_goal']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['field_project_goal']['settings'] = array(
-    'trim_length' => '200',
-  );
-  $handler->display->display_options['fields']['field_project_goal']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -715,6 +631,14 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = '<p>Browse these clubs to find one near you. If there are none nearby, <a href="http://www.dosomething.org/node/add/club" target="_blank">start your own</a>.</p>';
+  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';

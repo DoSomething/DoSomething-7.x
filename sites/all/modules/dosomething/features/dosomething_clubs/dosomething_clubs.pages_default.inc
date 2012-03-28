@@ -86,7 +86,8 @@ function dosomething_clubs_default_page_manager_handlers() {
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
-node/*/doing-it',
+node/*/doing-it
+node/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -116,7 +117,8 @@ node/*/doing-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
-node/*/doing-it',
+node/*/doing-it
+node/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -150,7 +152,8 @@ node/*/doing-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
-node/*/doing-it',
+node/*/doing-it
+node/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -186,7 +189,8 @@ node/*/doing-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
-node/*/doing-it',
+node/*/doing-it
+node/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -245,14 +249,18 @@ node/*/doing-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
-node/*/doing-it',
+node/*/doing-it
+node/*/picks',
           ),
           'context' => 'empty',
           'not' => FALSE,
         ),
       ),
     );
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'more_link' => 1,
+      'path' => 'node/%node:nid/picks',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -362,6 +370,35 @@ node/*/doing-it',
     $pane->position = 3;
     $display->content['new-9'] = $pane;
     $display->panels['top'][3] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'profile-panel_pane_3';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'node/*/picks',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][4] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -658,7 +695,10 @@ function dosomething_clubs_default_page_manager_pages() {
   $page->admin_title = 'Club Members';
   $page->admin_description = '';
   $page->path = 'club/%gid/members';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array(
     'gid' => array(
