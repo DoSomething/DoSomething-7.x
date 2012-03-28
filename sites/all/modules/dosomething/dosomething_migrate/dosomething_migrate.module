@@ -113,6 +113,13 @@ function dosomething_migrate_save_webform_node($path) {
   dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
   $webform->webform = $webform_data;
   $webform_data['nid'] = $webform->nid;
+  $webform->webform['record_exists'] = TRUE;
+  foreach ($webform->webform['components'] as $key => $component) {
+    $webform->webform['components'][$key]['nid'] = $webform->nid;
+    if (!$webform->webform['components'][$key]['mandatory']) {
+      $webform->webform['components'][$key]['mandatory'] = 0;
+    }
+  }
   node_save($webform);
   return $webform;
 }
