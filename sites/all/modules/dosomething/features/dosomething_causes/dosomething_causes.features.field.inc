@@ -236,7 +236,7 @@ function dosomething_causes_field_default_fields() {
             'parent' => '0',
           ),
         ),
-        'profile2_private' => FALSE,
+        'profile2_private' => 1,
         'required' => FALSE,
       ),
       'translatable' => '0',

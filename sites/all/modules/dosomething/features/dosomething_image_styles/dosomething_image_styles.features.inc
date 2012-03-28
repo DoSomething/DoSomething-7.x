@@ -279,6 +279,28 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: cause_vertical
+  $styles['cause_vertical'] = array(
+    'name' => 'cause_vertical',
+    'effects' => array(
+      9 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '220',
+          'height' => '325',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: club_profile
   $styles['club_profile'] = array(
     'name' => 'club_profile',
@@ -518,8 +540,8 @@ function dosomething_image_styles_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '120',
-          'height' => '120',
+          'width' => '170',
+          'height' => '107',
         ),
         'weight' => '1',
       ),

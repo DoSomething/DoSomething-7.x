@@ -351,8 +351,8 @@ function dosomething_causes_ajax($tid, $parent = null) {
     ajax_command_html('.pane-current-campaigns-panel-pane-1 .pane-content', $views[0]),
     ajax_command_html('.pane-project-related-displays-panel-pane-3 .pane-content', $views[1]),
     ajax_command_html('.pane-polls-panel-pane-1 .pane-content', $views[2]),
-    ajax_command_html('h1.title', 'Issue: '.$term->name),
-    ajax_command_html('.pane-term-description .pane-content', $term->description),
+    //ajax_command_html('h1.title', 'Issue: '.$term->name),
+    ajax_command_html('.pane-term-description .pane-content', '<h2>'.$term->name.'</h2>'.$term->description),
   );
   $page = array('#type' => 'ajax', '#commands' => $commands);
   ajax_deliver($page);

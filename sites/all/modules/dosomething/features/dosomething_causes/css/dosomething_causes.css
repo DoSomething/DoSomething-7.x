@@ -1,0 +1,85 @@
+#cause-filter-wrapper {
+  overflow: hidden;
+  float: left;
+  width: 650px;
+  height: 325px;
+}
+
+#cause-filter {
+  width: 900px;
+  height: 325px;
+  padding: 0;
+}
+
+#cause-filter li.active {
+  width: 220px;
+}
+
+#cause-filter li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 86px;
+  overflow: hidden;
+  float: left;
+  position: relative;
+}
+
+#cause-filter a:hover { text-decoration: none; }
+
+#cause-filter li img {
+  max-width: none;
+  margin-left: -67px;
+}
+
+#cause-filter li.active img {
+  margin-left: 0;
+}
+
+#cause-filter li.active .term-description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 110px;
+  width: 220px;
+  background: #502862;
+  background: rgba(80,40,98,.75);
+  color: white;
+  text-align: center;
+  padding: 12px 18px;
+}
+
+#cause-filter li .term-label {
+  width: 86px;
+  height: 325px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  background: rgba(0,0,0,.6);
+  color: white;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  text-align: center;
+  width: 325px;
+  font-size: 40px;
+  font-family: din-web,"Trebuchet MS",Arial;
+  font-weight: 500;
+  line-height: 1em;
+  padding-top: 24px;
+}
+
+#cause-filter li.active .term-label { display: none; }
+
+#cause-filter h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: white;
+  font-weight: 500;
+}
+
+.cause-scroller-arrow {
+  float: left;
+  margin-top: 130px;
+  cursor: pointer;
+}
