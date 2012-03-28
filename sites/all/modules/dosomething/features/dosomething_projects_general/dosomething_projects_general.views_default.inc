@@ -1998,6 +1998,10 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['display_description'] = 'Displays a list of projects sortable by Cause.';
   $handler->display->display_options['defaults']['cache'] = FALSE;
   $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 1;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -2066,39 +2070,38 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
-  /* Field: Global: Facebook Social Plugin */
-  $handler->display->display_options['fields']['fb_social']['id'] = 'fb_social';
-  $handler->display->display_options['fields']['fb_social']['table'] = 'views';
-  $handler->display->display_options['fields']['fb_social']['field'] = 'fb_social';
-  $handler->display->display_options['fields']['fb_social']['label'] = '';
-  $handler->display->display_options['fields']['fb_social']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['fb_social']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['fb_social']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['fb_social']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['fb_social']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['fb_social']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['fb_social']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['fb_social']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['fb_social']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['fb_social']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['fb_social']['fb_social_plugins'] = 'small_like';
+  /* Field: Webform Submission: Project Summary */
+  $handler->display->display_options['fields']['field_webform_project_summary']['id'] = 'field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['table'] = 'field_data_field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['field'] = 'field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['label'] = '';
+  $handler->display->display_options['fields']['field_webform_project_summary']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_webform_project_summary']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['field_api_classes'] = 0;
   /* Field: Webform submissions: Sid */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = '';
   $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['sid']['alter']['text'] = 'Learn more »';
-  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['sid']['alter']['path'] = 'webform-submission/[sid]';
   $handler->display->display_options['fields']['sid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['sid']['alter']['external'] = 0;
@@ -2123,8 +2126,8 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="unimage-wrapper">
-<h2>[field_project_title]</h2>
-<div>[sid]</div>[fb_social]
+<h2><a href="webform-submission/[sid]">[field_project_title]</a></h2>
+[field_webform_project_summary]
 </div>';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
