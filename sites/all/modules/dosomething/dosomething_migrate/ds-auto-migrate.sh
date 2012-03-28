@@ -5,17 +5,17 @@ START=`date +%s`
 ERROR=0
 
 BACKDIR="/home/webadmin/dosomething-backup-script"
-#D7ALIAS="@dosomething.local"
-#D7DATABASE="dosomething"
-#D7DATABASE="dosomething"
-#D6ALIAS="@dosomething6.local"
-#D6DATABASE="dosomething6"
+D7ALIAS="@dosomething.local"
+D7DATABASE="dosomething"
+D7DATABASE="dosomething"
+D6ALIAS="@dosomething6.local"
+D6DATABASE="dosomething6"
 
 # Testing values
-D7ALIAS="@dsmtest"
-D6ALIAS="@ds6mtest"
-D7DATABASE="dosomething_mtest"
-D6DATABASE="dosomething6_mtest"
+#D7ALIAS="@dsmtest"
+#D6ALIAS="@ds6mtest"
+#D7DATABASE="dosomething_mtest"
+#D6DATABASE="dosomething6_mtest"
 
 
 # Get the latest database from the backup server.
@@ -154,8 +154,8 @@ fi
 echo "running new user migration"
 ERROR=$(expr $ERROR + 1)
 # Stop previously running dsjsonnewuesr migrations then start it again to avoid an error.
-drush $D7ALIAS mrs dsjsonnewuser
-drush $D7ALIAS mi dsjsonnewuser
+#drush $D7ALIAS mrs dsjsonnewuser
+#drush $D7ALIAS mi dsjsonnewuser
 if [ $? -ne 0 ]
 then
   DIFF=$(expr `date +%s` - $START)
@@ -167,7 +167,7 @@ fi
 
 echo "running updated user migration"
 ERROR=$(expr $ERROR + 1)
-drush $D7ALIAS mi dsjsonchangeduser
+#drush $D7ALIAS mi dsjsonchangeduser
 if [ $? -ne 0 ]
 then
   DIFF=$(expr `date +%s` - $START)
@@ -179,7 +179,7 @@ fi
 
 echo "running the club migration"
 ERROR=$(expr $ERROR + 1)
-drush $D7ALIAS mi dsjsonclub
+#drush $D7ALIAS mi dsjsonclub
 if [ $? -ne 0 ]
 then
   DIFF=$(expr `date +%s` - $START)
@@ -191,7 +191,7 @@ fi
 
 echo "rerunning og history"
 ERROR=$(expr $ERROR + 1)
-drush $D7ALIAS dsmog
+#drush $D7ALIAS dsmog
 if [ $? -ne 0 ]
 then
   DIFF=$(expr `date +%s` - $START)
