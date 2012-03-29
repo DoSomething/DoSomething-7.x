@@ -43,11 +43,11 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  /* Relationship: Content: Campaign Sign Up (field_campaign) - reverse */
+  /* Relationship: Content: Campaign (field_campaign) - reverse */
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';
-  /* Field: Content: Background color */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_campaign_background_color']['id'] = 'field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['table'] = 'field_data_field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['field'] = 'field_campaign_background_color';
@@ -70,7 +70,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_alter_empty'] = 0;
-  /* Field: Content: Foreground color */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_campaign_foreground_color']['id'] = 'field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['table'] = 'field_data_field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['field'] = 'field_campaign_foreground_color';
@@ -429,7 +429,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Campaign Sign Up (field_campaign) - reverse */
+  /* Relationship: Content: Campaign (field_campaign) - reverse */
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';
@@ -831,7 +831,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Campaign Sign Up (field_campaign) - reverse */
+  /* Relationship: Content: Campaign (field_campaign) - reverse */
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';

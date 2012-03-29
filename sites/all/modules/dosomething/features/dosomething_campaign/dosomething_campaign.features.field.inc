@@ -87,217 +87,6 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_twitter_language'
-  $fields['node-campaign-field_campaign_twitter_language'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_campaign_twitter_language',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 17,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_campaign_twitter_language',
-      'label' => 'Twitter Sharing Language',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '32',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-campaign-field_campaign_facebook_language'
-  $fields['node-campaign-field_campaign_facebook_language'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_campaign_facebook_language',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 16,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_campaign_facebook_language',
-      'label' => 'Facebook Sharing Language',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '31',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-campaign-field_campaign_background_color'
-  $fields['node-campaign-field_campaign_background_color'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_campaign_background_color',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '6',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Please enter the 6 digit hex value without the #.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '8',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_campaign_background_color',
-      'label' => 'Background color',
-      'required' => 1,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '8',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '9',
-      ),
-    ),
-  );
-
   // Exported field: 'node-campaign-field_campaign_call_to_action'
   $fields['node-campaign-field_campaign_call_to_action'] = array(
     'field_config' => array(
@@ -441,14 +230,17 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_foreground_color'
-  $fields['node-campaign-field_campaign_foreground_color'] = array(
+  // Exported field: 'node-campaign-field_campaign_facebook_language'
+  $fields['node-campaign-field_campaign_facebook_language'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_campaign_foreground_color',
+      'field_name' => 'field_campaign_facebook_language',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -464,24 +256,23 @@ function dosomething_campaign_field_default_fields() {
       ),
       'module' => 'text',
       'settings' => array(
-        'max_length' => '6',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'text_long',
     ),
     'field_instance' => array(
       'bundle' => 'campaign',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Please enter the 6 digit hex value without the #.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '9',
+          'weight' => 16,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -491,9 +282,9 @@ function dosomething_campaign_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_campaign_foreground_color',
-      'label' => 'Foreground color',
-      'required' => 1,
+      'field_name' => 'field_campaign_facebook_language',
+      'label' => 'Facebook Sharing Language',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -502,10 +293,10 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'size' => '8',
+          'rows' => '5',
         ),
-        'type' => 'text_textfield',
-        'weight' => '10',
+        'type' => 'text_textarea',
+        'weight' => '31',
       ),
     ),
   );
@@ -1060,6 +851,77 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_campaign_twitter_language'
+  $fields['node-campaign-field_campaign_twitter_language'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_twitter_language',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 17,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_twitter_language',
+      'label' => 'Twitter Sharing Language',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '32',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_campaign_video'
   $fields['node-campaign-field_campaign_video'] = array(
     'field_config' => array(
@@ -1304,21 +1166,18 @@ function dosomething_campaign_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Background color');
   t('Body');
   t('Call to action');
   t('Campaign Date');
   t('Causes/Issues');
   t('Enter a call to action for this campaign.');
   t('Facebook Sharing Language');
-  t('Foreground color');
   t('Group type');
   t('Headline');
   t('Link');
   t('Logo');
   t('Main Image');
   t('PSA image');
-  t('Please enter the 6 digit hex value without the #.');
   t('Please select a start and end date for the campaign.');
   t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
