@@ -687,7 +687,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-projects-by-state-panel-pane-1 .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer, .apps-grid .apps-box, .field-name-field-picture img {
+.pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer, .apps-grid .apps-box {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -3991,6 +3991,9 @@ h3 .stuff-header {
   font-size: 21px;
 }
 
+.field-name-field-picture {
+  background: url('images/rounded-bottom-shadow.png') no-repeat 0px 330px;
+}
 .field-name-field-picture img {
   margin-right: 1em;
   margin-bottom: 1em;
