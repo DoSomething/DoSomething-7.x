@@ -28,6 +28,8 @@
 #cause-filter a:hover { text-decoration: none; }
 
 #cause-filter li img {
+  height: 325px;
+  width: 220px;
   max-width: none;
   margin-left: -67px;
 }
