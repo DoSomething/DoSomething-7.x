@@ -10,9 +10,9 @@ h1.title {
   display: none; }
 
 body {
-  background-color: #2387c7;
+  background-color: #ffca06;
   background-image: url("assets/bg.jpg");
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   background-position: center top; }
 
 div[role="main"] {
