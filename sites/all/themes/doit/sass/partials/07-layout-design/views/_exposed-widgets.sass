@@ -1,17 +1,47 @@
 ////////////////////////////
 // VIEWS EXPOSED WIDGETS
-// used for filters on blog center and causes pages
+// used for filters on blog center and causes pages and search on projects
 ////////////////////////////
 
-.views-exposed-widgets
-  margin-bottom: 30px
-
-.views-exposed-form .views-exposed-widget
-  padding-top: 0
-
-// Use Pane title instead of label for sort by:
+// Use Pane title instead of label for 'sort by:' dropdowns
 .pane-views-exp-blog-center-panel-pane-3
   @extend .black-h2
   h2.pane-title
-    height: 24px
-    line-height: 8px
+    +inline-block
+    line-height: 1
+
+// Blanked out views.css in order to cut out exposed filter overrides
+.views-exposed-form
+  margin-top: 12px
+  .views-exposed-widgets
+    margin-bottom: 30px
+    +pie-clearfix
+  .views-exposed-widget
+    display: inline
+    float: left
+
+// If label is displayed, it will use these styles
+// the default is not displayed from action finder labels
+.views-exposed-widget label
+  @extend .page-headline
+  font-size: $s2
+  letter-spacing: 0
+  line-height: 1.5
+
+// From views.css
+// Table style column align
+.views-align-left
+  text-align: left
+
+.views-align-right
+  text-align: right
+
+.views-align-center
+  text-align: center
+
+// Remove the border on tbody that system puts in
+.views-view-grid tbody
+  border-top: none
+
+.view .progress-disabled
+  float: none

@@ -37,6 +37,14 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = 'Our blog updates you on the latest info, without putting you to sleep. Use the filters above to browse news, celebs, and more.';
+  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1496,13 +1504,26 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['filters']['field_blog_causes_tid']['id'] = 'field_blog_causes_tid';
   $handler->display->display_options['filters']['field_blog_causes_tid']['table'] = 'field_data_field_blog_causes';
   $handler->display->display_options['filters']['field_blog_causes_tid']['field'] = 'field_blog_causes_tid';
+  $handler->display->display_options['filters']['field_blog_causes_tid']['value'] = array(
+    29 => '29',
+    28 => '28',
+    27 => '27',
+    23 => '23',
+    25 => '25',
+    20 => '20',
+    21 => '21',
+    73 => '73',
+    24 => '24',
+    26 => '26',
+    22 => '22',
+  );
   $handler->display->display_options['filters']['field_blog_causes_tid']['group'] = 0;
   $handler->display->display_options['filters']['field_blog_causes_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['operator_id'] = 'field_blog_causes_tid_op';
   $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['label'] = 'Cause';
   $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['operator'] = 'field_blog_causes_tid_op';
   $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['identifier'] = 'field_blog_causes_tid';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['reduce'] = 1;
   $handler->display->display_options['filters']['field_blog_causes_tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['field_blog_causes_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_blog_causes_tid']['vocabulary'] = 'vocabulary_5';

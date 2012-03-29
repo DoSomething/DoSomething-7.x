@@ -2432,6 +2432,13 @@ function webform_client_form_submit($form, &$form_state) {
     $submission->data = $new_data + $submission->data;
   }
 
+  // If there is no data to be saved (such as on a multipage form with no fields
+  // on the first page), process no further. Submissions with no data cannot
+  // be loaded from the database as efficiently, so we don't save them at all.
+  if (empty($submission->data)) {
+    return;
+  }
+
   // Save the submission to the database.
   if (!$sid) {
     // No sid was found thus insert it in the dataabase.
@@ -2558,15 +2565,12 @@ function _webform_client_form_submit_flatten($node, $fieldset, $parent = 0) {
   if (is_array($fieldset)) {
     foreach ($fieldset as $form_key => $value) {
       $cid = webform_get_cid($node, $form_key, $parent);
-      if ($cid) {
-        if (is_array($value) && webform_component_feature($node->webform['components'][$cid]['type'], 'group')){
-          $values += _webform_client_form_submit_flatten($node, $value, $cid);
-        }
-        else {
-          $values[$cid] = $value;
-        } 
+      if (is_array($value) && webform_component_feature($node->webform['components'][$cid]['type'], 'group')){
+        $values += _webform_client_form_submit_flatten($node, $value, $cid);
       }
-
+      else {
+        $values[$cid] = $value;
+      }
     }
   }
 

@@ -46,7 +46,12 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
     $profile = entity_metadata_wrapper('profile2', $profile);
     $address = $profile->field_user_address->value();
     $hometown = dosomething_user_my_somethings_hometown($address);
-    $misc = dosomething_project_report_get_vital_stats_queues($entity_id);
+    $misc = array();
+    if ($awards = $wrapper->field_grant_winner->value()) {
+      foreach ($awards as $award) {
+        $misc[] = t('@award winner', array('@award' => $award->name));
+      }
+    }
 
     if ($clubs = $wrapper->field_project_clubs->value()) {
       foreach ($clubs as $club) {

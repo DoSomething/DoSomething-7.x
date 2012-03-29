@@ -17,6 +17,10 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
   if ($view->name == 'project_photo_slider' && $display_id == 'panel_pane_1') {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-photo-slider.js');
   }
+  // Add homepage-photo-slider.js file to the home_slideshow views content pane.
+  if ($view->name == 'home_slideshow' && $display_id == 'panel_pane_1') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/homepage-photo-slider.js');
+  }
 }
 
 /**
@@ -68,6 +72,9 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   // Unset N/A option in required field_camp checkboxes.
   if ($form_id == 'club_node_form') {
     unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
+  }
+  if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-row-weights.js');
   }
 }
 
@@ -147,4 +154,10 @@ function dosomething_general_infusionsoft_subscribe($email, $action) {
  */
 function dosomething_general_mobile_commons_subscribe($mobile, $campaign, $opt_in_path) {
   // TODO: do work
+}
+
+function dosomething_general_user_presave(&$edit, $account, $category) {
+  if (isset($edit['pass'])) {
+    drupal_set_message(t('Your password has been updated.'), 'status');
+  }
 }

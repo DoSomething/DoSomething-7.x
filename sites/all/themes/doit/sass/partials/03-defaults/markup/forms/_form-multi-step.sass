@@ -11,9 +11,11 @@ form.webform-client-form
   // Next, back, submit form buttons
   #edit-next,
   #edit-previous,
-  #edit-submit
+  #edit-submit,
+  #edit-draft
     @extend .go-button
     +inline-block
+    margin-right: 6px
 
   #edit-next,
   #edit-previous
@@ -25,17 +27,17 @@ form.webform-client-form
     margin-left: $s-2
 
   // Save as draft link
-  #edit-draft
-    -webkit-appearance: none
-    @extend .blue
-    background: none
-    border: none
-    display: block
-    font-family: $font-body
-    padding: 8px 0 0 26px
-    position: absolute
-    right: 48px
-    bottom: 53px
+  // #edit-draft
+  //   -webkit-appearance: none
+  //   @extend .blue
+  //   background: none
+  //   border: none
+  //   display: block
+  //   font-family: $font-body
+  //   padding: 8px 0 0 26px
+  //   position: absolute
+  //   right: 48px
+  //   bottom: 53px
 
   // Form completion and numbering
   #edit-submitted-dosomething-webform-numbering

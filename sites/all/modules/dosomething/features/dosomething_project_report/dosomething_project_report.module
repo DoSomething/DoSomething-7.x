@@ -15,25 +15,3 @@ function dosomething_project_report_ctools_plugin_directory($owner, $plugin_type
   }
 }
 
-/**
- * Get any entity queues that include a given entity id
- * and are marked to be included on projects' 'vital stats'.
- *
- * @see ds_project_stats.inc
- */
-function dosomething_project_report_get_vital_stats_queues($entity_id) {
-  $queues = array();
-  $query = new EntityFieldQuery();
-  $query
-    ->entityCondition('entity_type', 'entityqueue', '=')
-    ->fieldCondition('eq_webform_submission_entity', 'target_id', $entity_id, '=')
-    ->fieldCondition('field_vital_stats', 'value', 1, '=');
-  $result = $query->execute();
-  $entities = entity_load('entityqueue', array_keys($result['entityqueue']));
-  if (count($entities)) {
-    foreach ($entities as $entity) {
-      $queues[] = check_plain($entity->label);
-    }
-  }
-  return $queues;
-}

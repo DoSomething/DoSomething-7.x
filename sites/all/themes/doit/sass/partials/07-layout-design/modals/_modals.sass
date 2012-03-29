@@ -9,11 +9,8 @@
   padding: 23px
   @extend .clearfix
   +border-radius(0)
-
-.ui-dialog-content
-  border: 0
-  position: initial !important
-  padding: 0 !important
+  .ui-dialog-content
+    padding: 0
 
 // Exit square overrides
 .ui-dialog-title
@@ -34,7 +31,7 @@
 .ui-icon.ui-icon-closethick
   +replace-text-with-dimensions('close.png')
   +float-right
-  margin: -13px -9px 0 0 !important
+  margin: -20px -20px 0 0 !important
 .ui-state-hover
   background-image: none
   border: none
@@ -52,4 +49,3 @@
       +float-left
       &:focus
         outline: none
-

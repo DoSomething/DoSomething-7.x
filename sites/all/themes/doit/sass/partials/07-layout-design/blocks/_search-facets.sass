@@ -1,0 +1,61 @@
+////////////////////////////
+// EXPANDABLE SEARCH FACETS
+////////////////////////////
+.block.block-facetapi
+  padding: 0
+  margin-bottom: 0
+  &:last-of-type
+    margin-bottom: 5px
+  h2.block-title
+    margin-right: 0
+    margin-left: 0
+.block-facetapi
+  +background-image(linear-gradient(left, $gray6 90%, $gray5))
+  background-color: $gray6
+  margin-right: -5px
+  margin-bottom: 0
+  @extend .black-h2
+  h2
+    line-height: 48px
+    margin: 0
+    padding-right: 50px
+    position: relative
+    right: -70px
+    text-transform: uppercase
+    background: image_url("btn-leftsidebar-feeds-plus.png") no-repeat 137px center
+    &.active
+      background: image_url("btn-leftsidebar-feeds-minus.png") no-repeat 137px center
+  ul.facetapi-facetapi-checkbox-links
+    margin: 0
+    padding-left: 0
+    margin-bottom: 15px
+    li
+      +no-bullets
+      text-align: right
+      border-top: 1px transparent solid
+      border-bottom: 1px transparent solid
+      @extend .black
+      @extend .headers
+      font-size: 16px
+      text-transform: capitalize
+      text-decoration: none
+      &:hover
+        @extend .black
+        text-decoration: none
+      a
+        @extend .black
+        @extend .headers
+        font-size: 16px
+        text-transform: capitalize
+        text-decoration: none
+        &:hover,
+        &:visited
+          @extend .black
+          text-decoration: none
+      &:last-of-type a
+        border-bottom: none
+        +box-shadow-none
+  .facetapi-checkbox
+    float: right
+    margin-right: 10px
+    margin-left: 30px

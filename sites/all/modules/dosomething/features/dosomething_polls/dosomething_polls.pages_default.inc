@@ -16,7 +16,10 @@ function dosomething_polls_default_page_manager_pages() {
   $page->admin_title = 'Polls';
   $page->admin_description = '';
   $page->path = 'pollc';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -116,7 +119,7 @@ function dosomething_polls_default_page_manager_pages() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'action-finder-list',
+      'css_class' => 'two-column-grid',
     );
     $pane->extras = array();
     $pane->position = 1;

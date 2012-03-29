@@ -80,6 +80,7 @@ function dosomething_roles_demote_expired_users() {
           if ($new_role_name != $current_role_name) {
             $params = array(
               'new_role' => $new_role_name,
+              'current_role' => $current_role_name,
             );
             drupal_mail('dosomething_roles', 'dosomething-roles-demotion', $account->mail, $language, $params);
           }
@@ -159,61 +160,127 @@ function dosomething_roles_send_demotion_notifications($month) {
  * Implements hook_mail().
  */
 function dosomething_roles_mail($key, &$message, $params) {
+  global $language;
+  // We do not sanitize the token replacement, since the output of this
+  // replacement is intended for an e-mail message, not a web browser.
   switch ($key) {
     case 'dosomething-roles-alumni-email':
-      $params['full_name'] = module_exists('dosomething_login') ? dosomething_login_get_user_full_name($params['account']) : $params['account']->name;
-      $message['subject'] = t('Your membership has expired.');
-      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_alumni_email', $params));
+      $message['subject'] = token_replace(variable_get('email_dosomething_roles_alumni_email_subject'), array(), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['body'][] = token_replace(variable_get('email_dosomething_roles_alumni_email_body'), array(), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-roles-demotion':
-      $message['subject'] = t('Membership demotion.');
-      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_demotion_email', $params));
+      $message['subject'] = token_replace(variable_get('email_dosomething_roles_demotion_email_subject'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['body'][] = token_replace(variable_get('email_dosomething_roles_demotion_email_body'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-roles-impending-demotion':
-      $message['subject'] = t('Impending membership demotion.');
-      $message['body'][] = drupal_html_to_text(theme('dosomething_roles_impending_demotion_email', $params));
+      $message['subject'] = token_replace(variable_get('email_dosomething_roles_impending_demotion_email_subject'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['body'][] = token_replace(variable_get('email_dosomething_roles_impending_demotion_email_body'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
   }
 }
 
 /**
- * Implements hook_theme().
+ * Token callback to add dosomething role tokens for extra email tokens.
+ *
+ * @param $replacements
+ *   An associative array variable containing mappings from token names to
+ *   values (for use with strtr()).
+ * @param $data
+ *   An associative array of token replacement values. If the 'user' element
+ *   exists, it must contain a user account object with the following
+ *   properties:
+ *   - login: The account login name.
+ *   - pass: The hashed account login password.
+ * @param $options
+ *   Unused parameter required by the token_replace() function.
  */
-function dosomething_roles_theme() {
-  return array(
-    'dosomething_roles_alumni_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
-      'arguments' => array('full_name' => NULL),
-      'template' => 'dosomething-roles-alumni-email',
-    ),
-    'dosomething_roles_demotion_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
-      'arguments' => array(
-        'current_role' => NULL,
-        'new_role' => NULL,
-        'months' => NULL,
-      ),
-      'template' => 'dosomething-roles-demotion-email',
-    ),
-    'dosomething_roles_impending_alumni_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
-      'arguments' => array(
-        'months' => NULL,
-      ),
-      'template' => 'dosomething-roles-impending-demotion-email',
-    ),
-    'dosomething_roles_impending_demotion_email' => array(
-      'path' => drupal_get_path('module', 'dosomething_roles') . '/templates',
-      'arguments' => array(
-        'current_role' => NULL,
-        'new_role' => NULL,
-        'months' => NULL,
-      ),
-      'template' => 'dosomething-roles-impending-demotion-email',
-    ),
+function dosomething_roles_user_mail_tokens(&$replacements, $data, $options) {
+  if (isset($data['dosomething_roles'])) {
+    if (isset($data['dosomething_roles']['new_role'])) {
+      $replacements['[dosomething:new-role]'] = ucwords($data['dosomething_roles']['new_role']);
+    }
+    if (isset($data['dosomething_roles']['current_role'])) {
+      $replacements['[dosomething:current-role]'] = ucwords($data['dosomething_roles']['current_role']);
+    }
+    if (isset($data['dosomething_roles']['months'])) {
+      $replacements['[dosomething:months]'] = (int) $data['dosomething_roles']['months'];
+    }
+  }
+  if (isset($data['user'])) {
+    user_mail_tokens($replacements, $data, $options);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_roles_form_user_admin_settings_alter(&$form, &$form_state) {
+  // Add email templates for demotion emails to the account settings form.
+  $email_text = t('The list of available tokens that can be used in e-mails is provided below.');
+  $form['email_dosomething_roles_alumni_email'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Account becomes Alumni'),
+    '#description' => t('Edit the expiration e-mail sent to users who have turned 26.') . ' ' . $email_text,
+    '#collapsed' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'email',
+  );
+  $form['email_dosomething_roles_alumni_email']['email_dosomething_roles_alumni_email_subject'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Subject'),
+    '#default_value' => variable_get('email_dosomething_roles_alumni_email_subject', ''),
+    '#maxlength' => 180,
+  );
+  $form['email_dosomething_roles_alumni_email']['email_dosomething_roles_alumni_email_body'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Body'),
+    '#default_value' => variable_get('email_dosomething_roles_alumni_email_body', ''),
+    '#rows' => 15,
+  );
+
+  $form['email_dosomething_roles_demotion_email'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Account Demotion'),
+    '#description' => t('Edit the demotion e-mail sent to users who have just had their role demoted.') . ' ' . $email_text . ' ' . t('Also available are [dosomething:new-role] represents the user\'s new role and [dosomething:current-role] represents the previous role before the demotion.'),
+    '#collapsed' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'email',
+  );
+  $form['email_dosomething_roles_demotion_email']['email_dosomething_roles_demotion_email_subject'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Subject'),
+    '#default_value' => variable_get('email_dosomething_roles_demotion_email_subject', ''),
+    '#maxlength' => 180,
+  );
+  $form['email_dosomething_roles_demotion_email']['email_dosomething_roles_demotion_email_body'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Body'),
+    '#default_value' => variable_get('email_dosomething_roles_demotion_email_body', ''),
+    '#rows' => 15,
+  );
+
+  $form['email_dosomething_roles_impending_demotion_email'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Account Impending Demotion'),
+    '#description' => t('Edit the demotion e-mail sent to users who are about to have their role demoted.') . ' ' . $email_text . ' ' . t('Also available are [dosomething:new-role] represents the user\'s new role, [dosomething:current-role] represents the user\'s current role, and [dosomething:months] represents the number of months until the demotion will occur.'),
+    '#collapsed' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'email',
+  );
+  $form['email_dosomething_roles_impending_demotion_email']['email_dosomething_roles_impending_demotion_email_subject'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Subject'),
+    '#default_value' => variable_get('email_dosomething_roles_impending_demotion_email_subject', ''),
+    '#maxlength' => 180,
+  );
+  $form['email_dosomething_roles_impending_demotion_email']['email_dosomething_roles_impending_demotion_email_body'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Body'),
+    '#default_value' => variable_get('email_dosomething_roles_impending_demotion_email_body', ''),
+    '#rows' => 15,
   );
 }
 
@@ -227,12 +294,12 @@ function dosomething_roles_update_role($uid) {
   }
   $account = user_load($uid);
 
-  // Don't make the user a full member if they are currently pendig.
+  // Don't make the user a full member if they are currently pending.
   if (in_array('pending member', $account->roles)) {
     return;
   }
 
-  if (dosomething_roles_user_is_staff_member($account)) {
+  if (dosomething_roles_user_is_staff_member($account) || dosomething_roles_user_is_too_old($account)) {
     return;
   }
 

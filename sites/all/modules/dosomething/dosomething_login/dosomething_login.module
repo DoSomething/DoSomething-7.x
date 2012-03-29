@@ -344,7 +344,7 @@ function dosomething_login_element_info() {
   $types = array();
   $types['dosomething_password_confirm'] = array(
     '#input' => TRUE,
-    '#process' => array('dosomething_roles_dosomething_password_confirm', 'user_form_process_password_confirm'),
+    '#process' => array('dosomething_roles_dosomething_password_confirm'),
     '#theme_wrappers' => array('form_element'),
     '#element_validate' => array('password_confirm_validate'),
   );
@@ -361,8 +361,7 @@ function dosomething_roles_dosomething_password_confirm($element) {
   // This removes the title of the confirm password and adds placeholders.
   $element = form_process_password_confirm($element);
   unset($element['pass2']['#title']);
-  $element['pass1']['#attributes']['placeholder'] = t('Create a Password');
-  $element['pass2']['#attributes']['placeholder'] = t('Confirm that password please');
+  $element['pass1']['#attributes']['placeholder'] = t('Password');
   return $element;
 }
 
@@ -512,8 +511,26 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $form['title_text'] = array(
     '#type' => 'item',
-    '#title' => t("You're almost there."),
-    '#description' => t("Fill out the rest of the information below and you'll be a member in no time."),
+    '#title' => t("You’re Almost There"),
+  );
+  $form['#action'] = url('user/registration', array('query' => $query));
+  $form['connect'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'connect-thru-facebook',
+      ),
+    ),
+    '#children' => l('Connect thru Facebook', $fb_url),
+  );
+  $form['or'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'separator',
+      ),
+    ),
+    '#children' => t('or'),
   );
   $form['name'] = array(
     'first_name' => array(
@@ -545,6 +562,30 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     ),
     '#size' => 20,
     '#suffix' => theme('dosomething_login_form_required_marker', array()),
+  );
+
+  $form['parent_email_message'] = array(
+    '#type' => 'item',
+    '#title' => t('What a Rock Star!'),
+    '#description' => t("Since you're under the age of 13, you'll need to get a parent or guardian's permission."),
+    '#prefix' => '<div class="under-13-field">',
+  );
+  $form['parent_email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t("Parent or Guardian's Email"),
+    ),
+    '#suffix' => theme('dosomething_login_form_required_marker', array()) . '</div>',
+    '#size' => 20,
+  );
+
+  $form['pass'] = array(
+    '#type' => 'dosomething_password_confirm',
+    '#required' => TRUE,
+    '#attributes' => array(
+      'placeholder' => t('Password'),
+    ),
+    '#size' => 15,
   );
   $form['birthday'] = array(
     'over_13' => array(
@@ -585,55 +626,28 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     ),
   );
 
-  $form['parent_email_message'] = array(
-    '#type' => 'item',
-    '#title' => t('What a Rock Star!'),
-    '#description' => t("Since you're under the age of 13, you'll need to get a parent or guardian's permission."),
-    '#prefix' => '<div class="under-13-field">',
-  );
-  $form['parent_email'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t("Parent or Guardian's Email"),
-    ),
-    '#suffix' => theme('dosomething_login_form_required_marker', array()) . '</div>',
-    '#size' => 20,
-  );
-
-  $form['pass'] = array(
-    '#type' => 'dosomething_password_confirm',
-    '#required' => TRUE,
-    '#attributes' => array(
-      'placeholder' => t('Create a Password'),
-    ),
-    '#size' => 15,
-  );
-  if (module_exists('captcha')) {
-    $form['captcha'] = array(
-      '#title' => t('Captcha'),
-      '#type' => 'captcha',
-    );
-  }
-
-  $form['signup_title'] = array(
-    '#type' => 'item',
-    '#title' => t('Sign Up for Updates'),
-    '#description' => t("In order to be a member, you have to be 25 and under. However, this doesn't mean you can't stay up to date on our latests somethings."),
-    '#prefix' => '<div class="over-25-field">',
-    '#suffix' => '</div>',
-  );
   $form['signup'] = array(
-    '#type' => 'checkbox',
-    '#description' => t("Yes! I'd love to receive the hilarious and informative weekly updates."),
-    '#default_value' => TRUE,
-    '#prefix' => '<div class="ds-signup-always-show">',
+    '#type' => 'item',
+    '#description' => t("Clicking ‘Finish’ won't sell your soul, but it means you agree to our <a href='www.dosomething.org/privacy'>terms of service</a> and want to receive our weekly update."),
+    '#prefix' => '<div class="disclaimer">',
     '#suffix' => '</div>',
   );
   $form['final_submit'] = array(
     '#prefix' => '<div class="ds-login-popup-footer">',
     '#suffix' => '</div>',
     '#type' => 'submit',
-    '#value' => t('Go'),
+    '#value' => t('Finish'),
+  );
+  $form['user'] = array(
+    '#theme' => 'link',
+    '#path' => 'user',
+    '#prefix' => '<span class="already-member">already a member? ',
+    '#suffix' => '</span>',
+    '#text' => t("log in"),
+    '#options' => array(
+      'attributes' => array('class' => array('or-sign-in')),
+      'html' => FALSE,
+    ),
   );
   return $form;
 }
@@ -1075,7 +1089,7 @@ function dosomething_login_user_has_parental_consent($uid) {
  */
 function dosomething_login_set_parental_consent_message() {
   // TODO: Some link to ask for parental consent
-  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => 'dosomething/under-13/parent-consent-email')), 'warning');
+  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => '/dosomething/under-13/parent-consent-email')), 'warning');
 }
 
 /**

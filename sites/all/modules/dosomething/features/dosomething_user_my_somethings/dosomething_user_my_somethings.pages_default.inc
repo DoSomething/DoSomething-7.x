@@ -169,7 +169,10 @@ user/*/complete-profile',
         ),
       ),
     );
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'more_link' => 1,
+      'path' => 'user/%user:uid/picks',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
