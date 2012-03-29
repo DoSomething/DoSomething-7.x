@@ -2,7 +2,7 @@
 
 function createStub($migration, $source_key) {
   $fid = $source_key[0];
-  $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+  $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
   $x = new DSFileJsonMigrateItems($base_url);
   $old_file = $x->getItem($fid);

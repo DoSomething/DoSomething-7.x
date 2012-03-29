@@ -6,7 +6,7 @@ abstract class DSJsonWebformMigration extends DSBaseWebformMigration {
     parent::__construct($group, $node_type);
     $this->dependencies = array();
 
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
     $additional_fields = isset($additional_fields) ? $additional_fields : array();
 

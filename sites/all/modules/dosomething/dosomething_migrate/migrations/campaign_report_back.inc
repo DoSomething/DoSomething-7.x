@@ -12,7 +12,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
 
   public function prepareRow($row) {
     // emfields
-    foreach (array('field_embedded_video', 'field_campaign_video', 'field_botb_video') as $name) {
+    foreach (array('field_embedded_video', 'field_campaign_video', 'field_botb_video', 'field_video') as $name) {
       if (!empty($row->$name)) {
         if (is_array($row->$name)) {
           foreach ($row->$name as &$value) {
@@ -798,8 +798,7 @@ class DSCampaignReportBackTrashy2011 extends DSCampaignReportBackMigration {
       ->sourceMigration('DSFile');
 
   }
-  public functiontion prepareRow($row) {
-    var_dump($row->field_trashy_img);
+  public function prepareRow($row) {
     $statmap = array(
       'Cat #1' => 1,
       'Text #1' => 2,
@@ -809,6 +808,45 @@ class DSCampaignReportBackTrashy2011 extends DSCampaignReportBackMigration {
     $row->field_dbt_which_stat = isset($row->field_dbt_which_stat) ? $statmap[$row->field_dbt_which_stat] : NULL;
   }
   public function prepare($entity, $row) {
-    //var_dump($entity->field_webform_pictures);
+  }
+}
+
+class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration {
+  public function __construct() {
+    $fields = array();
+    parent::__construct('campaign_bfb_2012', $fields);
+    $this->description .= 'Campaign Project - Battle for the Bands 2012';
+
+    $this->addFieldMapping('data_school', 'title');
+    $this->addFieldMapping('data_first_name', 'field_bfb_name');
+    $this->addFieldMapping('data_last_name', 'field_bfb_lastname');
+    $this->addFieldMapping('data_team_name', 'field_bfb_team');
+    $this->addFieldMapping('data_city', 'field_bfb_city');
+    $this->addFieldMapping('data_state', 'field_state');
+    $this->addFieldMapping('data_what_kinwhat_kind_of_video_are_you_submittingd_of_video_are_you_submitting', 'field_bfb_video');
+    $this->addFieldMapping('data_email_addresses_of_other_people_in_your_video', 'field_bfb_emails');
+    $this->addFieldMapping('data_why_is_music_education_important_to_you', 'field_bfb_education');
+    $this->addFieldMapping('data_how_did_your_video_come_together', 'field_bfb_together');
+    $this->addFieldMapping('data_what_was_the_biggest_challenge', 'field_bfb_challenge');
+    $this->addFieldMapping('field_webform_videos', 'field_video')
+      ->arguments(array('file_function' => 'file_fid'));
+
+    $this->addUnmigratedSources(array('locations'));
+    $this->addUnmigratedDestinations(array(
+      'data_almost_done_just_a_few_more_questions',
+      'field_webform_email',
+      'field_webform_mobile',
+      'field_webform_school_zip',
+      'field_webform_pictures',
+      'field_webform_school',
+      'taxonomy_vocabulary_5',
+      'field_geocode_data',
+    ));
+  }
+
+  public function prepareRow($row) {
+  }
+
+  public function prepare($entity, $row) {
   }
 }
