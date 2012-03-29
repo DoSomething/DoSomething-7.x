@@ -44,11 +44,11 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  /* Relationship: Content: Campaign (field_campaign) - reverse */
+  /* Relationship: Content: Campaign Sign Up (field_campaign) - reverse */
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';
-  /* Field: Broken/missing handler */
+  /* Field: Content: Background color */
   $handler->display->display_options['fields']['field_campaign_background_color']['id'] = 'field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['table'] = 'field_data_field_campaign_background_color';
   $handler->display->display_options['fields']['field_campaign_background_color']['field'] = 'field_campaign_background_color';
@@ -71,7 +71,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_background_color']['hide_alter_empty'] = 0;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Foreground color */
   $handler->display->display_options['fields']['field_campaign_foreground_color']['id'] = 'field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['table'] = 'field_data_field_campaign_foreground_color';
   $handler->display->display_options['fields']['field_campaign_foreground_color']['field'] = 'field_campaign_foreground_color';
@@ -437,7 +437,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Campaign (field_campaign) - reverse */
+  /* Relationship: Content: Campaign Sign Up (field_campaign) - reverse */
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';
@@ -693,7 +693,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['display_description'] = 'Related campaigns pane - pulled into Causes term page.';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'More >>';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'cause/!1/act-now';
@@ -843,10 +842,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['term_node_tid_depth']['break_phrase'] = 1;
   $handler->display->display_options['arguments']['term_node_tid_depth']['set_breadcrumb'] = 0;
   $handler->display->display_options['arguments']['term_node_tid_depth']['use_taxonomy_term_path'] = 0;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    0 => 'AND',
-    1 => 'OR',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1032,10 +1027,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['term_node_tid_depth']['break_phrase'] = 1;
   $handler->display->display_options['arguments']['term_node_tid_depth']['set_breadcrumb'] = 0;
   $handler->display->display_options['arguments']['term_node_tid_depth']['use_taxonomy_term_path'] = 0;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    0 => 'AND',
-    1 => 'OR',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1112,7 +1103,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Campaign (field_campaign) - reverse */
+  /* Relationship: Content: Campaign Sign Up (field_campaign) - reverse */
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['id'] = 'reverse_field_campaign_node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_campaign_node']['field'] = 'reverse_field_campaign_node';

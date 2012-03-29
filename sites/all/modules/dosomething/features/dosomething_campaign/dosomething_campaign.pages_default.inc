@@ -16,7 +16,10 @@ function dosomething_campaign_default_page_manager_pages() {
   $page->admin_title = 'Cause - Act Now';
   $page->admin_description = '';
   $page->path = 'cause/%term/act-now';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array(
     'term' => array(
