@@ -24,7 +24,7 @@ abstract class DSJsonUserMigration extends Migration {
   public function __construct($query_args) {
     parent::__construct(MigrateGroup::getInstance('Users'));
 
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
     $this->sourceItemReviewPattern = "http://www.dosomething.org/user/:id:/edit";
     $this->destinationItemReviewPattern = "http://dosomething.local/user/:id:/edit";

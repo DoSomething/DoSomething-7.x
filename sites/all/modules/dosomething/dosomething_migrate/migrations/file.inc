@@ -24,7 +24,7 @@ class DSFile extends Migration {
     parent::__construct(MigrateGroup::getInstance('File'));
     $this->dependencies = array();
 
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
     $this->source = new MigrateSourceMultiItems(
       new DSFileJsonMigrateItems($base_url),
@@ -98,7 +98,7 @@ class DSFile extends Migration {
 
   protected function createStub($migration, $source_key) {
     $fid = $source_key[0];
-    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.zivtech.com/migrate');
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
     $x = new DSFileJsonMigrateItems($base_url);
     $old_file = $x->getItem($fid);
@@ -118,6 +118,10 @@ class DSFile extends Migration {
     // Create a new one since there is not an existing one.
     $new_file = $old_file;
     $new_file->uri = $uri;
+    // We have a new file, we need to make sure we add the type data or risk
+    // failure.
+    $type = file_get_type($new_file);
+    $new_file->type = $type;
     unset($new_file->fid, $new_file->filepath);
     if (drupal_write_record('file_managed', $new_file)) {
       print "migrated fid {$old_file->fid} to new fid {$new_file->fid}\n";
