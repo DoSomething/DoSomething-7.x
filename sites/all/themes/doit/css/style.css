@@ -2993,6 +2993,18 @@ h2.block-title, h2.pane-title {
 
 .panes-2 .panel-second .pane-title {
   text-align: center;
+  margin-bottom: 15px;
+}
+.panes-2 .panel-second .pane-content {
+  font-size: 12px;
+  line-height: 13px;
+}
+.panes-2 .panel-second .views-field-title, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+.panes-2 .panel-second .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a {
+  font-weight: bold;
 }
 
 .dosomething-stats {
