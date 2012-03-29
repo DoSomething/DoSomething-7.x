@@ -37,7 +37,7 @@
     $('#cause-filter li').removeClass('active');
 
     var move = element.parent().prevAll('li').get().reverse();
-    moveCounter(move.length, false);
+    moveCounter(move.length);
     var left = 0;
     if (move.length > 0)
       left = (move.length+1)*86;
@@ -51,6 +51,7 @@
 
   function moveStuffBackwards(element) {
     $('#cause-filter li').removeClass('active');
+    moveCounter(-1);
 
     element = $(element).parent().addClass('active');
     $(element)
@@ -76,9 +77,8 @@
   }
 
   function moveCounter(numToMove, reverse) {
-    if (!reverse) counterState = (counterState + numToMove) % numItems;
-    else counterState--;
-
+    counterState = (counterState + numToMove) % numItems;
+    if (counterState == -1) counterState = numItems-1;
     $('#cause-counter').html((counterState+1) + ' of ' + numItems);
   }
 
