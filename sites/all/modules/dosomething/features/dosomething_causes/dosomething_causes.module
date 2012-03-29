@@ -23,13 +23,6 @@ function dosomething_causes_menu() {
   return $items;
 }
 
-/**
- * Implements hook_views_api().
- */
-function dosomething_causes_views_api() {
-  return array("version" => "3.0");
-}
-
 function dosomething_causes_get_causes() {
   $module_path = drupal_get_path('module', 'dosomething_causes');
   $element = array(
