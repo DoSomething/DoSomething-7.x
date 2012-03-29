@@ -370,6 +370,35 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->position = 5;
     $display->content['new-6'] = $pane;
     $display->panels['top'][5] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'featured_projects-panel_pane_5';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'projects/featured-projects/scholarship-winners',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][6] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-3';
   $handler->conf['display'] = $display;

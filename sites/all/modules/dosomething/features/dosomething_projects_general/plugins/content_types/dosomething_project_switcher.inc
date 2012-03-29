@@ -27,6 +27,7 @@ function dosomething_featured_project_switcher_form() {
   $options = array(
     'all' => t('All Featured Projects'),
     'grant-winners' => t('Grant Winners'),
+    'scholarship-winners' => t('Scholarship Winners'),
     'pod' => t('Featured Projects of the Day'),
     'club' => t('Club Projects'),
   );

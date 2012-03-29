@@ -22,7 +22,6 @@ function dosomething_projects_general_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Featured Projects';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -44,20 +43,10 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['label'] = 'POD Queue';
   $handler->display->display_options['relationships']['entityqueue_relationship']['required'] = 0;
-  $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 0;
+  $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 1;
   $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
-    'test_award_winner' => 0,
-    'pod' => 0,
-  );
-  /* Relationship: Entityqueue: Queue */
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['id'] = 'entityqueue_relationship_1';
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['table'] = 'webform_submissions';
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['label'] = 'POD Queue';
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['required'] = 0;
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['limit'] = 1;
-  $handler->display->display_options['relationships']['entityqueue_relationship_1']['queues'] = array(
     'pod' => 'pod',
     'test_award_winner' => 0,
   );
@@ -203,31 +192,29 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filter_groups']['groups'] = array(
     0 => 'OR',
   );
-  /* Filter criterion: Entityqueue: queue type */
-  $handler->display->display_options['filters']['entityqueue_type']['id'] = 'entityqueue_type';
-  $handler->display->display_options['filters']['entityqueue_type']['table'] = 'entityqueue';
-  $handler->display->display_options['filters']['entityqueue_type']['field'] = 'entityqueue_type';
-  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship_1';
-  $handler->display->display_options['filters']['entityqueue_type']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['entityqueue_type']['group'] = 0;
-  /* Filter criterion: Entityqueue: Grant Winner (field_grant_winner) */
-  $handler->display->display_options['filters']['field_grant_winner_value']['id'] = 'field_grant_winner_value';
-  $handler->display->display_options['filters']['field_grant_winner_value']['table'] = 'field_data_field_grant_winner';
-  $handler->display->display_options['filters']['field_grant_winner_value']['field'] = 'field_grant_winner_value';
-  $handler->display->display_options['filters']['field_grant_winner_value']['relationship'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['field_grant_winner_value']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_grant_winner_value']['group'] = 0;
   /* Filter criterion: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
   $handler->display->display_options['filters']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
   $handler->display->display_options['filters']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
   $handler->display->display_options['filters']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
   $handler->display->display_options['filters']['field_project_clubs_nid']['operator'] = 'not empty';
   $handler->display->display_options['filters']['field_project_clubs_nid']['group'] = 0;
+  /* Filter criterion: Webform Submission: Grant/Scholarship (field_grant_winner) */
+  $handler->display->display_options['filters']['field_grant_winner_tid']['id'] = 'field_grant_winner_tid';
+  $handler->display->display_options['filters']['field_grant_winner_tid']['table'] = 'field_data_field_grant_winner';
+  $handler->display->display_options['filters']['field_grant_winner_tid']['field'] = 'field_grant_winner_tid';
+  $handler->display->display_options['filters']['field_grant_winner_tid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_grant_winner_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_grant_winner_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_grant_winner_tid']['vocabulary'] = 'grants_scholarships';
+  /* Filter criterion: Entityqueue: queue type */
+  $handler->display->display_options['filters']['entityqueue_type']['id'] = 'entityqueue_type';
+  $handler->display->display_options['filters']['entityqueue_type']['table'] = 'entityqueue';
+  $handler->display->display_options['filters']['entityqueue_type']['field'] = 'entityqueue_type';
+  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship';
+  $handler->display->display_options['filters']['entityqueue_type']['operator'] = 'not empty';
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: All Featured Projects */
+  $handler = $view->new_display('panel_pane', 'All Featured Projects', 'panel_pane_1');
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -250,22 +237,28 @@ function dosomething_projects_general_views_default_views() {
 
   /* Display: Grant Winners */
   $handler = $view->new_display('panel_pane', 'Grant Winners', 'panel_pane_2');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Webform Submission: Grant/Scholarship (field_grant_winner) */
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['id'] = 'field_grant_winner_tid';
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['table'] = 'field_data_field_grant_winner';
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['field'] = 'field_grant_winner_tid';
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['required'] = 1;
   $handler->display->display_options['filter_groups']['groups'] = array(
     0 => 'OR',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Entityqueue: Grant Winner (field_grant_winner) */
-  $handler->display->display_options['filters']['field_grant_winner_value']['id'] = 'field_grant_winner_value';
-  $handler->display->display_options['filters']['field_grant_winner_value']['table'] = 'field_data_field_grant_winner';
-  $handler->display->display_options['filters']['field_grant_winner_value']['field'] = 'field_grant_winner_value';
-  $handler->display->display_options['filters']['field_grant_winner_value']['relationship'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['field_grant_winner_value']['value'] = array(
-    1 => '1',
+  /* Filter criterion: Taxonomy term: Grant/Scholarship (field_grant_scholarship) */
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['id'] = 'field_grant_scholarship_value';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['table'] = 'field_data_field_grant_scholarship';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['field'] = 'field_grant_scholarship_value';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['relationship'] = 'field_grant_winner_tid';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['value'] = array(
+    'Grant' => 'Grant',
   );
-  $handler->display->display_options['filters']['field_grant_winner_value']['group'] = 0;
 
   /* Display: Club Projects */
   $handler = $view->new_display('panel_pane', 'Club Projects', 'panel_pane_3');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     0 => 'OR',
   );
@@ -287,9 +280,29 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['entityqueue_type']['id'] = 'entityqueue_type';
   $handler->display->display_options['filters']['entityqueue_type']['table'] = 'entityqueue';
   $handler->display->display_options['filters']['entityqueue_type']['field'] = 'entityqueue_type';
-  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship_1';
+  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship';
   $handler->display->display_options['filters']['entityqueue_type']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['entityqueue_type']['group'] = 0;
+
+  /* Display: Scholarship Winners */
+  $handler = $view->new_display('panel_pane', 'Scholarship Winners', 'panel_pane_5');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Webform Submission: Grant/Scholarship (field_grant_winner) */
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['id'] = 'field_grant_winner_tid';
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['table'] = 'field_data_field_grant_winner';
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['field'] = 'field_grant_winner_tid';
+  $handler->display->display_options['relationships']['field_grant_winner_tid']['required'] = 1;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    0 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Taxonomy term: Grant/Scholarship (field_grant_scholarship) */
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['id'] = 'field_grant_scholarship_value';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['table'] = 'field_data_field_grant_scholarship';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['field'] = 'field_grant_scholarship_value';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['relationship'] = 'field_grant_winner_tid';
+  $handler->display->display_options['filters']['field_grant_scholarship_value']['value'] = array(
+    'Scholarship' => 'Scholarship',
+  );
   $export['featured_projects'] = $view;
 
   $view = new view;
