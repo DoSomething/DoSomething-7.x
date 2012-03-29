@@ -1492,7 +1492,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['filters']['field_blog_type_tid']['group'] = 0;
   $handler->display->display_options['filters']['field_blog_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_blog_type_tid']['expose']['operator_id'] = 'field_blog_type_tid_op';
-  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['label'] = 'Category';
+  $handler->display->display_options['filters']['field_blog_type_tid']['expose']['label'] = 'All Categories';
   $handler->display->display_options['filters']['field_blog_type_tid']['expose']['operator'] = 'field_blog_type_tid_op';
   $handler->display->display_options['filters']['field_blog_type_tid']['expose']['identifier'] = 'field_blog_type_tid';
   $handler->display->display_options['filters']['field_blog_type_tid']['expose']['reduce'] = 0;
