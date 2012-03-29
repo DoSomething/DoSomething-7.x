@@ -63,7 +63,6 @@
           draggable: false,
           modal: true,
           width: 550,
-          height: 485
         });
 
         // Check if user is over 25.

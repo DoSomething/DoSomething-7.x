@@ -2428,6 +2428,21 @@ div[role=main] {
   margin-right: auto;
 }
 
+.connect-with-facebook a {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/btn-facebook-popup-login.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 301px;
+  height: 51px;
+  display: block;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 ul.menu li {
   margin: 0 0 0 0;
 }
@@ -3316,6 +3331,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
   top: 188px !important;
   background: white;
   padding: 25px 33px;
+  height: 486px !important;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"] {
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;

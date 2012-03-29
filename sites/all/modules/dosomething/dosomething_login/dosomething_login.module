@@ -518,10 +518,10 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#type' => 'container',
     '#attributes' => array(
       'class' => array(
-        'connect-thru-facebook',
+        'connect-with-facebook',
       ),
     ),
-    '#children' => l('Connect thru Facebook', $fb_url),
+    '#children' => l('Connect with Facebook', $fb_url),
   );
   $form['or'] = array(
     '#type' => 'container',
