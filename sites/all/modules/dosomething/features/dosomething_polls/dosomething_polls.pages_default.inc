@@ -16,7 +16,10 @@ function dosomething_polls_default_page_manager_pages() {
   $page->admin_title = 'Polls';
   $page->admin_description = '';
   $page->path = 'pollc';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
