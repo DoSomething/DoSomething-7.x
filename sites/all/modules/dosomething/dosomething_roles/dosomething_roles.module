@@ -295,6 +295,9 @@ function dosomething_roles_update_role($uid) {
     return;
   }
   $account = user_load($uid);
+  if (!is_array($account->roles)) {
+    return;
+  }
 
   // Don't make the user a full member if they are currently pending.
   if (in_array('pending member', $account->roles)) {
@@ -401,7 +404,11 @@ function dosomething_roles_user_is_staff_member($account) {
     'moderator',
     'project_police',
   );
-  return (boolean) array_intersect($staff_roles, $account->roles);
+  $return = FALSE;
+  if (is_array($account->roles)) {
+    $return = (boolean) array_intersect($staff_roles, $account->roles);
+  }
+  return $return;
 }
 
 /**
@@ -418,7 +425,12 @@ function dosomething_roles_user_is_too_old($account) {
     'alumni',
     'old person',
   );
-  return (boolean) array_intersect($old_roles, $account->roles);
+
+  $return = FALSE;
+  if (is_array($account->roles)) {
+    $return = (boolean) array_intersect($old_roles, $account->roles);
+  }
+  return $return;
 }
 
 /**
