@@ -202,7 +202,7 @@ function dosomething_polls_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['max_length'] = '60';
+  $handler->display->display_options['fields']['title']['alter']['max_length'] = '51';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
@@ -259,7 +259,7 @@ function dosomething_polls_views_default_views() {
   $handler->display->display_options['fields']['field_description']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['field_description']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['field_description']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['max_length'] = '60';
+  $handler->display->display_options['fields']['field_description']['alter']['max_length'] = '51';
   $handler->display->display_options['fields']['field_description']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_description']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_description']['alter']['strip_tags'] = 0;
