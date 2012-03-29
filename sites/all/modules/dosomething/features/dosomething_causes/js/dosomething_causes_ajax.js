@@ -37,6 +37,7 @@
     $('#cause-filter li').removeClass('active');
 
     var move = element.parent().prevAll('li').get().reverse();
+    moveCounter(move.length, false);
     var left = 0;
     if (move.length > 0)
       left = (move.length+1)*86;
@@ -74,6 +75,17 @@
     }
   }
 
+  function moveCounter(numToMove, reverse) {
+    if (!reverse) counterState = (counterState + numToMove) % numItems;
+    else counterState--;
+
+    $('#cause-counter').html((counterState+1) + ' of ' + numItems);
+  }
+
+  function counterInit() {
+    $('#cause-scroller-wrapper').parent().append('<div id="cause-counter">1 of 6</div>');
+  }
+
   function clickInit(clicked) {
     if (!ajaxing()) {
       var pattern = /taxonomy-term-[0-9]+/ig;
@@ -86,9 +98,14 @@
     return Drupal.ajax['dosomething_causes'].ajaxing;
   }
 
+  var counterState = 0;
+  var numItems = 0;
   $(document).ready(function () {
     selector = $('#cause-filter a');
     t_parent = $('#cause-filter').attr('data-tid');
+    numItems = $('#cause-filter li').length;
+
+    counterInit();
     
     $('#browse-left').click(function () {
       var e = $('#cause-filter li:last-child a');

@@ -83,3 +83,8 @@
   margin-top: 130px;
   cursor: pointer;
 }
+
+#cause-counter {
+  float: right;
+  padding: 10px;
+}
