@@ -80,6 +80,7 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['top'][0] = 'new-1';
     $pane = new stdClass();
@@ -134,6 +135,7 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['top'][1] = 'new-2';
   $display->hide_title = PANELS_TITLE_FIXED;
@@ -193,7 +195,7 @@ function dosomething_members_only_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-3';
     $pane->panel = 'left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -202,21 +204,41 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Static Page Content',
       'title' => '',
-      'body' => '<h2>Grants</h2>
-Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum velit nec est. Quisque posuere, purus sit amet malesuada blandit, sapien sapien auctor arcu, sed pulvinar felis mi sollicitudin tortor. Maecenas volutpat, nisl et dignissim pharetra, urna lectus ultrices est, vel pretium pede turpis id velit. Aliquam sagittis magna in felis egestas rutrum. Proin wisi libero, vestibulum eget, pulvinar nec, suscipit ut, mi. Integer in arcu ultricies leo dapibus ultricies. Sed rhoncus lobortis dolor. Suspendisse dolor. Mauris sapien velit, pulvinar non, rutrum non, consectetuer eget, metus. Morbi tincidunt lorem at urna. Etiam porta. Ut mauris. Phasellus tristique rhoncus magna. Nam tincidunt consequat urna. Sed tempor.
+      'body' => '<h3>DoSomething.org is a member-based organization for young people 25 years old and under.</h3>
 
-<h2>Scholarships</h2>
-Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum velit nec est. Quisque posuere, purus sit amet malesuada blandit, sapien sapien auctor arcu, sed pulvinar felis mi sollicitudin tortor. Maecenas volutpat, nisl et dignissim pharetra, urna lectus ultrices est, vel pretium pede turpis id velit. Aliquam sagittis magna in felis egestas rutrum. Proin wisi libero, vestibulum eget, pulvinar nec, suscipit ut, mi. Integer in arcu ultricies leo dapibus ultricies. Sed rhoncus lobortis dolor. Suspendisse dolor. Mauris sapien velit, pulvinar non, rutrum non, consectetuer eget, metus. Morbi tincidunt lorem at urna. Etiam porta. Ut mauris. Phasellus tristique rhoncus magna. Nam tincidunt consequat urna. Sed tempor.
+<p>By being a member of DoSomething.org:</p>
 
-<h2>Clubs</h2>
+<ol>
+<li>You make a real impact on causes you care about.
+
 <ul>
-<li>\'The Dormouse is asleep again,\' said the Hatter, and he poured a little  hot tea upon its nose</li>
-<li> The Dormouse shook its head impatiently, and said, without opening its  eyes, \'Of course, of course; just what I was going to remark myself</li>
-<li>\' \'Have you guessed the riddle yet?\' the Hatter said, turning to Alice  again</li>
-<li> \'No, I give it up,\' Alice replied: \'what\'s the answer?\' \'I haven\'t the slightest idea,\' said the Hatter</li>
-<li> \'Nor I,\' said the March Hare</li>
-<li> Alice sighed wearily</li>
-</ul>',
+<li>We help you be part a social movement with others like you.</li>
+
+<li>We give you ideas because it can be hard to think of something specific to actually do.</li>
+
+<li>We send you stuff like posters, stickers, banners, etc.</li>
+
+<li>We recognize you for the good stuff you do (so that you can put it on your college app, impress a girl, or give it to your mom to hang on the fridge).</li>
+</ul></li>
+<li>You get <i>cash</i>. That\'s right. We\'re talking $$.
+<ul>
+<li>We give <a href="http://www.dosomething.org/grants">money for social change projects</a>.</li>
+<li>We award <a href="http://www.dosomething.org/scholarships">money for school</a>.</li></ul></li>
+<li>You get SWAG you can actually use.
+
+<ul>
+<li>Movie tickets, food, etc. (Send us your wish list!)</li>
+<li>Celeb-signed goodies</li></ul>
+</li>
+</ul>
+
+<li>You have access to invite-only things.
+<ul>
+<li>We invite you to exclusive events (like the <a href="http://www.dosomething.org/awards">Do Something Awards</a>, movie premieres, etc).</li>
+<li>We give you the chance to meet a celebrity.</li></ul></li>
+</ol>
+
+<p>Go ahead and click on that box on the left to get started. We know you want to. ;)</p>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -227,10 +249,11 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['left'][0] = 'new-1';
+    $pane->locks = '';
+    $display->content['new-3'] = $pane;
+    $display->panels['left'][0] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -263,10 +286,11 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['left'][1] = 'new-2';
+    $pane->locks = '';
+    $display->content['new-4'] = $pane;
+    $display->panels['left'][1] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -275,10 +299,20 @@ Aliquam lectus orci, adipiscing et, sodales ac, feugiat non, lacus. Ut dictum ve
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'Membership Statistics',
-      'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim luctus massa, id gravida urna dictum sed. Cras condimentum interdum nibh, a tincidunt lacus suscipit vitae. Proin at urna risus, at tincidunt leo. Donec consectetur sollicitudin dolor id suscipit. Morbi sed sapien arcu, sit amet ornare nunc. Duis lacinia rhoncus cursus. Vestibulum nisi odio, malesuada quis viverra et, porta nec dolor. In eget nisl venenatis arcu convallis viverra. Cras volutpat pharetra lobortis. Aliquam semper lobortis faucibus. Quisque non ante non purus consequat blandit sed ut nibh. In hac habitasse platea dictumst. Pellentesque sed rutrum nisl.
-
-Vestibulum id bibendum dui. Suspendisse ac mi nibh. Mauris tristique ipsum quis sapien blandit sit amet tristique ipsum venenatis. Sed eu dolor orci. Aliquam pretium varius orci, at placerat tortor rutrum id. Etiam commodo ultrices dapibus. Maecenas auctor tempor aliquet. Integer aliquet scelerisque cursus. Vivamus mattis tortor sodales justo consectetur non lacinia orci pulvinar. Aliquam a sapien mauris, a auctor sapien. Nam suscipit lobortis nisl vitae pulvinar. Nullam quis turpis mi. Praesent in nibh nisi.',
-      'format' => '6',
+      'body' => ' <ol>  	
+<li><strong>One million unique</strong> website visits each month.</li>
+    <li><strong>1 in 3 high schools</strong> in America participating in our programs.</li>
+<li><b>45 new members</b> join DoSomething.org every hour.</li>
+<li><b>1.3 million lbs of food</b> collected for families in need through our <a href="http://www.dosomething.org/tackle-hunger">Tackle Hunger</a> campaign.</li>
+    <li><strong>23,000+</strong> pages of content: tools and resources for young people looking to make a difference.</li>
+<li><strong>$605,400</strong> awarded in scholarships.</li>
+<li><b>140 texts</b> sent from teens to DoSomething.org every hour.</li>
+<li><strong>22 Do Something clubs</strong> are created per week, adding to the 1,400 clubs we have nationwide.</li>
+<li><b>15,000 new donors</b> registered through our <a href="http://www.dosomething.org/spit">Give a Spit</a> campaign, helping to save the lives of Leukemia patients.</li>
+<li><strong>4 Star Charity Rating</strong> from Charity Navigator (only 9% of U.S. charities get 4 stars)</li>
+<li><b>Over 2.5 million jeans</b> collected through our <a href="http://www.dosomething.org/teens-for-jeans">Teens for Jeans</a> campaign, helping to clothe homeless youth.</li>
+  </ol>',
+      'format' => '4',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -291,10 +325,11 @@ Vestibulum id bibendum dui. Suspendisse ac mi nibh. Mauris tristique ipsum quis 
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-3'] = $pane;
-    $display->panels['right'][0] = 'new-3';
+    $pane->locks = '';
+    $display->content['new-5'] = $pane;
+    $display->panels['right'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -311,10 +346,11 @@ Vestibulum id bibendum dui. Suspendisse ac mi nibh. Mauris tristique ipsum quis 
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-4'] = $pane;
-    $display->panels['top'][0] = 'new-4';
+    $pane->locks = '';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][0] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-3';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['why_become_a_member_page'] = $page;

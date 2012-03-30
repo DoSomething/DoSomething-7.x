@@ -42,7 +42,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tumblr brunch aesthetic twee farm-to-table. High life locavore +1, messenger bag terry richardson butcher salvia.';
+  $handler->display->display_options['header']['area']['content'] = 'DoSomething.org harnesses that awesome energy and unleashes it on causes teens care about. Almost every week, we launch a new national campaign. The call to action is always something that has a real impact and doesn’t require money, an adult, or a car.';
   $handler->display->display_options['header']['area']['format'] = '1';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Field: Taxonomy term: Name */
@@ -163,7 +163,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['fields']['field_about_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_about_image']['settings'] = array(
     'image_style' => 'issue_main',
-    'image_link' => 'content',
+    'image_link' => '',
   );
   $handler->display->display_options['fields']['field_about_image']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Path */

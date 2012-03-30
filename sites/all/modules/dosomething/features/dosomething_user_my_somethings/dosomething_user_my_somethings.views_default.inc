@@ -150,10 +150,10 @@ function dosomething_user_my_somethings_views_default_views() {
 
   $view = new view;
   $view->name = 'profile';
-  $view->description = 'Member profile related views displays. ';
+  $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Profile';
+  $view->human_name = 'Editors Picks for You';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */

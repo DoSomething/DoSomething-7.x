@@ -3,7 +3,7 @@
 function dosomething_causes_views_data() {
   $data = array();
   $data['taxonomy_term_data']['dosomething_causes_term_node_tid'] = array(
-    'title' => t('Has taxonomy term ID, parent, child, or sibling term ID '),
+    'title' => t('Has taxonomy term ID, parent, child, or sibling term ID'),
     'help' => t('Display content if it has the selected taxonomy terms, sibling terms, or children of the selected terms.'),
     'real field' => 'tid',
     'argument' => array(

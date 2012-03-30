@@ -30,9 +30,9 @@ function dosomething_feedback_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          'Content' => 'Content',
           'Theme' => 'Theme',
           'Functionality' => 'Functionality',
+          'Content' => 'Content',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,

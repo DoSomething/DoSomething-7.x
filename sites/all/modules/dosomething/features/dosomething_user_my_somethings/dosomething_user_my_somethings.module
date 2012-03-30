@@ -592,7 +592,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   // values to prevent the user page from blowing up.
   // NOTE: is_object($profile) complains that $profile is not a variable while
   // isset($profile) does not.
-  if(isset($profile)) {
+  if (isset($profile)) {
     $address = $profile->field_user_address->value();
     $variables['member_school'] = $profile->field_school_reference->value();
   }

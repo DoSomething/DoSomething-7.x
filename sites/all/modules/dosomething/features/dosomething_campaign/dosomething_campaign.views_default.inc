@@ -372,15 +372,15 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['filter_groups']['groups'] = array(
-    0 => 'AND',
-    1 => 'OR',
+    1 => 'AND',
+    2 => 'OR',
   );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -389,13 +389,13 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'campaign' => 'campaign',
   );
-  $handler->display->display_options['filters']['type']['group'] = 0;
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Main Image (field_campaign_main_image:fid) */
   $handler->display->display_options['filters']['field_campaign_main_image_fid']['id'] = 'field_campaign_main_image_fid';
   $handler->display->display_options['filters']['field_campaign_main_image_fid']['table'] = 'field_data_field_campaign_main_image';
   $handler->display->display_options['filters']['field_campaign_main_image_fid']['field'] = 'field_campaign_main_image_fid';
   $handler->display->display_options['filters']['field_campaign_main_image_fid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_campaign_main_image_fid']['group'] = 0;
+  $handler->display->display_options['filters']['field_campaign_main_image_fid']['group'] = 1;
 
   /* Display: Current Campaigns Page */
   $handler = $view->new_display('page', 'Current Campaigns Page', 'page');
@@ -848,7 +848,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -858,19 +858,19 @@ function dosomething_campaign_views_default_views() {
     'action_guide' => 'action_guide',
     'campaign' => 'campaign',
   );
-  $handler->display->display_options['filters']['type']['group'] = 0;
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Field: Picture (field_picture:fid) */
   $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
   $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
   $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
   $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_picture_fid']['group'] = 1;
+  $handler->display->display_options['filters']['field_picture_fid']['group'] = 2;
   /* Filter criterion: Content: Logo (field_campaign_logo:fid) */
   $handler->display->display_options['filters']['field_campaign_logo_fid']['id'] = 'field_campaign_logo_fid';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['table'] = 'field_data_field_campaign_logo';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['field'] = 'field_campaign_logo_fid';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_campaign_logo_fid']['group'] = 1;
+  $handler->display->display_options['filters']['field_campaign_logo_fid']['group'] = 2;
 
   /* Display: Related Campaigns Content All pane */
   $handler = $view->new_display('panel_pane', 'Related Campaigns Content All pane', 'panel_pane_2');
@@ -1057,7 +1057,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -1067,19 +1067,19 @@ function dosomething_campaign_views_default_views() {
     'action_guide' => 'action_guide',
     'campaign' => 'campaign',
   );
-  $handler->display->display_options['filters']['type']['group'] = 0;
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Field: Picture (field_picture:fid) */
   $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
   $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
   $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
   $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_picture_fid']['group'] = 1;
+  $handler->display->display_options['filters']['field_picture_fid']['group'] = 2;
   /* Filter criterion: Content: Logo (field_campaign_logo:fid) */
   $handler->display->display_options['filters']['field_campaign_logo_fid']['id'] = 'field_campaign_logo_fid';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['table'] = 'field_data_field_campaign_logo';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['field'] = 'field_campaign_logo_fid';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_campaign_logo_fid']['group'] = 1;
+  $handler->display->display_options['filters']['field_campaign_logo_fid']['group'] = 2;
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;

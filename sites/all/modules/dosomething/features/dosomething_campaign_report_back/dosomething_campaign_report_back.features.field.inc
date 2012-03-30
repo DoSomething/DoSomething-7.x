@@ -304,8 +304,8 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'node',
       'field_name' => 'group_audience',
-      'label' => 'Groups audience',
-      'required' => FALSE,
+      'label' => 'Campaign',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -322,12 +322,12 @@ The content from this field will only be shown to anonymous users.',
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'og',
         'settings' => array(
           'autocomplete_match' => 'contains',
           'autocomplete_path' => 'group/autocomplete',
-          'opt_group' => 'auto',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'group_audience_autocomplete',
         'weight' => 31,
@@ -909,8 +909,8 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'group_audience',
-      'label' => 'Groups audience',
-      'required' => FALSE,
+      'label' => 'Campaign',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -927,6 +927,7 @@ The content from this field will only be shown to anonymous users.',
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'og',
         'settings' => array(
           'opt_group' => 'auto',
@@ -970,7 +971,7 @@ The content from this field will only be shown to anonymous users.',
             'parent' => '0',
           ),
         ),
-        'profile2_private' => FALSE,
+        'profile2_private' => 1,
         'required' => FALSE,
       ),
       'translatable' => '0',
@@ -1011,12 +1012,12 @@ The content from this field will only be shown to anonymous users.',
   // Included for use with string extractors like potx.
   t('Body (anonymous user)');
   t('Body (logged in user)');
+  t('Campaign');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Email');
   t('Enabled Fields');
   t('Geocode Data');
-  t('Groups audience');
   t('Issues');
   t('Mobile Phone Number');
   t('Pictures');

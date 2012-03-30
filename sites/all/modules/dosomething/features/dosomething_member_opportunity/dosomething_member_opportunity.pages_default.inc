@@ -86,6 +86,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
@@ -110,6 +111,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['left'][1] = 'new-2';
     $pane = new stdClass();
@@ -134,6 +136,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
+    $pane->locks = '';
     $display->content['new-3'] = $pane;
     $display->panels['left'][2] = 'new-3';
     $pane = new stdClass();
@@ -158,6 +161,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
+    $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
     $pane = new stdClass();
@@ -185,6 +189,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-5'] = $pane;
     $display->panels['right'][0] = 'new-5';
     $pane = new stdClass();
@@ -209,6 +214,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-6'] = $pane;
     $display->panels['right'][1] = 'new-6';
     $pane = new stdClass();
@@ -233,6 +239,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
+    $pane->locks = '';
     $display->content['new-7'] = $pane;
     $display->panels['right'][2] = 'new-7';
     $pane = new stdClass();
@@ -268,6 +275,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
+    $pane->locks = '';
     $display->content['new-8'] = $pane;
     $display->panels['right'][3] = 'new-8';
     $pane = new stdClass();
@@ -299,6 +307,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-9'] = $pane;
     $display->panels['top'][0] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
@@ -375,7 +384,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-10';
     $pane->panel = 'bottom';
     $pane->type = 'views_panes';
     $pane->subtype = 'grants-panel_pane_1';
@@ -389,10 +398,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['bottom'][0] = 'new-1';
+    $pane->locks = '';
+    $display->content['new-10'] = $pane;
+    $display->panels['bottom'][0] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-11';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -413,10 +423,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['bottom'][1] = 'new-2';
+    $pane->locks = '';
+    $display->content['new-11'] = $pane;
+    $display->panels['bottom'][1] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-12';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -437,10 +448,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['bottom'][2] = 'new-3';
+    $pane->locks = '';
+    $display->content['new-12'] = $pane;
+    $display->panels['bottom'][2] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-13';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -461,10 +473,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
-    $display->content['new-4'] = $pane;
-    $display->panels['bottom'][3] = 'new-4';
+    $pane->locks = '';
+    $display->content['new-13'] = $pane;
+    $display->panels['bottom'][3] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-14';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -483,10 +496,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 4;
-    $display->content['new-5'] = $pane;
-    $display->panels['bottom'][4] = 'new-5';
+    $pane->locks = '';
+    $display->content['new-14'] = $pane;
+    $display->panels['bottom'][4] = 'new-14';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-15';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -511,10 +525,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 5;
-    $display->content['new-6'] = $pane;
-    $display->panels['bottom'][5] = 'new-6';
+    $pane->locks = '';
+    $display->content['new-15'] = $pane;
+    $display->panels['bottom'][5] = 'new-15';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-16';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -536,10 +551,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 6;
-    $display->content['new-7'] = $pane;
-    $display->panels['bottom'][6] = 'new-7';
+    $pane->locks = '';
+    $display->content['new-16'] = $pane;
+    $display->panels['bottom'][6] = 'new-16';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-17';
     $pane->panel = 'mid-left';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -556,10 +572,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-8'] = $pane;
-    $display->panels['mid-left'][0] = 'new-8';
+    $pane->locks = '';
+    $display->content['new-17'] = $pane;
+    $display->panels['mid-left'][0] = 'new-17';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-18';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -584,10 +601,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-9'] = $pane;
-    $display->panels['mid-left'][1] = 'new-9';
+    $pane->locks = '';
+    $display->content['new-18'] = $pane;
+    $display->panels['mid-left'][1] = 'new-18';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-19';
     $pane->panel = 'mid-right';
     $pane->type = 'node';
     $pane->subtype = 'node';
@@ -613,10 +631,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-10'] = $pane;
-    $display->panels['mid-right'][0] = 'new-10';
+    $pane->locks = '';
+    $display->content['new-19'] = $pane;
+    $display->panels['mid-right'][0] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-20';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -645,8 +664,9 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-11'] = $pane;
-    $display->panels['mid-right'][1] = 'new-11';
+    $pane->locks = '';
+    $display->content['new-20'] = $pane;
+    $display->panels['mid-right'][1] = 'new-20';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -673,6 +693,8 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       ),
     ),
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array();
@@ -711,7 +733,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-21';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -728,10 +750,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $pane->locks = '';
+    $display->content['new-21'] = $pane;
+    $display->panels['middle'][0] = 'new-21';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-22';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'member_opportunity-panel_pane_1';
@@ -745,10 +768,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $pane->locks = '';
+    $display->content['new-22'] = $pane;
+    $display->panels['middle'][1] = 'new-22';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-21';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $handler = new stdClass();
@@ -782,7 +806,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-23';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -799,10 +823,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $pane->locks = '';
+    $display->content['new-23'] = $pane;
+    $display->panels['middle'][0] = 'new-23';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-24';
     $pane->panel = 'middle';
     $pane->type = 'views';
     $pane->subtype = 'member_opportunity';
@@ -831,10 +856,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $pane->locks = '';
+    $display->content['new-24'] = $pane;
+    $display->panels['middle'][1] = 'new-24';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-23';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['grants_db'] = $page;
@@ -859,6 +885,8 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       ),
     ),
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array();
@@ -897,7 +925,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-25';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -914,10 +942,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $pane->locks = '';
+    $display->content['new-25'] = $pane;
+    $display->panels['middle'][0] = 'new-25';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-26';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'member_opportunity-panel_pane_2';
@@ -931,10 +960,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $pane->locks = '';
+    $display->content['new-26'] = $pane;
+    $display->panels['middle'][1] = 'new-26';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-25';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $handler = new stdClass();
@@ -968,7 +998,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-27';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -985,10 +1015,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $pane->locks = '';
+    $display->content['new-27'] = $pane;
+    $display->panels['middle'][0] = 'new-27';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-28';
     $pane->panel = 'middle';
     $pane->type = 'views';
     $pane->subtype = 'member_opportunity';
@@ -1017,10 +1048,11 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $pane->locks = '';
+    $display->content['new-28'] = $pane;
+    $display->panels['middle'][1] = 'new-28';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = 'new-27';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['scholarships_db'] = $page;

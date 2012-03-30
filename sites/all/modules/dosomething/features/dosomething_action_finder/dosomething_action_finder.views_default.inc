@@ -525,6 +525,13 @@ function dosomething_action_finder_views_default_views() {
       'context_optional' => 1,
     ),
   );
+
+  /* Display: Feed */
+  $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'node_rss';
+  $handler->display->display_options['path'] = 'action_finder/%/feed.xml';
   $export['action_finder'] = $view;
 
   return $export;

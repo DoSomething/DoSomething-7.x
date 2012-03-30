@@ -81,6 +81,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['footer'][0] = 'new-1';
     $pane = new stdClass();
@@ -113,6 +114,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['mid-center'][0] = 'new-2';
     $pane = new stdClass();
@@ -145,6 +147,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-3'] = $pane;
     $display->panels['mid-left'][0] = 'new-3';
     $pane = new stdClass();
@@ -180,6 +183,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['mid-right'][0] = 'new-4';
     $pane = new stdClass();
@@ -200,6 +204,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-5'] = $pane;
     $display->panels['top'][0] = 'new-5';
     $pane = new stdClass();
@@ -217,6 +222,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-6'] = $pane;
     $display->panels['top'][1] = 'new-6';
     $pane = new stdClass();
@@ -246,6 +252,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
+    $pane->locks = '';
     $display->content['new-7'] = $pane;
     $display->panels['top'][2] = 'new-7';
     $pane = new stdClass();
@@ -275,6 +282,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
+    $pane->locks = '';
     $display->content['new-8'] = $pane;
     $display->panels['top'][3] = 'new-8';
     $pane = new stdClass();
@@ -307,6 +315,7 @@ user/*/complete-profile',
     );
     $pane->extras = array();
     $pane->position = 4;
+    $pane->locks = '';
     $display->content['new-9'] = $pane;
     $display->panels['top'][4] = 'new-9';
     $pane = new stdClass();
@@ -336,6 +345,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 5;
+    $pane->locks = '';
     $display->content['new-10'] = $pane;
     $display->panels['top'][5] = 'new-10';
     $pane = new stdClass();
@@ -365,6 +375,7 @@ user/*/complete-profile',
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 6;
+    $pane->locks = '';
     $display->content['new-11'] = $pane;
     $display->panels['top'][6] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;

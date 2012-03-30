@@ -89,6 +89,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['left-bottom-left'][0] = 'new-1';
     $pane = new stdClass();
@@ -120,6 +121,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['left-bottom-right'][0] = 'new-2';
     $pane = new stdClass();
@@ -137,6 +139,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-3'] = $pane;
     $display->panels['left-top'][0] = 'new-3';
     $pane = new stdClass();
@@ -167,6 +170,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['left-top'][1] = 'new-4';
     $pane = new stdClass();
@@ -202,6 +206,7 @@ function dosomething_awesome_things_landing_page_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-5'] = $pane;
     $display->panels['right'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;

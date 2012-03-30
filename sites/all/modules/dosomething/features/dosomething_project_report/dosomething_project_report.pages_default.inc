@@ -114,6 +114,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
@@ -131,6 +132,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['left'][1] = 'new-2';
     $pane = new stdClass();
@@ -158,6 +160,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
+    $pane->locks = '';
     $display->content['new-3'] = $pane;
     $display->panels['left'][2] = 'new-3';
     $pane = new stdClass();
@@ -182,6 +185,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
+    $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
     $pane = new stdClass();
@@ -209,6 +213,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 4;
+    $pane->locks = '';
     $display->content['new-5'] = $pane;
     $display->panels['left'][4] = 'new-5';
     $pane = new stdClass();
@@ -240,6 +245,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 5;
+    $pane->locks = '';
     $display->content['new-6'] = $pane;
     $display->panels['left'][5] = 'new-6';
     $pane = new stdClass();
@@ -263,6 +269,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 6;
+    $pane->locks = '';
     $display->content['new-7'] = $pane;
     $display->panels['left'][6] = 'new-7';
     $pane = new stdClass();
@@ -290,6 +297,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 7;
+    $pane->locks = '';
     $display->content['new-8'] = $pane;
     $display->panels['left'][7] = 'new-8';
     $pane = new stdClass();
@@ -319,6 +327,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     );
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-9'] = $pane;
     $display->panels['right'][0] = 'new-9';
     $pane = new stdClass();
@@ -342,6 +351,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-10'] = $pane;
     $display->panels['top'][0] = 'new-10';
     $pane = new stdClass();
@@ -362,6 +372,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-11'] = $pane;
     $display->panels['top'][1] = 'new-11';
   $display->hide_title = PANELS_TITLE_NONE;

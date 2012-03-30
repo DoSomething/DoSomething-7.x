@@ -528,15 +528,15 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['filter_groups']['groups'] = array(
-    0 => 'AND',
-    1 => 'OR',
+    1 => 'AND',
+    2 => 'OR',
   );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -545,27 +545,27 @@ function dosomething_scholarship_application_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'scholarship' => 'scholarship',
   );
-  $handler->display->display_options['filters']['type']['group'] = 0;
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Open Date (field_open_date) */
   $handler->display->display_options['filters']['field_open_date_value']['id'] = 'field_open_date_value';
   $handler->display->display_options['filters']['field_open_date_value']['table'] = 'field_data_field_open_date';
   $handler->display->display_options['filters']['field_open_date_value']['field'] = 'field_open_date_value';
   $handler->display->display_options['filters']['field_open_date_value']['operator'] = '<=';
-  $handler->display->display_options['filters']['field_open_date_value']['group'] = 0;
+  $handler->display->display_options['filters']['field_open_date_value']['group'] = 1;
   $handler->display->display_options['filters']['field_open_date_value']['default_date'] = 'now';
   /* Filter criterion: Content: Closing Date (field_closing_date) */
   $handler->display->display_options['filters']['field_closing_date_value']['id'] = 'field_closing_date_value';
   $handler->display->display_options['filters']['field_closing_date_value']['table'] = 'field_data_field_closing_date';
   $handler->display->display_options['filters']['field_closing_date_value']['field'] = 'field_closing_date_value';
   $handler->display->display_options['filters']['field_closing_date_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_closing_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_closing_date_value']['group'] = 2;
   $handler->display->display_options['filters']['field_closing_date_value']['default_date'] = 'now';
   /* Filter criterion: Content: Closing Date (field_closing_date) */
   $handler->display->display_options['filters']['field_closing_date_value_1']['id'] = 'field_closing_date_value_1';
   $handler->display->display_options['filters']['field_closing_date_value_1']['table'] = 'field_data_field_closing_date';
   $handler->display->display_options['filters']['field_closing_date_value_1']['field'] = 'field_closing_date_value';
   $handler->display->display_options['filters']['field_closing_date_value_1']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_closing_date_value_1']['group'] = 1;
+  $handler->display->display_options['filters']['field_closing_date_value_1']['group'] = 2;
 
   /* Display: Current Scholarships Pane */
   $handler = $view->new_display('panel_pane', 'Current Scholarships Pane', 'panel_pane_1');

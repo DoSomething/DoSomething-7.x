@@ -200,7 +200,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID */
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';

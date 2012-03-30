@@ -91,6 +91,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
+    $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['top'][0] = 'new-1';
     $pane = new stdClass();
@@ -129,6 +130,7 @@ function dosomething_action_finder_default_page_manager_pages() {
     );
     $pane->extras = array();
     $pane->position = 1;
+    $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['top'][1] = 'new-2';
   $display->hide_title = PANELS_TITLE_NONE;

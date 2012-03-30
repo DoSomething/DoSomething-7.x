@@ -753,7 +753,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID */
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
@@ -1619,7 +1619,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
-  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID  */
+  /* Contextual filter: Taxonomy term: Has taxonomy term ID, parent, child, or sibling term ID */
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['id'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';

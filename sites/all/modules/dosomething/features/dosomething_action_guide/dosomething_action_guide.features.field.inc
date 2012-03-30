@@ -323,7 +323,7 @@ function dosomething_action_guide_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'tips_tools_node',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '-4',
@@ -603,7 +603,7 @@ function dosomething_action_guide_field_default_fields() {
             'parent' => '0',
           ),
         ),
-        'profile2_private' => FALSE,
+        'profile2_private' => 1,
         'required' => FALSE,
       ),
       'translatable' => '0',
