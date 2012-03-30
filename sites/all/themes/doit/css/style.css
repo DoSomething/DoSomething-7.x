@@ -2827,9 +2827,6 @@ h2.block-title, h2.pane-title {
   padding: 0;
   margin-bottom: 0;
 }
-.block.block-facetapi:last-of-type {
-  margin-bottom: 5px;
-}
 .block.block-facetapi h2.block-title {
   margin-right: 0;
   margin-left: 0;
@@ -2844,24 +2841,34 @@ h2.block-title, h2.pane-title {
   background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
   background-color: #efefef;
   margin-right: -5px;
-  margin-bottom: 0;
+}
+.block-facetapi:nth-of-type(3) {
+  margin-bottom: 5px;
 }
 .block-facetapi h2 {
   line-height: 48px;
   margin: 0;
-  padding-right: 50px;
+  padding-right: 96px;
   position: relative;
   right: -70px;
   text-transform: uppercase;
-  background: url('images/btn-leftsidebar-feeds-plus.png') no-repeat 137px center;
+  background: url('images/btn-leftsidebar-feeds-plus.png') no-repeat 133px center;
 }
 .block-facetapi h2.active {
-  background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 137px center;
+  background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 133px center;
+}
+.block-facetapi .content {
+  -moz-box-shadow: white 0 -1px -1px 1px;
+  -webkit-box-shadow: white 0 -1px -1px 1px;
+  -o-box-shadow: white 0 -1px -1px 1px;
+  box-shadow: white 0 -1px -1px 1px;
+  border-top: 1px #d4d2d1 solid;
+  margin-left: 8px;
+  margin-right: 4px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links {
-  margin: 0;
   padding-left: 0;
-  margin-bottom: 15px;
+  margin: 15px 0;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li {
   list-style: none;
@@ -2899,6 +2906,9 @@ h2.block-title, h2.pane-title {
   float: right;
   margin-right: 10px;
   margin-left: 30px;
+}
+.block-facetapi .facetapi-limit-link {
+  display: none;
 }
 
 .region-sidebar-first .block-menu-block {
