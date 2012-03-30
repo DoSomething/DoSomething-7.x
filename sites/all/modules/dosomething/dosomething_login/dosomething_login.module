@@ -681,25 +681,7 @@ function dosomething_login_register_block($form, &$form_state) {
     ),
   );
   $form['#action'] = url('user/registration', array('query' => $query));
-  $form['connect'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'connect-thru-facebook',
-      ),
-    ),
-    '#children' => l('Connect thru Facebook', $fb_url),
-  );
-  $form['or'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'separator',
-        'split',
-      ),
-    ),
-    '#children' => t('or'),
-  );
+
   $form['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
