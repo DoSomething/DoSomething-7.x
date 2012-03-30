@@ -61,12 +61,6 @@ function dosomething_login_schema() {
         'not null' => TRUE,
         'default' => '',
       ),
-      'birthday' => array(
-        'type' => 'varchar',
-        'length' => 16,
-        'not null' => TRUE,
-        'default' => '',
-      ),
     ),
     'primary key' => array('id'),
     'indexes' => array(
@@ -138,5 +132,12 @@ function dosomething_login_update_7001(&$sandbox) {
     );
     db_create_table('ds_registration_data', $table);
   }
+}
+
+/**
+ * Remove {ds_registration_data}.birthday.
+ */
+function dosomething_login_update_7002() {
+  db_drop_field('ds_registration_data', 'birthday');
 }
 

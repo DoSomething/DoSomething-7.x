@@ -802,7 +802,6 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   // Determine the user's role by their age.
   if (dosomething_login_person_is_over_age($birthdate, 26)) {
     $role_name = 'old person';
-    drupal_set_message(t('You have been signed up for our weekly updates'));
   }
   else if (!dosomething_login_person_is_over_age($birthdate, 13)) {
     $role_name = 'pending member';
@@ -813,7 +812,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $account->status = 1;
   $role = user_role_load_by_name($role_name);
   $account->roles[$role->rid] = $role->name;
-  $account = user_save($account, $edit); 
+  $account = user_save($account, $edit);
   // Terminate if an error occurred during user_save().
   if (!$account) {
     drupal_set_message(t("Error saving user account."), 'error');
