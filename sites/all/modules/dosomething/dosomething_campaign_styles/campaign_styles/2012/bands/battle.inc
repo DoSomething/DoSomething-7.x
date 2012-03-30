@@ -35,6 +35,6 @@ $plugin = array(
     array('title' => 'contests', 'href' => 'battle/contests'),
     array('title' => 'scholarships', 'href' => 'battle/scholarships', 'fragment' => 'scholarships'),
     array('title' => 'faq', 'href' => 'battle/faq'),
-    array('title' => 'blog', 'href=' => 'battle/blog'),
+    array('title' => 'blog', 'href' => 'battle/blog'),
   ),
 );
