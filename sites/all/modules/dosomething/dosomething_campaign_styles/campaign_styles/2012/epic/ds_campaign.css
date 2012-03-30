@@ -7,7 +7,7 @@ h1.title {
   display: none; }
 
 body {
-  background-color: blue;
+  background-color: #f5c36e;
   background-image: url("assets/bg.jpg");
   background-repeat: repeat-y;
   background-position: center top; }
