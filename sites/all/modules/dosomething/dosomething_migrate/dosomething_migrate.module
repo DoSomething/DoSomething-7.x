@@ -110,6 +110,7 @@ function dosomething_migrate_save_webform_node($path) {
   $webform_data = $webform->webform;
   unset($webform->webform);
   node_save($webform);
+  unset ($webform->webform);
   dosomething_migrate_recursively_readd_nid($webform_data, $webform->nid);
   $webform->webform = $webform_data;
   $webform_data['nid'] = $webform->nid;
@@ -187,6 +188,9 @@ function dosomething_migrate_return_content_type_mapping() {
     'campaign_cancer_2011' => 'Campaign Project -Give a Spit about Cancer 2011',
     'campaign_ew_2011' => 'Campaign Project - ewaste 2011',
     'cancer_2011_signup' => 'Cancer 2011 Signup',
+    'campaign_gys_2012' => 'Campaign Project - Green Your School 2012',
+    'campaign_trashy_2011' => 'Campaign Project - Trashy 2011',
+    'campaign_bfb_2012' => 'Campaign Project - Battle for the Bands 2012',
   );
   return $array;
 }

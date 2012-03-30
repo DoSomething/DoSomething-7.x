@@ -18,39 +18,23 @@ function dosomething_project_switcher_content_type_render($subtype, $conf, $args
       ),
     ),
   );
-  $element['form'] = drupal_get_form('dosomething_featured_project_switcher_form');
+  $path = 'projects/featured-projects/';
+  ctools_include('jump-menu');
+  $targets = array(
+    url($path) => t('All Featured Projects'),
+    url($path . 'grant-winners') => t('Grant Winners'),
+    url($path . 'scholarship-winners') => t('Scholarship Winners'),
+    url($path . 'pod') => t('Featured Projects of the Day'),
+    url($path . 'club') => t('Club Projects'),
+  );
+  $default = url($path);
+  if (isset($targets[url($path . arg(2))])) {
+    $default = url($path . arg(2));
+  }
+  $options['default_value'] = $default;
+  $options['choose'] = '';
+  $element['form'] = drupal_get_form('ctools_jump_menu', $targets, $options);
   $block->content = $element;
   return $block;
-}
-
-function dosomething_featured_project_switcher_form() {
-  $options = array(
-    'all' => t('All Featured Projects'),
-    'grant-winners' => t('Grant Winners'),
-    'pod' => t('Featured Projects of the Day'),
-    'club' => t('Club Projects'),
-  );
-  $default = 'all';
-  if (isset($options[arg(2)])) {
-    $default = arg(2);
-  }
-  $form['select'] = array(
-    '#type' => 'select',
-    '#options' => $options,
-    '#default_value' => $default,
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('GO'),
-  );
-  return $form;
-}
-
-function dosomething_featured_project_switcher_form_submit($form, $form_state) {
-  $value = $form_state['values']['select'];
-  if ($value == 'all') {
-    $value = '';
-  }
-  drupal_goto('projects/featured-projects/' . $value);
 }
 

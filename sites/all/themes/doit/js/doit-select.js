@@ -7,6 +7,7 @@
         $("#dosomething-blocks-make-an-impact-form select").selectBox();
         $("#dosomething-blocks-make-an-impact-form-front select").selectBox();
         $(".views-exposed-form select").selectBox();
+        $("#edit-jump").selectBox();
       }
     }
   }

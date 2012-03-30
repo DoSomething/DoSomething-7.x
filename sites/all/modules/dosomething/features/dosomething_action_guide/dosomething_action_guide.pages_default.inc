@@ -74,7 +74,7 @@ function dosomething_action_guide_default_page_manager_handlers() {
       'delta_offset' => '0',
       'delta_reversed' => 0,
       'formatter_settings' => array(
-        'image_style' => 'tips_tools_node',
+        'image_style' => 'content_main',
         'image_link' => '',
       ),
       'context' => 'argument_entity_id:node_1',

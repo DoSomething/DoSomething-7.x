@@ -4,8 +4,6 @@
 .block.block-facetapi
   padding: 0
   margin-bottom: 0
-  &:last-of-type
-    margin-bottom: 5px
   h2.block-title
     margin-right: 0
     margin-left: 0
@@ -13,22 +11,27 @@
   +background-image(linear-gradient(left, $gray6 90%, $gray5))
   background-color: $gray6
   margin-right: -5px
-  margin-bottom: 0
+  &:nth-of-type(3)
+    margin-bottom: 5px
   @extend .black-h2
   h2
     line-height: 48px
     margin: 0
-    padding-right: 50px
+    padding-right: 96px
     position: relative
     right: -70px
     text-transform: uppercase
-    background: image_url("btn-leftsidebar-feeds-plus.png") no-repeat 137px center
+    background: image_url("btn-leftsidebar-feeds-plus.png") no-repeat 133px center
     &.active
-      background: image_url("btn-leftsidebar-feeds-minus.png") no-repeat 137px center
+      background: image_url("btn-leftsidebar-feeds-minus.png") no-repeat 133px center
+  .content
+    +box-shadow($white 0 -1px -1px 1px)
+    border-top: 1px $gray5 solid
+    margin-left: 8px
+    margin-right: 4px
   ul.facetapi-facetapi-checkbox-links
-    margin: 0
     padding-left: 0
-    margin-bottom: 15px
+    margin: 15px 0
     li
       +no-bullets
       text-align: right
@@ -59,3 +62,5 @@
     float: right
     margin-right: 10px
     margin-left: 30px
+  .facetapi-limit-link
+    display: none

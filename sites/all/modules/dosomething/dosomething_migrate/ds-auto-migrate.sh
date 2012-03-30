@@ -7,7 +7,6 @@ ERROR=0
 BACKDIR="/home/webadmin/dosomething-backup-script"
 D7ALIAS="@dosomething.local"
 D7DATABASE="dosomething"
-D7DATABASE="dosomething"
 D6ALIAS="@dosomething6.local"
 D6DATABASE="dosomething6"
 

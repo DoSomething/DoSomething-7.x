@@ -52,6 +52,26 @@ function dosomething_school_entity_info() {
   return $return;
 }
 
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function dosomething_school_entity_property_info_alter(&$info) {
+  $properties = &$info['ds_school']['properties'];
+  $properties['lat_lon'] = array(
+    'type' => 'text',
+    'label' => t('Latitude and longitude'),
+    'description' => t('Latitude and longitude'),
+    'getter callback' => 'dosomething_school_get_lat_lon',
+  );
+}
+
+/**
+ * Getter callback for school lat_lon field.
+ */
+function dosomething_school_get_lat_lon($data, array $options, $name, $type, $info) {
+  $lat_lon = $data->lat . ',' . $data->lon;
+  return $lat_lon;
+}
 
 /**
  * Implements hook_field_widget_info().

@@ -18,8 +18,11 @@
 
 .view-home-slideshow
   +pie-clearfix
-  .home-slide img
-    @extend .border-and-shadow-center
+  .views-row
+    +background(image_url("rounded-bottom-shadow.png") no-repeat bottom center)
+    img
+      @extend .white-border
+      margin-bottom: 24px
 
 .ribbon-front
   @extend .headers

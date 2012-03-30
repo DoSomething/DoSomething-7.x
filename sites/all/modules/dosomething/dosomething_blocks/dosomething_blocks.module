@@ -322,6 +322,16 @@ function dosomething_blocks_utility_bar() {
 
   $path = drupal_get_path('theme', 'ds');
   $image_path = base_path() . $path . '/css/images';
+  $page = search_api_page_load(1);
+
+/*
+  if ($page) {
+    $block = array();
+    $block['subject'] = t($page->name);
+    $block['content'] = drupal_get_form('search_api_page_search_form_' . $page->machine_name, $page, NULL, TRUE);
+    dpm($block);
+  }
+//*/
   $output = array(
     '#attached' => array(
       'js' => array(
@@ -347,9 +357,9 @@ function dosomething_blocks_utility_bar() {
         'class' => array(
           'utility-items',
           'search',
-        ),
+        )
       ),
-      'search' => drupal_get_form('search_block_form'),
+      'search' => drupal_get_form('search_api_page_search_form_' . $page->machine_name, $page, NULL, TRUE),
     ),
     'login' => array(
       '#type' => 'container',

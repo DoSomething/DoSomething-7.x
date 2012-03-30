@@ -946,6 +946,66 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
+  // Exported field: 'taxonomy_term-grants_scholarships-field_grant_scholarship'
+  $fields['taxonomy_term-grants_scholarships-field_grant_scholarship'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_grant_scholarship',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Grant' => 'Grant',
+          'Scholarship' => 'Scholarship',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grants_scholarships',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_grant_scholarship',
+      'label' => 'Grant/Scholarship',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'taxonomy_term-vocabulary_5-field_causes_image'
   $fields['taxonomy_term-vocabulary_5-field_causes_image'] = array(
     'field_config' => array(

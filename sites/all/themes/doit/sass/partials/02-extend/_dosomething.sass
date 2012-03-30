@@ -67,11 +67,8 @@
 
 .text-shadow
   +text-shadow($gray2-trans 1px 1px 2px)
-
 .box-shadow
   +box-shadow($gray3-trans 0 0 12px)
-.box-shadow-center
-  +box-shadow($gray3-trans 0 6px 12px)
 .box-shadow-none
   +box-shadow($gray3-trans 0 0px 0px)
 
@@ -83,10 +80,23 @@
   @extend .white-border
   @extend .box-shadow
 
-// Used for 550x330 and 220x330 radial shadow
-.border-and-shadow-center
-  @extend .white-border
-  @extend .box-shadow-center
+////////////////////////////
+// LARGE IMAGE FIELD SHADOW AND WHITE BORDER
+// white border, center shadow underneath
+// used on blog, how to, front page slider, project slider
+////////////////////////////
+.field-name-field-picture
+  +background(image_url("rounded-bottom-shadow.png") no-repeat 0 330px)
+  img
+    @extend .white-border
+    margin-bottom: 24px
+
+// Exception for action guide
+.node-type-action-guide
+  .field-name-field-picture
+    +background(image_url("rounded-bottom-shadow.png") no-repeat bottom)
+    img
+      max-height: 330px
 
 // Extendable bottom borders
 .gray3-border
@@ -203,7 +213,8 @@ h3.subhead
 ////////////////////////////
 .go-button
   @extend .headers
-  @extend .bold
+  // @extend .bold
+  font-weight: bold
   @extend .gray2
   +border-radius($s0)
   border: none
@@ -501,6 +512,7 @@ h3.subhead
 // More link when in custom panel
 .more-link-right
   float: right
+  margin-bottom: 2em
 
 .breadcrumbs
   font-size: $s-1
