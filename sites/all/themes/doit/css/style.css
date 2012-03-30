@@ -1101,6 +1101,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 
 .more-link-right, .view-current-campaigns .view-footer a {
   float: right;
+  margin-bottom: 2em;
 }
 
 .breadcrumbs {
