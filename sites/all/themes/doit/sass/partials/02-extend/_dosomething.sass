@@ -91,6 +91,13 @@
     @extend .white-border
     margin-bottom: 24px
 
+// Exception for action guide
+.node-type-action-guide
+  .field-name-field-picture
+    +background(image_url("rounded-bottom-shadow.png") no-repeat bottom)
+    img
+      max-height: 330px
+
 // Extendable bottom borders
 .gray3-border
   border-bottom: 1px $gray3 solid
