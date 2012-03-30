@@ -177,20 +177,25 @@ function geocoder_field_attach_presave($entity_type, $entity) {
           // Geocode geometries
           $geometries = array();
           foreach ($items as $delta => $item) {
-            // Geocode any value from our source field.
-            try {
-              if (isset($handler_settings)) {
-                $geometry = call_user_func($handler['field_callback'], $field_info, $item, $handler_settings);
-              }
-              else {
-                $geometry = call_user_func($handler['field_callback'], $field_info, $item);
-              }
-              if ($geometry instanceof Geometry) {
-                $geometries[] = $geometry;
-              }
+            if (isset($item['geocoder_no_code']) && $item['geocoder_no_code'] == TRUE) {
+              $handler = geocoder_get_handler('wkt');
             }
-            catch (Exception $e) {
-              drupal_set_message($e->getMessage(), 'error');
+            else {
+              // Geocode any value from our source field.
+              try {
+                if (isset($handler_settings)) {
+                  $geometry = call_user_func($handler['field_callback'], $field_info, $item, $handler_settings);
+                }
+                else {
+                  $geometry = call_user_func($handler['field_callback'], $field_info, $item);
+                }
+                if ($geometry instanceof Geometry) {
+                  $geometries[] = $geometry;
+                }
+              }
+              catch (Exception $e) {
+                drupal_set_message($e->getMessage(), 'error');
+              }
             }
           }
           
