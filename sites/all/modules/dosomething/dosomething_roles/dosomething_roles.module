@@ -81,6 +81,7 @@ function dosomething_roles_demote_expired_users() {
             $params = array(
               'new_role' => $new_role_name,
               'current_role' => $current_role_name,
+              'user' => $account,
             );
             drupal_mail('dosomething_roles', 'dosomething-roles-demotion', $account->mail, $language, $params);
           }
@@ -142,6 +143,7 @@ function dosomething_roles_send_demotion_notifications($month) {
 
         if ($current_role_weight < $new_role_weight) {
           $params = array(
+            'user' => $account,
             'months' => $month,
             'new_role' => $new_role_name,
             'current_role' => $current_role_name,
@@ -165,18 +167,18 @@ function dosomething_roles_mail($key, &$message, $params) {
   // replacement is intended for an e-mail message, not a web browser.
   switch ($key) {
     case 'dosomething-roles-alumni-email':
-      $message['subject'] = token_replace(variable_get('email_dosomething_roles_alumni_email_subject'), array(), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
-      $message['body'][] = token_replace(variable_get('email_dosomething_roles_alumni_email_body'), array(), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['subject'] = token_replace(variable_get('email_dosomething_roles_alumni_email_subject'), array('user' => $params['account']), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['body'][] = token_replace(variable_get('email_dosomething_roles_alumni_email_body'), array('user' => $params['account']), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-roles-demotion':
-      $message['subject'] = token_replace(variable_get('email_dosomething_roles_demotion_email_subject'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
-      $message['body'][] = token_replace(variable_get('email_dosomething_roles_demotion_email_body'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['subject'] = token_replace(variable_get('email_dosomething_roles_demotion_email_subject'), array('user' => $params['account'], 'dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['body'][] = token_replace(variable_get('email_dosomething_roles_demotion_email_body'), array('user' => $params['account'], 'dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-roles-impending-demotion':
-      $message['subject'] = token_replace(variable_get('email_dosomething_roles_impending_demotion_email_subject'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
-      $message['body'][] = token_replace(variable_get('email_dosomething_roles_impending_demotion_email_body'), array('dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['subject'] = token_replace(variable_get('email_dosomething_roles_impending_demotion_email_subject'), array('user' => $params['account'], 'dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
+      $message['body'][] = token_replace(variable_get('email_dosomething_roles_impending_demotion_email_body'), array('user' => $params['account'], 'dosomething_roles' => $params), array('language' => $language, 'callback' => 'dosomething_roles_user_mail_tokens', 'sanitize' => FALSE));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
   }
@@ -338,7 +340,7 @@ function dosomething_roles_update_role($uid) {
     //  to add a flag to the account object (no_dosomething_role_update) to
     //  prevent an infinite loop.
     $new_rid = $rids[$new_role_name];
-    $params = array('account' => $account);
+    $params = array('user' => $account);
     drupal_mail('dosomething_roles', 'dosomething-roles-alumni-email', $account->mail, $language, $params);
   }
 
