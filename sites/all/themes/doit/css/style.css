@@ -698,13 +698,6 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
-.box-shadow-center, .border-and-shadow-center, .pane-project-photo-slider-panel-pane-1 .view-content img, .view-home-slideshow .home-slide img, .node-type-action-guide .field-type-image img, .page-taxonomy-term .region-content .node-teaser {
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
-  box-shadow: rgba(75, 71, 68, 0.35) 0 6px 12px;
-}
-
 .box-shadow-none, .page-taxonomy-term .field-name-field-picture img {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
@@ -727,8 +720,15 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .unimage-wrapper, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .border-and-shadow-center, .pane-project-photo-slider-panel-pane-1 .view-content img, .view-home-slideshow .home-slide img, .node-type-action-guide .field-type-image img, .field-name-field-picture img {
+.pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .field-name-field-picture img, .view-home-slideshow .views-row img {
   border: 1px white solid;
+}
+
+.field-name-field-picture {
+  background: url('images/rounded-bottom-shadow.png') no-repeat 0 330px;
+}
+.field-name-field-picture img {
+  margin-bottom: 24px;
 }
 
 .gray3-border, .region-sidebar-first .block-menu-block .content li:hover, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content li.active:hover {
@@ -3758,6 +3758,12 @@ comments.fb_iframe_widget {
   display: table;
   clear: both;
 }
+.view-home-slideshow .views-row {
+  background: url('images/rounded-bottom-shadow.png') no-repeat bottom center;
+}
+.view-home-slideshow .views-row img {
+  margin-bottom: 24px;
+}
 
 .ribbon-front {
   -moz-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
@@ -3877,9 +3883,6 @@ comments.fb_iframe_widget {
   display: none;
 }
 
-.node-blog .field-name-field-picture img {
-  margin-bottom: 24px;
-}
 .node-blog .field-name-upload {
   clear: both;
   padding-bottom: 15px;

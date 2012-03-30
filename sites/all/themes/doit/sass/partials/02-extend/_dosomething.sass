@@ -67,11 +67,8 @@
 
 .text-shadow
   +text-shadow($gray2-trans 1px 1px 2px)
-
 .box-shadow
   +box-shadow($gray3-trans 0 0 12px)
-.box-shadow-center
-  +box-shadow($gray3-trans 0 6px 12px)
 .box-shadow-none
   +box-shadow($gray3-trans 0 0px 0px)
 
@@ -83,10 +80,16 @@
   @extend .white-border
   @extend .box-shadow
 
-// Used for 550x330 and 220x330 radial shadow
-.border-and-shadow-center
-  @extend .white-border
-  @extend .box-shadow-center
+////////////////////////////
+// LARGE IMAGE FIELD SHADOW AND WHITE BORDER
+// white border, center shadow underneath
+// used on blog, how to, front page slider, project slider
+////////////////////////////
+.field-name-field-picture
+  +background(image_url("rounded-bottom-shadow.png") no-repeat 0 330px)
+  img
+    @extend .white-border
+    margin-bottom: 24px
 
 // Extendable bottom borders
 .gray3-border
