@@ -581,7 +581,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, #lets-talk-dialog h2, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, .selectBox-options li a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
 thead tr th a, thead tr th:hover,
-thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"], .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], #lets-talk-dialog .title,
 #lets-talk-dialog .detail, .apps-grid .apps-box .apps-banner, .ribbon-front a,
@@ -2201,7 +2201,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2359,7 +2359,7 @@ body {
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search {
   position: relative;
 }
-#utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="search"] {
+#utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
   -moz-box-shadow: inset 0 0 4px 1px #4d4a4a;
   -webkit-box-shadow: inset 0 0 4px 1px #4d4a4a;
   -o-box-shadow: inset 0 0 4px 1px #4d4a4a;
@@ -2367,10 +2367,9 @@ body {
   background-color: #746f6f;
   border: 1px solid #4d4a4a;
   font-size: 10px;
-  height: 18px;
   padding: 4px;
 }
-#utility-bar #block-dosomething-blocks-dosomething-utility-bar .search .form-actions input[type="submit"] {
+#utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
@@ -2386,7 +2385,7 @@ body {
   padding: 10px;
   top: 4px;
 }
-#utility-bar #block-dosomething-blocks-dosomething-utility-bar .form-item-search-block-form {
+#utility-bar #block-dosomething-blocks-dosomething-utility-bar .form-item-keys-1 {
   margin-left: 1.5em;
   margin-right: 1.5em;
 }
@@ -2629,7 +2628,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2880,7 +2879,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -2932,7 +2931,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
