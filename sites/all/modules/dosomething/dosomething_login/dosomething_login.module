@@ -344,7 +344,7 @@ function dosomething_login_element_info() {
   $types = array();
   $types['dosomething_password_confirm'] = array(
     '#input' => TRUE,
-    '#process' => array('dosomething_roles_dosomething_password_confirm'),
+    '#process' => array('dosomething_login_dosomething_password_confirm'),
     '#theme_wrappers' => array('form_element'),
     '#element_validate' => array('password_confirm_validate'),
   );
@@ -354,7 +354,7 @@ function dosomething_login_element_info() {
 /**
  * Process a form element of type dosomething_password_confirm.
  */
-function dosomething_roles_dosomething_password_confirm($element) {
+function dosomething_login_dosomething_password_confirm($element) {
   // The normal password confirm sets a title and doesn't let you add
   // attributes or edit the title.
 
@@ -579,8 +579,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   // TODO: Shoould now be a textfield.
   // TODO: Needs validation.
   $form['pass'] = array(
-    //'#type' => 'dosomething_password_confirm',
-    '#type' => 'textfield',
+    '#type' => 'password',
     '#required' => TRUE,
     '#attributes' => array(
       'placeholder' => t('Password'),
@@ -726,7 +725,7 @@ function dosomething_login_register_block($form, &$form_state) {
  * Validate the user registration form.
  */
 function dosomething_login_register_block_validate($form, &$form_state) {
-  $values = $form_state['input'];
+  $values = $form_state['values'];
   if (strlen($form_state['values']['pass']) < 6) {
     form_set_error('pass', t('Your password must be at least 6 characters long.'));
   }
@@ -758,24 +757,25 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     form_set_error('last_name', t('Please provide your last name.'));
   }
   // Validate cell number or e-mail address
-  if (valid_email_address($values['cell_or_email'])) {
+  if (valid_email_address($values['email'])) {
     if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($values['cell_or_email']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-      form_set_error('cell_or_email', t('The e-mail address %email is already registered. <a href="@password">Have you forgotten your password?</a>', array('%email' => $values['cell_or_email'], '@password' => url('user/password'))));
+      form_set_error('email', t('The e-mail address %email is already registered. <a href="@password">Have you forgotten your password?</a>', array('%email' => $values['email'], '@password' => url('user/password'))));
     }
-    $form_state['values']['mail'] = $values['cell_or_email'];
+    $form_state['values']['mail'] = $values['email'];
   }
-  else if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['cell_or_email']), 1)) && strlen($number) >= 10) {
+  if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['cell']), 1)) && strlen($number) >= 10) {
     if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-      form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
+      form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
     }
     else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-      form_set_error('cell_or_email', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell_or_email'], '@password' => url('user/password'))));
+      form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
     }
     $form_state['values']['phone'] = $number;
     $form_state['values']['mail'] = $number . '@mobile';
   }
-  else {
-    form_set_error('cell_or_email', t('Please provide a valid email address or phone number'));
+  if (!$values['email'] && !$values['cell']) {
+    form_set_error('email', t('Please provide a valid email address'));
+    form_set_error('cell', t('or provide a valid cell phone number.'));
   }
 }
 
