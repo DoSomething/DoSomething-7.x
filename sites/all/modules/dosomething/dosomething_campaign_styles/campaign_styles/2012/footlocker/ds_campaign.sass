@@ -21,7 +21,7 @@ $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.jpg')
-$bgFallback: black
+$bgFallback: #231F20
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -189,9 +189,21 @@ div[role="main"]
   font-size: 22px
   font-weight: bold
   line-height: 20px
-  .campaign-counter-number-top, .campaign-counter-number-bottom
+  .counter-number
     +background-image(linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%))
     padding: 5px
     letter-spacing: 5px
     border: 1px white solid
     margin-bottom: 5px
+
+.footlocker-winners
+  padding: 5px
+  width: 750px
+  text-align: center
+
+.winner
+  font: din-web
+  color: white
+  background: $bgFallback
+  padding: 5px
+  width: 20%
