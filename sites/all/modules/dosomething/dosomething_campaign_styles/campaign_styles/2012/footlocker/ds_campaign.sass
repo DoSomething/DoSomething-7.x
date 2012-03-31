@@ -8,7 +8,7 @@
 
 // colors
 $baseColor: #E31837
-$complement: #ffffff
+$complement: #FFFFFF
 $secondaryLink: black
 
 // borders
@@ -120,7 +120,7 @@ div[role="main"]
 
 // actions panel (sign-up and counter)
 .panel-row-actions
-  +block
+  background: #C8C8C8
   .pane-title
     background: $baseColor
   .pane-content
@@ -169,3 +169,18 @@ div[role="main"]
     background: none
     margin: 0
     padding: 0
+
+// campaign sign-up extend
+.pane-campaign-sign-up
+  h2.pane-title
+    white-space: nowrap
+    position: relative
+
+// campaign counter styling
+.campaign-counter-labels
+  color: white
+  font-family: din-web
+  font-size: 16px
+  font-weight: 500
+  text-transform: uppercase
+  
