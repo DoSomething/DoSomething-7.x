@@ -39,6 +39,10 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
       $count = dosomething_campaign_counter_campaign_counter_get_count($conf['report_back_nid'], $fid, $subs);
     }
   }
+
+  dosomething_campaign_counter_campaign_counter_spanize($count);
+  dosomething_campaign_counter_campaign_counter_spanize($sign_up_count);
+
   $args = array(
     'top_label' => $count_text,
     'top_number' => $count,
@@ -48,6 +52,19 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
   $block->content = theme('ds_counter', $args);
 
   return $block;
+}
+
+function dosomething_campaign_counter_campaign_counter_spanize(&$number) {
+  $number = str_split($number);
+
+  for ($i = 3; $i < count($number); $i++) {
+    $number[$i] = $number[$i].',';
+  }
+
+  $span_open = '<span class="counter-number">';
+  $span_close = '</span>';
+
+  $number = $span_open . implode($span_close.$span_open, $number) . $span_close;
 }
 
 function dosomething_campaign_counter_campaign_counter_get_count($nid, $field, &$subs, $reset = false) {
