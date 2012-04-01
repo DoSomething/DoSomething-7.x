@@ -56,14 +56,9 @@
   margin-right: 6.5%; }
 
 .ds-panel .pane-content {
-  position: relative; }
+  position: relative;
+  padding-bottom: 30px; }
 .ds-panel .go-button {
   position: absolute;
   right: 16px;
   bottom: 10px; }
-  .ds-panel .go-button:after {
-    content: "";
-    display: block;
-    *zoom: 1;
-    overflow: hidden;
-    height: 30px; }
