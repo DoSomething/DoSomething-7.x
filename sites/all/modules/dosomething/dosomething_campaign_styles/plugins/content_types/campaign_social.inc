@@ -22,7 +22,30 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
         'url' => url($uri['path'], $uri['options']),
         'facebook_language' => $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'],
         'twitter_language' => $entity->field_campaign_twitter_language[LANGUAGE_NONE][0]['value'],
+        //'campaign_logo' => file_create_url($entity->field_campaign_logo[LANGUAGE_NONE][0]['uri']),
+        'campaign_logo' => 'http://www.dosomething.org/sites/all/micro/epic/images/epic-logo.png',
       ));
+
+      // The following adds metadata to the page header. There's probably a smarter way to do this,
+      // especially if we need to fix site-wide og: tags. This will be needed for now.
+      $header_descr = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'property' => 'og:description',
+          'content' => $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'],
+        )
+      );
+
+      $header_img = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'property' => 'og:image',
+          'content' => file_create_url($entity->field_campaign_logo[LANGUAGE_NONE][0]['uri']),
+        )
+      );
+
+      drupal_add_html_head($header_descr, 'og:description');
+      drupal_add_html_head($header_img, 'og:image');
 
       return $block;
     }
