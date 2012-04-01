@@ -1,9 +1,4 @@
-=clearfix
-  *zoom: 1
-  &:after
-    content: ""
-    display: table
-    clear: both
+@import "compass/utilities/general/clearfix"
 
 .panel-row
   +clearfix
@@ -34,3 +29,45 @@
     float: right
     width: 64%
 
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: black
+    line-height: 1.3em
+    font-weight: 500
+    &:after
+      overflow: hidden
+      *zoom: 1
+      display: block
+      content: ""
+      border-top: 1px solid rgba(0,0,0,0.5)
+      border-bottom: 1px solid rgba(255,255,255,0.5)
+  .pane-content
+    h3
+      color: #807A75
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
+
+.three-boxes
+  width: 29%
+  float: left
+  margin-right: 6.5%
+
+.ds-panel
+  .pane-content
+    position: relative
+  .go-button
+    position: absolute
+    right: 16px
+    bottom: 10px
+    &:after
+      content: ""
+      display: block
+      *zoom: 1
+      overflow: hidden
+      height: 30px
