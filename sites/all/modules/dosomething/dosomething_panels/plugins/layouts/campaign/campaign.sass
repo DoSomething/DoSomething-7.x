@@ -1,5 +1,8 @@
 @import "compass/utilities/general/clearfix"
 
+@mixin white-border
+  border: 1px solid #ffffff
+
 .panel-row
   +clearfix
 
@@ -15,6 +18,7 @@
   float: right
 
 .panel-row-actions
+  +white-border
   margin: 18px 0
   .panel-panel
     width: 50%
@@ -54,9 +58,13 @@
       line-height: 1em
 
 .three-boxes
+  +white-border
   width: 29%
   float: left
   margin-right: 6.5%
+
+.panel-row-flexible
+  +white-border
 
 .ds-panel
   .pane-content
