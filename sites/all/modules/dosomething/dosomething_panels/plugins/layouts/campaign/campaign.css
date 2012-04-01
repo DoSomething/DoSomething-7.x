@@ -56,6 +56,8 @@
   width: 29%;
   float: left;
   margin-right: 6.5%; }
+  .three-boxes:last-child {
+    margin-right: 0; }
 
 .panel-row-flexible .panel-pane {
   border: 1px solid white; }
