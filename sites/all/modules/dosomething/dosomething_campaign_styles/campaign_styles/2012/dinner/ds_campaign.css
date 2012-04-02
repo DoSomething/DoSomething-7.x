@@ -1,5 +1,5 @@
 a {
-  color: #d33936; }
+  color: #009488; }
   a:hover {
     color: black; }
 
@@ -13,7 +13,7 @@ body {
   background-position: center top; }
 
 div[role="main"] {
-  background: #f6f6f6;
+  background: white;
   -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
   -o-box-shadow: black 0 0 30px -10px;
@@ -50,7 +50,7 @@ div[role="main"] {
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: #f6f6f6;
+    background: white;
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
@@ -62,14 +62,14 @@ div[role="main"] {
       text-transform: uppercase;
       color: black; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #d33936;
+        color: #009488;
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
-    color: #d33936;
+    color: #009488;
     padding: 0;
     font-size: 26px;
     line-height: 1em; }
@@ -78,9 +78,9 @@ div[role="main"] {
     line-height: 1.4em; }
 
 .panel-row-actions {
-  background: #f6f6f6; }
+  background: white; }
   .panel-row-actions .pane-title {
-    background: #d33936; }
+    background: #009488; }
   .panel-row-actions .pane-content {
     padding: 18px; }
 
@@ -93,7 +93,7 @@ div[role="main"] {
   line-height: 1.3em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content h3 {
-  color: #d33936;
+  color: #009488;
   font-size: 26px;
   text-transform: uppercase;
   font-weight: 600;
@@ -110,9 +110,9 @@ div[role="main"] {
   margin-bottom: 20px; }
 
 .panel-row-flexible .panel-pane {
-  background: #f6f6f6; }
+  background: white; }
   .panel-row-flexible .panel-pane .pane-title {
-    background: #d33936; }
+    background: #009488; }
 .panel-row-flexible .blog {
   background: transparent; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
@@ -131,7 +131,7 @@ div[role="main"] {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
 .panel-row-logos .pane-title {
-  color: #d33936;
+  color: #009488;
   background: none;
   margin: 0;
   padding: 0; }
