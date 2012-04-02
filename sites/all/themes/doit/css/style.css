@@ -2816,7 +2816,7 @@ h2.block-title, h2.pane-title {
 }
 .logged-in #block-dosomething-login-become-member .doing-it .inner,
 .logged-in #block-dosomething-login-become-member .done-it .inner {
-  padding: 0 5px;
+  padding: 2px 5px;
   background: url('images/btn-leftsidebar-feeds-plus.png') no-repeat 168px center;
 }
 .logged-in #block-dosomething-login-become-member .doing-it.active .inner,
@@ -2838,7 +2838,7 @@ h2.block-title, h2.pane-title {
   padding: 32px 0px 52px 0;
 }
 #block-dosomething-blocks-dosomething-social-skyscraper .content h3 {
-  padding-left: 32px;
+  padding: 2px 0 2px 32px;
   margin-bottom: 5px;
 }
 #block-dosomething-blocks-dosomething-social-skyscraper .content h3.twitter {
