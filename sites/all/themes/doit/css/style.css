@@ -741,10 +741,12 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   margin-bottom: 24px;
 }
 
-.node-type-action-guide .field-name-field-picture {
+.node-action-guide .field-name-field-picture,
+.node-blog .field-name-field-picture {
   background: url('images/rounded-bottom-shadow.png') no-repeat bottom;
 }
-.node-type-action-guide .field-name-field-picture img {
+.node-action-guide .field-name-field-picture img,
+.node-blog .field-name-field-picture img {
   max-height: 330px;
 }
 
