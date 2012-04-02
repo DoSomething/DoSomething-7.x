@@ -10,7 +10,8 @@
       var date = new Date();
       var dateValidAge = 90;
       var dateThreshold = new Date(date.getFullYear() - dateValidAge, 0, 1);
-      var date13 = new Date(date.getFullYear() - 13, date.getMonth(), date.getDate());
+      var phoneField = popupForm.find('#edit-cell');
+      var emailField = popupForm.find('#edit-email');
 
       function validEmail(email) {
         return /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i.test(email);
@@ -54,8 +55,8 @@
         popupForm.find('.dosomething-original-value').each(function() {
           $(this).removeAttr("disabled");
         });
-        popupForm.find('#edit-cell').removeAttr("disabled");
-        popupForm.find('#edit-email').removeAttr("disabled");
+        phoneField.removeAttr("disabled");
+        emailField.removeAttr("disabled");
       });
 
 
@@ -74,10 +75,23 @@
         }
         if (validEmail(cell_or_email)) {
           popupForm.find('input[name="email"]').val(cell_or_email);
+          emailField.attr("disabled", true);
+          // Hide the required field for phone.
+          // For some reason the email required star is shown next to
+          // the phone field and vice-versa.
+          emailField.parent().next('span').hide();
         }
         else if (validPhone(cell_or_email)) {
           popupForm.find('input[name="cell"]').val(cell_or_email);
+          phoneField.attr("disabled", true);
+          // Hide the required field for emails.
+          // For some reason the email required star is shown next to
+          // the phone field and vice-versa.
+          phoneField.parent().next('span').hide();
         }
+        popupForm.find('.dosomething-original-value').each(function() {
+          $(this).attr("disabled", true);
+        });
         $(".under-13-field").hide();
 
         // Save registration data in case they don't sign up.
