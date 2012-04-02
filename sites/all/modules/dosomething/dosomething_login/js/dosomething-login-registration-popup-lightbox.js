@@ -33,6 +33,22 @@
         return this.optional(element) || (phone || email);
       }, "Please enter a valid email address or phone number(no spaces).");
 
+      // Conditional validation for parental email address.
+      jQuery.validator.addMethod("parent_email", function(value, element, params) {
+        var now = new Date();
+        var year = $("#edit-year").val();
+        var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
+        var date13 = new Date(now.getFullYear() - 13, now.getMonth(), now.getDate());
+        if (birthDate.getTime() >= date13.getTime() && year) {
+          if (!value) {
+            return false;
+          }
+          return validEmail(value);
+        }
+        return true;
+      }, "Please enter a valid email address.");
+
+
       $("#edit-final-submit").click(function(event) {
         // The elements are disabled, but still need to actually post.
         popupForm.find('.dosomething-original-value').each(function() {
@@ -104,6 +120,9 @@
           pass: {
             required: true,
             minlength: 6
+          },
+          parent_email: {
+            parent_email: true
           }
         },
         messages: {
