@@ -654,6 +654,22 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'html' => FALSE,
     ),
   );
+
+  // Set default values if this was submitted to the related registration block first.
+  if (isset($form_state['input']['form_id']) && $form_state['input']['form_id'] == 'dosomething_login_register_block') {
+    $form['name']['first_name']['#default_value'] = isset($form_state['input']['first_name']) ? $form_state['input']['first_name'] : '';
+    $form['name']['last_name']['#default_value'] = isset($form_state['input']['last_name']) ? $form_state['input']['last_name'] : '';
+    if (!empty($form_state['input']['cell_or_email'])) {
+      // If there was a valid entry then prepopulate.
+      // Otherwise, they'll have to re-enter anyway.
+      if (valid_email_address($form_state['input']['cell_or_email'])) {
+        $form['email']['#default_value'] =  $form_state['input']['cell_or_email'];
+      }
+      else if (($number = ltrim(preg_replace('/[^0-9]/', '', $form_state['input']['cell_or_email']), 1))) {
+        $form['cell']['#default_value'] =  $form_state['input']['cell_or_email'];
+      }
+    }
+  }
   return $form;
 }
 
