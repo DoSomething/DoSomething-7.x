@@ -24,13 +24,30 @@ function dosomething_clubs_default_page_manager_handlers() {
     'pipeline' => 'ipe',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'User',
+        'keyword' => 'user',
+        'name' => 'user',
+        'type' => 'current',
+        'uid' => '',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(
       0 => array(
         'identifier' => 'OG group from node',
         'keyword' => 'group',
         'name' => 'og_group_from_node',
         'context' => 'argument_entity_id:node_1',
+        'id' => 1,
+      ),
+      1 => array(
+        'identifier' => 'Profile2 from user',
+        'keyword' => 'profile2',
+        'name' => 'profile2',
+        'type' => 'main',
+        'context' => 'context_user_1',
         'id' => 1,
       ),
     ),
@@ -119,7 +136,8 @@ node/*/picks',
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
 node/*/doing-it
-node/*/picks',
+node/*/picks
+node/*/picks/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -155,7 +173,8 @@ node/*/picks',
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
 node/*/doing-it
-node/*/picks',
+node/*/picks
+node/*/picks/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -193,7 +212,8 @@ node/*/picks',
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
 node/*/doing-it
-node/*/picks',
+node/*/picks
+node/*/picks/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -254,7 +274,8 @@ node/*/picks',
             'visibility_setting' => '0',
             'paths' => 'node/*/done-it
 node/*/doing-it
-node/*/picks',
+node/*/picks
+node/*/picks/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -264,6 +285,9 @@ node/*/picks',
     $pane->configuration = array(
       'more_link' => 1,
       'path' => 'node/%node:nid/picks',
+      'arguments' => array(
+        'dosomething_causes_term_node_tid' => '%profile2:taxonomy_vocabulary_5',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -391,14 +415,19 @@ node/*/picks',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'node/*/picks',
+            'paths' => 'node/*/picks
+node/*/picks/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
         ),
       ),
     );
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'relationship_profile2_1',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
