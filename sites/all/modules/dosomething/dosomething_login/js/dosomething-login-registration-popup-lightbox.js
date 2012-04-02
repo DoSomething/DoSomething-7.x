@@ -63,18 +63,15 @@
           popupForm.find('input[name="cell"]').val(cell_or_email);
         }
         $(".under-13-field").hide();
-        $("#edit-connect").show();
 
         // Save registration data in case they don't sign up.
-        // TODO: We don't save their birthday anymore?
-          //birthday: (birthDate.getMonth() + 1) + '/' + birthDate.getDate() + '/' + birthDate.getFullYear(),
-        /*var postData = {
+        var postData = {
           first_name: $("#edit-first-name").val(),
           last_name: $("#edit-last-name").val(),
-          cell_or_email: $("#edit-cell-or-email").val(),
+          cell_or_email: cell_or_email,
           ds_api_key: Drupal.settings.dosomethingLogin.dsApiKey
         };
-        $.post('dosomething/ajax/registration-data', postData);*/
+        $.post('dosomething/ajax/registration-data', postData);
 
         popupForm.dialog({
           resizable: false,
@@ -83,11 +80,11 @@
           width: 550,
         });
 
+        // TODO: How to do conditional validation of parental email?
         event.preventDefault();
       });
 
       // Validate registration popup form on keyup and submit
-      // TODO: Should we validate cell or email?
       popupForm.validate({
         rules: {
           first_name: "required",
@@ -103,6 +100,10 @@
           year: {
             required: true,
             range: [date.getFullYear() - dateValidAge, date.getFullYear()]
+          },
+          pass: {
+            required: true,
+            minlength: 6
           }
         },
         messages: {
