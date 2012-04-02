@@ -70,6 +70,11 @@
   right: 16px;
   bottom: 10px; }
 
-pane-campaign-sign-up .pane-title {
+.pane-campaign-sign-up .pane-title {
   white-space: nowrap;
   position: relative; }
+
+.panel-row-top-right .panel-top-right-mini-info {
+  font-size: 21px;
+  line-height: 1.4em;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
