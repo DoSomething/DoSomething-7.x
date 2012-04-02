@@ -3400,8 +3400,9 @@ h2.block-title, h2.pane-title {
   opacity: 0.83;
 }
 
-#dosomething-login-register-popup-form {
+#block-dosomething-login-become-member #dosomething-login-register-popup-form {
   height: auto !important;
+  display: none;
 }
 
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
