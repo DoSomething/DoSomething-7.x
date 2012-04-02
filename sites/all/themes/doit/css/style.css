@@ -401,7 +401,7 @@ input[type=color], select.form-select, iframe {
 .pane-projects-by-state-panel-pane-1 .views-row,
 .pane-featured-projects-panel-pane-1 .views-row,
 .pane-current-campaigns-panel-pane-2 .views-row, .pane-news-stuff .views-row, .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, .pane-blog-center .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widgets .content,
-.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password, .page-webform-submission .pane-ds-project-stats {
+.views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, .page-webform-submission .pane-ds-project-stats {
   *zoom: 1;
 }
 .clearfix:after, .two-column-grid .pane-content:after, .pane-ds-current-somethings-all .pane-content:after,
@@ -419,7 +419,7 @@ input[type=color], select.form-select, iframe {
 .pane-projects-by-state-panel-pane-1 .views-row:after,
 .pane-featured-projects-panel-pane-1 .views-row:after,
 .pane-current-campaigns-panel-pane-2 .views-row:after, .pane-news-stuff .views-row:after, .pane-narrow-block .views-row:after, .panes-2 .panel-second .views-row:after, .pane-blog-center .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widgets .content:after,
-.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name:after, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password:after, .page-webform-submission .pane-ds-project-stats:after {
+.views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, .page-webform-submission .pane-ds-project-stats:after {
   content: "";
   display: table;
   clear: both;
@@ -3405,8 +3405,14 @@ h2.block-title, h2.pane-title {
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
   top: 188px !important;
   background: white;
-  padding: 25px 33px;
-  height: 486px !important;
+  padding: 25px 34px;
+  height: 485px !important;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog .ui-dialog-titlebar {
+  padding: 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-icon.ui-icon-closethick {
+  margin: -20px -30px 0 0 !important;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"] {
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
@@ -3417,6 +3423,12 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"]:focus, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"]:focus {
   outline: none;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .connect-with-facebook .form-wrapper {
+  margin-bottom: 0;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-connect {
+  margin-bottom: 0;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text {
   margin-top: 0;
@@ -3431,80 +3443,87 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #ed
   padding-bottom: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .separator {
-  text-align: center;
   font-size: 21px;
   font-family: din-web, "Trebuchet MS", sans-serif;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  text-align: center;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-registration-form-required {
-  display: inline;
   float: left;
-  margin-left: -10px;
+  margin-top: 10px;
   position: relative;
-  z-index: 2000;
+  right: 12px;
+  width: 0;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error {
   font-size: 12px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name {
-  display: inline;
-  float: left;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name input,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name input {
-  margin-top: 15px;
-  margin-bottom: 12px;
-  width: 212px;
-  margin-left: 15px;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell-or-email input {
-  margin-bottom: 12px;
-  margin-left: 15px;
-  width: 212px;
-}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-email,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-pass,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-day,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year {
-  clear: right;
   float: left;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-first-name input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-email input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-pass input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-day input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year input {
+  margin-left: 18px;
+  margin-top: 12px;
+  width: 212px;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell {
+  float: right;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-last-name input,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-cell input {
+  margin-right: 18px;
+  margin-top: 12px;
+  width: 212px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month input,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-day input,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-year input {
+  margin-left: 16px;
   width: 40px;
-  margin-right: 12px;
-  padding: 0;
   text-align: center;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month {
-  clear: both;
-  margin-left: 15px;
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month .field-prefix {
+  float: left;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 12px;
+  margin-left: 22px;
+  margin-top: 17px;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-type-password {
-  clear: both;
-  margin-left: 15px;
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .form-item-month input {
+  margin-left: 14px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer {
   background: #efefef;
-  margin-top: -140px;
-  height: 250px;
-  padding: 15px;
+  margin-top: -5px;
+  height: 240px;
+  padding: 18px;
+  width: 478px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer .description {
   float: left;
   font-size: 12px;
-  padding-top: 10px;
+  padding-top: 30px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer a {
   text-decoration: underline;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  float: right;
   font-size: 18px;
   padding-top: 15px;
   padding-bottom: 6px;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  float: right;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member a {
   text-decoration: underline;
@@ -3512,8 +3531,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .al
 
 input#edit-final-submit {
   float: right;
-  margin-top: -38px;
-  margin-right: 8px;
+  margin-top: -40px;
+  margin-right: 18px;
 }
 
 #lets-talk-dialog {

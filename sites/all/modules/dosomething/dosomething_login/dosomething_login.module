@@ -588,6 +588,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   );
   $form['birthday'] = array(
     'month' => array(
+      '#field_prefix' => t('Birthday'),
       '#type' => 'textfield',
       '#attributes' => array(
         'placeholder' => t('mm'),
@@ -632,7 +633,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $form['signup'] = array(
     '#type' => 'item',
-    '#description' => t("Clicking ‘Finish’ won't sell your soul, but it means you agree to our <a href='/about/privacy'>terms of service</a> and want to receive our weekly update."),
+    '#description' => t("Clicking “Finish” won't sell your soul, but it means you agree to<br />our <a href='/about/privacy'>terms of service</a> and want to receive our weekly update."),
     '#prefix' => '<div class="disclaimer">',
     '#suffix' => '</div>',
   );
