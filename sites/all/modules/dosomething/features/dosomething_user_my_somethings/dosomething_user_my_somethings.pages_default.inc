@@ -24,17 +24,17 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
     'pipeline' => 'standard',
     'css_id' => 'user-my-somethings',
     'css' => '',
-    'contexts' => array(
+    'contexts' => array(),
+    'relationships' => array(
       0 => array(
-        'identifier' => 'Logged in user',
-        'keyword' => 'user_2',
-        'name' => 'user',
-        'type' => 'current',
-        'uid' => NULL,
+        'identifier' => 'Profile2 from user',
+        'keyword' => 'profile2',
+        'name' => 'profile2',
+        'type' => 'main',
+        'context' => 'argument_entity_id:user_1',
         'id' => 1,
       ),
     ),
-    'relationships' => array(),
   );
   $display = new panels_display();
   $display->layout = 'one_three_one';
@@ -99,6 +99,7 @@ function dosomething_user_my_somethings_default_page_manager_handlers() {
             'paths' => 'user/*/doing-it
 user/*/done-it
 user/*/picks
+user/*picks/*
 user/*/complete-profile',
           ),
           'context' => 'empty',
@@ -132,6 +133,7 @@ user/*/complete-profile',
             'paths' => 'user/*/doing-it
 user/*/done-it
 user/*/picks
+user/*/picks/*
 user/*/complete-profile',
           ),
           'context' => 'empty',
@@ -165,6 +167,7 @@ user/*/complete-profile',
             'paths' => 'user/*/doing-it
 user/*/done-it
 user/*/picks
+user/*/picks/*
 user/*/complete-profile',
           ),
           'context' => 'empty',
@@ -175,6 +178,12 @@ user/*/complete-profile',
     $pane->configuration = array(
       'more_link' => 1,
       'path' => 'user/%user:uid/picks',
+      'arguments' => array(
+        'dosomething_causes_term_node_tid' => '%profile2:taxonomy_vocabulary_5',
+      ),
+      'context' => array(
+        0 => 'relationship_entity_from_schema:uid-user-profile2_1',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -297,14 +306,19 @@ user/*/complete-profile',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'user/*/picks',
+            'paths' => 'user/*/picks
+user/*/picks/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
         ),
       ),
     );
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'relationship_profile2_1',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
