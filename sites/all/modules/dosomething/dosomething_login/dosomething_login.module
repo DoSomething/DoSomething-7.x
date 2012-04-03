@@ -1390,7 +1390,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
   $form['#action'] = '/user/registration/fb/?destination=front';
   if (isset($_SESSION['fbuser'])) {
     $fbuser = $_SESSION['fbuser'];
-    $form['cell_or_email']['#value'] = $fbuser->email;
+    $form['email']['#value'] = $fbuser->email;
     $form['name']['first_name']['#value'] = $fbuser->first_name;
     $form['name']['last_name']['#value'] = $fbuser->last_name;
     $birthday = $fbuser->birthday;
