@@ -728,7 +728,6 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_picture']['element_class'] = 'pane-narrow-thumb';
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
