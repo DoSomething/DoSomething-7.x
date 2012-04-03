@@ -120,14 +120,14 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['arguments']['etid']['not'] = 0;
 
   /* Display: Members List */
-  $handler = $view->new_display('block', 'Members List', 'member_list');
+  $handler = $view->new_display('panel_pane', 'Members List', 'member_list');
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -189,9 +189,28 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['fields']['field_user_last_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_last_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_last_name']['field_api_classes'] = 0;
+  $handler->display->display_options['argument_input'] = array(
+    'field_webform_school_reference_target_id' => array(
+      'type' => 'context',
+      'context' => 'entity:ds_school.sid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Webform Submission: School (field_webform_school_reference)',
+    ),
+    'etid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'OG group: Entity id',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
 
   /* Display: Photo Gallery */
-  $handler = $view->new_display('block', 'Photo Gallery', 'photo_gallery');
+  $handler = $view->new_display('panel_pane', 'Photo Gallery', 'photo_gallery');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = '0';
@@ -238,16 +257,79 @@ function dosomething_campaign_schools_views_default_views() {
     'image_style' => 'member_photo_gallery',
     'image_link' => 'content',
   );
-  $handler->display->display_options['fields']['field_webform_pictures']['group_column'] = 'entity_id';
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_webform_pictures']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['operator'] = 'not empty';
+  $handler->display->display_options['argument_input'] = array(
+    'field_webform_school_reference_target_id' => array(
+      'type' => 'context',
+      'context' => 'entity:ds_school.sid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Webform Submission: School (field_webform_school_reference)',
+    ),
+    'etid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'OG group: Entity id',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
 
   /* Display: Schools List */
-  $handler = $view->new_display('block', 'Schools List', 'school_list');
+  $handler = $view->new_display('panel_pane', 'Schools List', 'school_list');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'rendered_entity' => 'rendered_entity',
+  );
+  $handler->display->display_options['row_options']['hide_empty'] = 0;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: School: ID */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'ds_school';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['relationship'] = 'field_webform_school_reference_target_id';
+  $handler->display->display_options['fields']['sid']['label'] = '';
+  $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['sid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['sid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
   /* Field: School: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'ds_school';
@@ -255,7 +337,8 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['fields']['name']['relationship'] = 'field_webform_school_reference_target_id';
   $handler->display->display_options['fields']['name']['label'] = '';
   $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['path'] = 'school/[sid]/!1';
   $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
@@ -298,6 +381,17 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
   $handler->display->display_options['filters']['state']['expose']['reduce'] = 0;
+  $handler->display->display_options['argument_input'] = array(
+    'etid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'OG group: Entity id',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['campaign_school_pages'] = $view;
 
   return $export;
