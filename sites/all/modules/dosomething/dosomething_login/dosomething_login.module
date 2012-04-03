@@ -588,6 +588,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   );
   $form['birthday'] = array(
     'month' => array(
+      '#field_prefix' => t('Birthday'),
       '#type' => 'textfield',
       '#attributes' => array(
         'placeholder' => t('mm'),
@@ -632,7 +633,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $form['signup'] = array(
     '#type' => 'item',
-    '#description' => t("Clicking ‘Finish’ won't sell your soul, but it means you agree to our <a href='/about/privacy'>terms of service</a> and want to receive our weekly update."),
+    '#description' => t("Clicking “Finish” won't sell your soul, but it means you agree to<br />our <a href='/about/privacy'>terms of service</a> and want to receive our weekly update."),
     '#prefix' => '<div class="disclaimer">',
     '#suffix' => '</div>',
   );
@@ -653,6 +654,22 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'html' => FALSE,
     ),
   );
+
+  // Set default values if this was submitted to the related registration block first.
+  if (isset($form_state['input']['form_id']) && $form_state['input']['form_id'] == 'dosomething_login_register_block') {
+    $form['name']['first_name']['#default_value'] = isset($form_state['input']['first_name']) ? $form_state['input']['first_name'] : '';
+    $form['name']['last_name']['#default_value'] = isset($form_state['input']['last_name']) ? $form_state['input']['last_name'] : '';
+    if (!empty($form_state['input']['cell_or_email'])) {
+      // If there was a valid entry then prepopulate.
+      // Otherwise, they'll have to re-enter anyway.
+      if (valid_email_address($form_state['input']['cell_or_email'])) {
+        $form['email']['#default_value'] =  $form_state['input']['cell_or_email'];
+      }
+      else if (($number = ltrim(preg_replace('/[^0-9]/', '', $form_state['input']['cell_or_email']), 1))) {
+        $form['cell']['#default_value'] =  $form_state['input']['cell_or_email'];
+      }
+    }
+  }
   return $form;
 }
 
@@ -758,7 +775,7 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   }
   // Validate cell number or e-mail address
   if (valid_email_address($values['email'])) {
-    if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($values['cell_or_email']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+    if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($values['email']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       form_set_error('email', t('The e-mail address %email is already registered. <a href="@password">Have you forgotten your password?</a>', array('%email' => $values['email'], '@password' => url('user/password'))));
     }
     $form_state['values']['mail'] = $values['email'];
@@ -1431,10 +1448,9 @@ function dosomething_login_facebook_friend_process($uid, $facebook_friends = arr
  * Log registration data when a user begins the registration process.
  */
 function dosomething_login_registration_data_page() {
-  // TODO: Pass key as setting to js.
   if (isset($_POST['ds_api_key']) && $_POST['ds_api_key'] == variable_get('dosomething_login_api_key', '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ')) {
     $data = new stdClass;
-    $required_fields = array('first_name', 'last_name', 'birthday', 'cell_or_email');
+    $required_fields = array('first_name', 'last_name');
     $query = db_delete('ds_registration_data');
 
     if (!isset($_POST['cell_or_email'])) {
@@ -1455,7 +1471,7 @@ function dosomething_login_registration_data_page() {
       $data->email = $_POST['cell_or_email'];
       $query->condition('email', $data->email);
     }
-    else if (($number = ltrim(preg_replace('/[^0-9]/', '', $_POST['cell_or_email']), 1)) && strlen($number) >= 10) {
+    else if (($number = ltrim(preg_replace('/[^0-9]/', '', $_POST['cell_or_email']), 1)) && strlen($number) >= 9) {
       if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
         exit;
       }

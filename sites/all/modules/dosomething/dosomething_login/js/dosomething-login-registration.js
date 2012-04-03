@@ -11,13 +11,14 @@
         var birthDate = new Date($("#edit-year").val(), $("#edit-month").val() - 1, $("#edit-day").val());
         var date13 = new Date(now.getFullYear() - 13, now.getMonth(), now.getDate());
         var year = $("#edit-year").val();
+        var under13 = $(".under-13-field");
 
         // Show/hide parent email based on birthday value.
         if (birthDate.getTime() >= date13.getTime() && year) {
-          $(".under-13-field").show();
+          under13.show();
         }
         else {
-          $(".under-13-field").hide();
+          under13.hide();
         }
       }
       popupForm.find("#edit-year, #edit-month, #edit-day").change(updateForm);

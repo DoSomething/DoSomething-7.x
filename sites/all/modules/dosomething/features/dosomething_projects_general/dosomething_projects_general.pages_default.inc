@@ -553,7 +553,7 @@ function dosomething_projects_general_default_page_manager_pages() {
           'settings' => array(
             'visibility_setting' => '1',
             'paths' => 'projects
-projects/most-recent',
+',
           ),
           'context' => 'empty',
           'not' => FALSE,
