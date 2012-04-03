@@ -2,15 +2,20 @@
 // LOGIN POPUP
 // white version
 ////////////////////////////
-
-#dosomething-login-register-popup-form
-  height: auto !important
+#block-dosomething-login-become-member
+  #dosomething-login-register-popup-form
+    height: auto !important
+    display: none
 
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   top: 188px !important
   background: $white
-  padding: 25px 33px
-  height:  486px !important
+  padding: 25px 34px
+  height:  485px !important
+  .ui-dialog .ui-dialog-titlebar
+    padding: 0
+  .ui-icon.ui-icon-closethick
+    margin: -20px -30px 0 0 !important
   input
     &[type="text"],
     &[type="textarea"]
@@ -19,6 +24,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       background: $white
       &:focus
         outline: none
+
+  // Facebook connect button
+  .connect-with-facebook .form-wrapper
+    margin-bottom: 0
+
+  #edit-connect
+    margin-bottom: 0
 
   // Title and border
   #edit-title-text
@@ -34,91 +46,93 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       padding-bottom: 12px
 
   .separator
-    text-align: center
-    font-size: 21px
     @extend .bold
+    font-size: 21px
     font-family: $font-headline
-    margin-bottom: 15px
+    margin-bottom: 12px
+    text-align: center
 
   // Field required asterisk and error message
   .ds-registration-form-required
-    +float-left
-    margin-left: -10px
+    float: right
+    top: 10px
+    right: 12px
     position: relative
-    z-index: 2000
 
   .error
     @extend .alert-red
     @extend .medium
     font-size: 12px
 
-  // First and last name fields
+  // Left column fields
   .form-item-first-name,
-  .form-item-last-name
-    +float-left
+  .form-item-email,
+  .form-item-pass,
+  .form-item-month,
+  .form-item-day,
+  .form-item-year
+    float: left
     input
-      margin-top: 15px
-      margin-bottom: 12px
+      margin-left: 18px
+      margin-top: 12px
       width: 212px
-      margin-left: 15px
-  .form-item-last-name
-    @extend .clearfix
 
-  // Cell or email field
-  .form-item-cell-or-email
+  // Right column fields
+  .form-item-last-name,
+  .form-item-cell
+    float: right
     input
-      margin-bottom: 12px
-      margin-left: 15px
+      margin-right: 14px
+      margin-top: 12px
       width: 212px
 
   // Birthday fields
   .form-item-month,
   .form-item-day,
   .form-item-year
-    clear: right
-    float: left
     input
+      margin-left: 16px
       width: 40px
-      margin-right: 12px
-      padding: 0
       text-align: center
+
   .form-item-month
-    clear: both
-    margin-left: 15px
+    .field-prefix
+      float: left
+      font-family: $font-sans
+      font-size: 12px
+      margin-left: 18px
+      margin-top: 17px
+    input
+      margin-left: 14px
 
   // Password fields
-
-  .form-type-password
-    @extend .clearfix
-    clear: both
-    margin-left: 15px
-
   .ok
     @extend .alert-green
 
-  // Weekly updates
+  // Finish terms and weekly update
   .disclaimer
     background: $gray6
-    margin-top: -140px
-    height: 250px
+    margin-top: -5px
+    height: 240px
     @extend .box-shadow
-    padding: 15px
+    padding: 18px
+    width: 478px
     .description
       float: left
       @extend .black
       font-size: 12px
-      padding-top: 10px
+      padding-top: 30px
     a
       @extend .blue
       text-decoration: underline
 
   .already-member
-    font-size: 18px
-    padding-top: 15px
-    padding-bottom: 6px
     @extend .bold
     font-family: $font-headline
     float: right
+    font-size: 18px
+    padding-top: 15px
+    padding-bottom: 6px
     a
       text-decoration: underline
 
@@ -126,5 +140,5 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
 input#edit-final-submit
   @extend .go-button
   float: right
-  margin-top: -38px
-  margin-right: 8px
+  margin-top: -40px
+  margin-right: 18px

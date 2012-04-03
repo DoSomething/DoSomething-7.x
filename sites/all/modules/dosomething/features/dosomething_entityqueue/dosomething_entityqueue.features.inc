@@ -1,13 +1,4 @@
 <?php
-/**
- * @file
- * dosomething_entityqueue.features.inc
- */
 
-/**
- * Implements hook_entityqueue_default_queues().
- */
-function dosomething_entityqueue_entityqueue_default_queues() {
-  $items = array();
-  return $items;
-}
+// This file is deprecated and can be removed.
+// Please remove include_once('dosomething_entityqueue.features.inc') in dosomething_entityqueue.module as well.

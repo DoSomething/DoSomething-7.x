@@ -4,9 +4,21 @@
  * Argument handler for taxonomy terms with depth.
  *
  * This handler is actually part of the node table and has some restrictions,
- * because it uses a subquery to find nodes with
+ * because it uses a subquery
  */
 class dosomething_causes_views_handler_argument_term_node_tid extends views_handler_argument_term_node_tid_depth {
+
+  function construct() {
+    parent::construct();
+    // This will have to change to be set by options if the methods are ever expanded
+    $this->group_field = 'nid';
+  }
+
+  function option_definition() {
+    $options = parent::option_definition();
+    $options['no_filter'] = array('default' => FALSE, 'bool' => TRUE);
+    return $options;
+  }
   
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
@@ -16,12 +28,18 @@ class dosomething_causes_views_handler_argument_term_node_tid extends views_hand
       '#description' => t('If selected, users can enter multiple values in the form of 1+2+3, 1,2,3 or 1, 2, 3. Due to the number of JOINs it would require, AND will be treated as OR with this filter.'),
       '#default_value' => !empty($this->options['break_phrase']),
     );
+    $form['no_filter'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Do not filter (sort only)'),
+      '#description' => t('If selected, this argument will only impact the order of results (direct matches, then parents, children, siblings, then non-matches).'),
+      '#default_value' => !empty($this->options['no_filter']),
+    );
     unset($form['depth']);
   }
 
-  function query($group_by = FALSE) {    
+  function query($group_by = FALSE) {
+    $group_by = TRUE;
     $this->ensure_my_table();
-    $hander = new stdclass;
     if (!empty($this->options['break_phrase'])) {
       $handler = new stdClass();
       $handler->value = $this->argument;
@@ -54,10 +72,10 @@ class dosomething_causes_views_handler_argument_term_node_tid extends views_hand
     else {
       $tids = $this->argument;
     }
+
     // Favor direct tid matches in the sort.
     $direct_tids = implode(', ', $tids);
-    $this->field_alias = $this->query->add_field(NULL, "IF($this->table_alias.$this->real_field IN ($direct_tids), 1, 0)", 'direct');
-    $this->query->add_orderby(NULL, NULL, 'DESC', 'direct');
+    $term_ordering = "8*IF($this->table_alias.$this->real_field IN ($direct_tids), 1, 0)";
 
     // Get parent tids
     $parent_tids = db_select('taxonomy_term_hierarchy', 'th')
@@ -82,30 +100,52 @@ class dosomething_causes_views_handler_argument_term_node_tid extends views_hand
       ->condition('th_siblings.parent', 0, '>')
       ->execute()
       ->fetchCol();
-
+    
     // Add parent tids and favor them in the sort.
     if ($parent_tids) {
        $tids = array_merge($tids, $parent_tids);
        $parent_tids = implode(', ', $parent_tids);
-       $this->field_alias = $this->query->add_field(NULL, "IF($this->table_alias.$this->real_field IN ($parent_tids), 1, 0)", 'parent');
-       $this->query->add_orderby(NULL, NULL, 'DESC', 'parent');
+       if (!empty($term_ordering)) {
+         $term_ordering .= ' + ';
+       }
+       $term_ordering .= "4*IF($this->table_alias.$this->real_field IN ($parent_tids), 1, 0)";
      }
 
      // Add child tids and favor them in the sort.
      if ($child_tids) {
        $tids = array_merge($tids, $child_tids);
        $child_tids = implode(', ', $child_tids);
-       $this->field_alias = $this->query->add_field(NULL, "IF($this->table_alias.$this->real_field IN ($child_tids), 1, 0)", 'child');
-       $this->query->add_orderby(NULL, NULL, 'DESC', 'child');
+       if (!empty($term_ordering)) {
+         $term_ordering .= ' + ';
+       }
+       $term_ordering .= "2*IF($this->table_alias.$this->real_field IN ($child_tids), 1, 0)";
      }
 
     // Add sibling tids.
     if ($sibling_tids) {
       $tids = array_merge($tids, $sibling_tids);
+      if (!empty($this->options['no_filter'])) {
+        $sibling_tids = implode(', ', $sibling_tids);
+        if (!empty($term_ordering)) {
+          $term_ordering .= ' + ';
+        }
+        $term_ordering .= "IF($this->table_alias.$this->real_field IN ($sibling_tids), 1, 0)";
+      }
     }
 
-    // Query for all relavent tids
-    $this->query->add_where(0, "$this->table_alias.$this->real_field", $tids, 'IN');
+    if (!empty($term_ordering)) {
+      $term_ordering = "MAX($term_ordering)";
+      // A having expression seems to be necessary to get views to use the group_by.
+      $this->query->add_having_expression(0, "nid > 0");
+
+      $this->field_alias = $this->query->add_field(NULL, $term_ordering, 'term_ordering');
+      $this->query->add_orderby(NULL, NULL, 'DESC', 'term_ordering');      
+    }
+
+    if (empty($this->options['no_filter'])) {
+      // Query for all relevant tids
+      $this->query->add_where(0, "$this->table_alias.$this->real_field", $tids, 'IN');
+    }
   }  
 }
 
