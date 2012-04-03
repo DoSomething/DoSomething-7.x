@@ -27,6 +27,62 @@ function dosomething_school_ctools_plugin_directory($owner, $plugin_type) {
   }
 }
 
+/**
+ * Create a views filter based on the IN operator to allow for the use of a
+ * state drop-down.
+ */
+class dosomething_school_state_filter extends views_handler_filter_in_operator {
+  function get_value_options() {
+    if (isset($this->value_options)) {
+      return;
+    }
+    $this->value_options = _dosomething_school_get_states();
+  }
+}
+
+/**
+ * Expose some of the fields to views. Yay!
+ */
+function dosomething_school_views_data() {
+  $data['ds_school']['table']['entity type'] = 'ds_school';
+  $data['ds_school']['table']['group'] = t('School');
+  $data['ds_school']['table']['base'] = array(
+    'field' => 'sid',
+    'title' => t('School'),
+    'defaults' => array(
+      'field' => 'name',
+    ),
+  );
+
+  $data['ds_school']['state'] = array(
+    'title' => t('State'),
+    'help' => t('The state the school is in.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'dosomething_school_state_filter',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+  );
+
+  $data['ds_school']['name'] = array(
+    'title' => t('Name'),
+    'help' => t('The name of the school.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+  );
+
+  return $data;
+}
 
 /**
  * Implements hook_entity_info().
@@ -125,28 +181,11 @@ function dosomething_school_field_widget_settings_form($field, $instance) {
 }
 
 /**
- * Implements hook_field_widget_form().
+ * Reusable helper function to get a list of available states.
  */
-function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  $default_state = '--';
-  $default_school = '';
-  if (empty($items[0]['target_id'])) {
-	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
-    // Try to use the profile's state.
-    $profile = profile2_load_by_user($GLOBALS['user'], 'main');
-    if (!empty($profile->field_user_address['und'][0]['administrative_area'])) {
-      $default_state = $profile->field_user_address['und'][0]['administrative_area'];
-    }
-  }
-  // TODO: Why use the target_type when we're hardcoding it to only work with schools?
-  elseif ($entity = entity_load_single($field['settings']['target_type'], $items[0]['target_id'])) {
-    $default_state = $entity->state;
-    $default_school = dosomething_school_make_label($entity);
-  }
-
+function _dosomething_school_get_states() {
   // TODO: we might need to expand this out to Canada.
-  $states = array(
-    '  ' => t('- Select one -'),
+  return array(
     'AL' => t('Alabama'),
     'AK' => t('Alaska'),
     'AS' => t('American Samoa'),
@@ -206,6 +245,30 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     'WI' => t('Wisconsin'),
     'WY' => t('Wyoming'),
   );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  $default_state = '--';
+  $default_school = '';
+  if (empty($items[0]['target_id'])) {
+	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
+    // Try to use the profile's state.
+    $profile = profile2_load_by_user($GLOBALS['user'], 'main');
+    if (!empty($profile->field_user_address['und'][0]['administrative_area'])) {
+      $default_state = $profile->field_user_address['und'][0]['administrative_area'];
+    }
+  }
+  // TODO: Why use the target_type when we're hardcoding it to only work with schools?
+  elseif ($entity = entity_load_single($field['settings']['target_type'], $items[0]['target_id'])) {
+    $default_state = $entity->state;
+    $default_school = dosomething_school_make_label($entity);
+  }
+
+  $states = _dosomething_school_get_states();
+  $states = array('  ' => t('- Select one -')) + $states;
 
   $element['#attached']['js'][] = drupal_get_path('module', 'dosomething_school') . '/dosomething_school.js';
   $element['#element_validate'][] = '_dosomething_school_autocomplete_validate';

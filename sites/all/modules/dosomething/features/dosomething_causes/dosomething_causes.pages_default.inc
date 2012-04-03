@@ -192,7 +192,7 @@ function dosomething_causes_default_page_manager_handlers() {
       ),
     );
     $pane->configuration = array(
-      'admin_title' => 'Cause page title',
+      'admin_title' => 'Cause Title when there IS a master parent',
       'title' => '',
       'body' => '<h1 class="title">Cause: %term:field_cause_master_parent</h1>',
       'format' => '3',
@@ -211,23 +211,41 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'top';
-    $pane->type = 'term_description';
-    $pane->subtype = 'term_description';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:taxonomy_term:vocabulary_5:field_cause_master_parent',
+          'settings' => array(
+            'field_cause_master_parent' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => NULL,
+                ),
+              ),
+            ),
+            'field_cause_master_parent_tid' => '_none',
+          ),
+          'context' => 'argument_term_1',
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array(
-      'context' => 'argument_term_1',
-      'override_title' => 1,
-      'override_title_text' => '',
+      'admin_title' => 'Cause title when there ISN\'T a master parent',
+      'title' => '',
+      'body' => '<h1 class="title">Cause: %term:parent</h1>',
+      'format' => '1',
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
+    $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
-    $pane->locks = '';
+    $pane->position = 1;
+    $pane->locks = array();
     $display->content['new-6'] = $pane;
     $display->panels['top'][1] = 'new-6';
     $pane = new stdClass();
