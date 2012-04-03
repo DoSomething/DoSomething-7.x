@@ -3629,6 +3629,31 @@ comments.fb_iframe_widget {
   color: #d4d2d1 !important;
 }
 
+.facebook-plugin {
+  float: left;
+  margin-right: 21px;
+  width: 50px;
+}
+
+.social-plugin-wrapper {
+  overflow: hidden;
+  *zoom: 1;
+}
+.social-plugin-wrapper .connect_widget_number_cloud,
+.social-plugin-wrapper .twitter-plugin,
+.social-plugin-wrapper .sharethis-plugin {
+  float: left;
+}
+.social-plugin-wrapper .connect_widget_number_cloud .stBubble,
+.social-plugin-wrapper .twitter-plugin .stBubble,
+.social-plugin-wrapper .sharethis-plugin .stBubble {
+  margin-top: 0;
+}
+.social-plugin-wrapper .twitter-plugin {
+  margin-right: 21px;
+  width: 55px;
+}
+
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -4014,25 +4039,6 @@ comments.fb_iframe_widget {
 }
 .page-taxonomy-term .region-content .node-teaser .field-type-text-with-summary p {
   margin-bottom: 12px;
-}
-
-.content .fb-social-like-plugin {
-  display: inline;
-  float: left;
-}
-.content .connect_widget_number_cloud {
-  margin-right: 6px;
-}
-.content .twitter-plugin {
-  display: inline;
-  float: left;
-  margin-left: -12px;
-  margin-right: 24px;
-}
-.content .sharethis-plugin {
-  display: inline;
-  float: left;
-  margin-top: -8px;
 }
 
 .pane-ds-current-somethings-all a.back,
