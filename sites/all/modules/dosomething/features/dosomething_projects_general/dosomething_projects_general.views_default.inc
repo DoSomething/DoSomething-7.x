@@ -1012,29 +1012,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Content: Short Description */
-  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
-  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['label'] = '';
-  $handler->display->display_options['fields']['field_description']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_description']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_description']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_description']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_description']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_description']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_description']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_description']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_description']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_description']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Sticky */
   $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';

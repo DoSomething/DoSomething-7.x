@@ -566,7 +566,7 @@ h3.subhead
 .right-sidebar-headlines
   a
     @extend .headers
-    @extend .bold
+    font-size: bold
     @extend .blue
     +remove-link-underlines
     &.hover
@@ -670,6 +670,8 @@ h3.subhead
       border-bottom: none
   .views-field-title
     @extend .right-sidebar-headlines
+    a
+      font-weight: bold
   .project-related-thumb,
   .pane-narrow-thumb
     float: left
@@ -678,9 +680,6 @@ h3.subhead
       margin-right: $s0
       height: 60px
       width: 60px
-  .views-field-field-description p,
-  .views-field-field-campaign-teaser p
-    margin-left: 72px
 
 // Start a project link on project submission pages
 .start-a-project
