@@ -35,6 +35,6 @@ $plugin = array(
     array('title' => 'gallery', 'href' => 'prom/gallery'),
     array('title' => 'faq', 'href' => 'prom/faq'),
     array('title' => 'blog', 'href' => 'prom/blog'),
-    array('title' => 'tell us about it', => 'href' => 'prom/report-back'),
+    array('title' => 'tell us about it', 'href' => 'prom/report-back'),
   ),
 );
