@@ -39,4 +39,39 @@ function dosomething_profile_form_user_profile_form_alter(&$form, &$form_state, 
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'dosomething_profile') . '/alter_school_state.js',
   );
+  $form['picture']['#access'];
 }
+
+
+/**
+ * Implements hook_user_login().
+ */
+function dosomething_profile_user_login(&$edit, $account) {
+  if ($account->uid) {
+  // Check if they have connected through Facebook.
+    if ($fbid = db_query('SELECT fbid from {fboauth_users} WHERE uid = :uid', array(':uid' => $account->uid))->fetchField()) {
+      $picture_directory =  file_default_scheme() . '://' . variable_get('user_picture_path', 'pictures');
+      if(file_prepare_directory($picture_directory, FILE_CREATE_DIRECTORY)){
+        $picture_result = drupal_http_request('https://graph.facebook.com/' . $fbid . '/picture?type=large');
+        $picture_path = file_stream_wrapper_uri_normalize($picture_directory . '/picture-' . $account->uid . '.jpg');
+        $picture_file = file_save_data($picture_result->data, $picture_path, FILE_EXISTS_REPLACE);
+
+        // Check to make sure the picture isn't too large for the site settings.
+        $max_dimensions = variable_get('user_picture_dimensions', '85x85');
+        file_validate_image_resolution($picture_file, $max_dimensions);
+
+        // Update the user record.
+        $picture_file->uid = $account->uid;
+        $picture_file = file_save($picture_file);
+        file_usage_add($picture_file, 'user', 'user', $account->uid);
+        db_update('users')
+          ->fields(array(
+          'picture' => $picture_file->fid,
+          ))
+          ->condition('uid', $account->uid)
+          ->execute();
+      }
+    }
+  }
+}
+

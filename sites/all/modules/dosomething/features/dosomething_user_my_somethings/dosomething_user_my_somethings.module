@@ -586,7 +586,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $profile_completion = dosomething_user_my_somethings_profile_completion(FALSE);
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
-  $variables['member_picture'] = theme('user_picture', array('account' => $account));
+  $variables['member_picture'] = theme_image_style(array('style_name' => 'action_results_thumbnail', 'path' => $account->picture->uri));
 
   // Check to see if the profile object was loaded, if not, assign some junk
   // values to prevent the user page from blowing up.
