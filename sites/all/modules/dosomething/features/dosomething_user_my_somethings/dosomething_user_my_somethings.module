@@ -103,6 +103,8 @@ function dosomething_user_my_somethings_member_block() {
  * Markup for how much of the profile is finished.
  */
 function dosomething_user_my_somethings_profile_completion($sidebar = TRUE) {
+  // TODO: This should receive an account and not use global user.
+  // This is broken when admins view another profile.
   global $user;
   $ratio = 0;
   if (module_exists('dosomething_roles')) {
