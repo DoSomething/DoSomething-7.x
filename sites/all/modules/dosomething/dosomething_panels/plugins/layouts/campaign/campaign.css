@@ -68,7 +68,8 @@
 .ds-panel .go-button {
   position: absolute;
   right: 16px;
-  bottom: 10px; }
+  bottom: 10px;
+  padding-top: 8px; }
 
 .pane-campaign-sign-up .pane-title {
   white-space: nowrap;
