@@ -81,6 +81,18 @@ function dosomething_school_views_data() {
     ),
   );
 
+  $data['ds_school']['sid'] = array(
+    'title' => t('ID'),
+    'help' => t('The unique ID of the school.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+  );
+
   return $data;
 }
 
