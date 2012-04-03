@@ -500,9 +500,12 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'widget' => array(
         'module' => 'og',
         'settings' => array(
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'group/autocomplete',
           'opt_group' => 'auto',
+          'size' => 60,
         ),
-        'type' => 'group_audience',
+        'type' => 'group_audience_autocomplete',
         'weight' => 31,
       ),
       'widget_type' => 'group_audience',
