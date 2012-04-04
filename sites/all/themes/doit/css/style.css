@@ -3440,10 +3440,12 @@ h2.block-title, h2.pane-title {
 }
 
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
-  top: 188px !important;
   background: white;
   padding: 25px 34px;
   height: 485px !important;
+  top: 90px !important;
+  right: 30%;
+  left: 30%;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog .ui-dialog-titlebar {
   padding: 0;
