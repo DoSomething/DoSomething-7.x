@@ -231,6 +231,14 @@ function dosomething_causes_default_page_manager_handlers() {
           'context' => 'argument_term_1',
           'not' => TRUE,
         ),
+        1 => array(
+          'name' => 'term_parent',
+          'settings' => array(
+            'vid' => '5',
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
       ),
     );
     $pane->configuration = array(
