@@ -82,7 +82,7 @@ function dosomething_campaign_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '15',
+        'weight' => '11',
       ),
     ),
   );
@@ -151,7 +151,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '5',
       ),
     ),
   );
@@ -294,7 +294,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '14',
+        'weight' => '10',
       ),
     ),
   );
@@ -434,7 +434,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '6',
       ),
     ),
   );
@@ -507,7 +507,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -831,7 +831,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -913,7 +913,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '12',
+        'weight' => '8',
       ),
     ),
   );
@@ -1129,7 +1129,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '11',
+        'weight' => '7',
       ),
     ),
   );
@@ -1219,6 +1219,149 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_counter_aggregation'
+  $fields['node-campaign-field_counter_aggregation'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_counter_aggregation',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 18,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_counter_aggregation',
+      'label' => 'Counter Aggregation Field',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '14',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_report_back_html'
+  $fields['node-campaign-field_report_back_html'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_report_back_html',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'This is the HTML copy that will be displayed after the user has signed up in the sign-up block. Make sure to check your input type.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 19,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_report_back_html',
+      'label' => 'Report Back HTML',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '15',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-group_group'
   $fields['node-campaign-group_group'] = array(
     'field_config' => array(
@@ -1296,7 +1439,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '13',
+        'weight' => '9',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1472,7 +1615,9 @@ function dosomething_campaign_field_default_fields() {
   t('Call to action');
   t('Campaign Date');
   t('Causes/Issues');
+  t('Counter Aggregation Field');
   t('Enter a call to action for this campaign.');
+  t('Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.');
   t('Facebook Sharing Language');
   t('Foreground color');
   t('Group type');
@@ -1486,8 +1631,10 @@ function dosomething_campaign_field_default_fields() {
   t('Please select a start and end date for the campaign.');
   t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
+  t('Report Back HTML');
   t('Teaser');
   t('Text to appear in Current Campaigns list');
+  t('This is the HTML copy that will be displayed after the user has signed up in the sign-up block. Make sure to check your input type.');
   t('Twitter Sharing Language');
   t('Upload an image for display on the Start Something landing page slideshow.');
   t('Upload an image to be displayed on the campaign list page.');
