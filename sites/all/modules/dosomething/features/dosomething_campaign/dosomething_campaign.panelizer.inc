@@ -14,7 +14,7 @@ function dosomething_campaign_panelizer_defaults() {
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
   $panelizer->name = 'node:campaign_content_page:default';
-  $panelizer->title = '';
+  $panelizer->title = 'Default';
   $panelizer->panelizer_type = 'node';
   $panelizer->panelizer_key = 'campaign_content_page';
   $panelizer->no_blocks = FALSE;
@@ -40,7 +40,7 @@ function dosomething_campaign_panelizer_defaults() {
       'id' => 1,
     ),
   );
-  $panelizer->did = 90;
+  $panelizer->did = 100;
   $display = new panels_display();
   $display->layout = 'campaign';
   $display->layout_settings = array();
