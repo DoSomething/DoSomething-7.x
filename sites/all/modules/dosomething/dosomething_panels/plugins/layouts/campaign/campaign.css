@@ -51,12 +51,13 @@
   font-weight: 600;
   line-height: 1em; }
 
-.three-boxes {
+.panel-row-flexible .three-boxes {
   border: 1px solid white;
   width: 29%;
   float: left;
-  margin-right: 6.5%; }
-  .three-boxes:last-child {
+  margin-right: 6.5%;
+  height: 200px; }
+  .panel-row-flexible .three-boxes:last-child {
     margin-right: 0; }
 
 .panel-row-flexible .panel-pane {
