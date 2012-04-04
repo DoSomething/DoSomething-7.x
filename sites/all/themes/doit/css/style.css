@@ -3710,6 +3710,7 @@ comments.fb_iframe_widget {
 
 .views-exposed-form {
   margin-top: 12px;
+  margin-bottom: 12px;
 }
 .views-exposed-form .views-exposed-widgets {
   *zoom: 1;
