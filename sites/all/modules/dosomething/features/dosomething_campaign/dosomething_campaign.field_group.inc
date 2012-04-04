@@ -51,7 +51,7 @@ function dosomething_campaign_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Social Sharing',
-    'weight' => '16',
+    'weight' => '17',
     'children' => array(
       0 => 'field_campaign_facebook_language',
       1 => 'field_campaign_twitter_language',

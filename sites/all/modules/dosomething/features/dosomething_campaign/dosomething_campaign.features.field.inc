@@ -1228,7 +1228,7 @@ function dosomething_campaign_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_counter_aggregation',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -1291,6 +1291,78 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_counter_text'
+  $fields['node-campaign-field_counter_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_counter_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 20,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_counter_text',
+      'label' => 'Counter Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '14',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_report_back_html'
   $fields['node-campaign-field_report_back_html'] = array(
     'field_config' => array(
@@ -1300,7 +1372,7 @@ function dosomething_campaign_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_report_back_html',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -1357,7 +1429,7 @@ function dosomething_campaign_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -1616,6 +1688,7 @@ function dosomething_campaign_field_default_fields() {
   t('Campaign Date');
   t('Causes/Issues');
   t('Counter Aggregation Field');
+  t('Counter Text');
   t('Enter a call to action for this campaign.');
   t('Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.');
   t('Facebook Sharing Language');
