@@ -79,16 +79,23 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
     return;
   }
 
-  // Let users know that they only have access to the form for 24 hours.
   $submission = isset($form['#submission']) ? $form['#submission'] : NULL;
   if (!empty($submission) && $submission->sid && !$submission->is_draft) {
+    // Let users know that they only have access to the form for 24 hours.
     if ($user->uid == $submission->uid) {
       $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
       if (REQUEST_TIME <= ($timestamp)) {
         drupal_set_message(t('You may continue to edit this form until %date', array('%date' => date('m/d/Y g:ia', $timestamp))));
       }
     }
+    // Pass along previous participants so they don't get contacted again.
+    if (!empty($form['#submission']->field_participants[LANGUAGE_NONE])) {
+      $form_state['previous_participants'] = $form['#submission']->field_participants[LANGUAGE_NONE];
+    }
   }
+
+  $form['#submit'][] = 'dosomething_projects_general_participants_submit';
+  $form['#validate'][] = 'dosomething_projects_general_participants_validate';
 }
 
 /**
@@ -112,3 +119,27 @@ function dosomething_projects_general_webform_menu_submission_access($node, $sub
   return webform_submission_access($node, $submission, $op, $account);
 }
 
+/**
+ * Project submission submit callback.
+ */
+function dosomething_projects_general_participants_submit(&$form, &$form_state) {
+  //TODO: Make project a group
+  // See if participants exist as users:
+  //// If yes - add to group
+  //// If no - send email or mobile, make sure they haven't been sent once already (project is editable for 24hrs); 
+}
+
+/**
+ * Validation callback to check email or mobile entry.
+ */
+function dosomething_projects_general_participants_validate($form, &$form_state) {
+  foreach ($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE] as $key => $values) {
+    if (is_numeric($key) && !empty($values['value'])) {
+      if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['value']), 1)) && strlen($number) == 10 || valid_email_address($values['value']) === TRUE) {
+      }
+      else {
+          form_set_error('field_participants', t('%value is not a valid e-mail address or mobile number.', array('%value' => $values['value'])));
+      }
+    }
+  }
+}
