@@ -22,3 +22,8 @@ function dosomething_campaign_node_validate($node, $form, &$form_state) {
      */
   }
 }
+
+function dosomething_campaign_panelizer_defaults_alter(&$export) {
+  module_load_include('inc', 'dosomething_campaign', 'dosomething_campaign.panelizer');
+  $export = array_merge($export, dosomething_campaign_panelizer_defaults());
+}
