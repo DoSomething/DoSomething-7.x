@@ -3712,7 +3712,6 @@ comments.fb_iframe_widget {
   margin-top: 12px;
 }
 .views-exposed-form .views-exposed-widgets {
-  margin-bottom: 30px;
   *zoom: 1;
 }
 .views-exposed-form .views-exposed-widgets:after {
@@ -3749,6 +3748,12 @@ comments.fb_iframe_widget {
 
 .view .progress-disabled {
   float: none;
+}
+
+.ctools-auto-submit-full-form {
+  overflow: hidden;
+  *zoom: 1;
+  width: 100%;
 }
 
 .apps-grid {
