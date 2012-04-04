@@ -29,10 +29,10 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'trashy'),
-    array('title' => 'take action', 'href' => 'trashy/take-action'),
-    array('title' => 'store locator', 'href' => '#'),
-    array('title' => 'contests', 'href' => '#'),
-    array('title' => 'report back', 'href' => 'trashy/report-back'),
-    array('title' => 'photo gallery', 'href' => '#'),
+    array('title' => 'gallery', 'href' => 'trashy/gallery'),
+    array('title' => 'create your own', 'href' => 'trashy/user-gallery'),
+    array('title' => 'project ideas', 'href' => 'trashy/project-ideas'),
+    array('title' => 'prizes/scholarships', 'href' => 'trashy/prizes'),
+    array('title' => 'tell us about it', 'href' => 'trashy/tell-us'),
   ),
 );
