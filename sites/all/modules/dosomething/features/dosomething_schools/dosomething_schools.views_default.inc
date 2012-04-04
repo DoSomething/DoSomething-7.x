@@ -44,6 +44,7 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['fields']['name']['table'] = 'search_api_index_school_location_index';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
@@ -53,6 +54,7 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['name']['alter']['html'] = 0;
@@ -139,7 +141,8 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[city], [state] [zip] ';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h2>[label]
+[city], [state] [zip]</h2>';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
@@ -148,6 +151,7 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
@@ -160,6 +164,7 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['filters']['lat_lon']['id'] = 'lat_lon';
   $handler->display->display_options['filters']['lat_lon']['table'] = 'search_api_index_school_location_index';
   $handler->display->display_options['filters']['lat_lon']['field'] = 'lat_lon';
+  $handler->display->display_options['filters']['lat_lon']['group'] = '0';
   $handler->display->display_options['filters']['lat_lon']['exposed'] = TRUE;
   $handler->display->display_options['filters']['lat_lon']['expose']['operator_id'] = 'lat_lon_op';
   $handler->display->display_options['filters']['lat_lon']['expose']['label'] = 'Latitude and longitude';
