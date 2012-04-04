@@ -1300,6 +1300,16 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   content: "Start a Project";
 }
 
+img.goright {
+  float: right;
+  margin-left: 10px;
+}
+
+img.goleft {
+  float: left;
+  margin-right: 10px;
+}
+
 body.front .selectBox-dropdown-menu {
   position: absolute;
   z-index: 99999;
