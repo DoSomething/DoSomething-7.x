@@ -64,5 +64,16 @@ function dosomething_campaign_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_campaign_content_page'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'panelizer_defaults_node_campaign_content_page';
+  $strongarm->value = array(
+    'status' => 1,
+    'default' => 1,
+    'choice' => 0,
+  );
+  $export['panelizer_defaults_node_campaign_content_page'] = $strongarm;
+
   return $export;
 }
