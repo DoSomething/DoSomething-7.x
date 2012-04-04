@@ -35,8 +35,9 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_render($subty
         ->execute();
 
       if (!empty($sign_ups)) {
+        $campaign_entity = array_shift(entity_load($context->entity_type, array($context->etid)));
         $block = new stdClass();
-        $block->content = $conf['report_back_html'];
+        $block->content = $campaign_entity->field_report_back_html[LANGUAGE_NONE][0]['value'];
       }
 
     }
@@ -52,6 +53,7 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_admin_title($
   return t('Campaign Sign-Up');
 }
 
+/*
 function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['report_back_html'] = array(
@@ -69,4 +71,4 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form_sub
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
 }
-
+*/
