@@ -19,13 +19,8 @@
       function validPhone(phone) {
         // Check for no spaces or dashes and remove country code.
         // We assume all users are US or Canada.
-        phone = phone.replace(/^(1-|1)/, '');
-        var valid = /^\d+$/.test(phone) && phone.length == 10;
-        if (!valid) {
-          // Check for dashes
-          valid = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(phone) && phone.length == 12;
-        }
-        return valid;
+        phone = phone.replace(/^1/, '').replace(/[^0-9]/g, '');
+        return phone.length == 10;
       }
 
       popupForm.hide();
