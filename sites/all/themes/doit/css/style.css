@@ -1857,6 +1857,10 @@ a.selectBox:hover, a.selectBox:active, .selectBox-dropdown-menu a:hover, .select
   text-decoration: none;
 }
 
+strong {
+  font-weight: bold;
+}
+
 small {
   font-size: 0.618em;
   line-height: 3.236em;
