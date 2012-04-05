@@ -7,10 +7,10 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #0f87c9
-$complement: #ffffff
+$baseColor: #f48B8C
+$complement: #92d2ba
 $secondaryLink: black
-$contentBG: #bfdae8
+$contentBG: #f0ebde
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -22,11 +22,11 @@ $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.jpg')
-$bgFallback: #2387c7
+$bgFallback: #f0ebde
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: rgba(249,246,243,.99)
+  background: #ffffff
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -138,7 +138,7 @@ div[role="main"]
     font-family: $accent
     .pane-title
       background: none
-      color: $baseColor
+      color: $complement
       padding: 0
       font-size: 26px
       line-height: 1em
@@ -151,7 +151,7 @@ div[role="main"]
 .panel-row-actions
   +block
   .pane-title
-    background: $baseColor
+    background: $complement
   .pane-content
     padding: 18px
 
@@ -162,7 +162,7 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
+    color: $complement
     line-height: 1.3em
     font-weight: 500
   .pane-content
@@ -184,7 +184,7 @@ div[role="main"]
 .panel-row-ad-psa
   background: transparent
   .pane-title
-    background: $baseColor
+    background: $complement
   .pane-content
     background: none  
     padding: 0
@@ -193,7 +193,7 @@ div[role="main"]
   .panel-pane
     +block
     .pane-title
-      background: $baseColor
+      background: $complement
   .blog
     background: transparent
     &:before, &:after
