@@ -243,10 +243,12 @@ div[role="main"] {
   .trashy-sponsor-logo p {
     margin: 0; }
 
-.trashy-three-boxes p {
-  font-weight: 600; }
-.trashy-three-boxes .pane-content {
-  height: 166px; }
+.trashy-three-boxes {
+  text-align: center; }
+  .trashy-three-boxes p {
+    font-weight: 600; }
+  .trashy-three-boxes .pane-content {
+    height: 166px; }
 
 .trashy-two-boxes {
   float: left;
