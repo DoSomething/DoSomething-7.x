@@ -123,16 +123,51 @@ function dosomething_projects_general_webform_menu_submission_access($node, $sub
  * Project submission submit callback.
  */
 function dosomething_projects_general_participants_submit(&$form, &$form_state) {
-  //TODO: Make project a group
-  // See if participants exist as users:
-  //// If yes - add to group
-  //// If no - send email or mobile, make sure they haven't been sent once already (project is editable for 24hrs); 
+  // Don't do anything for an incomplete webform.
+  if (empty($form_state['webform_completed']) || !$form_state['values']['details']['sid'] || !module_exists('og')) {
+    return;
+  }
+
+  // Load up the group and create if it doesn't already exist.
+  $group = og_get_group('webform_submission_entity', $form_state['values']['details']['sid'], TRUE);
+  if (!isset($group->gid)) {
+    $group->save();
+  }
+  if (count($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE])) {
+    foreach ($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE] as $delta => $item) {
+      // Attach the account to the group if it exists.
+      $account = FALSE;
+      if (valid_email_address($item['value'])) {
+        $account = user_load_by_mail($item['value']);
+      }
+      else if (($number = ltrim(preg_replace('/[^0-9]/', '', $item['value']), 1)) && strlen($number) == 10) {
+        if ($name = dosomething_login_find_user_by_cell($number)) {
+          $account = user_load_by_name($name);
+        }
+      }
+      if ($account) {
+        og_group($group->gid, array('entity' => $account));
+      }
+      else {
+        // TODO: Send email or text depending on whether they've already received one.
+        // If not - send email or mobile, make sure they haven't been sent once already (project is editable for 24hrs); 
+      }
+    }
+  }
 }
 
 /**
  * Validation callback to check email or mobile entry.
  */
 function dosomething_projects_general_participants_validate($form, &$form_state) {
+  if (!isset($form_state['values']['submitted']['field_participants'])) {
+    return;
+  }
+  else {
+    // Work around for bug in webform_entity.
+    unset($form_state['values']['submitted']['personal_information']['field_project_clubs'][LANGUAGE_NONE]['add_more']);
+    unset($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE]['add_more']);
+  }
   foreach ($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE] as $key => $values) {
     if (is_numeric($key) && !empty($values['value'])) {
       if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['value']), 1)) && strlen($number) == 10 || valid_email_address($values['value']) === TRUE) {
