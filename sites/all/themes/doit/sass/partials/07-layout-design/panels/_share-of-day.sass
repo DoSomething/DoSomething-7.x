@@ -3,30 +3,64 @@
 // Share of the Day on the Homepage
 ////////////////////////////
 
-.pane-share-of-day
-  border: 1px $white solid
-  @extend .headers
-  @extend .bold
-  p
-    margin-bottom: 0
-  .pane-content
-    padding: 30px 15px 15px 15px
-  .quote,
-  .fact
-    font-size: $s7
-    line-height: 35px
-  .quote
-    text-align: center
+// Layout styling for social node plugins
+#mini-panel-home_page
+  .panel-col-first
+    .inside
+      border: 1px $white solid
+      padding-bottom: 30px
+    .pane-content
+      padding: 0 24px
+
+  .panel-col-last
+    .panel-separator
+      margin: 0
+    .panel-pane
+      margin-bottom: 0
+
+  .pane-share-of-day
+    border:
+      top: 1px $white solid
+      right: 1px $white solid
+      left: 1px $white solid
+    @extend .headers
+    @extend .bold
     p
+      margin-bottom: 0
+    .pane-content
+      padding: 30px 15px 15px 15px
+    .quote,
+    .fact
+      font-size: $s7
+      line-height: 35px
+    .quote
+      text-align: center
+      p
+        &:before
+          content: '“'
+        &:after
+          content: '”'
+    .picture
+      text-align: center
+    .attribution
+      font-size: $s5
+      margin-top: 20px
+      text-align: right
       &:before
-        content: '“'
-      &:after
-        content: '”'
-  .picture
-    text-align: center
-  .attribution
-    font-size: $s5
-    margin-top: 20px
-    text-align: right
-    &:before
-      content: '– '
+        content: '– '
+
+  .pane-dosomething-blocks-dosomething-social-node-buttons
+    border:
+      bottom: 1px $white solid
+      right: 1px $white solid
+      left: 1px $white solid
+    float: none
+    padding:
+      bottom: 30px
+      top: 30px
+      left: 90px
+    position: relative
+    width: 100%
+
+  .pane-dosomething-blocks-dosomething-make-impact-front
+    margin-top: 18px

@@ -484,7 +484,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .suggest-a-cause:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .suggest-a-cause:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
 .pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
@@ -533,7 +533,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .pane-current-campaigns-panel-pane-2 .unimage-wrapper h2,
 .action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, ol li:before, dfn, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
-.vital-stats .name, .pane-share-of-day, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .separator, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
+.vital-stats .name, #mini-panel-home_page .pane-share-of-day, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .separator, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
@@ -1250,11 +1250,6 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   background: #efefef;
 }
 
-.view-news-stuff {
-  border: 1px solid white;
-  padding-bottom: 24px;
-}
-
 .pane-news-stuff .pane-content h3 {
   font-size: 1.75em;
   line-height: 1.143em;
@@ -1271,7 +1266,10 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   margin-right: 14px;
 }
 .pane-news-stuff .views-row {
-  padding: 30px 24px 0 24px;
+  padding-top: 30px;
+}
+.pane-news-stuff .news-title {
+  padding-top: 15px;
 }
 
 .pane-narrow-block ul, .panes-2 .panel-second ul, .pane-blog-center ul {
@@ -3320,39 +3318,68 @@ h2.block-title, h2.pane-title {
   padding-top: 6px;
 }
 
-.pane-share-of-day {
+#mini-panel-home_page .panel-col-first .inside {
   border: 1px white solid;
+  padding-bottom: 30px;
 }
-.pane-share-of-day p {
+#mini-panel-home_page .panel-col-first .pane-content {
+  padding: 0 24px;
+}
+#mini-panel-home_page .panel-col-last .panel-separator {
+  margin: 0;
+}
+#mini-panel-home_page .panel-col-last .panel-pane {
   margin-bottom: 0;
 }
-.pane-share-of-day .pane-content {
+#mini-panel-home_page .pane-share-of-day {
+  border-top: 1px white solid;
+  border-right: 1px white solid;
+  border-left: 1px white solid;
+}
+#mini-panel-home_page .pane-share-of-day p {
+  margin-bottom: 0;
+}
+#mini-panel-home_page .pane-share-of-day .pane-content {
   padding: 30px 15px 15px 15px;
 }
-.pane-share-of-day .quote,
-.pane-share-of-day .fact {
+#mini-panel-home_page .pane-share-of-day .quote,
+#mini-panel-home_page .pane-share-of-day .fact {
   font-size: 30px;
   line-height: 35px;
 }
-.pane-share-of-day .quote {
+#mini-panel-home_page .pane-share-of-day .quote {
   text-align: center;
 }
-.pane-share-of-day .quote p:before {
+#mini-panel-home_page .pane-share-of-day .quote p:before {
   content: "“";
 }
-.pane-share-of-day .quote p:after {
+#mini-panel-home_page .pane-share-of-day .quote p:after {
   content: "”";
 }
-.pane-share-of-day .picture {
+#mini-panel-home_page .pane-share-of-day .picture {
   text-align: center;
 }
-.pane-share-of-day .attribution {
+#mini-panel-home_page .pane-share-of-day .attribution {
   font-size: 21px;
   margin-top: 20px;
   text-align: right;
 }
-.pane-share-of-day .attribution:before {
+#mini-panel-home_page .pane-share-of-day .attribution:before {
   content: "– ";
+}
+#mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
+  border-bottom: 1px white solid;
+  border-right: 1px white solid;
+  border-left: 1px white solid;
+  float: none;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-left: 90px;
+  position: relative;
+  width: 100%;
+}
+#mini-panel-home_page .pane-dosomething-blocks-dosomething-make-impact-front {
+  margin-top: 18px;
 }
 
 .ui-dialog {
