@@ -7,14 +7,14 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #f48B8C
-$complement: #92d2ba
+$baseColor: #f48B8C /* pink */
+$complement: #92d2ba /* teal */
 $secondaryLink: black
-$contentBG: #f0ebde
+$contentBG: #f0ebde /* light gray */
 
 // borders
-$borderTop: 1px solid rgba(0,0,0,.5)
-$borderBot: 1px solid rgba(255,255,255,.5)
+$borderTop: 1px solid $baseColor
+$borderBot: 1px solid $baseColor
 
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
@@ -22,7 +22,7 @@ $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.jpg')
-$bgFallback: #f0ebde
+$bgFallback: $contentBG
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -162,9 +162,11 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $complement
+    color: #000000
     line-height: 1.3em
     font-weight: 500
+    &:after
+      border: none
   .pane-content
     padding: 0
     background: transparent
