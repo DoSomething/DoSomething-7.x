@@ -234,6 +234,11 @@ div[role="main"] {
   .trashy-project-ideas-body li a {
     color: black; }
 
+.trashy-report-back-body a {
+  color: white; }
+.trashy-report-back-body label {
+  font-weight: 600; }
+
 .trashy-social .pane-content {
   padding: 0.5em; }
 
