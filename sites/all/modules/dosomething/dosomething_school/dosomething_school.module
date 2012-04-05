@@ -209,6 +209,9 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
 
   $element['#attached']['js'][] = drupal_get_path('module', 'dosomething_school') . '/dosomething_school.js';
   $element['#element_validate'][] = '_dosomething_school_autocomplete_validate';
+  $element['#type'] = 'fieldset';
+  $element['#title'] = $instance['label'];
+
   $element['state'] = array(
     '#title' => t('State'),
     '#type' => 'select',
@@ -228,7 +231,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#size' => $instance['widget']['settings']['size'],
   );
   $element['street'] = array(
-    '#title' => t('Street address'),
+    '#title' => t('Street Address'),
     '#type' => 'textfield',
     '#required' => TRUE,
     '#validated' => TRUE,
@@ -240,10 +243,11 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#validated' => TRUE,
   );
   $element['zip'] = array(
-    '#title' => t('Zip code'),
+    '#title' => t('Zip Code'),
     '#type' => 'textfield',
     '#required' => TRUE,
     '#validated' => TRUE,
+    '#size' => 6,
   );
 
   return array('target_id' => $element);
@@ -268,7 +272,7 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
         }
       }
       if ($element['zip']['#value'] && preg_match("@\d{5}@", $element['zip']['#value']) != 1) {
-        form_error($element[$key], t('Invalid zip code'));
+        form_error($element[$key], t('Invalid !name', array('!name' => $element[$key]['#title'])));
         $valid = FALSE;
       }
 
