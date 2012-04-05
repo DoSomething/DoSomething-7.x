@@ -29,7 +29,7 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'prom'),
-    array('title' => 'run a drive', 'href' => 'prom/take-action'),
+    array('title' => 'run a drive', 'href' => 'prom/drive'),
     array('title' => 'scholarships', 'href' => 'prom/scholarships'),
     array('title' => 'prizes', 'href' => 'prom/prizes'),
     array('title' => 'gallery', 'href' => 'prom/gallery'),
