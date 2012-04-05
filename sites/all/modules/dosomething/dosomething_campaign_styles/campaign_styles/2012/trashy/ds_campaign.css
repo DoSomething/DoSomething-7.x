@@ -231,6 +231,8 @@ div[role="main"] {
 
 .trashy-project-ideas-body li {
   font-size: 1.25em; }
+  .trashy-project-ideas-body li a {
+    color: black; }
 
 .trashy-social .pane-content {
   padding: 0.5em; }
