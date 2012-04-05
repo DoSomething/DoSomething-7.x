@@ -227,6 +227,24 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#required' => $instance['required'],
     '#size' => $instance['widget']['settings']['size'],
   );
+  $element['street'] = array(
+    '#title' => t('Street address'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#validated' => TRUE,
+  );
+  $element['city'] = array(
+    '#title' => t('City'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#validated' => TRUE,
+  );
+  $element['zip'] = array(
+    '#title' => t('Zip code'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#validated' => TRUE,
+  );
 
   return array('target_id' => $element);
 }
@@ -241,28 +259,45 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
       $value = (int) $matches[1];
     }
     else {
-      global $user;
+      // Assume their data is valid until we notice otherwise.
+      $valid = TRUE;
+      foreach (array('street', 'city', 'zip') as $key) {
+        if (drupal_strlen(trim($element[$key]['#value'])) == 0) {
+          form_error($element[$key], t('!name is required.', array('!name' => $element[$key]['#title'])));
+          $valid = FALSE;
+        }
+      }
+      if ($element['zip']['#value'] && preg_match("@\d{5}@", $element['zip']['#value']) != 1) {
+        form_error($element[$key], t('Invalid zip code'));
+        $valid = FALSE;
+      }
 
-      // Create a school.
-      $row = (object) array(
-        'uid' => $user->uid,
-        'name' => $element['name']['#value'],
-        'state' => $element['state']['#value'],
-        # TODO I don't think we can or should populate the rest of these:
-        // 'gsid' => NULL,
-        // 'level' => NULL,
-        // 'city' => NULL,
-        // 'zip' => NULL,
-        // 'lat' => NULL,
-        // 'lon' => NULL,
-      );
-      if (entity_save('ds_school', $row)) {
-        $value = $row->sid;
+      // Try to create a new school for them.
+      if ($valid) {
+        global $user;
+
+        // Create a school.
+        $row = (object) array(
+          'uid' => $user->uid,
+          'name' => $element['name']['#value'],
+          'street' => $element['street']['#value'],
+          'city' => $element['city']['#value'],
+          'state' => $element['state']['#value'],
+          'zip' => $element['zip']['#value'],
+          # TODO I don't think we can or should populate the rest of these:
+          // 'gsid' => NULL,
+          // 'level' => NULL,
+          // 'lat' => NULL,
+          // 'lon' => NULL,
+        );
+        if (entity_save('ds_school', $row)) {
+          $value = $row->sid;
+        }
       }
     }
   }
 
-  // Update the value of this element so the field can validate the IDs.
+  // Update the value of this element so the field can validate the ID.
   form_set_value($element, $value, $form_state);
 }
 
