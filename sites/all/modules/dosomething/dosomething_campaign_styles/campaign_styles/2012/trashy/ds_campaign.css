@@ -3,6 +3,12 @@ a {
   a:hover {
     color: black; }
 
+b {
+  font-weight: 600; }
+
+hr {
+  border: 1px solid #0f87c9; }
+
 h1.title {
   display: none; }
 
@@ -141,12 +147,20 @@ div[role="main"] {
     background: transparent; }
 
 .panel-row-ad-psa {
-  background: transparent; }
+  background: transparent;
+  bottom: 0;
+  position: absolute;
+  right: 0; }
   .panel-row-ad-psa .pane-title {
     background: #0f87c9; }
   .panel-row-ad-psa .pane-content {
     background: none;
     padding: 0; }
+  .panel-row-ad-psa img {
+    width: 100%; }
+
+.panel-row-ad {
+  position: relative; }
 
 .panel-row-flexible .panel-pane {
   background: rgba(249, 246, 243, 0.99); }
@@ -188,3 +202,60 @@ div[role="main"] {
   margin: 5px 0 0 20px;
   position: relative;
   top: 10px; }
+
+.margin-bottom-0 {
+  margin-bottom: 0; }
+
+.trashy-campaign-date {
+  color: #0f87c9;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1em;
+  margin-bottom: 0; }
+  .trashy-campaign-date .pane-content {
+    padding: 0; }
+
+.trashy-campaign-teaser {
+  margin-bottom: 0; }
+  .trashy-campaign-teaser .pane-content {
+    padding: 0; }
+    .trashy-campaign-teaser .pane-content p {
+      margin: 0; }
+
+.trashy-email-us {
+  text-align: right; }
+
+.trashy-headline {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-align: center; }
+
+.trashy-project-ideas-body li {
+  font-size: 1.25em; }
+
+.trashy-social .pane-content {
+  padding: 0.5em; }
+
+.trashy-sponsor-logo {
+  margin-bottom: 0;
+  text-align: right; }
+  .trashy-sponsor-logo img {
+    width: 15%; }
+  .trashy-sponsor-logo p {
+    margin: 0; }
+
+.trashy-three-boxes p {
+  font-weight: 600; }
+.trashy-three-boxes .pane-content {
+  height: 166px; }
+
+.trashy-two-boxes {
+  float: left;
+  width: 50%; }
+  .trashy-two-boxes .pane-content {
+    height: 300px;
+    text-align: center; }
+    .trashy-two-boxes .pane-content h2 {
+      color: black;
+      font-size: 3.5em;
+      font-weight: 600;
+      padding: 0.25em; }
