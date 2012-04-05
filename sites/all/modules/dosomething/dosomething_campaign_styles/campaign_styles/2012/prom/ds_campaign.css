@@ -33,16 +33,16 @@ div[role="main"] {
   *zoom: 1;
   display: block;
   content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  border-top: 1px solid #f48b8c;
+  border-bottom: 1px solid #f48b8c; }
 
 .line-bottom:after {
   overflow: hidden;
   *zoom: 1;
   display: block;
   content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  border-top: 1px solid #f48b8c;
+  border-bottom: 1px solid #f48b8c; }
 
 /* universal declarations to be overridden per block if necessary */
 .pane-content {
@@ -117,9 +117,11 @@ div[role="main"] {
   padding: 0;
   background: transparent;
   text-transform: uppercase;
-  color: #92d2ba;
+  color: black;
   line-height: 1.3em;
   font-weight: 500; }
+  .panel-row-ad-quick-info .pane-title:after {
+    border: none; }
 .panel-row-ad-quick-info .pane-content {
   padding: 0;
   background: transparent; }
@@ -136,8 +138,8 @@ div[role="main"] {
     *zoom: 1;
     display: block;
     content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid #f48b8c;
+    border-bottom: 1px solid #f48b8c;
     margin-bottom: 20px;
     background: transparent; }
 
@@ -160,15 +162,15 @@ div[role="main"] {
     *zoom: 1;
     display: block;
     content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+    border-top: 1px solid #f48b8c;
+    border-bottom: 1px solid #f48b8c; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
     overflow: hidden;
     *zoom: 1;
     display: block;
     content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+    border-top: 1px solid #f48b8c;
+    border-bottom: 1px solid #f48b8c; }
 
 .panel-row-logos .pane-title {
   color: #f48b8c;
