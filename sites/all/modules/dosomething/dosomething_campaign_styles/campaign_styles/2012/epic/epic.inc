@@ -29,10 +29,10 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'epic'),
-    array('title' => 'take action', 'href' => 'epic/take-action'),
-    array('title' => 'store locator', 'href' => 'epic/store-locator'),
-    array('title' => 'contests', 'href' => 'epic/contests'),
-    array('title' => 'report back', 'href' => 'epic/report-back'),
-    array('title' => 'photo gallery', 'href' => 'epic/gallery'),
+    array('title' => 'run a drive', 'href' => 'epic/run-a-drive'),
+    array('title' => 'resources', 'href' => 'epic/resources'),
+    array('title' => 'schools', 'href' => 'epic/schools'),
+    array('title' => 'win stuff!', 'href' => 'epic/prizes'),
+    array('title' => 'faq', 'href' => 'epic/faq'),
   ),
 );
