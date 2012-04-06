@@ -41,7 +41,7 @@ function dosomething_stats_counter_content_type_render($subtype, $conf, $args, $
   $items = array();
 
   if ($entity_type == 'node' && $bundle == 'action_guide') {
-    $message = t('I WANT TO DO THIS!');
+    $message = t('DO THIS!');
     $href = 'node/718313';
     $query = array('action_guide' => $entity_id);
 
