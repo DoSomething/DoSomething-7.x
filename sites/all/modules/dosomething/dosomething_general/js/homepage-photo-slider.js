@@ -11,7 +11,7 @@ Drupal.behaviors.featuredNews = {
     // Add Classes so JS degrades when JS disabled.
     $(".view-home-slideshow").addClass('photo-slider');
     $(".view-home-slideshow .view-content .views-row").addClass('photo-slider-row');
-    
+
     $(".view-home-slideshow .view-content .views-row:not(:first)").hide();
 
     // Keep track of hover state.
@@ -22,7 +22,7 @@ Drupal.behaviors.featuredNews = {
 
     setTimeout(function() {
       feature_cycle();
-    }, 3000);
+    }, 5000);
 
     // Add the numbered tabs.
     $(".view-home-slideshow").append('<div class="slide-count"></div>');
@@ -66,7 +66,7 @@ function feature_cycle() {
   // And repeat.
   setTimeout(function() {
     feature_cycle();
-  }, 3000);
+  }, 5000);
 }
 
 }(jQuery));

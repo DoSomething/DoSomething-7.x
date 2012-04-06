@@ -244,13 +244,55 @@ function dosomething_causes_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = '<div class="suggest-a-cause">
-<a class="go-button" title="Go" href="/suggest-a-cause">Go</a>
-</div>
-Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tumblr brunch aesthetic twee farm-to-table. High life locavore +1, messenger bag terry richardson butcher salvia.';
+  $handler->display->display_options['header']['area']['content'] = '<p>We have resources and project ideas for every issue you can think of. Browse below for easy ways to get involved in your community around your favorite cause.</p>';
   $handler->display->display_options['header']['area']['format'] = '3';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Term ID */
+  $handler->display->display_options['fields']['tid']['id'] = 'tid';
+  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['tid']['field'] = 'tid';
+  $handler->display->display_options['fields']['tid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['tid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['tid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['tid']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['tid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['tid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['tid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['tid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['tid']['format_plural'] = 0;
+  /* Field: Go link */
+  $handler->display->display_options['fields']['dosomething_causes_link']['id'] = 'dosomething_causes_link';
+  $handler->display->display_options['fields']['dosomething_causes_link']['table'] = 'views';
+  $handler->display->display_options['fields']['dosomething_causes_link']['field'] = 'dosomething_causes_link';
+  $handler->display->display_options['fields']['dosomething_causes_link']['ui_name'] = 'Go link';
+  $handler->display->display_options['fields']['dosomething_causes_link']['label'] = '';
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['text'] = 'taxonomy/term/[tid]';
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['dosomething_causes_link']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['dosomething_causes_link']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['dosomething_causes_link']['hide_alter_empty'] = 0;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -281,7 +323,8 @@ Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tum
   $handler->display->display_options['fields']['field_causes_image']['field'] = 'field_causes_image';
   $handler->display->display_options['fields']['field_causes_image']['label'] = '';
   $handler->display->display_options['fields']['field_causes_image']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_causes_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['path'] = '[dosomething_causes_link]';
   $handler->display->display_options['fields']['field_causes_image']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['alter']['replace_spaces'] = 0;
@@ -289,6 +332,7 @@ Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tum
   $handler->display->display_options['fields']['field_causes_image']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_causes_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_causes_image']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_causes_image']['alter']['html'] = 0;
@@ -340,6 +384,7 @@ Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tum
   $handler->display->display_options['fields']['field_causes_image_1']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_causes_image_1']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_causes_image_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_causes_image_1']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_causes_image_1']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_causes_image_1']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_causes_image_1']['alter']['html'] = 0;
@@ -377,51 +422,6 @@ Locavore farm-to-table bicycle rights, artisan 8-bit four loko wes anderson. Tum
   $handler->display->display_options['fields']['description_1']['hide_empty'] = 0;
   $handler->display->display_options['fields']['description_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['description_1']['hide_alter_empty'] = 0;
-  /* Field: Taxonomy term: Term ID */
-  $handler->display->display_options['fields']['tid']['id'] = 'tid';
-  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['tid']['field'] = 'tid';
-  $handler->display->display_options['fields']['tid']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['tid']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['tid']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['tid']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['tid']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['tid']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['tid']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['tid']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['tid']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['tid']['format_plural'] = 0;
-  /* Field: Go link */
-  $handler->display->display_options['fields']['dosomething_causes_link']['id'] = 'dosomething_causes_link';
-  $handler->display->display_options['fields']['dosomething_causes_link']['table'] = 'views';
-  $handler->display->display_options['fields']['dosomething_causes_link']['field'] = 'dosomething_causes_link';
-  $handler->display->display_options['fields']['dosomething_causes_link']['ui_name'] = 'Go link';
-  $handler->display->display_options['fields']['dosomething_causes_link']['label'] = '';
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['text'] = 'taxonomy/term/[tid]';
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['dosomething_causes_link']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['dosomething_causes_link']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['dosomething_causes_link']['hide_alter_empty'] = 0;
   /* Field: Title link */
   $handler->display->display_options['fields']['dosomething_causes_link_1']['id'] = 'dosomething_causes_link_1';
   $handler->display->display_options['fields']['dosomething_causes_link_1']['table'] = 'views';

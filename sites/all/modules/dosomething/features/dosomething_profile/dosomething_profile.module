@@ -39,7 +39,7 @@ function dosomething_profile_form_user_profile_form_alter(&$form, &$form_state, 
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'dosomething_profile') . '/alter_school_state.js',
   );
-  $form['picture']['#access'];
+  $form['picture']['#access'] = FALSE;
 }
 
 

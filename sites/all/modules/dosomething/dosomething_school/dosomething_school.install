@@ -44,6 +44,13 @@ function dosomething_school_schema() {
         'not null' => TRUE,
         'default' => '',
       ),
+      'street' => array(
+        'description' => 'Street address.',
+        'type' => 'varchar',
+        'length' => 127,
+        'not null' => TRUE,
+        'default' => '',
+      ),
       'city' => array(
         'description' => 'City.',
         'type' => 'varchar',
@@ -90,4 +97,19 @@ function dosomething_school_schema() {
     ),
   );
   return $schema;
+}
+
+/**
+ * Add a field for the street address.
+ */
+function dosomething_school_update_7000() {
+  db_add_field('ds_school', 'street',
+    array(
+      'description' => 'Street address.',
+      'type' => 'varchar',
+      'length' => 127,
+      'not null' => TRUE,
+      'default' => '',
+    )
+  );
 }
