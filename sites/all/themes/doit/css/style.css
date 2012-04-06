@@ -3823,6 +3823,10 @@ comments.fb_iframe_widget {
   width: 55px;
 }
 
+.fb_edge_widget_with_comment span.fb_edge_comment_widget {
+  width: 410px;
+}
+
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
