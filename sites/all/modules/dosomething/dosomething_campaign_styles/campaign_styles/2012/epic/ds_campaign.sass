@@ -57,8 +57,8 @@ h1.title
   display: none
 
 hr
-  border-top: 1px solid rgba(0,0,0,0.5)
-  border-bottom: 1px solid rgba(255,255,255,0.5)
+  border-top: $borderTop
+  border-bottom: $borderBot
 
 body
   background-color: $bgFallback
@@ -186,6 +186,9 @@ div[role="main"]
     padding: 0
 
 // custom
+.border-none
+  border: none !important
+
 .clear-both
   clear: both
 
@@ -224,6 +227,15 @@ div[role="main"]
     font-size: $fontHeaderSize
     font-weight: $boldWeight
   .pane-content
+    p
+      margin-bottom: 1em
+
+.run-a-drive-body
+  h3
+    color: white
+    font-size: 1.5em
+    font-weight: $boldWeight
+  li
     p
       margin-bottom: 1em
 

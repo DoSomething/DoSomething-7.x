@@ -144,6 +144,9 @@ div[role="main"] {
   margin: 0;
   padding: 0; }
 
+.border-none {
+  border: none !important; }
+
 .clear-both {
   clear: both; }
 
@@ -181,6 +184,13 @@ div[role="main"] {
   font-size: 26px;
   font-weight: 600; }
 .panel-row-ad-quick-info .pane-content p {
+  margin-bottom: 1em; }
+
+.run-a-drive-body h3 {
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600; }
+.run-a-drive-body li p {
   margin-bottom: 1em; }
 
 .text-align-right {
