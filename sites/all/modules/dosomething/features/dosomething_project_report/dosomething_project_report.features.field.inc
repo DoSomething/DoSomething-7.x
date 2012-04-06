@@ -1136,7 +1136,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 17,
+          'weight' => '17',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1155,7 +1155,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '18',
+        'weight' => '19',
       ),
     ),
   );
@@ -1327,7 +1327,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '16',
+          'weight' => '20',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1352,7 +1352,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'geocoder_handler' => 'google',
         ),
         'type' => 'geocoder',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -1405,7 +1405,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 18,
+          'weight' => '18',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1420,7 +1420,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '19',
+        'weight' => '20',
       ),
     ),
   );
@@ -1624,7 +1624,73 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '16',
+        'weight' => '17',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-field_participants'
+  $fields['webform_submission_entity-project_report-field_participants'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_participants',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'List the email address or mobile number of anyone who donated time or goods to your project.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '10',
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_participants',
+      'label' => 'Who else participated in your project/drive?',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '14',
       ),
     ),
   );
@@ -1717,6 +1783,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_project_clubs',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'nid' => array(
           'columns' => array(
@@ -1734,89 +1803,59 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'settings' => array(
         'profile2_private' => FALSE,
         'referenceable_types' => array(
-          '1in3_abuse_old' => 0,
-          '301_redirects' => 0,
-          '911_registration' => 0,
-          'abc_family' => 0,
           'action_guide' => 0,
           'api_key' => 0,
-          'aspca_grant_app' => 0,
           'awards_archive' => 0,
           'bc_bio_form' => 0,
-          'campaign_bfb_2011' => 0,
+          'blog' => 0,
+          'campaign' => 0,
+          'campaign_art_2011' => 0,
           'campaign_bully_2011' => 0,
-          'campaign_ebd_2011' => 0,
+          'campaign_cancer_2011' => 0,
+          'campaign_contact_form' => 0,
+          'campaign_content_page' => 0,
           'campaign_ew_2011' => 0,
-          'campaign_gys_2011' => 0,
-          'campaign_hunt_2011' => 0,
           'campaign_macys_2011' => 0,
           'campaign_report_back' => 0,
           'campaign_sign_up' => 0,
           'campaign_sports_2011' => 0,
-          'canned_food' => 0,
-          'cause' => 0,
+          'cancer_2011_signup' => 0,
           'cause_video' => 0,
-          'celebs_gone_good' => 0,
-          'chatterbox' => 0,
           'club' => 'club',
           'club_event' => 0,
-          'club_first_meeting_cash' => 0,
-          'custom_voting' => 0,
           'decade_2011_signup' => 0,
-          'ds101_action_kit' => 0,
           'ds_award_judging' => 0,
           'dsaward_app' => 0,
           'dsaward_rec' => 0,
           'dsu_askprof' => 0,
           'dsu_guides' => 0,
           'easy_idea' => 0,
-          'ebd_signup' => 0,
-          'editorial_project' => 0,
+          'editorial_content_' => 0,
           'ewaste_signup_2011' => 0,
           'final_grant_update' => 0,
-          'forum' => 0,
-          'general_grant_app' => 0,
-          'general_scholarship_app' => 0,
-          'grant' => 0,
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'gys_2011' => 0,
-          'healthy_schools' => 0,
-          'healthy_schools_report' => 0,
           'help_ticket' => 0,
-          'ididthis' => 0,
-          'increaseyourgreen_signup' => 0,
-          'issue' => 0,
           'member_opportunity' => 0,
           'page' => 0,
           'poll' => 0,
           'press' => 0,
-          'project' => 0,
           'project_report' => 0,
           'project_update' => 0,
-          'save_our_music' => 0,
-          'scavenger_2011_signup' => 0,
+          'scholarship' => 0,
           'scholarship_application' => 0,
-          'scholarship_update' => 0,
-          'scholarships_att' => 0,
+          'school' => 0,
           'scroller' => 0,
-          'sfs_report_gallery' => 0,
-          'sixflags_scholarships_app' => 0,
-          'staff_blog' => 0,
-          'staples_2011_signup' => 0,
-          'staples_members' => 0,
-          'staples_reason' => 0,
-          'tackle_hunger' => 0,
-          'tfj_contest_signup' => 0,
+          'share_of_day' => 0,
+          'sponsor' => 0,
           'tips_and_tools' => 0,
-          'troop_letter' => 0,
           'webform' => 0,
         ),
         'view' => array(
           'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
+          'display_name' => 'references_1',
+          'view_name' => 'user_groups_reference_options',
         ),
       ),
       'translatable' => '0',
@@ -1848,11 +1887,15 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'nodereference_url',
         'settings' => array(
           'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'node_reference/autocomplete',
           'edit_fallback' => 0,
           'fallback' => 'select',
-          'node_link' => array(),
-          'size' => '60',
+          'node_link' => array(
+            'destination' => 'default',
+            'full' => 0,
+            'hover_title' => '',
+            'teaser' => 0,
+            'title' => '',
+          ),
         ),
         'type' => 'nodereference_url',
         'weight' => '13',
@@ -1902,7 +1945,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '13',
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1967,7 +2010,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '12',
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2038,7 +2081,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '14',
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2114,7 +2157,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '10',
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2314,7 +2357,7 @@ Use numbers only (no text).',
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '15',
+          'weight' => '16',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2337,7 +2380,7 @@ Use numbers only (no text).',
           ),
         ),
         'type' => 'addressfield_standard',
-        'weight' => '14',
+        'weight' => '15',
       ),
     ),
   );
@@ -2378,7 +2421,7 @@ Use numbers only (no text).',
             'file_view_mode' => 'media_small',
           ),
           'type' => 'media',
-          'weight' => '11',
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -2415,6 +2458,86 @@ Use numbers only (no text).',
         ),
         'type' => 'media_generic',
         'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-project_report-group_group'
+  $fields['webform_submission_entity-project_report-group_group'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'group_group',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'no_ui' => TRUE,
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Not a group type',
+          1 => 'Group type',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Determine if this is an OG group.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'og_ui',
+          'settings' => array(),
+          'type' => 'og_group_subscribe',
+          'weight' => '19',
+        ),
+      ),
+      'display_label' => 1,
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'group_group',
+      'label' => 'Group',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'view modes' => array(
+        'full' => array(
+          'custom settings' => FALSE,
+          'label' => 'Full',
+          'type' => 'og_group_subscribe',
+        ),
+        'teaser' => array(
+          'custom settings' => FALSE,
+          'label' => 'Teaser',
+          'type' => 'og_group_subscribe',
+        ),
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '21',
       ),
     ),
   );
@@ -2500,18 +2623,21 @@ Use numbers only (no text).');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Describe the steps you will take/took to create your project or organization.');
+  t('Determine if this is an OG group.');
   t('Did you do this project with a DoSomething Club?');
   t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('File attachments');
   t('Geocode Data');
   t('Goal');
   t('Grant/Scholarship');
+  t('Group');
   t('How Can Others Help? ');
   t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
   t('Issues');
+  t('List the email address or mobile number of anyone who donated time or goods to your project.');
   t('Measurable impact');
   t('Please don\'t use BMP files.
 Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
@@ -2535,6 +2661,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What\'s the problem you are trying to solve?');
   t('What\'s your plan of action?');
+  t('Who else participated in your project/drive?');
   t('please select the most appropriate one, thanks!');
 
   return $fields;

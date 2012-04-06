@@ -166,24 +166,6 @@ h3.subhead
   @extend .headers
   font-size: $s3
 
-// Commas after taxonomy terms
-.field-name-taxonomy-vocabulary-5
-  .field-item
-    &:after
-      content: ', '
-    &:last-of-type
-      &:after
-        content: ''
-
-// Commas after taxonmy terms
-.field-name-taxonomy-vocabulary-5
-  .field-item
-    &:after
-      content: ', '
-    &:last-of-type
-      &:after
-        content: ''
-
 ////////////////////////////
 // PURPLE RIBBON
 // home page
@@ -566,7 +548,7 @@ h3.subhead
 .right-sidebar-headlines
   a
     @extend .headers
-    @extend .bold
+    font-size: bold
     @extend .blue
     +remove-link-underlines
     &.hover
@@ -633,9 +615,6 @@ h3.subhead
     // padding: 20px
 
 // News & Stuff panel
-.view-news-stuff
-  border: 1px solid $white
-  padding-bottom: 24px
 .pane-news-stuff
   .pane-content
     h3
@@ -651,7 +630,9 @@ h3.subhead
       @extend .border-and-shadow
   .views-row
     @extend .clearfix
-    padding: 30px 24px 0 24px
+    padding-top: 30px
+  .news-title
+    padding-top: 15px
 
 
 // Narrow block with header, thumbnail, and title with teaser
@@ -670,6 +651,8 @@ h3.subhead
       border-bottom: none
   .views-field-title
     @extend .right-sidebar-headlines
+    a
+      font-weight: bold
   .project-related-thumb,
   .pane-narrow-thumb
     float: left
@@ -678,9 +661,6 @@ h3.subhead
       margin-right: $s0
       height: 60px
       width: 60px
-  .views-field-field-description p,
-  .views-field-field-campaign-teaser p
-    margin-left: 72px
 
 // Start a project link on project submission pages
 .start-a-project
@@ -692,6 +672,14 @@ h3.subhead
     @extend .gray2
 
 ////////////////////////////
-// OLD EXTENDABLE CLASSES
-// refactor or remove
+// OLD CLASSES
+// asked to include by client for content
 ////////////////////////////
+
+img.goright
+  float: right
+  margin-left: 10px
+
+img.goleft
+  float: left
+  margin-right: 10px

@@ -2,10 +2,23 @@
 // PLUGIN STYLES FOR THE SOCIAL PLUGINS
 //  Called in dosomething_blocks_social_node_plugins in dosomething_blocks.module
 ////////////////////////////
+
+.panel-one-two .panel-top
+  +pie-clearfix
+  +ds-bevel-single
+  margin-bottom: 15px
+
+.pane-dosomething-blocks-dosomething-social-node-buttons
+  float: left
+  margin-bottom: 0
+  width: 50%
+.pane-dosomething-blocks-dosomething-facepile-general
+  float: right
+  margin-bottom: 0
+  width: 50%
+
 .facebook-plugin
   float: left
-  margin-right: 21px
-  width: 50px
 
 .social-plugin-wrapper
   +clearfix
@@ -18,3 +31,7 @@
   .twitter-plugin
     margin-right: 21px
     width: 55px
+
+// Width for facebook like dialog getting cut in chrome
+.fb_edge_widget_with_comment span.fb_edge_comment_widget
+  width: 410px
