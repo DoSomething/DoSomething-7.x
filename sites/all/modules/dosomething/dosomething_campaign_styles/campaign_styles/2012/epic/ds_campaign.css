@@ -3,6 +3,9 @@ a {
   a:hover {
     color: black; }
 
+b {
+  font-weight: 600; }
+
 h1.title {
   display: none; }
 
@@ -14,9 +17,8 @@ body {
 
 div[role="main"] {
   background: rgba(188, 134, 70, 0.4);
-  -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 20px;
   padding-top: 10px; }
@@ -27,6 +29,11 @@ div[role="main"] {
   margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
+  .three-boxes .pane-content {
+    font-weight: 600;
+    height: 166px;
+    padding: 1.5em;
+    text-align: center; }
 
 .line-top:before {
   overflow: hidden;
@@ -135,3 +142,43 @@ div[role="main"] {
   background: none;
   margin: 0;
   padding: 0; }
+
+.clear-both {
+  clear: both; }
+
+.margin-bottom-0 {
+  margin-bottom: 0; }
+  .margin-bottom-0 .pane-content {
+    padding-bottom: 0; }
+    .margin-bottom-0 .pane-content p {
+      margin-bottom: 0; }
+
+.mcommons-webform {
+  float: left;
+  width: 66%;
+  margin-right: 5%; }
+  .mcommons-webform input.field {
+    width: 100%; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .pane-content {
+    padding: 0.5em; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 46%;
+  margin-right: 4%; }
+
+.pane-node-field-campain-date {
+  color: #d33936;
+  font-weight: 600; }
+
+.panel-row-ad-quick-info h2 {
+  color: black;
+  font-size: 26px;
+  font-weight: 600; }
+.panel-row-ad-quick-info .pane-content p {
+  margin-bottom: 1em; }
+
+.text-align-right {
+  text-align: right; }

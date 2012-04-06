@@ -19,6 +19,10 @@ $borderBot: 1px solid rgba(255,255,255,.5)
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
+// custom font vars
+$boldWeight: 600
+$fontHeaderSize: 26px
+
 // page background
 $imageBackground: url('assets/bg.jpg')
 $bgFallback: #F5C36E
@@ -46,6 +50,9 @@ a
   &:hover
     color: $secondaryLink
 
+b
+  font-weight: $boldWeight
+
 h1.title
   display: none
 
@@ -67,7 +74,11 @@ div[role="main"]
   margin-right: 6.5%
   &:last-child
     margin-right: 0
-
+  .pane-content
+    font-weight: $boldWeight
+    height: 166px
+    padding: 1.5em
+    text-align: center
 
 .line-top
   &:before
@@ -112,7 +123,7 @@ div[role="main"]
       background: none
       color: $baseColor
       padding: 0
-      font-size: 26px
+      font-size: $fontHeaderSize
       line-height: 1em
     .pane-content
       font-size: 21px
@@ -139,7 +150,7 @@ div[role="main"]
   .pane-content
     h3
       color: $baseColor
-      font-size: 26px
+      font-size: $fontHeaderSize
       text-transform: uppercase
       font-weight: 600
       line-height: 1em
@@ -169,3 +180,46 @@ div[role="main"]
     background: none
     margin: 0
     padding: 0
+
+// custom
+.clear-both
+  clear: both
+
+.margin-bottom-0
+  margin-bottom: 0
+  .pane-content
+    padding-bottom: 0
+    p
+      margin-bottom: 0
+
+.mcommons-webform
+  float: left
+  width: 66%
+  margin-right: 5%
+  input.field
+    width: 100%
+  label
+    font-weight: $boldWeight
+  .pane-content
+    padding: 0.5em
+
+.mcommons-webform-column
+  float: left
+  width: 46%
+  margin-right: 4%
+
+.pane-node-field-campain-date
+  color: $baseColor
+  font-weight: $boldWeight
+
+.panel-row-ad-quick-info
+  h2
+    color: black
+    font-size: $fontHeaderSize
+    font-weight: $boldWeight
+  .pane-content
+    p
+      margin-bottom: 1em
+
+.text-align-right
+  text-align: right
