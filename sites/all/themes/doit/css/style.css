@@ -855,20 +855,6 @@ h3.subhead {
   font-size: 17px;
 }
 
-.field-name-taxonomy-vocabulary-5 .field-item:after {
-  content: ", ";
-}
-.field-name-taxonomy-vocabulary-5 .field-item:last-of-type:after {
-  content: "";
-}
-
-.field-name-taxonomy-vocabulary-5 .field-item:after {
-  content: ", ";
-}
-.field-name-taxonomy-vocabulary-5 .field-item:last-of-type:after {
-  content: "";
-}
-
 .purple-ribbon {
   font-size: 33px;
 }
@@ -2343,10 +2329,12 @@ ul.inline, ul.inline li {
 
 .field-type-taxonomy-term-reference .field-item {
   display: inline;
-  margin-right: 0.75em;
 }
-.field-type-taxonomy-term-reference .field-item:after:not(:last-child) {
+.field-type-taxonomy-term-reference .field-item:after {
   content: ", ";
+}
+.field-type-taxonomy-term-reference .field-item:last-child:after {
+  content: "";
 }
 
 .field-label-above .field-label {
