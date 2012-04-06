@@ -260,7 +260,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
           // info, so we're not loading it up as of now.
           $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
           $node = node_load($submission->nid);
-          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
+          $edit_access = webform_submission_access($node, $submission, 'edit', $account);
           $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
           $items[$type]['children'][] = l($title, $link);
         }
@@ -676,7 +676,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
               $something = new stdClass();
               $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
               $node = node_load($submission->nid);
-              $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
+              $edit_access = webform_submission_access($node, $submission, 'edit', $account);
               $something->uri = array('options' => array());
               $something->uri['path'] = ($edit_access && $era == 'current') ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
               $something->title = $grant->title;
@@ -768,7 +768,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
         if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
           $submission = $something->uri['options']['entity'];
           $node = node_load($submission->nid);
-          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
+          $edit_access = webform_submission_access($node, $submission, 'edit');
         }
       }
       $element[$delta] = array(
@@ -904,7 +904,7 @@ function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current
         if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
           $submission = $something->uri['options']['entity'];
           $node = node_load($submission->nid);
-          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
+          $edit_access = webform_submission_access($node, $submission, 'edit');
         }
       }
 
