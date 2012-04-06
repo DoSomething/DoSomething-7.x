@@ -3944,6 +3944,16 @@ comments.fb_iframe_widget {
 .view-campaign-gallery #gallery {
   height: 480px;
   padding: 16px 61px;
+  text-align: center;
+}
+.view-campaign-gallery #slideshow {
+  height: 100%;
+  display: table;
+  height: 100%;
+}
+.view-campaign-gallery #slideshow .image-wrapper {
+  display: table-cell;
+  vertical-align: middle;
 }
 .view-campaign-gallery #thumbs {
   overflow: hidden;
