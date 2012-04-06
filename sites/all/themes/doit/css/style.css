@@ -506,11 +506,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .start-a-project:before, .suggest-a-cause:before, .h1, h1, .h2, h2, .h3, h3, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .h4, h4, .h5, .h6, ol li:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -573,11 +573,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, .page-why-become-a-member .main-inner .content .panel-panel .pane-content h2, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, .page-why-become-a-member .main-inner .content .panel-panel .pane-content h2, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -780,14 +780,16 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content, .apps-grid .apps-box {
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
 .box-shadow-none, .page-taxonomy-term .field-name-field-picture img {
-  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
+  -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
+  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
 }
 
@@ -877,8 +879,9 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 
 h1.title {
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding-top: 23px;
@@ -912,8 +915,7 @@ h3.subhead {
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title, .view-current-campaigns
-.view-header h2.pane-title,
+.view-current-campaigns .view-header h2.pane-title,
 .pane-related-projects-panel-pane-1 h2.pane-title,
 .pane-related-projects-panel-pane-2 h2.pane-title,
 .pane-resources-panel-pane-1 h2.pane-title,
@@ -922,8 +924,7 @@ h3.subhead {
 .pane-featured-projects-panel-pane-3 h2.pane-title,
 .pane-current-campaigns-panel-pane-2 h2.pane-title,
 .action-finder-list h2.pane-title,
-.page-node-picks .pane-profile-panel-pane-3 h2.pane-title, .page-node-picks
-.pane-profile-panel-pane-3 h2.pane-title {
+.page-node-picks .pane-profile-panel-pane-3 h2.pane-title {
   background-color: transparent;
   display: inline;
   font-size: 21px;
@@ -956,10 +957,11 @@ form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
 form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .ds-login-popup-footer input#edit-final-submit, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1 {
   font-weight: bold;
-  -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
+  -webkit-border-radius: 12px;
   -o-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -khtml-border-radius: 12px;
   border-radius: 12px;
   border: none;
   height: 30px;
@@ -1105,8 +1107,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-3 .views-row .views-row-odd,
 .pane-current-campaigns-panel-pane-2 .views-row .views-row-odd,
 .action-finder-list .views-row .views-row-odd,
-.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-odd, .page-node-picks
-.pane-profile-panel-pane-3 .views-row .views-row-odd {
+.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-odd {
   float: left;
   clear: left;
 }
@@ -1134,8 +1135,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-3 .views-row .views-row-even,
 .pane-current-campaigns-panel-pane-2 .views-row .views-row-even,
 .action-finder-list .views-row .views-row-even,
-.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-even, .page-node-picks
-.pane-profile-panel-pane-3 .views-row .views-row-even {
+.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-even {
   float: right;
 }
 
@@ -1373,8 +1373,9 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   margin: 0;
 }
 .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, .pane-blog-center .views-row {
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding: 15px 0;
@@ -1391,15 +1392,13 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
-.panes-2 .panel-second .pane-narrow-thumb, .panes-2
-.panel-second .pane-narrow-thumb,
+.panes-2 .panel-second .pane-narrow-thumb,
 .pane-blog-center .pane-narrow-thumb {
   float: left;
 }
 .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, .panes-2
-.panel-second .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img {
   margin-right: 12px;
   height: 60px;
@@ -1706,8 +1705,9 @@ html {
 }
 
 * {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -1918,9 +1918,8 @@ dd {
 a {
   color: #18408b;
   text-decoration: none;
-  -webkit-transition: "all" 0.3s "ease-out";
   -moz-transition: "all" 0.3s "ease-out";
-  -ms-transition: "all" 0.3s "ease-out";
+  -webkit-transition: "all" 0.3s "ease-out";
   -o-transition: "all" 0.3s "ease-out";
   transition: "all" 0.3s "ease-out";
 }
@@ -2200,8 +2199,9 @@ input[type=range],
 input[type=search],
 input[type=color] {
   border: none;
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   outline: none;
   padding-left: 5px;
@@ -2340,13 +2340,15 @@ ul.tabs.primary li a {
   background-image: linear-gradient(top, #fcfdfa, #f1f2ef);
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
-  -ms-border-top-left-radius: 3px;
   -o-border-top-left-radius: 3px;
+  -ms-border-top-left-radius: 3px;
+  -khtml-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
-  -ms-border-top-right-radius: 3px;
   -o-border-top-right-radius: 3px;
+  -ms-border-top-right-radius: 3px;
+  -khtml-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
   color: #18408b;
   padding-top: 8px;
@@ -2511,8 +2513,9 @@ body {
   padding-top: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 14px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
 #utility-bar .utility-block {
@@ -2537,8 +2540,9 @@ body {
   position: relative;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
-  -webkit-box-shadow: inset 0 0 4px 1px #4d4a4a;
   -moz-box-shadow: inset 0 0 4px 1px #4d4a4a;
+  -webkit-box-shadow: inset 0 0 4px 1px #4d4a4a;
+  -o-box-shadow: inset 0 0 4px 1px #4d4a4a;
   box-shadow: inset 0 0 4px 1px #4d4a4a;
   background-color: #746f6f;
   border: 1px solid #4d4a4a;
@@ -2546,9 +2550,9 @@ body {
   padding: 4px;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/icn-utility-search-magnify.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2580,9 +2584,9 @@ body {
   z-index: 101;
 }
 #site-name a {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2594,8 +2598,9 @@ body {
 div[role=main] {
   background-color: #efefef;
   padding: 23px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -2620,9 +2625,9 @@ div[role=main] {
 }
 
 .connect-thru-facebook a {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/btn-facebook-dashboard-login.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2635,9 +2640,9 @@ div[role=main] {
 }
 
 .connect-with-facebook a {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/btn-facebook-popup-login.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2723,9 +2728,8 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   font-size: 18px;
   line-height: 38px;
   text-transform: capitalize;
-  -webkit-transition: opacity 0.2s "ease-out";
   -moz-transition: opacity 0.2s "ease-out";
-  -ms-transition: opacity 0.2s "ease-out";
+  -webkit-transition: opacity 0.2s "ease-out";
   -o-transition: opacity 0.2s "ease-out";
   transition: opacity 0.2s "ease-out";
   margin-left: -28px;
@@ -3056,8 +3060,9 @@ h2.block-title, h2.pane-title {
   background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 133px center;
 }
 .block-facetapi .content {
-  -webkit-box-shadow: white 0 -1px -1px 1px;
   -moz-box-shadow: white 0 -1px -1px 1px;
+  -webkit-box-shadow: white 0 -1px -1px 1px;
+  -o-box-shadow: white 0 -1px -1px 1px;
   box-shadow: white 0 -1px -1px 1px;
   border-top: 1px #d4d2d1 solid;
   margin-left: 8px;
@@ -3167,8 +3172,9 @@ h2.block-title, h2.pane-title {
   padding: 15px 0;
   padding-right: 19px;
   width: 95%;
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
 }
@@ -3199,8 +3205,9 @@ h2.block-title, h2.pane-title {
   height: 23px;
 }
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:last-of-type a {
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   line-height: 22px;
@@ -3404,8 +3411,9 @@ h2.block-title, h2.pane-title {
   width: 230px;
 }
 .member-profile .upper {
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding-bottom: 5px;
@@ -3496,10 +3504,11 @@ h2.block-title, h2.pane-title {
   background: #4b4744;
   border: none;
   padding: 23px;
-  -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  -ms-border-radius: 0;
+  -webkit-border-radius: 0;
   -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
   border-radius: 0;
 }
 .ui-dialog .ui-dialog-content {
@@ -3533,9 +3542,9 @@ h2.block-title, h2.pane-title {
 }
 
 .ui-icon.ui-icon-closethick {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3558,8 +3567,9 @@ h2.block-title, h2.pane-title {
 
 .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"] {
   background: #333131;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
   box-shadow: none;
   display: inline;
   float: left;
@@ -3596,8 +3606,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui
   right: -502px;
 }
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"] {
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   background: white;
 }
@@ -3862,8 +3873,9 @@ comments.fb_iframe_widget {
 
 .panel-one-two .panel-top {
   *zoom: 1;
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
+  -o-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   margin-bottom: 15px;
@@ -3925,10 +3937,11 @@ comments.fb_iframe_widget {
   padding-top: 8px;
   height: 36px;
   background: white;
-  -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
+  -webkit-border-radius: 3px;
   -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
   border-radius: 3px;
 }
 .sharethis-plugin .stButton .stButton_gradient {
@@ -4058,9 +4071,9 @@ comments.fb_iframe_widget {
   padding-left: 10px;
 }
 .apps-grid .apps-box .doingit-icon {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/doing-it-guy.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -4103,9 +4116,9 @@ comments.fb_iframe_widget {
   cursor: pointer;
   display: block;
   float: right;
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/circle-inactive.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -4114,9 +4127,9 @@ comments.fb_iframe_widget {
   width: 25px;
 }
 .slide-count span.active {
-  text-indent: 110%;
-  white-space: nowrap;
+  text-indent: -119988px;
   overflow: hidden;
+  text-align: left;
   background-image: url('images/circle-active.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -4158,8 +4171,9 @@ comments.fb_iframe_widget {
 }
 
 .ribbon-front {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   -moz-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
+  -o-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   background-color: #502862;
   height: 65px;
@@ -4345,11 +4359,11 @@ comments.fb_iframe_widget {
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a {
   font-size: 21px;
 }
 
@@ -4376,8 +4390,9 @@ comments.fb_iframe_widget {
 }
 
 .pane-ds-stuff-you-need .pane-content {
-  -webkit-box-shadow: #d4d2d1 0 1px 0 inset;
   -moz-box-shadow: #d4d2d1 0 1px 0 inset;
+  -webkit-box-shadow: #d4d2d1 0 1px 0 inset;
+  -o-box-shadow: #d4d2d1 0 1px 0 inset;
   box-shadow: #d4d2d1 0 1px 0 inset;
   border-top: 1px white solid;
 }
@@ -4454,8 +4469,4 @@ h3 .stuff-header {
 .page-node-picks .pane-profile-panel-pane-3 .item-list ul li {
   list-style: none;
   margin: 0 0 12px 0;
-}
-
-.node-blog .field-name-field-picture {
-  float: left;
 }
