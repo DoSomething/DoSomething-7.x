@@ -2603,7 +2603,7 @@ nav[role=navigation] a:hover, nav[role=navigation] a:active {
 }
 nav[role=navigation] .region-navigation .block-menu-block {
   width: 100%;
-  padding-left: 238px;
+  padding-left: 233px;
   display: table;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu {
@@ -2611,27 +2611,22 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu {
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: table-cell;
-  width: 300px;
+  width: 203px;
   position: relative;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first {
+  padding-left: 3px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li:nth-of-type(3) {
+  padding-left: 10px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li a {
   position: relative;
   z-index: 1;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
-  left: -5px;
-}
-nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
-  width: 234px;
-}
-nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
-  opacity: 1;
-  height: auto;
-}
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   position: absolute;
   top: 0;
-  left: -28px;
   display: block;
   padding-top: 45px;
   padding-left: 0;
@@ -2646,30 +2641,53 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu ul {
   -webkit-transition: opacity 0.2s "ease-out";
   -o-transition: opacity 0.2s "ease-out";
   transition: opacity 0.2s "ease-out";
+  margin-left: -28px;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
   display: block;
   width: 100%;
   background-color: rgba(30, 29, 28, 0.75);
   text-align: left;
   line-height: 22px;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li.first {
+  padding-left: 0;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li:nth-of-type(3) {
+  padding-left: 0;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a {
   color: white;
   padding: 12px 28px;
   display: block;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:visited {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:visited {
   color: white;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:hover {
   color: #fed100;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:active {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:active {
   color: #fed100;
 }
-nav[role=navigation] .region-navigation .block-menu-block ul.menu ul li a:hover {
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:hover {
   background-color: rgba(30, 29, 28, 0.75);
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
+  margin-left: -3px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last {
+  width: 208px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
+  width: 232px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul li.last {
+  width: 232px;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
+  opacity: 1;
+  height: auto;
 }
 
 h2.block-title, h2.pane-title {

@@ -22,53 +22,62 @@ nav[role=navigation]
     @extend .container
     .block-menu-block
       width: 100%
-      padding-left: $left-col-width + $s-1
+      padding-left: 233px
       display: table
       ul.menu
         display: table-row
         li
           display: table-cell
-          // text-align: left
-          // width: 12%
-          width: 300px
+          width: 203px
           position: relative
+          &.first
+            padding-left: 3px
+          &:nth-of-type(3)
+            padding-left: 10px
           a
             position: relative
             z-index: 1
+          ul
+            position: absolute
+            top: 0
+            display: block
+            padding-top: 45px
+            padding-left: 0
+            width: 204px
+            height: 0
+            overflow: hidden
+            opacity: 0
+            font-size: $s4
+            line-height: 38px
+            text-transform: capitalize
+            +transition(opacity 0.2s 'ease-out')
+            margin-left: -28px
+            li
+              display: block
+              width: 100%
+              background-color: $gray1-trans
+              text-align: left
+              line-height: 22px
+              &.first
+                padding-left: 0
+              &:nth-of-type(3)
+                padding-left: 0
+              a
+                +link-colors($white, $gold, $gold, $white, false)
+                padding: 12px 28px
+                display: block
+                &:hover
+                  background-color: $gray1-trans
           &.first
             ul
-              left: -5px
+              margin-left: -3px
           &.last
+            width: 208px
             ul
-              width: 234px
+              width: 232px
+              li.last
+                width: 232px
           &:hover
             ul
               opacity: 1
               height: auto
-        ul
-          position: absolute
-          top: 0
-          left: -28px
-          display: block
-          padding-top: 45px
-          padding-left: 0
-          width: 204px
-          height: 0
-          overflow: hidden
-          opacity: 0
-          font-size: $s4
-          line-height: 38px
-          text-transform: capitalize
-          +transition(opacity 0.2s 'ease-out')
-          li
-            display: block
-            width: 100%
-            background-color: $gray1-trans
-            text-align: left
-            line-height: 22px
-            a
-              +link-colors($white, $gold, $gold, $white, false)
-              padding: 12px 28px
-              display: block
-              &:hover
-                background-color: $gray1-trans
