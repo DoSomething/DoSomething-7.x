@@ -30,7 +30,8 @@ div[role="main"] {
 .three-boxes {
   width: 29%;
   float: left;
-  margin-right: 6.5%; }
+  margin-right: 6.5%;
+  border: none !important; }
   .three-boxes:last-child {
     margin-right: 0; }
   .three-boxes .pane-content {
@@ -150,6 +151,12 @@ div[role="main"] {
 .clear-both {
   clear: both; }
 
+.epic-list-items h3 {
+  color: white;
+  font-size: 1.5em; }
+.epic-list-items li p {
+  margin-bottom: 1em; }
+
 .margin-bottom-0 {
   margin-bottom: 0; }
   .margin-bottom-0 .pane-content {
@@ -186,15 +193,37 @@ div[role="main"] {
 .panel-row-ad-quick-info .pane-content p {
   margin-bottom: 1em; }
 
+.prizes-2-column-body {
+  float: left;
+  margin-right: 4%;
+  width: 46%;
+  border: none !important; }
+  .prizes-2-column-body .cash-header {
+    margin-bottom: 2em; }
+    .prizes-2-column-body .cash-header p {
+      margin-bottom: 0; }
+  .prizes-2-column-body .pane-content {
+    height: 365px;
+    padding: 1.5em;
+    text-align: center; }
+    .prizes-2-column-body .pane-content .prizes-pane-content-text-content {
+      margin-right: 1.5em;
+      position: absolute;
+      top: 214px; }
+    .prizes-2-column-body .pane-content h2 {
+      color: black;
+      font-size: 3.5em;
+      font-weight: 600;
+      line-height: 1em; }
+    .prizes-2-column-body .pane-content h3 {
+      color: black;
+      font-size: 2em;
+      font-weight: 600;
+      line-height: 1em; }
+
 .red-dot {
   list-style-image: url("assets/red-dot.png");
   list-style-position: outside; }
-
-.run-a-drive-body h3 {
-  color: white;
-  font-size: 1.5em; }
-.run-a-drive-body li p {
-  margin-bottom: 1em; }
 
 .text-align-right {
   text-align: right; }
