@@ -10,7 +10,6 @@
 function dosomething_image_styles_image_default_styles() {
   $styles = array();
 
-
   // Exported image style: action_results_thumbnail
   $styles['action_results_thumbnail'] = array(
     'name' => 'action_results_thumbnail',
@@ -33,22 +32,23 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: project_gallery_thumb
-  $styles['project_gallery_thumb'] = array(
-    'name' => 'project_gallery_thumb',
+  // Exported image style: campaign_microsite_logo
+  $styles['campaign_microsite_logo'] = array(
+    'name' => 'campaign_microsite_logo',
     'effects' => array(
-      12 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
+      14 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
         'module' => 'image',
-        'name' => 'image_scale_and_crop',
+        'name' => 'image_scale',
         'data' => array(
-          'width' => '64',
-          'height' => '43',
+          'width' => '480',
+          'height' => '',
+          'upscale' => 0,
         ),
         'weight' => '1',
       ),
@@ -70,7 +70,7 @@ function dosomething_image_styles_image_default_styles() {
         'name' => 'image_scale',
         'data' => array(
           'width' => '216',
-          'height' => '125',
+          'height' => '108',
           'upscale' => 0,
         ),
         'weight' => '1',
@@ -90,9 +90,9 @@ function dosomething_image_styles_image_default_styles() {
           'under' => 1,
           'exact' => array(
             'width' => '216',
-            'height' => '125',
+            'height' => '108',
             'xpos' => 'center',
-            'ypos' => 'center',
+            'ypos' => 'top',
           ),
           'relative' => array(
             'leftdiff' => '',
@@ -218,7 +218,6 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-
   // Exported image style: front_slider
   $styles['front_slider'] = array(
     'name' => 'front_slider',
@@ -240,7 +239,6 @@ function dosomething_image_styles_image_default_styles() {
       ),
     ),
   );
-
 
   // Exported image style: member_photo_gallery
   $styles['member_photo_gallery'] = array(
@@ -264,7 +262,6 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-
   // Exported image style: my_somethings
   $styles['my_somethings'] = array(
     'name' => 'my_somethings',
@@ -287,6 +284,27 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: project_gallery_thumb
+  $styles['project_gallery_thumb'] = array(
+    'name' => 'project_gallery_thumb',
+    'effects' => array(
+      12 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '64',
+          'height' => '43',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
 
   // Exported image style: project_related_thumb
   $styles['project_related_thumb'] = array(
