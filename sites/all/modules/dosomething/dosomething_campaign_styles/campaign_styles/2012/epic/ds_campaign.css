@@ -246,5 +246,10 @@ div[role="main"] {
   list-style-image: url("assets/red-dot.png");
   list-style-position: outside; }
 
+.sign-up-long-form {
+  border: none !important; }
+  .sign-up-long-form .webform-client-form {
+    border: none !important; }
+
 .text-align-right {
   text-align: right; }
