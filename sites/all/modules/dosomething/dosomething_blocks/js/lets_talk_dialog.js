@@ -7,7 +7,7 @@
     attach: function(context, settings) {
       var dialogBox = $('#lets-talk-dialog');
       dialogBox.hide();
-      $("#block-dosomething-blocks-dosomething-utility-bar #help-center a, #block-menu-menu-footer ul li.expanded ul.menu li.first a").click(function(event) {
+      $("#block-dosomething-blocks-dosomething-utility-bar #help-center a, #block-menu-menu-footer ul li.first.expanded ul.menu li.first a").click(function(event) {
         dialogBox.dialog({
           resizable: false,
           draggable: false,
