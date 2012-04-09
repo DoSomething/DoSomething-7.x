@@ -220,11 +220,10 @@ The content from this field will only be shown to anonymous users.',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'list',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 8,
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -289,11 +288,10 @@ The content from this field will only be shown to anonymous users.',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'og',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'og_list_default',
-          'weight' => '8',
+          'type' => 'hidden',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',

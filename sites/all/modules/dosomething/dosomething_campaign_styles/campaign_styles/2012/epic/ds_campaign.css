@@ -90,11 +90,27 @@ div[role="main"] {
     line-height: 1.4em; }
 
 .panel-row-actions {
-  background: rgba(188, 134, 70, 0.4); }
+  background: rgba(188, 134, 70, 0.4);
+  border: none !important;
+  margin: 0; }
   .panel-row-actions .pane-title {
     background: #d33936; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      border: none !important; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
+        width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -151,13 +167,15 @@ div[role="main"] {
 .clear-both {
   clear: both; }
 
-.epic-list-items .pane-content {
-  padding: 1.5em; }
-.epic-list-items h3 {
-  color: white;
-  font-size: 1.5em; }
-.epic-list-items li p {
-  margin-bottom: 1em; }
+.epic-list-items {
+  border: none !important; }
+  .epic-list-items .pane-content {
+    padding: 1.5em; }
+  .epic-list-items h3 {
+    color: white;
+    font-size: 1.5em; }
+  .epic-list-items li p {
+    margin-bottom: 1em; }
 
 .margin-bottom-0 {
   margin-bottom: 0; }
@@ -227,6 +245,11 @@ div[role="main"] {
 .red-dot {
   list-style-image: url("assets/red-dot.png");
   list-style-position: outside; }
+
+.sign-up-long-form {
+  border: none !important; }
+  .sign-up-long-form .webform-client-form {
+    border: none !important; }
 
 .text-align-right {
   text-align: right; }

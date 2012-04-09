@@ -173,15 +173,29 @@ function dosomething_polls_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['value'] = array(
+    29 => '29',
+    28 => '28',
+    27 => '27',
+    23 => '23',
+    25 => '25',
+    20 => '20',
+    21 => '21',
+    73 => '73',
+    24 => '24',
+    26 => '26',
+    22 => '22',
+  );
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'What Cause?';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'taxonomy_vocabulary_5_tid';
-  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['type'] = 'select';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['hierarchy'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['error_message'] = 1;
 
   /* Display: Context */
@@ -296,6 +310,10 @@ function dosomething_polls_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
+  $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['inherit_panels_path'] = '1';
   $export['polls_landing'] = $view;
 

@@ -1085,7 +1085,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/resources/?cause=!1" title="" class="more-link-right">More &raquo;</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/resources?cause=!1&howtos=All&type=All" title="" class="more-link-right">More &raquo;</a>';
   $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 1;
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -1873,6 +1873,54 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_project_title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_title']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Project Summary */
+  $handler->display->display_options['fields']['field_webform_project_summary']['id'] = 'field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['table'] = 'field_data_field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['field'] = 'field_webform_project_summary';
+  $handler->display->display_options['fields']['field_webform_project_summary']['label'] = '';
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['max_length'] = '35';
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['trim'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_webform_project_summary']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_project_summary']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_project_summary']['field_api_classes'] = 0;
+  /* Field: Webform Submission: What's the problem you are trying to solve? */
+  $handler->display->display_options['fields']['field_essay_see_it']['id'] = 'field_essay_see_it';
+  $handler->display->display_options['fields']['field_essay_see_it']['table'] = 'field_data_field_essay_see_it';
+  $handler->display->display_options['fields']['field_essay_see_it']['field'] = 'field_essay_see_it';
+  $handler->display->display_options['fields']['field_essay_see_it']['label'] = '';
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['max_length'] = '50';
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['trim'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_essay_see_it']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_essay_see_it']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_essay_see_it']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Field: Issues (taxonomy_vocabulary_5) */
@@ -2095,12 +2143,25 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['value'] = array(
+    29 => '29',
+    28 => '28',
+    27 => '27',
+    23 => '23',
+    25 => '25',
+    20 => '20',
+    21 => '21',
+    73 => '73',
+    24 => '24',
+    26 => '26',
+    22 => '22',
+  );
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'Causes';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'taxonomy_vocabulary_5_tid';
-  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['type'] = 'select';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';

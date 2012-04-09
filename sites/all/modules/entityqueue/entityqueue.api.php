@@ -35,5 +35,15 @@ function hook_entityqueue_default_queues() {
 }
 
 /**
+ * Alter the allowed queue types.
+ *
+ * @param array $types
+ *   An array of queue types.
+ */
+function hook_entityqueue_type_get_name_alter(&$types) {
+  $types['my_new_type'] = t('My New Type');
+}
+
+/**
  * @} End of "addtogroup hooks".
  */

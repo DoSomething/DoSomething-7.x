@@ -16,6 +16,19 @@ function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_ty
 }
 
 /**
+ * Implements hook_mail().
+ */
+function dosomething_projects_general_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'project_report_participant':
+      // TODO: Need correct subject.
+      $message['subject'] = t('You\'ve Participated in a Project!');
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+/**
  * Implements_hook_form_BASE_FORM_ID_alter().
  */
 function dosomething_projects_general_form_webform_client_form_alter(&$form, &$form_state, $form_id) {
@@ -28,11 +41,14 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
     return;
   }
 
+  $form_state['previous_participants'] = array();
   $submission = isset($form['#submission']) ? $form['#submission'] : NULL;
   if (!empty($submission) && $submission->sid && !$submission->is_draft) {
     // Pass along previous participants so they don't get contacted again.
     if (!empty($form['#submission']->field_participants[LANGUAGE_NONE])) {
-      $form_state['previous_participants'] = $form['#submission']->field_participants[LANGUAGE_NONE];
+      foreach ($form['#submission']->field_participants[LANGUAGE_NONE] as $item) {
+        $form_state['previous_participants'][] = $item['value'];
+      }
     }
   }
 
@@ -56,24 +72,54 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
   }
   if (count($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE])) {
     foreach ($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE] as $delta => $item) {
-      // Attach the account to the group if it exists.
-      $account = FALSE;
-      if (valid_email_address($item['value'])) {
-        $account = user_load_by_mail($item['value']);
-      }
-      else if (($number = ltrim(preg_replace('/[^0-9]/', '', $item['value']), 1)) && strlen($number) == 10) {
-        if ($name = dosomething_login_find_user_by_cell($number)) {
-          $account = user_load_by_name($name);
+      // Make sure contact was not already dealt with.
+      $key = array_search($item['value'], $form_state['previous_participants']);
+      if ($key === FALSE) {
+        // Attach the account to the group if it exists.
+        if ($account = dosomething_projects_general_load_user_by_mail_or_cell($item['value'])) {
+           og_group($group->gid, array('entity' => $account));
+        }
+        else {
+          // Otherwise send a message to the user.
+          global $base_url, $language;
+          $submission_account = user_load($form_state['values']['details']['uid']);
+          $profile = profile2_load_by_user($submission_account, 'main');
+          $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+          // TODO: Sending message and mail means no sanitization.
+          $message = drupal_html_to_text(t("%first %last mentioned that you participated in the project %title.  To receive full credit, please sign up at <a href='@url'>%site-name'</a>", array(
+            '%first' => $profile_wrapper->field_user_first_name->value(),
+            '%last' => $profile_wrapper->field_user_last_name->value(),
+            '%title' => $form_state['webform_entity']->submission['field_project_title'][LANGUAGe_NONE][0]['value'],
+            '@url' => $base_url,
+            '%site-name' => variable_get('site_name', 'Do Something')))
+          );
+
+          if (valid_email_address($item['value'])) {
+            drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
+          }
+          else if ($number = dosomething_projects_general_valid_cell($item['value'])) {
+            sms_send($number, $message);
+          }
         }
       }
-      if ($account) {
-        og_group($group->gid, array('entity' => $account));
-      }
       else {
-        // TODO: Send email or text depending on whether they've already received one.
-        // If not - send email or mobile, make sure they haven't been sent once already (project is editable for 24hrs); 
+        // Remove contact value from previous list.
+        unset($form_state['previous_participants'][$key]);
       }
     }
+  }
+
+  // If anyone is left in the previous list, then remove them from the group.
+  if (count($form_state['previous_participants'])) {
+    foreach ($form_state['previous_participants'] as $contact_value) {
+      if ($account = dosomething_projects_general_load_user_by_mail_or_cell($contact_value)) {
+        og_ungroup($group->gid, 'user', $account);
+      }
+    }
+  }
+
+  if ($form['#node']->type == 'project_report') {
+    $form_state['redirect'] = 'webform-submission/' . $form_state['values']['details']['sid'];
   }
 }
 
@@ -98,4 +144,38 @@ function dosomething_projects_general_participants_validate($form, &$form_state)
       }
     }
   }
+}
+
+/**
+ * Determine if a cell phone number is valid.
+ *
+ * @param $number
+ *   A cell phone number which may contain special characters.
+ * @return
+ *  Either FALSE or the cleaned up cell phone number (only digits).
+ */
+function dosomething_projects_general_valid_cell($number) {
+  $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
+  return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
+}
+
+/**
+ * Load up the related user given and email or cell phone value.
+ *
+ * @param $value
+ *   An email or cell phone value.
+ * @return
+ *  Either FALSE or the loaded user account.
+ */
+function dosomething_projects_general_load_user_by_mail_or_cell($value) {
+  $account = FALSE;
+  if (valid_email_address($value)) {
+    $account = user_load_by_mail($value);
+  }
+  else if ($number = dosomething_projects_general_valid_cell($value)) {
+    if ($name = dosomething_login_find_user_by_cell($number)) {
+      $account = user_load_by_name($name);
+    }
+  }
+  return $account;
 }

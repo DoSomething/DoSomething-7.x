@@ -1,3 +1,10 @@
 <?php
 
 include_once('dosomething_entityqueue.features.inc');
+
+/**
+ * Implements hook_entityqueue_type_get_name_alter().
+ */
+function dosomething_entityqueue_entityqueue_type_get_name_alter(&$types) {
+  $types['dosomething_project'] = t('DoSomething Projects (webform submissions)');
+}
