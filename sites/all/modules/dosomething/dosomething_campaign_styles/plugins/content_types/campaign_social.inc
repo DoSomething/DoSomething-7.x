@@ -55,3 +55,7 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
 function dosomething_campaign_styles_campaign_social_content_type_admin_title($subtype, $conf, $context) {
   return t('Campaign Like Buttons');
 }
+
+function dosomething_campaign_styles_campaign_social_content_type_edit_form($form, &$form_state) {
+  return $form;
+}

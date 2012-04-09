@@ -87,9 +87,11 @@ ul.inline
 .field-type-taxonomy-term-reference
   .field-item
     display: inline
-    margin-right: 0.75em
-    &:after:not(:last-child)
+    &:after
       content: ", "
+    &:last-child
+      &:after
+        content: ""
 
 // FIELDS
 .field-label-above

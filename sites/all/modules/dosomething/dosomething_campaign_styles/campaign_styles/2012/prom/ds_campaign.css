@@ -1,5 +1,5 @@
 a {
-  color: #0f87c9; }
+  color: #f48b8c; }
   a:hover {
     color: black; }
 
@@ -7,15 +7,16 @@ h1.title {
   display: none; }
 
 body {
-  background-color: #2387c7;
+  background-color: #f0ebde;
   background-image: url("assets/bg.jpg");
   background-repeat: repeat-y;
   background-position: center top; }
 
 div[role="main"] {
-  background: rgba(249, 246, 243, 0.99);
-  -webkit-box-shadow: black 0 0 30px -10px;
+  background: white;
   -moz-box-shadow: black 0 0 30px -10px;
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -o-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
   padding-top: 10px; }
@@ -32,25 +33,25 @@ div[role="main"] {
   *zoom: 1;
   display: block;
   content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  border-top: 1px solid #f48b8c;
+  border-bottom: 1px solid #f48b8c; }
 
 .line-bottom:after {
   overflow: hidden;
   *zoom: 1;
   display: block;
   content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  border-top: 1px solid #f48b8c;
+  border-bottom: 1px solid #f48b8c; }
 
 /* universal declarations to be overridden per block if necessary */
 .pane-content {
-  background: #bfdae8;
+  background: #f0ebde;
   padding: 1.5em; }
   .pane-content ul {
     margin-bottom: 1em;
     padding: 1em;
-    background: #bfdae8;
+    background: #f0ebde;
     overflow: hidden;
     *zoom: 1; }
   .pane-content li {
@@ -68,7 +69,7 @@ div[role="main"] {
     clear: left; }
 
 .pane-title {
-  background: #0f87c9; }
+  background: #f48b8c; }
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: transparent;
@@ -76,7 +77,7 @@ div[role="main"] {
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: rgba(249, 246, 243, 0.99);
+    background: white;
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
@@ -88,14 +89,14 @@ div[role="main"] {
       text-transform: uppercase;
       color: black; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #0f87c9;
+        color: #f48b8c;
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
-    color: #0f87c9;
+    color: #92d2ba;
     padding: 0;
     font-size: 26px;
     line-height: 1em; }
@@ -105,9 +106,9 @@ div[role="main"] {
     background: none; }
 
 .panel-row-actions {
-  background: rgba(249, 246, 243, 0.99); }
+  background: white; }
   .panel-row-actions .pane-title {
-    background: #0f87c9; }
+    background: #92d2ba; }
   .panel-row-actions .pane-content {
     padding: 18px; }
 
@@ -119,11 +120,13 @@ div[role="main"] {
   color: black;
   line-height: 1.3em;
   font-weight: 500; }
+  .panel-row-ad-quick-info .pane-title:after {
+    border: none; }
 .panel-row-ad-quick-info .pane-content {
   padding: 0;
   background: transparent; }
   .panel-row-ad-quick-info .pane-content h3 {
-    color: #0f87c9;
+    color: #f48b8c;
     font-size: 26px;
     text-transform: uppercase;
     font-weight: 600;
@@ -135,23 +138,23 @@ div[role="main"] {
     *zoom: 1;
     display: block;
     content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid #f48b8c;
+    border-bottom: 1px solid #f48b8c;
     margin-bottom: 20px;
     background: transparent; }
 
 .panel-row-ad-psa {
   background: transparent; }
   .panel-row-ad-psa .pane-title {
-    background: #0f87c9; }
+    background: #92d2ba; }
   .panel-row-ad-psa .pane-content {
     background: none;
     padding: 0; }
 
 .panel-row-flexible .panel-pane {
-  background: rgba(249, 246, 243, 0.99); }
+  background: white; }
   .panel-row-flexible .panel-pane .pane-title {
-    background: #0f87c9; }
+    background: #92d2ba; }
 .panel-row-flexible .blog {
   background: transparent; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
@@ -159,18 +162,18 @@ div[role="main"] {
     *zoom: 1;
     display: block;
     content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+    border-top: 1px solid #f48b8c;
+    border-bottom: 1px solid #f48b8c; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
     overflow: hidden;
     *zoom: 1;
     display: block;
     content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+    border-top: 1px solid #f48b8c;
+    border-bottom: 1px solid #f48b8c; }
 
 .panel-row-logos .pane-title {
-  color: #0f87c9;
+  color: #f48b8c;
   background: none;
   margin: 0;
   padding: 0; }
@@ -182,7 +185,7 @@ div[role="main"] {
   padding: 0;
   background: none; }
 .panel-row-top-logo p {
-  color: #0f87c9;
+  color: #f48b8c;
   font-size: 28px;
   font-weight: bold;
   margin: 0 0 0 20px; }

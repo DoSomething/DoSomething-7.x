@@ -3,6 +3,12 @@ a {
   a:hover {
     color: black; }
 
+b {
+  font-weight: 600; }
+
+hr {
+  border: 1px solid #0f87c9; }
+
 h1.title {
   display: none; }
 
@@ -105,11 +111,25 @@ div[role="main"] {
     background: none; }
 
 .panel-row-actions {
-  background: rgba(249, 246, 243, 0.99); }
+  background: rgba(249, 246, 243, 0.99);
+  border: none;
+  margin: 0; }
   .panel-row-actions .pane-title {
     background: #0f87c9; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      border: none; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
+        width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -120,6 +140,7 @@ div[role="main"] {
   line-height: 1.3em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content {
+  margin-top: 1em;
   padding: 0;
   background: transparent; }
   .panel-row-ad-quick-info .pane-content h3 {
@@ -129,24 +150,27 @@ div[role="main"] {
     font-weight: 600;
     line-height: 1em; }
   .panel-row-ad-quick-info .pane-content p {
-    margin: 0; }
+    margin: 0 0 1em 0; }
   .panel-row-ad-quick-info .pane-content:before {
-    overflow: hidden;
-    *zoom: 1;
-    display: block;
-    content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 20px;
     background: transparent; }
 
 .panel-row-ad-psa {
-  background: transparent; }
+  background: transparent;
+  bottom: 0;
+  position: absolute;
+  right: 0; }
   .panel-row-ad-psa .pane-title {
     background: #0f87c9; }
   .panel-row-ad-psa .pane-content {
     background: none;
     padding: 0; }
+  .panel-row-ad-psa img {
+    width: 100%; }
+
+.panel-row-ad {
+  margin: 0;
+  position: relative; }
 
 .panel-row-flexible .panel-pane {
   background: rgba(249, 246, 243, 0.99); }
@@ -188,3 +212,69 @@ div[role="main"] {
   margin: 5px 0 0 20px;
   position: relative;
   top: 10px; }
+
+.margin-bottom-0 {
+  margin-bottom: 0; }
+
+.trashy-campaign-date {
+  color: #0f87c9;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1em;
+  margin-bottom: 0; }
+  .trashy-campaign-date .pane-content {
+    padding: 0; }
+
+.trashy-campaign-teaser {
+  margin-bottom: 0; }
+  .trashy-campaign-teaser .pane-content {
+    padding: 0; }
+    .trashy-campaign-teaser .pane-content p {
+      margin: 0; }
+
+.trashy-email-us {
+  text-align: right; }
+
+.trashy-headline {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-align: center; }
+
+.trashy-project-ideas-body li {
+  font-size: 1.25em; }
+  .trashy-project-ideas-body li a {
+    color: black; }
+
+.trashy-report-back-body a {
+  color: white; }
+.trashy-report-back-body label {
+  font-weight: 600; }
+
+.trashy-social .pane-content {
+  padding: 0.5em; }
+
+.trashy-sponsor-logo {
+  margin-bottom: 0;
+  text-align: right; }
+  .trashy-sponsor-logo img {
+    width: 15%; }
+  .trashy-sponsor-logo p {
+    margin: 0; }
+
+.trashy-three-boxes {
+  text-align: center; }
+  .trashy-three-boxes p {
+    font-weight: 600; }
+  .trashy-three-boxes .pane-content {
+    height: 166px; }
+
+.trashy-two-boxes {
+  float: left;
+  width: 50%; }
+  .trashy-two-boxes .pane-content {
+    height: 300px;
+    text-align: center; }
+    .trashy-two-boxes .pane-content h2 {
+      color: black;
+      font-size: 3.5em;
+      font-weight: 600;
+      padding: 0.25em; }

@@ -66,7 +66,18 @@ function drush_dosomething_school_load() {
       $row['gsid'] = $row['universal-id'];
       unset($row['universal-id']);
 
-      entity_save('ds_school', $row);
+      // Check if there's an existing record...
+      $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid']));
+      $school = reset($schools);
+      if ($school) {
+        foreach ($row as $key => $value) {
+          $school->$key = $value;
+        }
+      }
+      else {
+        $school = $row;
+      }
+      entity_save('ds_school', $school);
 
       $count++;
       if ($count % 10000 == 0) {

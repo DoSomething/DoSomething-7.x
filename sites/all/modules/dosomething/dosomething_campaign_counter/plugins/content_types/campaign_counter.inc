@@ -120,8 +120,8 @@ function dosomething_campaign_counter_campaign_counter_content_type_admin_title(
   return t('Campaign Counter');
 }
 
-/*
 function dosomething_campaign_counter_campaign_counter_content_type_edit_form($form, &$form_state) {
+  /*
   $conf = $form_state['conf'];
   $form['signup_nid'] = array(
     '#type' => 'select',
@@ -152,10 +152,11 @@ function dosomething_campaign_counter_campaign_counter_content_type_edit_form($f
     '#description' => t('The field name of the webform field to aggregate (sum), or #count to just count the number of report backs'),
     '#default_value' => $conf['count_field'],
   );
-
+   */
   return $form;
 }
 
+/*
 function dosomething_campaign_counter_campaign_counter_content_type_edit_form_submit(&$form, &$form_state) {
   foreach (array('signup_nid', 'report_back_nid', 'count_field', 'counter_label') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];

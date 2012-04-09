@@ -105,7 +105,7 @@ function dosomething_migrate_update_7000() {
 }
 
 /**
- * Implements hook_update_N().
+ * Update 7001 - Add a table to track failed project mappings from node to webform.
  */
 function dosomething_migrate_update_7001() {
   $name = 'dosomething_project_nid_sid_fails';
@@ -125,4 +125,13 @@ function dosomething_migrate_update_7001() {
     ),
   );
   db_create_table($name, $table);
+}
+
+/**
+ * Update 7002 - Update the variable that maps old content types to new ids.
+ */
+function dosomething_migrate_update_7002() {
+  $mapping = variable_get('webform_migrate_webform_mapping', NULL);
+  $mapping['ididthis'] = $mapping['project'];
+  variable_set('webform_migrate_webform_mapping', $mapping);
 }

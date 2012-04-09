@@ -28,11 +28,12 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => 'teensforjeans-new'),
-    array('title' => 'take action', 'href' => 'teensforjeans-new/take-action'),
-    array('title' => 'store locator', 'href' => '#'),
-    array('title' => 'contests', 'href' => '#'),
-    array('title' => 'report back', 'href' => 'teensforjeans-new/report-back'),
-    array('title' => 'photo gallery', 'href' => '#'),
+    array('title' => 'home', 'href' => 'green-your-school'),
+    array('title' => 'project ideas', 'href' => 'green-your-school/project-ideas'),
+    array('title' => 'browse schools', 'href' => 'green-your-school/browse-schools'),
+    array('title' => 'dont be trashy', 'href' => 'trashy'),
+    array('title' => 'prizes', 'href' => 'green-your-school/prizes'),
+    array('title' => 'faq', 'href' => 'green-your-school/faq'),
+    array('title' => 'tell us about it', 'href' => 'green-your-school/report-back'),
   ),
 );

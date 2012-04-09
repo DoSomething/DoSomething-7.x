@@ -3,8 +3,15 @@ a {
   a:hover {
     color: black; }
 
+b {
+  font-weight: 600; }
+
 h1.title {
   display: none; }
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
 body {
   background-color: #f5c36e;
@@ -14,9 +21,8 @@ body {
 
 div[role="main"] {
   background: rgba(188, 134, 70, 0.4);
-  -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 20px;
   padding-top: 10px; }
@@ -24,9 +30,15 @@ div[role="main"] {
 .three-boxes {
   width: 29%;
   float: left;
-  margin-right: 6.5%; }
+  margin-right: 6.5%;
+  border: none !important; }
   .three-boxes:last-child {
     margin-right: 0; }
+  .three-boxes .pane-content {
+    font-weight: 600;
+    height: 166px;
+    padding: 1.5em;
+    text-align: center; }
 
 .line-top:before {
   overflow: hidden;
@@ -92,22 +104,19 @@ div[role="main"] {
   color: black;
   line-height: 1.3em;
   font-weight: 500; }
-.panel-row-ad-quick-info .pane-content h3 {
-  color: #d33936;
-  font-size: 26px;
-  text-transform: uppercase;
-  font-weight: 600;
-  line-height: 1em; }
-.panel-row-ad-quick-info .pane-content p {
-  margin: 0; }
-.panel-row-ad-quick-info .pane-content:before {
-  overflow: hidden;
-  *zoom: 1;
-  display: block;
-  content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  margin-bottom: 20px; }
+.panel-row-ad-quick-info .pane-content {
+  margin-top: 1em; }
+  .panel-row-ad-quick-info .pane-content h3 {
+    color: #d33936;
+    font-size: 26px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1em; }
+  .panel-row-ad-quick-info .pane-content p {
+    margin: 0;
+    line-height: 1.25em; }
+  .panel-row-ad-quick-info .pane-content:before {
+    margin-bottom: 20px; }
 
 .panel-row-flexible .panel-pane {
   background: rgba(188, 134, 70, 0.4); }
@@ -135,3 +144,89 @@ div[role="main"] {
   background: none;
   margin: 0;
   padding: 0; }
+
+.border-none {
+  border: none !important; }
+
+.clear-both {
+  clear: both; }
+
+.epic-list-items .pane-content {
+  padding: 1.5em; }
+.epic-list-items h3 {
+  color: white;
+  font-size: 1.5em; }
+.epic-list-items li p {
+  margin-bottom: 1em; }
+
+.margin-bottom-0 {
+  margin-bottom: 0; }
+  .margin-bottom-0 .pane-content {
+    padding-bottom: 0; }
+    .margin-bottom-0 .pane-content p {
+      margin-bottom: 0; }
+
+.mcommons-webform {
+  float: left;
+  width: 66%;
+  margin-right: 5%;
+  border: none !important; }
+  .mcommons-webform input.field {
+    width: 100%;
+    height: 1.6em; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .pane-content {
+    height: 166px;
+    padding: 0.5em; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 2%; }
+
+.pane-node-field-campain-date {
+  color: #d33936;
+  font-weight: 600; }
+
+.panel-row-ad-quick-info h2 {
+  color: black;
+  font-size: 26px;
+  font-weight: 600; }
+.panel-row-ad-quick-info .pane-content p {
+  margin-bottom: 1em; }
+
+.prizes-2-column-body {
+  float: left;
+  margin-right: 4%;
+  width: 46%;
+  border: none !important; }
+  .prizes-2-column-body .cash-header {
+    margin-bottom: 2em; }
+    .prizes-2-column-body .cash-header p {
+      margin-bottom: 0; }
+  .prizes-2-column-body .pane-content {
+    height: 365px;
+    padding: 1.5em;
+    text-align: center; }
+    .prizes-2-column-body .pane-content .prizes-pane-content-text-content {
+      margin-right: 1.5em;
+      position: absolute;
+      top: 214px; }
+    .prizes-2-column-body .pane-content h2 {
+      color: black;
+      font-size: 3.5em;
+      font-weight: 600;
+      line-height: 1em; }
+    .prizes-2-column-body .pane-content h3 {
+      color: black;
+      font-size: 2em;
+      font-weight: 600;
+      line-height: 1em; }
+
+.red-dot {
+  list-style-image: url("assets/red-dot.png");
+  list-style-position: outside; }
+
+.text-align-right {
+  text-align: right; }

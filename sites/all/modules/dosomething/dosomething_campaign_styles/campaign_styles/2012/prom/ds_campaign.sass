@@ -7,14 +7,14 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #0f87c9
-$complement: #ffffff
+$baseColor: #f48B8C /* pink */
+$complement: #92d2ba /* teal */
 $secondaryLink: black
-$contentBG: #bfdae8
+$contentBG: #f0ebde /* light gray */
 
 // borders
-$borderTop: 1px solid rgba(0,0,0,.5)
-$borderBot: 1px solid rgba(255,255,255,.5)
+$borderTop: 1px solid $baseColor
+$borderBot: 1px solid $baseColor
 
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
@@ -22,11 +22,11 @@ $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.jpg')
-$bgFallback: #2387c7
+$bgFallback: $contentBG
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: rgba(249,246,243,.99)
+  background: #ffffff
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -138,7 +138,7 @@ div[role="main"]
     font-family: $accent
     .pane-title
       background: none
-      color: $baseColor
+      color: $complement
       padding: 0
       font-size: 26px
       line-height: 1em
@@ -151,7 +151,7 @@ div[role="main"]
 .panel-row-actions
   +block
   .pane-title
-    background: $baseColor
+    background: $complement
   .pane-content
     padding: 18px
 
@@ -162,9 +162,11 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
+    color: #000000
     line-height: 1.3em
     font-weight: 500
+    &:after
+      border: none
   .pane-content
     padding: 0
     background: transparent
@@ -184,7 +186,7 @@ div[role="main"]
 .panel-row-ad-psa
   background: transparent
   .pane-title
-    background: $baseColor
+    background: $complement
   .pane-content
     background: none  
     padding: 0
@@ -193,7 +195,7 @@ div[role="main"]
   .panel-pane
     +block
     .pane-title
-      background: $baseColor
+      background: $complement
   .blog
     background: transparent
     &:before, &:after
@@ -222,3 +224,6 @@ div[role="main"]
     font-weight: bold
     margin: 0 0 0 20px
     
+// align Got Questions? right
+//.pane-2
+//  text-alignt: right

@@ -53,19 +53,11 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_admin_title($
   return t('Campaign Sign-Up');
 }
 
-/*
 function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form($form, &$form_state) {
-  $conf = $form_state['conf'];
-  $form['report_back_html'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Report Back HTML'),
-    '#description' => t('Report back HTML for when someone has reported back.'),
-    '#default_value' => $conf['report_back_html'],
-  );
-
   return $form;
 }
 
+/*
 function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form_submit(&$form, &$form_state) {
   foreach (array('report_back_html') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];

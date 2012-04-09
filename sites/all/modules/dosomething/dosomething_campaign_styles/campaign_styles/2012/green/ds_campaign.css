@@ -1,19 +1,20 @@
-a {
-  color: #d33936; }
-  a:hover {
+.region-content a {
+  color: black !important;
+  font-weight: 500;
+  text-decoration: underline; }
+  .region-content a:hover {
     color: black; }
 
 h1.title {
   display: none; }
 
 body {
-  background-color: black; }
+  background-image: url("background.jpg"); }
 
 div[role="main"] {
-  background: #8cc63f;
-  -moz-box-shadow: black 0 0 30px -10px;
+  background: black;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 20px;
   padding-top: 10px; }
@@ -41,32 +42,35 @@ div[role="main"] {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
+.pane-content {
+  background-color: #8dc641; }
+
 #block-dosomething-campaign-styles-campaign-nav {
   background: transparent;
   margin-right: -5px;
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: #8cc63f;
+    background: black;
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
       padding: 10px 19px 10px 0;
-      font-size: 21px;
+      font-size: 26px;
       font-weight: 600;
       text-transform: uppercase;
-      color: black; }
+      color: white; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #d33936;
+        color: #009444;
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
-    color: #d33936;
+    color: #009444;
     padding: 0;
     font-size: 26px;
     line-height: 1em; }
@@ -75,9 +79,9 @@ div[role="main"] {
     line-height: 1.4em; }
 
 .panel-row-actions {
-  background: #8cc63f; }
+  background: black; }
   .panel-row-actions .pane-title {
-    background: #d33936; }
+    background: #009444; }
   .panel-row-actions .pane-content {
     padding: 18px; }
 
@@ -90,8 +94,8 @@ div[role="main"] {
   line-height: 1.3em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content h3 {
-  color: #d33936;
-  font-size: 26px;
+  color: #009444;
+  font-size: 24px;
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1em; }
@@ -107,9 +111,10 @@ div[role="main"] {
   margin-bottom: 20px; }
 
 .panel-row-flexible .panel-pane {
-  background: #8cc63f; }
+  border: none;
+  background: black; }
   .panel-row-flexible .panel-pane .pane-title {
-    background: #d33936; }
+    background: #009444; }
 .panel-row-flexible .blog {
   background: transparent; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
@@ -128,7 +133,41 @@ div[role="main"] {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
 .panel-row-logos .pane-title {
-  color: #d33936;
+  color: #009444;
   background: none;
   margin: 0;
   padding: 0; }
+
+#scholarships-box {
+  margin-left: 4%; }
+
+.two-boxes {
+  width: 48%;
+  float: left;
+  text-align: center; }
+  .two-boxes .pane-content {
+    padding: 20px 5px; }
+    .two-boxes .pane-content h2 {
+      color: black;
+      font-size: 24px;
+      font-weight: 500; }
+    .two-boxes .pane-content p {
+      font-size: 14px;
+      margin: 1em 0; }
+    .two-boxes .pane-content p.small {
+      font-size: 12px;
+      line-height: 12px;
+      margin: 2px 0px 15px 0px; }
+
+#judging .pane-content {
+  padding-top: 5px; }
+#judging li h2 {
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase; }
+#judging li p {
+  margin-bottom: 1.2em; }
+
+.clear-both {
+  clear: both; }

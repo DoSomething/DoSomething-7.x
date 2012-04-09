@@ -486,7 +486,7 @@ function _dosomething_login_find_user_by_cell_helper($number) {
 }
 
 /**
- * The form for the 'Become a Member' block.
+ * The popup register form for 'Become a Member'.
  */
 function dosomething_login_register_popup_form($form, &$form_state) {
   // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
@@ -540,13 +540,14 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
+      '#prefix' => '<div class="popup-content">',
       '#attributes' => array(
         'placeholder' => t('First Name'),
         'class' => array('dosomething-original-value'),
       ),
       '#size' => 9,
       '#required' => TRUE,
-      '#suffix' => theme('dosomething_login_form_required_marker', array()),
+      '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
     'last_name' => array(
       '#type' => 'textfield',
@@ -556,7 +557,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       ),
       '#size' => 9,
       '#required' => TRUE,
-      '#suffix' => theme('dosomething_login_form_required_marker', array()),
+      '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
   );
   $form['email'] = array(
@@ -565,7 +566,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'placeholder' => t('Email'),
     ),
     '#size' => 20,
-    '#suffix' => theme('dosomething_login_form_required_marker', array()),
+    '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
   $form['cell'] = array(
     '#type' => 'textfield',
@@ -573,10 +574,10 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'placeholder' => t('Cell'),
     ),
     '#size' => 20,
-    '#suffix' => theme('dosomething_login_form_required_marker', array()),
+    '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
 
-  // TODO: Shoould now be a textfield.
+  // TODO: Should now be a textfield.
   // TODO: Needs validation.
   $form['pass'] = array(
     '#type' => 'password',
@@ -584,11 +585,12 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#attributes' => array(
       'placeholder' => t('Password'),
     ),
-    '#size' => 15,
+    '#size' => 20,
   );
   $form['birthday'] = array(
+    '#type' => 'item',
+    '#title' => t('<span class="login-popup-birthday">Birthday</span>') . theme('dosomething_login_form_required_marker', array()),
     'month' => array(
-      '#field_prefix' => t('Birthday'),
       '#type' => 'textfield',
       '#attributes' => array(
         'placeholder' => t('mm'),
@@ -611,7 +613,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       ),
       '#size' => 4,
       '#maxlength' => 4,
-      '#suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
   );
 
@@ -630,12 +631,11 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#size' => 20,
   );
 
-
   $form['signup'] = array(
     '#type' => 'item',
     '#description' => t("Clicking “Finish” won't sell your soul, but it means you agree to<br />our <a href='/about/privacy'>terms of service</a> and want to receive our weekly update."),
     '#prefix' => '<div class="disclaimer">',
-    '#suffix' => '</div>',
+    '#suffix' => '</div></div>',
   );
   $form['final_submit'] = array(
     '#prefix' => '<div class="ds-login-popup-footer">',
@@ -780,15 +780,20 @@ function dosomething_login_register_block_validate($form, &$form_state) {
     }
     $form_state['values']['mail'] = $values['email'];
   }
-  if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['cell']), 1)) && strlen($number) >= 10) {
-    if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-      form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+  if ($values['cell']) {
+    if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['cell']), 1)) && strlen($number) == 10) {
+      if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+      }
+      else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+      }
+      $form_state['values']['phone'] = $number;
+      $form_state['values']['mail'] = $number . '@mobile';
     }
-    else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-      form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+    else {
+        form_set_error('cell', t('The phone number %phone is invalid.', array('%phone' => $values['cell'])));
     }
-    $form_state['values']['phone'] = $number;
-    $form_state['values']['mail'] = $number . '@mobile';
   }
   if (!$values['email'] && !$values['cell']) {
     form_set_error('email', t('Please provide a valid email address'));
@@ -1390,7 +1395,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
   $form['#action'] = '/user/registration/fb/?destination=front';
   if (isset($_SESSION['fbuser'])) {
     $fbuser = $_SESSION['fbuser'];
-    $form['cell_or_email']['#value'] = $fbuser->email;
+    $form['email']['#value'] = $fbuser->email;
     $form['name']['first_name']['#value'] = $fbuser->first_name;
     $form['name']['last_name']['#value'] = $fbuser->last_name;
     $birthday = $fbuser->birthday;

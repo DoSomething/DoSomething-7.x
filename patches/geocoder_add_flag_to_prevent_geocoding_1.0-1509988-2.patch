@@ -1,0 +1,43 @@
+diff --git a/geocoder.widget.inc b/geocoder.widget.inc
+index 30441a1..9c87aa2 100644
+--- a/geocoder.widget.inc
++++ b/geocoder.widget.inc
+@@ -177,21 +177,26 @@ function geocoder_field_attach_presave($entity_type, $entity) {
+           // Geocode geometries
+           $geometries = array();
+           foreach ($items as $delta => $item) {
+-            // Geocode any value from our source field.
+-            try {
+-              if (isset($handler_settings)) {
+-                $geometry = call_user_func($handler['field_callback'], $field_info, $item, $handler_settings);
+-              }
+-              else {
+-                $geometry = call_user_func($handler['field_callback'], $field_info, $item);
++            if (isset($item['geocoder_no_code']) && $item['geocoder_no_code'] == TRUE) {
++              $handler = geocoder_get_handler('wkt');
++            }
++            else {
++              // Geocode any value from our source field.
++              try {
++                if (isset($handler_settings)) {
++                  $geometry = call_user_func($handler['field_callback'], $field_info, $item, $handler_settings);
++                }
++                else {
++                  $geometry = call_user_func($handler['field_callback'], $field_info, $item);
++                }
++                if ($geometry instanceof Geometry) {
++                  $geometries[] = $geometry;
++                }
+               }
+-              if ($geometry instanceof Geometry) {
+-                $geometries[] = $geometry;
++              catch (Exception $e) {
++                drupal_set_message($e->getMessage(), 'error');
+               }
+             }
+-            catch (Exception $e) {
+-              drupal_set_message($e->getMessage(), 'error');
+-            }
+           }
+           
+           if (empty($geometries)) $values = array(NULL);

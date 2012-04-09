@@ -19,6 +19,7 @@ $borderBot: 1px solid rgba(255,255,255,.5)
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
+$boldWeight: 600
 
 // page background
 $imageBackground: url('assets/bg.jpg')
@@ -37,6 +38,8 @@ $bgFallback: #2387c7
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBorder
+  border: none
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -46,6 +49,12 @@ a
   color: $baseColor
   &:hover
     color: $secondaryLink
+
+b
+  font-weight: $boldWeight
+
+hr
+  border: 1px solid $baseColor
 
 h1.title
   display: none
@@ -150,10 +159,26 @@ div[role="main"]
 // actions panel (sign-up and counter)
 .panel-row-actions
   +block
+  +noBorder
+  margin: 0
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noBorder
+      #edit-submitted-field-webform-mobile
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      #edit-submitted-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
+
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -166,6 +191,7 @@ div[role="main"]
     line-height: 1.3em
     font-weight: 500
   .pane-content
+    margin-top: 1em
     padding: 0
     background: transparent
     h3
@@ -175,20 +201,28 @@ div[role="main"]
       font-weight: 600
       line-height: 1em
     p
-      margin: 0
+      margin: 0 0 1em 0
     &:before
-      +insetBorder
       margin-bottom: 20px
       background: transparent
 
 .panel-row-ad-psa
   background: transparent
+  bottom: 0
+  position: absolute
+  right: 0
   .pane-title
     background: $baseColor
   .pane-content
     background: none  
     padding: 0
-  	
+  img
+    width: 100%
+
+.panel-row-ad
+  margin: 0
+  position: relative
+
 .panel-row-flexible
   .panel-pane
     +block
@@ -223,3 +257,74 @@ div[role="main"]
     margin: 5px 0 0 20px
     position: relative
     top: 10px
+
+// custom
+.margin-bottom-0
+  margin-bottom: 0
+
+.trashy-campaign-date
+  color: $baseColor
+  font-size: 26px
+  font-weight: $boldWeight
+  line-height: 1em
+  margin-bottom: 0
+  .pane-content
+    padding: 0
+
+.trashy-campaign-teaser
+  margin-bottom: 0
+  .pane-content
+    padding: 0
+    p
+      margin: 0
+
+.trashy-email-us
+  text-align: right
+
+.trashy-headline
+  font-family: $accent
+  text-align: center
+
+.trashy-project-ideas-body
+  li
+    font-size: 1.25em
+    a
+      color: black
+
+.trashy-report-back-body
+  a
+    color: white
+  label
+    font-weight: $boldWeight
+
+.trashy-social
+  .pane-content
+    padding: 0.5em
+
+.trashy-sponsor-logo
+  margin-bottom: 0
+  text-align: right
+  img
+    width: 15%
+  p
+    margin: 0
+
+.trashy-three-boxes
+  text-align: center
+  p
+    font-weight: $boldWeight
+  .pane-content
+    // three-boxes height (200px) - pane-title height (34px)
+    height: 166px
+
+.trashy-two-boxes
+  float: left
+  width: 50%
+  .pane-content
+    height: 300px
+    text-align: center
+    h2
+      color: black
+      font-size: 3.5em
+      font-weight: $boldWeight
+      padding: 0.25em

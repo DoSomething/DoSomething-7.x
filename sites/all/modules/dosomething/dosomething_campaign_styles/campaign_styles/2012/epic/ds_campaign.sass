@@ -19,6 +19,13 @@ $borderBot: 1px solid rgba(255,255,255,.5)
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
+// custom font vars
+$boldWeight: 600
+$fontHeaderSize: 26px
+
+// padding and margins
+$paneContentPadding: 1.5em
+
 // page background
 $imageBackground: url('assets/bg.jpg')
 $bgFallback: #F5C36E
@@ -26,6 +33,9 @@ $bgFallback: #F5C36E
 // block definition (all blocks--don't define width or float here)
 @mixin block
   background: rgba(188,134,70,.4)
+
+@mixin noBorder
+  border: none !important
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -46,8 +56,15 @@ a
   &:hover
     color: $secondaryLink
 
+b
+  font-weight: $boldWeight
+
 h1.title
   display: none
+
+hr
+  border-top: $borderTop
+  border-bottom: $borderBot
 
 body
   background-color: $bgFallback
@@ -65,9 +82,14 @@ div[role="main"]
   width: 29%
   float: left
   margin-right: 6.5%
+  +noBorder
   &:last-child
     margin-right: 0
-
+  .pane-content
+    font-weight: $boldWeight
+    height: 166px
+    padding: $paneContentPadding
+    text-align: center
 
 .line-top
   &:before
@@ -112,7 +134,7 @@ div[role="main"]
       background: none
       color: $baseColor
       padding: 0
-      font-size: 26px
+      font-size: $fontHeaderSize
       line-height: 1em
     .pane-content
       font-size: 21px
@@ -137,18 +159,18 @@ div[role="main"]
     line-height: 1.3em
     font-weight: 500
   .pane-content
+    margin-top: 1em
     h3
       color: $baseColor
-      font-size: 26px
+      font-size: $fontHeaderSize
       text-transform: uppercase
       font-weight: 600
       line-height: 1em
     p
       margin: 0
+      line-height: 1.25em
     &:before
-      +insetBorder
       margin-bottom: 20px
-
 
 .panel-row-flexible
   .panel-pane
@@ -169,3 +191,94 @@ div[role="main"]
     background: none
     margin: 0
     padding: 0
+
+// custom
+.border-none
+  +noBorder
+
+.clear-both
+  clear: both
+
+.epic-list-items
+  .pane-content
+    padding: $paneContentPadding
+  h3
+    color: white
+    font-size: $paneContentPadding
+  li
+    p
+      margin-bottom: 1em
+
+.margin-bottom-0
+  margin-bottom: 0
+  .pane-content
+    padding-bottom: 0
+    p
+      margin-bottom: 0
+
+.mcommons-webform
+  float: left
+  width: 66%
+  margin-right: 5%
+  +noBorder
+  input.field
+    width: 100%
+    height: 1.6em
+  label
+    font-weight: $boldWeight
+  .pane-content
+    height: 166px
+    padding: 0.5em
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 2%
+
+.pane-node-field-campain-date
+  color: $baseColor
+  font-weight: $boldWeight
+
+.panel-row-ad-quick-info
+  h2
+    color: black
+    font-size: $fontHeaderSize
+    font-weight: $boldWeight
+  .pane-content
+    p
+      margin-bottom: 1em
+
+.prizes-2-column-body
+  float: left
+  margin-right: 4%
+  width: 46%
+  +noBorder
+  .cash-header
+    margin-bottom: 2em
+    p
+      margin-bottom: 0
+  .pane-content
+    height: 365px
+    padding: $paneContentPadding
+    text-align: center
+    .prizes-pane-content-text-content
+      margin-right: $paneContentPadding
+      position: absolute
+      top: 214px
+    h2
+      color: black
+      font-size: 3.5em
+      font-weight: $boldWeight
+      line-height: 1em
+    h3
+      color: black
+      font-size: 2em
+      font-weight: $boldWeight
+      line-height: 1em
+
+.red-dot
+  list-style-image: url("assets/red-dot.png")
+  list-style-position: outside
+
+.text-align-right
+  text-align: right
