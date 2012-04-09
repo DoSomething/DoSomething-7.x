@@ -111,11 +111,25 @@ div[role="main"] {
     background: none; }
 
 .panel-row-actions {
-  background: rgba(249, 246, 243, 0.99); }
+  background: rgba(249, 246, 243, 0.99);
+  border: none;
+  margin: 0; }
   .panel-row-actions .pane-title {
     background: #0f87c9; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      border: none; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
+        width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -155,6 +169,7 @@ div[role="main"] {
     width: 100%; }
 
 .panel-row-ad {
+  margin: 0;
   position: relative; }
 
 .panel-row-flexible .panel-pane {
