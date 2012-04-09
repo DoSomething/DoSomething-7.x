@@ -182,6 +182,12 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
     'theme_dosomething_login_facebook_user_info' => array(
       'variables' => array('account' => NULL),
     ),
+    'dosomething_login_action_ds_connect' => array(
+      'variables' => array(),
+    ),
+    'dosomething_login_fboauth_user_form_connect' => array(
+      'variables' => array(),
+    ),
   );
 }
 
@@ -208,6 +214,11 @@ function dosomething_login_cron() {
  */
 function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
   global $user;
+  $uid = $form['#user']->uid;
+  $fbid = fboauth_fbid_load($uid);
+  if (isset($form['account']['fboauth'])) {
+    $form['account']['fboauth']['#markup'] = theme('dosomething_login_fboauth_user_form_connect', array('uid' => $uid, 'fbid' => $fbid));
+  }
   if (!dosomething_login_user_has_parental_consent($user->uid)) {
     // Note: Give a user parental consent if they are over 13
     // so that they don't get stuck not being able to edit their
@@ -1321,12 +1332,100 @@ function dosomething_login_fboauth_actions() {
       'user_birthday',
     ),
   );
+  $actions['ds_connect'] = array(
+    'title' => t('Connect through user profile when already logged in.'),
+    'callback' => 'dosomething_login_action_ds_connect',
+    'permissions' => array(
+      'email',
+      'user_birthday',
+    ),
+    'theme' => 'dosomething_login_action_ds_connect',
+  );
   $actions['ds_deauth'] = array(
     'title' => t('Deauthorize'),
     'callback' => 'dosomething_login_facebook_deauth',
     'theme callback' => 'dosomething_login_facebook_deauth_link',
   );
   return $actions;
+}
+
+
+/**
+ * Facebook OAuth callback for initiating a Facebook connection.
+ * This is exactly the same as the default FB Oauth module connection except
+ * it creates a new user image upon connection.
+ */
+function dosomething_login_action_ds_connect($app_id, $access_token) {
+  global $user;
+
+  $fbuser = fboauth_graph_query('me', $access_token);
+  $uid = fboauth_uid_load($fbuser->id);
+
+  if (!$user->uid && $uid && ($account = user_load($uid))) {
+    fboauth_login_user($account);
+  }
+  elseif (!empty($fbuser->email) && ($account = array_shift(user_load_multiple(array(), array('mail' => $fbuser->email))))) {
+    fboauth_save($account->uid, $fbuser->id);
+
+    if (fboauth_login_user($account)) {
+      drupal_set_message(t('Congratulations. You\'ve connected your account with Facebook.'));
+    }
+  }
+  else {
+    if ($user->uid) {
+      fboauth_save($user->uid, $fbuser->id);
+      // This is the only difference between this action and the default.
+      dosomething_login_save_profile_pic($user->uid, $fbuser->id);
+      drupal_set_message(t('Nice! You\'ve connected your account with Facebook.'));
+    }
+    elseif (variable_get('user_register', 1)) {
+      $account = fboauth_create_user($fbuser);
+      $account = user_load($account->uid);
+
+      if ($account->status == 0) {
+        _user_mail_notify('register_pending_approval', $account);
+        drupal_set_message(t('An account has been created for you on @sitename but an administrator needs to approve your account. In the meantime, a welcome message with further instructions has been sent to your e-mail address.', array('@sitename' => variable_get('site_name', ''))));
+      }
+      elseif (fboauth_login_user($account)) {
+        drupal_set_message(t('Welcome to @sitename. Basic information has been imported from Facebook into your account. You may want to <a href="!edit">edit your account</a> to confirm the details and set a password.', array('@sitename' => variable_get('site_name', ''), '!edit' => url('user/' . $account->uid . '/edit'))));
+      }
+    }
+    else {
+      drupal_set_message('Your Facebook e-mail address does not match any existing accounts. If you have an account, you must first log in before you can connect your account to Facebook. Creation of new accounts on this site is disabled.');
+    }
+  }
+}
+
+/**
+ * Saves a user pic from Facebook to the user profile.
+ *
+ * @param integer $uid
+ *   Drupal user ID.
+ * @param integer $fbid
+ *   ID for the user in Facebook.
+ */
+function dosomething_login_save_profile_pic($uid, $fbid) {
+  $picture_directory = file_default_scheme() . '://' . variable_get('user_picture_path', 'pictures');
+  if (file_prepare_directory($picture_directory, FILE_CREATE_DIRECTORY)) {
+    $picture_result = drupal_http_request('https://graph.facebook.com/' . $fbid . '/picture?type=large');
+    $picture_path = file_stream_wrapper_uri_normalize($picture_directory . '/picture-' . $uid . '.jpg');
+    $picture_file = file_save_data($picture_result->data, $picture_path, FILE_EXISTS_REPLACE);
+
+    // Check to make sure the picture isn't too large for the site settings.
+    $max_dimensions = variable_get('user_picture_dimensions', '85x85');
+    file_validate_image_resolution($picture_file, $max_dimensions);
+
+    // Update the user record.
+    $picture_file->uid = $account->uid;
+    $picture_file = file_save($picture_file);
+    file_usage_add($picture_file, 'user', 'user', $uid);
+    db_update('users')
+      ->fields(array(
+      'picture' => $picture_file->fid,
+      ))
+      ->condition('uid', $uid)
+      ->execute();
+  }
 }
 
 /**
@@ -1451,7 +1550,7 @@ function dosomething_login_facebook_friend_process($uid, $facebook_friends = arr
       $fb_user[$local_result->fbid] = $local_result->uid;
     }
     $query = db_insert('facebook_friends')->fields(array('uid', 'fbid'));
-    foreach($facebook_friends as $friend) {
+    foreach ($facebook_friends as $friend) {
       // If user's friend has registered, save.
       if (isset($fb_user[$friend->id])) {
         $query->values(array('uid' => $uid, 'fbid' => $friend->id));
@@ -1511,6 +1610,51 @@ function dosomething_login_registration_data_page() {
     $success = drupal_write_record('ds_registration_data', $data);
   }
   exit;
+}
+
+/**
+ * Return a link to initiate a Facebook Connect login or association.
+ *
+ * @param $link
+ *   An array of properties to be used to generate a login link. Note that all
+ *   provided properties are required for the Facebook login to succeed and
+ *   must not be changed. If $link is FALSE, Facebook OAuth is not yet
+ *   configured.
+ * @see fboauth_link_properties()
+ */
+function theme_dosomething_login_action_ds_connect($variables) {
+  $action = $variables['action'];
+  $link = $variables['properties'];
+  $url = url($link['href'], array('query' => $link['query']));
+  $link['attributes']['class'] = isset($link['attributes']['class']) ? $link['attributes']['class'] : 'facebook-action-connect';
+  $attributes = isset($link['attributes']) ? drupal_attributes($link['attributes']) : '';
+  $title = isset($link['title']) ? check_plain($link['title']) : '';
+  return '<a ' . $attributes . ' href="' . $url . '"><img src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_short.gif" alt="' . $title . '" /></a>';
+}
+
+/**
+ * Display the Facebook Connect options on a user's profile form.
+ */
+function theme_dosomething_login_fboauth_user_form_connect($variables) {
+  global $user;
+  $uid = $variables['uid'];
+  $fbid = $variables['fbid'];
+
+  // Don't show this for admins. It won't deauth because it requires the
+  // user themselves to be logged into Faceboook.
+  if ($user->uid == $uid) {
+    if ($fbid) {
+      $output = t('Your account is connected with Facebook. (<a href="!url">More info</a>)', array('!url' => url('user/' . $uid . '/fboauth')));
+    }
+    else {
+      $output = fboauth_action_display('ds_connect');
+      $output .= '<div class="description">' . t('LLLLLLLLLLConnect with Facebook to login with your Facebook account instead of a password.') . '</div>';
+    }
+  }
+  else {
+    $output .= '<div class="description">' . t('Admins cannot de-authorize Facebook users.') . '</div>';
+  }
+  return $output;
 }
 
 /**
