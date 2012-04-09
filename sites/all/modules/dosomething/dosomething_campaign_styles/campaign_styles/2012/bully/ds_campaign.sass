@@ -21,7 +21,7 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: url('assets/bg.jpg')
+$imageBackground: url('/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/bg.jpg')
 $bgFallback: #2387c7
 
 // top and bottom border for elements
@@ -49,13 +49,14 @@ h1.title
 body
   background-color: $bgFallback
   background-image: $imageBackground
-  background-repeat: repeat-y
+  background-repeat: repeat
   background-position: center top
 
 div[role="main"]
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
   padding-top: 10px
+  background: rgba(255,255,255,0.5)	
 
 .three-boxes
   width: 29%
@@ -83,26 +84,26 @@ div[role="main"]
     text-transform: uppercase
   ul
     margin-bottom: 1em
-    padding: 1em
+    padding: 0
+    list-style: none
     +clearfix
   li
-    list-style-image: url('assets/list-dot.png')
-    list-style-position: outside
     font-weight: bold
     text-decoration: underline
-    font-size: 20px
-    float: left
-    line-height: 26px
-    width: 310px
-    margin: 0 20px 0 10px
-    padding-left: 10px
+    font-size: 12px
+    line-height: 24px
+    margin: 0
+    padding-left: 0px
   br
     clear: left
 
 .pane-title
   background: black
   color: white
-  
+
+.ds-panel
+  .pane-content
+    padding-bottom: 0px
 
 //////////////////////////////////////////
 ////////////// sections /////////////////
@@ -222,8 +223,6 @@ div[role="main"]
     font-size: 28px 
     font-weight: bold
     margin: 0 0 0 20px
-  img /* mainly for positioning */
-    margin-top: 75px
     
 /* social buttons */
 
@@ -236,3 +235,17 @@ div[role="main"]
 .fb-facepile
   &:before
     +insetBorder
+
+.panel-pane
+  margin-bottom: 0
+
+/* added styles */
+.panel-row-ad-psa
+  iframe
+    border: 10px solid #000
+
+.panel-row-ad-quick-info
+  p
+    font-size: 15px
+    list-style: none
+   
