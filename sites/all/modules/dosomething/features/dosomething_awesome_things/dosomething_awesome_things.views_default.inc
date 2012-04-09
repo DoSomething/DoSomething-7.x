@@ -152,7 +152,7 @@ function dosomething_awesome_things_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'awesome-things-landing';
+  $handler->display->display_options['path'] = 'awesome-things';
   $export['awesome_things_landing'] = $view;
 
   return $export;
