@@ -1320,6 +1320,14 @@ function dosomething_login_fboauth_actions() {
  */
 function dosomething_login_facebook_deauth($app_id, $access_token) {
   global $user;
+  // If there is a user profile picture, remove it.
+  // These are currently only added when a user connects through FB.
+  if ($user->picture) {
+    $user_pic = file_load($user->picture);
+    if (is_object($user_pic)) {
+      file_delete($user_pic, TRUE);
+    }
+  }
 
   // Deauthorize our application from Facebook.
   $result = fboauth_method_invoke('auth.revokeAuthorization', $access_token);
