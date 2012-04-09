@@ -1,0 +1,32 @@
+diff --git a/entityqueue.api.php b/entityqueue.api.php
+index e8f497c..e14493c 100644
+--- a/entityqueue.api.php
++++ b/entityqueue.api.php
+@@ -35,5 +35,15 @@ function hook_entityqueue_default_queues() {
+ }
+ 
+ /**
++ * Alter the allowed queue types.
++ *
++ * @param array $types
++ *   An array of queue types.
++ */
++function hook_entityqueue_type_get_name_alter(&$types) {
++  $types['my_new_type'] = t('My New Type');
++}
++
++/**
+  * @} End of "addtogroup hooks".
+  */
+diff --git a/entityqueue.module b/entityqueue.module
+index 06864da..7e8eda5 100644
+--- a/entityqueue.module
++++ b/entityqueue.module
+@@ -262,6 +262,7 @@ function entityqueue_type_get_name() {
+     $queue_types[$type] = $info['label'];
+   }
+ 
++  drupal_alter('entityqueue_type_get_name', $queue_types);
+   return $queue_types;
+ }
+ 
