@@ -809,11 +809,11 @@ function dosomething_grant_alumni_field_default_fields() {
       'description' => '580px by 580px max',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'square_thumbnail',
           ),
           'type' => 'image',
           'weight' => '-3',

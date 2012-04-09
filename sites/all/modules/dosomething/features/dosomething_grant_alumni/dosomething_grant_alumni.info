@@ -1,6 +1,7 @@
 name = "dosomething_grant_alumni"
 core = "7.x"
 package = "Features"
+php = "5.2.4"
 dependencies[] = "ctools"
 dependencies[] = "date"
 dependencies[] = "dosomething_project_report"
