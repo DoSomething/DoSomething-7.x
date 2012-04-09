@@ -68,8 +68,13 @@ div[role="main"]
   margin-right: 6.5%
   &:last-child
     margin-right: 0
-
-
+  .pane-content
+    height: 166px
+    text-align: center
+    font-size: 14px
+  .pane-title
+    font-family: $accent
+    font-weight: 600
 .line-top
   &:before
     +insetBorder
@@ -239,7 +244,7 @@ div[role="main"]
     line-height: 22px
     float: none
     h3
-      font-family: din-web
+      font-family: $accent
       color: $baseColor
       font-size: 24px
       text-transform: uppercase
@@ -248,7 +253,7 @@ div[role="main"]
 
 // campaign counter labels
 .campaign-counter-labels
-  font-family: din-web
+  font-family: $accent
   font-size: 22px
   font-weight: 500
   color: $complement

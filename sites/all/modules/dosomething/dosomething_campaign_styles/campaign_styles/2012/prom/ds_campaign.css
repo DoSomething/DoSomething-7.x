@@ -27,6 +27,13 @@ div[role="main"] {
   margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
+  .three-boxes .pane-content {
+    height: 166px;
+    text-align: center;
+    font-size: 14px; }
+  .three-boxes .pane-title {
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-weight: 500; }
 
 .line-top:before {
   overflow: hidden;
