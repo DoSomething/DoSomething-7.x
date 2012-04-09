@@ -97,6 +97,10 @@ div[role="main"] {
         color: #0f87c9;
         text-decoration: none; }
 
+.pane-campaign-counter .pane-content {
+  height: 152px;
+  box-shadow: rgba(75, 71, 68, 0.35) 12px 0 12px; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
