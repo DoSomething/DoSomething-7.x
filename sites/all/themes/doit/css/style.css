@@ -386,7 +386,7 @@ input[type=color], select.form-select, iframe {
   outline: 1px dashed red;
 }
 
-.clearfix, .two-column-grid .pane-content, .view-school-proximity .pane-content, .pane-polls-landing .pane-content, .pane-ds-current-somethings-all .pane-content,
+.clearfix, .two-column-grid .pane-content, .view-school-proximity .pane-content, .pane-polls-landing-panel-pane-1 .pane-content, .pane-ds-current-somethings-all .pane-content,
 .pane-ds-past-somethings-all .pane-content,
 .pane-ds-editors-picks-all .pane-content, .pane-related-projects-panel-pane-1 .pane-content,
 .pane-related-projects-panel-pane-2 .pane-content,
@@ -395,7 +395,7 @@ input[type=color], select.form-select, iframe {
 .pane-featured-projects-panel-pane-1 .pane-content,
 .pane-featured-projects-panel-pane-3 .pane-content,
 .pane-current-campaigns-panel-pane-2 .pane-content,
-.action-finder-list .pane-content, .page-node-picks .pane-profile-panel-pane-3 .pane-content, .image-teaser-module, .view-school-proximity, .pane-polls-landing .views-row, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
+.action-finder-list .pane-content, .page-node-picks .pane-profile-panel-pane-3 .pane-content, .image-teaser-module, .view-school-proximity, .pane-polls-landing-panel-pane-1 .views-row, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
 .pane-ds-past-somethings-all .views-row,
 .pane-ds-editors-picks-all .views-row, .pane-related-projects-panel-pane-1 .views-row,
 .pane-related-projects-panel-pane-2 .views-row,
@@ -408,7 +408,7 @@ input[type=color], select.form-select, iframe {
 .views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, .page-webform-submission .pane-ds-project-stats {
   *zoom: 1;
 }
-.clearfix:after, .two-column-grid .pane-content:after, .view-school-proximity .pane-content:after, .pane-polls-landing .pane-content:after, .pane-ds-current-somethings-all .pane-content:after,
+.clearfix:after, .two-column-grid .pane-content:after, .view-school-proximity .pane-content:after, .pane-polls-landing-panel-pane-1 .pane-content:after, .pane-ds-current-somethings-all .pane-content:after,
 .pane-ds-past-somethings-all .pane-content:after,
 .pane-ds-editors-picks-all .pane-content:after, .pane-related-projects-panel-pane-1 .pane-content:after,
 .pane-related-projects-panel-pane-2 .pane-content:after,
@@ -417,7 +417,7 @@ input[type=color], select.form-select, iframe {
 .pane-featured-projects-panel-pane-1 .pane-content:after,
 .pane-featured-projects-panel-pane-3 .pane-content:after,
 .pane-current-campaigns-panel-pane-2 .pane-content:after,
-.action-finder-list .pane-content:after, .page-node-picks .pane-profile-panel-pane-3 .pane-content:after, .image-teaser-module:after, .view-school-proximity:after, .pane-polls-landing .views-row:after, .blog-landing-pane-post:after, .pane-ds-current-somethings-all .views-row:after,
+.action-finder-list .pane-content:after, .page-node-picks .pane-profile-panel-pane-3 .pane-content:after, .image-teaser-module:after, .view-school-proximity:after, .pane-polls-landing-panel-pane-1 .views-row:after, .blog-landing-pane-post:after, .pane-ds-current-somethings-all .views-row:after,
 .pane-ds-past-somethings-all .views-row:after,
 .pane-ds-editors-picks-all .views-row:after, .pane-related-projects-panel-pane-1 .views-row:after,
 .pane-related-projects-panel-pane-2 .views-row:after,
@@ -505,7 +505,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 }
 
 .medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, .h6, .views-exposed-widget label, .purple-ribbon, .dothis-button-large, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .view-school-proximity .views-row h2, .pane-polls-landing .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
+.views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .view-school-proximity .views-row h2, .pane-polls-landing-panel-pane-1 .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2,
 .pane-ds-editors-picks-all .something-description h2, .pane-related-projects-panel-pane-1 .unimage-wrapper h2,
 .pane-related-projects-panel-pane-2 .unimage-wrapper h2,
@@ -636,7 +636,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   font-size: 10px;
 }
 
-.tight-leading, .image-teaser-module-teaser p, .view-school-proximity .views-row p, .pane-polls-landing .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
+.tight-leading, .image-teaser-module-teaser p, .view-school-proximity .views-row p, .pane-polls-landing-panel-pane-1 .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
 .pane-ds-past-somethings-all .something-description p,
 .pane-ds-editors-picks-all .something-description p, .pane-related-projects-panel-pane-1 .unimage-wrapper p,
 .pane-related-projects-panel-pane-2 .unimage-wrapper p,
@@ -654,7 +654,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   text-shadow: rgba(51, 49, 49, 0.5) 1px 1px 2px;
 }
 
-.box-shadow, .border-and-shadow, .image-teaser-module-image, .pane-polls-landing .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.box-shadow, .border-and-shadow, .image-teaser-module-image, .pane-polls-landing-panel-pane-1 .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
 .pane-ds-past-somethings-all .pane-narrow-thumb,
 .pane-ds-editors-picks-all .pane-narrow-thumb, .pane-related-projects-panel-pane-1 .views-field-field-picture,
 .pane-related-projects-panel-pane-2 .views-field-field-picture,
@@ -663,7 +663,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .views-field-field-picture,
 .pane-featured-projects-panel-pane-3 .views-field-field-picture,
 .pane-current-campaigns-panel-pane-2 .views-field-field-picture,
-.action-finder-list .views-field-field-picture, .page-node-picks .pane-profile-panel-pane-3 .views-field-field-picture, .image-teaser-module-teaser, .view-school-proximity .views-row, .pane-polls-landing .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
+.action-finder-list .views-field-field-picture, .page-node-picks .pane-profile-panel-pane-3 .views-field-field-picture, .image-teaser-module-teaser, .view-school-proximity .views-row, .pane-polls-landing-panel-pane-1 .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-related-projects-panel-pane-1 .unimage-wrapper,
 .pane-related-projects-panel-pane-2 .unimage-wrapper,
@@ -689,7 +689,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
 }
 
-.white-border, .border-and-shadow, .image-teaser-module-image, .pane-polls-landing .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.white-border, .border-and-shadow, .image-teaser-module-image, .pane-polls-landing-panel-pane-1 .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
 .pane-ds-past-somethings-all .pane-narrow-thumb,
 .pane-ds-editors-picks-all .pane-narrow-thumb, .pane-related-projects-panel-pane-1 .views-field-field-picture,
 .pane-related-projects-panel-pane-2 .views-field-field-picture,
@@ -698,7 +698,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .views-field-field-picture,
 .pane-featured-projects-panel-pane-3 .views-field-field-picture,
 .pane-current-campaigns-panel-pane-2 .views-field-field-picture,
-.action-finder-list .views-field-field-picture, .page-node-picks .pane-profile-panel-pane-3 .views-field-field-picture, .image-teaser-module-teaser, .view-school-proximity .views-row, .pane-polls-landing .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
+.action-finder-list .views-field-field-picture, .page-node-picks .pane-profile-panel-pane-3 .views-field-field-picture, .image-teaser-module-teaser, .view-school-proximity .views-row, .pane-polls-landing-panel-pane-1 .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-related-projects-panel-pane-1 .unimage-wrapper,
 .pane-related-projects-panel-pane-2 .unimage-wrapper,
@@ -934,7 +934,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   font-size: 18px;
 }
 
-.two-column-grid .views-row, .view-school-proximity .views-row, .pane-polls-landing .views-row, .pane-ds-current-somethings-all .views-row,
+.two-column-grid .views-row, .view-school-proximity .views-row, .pane-polls-landing-panel-pane-1 .views-row, .pane-ds-current-somethings-all .views-row,
 .pane-ds-past-somethings-all .views-row,
 .pane-ds-editors-picks-all .views-row, .pane-related-projects-panel-pane-1 .views-row,
 .pane-related-projects-panel-pane-2 .views-row,
@@ -946,7 +946,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row, .page-node-picks .pane-profile-panel-pane-3 .views-row {
   width: 49%;
 }
-.two-column-grid .views-row:nth-of-type(odd), .view-school-proximity .views-row:nth-of-type(odd), .pane-polls-landing .views-row:nth-of-type(odd), .pane-ds-current-somethings-all .views-row:nth-of-type(odd),
+.two-column-grid .views-row:nth-of-type(odd), .view-school-proximity .views-row:nth-of-type(odd), .pane-polls-landing-panel-pane-1 .views-row:nth-of-type(odd), .pane-ds-current-somethings-all .views-row:nth-of-type(odd),
 .pane-ds-past-somethings-all .views-row:nth-of-type(odd),
 .pane-ds-editors-picks-all .views-row:nth-of-type(odd), .pane-related-projects-panel-pane-1 .views-row:nth-of-type(odd),
 .pane-related-projects-panel-pane-2 .views-row:nth-of-type(odd),
@@ -958,7 +958,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row:nth-of-type(odd), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(odd),
 .two-column-grid .views-row .views-row-odd,
 .view-school-proximity .views-row .views-row-odd,
-.pane-polls-landing .views-row .views-row-odd,
+.pane-polls-landing-panel-pane-1 .views-row .views-row-odd,
 .pane-ds-current-somethings-all .views-row .views-row-odd,
 .pane-ds-past-somethings-all .views-row .views-row-odd,
 .pane-ds-editors-picks-all .views-row .views-row-odd,
@@ -975,7 +975,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   float: left;
   clear: left;
 }
-.two-column-grid .views-row:nth-of-type(even), .view-school-proximity .views-row:nth-of-type(even), .pane-polls-landing .views-row:nth-of-type(even), .pane-ds-current-somethings-all .views-row:nth-of-type(even),
+.two-column-grid .views-row:nth-of-type(even), .view-school-proximity .views-row:nth-of-type(even), .pane-polls-landing-panel-pane-1 .views-row:nth-of-type(even), .pane-ds-current-somethings-all .views-row:nth-of-type(even),
 .pane-ds-past-somethings-all .views-row:nth-of-type(even),
 .pane-ds-editors-picks-all .views-row:nth-of-type(even), .pane-related-projects-panel-pane-1 .views-row:nth-of-type(even),
 .pane-related-projects-panel-pane-2 .views-row:nth-of-type(even),
@@ -987,7 +987,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row:nth-of-type(even), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(even),
 .two-column-grid .views-row .views-row-even,
 .view-school-proximity .views-row .views-row-even,
-.pane-polls-landing .views-row .views-row-even,
+.pane-polls-landing-panel-pane-1 .views-row .views-row-even,
 .pane-ds-current-somethings-all .views-row .views-row-even,
 .pane-ds-past-somethings-all .views-row .views-row-even,
 .pane-ds-editors-picks-all .views-row .views-row-even,
@@ -1004,7 +1004,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   float: right;
 }
 
-.image-teaser-module, .view-school-proximity, .pane-polls-landing .views-row, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
+.image-teaser-module, .view-school-proximity, .pane-polls-landing-panel-pane-1 .views-row, .blog-landing-pane-post, .pane-ds-current-somethings-all .views-row,
 .pane-ds-past-somethings-all .views-row,
 .pane-ds-editors-picks-all .views-row, .pane-related-projects-panel-pane-1 .views-row,
 .pane-related-projects-panel-pane-2 .views-row,
@@ -1017,7 +1017,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   margin-bottom: 12px;
 }
 
-.image-teaser-module-image, .pane-polls-landing .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
+.image-teaser-module-image, .pane-polls-landing-panel-pane-1 .views-field-field-picture, .blog-landing-pane-post .blog-large-thumbnail, .pane-ds-current-somethings-all .pane-narrow-thumb,
 .pane-ds-past-somethings-all .pane-narrow-thumb,
 .pane-ds-editors-picks-all .pane-narrow-thumb, .pane-related-projects-panel-pane-1 .views-field-field-picture,
 .pane-related-projects-panel-pane-2 .views-field-field-picture,
@@ -1032,7 +1032,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   height: 120px;
 }
 
-.image-teaser-module-teaser, .view-school-proximity .views-row, .pane-polls-landing .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
+.image-teaser-module-teaser, .view-school-proximity .views-row, .pane-polls-landing-panel-pane-1 .unimage-wrapper, .blog-landing-pane-post .views-field-body, .pane-ds-current-somethings-all .something-description,
 .pane-ds-past-somethings-all .something-description,
 .pane-ds-editors-picks-all .something-description, .pane-related-projects-panel-pane-1 .unimage-wrapper,
 .pane-related-projects-panel-pane-2 .unimage-wrapper,
@@ -1047,7 +1047,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
-.image-teaser-module-teaser h2, .view-school-proximity .views-row h2, .pane-polls-landing .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
+.image-teaser-module-teaser h2, .view-school-proximity .views-row h2, .pane-polls-landing-panel-pane-1 .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2,
 .pane-ds-editors-picks-all .something-description h2, .pane-related-projects-panel-pane-1 .unimage-wrapper h2,
 .pane-related-projects-panel-pane-2 .unimage-wrapper h2,
@@ -1060,7 +1060,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   line-height: 1;
   margin-bottom: 18px;
 }
-.image-teaser-module-teaser p, .view-school-proximity .views-row p, .pane-polls-landing .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
+.image-teaser-module-teaser p, .view-school-proximity .views-row p, .pane-polls-landing-panel-pane-1 .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
 .pane-ds-past-somethings-all .something-description p,
 .pane-ds-editors-picks-all .something-description p, .pane-related-projects-panel-pane-1 .unimage-wrapper p,
 .pane-related-projects-panel-pane-2 .unimage-wrapper p,
