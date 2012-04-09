@@ -525,7 +525,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
 .pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, .page-why-become-a-member .main-inner .content .panel-panel .pane-content h2, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -4304,16 +4304,6 @@ comments.fb_iframe_widget {
 }
 .pane-ds-editors-picks-all a.back {
   top: -25px;
-}
-
-.page-why-become-a-member .main-inner .content .panel-panel .pane-content h2 {
-  color: black;
-}
-.page-why-become-a-member .main-inner .content .panel-panel .pane-content p {
-  margin-bottom: 6px;
-}
-.page-why-become-a-member .main-inner .content .panel-panel .pane-content ul {
-  margin: 0;
 }
 
 .pane-ds-stuff-you-need .pane-content {
