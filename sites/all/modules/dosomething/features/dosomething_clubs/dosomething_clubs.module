@@ -37,6 +37,19 @@ function dosomething_clubs_theme() {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_clubs_menu() {
+  $items['create-club-logged-out'] = array(
+    'title' => 'Start A Club',
+    'page callback' => 'dosomething_clubs_create_club_anonymous',
+    'access callback' => 'user_is_anonymous',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_node_insert().
  */
 function dosomething_clubs_node_insert($node) {
@@ -238,5 +251,23 @@ function dosomething_clubs_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
   }
+}
+
+/**
+ * Menu callback for anonymous user Create Club page.
+ */
+function dosomething_clubs_create_club_anonymous() {
+  return array(
+    'body' => array(
+      '#markup' => t('Please login or become a member before starting a club.'),
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+    ),
+    'login_form' => array(
+      'form' => drupal_get_form('user_login'),
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+    ),
+  );
 }
 
