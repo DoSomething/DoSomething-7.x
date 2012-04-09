@@ -117,6 +117,10 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
       }
     }
   }
+
+  if ($form['#node']->type == 'project_report') {
+    $form_state['redirect'] = 'webform-submission/' . $form_state['values']['details']['sid'];
+  }
 }
 
 /**
