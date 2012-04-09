@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_grant_alumni feature.
+ */
+
+include_once 'dosomething_grant_alumni.features.inc';
