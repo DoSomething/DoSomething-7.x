@@ -123,21 +123,13 @@
   @extend .headers
   @extend .bold
   @extend .black
-  font-size: $s10
 
 h1.title
-  @extend .page-headline
   +ds-bevel-single
   padding-top: $s6
   padding-bottom: $s0
 
-h2.subhead
-  @extend .page-headline
-  font-size: $s5
-  line-height: 22px
-
 h3.subhead
-  @extend .page-headline
   font-size: $s1
   text-transform: none
 
@@ -146,7 +138,6 @@ h3.subhead
 .black-h2
   h2,
   h2.pane-title
-    @extend .page-headline
     background-color: transparent
     display: inline
     font-size: $s5
