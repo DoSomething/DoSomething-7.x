@@ -143,10 +143,27 @@ div[role="main"]
 // actions panel (sign-up and counter)
 .panel-row-actions
   +block
+  +noBorder
+  margin: 0
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noBorder
+      #edit-submitted-field-webform-mobile
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      #edit-submitted-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -200,6 +217,7 @@ div[role="main"]
   clear: both
 
 .epic-list-items
+  +noBorder
   .pane-content
     padding: $paneContentPadding
   h3
