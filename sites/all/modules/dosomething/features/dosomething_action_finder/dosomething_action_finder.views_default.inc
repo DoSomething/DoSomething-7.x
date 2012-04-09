@@ -407,6 +407,11 @@ function dosomething_action_finder_views_default_views() {
   /* Display: Action Finder Landing Context */
   $handler = $view->new_display('ctools_context', 'Action Finder Landing Context', 'ctools_context_1');
   $handler->display->display_options['display_description'] = 'The main Action Finder landing page content';
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 1;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['style_plugin'] = 'ctools_context';
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['fields'] = FALSE;

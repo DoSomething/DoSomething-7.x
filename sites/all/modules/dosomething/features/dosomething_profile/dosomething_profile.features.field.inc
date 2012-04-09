@@ -989,7 +989,7 @@ function dosomething_profile_field_default_fields() {
       'bundle' => 'main',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'You may select multiple somethings.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1034,6 +1034,7 @@ function dosomething_profile_field_default_fields() {
   t('Why Do You Do Something?');
   t('Would you like to receive our email newsletter? Read our privacy policy <a href="/privacy">here</a>.');
   t('Would you like to receive volunteer opportunities on your mobile phone?');
+  t('You may select multiple somethings.');
 
   return $fields;
 }

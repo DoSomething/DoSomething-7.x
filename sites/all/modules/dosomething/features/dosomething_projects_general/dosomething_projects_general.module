@@ -7,57 +7,6 @@
 include_once('dosomething_projects_general.features.inc');
 
 /**
- * Set amount of time for projects are editable post submission.
- */
-define('DS_PROJECTS_EDITABLE_TIME', 86400);
-
-/**
- * Implements hook_menu_alter().
- */
-function dosomething_projects_general_menu_alter(&$items) {
-  // We need custom validation for editing certain types of webforms.
-  if (isset($items['node/%webform_menu/submission/%webform_menu_submission/edit'])) {
-    $item = &$items['node/%webform_menu/submission/%webform_menu_submission/edit'];
-    $item['access callback'] = 'dosomething_projects_general_webform_menu_submission_access';
-  }
-}
-
-/**
- * Implements hook_webform_submission_access().
- */
-function dosomething_projects_general_webform_submission_access($node, $submission, $op, $account) {
-  switch ($op) {
-    case 'edit':
-      // Allow users to edit project reports for 24 hrs following submission.
-      // Note: This access setting is actually overridden by the permission
-      // 'Edit own webform submissions'
-      $types = array(
-        'project_report',
-        'campaign_report_back',
-      );
-      if ($submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
-        if (REQUEST_TIME > ($submission->submitted + DS_PROJECTS_EDITABLE_TIME)) {
-          return FALSE;
-        }
-      }
-      break;
-  }
-}
-
-/**
- * Implements hook_node_access().
- */
-function dosomething_projects_general_node_access($node, $op, $account) {
-  if (is_object($node)) {
-    // Allow node editing for 24 hours passed submission for project_updates.
-    if ($node->type == 'project_update' && $op == 'update' && $node->uid == $account->uid) {
-      return (REQUEST_TIME <= $node->created + DS_PROJECTS_EDITABLE_TIME) ? NODE_ACCESS_ALLOW : NODE_ACCESS_DENY;
-    }
-  }
-  return NODE_ACCESS_IGNORE;
-}
-
-/**
  * Implements hook_ctools_plugin_directory().
  */
 function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_type) {
@@ -79,36 +28,74 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
     return;
   }
 
-  // Let users know that they only have access to the form for 24 hours.
   $submission = isset($form['#submission']) ? $form['#submission'] : NULL;
   if (!empty($submission) && $submission->sid && !$submission->is_draft) {
-    if ($user->uid == $submission->uid) {
-      $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
-      if (REQUEST_TIME <= ($timestamp)) {
-        drupal_set_message(t('You may continue to edit this form until %date', array('%date' => date('m/d/Y g:ia', $timestamp))));
+    // Pass along previous participants so they don't get contacted again.
+    if (!empty($form['#submission']->field_participants[LANGUAGE_NONE])) {
+      $form_state['previous_participants'] = $form['#submission']->field_participants[LANGUAGE_NONE];
+    }
+  }
+
+  $form['#submit'][] = 'dosomething_projects_general_participants_submit';
+  $form['#validate'][] = 'dosomething_projects_general_participants_validate';
+}
+
+/**
+ * Project submission submit callback.
+ */
+function dosomething_projects_general_participants_submit(&$form, &$form_state) {
+  // Don't do anything for an incomplete webform.
+  if (empty($form_state['webform_completed']) || !$form_state['values']['details']['sid'] || !module_exists('og')) {
+    return;
+  }
+
+  // Load up the group and create if it doesn't already exist.
+  $group = og_get_group('webform_submission_entity', $form_state['values']['details']['sid'], TRUE);
+  if (!isset($group->gid)) {
+    $group->save();
+  }
+  if (count($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE])) {
+    foreach ($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE] as $delta => $item) {
+      // Attach the account to the group if it exists.
+      $account = FALSE;
+      if (valid_email_address($item['value'])) {
+        $account = user_load_by_mail($item['value']);
+      }
+      else if (($number = ltrim(preg_replace('/[^0-9]/', '', $item['value']), 1)) && strlen($number) == 10) {
+        if ($name = dosomething_login_find_user_by_cell($number)) {
+          $account = user_load_by_name($name);
+        }
+      }
+      if ($account) {
+        og_group($group->gid, array('entity' => $account));
+      }
+      else {
+        // TODO: Send email or text depending on whether they've already received one.
+        // If not - send email or mobile, make sure they haven't been sent once already (project is editable for 24hrs); 
       }
     }
   }
 }
 
 /**
- * Access callback for webform submissions.
+ * Validation callback to check email or mobile entry.
  */
-function dosomething_projects_general_webform_menu_submission_access($node, $submission, $op = 'view', $account = NULL) {
-  global $user;
-  $account = isset($account) ? $account : $user;
-
-  // Allow users to edit certain types for 24 hrs following submission.
-  $types = array(
-    'project_report',
-    'campaign_report_back',
-  );
-  if ($op == 'edit' && $submission->uid == $account->uid && in_array($node->type, $types) && !$submission->is_draft) {
-    $timestamp = $submission->submitted + DS_PROJECTS_EDITABLE_TIME;
-    if (REQUEST_TIME > $submission->submitted + DS_PROJECTS_EDITABLE_TIME) {
-      return FALSE;
+function dosomething_projects_general_participants_validate($form, &$form_state) {
+  if (!isset($form_state['values']['submitted']['field_participants'])) {
+    return;
+  }
+  else {
+    // Work around for bug in webform_entity.
+    unset($form_state['values']['submitted']['personal_information']['field_project_clubs'][LANGUAGE_NONE]['add_more']);
+    unset($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE]['add_more']);
+  }
+  foreach ($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE] as $key => $values) {
+    if (is_numeric($key) && !empty($values['value'])) {
+      if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['value']), 1)) && strlen($number) == 10 || valid_email_address($values['value']) === TRUE) {
+      }
+      else {
+          form_set_error('field_participants', t('%value is not a valid e-mail address or mobile number.', array('%value' => $values['value'])));
+      }
     }
   }
-  return webform_submission_access($node, $submission, $op, $account);
 }
-

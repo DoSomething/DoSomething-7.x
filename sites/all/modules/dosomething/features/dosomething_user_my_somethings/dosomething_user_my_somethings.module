@@ -102,11 +102,14 @@ function dosomething_user_my_somethings_member_block() {
 /**
  * Markup for how much of the profile is finished.
  */
-function dosomething_user_my_somethings_profile_completion($sidebar = TRUE) {
-  global $user;
+function dosomething_user_my_somethings_profile_completion($account = FALSE, $sidebar = TRUE) {
+  if (!$account) {
+    global $user;
+    $account = clone $user;
+  }
   $ratio = 0;
   if (module_exists('dosomething_roles')) {
-    $ratio = dosomething_roles_get_user_percentage($user->uid);
+    $ratio = dosomething_roles_get_user_percentage($account->uid);
   }
 
   $complete_text = !empty($sidebar) ? 'Profile %percent complete' : '%percent complete';
@@ -170,7 +173,7 @@ function dosomething_user_my_somethings_profile_completion($sidebar = TRUE) {
             'complete-link',
           ),
         ),
-        '#children' => l('Go', 'user/' . $user->uid . '/complete-profile'),
+        '#children' => l('Go', 'user/' . $account->uid . '/complete-profile'),
       ),
     ),
   );
@@ -257,7 +260,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
           // info, so we're not loading it up as of now.
           $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
           $node = node_load($submission->nid);
-          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
+          $edit_access = webform_submission_access($node, $submission, 'edit', $account);
           $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
           $items[$type]['children'][] = l($title, $link);
         }
@@ -583,7 +586,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_since'] = date('m/d/Y', $account->created);
   $variables['member_clubs'] = dosomething_user_my_somethings_clubs($account);
   $variables['member_clubs']['title']['#access'] = FALSE;
-  $profile_completion = dosomething_user_my_somethings_profile_completion(FALSE);
+  $profile_completion = dosomething_user_my_somethings_profile_completion($account, FALSE);
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
   $variables['member_picture'] = theme_image_style(array('style_name' => 'action_results_thumbnail', 'path' => $account->picture->uri));
@@ -673,7 +676,7 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
               $something = new stdClass();
               $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
               $node = node_load($submission->nid);
-              $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit', $account);
+              $edit_access = webform_submission_access($node, $submission, 'edit', $account);
               $something->uri = array('options' => array());
               $something->uri['path'] = ($edit_access && $era == 'current') ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
               $something->title = $grant->title;
@@ -765,7 +768,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
         if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
           $submission = $something->uri['options']['entity'];
           $node = node_load($submission->nid);
-          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
+          $edit_access = webform_submission_access($node, $submission, 'edit');
         }
       }
       $element[$delta] = array(
@@ -901,7 +904,7 @@ function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current
         if (module_exists('dosomething_projects_general') && $something->uri['options']['entity_type'] = 'webform_submission_entity') {
           $submission = $something->uri['options']['entity'];
           $node = node_load($submission->nid);
-          $edit_access = dosomething_projects_general_webform_menu_submission_access($node, $submission, 'edit');
+          $edit_access = webform_submission_access($node, $submission, 'edit');
         }
       }
 

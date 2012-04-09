@@ -7,7 +7,7 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #D33936
+$baseColor: #009444
 $complement: #ffffff
 $secondaryLink: black
 
@@ -25,7 +25,7 @@ $bgFallback: black
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: #8CC63F
+  background: #000
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -41,8 +41,10 @@ $bgFallback: black
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-a
-  color: $baseColor
+.region-content a 
+  color: #000 !important
+  font-weight: 500
+  text-decoration: underline
   &:hover
     color: $secondaryLink
 
@@ -50,10 +52,10 @@ h1.title
   display: none
 
 body
-  background-color: $bgFallback
-//  background-image: $imageBackground
+  //background-color: $bgFallback
+  background-image: url('background.jpg')
 // dark green to light green, light green to dark green
-  +background-image(linear-gradient(left, #3BB54A 5%, #69BD45 20%, #69BD45 80%, #3BB54A 95%))
+  //+background-image(linear-gradient(left, #1F8835 5%, #78BC32 20%, #78BC32 80%, #1F8835 95%)) 
   background-repeat: repeat-y
   background-position: center top
 
@@ -83,6 +85,9 @@ div[role="main"]
 ////////////// sections /////////////////
 ////////////////////////////////////////
 
+.pane-content
+  background-color: #8DC641
+
 // navigation
 #block-dosomething-campaign-styles-campaign-nav
   background: transparent
@@ -97,10 +102,10 @@ div[role="main"]
       display: inline-block
       width: 100%
       padding: 10px 19px 10px 0
-      font-size: 21px
+      font-size: 26px
       font-weight: 600
       text-transform: uppercase
-      color: $secondaryLink
+      color: #fff
       &:hover, .active
         color: $baseColor
         text-decoration: none
@@ -141,7 +146,7 @@ div[role="main"]
   .pane-content
     h3
       color: $baseColor
-      font-size: 26px
+      font-size: 24px
       text-transform: uppercase
       font-weight: 600
       line-height: 1em
@@ -154,6 +159,7 @@ div[role="main"]
 
 .panel-row-flexible
   .panel-pane
+    border: none
     +block
     .pane-title
       background: $baseColor
@@ -171,3 +177,39 @@ div[role="main"]
     background: none
     margin: 0
     padding: 0
+
+#scholarships-box
+  margin-left: 4%
+
+.two-boxes  	
+  width: 48%
+  float: left
+  text-align: center
+  .pane-content
+    padding: 20px 5px
+    h2
+      color: #000
+      font-size: 24px
+      font-weight: 500
+    p 
+      font-size: 14px
+      margin: 1em 0
+    p.small 
+      font-size: 12px
+      line-height: 12px 
+      margin: 2px 0px 15px 0px
+
+#judging
+  .pane-content
+    padding-top: 5px
+  li 
+    h2
+      color: #000
+      font-size: 24px
+      font-weight: 500
+      text-transform: uppercase
+    p
+      margin-bottom: 1.2em
+
+.clear-both 
+  clear: both
