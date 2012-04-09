@@ -38,6 +38,8 @@ $bgFallback: #2387c7
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBorder
+  border: none
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -157,10 +159,26 @@ div[role="main"]
 // actions panel (sign-up and counter)
 .panel-row-actions
   +block
+  +noBorder
+  margin: 0
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noBorder
+      #edit-submitted-field-webform-mobile
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      #edit-submitted-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
+
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -173,6 +191,7 @@ div[role="main"]
     line-height: 1.3em
     font-weight: 500
   .pane-content
+    margin-top: 1em
     padding: 0
     background: transparent
     h3
@@ -182,9 +201,8 @@ div[role="main"]
       font-weight: 600
       line-height: 1em
     p
-      margin: 0
+      margin: 0 0 1em 0
     &:before
-      +insetBorder
       margin-bottom: 20px
       background: transparent
 
@@ -202,6 +220,7 @@ div[role="main"]
     width: 100%
 
 .panel-row-ad
+  margin: 0
   position: relative
 
 .panel-row-flexible

@@ -47,7 +47,7 @@ div[role="main"] {
 /* universal declarations to be overridden per block if necessary */
 .pane-content {
   background: #f0ebde;
-  padding: 1.5em; }
+  padding: 5px 5px 10px 5px; }
   .pane-content ul {
     margin-bottom: 1em;
     padding: 1em;
@@ -93,7 +93,8 @@ div[role="main"] {
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
-  font-family: din-web, "Trebuchet MS", sans-serif; }
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  color: #92d2ba; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
     color: #92d2ba;
@@ -189,3 +190,13 @@ div[role="main"] {
   font-size: 28px;
   font-weight: bold;
   margin: 0 0 0 20px; }
+
+.drive .pane-content li {
+  text-decoration: none; }
+  .drive .pane-content li h3 {
+    font-family: din-web;
+    color: #f48b8c;
+    font-size: 26px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1em; }

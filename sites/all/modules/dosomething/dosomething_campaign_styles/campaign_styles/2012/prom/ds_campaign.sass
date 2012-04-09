@@ -81,7 +81,7 @@ div[role="main"]
 
 .pane-content
   background: $contentBG
-  padding: 1.5em
+  padding: 5px 5px 10px 5px
   ul
     margin-bottom: 1em
     padding: 1em
@@ -136,6 +136,7 @@ div[role="main"]
   // mini-info panel
   .panel-top-right-mini-info
     font-family: $accent
+    color: $complement
     .pane-title
       background: none
       color: $complement
@@ -223,7 +224,15 @@ div[role="main"]
     font-size: 28px 
     font-weight: bold
     margin: 0 0 0 20px
-    
-// align Got Questions? right
-//.pane-2
-//  text-alignt: right
+
+// Drive list page styling
+.drive    
+  .pane-content li
+    text-decoration: none
+    h3
+      font-family: din-web
+      color: $baseColor
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
