@@ -12,19 +12,22 @@
 
         // If they enter a new school name we need to have them provide
         // additional information.
-        function blurHandler(event) {
+        function schoolHandler(event) {
+          var value = $schoolName.val() || ''
+            , $addressFields = $wrapper.find('div.form-type-textfield:not([role=application])');
+
           // FIXME figure out how to do this with form states... it seems so much nicer.
-          if ($(event.target).val().match(/.+\((\d+)\)/)) {
-            $wrapper.find('div.form-type-textfield:not([role=application])').fadeOut();
+          if (value == '' || value.match(/.+\((\d+)\)/)) {
+            $addressFields.fadeOut();
           }
           else {
-            $wrapper.find('div.form-type-textfield:not([role=application])').fadeIn();
+            $addressFields.fadeIn();
           }
         };
-        $schoolName.blur(blurHandler);
+        $schoolName.blur(schoolHandler);
         // Run it after it's attached to hide the fields if it's an existing
-        // school. NOTE: if we're using states this might not be necessary.
-        $schoolName.blur();
+        // school. NOTE: if we're using form states this might not be necessary.
+        schoolHandler();
 
         // When the state select changes we need to update the autocomplete URL.
         $state.change(function(e) {

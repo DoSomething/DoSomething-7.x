@@ -305,6 +305,16 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#required' => $instance['required'],
     '#size' => $instance['widget']['settings']['size'],
   );
+
+//   $form['settings'] = array(
+//   '#type' => 'textfield',
+//   '#states' => array(
+//     'visible' => array(
+//       'input.form-autocomplete' => array('checked' => TRUE),
+//     ),
+//   ),
+// );
+
   $element['street'] = array(
     '#title' => t('Street Address'),
     '#type' => 'textfield',
@@ -406,7 +416,7 @@ function dosomething_school_autocomplete_callback($state, $name) {
   $result = $query->execute();
   if (!empty($result[$entity_type])) {
     foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
-      $matches[dosomething_school_make_label($info)] = "$info->name";
+      $matches[dosomething_school_make_label($info)] = t('@name<br>%street, %city', array('@name' => $info->name, '%street' => $info->street, '%city' => $info->city));
     }
   }
 
