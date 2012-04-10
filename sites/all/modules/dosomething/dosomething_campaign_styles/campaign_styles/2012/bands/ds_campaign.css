@@ -242,6 +242,9 @@ div[role="main"] {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
+.panel-row-flexible-top .panel-pane .pane-title {
+  color: #ffca06; }
+
 .panel-row-logos .pane-title {
   color: black;
   background: none;
@@ -281,6 +284,103 @@ div[role="main"] {
 .panel-top-right-social .panel-pane {
   margin: 0;
   padding: 5px 0; }
+
+.clear-both {
+  clear: both; }
+
+.contests-grand-prize {
+  background-color: white !important;
+  border: 1px solid black !important; }
+  .contests-grand-prize .pane-content {
+    padding: 1em;
+    text-align: center; }
+    .contests-grand-prize .pane-content h3 {
+      font-size: 2em; }
+    .contests-grand-prize .pane-content p {
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 0; }
+  .contests-grand-prize .dollar-left {
+    margin-left: 184px; }
+
+.contests-scholarships {
+  background-color: white !important;
+  border: 1px solid black !important; }
+  .contests-scholarships .pane-content {
+    padding: 1em;
+    text-align: center; }
+    .contests-scholarships .pane-content h3 {
+      font-size: 2em; }
+    .contests-scholarships .pane-content p {
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 0; }
+  .contests-scholarships .pane-title {
+    color: #ffca06; }
+
+.contests-star-prize {
+  background-color: white !important;
+  border: 1px solid black !important; }
+  .contests-star-prize .pane-content {
+    padding: 1em;
+    text-align: center; }
+    .contests-star-prize .pane-content h3 {
+      font-size: 2em; }
+    .contests-star-prize .pane-content p {
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 0; }
+  .contests-star-prize .amp-left {
+    margin-left: 153px; }
+
+.contests-three-boxes {
+  background-color: white !important;
+  border: 1px solid black !important;
+  float: left;
+  width: 32%;
+  margin-right: 2%; }
+  .contests-three-boxes .pane-content {
+    padding: 1em;
+    text-align: center; }
+    .contests-three-boxes .pane-content h3 {
+      font-size: 2em; }
+    .contests-three-boxes .pane-content p {
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 0; }
+  .contests-three-boxes .pane-content {
+    height: 190px; }
+    .contests-three-boxes .pane-content h3 {
+      font-size: 1.5em; }
+    .contests-three-boxes .pane-content img {
+      margin: 1em 0 1em 0;
+      position: absolute;
+      top: 25%; }
+    .contests-three-boxes .pane-content p {
+      bottom: 10%;
+      position: absolute;
+      width: 100%;
+      padding-right: 2em; }
+    .contests-three-boxes .pane-content .taylor-img {
+      height: 86px;
+      top: 15%; }
+
+.contests-three-boxes-last {
+  margin-right: 0; }
+
+.contests-no-bg-no-border {
+  font-size: 1em;
+  font-weight: 600;
+  background: none !important;
+  border: none !important;
+  clear: both;
+  margin-bottom: 0;
+  padding: 1em;
+  text-align: center; }
+  .contests-no-bg-no-border .pane-content {
+    padding-bottom: 0; }
+  .contests-no-bg-no-border a {
+    color: #d33936; }
 
 .faq-section {
   border: none !important; }
