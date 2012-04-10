@@ -1368,7 +1368,9 @@ function dosomething_login_action_ds_connect($app_id, $access_token) {
     fboauth_save($account->uid, $fbuser->id);
 
     if (fboauth_login_user($account)) {
-      drupal_set_message(t('Congratulations. You\'ve connected your account with Facebook.'));
+      // This is the only difference between this action and the default.
+      dosomething_login_save_profile_pic($user->uid, $fbuser->id);
+      drupal_set_message(t('You\'ve connected your account with Facebook.'));
     }
   }
   else {
@@ -1648,7 +1650,7 @@ function theme_dosomething_login_fboauth_user_form_connect($variables) {
     }
     else {
       $output = fboauth_action_display('ds_connect');
-      $output .= '<div class="description">' . t('LLLLLLLLLLConnect with Facebook to login with your Facebook account instead of a password.') . '</div>';
+      $output .= '<div class="description">' . t('Connect with Facebook to login with your Facebook account instead of a password.') . '</div>';
     }
   }
   else {
