@@ -174,3 +174,11 @@ div[role="main"] {
   background: #231f20;
   padding: 5px;
   width: 20%; }
+  .winner p {
+    display: normal; }
+  .winner h2 {
+    color: white;
+    font-family: din-web, "Trebuchet MS", sans-serif; }
+  .winner b {
+    color: #e31837;
+    font-weight: bold; }

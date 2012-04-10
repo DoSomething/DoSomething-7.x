@@ -7,7 +7,7 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #E31837 /* dark grey */
+$baseColor: #E31837 /* red */
 $complement: #FFFFFF
 $secondaryLink: black
 
@@ -21,7 +21,7 @@ $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.png')
-$bgFallback: #231F20 /* red */
+$bgFallback: #231F20
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -206,12 +206,5 @@ div[role="main"]
   background: $bgFallback
   padding: 5px
   width: 20%
-  p
-    display: normal
-  h2
-    color: white
-    font-family: $accent
-    font-size: 65px
-  b
-    color: $baseColor
-    font-weight: bold
+
+//
