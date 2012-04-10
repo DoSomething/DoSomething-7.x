@@ -41,6 +41,12 @@ $bgFallback: #2387c7
 @mixin noBorder
   border: none
 
+@mixin noBoxShadow
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+  -o-box-shadow: none
+  box-shadow: none
+
 //////////////////////////////////////////
 ///////// general definitions ///////////
 ////////////////////////////////////////
@@ -140,10 +146,10 @@ div[role="main"]
         color: $baseColor
         text-decoration: none
 
-.pane-campaign-counter
-  .pane-content
-    height: 152px
-    box-shadow: rgba(75,71,68,0.35) 12px 0 12px
+//.pane-campaign-counter
+//  .pane-content
+//    height: 152px
+//    box-shadow: rgba(75,71,68,0.35) 12px 0 12px
 
 // top right wrapper
 .panel-row-top-right
@@ -165,25 +171,28 @@ div[role="main"]
 .panel-row-actions
   +block
   +noBorder
-  margin: 0
+  background: $contentBG
+  margin: 0 0 2em 0
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
   .panel-row-actions-sign-up
-    .pane-content
-      padding: 0
-      .webform-client-form
-        +noBorder
-      #edit-submitted-field-webform-mobile
-        margin-bottom: 0.5em
-        input
-          width: 100%
-      #edit-submitted-field-webform-email
-        margin-bottom: 0.5em
-        input
-          width: 100%
-
+    .pane-campaign-sign-up
+      margin-bottom: 0
+      .pane-content
+        padding: 0
+        .webform-client-form
+          +noBorder
+          +noBoxShadow
+        #edit-submitted-field-webform-mobile
+          margin-bottom: 0.5em
+          input
+            width: 100%
+        #edit-submitted-field-webform-email
+          margin-bottom: 0.5em
+          input
+            width: 100%
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
