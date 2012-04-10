@@ -67,7 +67,7 @@ function drush_dosomething_school_load() {
       unset($row['universal-id']);
 
       // Check if there's an existing record...
-      $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid']));
+      $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid'], 'state' => $row['state']));
       $school = reset($schools);
       if ($school) {
         foreach ($row as $key => $value) {
