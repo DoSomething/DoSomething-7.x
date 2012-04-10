@@ -141,6 +141,9 @@ div[role="main"] {
   .pane-node-field-campaign-teaser .pane-content p {
     margin-bottom: 0; }
 
+.pane-title {
+  color: #ffca06; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
@@ -165,9 +168,15 @@ div[role="main"] {
     padding: 18px; }
   .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
     margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: #ffca06; }
   .panel-row-actions .panel-row-actions-sign-up .pane-content {
     padding: 0; }
     .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      -mox-box-shadow: none;
+      -webkit-box-shadow: none;
+      -o-box-shadow: none;
+      box-shadow: none;
       border: none; }
     .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
       margin-bottom: 0.5em; }
@@ -281,6 +290,8 @@ div[role="main"] {
     .faq-section .pane-content ul {
       margin: 0px 10px;
       padding: 1.5em; }
+  .faq-section .pane-title {
+    color: #ffca06; }
 
 .float-left {
   float: left; }
@@ -291,4 +302,5 @@ div[role="main"] {
 .li-triangles {
   list-style-image: url("assets/black-triangle.png"); }
   .li-triangles li h3 {
+    font-size: 1.6em;
     text-transform: none; }
