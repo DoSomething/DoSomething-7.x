@@ -21,8 +21,13 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Media',
-    'weight' => '14',
-    'children' => array(),
+    'weight' => '7',
+    'children' => array(
+      0 => 'field_blog_video',
+      1 => 'field_embedded_video',
+      2 => 'field_picture',
+      3 => 'upload',
+    ),
     'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
@@ -45,7 +50,7 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Path',
-    'weight' => '21',
+    'weight' => '9',
     'children' => array(
       0 => 'redirect',
       1 => 'path',
@@ -74,8 +79,12 @@ function dosomething_blog_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '18',
-    'children' => array(),
+    'weight' => '8',
+    'children' => array(
+      0 => 'taxonomy_vocabulary_11',
+      1 => 'taxonomy_vocabulary_5',
+      2 => 'taxonomy_vocabulary_6',
+    ),
     'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',

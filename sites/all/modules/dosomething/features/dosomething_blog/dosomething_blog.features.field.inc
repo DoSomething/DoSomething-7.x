@@ -47,7 +47,7 @@ function dosomething_blog_field_default_fields() {
       'bundle' => 'blog',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'An entry for the Celebs Gone Good blog',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -83,7 +83,7 @@ function dosomething_blog_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '10',
+        'weight' => '6',
       ),
     ),
   );
@@ -153,7 +153,7 @@ function dosomething_blog_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
@@ -233,7 +233,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '31',
+        'weight' => '6',
       ),
     ),
   );
@@ -323,7 +323,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -434,7 +434,7 @@ function dosomething_blog_field_default_fields() {
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '5',
+        'weight' => '4',
       ),
       'widget_type' => 'imagefield_widget',
     ),
@@ -503,7 +503,7 @@ function dosomething_blog_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -569,7 +569,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -710,7 +710,7 @@ function dosomething_blog_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -788,7 +788,7 @@ function dosomething_blog_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -880,7 +880,6 @@ function dosomething_blog_field_default_fields() {
   // Included for use with string extractors like potx.
   t('580px by 580px max');
   t('A subtitle for use on the News & Stuff homepage section.');
-  t('An entry for the Celebs Gone Good blog');
   t('Blog Icon');
   t('Blog type');
   t('Body');
