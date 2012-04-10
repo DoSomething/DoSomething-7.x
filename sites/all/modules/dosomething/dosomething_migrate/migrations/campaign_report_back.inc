@@ -913,3 +913,43 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
   public function prepare($entity, $row) {
   }
 }
+
+class DSCampaignReportBackTFJ2012 extends DSCampaignReportBackMigration {
+  public function __construct() {
+    $fields = array();
+    parent::__construct('campaign_tfj_2012', $fields);
+    $this->description .= 'Campaign Project - Teens for Jeans 2012';
+
+    $this->addFieldMapping('data_school_name', 'title');
+    $this->addFieldMapping('data_first_name', 'field_name_f');
+    $this->addFieldMapping('data_last_name', 'field_name_l');
+    $this->addFieldMapping('field_webform_email', 'field_email');
+    $this->addFieldMapping('data_how_many_people_helped_you_with_your_drive', 'field_campaign_number_of_people');
+    $this->addFieldMapping('data_we_want_to_send_a_big_thanks_to_those_people_who_helped_with_your_drive_what_are_their_email_addresses', 'field_friends_emails');
+    $this->addFieldMapping('data_name_of_your_local_mall', 'field_mall_name');
+    $this->addFieldMapping('data_how_many_pairs_of_jeans_did_your_drive_collect', 'field_campaign_pieces');
+
+    $this->addFieldMapping('field_webform_pictures', 'field_campaign_pictures')
+      ->arguments(array('file_function' => 'file_fid'))
+      ->sourceMigration('DSFile');
+
+    $this->addFieldMapping('field_webform_videos', 'field_campaign_video_single')
+      ->arguments(array('file_function' => 'file_fid'));
+
+    $this->addUnmigratedSources(array('locations'));
+    $this->addUnmigratedDestinations(array(
+      'taxonomy_vocabulary_5',
+      'field_geocode_data',
+      'field_webform_geocode_zip_code',
+      'field_webform_school',
+      'field_webform_mobile',
+      'field_webform_school_zip',
+    ));
+  }
+
+  public function prepareRow($row) {
+  }
+
+  public function prepare($entity, $row) {
+  }
+}
