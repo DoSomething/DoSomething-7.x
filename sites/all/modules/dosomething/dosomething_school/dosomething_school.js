@@ -46,12 +46,12 @@
               // Remove the ARIA element.
               $('#' + this.id + '-autocomplete-aria-live').remove();
             })
-            .blur(blurHandler);
+            .blur(schoolHandler);
           // Now re-generate the autocomplete.
           Drupal.behaviors.autocomplete.attach($wrapper);
 
           // Make sure our blur hander gets reattached.
-          $schoolName.blur(blurHandler);
+          $schoolName.blur(schoolHandler);
         });
       }).addClass('dsschool-processed');
     }
