@@ -288,6 +288,9 @@ node/*/picks/*',
       'arguments' => array(
         'dosomething_causes_term_node_tid' => '%profile2:taxonomy_vocabulary_5',
       ),
+      'context' => array(
+        0 => 'relationship_profile2_1',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(

@@ -74,17 +74,13 @@
           popupForm.find('input[name="email"]').val(cell_or_email);
           emailField.attr("disabled", true);
           // Hide the required field for phone.
-          // For some reason the email required star is shown next to
-          // the phone field and vice-versa.
-          emailField.parent().next('span').hide();
+          phoneField.next('span').hide();
         }
         else if (validPhone(cell_or_email)) {
           popupForm.find('input[name="cell"]').val(cell_or_email);
           phoneField.attr("disabled", true);
           // Hide the required field for emails.
-          // For some reason the email required star is shown next to
-          // the phone field and vice-versa.
-          phoneField.parent().next('span').hide();
+          emailField.next('span').hide();
         }
         popupForm.find('.dosomething-original-value').each(function() {
           $(this).attr("disabled", true);

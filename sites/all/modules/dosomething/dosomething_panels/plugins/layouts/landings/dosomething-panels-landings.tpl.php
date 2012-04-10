@@ -27,7 +27,6 @@
 
   <?php if (isset($content['sign-up']) || isset($content['stats'])): ?>
     <div class="panel-row-actions panel-row <?php print $actions_classes?>">
-      <h2 class="block-title">Start a Do Something Club</h2>
       <?php if (isset($content['sign-up'])): ?>
         <div class="panel-row-actions-sign-up panel-panel"><?php print $content['sign-up']; ?></div>
       <?php endif; ?>

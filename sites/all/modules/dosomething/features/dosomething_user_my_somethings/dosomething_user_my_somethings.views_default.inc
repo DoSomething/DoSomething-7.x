@@ -354,7 +354,6 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['field'] = 'dosomething_causes_term_node_tid';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_action'] = 'not found';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_options']['argument'] = '1';
   $handler->display->display_options['arguments']['dosomething_causes_term_node_tid']['default_argument_skip_url'] = 1;
@@ -543,9 +542,9 @@ function dosomething_user_my_somethings_views_default_views() {
   $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'dosomething_causes_term_node_tid' => array(
-      'type' => 'user',
+      'type' => 'context',
       'context' => 'entity:profile2.taxonomy_vocabulary_5',
-      'context_optional' => 0,
+      'context_optional' => 1,
       'panel' => '0',
       'fixed' => '1',
       'label' => 'Issues',

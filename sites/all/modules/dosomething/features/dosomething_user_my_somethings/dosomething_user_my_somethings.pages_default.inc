@@ -182,7 +182,7 @@ user/*/complete-profile',
         'dosomething_causes_term_node_tid' => '%profile2:taxonomy_vocabulary_5',
       ),
       'context' => array(
-        0 => 'relationship_entity_from_schema:uid-user-profile2_1',
+        0 => 'relationship_profile2_1',
       ),
     );
     $pane->cache = array();

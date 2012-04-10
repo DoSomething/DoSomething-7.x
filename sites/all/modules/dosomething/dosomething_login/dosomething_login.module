@@ -866,7 +866,11 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     $form_state['redirect'] = '';
     return;
   }
+
   // Save profile data.
+  // Note: Because we're doing drupal_write_recordinstead of profile_create,
+  // we can't hook in on profile insert anywhere.  We should change this.
+  // If we, then see dosomething_projects_general_register_form_submit.
   $profile = new stdClass();
   $profile->type = 'main';
   $profile->uid = $account->uid;
@@ -877,13 +881,15 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $time = $birthday->format(DATE_FORMAT_DATETIME);
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
   $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($birthdate, 13);
-  if ($values['signup']) {
-    $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
-  }
+  $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
+
   if (isset($form_state['values']['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['phone'];
   }
   field_attach_insert('profile2', $profile);
+
+  $form_state['profile'] = $profile;
+  $form_state['account'] = $account;
   $form_state['uid'] = $account->uid;
   if (isset($account->mail) && $account->status) {
     _user_mail_notify('register_no_approval_required', $account);
@@ -913,6 +919,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
 
   // Clear any logged registration data.
   $query = db_delete('ds_registration_data');
+  // TODO: Use both conditions but make it an OR.
   if (isset($form_state['values']['phone'])) {
     $query->condition('cell', $form_state['values']['phone']);
   }

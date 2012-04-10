@@ -291,6 +291,12 @@ div[role="main"]
     &:before,&:after
       +insetBorder
 
+// Top Panel
+.panel-row-flexible-top
+  .panel-pane
+    .pane-title
+      color: $bgFallback
+
 // logos
 .panel-row-logos
   .pane-title
@@ -332,7 +338,83 @@ div[role="main"]
     margin: 0
     padding: 5px 0
 
+$contestsFontSize: 1em
+
+@mixin contestsFont
+  font-size: $contestsFontSize
+  font-weight: $boldWeight
+
+@mixin contestBlock
+  background-color: white !important
+  border: 1px solid black !important
+  .pane-content
+    padding: 1em
+    text-align: center
+    h3
+      font-size: 2em
+    p
+      +contestsFont
+      margin-bottom: 0
+
 // Custom
+.clear-both
+  clear: both
+
+.contests-grand-prize
+  +contestBlock
+  .dollar-left
+    margin-left: 184px
+
+.contests-scholarships
+  +contestBlock
+  .pane-title
+    color: $bgFallback
+
+.contests-star-prize
+  +contestBlock
+  .amp-left  
+    margin-left: 153px
+
+.contests-three-boxes
+  +contestBlock
+  float: left
+  width: 32%
+  margin-right: 2%
+  .pane-content
+    height: 190px
+    h3
+      font-size: 1.5em
+    img
+      margin: 1em 0 1em 0
+      position: absolute
+      top: 25%
+    p
+      bottom: 10%
+      position: absolute
+      //this feels hacky, but this centers the text in the box
+      width: 100%
+      padding-right: 2em
+    .taylor-img
+      height: 86px
+      top: 15%
+
+// HACK: using :nth-of-type and :last-of-type didn't work
+.contests-three-boxes-last
+  margin-right: 0
+
+.contests-no-bg-no-border
+  +contestsFont
+  background: none !important
+  border: none !important
+  clear: both
+  margin-bottom: 0
+  padding: 1em
+  text-align: center
+  .pane-content
+    padding-bottom: 0
+  a
+    color: #d33936
+
 .faq-section
   border: none !important
   .pane-content
