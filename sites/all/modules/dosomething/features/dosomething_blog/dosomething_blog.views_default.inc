@@ -1500,11 +1500,11 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['filters']['field_blog_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_blog_type_tid']['vocabulary'] = 'blog_type';
   $handler->display->display_options['filters']['field_blog_type_tid']['error_message'] = 1;
-  /* Filter criterion: Content: Causes/Issues (field_blog_causes) */
-  $handler->display->display_options['filters']['field_blog_causes_tid']['id'] = 'field_blog_causes_tid';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['table'] = 'field_data_field_blog_causes';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['field'] = 'field_blog_causes_tid';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['value'] = array(
+  /* Filter criterion: Field: Issues (taxonomy_vocabulary_5) */
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['value'] = array(
     29 => '29',
     28 => '28',
     27 => '27',
@@ -1517,18 +1517,17 @@ function dosomething_blog_views_default_views() {
     26 => '26',
     22 => '22',
   );
-  $handler->display->display_options['filters']['field_blog_causes_tid']['group'] = 0;
-  $handler->display->display_options['filters']['field_blog_causes_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['operator_id'] = 'field_blog_causes_tid_op';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['label'] = 'Cause';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['operator'] = 'field_blog_causes_tid_op';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['identifier'] = 'field_blog_causes_tid';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['expose']['reduce'] = 1;
-  $handler->display->display_options['filters']['field_blog_causes_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_blog_causes_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['vocabulary'] = 'vocabulary_5';
-  $handler->display->display_options['filters']['field_blog_causes_tid']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['field_blog_causes_tid']['error_message'] = 1;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'Causes';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator'] = 'taxonomy_vocabulary_5_tid_op';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 1;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['error_message'] = 1;
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
