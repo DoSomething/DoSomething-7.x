@@ -12,7 +12,7 @@ h1.title {
   display: none; }
 
 body {
-  background-image: url("background.jpg"); }
+  background-image: url("assets/background.jpg"); }
 
 div[role="main"] {
   background: black;
@@ -198,6 +198,12 @@ div[role="main"] {
 .white {
   color: white; }
 
+.center {
+  text-align: center; }
+
+.left {
+  float: left; }
+
 .pane-node-field-campain-date {
   color: #009444;
   font-weight: 500; }
@@ -221,3 +227,43 @@ div[role="main"] {
     .pane-node-field-campaign-teaser .pane-content p,
     .pane-node-field-campaign-logo .pane-content p {
       margin-bottom: 0; }
+
+#faq .pane-content {
+  padding: 15px 10px; }
+  #faq .pane-content h3 {
+    color: black;
+    font-size: 21px;
+    line-height: 21px; }
+
+#project-ideas .pane-content {
+  padding: 20px 10px; }
+  #project-ideas .pane-content .small-logo {
+    margin: 15px 15px 0 0; }
+  #project-ideas .pane-content #nestle-recycling-copy {
+    width: 590px;
+    margin-top: 15px; }
+  #project-ideas .pane-content h1 {
+    background: url("assets/black-triangle.png") no-repeat left;
+    padding: 5px 0 0 15px;
+    margin: 0px 5px 2px 10px;
+    font-size: 32px;
+    cursor: pointer; }
+  #project-ideas .pane-content h1:hover {
+    cursor: pointer;
+    color: #333333; }
+  #project-ideas .pane-content ul {
+    background-color: #222222;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+    padding: 10px 0px 3px 36px;
+    margin: 0px 7px 5px 7px; }
+    #project-ideas .pane-content ul li {
+      color: white;
+      padding-bottom: 7px; }
+      #project-ideas .pane-content ul li a {
+        text-decoration: none;
+        color: white !important; }
+      #project-ideas .pane-content ul li a:hover {
+        text-decoration: underline; }
