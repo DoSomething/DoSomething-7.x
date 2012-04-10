@@ -404,3 +404,37 @@ div[role="main"] {
   .li-triangles li h3 {
     font-size: 1.6em;
     text-transform: none; }
+
+.share-your-video {
+  overflow: hidden;
+  *zoom: 1; }
+  .share-your-video .p-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    margin: 10px 25px; }
+  .share-your-video h3 {
+    font-size: 20px; }
+  .share-your-video p {
+    text-align: center;
+    font-size: 11px; }
+  .share-your-video ul {
+    display: block;
+    float: left;
+    margin: 0 0 0 5%;
+    padding: 0;
+    width: 27%;
+    text-align: center; }
+    .share-your-video ul p {
+      font-size: 14px; }
+    .share-your-video ul li {
+      list-style: none; }
+
+.panel-row-flexible .battle-box {
+  border: none; }
+  .panel-row-flexible .battle-box h2 {
+    text-transform: uppercase; }
+
+.panel-row-flexible-mid ul {
+  margin-left: 20px; }
