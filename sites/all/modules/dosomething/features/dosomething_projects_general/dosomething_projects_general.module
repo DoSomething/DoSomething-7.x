@@ -195,10 +195,26 @@ function dosomething_projects_general_entity_insert($entity, $type) {
 /**
  * Implements hook_entity_update().
  */
-function dosomething_projects_general_entity_update($entity, $type) {
-  // TODO: When user updates profile, replace email and phone number on projects.
+function dosomething_projects_general_entity_presave($entity, $type) {
+  // When user updates profile, replace email and phone number on projects
+  // with which they are participating.
   if ($type == 'profile2') {
-
+    if ($entity->pid) {
+      $profile = profile2_load($entity->pid);
+      $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+      $entity_wrapper = entity_metadata_wrapper('profile2', $entity);
+      if ($entity_wrapper->field_user_mobile->value() != $profile_wrapper->field_user_mobile->value()) {
+        dosomething_projects_general_update_participants_contact_value($entity_wrapper->field_user_mobile->value(), $profile_wrapper->field_user_mobile->value());
+      }
+    }
+  }
+  else if ($type == 'user') {
+    if ($entity->uid) {
+      $account = user_load($entity->uid);
+      if ($entity->mail != $account->mail) {
+        dosomething_projects_general_update_participants_contact_value($entity->mail, $account->mail);
+      }
+    }
   }
 }
 
@@ -251,7 +267,7 @@ function dosomething_projects_general_add_user_to_project_groups($account, $prof
 }
 
 /**
- * Find submissions where the given email and cell numbers were marked as particpants.
+ * Find submissions where the given email and cell numbers were marked as participants.
  *
  * @param $email
  *  A valid email address.
@@ -282,3 +298,25 @@ function dosomething_projects_general_find_project_memberships($email, $cell) {
   return array();
 }
 
+/**
+ * Update the values in the field_participants field.
+ *
+ * @param $new_value
+ *  The new value of the email or phone.
+ * @param $old_value
+ *  The previous value of the email or phone.
+ *
+ * @return int
+ *  Number of rows affected by update.
+ */
+function dosomething_projects_general_update_participants_contact_value($new_value, $old_value) {
+  $count = 0;
+  try {
+    $count = db_update('field_data_field_participants')
+    ->fields(array('field_participants_value' => $new_value))
+    ->condition('field_participants_value', $old_value)
+    ->execute();
+  }
+  catch (Exception $e) {}
+  return $count;
+}
