@@ -602,8 +602,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
 
-  // TODO: Should now be a textfield.
-  // TODO: Needs validation.
   $form['pass'] = array(
     '#type' => 'password',
     '#required' => TRUE,
@@ -611,6 +609,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'placeholder' => t('Password'),
     ),
     '#size' => 20,
+    '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
   $form['birthday'] = array(
     '#type' => 'item',
