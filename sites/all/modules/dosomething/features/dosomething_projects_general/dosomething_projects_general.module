@@ -31,7 +31,7 @@ function dosomething_projects_general_mail($key, &$message, $params) {
 /**
  * Implements_hook_form_BASE_FORM_ID_alter().
  */
-function dosomething_projects_general_form_webform_client_form_alter(&$form, &$form_state, $form_id) {
+function dosomething_projects_general_form_webform_client_form_alter(&$form, &$form_state) {
   global $user;
   $node_types = array(
     'project_report',
@@ -179,3 +179,106 @@ function dosomething_projects_general_load_user_by_mail_or_cell($value) {
   }
   return $account;
 }
+
+/**
+ * Implements hook_entity_insert().
+ */
+function dosomething_projects_general_entity_insert($entity, $type) {
+  // When user signs up for site, check for projects to which they're committed,
+  // and sign them up for the group.
+  if ($type == 'profile2') {
+    $account = user_load($profile->uid);
+    dosomething_projects_general_add_user_to_project_groups($account, $entity);
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function dosomething_projects_general_entity_update($entity, $type) {
+  // TODO: When user updates profile, replace email and phone number on projects.
+  if ($type == 'profile2') {
+
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_projects_general_form_dosomething_login_register_popup_form_alter(&$form, &$form_state) {
+  // When user signs up for site, check for projects to which they're committed,
+  // and sign them up for the group.
+  $form['#submit'][] = 'dosomething_projects_general_register_form_submit';
+}
+
+/**
+ * Submission callback for dosomething_login_register_popup_for.
+ */
+function dosomething_projects_general_register_form_submit($form, &$form_state) {
+  // This is also being run on hook_entity_insert for profiles.
+  // If we start creating them in a normal way,
+  // then we can get rid of this form_alter.
+  dosomething_projects_general_add_user_to_project_groups($form_state['account'], $form_state['profile']);
+}
+
+/**
+ * Add user to submission groups (projects) that they've particpated in.
+ *
+ * @param $account
+ *  Loaded user object.
+ * @param $profile
+ *  Profile2 object realted to the account (OPTIONAL)
+ *
+ * @return array
+ *  List of submissions to which the user was added.
+ */
+function dosomething_projects_general_add_user_to_project_groups($account, $profile = NULL) {
+  if (is_null($profile)) {
+    $profile = profile_load_by_user($account, 'main');
+  }
+  $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+  $submissions = dosomething_projects_general_find_project_memberships($account->mail, $profile_wrapper->field_user_mobile->value());
+  if (!empty($submissions['webform_submission_entity'])) {
+    foreach ($submissions['webform_submission_entity']  as $sid => $submission) {
+      $group = og_get_group('webform_submission_entity', $submission->sid, TRUE);
+      if (!isset($group->gid)) {
+        $group->save();
+      }
+      og_group($group->gid, array('entity' => $account));
+    }
+  }
+  return array_keys($submissions);
+}
+
+/**
+ * Find submissions where the given email and cell numbers were marked as particpants.
+ *
+ * @param $email
+ *  A valid email address.
+ * @param $cell
+ *  A valid cell phone number containing only digits.
+ *
+ * @return EntityFieldQuery response or empty array.
+ */
+function dosomething_projects_general_find_project_memberships($email, $cell) {
+  $values = array();
+  foreach (array($email, $cell) as $value) {
+    if ($value) {
+      $values[] = $value;
+    }
+  }
+  if (!empty($values)) {
+    try {
+      $query = new EntityFieldQuery();
+        $results = $query->entityCondition('entity_type', 'webform_submission_entity')
+        ->fieldCondition('field_participants', 'value', $values, 'IN')
+        ->execute();
+      return $results;
+    }
+    catch (Exception $e) {
+      watchdog('dosomething_projects_general', 'Issue querying for submissions with email %email and cell %cell', array('%email' => $email, '%cell' => $cell), WATCHDOG_ERROR);
+    }
+  }
+  return array();
+}
+
