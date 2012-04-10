@@ -2267,7 +2267,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2715,7 +2715,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2974,7 +2974,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3029,7 +3029,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -4040,18 +4040,23 @@ comments.fb_iframe_widget {
   position: relative;
   top: 330px;
 }
+.ie8 .photo-slider .slide-count {
+  top: -25px;
+}
 .photo-slider .photo-slider-row {
   position: absolute;
   top: 0;
 }
+.ie8 .photo-slider .photo-slider-row {
+  position: relative;
+}
 
 .view-home-slideshow {
-  *zoom: 1;
+  position: relative;
 }
-.view-home-slideshow:after {
-  content: "";
-  display: table;
-  clear: both;
+.ie8 .view-home-slideshow {
+  overflow: hidden;
+  *zoom: 1;
 }
 .view-home-slideshow .views-row {
   background: url('images/rounded-bottom-shadow.png') no-repeat bottom center;

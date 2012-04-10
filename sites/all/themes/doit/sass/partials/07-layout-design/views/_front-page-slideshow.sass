@@ -12,12 +12,18 @@
   .slide-count
     position: relative
     top: 330px
+    .ie8 &
+      top: -25px
   .photo-slider-row
     position: absolute
     top: 0
+    .ie8 &
+      position: relative
 
 .view-home-slideshow
-  +pie-clearfix
+  position: relative
+  .ie8 &
+    +clearfix
   .views-row
     +background(image_url("rounded-bottom-shadow.png") no-repeat bottom center)
     img
