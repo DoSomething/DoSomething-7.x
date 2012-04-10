@@ -862,13 +862,9 @@ function dosomething_clubs_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
-    'access' => array(
-      'plugins' => array(),
-      'logic' => 'and',
-    ),
   );
   $display = new panels_display();
-  $display->layout = 'campaign';
+  $display->layout = 'landings';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -877,6 +873,17 @@ function dosomething_clubs_default_page_manager_pages() {
       'mid-left' => NULL,
       'mid-right' => NULL,
       'bottom' => NULL,
+      'logo' => NULL,
+      'mini-info' => NULL,
+      'social' => NULL,
+      'sign-up' => NULL,
+      'stats' => NULL,
+      'quick-info' => NULL,
+      'psa' => NULL,
+      'flexible-top' => NULL,
+      'mid-center' => NULL,
+      'flexible-bot' => NULL,
+      'logos' => NULL,
     ),
   );
   $display->cache = array();
@@ -885,84 +892,6 @@ function dosomething_clubs_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-20';
-    $pane->panel = 'flexible-mid';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Resources',
-      'body' => '<p>This ain\'t a boring, obvious guide. Find everything you need to start and maintain a club.</p>
-<a href="clubs/resources" class="go-button">GO</a>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'three-boxes',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-20'] = $pane;
-    $display->panels['flexible-mid'][0] = 'new-20';
-    $pane = new stdClass();
-    $pane->pid = 'new-21';
-    $pane->panel = 'flexible-mid';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'FAQs',
-      'body' => '<p>Starting a club? We\'ve got the answers to the most frequently asked questions.</p>
-<a href="/clubs/resources/starting-faq" class="go-button">GO</a>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'three-boxes',
-    );
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = '';
-    $display->content['new-21'] = $pane;
-    $display->panels['flexible-mid'][1] = 'new-21';
-    $pane = new stdClass();
-    $pane->pid = 'new-22';
-    $pane->panel = 'flexible-mid';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Club Starter Kit',
-      'body' => '<p>Download the free one-stop-shop for everything you need to start your club.</p>
-<a href="clubs/starter-kit" class="go-button">GO</a>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'three-boxes',
-    );
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = '';
-    $display->content['new-22'] = $pane;
-    $display->panels['flexible-mid'][2] = 'new-22';
-    $pane = new stdClass();
-    $pane->pid = 'new-23';
     $pane->panel = 'flexible-top';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -976,15 +905,17 @@ function dosomething_clubs_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-23'] = $pane;
-    $display->panels['flexible-top'][0] = 'new-23';
+    $display->content['new-20'] = $pane;
+    $display->panels['flexible-top'][0] = 'new-20';
     $pane = new stdClass();
-    $pane->pid = 'new-24';
+    $pane->pid = 'new-21';
     $pane->panel = 'logo';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -993,18 +924,95 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<img src="files/final-clubs.png">',
+      'body' => '<img src="files/clubslogo.jpg">',
       'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
+    $display->content['new-21'] = $pane;
+    $display->panels['logo'][0] = 'new-21';
+    $pane = new stdClass();
+    $pane->pid = 'new-22';
+    $pane->panel = 'mid-center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'FAQs',
+      'body' => '<p>Starting a club? We\'ve got the answers to the most frequently asked questions.</p>
+<a href="/clubs/resources/starting-faq" class="go-button">GO</a>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-22'] = $pane;
+    $display->panels['mid-center'][0] = 'new-22';
+    $pane = new stdClass();
+    $pane->pid = 'new-23';
+    $pane->panel = 'mid-left';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'Resources',
+      'body' => '<p>This ain\'t a boring, obvious guide. Find everything you need to start and maintain a club.</p>
+<a href="clubs/resources" class="go-button">GO</a>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-23'] = $pane;
+    $display->panels['mid-left'][0] = 'new-23';
+    $pane = new stdClass();
+    $pane->pid = 'new-24';
+    $pane->panel = 'mid-right';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'Club Starter Kit',
+      'body' => '<p>Download the free one-stop-shop for everything you need to start your club.</p>
+<a href="clubs/starter-kit" class="go-button">GO</a>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
     $display->content['new-24'] = $pane;
-    $display->panels['logo'][0] = 'new-24';
+    $display->panels['mid-right'][0] = 'new-24';
     $pane = new stdClass();
     $pane->pid = 'new-25';
     $pane->panel = 'mini-info';
@@ -1015,12 +1023,16 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<h3>Take action with your friends and make a difference in your community about issues you care about.</h3>',
-      'format' => '3',
+      'body' => 'Take action with your friends and
+make a difference in your community
+about issues you care about.',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -1042,7 +1054,9 @@ function dosomething_clubs_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -1065,18 +1079,22 @@ needs to get started.
 
 <h3>STEP 2</h3>
 Get all your friends to sign up and help you
-tackle them.
+tackle them
 
 <h3>STEP 3</h3>
 Take Action! Be sure to check off completed 
 projects and tell us more about ‘em for a 
 chance to win.
-',
+
+<h3>WIN PRIZES!</h3>
+Tell us about it and win an iPad',
       'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -1092,10 +1110,12 @@ chance to win.
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Start a Do Something Club',
+      'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -1114,7 +1134,9 @@ chance to win.
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -1123,6 +1145,27 @@ chance to win.
     $display->panels['social'][0] = 'new-29';
     $pane = new stdClass();
     $pane->pid = 'new-30';
+    $pane->panel = 'social';
+    $pane->type = 'block';
+    $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-30'] = $pane;
+    $display->panels['social'][1] = 'new-30';
+    $pane = new stdClass();
+    $pane->pid = 'new-31';
     $pane->panel = 'stats';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1130,7 +1173,7 @@ chance to win.
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => '&nbsp;',
+      'title' => '',
       'body' => '<div class="counter"><ul>
 <li class="first"><span class="counter-labels">ACTIVE CLUBS</span><span class="digits">820000</span></li>
 <li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">192300</span></li>
@@ -1139,7 +1182,9 @@ chance to win.
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'vital-stats',
@@ -1147,8 +1192,8 @@ chance to win.
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-30'] = $pane;
-    $display->panels['stats'][0] = 'new-30';
+    $display->content['new-31'] = $pane;
+    $display->panels['stats'][0] = 'new-31';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

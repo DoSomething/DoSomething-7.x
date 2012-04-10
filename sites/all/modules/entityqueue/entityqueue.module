@@ -262,6 +262,7 @@ function entityqueue_type_get_name() {
     $queue_types[$type] = $info['label'];
   }
 
+  drupal_alter('entityqueue_type_get_name', $queue_types);
   return $queue_types;
 }
 

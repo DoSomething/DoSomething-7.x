@@ -2,38 +2,25 @@
 
 // #{headers(all)},
 .h1, .h2, .h3, .h4, .h5, .h6
-  @extend .headers
-  font-weight: normal
+  @extend .page-headline
   text-rendering: optimizeLegibility
-  // color: $c-headers
   margin-top: 0
   margin-bottom: 0
-  .content &
-    @extend .blue
 
 .h1
-  +adjust-font-size-to($s10, 1)
-  @extend .bold
-  margin-bottom: 12px
+  font-size: $s10
   line-height: 1
+  margin-bottom: 12px
+
 .h2
-  +adjust-font-size-to($s5, 1)
-  @extend .bold
+  font-size: $s5
   line-height: 22px
-  // margin-top: calc-em(10px, $s3)
+
 .h3
-  // +adjust-font-size-to($s1, 1)
-  font-size: 14px
-  @extend .bold
+  font-size: $s1
+
 .h4
   +adjust-font-size-to($s0, 1)
-  // @extend .bold
-.h5
-  // +adjust-font-size-to($s0)
-  // @extend .bold
-.h6
-  // +adjust-font-size-to($s0)
-  // @extend .medium
 
 h1
   @extend .h1
@@ -43,7 +30,3 @@ h3
   @extend .h3
 h4
   @extend .h4
-// h5
-//   @extend .h5
-// h6
-//   @extend .h6
