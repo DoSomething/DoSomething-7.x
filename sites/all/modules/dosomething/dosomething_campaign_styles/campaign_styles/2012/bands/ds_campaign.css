@@ -6,6 +6,9 @@ a {
   a:hover {
     color: #ff130a; }
 
+b {
+  font-weight: 600; }
+
 h1.title {
   display: none; }
 
@@ -17,19 +20,25 @@ body {
 
 div[role="main"] {
   background: rgba(254, 228, 131, 0.3);
-  -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
   padding-top: 10px; }
 
 .three-boxes {
+  border: none !important;
   width: 29%;
   float: left;
   margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
+  .three-boxes .pane-content {
+    background: #d5a11c;
+    font-weight: 600;
+    height: 166px;
+    padding: 1.5em;
+    text-align: center; }
 
 .two-thirds {
   width: 64.5%;
@@ -48,9 +57,8 @@ div[role="main"] {
   border: 1px solid black; }
 
 .yay-shadow {
-  -moz-box-shadow: black 0 0 20px -10px;
   -webkit-box-shadow: black 0 0 20px -10px;
-  -o-box-shadow: black 0 0 20px -10px;
+  -moz-box-shadow: black 0 0 20px -10px;
   box-shadow: black 0 0 20px -10px; }
 
 .line-top:before {
@@ -116,6 +124,26 @@ div[role="main"] {
         color: #ffc10b;
         text-decoration: none; }
 
+.pane-campaign-social .pane-content {
+  padding-bottom: 0; }
+
+.pane-node-field-campain-date {
+  font-weight: 600;
+  margin-bottom: 0; }
+  .pane-node-field-campain-date .pane-content {
+    color: #ffca06 !important; }
+
+.pane-node-field-campaign-logo {
+  margin: 0; }
+
+.pane-node-field-campaign-teaser {
+  margin-bottom: 0; }
+  .pane-node-field-campaign-teaser .pane-content p {
+    margin-bottom: 0; }
+
+.pane-title {
+  color: #ffca06; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
@@ -132,11 +160,32 @@ div[role="main"] {
     padding: 0; }
 
 .panel-row-actions {
-  background: rgba(254, 228, 131, 0.3); }
+  background: rgba(213, 161, 28, 0.5);
+  border: none; }
   .panel-row-actions .pane-title {
     background: black; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: #ffca06; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      -mox-box-shadow: none;
+      -webkit-box-shadow: none;
+      -o-box-shadow: none;
+      box-shadow: none;
+      border: none; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
+        width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -155,15 +204,12 @@ div[role="main"] {
     text-transform: uppercase;
     font-weight: 500;
     line-height: 1em; }
+  .panel-row-ad-quick-info .pane-content h3 {
+    color: black;
+    margin-top: 0.5em; }
   .panel-row-ad-quick-info .pane-content p {
     margin: 0; }
   .panel-row-ad-quick-info .pane-content:before {
-    overflow: hidden;
-    *zoom: 1;
-    display: block;
-    content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 8px;
     background: transparent; }
 
@@ -235,3 +281,26 @@ div[role="main"] {
 .panel-top-right-social .panel-pane {
   margin: 0;
   padding: 5px 0; }
+
+.faq-section {
+  border: none !important; }
+  .faq-section .pane-content {
+    background: white;
+    padding-bottom: 0; }
+    .faq-section .pane-content ul {
+      margin: 0px 10px;
+      padding: 1.5em; }
+  .faq-section .pane-title {
+    color: #ffca06; }
+
+.float-left {
+  float: left; }
+
+.float-right {
+  float: right; }
+
+.li-triangles {
+  list-style-image: url("assets/black-triangle.png"); }
+  .li-triangles li h3 {
+    font-size: 1.6em;
+    text-transform: none; }

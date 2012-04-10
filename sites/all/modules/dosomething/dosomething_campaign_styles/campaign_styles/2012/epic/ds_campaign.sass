@@ -37,6 +37,12 @@ $bgFallback: #F5C36E
 @mixin noBorder
   border: none !important
 
+@mixin noBoxShadow
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+  -o-box-shadow: none
+  box-shadow: none
+
 // top and bottom border for elements
 // use with &:before and &:after
 @mixin insetBorder
@@ -156,6 +162,7 @@ div[role="main"]
       padding: 0
       .webform-client-form
         +noBorder
+        +noBoxShadow
       #edit-submitted-field-webform-mobile
         margin-bottom: 0.5em
         input

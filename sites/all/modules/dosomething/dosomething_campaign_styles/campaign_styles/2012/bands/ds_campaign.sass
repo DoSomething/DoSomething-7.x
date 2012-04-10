@@ -13,6 +13,7 @@ $mainLink: #feca29
 $secondaryLink: #FF130A
 $goldLink: #FFC10B
 $contentBG: raba(254,238,131,.5)
+$bgColor_darkYellow: #D5A11C
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -21,6 +22,10 @@ $borderBot: 1px solid rgba(255,255,255,.5)
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
+$boldWeight: 600
+
+// padding and margins
+$paneContentPadding: 1.5em
 
 // page background
 $imageBackground: url('assets/bg.jpg')
@@ -39,6 +44,11 @@ $bgFallback: #FFCA06
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBoxShadow
+  -mox-box-shadow: none
+  -webkit-box-shadow: none
+  -o-box-shadow: none
+  box-shadow: none
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -51,6 +61,9 @@ a
   color: $baseColor
   &:hover
     color: $secondaryLink
+
+b
+  font-weight: $boldWeight
 
 h1.title
   display: none
@@ -68,11 +81,18 @@ div[role="main"]
   padding-top: 10px
 
 .three-boxes
+  border: none !important
   width: 29%
   float: left
   margin-right: 6.5%
   &:last-child
     margin-right: 0
+  .pane-content
+    background: $bgColor_darkYellow
+    font-weight: $boldWeight
+    height: 166px
+    padding: $paneContentPadding
+    text-align: center
 
 .two-thirds
   width: 64.5%
@@ -152,6 +172,32 @@ div[role="main"]
         color: $goldLink
         text-decoration: none
 
+// social sharing box
+.pane-campaign-social
+  .pane-content
+    padding-bottom: 0
+
+// campaign date text
+.pane-node-field-campain-date
+  font-weight: $boldWeight
+  margin-bottom: 0
+  .pane-content
+    color: $bgFallback !important
+
+// logo
+.pane-node-field-campaign-logo
+  margin: 0
+
+// teaser
+.pane-node-field-campaign-teaser
+  margin-bottom: 0
+  .pane-content
+    p
+      margin-bottom: 0
+
+.pane-title
+  color: $bgFallback
+
 // top right wrapper
 .panel-row-top-right
   // mini-info panel
@@ -172,11 +218,30 @@ div[role="main"]
 
 // actions panel (sign-up and counter)
 .panel-row-actions
-  +block
+  background: rgba(213,161,28,0.5)
+  border: none
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: $bgFallback
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noBoxShadow
+        border: none
+      #edit-submitted-field-webform-mobile
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      #edit-submitted-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -197,10 +262,12 @@ div[role="main"]
       text-transform: uppercase
       font-weight: 500
       line-height: 1em
+    h3
+      color: black
+      margin-top: 0.5em
     p
       margin: 0
     &:before
-      +insetBorder
       margin-bottom: 8px
       background: transparent
 
@@ -264,3 +331,28 @@ div[role="main"]
   .panel-pane
     margin: 0
     padding: 5px 0
+
+// Custom
+.faq-section
+  border: none !important
+  .pane-content
+    background: white
+    padding-bottom: 0
+    ul
+      margin: 0px 10px
+      padding: $paneContentPadding
+  .pane-title
+    color: $bgFallback
+
+.float-left
+  float: left
+
+.float-right
+  float: right
+
+.li-triangles
+  list-style-image: url("assets/black-triangle.png")
+  li
+    h3
+      font-size: 1.6em
+      text-transform: none
