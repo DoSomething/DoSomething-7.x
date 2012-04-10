@@ -21,7 +21,7 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: url('assets/bg.jpg')
+$imageBackground: url('/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/bg.jpg')
 $bgFallback: #2387c7
 
 // top and bottom border for elements
@@ -39,23 +39,28 @@ $bgFallback: #2387c7
 ////////////////////////////////////////
 
 a
-  color: $baseColor
+  color: #000
+  text-decoration: underline
   &:hover
-    color: $secondaryLink
+    color: #444
 
 h1.title
   display: none
 
+p
+  margin-bottom: 1em
+
 body
   background-color: $bgFallback
   background-image: $imageBackground
-  background-repeat: repeat-y
+  background-repeat: repeat
   background-position: center top
 
 div[role="main"]
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
   padding-top: 10px
+  background: rgba(255,255,255,0.5)	
 
 .three-boxes
   width: 29%
@@ -82,27 +87,27 @@ div[role="main"]
     color: black
     text-transform: uppercase
   ul
-    margin-bottom: 1em
-    padding: 1em
+    margin-left: 1em
+    padding: 0
+    list-style: none
     +clearfix
   li
-    list-style-image: url('assets/list-dot.png')
-    list-style-position: outside
     font-weight: bold
     text-decoration: underline
-    font-size: 20px
-    float: left
-    line-height: 26px
-    width: 310px
-    margin: 0 20px 0 10px
-    padding-left: 10px
+    font-size: 12px
+    line-height: 24px
+    margin: 0
+    padding-left: 0px
   br
     clear: left
 
 .pane-title
   background: black
   color: white
-  
+
+.ds-panel
+  .pane-content
+    padding-bottom: 0px
 
 //////////////////////////////////////////
 ////////////// sections /////////////////
@@ -148,25 +153,22 @@ div[role="main"]
 
 // actions panel (sign-up and counter)
 .panel-row-actions
+  background: $contentBG
   .pane-title
     background: black
     color: white
     width: 100%
-  .panel-pane
-    background: $contentBG
   .pane-content
     padding: 8px 12px
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
   .pane-title
-    font-size: 35px
-    padding: 0
-    background: transparent
     text-transform: uppercase
-    color: rgba(252,207,43,.99)
-    line-height: 1.3em
-    font-weight: 550
+    color: #333
+    height: 40px
+    font-size: 30px
+    padding: 0px 5px 5px 10px
   .pane-content
     padding: 0
     background: transparent
@@ -179,8 +181,9 @@ div[role="main"]
     p
       margin: 0
     &:before
-      +insetBorder
-      margin-bottom: 20px
+      // +insetBorder
+      margin-top: 5px
+      margin-bottom: 10px
       background: transparent
 
 .panel-row-ad-psa
@@ -192,9 +195,9 @@ div[role="main"]
     padding: 0
   	
 .panel-row-flexible
-  .panel-pane
-    .pane-title
-      background: $baseColor
+  // .panel-pane
+  //   .pane-title
+  //     background: $baseColor
   .blog
     background: transparent
     &:before, &:after
@@ -222,8 +225,6 @@ div[role="main"]
     font-size: 28px 
     font-weight: bold
     margin: 0 0 0 20px
-  img /* mainly for positioning */
-    margin-top: 75px
     
 /* social buttons */
 
@@ -236,3 +237,75 @@ div[role="main"]
 .fb-facepile
   &:before
     +insetBorder
+
+.panel-pane
+  margin-bottom: 0
+
+/* added styles */
+.panel-row-ad-psa
+  iframe
+    border: 10px solid #000
+
+.panel-row-ad-quick-info
+  p
+    font-size: 12px
+    list-style: none
+   
+.panel-row-flexible 
+  .panel-pane 
+    h2
+      background: url('/files/header_bg.png')
+      background-repeat: no-repeat
+      margin-bottom: 15px
+
+.panel-row-ad-quick-info
+  .panel-pane 
+    h2
+      background: url('/files/header_bg.png')
+      background-repeat: no-repeat
+      margin-bottom: 15px
+
+.panel-row-flexible 
+  .panel-pane
+    border: none
+
+.two-boxes
+  width: 45%
+  float: left
+  h2
+    text-transform: uppercase
+    color: #333
+    height: 40px
+    font-size: 30px
+    padding: 10px 5px 5px 10px
+
+.panel-row-actions-sign-up
+  a
+    background-color: rgb(252, 207, 43)
+    width: 175px
+    height: 30px
+    text-align: center
+    color: #444
+    text-decoration: none
+    display: block
+    border-radius: 4px
+    -moz-border-radius: 4px
+    -webkit-border-radius: 4px
+    -khtml-border-radius: 4px
+    text-transform: uppercase
+    padding: 6px
+    font-size: 20px
+    font-weight: bold
+    margin: 15px 10px 15px 25px
+
+.panel-row-ad-quick-info
+  .pane-title
+    &:after
+      border-bottom: none
+      border-top: none
+
+.right
+  float: right
+
+.sponsor_low
+  margin: 135px 10px 0 0

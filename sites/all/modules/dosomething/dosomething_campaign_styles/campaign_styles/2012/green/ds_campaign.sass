@@ -48,6 +48,9 @@ $bgFallback: black
   &:hover
     color: $secondaryLink
 
+.region-content a.go-button
+  text-decoration: none
+
 h1.title
   display: none
 
@@ -71,7 +74,11 @@ div[role="main"]
   margin-right: 6.5%
   &:last-child
     margin-right: 0
-
+  .pane-content
+    font-weight: 600
+    height: 166px
+    padding: 30px 20px
+    text-align: center
 
 .line-top
   &:before
@@ -84,8 +91,8 @@ div[role="main"]
 //////////////////////////////////////////
 ////////////// sections /////////////////
 ////////////////////////////////////////
-
-.pane-content
+ 
+.bg-green .pane-content
   background-color: #8DC641
 
 // navigation
@@ -102,7 +109,7 @@ div[role="main"]
       display: inline-block
       width: 100%
       padding: 10px 19px 10px 0
-      font-size: 26px
+      font-size: 22px
       font-weight: 600
       text-transform: uppercase
       color: #fff
@@ -125,13 +132,26 @@ div[role="main"]
       font-size: 21px
       line-height: 1.4em
 
-// actions panel (sign-up and counter)
 .panel-row-actions
   +block
+  margin: 0
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+    .pane-content
+      padding: 0
+      #edit-submitted-field-webform-mobile
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      #edit-submitted-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -180,6 +200,8 @@ div[role="main"]
 
 #scholarships-box
   margin-left: 4%
+  .pane-content
+    padding-bottom: 0px
 
 .two-boxes  	
   width: 48%
@@ -213,3 +235,28 @@ div[role="main"]
 
 .clear-both 
   clear: both
+
+.white
+  color: white
+
+.pane-node-field-campain-date
+  color: $baseColor
+  font-weight: 500
+
+.panel-row-ad-quick-info
+  h2
+    color: black
+    font-size: 24px
+    font-weight: 500
+  .pane-content
+    p
+      margin-bottom: 1em
+
+.pane-node-field-campain-date,
+.pane-node-field-campaign-teaser,
+.pane-node-field-campaign-logo
+  margin-bottom: 0
+  .pane-content
+    padding-bottom: 0
+    p
+      margin-bottom: 0

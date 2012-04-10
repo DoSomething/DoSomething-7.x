@@ -5,6 +5,9 @@
   .region-content a:hover {
     color: black; }
 
+.region-content a.go-button {
+  text-decoration: none; }
+
 h1.title {
   display: none; }
 
@@ -25,6 +28,11 @@ div[role="main"] {
   margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
+  .three-boxes .pane-content {
+    font-weight: 600;
+    height: 166px;
+    padding: 30px 20px;
+    text-align: center; }
 
 .line-top:before {
   overflow: hidden;
@@ -42,7 +50,7 @@ div[role="main"] {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
-.pane-content {
+.bg-green .pane-content {
   background-color: #8dc641; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -58,7 +66,7 @@ div[role="main"] {
       display: inline-block;
       width: 100%;
       padding: 10px 19px 10px 0;
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 600;
       text-transform: uppercase;
       color: white; }
@@ -79,11 +87,24 @@ div[role="main"] {
     line-height: 1.4em; }
 
 .panel-row-actions {
-  background: black; }
+  background: black;
+  margin: 0; }
   .panel-row-actions .pane-title {
     background: #009444; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
+        width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -140,6 +161,8 @@ div[role="main"] {
 
 #scholarships-box {
   margin-left: 4%; }
+  #scholarships-box .pane-content {
+    padding-bottom: 0px; }
 
 .two-boxes {
   width: 48%;
@@ -171,3 +194,30 @@ div[role="main"] {
 
 .clear-both {
   clear: both; }
+
+.white {
+  color: white; }
+
+.pane-node-field-campain-date {
+  color: #009444;
+  font-weight: 500; }
+
+.panel-row-ad-quick-info h2 {
+  color: black;
+  font-size: 24px;
+  font-weight: 500; }
+.panel-row-ad-quick-info .pane-content p {
+  margin-bottom: 1em; }
+
+.pane-node-field-campain-date,
+.pane-node-field-campaign-teaser,
+.pane-node-field-campaign-logo {
+  margin-bottom: 0; }
+  .pane-node-field-campain-date .pane-content,
+  .pane-node-field-campaign-teaser .pane-content,
+  .pane-node-field-campaign-logo .pane-content {
+    padding-bottom: 0; }
+    .pane-node-field-campain-date .pane-content p,
+    .pane-node-field-campaign-teaser .pane-content p,
+    .pane-node-field-campaign-logo .pane-content p {
+      margin-bottom: 0; }

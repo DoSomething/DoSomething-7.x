@@ -140,6 +140,11 @@ div[role="main"]
         color: $baseColor
         text-decoration: none
 
+.pane-campaign-counter
+  .pane-content
+    height: 152px
+    box-shadow: rgba(75,71,68,0.35) 12px 0 12px
+
 // top right wrapper
 .panel-row-top-right
   // mini-info panel
@@ -220,7 +225,7 @@ div[role="main"]
     width: 100%
 
 .panel-row-ad
-  margin: 0
+  margin: 0 0 2em 0
   position: relative
 
 .panel-row-flexible
@@ -262,6 +267,15 @@ div[role="main"]
 .margin-bottom-0
   margin-bottom: 0
 
+.meme-gallery-header
+  border: none !important
+  margin: 0
+  .pane-content
+    padding: 0
+    p
+      height: 0
+      margin: 0
+
 .trashy-campaign-date
   color: $baseColor
   font-size: 26px
@@ -280,6 +294,13 @@ div[role="main"]
 
 .trashy-email-us
   text-align: right
+
+.trashy-gallery
+  border: none !important
+  #galleriffic
+    li
+      list-style-image: none
+      margin: 0
 
 .trashy-headline
   font-family: $accent
