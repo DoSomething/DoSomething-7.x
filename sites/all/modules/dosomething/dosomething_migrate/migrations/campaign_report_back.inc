@@ -771,9 +771,72 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
     $this->addFieldMapping('data_what_did_you_do_tell_us_in_your_school_blog', 'field_further_description_title');
     $this->addFieldMapping('field_webform_pictures', 'field_picture');
     $this->addFieldMapping('field_webform_school', 'title');
+    $this->addFieldMapping('data_check_off_the_projects_below_that_your_school_has_completed', 'field_gys_projects');
   }
   public function prepareRow($row) {
+    $projects_mapping = array(
+      'Recycling' => 1,
+      'Collect and recycle at least 25 plastic or glass bottles or aluminum cans' => 2,
+      'Ask your principle to put recycle bins in classrooms' => 3,
+      'Use bright colors and eye catching designs to draw attention to recycle bins' => 4,
+      'Create and post posters at home or at school to remind family and friends to recycle' => 5,
+      'Organize an in-home recycling center and teach your family how to use it. Have separate bins for glass, plastics, and newspaper/cardboard' => 6,
+      'Make a T-shirt with a recycling fact (or facts) on it, wear it to school and be ready to answer questions' => 7,
+      'Write an essay about a positive impact recycling can bring your community; submit it to your school or local newspaper' => 8,
+      'Once you are done perusing your favorite magazine, recycle it. Collect and recycle at least 5 magazines' => 9,
+      'Create an infographic of visual representation of a topic related to recycling or the recycling process; present it to your science class or post it in your school' => 10,
+      'Grab your friends and gather recyclables from a public space. Make sure everything that you pick up ends up in the right bag' => 11,
+      'Energy' => 12,
+      'Talk to your school administration about adopting energy-saving practices' => 13,
+      'Encourage your school to become an ENERGY STAR Partner' => 14,
+      'Educate your friends and younger siblings about energy efficiency' => 15,
+      'Create a club that takes action around saving energy' => 16,
+      'Encourage your school to put all computers in energy-saving sleep mode' => 17,
+      'Explain energy-efficient lighting to your class' => 18,
+      'Have teachers and students unplug chargers when devices are finished charging' => 19,
+      'Teach your class how to save energy and money on the family utility bill' => 20,
+      'Encourage your school to fix leaky faucets and toilets to save gallons of water' => 21,
+      'Set up a carpool to school' => 22,
+      'Host a lights-out day at your school, and then have people pledge to do the same at home' => 23,
+      'Encourage your school to install motion sensor lights' => 24,
+      'Sign the ENERGY STAR pledge' => 25,
+      'Green Agriculture' => 26,
+      'Start a garden and grow produce for healthy eating' => 27,
+      'For school dances rent potted plants, they are reusable and aren’t shipped around the world' => 28,
+      'Start a school compost' => 29,
+      'Host locally-grown snack stands at your school event' => 30,
+      'Rearrange your cafeteria to feature local and fresh foods' => 31,
+      'Encourage natural plant species to grow in your backyard' => 32,
+      'Bring It Home' => 33,
+      'Turn off electronics, lights, and fans when you leave the room' => 34,
+      'Unplug your electronics when you’re not using them' => 35,
+      'Use the sleep setting on your computer' => 36,
+      'Walk, ride a bike, or skateboard instead of using a car' => 37,
+      'Talk to your family about energy-saving driving habits' => 38,
+      'Keep doors and windows closed when the air conditioning or heat is on' => 39,
+      'Weatherstrip air leaks around windows and doors' => 40,
+      'Replace your home’s HVAC filters at least every 3 months' => 41,
+      'Set your thermostat to save energy' => 42,
+      'Host a clothing swap with friends' => 43,
+      'Encourage your family to reduce, reuse, recycle and recover around the house' => 44,
+      'Plant a rain garden at home, school or another location' => 45,
+      'Challenge your family to conserve water at home' => 46,
+      'Buy ENERGY STAR qualified electronics, lighting, and other products' => 47,
+      'Post home energy-saving tips through social media' => 48,
+      'Other' => 49,
+      'Green your prom or other school dance' => 50,
+      'Start a blog or video blog about the environment' => 51,
+      'Make beeswax candles instead of using candles made from oil' => 52,
+      'Host a poetry slam that focuses on the environment.' => 53,
+      'Green the school art room' => 54,
+    );
+    $projects_field = array();
+    foreach ($row->field_gys_projects as $project) {
+      $projects_field[] = $projects_mapping[$project];
+    }
+    $row->field_gys_projects = $projects_field;
   }
+
 }
 
 class DSCampaignReportBackTrashy2011 extends DSCampaignReportBackMigration {
