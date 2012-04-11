@@ -158,86 +158,6 @@ function dosomething_blog_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-blog-field_blog_video'
-  $fields['node-blog-field_blog_video'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_blog_video',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'module' => 'mediafield',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'media',
-    ),
-    'field_instance' => array(
-      'bundle' => 'blog',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'mediafield',
-          'settings' => array(
-            'file_view_mode' => 'default',
-          ),
-          'type' => 'media',
-          'weight' => '18',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '0',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_blog_video',
-      'label' => 'Video (optional)',
-      'required' => 0,
-      'settings' => array(
-        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'media',
-        'settings' => array(
-          'allowed_schemes' => array(
-            'public' => 'public',
-            'vimeo' => 0,
-            'youtube' => 'youtube',
-          ),
-          'allowed_types' => array(
-            'audio' => 0,
-            'default' => 0,
-            'image' => 0,
-            'video' => 'video',
-          ),
-          'browser_plugins' => array(
-            'library' => 0,
-            'media_default--media_browser_1' => 0,
-            'media_internet' => 0,
-            'upload' => 0,
-          ),
-          'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'media_generic',
-        'weight' => '6',
-      ),
-    ),
-  );
-
   // Exported field: 'node-blog-field_embedded_video'
   $fields['node-blog-field_embedded_video'] = array(
     'field_config' => array(
@@ -298,7 +218,7 @@ function dosomething_blog_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_embedded_video',
-      'label' => 'Video (optional)',
+      'label' => 'Video',
       'required' => 0,
       'settings' => array(
         'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
@@ -311,6 +231,7 @@ function dosomething_blog_field_default_fields() {
         'settings' => array(
           'allowed_schemes' => array(
             'public' => 'public',
+            'vimeo' => 'vimeo',
             'youtube' => 'youtube',
           ),
           'allowed_types' => array(
@@ -319,7 +240,12 @@ function dosomething_blog_field_default_fields() {
             'image' => 0,
             'video' => 'video',
           ),
-          'browser_plugins' => array(),
+          'browser_plugins' => array(
+            'library' => 0,
+            'media_default--media_browser_1' => 0,
+            'media_internet' => 0,
+            'upload' => 0,
+          ),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
@@ -988,7 +914,7 @@ function dosomething_blog_field_default_fields() {
   t('Subtitle');
   t('The first picture will show up on the Blog Center page.');
   t('These images or files can be optionally inserted into the body text. Be sure to uncheck \'Display\' for images you insert into the text.');
-  t('Video (optional)');
+  t('Video');
   t('hold down ctrl button to select more than one');
 
   return $fields;
