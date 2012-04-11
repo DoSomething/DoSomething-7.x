@@ -103,7 +103,9 @@
           width: 550,
         });
 
-        // TODO: How to do conditional validation of parental email?
+        // Update form to show/hide conditional fields.
+        Drupal.dsRegistration.updateForm();
+
         event.preventDefault();
       });
 
