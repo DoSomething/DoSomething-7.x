@@ -9,13 +9,16 @@
 .photo-slider
   height: 365px
   .slide-count
-    position: absolute
-    top: 355px
-    right: 20px
+    position: relative
+    top: 330px
+    right: 0
   .photo-slider-row
     position: absolute
     .ie8 &
-      right: 24px
+      .not-logged-in &
+        right: 24px
+      .logged-in &
+        right: 20px
 
 .view-home-slideshow
   .views-row

@@ -4051,15 +4051,18 @@ comments.fb_iframe_widget {
   height: 365px;
 }
 .photo-slider .slide-count {
-  position: absolute;
-  top: 355px;
-  right: 20px;
+  position: relative;
+  top: 330px;
+  right: 0;
 }
 .photo-slider .photo-slider-row {
   position: absolute;
 }
-.ie8 .photo-slider .photo-slider-row {
+.not-logged-in .ie8 .photo-slider .photo-slider-row {
   right: 24px;
+}
+.logged-in .ie8 .photo-slider .photo-slider-row {
+  right: 20px;
 }
 
 .view-home-slideshow .views-row {
