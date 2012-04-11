@@ -21,8 +21,11 @@ function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_ty
 function dosomething_projects_general_mail($key, &$message, $params) {
   switch ($key) {
     case 'project_report_participant':
-      // TODO: Need correct subject.
-      $message['subject'] = t('You\'ve Participated in a Project!');
+      $message['subject'] = t('Invitation to join Do Something Project');
+      $message['body'][] = $params['message'];
+      break;
+    case 'project_report_participant_user':
+      $message['subject'] = t('Welcome to the Do Something Projects Program');
       $message['body'][] = $params['message'];
       break;
   }
@@ -75,9 +78,13 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
       // Make sure contact was not already dealt with.
       $key = array_search($item['value'], $form_state['previous_participants']);
       if ($key === FALSE) {
-        // Attach the account to the group if it exists.
         if ($account = dosomething_general_load_user_by_mail_or_cell($item['value'])) {
-           og_group($group->gid, array('entity' => $account));
+          og_group($group->gid, array('entity' => $account));
+          global $base_url, $language;
+          $title = $form_state['webform_entity']['submission']->field_project_title[LANGUAGE_NONE][0]['value'];
+          $sid = $form_state['values']['details']['sid'];
+          $message = '<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the "' . $title . '" project page. Check out your project\'s page by going to ' . $base_url . '/webform-submission/' . $sid . '. From this page you can now update the DoSomething.org community on the project, add your other members to the project page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p><p>Thanks!</p>';
+          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
         }
         else {
           // Otherwise send a message to the user.
@@ -86,14 +93,11 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
           $profile = profile2_load_by_user($submission_account, 'main');
           $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
           // TODO: Sending message and mail means no sanitization.
-          $message = drupal_html_to_text(t("%first %last mentioned that you participated in the project %title.  To receive full credit, please sign up at <a href='@url'>%site-name'</a>", array(
-            '%first' => $profile_wrapper->field_user_first_name->value(),
-            '%last' => $profile_wrapper->field_user_last_name->value(),
-            '%title' => $form_state['webform_entity']->submission['field_project_title'][LANGUAGe_NONE][0]['value'],
-            '@url' => $base_url,
-            '%site-name' => variable_get('site_name', 'Do Something')))
-          );
-
+          $title = $form_state['webform_entity']['submission']->field_project_title[LANGUAGE_NONE][0]['value'];
+          $url = $base_url;
+          $first = $profile_wrapper->field_user_first_name->value();
+          $last = $profile_wrapper->field_user_last_name->value();
+          $message = '<p>Hey,</p><p>' . $first . ' ' . $last . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
           if (valid_email_address($item['value'])) {
             drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
           }
