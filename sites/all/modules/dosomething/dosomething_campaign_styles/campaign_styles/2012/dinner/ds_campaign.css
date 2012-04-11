@@ -7,7 +7,7 @@ h1.title {
   display: none; }
 
 body {
-  background-color: blue;
+  background-color: #dddddd;
   background-image: url("assets/bg.png");
   background-repeat: repeat;
   background-position: center top; }
