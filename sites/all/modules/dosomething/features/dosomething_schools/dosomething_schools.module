@@ -5,3 +5,47 @@
  */
 
 include_once('dosomething_schools.features.inc');
+
+/**
+* Implementation of hook_ctools_plugin_directory().
+*/
+function dosomething_schools_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+function dosomething_schools_main_info($school_id) {
+  $items = array();
+
+  $member_count = dosomething_schools_member_counter($school_id);
+  $items['school_members'] = array(
+    'title' => t('Do Something Members'),
+    'value' => $member_count,
+  );
+
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'dosomething-stats',
+      ),
+    ),
+  );
+  $output[] = array(
+    '#theme' => 'dosomething_stats_counter',
+    '#items' => $items,
+  );
+  return $output;
+}
+
+function dosomething_schools_member_counter($school_id) {
+  $query = db_select('field_data_field_school_reference');
+  $query->condition('entity_type', 'profile2', '=');
+  $query->condition('bundle', 'main', '=');
+  $query->condition('field_school_reference_target_id', $school_id, '=');
+  $total = $query->countQuery()->execute()->fetchObject();
+  $member_count = $total->expression;
+
+  return $member_count;
+}
