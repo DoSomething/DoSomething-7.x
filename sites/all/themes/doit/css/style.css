@@ -946,6 +946,19 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row, .page-node-picks .pane-profile-panel-pane-3 .views-row {
   width: 49%;
 }
+.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row, .ie8
+.pane-ds-past-somethings-all .views-row, .ie8
+.pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row, .ie8
+.pane-related-projects-panel-pane-2 .views-row, .ie8
+.pane-resources-panel-pane-1 .views-row, .ie8
+.pane-projects-by-state-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-3 .views-row, .ie8
+.pane-current-campaigns-panel-pane-2 .views-row, .ie8
+.action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
+  height: 120px;
+  overflow: hidden;
+}
 .two-column-grid .views-row:nth-of-type(odd), .view-school-proximity .views-row:nth-of-type(odd), .pane-polls-landing-panel-pane-1 .views-row:nth-of-type(odd), .pane-ds-current-somethings-all .views-row:nth-of-type(odd),
 .pane-ds-past-somethings-all .views-row:nth-of-type(odd),
 .pane-ds-editors-picks-all .views-row:nth-of-type(odd), .pane-related-projects-panel-pane-1 .views-row:nth-of-type(odd),
@@ -972,8 +985,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row .views-row-odd,
 .page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-odd, .page-node-picks
 .pane-profile-panel-pane-3 .views-row .views-row-odd {
-  float: left;
   clear: left;
+  float: left;
 }
 .two-column-grid .views-row:nth-of-type(even), .view-school-proximity .views-row:nth-of-type(even), .pane-polls-landing-panel-pane-1 .views-row:nth-of-type(even), .pane-ds-current-somethings-all .views-row:nth-of-type(even),
 .pane-ds-past-somethings-all .views-row:nth-of-type(even),
@@ -1044,6 +1057,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .unimage-wrapper, .page-node-picks .pane-profile-panel-pane-3 .something-description {
   background-color: white;
   min-height: 120px;
+  _height: auto !important;
+  height: 120px;
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
@@ -3772,9 +3787,14 @@ comments.fb_iframe_widget {
 }
 
 .pane-dosomething-blocks-dosomething-social-node-buttons {
-  float: left;
+  overflow: hidden;
+  *zoom: 1;
   margin-bottom: 0;
   width: 50%;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .pane-content {
+  float: left;
+  width: 100%;
 }
 
 .pane-dosomething-blocks-dosomething-facepile-general {
