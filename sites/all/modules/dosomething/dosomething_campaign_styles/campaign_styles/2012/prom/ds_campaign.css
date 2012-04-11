@@ -116,7 +116,8 @@ div[role="main"] {
     background: none; }
 
 .panel-row-actions {
-  background: white; }
+  background: white;
+  background: #f0ebde; }
   .panel-row-actions .pane-title {
     background: #92d2ba; }
   .panel-row-actions .pane-content {
