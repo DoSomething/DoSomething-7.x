@@ -140,6 +140,11 @@ div[role="main"] {
   background: rgba(125, 125, 125, 0.5); }
   .panel-row-flexible .panel-pane .pane-title {
     background: #041f3d; }
+  .panel-row-flexible .panel-pane .pane-content {
+    padding: 1.5em; }
+    .panel-row-flexible .panel-pane .pane-content h3 {
+      color: #041f3d;
+      font-size: 1.5em; }
 .panel-row-flexible .blog {
   background: transparent; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
