@@ -28,11 +28,9 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => 'teensforjeans-new'),
-    array('title' => 'take action', 'href' => 'teensforjeans-new/take-action'),
-    array('title' => 'store locator', 'href' => '#'),
-    array('title' => 'contests', 'href' => '#'),
-    array('title' => 'report back', 'href' => 'teensforjeans-new/report-back'),
-    array('title' => 'photo gallery', 'href' => '#'),
+    array('title' => 'home', 'href' => 'teensforjeans'),
+    array('title' => 'gallery', 'href' => 'teensforjeans/gallery'),
+    array('title' => 'blog', 'href' => 'teensforjeans/blog'),
+    array('title' => 'faq', 'href' => 'teensforjeans/faq')
   ),
 );

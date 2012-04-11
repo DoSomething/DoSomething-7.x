@@ -18,14 +18,16 @@ $borderBot: 1px solid rgba(255,255,255,.5)
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
+$boldWeight: 600
 
 // page background
 $imageBackground: url('assets/bg.png')
 $bgFallback: blue
+$bgPanelColor: rgba(125,125,125,0.5)
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: rgba(188,134,70,.4)
+  background: rgba(255,255,255,.75)
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -117,10 +119,18 @@ div[role="main"]
     .pane-content
       font-size: 21px
       line-height: 1.4em
+      p
+        margin-bottom: 0
+  // removing bottom margin and padding
+  *
+    margin-bottom: 0
+  .pane-content
+    padding-bottom: 0
 
 // actions panel (sign-up and counter)
 .panel-row-actions
   +block
+  background: $bgPanelColor
   .pane-title
     background: $baseColor
   .pane-content
@@ -153,6 +163,7 @@ div[role="main"]
 .panel-row-flexible
   .panel-pane
     +block
+    background: $bgPanelColor
     .pane-title
       background: $baseColor
   .blog
@@ -164,8 +175,32 @@ div[role="main"]
 
 // logos
 .panel-row-logos
+  .pane-content
+    font-size: 2em
+    font-weight: $boldWeight
+    line-height: 2em
+    text-align: right
   .pane-title
     color: $baseColor
     background: none
     margin: 0
     padding: 0
+
+// custom
+.coming-soon
+  color: #00ab4e
+  font-weight: $boldWeight
+  p
+    font-size: 26px
+
+.front-page-thanks
+  .pane-content
+    padding-bottom: 0
+
+.thanks-text-box
+  .pane-content
+    font-size: 1.2em
+    line-height: 2em
+    padding-bottom: 0
+  ul
+    list-style-image: url("assets/list-dot.png")
