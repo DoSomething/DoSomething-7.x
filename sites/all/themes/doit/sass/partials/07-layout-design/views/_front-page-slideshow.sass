@@ -7,25 +7,22 @@
   margin-bottom: 0
 
 .photo-slider
-  position: relative
   height: 365px
   .slide-count
-    position: relative
-    top: 330px
-    .ie8 &
-      top: -25px
+    position: absolute
+    top: 355px
+    right: 20px
   .photo-slider-row
     position: absolute
-    top: 0
     .ie8 &
-      position: relative
+      right: 24px
 
 .view-home-slideshow
-  position: relative
-  .ie8 &
-    +clearfix
   .views-row
     +background(image_url("rounded-bottom-shadow.png") no-repeat bottom center)
+    .ie8 &
+      width: 750px
+  .home-slide
     img
       @extend .white-border
       margin-bottom: 24px
