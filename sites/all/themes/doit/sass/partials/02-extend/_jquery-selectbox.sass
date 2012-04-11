@@ -1,65 +1,70 @@
 // Front page Action Block
 body.front
+  .pane-dosomething-blocks-dosomething-make-impact-front
+    @extend .border-and-shadow
+    height: 195px
+    .pane-title
+      border-bottom: 1px $white solid
+  #dosomething-blocks-make-an-impact-form-front
+    .form-type-select
+      background-color: $gray4
+      border-bottom: 1px $white solid
+      min-height: 40px
+      label
+        display: none
+    .selectBox-dropdown
+      @extend .dropdown-categories
+      width: 100%
   .selectBox-dropdown-menu
     position: absolute
     z-index: 99999
     max-height: 100%
     border: 0
-    border-top: 0
     background-color: $gray4 
     overflow: auto
-    border: 1px solid white
-    border-top: 0
-  .pane-dosomething-blocks-dosomething-make-impact-front
-    .form-type-select
-      label
+  .selectBox-dropdown
+    @extend .dropdown-categories
+    width: 100%
+    background: $gray4
+    .selectBox-label
+      +background-image(image_url('gold-arrow.png'))
+      padding: 7px 14px
+      width: 100%
+      display: inline-block
+      white-space: nowrap
+      overflow: hidden
+      margin-bottom: -1px
+      background-repeat: no-repeat
+      background-position: 95% 50%
+  .selectBox-menuShowing
+    background: $gray4
+  .selectBox-dropdown-menu
+    background: $gray4
+    position: absolute
+    z-index: 99999
+    max-height: 100%
+    background: $gray4
+    overflow: auto
+  .selectBox-options
+    font-size: $s3
+    list-style: none
+    display: block
+    cursor: pointer
+    padding: 0
+    margin: 0
+    li
+      padding-left: 14px
+      margin-bottom: 6px
+      font-family: $font-headline
+      @extend .medium
+      a
+        +remove-link-underlines
+        @extend .white
+      &.selectBox-hover a
+        +remove-link-underlines
+        @extend .gold
+      &.selectBox-selected
         display: none
-    .pane-dosomething-blocks-dosomething-make-impact-front
-      width: 100%
-    .selectBox-dropdown
-      @extend .dropdown-categories
-      width: 100%
-      background: $gray4
-      .selectBox-label
-        +background-image(image_url('gold-arrow.png'))
-        padding: 7px 14px
-        border: 1px solid white
-        width: 100%
-        display: inline-block
-        white-space: nowrap
-        overflow: hidden
-        margin-bottom: -1px
-        background-repeat: no-repeat
-        background-position: 95% 50%
-    .selectBox-menuShowing
-      background: $gray4
-    .selectBox-dropdown-menu
-      background: $gray4
-      position: absolute
-      z-index: 99999
-      max-height: 100%
-      border: solid 1px $white
-      border-top: 0
-      background: $gray4
-      overflow: auto
-    .selectBox-options
-      font-size: $s3
-      list-style: none
-      display: block
-      cursor: pointer
-      padding: 0
-      margin: 0
-      li
-        padding-left: 14px
-        margin-bottom: 6px
-        font-family: $font-headline
-        @extend .medium
-        a
-          +remove-link-underlines
-          @extend .white
-        &.selectBox-hover a
-          +remove-link-underlines
-          @extend .gold
 
 // Side bar Action Finder block
 
@@ -110,7 +115,6 @@ body.not-front
       +background-image(image_url('gold-arrow.png'))
       padding: 4px 7px
       border: 0
-      // width: 100%
       min-width: 195px
       display: inline-block
       white-space: nowrap
