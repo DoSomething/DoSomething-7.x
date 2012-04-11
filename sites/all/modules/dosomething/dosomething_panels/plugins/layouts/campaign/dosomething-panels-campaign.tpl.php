@@ -70,5 +70,8 @@
       <?php print $content['logos']; ?>
     </div>
   <?php endif; ?>
-
 </div>
+
+<?php if (isset($content['dialogs'])):?>
+  <div class="panel-popups"><?php print $content['dialogs']; ?></div>
+<?php endif; ?>

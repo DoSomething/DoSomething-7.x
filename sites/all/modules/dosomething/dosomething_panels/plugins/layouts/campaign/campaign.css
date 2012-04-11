@@ -83,3 +83,9 @@
   font-size: 21px;
   line-height: 1.4em;
   font-family: din-web, "Trebuchet MS", sans-serif; }
+
+#page .panel-popups {
+  display: none; }
+
+#panelizer-edit-content-form .panel-popups {
+  display: block; }

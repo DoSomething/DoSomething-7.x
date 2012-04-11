@@ -18,6 +18,7 @@ $plugin = array(
     'flexible-mid' => t('Middle Flexible Region'),
     'flexible-bot' => t('Bottom Flexible Region'),
     'logos' => t('Sponsor Logos'),
+    'dialogs' => t('Hidden blocks for popups'),
   ),
 );
 
