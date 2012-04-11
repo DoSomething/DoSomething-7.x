@@ -369,7 +369,7 @@ function dosomething_blog_field_default_fields() {
       'bundle' => 'blog',
       'default_value' => '',
       'deleted' => '0',
-      'description' => '580px by 580px max',
+      'description' => 'The first picture will show up on the Blog Center page.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -409,29 +409,69 @@ function dosomething_blog_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_picture',
-      'label' => 'Picture',
-      'required' => '0',
+      'label' => 'Picture(s)',
+      'required' => 1,
       'settings' => array(
         'alt_field' => 1,
-        'file_directory' => 'pictures/actionguide',
-        'file_extensions' => '',
-        'max_filesize' => 0,
-        'max_resolution' => '0',
-        'min_resolution' => 0,
+        'file_directory' => 'pictures/blog',
+        'file_extensions' => 'jpg jpeg png gif',
+        'max_filesize' => '0',
+        'max_resolution' => '',
+        'min_resolution' => '',
         'title_field' => 1,
         'user_register_form' => FALSE,
       ),
       'weight' => '-2',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'image',
         'settings' => array(
-          'body_preset' => NULL,
-          'image_path' => 'pictures/actionguide',
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => 'image_blog_landscape',
+          'insert_styles' => array(
+            'auto' => 0,
+            'image' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
-          'teaser_preset' => NULL,
-          'use_default_image' => 0,
         ),
         'type' => 'image_image',
         'weight' => '4',
@@ -723,6 +763,9 @@ function dosomething_blog_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -731,8 +774,9 @@ function dosomething_blog_field_default_fields() {
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
-        'display_default' => '1',
+        'display_default' => 0,
         'display_field' => 1,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -741,7 +785,7 @@ function dosomething_blog_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'blog',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'These images or files can be optionally inserted into the body text. Be sure to uncheck \'Display\' for images you insert into the text.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -777,14 +821,59 @@ function dosomething_blog_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'description_field' => 1,
-        'file_directory' => '',
+        'file_directory' => 'pictures/blog',
         'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp4 mov mp3 php3',
         'max_filesize' => '8 MB',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'file',
         'settings' => array(
+          'insert' => 1,
+          'insert_class' => '',
+          'insert_default' => 'image_blog_landscape',
+          'insert_styles' => array(
+            'auto' => 0,
+            'image' => 'image',
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 'image_blog_landscape',
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 'image_blog_portrait',
+            'image_blog_square' => 'image_blog_square',
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 'link',
+          ),
+          'insert_width' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
@@ -867,6 +956,15 @@ function dosomething_blog_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -878,7 +976,6 @@ function dosomething_blog_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('580px by 580px max');
   t('A subtitle for use on the News & Stuff homepage section.');
   t('Blog Icon');
   t('Blog type');
@@ -887,8 +984,10 @@ function dosomething_blog_field_default_fields() {
   t('Charity');
   t('File attachments');
   t('Issues');
-  t('Picture');
+  t('Picture(s)');
   t('Subtitle');
+  t('The first picture will show up on the Blog Center page.');
+  t('These images or files can be optionally inserted into the body text. Be sure to uncheck \'Display\' for images you insert into the text.');
   t('Video (optional)');
   t('hold down ctrl button to select more than one');
 
