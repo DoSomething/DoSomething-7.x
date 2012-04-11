@@ -397,13 +397,15 @@ h3.subhead
     .ie8 &
       height: 120px
       overflow: hidden
-    &:nth-of-type(odd),
-    .views-row-odd
+    &:nth-of-type(odd)
       clear: left
       float: left
-    &:nth-of-type(even),
-    .views-row-even
+    &:nth-of-type(even)
       float: right
+  .views-row-odd
+    float: left
+  .views-row-even
+    float: right
   .pane-content
     @extend .clearfix
 

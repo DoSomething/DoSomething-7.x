@@ -968,23 +968,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .views-row:nth-of-type(odd),
 .pane-featured-projects-panel-pane-3 .views-row:nth-of-type(odd),
 .pane-current-campaigns-panel-pane-2 .views-row:nth-of-type(odd),
-.action-finder-list .views-row:nth-of-type(odd), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(odd),
-.two-column-grid .views-row .views-row-odd,
-.view-school-proximity .views-row .views-row-odd,
-.pane-polls-landing-panel-pane-1 .views-row .views-row-odd,
-.pane-ds-current-somethings-all .views-row .views-row-odd,
-.pane-ds-past-somethings-all .views-row .views-row-odd,
-.pane-ds-editors-picks-all .views-row .views-row-odd,
-.pane-related-projects-panel-pane-1 .views-row .views-row-odd,
-.pane-related-projects-panel-pane-2 .views-row .views-row-odd,
-.pane-resources-panel-pane-1 .views-row .views-row-odd,
-.pane-projects-by-state-panel-pane-1 .views-row .views-row-odd,
-.pane-featured-projects-panel-pane-1 .views-row .views-row-odd,
-.pane-featured-projects-panel-pane-3 .views-row .views-row-odd,
-.pane-current-campaigns-panel-pane-2 .views-row .views-row-odd,
-.action-finder-list .views-row .views-row-odd,
-.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-odd, .page-node-picks
-.pane-profile-panel-pane-3 .views-row .views-row-odd {
+.action-finder-list .views-row:nth-of-type(odd), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(odd) {
   clear: left;
   float: left;
 }
@@ -997,23 +981,31 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .views-row:nth-of-type(even),
 .pane-featured-projects-panel-pane-3 .views-row:nth-of-type(even),
 .pane-current-campaigns-panel-pane-2 .views-row:nth-of-type(even),
-.action-finder-list .views-row:nth-of-type(even), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(even),
-.two-column-grid .views-row .views-row-even,
-.view-school-proximity .views-row .views-row-even,
-.pane-polls-landing-panel-pane-1 .views-row .views-row-even,
-.pane-ds-current-somethings-all .views-row .views-row-even,
-.pane-ds-past-somethings-all .views-row .views-row-even,
-.pane-ds-editors-picks-all .views-row .views-row-even,
-.pane-related-projects-panel-pane-1 .views-row .views-row-even,
-.pane-related-projects-panel-pane-2 .views-row .views-row-even,
-.pane-resources-panel-pane-1 .views-row .views-row-even,
-.pane-projects-by-state-panel-pane-1 .views-row .views-row-even,
-.pane-featured-projects-panel-pane-1 .views-row .views-row-even,
-.pane-featured-projects-panel-pane-3 .views-row .views-row-even,
-.pane-current-campaigns-panel-pane-2 .views-row .views-row-even,
-.action-finder-list .views-row .views-row-even,
-.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-even, .page-node-picks
-.pane-profile-panel-pane-3 .views-row .views-row-even {
+.action-finder-list .views-row:nth-of-type(even), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(even) {
+  float: right;
+}
+.two-column-grid .views-row-odd, .view-school-proximity .views-row-odd, .pane-polls-landing-panel-pane-1 .views-row-odd, .pane-ds-current-somethings-all .views-row-odd,
+.pane-ds-past-somethings-all .views-row-odd,
+.pane-ds-editors-picks-all .views-row-odd, .pane-related-projects-panel-pane-1 .views-row-odd,
+.pane-related-projects-panel-pane-2 .views-row-odd,
+.pane-resources-panel-pane-1 .views-row-odd,
+.pane-projects-by-state-panel-pane-1 .views-row-odd,
+.pane-featured-projects-panel-pane-1 .views-row-odd,
+.pane-featured-projects-panel-pane-3 .views-row-odd,
+.pane-current-campaigns-panel-pane-2 .views-row-odd,
+.action-finder-list .views-row-odd, .page-node-picks .pane-profile-panel-pane-3 .views-row-odd {
+  float: left;
+}
+.two-column-grid .views-row-even, .view-school-proximity .views-row-even, .pane-polls-landing-panel-pane-1 .views-row-even, .pane-ds-current-somethings-all .views-row-even,
+.pane-ds-past-somethings-all .views-row-even,
+.pane-ds-editors-picks-all .views-row-even, .pane-related-projects-panel-pane-1 .views-row-even,
+.pane-related-projects-panel-pane-2 .views-row-even,
+.pane-resources-panel-pane-1 .views-row-even,
+.pane-projects-by-state-panel-pane-1 .views-row-even,
+.pane-featured-projects-panel-pane-1 .views-row-even,
+.pane-featured-projects-panel-pane-3 .views-row-even,
+.pane-current-campaigns-panel-pane-2 .views-row-even,
+.action-finder-list .views-row-even, .page-node-picks .pane-profile-panel-pane-3 .views-row-even {
   float: right;
 }
 
