@@ -38,6 +38,11 @@ $bgPanelColor: rgba(125,125,125,0.5)
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBoxShadow
+  -moz-box-shadow: none
+  -o-box-shadow: none
+  -webkit-box-shadow: none
+  box-shadow: none
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -130,11 +135,29 @@ div[role="main"]
 // actions panel (sign-up and counter)
 .panel-row-actions
   +block
+  border: none
   background: $bgPanelColor
+  margin: 0 0 2em 0
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin-bottom: 0
+      .pane-content
+        padding: 0
+        .webform-client-form
+          +noBoxShadow
+          border: none
+        #edit-submitted-field-webform-mobile
+          margin-bottom: 0.5em
+          input
+            width: 100%
+        #edit-submitted-field-webform-email
+          margin-bottom: 0.5em
+          input
+            width: 100%
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
