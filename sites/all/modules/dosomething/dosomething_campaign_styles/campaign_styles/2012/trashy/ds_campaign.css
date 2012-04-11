@@ -232,6 +232,15 @@ div[role="main"] {
       height: 0;
       margin: 0; }
 
+.sign-up-long-form {
+  border: none; }
+  .sign-up-long-form .webform-client-form {
+    border: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none; }
+
 .trashy-campaign-date {
   color: #0f87c9;
   font-size: 26px;
