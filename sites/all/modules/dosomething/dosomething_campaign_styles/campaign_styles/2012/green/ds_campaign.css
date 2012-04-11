@@ -16,6 +16,7 @@ body {
 
 div[role="main"] {
   background: black;
+  background: rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -25,7 +26,7 @@ div[role="main"] {
 .three-boxes {
   width: 29%;
   float: left;
-  margin-right: 6.5% !important; }
+  margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
   .three-boxes .pane-content {
@@ -60,6 +61,7 @@ div[role="main"] {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
     background: black;
+    background: rgba(0, 0, 0, 0.4);
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
@@ -88,6 +90,7 @@ div[role="main"] {
 
 .panel-row-actions {
   background: black;
+  background: rgba(0, 0, 0, 0.4);
   margin: 0; }
   .panel-row-actions .pane-title {
     background: #009444; }
@@ -133,7 +136,8 @@ div[role="main"] {
 
 .panel-row-flexible .panel-pane {
   border: none;
-  background: black; }
+  background: black;
+  background: rgba(0, 0, 0, 0.4); }
   .panel-row-flexible .panel-pane .pane-title {
     background: #009444; }
 .panel-row-flexible .blog {
@@ -205,7 +209,7 @@ div[role="main"] {
   float: left; }
 
 .pane-node-field-campain-date {
-  color: #009444;
+  color: #8dc641;
   font-weight: 500; }
 
 .panel-row-ad-quick-info h2 {
@@ -273,3 +277,18 @@ div[role="main"] {
 
 .pane-node-field-campaign-teaser p {
   color: white; }
+
+#quick-info {
+  color: white; }
+  #quick-info .pane-title {
+    color: #8dc641;
+    font-size: 34px; }
+  #quick-info .pane-content h3 {
+    color: white;
+    font-size: 32px;
+    line-height: 20px; }
+  #quick-info .pane-content a {
+    color: #8dc641 !important; }
+
+.panel-row-ad-psa {
+  margin-top: 45px; }
