@@ -19,10 +19,17 @@ function dosomething_schools_ctools_plugin_directory($module, $plugin) {
  * Render content for school top info section.
  */
 function dosomething_schools_main_info($school_id) {
+  global $user;
   $items = array();
 
   $school = entity_load('ds_school', array($school_id));
   $school = $school[$school_id];
+
+  $member_link = '';
+  if ($user->uid == 0) {
+    $member_link = t('Become a member');
+    $member_link .= l('Go', 'why-become-a-member', array('attributes' => array('class' => 'go-button')));
+  }
 
   $output = array(
     'container' => array(
@@ -37,9 +44,8 @@ function dosomething_schools_main_info($school_id) {
         ),
         'location' => array(
           '#markup' => $school->city . ', ' . $school->state,
-          '#attributes' => array(
-            'class' => 'location',
-          ),
+          '#prefix' => '<div class="location">',
+          '#suffix' => '</div>',
         ),
         'clubs' => array(
           '#theme' => 'item_list',
@@ -47,6 +53,11 @@ function dosomething_schools_main_info($school_id) {
           '#attributes' => array(
             'class' =>  'clubs',
           ),
+        ),
+        'member_link' => array(
+          '#markup' => $member_link,
+          '#prefix' => '<div class="become-member">',
+          '#suffix' => '</div>',
         ),
       ),
       'right' => array(
@@ -94,5 +105,17 @@ function dosomething_schools_clubs($school_id) {
     $clubs[] = l($result->title, 'node/' . $result->nid);
   }
   return $clubs;
+}
+
+
+/**
+ * Returns gids of clubs that reference a school.
+ * TODO: Everything
+ */
+function dosomething_schools_clubs_gids($school_id) {
+  $clubs = dosomething_schools_clubs($school_id);
+
+  $gids = array();
+  return $gids;
 }
 
