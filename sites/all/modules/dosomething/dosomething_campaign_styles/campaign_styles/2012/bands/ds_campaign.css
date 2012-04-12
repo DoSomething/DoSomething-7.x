@@ -440,3 +440,16 @@ div[role="main"] {
 
 .panel-row-flexible .panel-pane {
   border: none; }
+
+.report-back-body .webform-client-form {
+  -mox-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  border: none; }
+
+.report-back-teaser {
+  font-size: 1.25em;
+  padding: 1em; }
+  .report-back-teaser h3 {
+    color: white; }
