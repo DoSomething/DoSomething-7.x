@@ -205,6 +205,9 @@ div[role="main"] {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
+.panel-row-flexible-top {
+  margin-bottom: 2em; }
+
 .panel-row-logos .pane-title {
   color: #0f87c9;
   background: none;
@@ -267,12 +270,15 @@ div[role="main"] {
 
 .trashy-gallery {
   border: none !important; }
+  .trashy-gallery #galleriffic #slideshow {
+    width: 100%; }
   .trashy-gallery #galleriffic li {
     list-style-image: none;
     margin: 0; }
 
 .trashy-headline {
   font-family: din-web, "Trebuchet MS", sans-serif;
+  padding-bottom: 2em;
   text-align: center; }
 
 .trashy-project-ideas-body li {
