@@ -209,8 +209,7 @@ function dosomething_blocks_facepile() {
 /**
  * Create the make an impact form for the make an impact block.
  */
-function dosomething_blocks_make_an_impact_form() {
-  $form = array();
+function dosomething_blocks_make_an_impact_form($form, &$form_state) {
   $what_cause = taxonomy_get_tree(DS_ISSUES_VOCABULARY_ID, $parent = 0, $max_depth = 1);
   $who_with = taxonomy_get_tree(DS_WHO_VOCABULARY_ID, $parent = 0, $max_depth = 1);
   $where = taxonomy_get_tree(DS_WHERE_VOCABULARY_ID, $parent = 0, $max_depth = 1);
@@ -309,7 +308,6 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
     ),
   );
   drupal_goto('action-finder', $options);
-  return;
 }
 
 /**
