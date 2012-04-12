@@ -97,7 +97,7 @@ div[role="main"] {
 .panel-row-actions {
   background: rgba(188, 134, 70, 0.4);
   border: none !important;
-  margin: 0; }
+  margin: 0 0 2em 0; }
   .panel-row-actions .pane-title {
     background: #d33936; }
   .panel-row-actions .pane-content {
@@ -163,6 +163,9 @@ div[role="main"] {
     content: "";
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.panel-row-flexible-top {
+  margin-bottom: 2em; }
 
 .panel-row-logos .pane-title {
   color: #d33936;
@@ -230,6 +233,8 @@ div[role="main"] {
   margin-right: 4%;
   width: 46%;
   border: none !important; }
+  .prizes-2-column-body:last-child {
+    margin-right: 0; }
   .prizes-2-column-body .cash-header {
     margin-bottom: 2em; }
     .prizes-2-column-body .cash-header p {
