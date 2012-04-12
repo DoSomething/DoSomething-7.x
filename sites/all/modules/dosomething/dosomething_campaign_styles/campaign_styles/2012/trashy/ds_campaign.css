@@ -134,13 +134,13 @@ div[role="main"] {
         -webkit-box-shadow: none;
         -o-box-shadow: none;
         box-shadow: none; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
         margin-bottom: 0.5em; }
-        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
           width: 100%; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-email {
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email {
         margin-bottom: 0.5em; }
-        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-email input {
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email input {
           width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {

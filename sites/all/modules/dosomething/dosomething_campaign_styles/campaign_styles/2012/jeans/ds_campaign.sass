@@ -155,14 +155,18 @@ div[role="main"]
         .webform-client-form
           +noBoxShadow
           border: none
-        #edit-submitted-field-webform-mobile
+        .field-name-field-webform-mobile
           margin-bottom: 0.5em
           input
             width: 100%
-        #edit-submitted-field-webform-email
+        .field-name-field-webform-email
           margin-bottom: 0.5em
           input
             width: 100%
+
+// No items in panel-row-ad on any TFJ pages, so just remove margin
+.panel-row-ad
+  margin: 0
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -227,8 +231,15 @@ div[role="main"]
     font-size: 26px
 
 .front-page-thanks
+  margin-bottom: 2em
   .pane-content
-    padding-bottom: 0
+    padding: 0 !important
+
+.sign-up-long-form
+  border: none
+  .webform-client-form
+    +noBoxShadow
+    border: none
 
 .thanks-text-box
   .pane-content
