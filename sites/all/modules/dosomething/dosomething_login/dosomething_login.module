@@ -1103,10 +1103,14 @@ function dosomething_login_parent_permission_email_form($form, &$form_state, $ui
  * Validation callback for parent permission email form.
  */
 function dosomething_login_parent_permission_email_form_validate($form, &$form_state) {
-  $email = $form_state['values']['parent_email'];
+  $email = trim($form_state['values']['parent_email']);
+  $account = user_load($form_state['values']['uid']);
   if (!valid_email_address($email)) {
     form_set_error('parent_email', t('you must provide a valid email address'));
   }
+  else if ($email == $account->mail) {
+   form_set_error('parent_email', t("Your parent/guardian email cannot be the same as your own email.  If you do not have your own email address but use your parent's email address instead, please email help@dosomething.org and we'll get it sorted out."));
+   }
 }
 
 /**
@@ -1114,7 +1118,7 @@ function dosomething_login_parent_permission_email_form_validate($form, &$form_s
  */
 function dosomething_login_parent_permission_email_form_submit($form, &$form_state) {
   global $language;
-  $email = $form_state['values']['parent_email'];
+  $email = trim($form_state['values']['parent_email']);
   $account = user_load($form_state['values']['uid']);
   $params = array('account' => $account);
 
