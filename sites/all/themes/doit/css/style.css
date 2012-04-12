@@ -946,16 +946,16 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row, .page-node-picks .pane-profile-panel-pane-3 .views-row {
   width: 49%;
 }
-.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row,
-.ie8 .pane-ds-past-somethings-all .views-row,
-.ie8 .pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row,
-.ie8 .pane-related-projects-panel-pane-2 .views-row,
-.ie8 .pane-resources-panel-pane-1 .views-row,
-.ie8 .pane-projects-by-state-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-3 .views-row,
-.ie8 .pane-current-campaigns-panel-pane-2 .views-row,
-.ie8 .action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
+.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row, .ie8
+.pane-ds-past-somethings-all .views-row, .ie8
+.pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row, .ie8
+.pane-related-projects-panel-pane-2 .views-row, .ie8
+.pane-resources-panel-pane-1 .views-row, .ie8
+.pane-projects-by-state-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-3 .views-row, .ie8
+.pane-current-campaigns-panel-pane-2 .views-row, .ie8
+.action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
   height: 120px;
   overflow: hidden;
 }
@@ -1544,7 +1544,7 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
 }
 .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown {
-  width: 100%;
+  width: 175px !important;
   background: #333131;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1554,7 +1554,7 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   background-image: url('images/gold-arrow.png');
   padding: 4px 7px;
   border: 0;
-  min-width: 170px;
+  min-width: 179px;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -2166,7 +2166,8 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
   padding: 0.5em;
   background-position: 0 0;
 }
-.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
+.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child,
+div.status p:last-child, div.warning p:last-child, div.error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
   margin-bottom: 0;
 }
 
@@ -2191,23 +2192,23 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
 }
 
 .warning, div.warning {
-  border-color: orange;
+  border-color: #ffa500;
   background-color: #fff6e5;
   background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
-  color: orange;
-  color: orange;
+  color: #ffa500;
+  color: #ffa500;
 }
 .warning:visited, div.warning:visited {
-  color: orange;
+  color: #ffa500;
 }
 .warning:hover, div.warning:hover {
-  color: orange;
+  color: #ffa500;
 }
 .warning:active, div.warning:active {
-  color: orange;
+  color: #ffa500;
 }
 
 .error, div.error {
