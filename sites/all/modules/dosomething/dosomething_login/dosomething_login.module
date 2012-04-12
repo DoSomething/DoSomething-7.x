@@ -306,7 +306,8 @@ function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) 
 
   // If we have an account return.
   if ($account) {
-    return TRUE;
+    form_set_value(array('#parents' => array('account')), $account, $form_state);
+    return;
   }
   else {
     //Okay, maybe they gave us an mobile number. We can handle that.
