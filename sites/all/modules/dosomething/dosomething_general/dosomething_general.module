@@ -181,7 +181,7 @@ function dosomething_general_find_user_by_cell($number) {
     // so this won't prevent them from logging in.
     return $name;
   }
-  return false;
+  return FALSE;
 }
 
 function _dosomething_general_find_user_by_cell_helper($number) {
