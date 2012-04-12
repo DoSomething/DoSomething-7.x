@@ -110,6 +110,8 @@ body.not-front
       padding: 4px 7px
       border: 0
       min-width: 195px
+      .ie8 &
+        min-width: 185px
       display: inline-block
       white-space: nowrap
       overflow: hidden
@@ -199,6 +201,8 @@ body.not-front
       padding: 4px 7px
       border: 0
       min-width: 170px
+      .ie8 &
+        min-width: 160px
       display: inline-block
       white-space: nowrap
       overflow: hidden
@@ -220,7 +224,7 @@ body.not-front
     +float-right
     margin-top: 8px
 
-// Custom filter styling for not views-exposed filters lie on projects/most-recent
+// Custom filter styling for not views-exposed filters lie on projects/featured-projects
 .featured-project-switcher
   clear: both
   margin: 12px 0
@@ -234,10 +238,8 @@ body.not-front
     display: inline-block
     font-size: $s1
     min-width: 170px
+    .ie8 &
+      min-width: 155px
     outline: none
     padding: 4px 7px
     width: 100% !important
-
-/* Dropdown menu
-.ie7, .ie6
-  .selectBox-dropdown-menu
