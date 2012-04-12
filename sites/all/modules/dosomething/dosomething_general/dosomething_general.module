@@ -124,15 +124,14 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
  * and/or Mobile Commons
  */
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
-  $mc_campaign = $form['#node']->field_mc_campaign[LANGUAGE_NONE][0]['value'];
-  $mc_opt_in = $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'];
-  $inf_action = $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'];
+  $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
+  $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
 
   $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $cell = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
   
   // make sure all of the required values are set in the node and submission
-  if (!empty($mc_campaign) && !empty($mc_opt_in) && !empty($cell)) {
+  if (!empty($mc_opt_in) && !empty($cell)) {
     dosomething_general_mobile_commons_subscribe($cell, $mc_campaign, $mc_opt_in);
   }
   if (!empty($inf_action) && !empty($email)) {
@@ -144,16 +143,58 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
  * Subscribe an email address to InfusionSoft using an action.
  * Note: tags are assigned in InfusionSoft via the action, not in Drupal.
  */
-function dosomething_general_infusionsoft_subscribe($email, $action) {
-  // TODO: do work
+function dosomething_general_infusionsoft_subscribe($email, $action_id) {
+  if (!is_array($emails)) $emails = array($emails);
+
+  include_once('infusionsoft_sdk/src/isdk.php');
+  $app = new iSDK;
+
+  if($app->cfgCon("emaildrop")) {
+    foreach ($emails as $email) {
+      if (empty($email)) continue;
+      // set up the data to send to infusionsoft
+      $contact = array('Email' => $email);
+
+        //check for existing contact;
+        $returnFields = array('Id');
+        $dups = $app->findByEmail($contact['Email'], $returnFields);
+
+      /*If email is not a duplicate*/
+      if (empty($dups)) {
+        // add new contact and add them to the action set
+        $dups = $app->addCon($contact);
+        $app->runAS($dups, $action_id);
+      }   
+      else {
+        /*If the email is a duplicate*/
+        $contactId = $dups[0]['Id'];
+        $app->runAS($contactId, $action_id);
+      }
+    }
+  }
 }
 
 /**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.
  */
-function dosomething_general_mobile_commons_subscribe($mobile, $campaign, $opt_in_path) {
-  // TODO: do work
+function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+
+  // Send the post data.
+  $opts = array(
+    'http' => array(
+      'method'  => 'POST',
+      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+      'content' => http_build_query(array(
+        'person[phone]' => $mobile,
+        'opt_in_path[]' => $opt_in_path,
+      )),
+    )
+  );
+
+  $context = stream_context_create($opts);
+  return file_get_contents($api_opt_in_path_url, FALSE, $context);
 }
 
 function dosomething_general_user_presave(&$edit, $account, $category) {
