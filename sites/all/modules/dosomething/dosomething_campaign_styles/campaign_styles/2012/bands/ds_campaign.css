@@ -119,6 +119,11 @@ div[role="main"] {
         color: #ffc10b;
         text-decoration: none; }
 
+.campaign-counter-labels {
+  color: white;
+  font-size: 1.5em;
+  text-transform: uppercase; }
+
 .pane-campaign-social .pane-content {
   padding-bottom: 0; }
 
@@ -169,13 +174,13 @@ div[role="main"] {
       -o-box-shadow: none;
       box-shadow: none;
       border: none; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
       margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
         width: 100%; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
       margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
