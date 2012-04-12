@@ -4201,6 +4201,19 @@ comments.fb_iframe_widget {
   margin: 0 0 12px 0;
 }
 
+.view-campaign-blog .views-row {
+  overflow: hidden;
+  *zoom: 1;
+}
+.view-campaign-blog .views-field-field-picture {
+  float: left;
+  margin-right: 16px;
+}
+.view-campaign-blog .views-field-title, .view-campaign-blog .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .view-campaign-blog a {
+  font-size: 20px;
+  line-height: 2em;
+}
+
 .node-type-action-guide {
   overflow: hidden;
   *zoom: 1;
