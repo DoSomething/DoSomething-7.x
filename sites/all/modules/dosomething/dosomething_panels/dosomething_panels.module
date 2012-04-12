@@ -199,7 +199,12 @@ function dosomething_panels_preprocess_dosomething_panels_one_three_one(&$variab
 function dosomething_panels_preprocess_dosomething_panels_campaign(&$variables) {
   drupal_add_library('system', 'ui.dialog');
   drupal_add_js(drupal_get_path('module', 'dosomething_panels') . '/plugins/layouts/campaign/campaign.js');
-  $content = $variables['content'];
+
+  foreach ($variables['content'] as $key => $content) {
+    if (empty($content)) {
+      unset($variables['content'][$key]);
+    }
+  }
   // TODO: Make this work with the new variable names. This is NOT NECESSARY FOR LAUNCH
   $variables['top_row_classes']
     = $variables['top_right_classes']
