@@ -100,8 +100,7 @@ div[role="main"] {
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  color: black; }
+  font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
     color: #92d2ba;
@@ -110,13 +109,15 @@ div[role="main"] {
     line-height: 1em; }
   .panel-row-top-right .panel-top-right-mini-info .pane-content {
     color: din-web, "Trebuchet MS", sans-serif;
-    font-weight: 600;
     font-size: 21px;
     line-height: 1.4em;
     background: none; }
 
+.pane-node-field-campaign-teaser {
+  color: black; }
+
 .panel-row-actions {
-  background: white; }
+  background: #f0ebde; }
   .panel-row-actions .pane-title {
     background: #92d2ba; }
   .panel-row-actions .pane-content {
@@ -189,7 +190,10 @@ div[role="main"] {
   padding: 0; }
 .panel-row-logos .pane-content {
   background: none;
-  padding: 0; }
+  padding: 0;
+  text-align: right; }
+.panel-row-logos hr {
+  color: #f48b8c; }
 
 .panel-row-top-logo .pane-content {
   padding: 0;

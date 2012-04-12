@@ -97,6 +97,11 @@ div[role="main"] {
         color: #0f87c9;
         text-decoration: none; }
 
+.campaign-counter-labels {
+  color: #0f87c9;
+  font-size: 1.5em;
+  text-transform: uppercase; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
@@ -129,13 +134,13 @@ div[role="main"] {
         -webkit-box-shadow: none;
         -o-box-shadow: none;
         box-shadow: none; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-mobile {
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
         margin-bottom: 0.5em; }
-        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
           width: 100%; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-email {
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email {
         margin-bottom: 0.5em; }
-        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content #edit-submitted-field-webform-email input {
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email input {
           width: 100%; }
 
 .panel-row-ad-quick-info .pane-title {
@@ -200,6 +205,9 @@ div[role="main"] {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
+.panel-row-flexible-top {
+  margin-bottom: 2em; }
+
 .panel-row-logos .pane-title {
   color: #0f87c9;
   background: none;
@@ -232,6 +240,22 @@ div[role="main"] {
       height: 0;
       margin: 0; }
 
+.report-back-teaser {
+  font-size: 1.25em;
+  padding: 1em; }
+  .report-back-teaser h3 {
+    color: #0f87c9;
+    font-size: 1.5em; }
+
+.sign-up-long-form {
+  border: none; }
+  .sign-up-long-form .webform-client-form {
+    border: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none; }
+
 .trashy-campaign-date {
   color: #0f87c9;
   font-size: 26px;
@@ -253,12 +277,15 @@ div[role="main"] {
 
 .trashy-gallery {
   border: none !important; }
+  .trashy-gallery #galleriffic #slideshow {
+    width: 100%; }
   .trashy-gallery #galleriffic li {
     list-style-image: none;
     margin: 0; }
 
 .trashy-headline {
   font-family: din-web, "Trebuchet MS", sans-serif;
+  padding-bottom: 2em;
   text-align: center; }
 
 .trashy-project-ideas-body li {

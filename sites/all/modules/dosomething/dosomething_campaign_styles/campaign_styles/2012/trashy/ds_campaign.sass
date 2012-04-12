@@ -146,10 +146,10 @@ div[role="main"]
         color: $baseColor
         text-decoration: none
 
-//.pane-campaign-counter
-//  .pane-content
-//    height: 152px
-//    box-shadow: rgba(75,71,68,0.35) 12px 0 12px
+.campaign-counter-labels
+  color: $baseColor
+  font-size: 1.5em
+  text-transform: uppercase
 
 // top right wrapper
 .panel-row-top-right
@@ -185,11 +185,11 @@ div[role="main"]
         .webform-client-form
           +noBorder
           +noBoxShadow
-        #edit-submitted-field-webform-mobile
+        .field-name-field-webform-mobile  
           margin-bottom: 0.5em
           input
             width: 100%
-        #edit-submitted-field-webform-email
+        .field-name-field-webform-email
           margin-bottom: 0.5em
           input
             width: 100%
@@ -249,6 +249,9 @@ div[role="main"]
     &:before,&:after
       +insetBorder
 
+.panel-row-flexible-top
+  margin-bottom: 2em
+
 // logos
 .panel-row-logos
   .pane-title
@@ -285,6 +288,19 @@ div[role="main"]
       height: 0
       margin: 0
 
+.report-back-teaser
+  font-size: 1.25em
+  padding: 1em
+  h3
+    color: $baseColor
+    font-size: 1.5em
+
+.sign-up-long-form
+  +noBorder
+  .webform-client-form
+    +noBorder
+    +noBoxShadow
+
 .trashy-campaign-date
   color: $baseColor
   font-size: 26px
@@ -307,12 +323,15 @@ div[role="main"]
 .trashy-gallery
   border: none !important
   #galleriffic
+    #slideshow
+      width: 100%
     li
       list-style-image: none
       margin: 0
 
 .trashy-headline
   font-family: $accent
+  padding-bottom: 2em
   text-align: center
 
 .trashy-project-ideas-body

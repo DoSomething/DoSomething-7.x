@@ -191,6 +191,7 @@ function dosomething_migrate_return_content_type_mapping() {
     'campaign_gys_2012' => 'Campaign Project - Green Your School 2012',
     'campaign_trashy_2011' => 'Campaign Project - Trashy 2011',
     'campaign_bfb_2012' => 'Campaign Project - Battle for the Bands 2012',
+    'campaign_tfj_2012' => 'Campaign Project - Teens for Jeans 2012',
   );
   return $array;
 }

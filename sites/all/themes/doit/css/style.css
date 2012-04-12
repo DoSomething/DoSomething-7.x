@@ -473,18 +473,18 @@ input[type=color], .description {
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], form.webform-client-form #edit-next,
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
-form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .ds-login-popup-footer input#edit-final-submit, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .ds-login-popup-footer input#edit-final-submit, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -504,7 +504,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
   font-weight: 300;
 }
 
-.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .purple-ribbon, .dothis-button-large, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.medium, .bold, b, strong, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .purple-ribbon, .dothis-button-large, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .teaser-heading, .sponsors-who-rock, .app-purple-ribbon, .accordian-selected-category, .image-teaser-module-teaser h2, .view-school-proximity .views-row h2, .pane-polls-landing-panel-pane-1 .unimage-wrapper h2, .blog-landing-pane-post .views-field-body h2, .pane-ds-current-somethings-all .something-description h2,
 .pane-ds-past-somethings-all .something-description h2,
 .pane-ds-editors-picks-all .something-description h2, .pane-related-projects-panel-pane-1 .unimage-wrapper h2,
@@ -521,15 +521,15 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
@@ -542,7 +542,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
   color: #18408b;
 }
 
-.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header, .page-search .content h2,
+.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .page-blog .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -550,7 +550,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .selectBox-options li.selectBox-hover a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover, body.front .selectBox-options li.selectBox-hover a, .selectBox-options li.selectBox-hover a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a, .ribbon-front {
   color: #fed100;
 }
@@ -559,8 +559,8 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
   color: #502862;
 }
 
-.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
-.views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, #lets-talk-dialog h2, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, .selectBox-options li a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
+.white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, #lets-talk-dialog h2, body.front .selectBox-options li a, .selectBox-options li a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
 thead tr th a, thead tr th:hover,
 thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
@@ -571,7 +571,7 @@ thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-
   color: white;
 }
 
-.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, h3 .stuff-header, .page-search .content h2,
+.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .page-blog .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -675,7 +675,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .unimage-wrapper, .page-node-picks .pane-profile-panel-pane-3 .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content, .apps-grid .apps-box {
+.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content, .apps-grid .apps-box {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -710,7 +710,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .unimage-wrapper, .page-node-picks .pane-profile-panel-pane-3 .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .field-name-field-picture img, .view-home-slideshow .views-row img {
+.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .field-name-field-picture img, .view-home-slideshow .home-slide img {
   border: 1px white solid;
 }
 
@@ -776,8 +776,7 @@ h3.subhead {
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title, .view-current-campaigns
-.view-header h2.pane-title,
+.view-current-campaigns .view-header h2.pane-title,
 .pane-related-projects-panel-pane-1 h2.pane-title,
 .pane-related-projects-panel-pane-2 h2.pane-title,
 .pane-resources-panel-pane-1 h2.pane-title,
@@ -786,8 +785,7 @@ h3.subhead {
 .pane-featured-projects-panel-pane-3 h2.pane-title,
 .pane-current-campaigns-panel-pane-2 h2.pane-title,
 .action-finder-list h2.pane-title,
-.page-node-picks .pane-profile-panel-pane-3 h2.pane-title, .page-node-picks
-.pane-profile-panel-pane-3 h2.pane-title {
+.page-node-picks .pane-profile-panel-pane-3 h2.pane-title {
   background-color: transparent;
   display: inline;
   font-size: 21px;
@@ -891,7 +889,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   color: #fed100;
 }
 
-.dropdown-categories, body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
+.dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label {
   font-size: 21px;
 }
@@ -946,6 +944,19 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row, .page-node-picks .pane-profile-panel-pane-3 .views-row {
   width: 49%;
 }
+.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row, .ie8
+.pane-ds-past-somethings-all .views-row, .ie8
+.pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row, .ie8
+.pane-related-projects-panel-pane-2 .views-row, .ie8
+.pane-resources-panel-pane-1 .views-row, .ie8
+.pane-projects-by-state-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-3 .views-row, .ie8
+.pane-current-campaigns-panel-pane-2 .views-row, .ie8
+.action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
+  height: 120px;
+  overflow: hidden;
+}
 .two-column-grid .views-row:nth-of-type(odd), .view-school-proximity .views-row:nth-of-type(odd), .pane-polls-landing-panel-pane-1 .views-row:nth-of-type(odd), .pane-ds-current-somethings-all .views-row:nth-of-type(odd),
 .pane-ds-past-somethings-all .views-row:nth-of-type(odd),
 .pane-ds-editors-picks-all .views-row:nth-of-type(odd), .pane-related-projects-panel-pane-1 .views-row:nth-of-type(odd),
@@ -955,25 +966,9 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .views-row:nth-of-type(odd),
 .pane-featured-projects-panel-pane-3 .views-row:nth-of-type(odd),
 .pane-current-campaigns-panel-pane-2 .views-row:nth-of-type(odd),
-.action-finder-list .views-row:nth-of-type(odd), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(odd),
-.two-column-grid .views-row .views-row-odd,
-.view-school-proximity .views-row .views-row-odd,
-.pane-polls-landing-panel-pane-1 .views-row .views-row-odd,
-.pane-ds-current-somethings-all .views-row .views-row-odd,
-.pane-ds-past-somethings-all .views-row .views-row-odd,
-.pane-ds-editors-picks-all .views-row .views-row-odd,
-.pane-related-projects-panel-pane-1 .views-row .views-row-odd,
-.pane-related-projects-panel-pane-2 .views-row .views-row-odd,
-.pane-resources-panel-pane-1 .views-row .views-row-odd,
-.pane-projects-by-state-panel-pane-1 .views-row .views-row-odd,
-.pane-featured-projects-panel-pane-1 .views-row .views-row-odd,
-.pane-featured-projects-panel-pane-3 .views-row .views-row-odd,
-.pane-current-campaigns-panel-pane-2 .views-row .views-row-odd,
-.action-finder-list .views-row .views-row-odd,
-.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-odd, .page-node-picks
-.pane-profile-panel-pane-3 .views-row .views-row-odd {
-  float: left;
+.action-finder-list .views-row:nth-of-type(odd), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(odd) {
   clear: left;
+  float: left;
 }
 .two-column-grid .views-row:nth-of-type(even), .view-school-proximity .views-row:nth-of-type(even), .pane-polls-landing-panel-pane-1 .views-row:nth-of-type(even), .pane-ds-current-somethings-all .views-row:nth-of-type(even),
 .pane-ds-past-somethings-all .views-row:nth-of-type(even),
@@ -984,23 +979,31 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-1 .views-row:nth-of-type(even),
 .pane-featured-projects-panel-pane-3 .views-row:nth-of-type(even),
 .pane-current-campaigns-panel-pane-2 .views-row:nth-of-type(even),
-.action-finder-list .views-row:nth-of-type(even), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(even),
-.two-column-grid .views-row .views-row-even,
-.view-school-proximity .views-row .views-row-even,
-.pane-polls-landing-panel-pane-1 .views-row .views-row-even,
-.pane-ds-current-somethings-all .views-row .views-row-even,
-.pane-ds-past-somethings-all .views-row .views-row-even,
-.pane-ds-editors-picks-all .views-row .views-row-even,
-.pane-related-projects-panel-pane-1 .views-row .views-row-even,
-.pane-related-projects-panel-pane-2 .views-row .views-row-even,
-.pane-resources-panel-pane-1 .views-row .views-row-even,
-.pane-projects-by-state-panel-pane-1 .views-row .views-row-even,
-.pane-featured-projects-panel-pane-1 .views-row .views-row-even,
-.pane-featured-projects-panel-pane-3 .views-row .views-row-even,
-.pane-current-campaigns-panel-pane-2 .views-row .views-row-even,
-.action-finder-list .views-row .views-row-even,
-.page-node-picks .pane-profile-panel-pane-3 .views-row .views-row-even, .page-node-picks
-.pane-profile-panel-pane-3 .views-row .views-row-even {
+.action-finder-list .views-row:nth-of-type(even), .page-node-picks .pane-profile-panel-pane-3 .views-row:nth-of-type(even) {
+  float: right;
+}
+.two-column-grid .views-row-odd, .view-school-proximity .views-row-odd, .pane-polls-landing-panel-pane-1 .views-row-odd, .pane-ds-current-somethings-all .views-row-odd,
+.pane-ds-past-somethings-all .views-row-odd,
+.pane-ds-editors-picks-all .views-row-odd, .pane-related-projects-panel-pane-1 .views-row-odd,
+.pane-related-projects-panel-pane-2 .views-row-odd,
+.pane-resources-panel-pane-1 .views-row-odd,
+.pane-projects-by-state-panel-pane-1 .views-row-odd,
+.pane-featured-projects-panel-pane-1 .views-row-odd,
+.pane-featured-projects-panel-pane-3 .views-row-odd,
+.pane-current-campaigns-panel-pane-2 .views-row-odd,
+.action-finder-list .views-row-odd, .page-node-picks .pane-profile-panel-pane-3 .views-row-odd {
+  float: left;
+}
+.two-column-grid .views-row-even, .view-school-proximity .views-row-even, .pane-polls-landing-panel-pane-1 .views-row-even, .pane-ds-current-somethings-all .views-row-even,
+.pane-ds-past-somethings-all .views-row-even,
+.pane-ds-editors-picks-all .views-row-even, .pane-related-projects-panel-pane-1 .views-row-even,
+.pane-related-projects-panel-pane-2 .views-row-even,
+.pane-resources-panel-pane-1 .views-row-even,
+.pane-projects-by-state-panel-pane-1 .views-row-even,
+.pane-featured-projects-panel-pane-1 .views-row-even,
+.pane-featured-projects-panel-pane-3 .views-row-even,
+.pane-current-campaigns-panel-pane-2 .views-row-even,
+.action-finder-list .views-row-even, .page-node-picks .pane-profile-panel-pane-3 .views-row-even {
   float: right;
 }
 
@@ -1044,6 +1047,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .unimage-wrapper, .page-node-picks .pane-profile-panel-pane-3 .something-description {
   background-color: white;
   min-height: 120px;
+  _height: auto !important;
+  height: 120px;
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
@@ -1282,17 +1287,16 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
-.panes-2 .panel-second .pane-narrow-thumb, .panes-2
-.panel-second .pane-narrow-thumb,
+.panes-2 .panel-second .pane-narrow-thumb,
 .pane-blog-center .pane-narrow-thumb {
   float: left;
+  margin-right: 12px;
+  width: 60px;
 }
 .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img, .panes-2
-.panel-second .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img {
-  margin-right: 12px;
   height: 60px;
   width: 60px;
 }
@@ -1314,32 +1318,37 @@ img.goleft {
   margin-right: 10px;
 }
 
-body.front .selectBox-dropdown-menu {
-  position: absolute;
-  z-index: 99999;
-  max-height: 100%;
-  border: 0;
-  border-top: 0;
-  background-color: #807a75;
-  overflow: auto;
-  border: 1px solid white;
-  border-top: 0;
+body.front .pane-dosomething-blocks-dosomething-make-impact-front {
+  height: 195px;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .form-type-select label {
+body.front .pane-dosomething-blocks-dosomething-make-impact-front .pane-title {
+  border-bottom: 1px white solid;
+}
+body.front #dosomething-blocks-make-an-impact-form-front .form-type-select {
+  background-color: #807a75;
+  border-bottom: 1px white solid;
+  min-height: 40px;
+}
+body.front #dosomething-blocks-make-an-impact-form-front .form-type-select label {
   display: none;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .pane-dosomething-blocks-dosomething-make-impact-front {
+body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown {
   width: 100%;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown {
-  width: 100%;
+body.front .selectBox-dropdown-menu {
+  border: 0;
+  background-color: #807a75;
+  overflow: auto;
+  position: absolute;
+}
+body.front .selectBox-dropdown {
+  width: 100% !important;
   background: #807a75;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown .selectBox-label {
+body.front .selectBox-dropdown .selectBox-label {
   background-image: url('images/gold-arrow.png');
   padding: 7px 14px;
-  border: 1px solid white;
-  width: 100%;
+  width: 100% !important;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -1347,43 +1356,37 @@ body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dro
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-menuShowing {
+body.front .selectBox-menuShowing {
   background: #807a75;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown-menu {
-  background: #807a75;
-  position: absolute;
-  z-index: 99999;
-  max-height: 100%;
-  border: solid 1px white;
-  border-top: 0;
-  background: #807a75;
-  overflow: auto;
-}
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options {
+body.front .selectBox-options {
   font-size: 17px;
   list-style: none;
   display: block;
   cursor: pointer;
   padding: 0;
   margin: 0;
+  position: absolute;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li {
+body.front .selectBox-options li {
   padding-left: 14px;
   margin-bottom: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a {
+body.front .selectBox-options li a {
   border-bottom: none;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a:hover {
+body.front .selectBox-options li a:hover {
   border-bottom: none;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a {
+body.front .selectBox-options li.selectBox-hover a {
   border-bottom: none;
 }
-body.front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a:hover {
+body.front .selectBox-options li.selectBox-hover a:hover {
   border-bottom: none;
+}
+body.front .selectBox-options li.selectBox-selected {
+  display: none;
 }
 
 .selectBox-options {
@@ -1429,7 +1432,7 @@ body.not-front .selectBox-options {
   display: none;
 }
 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
-  width: 100%;
+  width: 100% !important;
   background: #333131;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1444,6 +1447,9 @@ body.not-front .selectBox-options {
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: 95% 50%;
+}
+.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  min-width: 185px;
 }
 
 body.not-front .selectBox-dropdown-menu {
@@ -1534,7 +1540,7 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
 }
 .views-exposed-widgets .selectBox-dropdown,
 .views-exposed-widget .selectBox-dropdown {
-  width: 100%;
+  width: 175px !important;
   background: #333131;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1544,12 +1550,16 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   background-image: url('images/gold-arrow.png');
   padding: 4px 7px;
   border: 0;
-  min-width: 155px;
+  min-width: 179px;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: 95% 50%;
+}
+.ie8 .views-exposed-widgets .selectBox-dropdown .selectBox-label, .ie8
+.views-exposed-widget .selectBox-dropdown .selectBox-label {
+  min-width: 160px;
 }
 
 .views-submit-button {
@@ -1580,12 +1590,15 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   background-position: 95% 50%;
   display: inline-block;
   font-size: 14px;
-  min-width: 155px;
+  min-width: 170px;
   outline: none;
   padding: 4px 7px;
+  width: 100% !important;
+}
+.ie8 .ctools-jump-menu-select .selectBox-label {
+  min-width: 155px;
 }
 
-/* Dropdown menu */
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
  * 2. Force vertical scrollbar in non-IE
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
@@ -1741,7 +1754,6 @@ body {
 
 p {
   margin-top: 0;
-  margin-bottom: 2em;
 }
 
 pre {
@@ -1787,7 +1799,7 @@ ul {
   list-style: disc;
 }
 li ul {
-  list-style-type: circle;
+  list-style-type: disc;
 }
 
 dt {
@@ -2053,7 +2065,6 @@ form.webform-client-form #edit-submitted-dosomething-webform-numbering .dosometh
 }
 
 fieldset {
-  margin-bottom: 2em;
   padding-left: 0;
   margin-left: 0;
   border: none;
@@ -2267,7 +2278,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2491,6 +2502,7 @@ div[role=main] {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  min-height: 752px;
 }
 
 #breadcrumb {
@@ -2541,6 +2553,12 @@ div[role=main] {
   margin-bottom: 2px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.page-node-add-blog .vertical-tabs .fieldset-wrapper legend {
+  display: block;
+  padding-bottom: 0;
+  padding-top: 12px;
 }
 
 ul.menu li {
@@ -2626,6 +2644,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
   display: block;
   width: 100%;
+  background-color: #1e1d1c;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   background-color: rgba(30, 29, 28, 0.75);
   text-align: left;
   line-height: 22px;
@@ -2651,6 +2672,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:act
   color: #fed100;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:hover {
+  background-color: #1e1d1c;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   background-color: rgba(30, 29, 28, 0.75);
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
@@ -2715,7 +2739,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2974,7 +2998,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3029,7 +3053,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -3110,10 +3134,6 @@ h2.block-title, h2.pane-title {
   line-height: 23px;
   padding-top: 0;
   text-transform: none;
-}
-
-.panel-pane {
-  margin-bottom: 2em;
 }
 
 .views-submit-button {
@@ -3763,11 +3783,6 @@ comments.fb_iframe_widget {
 
 .panel-one-two .panel-top {
   *zoom: 1;
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
-  -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
-  box-shadow: #d4d2d1 0 1px 0 0;
-  border-bottom: 1px white solid;
   margin-bottom: 15px;
 }
 .panel-one-two .panel-top:after {
@@ -3777,9 +3792,14 @@ comments.fb_iframe_widget {
 }
 
 .pane-dosomething-blocks-dosomething-social-node-buttons {
-  float: left;
+  overflow: hidden;
+  *zoom: 1;
   margin-bottom: 0;
   width: 50%;
+}
+.pane-dosomething-blocks-dosomething-social-node-buttons .pane-content {
+  float: left;
+  width: 100%;
 }
 
 .pane-dosomething-blocks-dosomething-facepile-general {
@@ -4033,30 +4053,30 @@ comments.fb_iframe_widget {
 }
 
 .photo-slider {
-  position: relative;
   height: 365px;
 }
 .photo-slider .slide-count {
   position: relative;
   top: 330px;
+  right: 0;
 }
 .photo-slider .photo-slider-row {
   position: absolute;
-  top: 0;
+}
+.not-logged-in .ie8 .photo-slider .photo-slider-row {
+  right: 24px;
+}
+.logged-in .ie8 .photo-slider .photo-slider-row {
+  right: 20px;
 }
 
-.view-home-slideshow {
-  *zoom: 1;
-}
-.view-home-slideshow:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 .view-home-slideshow .views-row {
   background: url('images/rounded-bottom-shadow.png') no-repeat bottom center;
 }
-.view-home-slideshow .views-row img {
+.ie8 .view-home-slideshow .views-row {
+  width: 750px;
+}
+.view-home-slideshow .home-slide img {
   margin-bottom: 24px;
 }
 
@@ -4179,6 +4199,19 @@ comments.fb_iframe_widget {
 .view-school-proximity .item-list ul li {
   list-style: none;
   margin: 0 0 12px 0;
+}
+
+.view-campaign-blog .views-row {
+  overflow: hidden;
+  *zoom: 1;
+}
+.view-campaign-blog .views-field-field-picture {
+  float: left;
+  margin-right: 16px;
+}
+.view-campaign-blog .views-field-title, .view-campaign-blog .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .view-campaign-blog a {
+  font-size: 20px;
+  line-height: 2em;
 }
 
 .node-type-action-guide {
@@ -4311,11 +4344,11 @@ comments.fb_iframe_widget {
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
-.pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a {
   font-size: 21px;
 }
 

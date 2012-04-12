@@ -161,3 +161,81 @@ function dosomething_general_user_presave(&$edit, $account, $category) {
     drupal_set_message(t('Your password has been updated.'), 'status');
   }
 }
+
+/**
+ * Search for users users by their cell phone number.
+ *
+ * @param $number
+ *  (string) The cell phone number for which you are searching.
+ * @return
+ *  The username or FALSE if not found.
+ */
+function dosomething_general_find_user_by_cell($number) {
+  if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+    return $name;
+  }
+  else if ($name = _dosomething_general_find_user_by_cell_helper($number)) {
+    // Note: Cell phone numbers are not unique amongst the existing users.
+    // otherwise, we can directly search for the cell phone number when
+    // logging in. Existing users will have usernames and email addresses
+    // so this won't prevent them from logging in.
+    return $name;
+  }
+  return FALSE;
+}
+
+function _dosomething_general_find_user_by_cell_helper($number) {
+  // Not all of the values in the db are digits only, so we have to
+  // replace the the non-digits in the values that we're searching.
+  // We may have to use this check elsewhere.  If so, we can break
+  // it out into a separate function.
+  $number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
+  $replace_characters = array('+', '.', '-', ' ', ')', '(');
+  $replace = "m.field_user_mobile_value";
+  foreach ($replace_characters as $char) {
+    $replace = "REPLACE(" . $replace . ", '$char', '')";
+  }
+
+  $query = db_select('field_data_field_user_mobile', 'm');
+  $query->innerJoin('profile', 'p', 'm.entity_id = p.pid');
+  $query->innerJoin('users', 'u', 'u.uid = p.uid');
+  $result = $query->fields('u', array('name'))
+    ->condition('m.entity_type', 'profile2')
+    ->where("$replace = :number", array(':number' => $number))
+    ->execute();
+  return $result->fetchField();
+}
+
+/**
+ * Load up the related user given and email or cell phone value.
+ *
+ * @param $value
+ *   An email or cell phone value.
+ * @return
+ *  Either FALSE or the loaded user account.
+ */
+function dosomething_general_load_user_by_mail_or_cell($value) {
+  $account = FALSE;
+  if (valid_email_address($value)) {
+    $account = user_load_by_mail($value);
+  }
+  else if ($number = dosomething_projects_general_valid_cell($value)) {
+    if ($name = dosomething_general_find_user_by_cell($number)) {
+      $account = user_load_by_name($name);
+    }
+  }
+  return $account;
+}
+
+/**
+ * Determine if a cell phone number is valid.
+ *
+ * @param $number
+ *   A cell phone number which may contain special characters.
+ * @return
+ *  Either FALSE or the cleaned up cell phone number (only digits).
+ */
+function dosomething_general_valid_cell($number) {
+  $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
+  return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
+}

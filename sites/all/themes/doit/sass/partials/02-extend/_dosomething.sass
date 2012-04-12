@@ -394,16 +394,20 @@ h3.subhead
 .two-column-grid
   .views-row
     width: 49%
-    &:nth-of-type(odd),
-    .views-row-odd
-      float: left
+    .ie8 &
+      height: 120px
+      overflow: hidden
+    &:nth-of-type(odd)
       clear: left
-    &:nth-of-type(even),
-    .views-row-even
+      float: left
+    &:nth-of-type(even)
       float: right
+  .views-row-odd
+    float: left
+  .views-row-even
+    float: right
   .pane-content
     @extend .clearfix
-
 
 ////////////////////////////
 // IMAGE TEASER MODULE
@@ -423,6 +427,8 @@ h3.subhead
   @extend .border-and-shadow
   background-color: $white
   min-height: 120px
+  _height: auto !important
+  height: 120px
   padding: $s6 $s0 0 $s0
   margin-left: 120px + $s-2
   h2
@@ -661,9 +667,10 @@ h3.subhead
   .project-related-thumb,
   .pane-narrow-thumb
     float: left
+    margin-right: $s0
+    width: 60px
     img
       @extend .border-and-shadow
-      margin-right: $s0
       height: 60px
       width: 60px
 

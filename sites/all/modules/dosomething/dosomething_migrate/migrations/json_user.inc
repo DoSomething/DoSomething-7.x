@@ -171,7 +171,7 @@ class DSJsonProfile extends DSJsonUserMigration {
 
     $this->destination = new MigrateDestinationProfile2('main');
 
-    $this->map = new MigrateSQLMap($this->machineName, // change this to 'DSSqlUserProfile',
+    $this->map = new MigrateSQLMap('DSSqlUserProfile',
       MigrateDestinationUser::getKeySchema(),
       MigrateDestinationProfile2::getKeySchema()
     );
@@ -284,6 +284,5 @@ class DSJsonProfile extends DSJsonUserMigration {
       // They switched the keys to lowercase versions.
       $row->profile_gender = strtolower($row->profile_gender);
     }
-    var_dump($row);
   }
 }

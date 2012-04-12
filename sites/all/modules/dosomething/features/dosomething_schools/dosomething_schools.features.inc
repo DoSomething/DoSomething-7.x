@@ -5,13 +5,20 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function dosomething_schools_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "page_manager" && $api == "pages_default") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function dosomething_schools_views_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "views" && $api == "views_default") {
-    return array("version" => "3.0");
-  }
+  return array("version" => "3.0");
 }
 
 /**
@@ -37,6 +44,8 @@ function dosomething_schools_default_search_api_index() {
         "city" : { "type" : "text" },
         "state" : { "type" : "text" },
         "zip" : { "type" : "text" },
+        "lat" : { "type" : "decimal" },
+        "lon" : { "type" : "decimal" },
         "lat_lon" : { "type" : "string", "real_type" : "location" },
         "search_api_language" : { "type" : "string" }
       },

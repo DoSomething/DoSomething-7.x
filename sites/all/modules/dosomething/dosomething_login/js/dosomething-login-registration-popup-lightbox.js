@@ -46,6 +46,11 @@
         return true;
       }, "Please enter a valid email address.");
 
+      // Conditional validation for ensuring uniqueness of parental email.
+      jQuery.validator.addMethod("unique_parent_email", function(value, element, params) {
+        var email = popupForm.find('#edit-email').val();
+        return !(email && email == value);
+      }, "Your parent/guardian email cannot be the same as your own. If you use your parent's email address as your own  then please email help@dosomething.org.");
 
       $("#edit-final-submit").click(function(event) {
         // The elements are disabled, but still need to actually post.
@@ -70,15 +75,21 @@
           event.preventDefault();
           return;
         }
+        // Disable input access and set values depending on if
+        // this is a valid email or cell phone number.
         if (validEmail(cell_or_email)) {
           popupForm.find('input[name="email"]').val(cell_or_email);
           emailField.attr("disabled", true);
+          phoneField.removeAttr("disabled");
+          phoneField.val('');
           // Hide the required field for phone.
           phoneField.next('span').hide();
         }
         else if (validPhone(cell_or_email)) {
           popupForm.find('input[name="cell"]').val(cell_or_email);
           phoneField.attr("disabled", true);
+          emailField.removeAttr("disabled");
+          emailField.val('');
           // Hide the required field for emails.
           emailField.next('span').hide();
         }
@@ -103,7 +114,9 @@
           width: 550,
         });
 
-        // TODO: How to do conditional validation of parental email?
+        // Update form to show/hide conditional fields.
+        Drupal.dsRegistration.updateForm();
+
         event.preventDefault();
       });
 
@@ -129,7 +142,8 @@
             minlength: 6
           },
           parent_email: {
-            parent_email: true
+            parent_email: true,
+            unique_parent_email: true
           }
         },
         messages: {

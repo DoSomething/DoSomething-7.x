@@ -74,7 +74,7 @@ function dosomething_campaign_contact_form_login_form($form, &$form_state) {
   if (!empty($email) && dosomething_login_find_user_by_email($email)) {
     $valid = $email;
   }
-  else if (!empty($mobile) && dosomething_login_find_user_by_cell($mobile)) {
+  else if (!empty($mobile) && dosomething_general_find_user_by_cell($mobile)) {
     $valid = $mobile;
   }
   if (isset($valid)) {

@@ -1,6 +1,9 @@
 .panel-row {
-  overflow: hidden;
   *zoom: 1; }
+  .panel-row:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .panel-row-top-logo {
   width: 64%;

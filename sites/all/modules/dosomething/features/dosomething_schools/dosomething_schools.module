@@ -5,3 +5,117 @@
  */
 
 include_once('dosomething_schools.features.inc');
+
+/**
+* Implementation of hook_ctools_plugin_directory().
+*/
+function dosomething_schools_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Render content for school top info section.
+ */
+function dosomething_schools_main_info($school_id) {
+  global $user;
+  $items = array();
+
+  $school = entity_load('ds_school', array($school_id));
+  $school = $school[$school_id];
+
+  $member_link = '';
+  if ($user->uid == 0) {
+    $member_link = t('Become a member');
+    $member_link .= l('Go', 'why-become-a-member', array('attributes' => array('class' => 'go-button')));
+  }
+
+  $output = array(
+    'container' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => 'dosomething-stats school',
+      ),
+      'left' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => 'left',
+        ),
+        'location' => array(
+          '#markup' => $school->city . ', ' . $school->state,
+          '#prefix' => '<div class="location">',
+          '#suffix' => '</div>',
+        ),
+        'clubs' => array(
+          '#theme' => 'item_list',
+          '#items' => dosomething_schools_clubs($school_id),
+          '#attributes' => array(
+            'class' =>  'clubs',
+          ),
+        ),
+        'member_link' => array(
+          '#markup' => $member_link,
+          '#prefix' => '<div class="become-member">',
+          '#suffix' => '</div>',
+        ),
+      ),
+      'right' => array(
+        '#markup' => dosomething_schools_member_counter($school_id),
+      ),
+    ),
+  );
+
+  return $output;
+}
+
+/**
+ * Return counter with number of users for this school.
+ */
+function dosomething_schools_member_counter($school_id) {
+  $items = array();
+
+  $query = db_select('field_data_field_school_reference');
+  $query->condition('entity_type', 'profile2', '=');
+  $query->condition('bundle', 'main', '=');
+  $query->condition('field_school_reference_target_id', $school_id, '=');
+  $total = $query->countQuery()->execute()->fetchObject();
+  $member_count = $total->expression;
+
+  $items['school_members'] = array(
+    'title' => t('Do Something Members'),
+    'value' => $member_count,
+  );
+  return theme('dosomething_stats_counter', array('items' => $items));
+}
+
+/**
+ * Get clubs that reference a school.
+ */
+function dosomething_schools_clubs($school_id) {
+  $query = db_select('field_data_field_school_reference', 's');
+  $query->innerJoin('node', 'n', 's.entity_id = n.nid');
+  $query->fields('n', array('nid', 'title'));
+  $query->condition('s.field_school_reference_target_id', $school_id, '=');
+  $query->condition('s.bundle', 'club', '=');
+  $query->condition('n.status', '1', '=');
+  $results = $query->execute();
+
+  while ($result = $results->fetchObject()) {
+    $clubs[] = l($result->title, 'node/' . $result->nid);
+  }
+  return $clubs;
+}
+
+
+/**
+ * Returns gids of clubs that reference a school.
+ * TODO: Everything
+ */
+function dosomething_schools_clubs_gids($school_id) {
+  $clubs = dosomething_schools_clubs($school_id);
+
+  $gids = array();
+  return $gids;
+}
+

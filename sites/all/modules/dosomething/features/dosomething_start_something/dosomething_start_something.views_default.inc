@@ -598,7 +598,7 @@ function dosomething_start_something_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['ui_name'] = 'display image';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
-  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '[field_dsu_picture][field_picture] ';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<span class="views-field-field-picture">[field_dsu_picture][field_picture]</span>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['external'] = 0;

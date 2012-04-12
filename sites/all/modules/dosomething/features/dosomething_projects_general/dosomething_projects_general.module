@@ -21,8 +21,11 @@ function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_ty
 function dosomething_projects_general_mail($key, &$message, $params) {
   switch ($key) {
     case 'project_report_participant':
-      // TODO: Need correct subject.
-      $message['subject'] = t('You\'ve Participated in a Project!');
+      $message['subject'] = t('Invitation to join Do Something Project');
+      $message['body'][] = $params['message'];
+      break;
+    case 'project_report_participant_user':
+      $message['subject'] = t('Welcome to the Do Something Projects Program');
       $message['body'][] = $params['message'];
       break;
   }
@@ -59,7 +62,7 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
 /**
  * Project submission submit callback.
  */
-function dosomething_projects_general_participants_submit(&$form, &$form_state) {
+function dosomething_projects_general_participants_submit($form, &$form_state) {
   // Don't do anything for an incomplete webform.
   if (empty($form_state['webform_completed']) || !$form_state['values']['details']['sid'] || !module_exists('og')) {
     return;
@@ -75,9 +78,13 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
       // Make sure contact was not already dealt with.
       $key = array_search($item['value'], $form_state['previous_participants']);
       if ($key === FALSE) {
-        // Attach the account to the group if it exists.
-        if ($account = dosomething_projects_general_load_user_by_mail_or_cell($item['value'])) {
-           og_group($group->gid, array('entity' => $account));
+        if ($account = dosomething_general_load_user_by_mail_or_cell($item['value'])) {
+          og_group($group->gid, array('entity' => $account));
+          global $base_url, $language;
+          $title = $form_state['webform_entity']['submission']->field_project_title[LANGUAGE_NONE][0]['value'];
+          $sid = $form_state['values']['details']['sid'];
+          $message = '<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the "' . $title . '" project page. Check out your project\'s page by going to ' . $base_url . '/webform-submission/' . $sid . '. From this page you can now update the DoSomething.org community on the project, add your other members to the project page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p><p>Thanks!</p>';
+          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
         }
         else {
           // Otherwise send a message to the user.
@@ -86,18 +93,15 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
           $profile = profile2_load_by_user($submission_account, 'main');
           $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
           // TODO: Sending message and mail means no sanitization.
-          $message = drupal_html_to_text(t("%first %last mentioned that you participated in the project %title.  To receive full credit, please sign up at <a href='@url'>%site-name'</a>", array(
-            '%first' => $profile_wrapper->field_user_first_name->value(),
-            '%last' => $profile_wrapper->field_user_last_name->value(),
-            '%title' => $form_state['webform_entity']->submission['field_project_title'][LANGUAGe_NONE][0]['value'],
-            '@url' => $base_url,
-            '%site-name' => variable_get('site_name', 'Do Something')))
-          );
-
+          $title = $form_state['webform_entity']['submission']->field_project_title[LANGUAGE_NONE][0]['value'];
+          $url = $base_url;
+          $first = $profile_wrapper->field_user_first_name->value();
+          $last = $profile_wrapper->field_user_last_name->value();
+          $message = '<p>Hey,</p><p>' . $first . ' ' . $last . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
           if (valid_email_address($item['value'])) {
             drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
           }
-          else if ($number = dosomething_projects_general_valid_cell($item['value'])) {
+          else if ($number = dosomething_general_valid_cell($item['value'])) {
             sms_send($number, $message);
           }
         }
@@ -112,7 +116,7 @@ function dosomething_projects_general_participants_submit(&$form, &$form_state) 
   // If anyone is left in the previous list, then remove them from the group.
   if (count($form_state['previous_participants'])) {
     foreach ($form_state['previous_participants'] as $contact_value) {
-      if ($account = dosomething_projects_general_load_user_by_mail_or_cell($contact_value)) {
+      if ($account = dosomething_general_load_user_by_mail_or_cell($contact_value)) {
         og_ungroup($group->gid, 'user', $account);
       }
     }
@@ -147,47 +151,13 @@ function dosomething_projects_general_participants_validate($form, &$form_state)
 }
 
 /**
- * Determine if a cell phone number is valid.
- *
- * @param $number
- *   A cell phone number which may contain special characters.
- * @return
- *  Either FALSE or the cleaned up cell phone number (only digits).
- */
-function dosomething_projects_general_valid_cell($number) {
-  $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
-  return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
-}
-
-/**
- * Load up the related user given and email or cell phone value.
- *
- * @param $value
- *   An email or cell phone value.
- * @return
- *  Either FALSE or the loaded user account.
- */
-function dosomething_projects_general_load_user_by_mail_or_cell($value) {
-  $account = FALSE;
-  if (valid_email_address($value)) {
-    $account = user_load_by_mail($value);
-  }
-  else if ($number = dosomething_projects_general_valid_cell($value)) {
-    if ($name = dosomething_login_find_user_by_cell($number)) {
-      $account = user_load_by_name($name);
-    }
-  }
-  return $account;
-}
-
-/**
  * Implements hook_entity_insert().
  */
 function dosomething_projects_general_entity_insert($entity, $type) {
   // When user signs up for site, check for projects to which they're committed,
   // and sign them up for the group.
   if ($type == 'profile2') {
-    $account = user_load($profile->uid);
+    $account = user_load($entity->uid);
     dosomething_projects_general_add_user_to_project_groups($account, $entity);
   }
 }
@@ -195,10 +165,32 @@ function dosomething_projects_general_entity_insert($entity, $type) {
 /**
  * Implements hook_entity_update().
  */
-function dosomething_projects_general_entity_update($entity, $type) {
-  // TODO: When user updates profile, replace email and phone number on projects.
+function dosomething_projects_general_entity_presave($entity, $type) {
+  // When user updates profile, replace email and phone number on projects
+  // with which they are participating.
   if ($type == 'profile2') {
-
+    if ($entity->pid) {
+      $profile = profile2_load($entity->pid);
+      $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+      $entity_wrapper = entity_metadata_wrapper('profile2', $entity);
+      if ($entity_wrapper->field_user_mobile->value() != $profile_wrapper->field_user_mobile->value()) {
+        // Add user to projects with their new email
+        // Update projects with the old email to use the new email.
+        dosomething_projects_general_add_user_to_project_groups(NULL, $entity);
+        dosomething_projects_general_update_participants_contact_value($entity_wrapper->field_user_mobile->value(), $profile_wrapper->field_user_mobile->value());
+      }
+    }
+  }
+  else if ($type == 'user') {
+    if ($entity->uid) {
+      $account = user_load($entity->uid);
+      if ($entity->mail != $account->mail) {
+        // Add user to projects with their new email
+        // Update projects with the old email to use the new email.
+        dosomething_projects_general_add_user_to_project_groups($entity);
+        dosomething_projects_general_update_participants_contact_value($entity->mail, $account->mail);
+      }
+    }
   }
 }
 
@@ -223,35 +215,47 @@ function dosomething_projects_general_register_form_submit($form, &$form_state) 
 
 /**
  * Add user to submission groups (projects) that they've particpated in.
+ * Only provide the account or profile if you want it is being updated.
  *
  * @param $account
- *  Loaded user object.
+ *  Loaded user object (OPTIONAL).
  * @param $profile
- *  Profile2 object realted to the account (OPTIONAL)
+ *  Profile2 object related to the account (OPTIONAL)
  *
  * @return array
  *  List of submissions to which the user was added.
  */
-function dosomething_projects_general_add_user_to_project_groups($account, $profile = NULL) {
-  if (is_null($profile)) {
-    $profile = profile_load_by_user($account, 'main');
+function dosomething_projects_general_add_user_to_project_groups($account = NULL, $profile = NULL) {
+  // Make sure at least one parameter exists.
+  if (is_null($account) && is_null($profile)) {
+    return array();
   }
-  $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-  $submissions = dosomething_projects_general_find_project_memberships($account->mail, $profile_wrapper->field_user_mobile->value());
+
+  $cell = '';
+  $email = !is_null($account) ? $account->mail : '';
+  if (!is_null($profile)) {
+    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+    $cell = $profile_wrapper->field_user_mobile->value();
+  }
+  $submissions = dosomething_projects_general_find_project_memberships($email, $cell);
   if (!empty($submissions['webform_submission_entity'])) {
+    // MAke sure we have the account for associating the group.
+    if (is_null($account)) {
+      $account = user_load($profile->uid);
+    }
     foreach ($submissions['webform_submission_entity']  as $sid => $submission) {
       $group = og_get_group('webform_submission_entity', $submission->sid, TRUE);
       if (!isset($group->gid)) {
         $group->save();
       }
-      og_group($group->gid, array('entity' => $account));
+      og_group($group->gid, array('entity' => $account, 'save' => FALSE, 'force reload' => FALSE));
     }
   }
   return array_keys($submissions);
 }
 
 /**
- * Find submissions where the given email and cell numbers were marked as particpants.
+ * Find submissions where the given email and cell numbers were marked as participants.
  *
  * @param $email
  *  A valid email address.
@@ -264,7 +268,7 @@ function dosomething_projects_general_find_project_memberships($email, $cell) {
   $values = array();
   foreach (array($email, $cell) as $value) {
     if ($value) {
-      $values[] = $value;
+      $values[] = trim($value);
     }
   }
   if (!empty($values)) {
@@ -282,3 +286,25 @@ function dosomething_projects_general_find_project_memberships($email, $cell) {
   return array();
 }
 
+/**
+ * Update the values in the field_participants field.
+ *
+ * @param $new_value
+ *  The new value of the email or phone.
+ * @param $old_value
+ *  The previous value of the email or phone.
+ *
+ * @return int
+ *  Number of rows affected by update.
+ */
+function dosomething_projects_general_update_participants_contact_value($new_value, $old_value) {
+  $count = 0;
+  try {
+    $count = db_update('field_data_field_participants')
+    ->fields(array('field_participants_value' => $new_value))
+    ->condition('field_participants_value', $old_value)
+    ->execute();
+  }
+  catch (Exception $e) {}
+  return $count;
+}

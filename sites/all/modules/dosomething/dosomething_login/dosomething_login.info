@@ -5,5 +5,6 @@ dependencies[] = sms_mobile_commons
 dependencies[] = profile2
 dependencies[] = fboauth
 dependencies[] = dosomething_roles
+dependencies[] = dosomething_general
 package = DoSomething
 

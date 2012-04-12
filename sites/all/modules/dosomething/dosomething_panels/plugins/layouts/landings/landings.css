@@ -114,10 +114,9 @@
     .panel-row-middle .panel-panel .pane-content p {
       padding: 12px 0;
       margin-bottom: 0; }
-  .panel-row-middle .panel-panel .go-button {
-    position: relative;
-    top: 35px;
-    right: -142px; }
+.panel-row-middle .go-button {
+  float: right;
+  line-height: 30px; }
 
 .panel-row-flexible .panel-pane {
   border: 1px solid white; }
