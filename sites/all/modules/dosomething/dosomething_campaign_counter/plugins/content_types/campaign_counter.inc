@@ -28,7 +28,7 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
     $block = new stdClass();
     $sign_up_count = webform_get_submission_count($campaign_sign_up);
 
-    $count_text = $campaign_entity->field_counter_text[LANGUAGE_NONE][0]['value'];
+    $count_text = isset($campaign_entity->field_counter_text[LANGUAGE_NONE]) ? $campaign_entity->field_counter_text[LANGUAGE_NONE][0]['value'] : '';
 
     if ($campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value'] == '#count') {
       $count = webform_get_submission_count($campaign_report_back);

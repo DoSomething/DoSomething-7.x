@@ -20,8 +20,8 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
       drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/css/ds_campaign_social.css');
       $block->content = theme('ds_campaign_social', array(
         'url' => url($uri['path'], $uri['options']),
-        'facebook_language' => $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'],
-        'twitter_language' => $entity->field_campaign_twitter_language[LANGUAGE_NONE][0]['value'],
+        'facebook_language' => isset($entity->field_campaign_facebook_language[LANGUAGE_NONE]) ? $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'] : '',
+        'twitter_language' => isset($entity->field_campaign_twitter_language[LANGUAGE_NONE]) ? $entity->field_campaign_twitter_language[LANGUAGE_NONE][0]['value'] : '',
         //'campaign_logo' => file_create_url($entity->field_campaign_logo[LANGUAGE_NONE][0]['uri']),
         'campaign_logo' => 'http://www.dosomething.org/sites/all/micro/epic/images/epic-logo.png',
       ));
@@ -32,7 +32,7 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
         '#tag' => 'meta',
         '#attributes' => array(
           'property' => 'og:description',
-          'content' => $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'],
+          'content' => isset($entity->field_campaign_facebook_language[LANGUAGE_NONE]) ? $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'] : '',
         )
       );
 
