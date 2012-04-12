@@ -77,6 +77,11 @@ div[role="main"] {
         color: #d33936;
         text-decoration: none; }
 
+.campaign-counter-labels {
+  color: white;
+  font-size: 1.5em;
+  text-transform: uppercase; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
