@@ -217,12 +217,12 @@ div[role="main"] {
   list-style: none; }
 
 .panel-row-flexible .panel-pane h2 {
-  background: url("../sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/header_bg.png");
+  background: url("/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/header_bg.png");
   background-repeat: no-repeat;
   margin-bottom: 15px; }
 
 .panel-row-ad-quick-info .panel-pane h2 {
-  background: url("../sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/header_bg.png");
+  background: url("/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/header_bg.png");
   background-repeat: no-repeat;
   margin-bottom: 15px; }
 
