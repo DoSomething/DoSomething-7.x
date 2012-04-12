@@ -115,15 +115,8 @@
       padding: 12px 0;
       margin-bottom: 0; }
 .panel-row-middle .go-button {
-  line-height: 30px;
-  position: absolute;
-  bottom: 8px; }
-.panel-row-middle .panel-first .go-button {
-  right: 543px; }
-.panel-row-middle .panel-second .go-button {
-  right: 277px; }
-.panel-row-middle .panel-third .go-button {
-  right: 11px; }
+  float: right;
+  line-height: 30px; }
 
 .panel-row-flexible .panel-pane {
   border: 1px solid white; }
