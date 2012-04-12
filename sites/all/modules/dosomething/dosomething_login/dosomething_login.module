@@ -1396,6 +1396,18 @@ function dosomething_login_action_ds_connect($app_id, $access_token) {
 }
 
 /**
+ * Implements hook_user_login().
+ */
+function dosomething_login_user_login(&$edit, $account) {
+  if ($account->uid) {
+    // Check if they have connected through Facebook.
+    if ($fbid = db_query('SELECT fbid from {fboauth_users} WHERE uid = :uid', array(':uid' => $account->uid))->fetchField()) {
+      dosomething_login_save_profile_pic($account->uid, $fbid);
+    }
+  }
+}
+
+/**
  * Saves a user pic from Facebook to the user profile.
  *
  * @param integer $uid
