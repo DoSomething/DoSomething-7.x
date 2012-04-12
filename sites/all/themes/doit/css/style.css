@@ -480,11 +480,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -521,11 +521,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -776,7 +776,8 @@ h3.subhead {
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title,
+.view-current-campaigns .view-header h2.pane-title, .view-current-campaigns
+.view-header h2.pane-title,
 .pane-related-projects-panel-pane-1 h2.pane-title,
 .pane-related-projects-panel-pane-2 h2.pane-title,
 .pane-resources-panel-pane-1 h2.pane-title,
@@ -785,7 +786,8 @@ h3.subhead {
 .pane-featured-projects-panel-pane-3 h2.pane-title,
 .pane-current-campaigns-panel-pane-2 h2.pane-title,
 .action-finder-list h2.pane-title,
-.page-node-picks .pane-profile-panel-pane-3 h2.pane-title {
+.page-node-picks .pane-profile-panel-pane-3 h2.pane-title, .page-node-picks
+.pane-profile-panel-pane-3 h2.pane-title {
   background-color: transparent;
   display: inline;
   font-size: 21px;
@@ -1287,7 +1289,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
-.panes-2 .panel-second .pane-narrow-thumb,
+.panes-2 .panel-second .pane-narrow-thumb, .panes-2
+.panel-second .pane-narrow-thumb,
 .pane-blog-center .pane-narrow-thumb {
   float: left;
   margin-right: 12px;
@@ -1295,7 +1298,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img, .panes-2
+.panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img {
   height: 60px;
   width: 60px;
@@ -1336,21 +1340,19 @@ body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown {
   width: 100%;
 }
 body.front .selectBox-dropdown-menu {
-  position: absolute;
-  z-index: 99999;
-  max-height: 100%;
   border: 0;
   background-color: #807a75;
   overflow: auto;
+  position: absolute;
 }
 body.front .selectBox-dropdown {
-  width: 100%;
+  width: 100% !important;
   background: #807a75;
 }
 body.front .selectBox-dropdown .selectBox-label {
   background-image: url('images/gold-arrow.png');
   padding: 7px 14px;
-  width: 100%;
+  width: 100% !important;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -1361,14 +1363,6 @@ body.front .selectBox-dropdown .selectBox-label {
 body.front .selectBox-menuShowing {
   background: #807a75;
 }
-body.front .selectBox-dropdown-menu {
-  background: #807a75;
-  position: absolute;
-  z-index: 99999;
-  max-height: 100%;
-  background: #807a75;
-  overflow: auto;
-}
 body.front .selectBox-options {
   font-size: 17px;
   list-style: none;
@@ -1376,6 +1370,7 @@ body.front .selectBox-options {
   cursor: pointer;
   padding: 0;
   margin: 0;
+  position: absolute;
 }
 body.front .selectBox-options li {
   padding-left: 14px;
@@ -1441,7 +1436,7 @@ body.not-front .selectBox-options {
   display: none;
 }
 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
-  width: 100%;
+  width: 100% !important;
   background: #333131;
   font-size: 14px;
   margin-bottom: 5px;
@@ -1556,7 +1551,7 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   background-image: url('images/gold-arrow.png');
   padding: 4px 7px;
   border: 0;
-  min-width: 155px;
+  min-width: 170px;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -1592,9 +1587,10 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   background-position: 95% 50%;
   display: inline-block;
   font-size: 14px;
-  min-width: 155px;
+  min-width: 170px;
   outline: none;
   padding: 4px 7px;
+  width: 100% !important;
 }
 
 /* Dropdown menu */
@@ -2277,7 +2273,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2737,7 +2733,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2996,7 +2992,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3051,7 +3047,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -4329,11 +4325,11 @@ comments.fb_iframe_widget {
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a {
   font-size: 21px;
 }
 

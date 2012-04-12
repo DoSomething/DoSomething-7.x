@@ -16,20 +16,19 @@ body.front
       @extend .dropdown-categories
       width: 100%
   .selectBox-dropdown-menu
-    position: absolute
-    z-index: 99999
-    max-height: 100%
     border: 0
     background-color: $gray4 
     overflow: auto
+    position: absolute
+
   .selectBox-dropdown
     @extend .dropdown-categories
-    width: 100%
+    width: 100% !important
     background: $gray4
     .selectBox-label
       +background-image(image_url('gold-arrow.png'))
       padding: 7px 14px
-      width: 100%
+      width: 100% !important
       display: inline-block
       white-space: nowrap
       overflow: hidden
@@ -38,13 +37,6 @@ body.front
       background-position: 95% 50%
   .selectBox-menuShowing
     background: $gray4
-  .selectBox-dropdown-menu
-    background: $gray4
-    position: absolute
-    z-index: 99999
-    max-height: 100%
-    background: $gray4
-    overflow: auto
   .selectBox-options
     font-size: $s3
     list-style: none
@@ -52,6 +44,7 @@ body.front
     cursor: pointer
     padding: 0
     margin: 0
+    position: absolute
     li
       padding-left: 14px
       margin-bottom: 6px
@@ -98,6 +91,7 @@ body.not-front
     border-right: 1px solid $gray2
     border-bottom: 1px solid $gray2
 
+// Dropdown filters in the left sidebar
 #block-dosomething-blocks-dosomething-make-impact
   .content
     padding: 32px 0px 52px 0
@@ -107,7 +101,7 @@ body.not-front
       display: none
   .selectBox-dropdown
     @extend .dropdown-categories
-    width: 100%
+    width: 100% !important
     background: $gray2
     font-size: $s1
     margin-bottom: 5px
@@ -181,6 +175,7 @@ body.not-front
           +remove-link-underlines
           @extend .gold
 
+// Dropdown sort filters like on /poll
 .views-exposed-form .views-exposed-widget .form-submit
   margin-top: -3px
   margin-bottom: 12px
@@ -203,7 +198,7 @@ body.not-front
       +background-image(image_url('gold-arrow.png'))
       padding: 4px 7px
       border: 0
-      min-width: 155px
+      min-width: 170px
       display: inline-block
       white-space: nowrap
       overflow: hidden
@@ -225,7 +220,7 @@ body.not-front
     +float-right
     margin-top: 8px
 
-// Custom filter styling for not views-exposed filters
+// Custom filter styling for not views-exposed filters lie on projects/most-recent
 .featured-project-switcher
   clear: both
   margin: 12px 0
@@ -238,9 +233,10 @@ body.not-front
     background-position: 95% 50%
     display: inline-block
     font-size: $s1
-    min-width: 155px
+    min-width: 170px
     outline: none
     padding: 4px 7px
+    width: 100% !important
 
 /* Dropdown menu
 .ie7, .ie6
