@@ -1525,6 +1525,8 @@ function dosomething_login_action_prereg($app_id, $access_token) {
 function dosomething_login_register_facebook($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
   $form['#action'] = '/user/registration/fb/?destination=front';
+  unset($form['connect']);
+  unset($form['or']);
   if (isset($_SESSION['fbuser'])) {
     $fbuser = $_SESSION['fbuser'];
     $form['email']['#value'] = $fbuser->email;
