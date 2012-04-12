@@ -192,6 +192,9 @@ div[role="main"] {
   .front-page-thanks .pane-content {
     padding: 0 !important; }
 
+.report-back-teaser {
+  padding: 1.5em; }
+
 .sign-up-long-form {
   border: none; }
   .sign-up-long-form .webform-client-form {

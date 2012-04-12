@@ -240,6 +240,13 @@ div[role="main"] {
       height: 0;
       margin: 0; }
 
+.report-back-teaser {
+  font-size: 1.25em;
+  padding: 1em; }
+  .report-back-teaser h3 {
+    color: #0f87c9;
+    font-size: 1.5em; }
+
 .sign-up-long-form {
   border: none; }
   .sign-up-long-form .webform-client-form {
