@@ -309,19 +309,19 @@ function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) 
     form_set_value(array('#parents' => array('account')), $account, $form_state);
     return;
   }
-  else {
-    //Okay, maybe they gave us an mobile number. We can handle that.
-    $numeric_name = preg_replace('/\D/', '', $name);
-    $mobile = $numeric_name . '@mobile';
-    $users = user_load_multiple(array(), array('mail' => $mobile, 'status' => '1'));
-    $account = reset($users);
+  // Check if they gave us a mobile number.
+  else if ($number = dosomething_general_valid_cell($name)) {
+    if ($username = dosomething_general_find_user_by_cell($number)) {
+      $users = user_load_multiple(array(), array('name' => $username, 'status' => '1'));
+      $account = reset($users);
+    }
   }
+
   if (isset($account->uid)) {
     // Send a text message with the reset password.
     $form_state['send_sms_reset'] = TRUE;
     form_set_value(array('#parents' => array('account')), $account, $form_state);
   }
-  //TODO: check again to see if the number was supplied as xxx-xxx-xxxx rather than 5551114444.
   else {
     form_set_error('name', t('Sorry, %name is not recognized as a user name, e-mail address, or mobile number.', array('%name' => $name)));
   }
