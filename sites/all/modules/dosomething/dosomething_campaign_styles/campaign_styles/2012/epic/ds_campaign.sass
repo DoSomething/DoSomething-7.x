@@ -155,7 +155,7 @@ div[role="main"]
 .panel-row-actions
   +block
   +noBorder
-  margin: 0
+  margin: 0 0 2em 0
   .pane-title
     background: $baseColor
   .pane-content
@@ -213,6 +213,9 @@ div[role="main"]
     &:before,&:after
       +insetBorder
 
+.panel-row-flexible-top
+  margin-bottom: 2em
+
 // logos
 .panel-row-logos
   .pane-title
@@ -256,6 +259,9 @@ div[role="main"]
     height: 1.6em
   label
     font-weight: $boldWeight
+  // overriding padding on go-button to center the SUBMIT text
+  .go-button
+    padding-top: 3px
   .pane-content
     height: 166px
     padding: 0.5em
@@ -281,8 +287,10 @@ div[role="main"]
 .prizes-2-column-body
   float: left
   margin-right: 4%
-  width: 46%
+  width: 48%
   +noBorder
+  &:last-child
+    margin-right: 0
   .cash-header
     margin-bottom: 2em
     p
@@ -309,6 +317,13 @@ div[role="main"]
 .red-dot
   list-style-image: url("assets/red-dot.png")
   list-style-position: outside
+
+.report-back-teaser
+  font-size: 1.25em
+  padding: 1em
+  h3
+    color: white
+    font-size: 1.5em
 
 .sign-up-long-form
   +noBorder
