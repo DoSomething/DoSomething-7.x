@@ -237,7 +237,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_infusion_action',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
@@ -303,7 +303,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_mc_optin',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
