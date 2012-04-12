@@ -292,3 +292,8 @@ div[role="main"] {
 
 .panel-row-ad-psa {
   margin-top: 45px; }
+
+.panel-row-actions {
+  border: 0; }
+  .panel-row-actions form {
+    border: 0 !important; }
