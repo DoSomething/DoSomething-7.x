@@ -286,7 +286,8 @@ div[role="main"] {
 
 .contests-grand-prize {
   background-color: white !important;
-  border: 1px solid black !important; }
+  border: 1px solid black !important;
+  margin-bottom: 1em; }
   .contests-grand-prize .pane-content {
     padding: 1em;
     text-align: center; }
@@ -316,7 +317,8 @@ div[role="main"] {
 
 .contests-star-prize {
   background-color: white !important;
-  border: 1px solid black !important; }
+  border: 1px solid black !important;
+  margin-bottom: 1em; }
   .contests-star-prize .pane-content {
     padding: 1em;
     text-align: center; }
