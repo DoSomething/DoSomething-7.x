@@ -1056,8 +1056,9 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-featured-projects-panel-pane-3 .unimage-wrapper h2,
 .pane-current-campaigns-panel-pane-2 .unimage-wrapper h2,
 .action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2 {
-  line-height: 1;
-  margin-bottom: 18px;
+  display: block;
+  line-height: 22px;
+  margin-bottom: 10px;
 }
 .image-teaser-module-teaser p, .view-school-proximity .views-row p, .pane-polls-landing-panel-pane-1 .unimage-wrapper p, .blog-landing-pane-post .views-field-body p, .pane-ds-current-somethings-all .something-description p,
 .pane-ds-past-somethings-all .something-description p,
