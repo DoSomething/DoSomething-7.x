@@ -171,9 +171,11 @@ div[role="main"] {
 .two-boxes {
   width: 48%;
   float: left;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 20px; }
   .two-boxes .pane-content {
-    padding: 20px 5px; }
+    padding: 20px 5px;
+    height: 265px; }
     .two-boxes .pane-content h2 {
       color: black;
       font-size: 24px;
@@ -187,7 +189,9 @@ div[role="main"] {
       margin: 2px 0px 15px 0px; }
 
 #judging .pane-content {
-  padding-top: 5px; }
+  padding-top: 5px;
+  margin-top: 0px;
+  margin-bottom: 20px; }
 #judging li h2 {
   color: black;
   font-size: 24px;
