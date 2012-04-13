@@ -22,7 +22,7 @@ function dosomething_schools_school_club_members_all_content_type_render($subtyp
   $gids = dosomething_schools_clubs_gids($context->data->sid);
   $view = views_get_view('club_members_per_school');
   $block->title = t('Club Members');
-  $block->content = $view->preview('panel_pane_1', array($gids));
+  $block->content = $view->preview('panel_pane_2', array($gids));
 
   return $block;
 

@@ -31,6 +31,12 @@ function dosomething_schools_main_info($school_id) {
     $member_link .= l('Go', 'why-become-a-member', array('attributes' => array('class' => 'go-button')));
   }
 
+  $clubs = dosomething_schools_clubs($school_id);
+  $clubs_list = array();
+  foreach ($clubs as $club) {
+    $clubs_list[] = l($club['title'], 'node/' . $club['nid']);
+  }
+
   $output = array(
     'container' => array(
       '#type' => 'container',
@@ -49,7 +55,7 @@ function dosomething_schools_main_info($school_id) {
         ),
         'clubs' => array(
           '#theme' => 'item_list',
-          '#items' => dosomething_schools_clubs($school_id),
+          '#items' => $clubs_list,
           '#attributes' => array(
             'class' =>  'clubs',
           ),
@@ -101,8 +107,12 @@ function dosomething_schools_clubs($school_id) {
   $query->condition('n.status', '1', '=');
   $results = $query->execute();
 
+  $clubs = array();
   while ($result = $results->fetchObject()) {
-    $clubs[] = l($result->title, 'node/' . $result->nid);
+    $clubs[] = array(
+      'title' => $result->title,
+      'nid' => $result->nid,
+    );
   }
   return $clubs;
 }
@@ -110,12 +120,17 @@ function dosomething_schools_clubs($school_id) {
 
 /**
  * Returns gids of clubs that reference a school.
- * TODO: Everything
  */
 function dosomething_schools_clubs_gids($school_id) {
   $clubs = dosomething_schools_clubs($school_id);
 
-  $gids = array();
-  return $gids;
+  foreach ($clubs as $club) {
+    $nids[] = $club['nid'];
+  }
+
+  $gids = og_get_group_ids('node', $nids);
+  $gids_string = implode(',', $gids);
+
+  return $gids_string;
 }
 
