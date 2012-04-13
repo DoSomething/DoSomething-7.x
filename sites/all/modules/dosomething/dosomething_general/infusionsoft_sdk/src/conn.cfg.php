@@ -1,5 +1,5 @@
 <?php
 
-$connInfo = array('connectionName:applicationName:i:e6256f1d838a342155f51d800945c777:This is the connection for applicationName.infusionsoft.com');
+$connInfo = array('emaildrop:dosomething:i:622df4c0977fe377749eeacb376a74d1:This is the connection for dosomething.infusionsoft.com');
 
 ?>
