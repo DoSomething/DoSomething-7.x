@@ -1,0 +1,4 @@
+name = DoSomething - Poll Redirect
+description = Provides a redirect for polls on Cause/Issues taxonomy term pages.
+core = 7.x
+package = DoSomething

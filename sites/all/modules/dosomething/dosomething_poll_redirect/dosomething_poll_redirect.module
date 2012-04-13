@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Provides a redirect for polls on Cause/Issues taxonomy term pages.
+ */
+
+/**
+ * Provides a constant for the Issues vocabulary ID.
+ */
+define('DOSOMETHING_POLL_REDIRECT_VID', '5');
+
+/**
+ * Implements hook_form_FORM_ID_alter() for poll_view_voting().
+ */
+function dosomething_poll_redirect_form_poll_view_voting_alter(&$form, &$form_state, $form_id) {
+  $term = menu_get_object('taxonomy_term', 2);
+  if ($term && $term->vid === DOSOMETHING_POLL_REDIRECT_VID) {
+    $form['vote']['#submit'][] = 'dosomething_poll_redirect_submit';
+  }
+}
+
+/**
+ * Form submission handler for poll_view_voting().
+ *
+ * @see dosomething_poll_redirect_poll_view_voting_form_alter()
+ */
+function dosomething_poll_redirect_submit($form, &$form_state) {
+  if (isset($form['#node']->nid)) {
+    $form_state['redirect'] = 'node/' . $form['#node']->nid;
+  }
+}
