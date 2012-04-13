@@ -26,7 +26,7 @@ $bgFallback: black
 // block definition (all blocks--don't define width or float here)
 @mixin block
   background: rgb(0, 0, 0)
-  background: rgba(0, 0, 0, .4)
+  background: rgba(0, 30, 0, .5)
   
 // top and bottom border for elements
 // use with &:before and &:after
@@ -93,7 +93,10 @@ div[role="main"]
 ////////////// sections /////////////////
 ////////////////////////////////////////
  
-.bg-green .pane-content
+.bg-green .pane-content,
+.panel-row-actions-stats,
+.pane-campaign-sign-up .pane-content,
+.pane-campaign-counter .pane-content,
   background-color: #8DC641
 
 // navigation
@@ -172,6 +175,7 @@ div[role="main"]
       font-weight: 600
       line-height: 1em
     p
+      color: white
       margin: 0
     &:before
       +insetBorder
@@ -282,6 +286,7 @@ div[role="main"]
       line-height:  21px
 
 #project-ideas
+  margin-bottom: 20px
   .pane-content
     padding: 20px 10px
     .small-logo
@@ -335,6 +340,26 @@ div[role="main"]
   margin-top: 45px
 
 .panel-row-actions
+  margin-bottom: 20px
   border: 0
   form
     border: 0 !important
+
+#browse-schools .pane-content
+  form
+    margin-left: 275px
+  .view-filters
+    .selectBox-dropdown
+      background: #aaa
+  .views-field-name a
+    color: white !important
+    text-decoration: none
+    font-weight: 300 !important
+    font-size: 14px
+  ul
+    list-style: none
+    text-align: center
+      
+.pane-campaign-gallery-panel-pane-3 .pane-content
+  padding-bottom: 0px
+  margin-bottom: 25px

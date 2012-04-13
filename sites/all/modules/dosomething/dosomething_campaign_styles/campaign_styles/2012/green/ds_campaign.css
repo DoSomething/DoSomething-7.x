@@ -16,7 +16,7 @@ body {
 
 div[role="main"] {
   background: black;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 30, 0, 0.5);
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -51,7 +51,10 @@ div[role="main"] {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
-.bg-green .pane-content {
+.bg-green .pane-content,
+.panel-row-actions-stats,
+.pane-campaign-sign-up .pane-content,
+.pane-campaign-counter .pane-content {
   background-color: #8dc641; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -61,7 +64,7 @@ div[role="main"] {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
     background: black;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 30, 0, 0.5);
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
@@ -90,7 +93,7 @@ div[role="main"] {
 
 .panel-row-actions {
   background: black;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 30, 0, 0.5);
   margin: 0; }
   .panel-row-actions .pane-title {
     background: #009444; }
@@ -124,6 +127,7 @@ div[role="main"] {
   font-weight: 600;
   line-height: 1em; }
 .panel-row-ad-quick-info .pane-content p {
+  color: white;
   margin: 0; }
 .panel-row-ad-quick-info .pane-content:before {
   overflow: hidden;
@@ -137,7 +141,7 @@ div[role="main"] {
 .panel-row-flexible .panel-pane {
   border: none;
   background: black;
-  background: rgba(0, 0, 0, 0.4); }
+  background: rgba(0, 30, 0, 0.5); }
   .panel-row-flexible .panel-pane .pane-title {
     background: #009444; }
 .panel-row-flexible .blog {
@@ -246,38 +250,40 @@ div[role="main"] {
     font-size: 21px;
     line-height: 21px; }
 
-#project-ideas .pane-content {
-  padding: 20px 10px; }
-  #project-ideas .pane-content .small-logo {
-    margin: 15px 15px 0 0; }
-  #project-ideas .pane-content #nestle-recycling-copy {
-    width: 590px;
-    margin-top: 15px; }
-  #project-ideas .pane-content h1 {
-    background: url("assets/black-triangle.png") no-repeat left;
-    padding: 5px 0 0 15px;
-    margin: 0px 5px 2px 10px;
-    font-size: 32px;
-    cursor: pointer; }
-  #project-ideas .pane-content h1:hover {
-    cursor: pointer;
-    color: #333333; }
-  #project-ideas .pane-content ul {
-    background-color: #222222;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -khtml-border-radius: 15px;
-    border-radius: 15px;
-    padding: 10px 0px 3px 36px;
-    margin: 0px 7px 5px 7px; }
-    #project-ideas .pane-content ul li {
-      color: white;
-      padding-bottom: 7px; }
-      #project-ideas .pane-content ul li a {
-        text-decoration: none;
-        color: white !important; }
-      #project-ideas .pane-content ul li a:hover {
-        text-decoration: underline; }
+#project-ideas {
+  margin-bottom: 20px; }
+  #project-ideas .pane-content {
+    padding: 20px 10px; }
+    #project-ideas .pane-content .small-logo {
+      margin: 15px 15px 0 0; }
+    #project-ideas .pane-content #nestle-recycling-copy {
+      width: 590px;
+      margin-top: 15px; }
+    #project-ideas .pane-content h1 {
+      background: url("assets/black-triangle.png") no-repeat left;
+      padding: 5px 0 0 15px;
+      margin: 0px 5px 2px 10px;
+      font-size: 32px;
+      cursor: pointer; }
+    #project-ideas .pane-content h1:hover {
+      cursor: pointer;
+      color: #333333; }
+    #project-ideas .pane-content ul {
+      background-color: #222222;
+      -moz-border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -khtml-border-radius: 15px;
+      border-radius: 15px;
+      padding: 10px 0px 3px 36px;
+      margin: 0px 7px 5px 7px; }
+      #project-ideas .pane-content ul li {
+        color: white;
+        padding-bottom: 7px; }
+        #project-ideas .pane-content ul li a {
+          text-decoration: none;
+          color: white !important; }
+        #project-ideas .pane-content ul li a:hover {
+          text-decoration: underline; }
 
 .pane-node-field-campaign-teaser p {
   color: white; }
@@ -298,6 +304,21 @@ div[role="main"] {
   margin-top: 45px; }
 
 .panel-row-actions {
+  margin-bottom: 20px;
   border: 0; }
   .panel-row-actions form {
     border: 0 !important; }
+
+#browse-schools .pane-content form {
+  margin-left: 275px; }
+#browse-schools .pane-content .view-filters .selectBox-dropdown {
+  background: #aaaaaa; }
+#browse-schools .pane-content .views-field-name a {
+  color: white !important;
+  text-decoration: none;
+  font-weight: 300 !important;
+  font-size: 14px; }
+
+.pane-campaign-gallery-panel-pane-3 .pane-content {
+  padding-bottom: 0px;
+  margin-bottom: 25px; }
