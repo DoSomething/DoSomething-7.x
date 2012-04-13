@@ -456,4 +456,5 @@ div[role="main"] {
   font-size: 1.25em;
   padding: 1em; }
   .report-back-teaser h3 {
-    color: white; }
+    color: white;
+    border: none; }
