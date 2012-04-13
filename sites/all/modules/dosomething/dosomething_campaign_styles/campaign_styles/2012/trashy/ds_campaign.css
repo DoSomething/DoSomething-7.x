@@ -262,12 +262,36 @@ div[role="main"] {
       height: 0;
       margin: 0; }
 
+.prizes-box-content hr {
+  left: 20%;
+  position: absolute;
+  top: 136px;
+  width: 60%; }
+.prizes-box-content .prizes-movie-ticket-content {
+  left: 0;
+  margin-left: 5%;
+  position: absolute;
+  top: 25px;
+  width: 90%; }
+.prizes-box-content .prizes-pizza-content {
+  left: 0;
+  margin-left: 5%;
+  position: absolute;
+  top: 175px;
+  width: 90%; }
+
 .report-back-teaser {
   font-size: 1.25em;
   padding: 1em; }
   .report-back-teaser h3 {
     color: #0f87c9;
     font-size: 1.5em; }
+
+.scholarship-box-content {
+  height: 110px;
+  margin-top: -55px;
+  position: relative;
+  top: 50%; }
 
 .sign-up-long-form {
   border: none; }
