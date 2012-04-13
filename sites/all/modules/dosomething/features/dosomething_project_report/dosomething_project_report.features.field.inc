@@ -1185,7 +1185,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '22',
+        'weight' => '21',
       ),
     ),
   );
@@ -1255,7 +1255,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '13',
+        'weight' => '12',
       ),
     ),
   );
@@ -1325,7 +1325,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );
@@ -1385,7 +1385,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'geocoder_handler' => 'google',
         ),
         'type' => 'geocoder',
-        'weight' => '19',
+        'weight' => '18',
       ),
     ),
   );
@@ -1453,7 +1453,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '23',
+        'weight' => '22',
       ),
     ),
   );
@@ -1480,7 +1480,11 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'project_report',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => '1',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1513,7 +1517,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '4',
+        'weight' => '2',
       ),
     ),
   );
@@ -1529,26 +1533,25 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'field_permissions' => array(
         'type' => '0',
       ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
+      'foreign keys' => array(),
       'indexes' => array(
-        'format' => array(
-          0 => 'format',
+        'value' => array(
+          0 => 'value',
         ),
       ),
-      'module' => 'text',
+      'module' => 'list',
       'settings' => array(
-        'max_length' => '255',
+        'allowed_values' => array(
+          1 => 'people helped',
+          2 => 'animals helped',
+          3 => 'items collected',
+          4 => 'amount raised',
+        ),
+        'allowed_values_function' => '',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'list_text',
     ),
     'field_instance' => array(
       'bundle' => 'project_report',
@@ -1558,10 +1561,10 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 21,
+          'type' => 'list_default',
+          'weight' => 23,
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1569,25 +1572,14 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'label' => 'Type of Measurable Impact',
       'required' => 1,
       'settings' => array(
-        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'select_or_other',
-        'settings' => array(
-          'available_options' => '1|people
-2|animals
-3|items collected
-4|amount raised',
-          'available_options_php' => '',
-          'markup_available_options_php' => '&lt;none&gt;',
-          'other' => 'other',
-          'other_unknown_defaults' => 'other',
-          'sort_options' => 0,
-        ),
-        'type' => 'select_or_other',
-        'weight' => '5',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
       ),
     ),
   );
@@ -1660,7 +1652,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -1724,7 +1716,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '15',
+        'weight' => '14',
       ),
     ),
   );
@@ -1791,7 +1783,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '21',
+        'weight' => '20',
       ),
     ),
   );
@@ -1857,7 +1849,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '17',
+        'weight' => '16',
       ),
     ),
   );
@@ -1946,7 +1938,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -2074,7 +2066,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           ),
         ),
         'type' => 'nodereference_url',
-        'weight' => '16',
+        'weight' => '15',
       ),
     ),
   );
@@ -2139,7 +2131,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
@@ -2204,7 +2196,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -2285,7 +2277,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'year_range' => '-3:+3',
         ),
         'type' => 'date_select',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -2416,7 +2408,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -2485,7 +2477,7 @@ Use numbers only (no text).',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '14',
+        'weight' => '13',
       ),
     ),
   );
@@ -2559,7 +2551,7 @@ Use numbers only (no text).',
           ),
         ),
         'type' => 'addressfield_standard',
-        'weight' => '18',
+        'weight' => '17',
       ),
     ),
   );
@@ -2636,7 +2628,7 @@ Use numbers only (no text).',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '10',
+        'weight' => '9',
       ),
     ),
   );
@@ -2716,7 +2708,7 @@ Use numbers only (no text).',
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '24',
+        'weight' => '23',
       ),
     ),
   );

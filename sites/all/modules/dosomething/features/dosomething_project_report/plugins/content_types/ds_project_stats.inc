@@ -98,9 +98,17 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       ),
     );
 
+    if ($wrapper->field_impact_type->value() && $wrapper->field_impact_amount->value()) {
+      $impact_key = $wrapper->field_impact_type->value();
+      $field_impact_type = field_info_field('field_impact_type');
+      $items['impacted'] = array(
+        'title' => $field_impact_type['settings']['allowed_values'][$impact_key],
+        'value' => $wrapper->field_impact_amount->value(),
+      );
+    }
+
     $instances = field_info_instances($entity_type);
     $field_labels = array(
-      'field_num_people_impacted' => t('People Helped'),
       'field_update_people_involved' => t('People Doing It'),
     );
     foreach ($argument->restrictions['type'] as $bundle) {
