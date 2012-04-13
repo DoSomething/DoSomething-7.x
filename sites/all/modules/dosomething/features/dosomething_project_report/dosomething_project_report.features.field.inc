@@ -1503,20 +1503,20 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_impact_amount',
-      'label' => 'Measurable impact amount',
+      'label' => 'Amount',
       'required' => 1,
       'settings' => array(
         'max' => '',
-        'min' => '',
+        'min' => '1',
         'prefix' => '',
         'suffix' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 0,
-        'module' => 'html5_tools',
+        'module' => 'number',
         'settings' => array(),
-        'type' => 'numberfield',
+        'type' => 'number',
         'weight' => '2',
       ),
     ),
@@ -1569,7 +1569,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_impact_type',
-      'label' => 'Type of Measurable Impact',
+      'label' => 'Type',
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -2788,6 +2788,7 @@ Use numbers only (no text).',
 Use numbers only (no text).');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
   t('Address');
+  t('Amount');
   t('An update for an existing project');
   t('Body (anonymous user)');
   t('Body (logged in user)');
@@ -2809,7 +2810,6 @@ The content from this field will only be shown to anonymous users.');
   t('Issues');
   t('List the email address or mobile number of anyone who donated time or goods to your project.');
   t('Measurable impact');
-  t('Measurable impact amount');
   t('Number of People Doing It');
   t('Please don\'t use BMP files.
 Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
@@ -2823,7 +2823,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('The content from this field will only be shown to logged in users.');
   t('This an auto complete field.  Start typing in the name of your project. If you haven\'t yet posted a project <a href="/node/add/project"> click here </a>.');
   t('Title');
-  t('Type of Measurable Impact');
+  t('Type');
   t('Update');
   t('Updated number of new people involved in the project');
   t('Updated number of new people/animals helped');
