@@ -34,6 +34,10 @@ $bgFallback: #F5C36E
 @mixin block
   background: rgba(188,134,70,.4)
 
+@mixin grayLine
+  border-top: $borderTop
+  border-bottom: $borderBot
+
 @mixin noBorder
   border: none !important
 
@@ -71,8 +75,7 @@ h1.title
   display: none
 
 hr
-  border-top: $borderTop
-  border-bottom: $borderBot
+  +grayLine
 
 body
   background-color: $bgFallback
@@ -138,6 +141,18 @@ div[role="main"]
   font-size: 1.5em
   text-transform: uppercase
 
+.pane-campaign-social
+  .socialWrapper
+    margin: 0 0 8px 18px
+    &:before
+      +grayLine
+      content: ""
+      display: block
+      left: -18px
+      margin-bottom: 8px
+      position: relative
+      width: 248px
+
 // top right wrapper
 .panel-row-top-right
   // mini-info panel
@@ -186,6 +201,9 @@ div[role="main"]
         margin-right: 0
 
 // ad row (quick info and psa)
+.panel-row-ad-psa
+  margin-top: 46px
+
 .panel-row-ad-quick-info
   .pane-title
     font-size: 35px

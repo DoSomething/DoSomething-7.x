@@ -84,6 +84,18 @@ div[role="main"] {
   font-size: 1.5em;
   text-transform: uppercase; }
 
+.pane-campaign-social .socialWrapper {
+  margin: 0 0 8px 18px; }
+  .pane-campaign-social .socialWrapper:before {
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    content: "";
+    display: block;
+    left: -18px;
+    margin-bottom: 8px;
+    position: relative;
+    width: 248px; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
@@ -128,6 +140,9 @@ div[role="main"] {
       height: auto; }
     .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-submit {
       margin-right: 0; }
+
+.panel-row-ad-psa {
+  margin-top: 46px; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
