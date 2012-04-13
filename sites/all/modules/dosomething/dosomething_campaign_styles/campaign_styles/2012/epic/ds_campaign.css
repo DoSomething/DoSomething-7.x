@@ -67,6 +67,8 @@ div[role="main"] {
     background: rgba(188, 134, 70, 0.4);
     background-image: none;
     text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu .active {
+      color: #d33936; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;

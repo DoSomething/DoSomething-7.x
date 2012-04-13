@@ -52,6 +52,8 @@ div[role="main"] {
     background: rgba(255, 255, 255, 0.75);
     background-image: none;
     text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu .active {
+      color: #18408b; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
@@ -61,7 +63,7 @@ div[role="main"] {
       text-transform: uppercase;
       color: black; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #041f3d;
+        color: #18408b;
         text-decoration: none; }
 
 .campaign-counter-labels {
@@ -203,6 +205,11 @@ div[role="main"] {
     -webkit-box-shadow: none;
     box-shadow: none;
     border: none; }
+
+.tfj-gallery {
+  border: none; }
+  .tfj-gallery #slideshow {
+    width: 100%; }
 
 .thanks-text-box .pane-content {
   font-size: 1.2em;
