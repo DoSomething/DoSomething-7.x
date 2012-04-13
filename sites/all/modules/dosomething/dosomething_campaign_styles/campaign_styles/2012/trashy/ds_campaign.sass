@@ -38,6 +38,10 @@ $bgFallback: #2387c7
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin blueLine
+  border-top: 1px solid #224289
+  border-bottom: 1px solid $baseColor
+
 @mixin noBorder
   border: none
 
@@ -60,7 +64,7 @@ b
   font-weight: $boldWeight
 
 hr
-  border: 1px solid $baseColor
+  +blueLine
 
 h1.title
   display: none
@@ -151,6 +155,24 @@ div[role="main"]
   font-size: 1.5em
   text-transform: uppercase
 
+.pane-campaign-social
+  .pane-content
+    +block
+    .fb-facepile
+      &:before
+        +blueLine
+    // positioning line between social width and campaign teaser
+    .socialWrapper
+      margin: 0 0 8px 18px
+      &:before
+        +blueLine
+        content: ""
+        display: block
+        left: -18px
+        margin-bottom: 8px
+        position: relative
+        width: 237px
+
 // top right wrapper
 .panel-row-top-right
   // mini-info panel
@@ -204,6 +226,8 @@ div[role="main"]
     color: $secondaryLink
     line-height: 1.3em
     font-weight: 500
+    &:after
+      +blueLine
   .pane-content
     margin-top: 1em
     padding: 0
@@ -222,7 +246,6 @@ div[role="main"]
 
 .panel-row-ad-psa
   background: transparent
-  bottom: 0
   position: absolute
   right: 0
   .pane-title
@@ -254,6 +277,7 @@ div[role="main"]
 
 // logos
 .panel-row-logos
+  margin-top: 2em
   .pane-title
     color: $baseColor
     background: none
@@ -368,7 +392,10 @@ div[role="main"]
 
 .trashy-two-boxes
   float: left
-  width: 50%
+  margin-right: 2%
+  width: 49%
+  &:last-child
+    margin-right: 0
   .pane-content
     height: 300px
     text-align: center
