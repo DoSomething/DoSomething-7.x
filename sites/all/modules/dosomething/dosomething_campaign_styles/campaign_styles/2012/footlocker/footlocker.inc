@@ -28,7 +28,7 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => ''),
+    array('title' => 'home', 'href' => 'footlocker'),
     array('title' => '20 finalists', 'href' => '#'),
   ),
 );
