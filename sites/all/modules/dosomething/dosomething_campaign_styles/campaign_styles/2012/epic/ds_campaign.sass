@@ -61,6 +61,8 @@ a
   color: $baseColor
   &:hover
     color: $secondaryLink
+  &:visited
+    color: $baseColor
 
 b
   font-weight: $boldWeight
@@ -155,7 +157,7 @@ div[role="main"]
 .panel-row-actions
   +block
   +noBorder
-  margin: 0 0 2em 0
+  margin: 1em 0 2em 0
   .pane-title
     background: $baseColor
   .pane-content
@@ -163,19 +165,25 @@ div[role="main"]
   .panel-row-actions-sign-up
     .pane-campaign-sign-up
       margin: 0
-    .pane-content
-      padding: 0
-      .webform-client-form
-        +noBorder
-        +noBoxShadow
-      .field-name-field-webform-mobile
-        margin-bottom: 0.5em
-        input
-          width: 100%
-      .field-name-field-webform-email  
-        margin-bottom: 0.5em
-        input
-          width: 100%
+      .pane-content
+        padding: 0
+        .webform-client-form
+          +noBorder
+          +noBoxShadow
+        .field-name-field-webform-mobile
+          margin-bottom: 0.5em
+          input
+            width: 100%
+        .field-name-field-webform-email  
+          margin-bottom: 0.5em
+          input
+            width: 100%
+      #edit-.form-wrapper
+        margin-bottom: 0
+      #edit-actions
+        height: auto
+      #edit-submit
+        margin-right: 0
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -242,6 +250,10 @@ div[role="main"]
     p
       margin-bottom: 1em
 
+.epic-resources
+  h3
+    line-height: 1.5em
+
 .margin-bottom-0
   margin-bottom: 0
   .pane-content
@@ -255,7 +267,7 @@ div[role="main"]
   margin-right: 5%
   +noBorder
   input.field
-    width: 100%
+    width: 85%
     height: 1.6em
   label
     font-weight: $boldWeight

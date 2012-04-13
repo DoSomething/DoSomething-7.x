@@ -2,6 +2,8 @@ a {
   color: #d33936; }
   a:hover {
     color: black; }
+  a:visited {
+    color: #d33936; }
 
 b {
   font-weight: 600; }
@@ -97,29 +99,35 @@ div[role="main"] {
 .panel-row-actions {
   background: rgba(188, 134, 70, 0.4);
   border: none !important;
-  margin: 0 0 2em 0; }
+  margin: 1em 0 2em 0; }
   .panel-row-actions .pane-title {
     background: #d33936; }
   .panel-row-actions .pane-content {
     padding: 18px; }
   .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
     margin: 0; }
-  .panel-row-actions .panel-row-actions-sign-up .pane-content {
-    padding: 0; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
-      border: none !important;
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none;
-      -o-box-shadow: none;
-      box-shadow: none; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
-      margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
-        width: 100%; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
-      margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
-        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content {
+      padding: 0; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .webform-client-form {
+        border: none !important;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
+        margin-bottom: 0.5em; }
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
+          width: 100%; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email {
+        margin-bottom: 0.5em; }
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email input {
+          width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-.form-wrapper {
+      margin-bottom: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-actions {
+      height: auto; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-submit {
+      margin-right: 0; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -189,6 +197,9 @@ div[role="main"] {
   .epic-list-items li p {
     margin-bottom: 1em; }
 
+.epic-resources h3 {
+  line-height: 1.5em; }
+
 .margin-bottom-0 {
   margin-bottom: 0; }
   .margin-bottom-0 .pane-content {
@@ -202,7 +213,7 @@ div[role="main"] {
   margin-right: 5%;
   border: none !important; }
   .mcommons-webform input.field {
-    width: 100%;
+    width: 85%;
     height: 1.6em; }
   .mcommons-webform label {
     font-weight: 600; }
@@ -231,7 +242,7 @@ div[role="main"] {
 .prizes-2-column-body {
   float: left;
   margin-right: 4%;
-  width: 46%;
+  width: 48%;
   border: none !important; }
   .prizes-2-column-body:last-child {
     margin-right: 0; }
