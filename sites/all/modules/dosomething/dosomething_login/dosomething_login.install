@@ -155,3 +155,14 @@ function dosomething_login_update_7003() {
   );
   db_change_field('ds_registration_data', 'cell', 'cell', $field);
 }
+
+/**
+ * Gives ds_login a weight of 1 so it can hook in after fboauth.
+ */
+function dosomething_login_update_7004() {
+  db_update('system')
+    ->condition('name', 'dosomething_login')
+    ->condition('type', 'module')
+    ->fields(array('weight' => 1))
+    ->execute();
+}

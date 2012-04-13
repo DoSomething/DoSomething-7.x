@@ -45,7 +45,6 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
     $profile = profile2_load_by_user($account->uid, 'main');
     $profile = entity_metadata_wrapper('profile2', $profile);
     $address = $profile->field_user_address->value();
-    $hometown = dosomething_user_my_somethings_hometown($address);
     $misc = array();
     if ($awards = $wrapper->field_grant_winner->value()) {
       foreach ($awards as $award) {
@@ -57,6 +56,15 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       foreach ($clubs as $club) {
         $misc[] = l($club->title, "node/$club->nid");
       }
+    }
+
+    $address = $wrapper->field_webform_address->value();
+    $location = '';
+    if ($address['locality'] && $address['administrative_area']) {
+      $location = $address['locality'] . ', ' . $address['administrative_area'];
+    }
+    elseif ($address['locality'] || $address['administrative_area']) {
+      $location = $address['locality'] ? $address['locality'] : $address['administrative_area'];
     }
 
     $output['project_facts'] =  array(
@@ -72,7 +80,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
         '#markup' => $name,
       ),
       'hometown' => array(
-        '#markup' => $hometown,
+        '#markup' => $location,
         '#attributes' => array(
           'class' => array(
             'dosomething-project-hometown',
@@ -90,9 +98,17 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       ),
     );
 
+    if ($wrapper->field_impact_type->value() && $wrapper->field_impact_amount->value()) {
+      $impact_key = $wrapper->field_impact_type->value();
+      $field_impact_type = field_info_field('field_impact_type');
+      $items['impacted'] = array(
+        'title' => $field_impact_type['settings']['allowed_values'][$impact_key],
+        'value' => $wrapper->field_impact_amount->value(),
+      );
+    }
+
     $instances = field_info_instances($entity_type);
     $field_labels = array(
-      'field_num_people_impacted' => t('People Helped'),
       'field_update_people_involved' => t('People Doing It'),
     );
     foreach ($argument->restrictions['type'] as $bundle) {

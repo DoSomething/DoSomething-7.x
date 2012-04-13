@@ -52,11 +52,19 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
       }
       // Add the link with the text 'Go'.
       else {
+        // Split the URL into an href and an array of query key value pairs.
+        $url = preg_split('/[?&=]+/', str_replace('&amp;', '&', $field['#markup']));
+        $href = array_shift($url);
+        $query = array();
+        for ($i = 0; $i < count($url); $i+=2) {
+          $query[$url[$i]] = $url[$i + 1];
+        }
+
         $element['link'] = array(
           '#prefix' => $field['#prefix'],
           '#suffix' => $field['#suffix'],
           '#type' => 'link',
-          '#href' => $field['#markup'],
+          '#href' => $href,
           '#title' => t('Go'),
           '#options' => array(
             'attributes' => array(
@@ -65,6 +73,9 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
             'absolute' => TRUE,
           ),
         );
+        if (!empty($query)) {
+          $element['link']['#options']['query'] = $query;
+        }
       }
       // Ensure the elements are in the correct order.
       $element[$type]['#weight'] = $order[$type];

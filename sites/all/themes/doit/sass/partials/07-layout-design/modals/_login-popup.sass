@@ -7,6 +7,8 @@
     height: auto !important
     display: none
 
+// This is the same form in a different location.
+#dosomething-login-register-facebook,
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   background: $white
   padding: 25px 34px
@@ -66,14 +68,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     @extend .medium
     font-size: 12px
 
-  // Gray box
-  .popup-content
-    +clearfix
-    background: $gray6
-    @extend .box-shadow
-    min-height: 240px
-    padding: 18px
-    width: 478px
+// Gray box
+.popup-content
+  +clearfix
+  background: $gray6
+  @extend .box-shadow
+  min-height: 240px
+  padding: 18px
+  width: 478px
 
   // Left column fields
   .form-item-first-name,
@@ -141,8 +143,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
 
   .form-item-pass
     .ds-registration-form-required
-      top: -5px
-      left: -15px
+      position: absolute
+      top: 245px
+      left: 219px
     label.error
       width: 212px
 
