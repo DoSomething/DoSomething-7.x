@@ -45,7 +45,6 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
     $profile = profile2_load_by_user($account->uid, 'main');
     $profile = entity_metadata_wrapper('profile2', $profile);
     $address = $profile->field_user_address->value();
-    $hometown = dosomething_user_my_somethings_hometown($address);
     $misc = array();
     if ($awards = $wrapper->field_grant_winner->value()) {
       foreach ($awards as $award) {
@@ -57,6 +56,15 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       foreach ($clubs as $club) {
         $misc[] = l($club->title, "node/$club->nid");
       }
+    }
+
+    $address = $wrapper->field_webform_address->value();
+    $location = '';
+    if ($address['locality'] && $address['administrative_area']) {
+      $location = $address['locality'] . ', ' . $address['administrative_area'];
+    }
+    elseif ($address['locality'] || $address['administrative_area']) {
+      $location = $address['locality'] ? $address['locality'] : $address['administrative_area'];
     }
 
     $output['project_facts'] =  array(
@@ -72,7 +80,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
         '#markup' => $name,
       ),
       'hometown' => array(
-        '#markup' => $hometown,
+        '#markup' => $location,
         '#attributes' => array(
           'class' => array(
             'dosomething-project-hometown',
