@@ -286,7 +286,8 @@ div[role="main"] {
 
 .contests-grand-prize {
   background-color: white !important;
-  border: 1px solid black !important; }
+  border: 1px solid black !important;
+  margin-bottom: 1em; }
   .contests-grand-prize .pane-content {
     padding: 1em;
     text-align: center; }
@@ -316,7 +317,8 @@ div[role="main"] {
 
 .contests-star-prize {
   background-color: white !important;
-  border: 1px solid black !important; }
+  border: 1px solid black !important;
+  margin-bottom: 1em; }
   .contests-star-prize .pane-content {
     padding: 1em;
     text-align: center; }
@@ -435,8 +437,10 @@ div[role="main"] {
 .panel-row-flexible-mid ul {
   margin-left: 20px; }
 
-.panel-row-flexible-top .panel-pane .pane-title {
-  color: white !important; }
+.panel-row-flexible-top {
+  margin-bottom: 2em; }
+  .panel-row-flexible-top .panel-pane .pane-title {
+    color: white !important; }
 
 .panel-row-flexible .panel-pane {
   border: none; }
@@ -452,4 +456,5 @@ div[role="main"] {
   font-size: 1.25em;
   padding: 1em; }
   .report-back-teaser h3 {
-    color: white; }
+    color: white;
+    border: none; }

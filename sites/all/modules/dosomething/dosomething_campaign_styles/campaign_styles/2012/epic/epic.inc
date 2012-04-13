@@ -34,5 +34,6 @@ $plugin = array(
     array('title' => 'schools', 'href' => 'epic/schools'),
     array('title' => 'win stuff!', 'href' => 'epic/prizes'),
     array('title' => 'faq', 'href' => 'epic/faq'),
+    array('title' => 'blog', 'href' => 'epic/blog')
   ),
 );

@@ -7,7 +7,8 @@ b {
   font-weight: 600; }
 
 hr {
-  border: 1px solid #0f87c9; }
+  border-top: 1px solid #224289;
+  border-bottom: 1px solid #0f87c9; }
 
 h1.title {
   display: none; }
@@ -102,6 +103,23 @@ div[role="main"] {
   font-size: 1.5em;
   text-transform: uppercase; }
 
+.pane-campaign-social .pane-content {
+  background: rgba(249, 246, 243, 0.99); }
+  .pane-campaign-social .pane-content .fb-facepile:before {
+    border-top: 1px solid #224289;
+    border-bottom: 1px solid #0f87c9; }
+  .pane-campaign-social .pane-content .socialWrapper {
+    margin: 0 0 8px 18px; }
+    .pane-campaign-social .pane-content .socialWrapper:before {
+      border-top: 1px solid #224289;
+      border-bottom: 1px solid #0f87c9;
+      content: "";
+      display: block;
+      left: -18px;
+      margin-bottom: 8px;
+      position: relative;
+      width: 237px; }
+
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
@@ -151,6 +169,9 @@ div[role="main"] {
   color: black;
   line-height: 1.3em;
   font-weight: 500; }
+  .panel-row-ad-quick-info .pane-title:after {
+    border-top: 1px solid #224289;
+    border-bottom: 1px solid #0f87c9; }
 .panel-row-ad-quick-info .pane-content {
   margin-top: 1em;
   padding: 0;
@@ -169,7 +190,6 @@ div[role="main"] {
 
 .panel-row-ad-psa {
   background: transparent;
-  bottom: 0;
   position: absolute;
   right: 0; }
   .panel-row-ad-psa .pane-title {
@@ -208,14 +228,16 @@ div[role="main"] {
 .panel-row-flexible-top {
   margin-bottom: 2em; }
 
-.panel-row-logos .pane-title {
-  color: #0f87c9;
-  background: none;
-  margin: 0;
-  padding: 0; }
-.panel-row-logos .pane-content {
-  background: none;
-  padding: 0; }
+.panel-row-logos {
+  margin-top: 2em; }
+  .panel-row-logos .pane-title {
+    color: #0f87c9;
+    background: none;
+    margin: 0;
+    padding: 0; }
+  .panel-row-logos .pane-content {
+    background: none;
+    padding: 0; }
 
 .panel-row-top-logo .pane-content {
   padding: 0;
@@ -240,12 +262,36 @@ div[role="main"] {
       height: 0;
       margin: 0; }
 
+.prizes-box-content hr {
+  left: 20%;
+  position: absolute;
+  top: 136px;
+  width: 60%; }
+.prizes-box-content .prizes-movie-ticket-content {
+  left: 0;
+  margin-left: 5%;
+  position: absolute;
+  top: 25px;
+  width: 90%; }
+.prizes-box-content .prizes-pizza-content {
+  left: 0;
+  margin-left: 5%;
+  position: absolute;
+  top: 175px;
+  width: 90%; }
+
 .report-back-teaser {
   font-size: 1.25em;
   padding: 1em; }
   .report-back-teaser h3 {
     color: #0f87c9;
     font-size: 1.5em; }
+
+.scholarship-box-content {
+  height: 110px;
+  margin-top: -55px;
+  position: relative;
+  top: 50%; }
 
 .sign-up-long-form {
   border: none; }
@@ -318,7 +364,10 @@ div[role="main"] {
 
 .trashy-two-boxes {
   float: left;
-  width: 50%; }
+  margin-right: 2%;
+  width: 49%; }
+  .trashy-two-boxes:last-child {
+    margin-right: 0; }
   .trashy-two-boxes .pane-content {
     height: 300px;
     text-align: center; }
