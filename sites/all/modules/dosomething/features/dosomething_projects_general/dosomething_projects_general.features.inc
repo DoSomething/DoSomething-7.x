@@ -18,8 +18,5 @@ function dosomething_projects_general_ctools_plugin_api() {
  * Implements hook_views_api().
  */
 function dosomething_projects_general_views_api() {
-  return array(
-    "api" => 3,
-    "path" => drupal_get_path('module', 'dosomething_projects_general'),
-  );
+  return array("version" => "3.0");
 }

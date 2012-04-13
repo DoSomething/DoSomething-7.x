@@ -1080,14 +1080,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Footer: Global: Text area */
-  $handler->display->display_options['footer']['area']['id'] = 'area';
-  $handler->display->display_options['footer']['area']['table'] = 'views';
-  $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/resources?cause=!1&howtos=All&type=All" title="" class="more-link-right">More &raquo;</a>';
-  $handler->display->display_options['footer']['area']['format'] = '3';
-  $handler->display->display_options['footer']['area']['tokenize'] = 1;
+  /* Footer: DoSomething: More link */
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
