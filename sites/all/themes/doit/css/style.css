@@ -4292,6 +4292,10 @@ comments.fb_iframe_widget {
   height: 24px;
 }
 
+.node-type-project-report .webform-client-form .fieldset-wrapper .field-name-field-impact-amount, .node-type-project-report .webform-client-form .fieldset-wrapper .field-name-field-impact-type {
+  float: left;
+}
+
 .node-poll .field-type-image {
   margin-bottom: 12px;
   max-width: 260px;
