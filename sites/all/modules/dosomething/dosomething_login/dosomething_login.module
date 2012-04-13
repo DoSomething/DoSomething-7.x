@@ -854,7 +854,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
 
   // Save profile data.
-  // Note: Because we're doing drupal_write_recordinstead of profile_create,
+  // Note: Because we're doing drupal_write_record instead of profile_create,
   // we can't hook in on profile insert anywhere.  We should change this.
   // If we, then see dosomething_projects_general_register_form_submit.
   $profile = new stdClass();

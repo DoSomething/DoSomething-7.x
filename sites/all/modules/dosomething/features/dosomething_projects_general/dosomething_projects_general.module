@@ -163,7 +163,7 @@ function dosomething_projects_general_entity_insert($entity, $type) {
 }
 
 /**
- * Implements hook_entity_update().
+ * Implements hook_entity_presave().
  */
 function dosomething_projects_general_entity_presave($entity, $type) {
   // When user updates profile, replace email and phone number on projects
@@ -204,7 +204,7 @@ function dosomething_projects_general_form_dosomething_login_register_popup_form
 }
 
 /**
- * Submission callback for dosomething_login_register_popup_for.
+ * Submission callback for dosomething_login_register_popup_form.
  */
 function dosomething_projects_general_register_form_submit($form, &$form_state) {
   // This is also being run on hook_entity_insert for profiles.
