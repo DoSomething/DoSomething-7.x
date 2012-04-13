@@ -85,8 +85,8 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 function dosomething_general_webform_email_and_mail_validate(&$form, &$form_state) {
   global $user;
   // If the email is set, make sure we can update the user's email address.
-  if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
-    $mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  if (isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
+    $mail = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
     $account = user_load_by_mail($mail);
     // If we found an account with that email address and the email address does not belong to this user, set an error.
     if ($account && $account->uid != $user->uid) {
@@ -101,19 +101,19 @@ function dosomething_general_webform_email_and_mail_validate(&$form, &$form_stat
  */
 function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state) {
   global $user;
-  if (isset($form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
+  if (isset($form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
     $profile = profile2_load_by_user($user, 'main');
-    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
     $profile->save();
   }
-  if (isset($form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
+  if (isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
     $variables = array(
       '@username' => $user->name,
       '@old_mail' => $user->mail,
-      '@new_mail' => $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'],
+      '@new_mail' => $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'],
     );
     watchdog('dosomething_general', 'Updating the email address for @username from @old_mail to @new_mail', $variables);
-    $user->mail = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
+    $user->mail = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
     user_save($user);
   }
 }
@@ -127,12 +127,12 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
   $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
 
-  $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  $cell = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
   
   // make sure all of the required values are set in the node and submission
   if (!empty($mc_opt_in) && !empty($cell)) {
-    dosomething_general_mobile_commons_subscribe($cell, $mc_campaign, $mc_opt_in);
+    dosomething_general_mobile_commons_subscribe($cell, $mc_opt_in);
   }
   if (!empty($inf_action) && !empty($email)) {
     dosomething_general_infusionsoft_subscribe($email, $inf_action);
@@ -143,7 +143,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
  * Subscribe an email address to InfusionSoft using an action.
  * Note: tags are assigned in InfusionSoft via the action, not in Drupal.
  */
-function dosomething_general_infusionsoft_subscribe($email, $action_id) {
+function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
   if (!is_array($emails)) $emails = array($emails);
 
   include_once('infusionsoft_sdk/src/isdk.php');
@@ -155,9 +155,9 @@ function dosomething_general_infusionsoft_subscribe($email, $action_id) {
       // set up the data to send to infusionsoft
       $contact = array('Email' => $email);
 
-        //check for existing contact;
-        $returnFields = array('Id');
-        $dups = $app->findByEmail($contact['Email'], $returnFields);
+      //check for existing contact;
+      $returnFields = array('Id');
+      $dups = $app->findByEmail($contact['Email'], $returnFields);
 
       /*If email is not a duplicate*/
       if (empty($dups)) {
@@ -182,19 +182,16 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path) {
   $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
 
   // Send the post data.
-  $opts = array(
-    'http' => array(
-      'method'  => 'POST',
-      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'content' => http_build_query(array(
-        'person[phone]' => $mobile,
-        'opt_in_path[]' => $opt_in_path,
-      )),
-    )
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
   );
 
-  $context = stream_context_create($opts);
-  return file_get_contents($api_opt_in_path_url, FALSE, $context);
+  //drupal_http_request($api_opt_in_path_url, $options);
 }
 
 function dosomething_general_user_presave(&$edit, $account, $category) {
