@@ -34,6 +34,6 @@ $plugin = array(
     array('title' => 'dont be trashy', 'href' => 'trashy'),
     array('title' => 'prizes', 'href' => 'green-your-school/prizes'),
     array('title' => 'faq', 'href' => 'green-your-school/faq'),
-    array('title' => 'tell us about it', 'href' => 'green-your-school/report-back'),
+    array('title' => 'tell us about it', 'href' => 'green-your-school/tell-us'),
   ),
 );
