@@ -4,6 +4,10 @@
   clear: both;
 }
 
+.campaign-counter {
+  width: 100%;
+}
+
 .campaign-counter-labels {
   float: left;
 }
