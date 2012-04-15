@@ -33,7 +33,7 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -150,7 +150,7 @@ function dosomething_schools_views_default_views() {
 
   /* Display: Club Members */
   $handler = $view->new_display('panel_pane', 'Club Members', 'panel_pane_1');
-  $handler->display->display_options['link_url'] = 'club/!1/members';
+  $handler->display->display_options['link_url'] = 'school/!1/members';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
