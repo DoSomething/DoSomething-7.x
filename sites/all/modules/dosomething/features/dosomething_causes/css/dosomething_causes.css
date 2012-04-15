@@ -46,6 +46,7 @@
   width: 220px;
   background: #502862;
   background: rgba(80,40,98,.75);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50286275,endColorstr=#50286275);
   color: white;
   text-align: center;
   padding: 12px 18px;
@@ -59,9 +60,13 @@
   left: 0;
   background: black;
   background: rgba(0,0,0,.6);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000060,endColorstr=#00000060);
   color: white;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   text-align: center;
   width: 325px;
   font-size: 40px;
