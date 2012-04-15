@@ -342,7 +342,6 @@ div[role="main"] {
 .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-26,
 .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-33,
 .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-49 {
-  font-family: "DINWebCondMedium";
   font-size: 20px;
   text-align: center;
   line-height: 24px;
@@ -364,6 +363,11 @@ div[role="main"] {
 #report-back {
   width: 635px;
   margin-left: 55px; }
+  #report-back form {
+    border: 0px;
+    -webkit-box-shadow: black 0 0 0 0;
+    -moz-box-shadow: black 0 0 0 0;
+    box-shadow: black 0 0 0 0; }
   #report-back .pane-content {
     background-color: #78c848;
     padding: 0px 25px;
@@ -373,10 +377,13 @@ div[role="main"] {
       padding: 0px !important; }
     #report-back .pane-content .field-name-field-webform-pictures,
     #report-back .pane-content #webform-component-field-campaign-number-of-people,
-    #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog {
+    #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog,
+    #report-back .pane-content #webform-component-check-off-the-projects-below-that-your-school-has-completed {
       margin-top: 20px; }
       #report-back .pane-content .field-name-field-webform-pictures label,
       #report-back .pane-content #webform-component-field-campaign-number-of-people label,
-      #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog label {
+      #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog label,
+      #report-back .pane-content #webform-component-check-off-the-projects-below-that-your-school-has-completed label {
         font-size: 17px;
-        line-height: 20px; }
+        line-height: 20px;
+        margin-bottom: 5px; }

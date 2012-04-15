@@ -373,7 +373,6 @@ div[role="main"]
 .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-26, 
 .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-33, 
 .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-49	
-  font-family: 'DINWebCondMedium'
   font-size: 20px
   text-align: center
   line-height: 24px
@@ -391,6 +390,9 @@ div[role="main"]
 #report-back
   width: 635px
   margin-left: 55px
+  form 
+    border: 0px
+    @include box-shadow(black 0 0 0 0)
   .pane-content
     background-color: #78C848
     padding: 0px 25px
@@ -400,8 +402,10 @@ div[role="main"]
       padding: 0px !important
     .field-name-field-webform-pictures,
     #webform-component-field-campaign-number-of-people,
-    #webform-component-what-did-you-do-tell-us-in-your-school-blog
+    #webform-component-what-did-you-do-tell-us-in-your-school-blog,
+    #webform-component-check-off-the-projects-below-that-your-school-has-completed
       margin-top: 20px
       label
         font-size: 17px
         line-height: 20px
+        margin-bottom: 5px
