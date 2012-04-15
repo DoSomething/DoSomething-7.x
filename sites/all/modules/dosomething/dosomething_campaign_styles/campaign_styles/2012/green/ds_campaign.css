@@ -54,7 +54,8 @@ div[role="main"] {
 .bg-green .pane-content,
 .panel-row-actions-stats,
 .pane-campaign-sign-up .pane-content,
-.pane-campaign-counter .pane-content {
+.pane-campaign-counter .pane-content,
+.panel-row-actions {
   background-color: #8dc641; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -243,12 +244,14 @@ div[role="main"] {
 .pane-node-field-campaign-logo {
   margin-bottom: 40px; }
 
-#faq .pane-content {
-  padding: 15px 10px; }
-  #faq .pane-content h3 {
-    color: black;
-    font-size: 21px;
-    line-height: 21px; }
+#faq {
+  margin-bottom: 25px; }
+  #faq .pane-content {
+    padding: 15px 10px; }
+    #faq .pane-content h3 {
+      color: black;
+      font-size: 21px;
+      line-height: 21px; }
 
 #project-ideas {
   margin-bottom: 20px; }
@@ -318,7 +321,62 @@ div[role="main"] {
   text-decoration: none;
   font-weight: 300 !important;
   font-size: 14px; }
+#browse-schools .pane-content ul {
+  list-style: none;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  -o-column-count: 2;
+  column-count: 2;
+  -webkit-column-gap: 0px;
+  -moz-column-gap: 0px;
+  -o-column-gap: 0px;
+  column-gap: 0px;
+  margin-left: 80px; }
 
 .pane-campaign-gallery-panel-pane-3 .pane-content {
   padding-bottom: 0px;
   margin-bottom: 25px; }
+
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-1,
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-12,
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-26,
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-33,
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-49 {
+  font-family: "DINWebCondMedium";
+  font-size: 20px;
+  text-align: center;
+  line-height: 24px;
+  padding: 10px 0;
+  color: white;
+  margin-bottom: 10px;
+  background-color: #009149;
+  -webkit-border-bottom-right: 10px;
+  -khtml-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px; }
+  .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-1 input,
+  .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-12 input,
+  .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-26 input,
+  .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-33 input,
+  .form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-49 input {
+    display: none; }
+
+#report-back {
+  width: 635px;
+  margin-left: 55px; }
+  #report-back .pane-content {
+    background-color: #78c848;
+    padding: 0px 25px;
+    padding-bottom: 0px;
+    border: none; }
+    #report-back .pane-content legend {
+      padding: 0px !important; }
+    #report-back .pane-content .field-name-field-webform-pictures,
+    #report-back .pane-content #webform-component-field-campaign-number-of-people,
+    #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog {
+      margin-top: 20px; }
+      #report-back .pane-content .field-name-field-webform-pictures label,
+      #report-back .pane-content #webform-component-field-campaign-number-of-people label,
+      #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog label {
+        font-size: 17px;
+        line-height: 20px; }

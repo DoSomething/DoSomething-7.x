@@ -97,6 +97,7 @@ div[role="main"]
 .panel-row-actions-stats,
 .pane-campaign-sign-up .pane-content,
 .pane-campaign-counter .pane-content,
+.panel-row-actions
   background-color: #8DC641
 
 // navigation
@@ -278,6 +279,7 @@ div[role="main"]
   margin-bottom: 40px
 
 #faq 
+  margin-bottom: 25px
   .pane-content
     padding: 15px 10px
     h3
@@ -358,8 +360,48 @@ div[role="main"]
     font-size: 14px
   ul
     list-style: none
-    text-align: center
+    +column-count(2)
+    +column-gap(0px)
+    margin-left: 80px
       
 .pane-campaign-gallery-panel-pane-3 .pane-content
   padding-bottom: 0px
   margin-bottom: 25px
+
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-1, 
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-12, 
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-26, 
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-33, 
+.form-item-submitted-check-off-the-projects-below-that-your-school-has-completed-49	
+  font-family: 'DINWebCondMedium'
+  font-size: 20px
+  text-align: center
+  line-height: 24px
+  padding: 10px 0
+  color: #fff
+  margin-bottom: 10px
+  background-color: #009149
+  -webkit-border-bottom-right: 10px
+  -khtml-border-radius: 10px
+  -moz-border-radius: 10px
+  border-radius: 10px
+  input
+    display: none
+
+#report-back
+  width: 635px
+  margin-left: 55px
+  .pane-content
+    background-color: #78C848
+    padding: 0px 25px
+    padding-bottom: 0px
+    border: none
+    legend
+      padding: 0px !important
+    .field-name-field-webform-pictures,
+    #webform-component-field-campaign-number-of-people,
+    #webform-component-what-did-you-do-tell-us-in-your-school-blog
+      margin-top: 20px
+      label
+        font-size: 17px
+        line-height: 20px
