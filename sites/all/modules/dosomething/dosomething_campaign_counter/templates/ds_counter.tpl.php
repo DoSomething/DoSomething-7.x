@@ -1,4 +1,4 @@
-<div class="counter">
+<div class="campaign-counter counter">
   <div class="campaign-counter-labels">
     <div class="campaign-counter-label-top">
       <?php echo $top_label; ?>
