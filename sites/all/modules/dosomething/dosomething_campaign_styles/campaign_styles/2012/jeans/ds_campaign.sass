@@ -10,6 +10,7 @@
 $baseColor: #041F3D
 $complement: #ffffff
 $secondaryLink: black
+$navHighlight: #18408b
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -98,6 +99,8 @@ div[role="main"]
     +block
     background-image: none
     text-align: right
+    .active
+      color: $navHighlight
     a
       display: inline-block
       width: 100%
@@ -107,7 +110,7 @@ div[role="main"]
       text-transform: uppercase
       color: $secondaryLink
       &:hover, .active
-        color: $baseColor
+        color: $navHighlight
         text-decoration: none
 
 .campaign-counter-labels
