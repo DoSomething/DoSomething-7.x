@@ -13,7 +13,7 @@ h1.title {
   display: none; }
 
 body {
-  background: #44ff99;
+  background: url("assets/bg.jpg") center center fixed #ffca06;
   background-size: cover;
   background-position-y: -5px; }
 
@@ -473,3 +473,18 @@ div[role="main"] {
     padding: 10px 0 5px 0;
     text-align: center;
     font-size: 18px; }
+
+.ui-dialog {
+  background: black; }
+  .ui-dialog p {
+    color: white;
+    font-size: 18px;
+    line-height: 26px; }
+  .ui-dialog h1 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 50px;
+    color: #ffca06; }
+
+.ui-dialog .ui-dialog-titlebar-close {
+  right: -425px; }
