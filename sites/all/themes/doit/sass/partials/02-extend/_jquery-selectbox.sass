@@ -27,7 +27,7 @@ body.front
     background: $gray4
     .selectBox-label
       +background-image(image_url('gold-arrow.png'))
-      padding: 7px 14px
+      padding: 10px 14px
       width: 100% !important
       display: inline-block
       white-space: nowrap
@@ -182,9 +182,7 @@ body.not-front
   margin-top: -3px
   margin-bottom: 12px
 
-.views-exposed-widgets,
 .views-exposed-widget
-  padding-right: 10px
   label
     display: none
   .content
@@ -196,6 +194,7 @@ body.not-front
     background: $gray2
     font-size: $s1
     margin-bottom: 5px
+    margin-right: 12px
     .selectBox-label
       +background-image(image_url('gold-arrow.png'))
       padding: 4px 7px
@@ -209,16 +208,15 @@ body.not-front
       background-repeat: no-repeat
       background-position: 95% 50%
 
-.views-submit-button
-  +float-right
-  clear: right
-  input[type="submit"]
-    @extend .go-button
-    margin-top: 0
+// Spacing between filters
+#edit-issues-wrapper,
+#edit-who-wrapper,
+#edit-where-wrapper
+  padding-right: 17px
 
 // Gold 'Go' button
 #dosomething-blocks-make-an-impact-form,
-#dosomething-blocks-make-an-impact-form-front,
+#dosomething-blocks-make-an-impact-form-front
   input[type="submit"]
     @extend .go-button
     +float-right

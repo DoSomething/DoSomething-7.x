@@ -266,7 +266,7 @@ function dosomething_image_styles_image_default_styles() {
   $styles['my_somethings'] = array(
     'name' => 'my_somethings',
     'effects' => array(
-      2 => array(
+      10 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -276,8 +276,8 @@ function dosomething_image_styles_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '170',
-          'height' => '107',
+          'width' => '118',
+          'height' => '118',
         ),
         'weight' => '1',
       ),

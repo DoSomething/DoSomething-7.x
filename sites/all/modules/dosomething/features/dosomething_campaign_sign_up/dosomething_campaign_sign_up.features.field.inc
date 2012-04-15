@@ -157,6 +157,138 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-campaign_sign_up-field_infusion_action'
+  $fields['node-campaign_sign_up-field_infusion_action'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_infusion_action',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 4,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_infusion_action',
+      'label' => 'Infusionsoft Action ID',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '35',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-field_mc_optin'
+  $fields['node-campaign_sign_up-field_mc_optin'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mc_optin',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mc_optin',
+      'label' => 'Mobile Commons Opt-In Path',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '33',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign_sign_up-field_signup_magic_fields'
   $fields['node-campaign_sign_up-field_signup_magic_fields'] = array(
     'field_config' => array(
@@ -241,7 +373,7 @@ The content from this field will only be shown to anonymous users.',
   $fields['node-campaign_sign_up-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -318,7 +450,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => 60,
         ),
         'type' => 'group_audience_autocomplete',
-        'weight' => 31,
+        'weight' => '31',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -700,7 +832,7 @@ The content from this field will only be shown to anonymous users.',
   $fields['webform_submission_entity-campaign_sign_up-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -868,6 +1000,8 @@ The content from this field will only be shown to anonymous users.');
   t('Enabled Fields');
   t('Geocode Data');
   t('Group');
+  t('Infusionsoft Action ID');
+  t('Mobile Commons Opt-In Path');
   t('Mobile Phone Number');
   t('School');
   t('School Zip Code');

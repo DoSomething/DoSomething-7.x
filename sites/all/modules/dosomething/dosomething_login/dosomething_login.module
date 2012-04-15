@@ -854,7 +854,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
 
   // Save profile data.
-  // Note: Because we're doing drupal_write_recordinstead of profile_create,
+  // Note: Because we're doing drupal_write_record instead of profile_create,
   // we can't hook in on profile insert anywhere.  We should change this.
   // If we, then see dosomething_projects_general_register_form_submit.
   $profile = new stdClass();
@@ -1396,6 +1396,18 @@ function dosomething_login_action_ds_connect($app_id, $access_token) {
 }
 
 /**
+ * Implements hook_user_login().
+ */
+function dosomething_login_user_login(&$edit, $account) {
+  if ($account->uid) {
+    // Check if they have connected through Facebook.
+    if ($fbid = db_query('SELECT fbid from {fboauth_users} WHERE uid = :uid', array(':uid' => $account->uid))->fetchField()) {
+      dosomething_login_save_profile_pic($account->uid, $fbid);
+    }
+  }
+}
+
+/**
  * Saves a user pic from Facebook to the user profile.
  *
  * @param integer $uid
@@ -1513,6 +1525,8 @@ function dosomething_login_action_prereg($app_id, $access_token) {
 function dosomething_login_register_facebook($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
   $form['#action'] = '/user/registration/fb/?destination=front';
+  unset($form['connect']);
+  unset($form['or']);
   if (isset($_SESSION['fbuser'])) {
     $fbuser = $_SESSION['fbuser'];
     $form['email']['#value'] = $fbuser->email;

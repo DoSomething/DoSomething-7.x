@@ -9,6 +9,7 @@
           autoOpen: false
         , modal: true
         , resizable: false
+        , open: $('.ui-widget-overlay').bind('click', function () { $(this).siblings('.ui-dialog').find('.ui-dialog-content').dialog('close'); })
       });
 
       // make the popups happen
