@@ -1,5 +1,7 @@
-.campaign-counter {
-  background: red;
+.campaign-counter:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .campaign-counter-labels {
