@@ -60,7 +60,7 @@ function dosomething_blocks_block_view($delta = '') {
       break;
     case 'dosomething_make_impact_front':
       $block['subject'] = t('Action Finder');
-      $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form_front');
+      $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
       break;
 
     case 'dosomething_utility_bar':
@@ -408,7 +408,7 @@ function dosomething_blocks_help() {
 function dosomething_blocks_login() {
   global $user;
   if (!$user->uid) {
-    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination()));
+    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination(), 'attributes' =>  array('class' => array('sign-in-popup'))));
   }
   else {
     $output['#markup'] = l('Log out', 'user/logout');
@@ -645,15 +645,6 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
     '#tag_name' => $plugin['html tag name'],
     '#attributes' => drupal_attributes($attributes),
   );
-}
-
-/**
- * Create the impact form for the front page. This essentially extends the
- * regular form dosomething_blocks_make_an_impact_form and alters the text.
- */
-function dosomething_blocks_make_an_impact_form_front() {
-  $content = dosomething_blocks_make_an_impact_form();
-  return $content;
 }
 
 /**

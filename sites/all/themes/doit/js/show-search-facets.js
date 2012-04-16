@@ -3,22 +3,22 @@
  */
 
 (function ($) {
-  Drupal.behaviors.show_search_facets = {
-    attach: function(context, settings) {
-      // initially hide filters
-      $(".block-facetapi ul.facetapi-facetapi-checkbox-links").hide();
-      // set cursors to hand
-      $(".block-facetapi h2").css('cursor', 'pointer').css('cursor', 'hand');
-      $(".block-facetapi h2").click(function() {
-        if ($(this).hasClass('active')) {
-          $(this).removeClass('active');
-          $(".block-facetapi ul.facetapi-facetapi-checkbox-links").slideUp('400');
-        }
-        else {
-          $(this).addClass('active');
-          $(".block-facetapi ul.facetapi-facetapi-checkbox-links").slideDown('400');
-        }
+
+Drupal.behaviors.show_search_facets = {
+  attach: function (context, settings) {
+    // Initially hide filters.
+    var $facets = $('.block-facetapi');
+    var $filters = $facets.find('ul.facetapi-facetapi-checkbox-links');
+    $filters.hide();
+    // Set cursors to hand.
+    $facets.find('h2')
+      .css('cursor', 'pointer')
+      .css('cursor', 'hand')
+      .click(function () {
+        $(this).toggleClass('active');
+        $filters.slideTogggle('400');
       });
-    }
   }
+};
+
 }(jQuery));

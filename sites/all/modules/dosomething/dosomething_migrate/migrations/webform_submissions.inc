@@ -43,10 +43,18 @@ abstract class DSWebformSubmissionMigration extends Migration {
       MigrateDestinationWebformSubmission::getKeySchema(),
       MigrateDestinationWebformSubmission::getKeySchema()
     );
-    // TODO if we need to remap the original webform node to a new one we will
-    // create a remapping array and use it here to load the proper node. This
-    // will need to be written.
-    $this->webform = node_load($nid);
+    // We need to remap the original webform node to a new one. We create a
+    // remapping array and use it here to load the proper node.
+    var_dump($nid);
+    $mapping = array(
+      736100 => 721439,
+      748361 => 721441,
+    );
+    if (in_array($nid, array_keys($mapping))) {
+      $webform_nid = $mapping[$nid];
+    }
+    var_dump($webform_nid);
+    $this->webform = node_load($webform_nid);
     if (!$this->webform) {
       var_dump(t('WARNING: @name has no webform node.', array('@name' => $nid)));
     }
@@ -277,5 +285,11 @@ class DSWebform696251 extends DSWebformSubmissionMigration {
 class DSWebform698605 extends DSWebformSubmissionMigration {
   function __construct() {
     parent::__construct(698605);
+  }
+}
+
+class DSWebform736100 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(736100);
   }
 }

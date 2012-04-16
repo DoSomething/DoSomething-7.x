@@ -100,6 +100,7 @@ function dosomething_login_block_view($delta = '') {
           $block['subject'] = t('Become a Member');
           $block['content'][] = drupal_get_form('dosomething_login_register_block');
           $block['content'][] = drupal_get_form('dosomething_login_register_popup_form');
+          $block['content'][] = drupal_get_form('dosomething_login_login_popup_form');
         }
       }
       else if (module_exists('dosomething_user_my_somethings')) {
@@ -632,7 +633,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#suffix' => '</span>',
     '#text' => t("log in"),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in')),
+      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
       'html' => FALSE,
     ),
   );
@@ -652,6 +653,86 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       }
     }
   }
+  return $form;
+}
+
+/**
+ * The popup login form for 'Become a Member'.
+ */
+function dosomething_login_login_popup_form($form, &$form_state) {
+  // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
+  $form_state['cache'] = true;
+  $form['#attached'] = array(
+    'library' => array(array('system', 'ui.dialog')),
+    'js' => array(
+      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-login-popup-lightbox.js',
+      array(
+        'data' => array(
+          'dosomethingLogin' => array(
+              'dsApiKey' => variable_get('dosomething_login_api_key', '8hSyfEZIeBrlcgrdM6QbS63F6NjUvgqQ'),
+          ),
+        ),
+        'type' => 'setting',
+      ),
+    ),
+  );
+
+  $query = drupal_get_destination();
+  $query['destination'] = $query['destination'] == 'user' ? 'front' : $query['destination'];
+  $form['title_text'] = array(
+    '#type' => 'item',
+    '#title' => t("We've Missed You."),
+  );
+  $form['#action'] = url('user', array('query' => $query));
+
+  $fb_link = fboauth_action_link_properties('prereg');
+  $form['connect'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'connect-with-facebook',
+      ),
+    ),
+    '#children' => l('Connect with Facebook', $fb_link['href'], array('query' => $fb_link['query'])),
+  );
+  $form['or'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'separator',
+      ),
+    ),
+    '#children' => t('or'),
+    '#suffix' => '<div class="popup-content">',
+  );
+
+  // Copy from user_login().
+  $login = drupal_get_form('user_login');
+  $form['#validate'] = $login['#validate'];
+  $form['#submit'] = $login['#submit'];
+  foreach (array('#type', '#title', '#required', '#description') as $key) {
+    $form['name'][$key] = $login['name'][$key];
+    $form['pass'][$key] = $login['pass'][$key];
+  }
+
+  $form['final_submit'] = array(
+    '#prefix' => '</div><div class="ds-login-popup-footer">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Log In'),
+  );
+  $form['user'] = array(
+    '#theme' => 'link',
+    '#path' => 'user/registration',
+    '#prefix' => '<span class="already-member">not a member? ',
+    '#suffix' => '</span>',
+    '#text' => t('become one'),
+    '#options' => array(
+      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
+      'html' => FALSE,
+    ),
+  );
+
   return $form;
 }
 
@@ -713,7 +794,7 @@ function dosomething_login_register_block($form, &$form_state) {
     '#path' => 'user',
     '#text' => t("or sign in"),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in')),
+      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
       'html' => FALSE,
     ),
   );

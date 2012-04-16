@@ -242,6 +242,138 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
   );
 
+  // Exported field: 'node-club-field_club_agreement'
+  $fields['node-club-field_club_agreement'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_club_agreement',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'I am not ready to agree to this...',
+          1 => 'I agree!',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'profile2_private' => FALSE,
+        'suffix' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+      'type_name' => 'club',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '<p>By submitting this club application I understand that I am committing to:</p>
+<ol>
+        <li>Post at least two projects a year to maintain my standing as a Do Something Club.</li>
+        <li>Read monthly e-blasts in their entirety to stay in touch with Do Something campaigns, opportunities and announcements.</li>
+        <li>Ensure my club\'s active participation in the Do Something Clubs program for a minimum of 2 years. Club leaders who are in their senior year of high school must plan for club succession, selecting a reliable club leader for the following year in their absence.</li>
+        <li>Update my club profile online whenever important information changes including club leader, contact information and mailing address.</li>
+        <li>Notify the Do Something Clubs staff if anything inhibits my club from active participation in the program by e-mailing.</li>
+</ol>',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '22',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '8',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '8',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '8',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => '',
+          ),
+          'type' => 'number_integer',
+          'weight' => '8',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_club_agreement',
+      'label' => 'Clubs Agreement',
+      'required' => 1,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '8',
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '14',
+      ),
+      'widget_type' => 'optionwidgets_onoff',
+    ),
+  );
+
   // Exported field: 'node-club-field_club_city'
   $fields['node-club-field_club_city'] = array(
     'field_config' => array(
@@ -583,6 +715,15 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'bar',
         ),
@@ -1527,6 +1668,15 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'bar',
         ),
@@ -1787,15 +1937,163 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
+  // Exported field: 'node-club-taxonomy_vocabulary_17'
+  $fields['node-club-taxonomy_vocabulary_17'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'taxonomy_vocabulary_17',
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_17',
+            'parent' => 0,
+          ),
+        ),
+        'required' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '23',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'taxonomy_vocabulary_17',
+      'label' => 'How did you hear about Do Something Clubs?',
+      'required' => '0',
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-club-taxonomy_vocabulary_5'
+  $fields['node-club-taxonomy_vocabulary_5'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'taxonomy_vocabulary_5',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'vocabulary_5',
+            'parent' => '0',
+          ),
+        ),
+        'profile2_private' => 1,
+        'required' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'hold down ctrl button to select more than one',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '21',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'taxonomy_vocabulary_5',
+      'label' => 'Issues',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
+  t('<p>By submitting this club application I understand that I am committing to:</p>
+<ol>
+        <li>Post at least two projects a year to maintain my standing as a Do Something Club.</li>
+        <li>Read monthly e-blasts in their entirety to stay in touch with Do Something campaigns, opportunities and announcements.</li>
+        <li>Ensure my club\'s active participation in the Do Something Clubs program for a minimum of 2 years. Club leaders who are in their senior year of high school must plan for club succession, selecting a reliable club leader for the following year in their absence.</li>
+        <li>Update my club profile online whenever important information changes including club leader, contact information and mailing address.</li>
+        <li>Notify the Do Something Clubs staff if anything inhibits my club from active participation in the program by e-mailing.</li>
+</ol>');
   t('Add group content');
   t('Address');
   t('City');
   t('Club Photos');
+  t('Clubs Agreement');
   t('Date of birth');
   t('First Name');
   t('Group type');
+  t('How did you hear about Do Something Clubs?');
+  t('Issues');
   t('Last Name');
   t('My Do Something Club is going to work on');
   t('Official club photo');
@@ -1810,6 +2108,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Your Cell Phone');
   t('Your Email');
   t('ZIP/Postal Code');
+  t('hold down ctrl button to select more than one');
   t('mm/dd/yyyy');
 
   return $fields;
