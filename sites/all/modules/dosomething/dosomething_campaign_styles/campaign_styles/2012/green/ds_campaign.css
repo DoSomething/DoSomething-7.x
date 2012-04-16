@@ -375,15 +375,23 @@ div[role="main"] {
     border: none; }
     #report-back .pane-content legend {
       padding: 0px !important; }
-    #report-back .pane-content .field-name-field-webform-pictures,
-    #report-back .pane-content #webform-component-field-campaign-number-of-people,
-    #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog,
-    #report-back .pane-content #webform-component-check-off-the-projects-below-that-your-school-has-completed {
-      margin-top: 20px; }
-      #report-back .pane-content .field-name-field-webform-pictures label,
-      #report-back .pane-content #webform-component-field-campaign-number-of-people label,
-      #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog label,
-      #report-back .pane-content #webform-component-check-off-the-projects-below-that-your-school-has-completed label {
-        font-size: 17px;
-        line-height: 20px;
-        margin-bottom: 5px; }
+    #report-back .pane-content .field-name-field-webform-pictures > label,
+    #report-back .pane-content #webform-component-field-campaign-number-of-people > label,
+    #report-back .pane-content #webform-component-what-did-you-do-tell-us-in-your-school-blog > label,
+    #report-back .pane-content #webform-component-check-off-the-projects-below-that-your-school-has-completed > label {
+      margin-top: 20px;
+      font-size: 17px;
+      line-height: 20px;
+      margin-bottom: 5px; }
+
+#campaign-opt-in {
+  font-size: 11px; }
+  #campaign-opt-in a#opt-in-help {
+    vertical-align: super;
+    font-weight: bold; }
+  #campaign-opt-in a#opt-in-help:hover {
+    color: black;
+    text-decoration: none; }
+
+.view-campaign-gallery .jcarousel-container-horizontal {
+  padding: 5px 0; }
