@@ -34,6 +34,11 @@ function dosomething_profile_field_default_fields() {
       'settings' => array(
         'handler' => 'ds_school',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'none',
@@ -696,257 +701,6 @@ function dosomething_profile_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-main-field_user_mobile_optin'
-  $fields['profile2-main-field_user_mobile_optin'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_mobile_optin',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 12,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_mobile_optin',
-      'label' => 'Would you like to receive volunteer opportunities on your mobile phone?',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_newsletter_optin'
-  $fields['profile2-main-field_user_newsletter_optin'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_newsletter_optin',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'Would you like to receive our email newsletter? Read our privacy policy <a href="/privacy">here</a>.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 13,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_newsletter_optin',
-      'label' => 'Subscribe to newsletter',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '10',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_official_rules'
-  $fields['profile2-main-field_user_official_rules'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_official_rules',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 18,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_official_rules',
-      'label' => 'I have read and accept the <a href="/">Official Rules</a>',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'profile2-main-field_user_why_do_you'
-  $fields['profile2-main-field_user_why_do_you'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_user_why_do_you',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => 1,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'main',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 9,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_user_why_do_you',
-      'label' => 'Why Do You Do Something?',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '12',
-      ),
-    ),
-  );
-
   // Exported field: 'profile2-main-taxonomy_vocabulary_5'
   $fields['profile2-main-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
@@ -1024,16 +778,11 @@ function dosomething_profile_field_default_fields() {
   t('Gender');
   t('How did you hear about us?');
   t('I am over 13');
-  t('I have read and accept the <a href="/">Official Rules</a>');
   t('Last Name');
   t('Location');
   t('Membership Anniversary');
   t('School');
-  t('Subscribe to newsletter');
   t('What\'s Your Something?');
-  t('Why Do You Do Something?');
-  t('Would you like to receive our email newsletter? Read our privacy policy <a href="/privacy">here</a>.');
-  t('Would you like to receive volunteer opportunities on your mobile phone?');
   t('You may select multiple somethings.');
 
   return $fields;
