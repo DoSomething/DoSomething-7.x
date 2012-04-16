@@ -115,8 +115,27 @@ div[role="main"]
 
 .campaign-counter-labels
   color: white
-  font-size: 1.5em
+  font-family: $accent
+  font-size: 24px
+  line-height: 24px
   text-transform: uppercase
+
+.node-campaign-blog-post
+  .field-name-field-picture
+    img
+      float: left
+      margin: 0 24px 24px 0
+
+.pane-campaign-blog-panel-pane-2
+  border: none !important
+  .view-campaign-blog
+    .views-row
+      &:after
+        +insetBorder
+        margin: 1em 0 1em 0
+      &:last-child
+        &:after
+          border: none
 
 // top right wrapper
 .panel-row-top-right
@@ -208,6 +227,7 @@ div[role="main"]
         font-size: 1.5em
   .blog
     background: transparent
+    border: none
     &:before, &:after
       +insetBorder
     &:before,&:after
@@ -253,6 +273,8 @@ div[role="main"]
     width: 100%
 
 .thanks-text-box
+  border: none
+  margin-bottom: 2em
   .pane-content
     font-size: 1.2em
     line-height: 2em

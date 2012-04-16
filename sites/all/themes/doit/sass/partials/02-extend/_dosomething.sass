@@ -427,10 +427,10 @@ h3.subhead
   @extend .border-and-shadow
   background-color: $white
   min-height: 120px
-  _height: auto !important
-  height: 120px
   padding: $s6 $s0 0 $s0
   margin-left: 120px + $s-2
+  .ie8 &
+    min-height: 97px
   h2
     @extend .bold
     display: block
@@ -678,6 +678,8 @@ h3.subhead
 // Start a project link on project submission pages
 .start-a-project
   text-align: right
+  height: 30px
+  margin-bottom: 12px
   &:before
     content: 'Start a Project'
     @extend .counter-labels

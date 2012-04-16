@@ -26,6 +26,8 @@
     margin-bottom: 0; }
   .panel-row-actions .pane-content {
     padding: 12px 18px; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 0; }
   .panel-row-actions .webform-client-form {
     border: 0;
     padding: 0;
@@ -33,6 +35,11 @@
     -webkit-box-shadow: none;
     -o-box-shadow: none;
     box-shadow: none; }
+  .panel-row-actions form.webform-client-form #edit-actions {
+    height: 30px;
+    margin-top: -30px;
+    margin-left: 0;
+    margin-right: 15px; }
 
 .panel-top-right-mini-info {
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
@@ -101,22 +108,30 @@
     font-weight: 600;
     line-height: 1em; }
 
-.panel-row-middle .panel-second {
-  margin: 0 50px; }
-.panel-row-middle .panel-panel {
-  border: 1px solid white;
-  float: left;
-  height: 200px;
-  width: 216px; }
-  .panel-row-middle .panel-panel .pane-content {
-    padding: 0 18px;
-    height: 140px; }
-    .panel-row-middle .panel-panel .pane-content p {
-      padding: 12px 0;
-      margin-bottom: 0; }
-.panel-row-middle .go-button {
-  float: right;
-  line-height: 30px; }
+.panel-row-middle {
+  margin-top: 20px; }
+  .panel-row-middle .panel-second {
+    margin: 0 50px; }
+  .panel-row-middle .panel-panel {
+    border: 1px solid white;
+    float: left;
+    height: 200px;
+    width: 216px; }
+    .panel-row-middle .panel-panel .pane-content {
+      padding: 0 18px;
+      height: 140px; }
+      .panel-row-middle .panel-panel .pane-content p {
+        padding: 12px 0;
+        margin-bottom: 0; }
+  .panel-row-middle .go-button {
+    position: absolute;
+    line-height: 30px; }
+  .panel-row-middle .panel-first .go-button {
+    right: 565px; }
+  .panel-row-middle .panel-second .go-button {
+    right: 298px; }
+  .panel-row-middle .panel-third .go-button {
+    right: 32px; }
 
 .panel-row-flexible .panel-pane {
   border: 1px solid white; }

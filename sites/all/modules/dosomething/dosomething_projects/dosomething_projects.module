@@ -320,6 +320,10 @@ function dosomething_projects_updated_date($entity) {
  * Implements hook_project_update_form_alter().
  */
 function dosomething_projects_form_project_update_node_form_alter(&$form, &$form_state) {
+  // Remove legacy fields that have data we may need to keep for now.
+  $form['field_project']['#access'] = FALSE;
+  $form['upload']['#access'] = FALSE;
+
   // Customize the title of the project update 'impacted' field.
   $impact = 'people helped/animals helped/items collected/amount raised';
   /*
