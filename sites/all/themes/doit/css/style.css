@@ -1075,9 +1075,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .pane-current-campaigns-panel-pane-2 .unimage-wrapper,
 .action-finder-list .unimage-wrapper, .page-node-picks .pane-profile-panel-pane-3 .something-description {
   background-color: white;
-  min-height: 120px;
-  _height: auto !important;
-  height: 120px;
+  min-height: 97px;
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
@@ -1335,6 +1333,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 
 .start-a-project {
   text-align: right;
+  height: 30px;
 }
 .start-a-project:before {
   content: "Start a Project";
@@ -1635,6 +1634,12 @@ html {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+}
+.ie8 * {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 /* Body -------------------------------------------------------------- */
@@ -2345,7 +2350,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2806,7 +2811,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -3065,7 +3070,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3120,7 +3125,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -4605,3 +4610,64 @@ h3 .stuff-header {
 .node-grant-alumni .content .field {
   margin-bottom: 12px;
 }
+
+/* IE SPECIFIC -------------------------------------------------------------- */
+/* */
+/* ALL IE 8 - 6 */
+/* IE8 */
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+  padding: 0;
+}
+
+.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
+  width: 210px;
+}
+
+.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
+.not-logged-in #dosomething-login-register-block #edit-last-name {
+  width: 90px;
+}
+.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
+  width: 191px;
+}
+
+.ie8 body.front .selectBox-dropdown .selectBox-label {
+  width: 339px !important;
+}
+
+.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
+  padding-left: 98px;
+  width: 73%;
+}
+
+.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  min-width: 184px;
+}
+
+.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label {
+  min-width: 161px;
+}
+
+.ie8 .ctools-jump-menu-select .selectBox-label {
+  min-width: 164px !important;
+  width: 164px !important;
+}
+
+.ie8 .panes-3 .panel-panel {
+  width: 215px;
+}
+
+.ie8 .node-poll .poll {
+  width: auto;
+}
+
+.ie8 .panel-landings .panel-row-middle .panel-panel {
+  width: 215px;
+}
+
+.ie8 .region-sidebar-first .block-menu-block .content li a {
+  padding-right: 12px;
+}
+
+/* IE7, IE6 */
+/* IE6 */
