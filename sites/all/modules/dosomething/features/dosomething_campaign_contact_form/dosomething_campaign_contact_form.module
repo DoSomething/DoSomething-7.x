@@ -32,6 +32,9 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     foreach ($make_placeholder as $field_name => $value_field) {
       $entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#attributes']['placeholder'] = $entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#title'];
       unset($entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#title']);
+      if ($entity_form[$field_name][LANGUAGE_NONE]['#required']) {
+        $entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#attributes']['placeholder'] .= ' (required)';
+      }
     }
 
     // Take no action if this user is not authenticated.
@@ -59,18 +62,26 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     }
     else {
       $form['actions']['submit']['#ajax'] = array(
-        'callback' => 'dosomething_campaign_contact_form_login_form',
+        'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
       );
     }
   }
 }
 
-function dosomething_campaign_contact_form_login_form($form, &$form_state) {
+function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_state) {
   ctools_include('ajax');
 
   $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $mobile = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
 
+  if (empty($email)) {
+    return array(
+      '#type' => 'ajax',
+      '#commands' => array(
+        ajax_command_invoke('#edit-submitted-field-webform-email-und-0-email', 'addClass', array('error')),
+      ),
+    );
+  }
   if (!empty($email) && dosomething_login_find_user_by_email($email)) {
     $valid = $email;
   }
