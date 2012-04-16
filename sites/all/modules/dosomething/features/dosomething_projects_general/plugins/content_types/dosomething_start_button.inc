@@ -28,7 +28,7 @@ function dosomething_start_button_content_type_render($subtype, $conf, $args, $c
     $element['project'] = array(
       '#type' => 'link',
       '#title' => t('Go'),
-      '#href' => 'project-report/start-project',
+      '#href' => 'start-something/projects',
       '#options' => array(
         'attributes' => array(
           'title' => t('Go'),
