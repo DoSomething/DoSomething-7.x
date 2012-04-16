@@ -3637,6 +3637,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .er
 .popup-content .form-item-year input {
   width: 212px;
 }
+.ie8 .popup-content .form-item-first-name, .ie8
+.popup-content .form-item-email, .ie8
+.popup-content .form-item-pass, .ie8
+.popup-content .form-item-month, .ie8
+.popup-content .form-item-day, .ie8
+.popup-content .form-item-year {
+  width: 212px;
+}
 .popup-content .form-item-last-name,
 .popup-content .form-item-cell {
   float: right;
@@ -3644,6 +3652,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .er
 }
 .popup-content .form-item-last-name input,
 .popup-content .form-item-cell input {
+  width: 212px;
+}
+.ie8 .popup-content .form-item-last-name, .ie8
+.popup-content .form-item-cell {
   width: 212px;
 }
 .popup-content .form-item-email,
@@ -3662,9 +3674,15 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .er
   display: table;
   clear: both;
 }
+.ie8 .popup-content #edit-birthday {
+  position: relative;
+  top: -17px;
+  left: 7px;
+}
 .popup-content #edit-birthday label {
   float: left;
   margin-right: 31px;
+  width: 54px;
 }
 .popup-content #edit-birthday label .login-popup-birthday {
   font-family: "Trebuchet MS", sans-serif;
@@ -3689,6 +3707,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .er
   width: 40px;
   text-align: center;
 }
+.ie8 .popup-content .form-item-month, .ie8
+.popup-content .form-item-day, .ie8
+.popup-content .form-item-year {
+  width: 40px;
+}
 .popup-content .form-item-year {
   margin-right: 0;
 }
@@ -3702,6 +3725,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .er
   position: absolute;
   top: 245px;
   left: 219px;
+}
+.ie8 .popup-content .form-item-pass .ds-registration-form-required {
+  top: 264px;
 }
 .popup-content .form-item-pass label.error {
   width: 212px;
@@ -3751,6 +3777,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .er
   position: relative;
   top: -38px;
   right: -403px;
+}
+
+.ie8 .form-item-first-name .ds-registration-form-required, .ie8
+.form-item-last-name .ds-registration-form-required, .ie8
+.form-item-cell .ds-registration-form-required {
+  left: 203px;
+  top: -28px;
 }
 
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {

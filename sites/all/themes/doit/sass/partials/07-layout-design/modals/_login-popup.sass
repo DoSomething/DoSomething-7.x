@@ -87,6 +87,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     float: left
     input
       width: 212px
+    .ie8 &
+      width: 212px
 
   // Right column fields
   .form-item-last-name,
@@ -94,6 +96,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     float: right
     margin-right: -7px
     input
+      width: 212px
+    .ie8 &
       width: 212px
 
   .form-item-email,
@@ -107,9 +111,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   // Birthday fields
   #edit-birthday
     +pie-clearfix
+    .ie8 &
+      position: relative
+      top: -17px
+      left: 7px
     label
       float: left
       margin-right: 31px
+      width: 54px
       .login-popup-birthday
         font-family: $font-sans
         font-size: 12px
@@ -127,6 +136,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     input
       width: 40px
       text-align: center
+    .ie8 &
+      width: 40px
 
   .form-item-year
     margin-right: 0
@@ -146,10 +157,12 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       position: absolute
       top: 245px
       left: 219px
+      .ie8 &
+        top: 264px
     label.error
       width: 212px
 
-  // Under 13
+  // Under 13 fields
   .under-13-field
     float: left
     padding: 12px 0
@@ -178,6 +191,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       @extend .blue
       text-decoration: underline
 
+// Already a user login
 .already-member
   @extend .bold
   font-family: $font-headline
@@ -193,3 +207,12 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   position: relative
   top: -38px
   right: -403px
+
+// IE8
+.form-item-first-name,
+.form-item-last-name,
+.form-item-cell
+  .ds-registration-form-required
+    .ie8 &
+      left: 203px
+      top: -28px
