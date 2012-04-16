@@ -122,6 +122,26 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       }
     }
 
+    // Add field_update_people_involved values from project updates to a project.
+    if (!$items['field_update_people_involved']['value']) {
+      $items['field_update_people_involved']['value'] = 0;
+    }
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'project_update')
+      ->propertyCondition('status', 1)
+      ->fieldCondition('field_webform_project_submission', 'target_id', $entity_id, '=')
+      ->execute();
+    if (isset($result['node'])) {
+      $nids = array_keys($result['node']);
+      $project_updates = node_load($nids);
+      foreach ($project_updates as $project_update) {
+        if (isset($project_update->field_update_people_involved[LANGUAGE_NONE][0]['value'])) {
+          $items['field_update_people_involved']['value'] += $project_update->field_update_people_involved[LANGUAGE_NONE][0]['value'];
+        }
+      }
+    }
+
     $output[] = array(
       '#theme' => 'dosomething_stats_counter',
       '#items' => $items,

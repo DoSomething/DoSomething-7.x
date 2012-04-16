@@ -721,12 +721,25 @@ function dosomething_login_login_popup_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Log In'),
   );
+  $form['see-whats-new'] = array(
+    '#type' => 'link',
+    '#href' => 'blog/check-out-our-new-do',
+    '#title' => t("see what's new"),
+    '#options' => array(
+      'html' => FALSE,
+      'attributes' => array(
+        'class' => array(
+          'see-whats-new',
+        ),
+      ),
+    ),
+  );
   $form['user'] = array(
-    '#theme' => 'link',
-    '#path' => 'user/registration',
+    '#type' => 'link',
+    '#href' => 'user/registration',
     '#prefix' => '<span class="already-member">not a member? ',
     '#suffix' => '</span>',
-    '#text' => t('become one'),
+    '#title' => t('become one'),
     '#options' => array(
       'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
       'html' => FALSE,

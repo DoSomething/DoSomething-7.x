@@ -54,10 +54,17 @@
     margin-bottom: 0
   .pane-content
     padding: 12px 18px
+  .form-wrapper
+    margin-bottom: 0
   .webform-client-form
     border: 0
     padding: 0
     +box-shadow-none
+  form.webform-client-form #edit-actions
+    height: 30px
+    margin-top: -30px
+    margin-left: 0
+    margin-right: 15px
 
 .panel-top-right-mini-info
   +ds-bevel-single
@@ -112,6 +119,7 @@
       line-height: 1em
 
 .panel-row-middle
+  margin-top: 20px
   .panel-second
     margin: 0 50px
   .panel-panel
@@ -126,8 +134,17 @@
         padding: 12px 0
         margin-bottom: 0
   .go-button
-    float: right
+    position: absolute
     line-height: 30px
+  .panel-first
+    .go-button
+      right: 565px
+  .panel-second
+    .go-button
+      right: 298px
+  .panel-third
+    .go-button
+      right: 32px
 
 .panel-row-flexible
   .panel-pane

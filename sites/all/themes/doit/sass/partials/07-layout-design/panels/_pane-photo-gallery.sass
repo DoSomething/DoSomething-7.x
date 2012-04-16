@@ -35,17 +35,16 @@
     width: 35px
 
   .jcarousel-next
-    background: image_url("arrows/arrow-next.png")
-    &:hover
-      background: image_url("arrows/arrow-next-hover.png")
+    background: image_url("arrows/arrow-next-hover.png")
   .jcarousel-prev
-    background: image_url("arrows/arrow-prev.png")
-    &:hover
-      background: image_url("arrows/arrow-prev-hover.png")
+    background: image_url("arrows/arrow-prev-hover.png")
 
-  .jcarousel-next-disabled,
+  .jcarousel-next-disabled
+    background: image_url("arrows/arrow-next.png")
+    cursor: default
   .jcarousel-prev-disabled
-    display: none
+    background: image_url("arrows/arrow-prev.png")
+    cursor: default
 
   .jcarousel-prev-horizontal
     position: absolute
