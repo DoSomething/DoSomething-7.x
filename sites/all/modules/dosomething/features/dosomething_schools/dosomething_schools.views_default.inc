@@ -23,7 +23,6 @@ function dosomething_schools_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Club Members';
-  $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_text'] = 'More >>';
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['access']['type'] = 'none';
@@ -132,7 +131,7 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['group']['field'] = 'group';
   $handler->display->display_options['arguments']['group']['relationship'] = 'og_membership_rel';
-  $handler->display->display_options['arguments']['group']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['group']['default_argument_type'] = 'og_context';
   $handler->display->display_options['arguments']['group']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['group']['summary']['number_of_records'] = '0';
@@ -147,10 +146,14 @@ function dosomething_schools_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: User: Picture */
+  $handler->display->display_options['filters']['picture']['id'] = 'picture';
+  $handler->display->display_options['filters']['picture']['table'] = 'users';
+  $handler->display->display_options['filters']['picture']['field'] = 'picture';
+  $handler->display->display_options['filters']['picture']['value'] = '1';
 
   /* Display: Club Members */
   $handler = $view->new_display('panel_pane', 'Club Members', 'panel_pane_1');
-  $handler->display->display_options['link_url'] = 'school/!1/members';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
