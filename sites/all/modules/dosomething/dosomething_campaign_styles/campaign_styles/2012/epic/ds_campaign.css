@@ -338,3 +338,10 @@ div[role="main"] {
   #campaign-opt-in a#opt-in-help:hover {
     color: black;
     text-decoration: none; }
+
+#report-back {
+  border: 0; }
+  #report-back form {
+    border: 0; }
+  #report-back .form-wrapper {
+    margin-bottom: 0px; }
