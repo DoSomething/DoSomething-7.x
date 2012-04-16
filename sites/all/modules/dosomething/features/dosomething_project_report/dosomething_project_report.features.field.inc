@@ -194,7 +194,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_update',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'An update for an existing project',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -216,21 +216,22 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'Update',
+      'label' => 'What progress have you made since your original post?',
       'required' => 0,
       'settings' => array(
-        'display_summary' => TRUE,
-        'text_processing' => 1,
+        'display_summary' => 0,
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => 20,
+          'rows' => '20',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
+        'weight' => '1',
       ),
     ),
   );
@@ -320,7 +321,7 @@ The content from this field will only be shown to anonymous users.',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '2',
+        'weight' => '4',
       ),
     ),
   );
@@ -461,7 +462,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '6',
       ),
       'widget_type' => 'nodereference_select',
     ),
@@ -598,7 +599,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '1',
+        'weight' => '3',
       ),
       'widget_type' => 'imagefield_widget',
     ),
@@ -612,6 +613,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_update_people_impacted',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'number',
@@ -622,6 +626,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'max' => '',
         'min' => '',
         'prefix' => '',
+        'profile2_private' => FALSE,
         'suffix' => '',
       ),
       'translatable' => '0',
@@ -630,11 +635,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'project_update',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -677,8 +678,8 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'entity_type' => 'node',
       'field_name' => 'field_update_people_impacted',
-      'label' => 'Updated number of new people/animals helped',
-      'required' => '1',
+      'label' => 'How many additional [people helped] since your original post?',
+      'required' => 1,
       'settings' => array(
         'max' => '',
         'min' => '',
@@ -688,11 +689,11 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'weight' => '0',
       'widget' => array(
-        'active' => '1',
+        'active' => 0,
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '0',
+        'weight' => 0,
       ),
       'widget_type' => 'number',
     ),
@@ -728,11 +729,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'project_update',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -775,8 +772,8 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'entity_type' => 'node',
       'field_name' => 'field_update_people_involved',
-      'label' => 'Updated number of new people involved in the project',
-      'required' => '1',
+      'label' => 'How many additional people have gotten involved since your original post?',
+      'required' => 1,
       'settings' => array(
         'max' => '',
         'min' => '',
@@ -786,7 +783,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'weight' => '0',
       'widget' => array(
-        'active' => '1',
+        'active' => 0,
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
@@ -874,7 +871,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '5',
       ),
     ),
   );
@@ -1185,7 +1182,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '21',
+        'weight' => '19',
       ),
     ),
   );
@@ -2803,6 +2800,9 @@ The content from this field will only be shown to anonymous users.');
   t('Grant/Scholarship');
   t('Group');
   t('How Can Others Help? ');
+  t('How many additional [people helped] since your original post?');
+  t('How many additional people have gotten involved since your original post?');
+  t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
   t('How? e.g. Get 10 friends on a Saturday to pick up trash');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
@@ -2831,6 +2831,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('Video (optional)');
   t('Web site link');
   t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
+  t('What progress have you made since your original post?');
   t('What\'s the problem you are trying to solve?');
   t('What\'s your plan of action?');
   t('Who else participated in your project/drive?');

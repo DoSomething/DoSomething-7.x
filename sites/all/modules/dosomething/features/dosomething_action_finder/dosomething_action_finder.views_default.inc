@@ -143,16 +143,30 @@ function dosomething_action_finder_views_default_views() {
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['id'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['table'] = 'field_data_taxonomy_vocabulary_5';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['value'] = array(
+    29 => '29',
+    28 => '28',
+    27 => '27',
+    23 => '23',
+    25 => '25',
+    20 => '20',
+    21 => '21',
+    73 => '73',
+    24 => '24',
+    26 => '26',
+    22 => '22',
+  );
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['group'] = 0;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator_id'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['label'] = 'What Cause?';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['operator'] = 'taxonomy_vocabulary_5_tid_op';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['identifier'] = 'issues';
-  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['expose']['reduce'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['type'] = 'select';
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['vocabulary'] = 'vocabulary_5';
+  $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['hierarchy'] = 1;
   $handler->display->display_options['filters']['taxonomy_vocabulary_5_tid']['error_message'] = 1;
   /* Filter criterion: Content: Who (taxonomy_vocabulary_3) */
   $handler->display->display_options['filters']['taxonomy_vocabulary_3_tid']['id'] = 'taxonomy_vocabulary_3_tid';
