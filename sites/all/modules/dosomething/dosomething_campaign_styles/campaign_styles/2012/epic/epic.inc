@@ -31,9 +31,10 @@ $plugin = array(
     array('title' => 'home', 'href' => 'epic'),
     array('title' => 'run a drive', 'href' => 'epic/run-a-drive'),
     array('title' => 'resources', 'href' => 'epic/resources'),
-    array('title' => 'schools', 'href' => 'epic/schools'),
+    array('title' => 'browse schools', 'href' => 'epic/browse-schools'),
     array('title' => 'win stuff!', 'href' => 'epic/prizes'),
     array('title' => 'faq', 'href' => 'epic/faq'),
-    array('title' => 'blog', 'href' => 'epic/blog')
+    array('title' => 'blog', 'href' => 'epic/blog'),
+    array('title' => 'tell us about it', 'href' => 'epic/tell-us')
   ),
 );
