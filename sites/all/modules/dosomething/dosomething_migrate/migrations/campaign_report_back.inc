@@ -774,6 +774,7 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
     $this->addFieldMapping('data_check_off_the_projects_below_that_your_school_has_completed', 'field_gys_projects');
   }
   public function prepareRow($row) {
+    parent::prepareRow($row);
     $projects_mapping = array(
       'Recycling' => 1,
       'Collect and recycle at least 25 plastic or glass bottles or aluminum cans' => 2,
@@ -862,6 +863,8 @@ class DSCampaignReportBackTrashy2011 extends DSCampaignReportBackMigration {
 
   }
   public function prepareRow($row) {
+    parent::prepareRow($row);
+
     $statmap = array(
       'Cat #1' => 1,
       'Text #1' => 2,
@@ -869,8 +872,6 @@ class DSCampaignReportBackTrashy2011 extends DSCampaignReportBackMigration {
       'Text #2' => 4,
     );
     $row->field_dbt_which_stat = isset($row->field_dbt_which_stat) ? $statmap[$row->field_dbt_which_stat] : NULL;
-  }
-  public function prepare($entity, $row) {
   }
 }
 
@@ -906,12 +907,6 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
       'field_geocode_data',
     ));
   }
-
-  public function prepareRow($row) {
-  }
-
-  public function prepare($entity, $row) {
-  }
 }
 
 class DSCampaignReportBackTFJ2012 extends DSCampaignReportBackMigration {
@@ -945,11 +940,5 @@ class DSCampaignReportBackTFJ2012 extends DSCampaignReportBackMigration {
       'field_webform_mobile',
       'field_webform_school_zip',
     ));
-  }
-
-  public function prepareRow($row) {
-  }
-
-  public function prepare($entity, $row) {
   }
 }
