@@ -2,8 +2,10 @@
 
 function dosomething_sms_conductor_sms_keywords() {
   return array(
-    'zivtech' => 'ds_sms_user_registration',
-    'zivtech2' => 'ds_sms_project_report_back',
+    //'zivtech' => 'ds_sms_user_registration',
+    //'zivtech2' => 'ds_sms_project_report_back',
+    'register' => 'ds_sms_user_registration',
+    'testreport' => 'ds_sms_project_report_back',
   );
 }
 
