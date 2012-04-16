@@ -121,7 +121,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       if (!$items['impacted']['value']) {
         $items['impacted']['value'] = 0;
       }
-      if (count($project_updates))
+      if (count($project_updates)) {
         foreach ($project_updates as $project_update) {
           if (isset($project_update->field_update_people_impacted[LANGUAGE_NONE][0]['value'])) {
             $items['impacted']['value'] += $project_update->field_update_people_impacted[LANGUAGE_NONE][0]['value'];
@@ -150,7 +150,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       $items['field_update_people_involved']['value'] = 0;
     }
 
-    if (count($project_updates))
+    if (count($project_updates)) {
       foreach ($project_updates as $project_update) {
         if (isset($project_update->field_update_people_involved[LANGUAGE_NONE][0]['value'])) {
           $items['field_update_people_involved']['value'] += $project_update->field_update_people_involved[LANGUAGE_NONE][0]['value'];

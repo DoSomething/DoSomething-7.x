@@ -509,8 +509,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_update',
       'default_value' => '',
       'deleted' => '0',
-      'description' => 'Please don\'t use BMP files.
-Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ',
+      'description' => '',
       'display' => array(
         'Full' => array(
           'label' => 'above',
