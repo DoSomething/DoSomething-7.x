@@ -26,6 +26,8 @@
     margin-bottom: 0; }
   .panel-row-actions .pane-content {
     padding: 12px 18px; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 0; }
   .panel-row-actions .webform-client-form {
     border: 0;
     padding: 0;
@@ -33,6 +35,11 @@
     -webkit-box-shadow: none;
     -o-box-shadow: none;
     box-shadow: none; }
+  .panel-row-actions form.webform-client-form #edit-actions {
+    height: 30px;
+    margin-top: -30px;
+    margin-left: 0;
+    margin-right: 15px; }
 
 .panel-top-right-mini-info {
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
