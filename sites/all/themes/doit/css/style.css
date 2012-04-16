@@ -3341,9 +3341,11 @@ h2.block-title, h2.pane-title {
 }
 .jcarousel-container .jcarousel-next-disabled {
   background: url('images/arrows/arrow-next.png');
+  cursor: default;
 }
 .jcarousel-container .jcarousel-prev-disabled {
   background: url('images/arrows/arrow-prev.png');
+  cursor: default;
 }
 .jcarousel-container .jcarousel-prev-horizontal {
   position: absolute;
