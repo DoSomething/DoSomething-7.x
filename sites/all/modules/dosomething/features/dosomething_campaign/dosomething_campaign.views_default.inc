@@ -1262,6 +1262,19 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '6';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
+  $handler->display->display_options['style_options']['fields']['banner'] = 'field_campaign_call_to_action';
+  $handler->display->display_options['style_options']['fields']['image'] = 'field_campaign_main_image';
+  $handler->display->display_options['style_options']['fields']['title'] = 'title';
+  $handler->display->display_options['style_options']['fields']['text'] = 'field_campaign_teaser';
+  $handler->display->display_options['style_options']['fields']['footer'] = 'field_campain_date';
+  $handler->display->display_options['style_options']['fields']['link'] = 'field_campaign_link';
+  $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
+  $handler->display->display_options['style_options']['settings']['last_every_nth'] = '3';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
@@ -1370,9 +1383,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_teaser']['label'] = '';
   $handler->display->display_options['fields']['field_campaign_teaser']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['text'] = '<div class="campaign-teaser">[field_campaign_teaser]</div>
-
-[nid_1] [nid] ';
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['text'] = '<div class="campaign-teaser">[field_campaign_teaser]</div>';
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['external'] = 0;
@@ -1381,6 +1392,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_teaser']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['html'] = 0;
