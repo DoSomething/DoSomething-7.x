@@ -47,7 +47,8 @@ abstract class DSWebformSubmissionMigration extends Migration {
     // remapping array and use it here to load the proper node.
     var_dump($nid);
     $mapping = array(
-      736100 => 720919,
+      736100 => 721439,
+      748361 => 721441,
     );
     if (in_array($nid, array_keys($mapping))) {
       $webform_nid = $mapping[$nid];
