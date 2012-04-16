@@ -426,9 +426,11 @@ h3.subhead
 .image-teaser-module-teaser
   @extend .border-and-shadow
   background-color: $white
-  min-height: 97px
+  min-height: 120px
   padding: $s6 $s0 0 $s0
   margin-left: 120px + $s-2
+  .ie8 &
+    min-height: 97px
   h2
     @extend .bold
     display: block
@@ -677,6 +679,7 @@ h3.subhead
 .start-a-project
   text-align: right
   height: 30px
+  margin-bottom: 12px
   &:before
     content: 'Start a Project'
     @extend .counter-labels
