@@ -346,6 +346,7 @@ function dosomething_causes_ajax($tid, $parent = null) {
     ajax_command_html('.pane-polls-panel-pane-1 .pane-content', $views[2]),
     //ajax_command_html('h1.title', 'Issue: '.$term->name),
     ajax_command_html('.pane-term-description .pane-content', '<h2>'.$term->name.'</h2>'.$term->description),
+    ajax_command_invoke('.pane-polls-panel-pane-1 form', 'setFormActionUrl'),
   );
   $page = array('#type' => 'ajax', '#commands' => $commands);
   ajax_deliver($page);

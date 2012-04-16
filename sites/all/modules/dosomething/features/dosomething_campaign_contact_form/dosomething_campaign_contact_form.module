@@ -26,12 +26,24 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
 
     // Get a shortcut to our part of the form.
     $entity_form = &$form['submitted'];
+
+    $form['#suffix'] = '<div id="campaign-opt-in">Click sign up to join this campaign and receive weekly updates. <a href="#" id="opt-in-help">?</a></div>';
+    $form['#suffix'].= '<div id="campaign-opt-in-help">Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text <strong>STOP</strong> to opt-out. Email <a href="mailto:help@dosomething.org">help@dosomething.org</a> or text <strong>HELP</strong> for help.)</div>';
+
+    $form['#attached']['library'][] = array('system', 'dialog');
+    $form['#attached']['js'][] = array(
+      'type' => 'file',
+      'data' => drupal_get_path('module', 'dosomething_campaign_contact_form') . '/ctia.js',
+    );
     
     // Replace labels with HTML5 Placeholder text.
     $make_placeholder = array('field_webform_mobile' => 'value', 'field_webform_email' => 'email');
     foreach ($make_placeholder as $field_name => $value_field) {
       $entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#attributes']['placeholder'] = $entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#title'];
       unset($entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#title']);
+      if ($entity_form[$field_name][LANGUAGE_NONE]['#required']) {
+        $entity_form[$field_name][LANGUAGE_NONE][0][$value_field]['#attributes']['placeholder'] .= ' (required)';
+      }
     }
 
     // Take no action if this user is not authenticated.
@@ -59,18 +71,26 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     }
     else {
       $form['actions']['submit']['#ajax'] = array(
-        'callback' => 'dosomething_campaign_contact_form_login_form',
+        'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
       );
     }
   }
 }
 
-function dosomething_campaign_contact_form_login_form($form, &$form_state) {
+function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_state) {
   ctools_include('ajax');
 
   $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $mobile = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
 
+  if (empty($email)) {
+    return array(
+      '#type' => 'ajax',
+      '#commands' => array(
+        ajax_command_invoke('#edit-submitted-field-webform-email-und-0-email', 'addClass', array('error')),
+      ),
+    );
+  }
   if (!empty($email) && dosomething_login_find_user_by_email($email)) {
     $valid = $email;
   }

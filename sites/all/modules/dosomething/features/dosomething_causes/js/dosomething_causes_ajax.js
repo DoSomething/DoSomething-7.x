@@ -1,4 +1,8 @@
 (function($) {
+  $.fn.setFormActionUrl = function() {
+    this.attr('action', window.location.pathname);
+  };
+
   Drupal.ajax.prototype.refreshViews = function (tid, t_parent) {
     var ajax = this;
 
@@ -72,7 +76,7 @@
       if (!reverse) moveStuff(clicked);
       else moveStuffBackwards(clicked);
 
-      return Drupal.ajax['dosomething_causes'].refreshViews(clicked.attr('data-tid'), t_parent)
+      return Drupal.ajax['dosomething_causes'].refreshViews(clicked.attr('data-tid'), t_parent);
     }
   }
 

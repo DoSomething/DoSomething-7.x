@@ -1,9 +1,16 @@
+.campaign-counter:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .campaign-counter {
-  background: red;
+  width: 100%;
 }
 
 .campaign-counter-labels {
   float: left;
+  text-align: left;
 }
 
 .campaign-counter-numbers {

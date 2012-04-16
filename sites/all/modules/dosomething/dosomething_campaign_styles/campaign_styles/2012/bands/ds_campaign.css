@@ -458,3 +458,33 @@ div[role="main"] {
   .report-back-teaser h3 {
     color: white;
     border: none; }
+
+#finalist_container {
+  margin: 15px 0 0 25px;
+  padding: 0; }
+  #finalist_container li {
+    float: left;
+    list-style: none;
+    width: 130px; }
+  #finalist_container h3 {
+    background-color: black;
+    color: white;
+    margin-bottom: 15px;
+    padding: 10px 0 5px 0;
+    text-align: center;
+    font-size: 18px; }
+
+.ui-dialog {
+  background: black; }
+  .ui-dialog p {
+    color: white;
+    font-size: 18px;
+    line-height: 26px; }
+  .ui-dialog h1 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 50px;
+    color: #ffca06; }
+
+.ui-dialog .ui-dialog-titlebar-close {
+  right: -425px; }
