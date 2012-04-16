@@ -613,9 +613,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_update_people_impacted',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'number',
@@ -626,7 +623,6 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'max' => '',
         'min' => '',
         'prefix' => '',
-        'profile2_private' => FALSE,
         'suffix' => '',
       ),
       'translatable' => '0',
@@ -635,7 +631,11 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
     'field_instance' => array(
       'bundle' => 'project_update',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => '',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2785,8 +2785,6 @@ Use numbers only (no text).',
 Use numbers only (no text).');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
   t('Address');
-  t('Amount');
-  t('An update for an existing project');
   t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
