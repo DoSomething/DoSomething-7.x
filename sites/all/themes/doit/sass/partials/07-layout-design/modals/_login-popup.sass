@@ -9,6 +9,7 @@
 
 // This is the same form in a different location.
 #dosomething-login-register-facebook,
+div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   background: $white
   padding: 25px 34px
@@ -35,11 +36,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   .connect-with-facebook .form-wrapper
     margin-bottom: 0
 
-  #edit-connect
+  #edit-connect,
+  #edit-connect--2
     margin-bottom: 0
 
   // Title and border
-  #edit-title-text
+  #edit-title-text,
+  #edit-title-text--2
     margin-top: 0
     margin-bottom: 15px
     label
@@ -202,11 +205,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     text-decoration: underline
 
 // Finish button
-.ds-login-popup-footer input#edit-final-submit
-  @extend .go-button
-  position: relative
-  top: -38px
-  right: -403px
+.ds-login-popup-footer
+  input#edit-final-submit,
+  input#edit-final-submit--2
+    @extend .go-button
+    position: relative
+    top: -38px
+    right: -403px
 
 // IE8
 .form-item-first-name,
