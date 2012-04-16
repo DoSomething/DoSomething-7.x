@@ -400,15 +400,14 @@ div[role="main"]
     border: none
     legend
       padding: 0px !important
-    .field-name-field-webform-pictures,
-    #webform-component-field-campaign-number-of-people,
-    #webform-component-what-did-you-do-tell-us-in-your-school-blog,
-    #webform-component-check-off-the-projects-below-that-your-school-has-completed
-      margin-top: 20px
-      label
-        font-size: 17px
-        line-height: 20px
-        margin-bottom: 5px
+    .field-name-field-webform-pictures > label,
+    #webform-component-field-campaign-number-of-people > label,
+    #webform-component-what-did-you-do-tell-us-in-your-school-blog > label,
+    #webform-component-check-off-the-projects-below-that-your-school-has-completed > label
+      margin-top: 20px 
+      font-size: 17px
+      line-height: 20px
+      margin-bottom: 5px
 
 #campaign-opt-in
   font-size: 11px
@@ -418,3 +417,6 @@ div[role="main"]
   a#opt-in-help:hover
     color: $secondaryLink
     text-decoration: none 
+
+.view-campaign-gallery .jcarousel-container-horizontal
+  padding: 5px 0
