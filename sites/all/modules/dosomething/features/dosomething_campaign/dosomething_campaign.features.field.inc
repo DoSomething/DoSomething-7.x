@@ -1219,6 +1219,132 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_campain_logo_thumbnail'
+  $fields['node-campaign-field_campain_logo_thumbnail'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campain_logo_thumbnail',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'deleted' => '0',
+      'description' => 'You can include a 60px by 60px version of the campaign logo here. The image will not be resized automatically. ',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 21,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campain_logo_thumbnail',
+      'label' => 'Campaign Logo Thumbnail',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '60x60',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => 'auto',
+          'insert_styles' => array(
+            'auto' => 'auto',
+            'image' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
+          ),
+          'insert_width' => '',
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '2',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_counter_aggregation'
   $fields['node-campaign-field_counter_aggregation'] = array(
     'field_config' => array(
@@ -1705,13 +1831,15 @@ function dosomething_campaign_field_default_fields() {
   t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
+  t('Super short - will show in purple on /campaigns app style page over the image. Not required.');
   t('Teaser');
-  t('Text to appear in Current Campaigns list');
+  t('Text to appear in Current Campaigns list. KEEP THIS SHORT! ');
   t('This is the HTML copy that will be displayed after the user has signed up in the sign-up block. Make sure to check your input type.');
   t('Twitter Sharing Language');
   t('Upload an image for display on the Start Something landing page slideshow.');
   t('Upload an image to be displayed on the campaign list page.');
   t('Video');
+  t('You can include a 60px by 60px version of the campaign logo here. The image will not be resized automatically. ');
 
   return $fields;
 }

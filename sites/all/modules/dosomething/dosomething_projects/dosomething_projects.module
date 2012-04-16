@@ -316,3 +316,30 @@ function dosomething_projects_updated_date($entity) {
   return $updated;
 }
 
+/**
+ * Implements hook_project_update_form_alter().
+ */
+function dosomething_projects_form_project_update_node_form_alter(&$form, &$form_state) {
+  // Customize the title of the project update 'impacted' field.
+  $impact = 'people helped/animals helped/items collected/amount raised';
+  /*
+  1|people helped
+2|animals helped
+3|items collected
+4|amount raised
+*/
+  if (isset($form['#node']->field_webform_project_submission[LANGUAGE_NONE][0]['target_id'])) {
+    try {
+      $project = entity_metadata_wrapper('webform_submission_entity', $form['#node']->field_webform_project_submission[LANGUAGE_NONE][0]['target_id']);
+      if ($value = $project->field_impact_type->value()) {
+        $impact = $value;
+      }
+    }
+    catch(Exception $e) {
+      watchdog('dosomething_projects', 'Project update :nid is referencing a non-existant project', array(':nid' => $form['#node']->nid), WATCHDOG_ERROR);
+    }
+  }
+  $form['field_update_people_impacted'][LANGUAGE_NONE][0]['value']['#title'] = str_replace('[people helped]', $impact, $form['field_update_people_impacted'][LANGUAGE_NONE][0]['value']['#title']);
+}
+
+

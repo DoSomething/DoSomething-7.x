@@ -83,7 +83,133 @@ function dosomething_action_guide_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => 0,
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-action_guide-field_campain_logo_thumbnail'
+  $fields['node-action_guide-field_campain_logo_thumbnail'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campain_logo_thumbnail',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'action_guide',
+      'deleted' => '0',
+      'description' => 'You can include a 60px by 60px version of the logo here. The image will not be resized automatically. ',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 11,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campain_logo_thumbnail',
+      'label' => 'Logo Thumbnail',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '60x60',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => 'auto',
+          'insert_styles' => array(
+            'auto' => 'auto',
+            'image' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
+          ),
+          'insert_width' => '',
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '2',
       ),
     ),
   );
@@ -169,7 +295,7 @@ function dosomething_action_guide_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => '-4',
+        'weight' => '3',
       ),
       'widget_type' => 'text_textfield',
     ),
@@ -249,7 +375,7 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '7',
       ),
       'widget_type' => 'optionwidgets_select',
     ),
@@ -370,13 +496,22 @@ function dosomething_action_guide_field_default_fields() {
         'settings' => array(
           'body_preset' => NULL,
           'image_path' => 'pictures/actionguide',
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
           'teaser_preset' => NULL,
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '-4',
+        'weight' => '1',
       ),
       'widget_type' => 'imagefield_widget',
     ),
@@ -440,7 +575,7 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '4',
       ),
     ),
   );
@@ -503,7 +638,7 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '6',
       ),
     ),
   );
@@ -566,7 +701,7 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '5',
       ),
     ),
   );
@@ -641,7 +776,7 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '9',
       ),
     ),
   );
@@ -654,6 +789,9 @@ function dosomething_action_guide_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -733,6 +871,7 @@ function dosomething_action_guide_field_default_fields() {
   t('File attachments');
   t('Is content general?');
   t('Issues');
+  t('Logo Thumbnail');
   t('Picture');
   t('Select \'yes\' if the content is general and not specific to any particular cause or issue');
   t('Short Description');
@@ -740,6 +879,7 @@ function dosomething_action_guide_field_default_fields() {
   t('Time');
   t('Where');
   t('Who');
+  t('You can include a 60px by 60px version of the logo here. The image will not be resized automatically. ');
   t('hold down ctrl button to select more than one');
 
   return $fields;

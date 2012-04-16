@@ -20,10 +20,25 @@ function dosomething_schools_school_club_members_content_type_render($subtype, $
   $block = new stdClass();
 
   $gids = dosomething_schools_clubs_gids($context->data->sid);
+
   $view = views_get_view('club_members_per_school');
-  $view_results = $view->preview('panel_pane_1', array($gids));
+  $view->set_display('panel_pane_1');
+
+  if (!empty($gids)) {
+    $view->set_arguments(array($gids));
+  }
+
+  $content = $view->preview('panel_pane_1');
+
+  // TODO: Add a better way to check that there are more results.
+  $more = '';
+  if (count($view->result) >= 4) {
+    $more = '<div class="more-link">' . l('More >>', 'school/' . $context->data->sid . '/members') . '</div>';
+  }
+
   $block->title = t('Club Members');
-  $block->content = $view_results;
+  $block->content = $content;
+  $block->content .= $more;
 
   return $block;
 
