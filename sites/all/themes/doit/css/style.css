@@ -3345,20 +3345,16 @@ h2.block-title, h2.pane-title {
   width: 35px;
 }
 .jcarousel-container .jcarousel-next {
-  background: url('images/arrows/arrow-next.png');
-}
-.jcarousel-container .jcarousel-next:hover {
   background: url('images/arrows/arrow-next-hover.png');
 }
 .jcarousel-container .jcarousel-prev {
-  background: url('images/arrows/arrow-prev.png');
-}
-.jcarousel-container .jcarousel-prev:hover {
   background: url('images/arrows/arrow-prev-hover.png');
 }
-.jcarousel-container .jcarousel-next-disabled,
+.jcarousel-container .jcarousel-next-disabled {
+  background: url('images/arrows/arrow-next.png');
+}
 .jcarousel-container .jcarousel-prev-disabled {
-  display: none;
+  background: url('images/arrows/arrow-prev.png');
 }
 .jcarousel-container .jcarousel-prev-horizontal {
   position: absolute;
