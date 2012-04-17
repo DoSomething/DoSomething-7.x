@@ -28,11 +28,9 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'our story', 'href' => 
-'#our-story'),
-    array('' => 'honorees & co-chairs', 'href' => '#honorees'),
-    array('title' => 'sponsors', 'href' => '#sponsors'),
-    array('title' => 'event', 'href' => 
-'#event'),
+    array('title' => 'our story', 'href' => 'spring-dinner', 'fragment' => 'our-story'),
+    array('title' => 'honorees & co-chairs', 'href' => 'spring-dinner', 'fragment' => 'honorees'),
+    array('title' => 'sponsors', 'href' => 'spring-dinner', 'fragment' => 'sponsor'),
+    array('title' => 'event', 'href' => 'spring-dinner', 'fragment' => 'event'),
   ),
 );

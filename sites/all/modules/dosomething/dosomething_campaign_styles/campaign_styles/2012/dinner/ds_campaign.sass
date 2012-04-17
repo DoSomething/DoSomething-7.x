@@ -20,12 +20,13 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: url('assets/bg.png')
+$imageBackground: url('assets/bg.jpg')
 $bgFallback: #DDDDDD
+$bgTrans: rgba(255, 255, 255, 0.4)
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: white
+  background: $bgTrans
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -50,10 +51,9 @@ h1.title
   display: none
 
 body
-  background-color: $bgFallback
-  background-image: $imageBackground
-  background-repeat: repeat
-  background-position: center top
+  background: $imageBackground center center fixed $bgFallback
+  background-size: cover
+  background-position-y: -5px
 
 div[role="main"]
   +block
@@ -98,7 +98,7 @@ div[role="main"]
       font-size: 21px
       font-weight: 600
       text-transform: uppercase
-      color: $secondaryLink
+      color: #999
       &:hover, .active
         color: $baseColor
         text-decoration: none
@@ -120,6 +120,9 @@ div[role="main"]
 
 // actions panel (sign-up and counter)
 .panel-row-actions
+  margin-bottom: 40px
+  img
+    margin: 15px
   +block
   .pane-title
     background: $baseColor
@@ -149,12 +152,34 @@ div[role="main"]
       +insetBorder
       margin-bottom: 20px
 
-
 .panel-row-flexible
+  .pane-title
+    background-image: url('assets/header-bg.jpg')
+    background-color: #F6F6F6
+    border-top: 1px solid #ccc
+    border-bottom: 1px solid #ccc
+    a
+      text-decoration:  none
+      text-align: center
+      font-size: 40px
+      font-weight: 300
+      color: $baseColor
+      padding: 15px 0 10px
+      display: block
   .panel-pane
     +block
-    .pane-title
-      background: $baseColor
+    margin-bottom: 40px
+    border-top: none
+    border-right: 1px solid #ccc
+    border-bottom: 1px solid #ccc
+    border-left: 1px solid #ccc
+    box-shadow: 0px 20px 30px -10px #aaa
+    -moz-box-shadow: 0px 20px 30px -10px #aaa
+    -webkit-box-shadow: 0px 20px 30px -10px #aaa
+    p
+      margin-top: 0
+      font-family: "DIN-Web"
+      font-size: 20px
   .blog
     background: transparent
     &:before, &:after
@@ -169,3 +194,12 @@ div[role="main"]
     background: none
     margin: 0
     padding: 0
+
+#honorees
+  img
+    margin: 0 auto
+    display: block
+
+.ds-panel
+  .pane-content
+    padding: 15px 15px 15px 15px

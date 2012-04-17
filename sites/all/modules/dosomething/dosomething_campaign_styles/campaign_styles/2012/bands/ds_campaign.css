@@ -135,6 +135,15 @@ div[role="main"] {
 
 .pane-node-field-campaign-logo {
   margin: 0; }
+  .pane-node-field-campaign-logo img {
+    position: relative;
+    left: 125px;
+    margin-bottom: 25px; }
+
+.pane-node-field-sponsor-logo img {
+  position: absolute;
+  top: 115px;
+  left: 25px; }
 
 .pane-node-field-campaign-teaser {
   margin-bottom: 0; }
@@ -238,13 +247,18 @@ div[role="main"] {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
-.panel-row-flexible-top .panel-pane .pane-title {
-  color: #ffca06; }
+.panel-row-flexible {
+  margin-bottom: 25px; }
+  .panel-row-flexible .panel-pane .pane-title {
+    color: white;
+    text-transform: uppercase;
+    font-size: 25px;
+    padding: 13px 10px 10px; }
 
 .panel-row-logos .pane-title {
   color: black;
   background: none;
-  margin: 0;
+  margin: 20px 0 0 0;
   padding: 0; }
 .panel-row-logos .pane-content {
   background: none;
@@ -285,8 +299,7 @@ div[role="main"] {
   clear: both; }
 
 .contests-grand-prize {
-  background-color: white !important;
-  border: 1px solid black !important;
+  background-color: rgba(254, 228, 131, 0.3) !important;
   margin-bottom: 1em; }
   .contests-grand-prize .pane-content {
     padding: 1em;
@@ -301,8 +314,7 @@ div[role="main"] {
     margin-left: 184px; }
 
 .contests-scholarships {
-  background-color: white !important;
-  border: 1px solid black !important; }
+  background-color: rgba(254, 228, 131, 0.3) !important; }
   .contests-scholarships .pane-content {
     padding: 1em;
     text-align: center; }
@@ -316,8 +328,7 @@ div[role="main"] {
     color: #ffca06; }
 
 .contests-star-prize {
-  background-color: white !important;
-  border: 1px solid black !important;
+  background-color: rgba(254, 228, 131, 0.3) !important;
   margin-bottom: 1em; }
   .contests-star-prize .pane-content {
     padding: 1em;
@@ -330,10 +341,13 @@ div[role="main"] {
       margin-bottom: 0; }
   .contests-star-prize .amp-left {
     margin-left: 153px; }
+  .contests-star-prize img {
+    margin-top: -10px;
+    margin-right: 15px;
+    margin-bottom: 0; }
 
 .contests-three-boxes {
-  background-color: white !important;
-  border: 1px solid black !important;
+  background-color: rgba(254, 228, 131, 0.3) !important;
   float: left;
   width: 32%;
   margin-right: 2%; }
@@ -383,7 +397,7 @@ div[role="main"] {
 .faq-section {
   border: none !important; }
   .faq-section .pane-content {
-    background: white;
+    background: rgba(254, 228, 131, 0.3);
     padding-bottom: 0; }
     .faq-section .pane-content ul {
       margin: 0px 10px;
@@ -437,11 +451,6 @@ div[role="main"] {
 .panel-row-flexible-mid ul {
   margin-left: 20px; }
 
-.panel-row-flexible-top {
-  margin-bottom: 2em; }
-  .panel-row-flexible-top .panel-pane .pane-title {
-    color: white !important; }
-
 .panel-row-flexible .panel-pane {
   border: none; }
 
@@ -459,19 +468,29 @@ div[role="main"] {
     color: white;
     border: none; }
 
-#finalist_container {
-  margin: 15px 0 0 25px;
+#judges_container {
+  margin: 15px 0 0 20px;
   padding: 0; }
-  #finalist_container li {
+  #judges_container li {
     float: left;
-    list-style: none;
-    width: 130px; }
-  #finalist_container h3 {
+    list-style: none; }
+  #judges_container h3 {
     background-color: black;
-    color: white;
+    color: #ffca06;
     margin-bottom: 15px;
     padding: 10px 0 5px 0;
-    text-align: center;
+    text-align: center; }
+
+.big_judge {
+  width: 350px;
+  margin-right: 12px; }
+  .big_judge h3 {
+    font-size: 25px; }
+
+.sm_judge {
+  width: 130px;
+  margin-right: 16px; }
+  .sm_judge h3 {
     font-size: 18px; }
 
 .ui-dialog {
