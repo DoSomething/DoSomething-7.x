@@ -590,9 +590,26 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
   // Don't show a user picture if there isn't one in the account.
-  if ($account->picture) {
-    $variables['member_picture'] = theme_image_style(array('style_name' => 'action_results_thumbnail', 'path' => $account->picture->uri));
+  $picture = array(
+    '#theme' => 'image_formatter',
+    '#item' => array(
+      'alt' => t('Member Profile Picture'),
+      'title' => '',
+    ),
+  );
+  if (isset($account->picture)) {
+    $picture['#image_style'] = 'action_results_thumbnail';
+    $picture['#item']['uri'] = $account->picture->uri;
   }
+  else {
+    $link = fboauth_action_link_properties('ds_connect');
+    $picture['#item']['uri'] = drupal_get_path('module', 'dosomething_user_my_somethings') . '/member-connect.png';
+    $picture['#path'] = array(
+      'path' => $link['href'],
+      'options' => $link,
+    );
+  }
+  $variables['member_picture'] = $picture;
 
   // Check to see if the profile object was loaded, if not, assign some junk
   // values to prevent the user page from blowing up.
