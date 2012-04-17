@@ -287,5 +287,12 @@ class DSWebform698605 extends DSWebformSubmissionMigration {
 class DSWebform736100 extends DSWebformSubmissionMigration {
   function __construct() {
     parent::__construct(736100);
+    $this->addFieldMapping('data_i_want_to_receive_more_energy_saving_opportunities_from_the_epa', 'data_i_want_to_receive_more_energy_saving_opportunities_for_the_epa');
+    $this->addFieldMapping('data_email_1', 'data_friend_email_1');
+    $this->addFieldMapping('data_email_2', 'data_friend_email_2');
+    $this->addFieldMapping('data_email_3', 'data_friend_email_3');
+    $this->addFieldMapping('data_email_4', 'data_friend_email_4');
+    $this->addFieldMapping('data_email_5', 'data_friend_email_5');
+    $this->addUnmigratedDestinations(array('data_legal'));
   }
 }
