@@ -651,3 +651,76 @@ function doit_search_api_page_results(array $variables) {
 
   return $output;
 }
+
+/**
+ * Theme function for displaying search results.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - index: The index this search was executed on.
+ *   - result: One item of the search results, an array containing the keys
+ *     'id' and 'score'.
+ *   - item: The loaded item corresponding to the result.
+ *   - keys: The keywords of the executed search.
+ */
+function doit_search_api_page_result(array $variables) {
+  $index = $variables['index'];
+  $id = $variables['result']['id'];
+  $item = $variables['item'];
+
+  $wrapper = $index->entityWrapper($item, FALSE);
+
+  $url = $index->datasource()->getItemUrl($item);
+  $name = $index->datasource()->getItemLabel($item);
+
+  if (!empty($variables['result']['excerpt'])) {
+    $text = $variables['result']['excerpt'];
+  }
+  else {
+    $fields = $index->options['fields'];
+    $fields = array_intersect_key($fields, drupal_map_assoc($index->getFulltextFields()));
+    $fields = search_api_extract_fields($wrapper, $fields);
+    $text = '';
+    $length = 0;
+    foreach ($fields as $field) {
+      if (search_api_is_list_type($field['type']) || !isset($field['value'])) {
+        continue;
+      }
+      $val_length = drupal_strlen($field['value']);
+      if ($val_length > $length) {
+        $text = $field['value'];
+        $length = $val_length;
+      }
+    }
+    if ($text && function_exists('text_summary')) {
+      $text = text_summary($text);
+    }
+  }
+
+  $output = '<h3>' . ($url ? l($name, $url['path'], $url['options']) : check_plain($name)) . "</h3>\n";
+
+  // We need to insert images into the search results so we're mapping the
+  // content type to the image field we want to use. For now we're only
+  // concerned about a few content types. This list may grow as needed.
+  $type_field_map = array(
+    'blog' => 'field_picture',
+    'campaign' => 'field_campain_main_image',
+    'cause_video' => '',
+    'editorial_content' => 'field_editorial_image',
+    'tips_and_tools' => 'field_picture',
+  );
+  if (isset($item->type) && in_array($item->type, array_keys($type_field_map))) {
+    if (isset($item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0])) {
+      $output .= theme('image_formatter', array('item' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0], 'image_style' => 'search_results_thumbnail'));
+    }
+    else {
+      $output .= '<img src="/sites/all/themes/doit/default-search-image.jpg" height="60px" width="60px" />';
+    }
+  }
+
+  if ($text) {
+    $output .= $text;
+  }
+
+  return $output;
+}

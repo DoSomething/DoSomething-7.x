@@ -52,30 +52,21 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
       }
       // Add the link with the text 'Go'.
       else {
-        // Split the URL into an href and an array of query key value pairs.
-        $url = preg_split('/[?&=]+/', str_replace('&amp;', '&', $field['#markup']));
-        $href = array_shift($url);
-        $query = array();
-        for ($i = 0; $i < count($url); $i+=2) {
-          $query[$url[$i]] = $url[$i + 1];
-        }
-
+        // The URL might have been prepared for HTML rendering, parse it.
+        $url_options = drupal_parse_url(str_replace('&amp;', '&', $field['#markup']));
         $element['link'] = array(
           '#prefix' => $field['#prefix'],
           '#suffix' => $field['#suffix'],
           '#type' => 'link',
-          '#href' => $href,
+          '#href' => $url_options['path'],
           '#title' => t('Go'),
-          '#options' => array(
+          '#options' => $url_options + array(
             'attributes' => array(
             ),
             'html' => FALSE,
             'absolute' => TRUE,
           ),
         );
-        if (!empty($query)) {
-          $element['link']['#options']['query'] = $query;
-        }
       }
       // Ensure the elements are in the correct order.
       $element[$type]['#weight'] = $order[$type];
