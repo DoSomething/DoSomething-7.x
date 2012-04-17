@@ -369,16 +369,15 @@ function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
       $user->pass = $hashed_pass;
       user_save($user);
       $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
-      //TODO FOR LAUNCH!!!! remove comment on the following line and delete the test line after it.
-      //$message = "Your DoSomething password is now " . $pass . " or log right in with: " . $reset_link;
-      $message = "TEST Your DS password is now " . $pass . " or log in with: " . $reset_link;
+      // Note: If the message is too long, then it won't go through.
+      $message = "Your DoSomething password is now " . $pass . " or log right in with: " . $reset_link;
       $response = sms_mobile_commons_send($number, $message, $options = array());
       watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"', 
         array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
         $severity = WATCHDOG_NOTICE,
         $link = NULL
       );
-      drupal_set_message(t('Thanks for playing. A text message with reset instructions has been sent to your mobile phone.'));
+      drupal_set_message(t('A text message with reset instructions has been sent to your mobile phone.'));
     }
   }
 }
