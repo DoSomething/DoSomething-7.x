@@ -5,6 +5,10 @@ Drupal.behaviors.dosomethingRegisterAjax = {
     var registerForm = $('#dosomething-login-register-popup-form');
     var webform = $('.webform-client-form');
     var submitButton = webform.find('.form-submit');
+    var wfEmailField = $('#edit-submitted-field-webform-email');
+    var wfCellField = $('#edit-submitted-field-webform-mobile');
+    wfEmailField.hide();
+    wfCellField.hide();
 
     webform.submit(function () {
       submitButton.attr('disabled', true);
@@ -20,6 +24,12 @@ Drupal.behaviors.dosomethingRegisterAjax = {
           progressBar.remove();
         }
         else {
+          if (wfEmailField.length > 0) {
+            wfEmailField.find('input').val($('#edit-email').val());
+          }
+          if (wfCellField.length > 0) {
+            wfCellField.find('input').val($('#edit-cell').val());
+          }
           webform.unbind('submit').submit();
         }
       });
