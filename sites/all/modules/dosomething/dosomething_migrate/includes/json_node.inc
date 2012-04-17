@@ -49,4 +49,20 @@ abstract class DSJsonNodeMigration extends Migration {
 
     $this->destination = new MigrateDestinationNode($node_type);
   }
+
+  protected function fidFromEmField($value, $uid) {
+    $wrappers = file_get_stream_wrappers();
+    $scheme = file_uri_scheme($value);
+    if (empty($wrappers[$scheme])) {
+      var_dump("couldn't find a stream wrapper for $scheme");
+      return NULL;
+    }
+
+    $file = file_uri_to_object($value);
+    if (empty($file->fid)) {
+      $file->uid = $uid;
+      file_save($file);
+    }
+    return $file->fid;
+  }
 }
