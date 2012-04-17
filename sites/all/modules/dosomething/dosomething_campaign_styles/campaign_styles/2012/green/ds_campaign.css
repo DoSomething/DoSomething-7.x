@@ -407,3 +407,15 @@ div[role="main"] {
     line-height: 22px; }
     #school-name .pane-content h2 {
       color: white; }
+
+#share-your-story .pane-content {
+  padding: 10px;
+  width: 65%;
+  text-align: center; }
+  #share-your-story .pane-content .content-content {
+    padding: 5px;
+    background: #78c848;
+    background: rgba(0, 30, 0, 0.2); }
+    #share-your-story .pane-content .content-content a {
+      right: 20px;
+      bottom: 30px; }
