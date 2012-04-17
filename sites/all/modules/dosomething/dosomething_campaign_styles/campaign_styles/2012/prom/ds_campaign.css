@@ -233,3 +233,7 @@ div[role="main"] {
   font-weight: 500;
   color: #92d2ba;
   text-transform: uppercase; }
+
+.scholarships .pane-1, .scholarships .pane-2 {
+  float: left;
+  width: 48%; }
