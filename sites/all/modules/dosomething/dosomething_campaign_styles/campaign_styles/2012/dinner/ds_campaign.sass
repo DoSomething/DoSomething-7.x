@@ -55,6 +55,15 @@ body
   background-size: cover
   background-position-y: -5px
 
+p
+  font-family: $accent
+  font-size: 1.6em
+  line-height: 1.5em
+  letter-spacing: 1px
+  padding: 0
+  margin: 0
+  color: #444
+
 div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
@@ -98,7 +107,7 @@ div[role="main"]
       font-size: 21px
       font-weight: 600
       text-transform: uppercase
-      color: #999
+      color: #444
       &:hover, .active
         color: $baseColor
         text-decoration: none
@@ -112,15 +121,14 @@ div[role="main"]
       background: none
       color: $baseColor
       padding: 0
-      font-size: 26px
       line-height: 1em
     .pane-content
-      font-size: 21px
       line-height: 1.4em
 
 // actions panel (sign-up and counter)
 .panel-row-actions
   margin-bottom: 40px
+  border: none
   img
     margin: 15px
   +block
@@ -129,10 +137,17 @@ div[role="main"]
   .pane-content
     padding: 18px
 
+.panel-row-actions-stats
+  p
+    margin-top: 20px
+
+.panel-row-actions-sign-up
+  img
+    margin: 15px 0 15px 25px
+
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
   .pane-title
-    font-size: 35px
     padding: 0
     background: transparent
     text-transform: uppercase
@@ -142,7 +157,6 @@ div[role="main"]
   .pane-content
     h3
       color: $baseColor
-      font-size: 26px
       text-transform: uppercase
       font-weight: 600
       line-height: 1em
@@ -153,6 +167,8 @@ div[role="main"]
       margin-bottom: 20px
 
 .panel-row-flexible
+  .pane-content
+    overflow: auto
   .pane-title
     background-image: url('assets/header-bg.jpg')
     background-color: #F6F6F6
@@ -161,11 +177,12 @@ div[role="main"]
     a
       text-decoration:  none
       text-align: center
-      font-size: 40px
       font-weight: 300
       color: $baseColor
       padding: 15px 0 10px
       display: block
+      font-size: 40px
+      line-height: 1em
   .panel-pane
     +block
     margin-bottom: 40px
@@ -178,8 +195,14 @@ div[role="main"]
     -webkit-box-shadow: 0px 20px 30px -10px #aaa
     p
       margin-top: 0
-      font-family: "DIN-Web"
-      font-size: 20px
+  #our-story
+    width: 255px
+    float: left
+    p
+      margin-bottom: 15px
+      line-height: 1.3em
+  iframe
+    float: right
   .blog
     background: transparent
     &:before, &:after
@@ -194,12 +217,19 @@ div[role="main"]
     background: none
     margin: 0
     padding: 0
+  img
+    border: none
 
 #honorees
   img
-    margin: 0 auto
+    margin: 15px auto
     display: block
+  &:first-child
+    margin-bottom: 20px
 
 .ds-panel
   .pane-content
     padding: 15px 15px 15px 15px
+
+.center
+  text-align: center
