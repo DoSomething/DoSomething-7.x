@@ -547,3 +547,12 @@ div[role="main"] {
 
 .ui-dialog .ui-dialog-titlebar-close {
   right: -425px; }
+
+#campaign-opt-in {
+  font-size: 11px; }
+  #campaign-opt-in a {
+    vertical-align: super;
+    font-weight: bold; }
+  #campaign-opt-in a:hover {
+    color: #ff130a;
+    text-decoration: none; }

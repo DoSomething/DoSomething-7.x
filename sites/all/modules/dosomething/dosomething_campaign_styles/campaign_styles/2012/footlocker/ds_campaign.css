@@ -83,12 +83,15 @@ div[role="main"] {
   .panel-row-actions .pane-content {
     padding: 18px; }
 
+.panel-row-ad .panel-row-ad-quick-info {
+  width: 100%; }
+
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
   padding: 0;
   background: transparent;
   text-transform: uppercase;
-  color: black;
+  color: #e31837;
   line-height: 1.3em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content h3 {
@@ -197,7 +200,7 @@ div[role="main"] {
     list-style: none;
     margin-right: 25px; }
   #finalist_container h3 {
-    background-color: #e31837;
+    background-color: black;
     color: white;
     margin-bottom: 15px;
     padding: 8px 0;
@@ -207,7 +210,8 @@ div[role="main"] {
 .ui-dialog {
   background: black; }
   .ui-dialog p {
-    color: white; }
+    color: white;
+    line-height: 1.7em; }
   .ui-dialog h1 {
     border-bottom: 3px solid #e31837;
     text-transform: uppercase;
@@ -220,3 +224,20 @@ div[role="main"] {
 
 .ui-dialog .ui-dialog-titlebar-close {
   right: -425px; }
+
+.panel-row-flexible-mid h2 {
+  line-height: 1em;
+  letter-spacing: 1px;
+  font-size: 22px;
+  text-transform: capitalize;
+  padding: 10px;
+  background: #e31837; }
+
+#campaign-opt-in {
+  font-size: 11px; }
+  #campaign-opt-in a {
+    vertical-align: super;
+    font-weight: bold; }
+  #campaign-opt-in a:hover {
+    color: black;
+    text-decoration: none; }

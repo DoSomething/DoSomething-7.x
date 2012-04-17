@@ -7,7 +7,7 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #E31837 /* dark grey */
+$baseColor: #E31837 /* red */
 $complement: #FFFFFF
 $secondaryLink: black
 
@@ -21,7 +21,7 @@ $body: "Trebuchet MS",sans-serif
 
 // page background
 $imageBackground: url('assets/bg.png')
-$bgFallback: #231F20 /* red */
+$bgFallback: #231F20 /* slate grey */
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -127,13 +127,18 @@ div[role="main"]
     padding: 18px
 
 // ad row (quick info and psa)
+.panel-row-ad
+  .panel-row-ad-quick-info
+    width: 100%
+    
+
 .panel-row-ad-quick-info
   .pane-title
     font-size: 35px
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
+    color: $baseColor
     line-height: 1.3em
     font-weight: 500
   .pane-content
@@ -232,7 +237,7 @@ div[role="main"]
     list-style: none
     margin-right: 25px
   h3
-    background-color: $baseColor
+    background-color: #000
     color: #fff
     margin-bottom: 15px
     padding: 8px 0
@@ -245,6 +250,7 @@ div[role="main"]
   background: #000
   p
     color: #fff
+    line-height: 1.7em
   h1
     border-bottom: 3px solid $baseColor
     text-transform: uppercase
@@ -257,3 +263,21 @@ div[role="main"]
 
 .ui-dialog .ui-dialog-titlebar-close
   right: -425px
+
+.panel-row-flexible-mid
+  h2
+    line-height: 1em
+    letter-spacing: 1px
+    font-size: 22px
+    text-transform: capitalize
+    padding: 10px
+    background: $baseColor
+
+#campaign-opt-in
+  font-size: 11px
+  a
+    vertical-align: super
+    font-weight: bold
+  a:hover
+    color: $secondaryLink
+    text-decoration: none
