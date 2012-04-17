@@ -94,27 +94,6 @@ function dosomething_blog_default_page_manager_handlers() {
     $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'left';
-    $pane->type = 'block';
-    $pane->subtype = 'fb_social-FB Comments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = '';
-    $display->content['new-2'] = $pane;
-    $display->panels['left'][1] = 'new-2';
-    $pane = new stdClass();
-    $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'blog_center';
