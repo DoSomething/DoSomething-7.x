@@ -513,7 +513,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .pane-current-campaigns-panel-pane-2 .unimage-wrapper h2,
 .action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, ol li:before, dfn, .page-user-registration .separator, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
-.vital-stats .name, #mini-panel-home_page .pane-share-of-day, input[placeholder="Cell"] .separator, .already-member, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
+.vital-stats .name, #mini-panel-home_page .pane-share-of-day, #dosomething-login-register-popup-form input[placeholder="Cell"] .separator, .already-member, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
@@ -526,7 +526,7 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, input[placeholder="Cell"] .error, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, #dosomething-login-register-popup-form input[placeholder="Cell"] .error, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
@@ -543,8 +543,8 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"],
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], input[placeholder="Cell"] #edit-title-text label,
-input[placeholder="Cell"] #edit-title-text--2 label, .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], #dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text label,
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 label, .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -576,8 +576,8 @@ thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-
 div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"],
 div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], input[placeholder="Cell"] #edit-title-text label,
-input[placeholder="Cell"] #edit-title-text--2 label, .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], #dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text label,
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 label, .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -638,7 +638,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   color: #47c965;
 }
 
-.alert-red, input[placeholder="Cell"] .error {
+.alert-red, #dosomething-login-register-popup-form input[placeholder="Cell"] .error {
   color: red;
 }
 
@@ -957,16 +957,16 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row, .page-node-picks .pane-profile-panel-pane-3 .views-row {
   width: 49%;
 }
-.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row,
-.ie8 .pane-ds-past-somethings-all .views-row,
-.ie8 .pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row,
-.ie8 .pane-related-projects-panel-pane-2 .views-row,
-.ie8 .pane-resources-panel-pane-1 .views-row,
-.ie8 .pane-projects-by-state-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-3 .views-row,
-.ie8 .pane-current-campaigns-panel-pane-2 .views-row,
-.ie8 .action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
+.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row, .ie8
+.pane-ds-past-somethings-all .views-row, .ie8
+.pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row, .ie8
+.pane-related-projects-panel-pane-2 .views-row, .ie8
+.pane-resources-panel-pane-1 .views-row, .ie8
+.pane-projects-by-state-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-3 .views-row, .ie8
+.pane-current-campaigns-panel-pane-2 .views-row, .ie8
+.action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
   height: 120px;
   overflow: hidden;
 }
@@ -2222,7 +2222,8 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
   padding: 0.5em;
   background-position: 0 0;
 }
-.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
+.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child,
+div.status p:last-child, div.warning p:last-child, div.error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
   margin-bottom: 0;
 }
 
@@ -2247,23 +2248,23 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
 }
 
 .warning, div.warning {
-  border-color: orange;
+  border-color: #ffa500;
   background-color: #fff6e5;
   background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
-  color: orange;
-  color: orange;
+  color: #ffa500;
+  color: #ffa500;
 }
 .warning:visited, div.warning:visited {
-  color: orange;
+  color: #ffa500;
 }
 .warning:hover, div.warning:hover {
-  color: orange;
+  color: #ffa500;
 }
 .warning:active, div.warning:active {
-  color: orange;
+  color: #ffa500;
 }
 
 .error, div.error {
@@ -2347,7 +2348,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2808,7 +2809,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -3067,7 +3068,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3122,7 +3123,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -3614,23 +3615,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
   outline: none;
 }
 
-input[placeholder="Cell"] {
+#dosomething-login-register-popup-form input[placeholder="Cell"] {
   margin-left: -15px;
 }
-input[placeholder="Cell"] .connect-with-facebook .form-wrapper {
+#dosomething-login-register-popup-form input[placeholder="Cell"] .connect-with-facebook .form-wrapper {
   margin-bottom: 0;
 }
-input[placeholder="Cell"] #edit-connect,
-input[placeholder="Cell"] #edit-connect--2 {
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-connect,
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-connect--2 {
   margin-bottom: 0;
 }
-input[placeholder="Cell"] #edit-title-text,
-input[placeholder="Cell"] #edit-title-text--2 {
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text,
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 {
   margin-top: 0;
   margin-bottom: 15px;
 }
-input[placeholder="Cell"] #edit-title-text label,
-input[placeholder="Cell"] #edit-title-text--2 label {
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text label,
+#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 label {
   font-weight: 600;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 40px;
@@ -3638,18 +3639,18 @@ input[placeholder="Cell"] #edit-title-text--2 label {
   line-height: 40px;
   padding-bottom: 12px;
 }
-input[placeholder="Cell"] .separator {
+#dosomething-login-register-popup-form input[placeholder="Cell"] .separator {
   font-size: 21px;
   font-family: din-web, "Trebuchet MS", sans-serif;
   margin-bottom: 12px;
   text-align: center;
 }
-input[placeholder="Cell"] .ds-registration-form-required {
+#dosomething-login-register-popup-form input[placeholder="Cell"] .ds-registration-form-required {
   position: relative;
   left: -11px;
   top: -1px;
 }
-input[placeholder="Cell"] .error {
+#dosomething-login-register-popup-form input[placeholder="Cell"] .error {
   font-size: 12px;
 }
 
