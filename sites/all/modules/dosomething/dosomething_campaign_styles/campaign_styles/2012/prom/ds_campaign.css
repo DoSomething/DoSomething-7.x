@@ -102,7 +102,11 @@ div[role="main"] {
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
-  font-family: din-web, "Trebuchet MS", sans-serif; }
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 600;
+  font-size: 30px; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-node-field-campain-date, .panel-row-top-right .panel-top-right-mini-info .pane-node-field-campaign-date {
+    color: #92d2ba; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
     color: #92d2ba;
