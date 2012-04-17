@@ -408,14 +408,36 @@ div[role="main"] {
     #school-name .pane-content h2 {
       color: white; }
 
-#share-your-story .pane-content {
-  padding: 10px;
-  width: 65%;
-  text-align: center; }
-  #share-your-story .pane-content .content-content {
-    padding: 5px;
-    background: #78c848;
-    background: rgba(0, 30, 0, 0.2); }
-    #share-your-story .pane-content .content-content a {
-      right: 20px;
-      bottom: 30px; }
+#share-your-story {
+  float: left; }
+  #share-your-story .pane-content {
+    padding: 10px;
+    width: 480px;
+    text-align: center; }
+    #share-your-story .pane-content .content-content {
+      padding: 5px 5px 35px 5px;
+      background: #78c848;
+      background: rgba(0, 30, 0, 0.2); }
+      #share-your-story .pane-content .content-content a {
+        right: 222px;
+        bottom: 30px; }
+
+#members-list {
+  float: left; }
+  #members-list .pane-title {
+    background: #8dc641;
+    padding: 10px 0 0 10px;
+    font-size: 24px;
+    line-height: 24px; }
+    #members-list .pane-title ul {
+      list-style: none; }
+      #members-list .pane-title ul li {
+        font-size: 18px;
+        line-height: 18px; }
+  #members-list .pane-content {
+    padding: 10px;
+    width: 271px;
+    max-height: 140px;
+    overflow: hidden; }
+    #members-list .pane-content .content-content {
+      padding: 5px 5px 35px 5px; }
