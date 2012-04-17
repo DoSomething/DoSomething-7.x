@@ -247,4 +247,9 @@ div[role="main"] {
   width: 48%; }
 
 .pane-campaign-social {
-  background: white; }
+  border-top: 2px solid #f48b8c; }
+  .pane-campaign-social .pane-content {
+    background: white; }
+
+.fb-facepile::before {
+  border-top: 2px solid #f48b8c; }
