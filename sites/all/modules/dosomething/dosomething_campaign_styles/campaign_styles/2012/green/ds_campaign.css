@@ -395,3 +395,15 @@ div[role="main"] {
 
 .view-campaign-gallery .jcarousel-container-horizontal {
   padding: 5px 0; }
+  .view-campaign-gallery .jcarousel-container-horizontal img {
+    border: 1px #1f8835 solid; }
+
+#school-name {
+  background-color: #009444; }
+  #school-name .pane-content {
+    padding: 6px 12px 6px 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 22px; }
+    #school-name .pane-content h2 {
+      color: white; }
