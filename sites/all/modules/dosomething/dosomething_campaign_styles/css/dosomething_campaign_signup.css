@@ -1,0 +1,17 @@
+.pane-content #dosomething-login-register-popup-form #edit-title-text,
+.pane-content #dosomething-login-register-popup-form .connect-with-facebook,
+.pane-content #dosomething-login-register-popup-form #edit-or,
+.pane-content #dosomething-login-register-popup-form .already-member,
+.pane-content #dosomething-login-register-popup-form .disclaimer {
+  display: none;
+}
+
+.pane-content #dosomething-login-register-popup-form .popup-content {
+  min-height: 0;
+  height: 125px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  background: transparent;
+}
