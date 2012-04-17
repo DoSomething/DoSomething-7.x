@@ -2,13 +2,8 @@
 
 Drupal.behaviors.dosomethingLoginLogin = {
   attach: function (context, settings) {
-    var loginForm = $('#dosomething-login-login-popup-form');
-    loginForm
-      .hide()
-      .find('.already-member a')
-        .click(function () {
-          loginForm.dialog('close');
-        });
+    var loginForm = $('#dosomething-login-login-popup-form')
+      .hide();
     $('.sign-in-popup').click(function (event) {
       loginForm.dialog({
         resizable: false,

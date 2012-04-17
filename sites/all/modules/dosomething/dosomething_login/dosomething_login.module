@@ -762,7 +762,7 @@ function dosomething_login_login_popup_form($form, &$form_state) {
     '#suffix' => '</span>',
     '#title' => t('become one'),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
+      'attributes' => array('class' => array('or-sign-in')),
       'html' => FALSE,
     ),
   );
