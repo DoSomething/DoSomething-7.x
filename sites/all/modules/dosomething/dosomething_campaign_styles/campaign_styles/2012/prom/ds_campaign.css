@@ -87,6 +87,8 @@ div[role="main"] {
     background: white;
     background-image: none;
     text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu .active {
+      color: #f48b8c; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
@@ -95,7 +97,7 @@ div[role="main"] {
       font-weight: 600;
       text-transform: uppercase;
       color: black; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover {
         color: #f48b8c;
         text-decoration: none; }
 
@@ -115,6 +117,8 @@ div[role="main"] {
 
 .pane-node-field-campaign-teaser {
   color: black; }
+  .pane-node-field-campaign-teaser .pane-content {
+    padding-bottom: 5px; }
 
 .panel-row-actions {
   background: #f0ebde; }
@@ -207,7 +211,7 @@ div[role="main"] {
 .drive {
   background: white; }
   .drive .pane-content {
-    background: white; }
+    background: #f0ebde; }
   .drive p {
     padding-left: 25px; }
   .drive li {
@@ -237,3 +241,6 @@ div[role="main"] {
 .scholarships .pane-1, .scholarships .pane-2 {
   float: left;
   width: 48%; }
+
+.pane-campaign-social {
+  background: white; }

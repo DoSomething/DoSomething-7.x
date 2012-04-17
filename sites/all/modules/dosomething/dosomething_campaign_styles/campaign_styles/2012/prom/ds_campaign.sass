@@ -122,6 +122,8 @@ div[role="main"]
   font-family: $accent
   ul.menu
     +block
+    .active
+      color: $baseColor
     background-image: none
     text-align: right
     a
@@ -132,7 +134,7 @@ div[role="main"]
       font-weight: 600
       text-transform: uppercase
       color: $secondaryLink
-      &:hover, .active
+      &:hover
         color: $baseColor
         text-decoration: none
 
@@ -156,6 +158,8 @@ div[role="main"]
 
 .pane-node-field-campaign-teaser
   color: black
+  .pane-content
+    padding-bottom: 5px
 
 // actions panel (sign-up and counter)
 .panel-row-actions
@@ -240,7 +244,7 @@ div[role="main"]
 .drive
   background: white    
   .pane-content
-    background: white
+    background: $contentBG
   p
     padding-left: 25px
   li
@@ -273,3 +277,7 @@ div[role="main"]
   .pane-1, .pane-2
     float: left
     width: 48%
+
+//social
+.pane-campaign-social
+  background: white
