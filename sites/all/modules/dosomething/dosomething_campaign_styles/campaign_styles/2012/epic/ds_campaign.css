@@ -116,7 +116,7 @@ div[role="main"] {
   border: none !important; }
   .pane-campaign-blog-panel-pane-2 .pane-content {
     padding: 1em; }
-  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:after {
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:before {
     overflow: hidden;
     *zoom: 1;
     display: block;
@@ -124,8 +124,9 @@ div[role="main"] {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     margin: 1em 0 1em 0; }
-  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:last-child:after {
-    border: none; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
+    border: none;
+    margin: 0; }
   .pane-campaign-blog-panel-pane-2 .views-field-title a {
     color: white; }
 

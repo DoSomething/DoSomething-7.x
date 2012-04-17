@@ -167,12 +167,13 @@ div[role="main"]
     padding: 1em
   .view-campaign-blog
     .views-row
-      &:after
+      &:before
         +insetBorder
         margin: 1em 0 1em 0
-      &:last-child
-        &:after
+      &:first-child
+        &:before
           border: none
+          margin: 0
   .views-field-title
     a
       color: white

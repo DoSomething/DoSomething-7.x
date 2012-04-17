@@ -288,7 +288,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   $element['#title'] = $instance['label'];
 
   $element['state'] = array(
-    '#title' => t('State'),
+    '#title' => t('School State'),
     '#type' => 'select',
     '#options' => $states,
     // We don't use their required checking because '--' is our empty value, but
@@ -297,7 +297,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#default_value' => $default_state,
   );
   $element['name'] = array(
-    '#title' => t('Name'),
+    '#title' => t('School Name'),
     '#type' => 'textfield',
     '#maxlength' => 1024,
     '#default_value' => $default_school,

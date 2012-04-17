@@ -187,7 +187,7 @@ div[role="main"] {
     font-weight: 600;
     line-height: 1em; }
   .panel-row-ad-quick-info .pane-content p {
-    margin: 0 0 1em 0; }
+    margin: 0 0 0.5em 0; }
   .panel-row-ad-quick-info .pane-content:before {
     margin-bottom: 20px;
     background: transparent; }
@@ -195,7 +195,8 @@ div[role="main"] {
 .panel-row-ad-psa {
   background: transparent;
   position: absolute;
-  right: 0; }
+  right: 0;
+  width: 66% !important; }
   .panel-row-ad-psa .pane-title {
     background: #0f87c9; }
   .panel-row-ad-psa .pane-content {

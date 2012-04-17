@@ -130,12 +130,13 @@ div[role="main"]
   border: none !important
   .view-campaign-blog
     .views-row
-      &:after
+      &:before
         +insetBorder
         margin: 1em 0 1em 0
-      &:last-child
-        &:after
+      &:first-child
+        &:before
           border: none
+          margin: 0
 
 // top right wrapper
 .panel-row-top-right

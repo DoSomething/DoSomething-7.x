@@ -11,6 +11,15 @@ body {
   background-size: cover;
   background-position-y: -5px; }
 
+p {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 1.6em;
+  line-height: 1.5em;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0;
+  color: #444444; }
+
 div[role="main"] {
   background: rgba(255, 255, 255, 0.4);
   -webkit-box-shadow: black 0 0 30px -10px;
@@ -58,7 +67,7 @@ div[role="main"] {
       font-size: 21px;
       font-weight: 600;
       text-transform: uppercase;
-      color: #999999; }
+      color: #444444; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
         color: #009488;
         text-decoration: none; }
@@ -69,21 +78,28 @@ div[role="main"] {
     background: none;
     color: #009488;
     padding: 0;
-    font-size: 26px;
     line-height: 1em; }
   .panel-row-top-right .panel-top-right-mini-info .pane-content {
-    font-size: 21px;
     line-height: 1.4em; }
 
 .panel-row-actions {
+  margin-bottom: 40px;
+  border: none;
   background: rgba(255, 255, 255, 0.4); }
+  .panel-row-actions img {
+    margin: 15px; }
   .panel-row-actions .pane-title {
     background: #009488; }
   .panel-row-actions .pane-content {
     padding: 18px; }
 
+.panel-row-actions-stats p {
+  margin-top: 20px; }
+
+.panel-row-actions-sign-up img {
+  margin: 15px 0 15px 25px; }
+
 .panel-row-ad-quick-info .pane-title {
-  font-size: 35px;
   padding: 0;
   background: transparent;
   text-transform: uppercase;
@@ -92,7 +108,6 @@ div[role="main"] {
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content h3 {
   color: #009488;
-  font-size: 26px;
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1em; }
@@ -107,6 +122,8 @@ div[role="main"] {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   margin-bottom: 20px; }
 
+.panel-row-flexible .pane-content {
+  overflow: auto; }
 .panel-row-flexible .pane-title {
   background-image: url("assets/header-bg.jpg");
   background-color: #f6f6f6;
@@ -115,11 +132,12 @@ div[role="main"] {
   .panel-row-flexible .pane-title a {
     text-decoration: none;
     text-align: center;
-    font-size: 40px;
     font-weight: 300;
     color: #009488;
     padding: 15px 0 10px;
-    display: block; }
+    display: block;
+    font-size: 40px;
+    line-height: 1em; }
 .panel-row-flexible .panel-pane {
   background: rgba(255, 255, 255, 0.4);
   margin-bottom: 40px;
@@ -131,9 +149,15 @@ div[role="main"] {
   -moz-box-shadow: 0px 20px 30px -10px #aaaaaa;
   -webkit-box-shadow: 0px 20px 30px -10px #aaaaaa; }
   .panel-row-flexible .panel-pane p {
-    margin-top: 0;
-    font-family: "DIN-Web";
-    font-size: 20px; }
+    margin-top: 0; }
+.panel-row-flexible #our-story {
+  width: 255px;
+  float: left; }
+  .panel-row-flexible #our-story p {
+    margin-bottom: 15px;
+    line-height: 1.3em; }
+.panel-row-flexible iframe {
+  float: right; }
 .panel-row-flexible .blog {
   background: transparent; }
   .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
@@ -156,10 +180,17 @@ div[role="main"] {
   background: none;
   margin: 0;
   padding: 0; }
+.panel-row-logos img {
+  border: none; }
 
 #honorees img {
-  margin: 0 auto;
+  margin: 15px auto;
   display: block; }
+#honorees:first-child {
+  margin-bottom: 20px; }
 
 .ds-panel .pane-content {
   padding: 15px 15px 15px 15px; }
+
+.center {
+  text-align: center; }

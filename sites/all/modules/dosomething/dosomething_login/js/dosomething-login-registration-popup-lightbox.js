@@ -8,9 +8,6 @@ Drupal.behaviors.dosomethingLoginRegister = {
   attach: function (context, settings) {
     var popupForm = $('#dosomething-login-register-popup-form');
     var blockForm = $('#dosomething-login-register-block');
-    var date = new Date();
-    var dateValidAge = 90;
-    var dateThreshold = new Date(date.getFullYear() - dateValidAge, 0, 1);
     var phoneField = popupForm.find('#edit-cell');
     var emailField = popupForm.find('#edit-email');
 
@@ -20,45 +17,16 @@ Drupal.behaviors.dosomethingLoginRegister = {
           popupForm.dialog('close');
         });
 
-    function validEmail(email) {
-      return /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i.test(email);
-    }
-    function validPhone(phone) {
-      // Check for no spaces or dashes and remove country code.
-      // We assume all users are US or Canada.
-      phone = phone.replace(/^1/, '').replace(/[^0-9]/g, '');
-      return phone.length == 10;
-    }
-
     popupForm.hide();
+
     // We need a special validator for the email/mobile number field.
     jQuery.validator.addMethod('cell_or_email', function (value, element, params) {
-      phone = validPhone(value);
-      email = validEmail(value);
+      phone = Drupal.dsRegistration.validPhone(value);
+      email = Drupal.dsRegistration.validEmail(value);
       return this.optional(element) || (phone || email);
-    }, 'Please enter a valid email address or phone number (no spaces).');
+    }, 'Please enter a valid email address or phone number.');
 
-    // Conditional validation for parental email address.
-    jQuery.validator.addMethod('parent_email', function (value, element, params) {
-      var now = new Date();
-      var year = $('#edit-year').val();
-      var birthDate = new Date(year, $('#edit-month').val() - 1, $('#edit-day').val());
-      var date13 = new Date(now.getFullYear() - 13, now.getMonth(), now.getDate());
-      if (birthDate.getTime() >= date13.getTime() && year) {
-        if (!value) {
-          return false;
-        }
-        return validEmail(value);
-      }
-      return true;
-    }, 'Please enter a valid email address.');
-
-    // Conditional validation for ensuring uniqueness of parental email.
-    jQuery.validator.addMethod('unique_parent_email', function (value, element, params) {
-      var email = popupForm.find('#edit-email').val();
-      return !(email && email == value);
-    }, "Your parent/guardian email cannot be the same as your own. If you use your parent's email address as your own then please email help@dosomething.org.");
-
+    // Run when the popup form submit is run.
     $('#edit-final-submit').click(function (event) {
       // The elements are disabled, but still need to actually post.
       popupForm.find('.dosomething-original-value').each(function () {
@@ -67,7 +35,6 @@ Drupal.behaviors.dosomethingLoginRegister = {
       phoneField.removeAttr('disabled');
       emailField.removeAttr('disabled');
     });
-
 
     // Validate the form on click and open the dialog.
     $('#edit-first-submit').click(function (event) {
@@ -84,7 +51,7 @@ Drupal.behaviors.dosomethingLoginRegister = {
       }
       // Disable input access and set values depending on if
       // this is a valid email or cell phone number.
-      if (validEmail(cell_or_email)) {
+      if (Drupal.dsRegistration.validEmail(cell_or_email)) {
         popupForm.find('input[name="email"]').val(cell_or_email);
         emailField.attr('disabled', true);
         phoneField.removeAttr('disabled');
@@ -92,7 +59,7 @@ Drupal.behaviors.dosomethingLoginRegister = {
         // Hide the required field for phone.
         phoneField.next('span').hide();
       }
-      else if (validPhone(cell_or_email)) {
+      else if (Drupal.dsRegistration.validPhone(cell_or_email)) {
         popupForm.find('input[name="cell"]').val(cell_or_email);
         phoneField.attr('disabled', true);
         emailField.removeAttr('disabled');
@@ -114,6 +81,7 @@ Drupal.behaviors.dosomethingLoginRegister = {
       };
       $.post('dosomething/ajax/registration-data', postData);
 
+      // Open the dialog.
       popupForm.dialog({
         resizable: false,
         draggable: false,
@@ -127,50 +95,11 @@ Drupal.behaviors.dosomethingLoginRegister = {
       event.preventDefault();
     });
 
-    // Validate registration popup form on keyup and submit
-    popupForm.validate({
-      rules: {
-        first_name: 'required',
-        last_name: 'required',
-        day: {
-          required: true,
-          range: [01, 31]
-        },
-        month: {
-          required: true,
-          range: [01, 12]
-        },
-        year: {
-          required: true,
-          range: [date.getFullYear() - dateValidAge, date.getFullYear()]
-        },
-        pass: {
-          required: true,
-          minlength: 6
-        },
-        parent_email: {
-          parent_email: true,
-          unique_parent_email: true
-        }
-      },
-      messages: {
-        day: {
-          required: '',
-          range: ''
-        },
-        month: {
-          required: '',
-          range: ''
-        },
-        year: {
-          required: '',
-          range: ''
-        }
-      }
-    });
-
     // Validate visible block form on keyup and submit
     blockForm.validate({
+      errorPlacement: function(label, element) {
+        // Don't show any messages.
+      },
       rules: {
         first_name: 'required',
         last_name: 'required',

@@ -42,7 +42,7 @@ $bgFallback: $contentBG
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-a
+a, a:visited
   color: $baseColor
   &:hover
     color: $secondaryLink
@@ -122,6 +122,8 @@ div[role="main"]
   font-family: $accent
   ul.menu
     +block
+    .active
+      color: $baseColor
     background-image: none
     text-align: right
     a
@@ -132,15 +134,19 @@ div[role="main"]
       font-weight: 600
       text-transform: uppercase
       color: $secondaryLink
-      &:hover, .active
+      &:hover
         color: $baseColor
         text-decoration: none
 
-// top right wrapper
+// top right wrapper campaign date
 .panel-row-top-right
   // mini-info panel
   .panel-top-right-mini-info
     font-family: $accent
+    font-weight: 600
+    font-size: 30px
+    .pane-node-field-campain-date, .pane-node-field-campaign-date
+      color: $complement
     .pane-title
       background: none
       color: $complement
@@ -156,6 +162,8 @@ div[role="main"]
 
 .pane-node-field-campaign-teaser
   color: black
+  .pane-content
+    padding-bottom: 5px
 
 // actions panel (sign-up and counter)
 .panel-row-actions
@@ -240,7 +248,7 @@ div[role="main"]
 .drive
   background: white    
   .pane-content
-    background: white
+    background: $contentBG
   p
     padding-left: 25px
   li
@@ -267,3 +275,14 @@ div[role="main"]
   font-weight: 500
   color: $complement
   text-transform: uppercase
+
+// scholarships
+.scholarships
+  .pane-1, .pane-2
+    float: left
+    width: 48%
+
+//social
+.pane-campaign-social
+  background: white
+  
