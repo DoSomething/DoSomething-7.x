@@ -12,6 +12,8 @@ nav[role=navigation]
   text-rendering: optimizeLegibility
   font-family: $font-headline
   text-transform: uppercase
+  .ie7 &
+    background-color: transparent
   ul
     margin-top: 0
   a
@@ -24,12 +26,19 @@ nav[role=navigation]
       width: 100%
       padding-left: 233px
       display: table
+      .ie7 &
+        padding-left: 170px
       ul.menu
         display: table-row
+        li.expanded
+          list-style: none
         li
           display: table-cell
           width: 203px
           position: relative
+          .ie7 &
+            display: inline-block
+            float: left
           &.first
             padding-left: 3px
           &:nth-of-type(3)
@@ -52,6 +61,8 @@ nav[role=navigation]
             text-transform: capitalize
             +transition(opacity 0.2s 'ease-out')
             margin-left: -28px
+            .ie7 &
+              margin-left: -140px
             li
               display: block
               width: 100%
@@ -77,10 +88,14 @@ nav[role=navigation]
           &.first
             ul
               margin-left: -3px
+              .ie7 &
+                margin-left: -105px
           &.last
             width: 208px
             ul
               width: 232px
+              .ie7 &
+                margin-left: -233px
               li.last
                 width: 232px
           &:hover

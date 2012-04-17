@@ -478,11 +478,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -518,11 +518,11 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
@@ -794,7 +794,8 @@ h3.subhead {
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title,
+.view-current-campaigns .view-header h2.pane-title, .view-current-campaigns
+.view-header h2.pane-title,
 .pane-related-projects-panel-pane-1 h2.pane-title,
 .pane-related-projects-panel-pane-2 h2.pane-title,
 .pane-resources-panel-pane-1 h2.pane-title,
@@ -803,7 +804,8 @@ h3.subhead {
 .pane-featured-projects-panel-pane-3 h2.pane-title,
 .pane-current-campaigns-panel-pane-2 h2.pane-title,
 .action-finder-list h2.pane-title,
-.page-node-picks .pane-profile-panel-pane-3 h2.pane-title {
+.page-node-picks .pane-profile-panel-pane-3 h2.pane-title, .page-node-picks
+.pane-profile-panel-pane-3 h2.pane-title {
   background-color: transparent;
   display: inline;
   font-size: 21px;
@@ -1071,24 +1073,24 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
-.ie8 .image-teaser-module-teaser, .ie8 .view-school-proximity .views-row, .view-school-proximity .ie8 .views-row, .ie8 .pane-polls-landing-panel-pane-1 .unimage-wrapper, .pane-polls-landing-panel-pane-1 .ie8 .unimage-wrapper, .ie8 .blog-landing-pane-post .views-field-body, .blog-landing-pane-post .ie8 .views-field-body, .ie8 .pane-ds-current-somethings-all .something-description, .pane-ds-current-somethings-all .ie8 .something-description,
-.ie8 .pane-ds-past-somethings-all .something-description,
-.pane-ds-past-somethings-all .ie8 .something-description,
-.ie8 .pane-ds-editors-picks-all .something-description,
-.pane-ds-editors-picks-all .ie8 .something-description, .ie8 .pane-related-projects-panel-pane-1 .unimage-wrapper, .pane-related-projects-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-related-projects-panel-pane-2 .unimage-wrapper,
-.pane-related-projects-panel-pane-2 .ie8 .unimage-wrapper,
-.ie8 .pane-resources-panel-pane-1 .unimage-wrapper,
-.pane-resources-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-projects-by-state-panel-pane-1 .unimage-wrapper,
-.pane-projects-by-state-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-featured-projects-panel-pane-1 .unimage-wrapper,
-.pane-featured-projects-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-featured-projects-panel-pane-3 .unimage-wrapper,
-.pane-featured-projects-panel-pane-3 .ie8 .unimage-wrapper,
-.ie8 .pane-current-campaigns-panel-pane-2 .unimage-wrapper,
-.pane-current-campaigns-panel-pane-2 .ie8 .unimage-wrapper,
-.ie8 .action-finder-list .unimage-wrapper,
+.ie8 .image-teaser-module-teaser, .ie8 .view-school-proximity .views-row, .view-school-proximity .ie8 .views-row, .ie8 .pane-polls-landing-panel-pane-1 .unimage-wrapper, .pane-polls-landing-panel-pane-1 .ie8 .unimage-wrapper, .ie8 .blog-landing-pane-post .views-field-body, .blog-landing-pane-post .ie8 .views-field-body, .ie8 .pane-ds-current-somethings-all .something-description, .pane-ds-current-somethings-all .ie8 .something-description, .ie8
+.pane-ds-past-somethings-all .something-description,
+.pane-ds-past-somethings-all .ie8 .something-description, .ie8
+.pane-ds-editors-picks-all .something-description,
+.pane-ds-editors-picks-all .ie8 .something-description, .ie8 .pane-related-projects-panel-pane-1 .unimage-wrapper, .pane-related-projects-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-related-projects-panel-pane-2 .unimage-wrapper,
+.pane-related-projects-panel-pane-2 .ie8 .unimage-wrapper, .ie8
+.pane-resources-panel-pane-1 .unimage-wrapper,
+.pane-resources-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-projects-by-state-panel-pane-1 .unimage-wrapper,
+.pane-projects-by-state-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-featured-projects-panel-pane-1 .unimage-wrapper,
+.pane-featured-projects-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-featured-projects-panel-pane-3 .unimage-wrapper,
+.pane-featured-projects-panel-pane-3 .ie8 .unimage-wrapper, .ie8
+.pane-current-campaigns-panel-pane-2 .unimage-wrapper,
+.pane-current-campaigns-panel-pane-2 .ie8 .unimage-wrapper, .ie8
+.action-finder-list .unimage-wrapper,
 .action-finder-list .ie8 .unimage-wrapper, .ie8 .page-node-picks .pane-profile-panel-pane-3 .something-description, .page-node-picks .pane-profile-panel-pane-3 .ie8 .something-description {
   min-height: 97px;
 }
@@ -1328,7 +1330,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
-.panes-2 .panel-second .pane-narrow-thumb,
+.panes-2 .panel-second .pane-narrow-thumb, .panes-2
+.panel-second .pane-narrow-thumb,
 .pane-blog-center .pane-narrow-thumb {
   float: left;
   margin-right: 12px;
@@ -1336,7 +1339,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img, .panes-2
+.panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img {
   height: 60px;
   width: 60px;
@@ -1608,6 +1612,10 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   display: inline;
   float: right;
   margin-top: 8px;
+}
+.ie7 #dosomething-blocks-make-an-impact-form input[type="submit"], .ie7
+#dosomething-blocks-make-an-impact-form-front input[type="submit"] {
+  margin-top: 0;
 }
 
 .featured-project-switcher {
@@ -2623,19 +2631,6 @@ ul.inline, ul.inline li {
 }
 
 /* LAYOUT -------------------------------------------------------------- */
-.wireframe {
-  outline: 1px dashed red;
-}
-.wireframe > * {
-  outline: 1px dashed #ff8000;
-}
-.wireframe > * > * {
-  outline: 1px dashed yellow;
-}
-.wireframe > * > * > * {
-  outline: 1px dashed #80ff00;
-}
-
 .container, nav[role=navigation] .region-navigation, #block-menu-menu-footer .content {
   width: 1030px;
   margin: 0 auto;
@@ -2646,6 +2641,9 @@ body.one-sidebar.sidebar-first [role=main] {
   width: 797px;
   float: right;
   margin: 5px 0;
+}
+.ie7 body.one-sidebar.sidebar-first [role=main] {
+  width: 750px;
 }
 
 .region-sidebar-first {
@@ -2660,6 +2658,11 @@ body.one-sidebar.sidebar-first [role=main] {
   width: 186px;
   margin-right: 0;
   float: right;
+}
+
+.ie7 #mini-panel-home_page .panel-col-first, .ie7
+#mini-panel-home_page .panel-col-second {
+  width: 49%;
 }
 
 body {
@@ -2729,6 +2732,9 @@ body {
   right: 25px;
   padding: 10px;
   top: 4px;
+}
+.ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
+  top: 9px;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .form-item-keys-1 {
   margin-left: 1.5em;
@@ -2846,6 +2852,9 @@ nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-transform: uppercase;
 }
+.ie7 nav[role=navigation] {
+  background-color: transparent;
+}
 nav[role=navigation] ul {
   margin-top: 0;
 }
@@ -2869,13 +2878,23 @@ nav[role=navigation] .region-navigation .block-menu-block {
   padding-left: 233px;
   display: table;
 }
+.ie7 nav[role=navigation] .region-navigation .block-menu-block {
+  padding-left: 170px;
+}
 nav[role=navigation] .region-navigation .block-menu-block ul.menu {
   display: table-row;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.expanded {
+  list-style: none;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: table-cell;
   width: 203px;
   position: relative;
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
+  display: inline-block;
+  float: left;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first {
   padding-left: 3px;
@@ -2905,6 +2924,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   -o-transition: opacity 0.2s "ease-out";
   transition: opacity 0.2s "ease-out";
   margin-left: -28px;
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
+  margin-left: -140px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
   display: block;
@@ -2945,11 +2967,17 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:hov
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
   margin-left: -3px;
 }
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
+  margin-left: -105px;
+}
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last {
   width: 208px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
   width: 232px;
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
+  margin-left: -233px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul li.last {
   width: 232px;
@@ -4426,6 +4454,10 @@ comments.fb_iframe_widget {
   text-shadow: rgba(0, 0, 0, 0.8) 0 0 10px;
   text-transform: uppercase;
 }
+.ie7 .ribbon-front .dothis-title {
+  line-height: 65px;
+  top: 8px;
+}
 .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited {
@@ -4661,11 +4693,11 @@ comments.fb_iframe_widget {
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a {
   font-size: 21px;
 }
 
@@ -4778,58 +4810,61 @@ h3 .stuff-header {
 /* IE SPECIFIC -------------------------------------------------------------- */
 /* */
 /* ALL IE 8 - 6 */
-/* IE8 */
-.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+/* IE8, IE7 */
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+  line-height: 27px;
   padding: 0;
+  width: 94px;
 }
 
-.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
+.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last, .ie7 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
   width: 210px;
 }
 
-.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
+.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie7 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
+.not-logged-in #dosomething-login-register-block #edit-last-name, .ie7
 .not-logged-in #dosomething-login-register-block #edit-last-name {
   width: 90px;
 }
-.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
+.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email, .ie7 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
   width: 191px;
 }
 
-.ie8 body.front .selectBox-dropdown .selectBox-label {
+.ie8 body.front .selectBox-dropdown .selectBox-label, .ie7 body.front .selectBox-dropdown .selectBox-label {
   width: 339px !important;
 }
 
-.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
+.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons, .ie7 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
   padding-left: 98px;
   width: 73%;
 }
 
-.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label, .ie7 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
   min-width: 184px;
 }
 
-.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label {
+.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label, .ie7 .views-exposed-widget .selectBox-dropdown .selectBox-label {
   min-width: 161px;
 }
 
-.ie8 .ctools-jump-menu-select .selectBox-label {
+.ie8 .ctools-jump-menu-select .selectBox-label, .ie7 .ctools-jump-menu-select .selectBox-label {
   min-width: 164px !important;
   width: 164px !important;
 }
 
-.ie8 .panes-3 .panel-panel {
+.ie8 .panes-3 .panel-panel, .ie7 .panes-3 .panel-panel {
   width: 215px;
 }
 
-.ie8 .node-poll .poll {
+.ie8 .node-poll .poll, .ie7 .node-poll .poll {
   width: auto;
 }
 
-.ie8 .panel-landings .panel-row-middle .panel-panel {
+.ie8 .panel-landings .panel-row-middle .panel-panel, .ie7 .panel-landings .panel-row-middle .panel-panel {
   width: 215px;
 }
 
-.ie8 .region-sidebar-first .block-menu-block .content li a {
+.ie8 .region-sidebar-first .block-menu-block .content li a, .ie7 .region-sidebar-first .block-menu-block .content li a {
   padding-right: 12px;
 }
 
