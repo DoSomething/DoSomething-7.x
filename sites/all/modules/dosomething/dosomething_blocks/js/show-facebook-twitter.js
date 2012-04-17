@@ -6,7 +6,7 @@
 
 Drupal.behaviors.hideActivityblocks = {
   attach: function (context, settings) {
-    var $skyscraper = $('block-dosomething-blocks-dosomething-social-skyscraper .content');
+    var $skyscraper = $('#block-dosomething-blocks-dosomething-social-skyscraper .content');
     $skyscraper.find('.social-activity-content').hide();
     // set cursors to hand
     $skyscraper.find('h3')

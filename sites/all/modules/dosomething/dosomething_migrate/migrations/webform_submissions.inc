@@ -45,15 +45,11 @@ abstract class DSWebformSubmissionMigration extends Migration {
     );
     // We need to remap the original webform node to a new one. We create a
     // remapping array and use it here to load the proper node.
-    var_dump($nid);
     $mapping = array(
       736100 => 721439,
       748361 => 721441,
     );
-    if (in_array($nid, array_keys($mapping))) {
-      $webform_nid = $mapping[$nid];
-    }
-    var_dump($webform_nid);
+    $webform_nid = isset($mapping[$nid]) ? $mapping[$nid] : $nid;
     $this->webform = node_load($webform_nid);
     if (!$this->webform) {
       var_dump(t('WARNING: @name has no webform node.', array('@name' => $nid)));

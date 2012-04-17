@@ -36,10 +36,10 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['id'] = 'field_webform_project_submission_target_id_1';
-  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['table'] = 'field_data_field_webform_project_submission';
-  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['field'] = 'field_webform_project_submission_target_id';
-  $handler->display->display_options['relationships']['field_webform_project_submission_target_id_1']['required'] = 0;
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id']['id'] = 'field_webform_project_submission_target_id';
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id']['table'] = 'field_data_field_webform_project_submission';
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id']['field'] = 'field_webform_project_submission_target_id';
+  $handler->display->display_options['relationships']['field_webform_project_submission_target_id']['required'] = 0;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -104,7 +104,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
   $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';
   $handler->display->display_options['arguments']['sid']['field'] = 'sid';
-  $handler->display->display_options['arguments']['sid']['relationship'] = 'field_webform_project_submission_target_id_1';
+  $handler->display->display_options['arguments']['sid']['relationship'] = 'field_webform_project_submission_target_id';
   $handler->display->display_options['arguments']['sid']['default_action'] = 'not found';
   $handler->display->display_options['arguments']['sid']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['sid']['default_argument_skip_url'] = 0;

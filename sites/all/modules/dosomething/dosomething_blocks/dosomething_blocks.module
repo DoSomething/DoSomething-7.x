@@ -60,7 +60,7 @@ function dosomething_blocks_block_view($delta = '') {
       break;
     case 'dosomething_make_impact_front':
       $block['subject'] = t('Action Finder');
-      $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
+      $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form_front');
       break;
 
     case 'dosomething_utility_bar':
@@ -645,6 +645,14 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
     '#tag_name' => $plugin['html tag name'],
     '#attributes' => drupal_attributes($attributes),
   );
+}
+
+/**
+ * Create the impact form for the front page. This essentially extends the
+ * regular form dosomething_blocks_make_an_impact_form and alters the text.
+ */
+function dosomething_blocks_make_an_impact_form_front() {
+  return call_user_func_array('dosomething_blocks_make_an_impact_form', func_get_args());
 }
 
 /**

@@ -296,7 +296,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_embedded_video',
-      'label' => 'Video (optional)',
+      'label' => 'Do you have any new videos to add?',
       'required' => 0,
       'settings' => array(
         'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
@@ -308,7 +308,8 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'media',
         'settings' => array(
           'allowed_schemes' => array(
-            'public' => 'public',
+            'public' => 0,
+            'vimeo' => 'vimeo',
             'youtube' => 'youtube',
           ),
           'allowed_types' => array(
@@ -317,7 +318,12 @@ The content from this field will only be shown to anonymous users.',
             'image' => 0,
             'video' => 'video',
           ),
-          'browser_plugins' => array(),
+          'browser_plugins' => array(
+            'library' => 0,
+            'media_default--media_browser_1' => 0,
+            'media_internet' => 'media_internet',
+            'upload' => 0,
+          ),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
@@ -509,8 +515,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_update',
       'default_value' => '',
       'deleted' => '0',
-      'description' => 'Please don\'t use BMP files.
-Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ',
+      'description' => '',
       'display' => array(
         'Full' => array(
           'label' => 'above',
@@ -565,38 +570,70 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'entity_type' => 'node',
       'field_name' => 'field_project_photo',
-      'label' => 'Project Photo',
-      'required' => '0',
+      'label' => 'Do you have any new photos to add?',
+      'required' => 0,
       'settings' => array(
         'alt_field' => 0,
         'file_directory' => 'project_photos',
-        'file_extensions' => '',
-        'max_filesize' => 0,
-        'max_resolution' => '0',
-        'min_resolution' => 0,
+        'file_extensions' => 'jpg jpeg png gif',
+        'max_filesize' => '0',
+        'max_resolution' => '',
+        'min_resolution' => '',
         'title_field' => 1,
         'user_register_form' => FALSE,
       ),
       'weight' => '-4',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'image',
         'settings' => array(
-          'body_preset' => NULL,
-          'image_path' => 'project_photos',
           'insert' => 0,
           'insert_class' => '',
-          'insert_default' => array(
-            0 => 'auto',
-          ),
+          'insert_default' => 'auto',
           'insert_styles' => array(
-            0 => 'auto',
+            'auto' => 'auto',
+            'image' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
           ),
           'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
-          'teaser_preset' => NULL,
-          'use_default_image' => 0,
         ),
         'type' => 'image_image',
         'weight' => '3',
@@ -884,6 +921,9 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -894,6 +934,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'default_file' => 0,
         'display_default' => '1',
         'display_field' => 1,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -2791,6 +2832,8 @@ Use numbers only (no text).');
 The content from this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
   t('Did you do this project with a DoSomething Club?');
+  t('Do you have any new photos to add?');
+  t('Do you have any new videos to add?');
   t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('File attachments');
   t('Geocode Data');
@@ -2808,9 +2851,6 @@ The content from this field will only be shown to anonymous users.');
   t('Issues');
   t('List the email address or mobile number of anyone who donated time or goods to your project.');
   t('Measurable impact');
-  t('Number of People Doing It');
-  t('Please don\'t use BMP files.
-Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
   t('Project');
   t('Project Photo');
   t('Related Action Guide');
@@ -2821,12 +2861,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('The content from this field will only be shown to logged in users.');
   t('This an auto complete field.  Start typing in the name of your project. If you haven\'t yet posted a project <a href="/node/add/project"> click here </a>.');
   t('Title');
-  t('Type');
-  t('Update');
-  t('Updated number of new people involved in the project');
-  t('Updated number of new people/animals helped');
   t('Video');
-  t('Video (optional)');
   t('Web site link');
   t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What progress have you made since your original post?');

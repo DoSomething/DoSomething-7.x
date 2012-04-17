@@ -1530,6 +1530,9 @@ function dosomething_login_save_profile_pic($uid, $fbid) {
       ))
       ->condition('uid', $uid)
       ->execute();
+    // Remove old image style since new file has same name.
+    $pic_uri = image_style_path($style_name = 'action_results_thumbnail', $picture_file->uri);
+    file_unmanaged_delete($pic_uri);
   }
 }
 
