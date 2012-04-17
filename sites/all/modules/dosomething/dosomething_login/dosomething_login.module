@@ -972,6 +972,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   // Note: Because we're doing drupal_write_record instead of profile_create,
   // we can't hook in on profile insert anywhere.  We should change this,
   // and if we do, then update dosomething_projects_general_register_form_submit
+  // and dosomething_projects_general_form_dosomething_login_register_popup_form_alter
   // so we can use hook_entity_insert.
   $profile = new stdClass();
   $profile->type = 'main';
