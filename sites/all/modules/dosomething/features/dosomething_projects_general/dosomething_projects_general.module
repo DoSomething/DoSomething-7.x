@@ -239,17 +239,19 @@ function dosomething_projects_general_add_user_to_connected_groups($account = NU
     $cell = $profile_wrapper->field_user_mobile->value();
   }
   $submissions = dosomething_projects_general_find_connected_submissions($email, $cell);
-  if (!empty($submissions['webform_submission_entity'])) {
-    // MAke sure we have the account for associating the group.
-    if (is_null($account)) {
-      $account = user_load($profile->uid);
-    }
-    foreach ($submissions['webform_submission_entity']  as $sid => $submission) {
-      $group = og_get_group('webform_submission_entity', $submission->sid, TRUE);
-      if (!isset($group->gid)) {
-        $group->save();
+  foreach (array('node', 'webform_submission_entity') as $entity_type) {
+    if (!empty($submissions[$entity_type])) {
+      // Make sure we have the account for associating the group.
+      if (is_null($account)) {
+        $account = user_load($profile->uid);
       }
-      og_group($group->gid, array('entity' => $account, 'save' => FALSE, 'force reload' => FALSE));
+      foreach ($submissions[$entity_type]  as $id => $entity) {
+        $group = og_get_group($entity_type, $id, TRUE);
+        if (!isset($group->gid)) {
+          $group->save();
+        }
+        og_group($group->gid, array('entity' => $account, 'save' => FALSE, 'force reload' => FALSE));
+      }
     }
   }
   return array_keys($submissions);
@@ -276,7 +278,7 @@ function dosomething_projects_general_find_connected_submissions($email, $cell) 
   if (!empty($values)) {
     try {
       $query = new EntityFieldQuery();
-        $results = $query->entityCondition('entity_type', 'webform_submission_entity')
+        $results = $query->entityCondition('entity_type', array('webform_submission_entity', 'node'), 'IN')
         ->fieldCondition('field_participants', 'value', $values, 'IN')
         ->execute();
       return $results;
