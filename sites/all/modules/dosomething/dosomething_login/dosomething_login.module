@@ -970,8 +970,9 @@ function dosomething_login_register_block_submit($form, &$form_state) {
 
   // Save profile data.
   // Note: Because we're doing drupal_write_record instead of profile_create,
-  // we can't hook in on profile insert anywhere.  We should change this.
-  // If we, then see dosomething_projects_general_register_form_submit.
+  // we can't hook in on profile insert anywhere.  We should change this,
+  // and if we do, then update dosomething_projects_general_register_form_submit
+  // so we can use hook_entity_insert.
   $profile = new stdClass();
   $profile->type = 'main';
   $profile->uid = $account->uid;
