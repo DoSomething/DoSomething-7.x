@@ -35,6 +35,8 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
       'type' => 'file',
       'data' => drupal_get_path('module', 'dosomething_campaign_contact_form') . '/ctia.js',
     );
+
+    $form['actions']['submit']['#value'] = 'SIGN UP';
     
     // Replace labels with HTML5 Placeholder text.
     $make_placeholder = array('field_webform_mobile' => 'value', 'field_webform_email' => 'email');

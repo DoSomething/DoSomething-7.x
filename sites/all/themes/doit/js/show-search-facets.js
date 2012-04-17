@@ -16,7 +16,7 @@ Drupal.behaviors.show_search_facets = {
       .css('cursor', 'hand')
       .click(function () {
         $(this).toggleClass('active');
-        $filters.slideTogggle('400');
+        $('.block-facetapi ul.facetapi-facetapi-checkbox-links').slideTogggle('400');
       });
   }
 };

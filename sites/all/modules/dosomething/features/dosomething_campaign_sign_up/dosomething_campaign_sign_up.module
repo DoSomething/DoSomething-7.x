@@ -22,20 +22,31 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     return;
   }
 
+  // Get a shortcut to our part of the form.
+  $entity_form = &$form['submitted'];
+  $node = $form['#node'];
+
   // We don't really care about XSRF here, and this is required because a new user
   // won't be authenticated until they hit submit via ajax.
   unset($form['#token']);
 
+  if (isset($node->group_audience[LANGUAGE_NONE][0]['gid'])) {
+    if (module_exists('og') && is_object($group = og_load($node->group_audience[LANGUAGE_NONE][0]['gid']))) {
+      $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
+      $entity_form['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
+      $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
+      $form['#submit'][] = 'dosomething_campaign_sign_up_webform_submission';
+    }
+  }
+
+  $entity_form['group_group'][LANGUAGE_NONE]['#access'] = FALSE;
+
   global $user;
-  // Take no action if this user is not authenticated.
+  // Take no further action if this user is not authenticated.
   if ($user->uid == 0) {
     return;
   }
 
-  $node = $form['#node'];
-
-  // Get a shortcut to our part of the form.
-  $entity_form = &$form['submitted'];
 
   // The list field that specifies which fields on this form are enabled.
   $magic_fields_field = 'field_signup_magic_fields';
@@ -60,7 +71,6 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     }
   }
 
-  global $user;
   $profile = profile2_load_by_user($user, 'main');
   if ($profile) {
     // If we have a profile and don't have a value for the mobile number, provide the one from the profile as a default.
@@ -75,18 +85,8 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
   }
 
-  if (isset($node->group_audience[LANGUAGE_NONE][0]['gid'])) {
-    if (module_exists('og') && is_object($group = og_load($node->group_audience[LANGUAGE_NONE][0]['gid']))) {
-      $form_state['dosomething_campaign_signup_form_submit']['group'] = $group;
-      $entity_form['group_audience'][LANGUAGE_NONE]['#default_value'] = array($group->gid);
-      $entity_form['group_audience'][LANGUAGE_NONE]['#access'] = FALSE;
-      $form['#submit'][] = 'dosomething_campaign_sign_up_webform_submission';
-    }
-  }
-
-  $form['#validate'][] = 'dosomething_general_webform_email_and_mail_submit';
+  $form['#validate'][] = 'dosomething_general_webform_email_and_mail_validate';
   $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
-
 }
 
 /**
