@@ -7,15 +7,15 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     $this->dependencies = array('DSJsonNewUser', 'DSJsonChangedUser', 'DSFile');
 
     $this->addFieldMapping('uid', 'uid')->sourceMigration(array('DSJsonNewUser', 'DSJsonChangedUser'));
-    $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('created', 'created');
-    $this->addFieldMapping('changed', 'changed');
-    $this->addFieldMapping('status', 'status');
-    $this->addFieldMapping('promote', 'promote');
-    $this->addFieldMapping('sticky', 'sticky');
-    $this->addFieldMapping('language', 'language');
-    $this->addFieldMapping('path', 'path');
     $this->addSimpleMappings(array(
+      'title',
+      'created',
+      'changed',
+      'status',
+      'promote',
+      'sticky',
+      'language',
+      'path',
       'field_name_last',
       'field_name',
       'field_phone_required',
