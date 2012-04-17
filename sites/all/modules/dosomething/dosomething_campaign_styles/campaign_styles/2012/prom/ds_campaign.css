@@ -1,6 +1,6 @@
-a {
+a, a:visited {
   color: #f48b8c; }
-  a:hover {
+  a:hover, a:visited:hover {
     color: black; }
 
 h1.title {
