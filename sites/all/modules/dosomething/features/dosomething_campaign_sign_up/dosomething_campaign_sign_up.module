@@ -85,7 +85,7 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     $entity_form['field_webform_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $user->mail;
   }
 
-  $form['#validate'][] = 'dosomething_general_webform_email_and_mail_submit';
+  $form['#validate'][] = 'dosomething_general_webform_email_and_mail_validate';
   $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
 }
 
