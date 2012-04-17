@@ -560,7 +560,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_picture']['separator'] = '';
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
-  /* Field: Content: Project Photo */
+  /* Field: Content: Do you have any new photos to add? */
   $handler->display->display_options['fields']['field_project_photo']['id'] = 'field_project_photo';
   $handler->display->display_options['fields']['field_project_photo']['table'] = 'field_data_field_project_photo';
   $handler->display->display_options['fields']['field_project_photo']['field'] = 'field_project_photo';
@@ -1443,6 +1443,11 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['field'] = 'taxonomy_vocabulary_5_tid';
   $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['label'] = 'issues_and_causes';
   $handler->display->display_options['relationships']['taxonomy_vocabulary_5_tid']['required'] = 0;
+  /* Relationship: Webform submissions: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = 0;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
@@ -1598,6 +1603,19 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_picture';
   $handler->display->display_options['filters']['delta']['field'] = 'delta';
   $handler->display->display_options['filters']['delta']['value']['value'] = '0';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'nid';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project_report' => 'project_report',
+  );
+  /* Filter criterion: Webform Submission: Title (field_project_title) */
+  $handler->display->display_options['filters']['field_project_title_value']['id'] = 'field_project_title_value';
+  $handler->display->display_options['filters']['field_project_title_value']['table'] = 'field_data_field_project_title';
+  $handler->display->display_options['filters']['field_project_title_value']['field'] = 'field_project_title_value';
+  $handler->display->display_options['filters']['field_project_title_value']['operator'] = 'not empty';
 
   /* Display: Projects Landing pane */
   $handler = $view->new_display('panel_pane', 'Projects Landing pane', 'panel_pane_1');
