@@ -81,9 +81,6 @@ div[role="main"] {
         color: #d33936;
         text-decoration: none; }
 
-#edit-submitted-field-webform-school-reference-und-0-target-id legend {
-  display: none; }
-
 .campaign-counter-labels {
   color: white;
   font-size: 1.5em;
@@ -302,12 +299,6 @@ div[role="main"] {
 
 .sign-up-long-form {
   border: none !important; }
-  .sign-up-long-form .pane-content {
-    padding-bottom: 0; }
-  .sign-up-long-form .pane-dosomething-login-register-block {
-    border: none !important; }
-  .sign-up-long-form .pane-node-content {
-    border: none !important; }
   .sign-up-long-form .webform-client-form {
     border: none !important;
     -moz-box-shadow: none;
@@ -356,6 +347,7 @@ div[role="main"] {
     margin-bottom: 0px; }
 
 #school-name {
+  border: 0;
   background-color: #d33936; }
   #school-name .pane-content {
     padding: 6px 12px 6px 12px;
@@ -366,6 +358,7 @@ div[role="main"] {
       color: white; }
 
 #share-your-story {
+  border: 0;
   float: left; }
   #share-your-story .pane-content {
     padding: 10px;
@@ -379,6 +372,7 @@ div[role="main"] {
         bottom: 30px; }
 
 #members-list {
+  border: 0;
   float: left; }
   #members-list .pane-title {
     background: rgba(0, 0, 0, 0.2);
@@ -397,3 +391,6 @@ div[role="main"] {
     overflow: hidden; }
     #members-list .pane-content .content-content {
       padding: 5px 5px 35px 5px; }
+
+#drive-tools {
+  border: 0; }
