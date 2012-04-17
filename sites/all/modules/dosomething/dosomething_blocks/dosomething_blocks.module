@@ -652,8 +652,7 @@ function dosomething_blocks_fb_social_preset_view($preset, $url = null) {
  * regular form dosomething_blocks_make_an_impact_form and alters the text.
  */
 function dosomething_blocks_make_an_impact_form_front() {
-  $content = dosomething_blocks_make_an_impact_form();
-  return $content;
+  return call_user_func_array('dosomething_blocks_make_an_impact_form', func_get_args());
 }
 
 /**
