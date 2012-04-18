@@ -118,7 +118,8 @@ div[role="main"] {
     color: din-web, "Trebuchet MS", sans-serif;
     font-size: 21px;
     line-height: 1.4em;
-    background: none; }
+    background: none;
+    padding-bottom: 0; }
 
 .pane-node-field-campaign-teaser {
   color: black; }
