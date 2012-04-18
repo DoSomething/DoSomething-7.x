@@ -12,12 +12,8 @@ $complement: #ffffff
 $secondaryLink: black
 
 // borders
-@mixin borderTop
-  border-top: 1px solid #000000
-  border-top: 1px solid rgba(0,0,0,.5)
-@mixin borderBot
-  border-bottom: 1px solid #ffffff
-  border-bottom: 1px solid rgba(255,255,255,.5)
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
 
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
@@ -36,12 +32,11 @@ $bgFallback: #F5C36E
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: transparent
   background: rgba(188,134,70,.4)
 
 @mixin grayLine
-  +borderTop
-  +borderBot
+  border-top: $borderTop
+  border-bottom: $borderBot
 
 @mixin noBorder
   border: none !important
@@ -58,8 +53,8 @@ $bgFallback: #F5C36E
   +clearfix
   display: block
   content: ''
-  +borderTop
-  +borderBot
+  border-top: $borderTop
+  border-bottom: $borderBot
 
 
 //////////////////////////////////////////
@@ -475,7 +470,6 @@ div[role="main"]
   float: left
   .pane-title
     background: none
-    height: 207px
     padding: 10px 0 0 10px
     font-size: 24px
     line-height: 24px
@@ -494,6 +488,7 @@ div[role="main"]
 
 #drive-tools
   border: 0
+  clear: both
   .pane-content
     padding: 10px
     padding-bottom: 25px
