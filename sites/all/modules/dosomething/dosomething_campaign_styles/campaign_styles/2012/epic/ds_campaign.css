@@ -42,6 +42,9 @@ div[role="main"] {
     padding: 1.5em;
     text-align: center; }
 
+.three-boxes-last-child {
+  margin-right: 0 !important; }
+
 .line-top:before {
   overflow: hidden;
   *zoom: 1;
@@ -329,6 +332,9 @@ div[role="main"] {
       font-size: 2em;
       font-weight: 600;
       line-height: 1em; }
+
+.prizes-2-column-body-last-child {
+  margin-right: 0 !important; }
 
 .red-dot {
   list-style-image: url("assets/red-dot.png");
