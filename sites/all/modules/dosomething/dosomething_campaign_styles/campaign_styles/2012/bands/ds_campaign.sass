@@ -10,7 +10,7 @@
 $baseColor: #000000
 $complement: #ffffff
 $mainLink: #feca29
-$secondaryLink: #FF130A
+$secondaryLink: #FF130A // red
 $goldLink: #FFC10B
 $contentBG: rgba(254,238,131,.5)
 $bgColor_darkYellow: #D5A11C
@@ -228,13 +228,11 @@ div[role="main"]
     margin-bottom: 25px
 
 //sponsor logo
-.pane-node-field-sponsor-logo
+.sponsor-logo
   img
     position: absolute
-    top: 115px
-    left: 25px
-
-    //	/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bands/assets/save-music.png
+    bottom: 45px
+    left: 35px
 
 // teaser
 .pane-node-field-campaign-teaser
@@ -283,11 +281,24 @@ div[role="main"]
       .field-name-field-webform-mobile  
         margin-bottom: 0.5em
         input
-          width: 100%
+          width: 75%
       .field-name-field-webform-email
         margin-bottom: 0.5em
         input
-          width: 100%
+          width: 100% 	
+
+#edit-actions
+  position: absolute
+  right: 5px
+  bottom: 8px
+
+#campaign-opt-in
+  color: #fff
+  margin: -10px 0 10px 15px
+  a
+    color: #fff
+  a:hover
+    color: #bbb
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -330,12 +341,12 @@ div[role="main"]
     +block
     .pane-title
       background: $baseColor
-  .blog
-    background: transparent
-    &:before, &:after
-      +insetBorder
-    &:before,&:after
-      +insetBorder
+  // .blog
+  //   background: transparent
+  //   &:before, &:after
+  //     +insetBorder
+  //   &:before,&:after
+  //     +insetBorder
 
 // All Panels
 .panel-row-flexible
@@ -360,6 +371,7 @@ div[role="main"]
     padding: 0  
 
 .panel-row-top-logo
+  margin-bottom: 40px
   .pane-content
     padding: 0
     background: none
@@ -599,3 +611,5 @@ $contestsFontSize: 1em
   a:hover
     color: $secondaryLink
     text-decoration: none
+
+//blog

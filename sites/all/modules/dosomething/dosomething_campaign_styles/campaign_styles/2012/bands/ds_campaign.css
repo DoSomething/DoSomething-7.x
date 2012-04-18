@@ -180,10 +180,10 @@ div[role="main"] {
     left: 125px;
     margin-bottom: 25px; }
 
-.pane-node-field-sponsor-logo img {
+.sponsor-logo img {
   position: absolute;
-  top: 115px;
-  left: 25px; }
+  bottom: 45px;
+  left: 35px; }
 
 .pane-node-field-campaign-teaser {
   margin-bottom: 0; }
@@ -226,11 +226,24 @@ div[role="main"] {
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
-        width: 100%; }
+        width: 75%; }
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
+
+#edit-actions {
+  position: absolute;
+  right: 5px;
+  bottom: 8px; }
+
+#campaign-opt-in {
+  color: white;
+  margin: -10px 0 10px 15px; }
+  #campaign-opt-in a {
+    color: white; }
+  #campaign-opt-in a:hover {
+    color: #bbbbbb; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -270,22 +283,6 @@ div[role="main"] {
   background: rgba(254, 228, 131, 0.3); }
   .panel-row-flexible .panel-pane .pane-title {
     background: black; }
-.panel-row-flexible .blog {
-  background: transparent; }
-  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
-    overflow: hidden;
-    *zoom: 1;
-    display: block;
-    content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
-  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
-    overflow: hidden;
-    *zoom: 1;
-    display: block;
-    content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
 .panel-row-flexible {
   margin-bottom: 25px; }
@@ -304,14 +301,16 @@ div[role="main"] {
   background: none;
   padding: 0; }
 
-.panel-row-top-logo .pane-content {
-  padding: 0;
-  background: none; }
-.panel-row-top-logo p {
-  color: black;
-  font-size: 28px;
-  font-weight: bold;
-  margin: 0 0 0 20px; }
+.panel-row-top-logo {
+  margin-bottom: 40px; }
+  .panel-row-top-logo .pane-content {
+    padding: 0;
+    background: none; }
+  .panel-row-top-logo p {
+    color: black;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 0 20px; }
 
 /* need to isolate images in logo area */
 .field.field-name-field-campaign-promo-image {
