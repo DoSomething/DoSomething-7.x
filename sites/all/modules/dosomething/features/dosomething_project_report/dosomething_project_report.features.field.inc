@@ -1286,7 +1286,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_essay_build_it',
       'label' => 'What\'s your plan of action?',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -1356,7 +1356,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_essay_see_it',
       'label' => 'What\'s the problem you are trying to solve?',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -1529,7 +1529,7 @@ The content from this field will only be shown to anonymous users.',
         ),
       ),
       'deleted' => '0',
-      'description' => '',
+      'description' => '(i.e. number of people helped or number of items collected). Use numbers only (no text).',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1546,7 +1546,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_impact_amount',
-      'label' => 'Amount',
+      'label' => 'Quantity of Impact',
       'required' => 1,
       'settings' => array(
         'max' => '',
@@ -1612,7 +1612,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_impact_type',
-      'label' => 'Type',
+      'label' => 'Type of Impact',
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1867,7 +1867,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_report',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'List the email address or mobile number of anyone who donated time or goods to your project.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1879,7 +1879,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_participants',
-      'label' => 'Who else participated in your project/drive?',
+      'label' => ' Who else participated in your project/drive? Enter their email address or mobile number',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -2259,6 +2259,8 @@ The content from this field will only be shown to anonymous users.',
       'indexes' => array(),
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
           'hour' => 0,
@@ -2297,7 +2299,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_project_start_date',
-      'label' => 'Start date',
+      'label' => 'When will you start this project?',
       'required' => 0,
       'settings' => array(
         'default_value' => 'now',
@@ -2315,7 +2317,6 @@ The content from this field will only be shown to anonymous users.',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'repeat_collapsed' => 0,
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
@@ -2373,7 +2374,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_project_title',
-      'label' => 'Title',
+      'label' => 'Title of your project',
       'required' => 1,
       'settings' => array(
         'text_processing' => '0',
@@ -2386,7 +2387,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -2441,7 +2442,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_project_type',
-      'label' => 'Status',
+      'label' => 'What\'s the status of your project?',
       'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -2827,9 +2828,11 @@ Use numbers only (no text).',
 
   // Translatables
   // Included for use with string extractors like potx.
+  t(' Who else participated in your project/drive? Enter their email address or mobile number');
   t('(i.e. 5 staff and 25 volunteers for a total of 30, or 35 club members.)
 Use numbers only (no text).');
   t('(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"');
+  t('(i.e. number of people helped or number of items collected). Use numbers only (no text).');
   t('Address');
   t('Body (anonymous user)');
   t('Body (logged in user)');
@@ -2853,25 +2856,28 @@ The content from this field will only be shown to anonymous users.');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
   t('Issues');
-  t('List the email address or mobile number of anyone who donated time or goods to your project.');
   t('Measurable impact');
   t('Project');
   t('Project Photo');
+  t('Quantity of Impact');
   t('Related Action Guide');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
-  t('Start date');
-  t('Status');
   t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
   t('The content from this field will only be shown to logged in users.');
   t('This an auto complete field.  Start typing in the name of your project. If you haven\'t yet posted a project <a href="/node/add/project"> click here </a>.');
-  t('Title');
+  t('Title of your project');
+  t('Type of Impact');
+  t('Update');
+  t('Updated number of new people involved in the project');
+  t('Updated number of new people/animals helped');
   t('Video');
   t('Web site link');
   t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What progress have you made since your original post?');
   t('What\'s the problem you are trying to solve?');
+  t('What\'s the status of your project?');
   t('What\'s your plan of action?');
-  t('Who else participated in your project/drive?');
+  t('When will you start this project?');
   t('Why? e.g. There\'s trash all over my neighborhood');
   t('please select the most appropriate one, thanks!');
 
