@@ -76,7 +76,7 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
  */
 function dosomething_projects_general_participants_submit($form, &$form_state) {
   // Don't do anything for an incomplete webform.
-  if (empty($form_state['webform_completed']) || !$form_state['values']['details']['sid'] || !module_exists('og')) {
+  if (empty($form_state['webform_completed']) || !isset($form_state['values']['details']['sid']) || !module_exists('og')) {
     return;
   }
 
@@ -85,31 +85,30 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
   if (!isset($group->gid)) {
     $group->save();
   }
-  if (count($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE])) {
-    foreach ($form_state['webform_entity']['submission']->field_participants[LANGUAGE_NONE] as $delta => $item) {
+  $submission = $form_state['webform_entity']['submission'];
+  if (isset($submission->field_participants) && !empty($submission->field_participants[LANGUAGE_NONE])) {
+    foreach ($submission->field_participants[LANGUAGE_NONE] as $delta => $item) {
       // Make sure contact was not already dealt with.
       $key = array_search($item['value'], $form_state['previous_participants']);
       if ($key === FALSE) {
+        global $base_url, $language;
+        $title = $submission->field_project_title[LANGUAGE_NONE][0]['value'];
+
         if ($account = dosomething_general_load_user_by_mail_or_cell($item['value'])) {
           og_group($group->gid, array('entity' => $account));
-          global $base_url, $language;
-          $title = $form_state['webform_entity']['submission']->field_project_title[LANGUAGE_NONE][0]['value'];
           $sid = $form_state['values']['details']['sid'];
-          $message = '<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the "' . $title . '" project page. Check out your project\'s page by going to ' . $base_url . '/webform-submission/' . $sid . '. From this page you can now update the DoSomething.org community on the project, add your other members to the project page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p><p>Thanks!</p>';
+          $message = "<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the '$title' project page. Check out your project's page by going to $base_url/webform-submission/$sid. From this page you can now update the DoSomething.org community on the project, add your other members to the project page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p><p>Thanks!</p>";
           drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
         }
         else {
           // Otherwise send a message to the user.
-          global $base_url, $language;
           $submission_account = user_load($form_state['values']['details']['uid']);
           $profile = profile2_load_by_user($submission_account, 'main');
           $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
           // TODO: Sending message and mail means no sanitization.
-          $title = $form_state['webform_entity']['submission']->field_project_title[LANGUAGE_NONE][0]['value'];
-          $url = $base_url;
           $first = $profile_wrapper->field_user_first_name->value();
           $last = $profile_wrapper->field_user_last_name->value();
-          $message = '<p>Hey,</p><p>' . $first . ' ' . $last . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
+          $message = "<p>Hey,</p><p> $first $last has invited you to join '$title' on DoSomething.org</p><p>All you have to do is head over to $base_url and fill out the form to become a DoSomething.org member. Then you'll be able to update the DoSomething.org community on the projects we're working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p>";
           if (valid_email_address($item['value'])) {
             drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
           }
@@ -126,7 +125,7 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
   }
 
   // If anyone is left in the previous list, then remove them from the group.
-  if (count($form_state['previous_participants'])) {
+  if (!empty($form_state['previous_participants'])) {
     foreach ($form_state['previous_participants'] as $contact_value) {
       if ($account = dosomething_general_load_user_by_mail_or_cell($contact_value)) {
         og_ungroup($group->gid, 'user', $account);
