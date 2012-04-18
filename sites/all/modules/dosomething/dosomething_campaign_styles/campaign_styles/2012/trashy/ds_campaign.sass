@@ -27,7 +27,7 @@ $bgFallback: #2387c7
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: rgba(249,246,243,.99)
+  background: #f9f6f3
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -88,6 +88,9 @@ div[role="main"]
   &:last-child
     margin-right: 0
 
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
 
 .line-top
   &:before
@@ -321,19 +324,19 @@ div[role="main"]
   hr
     left: 20%
     position: absolute
-    top: 136px
+    top: 44%
     width: 60%
   .prizes-movie-ticket-content
     left: 0
     margin-left: 5%
     position: absolute
-    top: 25px
+    top: 4%
     width: 90%
   .prizes-pizza-content
     left: 0
     margin-left: 5%
     position: absolute
-    top: 175px
+    top: 54%
     width: 90%
 
 .report-back-teaser
@@ -345,9 +348,8 @@ div[role="main"]
 
 .scholarship-box-content
   height: 110px
-  margin-top: -55px
   position: relative
-  top: 50%
+  top: 25%
 
 .sign-up-long-form
   +noBorder
@@ -382,6 +384,7 @@ div[role="main"]
     li
       list-style-image: none
       margin: 0
+      padding: 8px 0 8px 0
 
 .trashy-headline
   font-family: $accent
@@ -431,6 +434,11 @@ div[role="main"]
     text-align: center
     h2
       color: black
-      font-size: 3.5em
+      font-size: 3em
       font-weight: $boldWeight
+      line-height: 1em
       padding: 0.25em
+
+//IE8 does not support :last-child
+.trashy-two-boxes-last-child
+  margin-right: 0 !important

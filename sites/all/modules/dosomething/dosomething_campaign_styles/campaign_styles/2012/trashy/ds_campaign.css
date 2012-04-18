@@ -20,7 +20,7 @@ body {
   background-position: center top; }
 
 div[role="main"] {
-  background: rgba(249, 246, 243, 0.99);
+  background: #f9f6f3;
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -33,6 +33,9 @@ div[role="main"] {
   margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
+
+.three-boxes-last-child {
+  margin-right: 0 !important; }
 
 .line-top:before {
   overflow: hidden;
@@ -83,7 +86,7 @@ div[role="main"] {
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: rgba(249, 246, 243, 0.99);
+    background: #f9f6f3;
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu .active {
@@ -108,7 +111,7 @@ div[role="main"] {
   text-transform: uppercase; }
 
 .pane-campaign-social .pane-content {
-  background: rgba(249, 246, 243, 0.99); }
+  background: #f9f6f3; }
   .pane-campaign-social .pane-content .fb-facepile:before {
     border-top: 1px solid #224289;
     border-bottom: 1px solid #0f87c9; }
@@ -138,7 +141,7 @@ div[role="main"] {
     background: none; }
 
 .panel-row-actions {
-  background: rgba(249, 246, 243, 0.99);
+  background: #f9f6f3;
   border: none;
   background: #bfdae8;
   margin: 0 0 2em 0; }
@@ -210,7 +213,7 @@ div[role="main"] {
   position: relative; }
 
 .panel-row-flexible .panel-pane {
-  background: rgba(249, 246, 243, 0.99); }
+  background: #f9f6f3; }
   .panel-row-flexible .panel-pane .pane-title {
     background: #0f87c9; }
 .panel-row-flexible .blog {
@@ -270,19 +273,19 @@ div[role="main"] {
 .prizes-box-content hr {
   left: 20%;
   position: absolute;
-  top: 136px;
+  top: 44%;
   width: 60%; }
 .prizes-box-content .prizes-movie-ticket-content {
   left: 0;
   margin-left: 5%;
   position: absolute;
-  top: 25px;
+  top: 4%;
   width: 90%; }
 .prizes-box-content .prizes-pizza-content {
   left: 0;
   margin-left: 5%;
   position: absolute;
-  top: 175px;
+  top: 54%;
   width: 90%; }
 
 .report-back-teaser {
@@ -294,9 +297,8 @@ div[role="main"] {
 
 .scholarship-box-content {
   height: 110px;
-  margin-top: -55px;
   position: relative;
-  top: 50%; }
+  top: 25%; }
 
 .sign-up-long-form {
   border: none; }
@@ -332,7 +334,8 @@ div[role="main"] {
     width: 100%; }
   .trashy-gallery #galleriffic li {
     list-style-image: none;
-    margin: 0; }
+    margin: 0;
+    padding: 8px 0 8px 0; }
 
 .trashy-headline {
   font-family: din-web, "Trebuchet MS", sans-serif;
@@ -378,6 +381,10 @@ div[role="main"] {
     text-align: center; }
     .trashy-two-boxes .pane-content h2 {
       color: black;
-      font-size: 3.5em;
+      font-size: 3em;
       font-weight: 600;
+      line-height: 1em;
       padding: 0.25em; }
+
+.trashy-two-boxes-last-child {
+  margin-right: 0 !important; }

@@ -32,7 +32,7 @@ $plugin = array(
     array('title' => 'gallery', 'href' => 'trashy/gallery'),
     array('title' => 'create your own', 'href' => 'trashy/user-gallery'),
     array('title' => 'project ideas', 'href' => 'trashy/project-ideas'),
-    array('title' => 'prizes/scholarships', 'href' => 'trashy/prizes'),
+    array('title' => 'prizes / scholarships', 'href' => 'trashy/prizes'),
     array('title' => 'tell us about it', 'href' => 'trashy/tell-us'),
   ),
 );
