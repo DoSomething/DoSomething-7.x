@@ -105,6 +105,7 @@ div[role="main"] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 30px; }
   .panel-row-top-right .panel-top-right-mini-info .pane-node-field-campain-date, .panel-row-top-right .panel-top-right-mini-info .pane-node-field-campaign-date {
+    font-size: 36px;
     color: #92d2ba;
     font-weight: 600; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
