@@ -4232,8 +4232,6 @@ comments.fb_iframe_widget {
 }
 
 .pane-dosomething-blocks-dosomething-social-node-buttons {
-  overflow: hidden;
-  *zoom: 1;
   margin-bottom: 0;
   width: 50%;
 }
