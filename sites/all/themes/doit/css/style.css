@@ -2764,7 +2764,10 @@ body {
   margin: 1em 8px 1em 0;
 }
 
-.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+  padding: 0;
+}
+.ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
   line-height: 27px;
   padding: 0;
   width: 94px;
