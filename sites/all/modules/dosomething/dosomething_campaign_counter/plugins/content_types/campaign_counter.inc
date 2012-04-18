@@ -74,10 +74,6 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
 function dosomething_campaign_counter_campaign_counter_spanize(&$number) {
   $number = str_split($number);
 
-  for ($i = 3; $i < count($number); $i++) {
-    $number[$i] = $number[$i].',';
-  }
-
   $span_open = '<span class="counter-number">';
   $span_close = '</span>';
 
