@@ -201,6 +201,39 @@ function dosomething_general_user_presave(&$edit, $account, $category) {
 }
 
 /**
+ * Get a user's full name as a string.
+ *
+ * @param $account
+ *  (object) A standard user object.
+ * @param $display_type
+ *  (string) type of name to show (public or private).
+ * @return string
+ */
+function dosomething_general_get_full_name($account, $display_type = 'public') {
+  $full_name = '';
+  $names = array();
+  $profile = profile2_load_by_user($account, 'main');
+
+  if (is_object($profile)) {
+    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+    $first_name = $profile_wrapper->field_user_first_name->value();
+    $last_name = $profile_wrapper->field_user_last_name->value();
+
+    switch ($display_type) {
+      case 'private':
+        // Show full name if available, otherwise show username.
+        $full_name = (!$first_name || !$last_name) ? $account->name : $first_name . ' ' . $last_name;
+        break;
+      case 'public':
+        // Show first name and last initial, or blank if not available.
+        $full_name = $first_name . ' ' . substr($last_name, 0, 1);
+        break;
+    }
+  }
+  return filter_xss($full_name);
+}
+
+/**
  * Search for users users by their cell phone number.
  *
  * @param $number
