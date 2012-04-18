@@ -69,6 +69,7 @@
     min-height: 240px
     padding: 18px
     width: 478px
+    margin: auto
 
   // Left column fields
   .form-item-first-name,
@@ -150,7 +151,8 @@
       width: 212px
       margin-top: 12px
     .ds-registration-form-required
-      top: 11px
+      top: -110px
+      left: 205px
 
   .form-item-parent-email
     input
@@ -169,5 +171,23 @@
       font-size: 12px
     a
       @extend .blue
+      text-decoration: underline
+
+  // Register to be a user button 'Finish'
+  .ds-login-popup-footer #edit-final-submit
+    @extend .go-button
+    position: relative
+    top: -52px
+    right: -525px
+
+  // Already a member text
+  .already-member
+    @extend .bold
+    font-family: $font-headline
+    float: right
+    font-size: 18px
+    padding-bottom: 6px
+    padding-right: 140px
+    a
       text-decoration: underline
 
