@@ -94,7 +94,7 @@ Drupal.behaviors.dosomethingBirthdayCheck = {
           required: ''
         },
         email: {
-          conditional_on_empty_field: Drupal.t('You must enter either an email address or cell phone number,') 
+          conditional_on_empty_field: Drupal.t('You must enter either an email address or cell phone number.')
         },
         cell: {
           conditional_on_empty_field: ''

@@ -590,9 +590,26 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
   // Don't show a user picture if there isn't one in the account.
-  if ($account->picture) {
-    $variables['member_picture'] = theme_image_style(array('style_name' => 'action_results_thumbnail', 'path' => $account->picture->uri));
+  $picture = array(
+    '#theme' => 'image_formatter',
+    '#item' => array(
+      'alt' => t('Member Profile Picture'),
+      'title' => '',
+    ),
+  );
+  if (isset($account->picture)) {
+    $picture['#image_style'] = 'action_results_thumbnail';
+    $picture['#item']['uri'] = $account->picture->uri;
   }
+  else {
+    $link = fboauth_action_link_properties('ds_connect');
+    $picture['#item']['uri'] = drupal_get_path('module', 'dosomething_user_my_somethings') . '/member-connect.png';
+    $picture['#path'] = array(
+      'path' => $link['href'],
+      'options' => $link,
+    );
+  }
+  $variables['member_picture'] = $picture;
 
   // Check to see if the profile object was loaded, if not, assign some junk
   // values to prevent the user page from blowing up.
@@ -830,9 +847,6 @@ function dosomething_user_my_somethings_counter($uid) {
   $campaigns = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
   $campaigns_completed = count($campaigns);
 
-  $action_guides = dosomething_user_my_somethings_action_guides_complete($uid);
-  $action_guides_completed = count($action_guides);
-
   $projects = dosomething_user_my_somethings_get_submissions($uid, 'project_report', 'field_project_title');
   $projects_uploaded = count($projects);
 
@@ -841,28 +855,12 @@ function dosomething_user_my_somethings_counter($uid) {
     'title' => t('Campaigns Completed'),
     'value' => $campaigns_completed,
   );
-  $items['action_guides_completed'] = array(
-    'title' => t('Action Guides Completed'),
-    'value' => $action_guides_completed,
-  );
   $items['projects_uploaded'] = array(
     'title' => t('Projects Uploaded'),
     'value' => $projects_uploaded,
   );
 
   return theme('dosomething_stats_counter', array('items' => $items));
-}
-
-/**
- * Get a list of action guides completed by user.
- */
-function dosomething_user_my_somethings_action_guides_complete($uid) {
-  $action_guides= db_query("SELECT w.sid FROM {webform_submissions} w
-                            INNER JOIN {field_data_field_project_type} t ON w.sid = t.entity_id
-                            INNER JOIN {field_data_field_action_guide_reference} ag ON w.sid = ag.entity_id
-                            WHERE t.field_project_type_value = :status AND ag.field_action_guide_reference_target_id IS NOT NULL AND w.uid = :uid", 
-                            array(':status' => DOSOMETHING_PROJECTS_COMPLETED, ':uid' => $uid))->fetchAll();
-  return $action_guides;
 }
 
 /*

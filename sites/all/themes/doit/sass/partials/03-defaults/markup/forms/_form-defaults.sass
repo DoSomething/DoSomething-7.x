@@ -19,21 +19,31 @@
   // fieldset
   //   clear: both
 
-.page-user-registration
-  .popup-content
-    +clearfix
-    background: $gray6
-    @extend .box-shadow
-    min-height: 240px
-    padding: 18px
-    width: 478px
-    margin: auto
-  .separator
-    @extend .bold
-    font-size: 21px
-    font-family: $font-headline
-    margin-bottom: 12px
-    text-align: center
+// .page-user-registration
+.popup-content
+  +clearfix
+  background: $gray6
+  @extend .box-shadow
+  // min-height: 240px
+  // padding: 18px
+  // width: 478px
+  // margin: auto
+
+.already-member
+  @extend .bold
+  font-family: $font-headline
+  float: right
+  font-size: 18px
+  padding-bottom: 6px
+  a
+    text-decoration: underline
+
+.separator
+  @extend .bold
+  font-size: 21px
+  font-family: $font-headline
+  margin-bottom: 12px
+  text-align: center
 
 .form-item,
 .form-actions
@@ -56,6 +66,10 @@ label, input[type=button], input[type=submit], button
 
 label
   @extend .bold
+
+.form-item .description
+  color: $gray
+  clear: both
 
 form.webform-client-form
   @extend .border-and-shadow
@@ -192,9 +206,6 @@ select.form-select
 // // drupal passwords
 // .password-strength, div.password-confirm
 //   width: 13em
-// .form-item .description
-//   font-size: 1em
-//   color: $gray
 
 // // drupal fieldsets
 // fieldset

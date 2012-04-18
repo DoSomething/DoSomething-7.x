@@ -67,7 +67,12 @@ function dosomething_schools_main_info($school_id) {
         ),
       ),
       'right' => array(
-        '#markup' => dosomething_schools_member_counter($school_id),
+        'members_counter' => array(
+          '#markup' => dosomething_schools_counter($school_id),
+        ),
+        'total_actions' => array(
+          '#markup' => $total_actions,
+        ),
       ),
     ),
   );
@@ -76,24 +81,48 @@ function dosomething_schools_main_info($school_id) {
 }
 
 /**
- * Return counter with number of users for this school.
+ * Return themed counter for members and actions for a school.
  */
-function dosomething_schools_member_counter($school_id) {
+function dosomething_schools_counter($school_id) {
   $items = array();
 
-  $query = db_select('field_data_field_school_reference');
-  $query->condition('entity_type', 'profile2', '=');
-  $query->condition('bundle', 'main', '=');
-  $query->condition('field_school_reference_target_id', $school_id, '=');
-  $total = $query->countQuery()->execute()->fetchObject();
-  $member_count = $total->expression;
+  $actions = dosomething_schools_done_it($school_id);
+  $actions = array_merge($actions['projects'], $actions['report_backs']);
+  $total_actions = count($actions);
+
+  $items['total_actions'] = array(
+    'title' => t('Total Actions'),
+    'value' => $total_actions,
+  );
+
+  $member_count = dosomething_schools_member_count($school_id);
 
   $items['school_members'] = array(
     'title' => t('Do Something Members'),
     'value' => $member_count,
   );
+
   return theme('dosomething_stats_counter', array('items' => $items));
 }
+
+
+/**
+ * Query for the total number of users with the school set on their profile.
+ */
+function dosomething_schools_member_count($school_id) {
+  $query = db_select('field_data_field_school_reference', 's');
+  $query->innerJoin('profile', 'p', 's.entity_id = p.pid');
+  $query->innerJoin('users', 'u', 'p.uid = u.uid');
+  $query->condition('s.entity_type', 'profile2', '=');
+  $query->condition('s.bundle', 'main', '=');
+  $query->condition('field_school_reference_target_id', $school_id, '=');
+  $query->condition('u.status', '1', '=');
+  $total = $query->countQuery()->execute()->fetchObject();
+  $member_count = $total->expression;
+
+  return $member_count;
+}
+
 
 /**
  * Get clubs that reference a school.
@@ -134,3 +163,237 @@ function dosomething_schools_clubs_gids($school_id) {
   return $gids_string;
 }
 
+
+/**
+ * Return projects and report backs related to a school.
+ */
+function dosomething_schools_done_it($school_id) {
+  $cid = 'dosomething_schools_done_it_' . $school_id;
+  $cache = cache_get($cid);
+  if (!is_object($cache) || !isset($cache->data)) {
+    $actions = array(
+      'projects' => dosomething_schools_done_it_projects($school_id),
+      'report_backs' => dosomething_schools_done_it_report_backs($school_id),
+    );
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data = $actions;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $actions = $cache->data;
+  }
+
+  return $actions;
+}
+
+/**
+ * Render 'Done it' items for display.
+ */
+function dosomething_schools_done_it_display($school_id, $all = TRUE) {
+  $items = dosomething_schools_done_it($school_id);
+
+  // Create new array from data for use in render array output.
+  $actions = array();
+  foreach ($items as $type => $data) {
+    if ($type == 'projects') {
+      if (count($data)) {
+        foreach ($data as $project) {
+          $submission = entity_load('webform_submission_entity', array($project->sid));
+          $submission = array_shift($submission);
+          $title = $submission->field_project_title;
+          $image = $submission->field_picture;
+
+          $action = new stdClass();
+          $action->image = isset($image[LANGUAGE_NONE][0]['uri']) ? $image[LANGUAGE_NONE][0] : NULL;
+          $action->uri = 'webform-submission/' .  $submission->sid;
+          $action->title = isset($title[LANGUAGE_NONE][0]['value']) ? $title[LANGUAGE_NONE][0]['value'] : t('New Project');
+          $actions[] = $action;
+        }
+      }
+    }
+    if ($type == 'report_backs') {
+      if (count($data)) {
+        // We only need one submission per campaign report back, so
+        // remove duplicates based on campaign entity id.
+        $new_array = array();
+        foreach ($data as $value) {
+          $new_array[$value->etid] = $value;
+        }
+        $report_backs = array_values($new_array);
+
+        foreach ($report_backs as $report_back) {
+          $campaign = node_load($report_back->etid);
+          $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+
+          $action = new stdClass();
+          $action->title = $campaign->title;
+          $action->image = isset($image[0]['uri']) ? $image[0] : NULL;
+          $action->uri = 'node/' . $campaign->nid;
+          $actions[] = $action;
+        }
+      }
+    }
+  }
+
+  if (!count($actions)) {
+    $empty_text = t('You have not done anything. Start a project or complete a campaign report back!');
+    $element = array(
+      '#type' => 'markup',
+      '#markup' => $empty_text,
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+    );
+  }
+
+  else {
+    // Set numbers of items, image style, and more link.
+    if ($all) {
+      $image_style = 'my_somethings';
+      $more_link = '';
+    }
+    else {
+      if (count($actions) > 4) {
+        $more_link = l('More >>', 'school/' . $school_id . '/done-it');
+      }
+      $actions = array_slice($actions, 0, 4);
+      $image_style = 'project_related_thumb';
+    }
+
+    // Create render array for display.
+    foreach ($actions as $delta => $action) {
+      $element[$delta] = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'views-row',
+          ),
+        ),
+        'image' => array(
+          '#theme' => 'image_formatter',
+          '#item' => $action->image,
+          '#image_style' => $image_style,
+          '#path' => array(
+            'path' => $action->uri,
+          ),
+        ),
+        'description' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'something-description',
+            ),
+          ),
+          'title' => array(
+            '#type' => 'link',
+            '#title' => t($action->title),
+            '#href' => $action->uri,
+            '#prefix' => '<div class="views-field-title">',
+            '#suffix' => '</div>',
+          ),
+        ),
+      );
+    }
+    $element['more'] = array(
+      '#prefix' => '<span class="more-link-right">',
+      '#suffix' => '</span>',
+      '#markup' => $more_link,
+    );
+  }
+  return $element;
+}
+
+
+/**
+ * Get project reports related to a school.
+ */
+function dosomething_schools_done_it_projects($school_id) {
+  // Query for all projects reports that reference a club
+  // in which that club references the school.
+  $query = db_select('webform_submissions', 'w');
+  $query->innerJoin('field_data_field_project_clubs', 'c', 'w.sid = c.entity_id');
+  $query->innerJoin('field_data_field_school_reference', 's', 'c.field_project_clubs_nid = s.entity_id');
+  $query->innerJoin('node', 'n', 's.entity_id = n.nid');
+  $query->innerJoin('field_data_field_project_title', 't', 'w.sid = t.entity_id');
+  $query->fields('w', array('sid', 'submitted'));
+  $query->addField('t', 'field_project_title_value', 'title');
+  $query->condition('s.field_school_reference_target_id', $school_id, '=');
+  $query->condition('n.status', '1', '=');
+  $results = $query->execute();
+
+  $items = array();
+  while ($result = $results->fetchObject()) {
+    $items[] = $result;
+  }
+
+  // Query for all project report submissions, submitted by
+  // users with the school set on their profile.
+  $query = db_select('field_data_field_school_reference', 's');
+  $query->innerJoin('profile', 'p', 's.entity_id = p.pid');
+  $query->innerJoin('webform_submissions', 'w', 'p.uid = w.uid');
+  $query->innerJoin('users', 'u', 'p.uid = u.uid');
+  $query->condition('s.field_school_reference_target_id', $school_id, '=');
+  $query->condition('s.entity_type', 'profile2', '=');
+  $query->condition('s.bundle', 'main', '=');
+  $query->condition('w.bundle', 'project_report', '=');
+  $query->condition('u.status', '1', '=');
+  $query->fields('w', array('sid', 'submitted'));
+  $results = $query->execute();
+
+  while ($result = $results->fetchObject()) {
+    $items[] = $result;
+  }
+
+  // Clean up any possible duplicates.
+  return array_unique($items, SORT_REGULAR);
+}
+
+
+/**
+ * Get campaign report backs related to a school.
+ */
+function dosomething_schools_done_it_report_backs($school_id) {
+  // Query for all campaign report backs that reference the school.
+  $query = db_select('webform_submissions', 'w');
+  $query->innerJoin('field_data_field_webform_school_reference', 's', 'w.sid = s.entity_id');
+  $query->innerJoin('node', 'n', 'w.nid = n.nid');
+  $query->innerJoin('og_membership', 'om', 'w.nid = om.etid');
+  $query->innerJoin('og', 'og', 'om.gid = og.gid');
+  $query->fields('w', array('sid', 'submitted'));
+  $query->fields('og', array('etid', 'label'));
+  $query->condition('s.field_webform_school_reference_target_id', $school_id, '=');
+  $query->condition('w.bundle', 'campaign_report_back', '=');
+  $results = $query->execute();
+
+  $items = array();
+  while ($result = $results->fetchObject()) {
+    $items[] = $result;
+  }
+
+  // Query for all campaign report back submissions, submitted by
+  // users with the school set on their profile.
+  $query = db_select('field_data_field_school_reference', 's');
+  $query->innerJoin('profile', 'p', 's.entity_id = p.pid');
+  $query->innerJoin('webform_submissions', 'w', 'p.uid = w.uid');
+  $query->innerJoin('users', 'u', 'p.uid = u.uid');
+  $query->innerJoin('node', 'n', 'w.nid = n.nid');
+  $query->innerJoin('og_membership', 'om', 'w.nid = om.etid');
+  $query->innerJoin('og', 'og', 'om.gid = og.gid');
+  $query->condition('s.field_school_reference_target_id', $school_id, '=');
+  $query->condition('s.entity_type', 'profile2', '=');
+  $query->condition('s.bundle', 'main', '=');
+  $query->condition('w.bundle', 'campaign_report_back', '=');
+  $query->condition('u.status', '1', '=');
+  $query->fields('w', array('sid', 'submitted'));
+  $query->fields('og', array('etid', 'label'));
+  $results = $query->execute();
+
+  while ($result = $results->fetchObject()) {
+    $items[] = $result;
+  }
+
+  // Clean up any possible duplicates.
+  return array_unique($items, SORT_REGULAR);
+}

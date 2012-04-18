@@ -107,18 +107,19 @@ function dosomething_login_block_info() {
  */
 function dosomething_login_block_view($delta = '') {
   $block = array();
+  $is_anonymous = user_is_anonymous();
   switch ($delta) {
     case 'become_member':
-      global $user;
-      if (!$user->uid) {
+      if ($is_anonymous) {
         if (arg(0) == 'node' && is_numeric(arg(1))) {
           $node = node_load(arg(1));
         }
-        if ((arg(0) != 'user' || arg(1) != 'registration') &&
-            (!isset($node) || $node->type != 'campaign_sign_up')) {
-          $block['subject'] = t('Become a Member');
-          $block['content'][] = drupal_get_form('dosomething_login_register_block');
-          $block['content'][] = drupal_get_form('dosomething_login_register_popup_form');
+        if ((!isset($node) || $node->type != 'campaign_sign_up')) {
+          if ((arg(0) != 'user' || arg(1) != 'registration')) {
+            $block['subject'] = t('Become a Member');
+            $block['content'][] = drupal_get_form('dosomething_login_register_block');
+            $block['content'][] = drupal_get_form('dosomething_login_register_popup_form');
+          }
           $block['content'][] = drupal_get_form('dosomething_login_login_popup_form');
         }
       }
@@ -129,8 +130,7 @@ function dosomething_login_block_view($delta = '') {
       }
       break;
     case 'register_block':
-      global $user;
-      if (!$user->uid) {
+      if ($is_anonymous) {
         drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
         drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-block.js');
         drupal_add_css(drupal_get_path('module', 'dosomething_login') . '/css/dosomething-login-registration-block.css');
@@ -358,28 +358,23 @@ function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
     user_pass_submit($form, $form_state);
     return;
   }
-  else {
-    $account = isset($form_state['values']['account']->uid) ? $form_state['values']['account'] : NULL;
-    if(!is_null($account)) {
-      require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
-      $reset_link = user_pass_reset_url($account);
-      $pass = user_password(6);
-      $hashed_pass = user_hash_password($pass);
-      $user = user_load($account->uid);
-      $user->pass = $hashed_pass;
-      user_save($user);
-      $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
-      //TODO FOR LAUNCH!!!! remove comment on the following line and delete the test line after it.
-      //$message = "Your DoSomething password is now " . $pass . " or log right in with: " . $reset_link;
-      $message = "TEST Your DS password is now " . $pass . " or log in with: " . $reset_link;
-      $response = sms_mobile_commons_send($number, $message, $options = array());
-      watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"', 
-        array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
-        $severity = WATCHDOG_NOTICE,
-        $link = NULL
-      );
-      drupal_set_message(t('Thanks for playing. A text message with reset instructions has been sent to your mobile phone.'));
-    }
+  elseif (isset($form_state['values']['account']->uid)) {
+    $account = $form_state['values']['account'];
+    require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+    $reset_link = user_pass_reset_url($account);
+    $pass = user_password(6);
+    $account = user_load($account->uid);
+    $account->pass = user_hash_password($pass);
+    user_save($account);
+    $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
+    // Note: If the message is too long, then it won't go through.
+    $message = "Your DoSomething password is now $pass or log right in with: $reset_link";
+    $response = sms_mobile_commons_send($number, $message);
+    watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"',
+      array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
+      WATCHDOG_NOTICE
+    );
+    drupal_set_message(t('A text message with reset instructions has been sent to your mobile phone.'));
   }
 }
 
@@ -763,7 +758,7 @@ function dosomething_login_login_popup_form($form, &$form_state) {
     '#suffix' => '</span>',
     '#title' => t('become one'),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
+      'attributes' => array('class' => array('or-sign-in')),
       'html' => FALSE,
     ),
   );
@@ -970,8 +965,10 @@ function dosomething_login_register_block_submit($form, &$form_state) {
 
   // Save profile data.
   // Note: Because we're doing drupal_write_record instead of profile_create,
-  // we can't hook in on profile insert anywhere.  We should change this.
-  // If we, then see dosomething_projects_general_register_form_submit.
+  // we can't hook in on profile insert anywhere.  We should change this,
+  // and if we do, then update dosomething_projects_general_register_form_submit
+  // and dosomething_projects_general_form_dosomething_login_register_popup_form_alter
+  // so we can use hook_entity_insert.
   $profile = new stdClass();
   $profile->type = 'main';
   $profile->uid = $account->uid;
@@ -1807,10 +1804,8 @@ function theme_dosomething_login_facebook_user_info($variables) {
  * Page callback for access denied menu callback.
  */
 function dosomething_login_access_denied_page() {
-  global $user;
-  if ($user->uid == 0) {
-    $form = drupal_get_form('user_login');
-    return $form;
+  if (user_is_anonymous()) {
+    return drupal_get_form('user_login');
   }
   else {
     return t('You are not authorized to access this page.');
@@ -1822,7 +1817,7 @@ function dosomething_login_ajax() {
   drupal_process_form($form['#form_id'], $form, $form_state);
   if ($errors = form_get_errors()) {
     $return = array(
-      'success' => false,
+      'success' => FALSE,
       'missing' => $errors,
     );
   }

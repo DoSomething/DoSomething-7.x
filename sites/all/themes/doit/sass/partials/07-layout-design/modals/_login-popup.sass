@@ -7,15 +7,8 @@
     height: auto !important
     display: none
 
-// Hide form when js is disabled
-.no-js
-  #dosomething-login-login-popup-form
-    display: none
-
-// This is the same form in a different location.
-#dosomething-login-register-facebook,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
   background: $white
   padding: 25px 34px
   top: 90px !important
@@ -37,15 +30,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       &:focus
         outline: none
 
-#dosomething-login-register-popup-form input[placeholder="Cell"]
-  margin-left: -15px
-
   // Facebook connect button
   .connect-with-facebook .form-wrapper
     margin-bottom: 0
 
-  #edit-connect,
-  #edit-connect--2
+  #edit-connect
     margin-bottom: 0
 
   // Title and border
@@ -62,12 +51,12 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       line-height: 40px
       padding-bottom: 12px
 
-  .separator
-    @extend .bold
-    font-size: 21px
-    font-family: $font-headline
-    margin-bottom: 12px
-    text-align: center
+  // .separator
+  //   @extend .bold
+  //   font-size: 21px
+  //   font-family: $font-headline
+  //   margin-bottom: 12px
+  //   text-align: center
 
   .ds-registration-form-required
     position: relative
@@ -79,14 +68,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     @extend .medium
     font-size: 12px
 
-// Gray box
-.popup-content
-  +clearfix
-  background: $gray6
-  @extend .box-shadow
-  min-height: 240px
-  padding: 18px
-  width: 478px
+  // Gray box
+  .popup-content
+    // +clearfix
+    // background: $gray6
+    // @extend .box-shadow
+    min-height: 240px
+    padding: 18px
+    width: 478px
 
   // Left column fields
   .form-item-first-name,
@@ -98,8 +87,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     float: left
     input
       width: 212px
-    .ie8 &
-      width: 212px
 
   // Right column fields
   .form-item-last-name,
@@ -107,8 +94,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     float: right
     margin-right: -7px
     input
-      width: 212px
-    .ie8 &
       width: 212px
 
   .form-item-email,
@@ -122,14 +107,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   // Birthday fields
   #edit-birthday
     +pie-clearfix
-    .ie8 &
-      position: relative
-      top: -17px
-      left: 7px
     label
       float: left
       margin-right: 31px
-      width: 54px
       .login-popup-birthday
         font-family: $font-sans
         font-size: 12px
@@ -147,8 +127,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
     input
       width: 40px
       text-align: center
-    .ie8 &
-      width: 40px
 
   .form-item-year
     margin-right: 0
@@ -166,14 +144,12 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
   .form-item-pass
     .ds-registration-form-required
       position: absolute
-      top: 245px
+      top: 253px
       left: 219px
-      .ie8 &
-        top: 264px
     label.error
       width: 212px
 
-  // Under 13 fields
+  // Under 13
   .under-13-field
     float: left
     padding: 12px 0
@@ -202,30 +178,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"]
       @extend .blue
       text-decoration: underline
 
-// Already a user login
-.already-member
-  @extend .bold
-  font-family: $font-headline
-  float: right
-  font-size: 18px
-  padding-bottom: 6px
-  a
-    text-decoration: underline
-
 // Finish button
-.ds-login-popup-footer
-  input#edit-final-submit,
-  input#edit-final-submit--2
-    @extend .go-button
-    position: relative
-    top: -38px
-    right: -403px
-
-// IE8
-.form-item-first-name,
-.form-item-last-name,
-.form-item-cell
-  .ds-registration-form-required
-    .ie8 &
-      left: 203px
-      top: -28px
+.ds-login-popup-footer input#edit-final-submit,
+.ds-login-popup-footer input#edit-final-submit--2
+  @extend .go-button
+  position: relative
+  top: -86px
+  right: -403px

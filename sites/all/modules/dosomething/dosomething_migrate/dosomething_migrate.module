@@ -250,3 +250,25 @@ function dosomething_migrate_update_nodes() {
     }
   }
 }
+
+/**
+ * Function to run manually to gracefully remove duplicate profiles.
+ */
+function dosomething_migrate_surgical_profile_deletion() {
+  $uids = db_query('SELECT uid FROM {profile} GROUP BY uid HAVING COUNT(uid) > 1');
+  while ($uid = $uids->fetchField()) {
+    $pids = db_query('SELECT pid FROM {profile} WHERE uid = :uid', array(':uid' => $uid))->fetchCol();
+    $chunks = array_chunk($pids, 50);
+    foreach ($chunks as $chunk) {
+      profile2_delete_multiple($chunk);
+      $r1 = db_delete('migrate_map_dssqluserprofile')
+        ->condition('destid1', $chunk)
+        ->execute();
+      $r2 = db_delete('migrate_map_dsjsonprofile')
+        ->condition('destid1', $chunk)
+        ->execute();
+      echo 'Dropped records from dssqluserprofile map: ' . $r1 . "\n";
+      echo 'Dropped records from dsjsonprofile map: ' . $r2 . "\n";
+    }
+  }
+}

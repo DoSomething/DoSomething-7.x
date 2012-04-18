@@ -710,7 +710,7 @@ function doit_search_api_page_result(array $variables) {
     'tips_and_tools' => 'field_picture',
   );
   if (isset($item->type) && in_array($item->type, array_keys($type_field_map))) {
-    if (isset($item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0])) {
+    if (isset($item->{$type_field_map[$item->type]}) && !empty($item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0])) {
       $output .= theme('image_formatter', array('item' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0], 'image_style' => 'search_results_thumbnail'));
     }
     else {

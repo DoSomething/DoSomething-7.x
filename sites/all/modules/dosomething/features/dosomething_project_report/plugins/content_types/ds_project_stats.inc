@@ -107,7 +107,7 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       ->execute();
     if (isset($result['node'])) {
       $nids = array_keys($result['node']);
-      $project_updates = node_load($nids);
+      $project_updates = node_load_multiple($nids);
     }
 
     if ($wrapper->field_impact_type->value() && $wrapper->field_impact_amount->value()) {
