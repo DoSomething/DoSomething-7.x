@@ -60,11 +60,11 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
 
   if ($form['#node']->type == 'project_report') {
     // Set default value on new project reports.
-    if (empty($form['#submission']) && is_null($form['submitted']['personal_information']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])) {
+    if (empty($form['#submission']) && isset($form['submitted']['personal_information'])) {
       $options = $form['submitted']['personal_information']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#options'];
-      // Use 2nd option, 1st option is 'none'.
-      $default = array_slice($options, 1, 1, TRUE);
-      if (!empty($default)) {
+      if (count($options) > 1) {
+        // Use 2nd option, 1st option is 'none'.
+        $default = array_slice($options, 1, 1, TRUE);
         $form['submitted']['personal_information']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'] = key($default);
       }
     }
