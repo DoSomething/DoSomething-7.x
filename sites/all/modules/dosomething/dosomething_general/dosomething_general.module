@@ -239,7 +239,7 @@ function _dosomething_general_find_user_by_cell_helper($number) {
   $query->innerJoin('users', 'u', 'u.uid = p.uid');
   $result = $query->fields('u', array('name'))
     ->condition('m.entity_type', 'profile2')
-    ->where("$replace = :number", array(':number' => $number))
+    ->where("$replace IN (:number, :number1)", array(':number' => $number, ':number1' => '1'.$number))
     ->execute();
   return $result->fetchField();
 }
