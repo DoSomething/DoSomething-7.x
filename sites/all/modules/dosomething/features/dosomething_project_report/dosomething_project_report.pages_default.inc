@@ -176,7 +176,7 @@ function dosomething_project_report_default_page_manager_handlers() {
       'formatter_settings' => array(),
       'context' => 'argument_entity_id:webform_submission_entity_1',
       'override_title' => 1,
-      'override_title_text' => 'Why It\'s Important',
+      'override_title_text' => 'Plan of Action',
     );
     $pane->cache = array();
     $pane->style = array(
