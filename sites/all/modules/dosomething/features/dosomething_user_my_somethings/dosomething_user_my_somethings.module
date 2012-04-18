@@ -1015,13 +1015,11 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
   $account = user_load($uid);
   $profile = profile2_load_by_user($account, 'main');
   $check_fields = array(
-    'field_user_address',
     'field_user_birthday',
     'field_user_first_name',
     'field_user_last_name',
     'field_user_hearabout',
     'field_user_official_rules',
-    'field_user_preferred_cause',
     'field_user_why_do_you',
     'field_user_mobile',
     'field_school_reference',
