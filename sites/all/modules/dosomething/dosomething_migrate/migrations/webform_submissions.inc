@@ -315,8 +315,14 @@ class DSWebform748361 extends DSWebformSubmissionMigration {
   }
 
   public function prepare($entity, $row) {
-    if (is_numeric((int) $row->data_gsid)) {
+    if (is_numeric($row->data_gsid)) {
       $entity->field_webform_school_reference['und'][0]['target_id'] = $row->data_gsid;
+    }
+    if ($row->data_gsid == 'null') {
+      unset($entity->field_webform_school_reference);
+    }
+    if (is_null($row->data_gsid)) {
+      unset($entity->field_webform_school_reference);
     }
     // Clean the phone number.
     $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);;
