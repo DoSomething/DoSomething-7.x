@@ -141,11 +141,6 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: User: Picture */
-  $handler->display->display_options['filters']['picture']['id'] = 'picture';
-  $handler->display->display_options['filters']['picture']['table'] = 'users';
-  $handler->display->display_options['filters']['picture']['field'] = 'picture';
-  $handler->display->display_options['filters']['picture']['value'] = '1';
 
   /* Display: Club Members */
   $handler = $view->new_display('panel_pane', 'Club Members', 'panel_pane_1');
