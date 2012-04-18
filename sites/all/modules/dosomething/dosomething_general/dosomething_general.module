@@ -222,7 +222,7 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
     switch ($display_type) {
       case 'private':
         // Show full name if available, otherwise show username.
-        $full_name = (!$first_name || !$last_name) ? $account->name : $first_name . ' ' . $last_name;
+        $full_name = (!$first_name && !$last_name) ? $account->name : $first_name . ' ' . $last_name;
         break;
       case 'public':
         // Show first name and last initial, or blank if not available.
