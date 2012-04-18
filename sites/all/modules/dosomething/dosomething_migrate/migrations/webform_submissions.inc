@@ -296,3 +296,30 @@ class DSWebform736100 extends DSWebformSubmissionMigration {
     $this->addUnmigratedDestinations(array('data_legal'));
   }
 }
+
+class DSWebform748361 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(748361);
+    $this->addFieldMapping('field_webform_email', 'data_email_address');
+    $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    $this->addUnmigratedSources(array('data_sign_up_messaging', 'data_state', 'data_name_of_school'));
+    $this->addUnmigratedDestinations(array(
+      'data_sign_up_messaging',
+      'data_email_address',
+      'data_phone_number',
+      'data_state',
+      'data_name_of_school',
+      'field_webform_email',
+      'field_webform_mobile',
+    ));
+  }
+
+  public function prepare($entity, $row) {
+    if (is_numeric((int) $row->data_gsid)) {
+      $entity->field_webform_school_reference['und'][0]['target_id'] = $row->data_gsid;
+    }
+    // Clean the phone number.
+    $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);;
+    $entity->field_webform_email['und'][0]['email'] = $row->data_email_address;
+  }
+}
