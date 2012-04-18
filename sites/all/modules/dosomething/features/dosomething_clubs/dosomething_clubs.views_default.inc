@@ -216,7 +216,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = '<a href="/start-something/projects">Start a project</a>';
+  $handler->display->display_options['empty']['area']['content'] = '<a href="/projects/submit">Start a project</a>';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
