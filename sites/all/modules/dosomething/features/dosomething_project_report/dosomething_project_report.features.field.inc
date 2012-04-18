@@ -231,7 +231,7 @@ The content from this field will only be shown to anonymous users.',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
@@ -327,7 +327,7 @@ The content from this field will only be shown to anonymous users.',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -636,7 +636,7 @@ The content from this field will only be shown to anonymous users.',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '3',
+        'weight' => '4',
       ),
       'widget_type' => 'imagefield_widget',
     ),
@@ -730,7 +730,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => 0,
+        'weight' => '0',
       ),
       'widget_type' => 'number',
     ),
@@ -852,6 +852,11 @@ The content from this field will only be shown to anonymous users.',
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'field_essay_build_it:value',
@@ -901,14 +906,14 @@ The content from this field will only be shown to anonymous users.',
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
+        'module' => 'entityreference',
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
           'size' => '60',
         ),
-        'type' => 'options_select',
-        'weight' => '5',
+        'type' => 'entityreference_autocomplete',
+        'weight' => '1',
       ),
     ),
   );
@@ -2843,7 +2848,6 @@ The content from this field will only be shown to anonymous users.');
   t('How Can Others Help? ');
   t('How many additional [people helped] since your original post?');
   t('How many additional people have gotten involved since your original post?');
-  t('How many people are directly involved in your project?');
   t('How many people has your project helped?');
   t('How? e.g. Get 10 friends on a Saturday to pick up trash');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
