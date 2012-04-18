@@ -103,10 +103,10 @@ div[role="main"] {
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif;
-  font-weight: 600;
   font-size: 30px; }
   .panel-row-top-right .panel-top-right-mini-info .pane-node-field-campain-date, .panel-row-top-right .panel-top-right-mini-info .pane-node-field-campaign-date {
-    color: #92d2ba; }
+    color: #92d2ba;
+    font-weight: 600; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
     color: #92d2ba;
@@ -254,12 +254,23 @@ div[role="main"] {
 .fb-facepile::before {
   border-top: 2px solid #f48b8c; }
 
-.refer {
+.mcommons-webform {
   float: left;
-  width: 65%;
-  margin-right: 5%; }
+  width: 66%;
+  margin-right: 5%;
+  border: none !important; }
+  .mcommons-webform input.field {
+    width: 85%;
+    height: 1.6em; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .go-button {
+    padding-top: 3px; }
+  .mcommons-webform .pane-content {
+    height: 166px;
+    padding: 0.5em; }
 
 .mcommons-webform-column {
   float: left;
-  width: 4%;
+  width: 40%;
   margin-right: 2%; }
