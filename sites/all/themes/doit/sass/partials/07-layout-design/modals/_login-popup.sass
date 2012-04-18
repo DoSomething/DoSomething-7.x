@@ -160,11 +160,28 @@
     right: -403px
 
   // Already a user login button 'Log in'
+  .ds-login-popup-footer #edit-final-submit
+    @extend .go-button
+    position: relative
+    top: -85px
+    right: -392px
+
   .ds-login-popup-footer #edit-final-submit--2
     @extend .go-button
     position: relative
-    top: -86px
-    right: -403px
+    top: -51px
+    right: -392px
+
+  // Already a member text
+  .already-member
+    @extend .bold
+    font-family: $font-headline
+    float: right
+    font-size: 18px
+    padding-bottom: 6px
+    padding-right: 0px
+    a
+      text-decoration: underline
 
 // Popup only forms for IE8 register or login, will not affect non-js forms
 .no-js.ie.ie8.js
