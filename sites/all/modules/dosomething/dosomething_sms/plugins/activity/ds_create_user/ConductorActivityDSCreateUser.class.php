@@ -97,7 +97,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     profile2_save($profile);
 
     $reset_link = user_pass_reset_url($account);
-    $message = t('You\'re registered! Your password is @pass or click: !link', array('!link' => $reset_link, '@pass' => $pass));
+    $message = t('You\'re registered! Your password for DoSomething.org is @pass or click: !link', array('!link' => $reset_link, '@pass' => $pass));
     $state->setContext('sms_response', $message);
     $state->markCompeted();
   }
