@@ -735,6 +735,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error
 .field-name-field-picture {
   background: url('images/rounded-bottom-shadow.png') no-repeat left 0 322px;
 }
+.ie8 .field-name-field-picture, .ie7 .field-name-field-picture {
+  background: url('images/rounded-bottom-shadow.gif') no-repeat left 0 322px;
+}
 .field-name-field-picture img {
   margin-bottom: 24px;
 }
@@ -742,6 +745,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error
 .node-type-action-guide .field-name-field-picture,
 .node-blog .field-name-field-picture {
   background: url('images/rounded-bottom-shadow.png') no-repeat bottom;
+}
+.ie8 .node-type-action-guide .field-name-field-picture, .ie7 .node-type-action-guide .field-name-field-picture, .ie8
+.node-blog .field-name-field-picture, .ie7
+.node-blog .field-name-field-picture {
+  background: url('images/rounded-bottom-shadow.gif') no-repeat bottom;
 }
 .node-type-action-guide .field-name-field-picture img,
 .node-blog .field-name-field-picture img {
@@ -4473,6 +4481,9 @@ comments.fb_iframe_widget {
 }
 .ie8 .view-home-slideshow .views-row {
   width: 750px;
+}
+.ie8 .view-home-slideshow .views-row, .ie7 .view-home-slideshow .views-row {
+  background: url('images/rounded-bottom-shadow.gif') no-repeat bottom center;
 }
 .view-home-slideshow .home-slide img {
   margin-bottom: 24px;

@@ -1340,10 +1340,11 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Sort criterion: Webform Submission: Title (field_project_title) */
-  $handler->display->display_options['sorts']['field_project_title_value']['id'] = 'field_project_title_value';
-  $handler->display->display_options['sorts']['field_project_title_value']['table'] = 'field_data_field_project_title';
-  $handler->display->display_options['sorts']['field_project_title_value']['field'] = 'field_project_title_value';
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
