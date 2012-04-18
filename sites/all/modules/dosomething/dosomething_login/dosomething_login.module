@@ -731,6 +731,7 @@ function dosomething_login_login_popup_form($form, &$form_state) {
     $form['name'][$key] = $login['name'][$key];
     $form['pass'][$key] = $login['pass'][$key];
   }
+  $form['pass']['#description'] .= '<br><a href="user/password">' . t('Forgot your password?') . '</a>';
 
   $form['final_submit'] = array(
     '#prefix' => '</div><div class="ds-login-popup-footer">',
@@ -739,15 +740,14 @@ function dosomething_login_login_popup_form($form, &$form_state) {
     '#value' => t('Log In'),
   );
   $form['see-whats-new'] = array(
+    '#prefix' => '<span class="see-whats-new">',
+    '#suffix' => '</span>',
     '#type' => 'link',
     '#href' => 'blog/check-out-our-new-do',
     '#title' => t("see what's new"),
     '#options' => array(
       'html' => FALSE,
       'attributes' => array(
-        'class' => array(
-          'see-whats-new',
-        ),
       ),
     ),
   );

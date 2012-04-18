@@ -7,8 +7,8 @@
     height: auto !important
     display: none
 
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
   background: $white
   padding: 25px 34px
   top: 90px !important
@@ -51,137 +51,172 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
       line-height: 40px
       padding-bottom: 12px
 
-  // .separator
-  //   @extend .bold
-  //   font-size: 21px
-  //   font-family: $font-headline
-  //   margin-bottom: 12px
-  //   text-align: center
-
-  .ds-registration-form-required
-    position: relative
-    left: -11px
-    top: -1px
-
   .error
     @extend .alert-red
     @extend .medium
     font-size: 12px
 
-  // Gray box
+  // Gray box wrapper
   .popup-content
-    // +clearfix
-    // background: $gray6
-    // @extend .box-shadow
     min-height: 240px
     padding: 18px
     width: 478px
-
-  // Left column fields
-  .form-item-first-name,
-  .form-item-email,
-  .form-item-pass,
-  .form-item-month,
-  .form-item-day,
-  .form-item-year
-    float: left
-    input
-      width: 212px
-
-  // Right column fields
-  .form-item-last-name,
-  .form-item-cell
-    float: right
-    margin-right: -7px
-    input
-      width: 212px
-
-  .form-item-email,
-  .form-item-pass,
-  .form-item-cell,
-  .form-item-month,
-  .form-item-day,
-  .form-item-year
-    margin-top: 12px
-
-  // Birthday fields
-  #edit-birthday
-    +pie-clearfix
-    label
+    // Left column fields
+    .form-item-first-name,
+    .form-item-email,
+    .form-item-pass,
+    .form-item-month,
+    .form-item-day,
+    .form-item-year
       float: left
-      margin-right: 31px
-      .login-popup-birthday
-        font-family: $font-sans
-        font-size: 12px
-        position: relative
-        right: -18px
-        top: 16px
+      input
+        width: 212px
+    // Right column fields
+    .form-item-last-name,
+    .form-item-cell
+      float: right
+      margin-right: -7px
+      input
+        width: 212px
+    .form-item-email,
+    .form-item-pass,
+    .form-item-cell,
+    .form-item-month,
+    .form-item-day,
+    .form-item-year
+      margin-top: 12px
+    // Birthday fields
+    #edit-birthday
+      +pie-clearfix
+      label
+        float: left
+        margin-right: 31px
+        width: 54px
+        .login-popup-birthday
+          font-family: $font-sans
+          font-size: 12px
+          position: relative
+          right: -18px
+          top: 16px
+        .ds-registration-form-required
+          top: 11px
+          left: 17px
+    .form-item-month,
+    .form-item-day,
+    .form-item-year
+      float: left
+      margin-right: 12px
+      input
+        width: 40px
+        text-align: center
+    .form-item-year
+      margin-right: 0
+    // Password fields
+    label.error
+      margin-top: 12px
+      height: 27px
+      border: 1px
+      font-size: 10px
+    .form-item-pass
+      .ds-registration-form-required
+        position: absolute
+        top: 253px
+        left: 219px
+      label.error
+        width: 212px
+    // Under 13 fields
+    .under-13-field
+      float: left
+      padding: 12px 0
+      input
+        width: 212px
+        margin-top: 12px
       .ds-registration-form-required
         top: 11px
-        left: 17px
-  .form-item-month,
-  .form-item-day,
-  .form-item-year
-    float: left
-    margin-right: 12px
-    input
-      width: 40px
-      text-align: center
 
-  .form-item-year
-    margin-right: 0
+    .form-item-parent-email
+      input
+        width: 212px
+      .ds-registration-form-required
+        top: 11px
+      label.error
+        float: right
+    // Finish terms and weekly update
+    .disclaimer
+      margin-top: 30px
+      .description
+        float: left
+        @extend .black
+        font-size: 12px
+      a
+        @extend .blue
+        text-decoration: underline
 
-  // Password fields
-  .ok
-    @extend .alert-green
+  // Register to be a user button 'Finish'
+  .ds-login-popup-footer #edit-final-submit
+    @extend .go-button
+    position: relative
+    top: -38px
+    right: -403px
 
-  label.error
-    margin-top: 12px
-    height: 27px
-    border: 1px
-    font-size: 10px
+  // Already a user login button 'Log in'
+  .ds-login-popup-footer #edit-final-submit
+    @extend .go-button
+    position: relative
+    top: -85px
+    right: -392px
 
-  .form-item-pass
-    .ds-registration-form-required
-      position: absolute
-      top: 253px
-      left: 219px
-    label.error
-      width: 212px
+  .ds-login-popup-footer #edit-final-submit--2
+    @extend .go-button
+    position: relative
+    top: -51px
+    right: -392px
 
-  // Under 13
-  .under-13-field
-    float: left
-    padding: 12px 0
-    input
-      width: 212px
-      margin-top: 12px
-    .ds-registration-form-required
-      top: 11px
-
-  .form-item-parent-email
-    input
-      width: 212px
-    .ds-registration-form-required
-      top: 11px
-    label.error
-      float: right
-
-  // Finish terms and weekly update
-  .disclaimer
-    margin-top: 30px
-    .description
-      float: left
-      @extend .black
-      font-size: 12px
+  // Already a member text
+  .already-member,
+  .see-whats-new
+    @extend .bold
+    font-family: $font-headline
+    float: right
+    font-size: 18px
+    padding-bottom: 6px
+    padding-right: 0px
     a
-      @extend .blue
       text-decoration: underline
+  .see-whats-new
+    float: left
 
-// Finish button
-.ds-login-popup-footer input#edit-final-submit,
-.ds-login-popup-footer input#edit-final-submit--2
-  @extend .go-button
-  position: relative
-  top: -86px
-  right: -403px
+// Popup only forms for IE8 register or login, will not affect non-js forms
+.no-js.ie.ie8.js
+  div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+  div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+    .popup-content
+      // Left column fields
+      .form-item-first-name,
+      .form-item-email,
+      .form-item-pass,
+      .form-item-last-name,
+      .form-item-cell
+        width: 212px
+
+      .form-item-first-name,
+      .form-item-last-name,
+      .form-item-cell
+        .ds-registration-form-required
+          left: 203px
+          top: -28px
+
+      .form-item-month,
+      .form-item-day,
+      .form-item-year
+        width: 40px
+
+      .form-item-pass
+        .ds-registration-form-required
+          top: 276px
+          left: 226
+
+      #edit-birthday
+        position: relative
+        top: -17px
+        left: 7px

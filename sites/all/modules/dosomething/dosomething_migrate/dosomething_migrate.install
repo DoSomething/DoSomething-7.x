@@ -135,3 +135,18 @@ function dosomething_migrate_update_7002() {
   $mapping['ididthis'] = $mapping['project'];
   variable_set('webform_migrate_webform_mapping', $mapping);
 }
+
+/**
+ * Copy the default search image and re-use it as the default profile picture.
+ */
+function dosomething_migrate_update_7003() {
+  $source = drupal_get_path('theme', 'doit') . '/default-search-image.jpg';
+  $destination = 'public://default-profile-picture.jpg';
+  $copied = file_unmanaged_copy($source, $destination);
+  if ($copied !== FALSE) {
+    variable_set('user_picture_default', $copied);
+  }
+  else {
+    throw new DrupalUpdateException('The new profile picture could not be uploaded.');
+  }
+}

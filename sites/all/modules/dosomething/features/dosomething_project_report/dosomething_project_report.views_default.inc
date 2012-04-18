@@ -63,7 +63,7 @@ function dosomething_project_report_views_default_views() {
   $handler->display->display_options['fields']['body']['empty_zero'] = 0;
   $handler->display->display_options['fields']['body']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
-  /* Field: Content: Video (optional) */
+  /* Field: Content: Video */
   $handler->display->display_options['fields']['field_embedded_video']['id'] = 'field_embedded_video';
   $handler->display->display_options['fields']['field_embedded_video']['table'] = 'field_data_field_embedded_video';
   $handler->display->display_options['fields']['field_embedded_video']['field'] = 'field_embedded_video';

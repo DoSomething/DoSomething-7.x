@@ -7,14 +7,6 @@
 include_once('dosomething_user_my_somethings.features.inc');
 
 /**
- * Implements hook_menu_alter().
- */
-function dosomething_user_my_somethings_menu_alter(&$items) {
-  // User's fullname should be title of page.
-  $items['user/%user']['title callback'] = 'dosomething_user_my_somethings_get_full_name';
-}
-
-/**
 * Implementation of hook_ctools_plugin_directory().
 */
 function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin) {
@@ -69,7 +61,7 @@ function dosomething_user_my_somethings_member_block() {
       'name' => array(
         '#prefix' => '<h2>',
         '#suffix' => '</h2>',
-        '#markup' => dosomething_user_my_somethings_get_full_name($user),
+        '#markup' => dosomething_general_get_full_name($user, 'private'),
       ),
       // 'role' => array(
         // '#prefix' => '<span class="user-role">( ',
@@ -352,28 +344,6 @@ function dosomething_user_my_somethings_user_role($account = NULL) {
 }
 
 /**
- * Get a user's full name as a string.
- *
- * @param $account
- *  (object) A standard user object.
- * @return string
- */
-function dosomething_user_my_somethings_get_full_name($account) {
-  $profile = profile2_load_by_user($account, 'main');
-  $names = array();
-  $name_fields = array('field_user_first_name', 'field_user_last_name');
-  if (is_object($profile)) {
-    foreach ($name_fields as $field_name) {
-      $field = field_get_items('profile2', $profile, $field_name);
-      if (isset($field[0]['safe_value']) && $field[0]['safe_value']) {
-        $names[] = $field[0]['safe_value'];
-      }
-    }
-  }
-  return empty($names) ? filter_xss($account->name) : implode(' ', $names);
-}
-
-/**
  * Get a list of a user's webform submissions.
  *
  * @param $uid
@@ -581,7 +551,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
     $profile = entity_metadata_wrapper('profile2', $variables['profile']);
   }
 
-  $variables['member_fullname'] = dosomething_user_my_somethings_get_full_name($account);
+  $variables['member_fullname'] = dosomething_general_get_full_name($account, 'private');
   $variables['member_status'] = dosomething_user_my_somethings_user_role($account);
   $variables['member_since'] = date('m/d/Y', $account->created);
   $variables['member_clubs'] = dosomething_user_my_somethings_clubs($account);
