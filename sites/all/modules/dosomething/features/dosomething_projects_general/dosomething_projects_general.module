@@ -72,6 +72,25 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_projects_general_form_club_node_form_alter(&$form, &$form_state) {
+  // TODO: Deal with node status.
+  $form_state['previous_participants'] = array();
+  $node = isset($form['#node']) ? $form['#node'] : NULL;
+  if (!empty($node) && $node->nid) {
+    // Pass along previous participants so they don't get contacted again.
+    if (!empty($form['#node']->field_participants[LANGUAGE_NONE])) {
+      foreach ($form['#node']->field_participants[LANGUAGE_NONE] as $item) {
+        $form_state['previous_participants'][] = $item['value'];
+      }
+    }
+  }
+  $form['#submit'][] = 'dosomething_projects_general_node_participants_submit';
+  $form['#validate'][] = 'dosomething_projects_general_node_participants_validate';
+}
+
+/**
  * Project submission submit callback.
  */
 function dosomething_projects_general_participants_submit($form, &$form_state) {
@@ -139,6 +158,62 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
 }
 
 /**
+ * Node submission submit callback.
+ */
+function dosomething_projects_general_node_participants_submit($form, &$form_state) {
+  // Load up the group and create it if it doesn't already exist.
+  $group = og_get_group('node', $form_state['values']['nid'], TRUE);
+  $nid = $form_state['values']['nid'];
+  $title = $form_state['node']->title;
+  $submission_account = user_load($form_state['values']['uid']);
+  $full_name = dosomething_general_get_full_name($submission_account);
+
+  // Invite the people to become members and add current members to the group.
+  if (count($form_state['values']['field_participants'][LANGUAGE_NONE])) {
+
+    foreach ($form_state['values']['field_participants'][LANGUAGE_NONE] as $delta => $item) {
+      if (!is_array($item) || !$item['value']) {
+        continue;
+      }
+      // Make sure contact was not already dealt with.
+      $key = array_search($item['value'], $form_state['previous_participants']);
+      if ($key === FALSE) {
+        if ($account = dosomething_general_load_user_by_mail_or_cell($item['value'])) {
+          og_group($group->gid, array('entity' => $account));
+          $message = '<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the "' . $title . '" club. Check out your project\'s page by going to ' . $base_url . '/node/' . $nid . '. From this page you can now update the DoSomething.org community on the club, add your other members to the club page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p><p>Thanks!</p>';
+          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
+        }
+        else {
+          // Since the user is not in the system, send a message to the user.
+          // Sending message and mail means no sanitization.
+          $message = '<p>Hey,</p><p>' . $full_name . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $base_url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the club profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
+          if (valid_email_address($item['value'])) {
+            drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
+          }
+          else if ($number = dosomething_general_valid_cell($item['value'])) {
+            sms_send($number, $message);
+          }
+        }
+      }
+      else {
+        // Remove contact value from previous list.
+        unset($form_state['previous_participants'][$key]);
+      }
+    }
+  }
+
+  // If anyone is left in the previous_participants  list,
+  // then remove them from the group ince they were removed.
+  if (count($form_state['previous_participants'])) {
+    foreach ($form_state['previous_participants'] as $contact_value) {
+      if ($account = dosomething_general_load_user_by_mail_or_cell($contact_value)) {
+        og_ungroup($group->gid, 'user', $account);
+      }
+    }
+  }
+}
+
+/**
  * Validation callback to check email or mobile entry.
  */
 function dosomething_projects_general_participants_validate($form, &$form_state) {
@@ -150,16 +225,48 @@ function dosomething_projects_general_participants_validate($form, &$form_state)
     unset($form_state['values']['submitted']['personal_information']['field_project_clubs'][LANGUAGE_NONE]['add_more']);
     unset($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE]['add_more']);
   }
-  foreach ($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE] as $key => $values) {
-    if (is_numeric($key) && !empty($values['value'])) {
-      if (($number = ltrim(preg_replace('/[^0-9]/', '', $values['value']), 1)) && strlen($number) == 10 || valid_email_address($values['value']) === TRUE) {
+  foreach ($form_state['values']['submitted']['field_participants'][LANGUAGE_NONE] as $delta => $item) {
+    if (!is_array($item) || !$item['value']) {
+      continue;
+    }
+
+    if (!valid_email_address($item['value'])) {
+      if (!$number = dosomething_general_valid_cell($item['value'])) {
+        form_set_error('field_participants][' . LANGUAGE_NONE . '][' . $delta, t('%value is not a valid e-mail address or mobile number.', array('%value' => $item['value'])));
       }
       else {
-          form_set_error('field_participants', t('%value is not a valid e-mail address or mobile number.', array('%value' => $values['value'])));
+        // Store then cleaned up version of the phone number.
+        $item['value'] = $number;
       }
     }
   }
 }
+
+/**
+ * Validation callback for specific node forms related to projects.
+ */
+function dosomething_projects_general_node_participants_validate($form, &$form_state) {
+  if (!isset($form_state['values']['field_participants']) || !count($form_state['values']['field_participants'])) {
+    return;
+  }
+  foreach ($form_state['values']['field_participants'][LANGUAGE_NONE] as $delta => &$item) {
+    if (!is_array($item) || !$item['value']) {
+      continue;
+    }
+
+    if (!valid_email_address($item['value'])) {
+      if (!$number = dosomething_general_valid_cell($item['value'])) {
+        form_set_error('field_participants][' . LANGUAGE_NONE . '][' . $delta, t('%value is not a valid e-mail address or mobile number.', array('%value' => $item['value'])));
+      }
+      else {
+        // Store then cleaned up version of the phone number.
+        $item['value'] = $number;
+      }
+    }
+  }
+}
+
+
 
 /**
  * Implements hook_entity_insert().
