@@ -967,16 +967,16 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .views-row, .page-node-picks .pane-profile-panel-pane-3 .views-row {
   width: 49%;
 }
-.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row,
-.ie8 .pane-ds-past-somethings-all .views-row,
-.ie8 .pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row,
-.ie8 .pane-related-projects-panel-pane-2 .views-row,
-.ie8 .pane-resources-panel-pane-1 .views-row,
-.ie8 .pane-projects-by-state-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-3 .views-row,
-.ie8 .pane-current-campaigns-panel-pane-2 .views-row,
-.ie8 .action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
+.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row, .ie8
+.pane-ds-past-somethings-all .views-row, .ie8
+.pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row, .ie8
+.pane-related-projects-panel-pane-2 .views-row, .ie8
+.pane-resources-panel-pane-1 .views-row, .ie8
+.pane-projects-by-state-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-3 .views-row, .ie8
+.pane-current-campaigns-panel-pane-2 .views-row, .ie8
+.action-finder-list .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row {
   height: 120px;
   overflow: hidden;
 }
@@ -1637,6 +1637,23 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
 }
 .ie8 .ctools-jump-menu-select .selectBox-label {
   min-width: 155px;
+}
+
+.ie8 body.front .selectBox-dropdown .selectBox-label, .ie7 body.front .selectBox-dropdown .selectBox-label {
+  width: 339px !important;
+}
+
+.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label, .ie7 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  min-width: 184px;
+}
+
+.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label, .ie7 .views-exposed-widget .selectBox-dropdown .selectBox-label {
+  min-width: 161px;
+}
+
+.ie8 .ctools-jump-menu-select .selectBox-label, .ie7 .ctools-jump-menu-select .selectBox-label {
+  min-width: 164px !important;
+  width: 164px !important;
 }
 
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
@@ -2426,7 +2443,8 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
   padding: 0.5em;
   background-position: 0 0;
 }
-.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
+.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child,
+div.status p:last-child, div.warning p:last-child, div.error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
   margin-bottom: 0;
 }
 
@@ -2451,23 +2469,23 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
 }
 
 .warning, div.warning {
-  border-color: orange;
+  border-color: #ffa500;
   background-color: #fff6e5;
   background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
-  color: orange;
-  color: orange;
+  color: #ffa500;
+  color: #ffa500;
 }
 .warning:visited, div.warning:visited {
-  color: orange;
+  color: #ffa500;
 }
 .warning:hover, div.warning:hover {
-  color: orange;
+  color: #ffa500;
 }
 .warning:active, div.warning:active {
-  color: orange;
+  color: #ffa500;
 }
 
 .error, div.error {
@@ -2746,6 +2764,12 @@ body {
   margin: 1em 8px 1em 0;
 }
 
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+  line-height: 27px;
+  padding: 0;
+  width: 94px;
+}
+
 #site-name {
   margin: 0;
   padding: 0;
@@ -2987,6 +3011,10 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
   height: auto;
 }
 
+.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last, .ie7 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
+  width: 210px;
+}
+
 h2.block-title, h2.pane-title {
   background-color: #18408b;
   padding: 6px 12px 6px 12px;
@@ -3201,6 +3229,15 @@ h2.block-title, h2.pane-title {
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it li {
   margin-left: 5px;
+}
+
+.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie7 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
+.not-logged-in #dosomething-login-register-block #edit-last-name, .ie7
+.not-logged-in #dosomething-login-register-block #edit-last-name {
+  width: 90px;
+}
+.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email, .ie7 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
+  width: 191px;
 }
 
 #block-dosomething-blocks-dosomething-social-skyscraper .content {
@@ -3429,9 +3466,21 @@ h2.block-title, h2.pane-title {
   text-transform: none;
 }
 
+.ie8 .region-sidebar-first .block-menu-block .content li a, .ie7 .region-sidebar-first .block-menu-block .content li a {
+  padding-right: 12px;
+}
+
 .views-submit-button {
   display: inline;
   float: left;
+}
+
+.ie8 .panes-3 .panel-panel, .ie7 .panes-3 .panel-panel {
+  width: 215px;
+}
+
+.ie8 .panel-landings .panel-row-middle .panel-panel, .ie7 .panel-landings .panel-row-middle .panel-panel {
+  width: 215px;
 }
 
 .panes-2 .panel-second .pane-title {
@@ -4176,6 +4225,11 @@ comments.fb_iframe_widget {
   width: 410px;
 }
 
+.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons, .ie7 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
+  padding-left: 98px;
+  width: 73%;
+}
+
 .sharethis-plugin .stButton .stBubble {
   height: 39px;
   margin-top: 0;
@@ -4622,6 +4676,10 @@ comments.fb_iframe_widget {
   float: right;
 }
 
+.ie8 .node-poll .poll, .ie7 .node-poll .poll {
+  width: auto;
+}
+
 .page-causes .content .apps-text {
   padding-top: 6px;
 }
@@ -4806,67 +4864,3 @@ h3 .stuff-header {
 .node-grant-alumni .content .field {
   margin-bottom: 12px;
 }
-
-/* IE SPECIFIC -------------------------------------------------------------- */
-/* */
-/* ALL IE 8 - 6 */
-/* IE8, IE7 */
-.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
-  line-height: 27px;
-  padding: 0;
-  width: 94px;
-}
-
-.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last, .ie7 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
-  width: 210px;
-}
-
-.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie7 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
-.not-logged-in #dosomething-login-register-block #edit-last-name, .ie7
-.not-logged-in #dosomething-login-register-block #edit-last-name {
-  width: 90px;
-}
-.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email, .ie7 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
-  width: 191px;
-}
-
-.ie8 body.front .selectBox-dropdown .selectBox-label, .ie7 body.front .selectBox-dropdown .selectBox-label {
-  width: 339px !important;
-}
-
-.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons, .ie7 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
-  padding-left: 98px;
-  width: 73%;
-}
-
-.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label, .ie7 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
-  min-width: 184px;
-}
-
-.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label, .ie7 .views-exposed-widget .selectBox-dropdown .selectBox-label {
-  min-width: 161px;
-}
-
-.ie8 .ctools-jump-menu-select .selectBox-label, .ie7 .ctools-jump-menu-select .selectBox-label {
-  min-width: 164px !important;
-  width: 164px !important;
-}
-
-.ie8 .panes-3 .panel-panel, .ie7 .panes-3 .panel-panel {
-  width: 215px;
-}
-
-.ie8 .node-poll .poll, .ie7 .node-poll .poll {
-  width: auto;
-}
-
-.ie8 .panel-landings .panel-row-middle .panel-panel, .ie7 .panel-landings .panel-row-middle .panel-panel {
-  width: 215px;
-}
-
-.ie8 .region-sidebar-first .block-menu-block .content li a, .ie7 .region-sidebar-first .block-menu-block .content li a {
-  padding-right: 12px;
-}
-
-/* IE7, IE6 */
-/* IE6 */

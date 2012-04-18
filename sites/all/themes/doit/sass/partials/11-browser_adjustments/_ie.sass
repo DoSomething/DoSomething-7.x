@@ -1,106 +1,16 @@
 /* IE SPECIFIC --------------------------------------------------------------
 // hang styles on .ie6 .ie7 .ie8 classes on <html> tag
 
-
 /*
 /* ALL IE 8 - 6
 //
   html
     &.ie8, &.ie7, &.ie6
 
-
-/* IE8, IE7
+/* IE8
 //
   html
     &.ie8
-
-// Styles for using the box-model("content-box") and not "border-box" in IE8 and 7 because of jquery issue: http://bugs.jquery.com/ticket/11390
-// at this time we can't update to the jquery version that corrects this bug fo the selectbox positioning in IE8
-
-// the search field dimensions
-#utility-bar #block-dosomething-blocks-dosomething-utility-bar .search 
-  #edit-keys-1
-    .ie8 &,
-    .ie7 &
-      line-height: 27px
-      padding: 0
-      width: 94px
-
-// main nav last link width
-nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last
-  .ie8 &,
-  .ie7 &
-    width: 210px
-
-// login block field widths
-.not-logged-in #dosomething-login-register-block
-  // first and last name fields
-  #edit-first-name,
-  #edit-last-name
-    .ie8 &,
-    .ie7 &
-      width: 90px
-  // cell or email field
-  #edit-cell-or-email
-    .ie8 &,
-    .ie7 &
-      width: 191px
-// action finder on front arrow placement
-body.front .selectBox-dropdown .selectBox-label
-  .ie8 &,
-  .ie7 &
-    width: 339px !important
-
-// quote of say block social plugins
-#mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons
-  .ie8 &,
-  .ie7 &
-    padding-left: 98px
-    width: 73%
-
-// action finder in left sidebar arrow placement
-#block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label
-  .ie8 &,
-  .ie7 &
-    min-width: 184px
-
-// drop downs on filterable pages like /resources
-.views-exposed-widget .selectBox-dropdown .selectBox-label
-  .ie8 &,
-  .ie7 &
-    min-width: 161px
-
-// fake drop down on /projects/featured-projects
-.ctools-jump-menu-select .selectBox-label
-  .ie8 &,
-  .ie7 &
-    min-width: 164px !important
-    width: 164px !important
-
-// one-three-one layout column widths
-.panes-3 .panel-panel
-  .ie8 &,
-  .ie7 &
-    width: 215px
-
-// poll width
-.node-poll .poll
-  .ie8 &,
-  .ie7 &
-    width: auto
-
-// pages using landing layout like /scholarships
-.panel-landings .panel-row-middle .panel-panel
-  .ie8 &,
-  .ie7 &
-    width: 215px
-
-// Side Nav dividers like on /awards
-.region-sidebar-first .block-menu-block .content li a
-  .ie8 &,
-  .ie7 &
-    padding-right: 12px
-
 
 /* IE7, IE6
 //
@@ -111,4 +21,3 @@ body.front .selectBox-dropdown .selectBox-label
 //
   html
     &.ie6
-
