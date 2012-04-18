@@ -2759,6 +2759,9 @@ body {
   padding: 10px;
   top: 4px;
 }
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
+  top: 0;
+}
 .ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
   top: 9px;
 }
