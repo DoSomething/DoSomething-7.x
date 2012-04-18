@@ -72,6 +72,25 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_projects_general_form_club_node_form_alter(&$form, &$form_state) {
+  // TODO: Deal with node status.
+  $form_state['previous_participants'] = array();
+  $node = isset($form['#node']) ? $form['#node'] : NULL;
+  if (!empty($node) && $node->nid) {
+    // Pass along previous participants so they don't get contacted again.
+    if (!empty($form['#node']->field_participants[LANGUAGE_NONE])) {
+      foreach ($form['#node']->field_participants[LANGUAGE_NONE] as $item) {
+        $form_state['previous_participants'][] = $item['value'];
+      }
+    }
+  }
+  $form['#submit'][] = 'dosomething_projects_general_node_participants_submit';
+  $form['#validate'][] = 'dosomething_projects_general_node_participants_validate';
+}
+
+/**
  * Project submission submit callback.
  */
 function dosomething_projects_general_participants_submit($form, &$form_state) {
