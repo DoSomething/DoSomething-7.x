@@ -290,7 +290,7 @@ function dosomething_general_load_user_by_mail_or_cell($value) {
   if (valid_email_address($value)) {
     $account = user_load_by_mail($value);
   }
-  else if ($number = dosomething_projects_general_valid_cell($value)) {
+  else if ($number = dosomething_general_valid_cell($value)) {
     if ($name = dosomething_general_find_user_by_cell($number)) {
       $account = user_load_by_name($name);
     }
