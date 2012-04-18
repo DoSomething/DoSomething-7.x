@@ -512,10 +512,11 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .pane-featured-projects-panel-pane-1 .unimage-wrapper h2,
 .pane-featured-projects-panel-pane-3 .unimage-wrapper h2,
 .pane-current-campaigns-panel-pane-2 .unimage-wrapper h2,
-.action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, ol li:before, dfn, .already-member, .separator, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, ol li:before, dfn, .already-member, .see-whats-new, .separator, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
-.vital-stats .name, #mini-panel-home_page .pane-share-of-day, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
+.vital-stats .name, #mini-panel-home_page .pane-share-of-day, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
@@ -2151,15 +2152,20 @@ form.webform-client-form #edit-submitted-dosomething-webform-numbering .dosometh
   background: #efefef;
 }
 
-.already-member {
+.already-member, .see-whats-new {
   font-family: din-web, "Trebuchet MS", sans-serif;
   float: right;
   font-size: 18px;
   padding-bottom: 6px;
   padding-right: 140px;
 }
-.already-member a {
+.already-member a, .see-whats-new a {
   text-decoration: underline;
+}
+
+.see-whats-new {
+  display: inline;
+  float: left;
 }
 
 .separator {
@@ -2358,6 +2364,9 @@ select.form-select {
 #dosomething-login-register-popup-form .form-item-day,
 #dosomething-login-register-popup-form .form-item-year {
   margin-top: 12px;
+}
+#dosomething-login-register-popup-form .form-item-email label.error {
+  width: 212px;
 }
 #dosomething-login-register-popup-form #edit-birthday {
   *zoom: 1;
@@ -4114,17 +4123,27 @@ h2.block-title, h2.pane-title {
   top: -51px;
   right: -392px;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new {
   font-family: din-web, "Trebuchet MS", sans-serif;
   float: right;
   font-size: 18px;
   padding-bottom: 6px;
   padding-right: 0px;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member a,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member a {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new a {
   text-decoration: underline;
+}
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new {
+  float: left;
 }
 
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
