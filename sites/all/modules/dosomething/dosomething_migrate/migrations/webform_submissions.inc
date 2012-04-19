@@ -295,6 +295,36 @@ class DSWebform736100 extends DSWebformSubmissionMigration {
     $this->addFieldMapping('data_email_5', 'data_friend_email_5');
     $this->addUnmigratedDestinations(array('data_legal'));
   }
+
+  public function prepare($entity, $row) {
+    $state = $row->data_state;
+    $gsid = $row->data_gsid[0];
+    $state = $state[0];
+    if (is_numeric($gsid)) {
+      $entity->field_webform_school_reference['und'][0]['target_id'] = $gsid;
+    }
+    if ($gsid == 'null') {
+      unset($entity->field_webform_school_reference);
+    }
+    if (is_null($gsid)) {
+      unset($entity->field_webform_school_reference);
+    }
+
+    // Convert the found id into a unique id.
+    if (isset($entity->field_webform_school_reference['und'][0]['target_id'])) {
+      $unique_gsid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :sid AND state = :state', array(':sid' => $entity->field_webform_school_reference['und'][0]['target_id'], ':state' => $state))->fetchField();
+      $entity->field_webform_school_reference['und'][0]['target_id'] = $unique_gsid;
+    }
+    else {
+      unset($entity->field_webform_school_reference);
+    }
+    if (!$unique_gsid) {
+      unset($entity->field_webform_school_reference);
+    }
+    // Clean the phone number.
+    $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);
+    $entity->field_webform_email['und'][0]['email'] = $row->data_email_address;
+  }
 }
 
 class DSWebform748361 extends DSWebformSubmissionMigration {
@@ -315,17 +345,32 @@ class DSWebform748361 extends DSWebformSubmissionMigration {
   }
 
   public function prepare($entity, $row) {
-    if (is_numeric($row->data_gsid)) {
-      $entity->field_webform_school_reference['und'][0]['target_id'] = $row->data_gsid;
+    $state = $row->data_state;
+    $gsid = $row->data_gsid[0];
+    $state = $state[0];
+    if (is_numeric($gsid)) {
+      $entity->field_webform_school_reference['und'][0]['target_id'] = $gsid;
     }
-    if ($row->data_gsid == 'null') {
+    if ($gsid == 'null') {
       unset($entity->field_webform_school_reference);
     }
-    if (is_null($row->data_gsid)) {
+    if (is_null($gsid)) {
+      unset($entity->field_webform_school_reference);
+    }
+
+    // Convert the found id into a unique id.
+    if (isset($entity->field_webform_school_reference['und'][0]['target_id'])) {
+      $unique_gsid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :sid AND state = :state', array(':sid' => $entity->field_webform_school_reference['und'][0]['target_id'], ':state' => $state))->fetchField();
+      $entity->field_webform_school_reference['und'][0]['target_id'] = $unique_gsid;
+    }
+    else {
+      unset($entity->field_webform_school_reference);
+    }
+    if (!$unique_gsid) {
       unset($entity->field_webform_school_reference);
     }
     // Clean the phone number.
-    $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);;
+    $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);
     $entity->field_webform_email['und'][0]['email'] = $row->data_email_address;
   }
 }
