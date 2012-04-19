@@ -3056,7 +3056,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li:nth-o
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a {
   color: white;
-  padding: 12px 28px;
+  padding: 12px 18px;
   display: block;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:visited {
