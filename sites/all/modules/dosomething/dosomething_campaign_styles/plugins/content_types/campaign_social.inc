@@ -40,7 +40,7 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
         '#tag' => 'meta',
         '#attributes' => array(
           'property' => 'og:image',
-          'content' => file_create_url($entity->field_campaign_logo[LANGUAGE_NONE][0]['uri']),
+          'content' => file_create_url($entity->field_campaign_logo_thumbnail[LANGUAGE_NONE][0]['uri']),
         )
       );
 
