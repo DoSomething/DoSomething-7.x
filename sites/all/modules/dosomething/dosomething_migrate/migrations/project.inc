@@ -100,6 +100,24 @@ class DSProject extends DSJsonWebformMigration {
       $row->point = NULL;
       $row->nocode = FALSE;
     }
+
+    // Map the project types to their new values.
+    if (!empty($row->field_type_of_project)) {
+      $types = array(
+        'project idea' => 2,
+        'ongoing project' => 3,
+        'completed project' => 4,
+        'volunteer experience' => 4,
+        'no' => 3,
+        'yes' => 4,
+      );
+      if (isset($types[$row->field_type_of_project])) {
+        $row->field_type_of_project = $types[$row->field_type_of_project];
+      }
+      else {
+        print "couldn't map project type $row->field_type_of_project\n";
+      }
+    }
   }
 
   public function prepare($entity, $row) {
