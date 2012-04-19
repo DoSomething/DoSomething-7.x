@@ -17,7 +17,7 @@ function dosomething_campaign_sign_up_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -93;
+  $handler->weight = -22;
   $handler->conf = array(
     'title' => 'Campaign Sign-Up',
     'no_blocks' => 0,
