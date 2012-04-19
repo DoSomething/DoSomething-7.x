@@ -186,6 +186,114 @@ function dosomething_clubs_views_default_views() {
   $export['club_members'] = $view;
 
   $view = new view;
+  $view->name = 'club_photo_gallery';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Club Photo Gallery';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'jcarousel';
+  $handler->display->display_options['style_options']['wrap'] = '0';
+  $handler->display->display_options['style_options']['skin'] = '';
+  $handler->display->display_options['style_options']['visible'] = '5';
+  $handler->display->display_options['style_options']['scroll'] = '1';
+  $handler->display->display_options['style_options']['auto'] = '0';
+  $handler->display->display_options['style_options']['autoPause'] = 1;
+  $handler->display->display_options['style_options']['easing'] = '';
+  $handler->display->display_options['style_options']['vertical'] = 0;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Do you have any new photos to add? */
+  $handler->display->display_options['fields']['field_project_photo']['id'] = 'field_project_photo';
+  $handler->display->display_options['fields']['field_project_photo']['table'] = 'field_data_field_project_photo';
+  $handler->display->display_options['fields']['field_project_photo']['field'] = 'field_project_photo';
+  $handler->display->display_options['fields']['field_project_photo']['label'] = '';
+  $handler->display->display_options['fields']['field_project_photo']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_photo']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_project_photo']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_photo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_project_photo']['settings'] = array(
+    'image_style' => 'project_gallery_thumb',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_project_photo']['group_rows'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_project_photo']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_project_photo']['field_api_classes'] = 0;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['nid']['default_argument_options']['index'] = '0';
+  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['nid']['not'] = 0;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'club' => 'club',
+  );
+
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'context',
+      'context' => 'node_edit_form.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Nid',
+    ),
+  );
+  $export['club_photo_gallery'] = $view;
+
+  $view = new view;
   $view->name = 'club_projects';
   $view->description = '';
   $view->tag = 'default';
