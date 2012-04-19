@@ -280,3 +280,6 @@ div[role="main"] {
 .webform-client-form {
   border: none;
   box-shadow: none; }
+
+.form-wrapper {
+  margin-bottom: 5px; }
