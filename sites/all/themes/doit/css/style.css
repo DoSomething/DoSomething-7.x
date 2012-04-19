@@ -2776,7 +2776,8 @@ body {
   height: 40px;
   padding-top: 6px;
   font-family: din-web, "Trebuchet MS", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  text-transform: uppercase;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
