@@ -18,12 +18,13 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'dosomething_make_impact',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-42',
+    'weight' => '-43',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
     'pages' => '<front>
-start-something',
+start-something
+action-finder',
     'title' => '',
     'cache' => 8,
   );
@@ -47,7 +48,7 @@ start-something',
     'delta' => 'become_member',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-43',
+    'weight' => '-44',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
@@ -85,7 +86,8 @@ start-something',
     'custom' => '0',
     'visibility' => '0',
     'pages' => '<front>
-start-something',
+start-something
+action-finder',
     'title' => '',
     'cache' => 8,
   );

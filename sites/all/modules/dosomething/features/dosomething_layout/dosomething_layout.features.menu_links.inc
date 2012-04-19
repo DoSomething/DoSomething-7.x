@@ -10,25 +10,6 @@
 function dosomething_layout_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: menu-footer:node/21
-  $menu_links['menu-footer:node/21'] = array(
-    'menu_name' => 'menu-footer',
-    'link_path' => 'node/21',
-    'router_path' => 'node/%',
-    'link_title' => 'FAQ',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-50',
-    'parent_path' => 'node/718408',
-  );
   // Exported menu link: menu-footer:node/3
   $menu_links['menu-footer:node/3'] = array(
     'menu_name' => 'menu-footer',
@@ -70,7 +51,6 @@ function dosomething_layout_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Disaster Response and Relief');
-  t('FAQ');
   t('Help Center');
 
 
