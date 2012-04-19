@@ -83,7 +83,7 @@ class DSProject extends DSJsonWebformMigration {
       }
     }
 
-    $row->vocab_5 = array_keys($row->vocab_5);
+    $row->vocab_5 = isset($row->vocab_5) && is_array($row->vocab_5) ? array_keys($row->vocab_5) : NULL;
 
     // Extract the zip code from the location:
     $row->country = empty($row->locations[0]['country_name']) ? NULL : $row->locations[0]['country_name'];
