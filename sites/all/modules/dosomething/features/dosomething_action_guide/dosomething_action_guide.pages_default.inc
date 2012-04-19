@@ -17,7 +17,7 @@ function dosomething_action_guide_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -94;
+  $handler->weight = -23;
   $handler->conf = array(
     'title' => 'Action Guides',
     'no_blocks' => 0,
@@ -205,10 +205,10 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-5'] = $pane;
-    $display->panels['right'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['right'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -226,10 +226,10 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][0] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][0] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
@@ -247,8 +247,8 @@ function dosomething_action_guide_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][1] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][1] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
