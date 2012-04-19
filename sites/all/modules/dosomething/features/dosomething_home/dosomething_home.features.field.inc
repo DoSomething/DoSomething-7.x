@@ -284,6 +284,15 @@ function dosomething_home_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'image_path' => 'pictures/actionguide',
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'max_filesize' => '0',
           'max_number_images' => '0',
           'preview_image_style' => 'thumbnail',
