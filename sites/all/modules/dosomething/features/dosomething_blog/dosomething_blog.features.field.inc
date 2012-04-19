@@ -585,7 +585,7 @@ function dosomething_blog_field_default_fields() {
       'description' => 'hold down ctrl button to select more than one',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
@@ -601,13 +601,12 @@ function dosomething_blog_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'taxonomy_vocabulary_5',
-      'label' => 'Tags',
-      'required' => 0,
+      'label' => 'Issues',
+      'required' => '0',
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
@@ -649,7 +648,7 @@ function dosomething_blog_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
@@ -910,9 +909,9 @@ function dosomething_blog_field_default_fields() {
   t('Celebrity Name Tags');
   t('Charity');
   t('File attachments');
+  t('Issues');
   t('Picture(s)');
   t('Subtitle');
-  t('Tags');
   t('The first picture will show up on the Blog Center page.');
   t('These images or files can be optionally inserted into the body text. Be sure to uncheck \'Display\' for images you insert into the text.');
   t('Video');
