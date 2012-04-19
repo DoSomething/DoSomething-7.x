@@ -237,7 +237,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_infusion_action',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
@@ -294,6 +294,72 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign_contact_form-field_mc_campaign'
+  $fields['node-campaign_contact_form-field_mc_campaign'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mc_campaign',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_contact_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mc_campaign',
+      'label' => 'Mobile Commons Campaign ID',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign_contact_form-field_mc_optin'
   $fields['node-campaign_contact_form-field_mc_optin'] = array(
     'field_config' => array(
@@ -303,7 +369,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_mc_optin',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
@@ -364,7 +430,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
   $fields['node-campaign_contact_form-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -483,7 +549,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_email',
       'label' => 'Email',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -494,7 +560,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -571,6 +637,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
   t('Email');
   t('Groups audience');
   t('InfusionSoft Action ID');
+  t('Mobile Commons Campaign ID');
   t('Mobile Commons Opt-In Path');
   t('The Sign Up form (of type Campaign Sign Up) that this form will redirect to upon submission.');
 
