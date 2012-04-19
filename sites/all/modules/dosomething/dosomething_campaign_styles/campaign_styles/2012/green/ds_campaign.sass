@@ -437,10 +437,11 @@ div[role="main"]
   float: left
   .pane-content
     padding: 10px
+    padding-bottom: 25px
     width: 480px
     text-align: center
     .content-content
-      padding: 5px 5px 35px 5px
+      padding: 5px 5px 34px 5px
       background: rgb(120, 200, 72)
       background: rgba(0, 30, 0, .2)
       a
@@ -448,21 +449,24 @@ div[role="main"]
         bottom: 30px
 
 #members-list
-  float: left
+  float: left 
+  padding-right: 10px
   .pane-title
     background: #8DC641
+    height: 206px
     padding: 10px 0 0 10px
     font-size: 24px
     line-height: 24px
+  .pane-content
+    padding: 10px
+    width: 261px
+    max-height: 140px
+    overflow: auto
     ul
       list-style: none
       li
         font-size: 18px
         line-height: 18px
-  .pane-content
-    padding: 10px
-    width: 271px
-    max-height: 140px
-    overflow: hidden
-    .content-content
-      padding: 5px 5px 35px 5px
+
+#school-gallery
+  clear: both

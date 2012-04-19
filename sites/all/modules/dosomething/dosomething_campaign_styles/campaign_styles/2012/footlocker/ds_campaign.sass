@@ -76,7 +76,6 @@ div[role="main"]
   &:after
     +insetBorder
 
-
 //////////////////////////////////////////
 ////////////// sections /////////////////
 ////////////////////////////////////////
@@ -118,6 +117,14 @@ div[role="main"]
       font-size: 21px
       line-height: 1.4em
 
+//social
+.panel-top-right-social
+  padding-bottom: 0
+
+.pane-node-field-campain-date
+  .field-item
+    font-weight: 600
+
 // actions panel (sign-up and counter)
 .panel-row-actions
   background: #C8C8C8
@@ -125,6 +132,32 @@ div[role="main"]
     background: $baseColor
   .pane-content
     padding: 18px
+  form
+    border: none
+    box-shadow: none
+    -moz-box-shadow: none
+    -webkit-box-shadow: none
+    padding-bottom: 0
+
+.pane-campaign-sign-up
+  position: relative
+  .pane-content
+    padding: 0
+    .form-actions
+      position: absolute
+      display: block
+      bottom: 52px
+      right: 10px
+  .campaign-opt-in
+    padding: 0 0 10px 15px
+    a
+      color: #000
+
+.panel-row-actions-sign-up
+  #edit-submit
+    display: block
+    position: relative
+    bottom: 35px
 
 // ad row (quick info and psa)
 .panel-row-ad
@@ -271,6 +304,7 @@ div[role="main"]
     text-transform: capitalize
     padding: 10px
     background: $baseColor
+    color: #fff
 
 #campaign-opt-in
   font-size: 11px
@@ -280,7 +314,3 @@ div[role="main"]
   a:hover
     color: $secondaryLink
     text-decoration: none
-
-//blog
-
-.view-campaign-blog

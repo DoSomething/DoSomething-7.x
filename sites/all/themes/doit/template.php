@@ -358,14 +358,12 @@ function doit_webform_view_messages($variables) {
     }
     elseif (isset($allowed_roles[2]) || !$user->uid) {
       // The "authenticated user" role is allowed to submit and the user is currently logged-out.
+      // We send them to register in this case.
+      // If the form does not allow 'members', then they will get a message
+      // that they can't edit when they come back.
       $login = url('user/login', array('query' => drupal_get_destination()));
-      $register = url('user/registration', array('query' => drupal_get_destination()));
-      if (variable_get('user_register', 1) == 0) {
-        $message = t('You must <a href="!login">login</a> to view this form.', array('!login' => $login));
-      }
-      else {
-        $message = t('You must <a href="!login">login</a> or <a href="!register">register</a> to view this form.', array('!login' => $login, '!register' => $register));
-      }
+      drupal_set_message(t('You must <a href="!login">login</a> or register to view this form.', array('!login' => $login)));
+      drupal_goto('user/registration', array('query' => drupal_get_destination()));
     }
     else {
       // The user must be some other role to submit.

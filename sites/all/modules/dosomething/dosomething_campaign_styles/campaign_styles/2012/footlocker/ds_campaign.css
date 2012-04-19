@@ -76,12 +76,43 @@ div[role="main"] {
     font-size: 21px;
     line-height: 1.4em; }
 
+.panel-top-right-social {
+  padding-bottom: 0; }
+
+.pane-node-field-campain-date .field-item {
+  font-weight: 600; }
+
 .panel-row-actions {
   background: #c8c8c8; }
   .panel-row-actions .pane-title {
     background: #e31837; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions form {
+    border: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    padding-bottom: 0; }
+
+.pane-campaign-sign-up {
+  position: relative; }
+  .pane-campaign-sign-up .pane-content {
+    padding: 0; }
+    .pane-campaign-sign-up .pane-content .form-actions {
+      position: absolute;
+      display: block;
+      bottom: 52px;
+      right: 10px; }
+  .pane-campaign-sign-up .campaign-opt-in {
+    padding: 0 0 10px 15px; }
+    .pane-campaign-sign-up .campaign-opt-in a {
+      color: black; }
+
+.panel-row-actions-sign-up #edit-submit {
+  display: block;
+  position: relative;
+  bottom: 35px; }
 
 .panel-row-ad .panel-row-ad-quick-info {
   width: 100%; }
@@ -231,7 +262,8 @@ div[role="main"] {
   font-size: 22px;
   text-transform: capitalize;
   padding: 10px;
-  background: #e31837; }
+  background: #e31837;
+  color: white; }
 
 #campaign-opt-in {
   font-size: 11px; }

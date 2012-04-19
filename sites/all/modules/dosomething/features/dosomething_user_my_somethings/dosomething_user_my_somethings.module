@@ -548,7 +548,9 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $account = $variables['account'];
 
   if($variables['profile']) {
-    $profile = entity_metadata_wrapper('profile2', $variables['profile']);
+    // Reset the profile in case the user just updated it.
+    $profile = profile2_load($variables['profile']->pid, TRUE);
+    $profile = entity_metadata_wrapper('profile2', $profile);
   }
 
   $variables['member_fullname'] = dosomething_general_get_full_name($account, 'private');
@@ -587,7 +589,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   // isset($profile) does not.
   if (isset($profile)) {
     $address = $profile->field_user_address->value();
-    $variables['member_school'] = $profile->field_school_reference->value();
+    $variables['member_school'] = $profile->field_school_reference->value()->name;
   }
   else {
     $address = "n/a";
@@ -605,9 +607,9 @@ function dosomething_user_my_somethings_hometown($address) {
     $address['administrative_area'],
   );
   $hometown = implode(', ', array_filter($hometown));
-  if (empty($hometown)) {
-    $hometown = '-';
-  }
+  //if (empty($hometown)) {
+    //$hometown = '-';
+  //}
   return check_plain($hometown);
 }
 
@@ -989,8 +991,6 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
     'field_user_first_name',
     'field_user_last_name',
     'field_user_hearabout',
-    'field_user_official_rules',
-    'field_user_why_do_you',
     'field_user_mobile',
     'field_school_reference',
   );

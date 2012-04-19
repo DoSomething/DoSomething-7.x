@@ -224,7 +224,8 @@ function dosomething_home_views_default_views() {
     'image_style' => 'whats_happening_now_thumbnail',
     'image_link' => '',
   );
-  $handler->display->display_options['fields']['field_picture']['group_rows'] = 0;
+  $handler->display->display_options['fields']['field_picture']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_picture']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_picture']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
