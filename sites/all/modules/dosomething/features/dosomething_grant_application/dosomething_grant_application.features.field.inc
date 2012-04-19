@@ -827,11 +827,6 @@ function dosomething_grant_application_field_default_fields() {
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
-          'behaviors' => array(
-            'views-select-list' => array(
-              'status' => 0,
-            ),
-          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'field_essay_build_it:value',
