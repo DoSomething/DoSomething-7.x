@@ -18,7 +18,7 @@ function dosomething_sponsors_default_fe_block_settings() {
     'delta' => 'sponsors_who_rock-block_1',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '0',
+    'weight' => '-41',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '1',
