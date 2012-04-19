@@ -695,7 +695,7 @@ function dosomething_login_login_popup_form($form, &$form_state) {
   );
 
   $query = drupal_get_destination();
-  $query['destination'] = $query['destination'] == 'user' ? 'front' : $query['destination'];
+  $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
   $form['title_text'] = array(
     '#type' => 'item',
     '#title' => t("We've Missed You."),
