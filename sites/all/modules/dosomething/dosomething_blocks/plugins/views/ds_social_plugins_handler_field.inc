@@ -24,15 +24,18 @@ class ds_social_plugins_handler_field extends views_handler_field {
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
     $modules = dosomething_blocks_social_plugins_modules();
+    $options = $this->options['module_options'] ? $this->options['module_options'] : array();
     $form['module_options'] = array(
       '#title' => t('Social plugins to include.'),
       '#type' => 'checkboxes',
       '#options' => $modules,
       '#description' => t('Leave blank to include all.'),
-      '#default_value' => $this->options['module_options'],
+      '#default_value' => $options,
     );
 
     // Facebook Social options.
+    $presets = array();
+    $preset_list = array();
     $presets = fb_social_get_presets();
     foreach ($presets as $preset) {
       $preset_list[$preset->name] = $preset->name;
