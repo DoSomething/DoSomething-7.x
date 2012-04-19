@@ -25,6 +25,9 @@
     +background(image_url("rounded-bottom-shadow.png") no-repeat bottom center)
     .ie8 &
       width: 750px
+    .ie8 &,
+    .ie7 &
+      +background(image_url("rounded-bottom-shadow.gif") no-repeat bottom center)
   .home-slide
     img
       @extend .white-border
@@ -54,6 +57,9 @@
     top: 30px
     +text-shadow(rgba(#000, 0.8) 0 0 10px)
     text-transform: uppercase
+    .ie7 &
+      line-height: 65px
+      top: 8px
   a,
   a:hover,
   a:visited

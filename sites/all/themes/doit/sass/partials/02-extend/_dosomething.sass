@@ -87,6 +87,9 @@
 ////////////////////////////
 .field-name-field-picture
   +background(image_url("rounded-bottom-shadow.png") no-repeat left 0 322px)
+  .ie8 &,
+  .ie7 &
+    +background(image_url("rounded-bottom-shadow.gif") no-repeat left 0 322px)
   img
     @extend .white-border
     margin-bottom: 24px
@@ -96,6 +99,9 @@
 .node-blog
   .field-name-field-picture
     +background(image_url("rounded-bottom-shadow.png") no-repeat bottom)
+    .ie8 &,
+    .ie7 &
+      +background(image_url("rounded-bottom-shadow.gif") no-repeat bottom)
     img
       max-height: 330px
 

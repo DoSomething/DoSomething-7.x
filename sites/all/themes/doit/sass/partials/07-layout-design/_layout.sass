@@ -1,75 +1,22 @@
 // Set up the layout for your site using your chosen grid framework
 /* LAYOUT --------------------------------------------------------------
 
-
-
-// DON'T LEAVE THIS IN PRODUCTION
-.wireframe
-  $wf-color: $red
-  outline: 1px dashed $wf-color
-  > *
-    outline: 1px dashed adjust-hue($wf-color, 30deg)
-    > *
-      outline: 1px dashed adjust-hue($wf-color, 60deg)
-      > *
-        outline: 1px dashed adjust-hue($wf-color, 90deg)
-// -- DON'T LEAVE THIS IN PRODUCTION
-
 .container
-  // width: 95%
-  // width: $page-width
   width: $page-width
   margin: 0 auto
   position: relative
-  // @extend .wireframe
-
-.content
-  // @extend .container
 
 [role=main]
   body.one-sidebar.sidebar-first &
     width: $main-width
     float: right
     margin: 5px 0
+    .ie7 &
+      width: 750px
 
 .region-sidebar-first
   width: $left-col-width
   float: left
-
-// PANELS OVERRIDE -----------------------------------------------------
-// .ds-panel
-//   .panel-panel
-//     margin-right: percentage($kit-gutter / $main-width-w-padding)
-//     &.panel-full
-//       margin-right: 0
-//   .panes-1
-//     .panel-panel
-//       width: 100%
-//       .ie7 &
-//         width: 450px
-//       margin-right: 0
-//   .panes-2
-//     .panel-panel
-//       width: percentage($two-col-even / $main-width-w-padding)
-//       float: left
-//       .ie7 &
-//         width: 450px
-//         float: none
-//     .panel-last
-//       margin-right: 0
-//       float: right
-//       .ie7 &
-//         float: none
-//         width: 225px
-//   .panes-3
-//     .panel-panel
-//       width: percentage($three-col-even / $main-width-w-padding)
-//       .ie7 &
-//         width: 225px
-//         float: none
-//     .panel-last
-//       margin-right: 0
-//       float: right
 
 .panel-twocol-a
   .panes-2
@@ -87,79 +34,8 @@
       .panel-panel
       .panel-last
 
-// CAMPAIGNS
-// .panel-campaign
-//   width: percentage($main-no-right-margin / $main-width-w-padding)
-//   .panel-panel
-//     margin-right: percentage($kit-gutter-narrow / $main-no-right-margin)
-
-//   .panel-row-top-first
-//     width: $campaign-wide
-//     margin-right: percentage($kit-gutter-narrow / $main-no-right-margin)
-
-//   .panel-row-top
-//     &.panes-2
-//       .panel-row-top-first
-//         width: $campaign-wide
-//       .panel-top-second
-//         width: $campaign-thin
-//     .panel-row-top-first-top
-//       &.panes-1
-//         .panel-panel
-//           width: 100%
-//           margin-right: 0
-//           float: none
-
-//   .panel-row-top
-//     .panel-top-first-bottom
-//       width: 100%
-
-//   .panel-row-middle
-//     &.panes-3
-//       .panel-panel
-//         width: percentage($campaign-trio-cols / $main-no-right-margin)
-
-//   .panel-row-bottom.panes-2
-//     .panel-panel
-//       width: $campaign-wide
-//       &.panel-last
-//         width: $campaign-thin
-
-
-// panels hacks
-// .panels-flexible-region-new-top_
-//   width: 100%
-
-
-// alternate column dimensions
-// apply the ID to the panel page
-// unfortunately panels doesn't allow classes so we need to resort to IDs
-
-// #ds-wide-thin
-//   .panes-2
-//     .panel-first
-//       width: percentage($two-col-wide / $main-width-w-padding)
-//       // width: 100px
-//     .panel-second
-//       width: percentage($two-col-thin / $main-width-w-padding)
-//       width: 36.237%
-//       input
-//         &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
-//         &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
-//         &[type=number], &[type=range], &[type=search], &[type=color]
-//           @extend .textinput-thin
-//       select
-//         @extend .textinput-thin
-//       .views-exposed-form .views-exposed-widget .form-submit
-//         margin-top: 0
-
-// #ds-wider-thinner
-//   .panes-2
-//     .panel-first
-//       width: percentage($two-col-wide3 / $main-width-w-padding)
-//     .panel-second
-//       width: percentage($two-col-thin3 / $main-width-w-padding)
-
-// .start-a-project
-//   margin: 2em 0
-//   text-align: center
+#mini-panel-home_page
+  .panel-col-first,
+  .panel-col-second
+    .ie7 &
+      width: 49%

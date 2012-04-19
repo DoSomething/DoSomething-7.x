@@ -141,11 +141,6 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: User: Picture */
-  $handler->display->display_options['filters']['picture']['id'] = 'picture';
-  $handler->display->display_options['filters']['picture']['table'] = 'users';
-  $handler->display->display_options['filters']['picture']['field'] = 'picture';
-  $handler->display->display_options['filters']['picture']['value'] = '1';
 
   /* Display: Club Members */
   $handler = $view->new_display('panel_pane', 'Club Members', 'panel_pane_1');
@@ -221,7 +216,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = '<a href="/start-something/projects">Start a project</a>';
+  $handler->display->display_options['empty']['area']['content'] = '<a href="/projects/submit">Start a project</a>';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
@@ -940,7 +935,6 @@ function dosomething_clubs_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(

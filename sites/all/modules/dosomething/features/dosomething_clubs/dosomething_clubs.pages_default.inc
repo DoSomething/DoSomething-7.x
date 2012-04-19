@@ -909,7 +909,7 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<img src="files/clubslogo.jpg">',
+      'body' => '<img src="files/final-clubs.png">',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -1095,7 +1095,7 @@ Tell us about it and win an iPad',
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => '',
+      'override_title_text' => 'Start a DoSomething Club',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1158,7 +1158,7 @@ Tell us about it and win an iPad',
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => '',
+      'title' => '&nbsp;',
       'body' => '<div class="counter"><ul>
 <li class="first"><span class="counter-labels">ACTIVE CLUBS</span><span class="digits">820000</span></li>
 <li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">192300</span></li>

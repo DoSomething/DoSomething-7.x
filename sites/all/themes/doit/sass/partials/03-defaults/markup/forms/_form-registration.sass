@@ -1,0 +1,187 @@
+.no-js #dosomething-login-login-popup-form
+  display: none
+
+#dosomething-login-register-popup-form
+  // background: $white
+  // padding: 25px 34px
+  // top: 90px !important
+  // right: 30%
+  // left: 30%
+  label
+    cursor: default
+  .ui-dialog .ui-dialog-titlebar
+    padding: 0
+  .ui-icon.ui-icon-closethick
+    top: -22px
+    right: -502px
+  input
+    &[type="text"],
+    &[type="textarea"]
+      +box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
+      @extend .black
+      background: $white
+      &:focus
+        outline: none
+
+  // Facebook connect button
+  .connect-with-facebook .form-wrapper
+    margin-bottom: 0
+
+  #edit-connect
+    margin-bottom: 0
+
+  // Title and border
+  #edit-title-text,
+  #edit-title-text--2
+    margin-top: 0
+    margin-bottom: 15px
+    label
+      @extend .black
+      font-weight: 600
+      font-family: $font-headline
+      font-size: 40px
+      border-bottom: 1px $gray6 solid
+      line-height: 40px
+      padding-bottom: 12px
+
+  // .separator
+  //   @extend .bold
+  //   font-size: 21px
+  //   font-family: $font-headline
+  //   margin-bottom: 12px
+  //   text-align: center
+
+  .ds-registration-form-required
+    position: relative
+    left: -11px
+    top: -1px
+
+  .error
+    @extend .alert-red
+    @extend .medium
+    font-size: 12px
+
+  // Gray box
+  .popup-content
+    // +clearfix
+    // background: $gray6
+    // @extend .box-shadow
+    min-height: 240px
+    padding: 18px
+    width: 478px
+    margin: auto
+
+  // Left column fields
+  .form-item-first-name,
+  .form-item-email,
+  .form-item-pass,
+  .form-item-month,
+  .form-item-day,
+  .form-item-year
+    float: left
+    input
+      width: 212px
+
+  // Right column fields
+  .form-item-last-name,
+  .form-item-cell
+    float: right
+    margin-right: -7px
+    input
+      width: 212px
+
+  .form-item-email,
+  .form-item-pass,
+  .form-item-cell,
+  .form-item-month,
+  .form-item-day,
+  .form-item-year
+    margin-top: 12px
+
+  .form-item-email
+    label.error
+      width: 212px
+
+  // Birthday fields
+  #edit-birthday
+    +pie-clearfix
+    label
+      float: left
+      margin-right: 31px
+      .login-popup-birthday
+        font-family: $font-sans
+        font-size: 12px
+        position: relative
+        right: -18px
+        top: 16px
+      .ds-registration-form-required
+        top: 11px
+        left: 17px
+  .form-item-month,
+  .form-item-day,
+  .form-item-year
+    float: left
+    margin-right: 12px
+    input
+      width: 40px
+      text-align: center
+
+  .form-item-year
+    margin-right: 0
+
+  // Password fields
+  .ok
+    @extend .alert-green
+
+  label.error
+    margin-top: 12px
+    height: 27px
+    border: 1px
+    font-size: 10px
+
+  .form-item-pass
+    .ds-registration-form-required
+      position: absolute
+      top: 253px
+      left: 219px
+    label.error
+      width: 212px
+
+  // Under 13
+  .under-13-field
+    float: left
+    padding: 12px 0
+    input
+      width: 212px
+      margin-top: 12px
+    .ds-registration-form-required
+      top: -110px
+      left: 205px
+
+  .form-item-parent-email
+    input
+      width: 212px
+    .ds-registration-form-required
+      top: 11px
+    label.error
+      float: right
+
+  // Finish terms and weekly update
+  .disclaimer
+    margin-top: 30px
+    .description
+      float: left
+      @extend .black
+      font-size: 12px
+    a
+      @extend .blue
+      text-decoration: underline
+
+// Register to be a user button 'Finish'
+.ds-login-popup-footer #edit-final-submit
+  @extend .go-button
+  position: relative
+  top: -52px
+  right: -525px
+
+

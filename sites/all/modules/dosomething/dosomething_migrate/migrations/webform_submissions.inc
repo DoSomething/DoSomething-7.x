@@ -287,5 +287,45 @@ class DSWebform698605 extends DSWebformSubmissionMigration {
 class DSWebform736100 extends DSWebformSubmissionMigration {
   function __construct() {
     parent::__construct(736100);
+    $this->addFieldMapping('data_i_want_to_receive_more_energy_saving_opportunities_from_the_epa', 'data_i_want_to_receive_more_energy_saving_opportunities_for_the_epa');
+    $this->addFieldMapping('data_email_1', 'data_friend_email_1');
+    $this->addFieldMapping('data_email_2', 'data_friend_email_2');
+    $this->addFieldMapping('data_email_3', 'data_friend_email_3');
+    $this->addFieldMapping('data_email_4', 'data_friend_email_4');
+    $this->addFieldMapping('data_email_5', 'data_friend_email_5');
+    $this->addUnmigratedDestinations(array('data_legal'));
+  }
+}
+
+class DSWebform748361 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(748361);
+    $this->addFieldMapping('field_webform_email', 'data_email_address');
+    $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    $this->addUnmigratedSources(array('data_sign_up_messaging', 'data_state', 'data_name_of_school'));
+    $this->addUnmigratedDestinations(array(
+      'data_sign_up_messaging',
+      'data_email_address',
+      'data_phone_number',
+      'data_state',
+      'data_name_of_school',
+      'field_webform_email',
+      'field_webform_mobile',
+    ));
+  }
+
+  public function prepare($entity, $row) {
+    if (is_numeric($row->data_gsid)) {
+      $entity->field_webform_school_reference['und'][0]['target_id'] = $row->data_gsid;
+    }
+    if ($row->data_gsid == 'null') {
+      unset($entity->field_webform_school_reference);
+    }
+    if (is_null($row->data_gsid)) {
+      unset($entity->field_webform_school_reference);
+    }
+    // Clean the phone number.
+    $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);;
+    $entity->field_webform_email['und'][0]['email'] = $row->data_email_address;
   }
 }

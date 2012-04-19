@@ -471,18 +471,20 @@ input[type=color], .description {
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], form.webform-client-form #edit-next,
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
-form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .ds-login-popup-footer input#edit-final-submit,
-.ds-login-popup-footer input#edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -511,22 +513,25 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 .pane-featured-projects-panel-pane-1 .unimage-wrapper h2,
 .pane-featured-projects-panel-pane-3 .unimage-wrapper h2,
 .pane-current-campaigns-panel-pane-2 .unimage-wrapper h2,
-.action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, ol li:before, dfn, .page-user-registration .separator, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+.action-finder-list .unimage-wrapper h2, .page-node-picks .pane-profile-panel-pane-3 .something-description h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, ol li:before, dfn, .already-member, .see-whats-new, .separator, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
-.vital-stats .name, #mini-panel-home_page .pane-share-of-day, #dosomething-login-register-popup-form input[placeholder="Cell"] .separator, .already-member, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
+.vital-stats .name, #mini-panel-home_page .pane-share-of-day, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
 .ribbon-front a:hover,
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, #dosomething-login-register-popup-form input[placeholder="Cell"] .error, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
@@ -535,16 +540,19 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
   color: yellow;
 }
 
-.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .region-sidebar-first .block-menu-block .content li a, .member-profile .dosomething-login-percentage .label, .popup-content .disclaimer a {
+.blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, #dosomething-login-register-popup-form .disclaimer a, .region-sidebar-first .block-menu-block .content li a, .member-profile .dosomething-login-percentage .label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer a {
   color: #18408b;
 }
 
-.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, #dosomething-login-register-facebook input[type="text"], #dosomething-login-register-facebook input[type="textarea"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], #dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text label,
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 label, .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
+.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
+#dosomething-login-register-popup-form #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2 label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -572,12 +580,14 @@ thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-
   color: white;
 }
 
-.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, #dosomething-login-register-facebook input[type="text"], #dosomething-login-register-facebook input[type="textarea"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"], #dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text label,
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 label, .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
+.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
+#dosomething-login-register-popup-form #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2 label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -590,23 +600,31 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], form.webform-client-form #edit-next,
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
-form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .ds-login-popup-footer input#edit-final-submit,
-.ds-login-popup-footer input#edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button:hover, #dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
+form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, .go-button:hover, #dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, form.webform-client-form #edit-next:hover,
 form.webform-client-form #edit-previous:hover,
 form.webform-client-form #edit-submit:hover,
-form.webform-client-form #edit-draft:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, .ds-login-popup-footer input#edit-final-submit:hover,
-.ds-login-popup-footer input#edit-final-submit--2:hover, .node-poll input[type="submit"]:hover, #search-api-page-search-form #edit-submit-1:hover, .go-button:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
+form.webform-client-form #edit-draft:hover, .ds-login-popup-footer #edit-final-submit:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover, .node-poll input[type="submit"]:hover, #search-api-page-search-form #edit-submit-1:hover, .go-button:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:active, form.webform-client-form #edit-next:active,
 form.webform-client-form #edit-previous:active,
 form.webform-client-form #edit-submit:active,
-form.webform-client-form #edit-draft:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, .ds-login-popup-footer input#edit-final-submit:active,
-.ds-login-popup-footer input#edit-final-submit--2:active, .node-poll input[type="submit"]:active, #search-api-page-search-form #edit-submit-1:active, .go-button:visited, #dosomething-blocks-make-an-impact-form input[type="submit"]:visited,
+form.webform-client-form #edit-draft:active, .ds-login-popup-footer #edit-final-submit:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:active,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:active,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:active,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:active, .node-poll input[type="submit"]:active, #search-api-page-search-form #edit-submit-1:active, .go-button:visited, #dosomething-blocks-make-an-impact-form input[type="submit"]:visited,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:visited, form.webform-client-form #edit-next:visited,
 form.webform-client-form #edit-previous:visited,
 form.webform-client-form #edit-submit:visited,
-form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-register-block #edit-first-submit:visited, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:visited, .views-submit-button a:visited, .ds-login-popup-footer input#edit-final-submit:visited,
-.ds-login-popup-footer input#edit-final-submit--2:visited, .node-poll input[type="submit"]:visited, #search-api-page-search-form #edit-submit-1:visited, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited, .suggest-a-cause a:visited {
+form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final-submit:visited, .not-logged-in #dosomething-login-register-block #edit-first-submit:visited, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:visited, .views-submit-button a:visited, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited, .node-poll input[type="submit"]:visited, #search-api-page-search-form #edit-submit-1:visited, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited, .suggest-a-cause a:visited {
   color: #333131;
 }
 
@@ -634,11 +652,12 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   color: #2b63b1;
 }
 
-.alert-green, .popup-content .ok {
+.alert-green, #dosomething-login-register-popup-form .ok {
   color: #47c965;
 }
 
-.alert-red, #dosomething-login-register-popup-form input[placeholder="Cell"] .error {
+.alert-red, #dosomething-login-register-popup-form .error, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error {
   color: red;
 }
 
@@ -685,7 +704,7 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .action-finder-list .unimage-wrapper, .page-node-picks .pane-profile-panel-pane-3 .something-description, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .node-form, .page-user-registration .popup-content, .popup-content, .apps-grid .apps-box {
+.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .node-form, .popup-content, .apps-grid .apps-box {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -727,6 +746,9 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .field-name-field-picture {
   background: url('images/rounded-bottom-shadow.png') no-repeat left 0 322px;
 }
+.ie8 .field-name-field-picture, .ie7 .field-name-field-picture {
+  background: url('images/rounded-bottom-shadow.gif') no-repeat left 0 322px;
+}
 .field-name-field-picture img {
   margin-bottom: 24px;
 }
@@ -734,6 +756,11 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 .node-type-action-guide .field-name-field-picture,
 .node-blog .field-name-field-picture {
   background: url('images/rounded-bottom-shadow.png') no-repeat bottom;
+}
+.ie8 .node-type-action-guide .field-name-field-picture, .ie7 .node-type-action-guide .field-name-field-picture, .ie8
+.node-blog .field-name-field-picture, .ie7
+.node-blog .field-name-field-picture {
+  background: url('images/rounded-bottom-shadow.gif') no-repeat bottom;
 }
 .node-type-action-guide .field-name-field-picture img,
 .node-blog .field-name-field-picture img {
@@ -786,7 +813,8 @@ h3.subhead {
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title,
+.view-current-campaigns .view-header h2.pane-title, .view-current-campaigns
+.view-header h2.pane-title,
 .pane-related-projects-panel-pane-1 h2.pane-title,
 .pane-related-projects-panel-pane-2 h2.pane-title,
 .pane-resources-panel-pane-1 h2.pane-title,
@@ -795,7 +823,8 @@ h3.subhead {
 .pane-featured-projects-panel-pane-3 h2.pane-title,
 .pane-current-campaigns-panel-pane-2 h2.pane-title,
 .action-finder-list h2.pane-title,
-.page-node-picks .pane-profile-panel-pane-3 h2.pane-title {
+.page-node-picks .pane-profile-panel-pane-3 h2.pane-title, .page-node-picks
+.pane-profile-panel-pane-3 h2.pane-title {
   background-color: transparent;
   display: inline;
   font-size: 21px;
@@ -826,8 +855,10 @@ h3.subhead {
 #dosomething-blocks-make-an-impact-form-front input[type="submit"], form.webform-client-form #edit-next,
 form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
-form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .ds-login-popup-footer input#edit-final-submit,
-.ds-login-popup-footer input#edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1 {
+form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit, .not-logged-in #dosomething-login-register-block #edit-first-submit, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .views-submit-button a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1 {
   font-weight: bold;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -852,18 +883,24 @@ form.webform-client-form #edit-draft, .not-logged-in #dosomething-login-register
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, form.webform-client-form #edit-next:hover,
 form.webform-client-form #edit-previous:hover,
 form.webform-client-form #edit-submit:hover,
-form.webform-client-form #edit-draft:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, .ds-login-popup-footer input#edit-final-submit:hover,
-.ds-login-popup-footer input#edit-final-submit--2:hover, .node-poll input[type="submit"]:hover, #search-api-page-search-form #edit-submit-1:hover, .go-button:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
+form.webform-client-form #edit-draft:hover, .ds-login-popup-footer #edit-final-submit:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover, .node-poll input[type="submit"]:hover, #search-api-page-search-form #edit-submit-1:hover, .go-button:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:active, form.webform-client-form #edit-next:active,
 form.webform-client-form #edit-previous:active,
 form.webform-client-form #edit-submit:active,
-form.webform-client-form #edit-draft:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, .ds-login-popup-footer input#edit-final-submit:active,
-.ds-login-popup-footer input#edit-final-submit--2:active, .node-poll input[type="submit"]:active, #search-api-page-search-form #edit-submit-1:active, .go-button:visited, #dosomething-blocks-make-an-impact-form input[type="submit"]:visited,
+form.webform-client-form #edit-draft:active, .ds-login-popup-footer #edit-final-submit:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:active,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:active,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:active,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:active, .node-poll input[type="submit"]:active, #search-api-page-search-form #edit-submit-1:active, .go-button:visited, #dosomething-blocks-make-an-impact-form input[type="submit"]:visited,
 #dosomething-blocks-make-an-impact-form-front input[type="submit"]:visited, form.webform-client-form #edit-next:visited,
 form.webform-client-form #edit-previous:visited,
 form.webform-client-form #edit-submit:visited,
-form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-register-block #edit-first-submit:visited, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:visited, .views-submit-button a:visited, .ds-login-popup-footer input#edit-final-submit:visited,
-.ds-login-popup-footer input#edit-final-submit--2:visited, .node-poll input[type="submit"]:visited, #search-api-page-search-form #edit-submit-1:visited {
+form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final-submit:visited, .not-logged-in #dosomething-login-register-block #edit-first-submit:visited, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:visited, .views-submit-button a:visited, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited, .node-poll input[type="submit"]:visited, #search-api-page-search-form #edit-submit-1:visited {
   text-decoration: none;
 }
 
@@ -1063,24 +1100,24 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
-.ie8 .image-teaser-module-teaser, .ie8 .view-school-proximity .views-row, .view-school-proximity .ie8 .views-row, .ie8 .pane-polls-landing-panel-pane-1 .unimage-wrapper, .pane-polls-landing-panel-pane-1 .ie8 .unimage-wrapper, .ie8 .blog-landing-pane-post .views-field-body, .blog-landing-pane-post .ie8 .views-field-body, .ie8 .pane-ds-current-somethings-all .something-description, .pane-ds-current-somethings-all .ie8 .something-description,
-.ie8 .pane-ds-past-somethings-all .something-description,
-.pane-ds-past-somethings-all .ie8 .something-description,
-.ie8 .pane-ds-editors-picks-all .something-description,
-.pane-ds-editors-picks-all .ie8 .something-description, .ie8 .pane-related-projects-panel-pane-1 .unimage-wrapper, .pane-related-projects-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-related-projects-panel-pane-2 .unimage-wrapper,
-.pane-related-projects-panel-pane-2 .ie8 .unimage-wrapper,
-.ie8 .pane-resources-panel-pane-1 .unimage-wrapper,
-.pane-resources-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-projects-by-state-panel-pane-1 .unimage-wrapper,
-.pane-projects-by-state-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-featured-projects-panel-pane-1 .unimage-wrapper,
-.pane-featured-projects-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-featured-projects-panel-pane-3 .unimage-wrapper,
-.pane-featured-projects-panel-pane-3 .ie8 .unimage-wrapper,
-.ie8 .pane-current-campaigns-panel-pane-2 .unimage-wrapper,
-.pane-current-campaigns-panel-pane-2 .ie8 .unimage-wrapper,
-.ie8 .action-finder-list .unimage-wrapper,
+.ie8 .image-teaser-module-teaser, .ie8 .view-school-proximity .views-row, .view-school-proximity .ie8 .views-row, .ie8 .pane-polls-landing-panel-pane-1 .unimage-wrapper, .pane-polls-landing-panel-pane-1 .ie8 .unimage-wrapper, .ie8 .blog-landing-pane-post .views-field-body, .blog-landing-pane-post .ie8 .views-field-body, .ie8 .pane-ds-current-somethings-all .something-description, .pane-ds-current-somethings-all .ie8 .something-description, .ie8
+.pane-ds-past-somethings-all .something-description,
+.pane-ds-past-somethings-all .ie8 .something-description, .ie8
+.pane-ds-editors-picks-all .something-description,
+.pane-ds-editors-picks-all .ie8 .something-description, .ie8 .pane-related-projects-panel-pane-1 .unimage-wrapper, .pane-related-projects-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-related-projects-panel-pane-2 .unimage-wrapper,
+.pane-related-projects-panel-pane-2 .ie8 .unimage-wrapper, .ie8
+.pane-resources-panel-pane-1 .unimage-wrapper,
+.pane-resources-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-projects-by-state-panel-pane-1 .unimage-wrapper,
+.pane-projects-by-state-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-featured-projects-panel-pane-1 .unimage-wrapper,
+.pane-featured-projects-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-featured-projects-panel-pane-3 .unimage-wrapper,
+.pane-featured-projects-panel-pane-3 .ie8 .unimage-wrapper, .ie8
+.pane-current-campaigns-panel-pane-2 .unimage-wrapper,
+.pane-current-campaigns-panel-pane-2 .ie8 .unimage-wrapper, .ie8
+.action-finder-list .unimage-wrapper,
 .action-finder-list .ie8 .unimage-wrapper, .ie8 .page-node-picks .pane-profile-panel-pane-3 .something-description, .page-node-picks .pane-profile-panel-pane-3 .ie8 .something-description {
   min-height: 97px;
 }
@@ -1320,7 +1357,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
-.panes-2 .panel-second .pane-narrow-thumb,
+.panes-2 .panel-second .pane-narrow-thumb, .panes-2
+.panel-second .pane-narrow-thumb,
 .pane-blog-center .pane-narrow-thumb {
   float: left;
   margin-right: 12px;
@@ -1328,7 +1366,8 @@ form.webform-client-form #edit-draft:visited, .not-logged-in #dosomething-login-
 }
 .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img, .panes-2
+.panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img {
   height: 60px;
   width: 60px;
@@ -1601,6 +1640,10 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   float: right;
   margin-top: 8px;
 }
+.ie7 #dosomething-blocks-make-an-impact-form input[type="submit"], .ie7
+#dosomething-blocks-make-an-impact-form-front input[type="submit"] {
+  margin-top: 0;
+}
 
 .featured-project-switcher {
   clear: both;
@@ -1621,6 +1664,23 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
 }
 .ie8 .ctools-jump-menu-select .selectBox-label {
   min-width: 155px;
+}
+
+.ie8 body.front .selectBox-dropdown .selectBox-label, .ie7 body.front .selectBox-dropdown .selectBox-label {
+  width: 339px !important;
+}
+
+.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label, .ie7 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
+  min-width: 184px;
+}
+
+.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label, .ie7 .views-exposed-widget .selectBox-dropdown .selectBox-label {
+  min-width: 161px;
+}
+
+.ie8 .ctools-jump-menu-select .selectBox-label, .ie7 .ctools-jump-menu-select .selectBox-label {
+  min-width: 164px !important;
+  width: 164px !important;
 }
 
 /* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
@@ -2099,16 +2159,29 @@ form.webform-client-form #edit-submitted-dosomething-webform-numbering .dosometh
   margin-bottom: 12px;
 }
 
-.page-user-registration .popup-content {
+.popup-content {
   overflow: hidden;
   *zoom: 1;
   background: #efefef;
-  min-height: 240px;
-  padding: 18px;
-  width: 478px;
-  margin: auto;
 }
-.page-user-registration .separator {
+
+.already-member, .see-whats-new {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  float: right;
+  font-size: 18px;
+  padding-bottom: 6px;
+  padding-right: 140px;
+}
+.already-member a, .see-whats-new a {
+  text-decoration: underline;
+}
+
+.see-whats-new {
+  display: inline;
+  float: left;
+}
+
+.separator {
   font-size: 21px;
   font-family: din-web, "Trebuchet MS", sans-serif;
   margin-bottom: 12px;
@@ -2135,6 +2208,11 @@ fieldset legend {
 
 label, input[type=button], input[type=submit], button {
   cursor: pointer;
+}
+
+.form-item .description {
+  color: gray;
+  clear: both;
 }
 
 form.webform-client-form {
@@ -2207,6 +2285,190 @@ textarea.placeholder-text {
 
 select.form-select {
   max-width: 525px;
+}
+
+.no-js #dosomething-login-login-popup-form {
+  display: none;
+}
+
+#dosomething-login-register-popup-form label {
+  cursor: default;
+}
+#dosomething-login-register-popup-form .ui-dialog .ui-dialog-titlebar {
+  padding: 0;
+}
+#dosomething-login-register-popup-form .ui-icon.ui-icon-closethick {
+  top: -22px;
+  right: -502px;
+}
+#dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"] {
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  background: white;
+}
+#dosomething-login-register-popup-form input[type="text"]:focus, #dosomething-login-register-popup-form input[type="textarea"]:focus {
+  outline: none;
+}
+#dosomething-login-register-popup-form .connect-with-facebook .form-wrapper {
+  margin-bottom: 0;
+}
+#dosomething-login-register-popup-form #edit-connect {
+  margin-bottom: 0;
+}
+#dosomething-login-register-popup-form #edit-title-text,
+#dosomething-login-register-popup-form #edit-title-text--2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+#dosomething-login-register-popup-form #edit-title-text label,
+#dosomething-login-register-popup-form #edit-title-text--2 label {
+  font-weight: 600;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 40px;
+  border-bottom: 1px #efefef solid;
+  line-height: 40px;
+  padding-bottom: 12px;
+}
+#dosomething-login-register-popup-form .ds-registration-form-required {
+  position: relative;
+  left: -11px;
+  top: -1px;
+}
+#dosomething-login-register-popup-form .error {
+  font-size: 12px;
+}
+#dosomething-login-register-popup-form .popup-content {
+  min-height: 240px;
+  padding: 18px;
+  width: 478px;
+  margin: auto;
+}
+#dosomething-login-register-popup-form .form-item-first-name,
+#dosomething-login-register-popup-form .form-item-email,
+#dosomething-login-register-popup-form .form-item-pass,
+#dosomething-login-register-popup-form .form-item-month,
+#dosomething-login-register-popup-form .form-item-day,
+#dosomething-login-register-popup-form .form-item-year {
+  float: left;
+}
+#dosomething-login-register-popup-form .form-item-first-name input,
+#dosomething-login-register-popup-form .form-item-email input,
+#dosomething-login-register-popup-form .form-item-pass input,
+#dosomething-login-register-popup-form .form-item-month input,
+#dosomething-login-register-popup-form .form-item-day input,
+#dosomething-login-register-popup-form .form-item-year input {
+  width: 212px;
+}
+#dosomething-login-register-popup-form .form-item-last-name,
+#dosomething-login-register-popup-form .form-item-cell {
+  float: right;
+  margin-right: -7px;
+}
+#dosomething-login-register-popup-form .form-item-last-name input,
+#dosomething-login-register-popup-form .form-item-cell input {
+  width: 212px;
+}
+#dosomething-login-register-popup-form .form-item-email,
+#dosomething-login-register-popup-form .form-item-pass,
+#dosomething-login-register-popup-form .form-item-cell,
+#dosomething-login-register-popup-form .form-item-month,
+#dosomething-login-register-popup-form .form-item-day,
+#dosomething-login-register-popup-form .form-item-year {
+  margin-top: 12px;
+}
+#dosomething-login-register-popup-form .form-item-email label.error {
+  width: 212px;
+}
+#dosomething-login-register-popup-form #edit-birthday {
+  *zoom: 1;
+}
+#dosomething-login-register-popup-form #edit-birthday:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#dosomething-login-register-popup-form #edit-birthday label {
+  float: left;
+  margin-right: 31px;
+}
+#dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday {
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 12px;
+  position: relative;
+  right: -18px;
+  top: 16px;
+}
+#dosomething-login-register-popup-form #edit-birthday label .ds-registration-form-required {
+  top: 11px;
+  left: 17px;
+}
+#dosomething-login-register-popup-form .form-item-month,
+#dosomething-login-register-popup-form .form-item-day,
+#dosomething-login-register-popup-form .form-item-year {
+  float: left;
+  margin-right: 12px;
+}
+#dosomething-login-register-popup-form .form-item-month input,
+#dosomething-login-register-popup-form .form-item-day input,
+#dosomething-login-register-popup-form .form-item-year input {
+  width: 40px;
+  text-align: center;
+}
+#dosomething-login-register-popup-form .form-item-year {
+  margin-right: 0;
+}
+#dosomething-login-register-popup-form label.error {
+  margin-top: 12px;
+  height: 27px;
+  border: 1px;
+  font-size: 10px;
+}
+#dosomething-login-register-popup-form .form-item-pass .ds-registration-form-required {
+  position: absolute;
+  top: 253px;
+  left: 219px;
+}
+#dosomething-login-register-popup-form .form-item-pass label.error {
+  width: 212px;
+}
+#dosomething-login-register-popup-form .under-13-field {
+  float: left;
+  padding: 12px 0;
+}
+#dosomething-login-register-popup-form .under-13-field input {
+  width: 212px;
+  margin-top: 12px;
+}
+#dosomething-login-register-popup-form .under-13-field .ds-registration-form-required {
+  top: -110px;
+  left: 205px;
+}
+#dosomething-login-register-popup-form .form-item-parent-email input {
+  width: 212px;
+}
+#dosomething-login-register-popup-form .form-item-parent-email .ds-registration-form-required {
+  top: 11px;
+}
+#dosomething-login-register-popup-form .form-item-parent-email label.error {
+  float: right;
+}
+#dosomething-login-register-popup-form .disclaimer {
+  margin-top: 30px;
+}
+#dosomething-login-register-popup-form .disclaimer .description {
+  float: left;
+  font-size: 12px;
+}
+#dosomething-login-register-popup-form .disclaimer a {
+  text-decoration: underline;
+}
+
+.ds-login-popup-footer #edit-final-submit {
+  position: relative;
+  top: -52px;
+  right: -525px;
 }
 
 #site-name a {
@@ -2348,7 +2610,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -2428,19 +2690,6 @@ ul.inline, ul.inline li {
 }
 
 /* LAYOUT -------------------------------------------------------------- */
-.wireframe {
-  outline: 1px dashed red;
-}
-.wireframe > * {
-  outline: 1px dashed #ff8000;
-}
-.wireframe > * > * {
-  outline: 1px dashed yellow;
-}
-.wireframe > * > * > * {
-  outline: 1px dashed #80ff00;
-}
-
 .container, nav[role=navigation] .region-navigation, #block-menu-menu-footer .content {
   width: 1030px;
   margin: 0 auto;
@@ -2451,6 +2700,9 @@ body.one-sidebar.sidebar-first [role=main] {
   width: 797px;
   float: right;
   margin: 5px 0;
+}
+.ie7 body.one-sidebar.sidebar-first [role=main] {
+  width: 750px;
 }
 
 .region-sidebar-first {
@@ -2465,6 +2717,11 @@ body.one-sidebar.sidebar-first [role=main] {
   width: 186px;
   margin-right: 0;
   float: right;
+}
+
+.ie7 #mini-panel-home_page .panel-col-first, .ie7
+#mini-panel-home_page .panel-col-second {
+  width: 49%;
 }
 
 body {
@@ -2535,6 +2792,12 @@ body {
   padding: 10px;
   top: 4px;
 }
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
+  top: 0;
+}
+.ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
+  top: 9px;
+}
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .form-item-keys-1 {
   margin-left: 1.5em;
   margin-right: 1.5em;
@@ -2543,6 +2806,15 @@ body {
   display: inline;
   float: right;
   margin: 1em 8px 1em 0;
+}
+
+.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+  padding: 0;
+}
+.ie7 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
+  line-height: 27px;
+  padding: 0;
+  width: 94px;
 }
 
 #site-name {
@@ -2651,6 +2923,9 @@ nav[role=navigation] {
   font-family: din-web, "Trebuchet MS", sans-serif;
   text-transform: uppercase;
 }
+.ie7 nav[role=navigation] {
+  background-color: transparent;
+}
 nav[role=navigation] ul {
   margin-top: 0;
 }
@@ -2674,13 +2949,23 @@ nav[role=navigation] .region-navigation .block-menu-block {
   padding-left: 233px;
   display: table;
 }
+.ie7 nav[role=navigation] .region-navigation .block-menu-block {
+  padding-left: 170px;
+}
 nav[role=navigation] .region-navigation .block-menu-block ul.menu {
   display: table-row;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li.expanded {
+  list-style: none;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: table-cell;
   width: 203px;
   position: relative;
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
+  display: inline-block;
+  float: left;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first {
   padding-left: 3px;
@@ -2710,6 +2995,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   -o-transition: opacity 0.2s "ease-out";
   transition: opacity 0.2s "ease-out";
   margin-left: -28px;
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
+  margin-left: -140px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
   display: block;
@@ -2750,11 +3038,17 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:hov
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
   margin-left: -3px;
 }
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
+  margin-left: -105px;
+}
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last {
   width: 208px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
   width: 232px;
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
+  margin-left: -233px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul li.last {
   width: 232px;
@@ -2762,6 +3056,10 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul li.
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
   opacity: 1;
   height: auto;
+}
+
+.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last, .ie7 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
+  width: 210px;
 }
 
 h2.block-title, h2.pane-title {
@@ -2809,7 +3107,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li a {
   padding: 0;
@@ -2980,6 +3278,15 @@ h2.block-title, h2.pane-title {
   margin-left: 5px;
 }
 
+.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie7 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
+.not-logged-in #dosomething-login-register-block #edit-last-name, .ie7
+.not-logged-in #dosomething-login-register-block #edit-last-name {
+  width: 90px;
+}
+.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email, .ie7 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
+  width: 191px;
+}
+
 #block-dosomething-blocks-dosomething-social-skyscraper .content {
   padding: 32px 0px 52px 0;
 }
@@ -3068,7 +3375,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3123,7 +3430,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
@@ -3206,9 +3513,21 @@ h2.block-title, h2.pane-title {
   text-transform: none;
 }
 
+.ie8 .region-sidebar-first .block-menu-block .content li a, .ie7 .region-sidebar-first .block-menu-block .content li a {
+  padding-right: 12px;
+}
+
 .views-submit-button {
   display: inline;
   float: left;
+}
+
+.ie8 .panes-3 .panel-panel, .ie7 .panes-3 .panel-panel {
+  width: 215px;
+}
+
+.ie8 .panel-landings .panel-row-middle .panel-panel, .ie7 .panel-landings .panel-row-middle .panel-panel {
+  width: 215px;
 }
 
 .panes-2 .panel-second .pane-title {
@@ -3469,7 +3788,7 @@ h2.block-title, h2.pane-title {
   border-right: 1px white solid;
   border-left: 1px white solid;
   float: none;
-  padding-bottom: 30px;
+  padding-bottom: 78px;
   padding-top: 30px;
   padding-left: 90px;
   position: relative;
@@ -3567,71 +3886,60 @@ h2.block-title, h2.pane-title {
   display: none;
 }
 
-.no-js #dosomething-login-login-popup-form {
-  display: none;
-}
-
-#dosomething-login-register-facebook,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
   background: white;
   padding: 25px 34px;
   top: 90px !important;
   right: 30%;
   left: 30%;
 }
-#dosomething-login-register-facebook label,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] label,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] label {
   cursor: default;
 }
-#dosomething-login-register-facebook .ui-dialog .ui-dialog-titlebar,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ui-dialog .ui-dialog-titlebar,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog .ui-dialog-titlebar {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-dialog .ui-dialog-titlebar,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ui-dialog .ui-dialog-titlebar {
   padding: 0;
 }
-#dosomething-login-register-facebook .ui-icon.ui-icon-closethick,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ui-icon.ui-icon-closethick,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-icon.ui-icon-closethick {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-icon.ui-icon-closethick,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ui-icon.ui-icon-closethick {
   top: -22px;
   right: -502px;
 }
-#dosomething-login-register-facebook input[type="text"], #dosomething-login-register-facebook input[type="textarea"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"],
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"] {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"] {
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   background: white;
 }
-#dosomething-login-register-facebook input[type="text"]:focus, #dosomething-login-register-facebook input[type="textarea"]:focus,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"]:focus,
-div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"]:focus,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"]:focus,
-div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"]:focus {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"]:focus, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"]:focus,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"]:focus,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"]:focus {
   outline: none;
 }
-
-#dosomething-login-register-popup-form input[placeholder="Cell"] {
-  margin-left: -15px;
-}
-#dosomething-login-register-popup-form input[placeholder="Cell"] .connect-with-facebook .form-wrapper {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .connect-with-facebook .form-wrapper,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .connect-with-facebook .form-wrapper {
   margin-bottom: 0;
 }
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-connect,
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-connect--2 {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-connect,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-connect {
   margin-bottom: 0;
 }
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text,
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 {
   margin-top: 0;
   margin-bottom: 15px;
 }
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text label,
-#dosomething-login-register-popup-form input[placeholder="Cell"] #edit-title-text--2 label {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2 label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 label {
   font-weight: 600;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 40px;
@@ -3639,198 +3947,253 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] inp
   line-height: 40px;
   padding-bottom: 12px;
 }
-#dosomething-login-register-popup-form input[placeholder="Cell"] .separator {
-  font-size: 21px;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  margin-bottom: 12px;
-  text-align: center;
-}
-#dosomething-login-register-popup-form input[placeholder="Cell"] .ds-registration-form-required {
-  position: relative;
-  left: -11px;
-  top: -1px;
-}
-#dosomething-login-register-popup-form input[placeholder="Cell"] .error {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error {
   font-size: 12px;
 }
-
-.popup-content {
-  overflow: hidden;
-  *zoom: 1;
-  background: #efefef;
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content {
   min-height: 240px;
   padding: 18px;
   width: 478px;
 }
-.popup-content .form-item-first-name,
-.popup-content .form-item-email,
-.popup-content .form-item-pass,
-.popup-content .form-item-month,
-.popup-content .form-item-day,
-.popup-content .form-item-year {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-first-name,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-email,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
   float: left;
 }
-.popup-content .form-item-first-name input,
-.popup-content .form-item-email input,
-.popup-content .form-item-pass input,
-.popup-content .form-item-month input,
-.popup-content .form-item-day input,
-.popup-content .form-item-year input {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-first-name input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-email input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year input {
   width: 212px;
 }
-.ie8 .popup-content .form-item-first-name, .ie8
-.popup-content .form-item-email, .ie8
-.popup-content .form-item-pass, .ie8
-.popup-content .form-item-month, .ie8
-.popup-content .form-item-day, .ie8
-.popup-content .form-item-year {
-  width: 212px;
-}
-.popup-content .form-item-last-name,
-.popup-content .form-item-cell {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-last-name,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-last-name,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell {
   float: right;
   margin-right: -7px;
 }
-.popup-content .form-item-last-name input,
-.popup-content .form-item-cell input {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-last-name input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-last-name input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell input {
   width: 212px;
 }
-.ie8 .popup-content .form-item-last-name, .ie8
-.popup-content .form-item-cell {
-  width: 212px;
-}
-.popup-content .form-item-email,
-.popup-content .form-item-pass,
-.popup-content .form-item-cell,
-.popup-content .form-item-month,
-.popup-content .form-item-day,
-.popup-content .form-item-year {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-email,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
   margin-top: 12px;
 }
-.popup-content #edit-birthday {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday {
   *zoom: 1;
 }
-.popup-content #edit-birthday:after {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday:after,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday:after {
   content: "";
   display: table;
   clear: both;
 }
-.ie8 .popup-content #edit-birthday {
-  position: relative;
-  top: -17px;
-  left: 7px;
-}
-.popup-content #edit-birthday label {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday label,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday label {
   float: left;
   margin-right: 31px;
   width: 54px;
 }
-.popup-content #edit-birthday label .login-popup-birthday {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday label .login-popup-birthday,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday label .login-popup-birthday {
   font-family: "Trebuchet MS", sans-serif;
   font-size: 12px;
   position: relative;
   right: -18px;
   top: 16px;
 }
-.popup-content #edit-birthday label .ds-registration-form-required {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday label .ds-registration-form-required,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday label .ds-registration-form-required {
   top: 11px;
   left: 17px;
 }
-.popup-content .form-item-month,
-.popup-content .form-item-day,
-.popup-content .form-item-year {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
   float: left;
   margin-right: 12px;
 }
-.popup-content .form-item-month input,
-.popup-content .form-item-day input,
-.popup-content .form-item-year input {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year input {
   width: 40px;
   text-align: center;
 }
-.ie8 .popup-content .form-item-month, .ie8
-.popup-content .form-item-day, .ie8
-.popup-content .form-item-year {
-  width: 40px;
-}
-.popup-content .form-item-year {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
   margin-right: 0;
 }
-.popup-content label.error {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content label.error,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content label.error {
   margin-top: 12px;
   height: 27px;
   border: 1px;
   font-size: 10px;
 }
-.popup-content .form-item-pass .ds-registration-form-required {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass .ds-registration-form-required,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass .ds-registration-form-required {
   position: absolute;
-  top: 245px;
+  top: 253px;
   left: 219px;
 }
-.ie8 .popup-content .form-item-pass .ds-registration-form-required {
-  top: 264px;
-}
-.popup-content .form-item-pass label.error {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass label.error,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass label.error {
   width: 212px;
 }
-.popup-content .under-13-field {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .under-13-field,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .under-13-field {
   float: left;
   padding: 12px 0;
 }
-.popup-content .under-13-field input {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .under-13-field input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .under-13-field input {
   width: 212px;
   margin-top: 12px;
 }
-.popup-content .under-13-field .ds-registration-form-required {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .under-13-field .ds-registration-form-required,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .under-13-field .ds-registration-form-required {
   top: 11px;
 }
-.popup-content .form-item-parent-email input {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-parent-email input,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-parent-email input {
   width: 212px;
 }
-.popup-content .form-item-parent-email .ds-registration-form-required {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-parent-email .ds-registration-form-required,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-parent-email .ds-registration-form-required {
   top: 11px;
 }
-.popup-content .form-item-parent-email label.error {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-parent-email label.error,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-parent-email label.error {
   float: right;
 }
-.popup-content .disclaimer {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer {
   margin-top: 30px;
 }
-.popup-content .disclaimer .description {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description {
   float: left;
   font-size: 12px;
 }
-.popup-content .disclaimer a {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer a {
   text-decoration: underline;
 }
-
-.already-member {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  float: right;
-  font-size: 18px;
-  padding-bottom: 6px;
-}
-.already-member a {
-  text-decoration: underline;
-}
-
-.ds-login-popup-footer input#edit-final-submit,
-.ds-login-popup-footer input#edit-final-submit--2 {
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2 {
   position: relative;
   top: -38px;
   right: -403px;
 }
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  float: right;
+  font-size: 18px;
+  padding-bottom: 6px;
+  padding-right: 0px;
+}
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new a,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new a {
+  text-decoration: underline;
+}
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new {
+  float: left;
+}
 
-.ie8 .form-item-first-name .ds-registration-form-required, .ie8
-.form-item-last-name .ds-registration-form-required, .ie8
-.form-item-cell .ds-registration-form-required {
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-last-name,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-first-name,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-email,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-last-name,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell {
+  width: 212px;
+}
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name .ds-registration-form-required,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-last-name .ds-registration-form-required,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell .ds-registration-form-required,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-first-name .ds-registration-form-required,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-last-name .ds-registration-form-required,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell .ds-registration-form-required {
   left: 203px;
   top: -28px;
 }
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
+  width: 40px;
+}
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass .ds-registration-form-required,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass .ds-registration-form-required {
+  top: 276px;
+  left: 226;
+}
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday,
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday {
+  position: relative;
+  top: -17px;
+  left: 7px;
+}
 
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
-  right: -404px;
-  top: -20px;
+  right: -400px;
+  top: -18px;
 }
 
 #lets-talk-dialog {
@@ -3925,8 +4288,6 @@ comments.fb_iframe_widget {
 }
 
 .pane-dosomething-blocks-dosomething-social-node-buttons {
-  overflow: hidden;
-  *zoom: 1;
   margin-bottom: 0;
   width: 50%;
 }
@@ -3966,6 +4327,11 @@ comments.fb_iframe_widget {
 
 .fb_edge_widget_with_comment span.fb_edge_comment_widget {
   width: 410px;
+}
+
+.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons, .ie7 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
+  padding-left: 98px;
+  width: 73%;
 }
 
 .sharethis-plugin .stButton .stBubble {
@@ -4209,6 +4575,9 @@ comments.fb_iframe_widget {
 .ie8 .view-home-slideshow .views-row {
   width: 750px;
 }
+.ie8 .view-home-slideshow .views-row, .ie7 .view-home-slideshow .views-row {
+  background: url('images/rounded-bottom-shadow.gif') no-repeat bottom center;
+}
 .view-home-slideshow .home-slide img {
   margin-bottom: 24px;
 }
@@ -4245,6 +4614,10 @@ comments.fb_iframe_widget {
   top: 30px;
   text-shadow: rgba(0, 0, 0, 0.8) 0 0 10px;
   text-transform: uppercase;
+}
+.ie7 .ribbon-front .dothis-title {
+  line-height: 65px;
+  top: 8px;
 }
 .ribbon-front a,
 .ribbon-front a:hover,
@@ -4410,6 +4783,10 @@ comments.fb_iframe_widget {
   float: right;
 }
 
+.ie8 .node-poll .poll, .ie7 .node-poll .poll {
+  width: auto;
+}
+
 .page-causes .content .apps-text {
   padding-top: 6px;
 }
@@ -4481,11 +4858,11 @@ comments.fb_iframe_widget {
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a {
   font-size: 21px;
 }
 
@@ -4594,64 +4971,3 @@ h3 .stuff-header {
 .node-grant-alumni .content .field {
   margin-bottom: 12px;
 }
-
-/* IE SPECIFIC -------------------------------------------------------------- */
-/* */
-/* ALL IE 8 - 6 */
-/* IE8 */
-.ie8 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
-  padding: 0;
-}
-
-.ie8 nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last {
-  width: 210px;
-}
-
-.ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
-.not-logged-in #dosomething-login-register-block #edit-last-name {
-  width: 90px;
-}
-.ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
-  width: 191px;
-}
-
-.ie8 body.front .selectBox-dropdown .selectBox-label {
-  width: 339px !important;
-}
-
-.ie8 #mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
-  padding-left: 98px;
-  width: 73%;
-}
-
-.ie8 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
-  min-width: 184px;
-}
-
-.ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label {
-  min-width: 161px;
-}
-
-.ie8 .ctools-jump-menu-select .selectBox-label {
-  min-width: 164px !important;
-  width: 164px !important;
-}
-
-.ie8 .panes-3 .panel-panel {
-  width: 215px;
-}
-
-.ie8 .node-poll .poll {
-  width: auto;
-}
-
-.ie8 .panel-landings .panel-row-middle .panel-panel {
-  width: 215px;
-}
-
-.ie8 .region-sidebar-first .block-menu-block .content li a {
-  padding-right: 12px;
-}
-
-/* IE7, IE6 */
-/* IE6 */

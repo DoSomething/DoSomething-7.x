@@ -25,9 +25,6 @@
         +single-box-shadow(lighten($gray2, 10.0), 0, 0, 4px, 1px, inset)
         background:
           color: lighten($gray2, 25.0)
-          // repeat: no-repeat
-          // position: 93% 50%
-        // +background-image(image_url('icn-utility-search-magnify.png'))
         border: 1px solid lighten($gray2, 10.0)
         @extend .white
         font-size: 10px
@@ -40,6 +37,10 @@
         right: 25px
         padding: 10px
         top: 4px
+        .ie8 &
+          top: 0
+        .ie7 &
+          top: 9px
     .form-item-keys-1
       margin-left: 1.5em
       margin-right: 1.5em
@@ -50,3 +51,13 @@
     .utility-items.fbconnect
       +float-right
       margin: 1em 8px 1em 0
+
+// the search field dimensions
+#utility-bar #block-dosomething-blocks-dosomething-utility-bar .search
+  #edit-keys-1
+    .ie8 &
+      padding: 0
+    .ie7 &
+      line-height: 27px
+      padding: 0
+      width: 94px

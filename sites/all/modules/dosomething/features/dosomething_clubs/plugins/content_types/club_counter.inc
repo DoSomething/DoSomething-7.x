@@ -9,6 +9,7 @@ function dosomething_clubs_club_counter_ctools_content_types() {
     'title' => t('Dosomething Club Counter'),
     'description' => t('Club related statistics'),
     'category' => t('DoSomething'),
+    'required context' => new ctools_context_required(t('Node'), 'node'),
   );
 }
 
@@ -17,16 +18,54 @@ function dosomething_clubs_club_counter_ctools_content_types() {
  */
 function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $panel_args, $context) {
   $block = new stdClass();
-  $group = og_context();
+
+  $node = $context->data;
+
+  //TODO: Add default club image. 
+  $image = isset($node->field_club_picture[LANGUAGE_NONE][0]['uri']) ? $node->field_club_picture[LANGUAGE_NONE][0] : NULL;
+
+  $invite_link = '';
+  if (node_access('update', $node)) {
+   $invite_link = t('Invite Friends') . l('Go', 'node/' . $node->nid . '/edit', array('attributes' => array('class' => 'go-button')));
+  }
 
   $output = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'dosomething-stats',
+    'containter' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'dosomething-stats',
+        ),
+      ),
+      'left' => array(
+        'image' => array(
+          '#theme' => 'image_formatter',
+          '#item' => $image,
+          '#image_style' => 'action_results_thumbnail',
+          '#prefix' => '<div class="club-image">',
+          '#suffix' => '</div>',
+        ),
+        'invite_link' => array(
+          '#markup' => $invite_link,
+          '#prefix' => '<div class="invite-link">',
+          '#suffix' => '</div>',
+        ),
+      ),
+      'right' => array(
+        '#markup' => dosomething_clubs_club_counter_right(),
       ),
     ),
   );
+
+  $block->content = $output;
+  return $block;
+}
+
+/**
+ * Return themed right side counter content.
+ */
+function dosomething_clubs_club_counter_right() {
+  $group = og_context();
   $items = array();
 
   // Get all users for the group.
@@ -78,7 +117,6 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     '#theme' => 'dosomething_stats_counter',
     '#items' => $items,
   );
-  $block->content = $output;
-  return $block;
 
+  return theme('dosomething_stats_counter', array('items' => $items));
 }

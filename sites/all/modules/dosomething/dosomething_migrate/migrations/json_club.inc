@@ -7,15 +7,15 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
     $this->dependencies = array('DSJsonNewUser', 'DSJsonChangedUser', 'DSFile');
 
     $this->addFieldMapping('uid', 'uid')->sourceMigration(array('DSJsonNewUser', 'DSJsonChangedUser'));
-    $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('created', 'created');
-    $this->addFieldMapping('changed', 'changed');
-    $this->addFieldMapping('status', 'status');
-    $this->addFieldMapping('promote', 'promote');
-    $this->addFieldMapping('sticky', 'sticky');
-    $this->addFieldMapping('language', 'language');
-    $this->addFieldMapping('path', 'path');
     $this->addSimpleMappings(array(
+      'title',
+      'created',
+      'changed',
+      'status',
+      'promote',
+      'sticky',
+      'language',
+      'path',
       'field_name_last',
       'field_name',
       'field_phone_required',
@@ -67,6 +67,9 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
       'field_club_leader_last_name',
       'field_club_leader_email',
       'field_other_value',
+      // Since we're not migrating the schools we're disabling auto_nodetitle
+      // in prepare(). If we migrate them we should look at enabling the auto
+      // title.
       'field_school',
       'field_school_level',
       'field_yacapp_school_type',
@@ -95,6 +98,11 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
   }
 
   public function prepareRow($row) {
+    // HACK: to disable node auto title since it blows up if there's no school
+    // and right now we're not doing anything with the schools.
+    global $conf;
+    $conf['ant_club'] = AUTO_NODETITLE_DISABLED;
+
     // Fix bad dates caused by only storing 2 digits for the year.
     $date = $row->field_club_leader_birthdate;
     $year = substr($date, 0, 4);
@@ -133,21 +141,4 @@ class DSJsonClubMigration extends DSJsonNodeMigration {
       $row->vocab_17 = trim($terms, ',');
     }
   }
-
-  protected function fidFromEmField($value, $uid) {
-    $wrappers = file_get_stream_wrappers();
-    $scheme = file_uri_scheme($value);
-    if (empty($wrappers[$scheme])) {
-      var_dump("couldn't find a stream wrapper for $scheme");
-      return NULL;
-    }
-
-    $file = file_uri_to_object($value);
-    if (empty($file->fid)) {
-      $file->uid = $uid;
-      file_save($file);
-    }
-    return $file->fid;
-  }
-
 }

@@ -28,6 +28,9 @@ Drupal.behaviors.dosomethingLoginRegister = {
 
     // Run when the popup form submit is run.
     $('#edit-final-submit').click(function (event) {
+      if (!popupForm.valid()) {
+        return;
+      }
       // The elements are disabled, but still need to actually post.
       popupForm.find('.dosomething-original-value').each(function () {
         $(this).removeAttr('disabled');
