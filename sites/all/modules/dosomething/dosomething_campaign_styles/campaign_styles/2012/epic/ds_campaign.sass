@@ -36,7 +36,7 @@ $bgFallback: #F5C36E
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: transparent
+  background: none
   background: rgba(188,134,70,.4)
 
 @mixin grayLine
@@ -61,6 +61,11 @@ $bgFallback: #F5C36E
   +borderTop
   +borderBot
 
+@mixin setBorderBox
+  -moz-box-sizing: border-box
+  -ms-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -99,6 +104,7 @@ div[role="main"]
   float: left
   margin-right: 6.5%
   +noBorder
+  +setBorderBox
   &:last-child
     margin-right: 0
   .pane-content
@@ -106,6 +112,7 @@ div[role="main"]
     height: 166px
     padding: $paneContentPadding
     text-align: center
+    +setBorderBox
 
 .three-boxes-last-child
   margin-right: 0 !important
