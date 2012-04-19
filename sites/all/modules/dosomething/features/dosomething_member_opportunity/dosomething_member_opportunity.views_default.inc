@@ -348,11 +348,14 @@ function dosomething_member_opportunity_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Grants Database';
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 1;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['style_plugin'] = 'table';
@@ -455,6 +458,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['fields']['field_award_focus']['id'] = 'field_award_focus';
   $handler->display->display_options['fields']['field_award_focus']['table'] = 'field_data_field_award_focus';
   $handler->display->display_options['fields']['field_award_focus']['field'] = 'field_award_focus';
+  $handler->display->display_options['fields']['field_award_focus']['label'] = 'Focus';
   $handler->display->display_options['fields']['field_award_focus']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['alter']['absolute'] = 0;
@@ -464,6 +468,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['fields']['field_award_focus']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_award_focus']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_award_focus']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['alter']['html'] = 0;
@@ -472,14 +477,12 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['fields']['field_award_focus']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_award_focus']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_award_focus']['click_sort_column'] = array(
-    0 => 'value',
-  );
   $handler->display->display_options['fields']['field_award_focus']['field_api_classes'] = 0;
   /* Field: Content: Grant status */
   $handler->display->display_options['fields']['field_rolling']['id'] = 'field_rolling';
   $handler->display->display_options['fields']['field_rolling']['table'] = 'field_data_field_rolling';
   $handler->display->display_options['fields']['field_rolling']['field'] = 'field_rolling';
+  $handler->display->display_options['fields']['field_rolling']['label'] = 'Status';
   $handler->display->display_options['fields']['field_rolling']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_rolling']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_rolling']['alter']['absolute'] = 0;
@@ -489,6 +492,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['fields']['field_rolling']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_rolling']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_rolling']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_rolling']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_rolling']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_rolling']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_rolling']['alter']['html'] = 0;
@@ -497,9 +501,6 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['fields']['field_rolling']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_rolling']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_rolling']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_rolling']['click_sort_column'] = array(
-    0 => 'value',
-  );
   $handler->display->display_options['fields']['field_rolling']['field_api_classes'] = 0;
   /* Field: Content: Application Deadline */
   $handler->display->display_options['fields']['field_application_deadline_2']['id'] = 'field_application_deadline_2';
@@ -679,9 +680,11 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'Here is a database of available resources for entrepreneurs. We now allow YOU to add resources! <a href="/node/add/member-opportunity">Submit an award or grant listing</a>.';
-  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['content'] = '<br style="clear:both;">
+Here is a database of available resources for entrepreneurs. We now allow YOU to add resources! <a href="/node/add/member-opportunity">Submit an award or grant listing</a>.';
+  $handler->display->display_options['header']['area']['format'] = '3';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
+  $handler->display->display_options['inherit_panels_path'] = '1';
 
   /* Display: Scholarships Content pane */
   $handler = $view->new_display('panel_pane', 'Scholarships Content pane', 'panel_pane_2');
@@ -692,8 +695,9 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'Here is a collection of scholarships that support young people that take action in their community.';
-  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['content'] = '<br style="clear:both;">
+Here are scholarships that support young people that take action in their community.';
+  $handler->display->display_options['header']['area']['format'] = '3';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -748,6 +752,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['filters']['field_award_focus_value']['expose']['operator'] = 'field_award_focus_value_op';
   $handler->display->display_options['filters']['field_award_focus_value']['expose']['identifier'] = 'field_award_focus_value';
   $handler->display->display_options['filters']['field_award_focus_value']['expose']['reduce'] = 0;
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['member_opportunity'] = $view;
 
   return $export;
