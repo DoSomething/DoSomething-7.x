@@ -749,6 +749,7 @@ function dosomething_causes_views_default_views() {
   /* Display: Poll Content Pane */
   $handler = $view->new_display('panel_pane', 'Poll Content Pane', 'panel_pane_1');
   $handler->display->display_options['display_description'] = 'Displays a list of related Poll content.';
+  $handler->display->display_options['inherit_panels_path'] = '1';
 
   /* Display: FB Social Attachment */
   $handler = $view->new_display('attachment', 'FB Social Attachment', 'attachment_1');
