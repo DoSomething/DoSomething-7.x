@@ -488,7 +488,7 @@ div[role="main"]
   .pane-content
     padding: 10px
     width: 271px
-    max-height: 140px
+    height: 177px
     overflow: auto
     ul
       list-style: none
@@ -506,10 +506,10 @@ div[role="main"]
     padding-bottom: 25px
     width: 480px
     .content-content
-      padding: 5px 5px 35px 5px
+      padding: 5px
       background: rgba(0, 0, 0, .13)
       img
-        margin-left: 120px
+        margin-left: 115px
       ul	
         +column-count(2)
         +column-gap(0px)
@@ -521,5 +521,9 @@ div[role="main"]
             line-height: 18px
             color: white
 
-#school-gallery
-  clear: both
+.pane-campaign-school-pages-photo-gallery
+  border: none
+  .jcarousel-container-horizontal
+    padding: 5px 0
+    img
+      border: none
