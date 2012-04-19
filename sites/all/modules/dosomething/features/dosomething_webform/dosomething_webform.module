@@ -118,12 +118,11 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
           }
         }
       }
-    }
-
-    $field_info = field_info_field($magic_fields_field);
-    foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
-      if (isset($entity_form[$field_name]) && !in_array($field_name, $enabled_fields)) {
-        $entity_form[$field_name]['#access'] = FALSE;
+      $field_info = field_info_field($magic_fields_field);
+      foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
+        if (isset($entity_form[$field_name]) && !in_array($field_name, $enabled_fields)) {
+          $entity_form[$field_name]['#access'] = FALSE;
+        }
       }
     }
   }

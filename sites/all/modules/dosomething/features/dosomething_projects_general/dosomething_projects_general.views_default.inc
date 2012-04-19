@@ -520,6 +520,15 @@ function dosomething_projects_general_views_default_views() {
   );
   $handler->display->display_options['row_options']['hide_empty'] = 0;
   $handler->display->display_options['row_options']['default_field_elements'] = 0;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'Default image';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = '<img src="/sites/all/modules/dosomething/features/dosomething_projects_general/project-nopic-01.png" alt="Official Dosomething.org Project" />';
+  $handler->display->display_options['empty']['area']['format'] = '3';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_webform_project_submission_node']['id'] = 'reverse_field_webform_project_submission_node';
   $handler->display->display_options['relationships']['reverse_field_webform_project_submission_node']['table'] = 'webform_submissions';
@@ -607,6 +616,10 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['sid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['sid']['not'] = 0;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -614,6 +627,20 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project_report' => 'project_report',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Picture (field_picture:fid) */
+  $handler->display->display_options['filters']['field_picture_fid']['id'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['filters']['field_picture_fid']['field'] = 'field_picture_fid';
+  $handler->display->display_options['filters']['field_picture_fid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_picture_fid']['group'] = 2;
+  /* Filter criterion: Content: Do you have any new photos to add? (field_project_photo:fid) */
+  $handler->display->display_options['filters']['field_project_photo_fid']['id'] = 'field_project_photo_fid';
+  $handler->display->display_options['filters']['field_project_photo_fid']['table'] = 'field_data_field_project_photo';
+  $handler->display->display_options['filters']['field_project_photo_fid']['field'] = 'field_project_photo_fid';
+  $handler->display->display_options['filters']['field_project_photo_fid']['relationship'] = 'reverse_field_webform_project_submission_node';
+  $handler->display->display_options['filters']['field_project_photo_fid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_project_photo_fid']['group'] = 2;
 
   /* Display: Project photo slider pane */
   $handler = $view->new_display('panel_pane', 'Project photo slider pane', 'panel_pane_1');
@@ -1191,7 +1218,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';

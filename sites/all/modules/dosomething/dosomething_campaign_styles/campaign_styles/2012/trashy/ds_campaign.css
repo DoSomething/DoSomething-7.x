@@ -28,11 +28,20 @@ div[role="main"] {
   padding-top: 10px; }
 
 .three-boxes {
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 29%;
   float: left;
   margin-right: 6.5%; }
   .three-boxes:last-child {
     margin-right: 0; }
+  .three-boxes .pane-content {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
 
 .three-boxes-last-child {
   margin-right: 0 !important; }

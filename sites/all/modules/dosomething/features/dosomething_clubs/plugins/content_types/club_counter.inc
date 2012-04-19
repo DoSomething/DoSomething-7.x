@@ -21,8 +21,18 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
 
   $node = $context->data;
 
-  //TODO: Add default club image. 
-  $image = isset($node->field_club_picture[LANGUAGE_NONE][0]['uri']) ? $node->field_club_picture[LANGUAGE_NONE][0] : NULL;
+  if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
+    $image = $node->field_club_picture[LANGUAGE_NONE][0];
+    $image_style = 'action_results_thumbnail';
+  }
+  else {
+    $image = array(
+      'uri' => 'sites/all/modules/dosomething/features/dosomething_clubs/club-nopic-01.png',
+      'title' => 'DoSomething Club',
+      'alt' => 'DoSomething Clubs Default image',
+    );
+    $image_style = NULL;
+  }
 
   $invite_link = '';
   if (node_access('update', $node)) {
@@ -41,7 +51,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
         'image' => array(
           '#theme' => 'image_formatter',
           '#item' => $image,
-          '#image_style' => 'action_results_thumbnail',
+          '#image_style' => $image_style,
           '#prefix' => '<div class="club-image">',
           '#suffix' => '</div>',
         ),

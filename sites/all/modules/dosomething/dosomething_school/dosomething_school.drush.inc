@@ -25,6 +25,7 @@ function drush_dosomething_school_load() {
   $count = 0;
   $fields = array(
     'universal-id',
+    'id',
     'name',
     'street',
     'city',
@@ -65,6 +66,10 @@ function drush_dosomething_school_load() {
       // Rename their id.
       $row['gsid'] = $row['universal-id'];
       unset($row['universal-id']);
+
+      // Rename the id field to school_id
+      $row['school_id'] = $row['id'];
+      unset($row['id']);
 
       // Check if there's an existing record...
       $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid'], 'state' => $row['state']));

@@ -1805,7 +1805,7 @@ function theme_dosomething_login_facebook_user_info($variables) {
  */
 function dosomething_login_access_denied_page() {
   if (user_is_anonymous()) {
-    return drupal_get_form('user_login');
+    return drupal_get_form('dosomething_login_login_popup_form');
   }
   else {
     return t('You are not authorized to access this page.');

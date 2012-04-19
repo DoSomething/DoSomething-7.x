@@ -2,18 +2,8 @@
   display: none
 
 #dosomething-login-register-popup-form
-  // background: $white
-  // padding: 25px 34px
-  // top: 90px !important
-  // right: 30%
-  // left: 30%
   label
     cursor: default
-  .ui-dialog .ui-dialog-titlebar
-    padding: 0
-  .ui-icon.ui-icon-closethick
-    top: -22px
-    right: -502px
   input
     &[type="text"],
     &[type="textarea"]
@@ -44,13 +34,6 @@
       line-height: 40px
       padding-bottom: 12px
 
-  // .separator
-  //   @extend .bold
-  //   font-size: 21px
-  //   font-family: $font-headline
-  //   margin-bottom: 12px
-  //   text-align: center
-
   .ds-registration-form-required
     position: relative
     left: -11px
@@ -63,9 +46,6 @@
 
   // Gray box
   .popup-content
-    // +clearfix
-    // background: $gray6
-    // @extend .box-shadow
     min-height: 240px
     padding: 18px
     width: 478px
@@ -184,4 +164,34 @@
   top: -52px
   right: -525px
 
+// IE8 with js
+.no-js.ie.ie8.js
+  #dosomething-login-register-popup-form
+    .popup-content
+      width: 446px
+    .ds-registration-form-required
+      position: relative
+      left: 203px
+      top: -29px
 
+// IE8 without js
+.no-js.ie.ie8
+  #dosomething-login-register-popup-form
+    .popup-content
+      // Left column fields
+      .form-item-first-name,
+      .form-item-email,
+      .form-item-pass,
+      .form-item-last-name,
+      .form-item-cell
+        width: 212px
+
+      .form-item-month,
+      .form-item-day,
+      .form-item-year
+        width: 40px
+
+      #edit-birthday
+        position: relative
+        top: -17px
+        left: 7px

@@ -26,6 +26,10 @@ div[role="main"] {
   padding-top: 10px; }
 
 .three-boxes {
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border: none !important;
   width: 29%;
   float: left;
@@ -33,10 +37,17 @@ div[role="main"] {
   .three-boxes:last-child {
     margin-right: 0; }
   .three-boxes .pane-content {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     font-weight: 600;
     height: 166px;
     padding: 1.5em;
     text-align: center; }
+
+.three-boxes-last-child {
+  margin-right: 0 !important; }
 
 .two-thirds {
   width: 64.5%;
