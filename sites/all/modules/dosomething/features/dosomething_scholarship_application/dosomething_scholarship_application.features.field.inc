@@ -341,6 +341,15 @@ function dosomething_scholarship_application_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -740,6 +749,11 @@ function dosomething_scholarship_application_field_default_fields() {
       'settings' => array(
         'handler' => 'ds_school',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'none',
