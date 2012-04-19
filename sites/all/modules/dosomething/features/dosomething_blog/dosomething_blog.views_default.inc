@@ -1326,6 +1326,7 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
@@ -1357,6 +1358,54 @@ function dosomething_blog_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_picture']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
+  /* Field: Content: Video */
+  $handler->display->display_options['fields']['field_embedded_video']['id'] = 'field_embedded_video';
+  $handler->display->display_options['fields']['field_embedded_video']['table'] = 'field_data_field_embedded_video';
+  $handler->display->display_options['fields']['field_embedded_video']['field'] = 'field_embedded_video';
+  $handler->display->display_options['fields']['field_embedded_video']['label'] = '';
+  $handler->display->display_options['fields']['field_embedded_video']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_embedded_video']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_embedded_video']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_embedded_video']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_embedded_video']['type'] = 'media';
+  $handler->display->display_options['fields']['field_embedded_video']['settings'] = array(
+    'file_view_mode' => 'media_preview',
+  );
+  $handler->display->display_options['fields']['field_embedded_video']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_embedded_video']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_embedded_video']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_embedded_video']['field_api_classes'] = 0;
+  /* Field: Views If Empty: Views If Empty */
+  $handler->display->display_options['fields']['views_ifempty']['id'] = 'views_ifempty';
+  $handler->display->display_options['fields']['views_ifempty']['table'] = 'views_ifempty';
+  $handler->display->display_options['fields']['views_ifempty']['field'] = 'views_ifempty';
+  $handler->display->display_options['fields']['views_ifempty']['label'] = '';
+  $handler->display->display_options['fields']['views_ifempty']['element_type'] = 'div';
+  $handler->display->display_options['fields']['views_ifempty']['element_class'] = 'blog-large-thumbnail';
+  $handler->display->display_options['fields']['views_ifempty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['views_ifempty']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['views_ifempty']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['views_ifempty']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['views_ifempty']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['views_ifempty']['emptyfield'] = 'field_picture';
+  $handler->display->display_options['fields']['views_ifempty']['outputfield'] = 'field_embedded_video';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
