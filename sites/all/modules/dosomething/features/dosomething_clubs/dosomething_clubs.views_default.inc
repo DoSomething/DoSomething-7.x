@@ -284,7 +284,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['sid']['separator'] = '';
   $handler->display->display_options['fields']['sid']['format_plural'] = 0;
-  /* Field: Webform Submission: Title */
+  /* Field: Webform Submission: Title of your project */
   $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
   $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
   $handler->display->display_options['fields']['field_project_title']['field'] = 'field_project_title';
@@ -333,7 +333,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project_report' => 'project_report',
   );
-  /* Filter criterion: Webform Submission: Status (field_project_type) */
+  /* Filter criterion: Webform Submission: What&#039;s the status of your project? (field_project_type) */
   $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
   $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
   $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
@@ -436,7 +436,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['sid']['separator'] = '';
   $handler->display->display_options['fields']['sid']['format_plural'] = 0;
-  /* Field: Webform Submission: Title */
+  /* Field: Webform Submission: Title of your project */
   $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
   $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
   $handler->display->display_options['fields']['field_project_title']['field'] = 'field_project_title';
@@ -496,7 +496,7 @@ function dosomething_clubs_views_default_views() {
     'project_report' => 'project_report',
   );
   $handler->display->display_options['filters']['type']['group'] = 0;
-  /* Filter criterion: Webform Submission: Status (field_project_type) */
+  /* Filter criterion: Webform Submission: What&#039;s the status of your project? (field_project_type) */
   $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
   $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
   $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
@@ -588,7 +588,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['sid']['separator'] = '';
   $handler->display->display_options['fields']['sid']['format_plural'] = 0;
-  /* Field: Webform Submission: Title */
+  /* Field: Webform Submission: Title of your project */
   $handler->display->display_options['fields']['field_project_title']['id'] = 'field_project_title';
   $handler->display->display_options['fields']['field_project_title']['table'] = 'field_data_field_project_title';
   $handler->display->display_options['fields']['field_project_title']['field'] = 'field_project_title';
@@ -621,7 +621,7 @@ function dosomething_clubs_views_default_views() {
     'project_report' => 'project_report',
   );
   $handler->display->display_options['filters']['type']['group'] = 0;
-  /* Filter criterion: Webform Submission: Status (field_project_type) */
+  /* Filter criterion: Webform Submission: What&#039;s the status of your project? (field_project_type) */
   $handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
   $handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
   $handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
