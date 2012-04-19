@@ -535,8 +535,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
@@ -553,11 +552,8 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
 #dosomething-login-register-popup-form #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2 label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, #dosomething-login-login-popup-form #edit-title-text--2 label, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -588,11 +584,8 @@ thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-
 .black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
 #dosomething-login-register-popup-form #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2 label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, #dosomething-login-login-popup-form #edit-title-text--2 label, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
 .page-search .content h2.title {
   color: black;
 }
@@ -661,8 +654,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   color: #47c965;
 }
 
-.alert-red, #dosomething-login-register-popup-form .error, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error {
+.alert-red, #dosomething-login-register-popup-form .error {
   color: red;
 }
 
@@ -2319,13 +2311,6 @@ select.form-select {
 #dosomething-login-register-popup-form label {
   cursor: default;
 }
-#dosomething-login-register-popup-form .ui-dialog .ui-dialog-titlebar {
-  padding: 0;
-}
-#dosomething-login-register-popup-form .ui-icon.ui-icon-closethick {
-  top: -22px;
-  right: -502px;
-}
 #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"] {
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
@@ -2494,6 +2479,33 @@ select.form-select {
   position: relative;
   top: -52px;
   right: -525px;
+}
+
+.no-js.ie.ie8.js #dosomething-login-register-popup-form .popup-content {
+  width: 446px;
+}
+.no-js.ie.ie8.js #dosomething-login-register-popup-form .ds-registration-form-required {
+  position: relative;
+  left: 203px;
+  top: -29px;
+}
+
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-first-name,
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-email,
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-pass,
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-last-name,
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-cell {
+  width: 212px;
+}
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-month,
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-day,
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-year {
+  width: 40px;
+}
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content #edit-birthday {
+  position: relative;
+  top: -17px;
+  left: 7px;
 }
 
 #site-name a {
@@ -3946,42 +3958,6 @@ h2.block-title, h2.pane-title {
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"]:focus {
   outline: none;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .connect-with-facebook .form-wrapper,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .connect-with-facebook .form-wrapper {
-  margin-bottom: 0;
-}
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-connect,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-connect {
-  margin-bottom: 0;
-}
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] #edit-title-text--2 label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text label,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] #edit-title-text--2 label {
-  font-weight: 600;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  font-size: 40px;
-  border-bottom: 1px #efefef solid;
-  line-height: 40px;
-  padding-bottom: 12px;
-}
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .error,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .error {
-  font-size: 12px;
-}
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content {
-  min-height: 240px;
-  padding: 18px;
-  width: 478px;
-}
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass,
@@ -4061,11 +4037,6 @@ h2.block-title, h2.pane-title {
   right: -18px;
   top: 16px;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday label .ds-registration-form-required,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday label .ds-registration-form-required {
-  top: 11px;
-  left: 17px;
-}
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
@@ -4095,12 +4066,6 @@ h2.block-title, h2.pane-title {
   border: 1px;
   font-size: 10px;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass .ds-registration-form-required,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass .ds-registration-form-required {
-  position: absolute;
-  top: 253px;
-  left: 219px;
-}
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass label.error,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass label.error {
   width: 212px;
@@ -4115,17 +4080,9 @@ h2.block-title, h2.pane-title {
   width: 212px;
   margin-top: 12px;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .under-13-field .ds-registration-form-required,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .under-13-field .ds-registration-form-required {
-  top: 11px;
-}
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-parent-email input,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-parent-email input {
   width: 212px;
-}
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-parent-email .ds-registration-form-required,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-parent-email .ds-registration-form-required {
-  top: 11px;
 }
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-parent-email label.error,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-parent-email label.error {
@@ -4175,6 +4132,32 @@ h2.block-title, h2.pane-title {
   float: left;
 }
 
+#dosomething-login-login-popup-form .popup-content {
+  min-height: 240px;
+  padding: 18px;
+  width: 478px;
+  margin: auto;
+}
+#dosomething-login-login-popup-form #edit-title-text--2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+#dosomething-login-login-popup-form #edit-title-text--2 label {
+  font-weight: 600;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 40px;
+  border-bottom: 1px #efefef solid;
+  line-height: 40px;
+  padding-bottom: 12px;
+}
+
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email,
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass,
@@ -4187,15 +4170,6 @@ h2.block-title, h2.pane-title {
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell {
   width: 212px;
 }
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name .ds-registration-form-required,
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-last-name .ds-registration-form-required,
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell .ds-registration-form-required,
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-first-name .ds-registration-form-required,
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-last-name .ds-registration-form-required,
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell .ds-registration-form-required {
-  left: 203px;
-  top: -28px;
-}
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
@@ -4204,16 +4178,15 @@ h2.block-title, h2.pane-title {
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
   width: 40px;
 }
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass .ds-registration-form-required,
-.no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass .ds-registration-form-required {
-  top: 276px;
-  left: 226;
-}
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday,
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday {
   position: relative;
   top: -17px;
   left: 7px;
+}
+
+.no-js.ie.ie8.js #dosomething-login-login-popup-form .popup-content {
+  width: 446px;
 }
 
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
