@@ -164,6 +164,21 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: OG membership: Group gid */
+  $handler->display->display_options['arguments']['group']['id'] = 'group';
+  $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
+  $handler->display->display_options['arguments']['group']['field'] = 'group';
+  $handler->display->display_options['arguments']['group']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['arguments']['group']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['group']['default_argument_options']['index'] = '1';
+  $handler->display->display_options['arguments']['group']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group']['not'] = 0;
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
@@ -328,12 +343,11 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = '<a href="/projects/submit">Start a project</a>';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
-  /* Relationship: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
+  /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
   $handler->display->display_options['relationships']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
   $handler->display->display_options['relationships']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
   $handler->display->display_options['relationships']['field_project_clubs_nid']['required'] = 1;
-  $handler->display->display_options['relationships']['field_project_clubs_nid']['delta'] = '-1';
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
@@ -1044,6 +1058,7 @@ function dosomething_clubs_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
