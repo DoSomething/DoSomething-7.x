@@ -94,6 +94,7 @@ function dosomething_school_schema() {
     'indexes' => array(
       // Deliberately ordered so that fixed length fields are up front.
       'uid_state_name' => array('uid', 'state', 'name'),
+      'school_id' => array('school_id'),
     ),
     'foreign keys' => array(
       'users' => array(
@@ -132,4 +133,5 @@ function dosomething_school_update_7001() {
       'unsigned' => TRUE,
     )
   );
+  db_add_index('ds_school', 'school_id', array('school_id'));
 }
