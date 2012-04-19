@@ -991,8 +991,6 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
     'field_user_first_name',
     'field_user_last_name',
     'field_user_hearabout',
-    'field_user_official_rules',
-    'field_user_why_do_you',
     'field_user_mobile',
     'field_school_reference',
   );
