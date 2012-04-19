@@ -31,6 +31,12 @@ function dosomething_school_schema() {
         'not null' => FALSE,
         'unsigned' => TRUE,
       ),
+      'school_id' => array(
+        'description' => 'The school id from the great school record. This number is not unique like gsid but it is unique within a state. This will also be NULL or 0 on user generated schools',
+        'type' => 'int',
+        'not null' => FALSE,
+        'unsigned' => TRUE,
+      ),
       'name' => array(
         'description' => 'School name.',
         'type' => 'varchar',
@@ -110,6 +116,20 @@ function dosomething_school_update_7000() {
       'length' => 127,
       'not null' => TRUE,
       'default' => '',
+    )
+  );
+}
+
+/**
+ * Dosomething School Update 7001 Create a column for the non-unique school id.
+ */
+function dosomething_school_update_7001() {
+  db_add_field('ds_school', 'school_id',
+    array(
+      'description' => 'The school id from the great school record. This number is not unique like gsid but it is unique within a state. This will also be NULL or 0 on user generated schools',
+      'type' => 'int',
+      'not null' => FALSE,
+      'unsigned' => TRUE,
     )
   );
 }
