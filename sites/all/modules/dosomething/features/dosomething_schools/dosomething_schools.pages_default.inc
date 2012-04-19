@@ -83,8 +83,7 @@ function dosomething_schools_default_page_manager_pages() {
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'school/*/picks
-school/*/members
-school/*/done-it',
+school/*/members',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -104,38 +103,6 @@ school/*/done-it',
     $display->panels['mid-center'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'mid-left';
-    $pane->type = 'school_done_it';
-    $pane->subtype = 'school_done_it';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '0',
-            'paths' => 'school/*/picks
-school/*/members
-school/*/done-it',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['mid-left'][0] = 'new-2';
-    $pane = new stdClass();
-    $pane->pid = 'new-3';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'editors_picks_for_schools-panel_pane_1';
@@ -147,8 +114,7 @@ school/*/done-it',
           'settings' => array(
             'visibility_setting' => '0',
             'paths' => 'school/*/picks
-school/*/members
-school/*/done-it',
+school/*/members',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -167,10 +133,10 @@ school/*/done-it',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['mid-right'][0] = 'new-3';
+    $display->content['new-2'] = $pane;
+    $display->panels['mid-right'][0] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-3';
     $pane->panel = 'top';
     $pane->type = 'school_counter';
     $pane->subtype = 'school_counter';
@@ -185,10 +151,10 @@ school/*/done-it',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['top'][0] = 'new-4';
+    $display->content['new-3'] = $pane;
+    $display->panels['top'][0] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'editors_picks_for_schools-panel_pane_2';
@@ -215,10 +181,10 @@ school/*/done-it',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][1] = 'new-5';
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][1] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-5';
     $pane->panel = 'top';
     $pane->type = 'school_club_members_all';
     $pane->subtype = 'school_club_members_all';
@@ -245,38 +211,8 @@ school/*/done-it',
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][2] = 'new-6';
-    $pane = new stdClass();
-    $pane->pid = 'new-7';
-    $pane->panel = 'top';
-    $pane->type = 'school_done_it_all';
-    $pane->subtype = 'school_done_it_all';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'school/*/done-it',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][3] = 'new-7';
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][2] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
