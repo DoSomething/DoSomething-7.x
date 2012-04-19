@@ -1370,6 +1370,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   border-bottom: none;
 }
 .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a {
+  font-size: 14px;
   font-weight: bold;
 }
 .pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
@@ -3572,12 +3573,8 @@ h2.block-title, h2.pane-title {
   text-align: center;
   margin-bottom: 15px;
 }
-.panes-2 .panel-second .pane-content {
-  font-size: 12px;
-  line-height: 13px;
-}
 .panes-2 .panel-second .views-field-title, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 2px;
 }
 .panes-2 .panel-second .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a {
