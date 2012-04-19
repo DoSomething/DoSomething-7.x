@@ -20,6 +20,8 @@ function dosomething_migrate_drush_help($section) {
       return dt('Update references on nodes of type "project_update", "grant_alumni", "final_grant_update", "awards_archive", "dsaward_app" so that they point to the newly migrated sid values of project report backs and campaign report backs.');
     case 'dosomething-sql-profile-rollback':
       return dt('temp function to help rollback profiles');
+    case 'dosomething-migrate-create-redirect-from-migration-alias':
+      return dt('For each migration, grab the URL aliases and create a redirect on the new site.');
   }
 }
 
@@ -54,6 +56,11 @@ function dosomething_migrate_drush_command() {
     'description' => 'temp function to help rollback profiles',
     'aliases' => array('dsspr'),
   );
+  $items['dosomething-migrate-create-redirect-from-migration-alias'] = array(
+    'description' => 'For each migration, create a url alias to point to the content on the new site.',
+    'bootstrap' => DRUSH_BOOTSTRAP_MAX,
+    'aliases' => array('dsma'),
+  );
   return $items;
 }
 
@@ -70,6 +77,30 @@ function drush_dosomething_migrate_sql_profile_rollback() {
   $chunks = array_chunk($pids, 50);
   foreach ($chunks as $chunk) {
     profile2_delete_multiple($chunk);
+  }
+}
+
+/**
+ * For each migration, grab the URL aliases and create a redirect on the new site.
+ */
+function drush_dosomething_migrate_create_redirect_from_migration_alias() {
+  //TODO: Update me.
+  $d6_database = variable_get('d6_database', 'dosomething_drupal');
+  $migrations = array(
+    'migrate_map_dsproject' => 'webform-submission',
+  );
+  foreach ($migrations as $migration => $base_path) {
+    $query = "SELECT count(sourceid1) FROM {$migration} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) LIMIT 4";
+    $count = db_query($query)->fetchColumn();
+    $query = "SELECT sourceid1, destid1, src, dst FROM {$migration} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) LIMIT 4";
+    $results = db_query($query)->fetchAll();
+    foreach ($results as $result) {
+      $redirect = new stdClass();
+      redirect_object_prepare($redirect);
+      $redirect->source = $result->dst;
+      $redirect->redirect = $base_path . '/' . $result->destid1;
+      //redirect_save($redirect);
+    }
   }
 }
 
