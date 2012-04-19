@@ -3184,8 +3184,8 @@ h2.block-title, h2.pane-title {
   line-height: 21px;
 }
 #block-menu-menu-footer .content ul.menu ul li a {
-  line-height: 18px;
-  font-size: 14px;
+  line-height: 14px;
+  font-size: 16px;
   text-transform: none;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"] {
