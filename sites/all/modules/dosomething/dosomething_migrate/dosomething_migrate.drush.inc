@@ -85,21 +85,34 @@ function drush_dosomething_migrate_sql_profile_rollback() {
  */
 function drush_dosomething_migrate_create_redirect_from_migration_alias() {
   //TODO: Update me.
-  $d6_database = variable_get('d6_database', 'dosomething_drupal');
   $migrations = array(
     'migrate_map_dsproject' => 'webform-submission',
   );
-  foreach ($migrations as $migration => $base_path) {
-    $query = "SELECT count(sourceid1) FROM {$migration} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) LIMIT 4";
+
+  $d6_database = variable_get('d6_database', 'dosomething_drupal');
+
+  foreach ($migrations as $migration_table => $base_path) {
+    $query = "SELECT count(sourceid1) FROM {$migration_table} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1)";
     $count = db_query($query)->fetchColumn();
-    $query = "SELECT sourceid1, destid1, src, dst FROM {$migration} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) LIMIT 4";
+    $query = "SELECT sourceid1, destid1, src, dst FROM {{$migration_table}} JOIN {{$d6_database}}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) LIMIT 5";
     $results = db_query($query)->fetchAll();
+    $paths = array_map(function ($value) use ($base_path) { return $base_path . '/' . $value->destid1; }, $results);
+    $existing = db_select('redirect', 'r')
+      ->fields('r', array('rid', 'redirect'))
+      ->condition('redirect', $paths, 'IN')
+      ->execute()
+      ->fetchAllKeyed();
     foreach ($results as $result) {
-      $redirect = new stdClass();
-      redirect_object_prepare($redirect);
-      $redirect->source = $result->dst;
-      $redirect->redirect = $base_path . '/' . $result->destid1;
-      //redirect_save($redirect);
+      $real_path = $base_path . '/' . $result->destid1;
+      // Ensure we haven't already aliased this one.
+      if (!in_array($real_path, $existing)) {
+        drush_print($existing);
+        $redirect = new stdClass();
+        redirect_object_prepare($redirect);
+        $redirect->source = $result->dst;
+        $redirect->redirect = $real_path;
+        redirect_save($redirect);
+      }
     }
   }
 }
