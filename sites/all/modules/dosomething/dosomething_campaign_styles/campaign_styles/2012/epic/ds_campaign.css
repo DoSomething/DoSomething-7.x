@@ -444,7 +444,7 @@ div[role="main"] {
       padding: 5px 5px 34px 5px; }
 
 #drive-tools {
-  border: 0;
+  border: none;
   clear: both; }
   #drive-tools .pane-content {
     padding: 10px;
@@ -472,11 +472,11 @@ div[role="main"] {
             line-height: 18px;
             color: white; }
 
-.pane-campaign-school-pages-photo-gallery {
-  border: none; }
-  .pane-campaign-school-pages-photo-gallery .jcarousel-container-horizontal {
+#school-gallery {
+  border: none !important; }
+  #school-gallery .jcarousel-container-horizontal {
     padding: 5px 0; }
-    .pane-campaign-school-pages-photo-gallery .jcarousel-container-horizontal img {
+    #school-gallery .jcarousel-container-horizontal img {
       border: none; }
 
 #breadcrumbs {

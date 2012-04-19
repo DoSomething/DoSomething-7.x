@@ -37,6 +37,15 @@ $bgFallback: black
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBorder
+  border: none !important
+
+@mixin noBoxShadow
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+  -o-box-shadow: none
+  box-shadow: none
+
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -136,6 +145,44 @@ div[role="main"]
     .pane-content
       font-size: 21px
       line-height: 1.4em
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  +block
+  +noBorder
+  margin: 1em 0 2em 0
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-content
+        padding: 0
+        .webform-client-form
+          +noBorder
+          +noBoxShadow
+        .field-name-field-webform-mobile
+          margin-bottom: 0.5em
+          input
+            width: 100%
+        .field-name-field-webform-email  
+          margin-bottom: 0.5em
+          input
+            width: 100%
+      #edit-.form-wrapper
+        margin-bottom: 0
+      #edit-actions
+        height: auto
+      #edit-submit
+        margin-right: 0
+
+.campaign-counter-labels
+  color: white
+  font-size: 24px
+  line-height: 24px
+  text-transform: uppercase
 
 .panel-row-actions
   +block
@@ -259,12 +306,16 @@ div[role="main"]
 
 .panel-row-ad-quick-info
   h2
-    color: black
+    color: #8DC641
     font-size: 24px
     font-weight: 500
   .pane-content
+    h3
+      color: #8DC641
     p
       margin-bottom: 1em
+      a
+        color: #8DC641
 
 .pane-node-field-campain-date,
 .pane-node-field-campaign-teaser,
@@ -450,7 +501,6 @@ div[role="main"]
 
 #members-list
   float: left 
-  padding-right: 10px
   .pane-title
     background: #8DC641
     padding: 10px 0 0 10px
@@ -459,7 +509,7 @@ div[role="main"]
   .pane-content
     padding: 10px
     width: 271px
-    height: 177px
+    height: 172px
     overflow: auto
     ul
       list-style: none

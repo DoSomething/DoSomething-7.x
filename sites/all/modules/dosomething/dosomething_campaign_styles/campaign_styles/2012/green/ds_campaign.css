@@ -95,6 +95,46 @@ div[role="main"] {
 .panel-row-actions {
   background: black;
   background: rgba(0, 30, 0, 0.5);
+  border: none !important;
+  margin: 1em 0 2em 0; }
+  .panel-row-actions .pane-title {
+    background: #009444; }
+  .panel-row-actions .pane-content {
+    padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content {
+      padding: 0; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .webform-client-form {
+        border: none !important;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
+        margin-bottom: 0.5em; }
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
+          width: 100%; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email {
+        margin-bottom: 0.5em; }
+        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email input {
+          width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-.form-wrapper {
+      margin-bottom: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-actions {
+      height: auto; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-submit {
+      margin-right: 0; }
+
+.campaign-counter-labels {
+  color: white;
+  font-size: 24px;
+  line-height: 24px;
+  text-transform: uppercase; }
+
+.panel-row-actions {
+  background: black;
+  background: rgba(0, 30, 0, 0.5);
   margin: 0; }
   .panel-row-actions .pane-title {
     background: #009444; }
@@ -222,11 +262,15 @@ div[role="main"] {
   font-weight: 500; }
 
 .panel-row-ad-quick-info h2 {
-  color: black;
+  color: #8dc641;
   font-size: 24px;
   font-weight: 500; }
+.panel-row-ad-quick-info .pane-content h3 {
+  color: #8dc641; }
 .panel-row-ad-quick-info .pane-content p {
   margin-bottom: 1em; }
+  .panel-row-ad-quick-info .pane-content p a {
+    color: #8dc641; }
 
 .pane-node-field-campain-date,
 .pane-node-field-campaign-teaser,
@@ -424,8 +468,7 @@ div[role="main"] {
         bottom: 30px; }
 
 #members-list {
-  float: left;
-  padding-right: 10px; }
+  float: left; }
   #members-list .pane-title {
     background: #8dc641;
     padding: 10px 0 0 10px;
@@ -434,7 +477,7 @@ div[role="main"] {
   #members-list .pane-content {
     padding: 10px;
     width: 271px;
-    height: 177px;
+    height: 172px;
     overflow: auto; }
     #members-list .pane-content ul {
       list-style: none; }
