@@ -103,8 +103,43 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
         ),
       );
     }
+
+    $node = $form['#node'];
+    $entity_form = &$form['submitted'];
+
+    $magic_fields_field = 'field_webform_magic_fields';
+    $enabled_fields = array();
+
+    if (isset($node->{$magic_fields_field})) {
+      if ($items = field_get_items('node', $node, $magic_fields_field)) {
+        foreach ($items as $item) {
+          foreach ($item as $field) {
+            $enabled_fields[] = $field;
+          }
+        }
+      }
+    }
+
+    $field_info = field_info_field($magic_fields_field);
+    foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
+      if (isset($entity_form[$field_name]) && !in_array($field_name, $enabled_fields)) {
+        $entity_form[$field_name]['#access'] = FALSE;
+      }
+    }
   }
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function dosomething_webform_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['dosomething_webform'])) {
+    $group = $implementations['dosomething_webform'];
+    unset($implementations['dosomething_webform']);
+    $implementations['dosomething_webform'] = $group;
+  }
+}
+
 
 /**
  * Validation callback for webform draft submissions.
