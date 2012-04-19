@@ -159,16 +159,8 @@ function dosomething_projects_callback() {
  * Implements hook_form_alter().
  */
 function dosomething_projects_form_alter(&$form, &$form_state, $form_id) {
-  // If this is a webform form and the node type is project lets hide the club
-  // field if and only if it has been set on the form and it matches the third
-  // parameter.
   // This uses nodereference_url module to set the default value.
   if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
-    if (!empty($form['submitted']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value'])
-      && is_numeric(arg(2))
-      && arg(2) == $form['submitted']['field_project_clubs'][LANGUAGE_NONE][0]['nid']['#default_value']) {
-      $form['submitted']['field_project_clubs']['#access'] = FALSE;
-    }
     // If an action guide nid is in the query, default and hide the action guide field.
     // This query string is set by dosomething_stats.counter.inc.
     if (isset($_GET['action_guide']) && is_numeric($_GET['action_guide'])) {
