@@ -96,13 +96,18 @@ function dosomething_clubs_club_counter_right() {
     'value' => $member_count,
   );
 
-  // From those members, count all their Campaign Reports Backs
-  $query = db_select('webform_submissions', 'w');
-  $query->innerJoin('node', 'n', 'w.nid = n.nid');
-  $query->condition('n.type', 'campaign_report_back', '=');
-  $query->condition('w.uid', $members, 'IN');
-  $count = $query->countQuery()->execute()->fetchObject();
-  $campaigns_count = $count->expression;
+  if (!empty($members)) {
+    // From those members, count all their Campaign Reports Backs
+    $query = db_select('webform_submissions', 'w');
+    $query->innerJoin('node', 'n', 'w.nid = n.nid');
+    $query->condition('n.type', 'campaign_report_back', '=');
+    $query->condition('w.uid', $members, 'IN');
+    $count = $query->countQuery()->execute()->fetchObject();
+    $campaigns_count = $count->expression;
+  }
+  else {
+    $campaigns_count = 0;
+  }
 
   $items['campaigns_completed'] = array(
     'title' => t('Campaigns Completed'),
