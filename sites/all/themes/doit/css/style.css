@@ -1482,7 +1482,7 @@ body.front .selectBox-options li.selectBox-selected {
 }
 
 .selectBox-options {
-  font-size: 14px;
+  font-size: 16px;
   list-style: none;
   display: block;
   cursor: pointer;
@@ -1526,7 +1526,7 @@ body.not-front .selectBox-options {
 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown {
   width: 100% !important;
   background: #333131;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 5px;
 }
 #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown .selectBox-label {
@@ -1627,7 +1627,7 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
 .views-exposed-widget .selectBox-dropdown {
   width: 175px !important;
   background: #333131;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 5px;
   margin-right: 12px;
 }
@@ -1674,7 +1674,7 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   background-repeat: no-repeat;
   background-position: 95% 50%;
   display: inline-block;
-  font-size: 14px;
+  font-size: 16px;
   min-width: 170px;
   outline: none;
   padding: 4px 7px;
