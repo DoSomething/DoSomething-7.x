@@ -342,6 +342,151 @@ function dosomething_causes_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
+  $page->name = 'cause_resources';
+  $page->task = 'page';
+  $page->admin_title = 'Cause - Resources';
+  $page->admin_description = '';
+  $page->path = 'cause/%term/resources';
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array();
+  $page->arguments = array(
+    'term' => array(
+      'id' => 1,
+      'identifier' => 'Taxonomy term: ID',
+      'name' => 'term',
+      'settings' => array(
+        'input_form' => 'tid',
+        'vids' => array(
+          5 => '5',
+          1 => 0,
+          9 => 0,
+          21 => 0,
+          20 => 0,
+          6 => 0,
+          11 => 0,
+          18 => 0,
+          17 => 0,
+          15 => 0,
+          19 => 0,
+          4 => 0,
+          16 => 0,
+          2 => 0,
+          3 => 0,
+        ),
+        'breadcrumb' => 1,
+        'transform' => 0,
+      ),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_cause_resources_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'cause_resources';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'term_vocabulary',
+          'settings' => array(
+            'vids' => array(
+              5 => '5',
+            ),
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'one_three_one';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'mid-left' => NULL,
+      'mid-center' => NULL,
+      'mid-right' => NULL,
+      'footer' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = 'Cause: %term:name';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'top';
+    $pane->type = 'term_description';
+    $pane->subtype = 'term_description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = '';
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][0] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'project_related_displays-panel_pane_4';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'arguments' => array(
+        'tid' => '%term:tid',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-11'] = $pane;
+    $display->panels['top'][1] = 'new-11';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['cause_resources'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
   $page->name = 'find_your_cause_page';
   $page->task = 'page';
   $page->admin_title = 'Find Your Cause Page';
@@ -390,7 +535,7 @@ function dosomething_causes_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-12';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'find_your_cause-panel_pane_1';
@@ -405,10 +550,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-10'] = $pane;
-    $display->panels['left'][0] = 'new-10';
+    $display->content['new-12'] = $pane;
+    $display->panels['left'][0] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-13';
     $pane->panel = 'left';
     $pane->type = 'block';
     $pane->subtype = 'fb_social-FB Comments';
@@ -426,10 +571,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-11'] = $pane;
-    $display->panels['left'][1] = 'new-11';
+    $display->content['new-13'] = $pane;
+    $display->panels['left'][1] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-14';
     $pane->panel = 'right';
     $pane->type = 'dosomething_start_button';
     $pane->subtype = 'dosomething_start_button';
@@ -450,10 +595,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-12'] = $pane;
-    $display->panels['right'][0] = 'new-12';
+    $display->content['new-14'] = $pane;
+    $display->panels['right'][0] = 'new-14';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-15';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'project_related_displays';
@@ -483,10 +628,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-13'] = $pane;
-    $display->panels['right'][1] = 'new-13';
+    $display->content['new-15'] = $pane;
+    $display->panels['right'][1] = 'new-15';
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-16';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'project_related_displays';
@@ -516,10 +661,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-14'] = $pane;
-    $display->panels['right'][2] = 'new-14';
+    $display->content['new-16'] = $pane;
+    $display->panels['right'][2] = 'new-16';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-17';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'related_projects-panel_pane_2';
@@ -534,10 +679,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = '';
-    $display->content['new-15'] = $pane;
-    $display->panels['right'][3] = 'new-15';
+    $display->content['new-17'] = $pane;
+    $display->panels['right'][3] = 'new-17';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-18';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -555,10 +700,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-16'] = $pane;
-    $display->panels['top'][0] = 'new-16';
+    $display->content['new-18'] = $pane;
+    $display->panels['top'][0] = 'new-18';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-10';
+  $display->title_pane = 'new-12';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['find_your_cause_page'] = $page;
@@ -615,7 +760,7 @@ function dosomething_causes_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-19';
     $pane->panel = 'mid-left';
     $pane->type = 'node';
     $pane->subtype = 'node';
@@ -639,10 +784,10 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-17'] = $pane;
-    $display->panels['mid-left'][0] = 'new-17';
+    $display->content['new-19'] = $pane;
+    $display->panels['mid-left'][0] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-18';
+    $pane->pid = 'new-20';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -660,8 +805,8 @@ function dosomething_causes_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-18'] = $pane;
-    $display->panels['top'][0] = 'new-18';
+    $display->content['new-20'] = $pane;
+    $display->panels['top'][0] = 'new-20';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
