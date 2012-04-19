@@ -964,7 +964,7 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '15',
+        'weight' => '14',
       ),
     ),
   );
@@ -1458,6 +1458,78 @@ Epic_Book_Drive|Epic Book Drive - our spring book drive',
     ),
   );
 
+  // Exported field: 'node-club-field_participants'
+  $fields['node-club-field_participants'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_participants',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'List the phone numbers and email addresses of people you\'d like to invite to your club.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 28,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_participants',
+      'label' => 'Invite a Friend',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '9',
+      ),
+    ),
+  );
+
   // Exported field: 'node-club-field_phone_required'
   $fields['node-club-field_phone_required'] = array(
     'field_config' => array(
@@ -1769,7 +1841,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
           'size' => '60',
         ),
         'type' => 'dosomething_school_autocomplete',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
@@ -1852,7 +1924,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '12',
+        'weight' => '8',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1931,7 +2003,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '14',
+        'weight' => '13',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1994,7 +2066,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -2093,8 +2165,10 @@ Upload photos that are relevant to your project here.  The first photo will be u
   t('First Name');
   t('Group type');
   t('How did you hear about Do Something Clubs?');
+  t('Invite a Friend');
   t('Issues');
   t('Last Name');
+  t('List the phone numbers and email addresses of people you\'d like to invite to your club.');
   t('My Do Something Club is going to work on');
   t('Official club photo');
   t('Please don\'t use BMP files.
