@@ -24,7 +24,9 @@ class DSProject extends DSJsonWebformMigration {
     $this->addFieldMapping('field_num_people_impacted', 'field_num_people_impacted'); # Field: How many people has your project helped? (number_integer)
     $this->addFieldMapping('field_others_involved', 'field_others_involved'); # Field: How Can Others Help?  (text_long)
     $this->addFieldMapping('field_update_people_involved', 'field_num_people_involved');  # Field: How many people are directly involved in your project? (number_integer)
-    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5'); # Field: Issues (taxonomy_term_reference)
+    $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5') # Field: Issues (taxonomy_term_reference)
+      ->description('prepareRow() will pull the tids up from keys to values')
+      ->arguments(array('source_type' => 'tid'));
     $this->addFieldMapping('field_action_guide_reference', 'field_related_action_guide');
 
     // Handle locative data.
@@ -78,6 +80,8 @@ class DSProject extends DSJsonWebformMigration {
         }
       }
     }
+
+    $row->vocab_5 = array_keys($row->vocab_5);
 
     // Extract the zip code from the location:
     $row->country = empty($row->locations[0]['country_name']) ? NULL : $row->locations[0]['country_name'];
