@@ -28,9 +28,19 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 1;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'There are no schools currently registered for this state.';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_webform_school_reference_webform_submission_entity']['id'] = 'reverse_field_webform_school_reference_webform_submission_entity';
   $handler->display->display_options['relationships']['reverse_field_webform_school_reference_webform_submission_entity']['table'] = 'ds_school';
@@ -129,10 +139,20 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
+  $handler->display->display_options['filters']['state']['expose']['remember'] = 1;
   $handler->display->display_options['filters']['state']['expose']['reduce'] = 0;
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['allow']['use_pager'] = 'use_pager';
+  $handler->display->display_options['allow']['items_per_page'] = 'items_per_page';
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'etid' => array(
       'type' => 'context',
@@ -356,6 +376,15 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['fields']['field_user_first_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_user_first_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_user_first_name']['field_api_classes'] = 0;
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'field_webform_school_reference_target_id' => array(
       'type' => 'context',
@@ -381,6 +410,7 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = '0';
+  $handler->display->display_options['style_options']['skin'] = '';
   $handler->display->display_options['style_options']['visible'] = '';
   $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['autoPause'] = 1;
@@ -416,7 +446,7 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['fields']['field_webform_pictures']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_webform_pictures']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['hide_empty'] = 1;
   $handler->display->display_options['fields']['field_webform_pictures']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_webform_pictures']['click_sort_column'] = 'fid';
@@ -424,17 +454,32 @@ function dosomething_campaign_schools_views_default_views() {
     'image_style' => 'member_photo_gallery',
     'image_link' => 'content',
   );
-  $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_webform_pictures']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['operator'] = 'not empty';
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'field_webform_school_reference_target_id' => array(
       'type' => 'context',

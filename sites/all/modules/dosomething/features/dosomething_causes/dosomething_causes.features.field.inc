@@ -192,6 +192,15 @@ function dosomething_causes_field_default_fields() {
         'settings' => array(
           'body_preset' => NULL,
           'image_path' => 'pictures/actionguide',
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
           'teaser_preset' => NULL,

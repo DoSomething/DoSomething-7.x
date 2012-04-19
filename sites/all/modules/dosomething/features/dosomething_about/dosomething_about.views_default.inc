@@ -42,7 +42,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'DoSomething.org harnesses that awesome energy and unleashes it on causes teens care about. Almost every week, we launch a new national campaign. The call to action is always something that has a real impact and doesn’t require money, an adult, or a car.';
+  $handler->display->display_options['header']['area']['content'] = 'We love teens. They are creative, active, wired…and frustrated that our world is so messed up. DoSomething.org harnesses that awesome energy and unleashes it on causes teens care about. Almost every week, we launch a new national campaign. The call to action is always something that has a real impact and doesn’t require money, an adult, or a car. With a goal of 5 million active members by 2015, DoSomething.org is one of the largest organizations in the US for teens and social change.';
   $handler->display->display_options['header']['area']['format'] = '1';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Field: Taxonomy term: Name */
@@ -138,34 +138,6 @@ function dosomething_about_views_default_views() {
   $handler = $view->new_display('page', 'About Us Page', 'page');
   $handler->display->display_options['display_description'] = 'The main About Us page';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Taxonomy term: Image */
-  $handler->display->display_options['fields']['field_about_image']['id'] = 'field_about_image';
-  $handler->display->display_options['fields']['field_about_image']['table'] = 'field_data_field_about_image';
-  $handler->display->display_options['fields']['field_about_image']['field'] = 'field_about_image';
-  $handler->display->display_options['fields']['field_about_image']['label'] = '';
-  $handler->display->display_options['fields']['field_about_image']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_about_image']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_about_image']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_about_image']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_about_image']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_about_image']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_about_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_about_image']['settings'] = array(
-    'image_style' => 'issue_main',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_about_image']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Path */
   $handler->display->display_options['fields']['field_about_link']['id'] = 'field_about_link';
   $handler->display->display_options['fields']['field_about_link']['table'] = 'field_data_field_about_link';
@@ -190,6 +162,36 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['fields']['field_about_link']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_about_link']['group_column'] = '';
   $handler->display->display_options['fields']['field_about_link']['field_api_classes'] = 0;
+  /* Field: Taxonomy term: Image */
+  $handler->display->display_options['fields']['field_about_image']['id'] = 'field_about_image';
+  $handler->display->display_options['fields']['field_about_image']['table'] = 'field_data_field_about_image';
+  $handler->display->display_options['fields']['field_about_image']['field'] = 'field_about_image';
+  $handler->display->display_options['fields']['field_about_image']['label'] = '';
+  $handler->display->display_options['fields']['field_about_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_about_image']['alter']['path'] = '[field_about_link]';
+  $handler->display->display_options['fields']['field_about_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_about_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_about_image']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_about_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_about_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_about_image']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_about_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_about_image']['settings'] = array(
+    'image_style' => 'issue_main',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_about_image']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';

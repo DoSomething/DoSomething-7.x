@@ -889,7 +889,7 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'Photo Gallery',
-      'body' => '[gallery]',
+      'body' => 'COMING SOON!',
       'format' => '1',
       'substitute' => TRUE,
     );
@@ -1038,7 +1038,7 @@ about issues you care about.',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<img src="files/videosoon.jpg">',
+      'body' => '<iframe width="560" height="315" src="http://www.youtube.com/embed/Xdg7g8fWBKA" frameborder="0" allowfullscreen></iframe>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -1164,8 +1164,8 @@ Tell us about it and win an iPad',
       'admin_title' => '',
       'title' => '&nbsp;',
       'body' => '<div class="counter"><ul>
-<li class="first"><span class="counter-labels">ACTIVE CLUBS</span><span class="digits">820000</span></li>
-<li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">192300</span></li>
+<li class="first"><span class="counter-labels">ACTIVE CLUBS</span><span class="digits">3987</span></li>
+<li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">95688</span></li>
 </ul>',
       'format' => '3',
       'substitute' => TRUE,

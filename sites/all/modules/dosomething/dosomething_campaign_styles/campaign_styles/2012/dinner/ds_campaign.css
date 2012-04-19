@@ -167,6 +167,9 @@ div[role="main"] {
 .panel-row-logos img {
   border: none; }
 
+.panel-row-top-logo {
+  height: 230px; }
+
 .field-name-field-picture img {
   border: none; }
 
@@ -196,7 +199,9 @@ div[role="main"] {
   margin-bottom: 20px; }
 
 .ds-panel .pane-content {
-  padding: 15px 15px 15px 15px; }
+  padding: 15px; }
+.ds-panel .panel-top-right-mini-info .pane-content {
+  padding: 0; }
 
 .center {
   text-align: center; }

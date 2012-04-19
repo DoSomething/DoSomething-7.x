@@ -65,7 +65,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_pic']['field'] = 'field_share_of_day_pic';
   $handler->display->display_options['fields']['field_share_of_day_pic']['label'] = '';
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['path'] = '[field_share_of_day_link]';
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['external'] = 0;
@@ -74,6 +74,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_pic']['alter']['html'] = 0;
@@ -120,7 +121,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['path'] = '[field_share_of_day_link]';
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['body']['alter']['external'] = 0;
@@ -129,6 +130,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['body']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['body']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['body']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['body']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['body']['alter']['html'] = 0;
@@ -169,7 +171,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_fact']['field'] = 'field_share_of_day_fact';
   $handler->display->display_options['fields']['field_share_of_day_fact']['label'] = '';
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['path'] = '[field_share_of_day_link]';
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['external'] = 0;
@@ -178,6 +180,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['html'] = 0;

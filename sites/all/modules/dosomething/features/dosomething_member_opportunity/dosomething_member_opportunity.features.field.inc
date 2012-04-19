@@ -1161,7 +1161,6 @@ function dosomething_member_opportunity_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
           'weight' => '0',
@@ -1451,6 +1450,13 @@ function dosomething_member_opportunity_field_default_fields() {
           'type' => 'text_default',
           'weight' => '16',
         ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '16',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -1516,6 +1522,13 @@ function dosomething_member_opportunity_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '17',
+        ),
+        'full' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
@@ -1594,6 +1607,13 @@ function dosomething_member_opportunity_field_default_fields() {
           'type' => 'text_default',
           'weight' => '18',
         ),
+        'full' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '18',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -1666,6 +1686,13 @@ function dosomething_member_opportunity_field_default_fields() {
           'type' => 'text_default',
           'weight' => '19',
         ),
+        'full' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '19',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -1731,6 +1758,13 @@ function dosomething_member_opportunity_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '14',
+        ),
+        'full' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
@@ -2125,6 +2159,9 @@ function dosomething_member_opportunity_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_organization_website',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'link',
@@ -2138,6 +2175,7 @@ function dosomething_member_opportunity_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
+        'profile2_private' => FALSE,
         'title' => 'none',
         'title_value' => '',
         'url' => 0,
@@ -2148,12 +2186,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'member_opportunity',
-      'default_value' => array(
-        0 => array(
-          'attributes' => 'N;',
-          'url' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2161,7 +2194,7 @@ function dosomething_member_opportunity_field_default_fields() {
           'label' => 'above',
           'module' => 'link',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'url',
           'weight' => '-5',
         ),
         'full' => array(
@@ -2182,15 +2215,15 @@ function dosomething_member_opportunity_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_organization_website',
       'label' => 'Organization Website',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'attributes' => array(
           'class' => '',
-          'rel' => '',
-          'target' => 'default',
+          'rel' => 'nofollow',
+          'target' => '_blank',
         ),
         'display' => array(
-          'url_cutoff' => 80,
+          'url_cutoff' => '80',
         ),
         'enable_tokens' => 1,
         'title' => 'optional',
@@ -2200,7 +2233,7 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'weight' => '-5',
       'widget' => array(
-        'active' => '1',
+        'active' => 0,
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
@@ -2361,6 +2394,16 @@ function dosomething_member_opportunity_field_default_fields() {
           'weight' => '1',
         ),
         'default' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '1',
+        ),
+        'full' => array(
           'label' => 'above',
           'module' => 'image',
           'settings' => array(
@@ -2396,11 +2439,20 @@ function dosomething_member_opportunity_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '0',
+        'weight' => 0,
       ),
       'widget_type' => 'imagefield_widget',
     ),
@@ -2841,6 +2893,9 @@ function dosomething_member_opportunity_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -2851,6 +2906,7 @@ function dosomething_member_opportunity_field_default_fields() {
         'default_file' => 0,
         'display_default' => '1',
         'display_field' => 1,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -2904,6 +2960,15 @@ function dosomething_member_opportunity_field_default_fields() {
       'widget' => array(
         'module' => 'file',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',

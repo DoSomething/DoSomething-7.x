@@ -54,7 +54,7 @@ function dosomething_campaign_blog_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 1,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -117,11 +117,13 @@ function dosomething_campaign_blog_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => NULL,
-          'settings' => array(),
-          'type' => 'media_large',
-          'weight' => 3,
+          'label' => 'hidden',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'media',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -171,7 +173,7 @@ function dosomething_campaign_blog_field_default_fields() {
   $fields['node-campaign_blog_post-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_picture',
@@ -210,14 +212,19 @@ function dosomething_campaign_blog_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'image',
+          'label' => 'hidden',
+          'module' => 'imagecache_proportions',
           'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
+            'enable_link' => 'none',
+            'horizontal_preset' => 'blog_landscape',
+            'looseness' => '0',
+            'modal_style' => '',
+            'squared_preset' => 'blog_square',
+            'style' => '',
+            'vertical_preset' => 'blog_portrait',
           ),
-          'type' => 'image',
-          'weight' => 2,
+          'type' => 'vertical_horizontal',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -266,7 +273,7 @@ function dosomething_campaign_blog_field_default_fields() {
   $fields['node-campaign_blog_post-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -302,10 +309,9 @@ function dosomething_campaign_blog_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'og',
           'settings' => array(),
-          'type' => 'og_list_default',
-          'weight' => 0,
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',

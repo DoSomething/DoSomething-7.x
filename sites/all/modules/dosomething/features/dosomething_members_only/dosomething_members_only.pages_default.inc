@@ -202,9 +202,31 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => '1',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['left'][0] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'left';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
       'admin_title' => 'Static Page Content',
       'title' => '',
-      'body' => '<h3>DoSomething.org is a member-based organization for young people 25 years old and under.</h3>
+      'body' => '<h2>DoSomething.org is a member-based organization for young people 25 years old and under.</h2>
 
 <p>By being a member of DoSomething.org:</p>
 
@@ -222,8 +244,8 @@ function dosomething_members_only_default_page_manager_pages() {
 </ul></li>
 <li>You get <i>cash</i>. That\'s right. We\'re talking $$.
 <ul>
-<li>We give <a href="http://www.dosomething.org/grants">money for social change projects</a>.</li>
-<li>We award <a href="http://www.dosomething.org/scholarships">money for school</a>.</li></ul></li>
+<li>We give <a href="/grants">money for social change projects</a>.</li>
+<li>We award <a href="/scholarships">money for school</a>.</li></ul></li>
 <li>You get SWAG you can actually use.
 
 <ul>
@@ -234,7 +256,7 @@ function dosomething_members_only_default_page_manager_pages() {
 
 <li>You have access to invite-only things.
 <ul>
-<li>We invite you to exclusive events (like the <a href="http://www.dosomething.org/awards">Do Something Awards</a>, movie premieres, etc).</li>
+<li>We invite you to exclusive events (like the <a href="/awards">Do Something Awards</a>, movie premieres, etc).</li>
 <li>We give you the chance to meet a celebrity.</li></ul></li>
 </ol>
 
@@ -248,12 +270,12 @@ function dosomething_members_only_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-3'] = $pane;
-    $display->panels['left'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['left'][1] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -285,51 +307,31 @@ function dosomething_members_only_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-4'] = $pane;
-    $display->panels['left'][1] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['left'][2] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'block';
+    $pane->subtype = 'block-2';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Membership Statistics',
-      'body' => ' <ol>  	
-<li><strong>One million unique</strong> website visits each month.</li>
-    <li><strong>1 in 3 high schools</strong> in America participating in our programs.</li>
-<li><b>45 new members</b> join DoSomething.org every hour.</li>
-<li><b>1.3 million lbs of food</b> collected for families in need through our <a href="http://www.dosomething.org/tackle-hunger">Tackle Hunger</a> campaign.</li>
-    <li><strong>23,000+</strong> pages of content: tools and resources for young people looking to make a difference.</li>
-<li><strong>$605,400</strong> awarded in scholarships.</li>
-<li><b>140 texts</b> sent from teens to DoSomething.org every hour.</li>
-<li><strong>22 Do Something clubs</strong> are created per week, adding to the 1,400 clubs we have nationwide.</li>
-<li><b>15,000 new donors</b> registered through our <a href="http://www.dosomething.org/spit">Give a Spit</a> campaign, helping to save the lives of Leukemia patients.</li>
-<li><strong>4 Star Charity Rating</strong> from Charity Navigator (only 9% of U.S. charities get 4 stars)</li>
-<li><b>Over 2.5 million jeans</b> collected through our <a href="http://www.dosomething.org/teens-for-jeans">Teens for Jeans</a> campaign, helping to clothe homeless youth.</li>
-  </ol>',
-      'format' => '4',
-      'substitute' => TRUE,
+      'override_title' => 1,
+      'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'ds-pane-usergen ds-pane-top-radius',
-    );
+    $pane->style = array();
+    $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-5'] = $pane;
-    $display->panels['right'][0] = 'new-5';
+    $pane->locks = array();
+    $display->content['new-6'] = $pane;
+    $display->panels['right'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -347,10 +349,10 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][0] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][0] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-4';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['why_become_a_member_page'] = $page;

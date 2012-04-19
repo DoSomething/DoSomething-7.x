@@ -369,7 +369,7 @@ div[role="main"] {
     -moz-box-shadow: black 0 0 0 0;
     box-shadow: black 0 0 0 0; }
   #report-back .pane-content {
-    background-color: #78c848;
+    background-color: #8dc641;
     padding: 0px 25px;
     padding-bottom: 0px;
     border: none; }
@@ -428,14 +428,13 @@ div[role="main"] {
   padding-right: 10px; }
   #members-list .pane-title {
     background: #8dc641;
-    height: 206px;
     padding: 10px 0 0 10px;
     font-size: 24px;
     line-height: 24px; }
   #members-list .pane-content {
     padding: 10px;
-    width: 261px;
-    max-height: 140px;
+    width: 271px;
+    height: 177px;
     overflow: auto; }
     #members-list .pane-content ul {
       list-style: none; }
@@ -444,4 +443,8 @@ div[role="main"] {
         line-height: 18px; }
 
 #school-gallery {
-  clear: both; }
+  clear: both;
+  margin-bottom: 20px; }
+
+#breadcrumbs {
+  display: none; }

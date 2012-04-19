@@ -22,14 +22,17 @@ function dosomething_awesome_things_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Awesome-Things Landing';
+  $handler->display->display_options['title'] = 'Awesome-Things';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_athings_landing_image';
   $handler->display->display_options['style_options']['fields']['title'] = 'name';
@@ -37,6 +40,14 @@ function dosomething_awesome_things_views_default_views() {
   $handler->display->display_options['style_options']['fields']['link'] = 'field_athings_turl_2';
   $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
   $handler->display->display_options['style_options']['settings']['last_every_nth'] = '3';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = 'Check out the stories and programs from DoSomething.org.';
+  $handler->display->display_options['header']['area']['format'] = '1';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Field: Taxonomy term: URL */
   $handler->display->display_options['fields']['field_athings_url']['id'] = 'field_athings_url';
   $handler->display->display_options['fields']['field_athings_url']['table'] = 'field_data_field_athings_url';

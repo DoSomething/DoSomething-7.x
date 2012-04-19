@@ -32,7 +32,6 @@ $bgFallback: #F5C36E
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
-  background: none
   background: rgba(188,134,70,.4)
 
 @mixin grayLine
@@ -57,11 +56,6 @@ $bgFallback: #F5C36E
   border-top: $borderTop
   border-bottom: $borderBot
 
-@mixin setBorderBox
-  -moz-box-sizing: border-box
-  -ms-box-sizing: border-box
-  -webkit-box-sizing: border-box
-  box-sizing: border-box
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -100,7 +94,6 @@ div[role="main"]
   float: left
   margin-right: 6.5%
   +noBorder
-  +setBorderBox
   &:last-child
     margin-right: 0
   .pane-content
@@ -108,7 +101,6 @@ div[role="main"]
     height: 166px
     padding: $paneContentPadding
     text-align: center
-    +setBorderBox
 
 .three-boxes-last-child
   margin-right: 0 !important
@@ -416,7 +408,7 @@ div[role="main"]
   text-align: right
 
 .pane-campaign-school-list-panel-pane-1
-  border: 0
+  border: none !important
   .pane-content
     form
       margin-left: 275px
@@ -484,7 +476,7 @@ div[role="main"]
   .pane-content
     padding: 10px
     width: 271px
-    max-height: 140px
+    height: 177px
     overflow: auto
     ul
       list-style: none
@@ -502,10 +494,10 @@ div[role="main"]
     padding-bottom: 25px
     width: 480px
     .content-content
-      padding: 5px 5px 35px 5px
+      padding: 5px
       background: rgba(0, 0, 0, .13)
       img
-        margin-left: 120px
+        margin-left: 115px
       ul	
         +column-count(2)
         +column-gap(0px)
@@ -517,5 +509,12 @@ div[role="main"]
             line-height: 18px
             color: white
 
-#school-gallery
-  clear: both
+.pane-campaign-school-pages-photo-gallery
+  border: none
+  .jcarousel-container-horizontal
+    padding: 5px 0
+    img
+      border: none
+
+#breadcrumbs
+  display: none

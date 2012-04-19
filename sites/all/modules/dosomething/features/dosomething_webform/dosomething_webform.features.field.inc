@@ -232,6 +232,143 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-webform-field_placeholder_replace'
+  $fields['node-webform-field_placeholder_replace'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_placeholder_replace',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'webform',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_placeholder_replace',
+      'label' => 'Replace labels with placeholder',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-webform-field_webform_magic_fields'
+  $fields['node-webform-field_webform_magic_fields'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_magic_fields',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'field_webform_pictures' => 'Pictures',
+          'field_webform_videos' => 'Videos',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'webform',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 6,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_webform_magic_fields',
+      'label' => 'Enabled fields',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '32',
+      ),
+    ),
+  );
+
   // Exported field: 'node-webform-upload'
   $fields['node-webform-upload'] = array(
     'field_config' => array(
@@ -240,6 +377,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -250,6 +390,7 @@ The content from this field will only be shown to anonymous users.',
         'default_file' => 0,
         'display_default' => '1',
         'display_field' => 1,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -303,6 +444,15 @@ The content from this field will only be shown to anonymous users.',
       'widget' => array(
         'module' => 'file',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
@@ -313,18 +463,15 @@ The content from this field will only be shown to anonymous users.',
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Abstract');
   t('Body');
   t('Body (anonymous user)	');
   t('Body (logged in user)');
-  t('Copyright');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
-  t('Description');
+  t('Enabled fields');
   t('Everyone can view the content of this field.');
   t('File attachments');
-  t('Keywords');
-  t('Robots');
+  t('Replace labels with placeholder');
   t('The content from this field will only be shown to logged in users.');
 
   return $fields;

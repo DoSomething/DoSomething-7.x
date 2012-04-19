@@ -32,6 +32,92 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'queue2' => 'queue2',
+    'queue1' => 0,
+    'queue3' => 0,
+    'queue4' => 0,
+    'queue5' => 0,
+    'queue6' => 0,
+    'queue7' => 0,
+    'queue8' => 0,
+    'queue9' => 0,
+    'queue10' => 0,
+    'queue11' => 0,
+    'queue12' => 0,
+    'queue13' => 0,
+    'queue14' => 0,
+    'queue15' => 0,
+    'queue16' => 0,
+    'queue17' => 0,
+    'queue18' => 0,
+    'queue19' => 0,
+    'queue20' => 0,
+    'queue21' => 0,
+    'queue22' => 0,
+    'queue23' => 0,
+    'queue24' => 0,
+    'queue25' => 0,
+    'queue26' => 0,
+    'queue27' => 0,
+    'queue28' => 0,
+    'queue29' => 0,
+    'queue30' => 0,
+    'queue31' => 0,
+    'queue32' => 0,
+    'queue33' => 0,
+    'queue34' => 0,
+    'queue35' => 0,
+    'queue36' => 0,
+    'queue37' => 0,
+    'queue38' => 0,
+    'queue40' => 0,
+    'queue41' => 0,
+    'queue42' => 0,
+    'queue43' => 0,
+    'queue44' => 0,
+    'queue45' => 0,
+    'queue46' => 0,
+    'queue47' => 0,
+    'queue48' => 0,
+    'queue49' => 0,
+    'queue50' => 0,
+    'queue51' => 0,
+    'queue52' => 0,
+    'queue53' => 0,
+    'queue54' => 0,
+    'queue55' => 0,
+    'queue56' => 0,
+    'queue57' => 0,
+    'queue58' => 0,
+    'queue59' => 0,
+    'queue60' => 0,
+    'queue61' => 0,
+    'queue62' => 0,
+    'queue63' => 0,
+    'queue64' => 0,
+    'queue65' => 0,
+    'queue66' => 0,
+    'projects_police_personal_info' => 0,
+    'projects_police_solicitation' => 0,
+    'projects_police_volunteer_opp' => 0,
+    'projects_police_not_a_project' => 0,
+    'projects_police_offensive' => 0,
+    'projects_police_blank_project' => 0,
+    'action_of_the_week' => 0,
+    'featured_campaign' => 0,
+    'recent_scholarship_winner' => 0,
+    'scholarships_past_winners' => 0,
+    'action_updates' => 0,
+    'featured_blog_posts' => 0,
+    'editors_picks_for_you' => 0,
+  );
   /* Field: Field: Web site link */
   $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
   $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
@@ -171,6 +257,10 @@ function dosomething_home_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['path'] = 'admin/scroller';
   $export['home_slideshow'] = $view;
 
   $view = new view;
@@ -210,6 +300,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;

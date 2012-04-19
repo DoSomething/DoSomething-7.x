@@ -343,12 +343,11 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = '<a href="/projects/submit">Start a project</a>';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
-  /* Relationship: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
+  /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
   $handler->display->display_options['relationships']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
   $handler->display->display_options['relationships']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
   $handler->display->display_options['relationships']['field_project_clubs_nid']['required'] = 1;
-  $handler->display->display_options['relationships']['field_project_clubs_nid']['delta'] = '-1';
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
@@ -1059,6 +1058,7 @@ function dosomething_clubs_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(

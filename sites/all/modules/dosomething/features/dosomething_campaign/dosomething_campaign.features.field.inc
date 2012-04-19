@@ -663,6 +663,15 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -745,6 +754,15 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -827,6 +845,15 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -909,6 +936,15 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -1283,8 +1319,8 @@ function dosomething_campaign_field_default_fields() {
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
-        'max_resolution' => '60x60',
-        'min_resolution' => '',
+        'max_resolution' => '120x120',
+        'min_resolution' => '60x60',
         'title_field' => 0,
         'user_register_form' => FALSE,
       ),
@@ -1304,6 +1340,7 @@ function dosomething_campaign_field_default_fields() {
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
             'image_campaigns_image' => 0,
@@ -1812,6 +1849,7 @@ function dosomething_campaign_field_default_fields() {
   t('Body');
   t('Call to action');
   t('Campaign Date');
+  t('Campaign Logo Thumbnail');
   t('Causes/Issues');
   t('Counter Aggregation Field');
   t('Counter Text');
@@ -1831,9 +1869,8 @@ function dosomething_campaign_field_default_fields() {
   t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
-  t('Super short - will show in purple on /campaigns app style page over the image. Not required.');
   t('Teaser');
-  t('Text to appear in Current Campaigns list. KEEP THIS SHORT! ');
+  t('Text to appear in Current Campaigns list');
   t('This is the HTML copy that will be displayed after the user has signed up in the sign-up block. Make sure to check your input type.');
   t('Twitter Sharing Language');
   t('Upload an image for display on the Start Something landing page slideshow.');

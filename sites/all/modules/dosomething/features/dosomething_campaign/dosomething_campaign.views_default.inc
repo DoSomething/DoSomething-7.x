@@ -28,6 +28,10 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'views_galleriffic';
   $handler->display->display_options['style_options']['css'] = '';
   $handler->display->display_options['style_options']['transition'] = '500';
@@ -149,8 +153,124 @@ function dosomething_campaign_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['path'] = 'test-gallery';
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: Main Campaign Gallery */
+  $handler = $view->new_display('panel_pane', 'Main Campaign Gallery', 'panel_pane_1');
+  $handler->display->display_options['argument_input'] = array(
+    'etid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'OG group: Entity id',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Webform Gallery */
+  $handler = $view->new_display('panel_pane', 'Webform Gallery', 'panel_pane_2');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Webform Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['ui_name'] = 'Webform Nid';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'numeric';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['nid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'webform' => 'webform',
+  );
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['operator'] = 'not empty';
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'user',
+      'context' => 'entity:entityqueue.eq_og_membership',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Webform Nid',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Mini Scroller Gallery */
+  $handler = $view->new_display('panel_pane', 'Mini Scroller Gallery', 'panel_pane_3');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'jcarousel';
+  $handler->display->display_options['style_options']['wrap'] = '0';
+  $handler->display->display_options['style_options']['skin'] = '';
+  $handler->display->display_options['style_options']['visible'] = '';
+  $handler->display->display_options['style_options']['auto'] = '0';
+  $handler->display->display_options['style_options']['autoPause'] = 1;
+  $handler->display->display_options['style_options']['easing'] = '';
+  $handler->display->display_options['style_options']['vertical'] = 0;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['hide_empty'] = 0;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Webform Submission: Pictures */
+  $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures']['label'] = '';
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_webform_pictures']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_webform_pictures']['settings'] = array(
+    'image_style' => 'member_photo_gallery',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_webform_pictures']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   $handler->display->display_options['argument_input'] = array(
     'etid' => array(
       'type' => 'context',

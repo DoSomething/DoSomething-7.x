@@ -363,6 +363,15 @@ function dosomething_start_something_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'image_path' => '',
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'max_filesize' => '0',
           'max_number_images' => '0',
           'preview_image_style' => 'thumbnail',
@@ -550,6 +559,9 @@ function dosomething_start_something_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -560,6 +572,7 @@ function dosomething_start_something_field_default_fields() {
         'default_file' => 0,
         'display_default' => '1',
         'display_field' => 1,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -613,6 +626,15 @@ function dosomething_start_something_field_default_fields() {
       'widget' => array(
         'module' => 'file',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',

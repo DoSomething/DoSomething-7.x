@@ -13,13 +13,6 @@ function dosomething_feedback_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'browscap_monitor';
-  $strongarm->value = 1;
-  $export['browscap_monitor'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'unfuddle_api_pass';
   $strongarm->value = 'mayoguy';
   $export['unfuddle_api_pass'] = $strongarm;
