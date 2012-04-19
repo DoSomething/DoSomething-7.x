@@ -369,7 +369,7 @@ div[role="main"] {
     -moz-box-shadow: black 0 0 0 0;
     box-shadow: black 0 0 0 0; }
   #report-back .pane-content {
-    background-color: #78c848;
+    background-color: #8dc641;
     padding: 0px 25px;
     padding-bottom: 0px;
     border: none; }
@@ -443,4 +443,8 @@ div[role="main"] {
         line-height: 18px; }
 
 #school-gallery {
-  clear: both; }
+  clear: both;
+  margin-bottom: 20px; }
+
+#breadcrumbs {
+  display: none; }
