@@ -17,7 +17,7 @@ function dosomething_search_default_search_api_index() {
     "item_type" : "node",
     "options" : {
       "index_directly" : 1,
-      "cron_limit" : "50",
+      "cron_limit" : "100",
       "fields" : {
         "nid" : { "name" : "Node ID", "indexed" : 0, "type" : "integer", "boost" : "1.0" },
         "vid" : {
@@ -1169,9 +1169,9 @@ function dosomething_search_default_search_api_server() {
     "description" : "",
     "class" : "search_api_solr_service",
     "options" : {
-      "host" : "localhost",
-      "port" : "8080",
-      "path" : "\\/solr-dosomething",
+      "host" : "10.179.104.149",
+      "port" : "8000",
+      "path" : "\\/solr",
       "http_user" : "",
       "http_pass" : "",
       "excerpt" : 0,
