@@ -536,6 +536,15 @@ function dosomething_share_of_day_field_default_fields() {
         'active' => 1,
         'module' => 'file',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
