@@ -412,6 +412,7 @@ div[role="main"] {
   float: left; }
   #share-your-story .pane-content {
     padding: 10px;
+    padding-bottom: 25px;
     width: 480px;
     text-align: center; }
     #share-your-story .pane-content .content-content {
@@ -423,21 +424,24 @@ div[role="main"] {
         bottom: 30px; }
 
 #members-list {
-  float: left; }
+  float: left;
+  padding-right: 10px; }
   #members-list .pane-title {
     background: #8dc641;
+    height: 206px;
     padding: 10px 0 0 10px;
     font-size: 24px;
     line-height: 24px; }
-    #members-list .pane-title ul {
-      list-style: none; }
-      #members-list .pane-title ul li {
-        font-size: 18px;
-        line-height: 18px; }
   #members-list .pane-content {
     padding: 10px;
-    width: 271px;
+    width: 261px;
     max-height: 140px;
-    overflow: hidden; }
-    #members-list .pane-content .content-content {
-      padding: 5px 5px 35px 5px; }
+    overflow: auto; }
+    #members-list .pane-content ul {
+      list-style: none; }
+      #members-list .pane-content ul li {
+        font-size: 18px;
+        line-height: 18px; }
+
+#school-gallery {
+  clear: both; }

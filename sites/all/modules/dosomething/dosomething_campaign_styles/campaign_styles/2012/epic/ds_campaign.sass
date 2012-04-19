@@ -470,7 +470,6 @@ div[role="main"]
   float: left
   .pane-title
     background: none
-    height: 207px
     padding: 10px 0 0 10px
     font-size: 24px
     line-height: 24px
@@ -489,6 +488,26 @@ div[role="main"]
 
 #drive-tools
   border: 0
+  clear: both
+  .pane-content
+    padding: 10px
+    padding-bottom: 25px
+    width: 480px
+    .content-content
+      padding: 5px 5px 35px 5px
+      background: rgba(0, 0, 0, .13)
+      img
+        margin-left: 120px
+      ul	
+        +column-count(2)
+        +column-gap(0px)
+        margin-left: 20px
+        li 
+          margin-bottom: 15px
+          a
+            font-size: 18px
+            line-height: 18px
+            color: white
 
 #school-gallery
   clear: both
