@@ -9,7 +9,9 @@ class DSProject extends DSJsonWebformMigration {
     $this->dependencies[] = 'DSFile';
 
     $this->addFieldMapping('is_draft')
-        ->defaultValue(0);
+      ->defaultValue(0);
+    $this->addFieldMapping('field_impact_type')
+      ->defaultValue(1);
     $this->addFieldMapping('field_essay_build_it', 'field_essay_build_it'); # Field: What's your plan of action? (text_long)
     $this->addFieldMapping('field_essay_see_it', 'field_essay_see_it'); # Field: What's the problem you are trying to solve? (text_long)
     $this->addFieldMapping('field_link', 'field_website_link'); # Field: Web site link (link_field)
@@ -21,7 +23,7 @@ class DSProject extends DSJsonWebformMigration {
     $this->addFieldMapping('field_webform_videos', 'field_embedded_video') # Field: Video (media)
       ->description('prepareRow() handles saving the embed URL into a file')
       ->arguments(array('file_function' => 'file_fid'));
-    $this->addFieldMapping('field_num_people_impacted', 'field_num_people_impacted'); # Field: How many people has your project helped? (number_integer)
+    $this->addFieldMapping('field_impact_amount', 'field_num_people_impacted'); # Field: How many people has your project helped? (number_integer)
     $this->addFieldMapping('field_others_involved', 'field_others_involved'); # Field: How Can Others Help?  (text_long)
     $this->addFieldMapping('field_update_people_involved', 'field_num_people_involved');  # Field: How many people are directly involved in your project? (number_integer)
     $this->addFieldMapping('taxonomy_vocabulary_5', 'vocab_5') # Field: Issues (taxonomy_term_reference)
@@ -59,9 +61,6 @@ class DSProject extends DSJsonWebformMigration {
 
 
     $this->addUnmigratedDestinations(array(
-      'field_project_clubs',
-      'field_project_goal',
-      'field_project_impact',
       'field_project_start_date',
     ));
   }
@@ -81,7 +80,7 @@ class DSProject extends DSJsonWebformMigration {
       }
     }
 
-    $row->vocab_5 = array_keys($row->vocab_5);
+    $row->vocab_5 = isset($row->vocab_5) && is_array($row->vocab_5) ? array_keys($row->vocab_5) : NULL;
 
     // Extract the zip code from the location:
     $row->country = empty($row->locations[0]['country_name']) ? NULL : $row->locations[0]['country_name'];

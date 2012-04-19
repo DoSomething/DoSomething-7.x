@@ -76,7 +76,7 @@
   .form-item-month,
   .form-item-day,
   .form-item-year
-    margin-top: 12px
+    margin-top: 22px
 
   .form-item-email
     label.error
@@ -87,21 +87,21 @@
     +pie-clearfix
     label
       float: left
-      margin-right: 31px
+      margin-right: 20px
       .login-popup-birthday
         font-family: $font-sans
         font-size: 12px
         position: relative
         right: -18px
-        top: 16px
+        top: 28px
       .ds-registration-form-required
-        top: 11px
+        top: 21px
         left: 17px
   .form-item-month,
   .form-item-day,
   .form-item-year
     float: left
-    margin-right: 12px
+    margin-right: 10px
     input
       width: 40px
       text-align: center
@@ -114,18 +114,21 @@
     @extend .alert-green
 
   label.error
-    margin-top: 12px
-    height: 27px
+    // margin-top: 22px
+    height: 10px
     border: 1px
     font-size: 10px
 
   .form-item-pass
     .ds-registration-form-required
-      position: absolute
-      top: 253px
-      left: 219px
+      // position: absolute
+      // top: -22px
+      // left: 216px
     label.error
       width: 212px
+
+    label[for="edit-pass"]
+      // display: none
 
   // Under 13
   .under-13-field
@@ -133,10 +136,10 @@
     padding: 12px 0
     input
       width: 212px
-      margin-top: 12px
+      margin-top: 22px
     .ds-registration-form-required
-      top: -110px
-      left: 205px
+      top: 22px
+      // left: 205px
 
   .form-item-parent-email
     input
@@ -144,7 +147,8 @@
     .ds-registration-form-required
       top: 11px
     label.error
-      float: right
+      +float-left
+      clear: left
 
   // Finish terms and weekly update
   .disclaimer

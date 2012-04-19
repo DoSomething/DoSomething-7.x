@@ -312,6 +312,8 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
 function dosomething_schools_done_it_projects($school_id) {
   // Query for all projects reports that reference a club
   // in which that club references the school.
+  // TODO: clubs should include all projects of their members.
+  /*
   $query = db_select('webform_submissions', 'w');
   $query->innerJoin('field_data_field_project_clubs', 'c', 'w.sid = c.entity_id');
   $query->innerJoin('field_data_field_school_reference', 's', 'c.field_project_clubs_nid = s.entity_id');
@@ -327,7 +329,7 @@ function dosomething_schools_done_it_projects($school_id) {
   while ($result = $results->fetchObject()) {
     $items[] = $result;
   }
-
+  */
   // Query for all project report submissions, submitted by
   // users with the school set on their profile.
   $query = db_select('field_data_field_school_reference', 's');

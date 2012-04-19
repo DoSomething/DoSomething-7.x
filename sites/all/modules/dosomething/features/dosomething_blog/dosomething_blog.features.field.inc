@@ -701,7 +701,7 @@ function dosomething_blog_field_default_fields() {
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
-        'display_default' => 0,
+        'display_default' => '1',
         'display_field' => 1,
         'profile2_private' => FALSE,
         'uri_scheme' => 'public',

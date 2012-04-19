@@ -100,7 +100,7 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
   }
 
   // Load up the group and create if it doesn't already exist.
-  $group = og_get_group('webform_submission_entity', $form_state['values']['details']['sid'], TRUE);
+  $group = og_get_group('webform_submission_entity', $form_state['values']['details']['sid'], TRUE, array(OG_STATE_ACTIVE, OG_STATE_PENDING));
   if (!isset($group->gid)) {
     $group->save();
   }

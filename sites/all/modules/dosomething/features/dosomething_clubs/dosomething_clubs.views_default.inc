@@ -164,6 +164,21 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: OG membership: Group gid */
+  $handler->display->display_options['arguments']['group']['id'] = 'group';
+  $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
+  $handler->display->display_options['arguments']['group']['field'] = 'group';
+  $handler->display->display_options['arguments']['group']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['arguments']['group']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['group']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['group']['default_argument_options']['index'] = '1';
+  $handler->display->display_options['arguments']['group']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['group']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['group']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['group']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['group']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['group']['not'] = 0;
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;

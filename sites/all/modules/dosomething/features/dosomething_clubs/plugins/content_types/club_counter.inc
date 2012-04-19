@@ -20,6 +20,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   $block = new stdClass();
 
   $node = $context->data;
+  $group = og_context();
 
   if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
     $image = $node->field_club_picture[LANGUAGE_NONE][0];
@@ -35,8 +36,19 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   }
 
   $invite_link = '';
+  $see_all = '';
   if (node_access('update', $node)) {
    $invite_link = t('Invite Friends') . l('Go', 'node/' . $node->nid . '/edit', array('attributes' => array('class' => 'go-button')));
+   $see_all = l('or see all', 'club/' . $group->gid . '/members');
+  }
+
+  $location = '';
+  $school_name = '';
+  if (!empty($node->field_school_reference )) {
+    $school = entity_load('ds_school', array($node->field_school_reference[LANGUAGE_NONE][0]['target_id']));
+    $school = array_shift($school);
+    $school_name = $school->name;
+    $location = $school->city . ', ' . $school->state;
   }
 
   $output = array(
@@ -55,9 +67,24 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
           '#prefix' => '<div class="club-image">',
           '#suffix' => '</div>',
         ),
+        'school_name' => array(
+          '#markup' => $school_name,
+          '#prefix' => '<div class="school_name">',
+          '#suffix' => '</div>',
+        ),
+        'location' => array(
+          '#markup' => $location,
+          '#prefix' => '<div class="location">',
+          '#suffix' => '</div>',
+        ),
         'invite_link' => array(
           '#markup' => $invite_link,
           '#prefix' => '<div class="invite-link">',
+          '#suffix' => '</div>',
+        ),
+        'see_all' => array(
+          '#markup' => $see_all,
+          '#prefix' => '<div class="see-all-members">',
           '#suffix' => '</div>',
         ),
       ),
@@ -96,13 +123,18 @@ function dosomething_clubs_club_counter_right() {
     'value' => $member_count,
   );
 
-  // From those members, count all their Campaign Reports Backs
-  $query = db_select('webform_submissions', 'w');
-  $query->innerJoin('node', 'n', 'w.nid = n.nid');
-  $query->condition('n.type', 'campaign_report_back', '=');
-  $query->condition('w.uid', $members, 'IN');
-  $count = $query->countQuery()->execute()->fetchObject();
-  $campaigns_count = $count->expression;
+  if (!empty($members)) {
+    // From those members, count all their Campaign Reports Backs
+    $query = db_select('webform_submissions', 'w');
+    $query->innerJoin('node', 'n', 'w.nid = n.nid');
+    $query->condition('n.type', 'campaign_report_back', '=');
+    $query->condition('w.uid', $members, 'IN');
+    $count = $query->countQuery()->execute()->fetchObject();
+    $campaigns_count = $count->expression;
+  }
+  else {
+    $campaigns_count = 0;
+  }
 
   $items['campaigns_completed'] = array(
     'title' => t('Campaigns Completed'),

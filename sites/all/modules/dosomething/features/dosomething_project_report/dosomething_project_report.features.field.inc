@@ -1700,137 +1700,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_num_people_impacted'
-  $fields['webform_submission_entity-project_report-field_num_people_impacted'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_num_people_impacted',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'number',
-      'settings' => array(
-        'allowed_values' => array(),
-        'allowed_values_php' => '',
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'profile2_private' => FALSE,
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'number_integer',
-      'type_name' => 'project',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '(i.e. Number of people you provided food for through your collection, etc.) Use digits, for example: "20", "100"',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => '5',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_num_people_impacted',
-      'label' => 'How many people has your project helped?',
-      'required' => 0,
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '14',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_others_involved'
-  $fields['webform_submission_entity-project_report-field_others_involved'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_others_involved',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'allowed_values' => '',
-        'allowed_values_php' => '',
-        'max_length' => '',
-        'profile2_private' => FALSE,
-        'text_processing' => '1',
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-      'type_name' => 'project',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_others_involved',
-      'label' => 'How Can Others Help? ',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '20',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-project_report-field_participants'
   $fields['webform_submission_entity-project_report-field_participants'] = array(
     'field_config' => array(
@@ -1982,264 +1851,6 @@ The content from this field will only be shown to anonymous users.',
         ),
         'type' => 'image_image',
         'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_project_clubs'
-  $fields['webform_submission_entity-project_report-field_project_clubs'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_clubs',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'profile2_private' => FALSE,
-        'referenceable_types' => array(
-          'action_guide' => 0,
-          'api_key' => 0,
-          'awards_archive' => 0,
-          'bc_bio_form' => 0,
-          'blog' => 0,
-          'campaign' => 0,
-          'campaign_art_2011' => 0,
-          'campaign_bully_2011' => 0,
-          'campaign_cancer_2011' => 0,
-          'campaign_contact_form' => 0,
-          'campaign_content_page' => 0,
-          'campaign_ew_2011' => 0,
-          'campaign_macys_2011' => 0,
-          'campaign_report_back' => 0,
-          'campaign_sign_up' => 0,
-          'campaign_sports_2011' => 0,
-          'cancer_2011_signup' => 0,
-          'cause_video' => 0,
-          'club' => 'club',
-          'club_event' => 0,
-          'decade_2011_signup' => 0,
-          'ds_award_judging' => 0,
-          'dsaward_app' => 0,
-          'dsaward_rec' => 0,
-          'dsu_askprof' => 0,
-          'dsu_guides' => 0,
-          'easy_idea' => 0,
-          'editorial_content_' => 0,
-          'ewaste_signup_2011' => 0,
-          'final_grant_update' => 0,
-          'grant_alumni' => 0,
-          'grant_application' => 0,
-          'grant_judge' => 0,
-          'help_ticket' => 0,
-          'member_opportunity' => 0,
-          'page' => 0,
-          'poll' => 0,
-          'press' => 0,
-          'project_report' => 0,
-          'project_update' => 0,
-          'scholarship' => 0,
-          'scholarship_application' => 0,
-          'school' => 0,
-          'scroller' => 0,
-          'share_of_day' => 0,
-          'sponsor' => 0,
-          'tips_and_tools' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => 'references_1',
-          'view_name' => 'user_groups_reference_options',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '10',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_clubs',
-      'label' => 'Did you do this project with a DoSomething Club?',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'nodereference_url',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'edit_fallback' => 0,
-          'fallback' => 'select',
-          'node_link' => array(
-            'destination' => 'default',
-            'full' => 0,
-            'hover_title' => '',
-            'teaser' => 0,
-            'title' => '',
-          ),
-        ),
-        'type' => 'nodereference_url',
-        'weight' => '15',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_project_goal'
-  $fields['webform_submission_entity-project_report-field_project_goal'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_goal',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '14',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_goal',
-      'label' => 'Goal',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '5',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_project_impact'
-  $fields['webform_submission_entity-project_report-field_project_impact'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_impact',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Ex. <i>Picked up 8 bags of trash.</i>',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '13',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_impact',
-      'label' => 'Measurable impact',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '4',
       ),
     ),
   );
@@ -2839,19 +2450,14 @@ Use numbers only (no text).');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
-  t('Did you do this project with a DoSomething Club?');
   t('Do you have any new photos to add?');
   t('Do you have any new videos to add?');
-  t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('File attachments');
   t('Geocode Data');
-  t('Goal');
   t('Grant/Scholarship');
   t('Group');
-  t('How Can Others Help? ');
   t('How many additional [people helped] since your original post?');
   t('How many additional people have gotten involved since your original post?');
-  t('How many people has your project helped?');
   t('How? e.g. Get 10 friends on a Saturday to pick up trash');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
@@ -2862,7 +2468,8 @@ The content from this field will only be shown to anonymous users.');
   t('Quantity of Impact');
   t('Related Action Guide');
   t('Select the cause and issue that are closest to your project. Other users will be looking for projects in these categories and by tagging your project with these other people will be able to see what you are doing!');
-  t('The club or clubs responsible for this project (if any). This setting will determine if the project is listed on each club\'s page.');
+  t('Start date');
+  t('Status');
   t('The content from this field will only be shown to logged in users.');
   t('This an auto complete field.  Start typing in the name of your project. If you haven\'t yet posted a project <a href="/node/add/project"> click here </a>.');
   t('Title of your project');
@@ -2872,7 +2479,6 @@ The content from this field will only be shown to anonymous users.');
   t('Updated number of new people/animals helped');
   t('Video');
   t('Web site link');
-  t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What progress have you made since your original post?');
   t('What\'s the problem you are trying to solve?');
   t('What\'s the status of your project?');
