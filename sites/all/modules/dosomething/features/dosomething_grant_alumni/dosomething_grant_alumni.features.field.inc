@@ -874,6 +874,15 @@ function dosomething_grant_alumni_field_default_fields() {
         'settings' => array(
           'body_preset' => NULL,
           'image_path' => 'pictures/actionguide',
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'bar',
           'teaser_preset' => NULL,
@@ -1446,6 +1455,11 @@ function dosomething_grant_alumni_field_default_fields() {
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'field_essay_build_it:value',
@@ -1703,6 +1717,9 @@ function dosomething_grant_alumni_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'upload',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -1713,6 +1730,7 @@ function dosomething_grant_alumni_field_default_fields() {
         'default_file' => 0,
         'display_default' => '1',
         'display_field' => 1,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -1766,6 +1784,15 @@ function dosomething_grant_alumni_field_default_fields() {
       'widget' => array(
         'module' => 'file',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => array(
+            0 => 'auto',
+          ),
+          'insert_styles' => array(
+            0 => 'auto',
+          ),
+          'insert_width' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
