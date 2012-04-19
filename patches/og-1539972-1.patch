@@ -1,0 +1,14 @@
+diff --git a/og.module b/og.module
+index d2906ea..94182a0 100644
+--- a/og.module
++++ b/og.module
+@@ -1199,6 +1199,9 @@ function og_membership_access($op, $entity, $account = NULL, $entity_type = 'og_
+  * @param $create
+  *   Optional; If no existing group is found, create a new one. Defaults to
+  *   FALSE.
++ * @param $states
++ *   Array of states the group must be in. Values can be OG_STATE_ACTIVE or
++ *   OG_STATE_PENDING. Defaults to OG_STATE_ACTIVE.
+  * @param $reset
+  *   A boolean indicating that the internal cache should be reset.
+  *
