@@ -167,6 +167,27 @@ div[role="main"] {
 .panel-row-logos img {
   border: none; }
 
+.field-name-field-picture img {
+  border: none; }
+
+.panel-top-right-mini-info .pane-content {
+  padding: 15px 0; }
+.panel-top-right-mini-info h1 {
+  font-size: 1.2em;
+  color: #444444; }
+.panel-top-right-mini-info p {
+  font-size: 1em; }
+
+.panel-top-right-social {
+  width: 250px; }
+  .panel-top-right-social h2.pane-title {
+    display: none; }
+  .panel-top-right-social .pane-content {
+    width: 225px;
+    padding: 0; }
+  .panel-top-right-social .facebook-plugin {
+    width: 60px; }
+
 #honorees-pane img {
   margin: 15px auto;
   display: block; }
