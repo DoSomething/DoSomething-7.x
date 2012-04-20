@@ -938,7 +938,10 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title, .pane-news-stuff .pane-content img, .pane-narrow-block .views-field-views-ifempty img, .panes-2 .panel-second .views-field-views-ifempty img, .pane-blog-center .views-field-views-ifempty img,
+.pane-narrow-block .project-related-thumb img,
+.panes-2 .panel-second .project-related-thumb img,
+.pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-picture img,
@@ -1005,7 +1008,10 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title, .pane-news-stuff .pane-content img, .pane-narrow-block .views-field-views-ifempty img, .panes-2 .panel-second .views-field-views-ifempty img, .pane-blog-center .views-field-views-ifempty img,
+.pane-narrow-block .project-related-thumb img,
+.panes-2 .panel-second .project-related-thumb img,
+.pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-picture img,
@@ -1842,7 +1848,11 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   font-size: 14px;
   font-weight: bold;
 }
-.pane-narrow-block .project-related-thumb, .panes-2 .panel-second .project-related-thumb, .pane-blog-center .project-related-thumb,
+.pane-narrow-block .views-field-views-ifempty, .panes-2 .panel-second .views-field-views-ifempty, .pane-blog-center .views-field-views-ifempty,
+.pane-narrow-block .project-related-thumb,
+.panes-2 .panel-second .project-related-thumb, .panes-2
+.panel-second .project-related-thumb,
+.pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
 .panes-2 .panel-second .pane-narrow-thumb, .panes-2
 .panel-second .pane-narrow-thumb,
@@ -1851,7 +1861,11 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   margin-right: 12px;
   width: 60px;
 }
-.pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
+.pane-narrow-block .views-field-views-ifempty img, .panes-2 .panel-second .views-field-views-ifempty img, .pane-blog-center .views-field-views-ifempty img,
+.pane-narrow-block .project-related-thumb img,
+.panes-2 .panel-second .project-related-thumb img, .panes-2
+.panel-second .project-related-thumb img,
+.pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img, .panes-2
 .panel-second .pane-narrow-thumb img,
