@@ -138,8 +138,8 @@ function dosomething_clubs_default_page_manager_handlers() {
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '0',
-            'paths' => 'node/*/done-it
-node/*/doing-it
+            'paths' => 'node/*/done-it/*
+node/*/doing-it/*
 node/*/picks
 node/*/picks/*',
           ),
@@ -152,6 +152,7 @@ node/*/picks/*',
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),
+      'path' => 'node/%node:nid/done-it',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -175,8 +176,8 @@ node/*/picks/*',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '0',
-            'paths' => 'node/*/done-it
-node/*/doing-it
+            'paths' => 'node/*/done-it/*
+node/*/doing-it/*
 node/*/picks
 node/*/picks/*',
           ),
@@ -190,7 +191,7 @@ node/*/picks/*',
         0 => 'argument_entity_id:node_1',
       ),
       'more_link' => 1,
-      'path' => 'test',
+      'path' => 'node/%node:nid/doing-it',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -214,8 +215,8 @@ node/*/picks/*',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '0',
-            'paths' => 'node/*/done-it
-node/*/doing-it
+            'paths' => 'node/*/done-it/*
+node/*/doing-it/*
 node/*/picks
 node/*/picks/*',
           ),
@@ -276,8 +277,8 @@ node/*/picks/*',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '0',
-            'paths' => 'node/*/done-it
-node/*/doing-it
+            'paths' => 'node/*/done-it/*
+node/*/doing-it/*
 node/*/picks
 node/*/picks/*',
           ),
@@ -336,7 +337,8 @@ node/*/picks/*',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'node/*/doing-it',
+            'paths' => 'node/*/doing-it/*
+',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -370,7 +372,7 @@ node/*/picks/*',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'node/*/done-it',
+            'paths' => 'node/*/done-it/*',
           ),
           'context' => 'empty',
           'not' => FALSE,
