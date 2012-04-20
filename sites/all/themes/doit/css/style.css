@@ -535,7 +535,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li > a, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li span, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
@@ -572,7 +572,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 
 .white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, #lets-talk-dialog h2, body.front .selectBox-options li a, .selectBox-options li a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
 thead tr th a, thead tr th:hover,
-thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li a, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
+thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li span, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
 .logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], #lets-talk-dialog .title,
 #lets-talk-dialog .detail, .apps-grid .apps-box .apps-banner, .ribbon-front a,
@@ -3072,41 +3072,24 @@ h2.block-title, h2.pane-title {
   list-style-type: none;
   margin-left: 0px;
 }
-#block-menu-menu-footer .content ul.menu li a {
+#block-menu-menu-footer .content ul.menu li span {
   padding: 0;
   line-height: 33px;
   text-transform: uppercase;
   font-size: 18px;
   padding-left: 16px;
 }
-#block-menu-menu-footer .content ul.menu li > a {
-  font-size: 1.5em;
-  line-height: 1.333em;
-  text-transform: uppercase;
-  line-height: 17px;
-  margin-bottom: 12px;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-}
-#block-menu-menu-footer .content ul.menu li > a {
-  *display: inline;
-}
 #block-menu-menu-footer .content ul.menu ul {
   border-top: 1px #938d88 solid;
-  padding-left: 0;
-  padding-top: 12px;
-  font-size: 1.167em;
-  line-height: 1.714em;
+  padding-left: 16px;
+  padding-top: 10px;
 }
 #block-menu-menu-footer .content ul.menu ul li {
   width: auto;
   float: none;
   display: block;
   padding-top: 0;
-  line-height: 21px;
+  line-height: 24px;
 }
 #block-menu-menu-footer .content ul.menu ul li a {
   line-height: 14px;
@@ -3114,14 +3097,14 @@ h2.block-title, h2.pane-title {
   text-transform: none;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"] {
-  background: url('images/icn-footer-fb.png') no-repeat 13% 50%;
+  background: url('images/icn-footer-fb.png') no-repeat 0 50%;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
-  background: url('images/icn-footer-twtr.png') no-repeat 13% 50%;
+  background: url('images/icn-footer-twtr.png') no-repeat 0 50%;
 }
 #block-menu-menu-footer .content ul.menu ul li a[href="http://www.facebook.com/dosomething"],
 #block-menu-menu-footer .content ul.menu ul li a[href="https://twitter.com/#!/dosomething"] {
-  padding-left: 55px;
+  padding-left: 35px;
   line-height: 30px;
 }
 
