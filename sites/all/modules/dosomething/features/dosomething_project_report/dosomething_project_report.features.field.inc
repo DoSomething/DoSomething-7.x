@@ -1695,73 +1695,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_others_involved'
-  $fields['webform_submission_entity-project_report-field_others_involved'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_others_involved',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'allowed_values' => '',
-        'allowed_values_php' => '',
-        'max_length' => '',
-        'profile2_private' => FALSE,
-        'text_processing' => '1',
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-      'type_name' => 'project',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_others_involved',
-      'label' => 'How Can Others Help? ',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '20',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-project_report-field_participants'
   $fields['webform_submission_entity-project_report-field_participants'] = array(
     'field_config' => array(
@@ -1913,136 +1846,6 @@ The content from this field will only be shown to anonymous users.',
         ),
         'type' => 'image_image',
         'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_project_goal'
-  $fields['webform_submission_entity-project_report-field_project_goal'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_goal',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '14',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_goal',
-      'label' => 'Goal',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '5',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-project_report-field_project_impact'
-  $fields['webform_submission_entity-project_report-field_project_impact'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_project_impact',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project_report',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Ex. <i>Picked up 8 bags of trash.</i>',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '13',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_project_impact',
-      'label' => 'Measurable impact',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '4',
       ),
     ),
   );
@@ -2643,20 +2446,16 @@ The content from this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
   t('Do you have any new photos to add?');
   t('Do you have any new videos to add?');
-  t('Ex. <i>Picked up 8 bags of trash.</i>');
   t('File attachments');
   t('Geocode Data');
-  t('Goal');
   t('Grant/Scholarship');
   t('Group');
-  t('How Can Others Help? ');
   t('How many additional [people helped] since your original post?');
   t('How many additional people have gotten involved since your original post?');
   t('How? e.g. Get 10 friends on a Saturday to pick up trash');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
   t('Issues');
-  t('Measurable impact');
   t('Number of People Doing It');
   t('Project');
   t('Project Photo');
@@ -2669,7 +2468,6 @@ The content from this field will only be shown to anonymous users.');
   t('Type of Impact');
   t('Video');
   t('Web site link');
-  t('What is the GOAL of your project? <i>Ex. Reduce litter in my neighborhood by 50%</i>');
   t('What progress have you made since your original post?');
   t('What\'s the problem you are trying to solve?');
   t('What\'s the status of your project?');
