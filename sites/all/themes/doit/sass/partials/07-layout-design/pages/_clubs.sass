@@ -1,4 +1,8 @@
-// Clubs pages
+////////////////////////////
+// CLUBS PAGES
+// clubs pages theming
+// image teaser module
+////////////////////////////
 
 .pane-club-counter
   margin-bottom: 21px
@@ -36,6 +40,32 @@
   .vital-stats
     padding-top: 7px
 
+// Three panel styling
+.node-type-club
+  .pane-club-projects-panel-pane-1,
+  .pane-club-projects-panel-pane-2,
+  .pane-profile-panel-pane-1
+    .views-row
+      @extend .clearfix
+      +ds-bevel-single
+      padding: $s2 0
+      &:last-of-type
+        +box-shadow-none
+        border-bottom: none
+    .views-field-field-project-title
+      @extend .right-sidebar-headlines
+      a
+        font-size: 14px
+        font-weight: bold
+    .views-field-field-picture,
+    .views-field-views-ifempty
+      float: left
+      margin-right: $s0
+      width: 60px
+      img
+        @extend .border-and-shadow
+        height: 60px
+        width: 60px
 
 // Club page form asterisk
 label[for="edit-submitted-field-webform-email-und-0-value"]
