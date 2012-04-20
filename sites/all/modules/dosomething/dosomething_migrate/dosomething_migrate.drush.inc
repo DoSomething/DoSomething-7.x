@@ -601,7 +601,7 @@ function dosomething_migrate_update_noderef_entref_finished($success, $results, 
     $message = 'There was an error. ';
     $message .= format_plural(count($results), 'One node reference to webform submission mapping processed.', '@count node reference to webform submission mappings processed.');
   }
-  drush_print($message);
+  drush_log($message, 'ok');
 }
 
 function drush_dosomething_migrate_create_redirect_from_migration_alias_migrations() {
