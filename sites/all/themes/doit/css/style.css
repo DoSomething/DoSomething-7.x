@@ -4864,7 +4864,9 @@ h3 .stuff-header {
 }
 
 label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
+  position: relative;
   top: 20px;
+  left: -25px;
   display: inline;
   float: right;
 }
