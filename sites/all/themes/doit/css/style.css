@@ -4801,6 +4801,12 @@ h3 .stuff-header {
   margin-left: 12px;
 }
 
+.club-image {
+  display: inline;
+  float: left;
+  margin-right: 12px;
+}
+
 .view-current-campaigns .view-header h2 {
   clear: both;
   display: block;
