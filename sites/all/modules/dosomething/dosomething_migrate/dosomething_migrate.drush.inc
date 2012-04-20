@@ -113,12 +113,12 @@ function drush_dosomething_migrate_batch_process_redirects($migration_table, $ba
 
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
-    $query = "SELECT count(sourceid1) FROM {$migration_table} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1)";
+    $query = "SELECT count(sourceid1) FROM {{$migration_table}} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1)";
     $context['sandbox']['max'] = db_query($query)->fetchColumn();
   }
 
   $limit = 2000;
-  $query = "SELECT sourceid1, destid1, src, dst FROM {{$migration_table}} JOIN {{$d6_database}}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) ORDER BY sourceid1 ASC";
+  $query = "SELECT sourceid1, destid1, src, dst FROM {{$migration_table}} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) ORDER BY sourceid1 ASC";
   $results = db_query_range($query, $context['sandbox']['progress'], $limit)->fetchAll();
 
   // Construct an array of paths to check for.
@@ -612,12 +612,10 @@ function dosomething_migrate_update_noderef_entref_finished($success, $results, 
  * aliases.
  */
 function drush_dosomething_migrate_create_redirect_from_migration_alias_migration_list() {
-  //TODO: Update me.
   return array(
     // Definitely migrating.
     'migrate_map_dsproject' => 'webform-submission',
-
-    // Probably migrating.
+    'migrate_map_dsintentions' => 'webform-submission',
     'migrate_map_dscampaignreportbackbullying' => 'webform-submission',
     'migrate_map_dscampaignreportbackcampaignbfb2011' => 'webform-submission',
     'migrate_map_dscampaignreportbackcampaignbfb2012' => 'webform-submission',
@@ -642,23 +640,13 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias_migratio
     'migrate_map_dsgrantapplicationaspca' => 'webform-submission',
     'migrate_map_dsgrantapplicationgeneral' => 'webform-submission',
     'migrate_map_dsgrantapplicationgrant' => 'webform-submission',
-    'migrate_map_dsintentions' => 'webform-submission',
     'migrate_map_dsscholarshipapplicationatt' => 'webform-submission',
     'migrate_map_dsscholarshipapplicationgeneral' => 'webform-submission',
     'migrate_map_dsscholarshipapplicationsixflags' => 'webform-submission',
 
     // Clubs need to be migrated, but they're nodes.
     'migrate_map_dsjsonclubevent' => 'node',
-    'migrate_map_dsjsonclub' => 'webform-submission',
-
-    // User and profile aliases definitely don't need to come over.
-    // 'migrate_map_dssqluserprofile' => 'webform-submission',
-    // 'migrate_map_dsjsonchangeduser' => 'webform-submission',
-    // 'migrate_map_dsjsonnewuser' => 'webform-submission',
-    // 'migrate_map_dsjsonprofile' => 'webform-submission',
-
-    // Files definitely won't have to come over.
-    // 'migrate_map_dsfile' => 'webform-submission',
+    'migrate_map_dsjsonclub' => 'node',
 
     // Signups almost certainly don't need to come over.
     // 'migrate_map_dscampaignsignupcancer2011' => 'webform-submission',
@@ -671,40 +659,5 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias_migratio
     // 'migrate_map_dscampaignsignupscavenger' => 'webform-submission',
     // 'migrate_map_dscampaignsignupstaples' => 'webform-submission',
     // 'migrate_map_dscampaignsignuptacklehunger' => 'webform-submission',
-
-    // Webforms probably don't need to come over.
-    // 'migrate_map_dswebform649367' => 'webform-submission',
-    // 'migrate_map_dswebform650078' => 'webform-submission',
-    // 'migrate_map_dswebform650379' => 'webform-submission',
-    // 'migrate_map_dswebform650471' => 'webform-submission',
-    // 'migrate_map_dswebform651742' => 'webform-submission',
-    // 'migrate_map_dswebform652060' => 'webform-submission',
-    // 'migrate_map_dswebform674268' => 'webform-submission',
-    // 'migrate_map_dswebform677734' => 'webform-submission',
-    // 'migrate_map_dswebform677823' => 'webform-submission',
-    // 'migrate_map_dswebform678267' => 'webform-submission',
-    // 'migrate_map_dswebform678942' => 'webform-submission',
-    // 'migrate_map_dswebform679576' => 'webform-submission',
-    // 'migrate_map_dswebform679707' => 'webform-submission',
-    // 'migrate_map_dswebform679745' => 'webform-submission',
-    // 'migrate_map_dswebform679770' => 'webform-submission',
-    // 'migrate_map_dswebform680418' => 'webform-submission',
-    // 'migrate_map_dswebform680674' => 'webform-submission',
-    // 'migrate_map_dswebform680696' => 'webform-submission',
-    // 'migrate_map_dswebform680841' => 'webform-submission',
-    // 'migrate_map_dswebform681182' => 'webform-submission',
-    // 'migrate_map_dswebform681880' => 'webform-submission',
-    // 'migrate_map_dswebform681960' => 'webform-submission',
-    // 'migrate_map_dswebform682136' => 'webform-submission',
-    // 'migrate_map_dswebform682753' => 'webform-submission',
-    // 'migrate_map_dswebform682784' => 'webform-submission',
-    // 'migrate_map_dswebform685503' => 'webform-submission',
-    // 'migrate_map_dswebform688464' => 'webform-submission',
-    // 'migrate_map_dswebform688536' => 'webform-submission',
-    // 'migrate_map_dswebform691486' => 'webform-submission',
-    // 'migrate_map_dswebform691967' => 'webform-submission',
-    // 'migrate_map_dswebform696251' => 'webform-submission',
-    // 'migrate_map_dswebform698605' => 'webform-submission',
-    // 'migrate_map_dswebform736100' => 'webform-submission',
   );
 }
