@@ -120,6 +120,15 @@ class DSProject extends DSJsonWebformMigration {
   }
 
   public function prepare($entity, $row) {
+    if ($row->field_website_link && !is_null($row->field_website_link)) {
+      $entity->field_link = array(
+        'und' => array(
+          0 => array(
+            'url' => $row->field_website_link,
+          ),
+        ),
+      );
+    }
     // We add the locative data on just before saving. It would have been
     // preferable to do this in the constructor but it was not working properly.
     // This is a pretty solid but less elegant solution. We just mash the geo

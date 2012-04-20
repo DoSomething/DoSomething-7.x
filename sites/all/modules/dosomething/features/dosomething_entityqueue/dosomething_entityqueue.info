@@ -1,7 +1,7 @@
 name = "DoSomething Entityqueue"
 description = "Entityqueues for DoSomething"
 core = "7.x"
-package = "Other"
+package = "Dosomething"
 php = "5.2.4"
 dependencies[] = "entityreference"
 dependencies[] = "features"

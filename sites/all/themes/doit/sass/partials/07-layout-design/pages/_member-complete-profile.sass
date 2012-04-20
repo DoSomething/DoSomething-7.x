@@ -8,9 +8,11 @@
     +box-shadow($gray5 0 1px 0 inset)
     border-top: 1px $white solid
   a.back
-    position: absolute
-    top: 283px
-    right: 0
+    +float-right
+    margin-top: 12px
+    // position: absolute
+    // top: 283px
+    // right: 0
 
 h3 .stuff-header
   @extend .headers
@@ -24,3 +26,14 @@ h3 .stuff-header
   padding: 0
   li
     margin-bottom: 12px
+
+.invite-link
+  a
+    margin-left: 12px
+
+.club-image
+  +float-left
+  margin-right: 12px
+
+
+
