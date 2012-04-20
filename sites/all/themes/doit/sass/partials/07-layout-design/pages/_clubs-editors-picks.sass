@@ -4,17 +4,23 @@
 // image teaser module
 ////////////////////////////
 
-.page-node-picks
-  .pane-profile-panel-pane-3
+.page-node-picks,
+.page-node-doing-it,
+.page-node-done-it
+  .pane-profile-panel-pane-3,
+  .pane-club-projects-panel-pane-3,
+  .pane-club-projects-panel-pane-4
     @extend .two-column-grid
     @extend .black-h2
     .views-row
       @extend .image-teaser-module
     .views-field-field-picture
       @extend .image-teaser-module-image
-    .something-description
+    .something-description,
+    .views-field-field-project-title
       @extend .image-teaser-module-teaser
-      .views-field-title
+      .views-field-title,
+      a
         @extend .headers
         @extend .bold
         font-size: $s5
@@ -25,3 +31,13 @@
         li
           list-style: none
           margin: 0 0 12px 0
+
+label[for="edit-submitted-field-webform-email-und-0-value"]
+  .form-required
+    position: relative
+    top: 20px
+    left: -25px
+    +float-right
+
+
+
