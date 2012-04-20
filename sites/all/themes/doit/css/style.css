@@ -4904,6 +4904,10 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
   margin-bottom: 12px;
 }
 
+.dosomething-stats .club-image img {
+  height: 120px;
+  width: 120px;
+}
 .dosomething-stats .dosomething-club-facts {
   float: left;
   font-family: din-web, "Trebuchet MS", sans-serif;
@@ -4921,6 +4925,13 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 .dosomething-stats .dosomething-club-facts .invite-link {
   text-transform: uppercase;
   padding-top: 18px;
+}
+.dosomething-stats .dosomething-club-facts .see-all-members {
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 10px;
+  padding-top: 4px;
+  text-align: right;
+  width: 160px;
 }
 .dosomething-stats .vital-stats {
   padding-top: 7px;
