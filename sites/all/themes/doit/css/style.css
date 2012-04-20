@@ -4863,6 +4863,12 @@ h3 .stuff-header {
   margin: 0 0 12px 0;
 }
 
+label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
+  top: 20px;
+  display: inline;
+  float: right;
+}
+
 .node-grant-alumni .content .field-name-field-picture {
   display: inline;
   float: left;
