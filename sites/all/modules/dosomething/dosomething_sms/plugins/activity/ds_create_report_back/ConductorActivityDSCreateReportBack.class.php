@@ -68,11 +68,13 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
     $submission->uid = $account->uid;
     $submission->submitted = REQUEST_TIME;
     $submission->remote_addr = ip_address();
-    $submission->is_draft = TRUE;
+    $submission->is_draft = FALSE;
     $submission->sid = NULL;
 
     $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
 
+    // Set the project to "completed".
+    $wrapper->field_project_type->set(4);
     $wrapper->field_project_title->set($state->getContext('title:message'));
     $wrapper->field_project_goal->set($state->getContext('goal:message'));
     $wrapper->field_update_people_involved->set($state->getContext('involved:message'));
