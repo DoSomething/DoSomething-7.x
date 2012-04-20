@@ -933,7 +933,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-form, .popup-content, .apps-grid .apps-box {
+.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-page .content .field-name-body p img, .node-form, .popup-content, .apps-grid .apps-box {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -995,7 +995,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title, .pane-news-stuff .pane-content img, .pane-narrow-block .project-related-thumb img, .panes-2 .panel-second .project-related-thumb img, .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .field-name-field-picture img, .view-home-slideshow .home-slide img {
+.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .field-name-field-picture img, .node-page .content .field-name-body p img, .view-home-slideshow .home-slide img {
   border: 1px white solid;
 }
 
@@ -2399,6 +2399,10 @@ img.right {
   margin: 7.0px 0 7.0px 23px;
 }
 
+.node-page .content .field-name-body p img {
+  margin-top: 12px;
+}
+
 /* Tables -------------------------------------------------------------- */
 /* tables still need 'cellspacing="0"' in the markup */
 table {
@@ -3005,7 +3009,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -3507,7 +3511,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li span {
   padding: 0;
@@ -3758,7 +3762,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3813,7 +3817,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .ie8 .region-sidebar-first .block-menu-block .content li {
   background-color: #efefef;
