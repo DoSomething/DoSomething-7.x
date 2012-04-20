@@ -769,7 +769,7 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
 
     $this->addFieldMapping('data_field_campaign_number_of_people', 'field_campaign_number_of_people');
     $this->addFieldMapping('data_what_did_you_do_tell_us_in_your_school_blog', 'field_further_description_title');
-    $this->addFieldMapping('field_webform_pictures', 'field_picture');
+    $this->addFieldMapping('field_webform_pictures', 'field_picture')
       ->arguments(array('file_function' => 'file_fid'))
       ->sourceMigration('DSFile');
 
