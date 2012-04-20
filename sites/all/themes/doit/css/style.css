@@ -4158,6 +4158,11 @@ h2.block-title, h2.pane-title {
   padding-top: 6px;
 }
 
+#mini-panel-home_page .views-field-ds-social-plugins {
+  margin: -15px;
+  padding: 35px 10px 10px 35px;
+  border-bottom: 1px solid white;
+}
 #mini-panel-home_page .panel-col-first .inside {
   border: 1px white solid;
   padding-bottom: 30px;
@@ -4206,17 +4211,6 @@ h2.block-title, h2.pane-title {
 }
 #mini-panel-home_page .pane-share-of-day .attribution:before {
   content: "– ";
-}
-#mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons {
-  border-bottom: 1px white solid;
-  border-right: 1px white solid;
-  border-left: 1px white solid;
-  float: none;
-  padding-bottom: 78px;
-  padding-top: 30px;
-  padding-left: 90px;
-  position: relative;
-  width: 100%;
 }
 #mini-panel-home_page .pane-dosomething-blocks-dosomething-make-impact-front {
   margin-top: 18px;
