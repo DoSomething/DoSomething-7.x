@@ -149,21 +149,26 @@ function dosomething_clubs_club_counter_right() {
     'value' => $campaigns_count,
   );
   // TODO: the clubs on projects field was removed and this logic needs to be redone.
-  /*
+
   // Get count of Project Reports that reference this Club.
-  $query = new EntityFieldQuery();
+  $project_upload_query = db_query("SELECT count(sid) FROM webform_submissions, (SELECT etid FROM og_membership WHERE gid = :gid AND entity_type = 'user') guser WHERE bundle = 'project_report' AND guser.etid = uid", array(':gid' => $group->gid));
+  $project_upload_count = 0;
+  while ($sum_it_up = $project_upload_query->fetchField()) {
+    $project_upload_count += $sum_it_up;
+  }
+  /*$query = new EntityFieldQuery();
   $projects_count = $query
     ->entityCondition('entity_type', 'webform_submission_entity')
     ->entityCondition('bundle', 'project_report')
     ->fieldCondition('field_project_clubs', 'nid', $group->etid, '=')
     ->count()
     ->execute();
-
+  */
   $items['projects_uploaded'] = array(
     'title' => t('Projects Uploaded'),
-    'value' => $projects_count,
+    'value' => $project_upload_count,
   );
-  */
+
   $output[] = array(
     '#theme' => 'dosomething_stats_counter',
     '#items' => $items,
