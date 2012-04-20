@@ -82,8 +82,8 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
 function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_state) {
   ctools_include('ajax');
 
-  $email = $form_state['values']['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  $mobile = $form_state['values']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  $mobile = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
 
   if (empty($email)) {
     return array(
