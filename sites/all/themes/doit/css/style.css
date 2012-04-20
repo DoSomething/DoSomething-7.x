@@ -3378,6 +3378,9 @@ h2.block-title, h2.pane-title {
   list-style-type: none;
   margin-left: 0px;
 }
+.ie8 .region-sidebar-first .block-menu-block .content li {
+  background-color: #efefef;
+}
 .region-sidebar-first .block-menu-block .content li:last-of-type a {
   border-bottom: none;
   -moz-box-shadow: none;
@@ -3418,6 +3421,9 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li a {
   *display: inline;
 }
+.ie8 .region-sidebar-first .block-menu-block .content li a {
+  padding-right: 11px;
+}
 .region-sidebar-first .block-menu-block .content li.active {
   background-color: #4b4744;
 }
@@ -3457,10 +3463,6 @@ h2.block-title, h2.pane-title {
   line-height: 23px;
   padding-top: 0;
   text-transform: none;
-}
-
-.ie8 .region-sidebar-first .block-menu-block .content li a, .ie7 .region-sidebar-first .block-menu-block .content li a {
-  padding-right: 12px;
 }
 
 .views-submit-button {
