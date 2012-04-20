@@ -2,6 +2,6 @@ name = Dosomething SMS
 description = Provides SMS integration for DoSomething.org
 core = 7.x
 dependencies[] = conductor_sms
-dependencies[] = dosomething_login
+dependencies[] = dosomething_general
 dependencies[] = entity
 package = "DoSomething"

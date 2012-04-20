@@ -239,18 +239,29 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
  * @param $number
  *  (string) The cell phone number for which you are searching.
  * @return
- *  The username or FALSE if not found.
+ *  The user account object.
  */
 function dosomething_general_find_user_by_cell($number) {
-  if ($name = db_select('users')->fields('users', array('name'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-    return $name;
+  $or = db_or()
+    ->condition('mail', $number . '@mobile')
+    // Tolerate not having a one in the source but having one in the db.
+    ->condition('mail', substr($number, 1) . '@mobile')
+    // Tolerate having a one in the source but not having one in the db.
+    ->condition('mail', '1' . $number . '@mobile');
+  $uid = db_select('users')
+    ->fields('users', array('uid'))
+    ->condition($or)
+    ->execute()
+    ->fetchField();
+  if ($uid) {
+    return user_load($uid);
   }
-  else if ($name = _dosomething_general_find_user_by_cell_helper($number)) {
+  else if ($account = dosomething_load_user_by_profile_cell($number)) {
     // Note: Cell phone numbers are not unique amongst the existing users.
     // otherwise, we can directly search for the cell phone number when
     // logging in. Existing users will have usernames and email addresses
     // so this won't prevent them from logging in.
-    return $name;
+    return $account;
   }
   return FALSE;
 }
@@ -267,14 +278,32 @@ function _dosomething_general_find_user_by_cell_helper($number) {
     $replace = "REPLACE(" . $replace . ", '$char', '')";
   }
 
-  $query = db_select('field_data_field_user_mobile', 'm');
-  $query->innerJoin('profile', 'p', 'm.entity_id = p.pid');
-  $query->innerJoin('users', 'u', 'u.uid = p.uid');
-  $result = $query->fields('u', array('name'))
-    ->condition('m.entity_type', 'profile2')
-    ->where("$replace IN (:number, :number1)", array(':number' => $number, ':number1' => '1'.$number))
+/**
+ * Load a user object by cell phone.
+ *
+ * @param $mobile
+ *   The cell number exactly as it appears in the database.
+ * @return
+ *   The user account or false if none is found.
+ */
+function dosomething_load_user_by_profile_cell($mobile) {
+  $account = FALSE;
+  $query = new EntityFieldQuery('profile2');
+  $results = $query->entityCondition('entity_type', 'profile2')
+    ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
+    ->deleted(FALSE)
     ->execute();
-  return $result->fetchField();
+  if (count($results)) {
+    $profiles = reset($results);
+    ksort($profiles);
+    $pid = array_pop($profiles)->pid;
+    $profile = profile2_load($pid);
+    if ($profile) {
+      $uid = $profile->uid;
+      $account = user_load($uid);
+    }
+  }
+  return $account;
 }
 
 /**
@@ -291,9 +320,7 @@ function dosomething_general_load_user_by_mail_or_cell($value) {
     $account = user_load_by_mail($value);
   }
   else if ($number = dosomething_general_valid_cell($value)) {
-    if ($name = dosomething_general_find_user_by_cell($number)) {
-      $account = user_load_by_name($name);
-    }
+    $account = dosomething_general_find_user_by_cell($number);
   }
   return $account;
 }

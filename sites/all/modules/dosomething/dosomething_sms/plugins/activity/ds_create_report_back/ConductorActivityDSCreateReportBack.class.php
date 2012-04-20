@@ -27,7 +27,7 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
 
     // If we have a user with this mobile, lets update their info.
     $state->markCompeted();
-    $account = dosomething_sms_load_user_by_cell($mobile);
+    $account = dosomething_general_find_user_by_cell($mobile);
 
     // If we haven't found an account, let's create one.
     if (!$account) {

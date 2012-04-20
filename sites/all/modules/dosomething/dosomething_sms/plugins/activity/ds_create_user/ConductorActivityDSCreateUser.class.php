@@ -27,7 +27,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     $mobile = $state->getContext('sms_number');
 
     // If we have a user with this mobile, lets update their info.
-    $account = dosomething_sms_load_user_by_cell($mobile);
+    $account = dosomething_general_find_user_by_cell($mobile);
 
     $newAccount = FALSE;
     if (!$account) {

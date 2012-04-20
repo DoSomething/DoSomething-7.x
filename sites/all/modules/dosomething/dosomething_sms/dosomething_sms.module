@@ -227,30 +227,3 @@ function dosomething_sms_default_conductor_workflows() {
   return $workflows;
 }
 
-/**
- * Load a user object by cell phone.
- *
- * @param $mobile
- *   The cell number exactly as it appears in the database.
- * @return
- *   The user account or false if none is found.
- */
-function dosomething_sms_load_user_by_cell($mobile) {
-  $account = FALSE;
-  $query = new EntityFieldQuery('profile2');
-  $results = $query->entityCondition('entity_type', 'profile2')
-    ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
-    ->deleted(FALSE)
-    ->execute();
-  if (count($results)) {
-    $profiles = reset($results);
-    ksort($profiles);
-    $pid = array_pop($profiles)->pid;
-    $profile = profile2_load($pid);
-    if ($profile) {
-      $uid = $profile->uid;
-      $account = user_load($uid);
-    }
-  }
-  return $account;
-}

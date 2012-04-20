@@ -331,10 +331,7 @@ function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) 
   }
   // Check if they gave us a mobile number.
   else if ($number = dosomething_general_valid_cell($name)) {
-    if ($username = dosomething_general_find_user_by_cell($number)) {
-      $users = user_load_multiple(array(), array('name' => $username, 'status' => '1'));
-      $account = reset($users);
-    }
+    $account = dosomething_general_find_user_by_cell($number);
   }
 
   if (isset($account->uid)) {
@@ -418,8 +415,8 @@ function dosomething_login_user_login_validate($form, &$form_state) {
       form_set_value($form['name'], $name, $form_state);
     }
     else if ($number = dosomething_general_valid_cell($form_state['values']['name'])) {
-      if ($name = dosomething_general_find_user_by_cell($number)) {
-        form_set_value($form['name'], $name, $form_state);
+      if ($account = dosomething_general_find_user_by_cell($number)) {
+        form_set_value($form['name'], $account->name, $form_state);
       }
     }
   }
