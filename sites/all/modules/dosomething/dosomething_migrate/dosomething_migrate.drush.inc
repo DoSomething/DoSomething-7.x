@@ -178,34 +178,84 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias() {
     // 'migrate_map_dswebform736100' => 'webform-submission',
   );
 
+  foreach ($migrations as $migration_table => $base_path) {
+    drush_log(dt('Starting syncronization of migration of legacy paths to new redirects for migration @migration.', array('@migration' => $migration_table)), 'ok');
+    $batch = array(
+      'operations' => array(
+        array('drush_dosomething_migrate_batch_process_redirects', array($migration_table, $base_path)),
+      ),
+      'finished' => 'drush_dosomething_migrate_batch_process_redirects_finished',
+      'title' => dt('Migrate legacy URLs as redirects.'),
+      'init_message' => dt('Beginning to migrate legacy URLs as redirects for @table.', array('@table' => $migration_table)),
+      'progress_message' => dt('Processed @current out of @total.'),
+      'error_message' => dt('Error migrating legacy URLs as redirects... Batch has encountered an error.'),
+    );
+    batch_set($batch);
+    $batch =& batch_get();
+    $batch['progressive'] = FALSE;
+    drush_backend_batch_process();
+  }
+}
+
+function drush_dosomething_migrate_batch_process_redirects($migration_table, $base_path, &$context) {
   $d6_database = variable_get('d6_database', 'dosomething_prod');
 
-  foreach ($migrations as $migration_table => $base_path) {
+  if (!isset($context['sandbox']['progress'])) {
+    $context['sandbox']['progress'] = 0;
     $query = "SELECT count(sourceid1) FROM {$migration_table} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1)";
-    $count = db_query($query)->fetchColumn();
-    $query = "SELECT sourceid1, destid1, src, dst FROM {{$migration_table}} JOIN {{$d6_database}}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) LIMIT 5";
-    $results = db_query($query)->fetchAll();
-    $paths = array_map(function ($value) use ($base_path) { return $base_path . '/' . $value->destid1; }, $results);
-    $existing = db_select('redirect', 'r')
-      ->fields('r', array('rid', 'redirect'))
-      ->condition('redirect', $paths, 'IN')
-      ->execute()
-      ->fetchAllKeyed();
-    foreach ($results as $result) {
-      $real_path = $base_path . '/' . $result->destid1;
-      // Ensure we haven't already aliased this one.
-      if (!in_array($real_path, $existing)) {
-        drush_print($existing);
-        $redirect = new stdClass();
-        redirect_object_prepare($redirect);
-        $redirect->source = $result->dst;
-        $redirect->redirect = $real_path;
-        redirect_save($redirect);
-      }
+    $context['sandbox']['max'] = db_query($query)->fetchColumn();
+  }
+
+  $limit = 1000;
+  $query = "SELECT sourceid1, destid1, src, dst FROM {{$migration_table}} JOIN {{$d6_database}}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1)";
+  $results = db_query_range($query, $context['sandbox']['progress'], $limit)->fetchAll();
+
+  // Construct an array of paths to check for.
+  $paths = array_map(function ($value) use ($base_path) { return $base_path . '/' . $value->destid1; }, $results);
+
+  // Find which of these we have already done.
+  $existing = db_select('redirect', 'r')
+    ->fields('r', array('rid', 'redirect'))
+    ->condition('redirect', $paths, 'IN')
+    ->execute()
+    ->fetchAllKeyed();
+
+  foreach ($results as $result) {
+    $real_path = $base_path . '/' . $result->destid1;
+    // Ensure we haven't already aliased this one.
+    if (!in_array($real_path, $existing)) {
+      drush_print($existing);
+      $redirect = new stdClass();
+      redirect_object_prepare($redirect);
+      $redirect->source = $result->dst;
+      $redirect->redirect = $real_path;
+      redirect_save($redirect);
+      $context['message'] = t('Now creating a redirect from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
+    }
+    else {
+      $context['message'] = t('A redirect already exists from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
+    }
+    $context['sandbox']['progress']++;
+    $context['results'][] = $real_path;
+
+    // Inform the batch engine that we are not finished,
+    // and provide an estimation of the completion level we reached.
+    if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
     }
   }
 }
 
+function drush_dosomething_migrate_batch_process_redirects_finished($success, $results, $operations) {
+  if ($success) {
+    $message = format_plural(count($results), 'One alias processed.', '@count aliases processed.');
+  }
+  else {
+    $message = 'There was an error. ';
+    $message .= format_plural(count($results), 'One alias processed.', '@count aliases processed.');
+  }
+  drush_print($message);
+}
 
 function drush_dosomething_migrate_review($args = NULL) {
   try {
