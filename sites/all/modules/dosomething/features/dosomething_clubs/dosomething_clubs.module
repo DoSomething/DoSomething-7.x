@@ -262,3 +262,42 @@ function dosomething_clubs_create_club_anonymous() {
   );
 }
 
+/**
+ * Implement hook_form_FORM_ID_alter().
+ */
+function dosomething_clubs_form_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['title']['#value'] = 'club';
+  $form['title']['#type'] = 'value';
+  $form['title']['#required'] = FALSE;
+}
+
+/**
+ * Implement hook_node_submit().
+ * 
+ * Replace auto nodetitle functionality.
+ */
+function dosomething_clubs_node_save($node, $form, &$form_state) {
+  dosomething_clubs_title($node);
+}
+
+/**
+ * Implement hook_node_submit().
+ */
+function dosomething_clubs_node_submit($node, $form, &$form_state) {
+  dosomething_clubs_title($node);
+}
+
+/**
+ * Implement hook_node_presave().
+ *
+ * Replace auto nodetitle functionality
+ */
+function dosomething_clubs_node_presave($node) {
+  dosomething_clubs_title($node);
+}
+
+function dosomething_clubs_title(&$node) {
+  $school_id = $node->field_school_reference[LANGUAGE_NONE][0]['target_id'];
+  $school = array_shift(entity_load('ds_school', array($school_id)));
+  $node->title = $school->name . ' DoSomething Club';
+}
