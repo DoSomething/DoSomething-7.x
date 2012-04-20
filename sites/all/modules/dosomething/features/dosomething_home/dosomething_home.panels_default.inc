@@ -36,7 +36,7 @@ function dosomething_home_default_panels_mini() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'views';
     $pane->subtype = 'news_stuff';
@@ -66,10 +66,10 @@ function dosomething_home_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-3'] = $pane;
-    $display->panels['left'][0] = 'new-3';
+    $display->content['new-1'] = $pane;
+    $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-2';
     $pane->panel = 'right';
     $pane->type = 'views';
     $pane->subtype = 'share_of_day';
@@ -99,14 +99,14 @@ function dosomething_home_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-4'] = $pane;
-    $display->panels['right'][0] = 'new-4';
+    $display->content['new-2'] = $pane;
+    $display->panels['right'][0] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
@@ -120,10 +120,10 @@ function dosomething_home_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['right'][1] = 'new-5';
+    $display->content['new-3'] = $pane;
+    $display->panels['right'][1] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-4';
     $pane->panel = 'right';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_make_impact_front';
@@ -141,11 +141,12 @@ function dosomething_home_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['right'][2] = 'new-6';
+    $display->content['new-4'] = $pane;
+    $display->panels['right'][2] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $mini->display = $display;
+
   $export['home_page'] = $mini;
 
   return $export;
