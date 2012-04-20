@@ -87,7 +87,7 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias() {
   //TODO: Update me.
   $migrations = array(
     // Definitely migrating.
-    'migrate_map_dsproject' => 'node',
+    'migrate_map_dsproject' => 'webform-submission',
 
     // Probably migrating.
     // 'migrate_map_dscampaignreportbackbullying' => 'webform-submission',
@@ -178,7 +178,7 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias() {
     // 'migrate_map_dswebform736100' => 'webform-submission',
   );
 
-  $d6_database = variable_get('d6_database', 'dosomething_drupal');
+  $d6_database = variable_get('d6_database', 'dosomething_prod');
 
   foreach ($migrations as $migration_table => $base_path) {
     $query = "SELECT count(sourceid1) FROM {$migration_table} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1)";
