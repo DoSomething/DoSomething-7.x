@@ -52,7 +52,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   }
 
   $output = array(
-    'containter' => array(
+    'container' => array(
       '#type' => 'container',
       '#attributes' => array(
         'class' => array(
@@ -67,14 +67,21 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
           '#prefix' => '<div class="club-image">',
           '#suffix' => '</div>',
         ),
+        'container' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'dosomething-club-facts'
+            ),
+          ),
         'school_name' => array(
           '#markup' => $school_name,
-          '#prefix' => '<div class="school_name">',
+          '#prefix' => '<div class="school-name">',
           '#suffix' => '</div>',
         ),
         'location' => array(
           '#markup' => $location,
-          '#prefix' => '<div class="location">',
+          '#prefix' => '<div class="school-location">',
           '#suffix' => '</div>',
         ),
         'invite_link' => array(
@@ -86,6 +93,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
           '#markup' => $see_all,
           '#prefix' => '<div class="see-all-members">',
           '#suffix' => '</div>',
+          ),
         ),
       ),
       'right' => array(
