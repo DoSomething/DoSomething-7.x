@@ -244,9 +244,9 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
 function dosomething_general_find_user_by_cell($number) {
   $or = db_or()
     ->condition('mail', $number . '@mobile')
-    // Tolerate not having a one in the source but having one in the db.
+    // Tolerate not having a `1` in the source but having one in the db.
     ->condition('mail', substr($number, 1) . '@mobile')
-    // Tolerate having a one in the source but not having one in the db.
+    // Tolerate having a `1` in the source but not having one in the db.
     ->condition('mail', '1' . $number . '@mobile');
   $uid = db_select('users')
     ->fields('users', array('uid'))
@@ -265,18 +265,6 @@ function dosomething_general_find_user_by_cell($number) {
   }
   return FALSE;
 }
-
-function _dosomething_general_find_user_by_cell_helper($number) {
-  // Not all of the values in the db are digits only, so we have to
-  // replace the the non-digits in the values that we're searching.
-  // We may have to use this check elsewhere.  If so, we can break
-  // it out into a separate function.
-  $number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
-  $replace_characters = array('+', '.', '-', ' ', ')', '(');
-  $replace = "m.field_user_mobile_value";
-  foreach ($replace_characters as $char) {
-    $replace = "REPLACE(" . $replace . ", '$char', '')";
-  }
 
 /**
  * Load a user object by cell phone.
