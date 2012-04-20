@@ -1,5 +1,8 @@
 // Clubs pages
 
+.pane-club-counter
+  margin-bottom: 21px
+
 // Top block styling
 .dosomething-stats
   .club-image
@@ -16,6 +19,7 @@
     margin-top: 18px
     .school-name,
     .school-location
+      line-height: 1
       padding: 3px 0
     .school-name
       padding-top: 0
@@ -31,3 +35,12 @@
       width: 160px
   .vital-stats
     padding-top: 7px
+
+
+// Club page form asterisk
+label[for="edit-submitted-field-webform-email-und-0-value"]
+  .form-required
+    position: relative
+    top: 20px
+    left: -25px
+    +float-right

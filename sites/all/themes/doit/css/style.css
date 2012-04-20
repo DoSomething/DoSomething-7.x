@@ -464,7 +464,7 @@ input[type=color], .description {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .member-profile .mem-stat, .dosomething-stats .invite-link {
+.caps, .smallcaps, .bold-caps-header, .large-bold-caps, .region-sidebar-first .block-menu-block .content li a, .app-purple-ribbon, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .member-profile .mem-stat {
   font-size: 0.9em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -489,9 +489,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .pane-ds-editors-picks-all .something-description .views-field-title,
 .pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
-.page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .dosomething-stats .school_name,
-.dosomething-stats .location,
-.dosomething-stats .dosomething-stats .invite-link {
+.page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
 
@@ -534,7 +532,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .pane-ds-editors-picks-all .something-description .views-field-title,
 .pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
-.page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .dosomething-stats .invite-link, .dosomething-stats .dosomething-club-facts .invite-link, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
+.page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a, .dosomething-stats .dosomething-club-facts .invite-link, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li span, .apps-grid .apps-box .apps-footer {
@@ -556,7 +554,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, #dosomething-login-login-popup-form #edit-title-text--2 label, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
-.page-search .content h2.title, .dosomething-stats .invite-link, .dosomething-stats .dosomething-club-facts {
+.page-search .content h2.title, .dosomething-stats .dosomething-club-facts {
   color: black;
 }
 
@@ -588,7 +586,7 @@ thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, #dosomething-login-login-popup-form #edit-title-text--2 label, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
-.page-search .content h2.title, .dosomething-stats .invite-link, .dosomething-stats .dosomething-club-facts {
+.page-search .content h2.title, .dosomething-stats .dosomething-club-facts {
   color: black;
 }
 
@@ -2564,7 +2562,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -3066,7 +3064,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li span {
   padding: 0;
@@ -3317,7 +3315,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3372,7 +3370,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .ie8 .region-sidebar-first .block-menu-block .content li {
   background-color: #efefef;
@@ -3488,7 +3486,6 @@ h2.block-title, h2.pane-title {
 
 .dosomething-stats {
   padding: 33px 23px 15px 23px;
-  margin-bottom: 12px;
 }
 .dosomething-stats ul {
   list-style: none;
@@ -3545,7 +3542,6 @@ h2.block-title, h2.pane-title {
 .vital-stats .counter {
   display: inline;
   float: right;
-  margin-top: -100px;
 }
 .vital-stats .counter li {
   margin-bottom: 10px;
@@ -4871,27 +4867,6 @@ h3 .stuff-header {
   margin: 0 0 12px 0;
 }
 
-label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
-  position: relative;
-  top: 20px;
-  left: -25px;
-  display: inline;
-  float: right;
-}
-
-.dosomething-stats .school_name,
-.dosomething-stats .location,
-.dosomething-stats .dosomething-stats .invite-link, .dosomething-stats
-.dosomething-stats .invite-link {
-  font-size: 21px;
-  letter-spacing: 0;
-  padding-right: 15px;
-  line-height: 1;
-}
-.dosomething-stats .invite-link {
-  margin: 12px 0;
-}
-
 .node-grant-alumni .content .field-name-field-picture {
   display: inline;
   float: left;
@@ -4902,6 +4877,10 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 }
 .node-grant-alumni .content .field {
   margin-bottom: 12px;
+}
+
+.pane-club-counter {
+  margin-bottom: 21px;
 }
 
 .dosomething-stats .club-image img {
@@ -4917,6 +4896,7 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 }
 .dosomething-stats .dosomething-club-facts .school-name,
 .dosomething-stats .dosomething-club-facts .school-location {
+  line-height: 1;
   padding: 3px 0;
 }
 .dosomething-stats .dosomething-club-facts .school-name {
@@ -4935,4 +4915,12 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 }
 .dosomething-stats .vital-stats {
   padding-top: 7px;
+}
+
+label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
+  position: relative;
+  top: 20px;
+  left: -25px;
+  display: inline;
+  float: right;
 }
