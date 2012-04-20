@@ -258,7 +258,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_webform_pictures']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_webform_pictures']['settings'] = array(
     'image_style' => 'member_photo_gallery',
-    'image_link' => 'content',
+    'image_link' => 'file',
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
