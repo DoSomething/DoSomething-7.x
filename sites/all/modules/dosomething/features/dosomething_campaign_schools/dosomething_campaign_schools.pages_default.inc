@@ -16,7 +16,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
   $page->admin_title = 'Campaign School Browser pages';
   $page->admin_description = '';
   $page->path = 'school/%school/%campaign';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array(
     'school' => array(
