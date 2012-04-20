@@ -87,7 +87,7 @@ function drush_dosomething_migrate_sql_profile_rollback() {
  */
 function drush_dosomething_migrate_create_redirect_from_migration_alias() {
 
-  $migrations = drush_dosomething_migrate_create_redirect_from_migration_alias_migrations();
+  $migrations = drush_dosomething_migrate_create_redirect_from_migration_alias_migration_list();
 
   foreach ($migrations as $migration_table => $base_path) {
     drush_log(dt('Starting syncronization of migration of legacy paths to new redirects for migration @migration.', array('@migration' => substr($migration_table, 14))), 'ok');
@@ -161,8 +161,8 @@ function drush_dosomething_migrate_batch_process_redirects($migration_table, $ba
     '@progress' => $context['sandbox']['progress'],
     '@max' => $context['sandbox']['max'],
     '@migration' => substr($migration_table, 14),
-    '@migration_number' => array_search($migration_table, array_keys(drush_dosomething_migrate_create_redirect_from_migration_alias_migrations())) + 1,
-    '@migrations' => count(drush_dosomething_migrate_create_redirect_from_migration_alias_migrations()),
+    '@migration_number' => array_search($migration_table, array_keys(drush_dosomething_migrate_create_redirect_from_migration_alias_migration_list())) + 1,
+    '@migrations' => count(drush_dosomething_migrate_create_redirect_from_migration_alias_migration_list()),
   );
   $context['message'] = dt('Progress = @progress out of @max for migration @migration (@migration_number/@migrations)', $args, 'error');
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
@@ -604,7 +604,14 @@ function dosomething_migrate_update_noderef_entref_finished($success, $results, 
   drush_log($message, 'ok');
 }
 
-function drush_dosomething_migrate_create_redirect_from_migration_alias_migrations() {
+/**
+ * Provide a list of the migrations and their destination base path.
+ *
+ * drush_dosomething_migrate_create_redirect_from_migration_alias() needs a list
+ * of migrations and the base path they map to to create redirects from legacy
+ * aliases.
+ */
+function drush_dosomething_migrate_create_redirect_from_migration_alias_migration_list() {
   //TODO: Update me.
   return array(
     // Definitely migrating.
@@ -636,11 +643,13 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias_migratio
     'migrate_map_dsgrantapplicationgeneral' => 'webform-submission',
     'migrate_map_dsgrantapplicationgrant' => 'webform-submission',
     'migrate_map_dsintentions' => 'webform-submission',
-    'migrate_map_dsjsonclub' => 'webform-submission',
-    'migrate_map_dsjsonclubevent' => 'webform-submission',
     'migrate_map_dsscholarshipapplicationatt' => 'webform-submission',
     'migrate_map_dsscholarshipapplicationgeneral' => 'webform-submission',
     'migrate_map_dsscholarshipapplicationsixflags' => 'webform-submission',
+
+    // Clubs need to be migrated, but they're nodes.
+    'migrate_map_dsjsonclubevent' => 'node',
+    'migrate_map_dsjsonclub' => 'webform-submission',
 
     // User and profile aliases definitely don't need to come over.
     // 'migrate_map_dssqluserprofile' => 'webform-submission',
