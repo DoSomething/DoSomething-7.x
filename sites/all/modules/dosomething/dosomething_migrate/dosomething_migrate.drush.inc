@@ -141,20 +141,18 @@ function drush_dosomething_migrate_batch_process_redirects($migration_table, $ba
         $redirect->redirect = $real_path;
         try {
           redirect_save($redirect);
+          $context['message'] = dt('Now creating a redirect from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
         }
-        catch (Exception $e) {
-          drush_log('Hot damn. @path is all fucked up.', array('@path' => $real_path));
+        catch (PDOException $e) {
+          $context['message'] = dt('Hot damn. @alias already existed with some other path!!!!', array('@alias' => $result->dst));
         }
-        $context['message'] = dt('Now creating a redirect from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
       }
       else {
-        $context['message'] = dt('A redirect already exists from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
+        $context['message'] = t('A redirect already exists from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
       }
       $context['sandbox']['progress']++;
       $context['results'][] = $real_path;
 
-      // Inform the batch engine that we are not finished,
-      // and provide an estimation of the completion level we reached.
     }
   }
   $args = array(
@@ -165,6 +163,8 @@ function drush_dosomething_migrate_batch_process_redirects($migration_table, $ba
     '@migrations' => count(drush_dosomething_migrate_create_redirect_from_migration_alias_migration_list()),
   );
   $context['message'] = dt('Progress = @progress out of @max for migration @migration (@migration_number/@migrations)', $args, 'error');
+  // Inform the batch engine that we are not finished,
+  // and provide an estimation of the completion level we reached.
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
