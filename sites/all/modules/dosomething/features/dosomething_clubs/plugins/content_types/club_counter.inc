@@ -140,7 +140,8 @@ function dosomething_clubs_club_counter_right() {
     'title' => t('Campaigns Completed'),
     'value' => $campaigns_count,
   );
-
+  // TODO: the clubs on projects field was removed and this logic needs to be redone.
+  /*
   // Get count of Project Reports that reference this Club.
   $query = new EntityFieldQuery();
   $projects_count = $query
@@ -154,7 +155,7 @@ function dosomething_clubs_club_counter_right() {
     'title' => t('Projects Uploaded'),
     'value' => $projects_count,
   );
-
+  */
   $output[] = array(
     '#theme' => 'dosomething_stats_counter',
     '#items' => $items,

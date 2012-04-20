@@ -52,12 +52,14 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
       }
     }
 
+    // TODO: the clubs field was removed and this connection needs to be rethought.
+    /*
     if ($clubs = $wrapper->field_project_clubs->value()) {
       foreach ($clubs as $club) {
         $misc[] = l($club->title, "node/$club->nid");
       }
     }
-
+    */
     $address = $wrapper->field_webform_address->value();
     $location = '';
     if ($address['locality'] && $address['administrative_area']) {

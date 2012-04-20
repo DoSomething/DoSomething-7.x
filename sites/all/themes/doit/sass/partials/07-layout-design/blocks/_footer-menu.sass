@@ -21,31 +21,24 @@
         margin-right: 0
         width: 206px
         +float-left
-        a
+        span
           @extend .white
+          @extend .medium
           padding: 0
           line-height: 33px
           text-transform: uppercase
           font-size: $s4
           padding-left: 16px
-        > a
-          +adjust-font-size-to($s4)
-          text-transform: uppercase
-          @extend .medium
-          line-height: $s3
-          margin-bottom: $s0
-          +inline-block
       ul
         border-top: 1px $gray-border solid
-        padding-left: 0
-        padding-top: $s0
-        +adjust-font-size-to($s1)
+        padding-left: 16px
+        padding-top: 10px
         li
           width: auto
           float: none
           display: block
           padding-top: 0
-          line-height: $s5
+          line-height: 24px
           a
             @extend .white
             line-height: 14px
@@ -53,10 +46,10 @@
             @extend .normal
             text-transform: none
           a[href="http://www.facebook.com/dosomething"]
-            background: image_url("icn-footer-fb.png") no-repeat 13% 50%
+            background: image_url("icn-footer-fb.png") no-repeat 0 50%
           a[href="https://twitter.com/#!/dosomething"]
-            background: image_url("icn-footer-twtr.png") no-repeat 13% 50%
+            background: image_url("icn-footer-twtr.png") no-repeat 0 50%
           a[href="http://www.facebook.com/dosomething"],
           a[href="https://twitter.com/#!/dosomething"]
-            padding-left: 55px
+            padding-left: 35px
             line-height: 30px

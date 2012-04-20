@@ -90,11 +90,14 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['empty'] = '<a href="/webform-submission/[sid]"><img src="/sites/all/modules/dosomething/features/dosomething_projects_general/project-nopic-120x120.png" alt="Official Dosomething.org Project" /></a>
+';
   $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
@@ -1113,7 +1116,6 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Footer: DoSomething: More link */
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
