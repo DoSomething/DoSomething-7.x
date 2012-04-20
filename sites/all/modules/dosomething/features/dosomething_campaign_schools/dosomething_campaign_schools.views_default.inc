@@ -108,6 +108,10 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['fields']['name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
+  /* Sort criterion: School: Name */
+  $handler->display->display_options['sorts']['name']['id'] = 'name';
+  $handler->display->display_options['sorts']['name']['table'] = 'ds_school';
+  $handler->display->display_options['sorts']['name']['field'] = 'name';
   /* Contextual filter: OG group: Entity id */
   $handler->display->display_options['arguments']['etid']['id'] = 'etid';
   $handler->display->display_options['arguments']['etid']['table'] = 'og';
@@ -426,7 +430,7 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Pictures */
+  /* Field: Webform Submission: Piectures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -466,7 +470,7 @@ function dosomething_campaign_schools_views_default_views() {
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Piectures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';

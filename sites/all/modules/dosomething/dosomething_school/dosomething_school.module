@@ -79,6 +79,9 @@ function dosomething_school_views_data() {
     'argument' => array(
       'handler' => 'views_handler_argument_string',
     ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
   );
 
   $data['ds_school']['sid'] = array(

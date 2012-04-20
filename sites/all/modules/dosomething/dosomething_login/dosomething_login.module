@@ -910,7 +910,9 @@ function dosomething_login_register_block_validate($form, &$form_state) {
         form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
       }
       $form_state['values']['phone'] = $number;
-      $form_state['values']['mail'] = $number . '@mobile';
+      if (!valid_email_address($form_state['values']['mail'])) {
+        $form_state['values']['mail'] = $number . '@mobile';
+      }
     }
     else {
         form_set_error('cell', t('The phone number %phone is invalid.', array('%phone' => $values['cell'])));
