@@ -31,8 +31,6 @@ function dosomething_projects_default_search_api_index() {
         "field_essay_see_it" : { "type" : "text" },
         "field_update_people_involved" : { "type" : "integer" },
         "field_project_title" : { "type" : "text" },
-        "field_project_goal" : { "type" : "text" },
-        "field_others_involved" : { "type" : "text" },
         "field_webform_project_summary" : { "type" : "text" },
         "search_api_language" : { "type" : "string" },
         "search_api_viewed" : { "type" : "text" },

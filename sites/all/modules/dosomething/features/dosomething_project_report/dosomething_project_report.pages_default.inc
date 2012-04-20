@@ -189,34 +189,6 @@ function dosomething_project_report_default_page_manager_handlers() {
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
-    $pane->panel = 'left';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'webform_submission_entity:field_others_involved';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:webform_submission_entity_1',
-      'override_title' => 1,
-      'override_title_text' => 'How You Can Get Involved',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 4;
-    $pane->locks = '';
-    $display->content['new-5'] = $pane;
-    $display->panels['left'][4] = 'new-5';
-    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
