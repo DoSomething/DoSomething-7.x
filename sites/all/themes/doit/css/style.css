@@ -4779,9 +4779,9 @@ comments.fb_iframe_widget {
   border-top: 1px white solid;
 }
 .pane-ds-stuff-you-need a.back {
-  position: absolute;
-  top: 283px;
-  right: 0;
+  display: inline;
+  float: right;
+  margin-top: 12px;
 }
 
 h3 .stuff-header {
