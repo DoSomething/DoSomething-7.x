@@ -101,7 +101,7 @@ function dosomething_blocks_social_skyscraper_block_content() {
         '#markup' => t('Twitter Stream'),
       ),
       'content' => array(
-        'content' => dosomething_blocks_twitter_stream_block_content(),
+        '#markup' => dosomething_blocks_twitter_stream_block_content(),
         '#prefix' => '<div class="social-activity-content twitter">',
         '#suffix' => '</div>',
       ),
@@ -149,45 +149,10 @@ function dosomething_blocks_facebook_activity_block_content() {
 }
 
 function dosomething_blocks_twitter_stream_block_content() {
-  $element = array(
-    '#markup' => "
-      <script>
-      new TWTR.Widget({
-        version: 2,
-        type: 'profile',
-        rpp: 4,
-        interval: 30000,
-        width: 'auto',
-        height: 300,
-        theme: {
-          shell: {
-            background: '#9c9c9c',
-            color: '#ffffff'
-          },
-          tweets: {
-            background: '#000000',
-            color: '#ffffff',
-            links: '#4aed05'
-          }
-        },
-        features: {
-          scrollbar: false,
-          loop: false,
-          hashtags: true,
-          timestamp: true,
-          avatars: true,
-          behavior: 'all'
-        }
-      }).render().setUser('dosomething').start();
-      </script>",
-    '#attached' => array(
-      'js' => array(
-        drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js',
-        drupal_get_path('module', 'dosomething_blocks') . '/js/twitter-widget.js',
-      )
-    ),
-  );
-  return array('element' => $element);
+  drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
+  drupal_add_css(drupal_get_path('module', 'dosomething_blocks') . '/css/twitter-widget.css');
+
+  return theme('dosomething_blocks_twitter_widget');
 }
 
 /**
@@ -548,6 +513,11 @@ function dosomething_blocks_theme() {
       'path' => drupal_get_path('module', 'dosomething_blocks') . '/templates',
       'template' => 'lets_talk_dialog'
     ),
+    'dosomething_blocks_twitter_widget' => array(
+      'variables' => array(),
+      'path' => drupal_get_path('module', 'dosomething_blocks') . '/templates',
+      'template' => 'ds_twitter_widget',
+    ),
   );
 }
 
@@ -662,4 +632,25 @@ function dosomething_blocks_views_api() {
   return array(
     'api' => 3,
   );
+}
+
+/**
+ * Implements hook_preprocess_dosomething_blocks_twitter_widget).
+ */
+function dosomething_blocks_preprocess_dosomething_blocks_twitter_widget(&$variables) {
+  $cache = cache_get('ds_twitter_data');
+  if ($cache === FALSE || $cache->expire < REQUEST_TIME) {
+    $twitter = new Twitter();
+    $twitter_data = $twitter->call('statuses/user_timeline/dosomething', array('count' => 6));
+    cache_set('ds_twitter_data', $twitter_data, 'cache', REQUEST_TIME + 86400);
+  }
+  else {
+    $twitter_data = $cache->data;
+  }
+
+  foreach ($twitter_data as $key => $data) {
+    $twitter_data[$key]['date'] = date('F j g:ia', strtotime($data['created_at']));
+  }
+
+  $variables['tweets'] = $twitter_data;
 }

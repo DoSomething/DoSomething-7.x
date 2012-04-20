@@ -5,5 +5,6 @@ core = 7.x
 dependencies[] = block
 dependencies[] = html5_tools
 dependencies[] = fboauth
+dependencies[] = twitter
 
 files[] = plugins/views/ds_social_plugins_handler_field.inc
