@@ -4797,6 +4797,10 @@ h3 .stuff-header {
   margin-bottom: 12px;
 }
 
+.invite-link a {
+  margin-left: 12px;
+}
+
 .view-current-campaigns .view-header h2 {
   clear: both;
   display: block;
