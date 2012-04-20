@@ -16,7 +16,6 @@ body {
 
 div[role="main"] {
   background: black;
-  background: rgba(0, 30, 0, 0.5);
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -53,6 +52,7 @@ div[role="main"] {
 
 .bg-green .pane-content,
 .panel-row-actions-stats,
+.panel-row-actions,
 .pane-campaign-sign-up .pane-content,
 .pane-campaign-counter .pane-content,
 .panel-row-actions {
@@ -65,7 +65,6 @@ div[role="main"] {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
     background: black;
-    background: rgba(0, 30, 0, 0.5);
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
@@ -94,7 +93,6 @@ div[role="main"] {
 
 .panel-row-actions {
   background: black;
-  background: rgba(0, 30, 0, 0.5);
   border: none !important;
   margin: 1em 0 2em 0; }
   .panel-row-actions .pane-title {
@@ -127,6 +125,7 @@ div[role="main"] {
       margin-right: 0; }
 
 .campaign-counter-labels {
+  font-family: din-web, "Trebuchet MS", sans-serif;
   color: white;
   font-size: 24px;
   line-height: 24px;
@@ -134,7 +133,6 @@ div[role="main"] {
 
 .panel-row-actions {
   background: black;
-  background: rgba(0, 30, 0, 0.5);
   margin: 0; }
   .panel-row-actions .pane-title {
     background: #009444; }
@@ -158,15 +156,17 @@ div[role="main"] {
   padding: 0;
   background: transparent;
   text-transform: uppercase;
-  color: black;
+  color: #8dc641;
   line-height: 1.3em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content h3 {
-  color: #009444;
+  color: white !important;
   font-size: 24px;
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1em; }
+.panel-row-ad-quick-info .pane-content a {
+  color: #8dc641 !important; }
 .panel-row-ad-quick-info .pane-content p {
   color: white;
   margin: 0; }
@@ -181,8 +181,7 @@ div[role="main"] {
 
 .panel-row-flexible .panel-pane {
   border: none;
-  background: black;
-  background: rgba(0, 30, 0, 0.5); }
+  background: black; }
   .panel-row-flexible .panel-pane .pane-title {
     background: #009444; }
 .panel-row-flexible .blog {
@@ -261,17 +260,6 @@ div[role="main"] {
   color: #8dc641;
   font-weight: 500; }
 
-.panel-row-ad-quick-info h2 {
-  color: #8dc641;
-  font-size: 24px;
-  font-weight: 500; }
-.panel-row-ad-quick-info .pane-content h3 {
-  color: #8dc641; }
-.panel-row-ad-quick-info .pane-content p {
-  margin-bottom: 1em; }
-  .panel-row-ad-quick-info .pane-content p a {
-    color: #8dc641; }
-
 .pane-node-field-campain-date,
 .pane-node-field-campaign-teaser,
 .pane-node-field-campaign-logo {
@@ -334,18 +322,6 @@ div[role="main"] {
 
 .pane-node-field-campaign-teaser p {
   color: white; }
-
-#quick-info {
-  color: white; }
-  #quick-info .pane-title {
-    color: #8dc641;
-    font-size: 34px; }
-  #quick-info .pane-content h3 {
-    color: white;
-    font-size: 32px;
-    line-height: 20px; }
-  #quick-info .pane-content a {
-    color: #8dc641 !important; }
 
 .panel-row-ad-psa {
   margin-top: 45px; }
@@ -432,7 +408,8 @@ div[role="main"] {
   font-size: 11px; }
   #campaign-opt-in a#opt-in-help {
     vertical-align: super;
-    font-weight: bold; }
+    font-weight: bold;
+    text-decoration: none; }
   #campaign-opt-in a#opt-in-help:hover {
     color: black;
     text-decoration: none; }
@@ -489,5 +466,5 @@ div[role="main"] {
   clear: both;
   margin-bottom: 20px; }
 
-#breadcrumbs {
+#fambs {
   display: none; }

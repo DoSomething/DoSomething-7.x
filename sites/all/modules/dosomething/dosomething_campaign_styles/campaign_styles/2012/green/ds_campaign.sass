@@ -26,7 +26,7 @@ $bgFallback: black
 // block definition (all blocks--don't define width or float here)
 @mixin block
   background: rgb(0, 0, 0)
-  background: rgba(0, 30, 0, .5)
+//  background: rgba(0, 30, 0, .5)
   
 // top and bottom border for elements
 // use with &:before and &:after
@@ -104,6 +104,7 @@ div[role="main"]
  
 .bg-green .pane-content,
 .panel-row-actions-stats,
+.panel-row-actions,
 .pane-campaign-sign-up .pane-content,
 .pane-campaign-counter .pane-content,
 .panel-row-actions
@@ -179,6 +180,7 @@ div[role="main"]
         margin-right: 0
 
 .campaign-counter-labels
+  font-family: din-web, "Trebuchet MS", sans-serif
   color: white
   font-size: 24px
   line-height: 24px
@@ -212,23 +214,24 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
+    color: #8DC641
     line-height: 1.3em
     font-weight: 500
   .pane-content
     h3
-      color: $baseColor
+      color: white !important
       font-size: 24px
       text-transform: uppercase
       font-weight: 600
       line-height: 1em
+    a
+      color: #8DC641 !important
     p
       color: white
       margin: 0
     &:before
       +insetBorder
       margin-bottom: 20px
-
 
 .panel-row-flexible
   .panel-pane
@@ -304,19 +307,6 @@ div[role="main"]
   color: #8DC641
   font-weight: 500
 
-.panel-row-ad-quick-info
-  h2
-    color: #8DC641
-    font-size: 24px
-    font-weight: 500
-  .pane-content
-    h3
-      color: #8DC641
-    p
-      margin-bottom: 1em
-      a
-        color: #8DC641
-
 .pane-node-field-campain-date,
 .pane-node-field-campaign-teaser,
 .pane-node-field-campaign-logo
@@ -375,19 +365,6 @@ div[role="main"]
 
 .pane-node-field-campaign-teaser p
   color: white
-
-#quick-info
-  color: white
-  .pane-title
-    color: #8DC641
-    font-size: 34px
-  .pane-content
-    h3
-      color: white
-      font-size: 32px
-      line-height: 20px
-    a
-      color: #8DC641 !important
 
 .panel-row-ad-psa
   margin-top: 45px
@@ -465,6 +442,7 @@ div[role="main"]
   a#opt-in-help
     vertical-align: super
     font-weight: bold
+    text-decoration: none
   a#opt-in-help:hover
     color: $secondaryLink
     text-decoration: none  
@@ -521,5 +499,5 @@ div[role="main"]
   clear: both
   margin-bottom: 20px
 
-#breadcrumbs
+#fambs
   display: none
