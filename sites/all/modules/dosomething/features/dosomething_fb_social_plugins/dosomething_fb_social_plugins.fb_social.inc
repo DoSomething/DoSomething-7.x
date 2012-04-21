@@ -271,7 +271,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
   );
   $fb_social_preset->fb_attrs = array(
     'send' => 0,
-    'layout' => 'standard',
+    'layout' => 'button_count',
     'show_faces' => 1,
     'width' => '350',
     'action' => 'recommend',
