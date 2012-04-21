@@ -253,7 +253,8 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
           $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
           $node = node_load($submission->nid);
           $edit_access = webform_submission_access($node, $submission, 'edit', $account);
-          $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+          //$link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+          $link = 'webform-submission/' . $submission->sid;
           $items[$type]['children'][] = l($title, $link);
         }
       }
