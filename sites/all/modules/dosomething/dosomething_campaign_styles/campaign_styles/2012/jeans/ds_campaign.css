@@ -241,3 +241,6 @@ div[role="main"] {
     padding-bottom: 0; }
   .thanks-text-box ul {
     list-style-image: url("assets/list-dot.png"); }
+
+#breadcrumbs {
+  display: none; }

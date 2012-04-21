@@ -102,7 +102,8 @@ div[role="main"] {
   .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
     margin: 0; }
     .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content {
-      padding: 0; }
+      padding: 0;
+      min-height: 90px; }
       .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .webform-client-form {
         border: none !important;
         -moz-box-shadow: none;
@@ -275,6 +276,8 @@ div[role="main"] {
 
 .pane-node-field-campaign-logo {
   margin-bottom: 40px; }
+  .pane-node-field-campaign-logo img {
+    border: none !important; }
 
 #faq {
   margin-bottom: 25px; }
@@ -468,3 +471,10 @@ div[role="main"] {
 
 #fambs {
   display: none; }
+
+#school-report-backs .pane-content {
+  padding: 10px;
+  margin-bottom: 20px; }
+  #school-report-backs .pane-content a {
+    font-size: 18px;
+    line-height: 18px; }
