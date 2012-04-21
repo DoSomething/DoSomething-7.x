@@ -291,8 +291,10 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href="/blog">more</a></p>';
-  $handler->display->display_options['footer']['area']['format'] = '1';
+  $handler->display->display_options['footer']['area']['content'] = '<p class="more-link">
+	<span style="font-size:12px !important;"><a href="/blog">more &raquo;</a></span></p>
+';
+  $handler->display->display_options['footer']['area']['format'] = '3';
   $handler->display->display_options['footer']['area']['tokenize'] = 0;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
