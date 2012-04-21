@@ -108,6 +108,17 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias() {
   }
 }
 
+/**
+ * Formerly, this migrated old url_aliases to redirects.  Now it
+ * ensures that we ONLY have new aliases and not redirects.
+ *
+ * @param $migration_table
+ *   The migrate module mapping from old id to new id.
+ * @param $base_path
+ *   The base path for the entity (e.g. webform-submission or node).
+ * @param $context
+ *   The sandbox and other context for this batch operation.
+ */
 function drush_dosomething_migrate_batch_process_redirects($migration_table, $base_path, &$context) {
   $d6_database = variable_get('d6_database', 'dosomething_prod');
 
@@ -117,38 +128,41 @@ function drush_dosomething_migrate_batch_process_redirects($migration_table, $ba
     $context['sandbox']['max'] = db_query($query)->fetchColumn();
   }
 
-  $limit = 2000;
+  $limit = 1000;
   $query = "SELECT sourceid1, destid1, src, dst FROM {{$migration_table}} JOIN {$d6_database}.url_alias ddurl ON ddurl.src = CONCAT('node/', sourceid1) ORDER BY sourceid1 ASC";
   $results = db_query_range($query, $context['sandbox']['progress'], $limit)->fetchAll();
 
   // Construct an array of paths to check for.
   $paths = array_map(function ($value) use ($base_path) { return $base_path . '/' . $value->destid1; }, $results);
 
-  if (count($paths)) {
-    // Find which of these we have already done.
-    $existing = db_select('redirect', 'r')
-      ->fields('r', array('rid', 'redirect'))
+  if (!empty($paths) && count($paths)) {
+    // Delete any existing aliases for these paths.
+    db_delete('url_alias', 'r')
+      ->condition('source', $paths, 'IN')
+      ->execute();
+    // Delete any existing redirects for these paths.
+    db_delete('redirect', 'r')
       ->condition('redirect', $paths, 'IN')
-      ->execute()
-      ->fetchAllKeyed();
+      ->execute();
     foreach ($results as $result) {
       $real_path = $base_path . '/' . $result->destid1;
       // Ensure we haven't already aliased this one.
       if (!in_array($real_path, $existing)) {
-        $redirect = new stdClass();
-        redirect_object_prepare($redirect);
-        $redirect->source = $result->dst;
-        $redirect->redirect = $real_path;
+        $edit = array(
+          'source' => $real_path,
+          'alias' => $result->dst,
+          'language' => LANGUAGE_NONE,
+        );
         try {
-          redirect_save($redirect);
-          $context['message'] = dt('Now creating a redirect from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
+          path_save($edit);
+          $context['message'] = dt('Now creating an alias from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
         }
         catch (PDOException $e) {
           $context['message'] = dt('Hot damn. @alias already existed with some other path!!!!', array('@alias' => $result->dst));
         }
       }
       else {
-        $context['message'] = t('A redirect already exists from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
+        $context['message'] = t('An alias already exists from @source to @destination.', array('@source' => $result->dst, '@destination' => $real_path));
       }
       $context['sandbox']['progress']++;
       $context['results'][] = $real_path;
