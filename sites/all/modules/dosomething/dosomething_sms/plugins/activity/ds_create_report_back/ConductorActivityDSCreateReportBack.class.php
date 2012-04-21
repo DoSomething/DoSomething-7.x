@@ -27,7 +27,7 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
 
     // If we have a user with this mobile, lets update their info.
     $state->markCompeted();
-    $account = dosomething_sms_load_user_by_cell($mobile);
+    $account = dosomething_general_find_user_by_cell($mobile);
 
     // If we haven't found an account, let's create one.
     if (!$account) {
@@ -68,11 +68,13 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
     $submission->uid = $account->uid;
     $submission->submitted = REQUEST_TIME;
     $submission->remote_addr = ip_address();
-    $submission->is_draft = TRUE;
+    $submission->is_draft = FALSE;
     $submission->sid = NULL;
 
     $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
 
+    // Set the project to "completed".
+    $wrapper->field_project_type->set(4);
     $wrapper->field_project_title->set($state->getContext('title:message'));
     $wrapper->field_project_goal->set($state->getContext('goal:message'));
     $wrapper->field_update_people_involved->set($state->getContext('involved:message'));

@@ -18,6 +18,7 @@ function dosomething_clubs_club_counter_ctools_content_types() {
  */
 function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $panel_args, $context) {
   $block = new stdClass();
+  global $user;
 
   $node = $context->data;
   $group = og_context();
@@ -35,11 +36,30 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     $image_style = NULL;
   }
 
-  $invite_link = '';
   $see_all = '';
-  if (node_access('update', $node)) {
-   $invite_link = t('Invite Friends') . l('Go', 'node/' . $node->nid . '/edit', array('attributes' => array('class' => 'go-button')));
-   $see_all = l('or see all', 'club/' . $group->gid . '/members');
+  $member_link = '';
+  // Anonymous user.
+  if ($user->uid == 0) {
+    $member_link = t('Join the club') . l('Go', 'user/registration', array('attributes' => array('class' => 'go-button')));
+  }
+  // Logged in non-member.
+  elseif (og_get_group_membership($group->gid, 'user', $user->uid) == NULL) {
+    $member_link = t('Join the club') . l('Go', 'group/node/' . $node->nid . '/subscribe', array('attributes' => array('class' => 'go-button')));
+  }
+  elseif ($membership = og_get_group_membership($group->gid, 'user', $user->uid)) {
+    // Pending member.
+    if ($membership->state == 2) {
+      $member_link = t('Membership Pending');
+    }
+    // Approved member with edit access.
+    elseif ($membership->state == 1 && node_access('update', $node)) {
+      $member_link = t('Invite Friends') . l('Go', 'node/' . $node->nid . '/edit', array('attributes' => array('class' => 'go-button')));
+      $see_all = l('or see all', 'club/' . $group->gid . '/members');
+    }
+    // Approved member.
+    elseif ($membership->state == 1) {
+      $member_link = t('Member');
+    }
   }
 
   $location = '';
@@ -84,8 +104,8 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
           '#prefix' => '<div class="school-location">',
           '#suffix' => '</div>',
         ),
-        'invite_link' => array(
-          '#markup' => $invite_link,
+        'member_link' => array(
+          '#markup' => $member_link,
           '#prefix' => '<div class="invite-link">',
           '#suffix' => '</div>',
         ),
@@ -149,21 +169,26 @@ function dosomething_clubs_club_counter_right() {
     'value' => $campaigns_count,
   );
   // TODO: the clubs on projects field was removed and this logic needs to be redone.
-  /*
+
   // Get count of Project Reports that reference this Club.
-  $query = new EntityFieldQuery();
+  $project_upload_query = db_query("SELECT count(sid) FROM webform_submissions, (SELECT etid FROM og_membership WHERE gid = :gid AND entity_type = 'user') guser WHERE bundle = 'project_report' AND guser.etid = uid", array(':gid' => $group->gid));
+  $project_upload_count = 0;
+  while ($sum_it_up = $project_upload_query->fetchField()) {
+    $project_upload_count += $sum_it_up;
+  }
+  /*$query = new EntityFieldQuery();
   $projects_count = $query
     ->entityCondition('entity_type', 'webform_submission_entity')
     ->entityCondition('bundle', 'project_report')
     ->fieldCondition('field_project_clubs', 'nid', $group->etid, '=')
     ->count()
     ->execute();
-
+  */
   $items['projects_uploaded'] = array(
     'title' => t('Projects Uploaded'),
-    'value' => $projects_count,
+    'value' => $project_upload_count,
   );
-  */
+
   $output[] = array(
     '#theme' => 'dosomething_stats_counter',
     '#items' => $items,

@@ -300,7 +300,7 @@ function dosomething_projects_general_entity_presave($entity, $type) {
     }
   }
   else if ($type == 'user') {
-    if ($entity->uid) {
+    if (!empty($entity->uid)) {
       $account = user_load($entity->uid);
       if ($entity->mail != $account->mail) {
         // Add user to projects with their new email

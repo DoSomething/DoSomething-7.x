@@ -589,7 +589,9 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   // isset($profile) does not.
   if (isset($profile)) {
     $address = $profile->field_user_address->value();
-    $variables['member_school'] = $profile->field_school_reference->value()->name;
+    if (isset($address->name)) {
+      $variables['member_school'] = $address->name;
+    }
   }
   else {
     $address = "n/a";
@@ -803,11 +805,13 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
         $element[$delta]['description']['complete-this']['#href'] = "node/{$node->nid}/submission/{$submission->sid}/edit";
       }
     }
-    $element['more'] = array(
-      '#prefix' => '<span class="more-link-right">',
-      '#suffix' => '</span>',
-      '#markup' => $more_link,
-    );
+    if (!empty($more_link)) {
+      $element['more'] = array(
+        '#prefix' => '<span class="more-link-right">',
+        '#suffix' => '</span>',
+        '#markup' => $more_link,
+      );
+    }
   }
   return $element;
 }
