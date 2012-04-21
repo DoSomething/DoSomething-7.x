@@ -3376,7 +3376,7 @@ nav[role=navigation] .region-navigation .block-menu-block {
   display: table;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block {
-  padding-left: 170px;
+  padding-left: 200px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu {
   display: table-row;
@@ -3423,7 +3423,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   margin-left: -28px;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
-  margin-left: -140px;
+  margin-left: 0px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
   display: block;
@@ -3465,7 +3465,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
   margin-left: -3px;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
-  margin-left: -105px;
+  margin-left: -3px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last {
   width: 208px;
@@ -3474,7 +3474,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
   width: 232px;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
-  margin-left: -233px;
+  margin-left: -25px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul li.last {
   width: 232px;
