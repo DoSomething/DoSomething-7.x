@@ -1,0 +1,7 @@
+name = Webform Submission Entity Emails
+description = Allow webform to send emails to email addresses to email components that are part of the Field API.
+package = Webform
+core = 7.x
+dependencies[] = webform_entity
+
+files[] = webform_entity_emails.module

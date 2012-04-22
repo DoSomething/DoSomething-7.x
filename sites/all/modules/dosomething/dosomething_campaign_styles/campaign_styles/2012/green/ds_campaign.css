@@ -483,3 +483,13 @@ div[role="main"] {
   #school-report-backs .pane-content a {
     font-size: 18px;
     line-height: 18px; }
+
+.webform-submission {
+  background: #8dc641; }
+
+.report-back-teaser {
+  font-size: 1.25em;
+  padding: 1em; }
+  .report-back-teaser h3 {
+    color: white;
+    font-size: 1.5em; }
