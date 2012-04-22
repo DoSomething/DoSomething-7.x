@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function webform_entity_emails_form_webform_emails_form_alter(&$form, &$form_state, $form_id) {
+  $node = &$form['#node'];
+
+  // only do work if this node has been webform entity-ized.
+  if (in_array($node->type, array_keys(webform_entity_get_types()))) {
+    // We only care about fields that are of type email
+    $email_fields = webform_entity_emails_get_entity_fields($node->type);
+
+    if (count($email_fields)) {
+      // Ensure the form is enabled and the empty text component is not present.
+      if (count($form['add']['email_component']['#options']) == 1 && $form['add']['email_component']['#disabled']) {
+        // Remove the text saying there are no applicable components.
+        $form['add']['email_component']['#options'] = array();
+        $form['add']['email_component']['#disabled'] = FALSE;
+      }
+      // Add each webform entity field that is an email type to the email form.
+      foreach ($email_fields as $field_key => $email_field) {
+        $form['add']['email_component']['#options']['webform_entity_' . $field_key] = t('Webform Entity: @label', array('@label' => $email_field['label']));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function webform_entity_emails_form_webform_email_edit_form_alter(&$form, &$form_state, $form_id) {
+  $node = &$form['node']['#value'];
+
+  // Only do work if this node has been webform entity-ized.
+  if (in_array($node->type, array_keys(webform_entity_get_types()))) {
+    // We only care about fields that are of type email
+    $email_fields = webform_entity_emails_get_entity_fields($node->type);
+
+    if (count($email_fields)) {
+      // Ensure the form is enabled and the empty text component is not present.
+      if (count($form['email_component']['#options']) == 1 && $form['email_component']['#disabled']) {
+        // Remove the text saying there are no applicable components.
+        $form['email_component']['#options'] = array();
+        $form['email_component']['#disabled'] = FALSE;
+      }
+      // Add each webform entity field that is an email type to the email form.
+      foreach ($email_fields as $field_key => $email_field) {
+        $form['email_component']['#options']['webform_entity_' . $field_key] = t('Webform Entity: @label', array('@label' => $email_field['label']));
+      }
+    }
+
+    if (isset($_GET['email']) && !is_numeric($_GET['email']) && isset($_GET['option']) && $_GET['option'] == 'component') {
+      $form['email_option']['#default_value'] = 'component';
+      $form['email_component']['#default_value'] = $_GET['email'];
+    }
+    else if (isset($form['eid']['#value'])) {
+      if (strpos($form['email_custom']['#default_value'], 'webform_entity_') === 0) {
+        $form['email_option']['#default_value'] = 'component';
+        $form['email_component']['#default_value'] = $form['email_custom']['#default_value'];
+        $form['email_custom']['#default_value'] = '';
+      }
+    }
+  }
+}
+
+/**
+ * Retrieve all webform entity fields that are of widget module type 'email' for
+ * the specific $node_type.
+ */
+function webform_entity_emails_get_entity_fields($node_type) {
+  $fields = field_info_instances('webform_submission_entity', $node_type);
+
+  $return_fields = array();
+  foreach ($fields as $field_key => $field) {
+    if ($field['widget']['module'] == 'email') {
+      $return_fields[$field_key] = $field;
+    }
+  }
+
+  return $return_fields;
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ *
+ * Register our custom webform_mail_headers function.
+ * We can't use HOOK_preprocess_webform_mail_headers because that function does not
+ * use a tpl file.
+*/
+function webform_entity_emails_theme_registry_alter(&$registry) {
+  if (!empty($registry['webform_mail_headers'])) {
+    $registry['webform_mail_headers']['function'] = 'webform_entity_emails_webform_mail_headers';
+  }
+}
+
+/**
+ * Custom implementation of theme_webform_mail_headers.
+*/
+function webform_entity_emails_webform_mail_headers($variables) {
+  $headers = array(
+    'X-Mailer' => 'Drupal Webform (PHP/' . phpversion() . ')',
+  );
+
+  // If the email we're trying to send uses a webform entity field, then pull the value
+  // from the field.
+  // TODO: Support fields that have >1 values
+  if (strpos($variables['email']['email'], 'webform_entity_') === 0) {
+    $entity_field = str_replace('webform_entity_', '', $variables['email']['email']);
+    $headers['To'] = $variables['submission']->{$entity_field}[LANGUAGE_NONE][0]['email'];
+  }
+  return $headers;
+}
