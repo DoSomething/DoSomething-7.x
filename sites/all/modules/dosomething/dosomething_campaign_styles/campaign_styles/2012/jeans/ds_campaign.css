@@ -244,3 +244,10 @@ div[role="main"] {
 
 #breadcrumbs {
   display: none; }
+
+img {
+  border: none !important;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
