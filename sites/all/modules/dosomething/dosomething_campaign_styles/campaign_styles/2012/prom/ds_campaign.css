@@ -244,7 +244,8 @@ div[role="main"] {
 .drive {
   background: white; }
   .drive .pane-content {
-    background: #f0ebde; }
+    background: #f0ebde;
+    padding: 10px 10px 10px 0; }
   .drive p {
     padding-left: 25px; }
   .drive li {
@@ -290,13 +291,14 @@ div[role="main"] {
   border: none !important; }
   .mcommons-webform input.field {
     width: 85%;
-    height: 1.6em; }
+    height: 23px;
+    margin-bottom: 6px; }
   .mcommons-webform label {
     font-weight: 600; }
   .mcommons-webform .go-button {
     padding-top: 3px; }
   .mcommons-webform .pane-content {
-    height: 166px;
+    height: 175px;
     padding: 0.5em; }
 
 .mcommons-webform-column {
@@ -329,3 +331,17 @@ img {
 
 #breadcrumb {
   display: none; }
+
+img {
+  border: none !important;
+  box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important; }
+
+.panel-panel {
+  margin-bottom: 15px; }
+
+.panel-row-flexible-bot.panel-panel,
+.panel-row-logos.panel-panel {
+  margin-bottom: 0; }

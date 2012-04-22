@@ -243,7 +243,8 @@ div[role="main"] {
   bottom: 8px; }
 
 #campaign-opt-in {
-  font-size: 11px; }
+  font-size: 11px;
+  margin-left: 15px; }
   #campaign-opt-in a {
     font-weight: bold;
     display: block;
@@ -252,9 +253,9 @@ div[role="main"] {
     position: absolute;
     bottom: 0;
     left: 330px;
-    color: white; }
+    color: black; }
   #campaign-opt-in a:hover {
-    color: #bbbbbb; }
+    color: #444444; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -602,7 +603,7 @@ div[role="main"] {
   display: block;
   position: relative;
   left: 300px;
-  bottom: 10px; }
+  bottom: 20px; }
 #video-gallery .views-field-nothing-1 span {
   padding: 15px 0 0 0;
   text-transform: uppercase;
@@ -629,11 +630,11 @@ div[role="main"] {
     color: #ff130a; }
 
 img {
-  border: none;
-  box-shadow: none;
-  -o-box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none; }
+  border: none !important;
+  box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important; }
 
 .panel-panel {
   margin-bottom: 15px; }
