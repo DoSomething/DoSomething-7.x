@@ -122,12 +122,11 @@ function dosomething_clubs_field_default_fields() {
         'active' => 1,
         'module' => 'select_or_other',
         'settings' => array(
-          'available_options' => 'Make_Art_Save_Art|Make Art, Save Art - our fall art education campaign
-Tackle_Hunger|Tackle Hunger - our winter canned food drive
-Teens_for_Jeans|Teens for Jeans - our winter jean drive
-Green_Your_School|Green Your School Challenge - our spring environmental challenge
-Battle_for_the_Bands|Battle for the Bands - our spring music education campaign
-Epic_Book_Drive|Epic Book Drive - our spring book drive',
+          'available_options' => 'epic|Epic Book Drive - our Spring book drive
+hunt|The Hunt: 11 Days of Doing - our Summer volunteer team challenge
+spit|Give a Spit About Cancer - our fall cancer campaign
+e_waste|E-waste Drive - our fall e-waste drive
+sports|Sports Equipment - our fall sports equipment drive',
           'available_options_php' => '',
           'markup_available_options_php' => '&lt;none&gt;',
           'other' => 'I\'m going to create my own project idea:',

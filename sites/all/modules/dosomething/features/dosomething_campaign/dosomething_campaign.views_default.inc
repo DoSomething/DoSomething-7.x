@@ -326,7 +326,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['style_options']['fields']['banner'] = 'field_campaign_call_to_action';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_campaign_main_image';
   $handler->display->display_options['style_options']['fields']['title'] = 'title';
-  $handler->display->display_options['style_options']['fields']['text'] = 'field_campaign_teaser';
+  $handler->display->display_options['style_options']['fields']['text'] = 'field_campaign_teaser_1';
   $handler->display->display_options['style_options']['fields']['footer'] = 'field_campain_date';
   $handler->display->display_options['style_options']['fields']['link'] = 'field_campaign_link';
   $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
@@ -1686,6 +1686,19 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
+  $handler->display->display_options['style_options']['fields']['banner'] = 'field_campaign_call_to_action';
+  $handler->display->display_options['style_options']['fields']['image'] = 'field_campaign_main_image';
+  $handler->display->display_options['style_options']['fields']['title'] = 'title';
+  $handler->display->display_options['style_options']['fields']['text'] = 'field_campaign_teaser';
+  $handler->display->display_options['style_options']['fields']['footer'] = 'field_campain_date';
+  $handler->display->display_options['style_options']['fields']['link'] = 'field_campaign_link';
+  $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
+  $handler->display->display_options['style_options']['settings']['last_every_nth'] = '3';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Main Image */
   $handler->display->display_options['fields']['field_campaign_main_image']['id'] = 'field_campaign_main_image';
@@ -1799,7 +1812,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_teaser']['id'] = 'field_campaign_teaser';
   $handler->display->display_options['fields']['field_campaign_teaser']['table'] = 'field_data_field_campaign_teaser';
   $handler->display->display_options['fields']['field_campaign_teaser']['field'] = 'field_campaign_teaser';
-  $handler->display->display_options['fields']['field_campaign_teaser']['label'] = '';
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['text'] = '<div class="campaign-teaser">[field_campaign_teaser]</div>';
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['make_link'] = 0;
@@ -1814,7 +1826,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_campaign_teaser']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_campaign_teaser']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_campaign_teaser']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_campaign_teaser']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_campaign_teaser']['empty_zero'] = 0;

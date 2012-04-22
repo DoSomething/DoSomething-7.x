@@ -325,3 +325,15 @@ function dosomething_general_valid_cell($number) {
   $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
   return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
 }
+
+/**
+ * Implements HOOK_preprocess_token_tree().
+ * 
+ * Webform submission entity loads up all kinds of recursive tokens. Let's
+ * prevent it from taking up too much memory.
+ */
+function dosomething_general_preprocess_token_tree(&$variables) {
+  if (array_intersect(array('node', 'user', 'webform_submission_entity'), $variables['token_types'])) {
+    $variables['recursion_limit'] = 2;
+  }
+}
