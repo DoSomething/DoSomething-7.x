@@ -189,7 +189,7 @@ function drush_search_api_index($index_id = NULL, $limit = NULL) {
       $limit = -1;
       $limit_string = t('all');
     }
-    if (count($ids)) {
+    if ($ids) {
       drush_print(dt('Indexing items with the selected ids (!items) for index !index.', array('!index' => $index->name, '!items' => implode(',', $ids))));
       search_api_index_specific_items($index, $ids);
     }

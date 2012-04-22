@@ -64,6 +64,7 @@
   <?php print $scripts; ?>
   <?php print $selectivizr; ?>
   <?php print $shiv; ?>
+  <?php print $placeholder_shiv; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="skip-link">

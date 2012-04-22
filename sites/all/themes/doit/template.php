@@ -5,11 +5,12 @@ function doit_preprocess_html(&$variables, $hook) {
   // dsm($variables);
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
-  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
-  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
   $variables['selectivizr'] .= '<![endif]-->';
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
+  $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 }
 
 // function doit_preprocess_panels_pane(&$variables) {
@@ -709,10 +710,10 @@ function doit_search_api_page_result(array $variables) {
   );
   if (isset($item->type) && in_array($item->type, array_keys($type_field_map))) {
     if (isset($item->{$type_field_map[$item->type]}) && !empty($item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0])) {
-      $output .= theme('image_formatter', array('item' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0], 'image_style' => 'blog_large_thumbnail'));
+      $output .= theme('image_formatter', array('item' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0], 'image_style' => 'search_results_thumbnail'));
     }
     else {
-      $output .= '<img src="/sites/all/themes/doit/default-search-image.jpg" height="60px" width="60px" />';
+      $output .= theme('image', array('path' => drupal_get_path('theme', 'doit') . '/css/images/default-search-image.jpg', 'height' => '60px', 'width' => '60px'));
     }
   }
 
