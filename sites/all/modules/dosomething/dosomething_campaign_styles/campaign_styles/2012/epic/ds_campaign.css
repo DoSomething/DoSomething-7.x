@@ -484,3 +484,10 @@ div[role="main"] {
 
 .pane-node-field-campaign-logo img {
   border: none !important; }
+
+img {
+  border: none !important;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none; }
