@@ -83,8 +83,9 @@ body
 div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
-  margin-top: 8px
   padding: 20px 20px 5px
+  margin-top: 0
+  margin-bottom: 0
 
 .three-boxes
   +setBorderBox
@@ -282,6 +283,8 @@ div[role="main"]
 .panel-row-actions
   background: $transBg
   border: none
+  .form-wrapper
+    margin-bottom: 12px
   .pane-title
     background: $baseColor
   .pane-content
@@ -303,7 +306,7 @@ div[role="main"]
       .field-name-field-webform-email
         margin-bottom: 0.5em
         input
-          width: 100% 	
+          width: 100%
 
 #webform-client-form-719314
   #edit-actions
@@ -312,12 +315,19 @@ div[role="main"]
     bottom: 8px
 
 #campaign-opt-in
-  color: #fff
-  margin: -10px 0 10px 15px
+  font-size: 11px
+  margin-left: 15px
   a
-    color: #fff
+    font-weight: bold
+    display: block
+    height: 20px
+    width: 20px
+    position: absolute
+    bottom: 0
+    left: 330px
+    color: #000
   a:hover
-    color: #bbb
+    color: #444
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -357,7 +367,6 @@ div[role="main"]
   	
 // all panels
 .panel-row-flexible
-  // margin-bottom: 25px
   .panel-pane
     +block
     .pane-title
@@ -443,9 +452,9 @@ $contestsFontSize: 1em
   +contestBlock
   margin-bottom: 1em
   .dollar-left
-    margin: 0 20px 0 164px
+    margin: -10px 20px 0 164px
   .dollar-right
-    margin: 0 20px
+    margin: -10px 20px
 
 .contests-scholarships
   .pane-content
@@ -455,15 +464,13 @@ $contestsFontSize: 1em
     color: $bgFallback
 
 .contests-star-prize
-  margin-bottom: -10px
   .pane-content
     padding: 15px !important
   +contestBlock
-  margin-bottom: 1em
   .amp-left  
-    margin-left: 153px
-  img
-    margin: -10px 15px 0 15px
+    margin: -15px 10px 0 155px
+  .amp-right
+    margin: -15px 15px 0 0
 
 .contests-three-boxes
   +contestBlock
@@ -475,20 +482,34 @@ $contestsFontSize: 1em
     h3
       font-size: 1.5em
     img
-      margin: 1em 0 1em 0
-      position: absolute
-      top: 25%
+      margin: 1em 0
+      position: relative
     p
       bottom: 10%
       position: absolute
       //this feels hacky, but this centers the text in the box
       width: 100%
       padding-right: 2em
-    .taylor-img
-      height: 86px
-      top: 15%
+  .prize-1
+    top: 13px
+  .prize-2
+    top: 20px
+  .prize-3
+    top: 0px
 
-// HACK: using :nth-of-type and :last-of-type didn't work
+.share-three-boxes
+  +contestBlock
+  float: left
+  width: 32%
+  margin-right: 2%
+  .pane-content
+    height: 155px
+    h3
+      font-size: 1.7em
+    p
+      padding: 15px
+
+// using :nth-of-type and :last-of-type didn't work
 .contests-three-boxes-last
   margin-right: 0
 
@@ -625,14 +646,6 @@ $contestsFontSize: 1em
 .ui-dialog .ui-dialog-titlebar-close
   right: -425px
 
-#campaign-opt-in
-  font-size: 11px
-  a
-    vertical-align: super
-    font-weight: bold
-  a:hover
-    color: $secondaryLink
-
 // celeb-gallery styling
 #celeb-gallery
   table
@@ -656,7 +669,7 @@ $contestsFontSize: 1em
     display: block
     position: relative
     left: 300px
-    bottom: 10px
+    bottom: 20px
   .views-field-nothing-1
     span
       padding: 15px 0 0 0
@@ -685,3 +698,18 @@ $contestsFontSize: 1em
         color: $secondaryLink
     .page-current
       color: $secondaryLink
+
+// resetting the nonsense
+img
+  border: none
+  box-shadow: none
+  -o-box-shadow: none
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+
+.panel-panel
+  margin-bottom: 15px
+
+.panel-row-flexible-bot.panel-panel,
+.panel-row-logos.panel-panel
+  margin-bottom: 0

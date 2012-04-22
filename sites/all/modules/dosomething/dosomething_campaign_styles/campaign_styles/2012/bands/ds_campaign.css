@@ -22,8 +22,9 @@ div[role="main"] {
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
-  margin-top: 8px;
-  padding: 20px 20px 5px; }
+  padding: 20px 20px 5px;
+  margin-top: 0;
+  margin-bottom: 0; }
 
 .three-boxes {
   -moz-box-sizing: border-box;
@@ -209,6 +210,8 @@ div[role="main"] {
 .panel-row-actions {
   background: rgba(254, 228, 131, 0.4);
   border: none; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 12px; }
   .panel-row-actions .pane-title {
     background: black; }
   .panel-row-actions .pane-content {
@@ -240,9 +243,15 @@ div[role="main"] {
   bottom: 8px; }
 
 #campaign-opt-in {
-  color: white;
-  margin: -10px 0 10px 15px; }
+  font-size: 11px; }
   #campaign-opt-in a {
+    font-weight: bold;
+    display: block;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 330px;
     color: white; }
   #campaign-opt-in a:hover {
     color: #bbbbbb; }
@@ -350,9 +359,9 @@ div[role="main"] {
       font-weight: 600;
       margin-bottom: 0; }
   .contests-grand-prize .dollar-left {
-    margin: 0 20px 0 164px; }
+    margin: -10px 20px 0 164px; }
   .contests-grand-prize .dollar-right {
-    margin: 0 20px; }
+    margin: -10px 20px; }
 
 .contests-scholarships {
   background-color: rgba(254, 228, 131, 0.4) !important; }
@@ -371,9 +380,7 @@ div[role="main"] {
     color: #ffca06; }
 
 .contests-star-prize {
-  margin-bottom: -10px;
-  background-color: rgba(254, 228, 131, 0.4) !important;
-  margin-bottom: 1em; }
+  background-color: rgba(254, 228, 131, 0.4) !important; }
   .contests-star-prize .pane-content {
     padding: 15px !important; }
   .contests-star-prize .pane-content {
@@ -386,9 +393,9 @@ div[role="main"] {
       font-weight: 600;
       margin-bottom: 0; }
   .contests-star-prize .amp-left {
-    margin-left: 153px; }
-  .contests-star-prize img {
-    margin: -10px 15px 0 15px; }
+    margin: -15px 10px 0 155px; }
+  .contests-star-prize .amp-right {
+    margin: -15px 15px 0 0; }
 
 .contests-three-boxes {
   background-color: rgba(254, 228, 131, 0.4) !important;
@@ -409,17 +416,40 @@ div[role="main"] {
     .contests-three-boxes .pane-content h3 {
       font-size: 1.5em; }
     .contests-three-boxes .pane-content img {
-      margin: 1em 0 1em 0;
-      position: absolute;
-      top: 25%; }
+      margin: 1em 0;
+      position: relative; }
     .contests-three-boxes .pane-content p {
       bottom: 10%;
       position: absolute;
       width: 100%;
       padding-right: 2em; }
-    .contests-three-boxes .pane-content .taylor-img {
-      height: 86px;
-      top: 15%; }
+  .contests-three-boxes .prize-1 {
+    top: 13px; }
+  .contests-three-boxes .prize-2 {
+    top: 20px; }
+  .contests-three-boxes .prize-3 {
+    top: 0px; }
+
+.share-three-boxes {
+  background-color: rgba(254, 228, 131, 0.4) !important;
+  float: left;
+  width: 32%;
+  margin-right: 2%; }
+  .share-three-boxes .pane-content {
+    padding: 1em;
+    text-align: center; }
+    .share-three-boxes .pane-content h3 {
+      font-size: 2em; }
+    .share-three-boxes .pane-content p {
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 0; }
+  .share-three-boxes .pane-content {
+    height: 155px; }
+    .share-three-boxes .pane-content h3 {
+      font-size: 1.7em; }
+    .share-three-boxes .pane-content p {
+      padding: 15px; }
 
 .contests-three-boxes-last {
   margin-right: 0; }
@@ -553,14 +583,6 @@ div[role="main"] {
 .ui-dialog .ui-dialog-titlebar-close {
   right: -425px; }
 
-#campaign-opt-in {
-  font-size: 11px; }
-  #campaign-opt-in a {
-    vertical-align: super;
-    font-weight: bold; }
-  #campaign-opt-in a:hover {
-    color: #ff130a; }
-
 #celeb-gallery table {
   border: none;
   width: 100%; }
@@ -605,3 +627,17 @@ div[role="main"] {
       color: #ff130a; }
   .ds-panel .pane-content .page-current {
     color: #ff130a; }
+
+img {
+  border: none;
+  box-shadow: none;
+  -o-box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.panel-panel {
+  margin-bottom: 15px; }
+
+.panel-row-flexible-bot.panel-panel,
+.panel-row-logos.panel-panel {
+  margin-bottom: 0; }

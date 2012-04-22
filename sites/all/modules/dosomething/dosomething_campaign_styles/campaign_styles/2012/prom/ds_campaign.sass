@@ -71,7 +71,8 @@ div[role="main"]
   .pane-content
     height: 166px
     text-align: center
-    font-size: 14px
+    font-size: 12px
+    padding: 30px 10px
   .pane-title
     font-family: $accent
     font-weight: 600
@@ -174,6 +175,34 @@ div[role="main"]
     background: $complement
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+    .pane-content
+      padding: 0
+      .webform-client-form
+        border: none
+      .field-name-field-webform-mobile  
+        margin-bottom: 0.5em
+        input
+          width: 78%
+      .field-name-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
+
+#webform-client-form-721424
+  #edit-actions
+    position: absolute
+    right: 5px
+    bottom: 3px
+
+#campaign-opt-in
+  margin: -10px 0 10px 15px
+  a
+    color: #fff
+  a:hover
+    color: #bbb
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -197,7 +226,7 @@ div[role="main"]
       font-weight: 600
       line-height: 1em
     p
-      margin: 0
+      margin: 0 0 1em 0
     &:before
       +insetBorder
       margin-bottom: 20px
@@ -213,6 +242,7 @@ div[role="main"]
   	
 .panel-row-flexible
   .panel-pane
+    margin-bottom: 15px
     +block
     .pane-title
       background: $complement
@@ -251,6 +281,7 @@ div[role="main"]
   background: white    
   .pane-content
     background: $contentBG
+    padding: 10px 10px 10px 0
   p
     padding-left: 25px
   li
@@ -300,14 +331,15 @@ div[role="main"]
   border: none !important
   input.field
     width: 85%
-    height: 1.6em
+    height: 23px
+    margin-bottom: 6px
   label
     font-weight: 600
   // overriding padding on go-button to center the SUBMIT text
   .go-button
     padding-top: 3px
   .pane-content
-    height: 166px
+    height: 175px
     padding: 0.5em
     
 .mcommons-webform-column
@@ -321,3 +353,27 @@ div[role="main"]
 
 .form-wrapper
   margin-bottom: 5px
+
+.ds-panel
+  .pane-content
+    padding-bottom: 0
+
+// prizes page
+.prizes
+  .pane-content
+    padding: 10px
+  #scholarship, p
+    text-align: center
+
+// resetting the nonsense
+#webform-client-form-721424,
+img
+  border: none
+  box-shadow: none
+  -o-box-shadow: none
+  -moz-box-shadow: none
+  -webkit-box-shadow: none
+
+// sweepin' away the breadcrumb trail
+#breadcrumb
+  display: none
