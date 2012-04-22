@@ -1040,7 +1040,11 @@ about issues you care about.',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<iframe width="560" height="315" src="http://www.youtube.com/embed/Xdg7g8fWBKA" frameborder="0" allowfullscreen></iframe>',
+      'body' => '<object style="height: 320px; width: 480px">
+<param name="movie" value="http://www.youtube.com/v/Xdg7g8fWBKA?version=3&feature=player_embedded">
+<param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always">
+<param name="wmode" value="opaque"/>
+<embed wmode="transparent" src="http://www.youtube.com/v/Xdg7g8fWBKA?version=3&feature=player_embedded" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="480" height="320"></object>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -1065,20 +1069,17 @@ about issues you care about.',
       'admin_title' => '',
       'title' => 'QUICK INFO:',
       'body' => '<h3>STEP 1</h3>
-Create a checklist of projects your school
-needs to get started.
+Find some friends looking to take action
+and brainstorm projects you want to work
+on - like our <a href=/campaigns target="_blank">Do Something campaigns</a>
 
 <h3>STEP 2</h3>
-Get all your friends to sign up and help you
-tackle them
+Make your club an <a href=/node/add/club> official Do Something Club</a>
 
 <h3>STEP 3</h3>
-Take Action! Be sure to check off completed 
-projects and tell us more about ‘em for a 
-chance to win.
-
-<h3>WIN PRIZES!</h3>
-Tell us about it and win an iPad',
+Take Action! Share your results with the
+DoSomething.org community and you
+could win scholarships and sweeet prizes',
       'format' => '1',
       'substitute' => TRUE,
     );
