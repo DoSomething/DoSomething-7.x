@@ -22,7 +22,6 @@ $body: "Trebuchet MS",sans-serif
 // page background
 $imageBackground: url('assets/bg.png')
 $bgFallback: #231F20 /* slate grey */
-$bgGray: #C8C8C8
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -75,7 +74,6 @@ div[role="main"]
   padding-top: 10px
 
 .three-boxes
-  background: $bgGray !important
   width: 29%
   float: left
   margin-right: 6.5%
@@ -122,16 +120,13 @@ div[role="main"]
         color: $baseColor
         text-decoration: none
 
-.margin-right-0
-  margin-right: 0 !important
+.float-right
+  float: right
 
 .nominate-box
-  background: $bgGray !important
   float: left
   margin-right: 5%
   width: 66%
-  .pane-content
-    padding-bottom: 0
 
 .pane-campaign-sign-up
   position: relative
@@ -208,7 +203,8 @@ div[role="main"]
 
 // actions panel (sign-up and counter)
 .panel-row-actions
-  background: $bgGray
+  background: $bgFallback
+  color: white
   .pane-title
     background: $baseColor
   .pane-content
@@ -228,6 +224,9 @@ div[role="main"]
 
 // ad row (quick info and psa)
 .panel-row-ad
+  background: $bgFallback
+  color: white
+  padding: 1em
   .panel-row-ad-quick-info
     width: 100%
 
@@ -267,19 +266,6 @@ div[role="main"]
     &:before,&:after
       +insetBorder
 
-.panel-row-flexible-bot
-  margin-bottom: 2em
-
-.panel-row-flexible-mid
-  h2
-    line-height: 1em
-    letter-spacing: 1px
-    font-size: 22px
-    text-transform: capitalize
-    padding: 10px
-    background: $baseColor
-    color: #fff
-
 // logos
 .panel-row-logos
   .pane-title
@@ -293,9 +279,6 @@ div[role="main"]
   h2.pane-title
     white-space: nowrap
     position: relative
-
-.text-align-right
-  text-align: right
 
 // campaign counter styling
 .campaign-counter-labels
@@ -315,6 +298,10 @@ div[role="main"]
     padding: 2px 2px 0px 5px
     letter-spacing: 5px
     border: 1px white solid
+
+.margin-right-0
+  margin-right: 0 !important
+
 // winners
 .winners
   float: left
@@ -343,17 +330,22 @@ div[role="main"]
     font-family: $accent
     font-size: 16px
 
+.winners-pane
+  border: none !important
+  .pane-content
+    padding-bottom: 0
+
 //finalist styles
 
 #finalist_container
-  margin: 15px 0 0 18px
+  margin: 0 0 0 18px
   padding: 0
   li
     float: left
     list-style: none
     margin-right: 25px
   h3
-    background-color: $bgFallback
+    background-color: $baseColor
     color: #fff
     margin-bottom: 15px
     padding: 8px 0
@@ -379,6 +371,17 @@ div[role="main"]
 
 .ui-dialog .ui-dialog-titlebar-close
   right: -425px
+
+.panel-row-flexible-mid
+  background: $bgFallback
+  h2
+    line-height: 1em
+    letter-spacing: 1px
+    font-size: 22px
+    text-transform: capitalize
+    padding: 10px
+    background: $baseColor
+    color: #fff
 
 #campaign-opt-in
   font-size: 11px

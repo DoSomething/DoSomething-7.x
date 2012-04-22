@@ -25,6 +25,7 @@ div[role="main"] {
   padding-top: 10px; }
 
 .three-boxes {
+  background: #c8c8c8 !important;
   width: 29%;
   float: left;
   margin-right: 6.5%; }
@@ -75,13 +76,16 @@ div[role="main"] {
         color: #e31837;
         text-decoration: none; }
 
-.float-right {
-  float: right; }
+.margin-right-0 {
+  margin-right: 0 !important; }
 
 .nominate-box {
+  background: #c8c8c8 !important;
   float: left;
   margin-right: 5%;
   width: 66%; }
+  .nominate-box .pane-content {
+    padding-bottom: 0; }
 
 .pane-campaign-sign-up {
   position: relative; }
@@ -215,6 +219,18 @@ div[role="main"] {
     border-top: 1px solid #be1e2d;
     border-bottom: 1px solid #e51937; }
 
+.panel-row-flexible-bot {
+  margin-bottom: 2em; }
+
+.panel-row-flexible-mid h2 {
+  line-height: 1em;
+  letter-spacing: 1px;
+  font-size: 22px;
+  text-transform: capitalize;
+  padding: 10px;
+  background: #e31837;
+  color: white; }
+
 .panel-row-logos .pane-title {
   color: #e31837;
   background: none;
@@ -224,6 +240,9 @@ div[role="main"] {
 .pane-campaign-sign-up h2.pane-title {
   white-space: nowrap;
   position: relative; }
+
+.text-align-right {
+  text-align: right; }
 
 .campaign-counter-labels {
   color: white;
@@ -276,14 +295,14 @@ div[role="main"] {
     font-size: 16px; }
 
 #finalist_container {
-  margin: 15px 0 0 25px;
+  margin: 15px 0 0 18px;
   padding: 0; }
   #finalist_container li {
     float: left;
     list-style: none;
     margin-right: 25px; }
   #finalist_container h3 {
-    background-color: black;
+    background-color: #231f20;
     color: white;
     margin-bottom: 15px;
     padding: 8px 0;
@@ -307,15 +326,6 @@ div[role="main"] {
 
 .ui-dialog .ui-dialog-titlebar-close {
   right: -425px; }
-
-.panel-row-flexible-mid h2 {
-  line-height: 1em;
-  letter-spacing: 1px;
-  font-size: 22px;
-  text-transform: capitalize;
-  padding: 10px;
-  background: #e31837;
-  color: white; }
 
 #campaign-opt-in {
   font-size: 11px; }
