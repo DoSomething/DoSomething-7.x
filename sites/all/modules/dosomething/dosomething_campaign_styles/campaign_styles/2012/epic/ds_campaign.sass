@@ -42,10 +42,10 @@ $bgFallback: #F5C36E
   border: none !important
 
 @mixin noBoxShadow
-  -moz-box-shadow: none
-  -webkit-box-shadow: none
-  -o-box-shadow: none
-  box-shadow: none
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -516,7 +516,7 @@ div[role="main"]
     img
       border: none
 
-#breadcrumbs
+#breadcrumb
   display: none
 
 .pane-node-field-campaign-logo img 
@@ -534,3 +534,6 @@ img
     padding-bottom: 0px
     p
       margin-bottom: 0px
+
+.pane-dosomething-login-register-block .popup-content 
+  height: 150px

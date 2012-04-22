@@ -16,9 +16,8 @@ body {
 
 div[role="main"] {
   background: black;
-  -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 20px;
   padding-top: 10px; }
@@ -68,9 +67,6 @@ div[role="main"] {
     background: black;
     background-image: none;
     text-align: right; }
-    #block-dosomething-campaign-styles-campaign-nav ul.menu li.active {
-      color: #009444;
-      text-decoration: none; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
@@ -79,7 +75,7 @@ div[role="main"] {
       font-weight: 600;
       text-transform: uppercase;
       color: white; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover {
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
         color: #009444;
         text-decoration: none; }
 
@@ -110,10 +106,10 @@ div[role="main"] {
       min-height: 90px; }
       .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .webform-client-form {
         border: none !important;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        -o-box-shadow: none;
-        box-shadow: none; }
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        -o-box-shadow: none !important;
+        box-shadow: none !important; }
       .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
         margin-bottom: 0.5em; }
         .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
@@ -350,12 +346,12 @@ div[role="main"] {
   font-size: 14px; }
 #browse-schools .pane-content ul {
   list-style: none;
-  -moz-column-count: 2;
   -webkit-column-count: 2;
+  -moz-column-count: 2;
   -o-column-count: 2;
   column-count: 2;
-  -moz-column-gap: 0px;
   -webkit-column-gap: 0px;
+  -moz-column-gap: 0px;
   -o-column-gap: 0px;
   column-gap: 0px;
   margin-left: 80px; }
@@ -392,9 +388,8 @@ div[role="main"] {
   margin-left: 55px; }
   #report-back form {
     border: 0px;
-    -moz-box-shadow: black 0 0 0 0;
     -webkit-box-shadow: black 0 0 0 0;
-    -o-box-shadow: black 0 0 0 0;
+    -moz-box-shadow: black 0 0 0 0;
     box-shadow: black 0 0 0 0; }
   #report-back .pane-content {
     background-color: #8dc641;
@@ -438,7 +433,8 @@ div[role="main"] {
       color: white; }
 
 #share-your-story {
-  float: left; }
+  float: left;
+  margin-bottom: 20px; }
   #share-your-story .pane-content {
     padding: 10px;
     padding-bottom: 25px;
@@ -474,7 +470,7 @@ div[role="main"] {
   clear: both;
   margin-bottom: 20px; }
 
-#fambs {
+#breadcrumb {
   display: none; }
 
 #school-report-backs .pane-content {
@@ -493,3 +489,6 @@ div[role="main"] {
   .report-back-teaser h3 {
     color: white;
     font-size: 1.5em; }
+
+.pane-green-your-school-submission-list-panel-pane-1 {
+  clear: both; }

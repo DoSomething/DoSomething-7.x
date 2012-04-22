@@ -40,10 +40,10 @@ $bgPanelColor: rgba(125,125,125,0.5)
   border-bottom: $borderBot
 
 @mixin noBoxShadow
-  -moz-box-shadow: none
-  -o-box-shadow: none
-  -webkit-box-shadow: none
-  box-shadow: none
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
 
 @mixin noBorder
   border: none !important
@@ -286,7 +286,7 @@ div[role="main"]
   ul
     list-style-image: url("assets/list-dot.png")
 
-#breadcrumbs
+#breadcrumb
   display: none
 
 img

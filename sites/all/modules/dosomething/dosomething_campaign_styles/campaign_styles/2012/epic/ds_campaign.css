@@ -171,10 +171,10 @@ div[role="main"] {
       padding: 0; }
       .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .webform-client-form {
         border: none !important;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        -o-box-shadow: none;
-        box-shadow: none; }
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        -o-box-shadow: none !important;
+        box-shadow: none !important; }
       .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
         margin-bottom: 0.5em; }
         .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
@@ -351,10 +351,10 @@ div[role="main"] {
   border: none !important; }
   .sign-up-long-form .webform-client-form {
     border: none !important;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    -o-box-shadow: none;
-    box-shadow: none; }
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
 
 .text-align-right {
   text-align: right; }
@@ -479,7 +479,7 @@ div[role="main"] {
     #school-gallery .jcarousel-container-horizontal img {
       border: none; }
 
-#breadcrumbs {
+#breadcrumb {
   display: none; }
 
 .pane-node-field-campaign-logo img {
@@ -487,10 +487,10 @@ div[role="main"] {
 
 img {
   border: none !important;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none; }
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
 
 .pane-node-field-campain-date {
   height: 28px; }
@@ -499,3 +499,6 @@ img {
   padding-bottom: 0px; }
   .pane-node-field-campaign-teaser .pane-content p {
     margin-bottom: 0px; }
+
+.pane-dosomething-login-register-block .popup-content {
+  height: 150px; }
