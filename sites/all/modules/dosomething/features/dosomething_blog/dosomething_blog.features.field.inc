@@ -336,7 +336,7 @@ function dosomething_blog_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_picture',
       'label' => 'Picture(s)',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'alt_field' => 1,
         'file_directory' => 'pictures/blog',
