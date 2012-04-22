@@ -14,9 +14,8 @@ body {
 
 div[role="main"] {
   background: white;
-  -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
   padding-top: 10px; }
@@ -30,7 +29,8 @@ div[role="main"] {
   .three-boxes .pane-content {
     height: 166px;
     text-align: center;
-    font-size: 14px; }
+    font-size: 12px;
+    padding: 30px 10px; }
   .three-boxes .pane-title {
     font-family: din-web, "Trebuchet MS", sans-serif;
     font-weight: 600; }
@@ -132,6 +132,32 @@ div[role="main"] {
     background: #92d2ba; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      border: none; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+        width: 78%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
+        width: 100%; }
+
+#webform-client-form-721424 #edit-actions {
+  position: absolute;
+  right: 5px;
+  bottom: 3px; }
+
+#campaign-opt-in {
+  margin: -10px 0 10px 15px; }
+  #campaign-opt-in a {
+    color: white; }
+  #campaign-opt-in a:hover {
+    color: #bbbbbb; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -153,7 +179,7 @@ div[role="main"] {
     font-weight: 600;
     line-height: 1em; }
   .panel-row-ad-quick-info .pane-content p {
-    margin: 0; }
+    margin: 0 0 1em 0; }
   .panel-row-ad-quick-info .pane-content:before {
     overflow: hidden;
     *zoom: 1;
@@ -173,6 +199,7 @@ div[role="main"] {
     padding: 0; }
 
 .panel-row-flexible .panel-pane {
+  margin-bottom: 15px;
   background: white; }
   .panel-row-flexible .panel-pane .pane-title {
     background: #92d2ba; }
@@ -283,3 +310,22 @@ div[role="main"] {
 
 .form-wrapper {
   margin-bottom: 5px; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0; }
+
+.prizes .pane-content {
+  padding: 10px; }
+.prizes #scholarship, .prizes p {
+  text-align: center; }
+
+#webform-client-form-721424,
+img {
+  border: none;
+  box-shadow: none;
+  -o-box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+#breadcrumb {
+  display: none; }

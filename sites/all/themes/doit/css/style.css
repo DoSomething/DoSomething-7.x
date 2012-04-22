@@ -2772,7 +2772,7 @@ select.form-select {
 }
 #dosomething-login-register-popup-form .form-item-last-name input,
 #dosomething-login-register-popup-form .form-item-cell input {
-  width: 212px;
+  width: 210px;
 }
 #dosomething-login-register-popup-form .form-item-email,
 #dosomething-login-register-popup-form .form-item-pass,
@@ -2783,7 +2783,7 @@ select.form-select {
   margin-top: 22px;
 }
 #dosomething-login-register-popup-form .form-item-email label.error {
-  width: 212px;
+  width: 210px;
 }
 #dosomething-login-register-popup-form #edit-birthday {
   *zoom: 1;

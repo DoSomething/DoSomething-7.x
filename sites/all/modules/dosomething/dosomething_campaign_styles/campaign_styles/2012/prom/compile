@@ -1,3 +1,2 @@
 #!/bin/bash
-sass --compass -C ds_campaign.sass ds_campaign.css
-sudo drush cc css+js
+sass --compass -C ds_campaign.sass ds_campaign.css && sudo drush cc css-js
