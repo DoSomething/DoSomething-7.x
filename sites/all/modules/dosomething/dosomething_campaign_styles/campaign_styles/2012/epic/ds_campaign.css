@@ -491,3 +491,11 @@ img {
   -webkit-box-shadow: none;
   -o-box-shadow: none;
   box-shadow: none; }
+
+.pane-node-field-campain-date {
+  height: 28px; }
+
+.pane-node-field-campaign-teaser .pane-content {
+  padding-bottom: 0px; }
+  .pane-node-field-campaign-teaser .pane-content p {
+    margin-bottom: 0px; }
