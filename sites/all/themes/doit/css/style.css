@@ -3492,7 +3492,6 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
 }
 
 h2.block-title, h2.pane-title {
-  color: white !important;
   background-color: #18408b;
   padding: 6px 12px 6px 12px;
   margin-top: 0;
