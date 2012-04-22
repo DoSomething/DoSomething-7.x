@@ -36,6 +36,11 @@ $bgFallback: #231F20 /* slate grey */
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBoxShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -67,7 +72,13 @@ div[role="main"]
   margin-right: 6.5%
   &:last-child
     margin-right: 0
+  .pane-content
+    height: 166px
+    padding: 1.5em
+    text-align: center
 
+.three-boxes-last-child
+  margin-right: 0 !important
 
 .line-top
   &:before
@@ -102,6 +113,56 @@ div[role="main"]
         color: $baseColor
         text-decoration: none
 
+.float-right
+  float: right
+
+.nominate-box
+  float: left
+  margin-right: 5%
+  width: 66%
+
+.pane-campaign-sign-up
+  position: relative
+  .pane-content
+    padding: 0
+    .form-actions
+      position: absolute
+      display: block
+      bottom: 52px
+      right: 10px
+  .campaign-opt-in
+    padding: 0 0 10px 15px
+    a
+      color: #000
+
+.pane-campaign-social
+  .pane-content
+    padding-bottom: 0
+
+.pane-node-field-campaign-logo
+  img
+    +noBoxShadow
+    border: none
+    margin: 0 !important
+    width: 80%
+  .field-item
+    text-align: center
+  .pane-content
+    padding-bottom: 0
+
+.pane-node-field-campaign-teaser
+  .pane-content
+    padding-bottom: 0
+    p
+      margin-bottom: 0
+
+.pane-node-field-campain-date
+  .field-item
+    font-weight: 600
+  .pane-content
+    color: $baseColor
+    padding-bottom: 0
+
 // top right wrapper
 .panel-row-top-right
   // mini-info panel
@@ -121,10 +182,6 @@ div[role="main"]
 .panel-top-right-social
   padding-bottom: 0
 
-.pane-node-field-campain-date
-  .field-item
-    font-weight: 600
-
 // actions panel (sign-up and counter)
 .panel-row-actions
   background: #C8C8C8
@@ -138,20 +195,6 @@ div[role="main"]
     -moz-box-shadow: none
     -webkit-box-shadow: none
     padding-bottom: 0
-
-.pane-campaign-sign-up
-  position: relative
-  .pane-content
-    padding: 0
-    .form-actions
-      position: absolute
-      display: block
-      bottom: 52px
-      right: 10px
-  .campaign-opt-in
-    padding: 0 0 10px 15px
-    a
-      color: #000
 
 .panel-row-actions-sign-up
   #edit-submit
@@ -170,7 +213,7 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $baseColor
+    color: $baseColor !important
     line-height: 1.3em
     font-weight: 500
   .pane-content
@@ -183,7 +226,6 @@ div[role="main"]
     p
       margin: 0
     &:before
-      +insetBorder
       margin-bottom: 20px
 
 
