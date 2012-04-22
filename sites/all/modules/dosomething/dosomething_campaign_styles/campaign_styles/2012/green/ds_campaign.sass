@@ -41,10 +41,10 @@ $bgFallback: black
   border: none !important
 
 @mixin noBoxShadow
-  -moz-box-shadow: none
-  -webkit-box-shadow: none
-  -o-box-shadow: none
-  box-shadow: none
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
 
 
 //////////////////////////////////////////
@@ -120,9 +120,6 @@ div[role="main"]
     +block
     background-image: none
     text-align: right
-    li.active
-      color: $baseColor
-      text-decoration: none
     a
       display: inline-block
       width: 100%
@@ -131,7 +128,7 @@ div[role="main"]
       font-weight: 600
       text-transform: uppercase
       color: #fff
-      &:hover
+      &:hover, .active
         color: $baseColor
         text-decoration: none
 
@@ -470,6 +467,7 @@ div[role="main"]
 
 #share-your-story
   float: left
+  margin-bottom: 20px
   .pane-content
     padding: 10px
     padding-bottom: 25px
@@ -505,7 +503,7 @@ div[role="main"]
   clear: both
   margin-bottom: 20px
 
-#fambs
+#breadcrumb
   display: none
 
 #school-report-backs
@@ -525,3 +523,6 @@ div[role="main"]
   h3
     color: white
     font-size: 1.5em
+
+.pane-green-your-school-submission-list-panel-pane-1
+  clear: both
