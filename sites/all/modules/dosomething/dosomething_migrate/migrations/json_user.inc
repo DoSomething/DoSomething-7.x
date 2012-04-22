@@ -223,6 +223,7 @@ class DSJsonProfile extends DSJsonUserMigration {
   }
 
   public function prepareRow($row) {
+    print "loading uid $row->uid \n";
     // Translate the strings into cause node ids.
     $map = array(
       'Animal Welfare' => 29060,
@@ -267,12 +268,15 @@ class DSJsonProfile extends DSJsonUserMigration {
     // There's a lot of garbage in the birthday field. Excude anything that
     // doesn't have a number (other than zero to filter out 0/0/0) and some
     // kind of separator.
-    #print "bday before:" . $row->profile_bday . "\n";
+    print "bday before: " . $row->profile_bday . "\n";
     if (preg_match('![1-9]+[- ,\.\/]!', $row->profile_bday) && ($timestamp = strtotime($row->profile_bday))) {
       $row->profile_bday = $timestamp;
     }
     else {
       $row->profile_bday = NULL;
+    }
+    if (is_null($row->profile_bday)) {
+      file_put_contents(drupal_get_path('module', 'dosomething_migrate') . '/bad-bdays.txt', $row->uid . "\n", FILE_APPEND);
     }
     #print "bday after :" . ($row->profile_bday ? gmdate('c', $row->profile_bday) : '') . "\n";
 

@@ -5,11 +5,12 @@ function doit_preprocess_html(&$variables, $hook) {
   // dsm($variables);
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
-  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
-  $variables['selectivizr'] .= '<script type="text/javascript" src="' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
+  $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
   $variables['selectivizr'] .= '<![endif]-->';
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
+  $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 }
 
 // function doit_preprocess_panels_pane(&$variables) {

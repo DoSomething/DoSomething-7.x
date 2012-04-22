@@ -12,4 +12,4 @@ $conf = array(
 );
 
 
-$conf['ds_migrate_url'] = 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate';
+$conf['ds_migrate_url'] = 'http://dosomething.org/migrate';
