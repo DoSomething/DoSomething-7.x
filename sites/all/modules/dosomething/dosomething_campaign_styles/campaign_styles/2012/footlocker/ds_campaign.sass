@@ -12,8 +12,8 @@ $complement: #FFFFFF
 $secondaryLink: black
 
 // borders
-$borderTop: 1px solid rgba(0,0,0,.5)
-$borderBot: 1px solid rgba(255,255,255,.5)
+$borderTop: 1px solid #BE1E2D
+$borderBot: 1px solid #E51937
 
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
@@ -42,6 +42,10 @@ $bgFallback: #231F20 /* slate grey */
   -o-box-shadow: none !important
   box-shadow: none !important
 
+@mixin redLine
+  border-top: $borderTop
+  border-bottom: $borderBot
+
 //////////////////////////////////////////
 ///////// general definitions ///////////
 ////////////////////////////////////////
@@ -53,6 +57,9 @@ a
 
 h1.title
   display: none
+
+hr
+  +redLine
 
 body
   background-color: $bgFallback
@@ -138,6 +145,18 @@ div[role="main"]
 .pane-campaign-social
   .pane-content
     padding-bottom: 0
+  .socialWrapper
+    &:before
+      +redLine
+      content: ""
+      display: block
+      left: -18px
+      margin-bottom: 8px
+      position: relative
+      width: 248px
+  .fb-facepile
+    &:before
+      +redLine
 
 .pane-node-field-campaign-logo
   img
@@ -216,6 +235,8 @@ div[role="main"]
     color: $baseColor !important
     line-height: 1.3em
     font-weight: 500
+    &:after
+      +redLine
   .pane-content
     h3
       color: $baseColor
