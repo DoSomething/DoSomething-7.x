@@ -12,4 +12,4 @@ $conf = array(
 );
 
 
-$conf['ds_migrate_url'] = 'http://dosomething.org/migrate';
+$conf['ds_migrate_url'] = 'http://72.32.106.165/migrate';
