@@ -13,6 +13,13 @@ hr {
 h1.title {
   display: none; }
 
+img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important; }
+
 body {
   background-color: #2387c7;
   background-image: url("assets/bg.jpg");
