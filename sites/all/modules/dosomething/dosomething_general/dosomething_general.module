@@ -325,3 +325,22 @@ function dosomething_general_valid_cell($number) {
   $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
   return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_form_alter().
+ */
+function dosomething_general_form_webform_client_form_alter(&$form, &$form_state, $form_id) {
+  $form['#validate'][] = 'dosomething_general_form_webform_client_validate';
+}
+
+/**
+ * Validate mobile numbers submitted through webform entities.
+ */
+function dosomething_general_form_webform_client_validate($form, &$form_state) {
+  if (isset($form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
+    $submitted_number = $form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+    if (!dosomething_general_valid_cell($submitted_number)) {
+      form_set_error('submitted][field_webform_mobile', t('Please provide a valid cell phone number.'));
+    }
+  }
+}
