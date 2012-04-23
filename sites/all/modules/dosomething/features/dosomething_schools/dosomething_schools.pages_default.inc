@@ -81,7 +81,7 @@ function dosomething_schools_default_page_manager_pages() {
         0 => array(
           'name' => 'path_visibility',
           'settings' => array(
-            'visibility_setting' => '1',
+            'visibility_setting' => '0',
             'paths' => 'school/*/picks
 school/*/members
 school/*/done-it',
