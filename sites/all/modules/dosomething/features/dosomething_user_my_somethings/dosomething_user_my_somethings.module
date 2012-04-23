@@ -587,15 +587,13 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   // values to prevent the user page from blowing up.
   // NOTE: is_object($profile) complains that $profile is not a variable while
   // isset($profile) does not.
+  $address = '';
+  $variables['member_school'] = '';
   if (isset($profile)) {
     $address = $profile->field_user_address->value();
     if (isset($address->name)) {
       $variables['member_school'] = $address->name;
     }
-  }
-  else {
-    $address = "n/a";
-    $variables['member_school'] = "n/a";
   }
 
   // Build the hometown value out of city and state.
@@ -604,6 +602,10 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 }
 
 function dosomething_user_my_somethings_hometown($address) {
+  if (empty($address)) {
+    return;
+  }
+
   $hometown = array(
     $address['locality'],
     $address['administrative_area'],
