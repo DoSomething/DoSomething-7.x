@@ -76,9 +76,10 @@ div[role="main"]
 
 .three-boxes
   background: $bgGray !important
-  width: 29%
   float: left
+  font-weight: 600
   margin-right: 6.5%
+  width: 29%
   &:last-child
     margin-right: 0
   .pane-content
@@ -133,8 +134,25 @@ div[role="main"]
   float: left
   margin-right: 5%
   width: 66%
+  .go-button
+    bottom: 1.25em
+    padding-top: 3px
   .pane-content
+    height: 166px
     padding-bottom: 0
+  .webform-client-form
+    +noBoxShadow
+    border: none
+
+.nominate-box-help-text
+  font-weight: 600
+  padding: 0.5em 1em 0 1em
+  width: 80%
+
+.nominate-form-column
+  float: left
+  width: 38%
+  margin-right: 2%
 
 .pane-campaign-sign-up
   position: relative
