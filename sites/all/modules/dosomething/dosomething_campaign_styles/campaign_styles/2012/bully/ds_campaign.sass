@@ -1,3 +1,5 @@
+// bully
+
 // Base imports. Be sure to compile using the --compass switch
 @import compass/css3
 @import compass/utilities/general/clearfix
@@ -257,21 +259,33 @@ div[role="main"]
   &:before
     +insetBorder
 
-.campaign-counter-numbers
-  margin: 15px 15px 0 0
+//campaign counter
+.panel-row-actions-stats
+  .campaign-counter
+    margin: 10px 5px 0 0
 
 .campaign-counter-labels
   text-transform: uppercase
   font-size: 25px
   font-family: $accent
   font-weight: 500
-  margin: 15px 0 0 15px
   line-height: 25px
+  float: left
+
+.campaign-counter-label-top
+  margin-bottom: 14px
+
+.campaign-counter-number-top
+  margin: 6px 0 10px 0
+
+.campaign-counter-numbers,
+.campaign-counter-number-bottom
+  float: right
 
 .panel-pane
   margin-bottom: 0
 
-/* added styles */
+// general styles
 .panel-row-ad-psa
   iframe
     border: 10px solid #000

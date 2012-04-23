@@ -251,6 +251,8 @@ function dosomething_blocks_make_an_impact_form($form, &$form_state) {
     '#suffix' => '</div>',
   );
 
+  $form_state['#cache'] = FALSE;
+
   return $form;
 }
 

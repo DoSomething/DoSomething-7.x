@@ -13,6 +13,19 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
   if ($context = og_context()) {
     $campaign_entity = array_shift(entity_load($context->entity_type, array($context->etid)));
 
+    $loopie = array(
+      'doing_padding' => 'field_campaign_doing_padding',
+      'done_padding' => 'field_campaign_done_padding',
+    );
+    foreach ($loopie as $var => $field) {
+      if (isset($campaign_entity->{$field}) && !empty($campaign_entity->{$field}[LANGUAGE_NONE][0]['value'])) {
+        ${$var} = $campaign_entity->{$field}[LANGUAGE_NONE][0]['value'];
+      }
+      else {
+        ${$var} = 0;
+      }
+    }
+      
     $query = new EntityFieldQuery;
     $result = $query
       ->entityCondition('entity_type', 'node')
@@ -26,7 +39,7 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
 
     module_load_include('inc', 'webform', 'includes/webform.submissions');
     $block = new stdClass();
-    $sign_up_count = webform_get_submission_count($campaign_sign_up);
+    $sign_up_count = webform_get_submission_count($campaign_contact_form) + $doing_padding;
 
     $count_text = isset($campaign_entity->field_counter_text[LANGUAGE_NONE]) ? $campaign_entity->field_counter_text[LANGUAGE_NONE][0]['value'] : '';
 
@@ -52,7 +65,7 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
         }
       }
       if (isset($fid)) {
-        $count = dosomething_campaign_counter_campaign_counter_get_count($campaign_report_back, $fid, $subs);
+        $count = dosomething_campaign_counter_campaign_counter_get_count($campaign_report_back, $fid, $subs) + $done_padding;
       }
     }
 
