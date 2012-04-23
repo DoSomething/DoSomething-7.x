@@ -885,20 +885,21 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
     $this->description .= 'Campaign Project - Battle for the Bands 2012';
 
     $this->addFieldMapping('data_school', 'title');
-    $this->addFieldMapping('data_first_name', 'field_bfb_name');
-    $this->addFieldMapping('data_last_name', 'field_bfb_lastname');
-    $this->addFieldMapping('data_team_name', 'field_bfb_team');
-    $this->addFieldMapping('data_city', 'field_bfb_city');
+    $this->addFieldMapping('data_field_bfb_name', 'field_bfb_name');
+    $this->addFieldMapping('data_field_bfb_lastname', 'field_bfb_lastname');
+    $this->addFieldMapping('data_field_bfb_team', 'field_bfb_team');
+    $this->addFieldMapping('data_field_bfb_city', 'field_bfb_city');
     $this->addFieldMapping('data_state', 'field_state');
-    $this->addFieldMapping('data_what_kinwhat_kind_of_video_are_you_submittingd_of_video_are_you_submitting', 'field_bfb_video');
-    $this->addFieldMapping('data_email_addresses_of_other_people_in_your_video', 'field_bfb_emails');
-    $this->addFieldMapping('data_why_is_music_education_important_to_you', 'field_bfb_education');
-    $this->addFieldMapping('data_how_did_your_video_come_together', 'field_bfb_together');
-    $this->addFieldMapping('data_what_was_the_biggest_challenge', 'field_bfb_challenge');
+    $this->addFieldMapping('data_field_bfb_video', 'field_bfb_video');
+    $this->addFieldMapping('data_field_bfb_emails', 'field_bfb_emails');
+    $this->addFieldMapping('data_field_bfb_education', 'field_bfb_education');
+    $this->addFieldMapping('data_field_bfb_together', 'field_bfb_together');
+    $this->addFieldMapping('data_field_bfb_challenge', 'field_bfb_challenge');
     $this->addFieldMapping('field_webform_videos', 'field_video')
       ->arguments(array('file_function' => 'file_fid'));
 
     $this->addUnmigratedSources(array('locations'));
+/*
     $this->addUnmigratedDestinations(array(
       'data_almost_done_just_a_few_more_questions',
       'field_webform_email',
@@ -909,6 +910,7 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
       'taxonomy_vocabulary_5',
       'field_geocode_data',
     ));
+*/
   }
 }
 
