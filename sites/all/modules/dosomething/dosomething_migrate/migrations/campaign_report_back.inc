@@ -815,6 +815,7 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
       'Create an infographic of visual representation of a topic related to recycling or the recycling process; present it to your science class or post it in your school' => 10,
       'Grab your friends and gather recyclables from a public space. Make sure everything that you pick up ends up in the right bag' => 11,
       'Energy' => 12,
+      'Talked to janitor about turning off classroom lights at night.' => 13,
       'Talk to your school administration about adopting energy-saving practices' => 13,
       'Encourage your school to become an ENERGY STAR Partner' => 14,
       'Educate your friends and younger siblings about energy efficiency' => 15,
@@ -868,13 +869,11 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
     if (!empty($row->field_school_ref)) {
       $school = $this->fetchNode($row->field_school_ref);
       if ($school) {
-        $row->field_school_ref = db_query('SELECT sid FROM {ds_school} WHERE school_id = :school_id AND state = :state', array(
+        $gsid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :school_id AND state = :state', array(
           ':school_id' => $school->field_gsid,
           ':state' =>$school->field_state))->fetchField();
       }
-      else {
-        $row->field_school_ref = NULL;
-      }
+      $row->field_school_ref = empty($gsid) ? NULL : $gsid;
     }
   }
 
