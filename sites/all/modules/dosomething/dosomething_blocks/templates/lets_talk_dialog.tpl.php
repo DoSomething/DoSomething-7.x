@@ -9,7 +9,7 @@
   <h2 id="title">Let's Talk</h2>
   <div id="content">
     <div class="row">
-      <span class="title"><?php print t('Confused?'); ?></span><span class="detail"><?php print ('<a href="/about">FAQs</a> or <a href="blog/check-out-our-new-do">Read what\'s new</a>'); ?></span>
+      <span class="title"><?php print t('Confused?'); ?></span><span class="detail"><?php print ('<a href="/faqs">FAQs</a> or <a href="blog/check-out-our-new-do">Read what\'s new</a>'); ?></span>
     </div>
    <div class="row">
       <span class="title"><?php print t('Online'); ?></span><span class="detail"><?php print t('<a href="/help-ticket">Submit a ticket</a>'); ?></span>
