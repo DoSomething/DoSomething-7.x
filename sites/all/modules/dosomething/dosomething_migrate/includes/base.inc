@@ -21,7 +21,7 @@ abstract class DSBaseWebformMigration extends Migration {
     $clean_dest = strtr($this->webform->type, array('_' => '-'));
     $this->description = theme('item_list', array(
       'items' => array(
-        'd6_fields' => l('Source CCK Fields', "http://dosomething6.local/admin/content/node-type/$clean_src/fields"),
+        'd6_fields' => l('Source CCK Fields', "http://old.dosomething.org/admin/content/node-type/$clean_src/fields"),
         'd7_fields' => l('Destination Fields (field_*)', "admin/config/content/webform/entities/$clean_dest/fields"),
         'd7_components' => l('Destination Components (data_*)', "node/{$this->webform->nid}/webform"),
       ),
@@ -29,8 +29,8 @@ abstract class DSBaseWebformMigration extends Migration {
 
     $this->issuePattern = 'https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/:id:';
 
-    $this->sourceItemReviewPattern = "http://www.dosomething.org/node/:id:/edit";
-    $this->destinationItemReviewPattern = "http://dosomething.local/node/{$this->webform->nid}/submission/:id:/edit";
+    $this->sourceItemReviewPattern = "http://old.dosomething.org/node/:id:/edit";
+    $this->destinationItemReviewPattern = "http://dosomething.org/node/{$this->webform->nid}/submission/:id:/edit";
 
     $this->destination = new MigrateDestinationWebformSubmissionEntity($this->webform);
 
