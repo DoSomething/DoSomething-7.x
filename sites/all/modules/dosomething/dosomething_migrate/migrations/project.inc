@@ -144,5 +144,7 @@ class DSProject extends DSJsonWebformMigration {
       $row->field_geocode_data['und'][0]['wkt'] = NULL;
       $entity->field_webform_address['und'][0]['geocoder_no_code'] = FALSE;
     }
+    // Catch any webforms with missing data rows.
+    db_query("INSERT into {webform_submitted_data} (nid, sid, cid, no, data) SELECT w.nid, w.sid, 0, 0, '' FROM {webform_submissions} w LEFT JOIN webform_submitted_data d2 on w.sid = d2.sid WHERE d2.sid IS NULL;");
   }
 }
