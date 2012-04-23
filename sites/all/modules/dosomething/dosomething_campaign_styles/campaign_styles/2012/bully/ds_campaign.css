@@ -98,7 +98,8 @@ div[role="main"] {
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
-  padding: 5px 0 3px 0;
+  margin: 10px 0 0 0;
+  padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
@@ -185,7 +186,19 @@ div[role="main"] {
   font-weight: bold;
   margin: 0 0 0 20px; }
 
+#bully-logo {
+  position: absolute;
+  top: -945px; }
+
 /* social buttons */
+.pane-node-field-campain-date {
+  font-weight: 600;
+  color: #b196b7; }
+
+.pane-node-field-campaign-teaser p {
+  line-height: 1.2em;
+  margin: 0 0 15px 0; }
+
 .panel-top-right-social:before, .panel-top-right-social:after {
   overflow: hidden;
   *zoom: 1;
@@ -195,7 +208,7 @@ div[role="main"] {
   border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
 .panel-top-right-social .panel-pane {
   margin: 0;
-  padding: 5px 0; }
+  padding: 5px 0 0 0; }
 
 .fb-facepile:before {
   overflow: hidden;
@@ -204,6 +217,17 @@ div[role="main"] {
   content: "";
   border-top: 1px solid rgba(216, 217, 221, 0.5);
   border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+
+.campaign-counter-numbers {
+  margin: 15px 15px 0 0; }
+
+.campaign-counter-labels {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  margin: 15px 0 0 15px;
+  line-height: 25px; }
 
 .panel-pane {
   margin-bottom: 0; }
@@ -239,12 +263,12 @@ div[role="main"] {
     font-size: 30px;
     padding: 10px 5px 5px 10px; }
 
-.panel-row-actions-sign-up a {
+.panel-row-actions-sign-up #quiz-button {
   background-color: #fccf2b;
-  width: 175px;
-  height: 30px;
+  width: 200px;
+  height: 50px;
   text-align: center;
-  color: #444444;
+  color: black;
   text-decoration: none;
   display: block;
   border-radius: 4px;
@@ -252,10 +276,10 @@ div[role="main"] {
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
   text-transform: uppercase;
-  padding: 6px;
+  padding: 15px;
   font-size: 20px;
   font-weight: bold;
-  margin: 15px 10px 15px 25px; }
+  margin: 15px 10px 0px 15px; }
 
 .panel-row-ad-quick-info .pane-title:after {
   border-bottom: none;
