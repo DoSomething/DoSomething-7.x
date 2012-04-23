@@ -1462,7 +1462,7 @@ function dosomething_login_fboauth_actions() {
   );
   $actions['ds_connect'] = array(
     'title' => t('Connect through user profile when already logged in.'),
-    'callback' => 'dosomething_login_action_ds_connect',
+    'callback' => 'dosomething_login_action_ds_connect', 
     'permissions' => array(
       'email',
       'user_birthday',
@@ -1620,6 +1620,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
       dosomething_login_facebook_friend_process($uid, $fb_friends->data);
     }
     fboauth_login_user($account);
+    drupal_set_message("Thanks for signing in.");
   }
   // If the Facebook e-mail address matches an existing account, bind them
   // together and log in as that account.
@@ -1671,6 +1672,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['month']['#value'] = $date[0];
     $form['birthday']['day']['#value'] = $date[1];
     $form['birthday']['year']['#value'] = $date[2];
+    drupal_set_message('Please fill out the following information to finish registration your Facebook account.');
   }
   else {
     drupal_set_message("There was a problem receiving your information from Facebook, please register below to create an account.");
