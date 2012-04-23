@@ -138,7 +138,8 @@ div[role="main"]
 .panel-row-top-right
   // mini-info panel
   .panel-top-right-mini-info
-    padding: 5px 0 3px 0
+    margin: 10px 0 0 0
+    padding: 0
     font-family: $accent
     .pane-title
       background: none
@@ -225,18 +226,43 @@ div[role="main"]
     font-size: 28px 
     font-weight: bold
     margin: 0 0 0 20px
+
+//sponsor logos
+#bully-logo
+  position: absolute
+  top: -945px
     
 /* social buttons */
+
+.pane-node-field-campain-date
+  font-weight: 600
+  color: $baseColor
+
+.pane-node-field-campaign-teaser
+  p
+    line-height: 1.2em
+    margin: 0 0 15px 0
 
 .panel-top-right-social
   &:before, &:after
     +insetBorder
   .panel-pane
     margin: 0
-    padding: 5px 0
+    padding: 5px 0 0 0
 .fb-facepile
   &:before
     +insetBorder
+
+.campaign-counter-numbers
+  margin: 15px 15px 0 0
+
+.campaign-counter-labels
+  text-transform: uppercase
+  font-size: 25px
+  font-family: $accent
+  font-weight: 500
+  margin: 15px 0 0 15px
+  line-height: 25px
 
 .panel-pane
   margin-bottom: 0
@@ -280,12 +306,12 @@ div[role="main"]
     padding: 10px 5px 5px 10px
 
 .panel-row-actions-sign-up
-  a
+  #quiz-button
     background-color: rgb(252, 207, 43)
-    width: 175px
-    height: 30px
+    width: 200px
+    height: 50px
     text-align: center
-    color: #444
+    color: #000
     text-decoration: none
     display: block
     border-radius: 4px
@@ -293,10 +319,10 @@ div[role="main"]
     -webkit-border-radius: 4px
     -khtml-border-radius: 4px
     text-transform: uppercase
-    padding: 6px
+    padding: 15px
     font-size: 20px
     font-weight: bold
-    margin: 15px 10px 15px 25px
+    margin: 15px 10px 0px 15px
 
 .panel-row-ad-quick-info
   .pane-title
