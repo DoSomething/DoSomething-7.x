@@ -278,7 +278,8 @@ div[role="main"] {
   border: none !important; }
   .mcommons-webform input.field {
     width: 85%;
-    height: 1.6em; }
+    height: 1.4em;
+    margin-bottom: 2px; }
   .mcommons-webform label {
     font-weight: 600; }
   .mcommons-webform .go-button {
