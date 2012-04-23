@@ -649,7 +649,11 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
       if (!isset($something->uri)) {
         $something->uri = entity_uri('node', $campaign);
       }
-      $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+      // Use the thumbnail if present.
+      $image = field_get_items('node', $campaign, 'field_campain_logo_thumbnail');
+      if (empty($image[0]['uri'])) {
+        $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+      }
       $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
       $something->title = $campaign->title;
       $something->type = 'campaign';
