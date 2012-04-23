@@ -7,6 +7,15 @@
 include_once('dosomething_user_my_somethings.features.inc');
 
 /**
+ * Implements hook_menu_alter().
+ */
+function dosomething_user_my_somethings_menu_alter(&$items) {
+  // Use full name as page title instead of username
+  $items['user/%user']['title callback'] = 'dosomething_general_get_full_name';
+  $items['user/%user']['title arguments'][] = 'private';
+}
+
+/**
 * Implementation of hook_ctools_plugin_directory().
 */
 function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin) {
