@@ -179,7 +179,61 @@
         top: -17px
         left: 7px
 
-.no-js.ie.ie8.js
   #dosomething-login-login-popup-form
     .popup-content
       width: 446px
+
+// Popup only forms for IE7 register or login, will not affect non-js forms
+.no-js.ie.ie7.js
+  div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+  div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+    +box-sizing("border-box")
+    .popup-content
+      // Left column fields
+      .form-item-first-name,
+      .form-item-email,
+      .form-item-pass,
+      .form-item-last-name,
+      .form-item-cell
+        width: 212px
+
+      .form-item-month,
+      .form-item-day,
+      .form-item-year
+        width: 40px
+
+      #edit-birthday
+        position: relative
+        top: -17px
+        left: 7px
+
+  #dosomething-login-register-popup-form
+    .pass-field-label
+      float: left
+    .ds-registration-form-required
+      left: 212px
+      top: -32px
+    .popup-content
+      width: 446px
+      // Left column fields
+      .form-item-first-name,
+      .form-item-email,
+      .form-item-pass,
+      .form-item-last-name,
+      .form-item-cell
+        height: 27px
+        width: 212px
+
+      .form-item-month,
+      .form-item-day,
+      .form-item-year
+        width: 40px
+
+      #edit-birthday
+        position: relative
+        top: -17px
+        left: 7px
+
+      .under-13-field
+        clear: both
+        display: block

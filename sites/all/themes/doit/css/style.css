@@ -4564,9 +4564,74 @@ h2.block-title, h2.pane-title {
   top: -17px;
   left: 7px;
 }
-
 .no-js.ie.ie8.js #dosomething-login-login-popup-form .popup-content {
   width: 446px;
+}
+
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-email,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-pass,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-last-name,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-cell,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-first-name,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-email,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-pass,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-last-name,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-cell {
+  width: 212px;
+}
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-month,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-day,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-year,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-month,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-day,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .form-item-year {
+  width: 40px;
+}
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content #edit-birthday,
+.no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content #edit-birthday {
+  position: relative;
+  top: -17px;
+  left: 7px;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .pass-field-label {
+  float: left;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .ds-registration-form-required {
+  left: 212px;
+  top: -32px;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content {
+  width: 446px;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-first-name,
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-email,
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-pass,
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-last-name,
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-cell {
+  height: 27px;
+  width: 212px;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-month,
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-day,
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-year {
+  width: 40px;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content #edit-birthday {
+  position: relative;
+  top: -17px;
+  left: 7px;
+}
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .under-13-field {
+  clear: both;
+  display: block;
 }
 
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
