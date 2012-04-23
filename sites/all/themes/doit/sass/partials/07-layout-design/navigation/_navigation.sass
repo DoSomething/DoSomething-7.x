@@ -27,7 +27,7 @@ nav[role=navigation]
       padding-left: 233px
       display: table
       .ie7 &
-        padding-left: 200px
+        padding-left: 170px
       ul.menu
         display: table-row
         li.expanded
@@ -63,7 +63,7 @@ nav[role=navigation]
             +transition(opacity 0.2s 'ease-out')
             margin-left: -28px
             .ie7 &
-              margin-left: 0px
+              margin-left: -150px
             li
               display: block
               width: 100%
@@ -77,6 +77,8 @@ nav[role=navigation]
                 padding-left: 0
               &:nth-of-type(3)
                 padding-left: 0
+              &.last
+                margin-left: 0
               a
                 +link-colors($white, $gold, $gold, $white, false)
                 padding: 12px 18px
@@ -92,15 +94,17 @@ nav[role=navigation]
             ul
               margin-left: -3px
               .ie7 &
-                margin-left: -3px
+                margin-left: -113px
           &.last
             width: 208px
+            margin-left: -20px
             ul
               width: 232px
               .ie7 &
-                margin-left: -25px
+                margin-left: -233px
               li.last
                 width: 232px
+                margin-left: 0
           &:hover
             ul
               opacity: 1
