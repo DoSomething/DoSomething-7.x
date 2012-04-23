@@ -899,7 +899,6 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
       ->arguments(array('file_function' => 'file_fid'));
 
     $this->addUnmigratedSources(array('locations'));
-/*
     $this->addUnmigratedDestinations(array(
       'data_almost_done_just_a_few_more_questions',
       'field_webform_email',
@@ -910,7 +909,6 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
       'taxonomy_vocabulary_5',
       'field_geocode_data',
     ));
-*/
   }
 }
 
