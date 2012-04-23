@@ -17,9 +17,8 @@ body {
   background-position: center top; }
 
 div[role="main"] {
-  -moz-box-shadow: black 0 0 30px -10px;
   -webkit-box-shadow: black 0 0 30px -10px;
-  -o-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
   padding-top: 10px;
@@ -223,21 +222,30 @@ div[role="main"] {
   border-top: 1px solid rgba(216, 217, 221, 0.5);
   border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
 
-.campaign-counter-numbers {
-  margin: 15px 15px 0 0; }
+.panel-row-actions-stats .campaign-counter {
+  margin: 10px 5px 0 0; }
 
 .campaign-counter-labels {
   text-transform: uppercase;
   font-size: 25px;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-weight: 500;
-  margin: 15px 0 0 15px;
-  line-height: 25px; }
+  line-height: 25px;
+  float: left; }
+
+.campaign-counter-label-top {
+  margin-bottom: 14px; }
+
+.campaign-counter-number-top {
+  margin: 6px 0 10px 0; }
+
+.campaign-counter-numbers,
+.campaign-counter-number-bottom {
+  float: right; }
 
 .panel-pane {
   margin-bottom: 0; }
 
-/* added styles */
 .panel-row-ad-psa iframe {
   border: 10px solid black; }
 
