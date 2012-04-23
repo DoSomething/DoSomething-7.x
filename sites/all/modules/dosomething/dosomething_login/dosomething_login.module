@@ -728,7 +728,7 @@ function dosomething_login_login_popup_form($form, &$form_state) {
     $form['name'][$key] = $login['name'][$key];
     $form['pass'][$key] = $login['pass'][$key];
   }
-  $form['pass']['#description'] .= '<br><a href="user/password">' . t('Forgot your password?') . '</a>';
+  $form['pass']['#description'] .= t('<br><a href="@password">Forgot your password?</a>', array('@password' => url('user/password')));
 
   $form['final_submit'] = array(
     '#prefix' => '</div><div class="ds-login-popup-footer">',
