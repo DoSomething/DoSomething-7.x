@@ -152,19 +152,19 @@ function dosomething_login_mail($key, &$message, $params) {
     case 'dosomething-parent-email':
       $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
       $params['link'] = dosomething_login_one_time_parent_permission_link($params['account']);
-      $message['subject'] = t('Permissions for @name', array('@name' => $params['full_name']));
+      $message['subject'] = t('Permission Request from @name', array('@name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-parent-permission-granted-email':
       $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
-      $message['subject'] = t('Permission Granted');
+      $message['subject'] = t('Permission Granted for @name', array('@name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_permission_granted_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'dosomething-parent-permission-denied-email':
       $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
-      $message['subject'] = t('Permission Denied');
+      $message['subject'] = t('Permission Denied for @name', array('@name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('dosomething_login_parent_permission_denied_email', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
