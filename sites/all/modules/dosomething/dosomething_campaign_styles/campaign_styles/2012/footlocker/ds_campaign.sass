@@ -66,7 +66,7 @@ body
   background-color: $bgFallback
   background-image: $imageBackground
   background-repeat: repeat-y
-  background-position: center top
+  background-position: -24px top
 
 div[role="main"]
   +block
@@ -76,9 +76,10 @@ div[role="main"]
 
 .three-boxes
   background: $bgGray !important
-  width: 29%
   float: left
+  font-weight: 600
   margin-right: 6.5%
+  width: 29%
   &:last-child
     margin-right: 0
   .pane-content
@@ -133,8 +134,25 @@ div[role="main"]
   float: left
   margin-right: 5%
   width: 66%
+  .go-button
+    bottom: 1.25em
+    padding-top: 3px
   .pane-content
+    height: 166px
     padding-bottom: 0
+  .webform-client-form
+    +noBoxShadow
+    border: none
+
+.nominate-box-help-text
+  font-weight: 600
+  padding: 0.5em 1em 0 1em
+  width: 80%
+
+.nominate-form-column
+  float: left
+  width: 38%
+  margin-right: 2%
 
 .pane-campaign-sign-up
   position: relative
@@ -304,16 +322,21 @@ div[role="main"]
 // campaign counter styling
 .campaign-counter-labels
   color: white
+  float: left
   font-family: din-web
-  font-size: 18px
+  font-size: 22px
   font-weight: 600
+  line-height: 35px
+  // setting margin-top so that the labels line up better with numbers
+  margin-top: -2px
   text-transform: uppercase
   
 .campaign-counter-numbers
+  float: right
   font-family: din-web
   font-size: 22px
   font-weight: bold
-  line-height: 50px
+  line-height: 35px
   .counter-number
     +background-image(linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%))
     padding: 2px 2px 0px 5px

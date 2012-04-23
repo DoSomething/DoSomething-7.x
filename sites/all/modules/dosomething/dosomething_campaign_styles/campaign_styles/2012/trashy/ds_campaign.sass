@@ -51,6 +51,12 @@ $bgFallback: #2387c7
   -o-box-shadow: none
   box-shadow: none
 
+@mixin noBoxShadowImportant
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
 @mixin setBorderBox
   -moz-box-sizing: border-box
   -ms-box-sizing: border-box
@@ -74,6 +80,10 @@ hr
 
 h1.title
   display: none
+
+img
+  +noBoxShadowImportant
+  border: none !important
 
 body
   background-color: $bgFallback

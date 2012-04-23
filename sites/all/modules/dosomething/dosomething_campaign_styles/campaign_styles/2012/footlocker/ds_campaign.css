@@ -14,7 +14,7 @@ body {
   background-color: #231f20;
   background-image: url("assets/bg.png");
   background-repeat: repeat-y;
-  background-position: center top; }
+  background-position: -24px top; }
 
 div[role="main"] {
   background: white;
@@ -26,9 +26,10 @@ div[role="main"] {
 
 .three-boxes {
   background: #c8c8c8 !important;
-  width: 29%;
   float: left;
-  margin-right: 6.5%; }
+  font-weight: 600;
+  margin-right: 6.5%;
+  width: 29%; }
   .three-boxes:last-child {
     margin-right: 0; }
   .three-boxes .pane-content {
@@ -90,8 +91,28 @@ div[role="main"] {
   float: left;
   margin-right: 5%;
   width: 66%; }
+  .nominate-box .go-button {
+    bottom: 1.25em;
+    padding-top: 3px; }
   .nominate-box .pane-content {
+    height: 166px;
     padding-bottom: 0; }
+  .nominate-box .webform-client-form {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none; }
+
+.nominate-box-help-text {
+  font-weight: 600;
+  padding: 0.5em 1em 0 1em;
+  width: 80%; }
+
+.nominate-form-column {
+  float: left;
+  width: 38%;
+  margin-right: 2%; }
 
 .pane-campaign-sign-up {
   position: relative; }
@@ -253,16 +274,20 @@ div[role="main"] {
 
 .campaign-counter-labels {
   color: white;
+  float: left;
   font-family: din-web;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
+  line-height: 35px;
+  margin-top: -2px;
   text-transform: uppercase; }
 
 .campaign-counter-numbers {
+  float: right;
   font-family: din-web;
   font-size: 22px;
   font-weight: bold;
-  line-height: 50px; }
+  line-height: 35px; }
   .campaign-counter-numbers .counter-number {
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e2e2e2), color-stop(8%, #dbdbdb), color-stop(18%, #efefef), color-stop(100%, #fefefe));
     background-image: -webkit-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
