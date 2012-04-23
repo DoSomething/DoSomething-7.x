@@ -14,8 +14,9 @@ body {
 
 div[role="main"] {
   background: white;
-  -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -o-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
   padding-top: 10px; }
@@ -62,7 +63,7 @@ div[role="main"] {
     overflow: hidden;
     *zoom: 1; }
   .pane-content li {
-    list-style-image: url("assets/bullet-pink.png");
+    list-style-image: url("assets/bullet.png");
     list-style-position: outside;
     font-weight: bold;
     text-decoration: underline;
