@@ -265,6 +265,15 @@ div[role="main"] {
       font-weight: 600;
       line-height: 1.5em; }
 
+#location-pane .pane-content {
+  padding: 25px; }
+#location-pane iframe {
+  border: 6px solid #92d2ba;
+  margin: 15px auto;
+  display: block; }
+#location-pane h2, #location-pane p {
+  text-align: center; }
+
 .campaign-counter-labels {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 22px;
