@@ -5,7 +5,7 @@ abstract class DSCampaignReportBackMigration extends DSJsonWebformMigration {
   public function __construct($node_type, $additional_fields = array()) {
     parent::__construct(MigrateGroup::getInstance('CampaignReportBack'), $node_type, $additional_fields);
     $this->addUnmigratedSources(array('changed', 'status'));
-    $this->addUnmigratedDestinations(array('field_webform_school_reference', 'field_webform_geocode_zip_code', 'group_audience'));
+    $this->addUnmigratedDestinations(array('field_webform_geocode_zip_code', 'group_audience'));
     $this->addFieldMapping('is_draft')
       ->defaultValue(0);
   }
@@ -96,6 +96,7 @@ class DSCampaignReportBackCampaignBfb2011Migration extends DSCampaignReportBackM
       'data_about_your_video',
       'data_official_contest_rules',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -133,6 +134,7 @@ class DSCampaignReportBackCampaignEbd2011Migration extends DSCampaignReportBackM
       'field_webform_mobile',
       'field_webform_email',
       'field_webform_school',
+      'field_webform_school_reference',
       'data_video',
       'taxonomy_vocabulary_5'
     ));
@@ -169,6 +171,7 @@ class DSCampaignReportBackCampaignGys2011Migration extends DSCampaignReportBackM
       'field_webform_email',
       'field_webform_school_zip',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -205,6 +208,7 @@ class DSCampaignReportBackCampaignHunt2011Migration extends DSCampaignReportBack
     $this->addUnmigratedDestinations(array(
       'field_webform_mobile',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -247,6 +251,7 @@ class DSCampaignReportBackCannedFoodMigration extends DSCampaignReportBackMigrat
       'data_amount_of_food_collected',
       'data_info_about_the_drive',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -283,6 +288,7 @@ class DSCampaignReportBackHealthySchoolsReportMigration extends DSCampaignReport
       'data_your_info',
       'data_your_project',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -359,6 +365,7 @@ class DSCampaignReportBackSaveOurMusicMigration extends DSCampaignReportBackMigr
     $this->addUnmigratedDestinations(array(
       'field_webform_school_zip',
       'field_webform_school',
+      'field_webform_school_reference',
       'taxonomy_vocabulary_5'
     ));
   }
@@ -386,6 +393,7 @@ class DSCampaignReportBackSfsReportGalleryMigration extends DSCampaignReportBack
       'field_webform_email',
       'field_webform_mobile',
       'field_webform_school',
+      'field_webform_school_reference',
       'field_webform_videos',
       'data_pictures_from_your_drive',
       'taxonomy_vocabulary_5',
@@ -418,6 +426,7 @@ class DSCampaignReportBackStaplesReasonMigration extends DSCampaignReportBackMig
       'field_webform_pictures',
       'taxonomy_vocabulary_5',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -452,6 +461,7 @@ class DSCampaignReportBackTfjContestSignupMigration extends DSCampaignReportBack
       'field_webform_school_zip',
       'taxonomy_vocabulary_5',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
 }
@@ -503,7 +513,13 @@ class DSCampaignReportBackMakeArtSaveArtMigration extends DSCampaignReportBackMi
 
     //Null Mappings
     $this->addUnmigratedSources(array('locations'));
-    $this->addUnmigratedDestinations(array('data_location', 'field_webform_school_zip', 'field_webform_videos', 'taxonomy_vocabulary_5'));
+    $this->addUnmigratedDestinations(array(
+      'data_location',
+      'field_webform_school_zip',
+      'field_webform_school_reference',
+      'field_webform_videos',
+      'taxonomy_vocabulary_5'
+    ));
   }
   public function prepareRow($row) {
     $location = isset($row->locations[0]) ? $row->locations[0] : NULL;
@@ -556,6 +572,7 @@ class DSCampaignReportBackSportsMigration extends DSCampaignReportBackMigration 
       'field_webform_email',
       'field_webform_mobile',
       'field_webform_videos',
+      'field_webform_school_reference',
       'taxonomy_vocabulary_5'
     ));
   }
@@ -595,6 +612,7 @@ class DSCampaignReportBackBullying extends DSCampaignReportBackMigration {
       'taxonomy_vocabulary_5',
       'field_webform_school_zip',
       'field_webform_school',
+      'field_webform_school_reference',
     ));
   }
   public function prepareRow($row) {
@@ -641,6 +659,7 @@ class DSCampaignReportBackMacys2011Migration extends DSCampaignReportBackMigrati
       'taxonomy_vocabulary_5',
       'field_webform_school_zip',
       'field_webform_school',
+      'field_webform_school_reference',
       'data_share_more_optional',
     ));
   }
@@ -696,6 +715,7 @@ class DSCampaignReportBackEWaste2011Migration extends DSCampaignReportBackMigrat
       'data_location',
       'taxonomy_vocabulary_5',
       'field_webform_school_zip',
+      'field_webform_school_reference',
       'field_webform_email',
     ));
   }
@@ -744,6 +764,7 @@ class DSCampaignReportBackCancer2011 extends DSCampaignReportBackMigration {
       'data_location',
       'taxonomy_vocabulary_5',
       'field_webform_school_zip',
+      'field_webform_school_reference',
       'field_webform_mobile',
     ));
   }
@@ -878,6 +899,8 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
       $migration = Migration::currentMigration();
       $message =  t('Decoding of !objecturl failed:', array('!objecturl' => $url));
     }
+
+    return isset($values[$id]) ? (object) $values[$id] : FALSE;
   }
 }
 
@@ -944,6 +967,7 @@ class DSCampaignReportBackCampaignBfb2012 extends DSCampaignReportBackMigration 
       'field_webform_school_zip',
       'field_webform_pictures',
       'field_webform_school',
+      'field_webform_school_reference',
       'taxonomy_vocabulary_5',
       'field_geocode_data',
     ));
@@ -980,6 +1004,7 @@ class DSCampaignReportBackTFJ2012 extends DSCampaignReportBackMigration {
       'field_webform_school',
       'field_webform_mobile',
       'field_webform_school_zip',
+      'field_webform_school_reference',
     ));
   }
 }
