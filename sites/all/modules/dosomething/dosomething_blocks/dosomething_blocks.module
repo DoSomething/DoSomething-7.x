@@ -25,7 +25,7 @@ function dosomething_blocks_block_info() {
   );
   $blocks['dosomething_make_impact'] = array(
     'info' => t('DoSomething Make an Impact'),
-    'cache' => DRUPAL_CACHE_GLOBAL,
+    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['dosomething_make_impact_front'] = array(
     'info' => t('DoSomething Make an Impact -- Front Page'),
