@@ -150,6 +150,7 @@ function dosomething_schools_clubs($school_id) {
 function dosomething_schools_clubs_gids($school_id) {
   $clubs = dosomething_schools_clubs($school_id);
 
+  $nids = array();
   foreach ($clubs as $club) {
     $nids[] = $club['nid'];
   }
@@ -253,9 +254,9 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
       $more_link = '';
     }
     else {
+      $more_link = count($actions) > 4 ? l('More >>', 'school/' . $school_id . '/done-it') : '';
       $actions = array_slice($actions, 0, 4);
       $image_style = 'project_related_thumb';
-      $more_link =  count($actions) > 4 ? l('More >>', 'school/' . $school_id . '/done-it') : '';
     }
 
     // Create render array for display.
