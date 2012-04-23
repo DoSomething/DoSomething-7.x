@@ -23,6 +23,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     global $user;
 
     drupal_add_library('system', 'drupal.ajax');
+    drupal_add_library('system', 'jquery.form');
     ctools_add_js('ajax-responder');
 
     // Get a shortcut to our part of the form.
