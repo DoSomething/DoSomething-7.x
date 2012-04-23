@@ -32,6 +32,7 @@ function dosomething_causes_cause_filter_content_type_edit_form_submit(&$form, &
  * answer: just show the cause closest to A, because this makes sense?
  */
 function dosomething_causes_cause_filter_content_type_render($subtype, $conf, $panel_args, $context) {
+  drupal_add_library('system', 'drupal.ajax');
   drupal_add_js(drupal_get_path('module', 'dosomething_causes') . '/js/dosomething_causes_ajax.js');
   $block = new stdClass();
 

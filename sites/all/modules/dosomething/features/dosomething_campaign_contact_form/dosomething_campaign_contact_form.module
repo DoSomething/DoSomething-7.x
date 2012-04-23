@@ -22,6 +22,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'campaign_contact_form') {
     global $user;
 
+    drupal_add_library('system', 'drupal.ajax');
     ctools_add_js('ajax-responder');
 
     // Get a shortcut to our part of the form.
