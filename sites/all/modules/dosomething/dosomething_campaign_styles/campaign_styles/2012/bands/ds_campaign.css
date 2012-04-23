@@ -629,6 +629,9 @@ div[role="main"] {
   .ds-panel .pane-content .page-current {
     color: #ff130a; }
 
+#breadcrumb {
+  display: none; }
+
 img {
   border: none !important;
   box-shadow: none !important;
@@ -642,3 +645,6 @@ img {
 .panel-row-flexible-bot.panel-panel,
 .panel-row-logos.panel-panel {
   margin-bottom: 0; }
+
+.pane-dosomething-login-register-block .popup-content {
+  height: 160px; }
