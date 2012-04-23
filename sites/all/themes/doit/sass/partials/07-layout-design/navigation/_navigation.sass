@@ -39,6 +39,7 @@ nav[role=navigation]
           .ie7 &
             display: inline-block
             float: left
+            background-color: $blue
           &.first
             padding-left: 3px
           &:nth-of-type(3)
@@ -85,6 +86,8 @@ nav[role=navigation]
                   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75)
                   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75)
                   background-color: $gray1-trans
+              .ie7 &
+                background-color: $gray1
           &.first
             ul
               margin-left: -3px

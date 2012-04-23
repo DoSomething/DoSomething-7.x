@@ -3420,6 +3420,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li {
   display: inline-block;
   float: left;
+  background-color: #18408b;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first {
   padding-left: 3px;
@@ -3488,6 +3489,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a:hov
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   background-color: rgba(30, 29, 28, 0.75);
+}
+.ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
+  background-color: #1e1d1c;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
   margin-left: -3px;
