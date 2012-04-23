@@ -309,7 +309,7 @@ function dosomething_migrate_update_noderefs(&$context) {
       SELECT COUNT(nr.field_webform_project_nid)
       FROM {field_data_field_webform_project} nr
       LEFT JOIN {field_data_field_project_title_reference} er ON nr.entity_id = er.entity_id
-      WHERE er.field_project_title_reference_target_id IS NOT NULL')
+      WHERE er.field_project_title_reference_target_id IS NULL')
       ->fetchField();
     if(!$context['sandbox']['max']) {
       $context['sandbox']['max'] = 0;
@@ -360,10 +360,14 @@ function dosomething_migrate_update_noderefs(&$context) {
       }
       $query .= ") t1 WHERE sourceid1 = $node_to_map";
       $mapping_result = db_query($query)->fetchField();
-      $submission->field_project_title_reference['und'][0]['target_id'] = $mapping_result;
-      $submission->field_project_title_reference['und'][0]['target_type'] = 'webform_submission_entity';
-      webform_submission_update($node, $submission);
-      drush_log('Updating webform submission: ' . $data['sid'] . '. Data is now mapped to: ' . $mapping_result, 'ok');
+      drush_print($mapping_result);
+      if ($mapping_result) {
+        $submission->field_project_title_reference['und'][0]['target_id'] = $mapping_result;
+        $submission->field_project_title_reference['und'][0]['target_type'] = 'webform_submission_entity';
+        webform_submission_update($node, $submission);
+        drush_log('Updating webform submission: ' . $data['sid'] . '. Data is now mapped to: ' . $mapping_result, 'ok');
+      }
+      
       $context['sandbox']['progress'] += 1;
       $context['sandbox']['current'] = $data['sid'];
       $context['results'][] = $data['sid'];

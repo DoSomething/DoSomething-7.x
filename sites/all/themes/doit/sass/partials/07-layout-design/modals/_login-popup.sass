@@ -41,14 +41,14 @@
     .form-item-year
       float: left
       input
-        width: 210px
+        width: 212px
     // Right column fields
     .form-item-last-name,
     .form-item-cell
       float: right
       margin-right: -7px
       input
-        width: 210px
+        width: 212px
     .form-item-email,
     .form-item-pass,
     .form-item-cell,
@@ -87,18 +87,18 @@
       font-size: 10px
     .form-item-pass
       label.error
-        width: 210px
+        width: 212px
     // Under 13 fields
     .under-13-field
       float: left
       padding: 12px 0
       input
-        width: 210px
+        width: 212px
         margin-top: 12px
 
     .form-item-parent-email
       input
-        width: 210px
+        width: 212px
 
       label.error
         float: right
@@ -167,7 +167,7 @@
       .form-item-pass,
       .form-item-last-name,
       .form-item-cell
-        width: 210px
+        width: 212px
 
       .form-item-month,
       .form-item-day,
@@ -179,7 +179,62 @@
         top: -17px
         left: 7px
 
-.no-js.ie.ie8.js
   #dosomething-login-login-popup-form
     .popup-content
       width: 446px
+
+// Popup only forms for IE7 register or login, will not affect non-js forms
+.no-js.ie.ie7.js
+  div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+  div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+    +box-sizing("border-box")
+    .popup-content
+      // Left column fields
+      .form-item-first-name,
+      .form-item-email,
+      .form-item-pass,
+      .form-item-last-name,
+      .form-item-cell
+        width: 212px
+
+      .form-item-month,
+      .form-item-day,
+      .form-item-year
+        width: 40px
+
+      #edit-birthday
+        position: relative
+        top: -17px
+        left: 7px
+
+  #dosomething-login-register-popup-form
+    .pass-field-label
+      float: left
+    .ds-registration-form-required
+      left: 212px
+      top: -32px
+    .popup-content
+      width: 446px
+      // Left column fields
+      .form-item-first-name,
+      .form-item-email,
+      .form-item-pass,
+      .form-item-last-name,
+      .form-item-cell
+        height: 27px
+        width: 212px
+
+      .form-item-month,
+      .form-item-day,
+      .form-item-year
+        width: 40px
+
+      #edit-birthday
+        position: relative
+        top: 20px
+        left: 7px
+
+      .under-13-field
+        clear: both
+        display: block
+        margin-top: 12px

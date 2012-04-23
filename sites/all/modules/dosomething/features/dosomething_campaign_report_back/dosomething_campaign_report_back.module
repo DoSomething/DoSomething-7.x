@@ -86,7 +86,7 @@ function dosomething_campaign_report_back_form_alter(&$form, &$form_state, $form
       }
     }
   }
-  $form['#validate'][] = 'dosomething_general_webform_email_and_mail_submit';
+  $form['#validate'][] = 'dosomething_general_webform_email_and_mail_validate';
   $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
 }
 
