@@ -712,7 +712,6 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
       }
     }
   }
-  dd($somethings);
   return $somethings;
 }
 
