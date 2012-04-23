@@ -65,6 +65,10 @@ class DSProject extends DSJsonWebformMigration {
   }
 
   public function prepareRow($row) {
+    // Strip all html from the old textareas.
+    $row->field_essay_see_it = strip_tags($row->field_essay_see_it);
+    $row->field_essay_build_it = strip_tags($row->field_essay_build_it);
+
     // emfields
     foreach (array('field_embedded_video') as $name) {
       if (!empty($row->$name)) {
