@@ -121,10 +121,14 @@ div[role="main"] {
 
 .campaign-counter-labels {
   color: #0f87c9;
+  float: left;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 24px;
   line-height: 24px;
   text-transform: uppercase; }
+
+.campaign-counter-numbers {
+  float: right; }
 
 .pane-campaign-social .pane-content {
   background: #f9f6f3; }
