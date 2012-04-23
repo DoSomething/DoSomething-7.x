@@ -65,9 +65,11 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
         }
       }
       if (isset($fid)) {
-        $count = dosomething_campaign_counter_campaign_counter_get_count($campaign_report_back, $fid, $subs) + $done_padding;
+        $count = dosomething_campaign_counter_campaign_counter_get_count($campaign_report_back, $fid, $subs);
       }
     }
+
+    $count += $done_padding;
 
     dosomething_campaign_counter_campaign_counter_spanize($count);
     dosomething_campaign_counter_campaign_counter_spanize($sign_up_count);
