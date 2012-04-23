@@ -212,3 +212,19 @@ function dosomething_panels_preprocess_dosomething_panels_campaign(&$variables) 
     = $variables['actions_classes']
     = '';
 }
+
+function dosomething_panels_preprocess_dosomething_panels_landings(&$variables) {
+  drupal_add_library('system', 'ui.dialog');
+
+  foreach ($variables['content'] as $key => $content) {
+    if (empty($content)) {
+      unset($variables['content'][$key]);
+    }
+  }
+  // TODO: Make this work with the new variable names. This is NOT NECESSARY FOR LAUNCH
+  $variables['top_row_classes']
+    = $variables['top_right_classes']
+    = $variables['ad_classes']
+    = $variables['actions_classes']
+    = '';
+}
