@@ -1672,7 +1672,7 @@ function dosomething_login_register_facebook($form, &$form_state) {
     $form['birthday']['month']['#value'] = $date[0];
     $form['birthday']['day']['#value'] = $date[1];
     $form['birthday']['year']['#value'] = $date[2];
-    drupal_set_message('Please fill out the following information to finish registration your Facebook account.');
+    drupal_set_message('Please fill out the following information to finish registration using your Facebook account.');
   }
   else {
     drupal_set_message("There was a problem receiving your information from Facebook, please register below to create an account.");
