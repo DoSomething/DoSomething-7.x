@@ -70,9 +70,6 @@ function dosomething_schools_main_info($school_id) {
         'members_counter' => array(
           '#markup' => dosomething_schools_counter($school_id),
         ),
-        'total_actions' => array(
-          '#markup' => $total_actions,
-        ),
       ),
     ),
   );
@@ -170,6 +167,7 @@ function dosomething_schools_clubs_gids($school_id) {
 function dosomething_schools_done_it($school_id) {
   $cid = 'dosomething_schools_done_it_' . $school_id;
   $cache = cache_get($cid);
+  $actions = array();
   if (!is_object($cache) || !isset($cache->data)) {
     $actions = array(
       'projects' => dosomething_schools_done_it_projects($school_id),
@@ -255,11 +253,9 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
       $more_link = '';
     }
     else {
-      if (count($actions) > 4) {
-        $more_link = l('More >>', 'school/' . $school_id . '/done-it');
-      }
       $actions = array_slice($actions, 0, 4);
       $image_style = 'project_related_thumb';
+      $more_link =  count($actions) > 4 ? l('More >>', 'school/' . $school_id . '/done-it') : '';
     }
 
     // Create render array for display.
