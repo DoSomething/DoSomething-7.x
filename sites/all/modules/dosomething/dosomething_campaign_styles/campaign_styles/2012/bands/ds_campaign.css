@@ -647,4 +647,4 @@ img {
   margin-bottom: 0; }
 
 .pane-dosomething-login-register-block .popup-content {
-  height: 160px; }
+  height: 160px !important; }
