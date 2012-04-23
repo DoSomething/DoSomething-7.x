@@ -309,7 +309,7 @@ function dosomething_migrate_update_noderefs(&$context) {
       SELECT COUNT(nr.field_webform_project_nid)
       FROM {field_data_field_webform_project} nr
       LEFT JOIN {field_data_field_project_title_reference} er ON nr.entity_id = er.entity_id
-      WHERE er.field_project_title_reference_target_id IS NOT NULL')
+      WHERE er.field_project_title_reference_target_id IS NULL')
       ->fetchField();
     if(!$context['sandbox']['max']) {
       $context['sandbox']['max'] = 0;
