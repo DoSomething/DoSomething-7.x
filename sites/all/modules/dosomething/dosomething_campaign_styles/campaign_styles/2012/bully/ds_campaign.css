@@ -1,0 +1,314 @@
+.region-content a {
+  color: black;
+  text-decoration: underline; }
+  .region-content a:hover {
+    color: #444444; }
+
+h1.title {
+  display: none; }
+
+p {
+  margin-bottom: 1em; }
+
+body {
+  background-color: #2387c7;
+  background-image: url("/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/bg.jpg");
+  background-repeat: repeat;
+  background-position: center top; }
+
+div[role="main"] {
+  -moz-box-shadow: black 0 0 30px -10px;
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -o-box-shadow: black 0 0 30px -10px;
+  box-shadow: black 0 0 30px -10px;
+  margin-top: 8px;
+  padding-top: 10px;
+  background: rgba(255, 255, 255, 0.5); }
+
+.three-boxes {
+  width: 29%;
+  float: left;
+  margin-right: 6.5%; }
+  .three-boxes:last-child {
+    margin-right: 0; }
+
+.line-top:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(216, 217, 221, 0.5);
+  border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+
+.line-bottom:after {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(216, 217, 221, 0.5);
+  border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+
+/* universal declarations to be overridden per block if necessary */
+.pane-content h3 {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1em;
+  color: black;
+  text-transform: uppercase; }
+.pane-content ul {
+  margin-left: 1em;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  *zoom: 1; }
+.pane-content li {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 12px;
+  line-height: 24px;
+  margin: 0;
+  padding-left: 0px; }
+.pane-content br {
+  clear: left; }
+.pane-content .go-button {
+  margin-bottom: -54px;
+  margin-right: 141px;
+  text-decoration: none; }
+
+.pane-title {
+  background: black;
+  color: white; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0px; }
+
+#block-dosomething-campaign-styles-campaign-nav {
+  background: transparent;
+  margin-right: -5px;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    background-image: none;
+    text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: black; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #b196b7;
+        text-decoration: none; }
+
+.panel-row-top-right .panel-top-right-mini-info {
+  margin: 10px 0 0 0;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-title {
+    background: none;
+    color: #b196b7;
+    padding: 0;
+    font-size: 26px;
+    line-height: 1em; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-content {
+    font-size: 21px;
+    line-height: 1.4em;
+    background: none; }
+
+.panel-row-actions {
+  background: rgba(177, 150, 183, 0.7); }
+  .panel-row-actions .pane-title {
+    background: black;
+    color: white;
+    width: 100%; }
+  .panel-row-actions .pane-content {
+    padding: 8px 12px; }
+
+.panel-row-ad-quick-info .pane-title {
+  text-transform: uppercase;
+  color: #333333;
+  height: 40px;
+  font-size: 30px;
+  padding: 0px 5px 5px 10px; }
+.panel-row-ad-quick-info .pane-content {
+  padding: 0;
+  background: transparent; }
+  .panel-row-ad-quick-info .pane-content h3 {
+    color: black;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1em; }
+  .panel-row-ad-quick-info .pane-content p {
+    margin: 0; }
+  .panel-row-ad-quick-info .pane-content:before {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background: transparent; }
+
+.panel-row-ad-psa {
+  background: transparent; }
+  .panel-row-ad-psa .pane-title {
+    background: #b196b7; }
+  .panel-row-ad-psa .pane-content {
+    background: none;
+    padding: 0; }
+
+.panel-row-flexible .blog {
+  background: transparent; }
+  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(216, 217, 221, 0.5);
+    border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(216, 217, 221, 0.5);
+    border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+
+.panel-row-logos .pane-title {
+  color: #b196b7;
+  background: none;
+  margin: 0;
+  padding: 0; }
+.panel-row-logos .pane-content {
+  background: none;
+  padding: 0; }
+
+.panel-row-top-logo .pane-content {
+  padding: 0;
+  background: none; }
+.panel-row-top-logo p {
+  color: #b196b7;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 0 20px; }
+
+#bully-logo {
+  position: absolute;
+  top: -1034px; }
+
+/* social buttons */
+.pane-node-field-campain-date {
+  font-weight: 600;
+  color: #b196b7; }
+
+.pane-node-field-campaign-teaser p {
+  line-height: 1.2em;
+  margin: 0 0 15px 0; }
+
+.panel-top-right-social:before, .panel-top-right-social:after {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(216, 217, 221, 0.5);
+  border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+.panel-top-right-social .panel-pane {
+  margin: 0;
+  padding: 5px 0 0 0; }
+
+.fb-facepile:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(216, 217, 221, 0.5);
+  border-bottom: 2px solid rgba(144, 93, 166, 0.5); }
+
+.campaign-counter-numbers {
+  margin: 15px 15px 0 0; }
+
+.campaign-counter-labels {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  margin: 15px 0 0 15px;
+  line-height: 25px; }
+
+.panel-pane {
+  margin-bottom: 0; }
+
+/* added styles */
+.panel-row-ad-psa iframe {
+  border: 10px solid black; }
+
+.panel-row-ad-quick-info p {
+  font-size: 12px;
+  list-style: none; }
+
+.panel-row-flexible .panel-pane h2 {
+  background: url("/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/header_bg.png");
+  background-repeat: no-repeat;
+  margin-bottom: 15px; }
+
+.panel-row-ad-quick-info .panel-pane h2 {
+  background: url("/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/bully/assets/header_bg.png");
+  background-repeat: no-repeat;
+  margin-bottom: 15px; }
+
+.panel-row-flexible .panel-pane {
+  border: none; }
+
+.two-boxes {
+  width: 45%;
+  float: left; }
+  .two-boxes h2 {
+    text-transform: uppercase;
+    color: #333333;
+    height: 40px;
+    font-size: 30px;
+    padding: 10px 5px 5px 10px; }
+
+.panel-row-actions-sign-up #quiz-button {
+  background-color: #fccf2b;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  display: block;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  text-transform: uppercase;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 10px 0px 15px; }
+
+.panel-row-ad-quick-info .pane-title:after {
+  border-bottom: none;
+  border-top: none; }
+
+.right {
+  float: right; }
+
+.sponsor_low {
+  margin: 135px 10px 0 0; }
+
+#breadcrumb {
+  display: none; }
+
+img {
+  border: none !important;
+  box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important; }
+
+.panel-panel {
+  margin-bottom: 15px; }
+
+.panel-row-flexible-bot.panel-panel,
+.panel-row-logos.panel-panel {
+  margin-bottom: 0; }
