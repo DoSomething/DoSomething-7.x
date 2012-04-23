@@ -272,7 +272,10 @@ function dosomething_blocks_impact_form_submit($form, &$form_state) {
       'issues' => $what_cause,
     ),
   );
-  drupal_goto('action-finder', $options);
+  $form_state['redirect'] = array(
+    'action-finder',
+    $options,
+  );
 }
 
 /**
