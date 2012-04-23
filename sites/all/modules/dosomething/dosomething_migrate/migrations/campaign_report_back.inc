@@ -774,10 +774,13 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
       ->sourceMigration('DSFile');
 
     $this->addFieldMapping('field_webform_school', 'title');
+    $this->addFieldMapping('field_webform_school_reference', 'field_school_ref');
     $this->addFieldMapping('data_check_off_the_projects_below_that_your_school_has_completed', 'field_gys_projects');
   }
+
   public function prepareRow($row) {
     parent::prepareRow($row);
+
     $projects_mapping = array(
       'Recycling' => 1,
       'Collect and recycle at least 25 plastic or glass bottles or aluminum cans' => 2,
@@ -839,8 +842,43 @@ class DSCampaignReportBackGYS2012 extends DSCampaignReportBackMigration {
       $projects_field[] = $projects_mapping[$project];
     }
     $row->field_gys_projects = $projects_field;
+
+    // Convert the non-unique school id into the school entity id.
+    if (!empty($row->field_school_ref)) {
+      $school = $this->fetchNode($row->field_school_ref);
+      if ($school) {
+        $row->field_school_ref = db_query('SELECT sid FROM {ds_school} WHERE school_id = :school_id AND state = :state', array(
+          ':school_id' => $school->field_gsid,
+          ':state' =>$school->field_state))->fetchField();
+      }
+      else {
+        $row->field_school_ref = NULL;
+      }
+    }
   }
 
+  /**
+   * Helper to load nodes from the D6 site.
+   */
+  function fetchNode($id) {
+    $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
+
+    $url = "$base_url/node/get/$id";
+    $json = @file_get_contents($url);
+
+    if (!$json) {
+      migrate_instrument_stop(__METHOD__);
+      $migration = Migration::currentMigration();
+      $message =  t('Loading of !objecturl failed:', array('!objecturl' => $url));
+    }
+
+    $values = drupal_json_decode($json);
+    if (is_null($values)) {
+      migrate_instrument_stop(__METHOD__);
+      $migration = Migration::currentMigration();
+      $message =  t('Decoding of !objecturl failed:', array('!objecturl' => $url));
+    }
+  }
 }
 
 class DSCampaignReportBackTrashy2011 extends DSCampaignReportBackMigration {
