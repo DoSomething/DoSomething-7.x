@@ -24,7 +24,7 @@ abstract class DSWebformSubmissionMigration extends Migration {
     return FALSE;
   }
 
-  public function __construct($nid) {
+  public function __construct($source_nid, $destination_nid = NULL) {
     parent::__construct(MigrateGroup::getInstance('WebformSubmission'));
     $this->dependencies = array();
 
@@ -32,10 +32,10 @@ abstract class DSWebformSubmissionMigration extends Migration {
     $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
     // Expedientcy...
-    $fields = self::fetchFields($base_url, $nid);
+    $fields = self::fetchFields($base_url, $source_nid);
 
     $this->source = new MigrateSourceMultiItems(
-      new DSWebformSubmissionJsonMigrateItems($base_url, $nid),
+      new DSWebformSubmissionJsonMigrateItems($base_url, $source_nid),
       $fields
     );
 
@@ -43,16 +43,11 @@ abstract class DSWebformSubmissionMigration extends Migration {
       MigrateDestinationWebformSubmission::getKeySchema(),
       MigrateDestinationWebformSubmission::getKeySchema()
     );
-    // We need to remap the original webform node to a new one. We create a
-    // remapping array and use it here to load the proper node.
-    $mapping = array(
-      736100 => 721439,
-      748361 => 721441,
-    );
-    $webform_nid = isset($mapping[$nid]) ? $mapping[$nid] : $nid;
-    $this->webform = node_load($webform_nid);
+
+    $destination_nid = isset($destination_nid) ? $destination_nid : $source_nid;
+    $this->webform = node_load($destination_nid);
     if (!$this->webform) {
-      var_dump(t('WARNING: @name has no webform node.', array('@name' => $nid)));
+      var_dump(t('WARNING: @name is not a webform node.', array('@name' => $destination_nid)));
     }
 
     $clean_src = strtr($node_type, array('_' => '-'));
@@ -73,9 +68,14 @@ abstract class DSWebformSubmissionMigration extends Migration {
     $this->destination = new MigrateDestinationWebformSubmission($this->webform);
 
     unset($fields['sid'], $fields['nid']);
-    $this->addSimpleMappings(array_keys($fields));
+    // Let sub migrations have a chance to modify the simple mappings.
+    $this->applyFieldMappings($fields);
     $this->addUnmigratedDestinations(array('sid'));
     $this->addUnmigratedSources(array('nid', 'sid'));
+  }
+
+  function applyFieldMappings($fields) {
+    $this->addSimpleMappings(array_keys($fields));
   }
 }
 
@@ -286,14 +286,18 @@ class DSWebform698605 extends DSWebformSubmissionMigration {
 
 class DSWebform736100 extends DSWebformSubmissionMigration {
   function __construct() {
-    parent::__construct(736100);
+    parent::__construct(736100, 721439);
     $this->addFieldMapping('data_i_want_to_receive_more_energy_saving_opportunities_from_the_epa', 'data_i_want_to_receive_more_energy_saving_opportunities_for_the_epa');
     $this->addFieldMapping('data_email_1', 'data_friend_email_1');
     $this->addFieldMapping('data_email_2', 'data_friend_email_2');
     $this->addFieldMapping('data_email_3', 'data_friend_email_3');
     $this->addFieldMapping('data_email_4', 'data_friend_email_4');
     $this->addFieldMapping('data_email_5', 'data_friend_email_5');
+  }
+  function applyFieldMappings($fields) {
+    unset($fields['data_legal']);
     $this->addUnmigratedDestinations(array('data_legal'));
+    parent::applyFieldMappings($fields);
   }
 
   public function prepare($entity, $row) {
@@ -329,9 +333,15 @@ class DSWebform736100 extends DSWebformSubmissionMigration {
 
 class DSWebform748361 extends DSWebformSubmissionMigration {
   function __construct() {
-    parent::__construct(748361);
+    parent::__construct(748361, 721441);
+  }
+
+  function applyFieldMappings($fields) {
+    unset($fields['data_email_address'], $fields['data_phone_number']);
     $this->addFieldMapping('field_webform_email', 'data_email_address');
     $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    parent::applyFieldMappings($fields);
+    /*
     $this->addUnmigratedSources(array('data_sign_up_messaging', 'data_state', 'data_name_of_school'));
     $this->addUnmigratedDestinations(array(
       'data_sign_up_messaging',
@@ -339,9 +349,8 @@ class DSWebform748361 extends DSWebformSubmissionMigration {
       'data_phone_number',
       'data_state',
       'data_name_of_school',
-      'field_webform_email',
-      'field_webform_mobile',
     ));
+    */
   }
 
   public function prepare($entity, $row) {
@@ -372,5 +381,53 @@ class DSWebform748361 extends DSWebformSubmissionMigration {
     // Clean the phone number.
     $entity->field_webform_mobile['und'][0]['value'] = preg_replace('/\D/', '', $row->data_phone_number);
     $entity->field_webform_email['und'][0]['email'] = $row->data_email_address;
+  }
+}
+
+class DSWebform748186 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(748186, 721424);
+  }
+  function applyFieldMappings($fields) {
+    unset($fields['data_email'], $fields['data_phone_number']);
+    $this->addFieldMapping('field_webform_email', 'data_email');
+    $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    parent::applyFieldMappings($fields);
+  }
+}
+
+class DSWebform737152 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(737152, 719314);
+  }
+  function applyFieldMappings($fields) {
+    unset($fields['data_email'], $fields['data_phone_number']);
+    $this->addFieldMapping('field_webform_email', 'data_email');
+    $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    parent::applyFieldMappings($fields);
+  }
+}
+
+class DSWebform735506 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(735506, 719317);
+  }
+  function applyFieldMappings($fields) {
+    unset($fields['data_email'], $fields['data_phone_number']);
+    $this->addFieldMapping('field_webform_email', 'data_email');
+    $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    parent::applyFieldMappings($fields);
+  }
+}
+
+class DSWebform748159 extends DSWebformSubmissionMigration {
+  function __construct() {
+    parent::__construct(748159, 719307);
+  }
+  function applyFieldMappings($fields) {
+    unset($fields['data_email'], $fields['data_phone_number']);
+    $this->addFieldMapping('field_webform_email', 'data_email');
+    $this->addFieldMapping('field_webform_mobile', 'data_phone_number');
+    parent::applyFieldMappings($fields);
   }
 }
