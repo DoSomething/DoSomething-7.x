@@ -86,7 +86,7 @@
   padding: 0;
   background: transparent;
   text-transform: uppercase;
-  color: black;
+  color: black !important;
   line-height: 1.3em;
   font-weight: 500;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
@@ -122,16 +122,11 @@
       height: 140px; }
       .panel-row-middle .panel-panel .pane-content p {
         padding: 12px 0;
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        height: 120px; }
   .panel-row-middle .go-button {
-    position: absolute;
+    float: right;
     line-height: 30px; }
-  .panel-row-middle .panel-first .go-button {
-    right: 565px; }
-  .panel-row-middle .panel-second .go-button {
-    right: 298px; }
-  .panel-row-middle .panel-third .go-button {
-    right: 32px; }
 
 .panel-row-flexible .panel-pane {
   border: 1px solid white; }

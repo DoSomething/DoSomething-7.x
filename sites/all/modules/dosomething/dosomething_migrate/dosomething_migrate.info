@@ -32,6 +32,7 @@ files[] = migrations/project.inc
 files[] = migrations/scholarship_application.inc
 files[] = migrations/sql_user.inc
 files[] = migrations/webform_submissions.inc
+files[] = migrations/webform_entity_submissions.inc
 files[] = migrations/json_club.inc
 files[] = migrations/json_club_event.inc
 

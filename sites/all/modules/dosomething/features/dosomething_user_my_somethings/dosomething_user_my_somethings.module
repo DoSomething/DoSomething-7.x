@@ -7,6 +7,15 @@
 include_once('dosomething_user_my_somethings.features.inc');
 
 /**
+ * Implements hook_menu_alter().
+ */
+function dosomething_user_my_somethings_menu_alter(&$items) {
+  // Use full name as page title instead of username
+  $items['user/%user']['title callback'] = 'dosomething_general_get_full_name';
+  $items['user/%user']['title arguments'][] = 'private';
+}
+
+/**
 * Implementation of hook_ctools_plugin_directory().
 */
 function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin) {
@@ -641,7 +650,11 @@ function dosomething_user_my_somethings_campaign_list($uid, $era) {
       if (!isset($something->uri)) {
         $something->uri = entity_uri('node', $campaign);
       }
-      $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+      // Use the thumbnail if present.
+      $image = field_get_items('node', $campaign, 'field_campain_logo_thumbnail');
+      if (empty($image[0]['uri'])) {
+        $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+      }
       $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
       $something->title = $campaign->title;
       $something->type = 'campaign';
@@ -658,47 +671,49 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
   $somethings = array();
   $account = user_load($uid);
   $types = dosomething_user_my_somethings_get_my_somethings($uid, $era); // gives project reports and grant apps
-  if (count($types)) {
-    foreach ($types as $type => $data) {
+  // Check for valid types before continuing.
+  if (empty($types)) {
+    continue;
+  }
+  foreach ($types as $type => $data) {
+    // Check for valid data before continuing.
+    if (empty($data)) {
+      continue;
+    }
+    foreach ($data as $entity) {
+      $submissions = entity_load('webform_submission_entity', array($entity->sid));
+      // Check for valid submissions before continuing.
+      if (empty($submissions)) {
+        continue;
+      }
+      $submission = array_shift($submissions);
       if ($type == 'grant_application') {
-        if (count($data)) {
-          foreach ($data as $grant_app) {
-            $submissions = entity_load('webform_submission_entity', array($grant_app->sid));
-            $submission = array_shift($submissions);
-            $grant_ref = field_get_items('webform_submission_entity', $submission, 'field_webform_grant_ref');
-            // Note if the grant application does not reference a grant, it will not be listed.
-            if (isset($grant_ref[0]['nid'])) {
-              $grant = node_load($grant_ref[0]['nid']);
-              $image = field_get_items('node', $grant, 'field_picture');
-              $something = new stdClass();
-              $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
-              $node = node_load($submission->nid);
-              $edit_access = webform_submission_access($node, $submission, 'edit', $account);
-              $something->uri = array('options' => array());
-              $something->uri['path'] = ($edit_access && $era == 'current') ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
-              $something->title = $grant->title;
-              $something->type = 'grant_application';
-              $somethings[] = $something;
-            }
-          }
-        } 
+        $grant_ref = field_get_items('webform_submission_entity', $submission, 'field_webform_grant_ref');
+        // Note if the grant application does not reference a grant, it will not be listed.
+        if (isset($grant_ref[0]['nid'])) {
+          $grant = node_load($grant_ref[0]['nid']);
+          $image = field_get_items('node', $grant, 'field_picture');
+          $something = new stdClass();
+          $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
+          $node = node_load($submission->nid);
+          $edit_access = webform_submission_access($node, $submission, 'edit', $account);
+          $something->uri = array('options' => array());
+          $something->uri['path'] = ($edit_access && $era == 'current') ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+          $something->title = $grant->title;
+          $something->type = 'grant_application';
+          $somethings[] = $something;
+        }
       }
       elseif ($type == 'project_report') {
-        if (count($data)) {
-          foreach ($data as $project) {
-            $submissions = entity_load('webform_submission_entity', array($project->sid));
-            $submission = array_shift($submissions);
-            $image = field_get_items('webform_submission_entity', $submission, 'field_picture');
-            $something = new stdClass();
-            $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
-            $something->uri = entity_uri('webform_submission_entity', $submission);
-            $something->check_path = TRUE;
-            $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
-            $something->title = isset($title[0]['value']) ? $title[0]['value'] : t('New Project');
-            $something->type = 'project_report';
-            $somethings[] = $something;
-          }
-        }
+        $image = field_get_items('webform_submission_entity', $submission, 'field_picture');
+        $something = new stdClass();
+        $something->image = isset($image[0]['uri']) ? $image[0] : NULL;
+        $something->uri = entity_uri('webform_submission_entity', $submission);
+        $something->check_path = TRUE;
+        $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
+        $something->title = isset($title[0]['value']) ? $title[0]['value'] : t('New Project');
+        $something->type = 'project_report';
+        $somethings[] = $something;
       }
     }
   }

@@ -3404,7 +3404,7 @@ nav[role=navigation] .region-navigation .block-menu-block {
   display: table;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block {
-  padding-left: 200px;
+  padding-left: 170px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu {
   display: table-row;
@@ -3452,7 +3452,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   margin-left: -28px;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
-  margin-left: 0px;
+  margin-left: -150px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li {
   display: block;
@@ -3469,6 +3469,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li.first
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li:nth-of-type(3) {
   padding-left: 0;
+}
+nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li.last {
+  margin-left: 0;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul li a {
   color: white;
@@ -3497,19 +3500,21 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
   margin-left: -3px;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.first ul {
-  margin-left: -3px;
+  margin-left: -113px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last {
   width: 208px;
+  margin-left: -20px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
   width: 232px;
 }
 .ie7 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul {
-  margin-left: -25px;
+  margin-left: -233px;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li.last ul li.last {
   width: 232px;
+  margin-left: 0;
 }
 nav[role=navigation] .region-navigation .block-menu-block ul.menu li:hover ul {
   opacity: 1;
