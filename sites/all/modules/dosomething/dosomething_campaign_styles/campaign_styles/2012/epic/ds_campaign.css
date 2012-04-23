@@ -95,6 +95,10 @@ div[role="main"] {
   float: left;
   margin: 0 24px 24px 0; }
 
+.node-page .content img, .page-node .content img {
+  margin-top: 0;
+  margin-bottom: 0; }
+
 .pane-campaign-blog-panel-pane-1 {
   background: transparent !important;
   border: none !important; }
