@@ -28,6 +28,7 @@ $bgPanelColor: rgba(125,125,125,0.5)
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
+  background: rgb(31,75,167)
   background: rgba(255,255,255,.75)
 
 // top and bottom border for elements
@@ -172,7 +173,7 @@ div[role="main"]
   +block
   border: none
   background: $bgPanelColor
-  margin: 0 0 2em 0
+  margin: 1em 0 2em 0
   .pane-title
     background: $baseColor
   .pane-content
@@ -185,6 +186,10 @@ div[role="main"]
         .webform-client-form
           +noBoxShadow
           border: none
+          .form-actions
+            height: 30px
+          .form-wrapper
+            margin-bottom: 5px
         .field-name-field-webform-mobile
           margin-bottom: 0.5em
           input
@@ -296,3 +301,6 @@ div[role="main"]
 img
   +noBorder
   +noBoxShadow
+
+.pane-campaign-social
+  border-top: $borderTop
