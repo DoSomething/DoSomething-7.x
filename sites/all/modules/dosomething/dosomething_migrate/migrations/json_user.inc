@@ -26,8 +26,8 @@ abstract class DSJsonUserMigration extends Migration {
 
     $base_url = variable_get('ds_migrate_url', 'http://zivtech:zivtech@dosomething6.dev.zivtech.com/migrate');
 
-    $this->sourceItemReviewPattern = "http://www.dosomething.org/user/:id:/edit";
-    $this->destinationItemReviewPattern = "http://dosomething.local/user/:id:/edit";
+    $this->sourceItemReviewPattern = "http://old.dosomething.org/user/:id:/edit";
+    $this->destinationItemReviewPattern = "http://dosomething.org/user/:id:/edit";
 
     $this->source = new MigrateSourceMultiItems(
       new DSUserJsonMigrateItems($base_url, $query_args),
