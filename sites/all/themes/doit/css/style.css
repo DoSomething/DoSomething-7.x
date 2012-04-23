@@ -2875,6 +2875,8 @@ select.form-select {
   top: 11px;
 }
 #dosomething-login-register-popup-form .form-item-parent-email label.error {
+  overflow: hidden;
+  *zoom: 1;
   display: inline;
   float: left;
   clear: left;
@@ -3056,7 +3058,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -3571,7 +3573,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 #block-menu-menu-footer .content ul.menu li span {
   padding: 0;
@@ -3825,7 +3827,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3880,7 +3882,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0px;
+  margin-left: 0;
 }
 .ie8 .region-sidebar-first .block-menu-block .content li {
   background-color: #efefef;
