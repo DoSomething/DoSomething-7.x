@@ -14,6 +14,7 @@ body {
 
 div[role="main"] {
   background: white;
+  margin: 0;
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -131,7 +132,7 @@ div[role="main"] {
   .panel-row-actions .pane-title {
     background: #92d2ba; }
   .panel-row-actions .pane-content {
-    padding: 18px; }
+    padding-right: 18px; }
   .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
     margin: 0; }
   .panel-row-actions .panel-row-actions-sign-up .pane-content {
@@ -141,23 +142,41 @@ div[role="main"] {
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
-        width: 78%; }
+        width: 100%; }
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
 
-#webform-client-form-721424 #edit-actions {
-  position: absolute;
-  right: 5px;
-  bottom: 3px; }
+.panel-row-actions-stats .campaign-counter {
+  margin: 10px 5px 0 0; }
+
+.campaign-counter-labels {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  line-height: 25px;
+  float: left; }
+
+.campaign-counter-label-top {
+  margin-bottom: 14px; }
+
+.campaign-counter-number-top {
+  margin: 6px 0 10px 0; }
+
+.campaign-counter-numbers,
+.campaign-counter-number-bottom {
+  float: right; }
+
+.panel-pane {
+  margin-bottom: 0; }
 
 #campaign-opt-in {
-  margin: -10px 0 10px 15px; }
-  #campaign-opt-in a {
-    color: white; }
-  #campaign-opt-in a:hover {
-    color: #bbbbbb; }
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  width: 250px; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -200,6 +219,7 @@ div[role="main"] {
 
 .panel-row-flexible .panel-pane {
   margin-bottom: 15px;
+  border: none;
   background: white; }
   .panel-row-flexible .panel-pane .pane-title {
     background: #92d2ba; }
@@ -241,29 +261,27 @@ div[role="main"] {
   font-weight: bold;
   margin: 0 0 0 20px; }
 
-.drive {
-  background: white; }
-  .drive .pane-content {
-    background: #f0ebde;
-    padding: 10px 10px 10px 0; }
-  .drive p {
-    padding-left: 25px; }
-  .drive li {
-    margin: 0;
-    width: 100%;
-    text-decoration: none;
-    font-weight: normal;
-    font-size: 12px;
-    font-family: "Trebuchet MS", sans-serif;
-    line-height: 22px;
-    float: none; }
-    .drive li h3 {
-      font-family: din-web, "Trebuchet MS", sans-serif;
-      color: #f48b8c;
-      font-size: 24px;
-      text-transform: uppercase;
-      font-weight: 600;
-      line-height: 1.5em; }
+.drive .pane-content {
+  background: #f0ebde;
+  padding: 10px 20px 10px 0; }
+.drive p {
+  padding-left: 25px; }
+.drive li {
+  margin: 0;
+  width: 100%;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 12px;
+  font-family: "Trebuchet MS", sans-serif;
+  line-height: 22px;
+  float: none; }
+  .drive li h3 {
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    color: #f48b8c;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.5em; }
 
 #location-pane .pane-content {
   padding: 25px; }
@@ -315,9 +333,11 @@ div[role="main"] {
   width: 40%;
   margin-right: 2%; }
 
-.webform-client-form {
+form.webform-client-form {
   border: none;
-  box-shadow: none; }
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
 
 .form-wrapper {
   margin-bottom: 5px; }
@@ -347,6 +367,9 @@ img {
   -o-box-shadow: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important; }
+
+.panel-row-ad-quick-info .pane-title {
+  color: #f48b8c !important; }
 
 .panel-panel {
   margin-bottom: 15px; }
