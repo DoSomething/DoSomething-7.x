@@ -10,7 +10,6 @@
   data-show-faces="false"
   data-font="trebuchet ms"
   data-href="<?php echo $url; ?>"
-  data-description="<?php echo $facebook_language; ?>"
 ></div>
 </div>
 
