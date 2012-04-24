@@ -202,14 +202,16 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
         foreach ($data as $project) {
           $submission = entity_load('webform_submission_entity', array($project->sid));
           $submission = array_shift($submission);
-          $title = $submission->field_project_title;
-          $image = $submission->field_picture;
+          if ($submission) {
+            $title = $submission->field_project_title;
+            $image = $submission->field_picture;
 
-          $action = new stdClass();
-          $action->image = isset($image[LANGUAGE_NONE][0]['uri']) ? $image[LANGUAGE_NONE][0] : NULL;
-          $action->uri = 'webform-submission/' .  $submission->sid;
-          $action->title = isset($title[LANGUAGE_NONE][0]['value']) ? $title[LANGUAGE_NONE][0]['value'] : t('New Project');
-          $actions[] = $action;
+            $action = new stdClass();
+            $action->image = isset($image[LANGUAGE_NONE][0]['uri']) ? $image[LANGUAGE_NONE][0] : NULL;
+            $action->uri = 'webform-submission/' .  $submission->sid;
+            $action->title = isset($title[LANGUAGE_NONE][0]['value']) ? $title[LANGUAGE_NONE][0]['value'] : t('New Project');
+            $actions[] = $action;
+          }
         }
       }
     }
@@ -252,11 +254,21 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
     if ($all) {
       $image_style = 'my_somethings';
       $more_link = '';
+      $default_image = array(
+        'uri' => 'sites/all/modules/dosomething/features/dosomething_projects_general/project-nopic-120x120.png',
+        'title' => 'DoSomething Club',
+        'alt' => 'DoSomething Clubs Default image',
+      );
     }
     else {
       $more_link = count($actions) > 4 ? l('More >>', 'school/' . $school_id . '/done-it') : '';
       $actions = array_slice($actions, 0, 4);
       $image_style = 'project_related_thumb';
+      $default_image = array(
+        'uri' => 'sites/all/modules/dosomething/features/dosomething_projects_general/project-nopic-60x60.png',
+        'title' => 'DoSomething Club',
+        'alt' => 'DoSomething Clubs Default image',
+      );
     }
 
     // Create render array for display.
@@ -270,8 +282,8 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
         ),
         'image' => array(
           '#theme' => 'image_formatter',
-          '#item' => $action->image,
-          '#image_style' => $image_style,
+          '#item' => isset($action->image) ? $action->image : $default_image,
+          '#image_style' => isset($action->image) ? $image_style : NULL,
           '#path' => array(
             'path' => $action->uri,
           ),
@@ -307,26 +319,27 @@ function dosomething_schools_done_it_display($school_id, $all = TRUE) {
  * Get project reports related to a school.
  */
 function dosomething_schools_done_it_projects($school_id) {
-  // Query for all projects reports that reference a club
+  // Query for all projects report submissions by og members of a club
   // in which that club references the school.
-  // TODO: clubs should include all projects of their members.
-  /*
-  $query = db_select('webform_submissions', 'w');
-  $query->innerJoin('field_data_field_project_clubs', 'c', 'w.sid = c.entity_id');
-  $query->innerJoin('field_data_field_school_reference', 's', 'c.field_project_clubs_nid = s.entity_id');
-  $query->innerJoin('node', 'n', 's.entity_id = n.nid');
-  $query->innerJoin('field_data_field_project_title', 't', 'w.sid = t.entity_id');
-  $query->fields('w', array('sid', 'submitted'));
-  $query->addField('t', 'field_project_title_value', 'title');
+  $query = db_select('field_data_field_school_reference', 's');
   $query->condition('s.field_school_reference_target_id', $school_id, '=');
+  $query->condition('s.bundle', 'club', '=');
+  $query->innerJoin('node', 'n', 's.entity_id = n.nid');
   $query->condition('n.status', '1', '=');
+  $query->innerJoin('og', 'og', 'n.nid = og.etid');
+  $query->innerJoin('og_membership', 'om', 'og.gid = om.gid');
+  $query->condition('om.entity_type', 'user', '=');
+  $query->condition('om.state', '1', '=');
+  $query->innerJoin('webform_submissions', 'w', 'om.etid = w.uid');
+  $query->condition('w.bundle', 'project_report', '=');
+  $query->fields('w', array('sid', 'submitted'));
   $results = $query->execute();
 
   $items = array();
   while ($result = $results->fetchObject()) {
     $items[] = $result;
   }
-  */
+
   // Query for all project report submissions, submitted by
   // users with the school set on their profile.
   $query = db_select('field_data_field_school_reference', 's');
