@@ -165,9 +165,12 @@ div[role="main"] {
 .campaign-counter-number-top {
   margin: 6px 0 10px 0; }
 
-.campaign-counter-numbers,
-.campaign-counter-number-bottom {
+.campaign-counter-numbers {
   float: right; }
+
+.campaign-counter-number-top,
+.campaign-counter-number-bottom {
+  text-align: right; }
 
 .panel-pane {
   margin-bottom: 0; }
