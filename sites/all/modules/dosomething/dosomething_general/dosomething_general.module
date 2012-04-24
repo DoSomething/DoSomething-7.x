@@ -389,6 +389,7 @@ function dosomething_general_ctools_render_alter($info, $page, $context) {
         drupal_set_title($contexts['argument_nid_1']->title);
         if ($panels_pane) $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
         OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
+        break;
       }
     }
   }
