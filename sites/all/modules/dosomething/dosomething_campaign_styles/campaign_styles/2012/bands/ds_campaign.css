@@ -648,3 +648,21 @@ img {
 
 .pane-dosomething-login-register-block .popup-content {
   height: 160px !important; }
+
+.node-campaign-blog-post {
+  padding: 15px !important; }
+  .node-campaign-blog-post .field-type-text-with-summary {
+    width: 500px;
+    float: right;
+    padding-left: 10px; }
+  .node-campaign-blog-post .field-name-field-picture img {
+    margin: 0; }
+  .node-campaign-blog-post .field-name-field-blog-video {
+    clear: both;
+    position: relative;
+    bottom: -25px;
+    right: -125px;
+    margin: 35px 0; }
+    .node-campaign-blog-post .field-name-field-blog-video iframe {
+      margin: 0 auto;
+      display: block; }
