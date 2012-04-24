@@ -491,3 +491,12 @@ div[role="main"] {
 
 .pane-green-your-school-submission-list-panel-pane-1 {
   clear: both; }
+
+.pane-webform-submission-entity {
+  background-color: #8dc641; }
+  .pane-webform-submission-entity .pane-content {
+    margin: 20px 135px;
+    padding-bottom: 20px; }
+  .pane-webform-submission-entity .field-name-taxonomy-vocabulary-5,
+  .pane-webform-submission-entity #webform-component-school {
+    display: none; }
