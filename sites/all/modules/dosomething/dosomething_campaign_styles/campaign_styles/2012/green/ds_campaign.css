@@ -433,8 +433,7 @@ div[role="main"] {
       color: white; }
 
 #share-your-story {
-  float: left;
-  margin-bottom: 20px; }
+  float: left; }
   #share-your-story .pane-content {
     padding: 10px;
     padding-bottom: 25px;
