@@ -386,3 +386,6 @@ div[role="main"] {
 
 form.webform-client-form #edit-actions {
   overflow: visible; }
+
+#breadcrumb {
+  display: none; }
