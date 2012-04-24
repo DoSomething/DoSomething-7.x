@@ -1788,7 +1788,7 @@ function theme_dosomething_login_fboauth_user_form_connect($variables) {
   global $user;
   $uid = $variables['uid'];
   $fbid = $variables['fbid'];
-
+  $output = '';
   // Don't show this for admins. It won't deauth because it requires the
   // user themselves to be logged into Faceboook.
   if ($user->uid == $uid) {
