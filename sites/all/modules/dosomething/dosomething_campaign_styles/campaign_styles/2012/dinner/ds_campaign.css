@@ -28,6 +28,9 @@ div[role="main"] {
   margin-top: 20px;
   padding-top: 10px; }
 
+body.one-sidebar.sidebar-first [role="main"] {
+  margin: 0; }
+
 .three-boxes {
   width: 29%;
   float: left;
@@ -191,6 +194,9 @@ div[role="main"] {
   .panel-top-right-social .facebook-plugin {
     width: 60px; }
 
+.fb_edge_widget_with_comment {
+  top: -5px; }
+
 #honorees-pane img {
   margin: 15px auto;
   display: block; }
@@ -205,3 +211,13 @@ div[role="main"] {
 
 .center {
   text-align: center; }
+
+#breadcrumb {
+  display: none; }
+
+img {
+  border: none !important;
+  box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important; }
