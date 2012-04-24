@@ -42,9 +42,6 @@ function dosomething_project_report_stats_content_type_render($subtype, $conf, $
     $uid = $wrapper->value()->uid;
     $account = user_load($uid);
     $name = dosomething_general_get_full_name($account);
-    $profile = profile2_load_by_user($account->uid, 'main');
-    $profile = entity_metadata_wrapper('profile2', $profile);
-    $address = $profile->field_user_address->value();
     $misc = array();
     if ($awards = $wrapper->field_grant_winner->value()) {
       foreach ($awards as $award) {
