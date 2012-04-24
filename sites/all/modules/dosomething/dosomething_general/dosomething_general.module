@@ -349,3 +349,27 @@ function dosomething_general_form_webform_client_validate($form, &$form_state) {
   }
 }
 
+/**
+ * Implements hook_cools_render_alter().
+*/
+function dosomething_general_ctools_render_alter($info, $page, $context) {
+  $panels_pane = FALSE;
+  //we only want to do this if there's only one node in the context
+  if (count($context['contexts']) == 1) {
+    $local_context = $context['contexts'];
+  }
+  else if (count($context['handler']->conf['display']->content['context'] > 0)) {
+    $local_context = $context['handler']->conf['display']->context;
+    $panels_pane = TRUE;
+  }
+  if (isset($local_context)) {
+    foreach ($local_context as $ctxt) {
+      if (in_array('node', $ctxt->type)) {
+        $node = $ctxt->data;
+        drupal_set_title($contexts['argument_nid_1']->title);
+        if ($panels_pane) $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
+        OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
+      }
+    }
+  }
+}
