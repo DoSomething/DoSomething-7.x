@@ -11,7 +11,7 @@
 function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
   // Add the blog-archive.js file to the Blog Archive block.
   if ($view->name == 'blog_center' && $display_id == 'blog_archive_block') {
-    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/blog-archive.js'); 
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/blog-archive.js');
   }
   // Add project-photo-slider.js file to the project_photo_slider views content pane.
   if ($view->name == 'project_photo_slider' && $display_id == 'panel_pane_1') {
@@ -129,7 +129,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
 
   $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-  
+
   // make sure all of the required values are set in the node and submission
   if (!empty($mc_opt_in) && !empty($cell)) {
     dosomething_general_mobile_commons_subscribe($cell, $mc_opt_in);
@@ -164,7 +164,7 @@ function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
         // add new contact and add them to the action set
         $dups = $app->addCon($contact);
         $app->runAS($dups, $action_id);
-      }   
+      }
       else {
         /*If the email is a duplicate*/
         $contactId = $dups[0]['Id'];
@@ -337,7 +337,7 @@ function dosomething_general_form_webform_client_form_alter(&$form, &$form_state
  * Validate mobile numbers submitted through webform entities.
  */
 function dosomething_general_form_webform_client_validate($form, &$form_state) {
-  if (isset($form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
+  if (isset($form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
     $valid_number = dosomething_general_valid_cell($form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value']);
     if (!$valid_number) {
       form_set_error('submitted][field_webform_mobile', t('Please provide a valid cell phone number.'));
