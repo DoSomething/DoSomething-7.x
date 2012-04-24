@@ -493,10 +493,19 @@ div[role="main"] {
   clear: both; }
 
 .pane-webform-submission-entity {
-  background-color: #8dc641; }
+  background-color: #8dc641 !important; }
   .pane-webform-submission-entity .pane-content {
     margin: 20px 135px;
     padding-bottom: 20px; }
-  .pane-webform-submission-entity .field-name-taxonomy-vocabulary-5,
-  .pane-webform-submission-entity #webform-component-school {
-    display: none; }
+    .pane-webform-submission-entity .pane-content .webform-component-display {
+      font-size: 14px;
+      margin-bottom: 10px; }
+    .pane-webform-submission-entity .pane-content .field-label,
+    .pane-webform-submission-entity .pane-content label {
+      font-size: 16px;
+      font-weight: 600; }
+    .pane-webform-submission-entity .pane-content .field-items {
+      margin: 10px 0; }
+    .pane-webform-submission-entity .pane-content .field-name-taxonomy-vocabulary-5,
+    .pane-webform-submission-entity .pane-content #webform-component-school {
+      display: none; }
