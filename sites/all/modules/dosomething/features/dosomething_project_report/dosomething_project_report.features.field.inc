@@ -852,6 +852,11 @@ The content from this field will only be shown to anonymous users.',
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'field_essay_build_it:value',

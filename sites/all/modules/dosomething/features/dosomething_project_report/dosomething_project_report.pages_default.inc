@@ -144,7 +144,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'text_default',
+      'formatter' => 'text_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -172,7 +172,7 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'text_default',
+      'formatter' => 'text_plain',
       'formatter_settings' => array(),
       'context' => 'argument_entity_id:webform_submission_entity_1',
       'override_title' => 1,
