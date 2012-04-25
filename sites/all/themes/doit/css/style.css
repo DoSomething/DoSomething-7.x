@@ -2145,12 +2145,6 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
   min-width: 160px;
 }
 
-#edit-issues-wrapper,
-#edit-who-wrapper,
-#edit-where-wrapper {
-  padding-right: 17px;
-}
-
 #dosomething-blocks-make-an-impact-form input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front input[type="submit"] {
   display: inline;
@@ -2937,6 +2931,10 @@ select.form-select {
 #dosomething-login-register-facebook .under-13-field .ds-registration-form-required {
   top: 22px;
 }
+.ie7 #dosomething-login-register-popup-form .under-13-field .ds-registration-form-required, .ie7
+#dosomething-login-register-facebook .under-13-field .ds-registration-form-required {
+  display: none;
+}
 .ie7 #dosomething-login-register-popup-form .under-13-field #edit-parent-email-message, .ie7
 #dosomething-login-register-facebook .under-13-field #edit-parent-email-message {
   text-indent: -119988px;
@@ -3155,7 +3153,7 @@ ul.pager {
 ul.pager li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
   white-space: nowrap;
   display: inline;
   float: left;
@@ -3670,7 +3668,7 @@ h2.block-title, h2.pane-title {
 #block-menu-menu-footer .content ul.menu li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 #block-menu-menu-footer .content ul.menu li span {
   padding: 0;
@@ -3924,7 +3922,7 @@ h2.block-title, h2.pane-title {
 .block-facetapi ul.facetapi-facetapi-checkbox-links li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover {
   text-decoration: none;
@@ -3979,7 +3977,7 @@ h2.block-title, h2.pane-title {
 .region-sidebar-first .block-menu-block .content li li {
   list-style-image: none;
   list-style-type: none;
-  margin-left: 0;
+  margin-left: 0px;
 }
 .ie8 .region-sidebar-first .block-menu-block .content li {
   background-color: #efefef;
