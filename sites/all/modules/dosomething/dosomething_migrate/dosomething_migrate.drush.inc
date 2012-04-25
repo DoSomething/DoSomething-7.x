@@ -22,6 +22,8 @@ function dosomething_migrate_drush_help($section) {
       return dt('temp function to help rollback profiles');
     case 'dosomething-migrate-create-redirect-from-migration-alias':
       return dt('For each migration, grab the URL aliases and create a redirect on the new site.');
+    case 'dosomething-migrate-update-user-roles':
+      return dt('Fix the membership roles for all users within the given uid range.');
   }
 }
 
@@ -60,6 +62,14 @@ function dosomething_migrate_drush_command() {
     'description' => 'For each migration, create a url alias to point to the content on the new site.',
     'bootstrap' => DRUSH_BOOTSTRAP_MAX,
     'aliases' => array('dsma'),
+  );
+  $items['dosomething-migrate-update-user-roles'] = array(
+    'description' => 'Fix the membership roles for all users within the given uid range.',
+    'aliases' => array('dsmuppet'),
+    'arguments' => array(
+      'first_uid' => 'The uid of the first user to update.',
+      'last_uid' => 'The uid of the last user to update.',
+    ),
   );
   return $items;
 }
@@ -673,4 +683,37 @@ function drush_dosomething_migrate_create_redirect_from_migration_alias_migratio
     // 'migrate_map_dscampaignsignupstaples' => 'webform-submission',
     // 'migrate_map_dscampaignsignuptacklehunger' => 'webform-submission',
   );
+}
+
+/**
+ * Fix the membership roles for all users within the given uid range.
+ */
+function drush_dosomething_migrate_update_user_roles($first_uid = NULL, $last_uid = NULL) {
+  foreach (array($first_uid, $last_uid) as $input) {
+    if (!is_int($input) && !ctype_digit($input)) {
+      return drush_set_error('dosomething_migrate_member_role_fix', t('Invalid uid.'));
+    }
+  }
+
+  $confirm = drush_confirm('Are you sure you want to update the roles on these users?');
+  if ($confirm === FALSE) {
+    return;
+  }
+  for ($uid = $first_uid; $uid <= $last_uid; $uid++) {
+    if ($account = user_load($uid)) {
+      if (dosomething_roles_user_is_staff_member($account) || dosomething_roles_user_is_too_old($account)) {
+        drush_print(sprintf('Skipping user %d', $uid));
+        continue;
+      }
+      $roles = user_roles();
+      $rids = array_flip(array_intersect($roles, dosomething_roles_get_membership_role_hierarchy()));
+
+      $new_role = dosomething_roles_get_member_role($uid);
+      $new_rid = $rids[$new_role];
+
+      db_delete('users_roles')->condition('rid', $rids, 'IN')->condition('uid', $uid, '=')->execute();
+      db_insert('users_roles')->fields(array('uid' => $uid, 'rid' => $new_rid ))->execute();
+      drush_print(sprintf('Updated user %d to %s', $uid, $new_role));
+    }
+  }
 }
