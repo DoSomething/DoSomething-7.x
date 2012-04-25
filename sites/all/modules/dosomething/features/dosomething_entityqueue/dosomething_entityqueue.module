@@ -7,4 +7,5 @@ include_once('dosomething_entityqueue.features.inc');
  */
 function dosomething_entityqueue_entityqueue_type_get_name_alter(&$types) {
   $types['dosomething_project'] = t('DoSomething Projects (webform submissions)');
+  $types['dosomething_grant_application'] = t('DoSomething Grant Applications (webform submissions)');
 }
