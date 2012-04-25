@@ -200,14 +200,18 @@ div[role="main"]
 .pane-campaign-blog-panel-pane-1
   background: transparent !important
   border: none !important
-  // &:before
-  //   +insetBorder
-  // &:after
-  //   +insetBorder
   .pane-content
     padding: 15px
   a
-    color: $secondaryLink
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
   .more-link
     text-transform: uppercase
 
@@ -219,8 +223,6 @@ div[role="main"]
   .view-campaign-blog
     .views-row
       padding: 5px 15px 15px
-      // &:before
-      //   +insetBorder
         margin: 1em 0 1em 0
       &:first-child
         &:before
@@ -325,9 +327,10 @@ div[role="main"]
     position: absolute
     bottom: 0
     left: 330px
-    color: #000
-  a:hover
-    color: #444
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -524,7 +527,10 @@ $contestsFontSize: 1em
   .pane-content
     padding-bottom: 0
   a
-    color: $secondaryLink
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
 
 .faq-section
   border: none !important
@@ -676,7 +682,10 @@ $contestsFontSize: 1em
       text-transform: uppercase
       display: block
     a
-      color: $secondaryLink
+      color: $baseColor
+      text-decoration: underline
+      &:hover
+        color: $secondaryLink
 
 // share your video
 #looking-for
@@ -695,9 +704,14 @@ $contestsFontSize: 1em
       margin: 0 auto
       width: 175px
       a
-        color: $secondaryLink
+        color: $baseColor
+        text-decoration: underline
+        &:hover
+          color: $secondaryLink
+      li
+        color: $baseColor
     .page-current
-      color: $secondaryLink
+      color: $baseColor
 
 // sweepin' away the breadcrumb trail
 #breadcrumb
@@ -710,6 +724,10 @@ img
   -o-box-shadow: none !important
   -moz-box-shadow: none !important
   -webkit-box-shadow: none !important
+
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: $baseColor !important
 
 .panel-panel
   margin-bottom: 15px

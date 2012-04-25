@@ -150,7 +150,14 @@ div[role="main"] {
   .pane-campaign-blog-panel-pane-1 .pane-content {
     padding: 15px; }
   .pane-campaign-blog-panel-pane-1 a {
-    color: #ff130a; }
+    color: black;
+    text-decoration: underline; }
+    .pane-campaign-blog-panel-pane-1 a:hover {
+      color: #ff130a; }
+  .pane-campaign-blog-panel-pane-1 .views-field-title a {
+    text-decoration: none; }
+    .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
+      color: #ff130a; }
   .pane-campaign-blog-panel-pane-1 .more-link {
     text-transform: uppercase; }
 
@@ -160,7 +167,8 @@ div[role="main"] {
   .pane-campaign-blog-panel-pane-2 .pane-content {
     padding: 10px 0 0 0; }
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row {
-    padding: 5px 15px 15px; }
+    padding: 5px 15px 15px;
+      padding-margin: 1em 0 1em 0; }
     .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
       border: none;
       margin: 0; }
@@ -253,9 +261,10 @@ div[role="main"] {
     position: absolute;
     bottom: 0;
     left: 330px;
-    color: black; }
-  #campaign-opt-in a:hover {
-    color: #444444; }
+    color: black;
+    text-decoration: underline; }
+    #campaign-opt-in a:hover {
+      color: #ff130a; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -467,7 +476,10 @@ div[role="main"] {
   .contests-no-bg-no-border .pane-content {
     padding-bottom: 0; }
   .contests-no-bg-no-border a {
-    color: #ff130a; }
+    color: black;
+    text-decoration: underline; }
+    .contests-no-bg-no-border a:hover {
+      color: #ff130a; }
 
 .faq-section {
   border: none !important; }
@@ -609,7 +621,10 @@ div[role="main"] {
   text-transform: uppercase;
   display: block; }
 #video-gallery .views-field-nothing-1 a {
-  color: #ff130a; }
+  color: black;
+  text-decoration: underline; }
+  #video-gallery .views-field-nothing-1 a:hover {
+    color: #ff130a; }
 
 #looking-for {
   margin-bottom: 15px; }
@@ -625,9 +640,14 @@ div[role="main"] {
     margin: 0 auto;
     width: 175px; }
     .ds-panel .pane-content .pager a {
-      color: #ff130a; }
+      color: black;
+      text-decoration: underline; }
+      .ds-panel .pane-content .pager a:hover {
+        color: #ff130a; }
+    .ds-panel .pane-content .pager li {
+      color: black; }
   .ds-panel .pane-content .page-current {
-    color: #ff130a; }
+    color: black; }
 
 #breadcrumb {
   display: none; }
@@ -638,6 +658,9 @@ img {
   -o-box-shadow: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important; }
+
+.panel-row-ad-quick-info h2.pane-title {
+  color: black !important; }
 
 .panel-panel {
   margin-bottom: 15px; }
