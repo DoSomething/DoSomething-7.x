@@ -679,15 +679,15 @@ img {
 .pane-webform-submission-entity #webform-component-field-bfb-emails,
 .pane-webform-submission-entity #webform-component-field-bfb-video,
 .pane-webform-submission-entity #webform-component-field-bfb-lastname,
-.pane-webform-submission-entity #webform-component-field-bfb-name,
-.pane-webform-submission-entity #webform-component-school {
+.pane-webform-submission-entity #webform-component-field-bfb-name {
   display: none; }
 .pane-webform-submission-entity #webform-component-field-bfb-education,
 .pane-webform-submission-entity #webform-component-field-bfb-together,
 .pane-webform-submission-entity #webform-component-field-bfb-challenge,
 .pane-webform-submission-entity #webform-component-field-bfb-team,
 .pane-webform-submission-entity #webform-component-field-bfb-city,
-.pane-webform-submission-entity #webform-component-state {
+.pane-webform-submission-entity #webform-component-state,
+.pane-webform-submission-entity #webform-component-school {
   font-size: 14px;
   margin-bottom: 10px; }
   .pane-webform-submission-entity #webform-component-field-bfb-education label,
@@ -695,6 +695,7 @@ img {
   .pane-webform-submission-entity #webform-component-field-bfb-challenge label,
   .pane-webform-submission-entity #webform-component-field-bfb-team label,
   .pane-webform-submission-entity #webform-component-field-bfb-city label,
-  .pane-webform-submission-entity #webform-component-state label {
+  .pane-webform-submission-entity #webform-component-state label,
+  .pane-webform-submission-entity #webform-component-school label {
     font-size: 16px;
     font-weight: 600; }
