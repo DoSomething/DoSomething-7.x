@@ -369,3 +369,34 @@ function dosomething_general_form_webform_client_validate($form, &$form_state) {
   }
 }
 
+/**
+ * Implements hook_token_info().
+ */
+function dosomething_general_token_info() {
+ $info['tokens']['user']['ds_member_name'] = array(
+    'name' => t('Member Name'),
+    'description' => t('Full name or username if not available'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function dosomething_general_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'user' && !empty($data['user'])) {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'ds_member_name':
+          $name = dosomething_general_get_full_name($data['user'], 'private');
+          $replacements[$original] = $name;
+        break;
+      }
+    }
+  }
+  return $replacements;
+}
+
