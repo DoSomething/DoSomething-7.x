@@ -279,7 +279,7 @@ function dosomething_migrate_surgical_profile_deletion() {
  */
 function dosomething_migrate_force_phone_number_update() {
   $last = variable_get('dosomething_phone_import_status', 0);
-  $d6results = db_query("SELECT uid, value FROM dosomething_prod.profile_value WHERE fid = 13 AND value IS NOT NULL AND value <> :thing AND uid > :uid", array(':thing' => '', ':uid' => $last));
+  $d6results = db_query("SELECT uid, value FROM dosomething_prod.profile_values WHERE fid = 13 AND value IS NOT NULL AND value <> :nothing AND uid > :uid", array(':nothing' => '', ':uid' => $last));
   $i = 0;
   while ($result = $d6results->fetchAssoc()) {
     print 'updating profile phone number for user ' . $result['uid'] . "\n";
