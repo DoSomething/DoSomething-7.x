@@ -278,10 +278,19 @@ function dosomething_migrate_surgical_profile_deletion() {
  * site.
  */
 function dosomething_migrate_force_phone_number_update() {
-  $d6results = db_query("SELECT uid, value FROM dosomething_prod.profile_value WHERE fid = 13");
+  $last = variable_get('dosomething_phone_import_status', 0);
+  $d6results = db_query("SELECT uid, value FROM dosomething_prod.profile_value WHERE fid = 13 AND uid > :uid", array(':uid' => $last));
+  $i = 0;
   while ($result = $d6results->fetchAssoc()) {
-      print 'updating profile phone number for user ' . $result['uid'] . "\n";
-      $phone =  preg_replace('/\D/', '', $result['value']);
-      db_query("UPDATE field_data_field_user_mobile SET field_user_mobile_value = :num WHERE field_data_field_user_mobile IS NULL OR field_data_field_user_mobile = :nothing AND entity_id = (SELECT pid FROM profile WHERE uid = :uid LIMIT 1) AND entity_type = :type", array(':num' => $phone, ':nothing' => '', ':uid' => $result['uid'], ':type' => 'profile2'));
+    print 'updating profile phone number for user ' . $result['uid'] . "\n";
+    $phone =  preg_replace('/\D/', '', $result['value']);
+    db_query("UPDATE field_data_field_user_mobile SET field_user_mobile_value = :num WHERE field_data_field_user_mobile IS NULL OR field_data_field_user_mobile = :nothing AND entity_id = (SELECT pid FROM profile WHERE uid = :uid LIMIT 1) AND entity_type = :type", array(':num' => $phone, ':nothing' => '', ':uid' => $result['uid'], ':type' => 'profile2'));
+
+    // Let's not go crazy storing variables but every 10K let's flag our
+    // status so we can pick back up without redoing everything.
+    $i++;
+    if ($i % 10000 == 0) {
+      variable_set('dosomething_phone_import_status', $result['uid'];
+    }
   }
 }
