@@ -210,3 +210,17 @@
         position: relative
         top: -17px
         left: 7px
+
+// Hide the ie register link for all instances first
+.ie-signup-button
+  display: none
+
+// IE7 login block hack
+.ie7 .front.not-logged-in
+  .ds-register-wrapper
+    display: none
+  a.ie-signup-button
+    display: block
+    +replace-text-with-dimensions("ie-signup-button.png")
+    margin: 8px 0 0 29px
+    padding-bottom: 20px

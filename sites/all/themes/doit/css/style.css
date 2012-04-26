@@ -3020,6 +3020,27 @@ select.form-select {
   left: 7px;
 }
 
+.ie-signup-button {
+  display: none;
+}
+
+.ie7 .front.not-logged-in .ds-register-wrapper {
+  display: none;
+}
+.ie7 .front.not-logged-in a.ie-signup-button {
+  display: block;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/ie-signup-button.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 138px;
+  height: 63px;
+  margin: 8px 0 0 29px;
+  padding-bottom: 20px;
+}
+
 #site-name a {
   border-bottom: none;
 }

@@ -786,7 +786,25 @@ function dosomething_login_register_block($form, &$form_state) {
     ),
     '#children' => t('or'),
   );
-  $form['name'] = array(
+  $form['ie_signup '] = array(
+    '#theme' => 'link',
+    '#path' => 'user/registration',
+    '#text' => t("Sign Up"),
+    '#options' => array(
+      'attributes' => array('class' => array('ie-signup-button')),
+      'html' => FALSE,
+    ),
+  );
+  $form['ds-register-wrapper'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'clearfix',
+        'ds-register-wrapper',
+      ),
+    ),
+  );
+  $form['ds-register-wrapper']['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
       '#attributes' => array(
@@ -802,19 +820,19 @@ function dosomething_login_register_block($form, &$form_state) {
       '#size' => 9,
     ),
   );
-  $form['cell_or_email'] = array(
+  $form['ds-register-wrapper']['cell_or_email'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
       'placeholder' => t('Cell or email'),
     ),
     '#size' => 20,
   );
-  $form['first_submit'] = array(
+  $form['ds-register-wrapper']['first_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Go'),
     '#attributes' => array('class' => array('submit')),
   );
-  $form['user'] = array(
+  $form['ds-register-wrapper']['user'] = array(
     '#theme' => 'link',
     '#path' => 'user',
     '#text' => t("or sign in"),
