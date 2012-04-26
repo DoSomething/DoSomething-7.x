@@ -115,11 +115,13 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
           // TODO: Sending message and mail means no sanitization.
           $first = $profile_wrapper->field_user_first_name->value();
           $last = $profile_wrapper->field_user_last_name->value();
-          $message = "<p>Hey,</p><p> $first $last has invited you to join '$title' on DoSomething.org</p><p>All you have to do is head over to $base_url and fill out the form to become a DoSomething.org member. Then you'll be able to update the DoSomething.org community on the projects we're working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p>";
           if (valid_email_address($item['value'])) {
+            $message = "<p>Hey,</p><p> $first $last has invited you to join '$title' on DoSomething.org</p><p>All you have to do is head over to $base_url and fill out the form to become a DoSomething.org member. Then you'll be able to update the DoSomething.org community on the projects we're working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p>";
             drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
           }
           else if ($number = dosomething_general_valid_cell($item['value'])) {
+            // Custom message for sms_send since we can't exceed 160 characters
+            $message = 'Your friend has given you access to the Do Something community! We\'ll send weekly stats, ways to take action, and opps for prizes. (text STOP to opt out)';
             sms_send($number, $message);
           }
         }
@@ -172,13 +174,16 @@ function dosomething_projects_general_node_participants_submit($form, &$form_sta
           drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
         }
         else {
-          // Since the user is not in the system, send a message to the user.
-          // Sending message and mail means no sanitization.
-          $message = '<p>Hey,</p><p>' . $full_name . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $base_url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the club profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
           if (valid_email_address($item['value'])) {
+            // Since the user is not in the system, send a message to the user.
+            // Sending message and mail means no sanitization.
+            $message = '<p>Hey,</p><p>' . $full_name . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $base_url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the club profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
+
             drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
           }
           else if ($number = dosomething_general_valid_cell($item['value'])) {
+            // Custom message for sms_send since we can't exceed 160 characters
+            $message = 'Your friend has given you access to the Do Something community! We\'ll send weekly stats, ways to take action, and opps for prizes. (text STOP to opt out)';
             sms_send($number, $message);
           }
         }
