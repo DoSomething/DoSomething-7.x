@@ -1,7 +1,8 @@
 .no-js #dosomething-login-login-popup-form
   display: none
 
-#dosomething-login-register-popup-form
+#dosomething-login-register-popup-form,
+#dosomething-login-register-facebook
   label
     cursor: default
   input
@@ -123,8 +124,8 @@
   .form-item-pass
     .ds-registration-form-required
       // position: absolute
-      top: -5px
-      left: -16px
+      top: -2px
+      left: -11px
     label.error
       width: 212px
 
@@ -141,6 +142,13 @@
     .ds-registration-form-required
       top: 22px
       // left: 205px
+      .ie7 &
+        display: none
+
+    #edit-parent-email-message
+      .ie7 &
+        +replace-text-with-dimensions("under-13.gif")
+        margin-left: -18px
 
   .form-item-parent-email
     input
@@ -172,7 +180,8 @@
 
 // IE8 with js
 .no-js.ie.ie8.js
-  #dosomething-login-register-popup-form
+  #dosomething-login-register-popup-form,
+  #dosomething-login-register-facebook
     .popup-content
       width: 446px
     .ds-registration-form-required
@@ -182,7 +191,8 @@
 
 // IE8 without js
 .no-js.ie.ie8
-  #dosomething-login-register-popup-form
+  #dosomething-login-register-popup-form,
+  #dosomething-login-register-facebook
     .popup-content
       // Left column fields
       .form-item-first-name,
@@ -201,3 +211,17 @@
         position: relative
         top: -17px
         left: 7px
+
+// Hide the ie register link for all instances first
+.ie-signup-button
+  display: none
+
+// IE7 login block hack
+.ie7 .front.not-logged-in
+  .ds-register-wrapper
+    display: none
+  a.ie-signup-button
+    display: block
+    +replace-text-with-dimensions("ie-signup-button.png")
+    margin: 8px 0 0 29px
+    padding-bottom: 20px

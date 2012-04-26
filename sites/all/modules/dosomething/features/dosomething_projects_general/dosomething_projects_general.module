@@ -21,11 +21,11 @@ function dosomething_projects_general_ctools_plugin_directory($owner, $plugin_ty
 function dosomething_projects_general_mail($key, &$message, $params) {
   switch ($key) {
     case 'project_report_participant':
-      $message['subject'] = t('Invitation to join Do Something Project');
+      $message['subject'] = $params['subject'];
       $message['body'][] = $params['message'];
       break;
     case 'project_report_participant_user':
-      $message['subject'] = t('Welcome to the Do Something Projects Program');
+      $message['subject'] = $params['subject'];
       $message['body'][] = $params['message'];
       break;
   }
@@ -63,7 +63,6 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
  * Implements hook_form_FORM_ID_alter().
  */
 function dosomething_projects_general_form_club_node_form_alter(&$form, &$form_state) {
-  // TODO: Deal with node status.
   $form_state['previous_participants'] = array();
   $node = isset($form['#node']) ? $form['#node'] : NULL;
   if (!empty($node) && $node->nid) {
@@ -74,7 +73,7 @@ function dosomething_projects_general_form_club_node_form_alter(&$form, &$form_s
       }
     }
   }
-  $form['#submit'][] = 'dosomething_projects_general_node_participants_submit';
+  $form['actions']['submit']['#submit'][] = 'dosomething_projects_general_node_participants_submit';
   $form['#validate'][] = 'dosomething_projects_general_node_participants_validate';
 }
 
@@ -104,8 +103,9 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
         if ($account = dosomething_general_load_user_by_mail_or_cell($item['value'])) {
           og_group($group->gid, array('entity' => $account));
           $sid = $form_state['values']['details']['sid'];
+          $subject = t('Welcome to the DoSomething Projects Program');
           $message = "<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the '$title' project page. Check out your project's page by going to $base_url/webform-submission/$sid. From this page you can now update the DoSomething.org community on the project, add your other members to the project page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p><p>Thanks!</p>";
-          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
+          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message, 'subject' => $subject));
         }
         else {
           // Otherwise send a message to the user.
@@ -115,13 +115,12 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
           // TODO: Sending message and mail means no sanitization.
           $first = $profile_wrapper->field_user_first_name->value();
           $last = $profile_wrapper->field_user_last_name->value();
+          $subject = t('Invitation to join DoSomething Project');
+          $message = "<p>Hey,</p><p> $first $last has invited you to join '$title' on DoSomething.org</p><p>All you have to do is head over to $base_url and fill out the form to become a DoSomething.org member. Then you'll be able to update the DoSomething.org community on the projects we're working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p>";
           if (valid_email_address($item['value'])) {
-            $message = "<p>Hey,</p><p> $first $last has invited you to join '$title' on DoSomething.org</p><p>All you have to do is head over to $base_url and fill out the form to become a DoSomething.org member. Then you'll be able to update the DoSomething.org community on the projects we're working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p>";
             drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
           }
           else if ($number = dosomething_general_valid_cell($item['value'])) {
-            // Custom message for sms_send since we can't exceed 160 characters
-            $message = 'Your friend has given you access to the Do Something community! We\'ll send weekly stats, ways to take action, and opps for prizes. (text STOP to opt out)';
             sms_send($number, $message);
           }
         }
@@ -152,11 +151,12 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
  */
 function dosomething_projects_general_node_participants_submit($form, &$form_state) {
   // Load up the group and create it if it doesn't already exist.
-  $group = og_get_group('node', $form_state['values']['nid'], TRUE);
+  $group = og_get_group('node', $form_state['values']['nid'], TRUE, array(OG_STATE_ACTIVE, OG_STATE_PENDING));
   $nid = $form_state['values']['nid'];
   $title = $form_state['node']->title;
   $submission_account = user_load($form_state['values']['uid']);
   $full_name = dosomething_general_get_full_name($submission_account);
+  global $base_url;
 
   // Invite the people to become members and add current members to the group.
   if (count($form_state['values']['field_participants'][LANGUAGE_NONE])) {
@@ -170,20 +170,19 @@ function dosomething_projects_general_node_participants_submit($form, &$form_sta
       if ($key === FALSE) {
         if ($account = dosomething_general_load_user_by_mail_or_cell($item['value'])) {
           og_group($group->gid, array('entity' => $account));
-          $message = '<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the "' . $title . '" club. Check out your project\'s page by going to ' . $base_url . '/node/' . $nid . '. From this page you can now update the DoSomething.org community on the club, add your other members to the club page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p><p>Thanks!</p>';
-          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message));
+          $subject = t('Welcome to the DoSomething Clubs Program');
+          $message = '<p>Hey,</p><p>Your account on DoSomething.org has been officially added to the "' . $title . '". Check out your club\'s page by going to ' . $base_url . '/node/' . $nid . '. From this page you can now update the DoSomething.org community on the club, add your other members to the club page, and lots more.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p><p>Thanks!</p>';
+          drupal_mail('dosomething_projects_general', 'project_report_participant_user', $item['value'], $language, array('message' => $message, 'subject' => $subject));
         }
         else {
+          // Since the user is not in the system, send a message to the user.
+          // Sending message and mail means no sanitization.
+          $subject = t('Invitation to join DoSomething Club');
+          $message = '<p>Hey,</p><p>' . $full_name . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $base_url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the club profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
           if (valid_email_address($item['value'])) {
-            // Since the user is not in the system, send a message to the user.
-            // Sending message and mail means no sanitization.
-            $message = '<p>Hey,</p><p>' . $full_name . ' has invited you to join "' . $title . '" on DoSomething.org</p><p>All you have to do is head over to '. $base_url . ' and fill out the form to become a DoSomething.org member. Then you\'ll be able to update the DoSomething.org community on the projects we\'re working on, add our other members to the club profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she\'s super helpful).</p>';
-
-            drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message));
+            drupal_mail('dosomething_projects_general', 'project_report_participant', $item['value'], $language, array('message' => $message, 'subject' => $subject));
           }
           else if ($number = dosomething_general_valid_cell($item['value'])) {
-            // Custom message for sms_send since we can't exceed 160 characters
-            $message = 'Your friend has given you access to the Do Something community! We\'ll send weekly stats, ways to take action, and opps for prizes. (text STOP to opt out)';
             sms_send($number, $message);
           }
         }
@@ -252,7 +251,7 @@ function dosomething_projects_general_node_participants_validate($form, &$form_s
         form_set_error('field_participants][' . LANGUAGE_NONE . '][' . $delta, t('%value is not a valid e-mail address or mobile number.', array('%value' => $item['value'])));
       }
       else {
-        // Store then cleaned up version of the phone number.
+        // Store the cleaned up version of the phone number.
         $item['value'] = $number;
       }
     }
@@ -361,7 +360,7 @@ function dosomething_projects_general_add_user_to_connected_groups($account = NU
         if (!isset($group->gid)) {
           $group->save();
         }
-        og_group($group->gid, array('entity' => $account, 'save' => FALSE, 'force reload' => FALSE));
+        og_group($group->gid, array('entity' => $account, 'force reload' => FALSE));
       }
     }
   }

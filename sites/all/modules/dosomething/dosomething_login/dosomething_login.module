@@ -441,30 +441,9 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
   if (isset($form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
     $entered_number = $form_state['values']['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
     if ($number = dosomething_general_valid_cell($entered_number)) {
-
-      // @see dosomething_general_find_user_by_cell
-      // Not all of the values in the db are digits only, so we have to
-      // replace the the non-digits in the values that we're searching.
-      // We may have to use this check elsewhere.  If so, we can break
-      // it out into a separate function.
-      $replace_characters = array('+', '.', '-', ' ', ')', '(');
-      $replace = "m.field_user_mobile_value";
-      foreach ($replace_characters as $char) {
-        $replace = "REPLACE(" . $replace . ", '$char', '')";
-      }
-
-      $query = db_select('field_data_field_user_mobile', 'm')
-        ->fields('m', array('entity_id'))
-        ->condition('m.entity_type', 'profile2')
-        ->where("$replace = :number", array(':number' => $number));
-      if (is_object($profile)) {
-        $query->condition('m.entity_id', $profile->pid, '!=');
-      }
-      if ($pid = $query->execute()->fetchField()) {
-        $current_number = dosomething_login_get_cell_phone_number($form['#user'], $profile);
-        // If the number is already in use by this user, then don't
-        // enforce uniqueness.  Currently the values are not all unique.
-        if ($current_number != $number) {
+      // Make sure no one else is using this number.
+      if ($account = dosomething_general_find_user_by_cell($number)) {
+        if ($account->uid != $profile->uid) {
           form_set_error('profile_main][field_user_mobile][' . LANGUAGE_NONE . '][0', t('The provided cell phone number is already in use by another account.'));
         }
       }
@@ -807,7 +786,25 @@ function dosomething_login_register_block($form, &$form_state) {
     ),
     '#children' => t('or'),
   );
-  $form['name'] = array(
+  $form['ie_signup '] = array(
+    '#theme' => 'link',
+    '#path' => 'user/registration',
+    '#text' => t("Sign Up"),
+    '#options' => array(
+      'attributes' => array('class' => array('ie-signup-button')),
+      'html' => FALSE,
+    ),
+  );
+  $form['ds-register-wrapper'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'clearfix',
+        'ds-register-wrapper',
+      ),
+    ),
+  );
+  $form['ds-register-wrapper']['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
       '#attributes' => array(
@@ -823,19 +820,19 @@ function dosomething_login_register_block($form, &$form_state) {
       '#size' => 9,
     ),
   );
-  $form['cell_or_email'] = array(
+  $form['ds-register-wrapper']['cell_or_email'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
       'placeholder' => t('Cell or email'),
     ),
     '#size' => 20,
   );
-  $form['first_submit'] = array(
+  $form['ds-register-wrapper']['first_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Go'),
     '#attributes' => array('class' => array('submit')),
   );
-  $form['user'] = array(
+  $form['ds-register-wrapper']['user'] = array(
     '#theme' => 'link',
     '#path' => 'user',
     '#text' => t("or sign in"),

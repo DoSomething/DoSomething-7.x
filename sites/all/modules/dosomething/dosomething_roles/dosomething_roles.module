@@ -558,7 +558,7 @@ function dosomething_roles_get_member_role($uid, $end_timestamp = NULL) {
   $action_update_count = dosomething_roles_get_action_update_count($uid, $timestamp);
   $grant_update = dosomething_roles_user_submitted_grant($uid, $timestamp);
   $ratio = dosomething_roles_profile_ratio($uid);
-  if ($action_update_count >= 5 || $grant_update && $ratio >= 1) {
+  if (($action_update_count >= 5 || $grant_update) && $ratio >= 1) {
     return 'varsity';
   }
   else if ($action_update_count >= 1 && $ratio >= 1) {

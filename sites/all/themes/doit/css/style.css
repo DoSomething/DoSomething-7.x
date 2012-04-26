@@ -522,80 +522,80 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-doing-it .pane-profile-panel-pane-3 .something-description .views-field-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-done-it .pane-profile-panel-pane-3 .something-description .views-field-title,
-.page-node-done-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-profile-panel-pane-3 .something-description a,
+.page-node-done-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-done-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a {
   font-family: din-web, "Trebuchet MS", sans-serif;
 }
@@ -651,84 +651,85 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .ribbon-front a:visited, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .node-poll .poll .text,
 .node-poll .poll .total, .page-causes .content h3, #blog-archives-pane h3, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a, h3 .stuff-header, .view-current-campaigns .view-footer a, .page-search .content h2,
 .page-search .content h2.title, .page-search .content .search-result h3, .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-doing-it .pane-profile-panel-pane-3 .something-description .views-field-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-done-it .pane-profile-panel-pane-3 .something-description .views-field-title,
-.page-node-done-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-profile-panel-pane-3 .something-description a,
+.page-node-done-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-done-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a, .dosomething-stats .dosomething-club-facts .invite-link, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li span, .apps-grid .apps-box .apps-footer {
+.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error,
+#dosomething-login-register-facebook .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li span, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
 }
@@ -739,13 +740,19 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 
 .blue, .teaser-heading, .page-links a, .page-content-text a, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a,
-.node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a, #dosomething-login-register-popup-form .disclaimer a, .region-sidebar-first .block-menu-block .content li a, .member-profile .dosomething-login-percentage .label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer a,
+.node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a, #dosomething-login-register-popup-form .disclaimer a,
+#dosomething-login-register-facebook .disclaimer a, .region-sidebar-first .block-menu-block .content li a, .member-profile .dosomething-login-percentage .label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer a,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer a {
   color: #18408b;
 }
 
-.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
-#dosomething-login-register-popup-form #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
+.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"],
+#dosomething-login-register-facebook input[type="text"],
+#dosomething-login-register-facebook input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
+#dosomething-login-register-popup-form #edit-title-text--2 label,
+#dosomething-login-register-facebook #edit-title-text label,
+#dosomething-login-register-facebook #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description,
+#dosomething-login-register-facebook .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, #dosomething-login-login-popup-form #edit-title-text--2 label, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
@@ -776,8 +783,13 @@ thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-
   color: white;
 }
 
-.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
-#dosomething-login-register-popup-form #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
+.black, .page-headline, .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6, .views-exposed-widget label, .page-content-text, .content-text, .right-sidebar .content-text, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"],
+#dosomething-login-register-facebook input[type="text"],
+#dosomething-login-register-facebook input[type="textarea"], #dosomething-login-register-popup-form #edit-title-text label,
+#dosomething-login-register-popup-form #edit-title-text--2 label,
+#dosomething-login-register-facebook #edit-title-text label,
+#dosomething-login-register-facebook #edit-title-text--2 label, #dosomething-login-register-popup-form .disclaimer .description,
+#dosomething-login-register-facebook .disclaimer .description, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:hover, .block-facetapi ul.facetapi-facetapi-checkbox-links li a:visited, .dosomething-member-facts h2, .page-user-complete-profile .panel-pane h2.pane-title, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer .description,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .popup-content .disclaimer .description, #dosomething-login-login-popup-form #edit-title-text--2 label, .node-type-action-guide .field-name-body h2, .page-webform-submission .panel-first h2, .panel-top h2.pane-title, h3 .stuff-header, .page-search .content h2,
@@ -845,11 +857,13 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   color: #2b63b1;
 }
 
-.alert-green, #dosomething-login-register-popup-form .ok {
+.alert-green, #dosomething-login-register-popup-form .ok,
+#dosomething-login-register-facebook .ok {
   color: #47c965;
 }
 
-.alert-red, #dosomething-login-register-popup-form .error {
+.alert-red, #dosomething-login-register-popup-form .error,
+#dosomething-login-register-facebook .error {
   color: red;
 }
 
@@ -1097,13 +1111,15 @@ h3.subhead {
 .page-node-done-it .pane-club-projects-panel-pane-4 h2,
 .black-h2 h2.pane-title,
 .block-facetapi h2.pane-title,
-.block-facetapi h2.block-title h2.pane-title,
+.block-facetapi h2.block-title h2.pane-title, .block-facetapi
+h2.block-title h2.pane-title,
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title,
 .pane-ds-current-somethings-all h2.pane-title,
 .pane-ds-past-somethings-all h2.pane-title,
 .pane-ds-editors-picks-all h2.pane-title,
 .pane-ds-stuff-you-need h2.pane-title,
-.view-current-campaigns .view-header h2.pane-title,
+.view-current-campaigns .view-header h2.pane-title, .view-current-campaigns
+.view-header h2.pane-title,
 .pane-related-projects-panel-pane-1 h2.pane-title,
 .pane-related-projects-panel-pane-2 h2.pane-title,
 .pane-resources-panel-pane-1 h2.pane-title,
@@ -1113,15 +1129,32 @@ h3.subhead {
 .pane-current-campaigns-panel-pane-2 h2.pane-title,
 .action-finder-list h2.pane-title,
 .pane-project-related-displays-panel-pane-4 h2.pane-title,
-.page-node-picks .pane-profile-panel-pane-3 h2.pane-title,
+.page-node-picks .pane-profile-panel-pane-3 h2.pane-title, .page-node-picks
+.pane-profile-panel-pane-3 h2.pane-title,
 .page-node-picks .pane-club-projects-panel-pane-3 h2.pane-title,
+.page-node-picks
+.pane-club-projects-panel-pane-3 h2.pane-title,
 .page-node-picks .pane-club-projects-panel-pane-4 h2.pane-title,
+.page-node-picks
+.pane-club-projects-panel-pane-4 h2.pane-title,
 .page-node-doing-it .pane-profile-panel-pane-3 h2.pane-title,
+.page-node-doing-it
+.pane-profile-panel-pane-3 h2.pane-title,
 .page-node-doing-it .pane-club-projects-panel-pane-3 h2.pane-title,
+.page-node-doing-it
+.pane-club-projects-panel-pane-3 h2.pane-title,
 .page-node-doing-it .pane-club-projects-panel-pane-4 h2.pane-title,
+.page-node-doing-it
+.pane-club-projects-panel-pane-4 h2.pane-title,
 .page-node-done-it .pane-profile-panel-pane-3 h2.pane-title,
+.page-node-done-it
+.pane-profile-panel-pane-3 h2.pane-title,
 .page-node-done-it .pane-club-projects-panel-pane-3 h2.pane-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 h2.pane-title {
+.page-node-done-it
+.pane-club-projects-panel-pane-3 h2.pane-title,
+.page-node-done-it .pane-club-projects-panel-pane-4 h2.pane-title,
+.page-node-done-it
+.pane-club-projects-panel-pane-4 h2.pane-title {
   background-color: transparent;
   display: inline;
   font-size: 21px;
@@ -1300,32 +1333,32 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-row {
   width: 49%;
 }
-.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row,
-.ie8 .pane-ds-past-somethings-all .views-row,
-.ie8 .pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row,
-.ie8 .pane-related-projects-panel-pane-2 .views-row,
-.ie8 .pane-resources-panel-pane-1 .views-row,
-.ie8 .pane-projects-by-state-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-1 .views-row,
-.ie8 .pane-featured-projects-panel-pane-3 .views-row,
-.ie8 .pane-current-campaigns-panel-pane-2 .views-row,
-.ie8 .action-finder-list .views-row,
-.ie8 .pane-project-related-displays-panel-pane-4 .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row,
-.ie8 .page-node-picks .pane-club-projects-panel-pane-3 .views-row,
-.page-node-picks .ie8 .pane-club-projects-panel-pane-3 .views-row,
-.ie8 .page-node-picks .pane-club-projects-panel-pane-4 .views-row,
-.page-node-picks .ie8 .pane-club-projects-panel-pane-4 .views-row,
-.ie8 .page-node-doing-it .pane-profile-panel-pane-3 .views-row,
-.page-node-doing-it .ie8 .pane-profile-panel-pane-3 .views-row,
-.ie8 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-row,
-.page-node-doing-it .ie8 .pane-club-projects-panel-pane-3 .views-row,
-.ie8 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-row,
-.page-node-doing-it .ie8 .pane-club-projects-panel-pane-4 .views-row,
-.ie8 .page-node-done-it .pane-profile-panel-pane-3 .views-row,
-.page-node-done-it .ie8 .pane-profile-panel-pane-3 .views-row,
-.ie8 .page-node-done-it .pane-club-projects-panel-pane-3 .views-row,
-.page-node-done-it .ie8 .pane-club-projects-panel-pane-3 .views-row,
-.ie8 .page-node-done-it .pane-club-projects-panel-pane-4 .views-row,
+.ie8 .two-column-grid .views-row, .ie8 .view-school-proximity .views-row, .ie8 .pane-polls-landing-panel-pane-1 .views-row, .ie8 .pane-ds-current-somethings-all .views-row, .ie8
+.pane-ds-past-somethings-all .views-row, .ie8
+.pane-ds-editors-picks-all .views-row, .ie8 .pane-related-projects-panel-pane-1 .views-row, .ie8
+.pane-related-projects-panel-pane-2 .views-row, .ie8
+.pane-resources-panel-pane-1 .views-row, .ie8
+.pane-projects-by-state-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-1 .views-row, .ie8
+.pane-featured-projects-panel-pane-3 .views-row, .ie8
+.pane-current-campaigns-panel-pane-2 .views-row, .ie8
+.action-finder-list .views-row, .ie8
+.pane-project-related-displays-panel-pane-4 .views-row, .ie8 .page-node-picks .pane-profile-panel-pane-3 .views-row, .page-node-picks .ie8 .pane-profile-panel-pane-3 .views-row, .ie8
+.page-node-picks .pane-club-projects-panel-pane-3 .views-row,
+.page-node-picks .ie8 .pane-club-projects-panel-pane-3 .views-row, .ie8
+.page-node-picks .pane-club-projects-panel-pane-4 .views-row,
+.page-node-picks .ie8 .pane-club-projects-panel-pane-4 .views-row, .ie8
+.page-node-doing-it .pane-profile-panel-pane-3 .views-row,
+.page-node-doing-it .ie8 .pane-profile-panel-pane-3 .views-row, .ie8
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-row,
+.page-node-doing-it .ie8 .pane-club-projects-panel-pane-3 .views-row, .ie8
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-row,
+.page-node-doing-it .ie8 .pane-club-projects-panel-pane-4 .views-row, .ie8
+.page-node-done-it .pane-profile-panel-pane-3 .views-row,
+.page-node-done-it .ie8 .pane-profile-panel-pane-3 .views-row, .ie8
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-row,
+.page-node-done-it .ie8 .pane-club-projects-panel-pane-3 .views-row, .ie8
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-row,
 .page-node-done-it .ie8 .pane-club-projects-panel-pane-4 .views-row {
   height: 120px;
   overflow: hidden;
@@ -1495,60 +1528,60 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   padding: 23px 12px 0 12px;
   margin-left: 125px;
 }
-.ie8 .image-teaser-module-teaser, .ie8 .view-school-proximity .views-row, .view-school-proximity .ie8 .views-row, .ie8 .pane-polls-landing-panel-pane-1 .unimage-wrapper, .pane-polls-landing-panel-pane-1 .ie8 .unimage-wrapper, .ie8 .blog-landing-pane-post .views-field-body, .blog-landing-pane-post .ie8 .views-field-body, .ie8 .pane-ds-current-somethings-all .something-description, .pane-ds-current-somethings-all .ie8 .something-description,
-.ie8 .pane-ds-past-somethings-all .something-description,
-.pane-ds-past-somethings-all .ie8 .something-description,
-.ie8 .pane-ds-editors-picks-all .something-description,
-.pane-ds-editors-picks-all .ie8 .something-description, .ie8 .pane-related-projects-panel-pane-1 .unimage-wrapper, .pane-related-projects-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-related-projects-panel-pane-2 .unimage-wrapper,
-.pane-related-projects-panel-pane-2 .ie8 .unimage-wrapper,
-.ie8 .pane-resources-panel-pane-1 .unimage-wrapper,
-.pane-resources-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-projects-by-state-panel-pane-1 .unimage-wrapper,
-.pane-projects-by-state-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-featured-projects-panel-pane-1 .unimage-wrapper,
-.pane-featured-projects-panel-pane-1 .ie8 .unimage-wrapper,
-.ie8 .pane-featured-projects-panel-pane-3 .unimage-wrapper,
-.pane-featured-projects-panel-pane-3 .ie8 .unimage-wrapper,
-.ie8 .pane-current-campaigns-panel-pane-2 .unimage-wrapper,
-.pane-current-campaigns-panel-pane-2 .ie8 .unimage-wrapper,
-.ie8 .action-finder-list .unimage-wrapper,
-.action-finder-list .ie8 .unimage-wrapper,
-.ie8 .pane-project-related-displays-panel-pane-4 .unimage-wrapper,
-.pane-project-related-displays-panel-pane-4 .ie8 .unimage-wrapper, .ie8 .page-node-picks .pane-profile-panel-pane-3 .something-description, .page-node-picks .pane-profile-panel-pane-3 .ie8 .something-description,
-.ie8 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title,
-.page-node-picks .pane-profile-panel-pane-3 .ie8 .views-field-field-project-title,
-.ie8 .page-node-picks .pane-club-projects-panel-pane-3 .something-description,
-.page-node-picks .pane-club-projects-panel-pane-3 .ie8 .something-description,
-.ie8 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .ie8 .views-field-field-project-title,
-.ie8 .page-node-picks .pane-club-projects-panel-pane-4 .something-description,
-.page-node-picks .pane-club-projects-panel-pane-4 .ie8 .something-description,
-.ie8 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .ie8 .views-field-field-project-title,
-.ie8 .page-node-doing-it .pane-profile-panel-pane-3 .something-description,
-.page-node-doing-it .pane-profile-panel-pane-3 .ie8 .something-description,
-.ie8 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .ie8 .views-field-field-project-title,
-.ie8 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .ie8 .something-description,
-.ie8 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .ie8 .views-field-field-project-title,
-.ie8 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .ie8 .something-description,
-.ie8 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .ie8 .views-field-field-project-title,
-.ie8 .page-node-done-it .pane-profile-panel-pane-3 .something-description,
-.page-node-done-it .pane-profile-panel-pane-3 .ie8 .something-description,
-.ie8 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title,
-.page-node-done-it .pane-profile-panel-pane-3 .ie8 .views-field-field-project-title,
-.ie8 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description,
-.page-node-done-it .pane-club-projects-panel-pane-3 .ie8 .something-description,
-.ie8 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .ie8 .views-field-field-project-title,
-.ie8 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description,
-.page-node-done-it .pane-club-projects-panel-pane-4 .ie8 .something-description,
-.ie8 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title,
+.ie8 .image-teaser-module-teaser, .ie8 .view-school-proximity .views-row, .view-school-proximity .ie8 .views-row, .ie8 .pane-polls-landing-panel-pane-1 .unimage-wrapper, .pane-polls-landing-panel-pane-1 .ie8 .unimage-wrapper, .ie8 .blog-landing-pane-post .views-field-body, .blog-landing-pane-post .ie8 .views-field-body, .ie8 .pane-ds-current-somethings-all .something-description, .pane-ds-current-somethings-all .ie8 .something-description, .ie8
+.pane-ds-past-somethings-all .something-description,
+.pane-ds-past-somethings-all .ie8 .something-description, .ie8
+.pane-ds-editors-picks-all .something-description,
+.pane-ds-editors-picks-all .ie8 .something-description, .ie8 .pane-related-projects-panel-pane-1 .unimage-wrapper, .pane-related-projects-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-related-projects-panel-pane-2 .unimage-wrapper,
+.pane-related-projects-panel-pane-2 .ie8 .unimage-wrapper, .ie8
+.pane-resources-panel-pane-1 .unimage-wrapper,
+.pane-resources-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-projects-by-state-panel-pane-1 .unimage-wrapper,
+.pane-projects-by-state-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-featured-projects-panel-pane-1 .unimage-wrapper,
+.pane-featured-projects-panel-pane-1 .ie8 .unimage-wrapper, .ie8
+.pane-featured-projects-panel-pane-3 .unimage-wrapper,
+.pane-featured-projects-panel-pane-3 .ie8 .unimage-wrapper, .ie8
+.pane-current-campaigns-panel-pane-2 .unimage-wrapper,
+.pane-current-campaigns-panel-pane-2 .ie8 .unimage-wrapper, .ie8
+.action-finder-list .unimage-wrapper,
+.action-finder-list .ie8 .unimage-wrapper, .ie8
+.pane-project-related-displays-panel-pane-4 .unimage-wrapper,
+.pane-project-related-displays-panel-pane-4 .ie8 .unimage-wrapper, .ie8 .page-node-picks .pane-profile-panel-pane-3 .something-description, .page-node-picks .pane-profile-panel-pane-3 .ie8 .something-description, .ie8
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title,
+.page-node-picks .pane-profile-panel-pane-3 .ie8 .views-field-field-project-title, .ie8
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description,
+.page-node-picks .pane-club-projects-panel-pane-3 .ie8 .something-description, .ie8
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title,
+.page-node-picks .pane-club-projects-panel-pane-3 .ie8 .views-field-field-project-title, .ie8
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description,
+.page-node-picks .pane-club-projects-panel-pane-4 .ie8 .something-description, .ie8
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title,
+.page-node-picks .pane-club-projects-panel-pane-4 .ie8 .views-field-field-project-title, .ie8
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description,
+.page-node-doing-it .pane-profile-panel-pane-3 .ie8 .something-description, .ie8
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title,
+.page-node-doing-it .pane-profile-panel-pane-3 .ie8 .views-field-field-project-title, .ie8
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .ie8 .something-description, .ie8
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .ie8 .views-field-field-project-title, .ie8
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .ie8 .something-description, .ie8
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .ie8 .views-field-field-project-title, .ie8
+.page-node-done-it .pane-profile-panel-pane-3 .something-description,
+.page-node-done-it .pane-profile-panel-pane-3 .ie8 .something-description, .ie8
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title,
+.page-node-done-it .pane-profile-panel-pane-3 .ie8 .views-field-field-project-title, .ie8
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description,
+.page-node-done-it .pane-club-projects-panel-pane-3 .ie8 .something-description, .ie8
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title,
+.page-node-done-it .pane-club-projects-panel-pane-3 .ie8 .views-field-field-project-title, .ie8
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description,
+.page-node-done-it .pane-club-projects-panel-pane-4 .ie8 .something-description, .ie8
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title,
 .page-node-done-it .pane-club-projects-panel-pane-4 .ie8 .views-field-field-project-title {
   min-height: 97px;
 }
@@ -1833,10 +1866,12 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 }
 .pane-narrow-block .views-field-views-ifempty, .panes-2 .panel-second .views-field-views-ifempty, .pane-blog-center .views-field-views-ifempty,
 .pane-narrow-block .project-related-thumb,
-.panes-2 .panel-second .project-related-thumb,
+.panes-2 .panel-second .project-related-thumb, .panes-2
+.panel-second .project-related-thumb,
 .pane-blog-center .project-related-thumb,
 .pane-narrow-block .pane-narrow-thumb,
-.panes-2 .panel-second .pane-narrow-thumb,
+.panes-2 .panel-second .pane-narrow-thumb, .panes-2
+.panel-second .pane-narrow-thumb,
 .pane-blog-center .pane-narrow-thumb {
   float: left;
   margin-right: 12px;
@@ -1844,10 +1879,12 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 }
 .pane-narrow-block .views-field-views-ifempty img, .panes-2 .panel-second .views-field-views-ifempty img, .pane-blog-center .views-field-views-ifempty img,
 .pane-narrow-block .project-related-thumb img,
-.panes-2 .panel-second .project-related-thumb img,
+.panes-2 .panel-second .project-related-thumb img, .panes-2
+.panel-second .project-related-thumb img,
 .pane-blog-center .project-related-thumb img,
 .pane-narrow-block .pane-narrow-thumb img,
-.panes-2 .panel-second .pane-narrow-thumb img,
+.panes-2 .panel-second .pane-narrow-thumb img, .panes-2
+.panel-second .pane-narrow-thumb img,
 .pane-blog-center .pane-narrow-thumb img {
   height: 60px;
   width: 60px;
@@ -2106,12 +2143,6 @@ body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox
 }
 .ie8 .views-exposed-widget .selectBox-dropdown .selectBox-label {
   min-width: 160px;
-}
-
-#edit-issues-wrapper,
-#edit-who-wrapper,
-#edit-where-wrapper {
-  padding-right: 17px;
 }
 
 #dosomething-blocks-make-an-impact-form input[type="submit"],
@@ -2701,32 +2732,43 @@ select.form-select {
   display: none;
 }
 
-#dosomething-login-register-popup-form label {
+#dosomething-login-register-popup-form label,
+#dosomething-login-register-facebook label {
   cursor: default;
 }
-#dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"] {
+#dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"],
+#dosomething-login-register-facebook input[type="text"],
+#dosomething-login-register-facebook input[type="textarea"] {
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   background: white;
 }
-#dosomething-login-register-popup-form input[type="text"]:focus, #dosomething-login-register-popup-form input[type="textarea"]:focus {
+#dosomething-login-register-popup-form input[type="text"]:focus, #dosomething-login-register-popup-form input[type="textarea"]:focus,
+#dosomething-login-register-facebook input[type="text"]:focus,
+#dosomething-login-register-facebook input[type="textarea"]:focus {
   outline: none;
 }
-#dosomething-login-register-popup-form .connect-with-facebook .form-wrapper {
+#dosomething-login-register-popup-form .connect-with-facebook .form-wrapper,
+#dosomething-login-register-facebook .connect-with-facebook .form-wrapper {
   margin-bottom: 0;
 }
-#dosomething-login-register-popup-form #edit-connect {
+#dosomething-login-register-popup-form #edit-connect,
+#dosomething-login-register-facebook #edit-connect {
   margin-bottom: 0;
 }
 #dosomething-login-register-popup-form #edit-title-text,
-#dosomething-login-register-popup-form #edit-title-text--2 {
+#dosomething-login-register-popup-form #edit-title-text--2,
+#dosomething-login-register-facebook #edit-title-text,
+#dosomething-login-register-facebook #edit-title-text--2 {
   margin-top: 0;
   margin-bottom: 15px;
 }
 #dosomething-login-register-popup-form #edit-title-text label,
-#dosomething-login-register-popup-form #edit-title-text--2 label {
+#dosomething-login-register-popup-form #edit-title-text--2 label,
+#dosomething-login-register-facebook #edit-title-text label,
+#dosomething-login-register-facebook #edit-title-text--2 label {
   font-weight: 600;
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 40px;
@@ -2734,15 +2776,18 @@ select.form-select {
   line-height: 40px;
   padding-bottom: 12px;
 }
-#dosomething-login-register-popup-form .ds-registration-form-required {
+#dosomething-login-register-popup-form .ds-registration-form-required,
+#dosomething-login-register-facebook .ds-registration-form-required {
   position: relative;
   left: -11px;
   top: -1px;
 }
-#dosomething-login-register-popup-form .error {
+#dosomething-login-register-popup-form .error,
+#dosomething-login-register-facebook .error {
   font-size: 12px;
 }
-#dosomething-login-register-popup-form .popup-content {
+#dosomething-login-register-popup-form .popup-content,
+#dosomething-login-register-facebook .popup-content {
   min-height: 240px;
   padding: 18px;
   width: 478px;
@@ -2753,7 +2798,13 @@ select.form-select {
 #dosomething-login-register-popup-form .form-item-pass,
 #dosomething-login-register-popup-form .form-item-month,
 #dosomething-login-register-popup-form .form-item-day,
-#dosomething-login-register-popup-form .form-item-year {
+#dosomething-login-register-popup-form .form-item-year,
+#dosomething-login-register-facebook .form-item-first-name,
+#dosomething-login-register-facebook .form-item-email,
+#dosomething-login-register-facebook .form-item-pass,
+#dosomething-login-register-facebook .form-item-month,
+#dosomething-login-register-facebook .form-item-day,
+#dosomething-login-register-facebook .form-item-year {
   float: left;
 }
 #dosomething-login-register-popup-form .form-item-first-name input,
@@ -2761,16 +2812,26 @@ select.form-select {
 #dosomething-login-register-popup-form .form-item-pass input,
 #dosomething-login-register-popup-form .form-item-month input,
 #dosomething-login-register-popup-form .form-item-day input,
-#dosomething-login-register-popup-form .form-item-year input {
+#dosomething-login-register-popup-form .form-item-year input,
+#dosomething-login-register-facebook .form-item-first-name input,
+#dosomething-login-register-facebook .form-item-email input,
+#dosomething-login-register-facebook .form-item-pass input,
+#dosomething-login-register-facebook .form-item-month input,
+#dosomething-login-register-facebook .form-item-day input,
+#dosomething-login-register-facebook .form-item-year input {
   width: 212px;
 }
 #dosomething-login-register-popup-form .form-item-last-name,
-#dosomething-login-register-popup-form .form-item-cell {
+#dosomething-login-register-popup-form .form-item-cell,
+#dosomething-login-register-facebook .form-item-last-name,
+#dosomething-login-register-facebook .form-item-cell {
   float: right;
   margin-right: -7px;
 }
 #dosomething-login-register-popup-form .form-item-last-name input,
-#dosomething-login-register-popup-form .form-item-cell input {
+#dosomething-login-register-popup-form .form-item-cell input,
+#dosomething-login-register-facebook .form-item-last-name input,
+#dosomething-login-register-facebook .form-item-cell input {
   width: 212px;
 }
 #dosomething-login-register-popup-form .form-item-email,
@@ -2778,93 +2839,140 @@ select.form-select {
 #dosomething-login-register-popup-form .form-item-cell,
 #dosomething-login-register-popup-form .form-item-month,
 #dosomething-login-register-popup-form .form-item-day,
-#dosomething-login-register-popup-form .form-item-year {
+#dosomething-login-register-popup-form .form-item-year,
+#dosomething-login-register-facebook .form-item-email,
+#dosomething-login-register-facebook .form-item-pass,
+#dosomething-login-register-facebook .form-item-cell,
+#dosomething-login-register-facebook .form-item-month,
+#dosomething-login-register-facebook .form-item-day,
+#dosomething-login-register-facebook .form-item-year {
   margin-top: 22px;
 }
-#dosomething-login-register-popup-form .form-item-email label.error {
+#dosomething-login-register-popup-form .form-item-email label.error,
+#dosomething-login-register-facebook .form-item-email label.error {
   width: 212px;
 }
-#dosomething-login-register-popup-form #edit-birthday {
+#dosomething-login-register-popup-form #edit-birthday,
+#dosomething-login-register-facebook #edit-birthday {
   *zoom: 1;
 }
-#dosomething-login-register-popup-form #edit-birthday:after {
+#dosomething-login-register-popup-form #edit-birthday:after,
+#dosomething-login-register-facebook #edit-birthday:after {
   content: "";
   display: table;
   clear: both;
 }
-#dosomething-login-register-popup-form #edit-birthday label {
+#dosomething-login-register-popup-form #edit-birthday label,
+#dosomething-login-register-facebook #edit-birthday label {
   float: left;
   margin-right: 20px;
 }
-#dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday {
+#dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday,
+#dosomething-login-register-facebook #edit-birthday label .login-popup-birthday {
   font-family: "Trebuchet MS", sans-serif;
   font-size: 12px;
   position: relative;
   right: -18px;
   top: 28px;
 }
-#dosomething-login-register-popup-form #edit-birthday label .ds-registration-form-required {
+#dosomething-login-register-popup-form #edit-birthday label .ds-registration-form-required,
+#dosomething-login-register-facebook #edit-birthday label .ds-registration-form-required {
   top: 21px;
   left: 17px;
 }
 #dosomething-login-register-popup-form .form-item-month,
 #dosomething-login-register-popup-form .form-item-day,
-#dosomething-login-register-popup-form .form-item-year {
+#dosomething-login-register-popup-form .form-item-year,
+#dosomething-login-register-facebook .form-item-month,
+#dosomething-login-register-facebook .form-item-day,
+#dosomething-login-register-facebook .form-item-year {
   float: left;
   margin-right: 10px;
 }
 #dosomething-login-register-popup-form .form-item-month input,
 #dosomething-login-register-popup-form .form-item-day input,
-#dosomething-login-register-popup-form .form-item-year input {
+#dosomething-login-register-popup-form .form-item-year input,
+#dosomething-login-register-facebook .form-item-month input,
+#dosomething-login-register-facebook .form-item-day input,
+#dosomething-login-register-facebook .form-item-year input {
   width: 40px;
   text-align: center;
 }
-#dosomething-login-register-popup-form .form-item-year {
+#dosomething-login-register-popup-form .form-item-year,
+#dosomething-login-register-facebook .form-item-year {
   margin-right: 0;
 }
-#dosomething-login-register-popup-form label.error {
+#dosomething-login-register-popup-form label.error,
+#dosomething-login-register-facebook label.error {
   height: 10px;
   border: 1px;
   font-size: 10px;
 }
-#dosomething-login-register-popup-form .form-item-pass .ds-registration-form-required {
-  top: -5px;
-  left: -16px;
+#dosomething-login-register-popup-form .form-item-pass .ds-registration-form-required,
+#dosomething-login-register-facebook .form-item-pass .ds-registration-form-required {
+  top: -2px;
+  left: -11px;
 }
-#dosomething-login-register-popup-form .form-item-pass label.error {
+#dosomething-login-register-popup-form .form-item-pass label.error,
+#dosomething-login-register-facebook .form-item-pass label.error {
   width: 212px;
 }
-#dosomething-login-register-popup-form .under-13-field {
+#dosomething-login-register-popup-form .under-13-field,
+#dosomething-login-register-facebook .under-13-field {
   float: left;
   padding: 12px 0;
 }
-#dosomething-login-register-popup-form .under-13-field input {
+#dosomething-login-register-popup-form .under-13-field input,
+#dosomething-login-register-facebook .under-13-field input {
   width: 212px;
   margin-top: 22px;
 }
-#dosomething-login-register-popup-form .under-13-field .ds-registration-form-required {
+#dosomething-login-register-popup-form .under-13-field .ds-registration-form-required,
+#dosomething-login-register-facebook .under-13-field .ds-registration-form-required {
   top: 22px;
 }
-#dosomething-login-register-popup-form .form-item-parent-email input {
+.ie7 #dosomething-login-register-popup-form .under-13-field .ds-registration-form-required, .ie7
+#dosomething-login-register-facebook .under-13-field .ds-registration-form-required {
+  display: none;
+}
+.ie7 #dosomething-login-register-popup-form .under-13-field #edit-parent-email-message, .ie7
+#dosomething-login-register-facebook .under-13-field #edit-parent-email-message {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/under-13.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 478px;
+  height: 45px;
+  margin-left: -18px;
+}
+#dosomething-login-register-popup-form .form-item-parent-email input,
+#dosomething-login-register-facebook .form-item-parent-email input {
   width: 212px;
 }
-#dosomething-login-register-popup-form .form-item-parent-email .ds-registration-form-required {
+#dosomething-login-register-popup-form .form-item-parent-email .ds-registration-form-required,
+#dosomething-login-register-facebook .form-item-parent-email .ds-registration-form-required {
   top: 11px;
 }
-#dosomething-login-register-popup-form .form-item-parent-email label.error {
+#dosomething-login-register-popup-form .form-item-parent-email label.error,
+#dosomething-login-register-facebook .form-item-parent-email label.error {
   display: inline;
   float: left;
   clear: left;
   margin-bottom: 24px;
 }
-#dosomething-login-register-popup-form .disclaimer {
+#dosomething-login-register-popup-form .disclaimer,
+#dosomething-login-register-facebook .disclaimer {
   margin-top: 30px;
 }
-#dosomething-login-register-popup-form .disclaimer .description {
+#dosomething-login-register-popup-form .disclaimer .description,
+#dosomething-login-register-facebook .disclaimer .description {
   float: left;
   font-size: 12px;
 }
-#dosomething-login-register-popup-form .disclaimer a {
+#dosomething-login-register-popup-form .disclaimer a,
+#dosomething-login-register-facebook .disclaimer a {
   text-decoration: underline;
 }
 
@@ -2874,10 +2982,12 @@ select.form-select {
   right: -525px;
 }
 
-.no-js.ie.ie8.js #dosomething-login-register-popup-form .popup-content {
+.no-js.ie.ie8.js #dosomething-login-register-popup-form .popup-content,
+.no-js.ie.ie8.js #dosomething-login-register-facebook .popup-content {
   width: 446px;
 }
-.no-js.ie.ie8.js #dosomething-login-register-popup-form .ds-registration-form-required {
+.no-js.ie.ie8.js #dosomething-login-register-popup-form .ds-registration-form-required,
+.no-js.ie.ie8.js #dosomething-login-register-facebook .ds-registration-form-required {
   position: relative;
   left: 203px;
   top: -29px;
@@ -2887,18 +2997,48 @@ select.form-select {
 .no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-email,
 .no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-pass,
 .no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-last-name,
-.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-cell {
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-cell,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-first-name,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-email,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-pass,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-last-name,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-cell {
   width: 212px;
 }
 .no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-month,
 .no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-day,
-.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-year {
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content .form-item-year,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-month,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-day,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content .form-item-year {
   width: 40px;
 }
-.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content #edit-birthday {
+.no-js.ie.ie8 #dosomething-login-register-popup-form .popup-content #edit-birthday,
+.no-js.ie.ie8 #dosomething-login-register-facebook .popup-content #edit-birthday {
   position: relative;
   top: -17px;
   left: 7px;
+}
+
+.ie-signup-button {
+  display: none;
+}
+
+.ie7 .front.not-logged-in .ds-register-wrapper {
+  display: none;
+}
+.ie7 .front.not-logged-in a.ie-signup-button {
+  display: block;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('images/ie-signup-button.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 138px;
+  height: 63px;
+  margin: 8px 0 0 29px;
+  padding-bottom: 20px;
 }
 
 #site-name a {
@@ -2914,7 +3054,8 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
   padding: 0.5em;
   background-position: 0 0;
 }
-.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
+.messages p:last-child, .status p:last-child, .warning p:last-child, .error p:last-child,
+div.status p:last-child, div.warning p:last-child, div.error p:last-child, div.messages p:last-child, div.status p:last-child, div.warning p:last-child, div.error p:last-child {
   margin-bottom: 0;
 }
 
@@ -2939,23 +3080,23 @@ div.status, div.warning, div.error, div.messages, div.status, div.warning, div.e
 }
 
 .warning, div.warning {
-  border-color: orange;
+  border-color: #ffa500;
   background-color: #fff6e5;
   background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
-  color: orange;
-  color: orange;
+  color: #ffa500;
+  color: #ffa500;
 }
 .warning:visited, div.warning:visited {
-  color: orange;
+  color: #ffa500;
 }
 .warning:hover, div.warning:hover {
-  color: orange;
+  color: #ffa500;
 }
 .warning:active, div.warning:active {
-  color: orange;
+  color: #ffa500;
 }
 
 .error, div.error {
@@ -4299,7 +4440,8 @@ h2.block-title, h2.pane-title {
   opacity: 0.83;
 }
 
-#block-dosomething-login-become-member #dosomething-login-register-popup-form {
+#block-dosomething-login-become-member #dosomething-login-register-popup-form,
+#block-dosomething-login-become-member #dosomething-login-register-facebook {
   height: auto !important;
   display: none;
 }
@@ -4601,35 +4743,48 @@ h2.block-title, h2.pane-title {
   top: -17px;
   left: 7px;
 }
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .pass-field-label {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .pass-field-label,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .pass-field-label {
   float: left;
 }
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .ds-registration-form-required {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .ds-registration-form-required,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .ds-registration-form-required {
   left: 212px;
   top: -32px;
 }
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content {
   width: 446px;
 }
 .no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-first-name,
 .no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-email,
 .no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-pass,
 .no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-last-name,
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-cell {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-cell,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-first-name,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-email,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-pass,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-last-name,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-cell {
   height: 27px;
   width: 212px;
 }
 .no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-month,
 .no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-day,
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-year {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .form-item-year,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-month,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-day,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .form-item-year {
   width: 40px;
 }
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content #edit-birthday {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content #edit-birthday,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content #edit-birthday {
   position: relative;
   top: 20px;
   left: 7px;
 }
-.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .under-13-field {
+.no-js.ie.ie7.js #dosomething-login-register-popup-form .popup-content .under-13-field,
+.no-js.ie.ie7.js #dosomething-login-register-facebook .popup-content .under-13-field {
   clear: both;
   display: block;
   margin-top: 12px;
@@ -5302,11 +5457,11 @@ comments.fb_iframe_widget {
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
-.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-past-somethings-all .something-description a,
+.pane-ds-past-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-past-somethings-all .something-description a,
 .pane-ds-editors-picks-all .something-description .views-field-title,
-.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .pane-ds-editors-picks-all .something-description a {
+.pane-ds-editors-picks-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.pane-ds-editors-picks-all .something-description a {
   font-size: 21px;
 }
 
@@ -5409,72 +5564,72 @@ h3 .stuff-header {
 .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-picks .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-doing-it .pane-profile-panel-pane-3 .something-description .views-field-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-done-it .pane-profile-panel-pane-3 .something-description .views-field-title,
-.page-node-done-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-profile-panel-pane-3 .something-description a,
+.page-node-done-it .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-done-it .pane-profile-panel-pane-3 .something-description a,
 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-profile-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .views-field-title,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a,
-.page-taxonomy-term .region-content .node-teaser h2 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a {
   font-size: 21px;
 }

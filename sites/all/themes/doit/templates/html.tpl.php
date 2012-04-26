@@ -67,6 +67,7 @@
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>
+  <!--[if IE 7 ]><img style="position: absolute; top: 0; left: 0; z-index: 1;" src="/sites/all/themes/doit/css/images/ie-upgrade.png"><![endif]-->
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>

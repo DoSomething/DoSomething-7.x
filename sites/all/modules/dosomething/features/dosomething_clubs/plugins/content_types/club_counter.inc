@@ -40,7 +40,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   $member_link = '';
   // Anonymous user.
   if ($user->uid == 0) {
-    $member_link = t('Join the club') . l('Go', 'user/registration', array('attributes' => array('class' => 'go-button')));
+    $member_link = t('Join the club') . l('Go', 'user/registration', array('query' => array('destination' => 'group/node/' . $node->nid . '/subscribe'), 'attributes' => array('class' => 'go-button')));
   }
   // Logged in non-member.
   elseif (og_get_group_membership($group->gid, 'user', $user->uid) == NULL) {

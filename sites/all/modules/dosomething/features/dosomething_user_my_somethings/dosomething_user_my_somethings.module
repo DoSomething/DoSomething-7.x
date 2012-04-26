@@ -95,7 +95,7 @@ function dosomething_user_my_somethings_member_block() {
         'completion' => dosomething_user_my_somethings_profile_completion(),
       ),
       'somethings' => dosomething_user_my_somethings_my_somethings(),
-      'clubs' => dosomething_user_my_somethings_clubs(),
+      'past_somethings' => dosomething_user_my_somethings_my_past_somethings(),
     ),
   );
 }
@@ -188,6 +188,9 @@ function dosomething_user_my_somethings_my_somethings() {
   $items = array();
 
   $items = dosomething_user_my_somethings_my_current_something_links($user->uid);
+  if (empty($items)) {
+    $items[] = t('You are not doing anything. Join a campaign, or start a grant application or project!');
+  }
 
   return array(
     'title' => array(
@@ -289,6 +292,130 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       $items['campaign_report_back']['children'][] = l($report_back->campaign_title, 'node/' . $report_back->report_back_entity_id);
     }
   }
+  return $items;
+}
+
+/**
+ * Get markup for my past somethings (sidebar version).
+ * Renamed 'Done It' for theming purposes.
+ */
+function dosomething_user_my_somethings_my_past_somethings() {
+  global $user;
+  $items = array();
+
+  $items = dosomething_user_my_somethings_my_past_something_links($user->uid);
+  if (empty($items)) {
+    $items[] = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
+  }
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h3 class="done-it">',
+      '#suffix' => '</h3>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => 'inner',
+        ),
+        '#children' => t('Done It'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array(
+          'done-it',
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Get a list of links for the different types of my past somethings.
+ * This populates the sidebar list of 'Done it'
+ *
+ * @param $uid
+ *  (int) a user id.
+ * @return array
+ */
+function dosomething_user_my_somethings_my_past_something_links($uid) {
+  $items = array();
+  $account = user_load($uid);
+
+  $cid = 'dosomething_user_my_past_somethings_' . $uid;
+  $cache = cache_get($cid);
+
+  $somethings_info = array(
+    'grant_application' => array(
+      'title' => t('Grant Applications'),
+      'title_field' => 'field_webform_name',
+    ),
+    'project_report' => array(
+      'title' => t('Project Reports'),
+      'title_field' => 'field_project_title',
+    ),
+  );
+
+  if (!is_object($cache) || !isset($cache->data['somethings'])) {
+    $somethings = dosomething_user_my_somethings_get_my_somethings($uid, 'past');
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data['somethings'] = $somethings;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $somethings = $cache->data['somethings'];
+  }
+
+  if (count($somethings)) {
+    foreach ($somethings as $type => $something) {
+      if (count($something)) {
+        $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
+        foreach ($something as $submission) {
+          // Note: This is not an actual submission object, but it has the right
+          // info, so we're not loading it up as of now.
+          $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
+          $node = node_load($submission->nid);
+          $edit_access = webform_submission_access($node, $submission, 'edit', $account);
+          $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+          $items[$type]['children'][] = l($title, $link);
+        }
+      }
+    }
+  }
+
+  if (!is_object($cache) || !isset($cache->data['report_backs'])) {
+    $report_backs = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
+    if (!is_object($cache)) {
+      $cache = new stdClass();
+      $cache->data = array();
+    }
+    $cache->data['report_backs'] = $report_backs;
+    cache_set($cid, $cache->data);
+  }
+  else {
+    $report_backs = $cache->data['report_backs'];
+  }
+
+  if (count($report_backs)) {
+    $items['campaign_report_back'] = array('data' => 'Campaign Sign Ups', 'children' => array());
+    foreach($report_backs as $report_back) {
+      $items['campaign_report_back']['children'][] = l($report_back->campaign_title, 'node/' . $report_back->campaign_entity_id);
+    }
+  }
+
+  $groups = dosomething_user_my_somethings_get_user_group_memberships($account->uid, 'club');
+  if (count($groups)) {
+    $items['clubs'] = array('data' => 'Clubs', 'children' => array());
+    foreach ($groups as $group) {
+     $items['clubs']['children'][] = l(filter_xss($group->title), 'node/' . $group->nid);
+    }
+  }
+
   return $items;
 }
 
@@ -542,7 +669,7 @@ function dosomething_user_my_somethings_campaign_report_backs_needed($uid) {
  * Get a list of campaign report backs completed by user.
  */
 function dosomething_user_my_somethings_campaign_report_backs_complete($uid) {
-  $report_backs = db_query("SELECT DISTINCT(o.etid) as campaign_entity_id FROM {webform_submissions} w
+  $report_backs = db_query("SELECT DISTINCT(o.etid) as campaign_entity_id, (o.label) as campaign_title FROM {webform_submissions} w
                             INNER JOIN {og_membership} om ON w.sid = om.etid
                             INNER JOIN {og} o ON om.gid = o.gid
                             WHERE w.bundle = 'campaign_report_back' AND o.entity_type = 'node' AND w.uid = :uid", 
