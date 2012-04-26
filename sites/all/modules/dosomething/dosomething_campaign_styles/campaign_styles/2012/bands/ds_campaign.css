@@ -140,10 +140,6 @@ div[role="main"] {
   font-size: 1.5em;
   text-transform: uppercase; }
 
-.node-campaign-blog-post .field-name-field-picture img {
-  float: left;
-  margin: 0 24px 24px 0; }
-
 .pane-campaign-blog-panel-pane-1 {
   background: transparent !important;
   border: none !important; }
@@ -674,12 +670,9 @@ img {
 
 .node-campaign-blog-post {
   padding: 15px !important; }
-  .node-campaign-blog-post .field-type-text-with-summary {
-    width: 500px;
-    float: right;
-    padding-left: 10px; }
   .node-campaign-blog-post .field-name-field-picture img {
-    margin: 0; }
+    margin: 0 20px 20px 0;
+    float: left; }
   .node-campaign-blog-post .field-name-field-blog-video {
     clear: both;
     position: relative;
@@ -689,6 +682,12 @@ img {
     .node-campaign-blog-post .field-name-field-blog-video iframe {
       margin: 0 auto;
       display: block; }
+
+.field-type-text-with-summary img {
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid black !important; }
 
 .pane-webform-submission-entity .pane-content {
   margin: 20px 135px;
