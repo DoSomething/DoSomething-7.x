@@ -5,7 +5,10 @@ function doit_preprocess_html(&$variables, $hook) {
   // dsm($variables);
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
-  $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
+  // mootools causes AJAX conflicts. Selectivizr works without it.
+  // $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/mootools-core-1.4.1-full-nocompat-yc.js'  . '"></script>';
+  // instead, let's just use what we need. See: https://github.com/keithclark/JQuery-Extended-Selectors
+  $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/jquery-extra-selectors.js' . '"></script>';
   $variables['selectivizr'] .= '<script type="text/javascript" src="/' . $theme_path . '/js/selectivizr/selectivizr-min.js'  . '"></script>';
   $variables['selectivizr'] .= '<![endif]-->';
   // HTML5 Shiv
