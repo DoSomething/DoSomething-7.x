@@ -284,7 +284,7 @@ function dosomething_migrate_force_phone_number_update() {
   while ($result = $d6results->fetchAssoc()) {
     print 'updating profile phone number for user ' . $result['uid'] . "\n";
     $phone =  preg_replace('/\D/', '', $result['value']);
-    $phone  = ltrim($phone, '1');
+    $phone  = (string) substr(ltrim($phone, '1'), 0, 32);
     db_query("UPDATE field_data_field_user_mobile SET field_user_mobile_value = :num WHERE entity_id = (SELECT pid FROM profile WHERE uid = :uid LIMIT 1) AND entity_type = :type", array(':num' => $phone, ':uid' => $result['uid'], ':type' => 'profile2'));
 
     // Let's not go crazy storing variables but every 50 let's flag our
