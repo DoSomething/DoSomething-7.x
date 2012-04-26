@@ -290,7 +290,7 @@ function dosomething_migrate_force_phone_number_update() {
     // status so we can pick back up without redoing everything.
     $i++;
     if ($i % 10000 == 0) {
-      variable_set('dosomething_phone_import_status', $result['uid'];
+      variable_set('dosomething_phone_import_status', $result['uid']);
     }
   }
 }
