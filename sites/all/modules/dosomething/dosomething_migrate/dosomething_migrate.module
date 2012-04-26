@@ -284,13 +284,15 @@ function dosomething_migrate_force_phone_number_update() {
   while ($result = $d6results->fetchAssoc()) {
     print 'updating profile phone number for user ' . $result['uid'] . "\n";
     $phone =  preg_replace('/\D/', '', $result['value']);
-    db_query("UPDATE field_data_field_user_mobile SET field_user_mobile_value = :num WHERE field_user_mobile_value IS NULL OR field_user_mobile_value = :nothing AND entity_id = (SELECT pid FROM profile WHERE uid = :uid LIMIT 1) AND entity_type = :type", array(':num' => $phone, ':nothing' => '', ':uid' => $result['uid'], ':type' => 'profile2'));
+    $phone  = ltrim($phone, '1');
+    db_query("UPDATE field_data_field_user_mobile SET field_user_mobile_value = :num WHERE entity_id = (SELECT pid FROM profile WHERE uid = :uid LIMIT 1) AND entity_type = :type", array(':num' => $phone, ':uid' => $result['uid'], ':type' => 'profile2'));
 
-    // Let's not go crazy storing variables but every 10K let's flag our
+    // Let's not go crazy storing variables but every 50 let's flag our
     // status so we can pick back up without redoing everything.
     $i++;
-    if ($i % 10000 == 0) {
+    if ($i % 50 == 0) {
       variable_set('dosomething_phone_import_status', $result['uid']);
     }
   }
+  print 'Done moving records. Moved ' . $i . ' records.';
 }
