@@ -295,7 +295,8 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
 }
 
 /**
- * Get markup for my somethings (sidebar version). Renamed 'Doing It' for theming purposes.
+ * Get markup for my past somethings (sidebar version).
+ * Renamed 'Done It' for theming purposes.
  */
 function dosomething_user_my_somethings_my_past_somethings() {
   global $user;
@@ -331,8 +332,8 @@ function dosomething_user_my_somethings_my_past_somethings() {
 }
 
 /**
- * Get a list of links for the different types of my somethings.
- * This populates the sidebar list of 'my current somethings'.
+ * Get a list of links for the different types of my past somethings.
+ * This populates the sidebar list of 'Done it'
  *
  * @param $uid
  *  (int) a user id.
@@ -416,6 +417,7 @@ function dosomething_user_my_somethings_my_past_something_links($uid) {
 
   return $items;
 }
+
 /**
  * Get the markup for a list of user's clubs (sidebar version). Renamed 'Done It' for theming purposes.
  */
