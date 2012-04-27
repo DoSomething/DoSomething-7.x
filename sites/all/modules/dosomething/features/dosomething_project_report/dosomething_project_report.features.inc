@@ -55,6 +55,11 @@ function dosomething_project_report_node_info() {
  */
 function dosomething_project_report_default_webform_submission_entity_type() {
   $items = array();
-  $items['project_report'] = entity_import('webform_submission_entity_type', '{ "type" : "project_report", "data" : null, "rdf_mapping" : [] }');
+  $items['project_report'] = entity_import('webform_submission_entity_type', '{
+    "type" : "project_report",
+    "data" : null,
+    "metatags" : [],
+    "rdf_mapping" : []
+  }');
   return $items;
 }

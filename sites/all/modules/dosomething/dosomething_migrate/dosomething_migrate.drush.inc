@@ -699,14 +699,15 @@ function drush_dosomething_migrate_update_user_roles($first_uid = NULL, $last_ui
   if ($confirm === FALSE) {
     return;
   }
+
+  $roles = user_roles();
+  $rids = array_flip(array_intersect($roles, dosomething_roles_get_membership_role_hierarchy()));
   for ($uid = $first_uid; $uid <= $last_uid; $uid++) {
     if ($account = user_load($uid)) {
       if (dosomething_roles_user_is_staff_member($account) || dosomething_roles_user_is_too_old($account)) {
         drush_print(sprintf('Skipping user %d', $uid));
         continue;
       }
-      $roles = user_roles();
-      $rids = array_flip(array_intersect($roles, dosomething_roles_get_membership_role_hierarchy()));
 
       $new_role = dosomething_roles_get_member_role($uid);
       $new_rid = $rids[$new_role];
