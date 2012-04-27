@@ -383,3 +383,15 @@ img {
 
 .pane-dosomething-login-register-block .popup-content {
   height: 160px !important; }
+
+#thumbs li {
+  list-style: none;
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  padding: 0;
+  float: left; }
+
+#slideshow {
+  margin: 20px auto;
+  display: block; }
