@@ -721,7 +721,6 @@ img {
     font-size: 16px;
     font-weight: 600; }
 
-<<<<<<< HEAD
 .fb_edge_widget_with_comment {
   margin-left: -67px; }
 
@@ -729,7 +728,7 @@ img {
   position: absolute;
   top: 870px;
   right: 128px; }
-=======
+
 .mcommons-webform {
   float: left;
   width: 66%;
@@ -748,6 +747,12 @@ img {
     padding: 10px;
     height: 163px; }
 
+.mcommons-webform-video {
+  float: none;
+  width: 100%;
+  margin: 0 0 15px 0;
+  border: none !important; }
+
 #five_friends {
   width: 170px;
   position: absolute;
@@ -764,4 +769,3 @@ form.webform-client-form {
   box-shadow: none;
   padding: 15px 15px 0 15px;
   margin-bottom: -15px; }
->>>>>>> 911e6a842cfc2a9bc6c2b40556a929ed21f8de29
