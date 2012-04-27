@@ -29,7 +29,6 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'battle'),
-    array('title' => 'share your video', 'href' => 'battle/share-your-video'),
     array('title' => 'video gallery', 'href' => 'battle/video-gallery'),
     array('title' => 'celebrity gallery', 'href' => 'battle/celeb-gallery'),
     array('title' => 'scholarships / prizes', 'href' => 'battle/scholarships'),
