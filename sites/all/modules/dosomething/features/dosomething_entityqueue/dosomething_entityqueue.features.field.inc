@@ -10,6 +10,95 @@
 function dosomething_entityqueue_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'entityqueue-dosomething_grant_application-field_eq_dosomething_grant'
+  $fields['entityqueue-dosomething_grant_application-field_eq_dosomething_grant'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_eq_dosomething_grant',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'entityreference_entity_field',
+        'handler_settings' => array(
+          'author_only' => 0,
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'field_essay_build_it:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(
+            'grant_application' => 'grant_application',
+          ),
+          'title_field' => 'field_webform_name',
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'webform_submission_entity',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'dosomething_grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Find the grant application by the applicant\'s name.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'entityqueue',
+      'field_name' => 'field_eq_dosomething_grant',
+      'label' => 'Queue Items',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'entityreference_autocomplete',
+        'weight' => '0',
+      ),
+    ),
+  );
+
   // Exported field: 'entityqueue-dosomething_project-eq_dosomething_project'
   $fields['entityqueue-dosomething_project-eq_dosomething_project'] = array(
     'field_config' => array(
@@ -91,6 +180,8 @@ function dosomething_entityqueue_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Find the grant application by the applicant\'s name.');
+  t('Queue Items');
   t('Queue items');
 
   return $fields;

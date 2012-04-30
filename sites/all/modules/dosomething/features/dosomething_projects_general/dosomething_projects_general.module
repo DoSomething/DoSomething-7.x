@@ -297,7 +297,7 @@ function dosomething_projects_general_entity_presave($entity, $type) {
       if ($entity->mail != $account->mail) {
         // Add user to projects with their new email
         // Update projects with the old email to use the new email.
-        dosomething_projects_general_add_user_to_connected_groups($entity);
+        dosomething_projects_general_add_user_to_connected_groups($entity, NULL, FALSE);
         dosomething_projects_general_update_participants_contact_value($entity->mail, $account->mail);
       }
     }
@@ -336,7 +336,7 @@ function dosomething_projects_general_register_form_submit($form, &$form_state) 
  * @return array
  *  List of submissions to which the user was added.
  */
-function dosomething_projects_general_add_user_to_connected_groups($account = NULL, $profile = NULL) {
+function dosomething_projects_general_add_user_to_connected_groups($account = NULL, $profile = NULL, $save_account = TRUE) {
   // Make sure at least one parameter exists.
   if (is_null($account) && is_null($profile)) {
     return array();
@@ -360,7 +360,7 @@ function dosomething_projects_general_add_user_to_connected_groups($account = NU
         if (!isset($group->gid)) {
           $group->save();
         }
-        og_group($group->gid, array('entity' => $account, 'force reload' => FALSE));
+        og_group($group->gid, array('entity' => $account, 'save' => $save_account, 'force reload' => FALSE));
       }
     }
   }
