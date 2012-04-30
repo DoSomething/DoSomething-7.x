@@ -341,6 +341,7 @@ function entityqueue_form($form, &$form_state, $queue, $op = 'edit') {
 
   $form['data']['#tree'] = TRUE;
 
+  $queue_type = entityqueue_type_get_type($queue_type);
   $entity_info = entity_get_info($queue_type);
   $bundles = array();
   foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {

@@ -1,11 +1,17 @@
 <?php
 
-include_once('dosomething_entityqueue.features.inc');
-
 /**
- * Implements hook_entityqueue_type_get_name_alter().
+ * Implements hook_entityqueue_types().
  */
-function dosomething_entityqueue_entityqueue_type_get_name_alter(&$types) {
-  $types['dosomething_project'] = t('DoSomething Projects (webform submissions)');
-  $types['dosomething_grant_application'] = t('DoSomething Grant Applications (webform submissions)');
+function dosomething_entityqueue_entityqueue_types() {
+  $types = array();
+  $types['dosomething_project'] = array(
+    'label' => t('DoSomething Projects (webform submissions)'),
+    'base type' => 'webform_submission_entity',
+  );
+  $types['dosomething_grant_application'] = array(
+    'label' => t('DoSomething Grant Applications (webform submissions)'),
+    'base type' => 'webform_submission_entity',
+  );
+  return $types;
 }

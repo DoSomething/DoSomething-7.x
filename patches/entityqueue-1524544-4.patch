@@ -1,0 +1,90 @@
+diff --git a/entityqueue.api.php b/entityqueue.api.php
+index e8f497c..483335c 100644
+--- a/entityqueue.api.php
++++ b/entityqueue.api.php
+@@ -35,5 +35,24 @@ function hook_entityqueue_default_queues() {
+ }
+ 
+ /**
++ * Define a new queue type.
++ */
++function hook_entityqueue_types() {
++  return array(
++    'my_node_queue' => array(
++      'label' => t('My Node Queue'),
++      'base type' => 'node',
++    ),
++  );
++}
++
++/**
++ * Alter the queue types.
++ */
++function hook_entityqueue_types_alter(&$types) {
++  $types['my_node_queue']['label'] = t('Your Node Queue');
++}
++
++/**
+  * @} End of "addtogroup hooks".
+  */
+diff --git a/entityqueue.module b/entityqueue.module
+index 06864da..5c014a7 100644
+--- a/entityqueue.module
++++ b/entityqueue.module
+@@ -254,11 +254,42 @@ function entityqueue_load_multiple($names = array(), $conditions = array(), $res
+ }
+ 
+ /**
+- * Returns an array of queue types (bundles), keyed by name.
++ * @todo.
+  */
+-function entityqueue_type_get_name() {
++function entityqueue_entityqueue_types() {
+   $queue_types = array();
+   foreach (entity_get_info() as $type => $info) {
++    $queue_types[$type] = array(
++      'label' => $info['label'],
++      'base type' => $type,
++    );
++  }
++  return $queue_types;
++}
++
++/**
++ * Returns an array of queue types, keyed by type.
++ */
++function entityqueue_type_get_types() {
++  $queue_types = module_invoke_all('entityqueue_types');
++  drupal_alter('entityqueue_types', $queue_types);
++  return $queue_types;
++}
++
++/**
++ * @todo.
++ */
++function entityqueue_type_get_type($queue_type) {
++  $queue_types = entityqueue_type_get_types();
++  return isset($queue_types[$queue_type]) ? $queue_types[$queue_type]['base type'] : array();
++}
++
++/**
++ * Returns an array of queue type labels, keyed by type.
++ */
++function entityqueue_type_get_name() {
++  $queue_types = array();
++  foreach (entityqueue_type_get_types() as $type => $info) {
+     $queue_types[$type] = $info['label'];
+   }
+ 
+diff --git a/includes/entityqueue.admin.inc b/includes/entityqueue.admin.inc
+index f265c57..e01fd74 100644
+--- a/includes/entityqueue.admin.inc
++++ b/includes/entityqueue.admin.inc
+@@ -334,6 +334,7 @@ function entityqueue_form($form, &$form_state, $queue, $op = 'edit') {
+ 
+   $form['data']['#tree'] = TRUE;
+ 
++  $queue_type = entityqueue_type_get_type($queue_type);
+   $entity_info = entity_get_info($queue_type);
+   $bundles = array();
+   foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {

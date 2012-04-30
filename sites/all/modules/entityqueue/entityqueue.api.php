@@ -35,13 +35,22 @@ function hook_entityqueue_default_queues() {
 }
 
 /**
- * Alter the allowed queue types.
- *
- * @param array $types
- *   An array of queue types.
+ * Define a new queue type.
  */
-function hook_entityqueue_type_get_name_alter(&$types) {
-  $types['my_new_type'] = t('My New Type');
+function hook_entityqueue_types() {
+  return array(
+    'my_node_queue' => array(
+      'label' => t('My Node Queue'),
+      'base type' => 'node',
+    ),
+  );
+}
+
+/**
+ * Alter the queue types.
+ */
+function hook_entityqueue_types_alter(&$types) {
+  $types['my_node_queue']['label'] = t('Your Node Queue');
 }
 
 /**
