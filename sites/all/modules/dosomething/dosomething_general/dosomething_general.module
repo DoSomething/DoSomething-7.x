@@ -394,6 +394,7 @@ function dosomething_general_tokens($type, $tokens, array $data = array(), array
 function dosomething_general_ctools_render_alter($info, $page, $context) {
   $panels_pane = FALSE;
   //we only want to do this if there's only one node in the context
+  module_load_include('inc', 'panels', 'plugins/task_handlers/panel_context');
   $display_context = panels_panel_context_get_display($context['handler']);
   if (count($display_context->context) > 0) {
     $local_context = $display_context->context;
