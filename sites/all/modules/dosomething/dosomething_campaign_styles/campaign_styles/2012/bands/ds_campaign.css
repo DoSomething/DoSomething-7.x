@@ -248,7 +248,8 @@ div[role="main"] {
 
 #campaign-opt-in {
   font-size: 11px;
-  margin-left: 15px; }
+  margin-left: 15px;
+  margin-top: 25px; }
   #campaign-opt-in a {
     font-weight: bold;
     display: block;
@@ -257,10 +258,10 @@ div[role="main"] {
     position: absolute;
     bottom: 0;
     left: 330px;
-    color: black;
-    text-decoration: underline; }
+    color: black; }
     #campaign-opt-in a:hover {
-      color: #ff130a; }
+      color: #ff130a;
+      text-decoration: none; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -608,10 +609,8 @@ div[role="main"] {
 #video-gallery .pane-content {
   padding-bottom: 0; }
 #video-gallery .views-field-nothing {
-  display: block;
-  position: relative;
-  left: 300px;
-  bottom: 20px; }
+  float: right;
+  margin-top: -21px; }
 #video-gallery .views-field-nothing-1 span {
   padding: 15px 0 0 0;
   text-transform: uppercase;
@@ -633,8 +632,7 @@ div[role="main"] {
 .ds-panel .pane-content {
   padding-bottom: 0; }
   .ds-panel .pane-content .pager {
-    margin: 0 auto;
-    width: 175px; }
+    margin-left: 35%; }
     .ds-panel .pane-content .pager a {
       color: black;
       text-decoration: underline; }
@@ -725,3 +723,49 @@ img {
 
 .fb_edge_widget_with_comment {
   margin-left: -67px; }
+
+#video-facebook-submission {
+  position: absolute;
+  top: 870px;
+  right: 150px; }
+
+.mcommons-webform {
+  float: left;
+  width: 66%;
+  margin-right: 5%;
+  border: none !important; }
+  .mcommons-webform input.field {
+    width: 85%;
+    height: 20px;
+    margin-bottom: 5px; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .go-button {
+    padding-top: 3px;
+    margin: 0 10px 5px 0; }
+  .mcommons-webform .pane-content {
+    padding: 10px;
+    height: 163px; }
+
+.mcommons-webform-video {
+  float: none;
+  width: 100%;
+  margin: 0 0 15px 0;
+  border: none !important; }
+
+#five_friends {
+  width: 170px;
+  position: absolute;
+  bottom: 0px;
+  left: 15px; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 2%; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }

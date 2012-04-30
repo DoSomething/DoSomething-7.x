@@ -314,6 +314,7 @@ div[role="main"]
 #campaign-opt-in
   font-size: 11px
   margin-left: 15px
+  margin-top: 25px
   a
     font-weight: bold
     display: block
@@ -323,9 +324,9 @@ div[role="main"]
     bottom: 0
     left: 330px
     color: $baseColor
-    text-decoration: underline
     &:hover
       color: $secondaryLink
+      text-decoration: none
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -667,10 +668,8 @@ $contestsFontSize: 1em
   .pane-content
     padding-bottom: 0
   .views-field-nothing
-    display: block
-    position: relative
-    left: 300px
-    bottom: 20px
+    float: right
+    margin-top: -21px
   .views-field-nothing-1
     span
       padding: 15px 0 0 0
@@ -696,8 +695,7 @@ $contestsFontSize: 1em
   .pane-content
     padding-bottom: 0
     .pager
-      margin: 0 auto
-      width: 175px
+      margin-left: 35%
       a
         color: $baseColor
         text-decoration: underline
@@ -792,3 +790,51 @@ img
 
 .fb_edge_widget_with_comment
   margin-left: -67px
+
+#video-facebook-submission
+  position: absolute
+  top: 870px
+  right: 150px
+
+// refer five friends
+.mcommons-webform
+  float: left
+  width: 66%
+  margin-right: 5%
+  border: none !important
+  input.field
+    width: 85%
+    height: 20px
+    margin-bottom: 5px
+  label
+    font-weight: 600
+  // overriding padding on go-button to center the SUBMIT text
+  .go-button
+    padding-top: 3px
+    margin: 0 10px 5px 0
+  .pane-content
+    padding: 10px
+    height: 163px
+
+.mcommons-webform-video
+  float: none
+  width: 100%
+  margin: 0 0 15px 0
+  border: none !important
+
+#five_friends
+  width: 170px
+  position: absolute
+  bottom: 0px
+  left: 15px
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 2%
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  padding: 15px 15px 0 15px
+  margin-bottom: -15px
