@@ -46,12 +46,10 @@ function dosomething_services_default_services_endpoint() {
         'create' => array(
           'enabled' => 1,
         ),
-        'index' => array(
+        'retrieve' => array(
           'enabled' => 1,
         ),
-      ),
-      'actions' => array(
-        'create_raw' => array(
+        'index' => array(
           'enabled' => 1,
         ),
       ),
