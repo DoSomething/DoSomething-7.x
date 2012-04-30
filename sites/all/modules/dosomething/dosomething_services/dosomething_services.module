@@ -5,18 +5,23 @@
  * Handles custom services for DoSomething.org
  */
 
-/** 
- * Chuck -- Big challenge for login and reg is in bypassing CAPTCHA since we'll actually submit forms through the Service.
- * One approach might be to temporarily increase access level. For registration, something like...)
- * <?php global $user;
- *       $tmp_user = $user;
- *       session_save_session(FALSE);
- *       $user['access'] (???not sure???) = $user_load(1)['access']; /// prolly screwy syntax...
- *       drupal_execute('user_register', $form_state);
- *       $user = $tmp_user;
- *       session_save_sesion(TRUE);
- *       $account = $form_state['user'];
- * ?>
+/**
+ * Replace the default user creation callback with ours.
  */
+function dosomething_services_services_resources_alter(&$resources, $endpoint) {
+  // If email verification is enabled, bypass it with our custom callback.
+  if (variable_get('user_email_verification', TRUE)) {
+    $resources['user']['create']['callback'] = '_dosomething_services_user_resource_create';
+  }
+}
 
+/**
+ * Disable the email verification then delegate back to _user_resource_create().
+ */
+function _dosomething_services_user_resource_create($account) {
+  // Avoid variable_set() because it does some cache clearing.
+  $GLOBALS['conf']['user_email_verification'] = FALSE;
+  _user_resource_create($account);
+  $GLOBALS['conf']['user_email_verification'] = TRUE;
+}
 
