@@ -12,6 +12,10 @@
  * @see webform_submission_access() and webform_results_access()
  */
 function _submission_resource_access($op = 'view', $args = array()) {
+  // Creations are sort of a special case since nid comes from the submission.
+  if ($op == 'create'){
+    $args = array($args[0]['nid'], $args[0]['webform_submission']);
+  }
   // Adds backwards compatability with regression fixed in #1083242
   if (isset($args[1])) {
     $args[1] = _services_access_value($args[1], 'webform_submission');
@@ -44,7 +48,9 @@ function _submission_resource_access($op = 'view', $args = array()) {
     }
   }
   elseif ($op == 'create') {
-    return node_access($op, $node);
+    // We're checking the "view" access because we're creating
+    // webform_submissions not nodes.
+    return node_access('view', $node);
   }
 }
 
@@ -73,19 +79,30 @@ function _submission_resource_retrieve($nid, $sid) {
  * which may require very specific formatting. The full implications of this
  * are beyond the scope of this comment block. The Googles are your friend.
  *
- * @param $nid
- *   Node id to which we make submission.
- * @param $node
- *   Array representing the attributes a submission add form would submit.
+ * @param $data
+ *   Array with required properties:
+ *   'nid' - webform node id.
+ *   'submission' - nested array of webform values.
+ *   'is_draft' - optional Boolean indicating if the submission is complete,
+ *     defaults to TRUE.
+ *
  * @return
  *   An associative array contained the new submission id.
  *
  * @see drupal_form_submit()
  */
-function _submission_resource_create($nid, $submission) {
-  $node = node_load($nid);
+function _submission_resource_create($data) {
+  // Creation has a little different flow. Services forces us to POST create
+  // requests to the resource's root and package up the node id with the rest
+  // of the submission information.
+
   // Adds backwards compatability with regression fixed in #1083242
-  $submission = _services_arg_value($submission, 'webform_submission');
+  $submission = _services_arg_value($data, 'webform_submission');
+  // Move the node id out out of the array.
+  $nid = $submission['nid'];
+  unset($submission['nid']);
+  $node = node_load($nid);
+  $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
 
   // Load the required includes for drupal_execute
   module_load_include('module', 'webform');
@@ -93,7 +110,7 @@ function _submission_resource_create($nid, $submission) {
   // Prepare form state
   $form_state = array();
   $form_state['values']['submitted'] = $submission;
-  $form_state['values']['op'] = variable_get('services_webform_submit_button_resource_create', t('Submit'));
+  $form_state['values']['op'] = variable_get('services_webform_submit_button_resource_create', $default_op);
 
   // Submit form programmatically
   drupal_form_submit('webform_client_form_' . $node->nid, $form_state, $node, array());
@@ -103,9 +120,7 @@ function _submission_resource_create($nid, $submission) {
   }
   // Fetch $sid out of $form_state
   $sid = $form_state['values']['details']['sid'];
-  // Only add the URI for servers that support it.
-  $submission = array('nid' => $nid, 'sid' => $sid);
-  return $submission;
+  return array('nid' => $nid, 'sid' => $sid);
 }
 
 
@@ -129,6 +144,7 @@ function _submission_resource_create($nid, $submission) {
  */
 function _submission_resource_update($nid, $sid, $submission) {
   $node = node_load($nid);
+  $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
   // Adds backwards compatability with regression fixed in #1083242
   $submission = _services_arg_value($submission, 'webform_submission');
 
@@ -139,7 +155,7 @@ function _submission_resource_update($nid, $sid, $submission) {
   $form_state = array();
   $form_state['values']['submitted'] = $submission;
   $form_state['values']['details']['sid'] = $sid;
-  $form_state['values']['op'] = variable_get('services_webform_submit_button_resource_create', t('Submit'));
+  $form_state['values']['op'] = variable_get('services_webform_submit_button_resource_create', $default_op);
 
   // Submit form programmatically
   drupal_form_submit('webform_client_form_' . $node->nid, $form_state, $node, array());

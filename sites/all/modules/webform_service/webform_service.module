@@ -42,17 +42,10 @@ function webform_service_services_resources() {
         'callback' => '_submission_resource_create',
         'args' => array(
           array(
-            'name' => 'nid',
-            'optional' => FALSE,
-            'source' => array('path' => 0),
-            'type' => 'int',
-            'description' => 'The nid of the submission node',
-          ),
-          array(
             'name' => 'webform_submission',
             'optional' => FALSE,
             'source' => 'data',
-            'description' => 'The submission data to create',
+            'description' => "The submission data to create, needs to include the webform's nid.",
             'type' => 'array',
           ),
         ),
