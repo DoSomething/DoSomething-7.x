@@ -1,5 +1,9 @@
 name = "DoSomething Services"
 description = "Services for DoSomething"
-core = 7.x
-package = DoSomething
-
+core = "7.x"
+package = "DoSomething"
+php = "5.2.4"
+dependencies[] = "ctools"
+dependencies[] = "services"
+features[ctools][] = "services:services:3"
+features[services_endpoint][] = "rest"

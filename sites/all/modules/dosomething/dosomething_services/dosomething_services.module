@@ -1,14 +1,20 @@
-<?php 
+<?php
 
 /**
  * @file
  * Handles custom services for DoSomething.org
  */
 
+include_once('dosomething_services.features.inc');
+
 /**
+ * Implements hook_services_resources_alter().
+ *
  * Replace the default user creation callback with ours.
  */
 function dosomething_services_services_resources_alter(&$resources, $endpoint) {
+  // TODO: we should only do this on a specific endpoint.
+
   // If email verification is enabled, bypass it with our custom callback.
   if (variable_get('user_email_verification', TRUE)) {
     $resources['user']['create']['callback'] = '_dosomething_services_user_resource_create';
@@ -24,4 +30,3 @@ function _dosomething_services_user_resource_create($account) {
   _user_resource_create($account);
   $GLOBALS['conf']['user_email_verification'] = TRUE;
 }
-
