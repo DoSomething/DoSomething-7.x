@@ -451,10 +451,14 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
     }
   }
   if (module_exists('tweetbutton') && isset($modules['tweetbutton']) && $modules['tweetbutton']) {
+    $prep_args = array($url);
+    if (isset($options['tweet_text'])) {
+      $prep_args[] = $options['tweet_text'];
+    }
     $element['#twitter'] = array(
       '#weight' => 2,
       '#theme' => 'tweetbutton_display',
-      '#tokens' => dosomething_blocks_tweet_prepare($path),
+      '#tokens' => call_user_func_array('dosomething_blocks_tweet_prepare', $prep_args),
       '#attached' => array(
         'js' => array(
           array('data' => 'http://platform.twitter.com/widgets.js', 'external'),
@@ -471,7 +475,8 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
     $data_options['services'] = '"ShareThis:sharethis"';
 
     $element['#sharethis'] = array(
-      '#markup' => get_button_HTML($data_options, $base_url . '/' . $current_path, drupal_get_title()),
+      //'#markup' => get_button_HTML($data_options, $base_url . '/' . $current_path, drupal_get_title()),
+      '#markup' => get_button_HTML($data_options, $url, drupal_get_title()),
       '#weight' => 3,
     );
   }
@@ -529,7 +534,7 @@ function dosomething_blocks_theme() {
 /**
  * Return title and url tokens for tweetbutton.
  */
-function dosomething_blocks_tweet_prepare($path = NULL) {
+function dosomething_blocks_tweet_prepare($path = NULL, $text = NULL) {
   $args = array();
   // Use url settings, or current arguments for node settings.
   if ($path) {
@@ -549,10 +554,9 @@ function dosomething_blocks_tweet_prepare($path = NULL) {
     );
   }
   else {
-    $title = drupal_get_title();
-    $tokens['!title'] = $title;
+    $tokens['!title'] = (isset($text)) ? $text : drupal_get_title();
     // If there is no URL twitter will use the current one.
-    $tokens['!node_url'] = '';
+    $tokens['!node_url'] = (isset($path)) ? $path : '';
   }
   return $tokens;
 }
