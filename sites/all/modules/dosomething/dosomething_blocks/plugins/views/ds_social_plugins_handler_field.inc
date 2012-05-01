@@ -51,6 +51,20 @@ class ds_social_plugins_handler_field extends views_handler_field {
         'edit-options-module-options-fb-social' => array(1),
       ),
     );
+
+    $form['options']['url_field'] = array(
+      '#title' => t('URL to link to'),
+      '#type' => 'textfield',
+      '#default_value' => $this->options['options']['url_field'],
+      '#description' => t('URL to link to. You can use tokens from the replacement patterns below. Leave blank for the default URL.'),
+    );
+
+    $form['options']['tweet_text'] = array(
+      '#title' => t('Twitter tweet text'),
+      '#type' => 'textfield',
+      '#default_value' => $this->options['options']['tweet_text'],
+      '#description' => t('Text to tweet. You can use tokens from the replacement patterns below. Leave blank for page title.'),
+    );
   }
 
   /**
@@ -68,14 +82,23 @@ class ds_social_plugins_handler_field extends views_handler_field {
    */
   function render($values) {
     if (!$this->options['exclude']) {
-      if (!empty($values->nid)) {
+      $modules = $this->options['module_options'];
+      $options = $this->options['options'];
+
+      if (!empty($options['tweet_text'])) {
+        $options['tweet_text'] = $this->tokenize_value($options['tweet_text']);
+      }
+
+      if (!empty($options['url_field'])) {
+        $url = $this->tokenize_value($options['url_field']);
+      }
+      else if (!empty($values->nid)) {
         $url = url('node/' . $values->nid, $options = array('absolute' => TRUE));
       }
       else {
         $url = NULL;
       }
-      $modules = $this->options['module_options'];
-      $options = $this->options['options'];
+      
       $value = dosomething_blocks_social_node_plugins($url, $modules, $options);
     }
 

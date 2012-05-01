@@ -405,9 +405,8 @@ function dosomething_general_ctools_render_alter($info, $page, $context) {
   }
   if (isset($local_context)) {
     foreach ($local_context as $ctxt) {
-      if (in_array('node', $ctxt->type)) {
+      if (in_array('node', $ctxt->type) && is_object($ctxt->data)) {
         $node = $ctxt->data;
-        drupal_set_title($contexts['argument_nid_1']->title);
         if ($panels_pane) $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
         OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
         break;
