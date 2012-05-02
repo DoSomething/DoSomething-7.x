@@ -17,7 +17,7 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
 
   // If email verification is enabled, bypass it with our custom callback.
   if (variable_get('user_email_verification', TRUE)) {
-    $resources['user']['create']['callback'] = '_dosomething_services_user_resource_create';
+    $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
   }
 }
 
