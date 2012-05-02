@@ -162,7 +162,7 @@ function dosomething_clubs_club_counter_right() {
       $query = db_select('webform_submissions', 'w');
       $query->innerJoin('node', 'n', 'w.nid = n.nid');
       $result = $query->condition('n.type', $node_type, '=')
-        ->condition('w.uid', $members, 'IN');
+        ->condition('w.uid', $members, 'IN')
         ->countQuery()
         ->execute()
         ->fetchObject();
