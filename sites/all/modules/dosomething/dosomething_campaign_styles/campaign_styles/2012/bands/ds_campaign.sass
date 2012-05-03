@@ -187,11 +187,6 @@ div[role="main"]
         color: $goldLink
         text-decoration: none
 
-.campaign-counter-labels
-  color: white
-  font-size: 1.5em
-  text-transform: uppercase
-
 .pane-campaign-blog-panel-pane-1
   background: transparent !important
   border: none !important
@@ -285,7 +280,7 @@ div[role="main"]
   .pane-title
     background: $baseColor
   .pane-content
-    padding: 18px
+    padding: 14px 18px 18px 30px
   .panel-row-actions-sign-up
     .pane-campaign-sign-up
       margin: 0
@@ -300,16 +295,17 @@ div[role="main"]
         margin-bottom: 0.5em
         input
           width: 75%
+          margin-top: 5px
       .field-name-field-webform-email
         margin-bottom: 0.5em
         input
           width: 100%
 
-#webform-client-form-719314
+.webform-client-form
   #edit-actions
     position: absolute
-    right: 5px
-    bottom: 8px
+    right: 11px
+    bottom: 7px
 
 #campaign-opt-in
   font-size: 11px
@@ -328,6 +324,29 @@ div[role="main"]
       color: $secondaryLink
       text-decoration: none
 
+//campaign counter
+.campaign-counter-labels
+  text-transform: uppercase
+  font-size: 27px
+  font-family: $accent
+  font-weight: 500
+  line-height: 30px
+  float: left
+
+.campaign-counter-label-top
+  margin-bottom: 12px
+  margin-top: 2px
+
+.campaign-counter-number-top
+  margin: 6px 0 18px 0
+
+.campaign-counter-numbers
+  float: right
+
+.campaign-counter-number-top,
+.campaign-counter-number-bottom
+  text-align: right
+        
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
   .pane-title

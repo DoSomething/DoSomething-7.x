@@ -135,11 +135,6 @@ div[role="main"] {
         color: #ffc10b;
         text-decoration: none; }
 
-.campaign-counter-labels {
-  color: white;
-  font-size: 1.5em;
-  text-transform: uppercase; }
-
 .pane-campaign-blog-panel-pane-1 {
   background: transparent !important;
   border: none !important; }
@@ -219,7 +214,7 @@ div[role="main"] {
   .panel-row-actions .pane-title {
     background: black; }
   .panel-row-actions .pane-content {
-    padding: 18px; }
+    padding: 14px 18px 18px 30px; }
   .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
     margin: 0; }
     .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
@@ -235,16 +230,17 @@ div[role="main"] {
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
-        width: 75%; }
+        width: 75%;
+        margin-top: 5px; }
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
 
-#webform-client-form-719314 #edit-actions {
+.webform-client-form #edit-actions {
   position: absolute;
-  right: 5px;
-  bottom: 8px; }
+  right: 11px;
+  bottom: 7px; }
 
 #campaign-opt-in {
   font-size: 11px;
@@ -262,6 +258,28 @@ div[role="main"] {
     #campaign-opt-in a:hover {
       color: #ff130a;
       text-decoration: none; }
+
+.campaign-counter-labels {
+  text-transform: uppercase;
+  font-size: 27px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  float: left; }
+
+.campaign-counter-label-top {
+  margin-bottom: 12px;
+  margin-top: 2px; }
+
+.campaign-counter-number-top {
+  margin: 6px 0 18px 0; }
+
+.campaign-counter-numbers {
+  float: right; }
+
+.campaign-counter-number-top,
+.campaign-counter-number-bottom {
+  text-align: right; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
