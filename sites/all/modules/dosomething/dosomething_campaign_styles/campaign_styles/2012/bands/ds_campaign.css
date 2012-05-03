@@ -620,6 +620,9 @@ div[role="main"] {
   text-decoration: underline; }
   #video-gallery .views-field-nothing-1 a:hover {
     color: #ff130a; }
+#video-gallery .view-header p {
+  margin-bottom: 0;
+  padding: 10px 0 0 10px; }
 
 #looking-for {
   margin-bottom: 15px; }
