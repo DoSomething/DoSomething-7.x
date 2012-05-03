@@ -1,0 +1,270 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #27AAE1 // bright-blue
+$complement: #F15C27 // red-orange
+$secondaryLink: black
+
+// borders
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('assets/bg.jpg')
+$bgFallback: blue
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: rgba(188,134,70,.4)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+
+h1.title
+  display: none
+
+body
+  background-color: $baseColor
+  background-image: $imageBackground
+  background-repeat: repeat
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 20px
+  padding-top: 10px
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+.panel-panel
+  margin-bottom: 15px
+
+.float-left
+  float: left
+
+.float-right
+  float: right
+  
+.li-circles
+  list-style-image: url("assets/black-triangle.png")
+  li
+    h3
+      font-size: 1.6em
+      text-transform: none
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: #fff
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: $secondaryLink
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+// top right wrapper
+.panel-row-top-right
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+      padding: 0
+      font-size: 26px
+      line-height: 1em
+    .pane-content
+      font-size: 21px
+      line-height: 1.4em
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  +block
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+
+// ad row (quick info and psa)
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    line-height: 1.3em
+    font-weight: 500
+  .pane-content
+    h3
+      color: $baseColor
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
+    p
+      margin: 0
+    &:before
+      +insetBorder
+      margin-bottom: 20px
+
+
+.panel-row-flexible
+  .panel-pane
+    +block
+    .pane-title
+      background: $baseColor
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    &:before,&:after
+      +insetBorder
+
+.faq-section
+  border: none !important
+  .pane-content
+    background: #c09
+    padding-bottom: 0
+    ul
+      margin: 0px 10px
+      padding: 50px
+  .pane-title
+    color: $bgFallback
+          
+// blog
+.node-campaign-blog-post
+  padding: 15px !important
+  .field-name-field-picture
+    img
+      margin: 0 20px 20px 0
+      float: left
+  .field-name-field-blog-video
+    clear: both
+    position: relative
+    bottom: -25px
+    right: -125px
+    margin: 35px 0
+    iframe
+      margin: 0 auto
+      display: block
+
+.field-type-text-with-summary
+  img
+    padding: 10px
+    margin: 20px auto
+    display: block
+    border: 1px solid #000!important
+    
+// logos
+.panel-row-logos
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+
+// refer five friends
+.mcommons-webform
+  float: left
+  width: 66%
+  margin-right: 5%
+  border: none !important
+  input.field
+    width: 85%
+    height: 20px
+    margin-bottom: 5px
+  label
+    font-weight: 600
+  // overriding padding on go-button to center the SUBMIT text
+  .go-button
+    padding-top: 3px
+    margin: 0 10px 5px 0
+  .pane-content
+    padding: 10px
+    height: 163px
+
+.mcommons-webform-video
+  float: none
+  width: 100%
+  margin: 0 0 15px 0
+  border: none !important
+
+#five_friends
+  width: 170px
+  position: absolute
+  bottom: 0px
+  left: 15px
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 2%
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  padding: 15px 15px 0 15px
+  margin-bottom: -15px
+  
+// resetting the nonsense
+#breadcrumb
+  display: none
+
+img
+  border: none !important
+  box-shadow: none !important
+  -o-box-shadow: none !important
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: $baseColor !important
