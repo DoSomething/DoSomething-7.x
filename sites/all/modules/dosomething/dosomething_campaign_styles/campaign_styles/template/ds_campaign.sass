@@ -6,10 +6,10 @@
 ///////// campaign definitions //////////
 ////////////////////////////////////////
 
-// colors
-$baseColor: #D33936
-$complement: #ffffff
-$secondaryLink: black
+// colors - define any campaign specific colors here
+$baseColor: #bada55
+$secondaryLink: #beefed
+$paneBG: #fff
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -18,13 +18,16 @@ $borderBot: 1px solid rgba(255,255,255,.5)
 // fonts - don't change these. if you do, -50 life points
 $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
+$boldWeight: 600
 
-// page background
+// sets the background for the entire page
 $imageBackground: url('assets/bg.jpg')
 $bgFallback: blue
 
-// block definition (all blocks--don't define width or float here)
+// sets the background for the page nav and main section
 @mixin block
+  // make sure you specify the RBG fallback if you have a RGBA set!
+  background: rgb(188,134,70)
   background: rgba(188,134,70,.4)
 
 // top and bottom border for elements
@@ -36,6 +39,20 @@ $bgFallback: blue
   border-top: $borderTop
   border-bottom: $borderBot
 
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin setBorderBox
+  -moz-box-sizing: border-box
+  -ms-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
 
 //////////////////////////////////////////
 ///////// general definitions ///////////
@@ -46,8 +63,15 @@ a
   &:hover
     color: $secondaryLink
 
+b
+  font-weight: $boldWeight
+
 h1.title
   display: none
+
+img
+  +noShadow
+  +noBorder
 
 body
   background-color: $bgFallback
@@ -58,7 +82,7 @@ body
 div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
-  margin-top: 20px
+  margin-top: 8px
   padding-top: 10px
 
 .three-boxes
@@ -67,7 +91,12 @@ div[role="main"]
   margin-right: 6.5%
   &:last-child
     margin-right: 0
+  .pane-content
+    +setBorderBox
 
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
 
 .line-top
   &:before
@@ -75,6 +104,14 @@ div[role="main"]
 .line-bottom
   &:after
     +insetBorder
+
+#breadcrumb
+  display: none
+
+// reset quick info color
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: $baseColor !important
 
 
 //////////////////////////////////////////
@@ -103,30 +140,126 @@ div[role="main"]
         color: $baseColor
         text-decoration: none
 
-// top right wrapper
-.panel-row-top-right
-  // mini-info panel
-  .panel-top-right-mini-info
-    font-family: $accent
-    .pane-title
-      background: none
-      color: $baseColor
-      padding: 0
-      font-size: 26px
-      line-height: 1em
-    .pane-content
-      font-size: 21px
-      line-height: 1.4em
+// campaign logo
 
-// actions panel (sign-up and counter)
+
+// mini info
+// brief campaign description at the top right
+.panel-top-right-mini-info
+  font-family: $accent
+  .pane-title
+    background: none
+    color: $baseColor
+    padding: 0
+    font-size: 26px
+    line-height: 1em
+  .pane-content
+    font-size: 21px
+    line-height: 1.4em
+
+// campaign social buttons, top right
+.pane-campaign-social
+  .pane-content
+    +block
+    .fb-facepile
+      &:before
+        +insetBorder
+    // positioning line between social width and campaign teaser
+    .socialWrapper
+      margin: 0 0 8px 18px
+      &:before
+        +insetBorder
+        content: ""
+        display: block
+        left: -18px
+        margin-bottom: 8px
+        position: relative
+        width: 237px
+
+// short form
 .panel-row-actions
-  +block
+  background: $paneBG
+  border: none
+  .form-wrapper
+    margin-bottom: 12px
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noShadow
+        border: none
+      .field-name-field-webform-mobile  
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px
+      .field-name-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
 
-// ad row (quick info and psa)
+.webform-client-form
+  #edit-actions
+    position: absolute
+    right: 11px
+    bottom: 7px
+
+#campaign-opt-in
+  font-size: 11px
+  margin-left: 15px
+  margin-top: 25px
+  a
+    font-weight: bold
+    display: block
+    height: 20px
+    width: 20px
+    position: absolute
+    bottom: 0
+    left: 330px
+    color: $baseColor
+    &:hover
+      color: $secondaryLink
+      text-decoration: none
+
+// counter
+.panel-row-actions
+  background: $paneBG
+  border: none
+  .form-wrapper
+    margin-bottom: 12px
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 14px 18px 18px 30px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noShadow
+        border: none
+      .field-name-field-webform-mobile  
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px
+      .field-name-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
+
+// Quick Info
 .panel-row-ad-quick-info
   .pane-title
     font-size: 35px
@@ -137,6 +270,8 @@ div[role="main"]
     line-height: 1.3em
     font-weight: 500
   .pane-content
+    margin-top: 1em
+    padding: 0
     h3
       color: $baseColor
       font-size: 26px
@@ -144,11 +279,10 @@ div[role="main"]
       font-weight: 600
       line-height: 1em
     p
-      margin: 0
+      margin: 0 0 0.5em 0
     &:before
       +insetBorder
       margin-bottom: 20px
-
 
 .panel-row-flexible
   .panel-pane
@@ -162,10 +296,90 @@ div[role="main"]
     &:before,&:after
       +insetBorder
 
-// logos
+// sponsor logos
 .panel-row-logos
+  margin-top: 2em
   .pane-title
     color: $baseColor
     background: none
     margin: 0
     padding: 0
+  .pane-content
+    background: none
+    padding: 0
+
+// FAQ
+.faq-section
+  border: none !important
+  .pane-content
+    background: $paneBG
+    padding-bottom: 0
+    ul
+      margin: 0px 10px
+      padding: 1.5em
+    li
+      h3
+        font-size: 1.6em
+        text-transform: none
+      p 
+        margin-top: 0
+  .pane-title
+    color: $baseColor
+
+// Blog
+.node-campaign-blog-post
+  padding: 15px !important
+  .field-name-field-picture
+    img
+      margin: 0 20px 20px 0
+      float: left
+  .field-name-field-blog-video
+    clear: both
+    position: relative
+    bottom: -25px
+    right: -125px
+    margin: 35px 0
+    iframe
+      margin: 0 auto
+      display: block
+
+.field-type-text-with-summary
+  img
+    padding: 10px
+    margin: 20px auto
+    display: block
+    border: 1px solid #000!important
+
+.pane-campaign-blog-panel-pane-1
+  background: transparent !important
+  border: none !important
+  .pane-content
+    padding: 15px
+  a
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
+  .more-link
+    text-transform: uppercase
+
+.pane-campaign-blog-panel-pane-2
+  border: none !important
+  width: 100%
+  .pane-content
+    padding: 10px 0 0 0
+  .view-campaign-blog
+    .views-row
+      padding: 5px 15px 15px
+        margin: 1em 0 1em 0
+      &:first-child
+        &:before
+          border: none
+          margin: 0
+    .views-row-even
+      background-color: $paneBG
