@@ -152,42 +152,31 @@ function dosomething_clubs_club_counter_right() {
     'value' => $member_count,
   );
 
+  $counts = array(
+    'project_report' => 0,
+    'campaign_report_back' => 0,
+  );
   if (!empty($members)) {
-    // From those members, count all their Campaign Reports Backs
-    $query = db_select('webform_submissions', 'w');
-    $query->innerJoin('node', 'n', 'w.nid = n.nid');
-    $query->condition('n.type', 'campaign_report_back', '=');
-    $query->condition('w.uid', $members, 'IN');
-    $count = $query->countQuery()->execute()->fetchObject();
-    $campaigns_count = $count->expression;
-  }
-  else {
-    $campaigns_count = 0;
+    foreach ($counts as $node_type => $count) {
+      // From those members, count all their Campaign Reports Backs
+      $query = db_select('webform_submissions', 'w');
+      $query->innerJoin('node', 'n', 'w.nid = n.nid');
+      $result = $query->condition('n.type', $node_type, '=')
+        ->condition('w.uid', $members, 'IN')
+        ->countQuery()
+        ->execute()
+        ->fetchObject();
+      $counts[$node_type] = $result->expression;
+    }
   }
 
   $items['campaigns_completed'] = array(
     'title' => t('Campaigns Completed'),
-    'value' => $campaigns_count,
+    'value' => $counts['campaign_report_back'],
   );
-  // TODO: the clubs on projects field was removed and this logic needs to be redone.
-
-  // Get count of Project Reports that reference this Club.
-  $project_upload_query = db_query("SELECT count(sid) FROM webform_submissions, (SELECT etid FROM og_membership WHERE gid = :gid AND entity_type = 'user') guser WHERE bundle = 'project_report' AND guser.etid = uid", array(':gid' => $group->gid));
-  $project_upload_count = 0;
-  while ($sum_it_up = $project_upload_query->fetchField()) {
-    $project_upload_count += $sum_it_up;
-  }
-  /*$query = new EntityFieldQuery();
-  $projects_count = $query
-    ->entityCondition('entity_type', 'webform_submission_entity')
-    ->entityCondition('bundle', 'project_report')
-    ->fieldCondition('field_project_clubs', 'nid', $group->etid, '=')
-    ->count()
-    ->execute();
-  */
   $items['projects_uploaded'] = array(
     'title' => t('Projects Uploaded'),
-    'value' => $project_upload_count,
+    'value' => $counts['project_report'],
   );
 
   $output[] = array(

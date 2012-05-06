@@ -146,7 +146,7 @@ function dosomething_grant_application_field_default_fields() {
           'geocoder_handler' => 'google',
         ),
         'type' => 'geocoder',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -371,136 +371,7 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_grant_ref'
-  $fields['webform_submission_entity-grant_application-field_webform_grant_ref'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_grant_ref',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'profile2_private' => FALSE,
-        'referenceable_types' => array(
-          'action_guide' => 0,
-          'api_key' => 0,
-          'awards_archive' => 0,
-          'bc_bio_form' => 0,
-          'blog' => 0,
-          'campaign' => 0,
-          'campaign_art_2011' => 0,
-          'campaign_bully_2011' => 0,
-          'campaign_cancer_2011' => 0,
-          'campaign_contact_form' => 0,
-          'campaign_ew_2011' => 0,
-          'campaign_macys_2011' => 0,
-          'campaign_report_back' => 0,
-          'campaign_sign_up' => 0,
-          'campaign_sports_2011' => 0,
-          'cancer_2011_signup' => 0,
-          'cause_video' => 0,
-          'club' => 0,
-          'club_event' => 0,
-          'decade_2011_signup' => 0,
-          'ds_award_judging' => 0,
-          'dsaward_app' => 0,
-          'dsaward_rec' => 0,
-          'dsu_askprof' => 0,
-          'dsu_guides' => 0,
-          'easy_idea' => 0,
-          'editorial_content_' => 0,
-          'ewaste_signup_2011' => 0,
-          'final_grant_update' => 0,
-          'grant_alumni' => 0,
-          'grant_application' => 0,
-          'grant_judge' => 0,
-          'help_ticket' => 0,
-          'member_opportunity' => 'member_opportunity',
-          'page' => 0,
-          'poll' => 0,
-          'press' => 0,
-          'project_report' => 0,
-          'project_update' => 0,
-          'scholarship' => 0,
-          'scholarship_application' => 0,
-          'school' => 0,
-          'scroller' => 0,
-          'tips_and_tools' => 0,
-          'webform' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '11',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_grant_ref',
-      'label' => 'Grant',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-        'webform_entity' => array(
-          'pid' => '0',
-          'weight' => '',
-        ),
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'nodereference_url',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'edit_fallback' => 0,
-          'fallback' => 'select',
-          'node_link' => array(
-            'destination' => 'default',
-            'full' => 0,
-            'hover_title' => '',
-            'teaser' => 0,
-            'title' => '',
-          ),
-        ),
-        'type' => 'nodereference_url',
-        'weight' => '15',
+        'weight' => '5',
       ),
     ),
   );
@@ -570,7 +441,7 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -645,81 +516,6 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_photo_url'
-  $fields['webform_submission_entity-grant_application-field_webform_photo_url'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_photo_url',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'link',
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'rel' => '',
-          'target' => 'default',
-        ),
-        'display' => array(
-          'url_cutoff' => 80,
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_value' => '',
-        'url' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'link_field',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => '8',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_photo_url',
-      'label' => 'Photo album URL',
-      'required' => 0,
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'rel' => '',
-          'target' => 'default',
-        ),
-        'display' => array(
-          'url_cutoff' => '80',
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_value' => '',
-        'url' => 0,
-        'user_register_form' => FALSE,
-        'webform_entity' => array(
-          'pid' => '0',
-          'weight' => '',
-        ),
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_field',
-        'weight' => '13',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-grant_application-field_webform_project_dates'
   $fields['webform_submission_entity-grant_application-field_webform_project_dates'] = array(
     'field_config' => array(
@@ -735,6 +531,8 @@ function dosomething_grant_application_field_default_fields() {
       'indexes' => array(),
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
           'hour' => 0,
@@ -744,9 +542,8 @@ function dosomething_grant_application_field_default_fields() {
           'year' => 'year',
         ),
         'profile2_private' => FALSE,
-        'repeat' => 0,
         'timezone_db' => '',
-        'todate' => 'required',
+        'todate' => 'optional',
         'tz_handling' => 'none',
       ),
       'translatable' => '0',
@@ -755,7 +552,7 @@ function dosomething_grant_application_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'grant_application',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'If your project is ongoing, feel free to leave the end date blank',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -768,7 +565,7 @@ function dosomething_grant_application_field_default_fields() {
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '6',
+          'weight' => 15,
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -781,10 +578,6 @@ function dosomething_grant_application_field_default_fields() {
         'default_value_code' => '',
         'default_value_code2' => '',
         'user_register_form' => FALSE,
-        'webform_entity' => array(
-          'pid' => '0',
-          'weight' => '',
-        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -795,12 +588,11 @@ function dosomething_grant_application_field_default_fields() {
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'repeat_collapsed' => 0,
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '10',
+        'weight' => '9',
       ),
     ),
   );
@@ -827,6 +619,11 @@ function dosomething_grant_application_field_default_fields() {
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'field_essay_build_it:value',
@@ -878,10 +675,10 @@ function dosomething_grant_application_field_default_fields() {
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );
@@ -921,7 +718,7 @@ function dosomething_grant_application_field_default_fields() {
       'bundle' => 'grant_application',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Tell us about your project in 1-2 sentences.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -938,10 +735,6 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
-        'webform_entity' => array(
-          'pid' => '0',
-          'weight' => '',
-        ),
       ),
       'widget' => array(
         'active' => 1,
@@ -950,7 +743,7 @@ function dosomething_grant_application_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -1025,7 +818,7 @@ function dosomething_grant_application_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -1095,7 +888,7 @@ function dosomething_grant_application_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -1166,82 +959,7 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'dosomething_school_autocomplete',
-        'weight' => '7',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_video_url'
-  $fields['webform_submission_entity-grant_application-field_webform_video_url'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_video_url',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'link',
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'rel' => '',
-          'target' => 'default',
-        ),
-        'display' => array(
-          'url_cutoff' => 80,
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_value' => '',
-        'url' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'link_field',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_application',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => '9',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_video_url',
-      'label' => 'Youtube or video URL',
-      'required' => 0,
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'rel' => '',
-          'target' => 'default',
-        ),
-        'display' => array(
-          'url_cutoff' => '80',
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_value' => '',
-        'url' => 0,
-        'user_register_form' => FALSE,
-        'webform_entity' => array(
-          'pid' => '0',
-          'weight' => '',
-        ),
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_field',
-        'weight' => '14',
+        'weight' => '6',
       ),
     ),
   );
@@ -1253,17 +971,16 @@ function dosomething_grant_application_field_default_fields() {
   t('Body');
   t('Email');
   t('Geocode Data');
-  t('Grant');
+  t('If your project is ongoing, feel free to leave the end date blank');
   t('Mobile Phone Number');
   t('Name');
   t('Personal project website URL');
-  t('Photo album URL');
-  t('Please enter the submission id of your project.');
   t('Project Dates');
   t('Project Summary');
   t('School');
+  t('Start typing the Title of your DoSomething.org Project Posting');
+  t('Tell us about your project in 1-2 sentences.');
   t('Your DoSomething project posting');
-  t('Youtube or video URL');
 
   return $fields;
 }
