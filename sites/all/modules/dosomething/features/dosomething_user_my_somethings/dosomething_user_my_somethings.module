@@ -261,8 +261,7 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
           // info, so we're not loading it up as of now.
           $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
           $node = node_load($submission->nid);
-          $edit_access = webform_submission_access($node, $submission, 'edit', $account);
-          $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+          $link = 'webform-submission/' . $submission->sid;
           $items[$type]['children'][] = l($title, $link);
         }
       }
@@ -367,8 +366,7 @@ function dosomething_user_my_somethings_my_past_something_links($uid) {
       // info, so we're not loading it up as of now.
       if ($node = node_load($submission->nid)) {
         $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
-        $edit_access = webform_submission_access($node, $submission, 'edit', $account);
-        $link = $edit_access ? "node/{$node->nid}/submission/{$submission->sid}/edit" : 'webform-submission/' . $submission->sid;
+        $link = 'webform-submission/' . $submission->sid;
         $items[$type]['children'][] = l($title, $link);
       }
     }
