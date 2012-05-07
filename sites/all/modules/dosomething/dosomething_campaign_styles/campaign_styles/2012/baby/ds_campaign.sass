@@ -7,9 +7,10 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #27AAE1 // bright-blue
+$baseColor: #00AEEF // bright-blue
 $complement: #F15C27 // red-orange
 $secondaryLink: black
+$bgGrey: #F3F3F4
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -20,8 +21,7 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: url('assets/bg.jpg')
-$bgFallback: blue
+$imageBackground: url('assets/bg.png')
 
 // block definition (all blocks--don't define width or float here)
 @mixin block
@@ -47,7 +47,7 @@ a
     color: $secondaryLink
 
 h1.title
-  display: none
+  display: none 
 
 body
   background-color: $baseColor
@@ -59,6 +59,7 @@ div[role="main"]
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 20px
   padding-top: 10px
+  background: #fff
 
 .line-top
   &:before
@@ -77,11 +78,11 @@ div[role="main"]
   float: right
   
 .li-circles
-  list-style-image: url("assets/black-triangle.png")
-  li
-    h3
-      font-size: 1.6em
-      text-transform: none
+  list-style-image: url("assets/dot.png")
+      
+h2.pane-title
+  background-color: $complement
+  color: #fff
 
 //////////////////////////////////////////
 ////////////// sections /////////////////
@@ -97,6 +98,7 @@ div[role="main"]
     +block
     background-image: none
     text-align: right
+    background: #fff
     a
       display: inline-block
       width: 100%
@@ -120,17 +122,32 @@ div[role="main"]
       padding: 0
       font-size: 26px
       line-height: 1em
+      margin-top: 15px
     .pane-content
       font-size: 21px
       line-height: 1.4em
+      font-weight: 600
+      color: $baseColor
 
-// actions panel (sign-up and counter)
-.panel-row-actions
-  +block
-  .pane-title
-    background: $baseColor
-  .pane-content
-    padding: 18px
+// scholarship bubble
+#scholarship_bubble
+  height: 85px
+  img
+    position: absolute
+    right: -65px
+    top: -25px
+    
+//social
+.pane-node-field-campain-date
+  .field-item
+    font-size: 27px
+    color: $complement
+
+.pane-node-field-campaign-teaser
+  p
+    font-weight: lighter
+    color: #000
+    margin-bottom: 0
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -140,27 +157,36 @@ div[role="main"]
     background: transparent
     text-transform: uppercase
     color: $secondaryLink
-    line-height: 1.3em
     font-weight: 500
+  .field-name-body
+    margin-top: -15px
   .pane-content
     h3
-      color: $baseColor
+      color: $complement
       font-size: 26px
       text-transform: uppercase
       font-weight: 600
       line-height: 1em
+      letter-spacing: 0.1em
+      margin-bottom: -5px
     p
       margin: 0
+      padding-bottom: 0.2em
+      font-size: 11px
     &:before
       +insetBorder
       margin-bottom: 20px
 
+.panel-row-ad
+  margin: 0
+
+.panel-row-ad-psa
+  margin: 45px 0 0 0
 
 .panel-row-flexible
   .panel-pane
     +block
-    .pane-title
-      background: $baseColor
+    background: #fff
   .blog
     background: transparent
     &:before, &:after
@@ -171,14 +197,41 @@ div[role="main"]
 .faq-section
   border: none !important
   .pane-content
-    background: #c09
-    padding-bottom: 0
+    background: $bgGrey
     ul
-      margin: 0px 10px
-      padding: 50px
-  .pane-title
-    color: $bgFallback
+      padding: 5px 5px 5px 20px
+      margin: 0
           
+// faq & resources section
+.resources-section,
+.faq-section
+  .pane-content
+    background: $bgGrey
+    padding: 10px 15px
+  h3
+    font-size: 20px
+    color: $baseColor
+    padding-bottom: 5px
+    text-align: center
+
+.content
+  .resources-section
+    .pane-content
+      padding: 0
+    .panel-pane
+      width: 100%
+      margin-bottom: 0
+      padding: 0
+    .resource-content
+      padding: 10px 15px !important
+      background-color: $bgGrey
+      margin-bottom: 20px
+
+.faq-section
+  h3
+    padding-bottom: 0
+    text-align: left
+
 // blog
 .node-campaign-blog-post
   padding: 15px !important
@@ -202,40 +255,69 @@ div[role="main"]
     margin: 20px auto
     display: block
     border: 1px solid #000!important
-    
-// logos
-.panel-row-logos
-  .pane-title
+
+.pane-campaign-blog-panel-pane-1
+  border: none !important
+  .pane-content
+    padding: 15px
+  a
     color: $baseColor
-    background: none
-    margin: 0
-    padding: 0
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
+  .more-link
+    text-transform: uppercase
+
+.pane-campaign-blog-panel-pane-2
+  border: none !important
+  width: 100%
+  .pane-content
+    padding: 10px 0 0 0
+  .view-campaign-blog
+    .views-row
+      padding: 5px 15px 15px
+        margin: 1em 0 1em 0
+      &:first-child
+        &:before
+          border: none
+          margin: 0
+    .views-row-even
+      background-color: $bgGrey
 
 // refer five friends
 .mcommons-webform
-  float: left
-  width: 66%
-  margin-right: 5%
-  border: none !important
+  width: 100%
+  overflow: auto
+  background-color: $bgGrey !important
+  color: #000
   input.field
-    width: 85%
-    height: 20px
-    margin-bottom: 5px
+    width: 100%
+    height: 22px
+    margin-bottom: 15px
   label
     font-weight: 600
-  // overriding padding on go-button to center the SUBMIT text
   .go-button
     padding-top: 3px
     margin: 0 10px 5px 0
+    left: 150px
+    bottom: -15px
+    position: relative
   .pane-content
     padding: 10px
-    height: 163px
-
-.mcommons-webform-video
+  
+.mcommons-webform-long
   float: none
-  width: 100%
+  height: 300px
   margin: 0 0 15px 0
   border: none !important
+  background-color: $bgGrey !important
+  .go-button
+    left: 285px
 
 #five_friends
   width: 170px
@@ -246,13 +328,17 @@ div[role="main"]
 .mcommons-webform-column
   float: left
   width: 40%
-  margin-right: 2%
+  margin-right: 10%
 
 form.webform-client-form
   border: none
   box-shadow: none
   padding: 15px 15px 0 15px
   margin-bottom: -15px
+
+// got questions?  
+#help_copy
+  float: right
   
 // resetting the nonsense
 #breadcrumb
@@ -267,4 +353,12 @@ img
 
 .panel-row-ad-quick-info
   h2.pane-title
-    color: $baseColor !important
+    color: #000 !important
+    
+.ds-panel
+  .pane-content
+    padding-bottom: 0 !important
+    
+.panel-row-top
+  .panel-panel
+    margin-bottom: 0
