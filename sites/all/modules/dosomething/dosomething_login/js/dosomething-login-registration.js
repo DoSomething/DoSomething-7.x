@@ -100,7 +100,7 @@ Drupal.behaviors.dosomethingBirthdayCheck = {
           conditional_on_empty_field: ''
         },
         pass: {
-          required: '',
+          required: ''
         },
         day: {
           required: '',
