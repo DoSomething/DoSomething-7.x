@@ -136,7 +136,7 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
   if (!empty($form_state['previous_participants'])) {
     foreach ($form_state['previous_participants'] as $contact_value) {
       if ($account = dosomething_general_load_user_by_mail_or_cell($contact_value)) {
-        og_ungroup($group->gid, 'user', $account);
+        //og_ungroup($group->gid, 'user', $account);
       }
     }
   }
@@ -199,7 +199,7 @@ function dosomething_projects_general_node_participants_submit($form, &$form_sta
   if (count($form_state['previous_participants'])) {
     foreach ($form_state['previous_participants'] as $contact_value) {
       if ($account = dosomething_general_load_user_by_mail_or_cell($contact_value)) {
-        og_ungroup($group->gid, 'user', $account);
+        //og_ungroup($group->gid, 'user', $account);
       }
     }
   }
