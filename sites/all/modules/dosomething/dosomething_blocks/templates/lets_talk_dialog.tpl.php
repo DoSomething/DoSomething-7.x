@@ -18,7 +18,8 @@
       <span class="title"><?php print t('Text'); ?></span><span class="detail"><?php print t('text HELPME to 38383'); ?></span>
     </div>
     <div class="row">
-      <span class="title"><?php print t('Email'); ?></span><span class="detail"><?php print l('helpme@dosomething.org', 'mailto:helpmedosomething.org'); ?></span>
+      <span class="title"><?php print t('Email'); ?></span><span class="detail"><?php print l('helpme@dosomething.org', 'mailto:helpme@dosomething.org'); 
+?></span>
     </div>
     <div class="row">
       <span class="title"><?php print t('Phone'); ?></span><span class="detail"><?php print '(212) 254-2390'; ?></span>
