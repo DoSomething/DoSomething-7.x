@@ -4,6 +4,8 @@ function dosomething_sms_conductor_sms_keywords() {
   return array(
     //'zivtech' => 'ds_sms_user_registration',
     //'zivtech2' => 'ds_sms_project_report_back',
+    'epicshare' => 'ds_sms_epic_2012_report_back',
+    'epicsharetest' => 'ds_sms_epic_2012_report_back',
     'register' => 'ds_sms_user_registration',
     'testreport' => 'ds_sms_project_report_back',
   );
@@ -219,6 +221,125 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->title = 'End';
   $activity->inputs = array(
     'create_report_back'
+  );
+  $activity->outputs = array();
+  $workflows[$workflow->name] = $workflow;
+
+  /**
+   * Workflow for Epic 2012 report back
+   */
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'ds_sms_epic_2012_report_back';
+  $workflow->title = 'Epic 2012 Report Back';
+  $workflow->description = 'Submit report backs for Epic Book Drive 2012.';
+  $workflow->api_version = '1.0';
+
+  // Starting activity
+  $activity = $workflow->newActivity('start');
+  $activity->x = 80;
+  $activity->y = 100;
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->outputs = array(
+    'get_books',
+  );
+  $activity->inputs = array();
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 280;
+  $activity->y = 100;
+  $activity->name = 'get_books';
+  $activity->title = 'Get the number of books';
+  $activity->question = 'How many books were donated through your drive?';
+  $activity->inputs = array(
+    'start',
+  );
+  $activity->outputs = array(
+    'get_volunteers'
+  );
+  // Get the number of volunteers
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 280;
+  $activity->y = 120;
+  $activity->name = 'get_volunteers';
+  $activity->title = 'Get the number of volunteers';
+  $activity->question = 'How many volunteers helped with your drive?';
+  $activity->inputs = array(
+    'get_books',
+  );
+  $activity->outputs = array(
+    'get_donators'
+  );
+  // Get the number of people who donated
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 280;
+  $activity->y = 140;
+  $activity->name = 'get_donators';
+  $activity->title = 'Get the number of people who donated books';
+  $activity->question = 'How many people donated books to your drive?';
+  $activity->inputs = array(
+    'get_volunteers',
+  );
+  $activity->outputs = array(
+    'get_first_name'
+  );
+  // Not guaranteed to have user's first name and last name, so ask for those too
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 280;
+  $activity->y = 160;
+  $activity->name = 'get_first_name';
+  $activity->title = 'Get the user\'s first name.';
+  $activity->question = 'Thanks! We just need two more answers. Please reply with your first name.';
+  $activity->inputs = array(
+    'get_donators'
+  );
+  $activity->outputs = array(
+    'get_last_name'
+  );
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 280;
+  $activity->y = 180;
+  $activity->name = 'get_last_name';
+  $activity->title = 'Get the user\'s last name.';
+  $activity->question = 'Lastly, please reply with your last name.';
+  $activity->inputs = array(
+    'get_first_name',
+  );
+  $activity->outputs = array(
+    'signature_remover'
+  );
+  // Strip SMS signature before processing for report back
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->x = 280;
+  $activity->y = 200;
+  $activity->name = 'signature_remover';
+  $activity->title = 'Remove the signature from all sms context.';
+  $activity->inputs = array(
+    'get_last_name',
+  );
+  $activity->outputs = array(
+    'create_epic_2012_report_back'
+  );
+  // Create Epic 2012 report back
+  $activity = $workflow->newActivity('ds_epic_2012_report_back');
+  $activity->x = 280;
+  $activity->y = 220;
+  $activity->name = 'create_epic_2012_report_back';
+  $activity->title = 'Create an Epic 2012 campaign report back from the existing context.';
+  $activity->inputs = array(
+    'signature_remover',
+  );
+  $activity->outputs = array(
+    'end'
+  );
+  // Final state
+  $activity = $workflow->newActivity('end');
+  $activity->x = 480;
+  $activity->y = 220;
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array(
+    'create_epic_2012_report_back'
   );
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
