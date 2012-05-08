@@ -14,9 +14,9 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
   }
 
   /**
-  * Executed after user completes the workflow process. Create user
-  * object and report back webform submission.
-  */
+   * Executed after user completes the workflow process. Create user
+   * object and report back webform submission.
+   */
   public function run() {
     $state = $this->getState();
 
@@ -31,7 +31,7 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     $gateway = sms_gateways('gateways');
     $config = $gateway['sms_mobile_commons']['configuration'];
     $api_send_url = $config['sms_mobile_commons_custom_url'];
-    //$auth_string = $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
+    $auth_string = $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
 
     // Remove http or https at beginning of string.
     $api_send_url = str_replace('https://', '', $api_send_url);
@@ -129,13 +129,14 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     $school_id_state = self::getStateFromID($school_id);
     $school_id_num = self::getNumFromID($school_id);
 
+    // DB query to ds_school table to find matching sid to submit to webform
     $unique_sid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :schoolID AND state = :state', array(':schoolID' => $school_id_num, ':state' => $school_id_state))->fetchField();
 
     // School ID is submitted differently since it's an entity field ... or something
     $wrapper->field_webform_school_reference->set($unique_sid);
 
     // Final message
-    $state->setContext('sms_response', t('Thanks for participating in the Epic Book Drive! You\'re no eligible to win more awesome stuff!'));
+    $state->setContext('sms_response', t('Thanks for participating in the Epic Book Drive! You\'re now eligible to win more awesome stuff!'));
 
     $wrapper->save();
 
