@@ -121,15 +121,15 @@
     font-size: 10px
 
   .form-item-pass
+    width: 212px
+    label
+      .ie8 &
+        float: left
     .ds-registration-form-required
-      // position: absolute
-      top: -2px
-      left: -11px
+      top: -27px
+      left: -200px
     label.error
       width: 212px
-
-    label[for="edit-pass"]
-      // display: none
 
   // Under 13
   .under-13-field
@@ -177,16 +177,6 @@
   top: -52px
   right: -525px
 
-// IE8 with js
-.no-js.ie.ie8.js
-  #dosomething-login-register-popup-form,
-  #dosomething-login-register-facebook
-    .popup-content
-      width: 446px
-    .ds-registration-form-required
-      position: relative
-      left: 203px
-      top: -29px
 
 // IE8 without js
 .no-js.ie.ie8
@@ -210,6 +200,39 @@
         position: relative
         top: -17px
         left: 7px
+
+// IE8 with js
+.no-js.ie.ie8.js
+  #dosomething-login-register-popup-form,
+  #dosomething-login-register-facebook
+    .popup-content
+      width: 446px
+    .ds-registration-form-required
+      position: relative
+      left: 203px
+      top: -29px
+
+#dosomething-login-register-popup-form,
+#dosomething-login-register-facebook
+  .popup-content
+    .form-item-cell,
+    .form-item-email
+      .front &
+        .no-js.ie.ie8 &
+          margin-top: 12px
+    .form-item-pass
+      .front &
+        .no-js.ie.ie8 &
+          float: none
+    .form-item-pass
+      .not-front &
+        .no-js.ie.ie8 &
+          margin-top: 0
+    #edit-birthday
+      .front &
+        .no-js.ie.ie8 &
+          float: right
+          top: -67px
 
 // Hide the ie register link for all instances first
 .ie-signup-button
