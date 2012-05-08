@@ -56,7 +56,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <title><?php print $head_title; ?></title>
-  <link rel="stylesheet" href="/sites/all/themes/doit/css/din.css" media="all">
+  <link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all">
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <?php print $selectivizr; ?>
