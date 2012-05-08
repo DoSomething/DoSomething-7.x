@@ -963,7 +963,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-picture img,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-views-ifempty img,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-picture img,
-.node-type-club .pane-profile-panel-pane-1 .views-field-views-ifempty img, .node-page .content img, .page-node .content img, .node-form, .popup-content, .apps-grid .apps-box {
+.node-type-club .pane-profile-panel-pane-1 .views-field-views-ifempty img, .node-page .content img, .page-node .content img, .page-why-become-a-member .content img, .node-form, .popup-content, .apps-grid .apps-box {
   -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
@@ -1033,7 +1033,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-picture img,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-views-ifempty img,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-picture img,
-.node-type-club .pane-profile-panel-pane-1 .views-field-views-ifempty img, .field-name-field-picture img, .node-page .content img, .page-node .content img, .view-home-slideshow .home-slide img {
+.node-type-club .pane-profile-panel-pane-1 .views-field-views-ifempty img, .field-name-field-picture img, .node-page .content img, .page-node .content img, .page-why-become-a-member .content img, .view-home-slideshow .home-slide img {
   border: 1px white solid;
 }
 
@@ -2426,7 +2426,7 @@ img.right {
   margin: 7.0px 0 7.0px 23px;
 }
 
-.node-page .content img, .page-node .content img {
+.node-page .content img, .page-node .content img, .page-why-become-a-member .content img {
   margin-top: 12px;
   margin-bottom: 12px;
 }
