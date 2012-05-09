@@ -8,6 +8,33 @@
 include_once('dosomething_services.features.inc');
 
 /**
+ * Implements hook_services_resources().
+ */
+function dosomething_services_services_resources() {
+  return array(
+    'user' => array(
+      'actions' => array(
+        'fblogin' => array(
+          'help' => 'Provide login services from a Facebook account',
+          'callback' => '_dosomething_services_facebook_login',
+          'args' => array(
+            array(
+              'name' => 'access_token',
+              'type' => 'string',
+              'description' => 'User\'s access token received from Facebook authorization',
+              'source' => array('data' => 'access_token'),
+              'optional' => FALSE,
+            ),
+          ),
+          'access callback' => 'services_access_menu',
+          'file' => array('type' => 'module', 'module' => 'dosomething_services', 'name' => 'dosomething_services'),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
  * Implements hook_services_resources_alter().
  *
  * Replace the default user creation callback with ours.
@@ -18,6 +45,95 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
   // If email verification is enabled, bypass it with our custom callback.
   if (variable_get('user_email_verification', TRUE)) {
     $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
+  }
+}
+
+/**
+ * Receives the user's access_token to either log the user into an account
+ * or create one if necessary.
+ *
+ * Code is similar to what's found in dosomething_login_action_ds_connect() from
+ * the dosomething_login module. Only differences:
+ *  - Returning the $fbuser object if the fboauth_graph_query() fails, so that
+ *    external clients can respond accordingly
+ *  - drupal_set_message calls removed
+ *  - Always logging the user in after fboauth_create_user()
+ */
+function _dosomething_services_facebook_login($access_token) {
+  global $user;
+  $user_return = NULL;
+
+  module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+  $fbuser = fboauth_graph_query('me', $access_token);
+
+  // Query failed if no id is set, or if error is set
+  if (!isset($fbuser->id) || isset($fbuser->error)) {
+    return $fbuser;
+  }
+
+  // Loads a Drupal uid given a Facebook ID.
+  $uid = fboauth_uid_load($fbuser->id);
+
+  // If not currently logged in, but user's logged in with facebook before
+  if (!$user->uid && $uid && ($account = user_load($uid))) {
+    fboauth_login_user($account);
+
+    $user_return = $account;
+  }
+
+  // If fb email matches an existing email, bind them together and login
+  elseif (!empty($fbuser->email) && ($account = array_shift(user_load_multiple(array(), array('mail' => $fbuser->email))))) {
+    fboauth_save($account->uid, $fbuser->id);
+
+    if (fboauth_login_user($account)) {
+      dosomething_login_save_profile_pic($user->uid, $fbuser->id);
+
+      $user_return = $account;
+    }
+  }
+  // If user is logged in to drupal already, associate the two accounts
+  else {
+    // If the user is already logged in, associate the two accounts.
+    if ($user->uid) {
+      fboauth_save($user->uid, $fbuser->id);
+      if ($fb_friends = fboauth_graph_query('me/friends', $access_token)) {
+        dosomething_login_facebook_friend_process($user->uid, $fb_friends->data); // TODO: needed?
+      }
+      dosomething_login_save_profile_pic($user->uid, $fbuser->id);  // TODO: needed?
+
+      $user_return = $user;
+    }
+    // Otherwise, register a new account for the user
+    else {
+      $account = fboauth_create_user($fbuser);
+      $account = user_load($account->uid);
+
+      if (fboauth_login_user($account)) {
+        $user_return = $account;
+      }
+    }
+  }
+
+  // Return user object and session id and name if successful
+  if ($user_return && $user_return->uid) {
+    user_login_finalize();
+
+    $return = new stdClass();
+    $return->sessid = session_id();
+    $return->session_name = session_name();
+
+    $return->user = $user_return;
+
+    return $return;
+  }
+  else {
+    $error_obj = new stdClass();
+    $error_obj->error = "Error in Facebook login.";
+    $error_obj->user_obj = $user_return;
+    $error_obj->user_uid = $user_return->uid;
+
+    return $error_obj;
   }
 }
 
