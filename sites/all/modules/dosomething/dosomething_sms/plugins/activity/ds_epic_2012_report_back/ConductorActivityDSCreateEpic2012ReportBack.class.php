@@ -36,7 +36,7 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     // Remove http or https at beginning of string.
     $api_send_url = str_replace('https://', '', $api_send_url);
     $api_send_url = str_replace('http://', '', $api_send_url);
-
+    
     $api_check_user_url = 'https://' . $api_send_url . '/api/profile?phone_number=' . $mobile;
 
     /*
@@ -60,12 +60,15 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     curl_close($ch);
 
     $mc_profile = new SimpleXMLElement($mc_profile_xml);
-    $school_id_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School ID']");
-    $school_id_xml = $school_id_arr[0];
-    $school_id = self::getCustomColumnValue($school_id_xml);
-    $school_name_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School Name']");
-    $school_name_xml = $school_name_arr[0];
-    $school_name = self::getCustomColumnValue($school_name_xml);
+    $error_check = $mc_profile->xpath("error");
+    if( !isset($error_check) ) {
+      $school_id_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School ID']");
+      $school_id_xml = $school_id_arr[0];
+      $school_id = self::getCustomColumnValue($school_id_xml);
+      $school_name_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School Name']");
+      $school_name_xml = $school_name_arr[0];
+      $school_name = self::getCustomColumnValue($school_name_xml);
+    }
 
     // If we have a user with this mobile, update their info.
     $state->markCompeted();	//TODO: fix the spelling on this function
@@ -126,14 +129,18 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     $wrapper->value()->data[4]['value'][0] = $volunteers;
     $wrapper->value()->data[5]['value'][0] = $donators;
 
-    $school_id_state = self::getStateFromID($school_id);
-    $school_id_num = self::getNumFromID($school_id);
+    if (isset($school_id)) {
+      $school_id_state = self::getStateFromID($school_id);
+      $school_id_num = self::getNumFromID($school_id);
 
-    // DB query to ds_school table to find matching sid to submit to webform
-    $unique_sid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :schoolID AND state = :state', array(':schoolID' => $school_id_num, ':state' => $school_id_state))->fetchField();
+      // DB query to ds_school table to find matching sid to submit to webform
+      $unique_sid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :schoolID AND state = :state', array(':schoolID' => $school_id_num, ':state' => $school_id_state))->fetchField();
 
-    // School ID is submitted differently since it's an entity field ... or something
-    $wrapper->field_webform_school_reference->set($unique_sid);
+      if (isset($unique_sid)) { 
+        // School ID is submitted differently since it's an entity field ... or something
+        $wrapper->field_webform_school_reference->set($unique_sid);
+      }
+    }
 
     // Final message
     $state->setContext('sms_response', t('Thanks for participating in the Epic Book Drive! You\'re now eligible to win more awesome stuff!'));
