@@ -15,12 +15,12 @@ function entityqueue_views_data_alter(&$data) {
     $field = field_info_field(_entityqueue_get_target_field_name($type));
     $field_table = _field_sql_storage_tablename($field);
 
-    foreach ($field['bundles'] as $entity_type => $bundles) {
+    foreach ($field['bundles'] as $entity_type => $bundles) {s
       $target_entity_info = entity_get_info($field['settings']['target_type']);
       if (isset($target_entity_info['base table'])) {
         $entity_info = entity_get_info($entity_type);
 
-        $data[$target_entity_info['base table']]['entityqueue_relationship']['relationship'] = array(
+        $data[$target_entity_info['base table']][$type]['relationship'] = array(
           'handler' => 'entityqueue_handler_relationship_entityqueue',
           'field_name' => $field['field_name'],
           'field table' => $field_table,
@@ -29,7 +29,7 @@ function entityqueue_views_data_alter(&$data) {
           'base field' => $entity_info['entity keys']['id'],
           'label' => t('Queue'),
           'group' => t('Entityqueue'),
-          'title' => t('Queue'),
+          'title' => t('@type Queue', array('@type' => $type)),
           'help' => t('Create a relationship to a entityqeuue.'),
         );
       }
