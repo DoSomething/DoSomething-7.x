@@ -25,6 +25,14 @@ Drupal.behaviors.hideActivityblocks = {
             .addClass('active')
             .next('.social-activity-content')
               .slideDown('400');
+          if ($this.hasClass('facebook') && !$this.hasClass('facebook-loaded')) {
+            $this
+              .addClass('facebook-loaded')
+              .next('.social-activity-content')
+                .children('.skyscraper-fb-activity')
+                  .addClass('fb-activity');
+            FB.XFBML.parse();
+          }
           // Hide other active content.
           if ($this.siblings().hasClass('active')) {
             $this.siblings('.active')
