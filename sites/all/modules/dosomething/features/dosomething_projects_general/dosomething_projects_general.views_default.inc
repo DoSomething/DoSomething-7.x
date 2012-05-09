@@ -39,16 +39,14 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  /* Relationship: Entityqueue: Queue */
-  $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'webform_submissions';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['label'] = 'POD Queue';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['required'] = 0;
-  $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 1;
-  $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
+  /* Relationship: Entityqueue: dosomething_project Queue */
+  $handler->display->display_options['relationships']['dosomething_project']['id'] = 'dosomething_project';
+  $handler->display->display_options['relationships']['dosomething_project']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['dosomething_project']['field'] = 'dosomething_project';
+  $handler->display->display_options['relationships']['dosomething_project']['required'] = 0;
+  $handler->display->display_options['relationships']['dosomething_project']['limit'] = 1;
+  $handler->display->display_options['relationships']['dosomething_project']['queues'] = array(
     'pod' => 'pod',
-    'test_award_winner' => 0,
   );
   /* Field: Webform submissions: Sid */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
@@ -196,12 +194,6 @@ function dosomething_projects_general_views_default_views() {
     1 => 'OR',
     2 => 'AND',
   );
-  /* Filter criterion: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
-  $handler->display->display_options['filters']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['group'] = 1;
   /* Filter criterion: Webform Submission: Grant/Scholarship (field_grant_winner) */
   $handler->display->display_options['filters']['field_grant_winner_tid']['id'] = 'field_grant_winner_tid';
   $handler->display->display_options['filters']['field_grant_winner_tid']['table'] = 'field_data_field_grant_winner';
@@ -215,7 +207,7 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['entityqueue_type']['id'] = 'entityqueue_type';
   $handler->display->display_options['filters']['entityqueue_type']['table'] = 'entityqueue';
   $handler->display->display_options['filters']['entityqueue_type']['field'] = 'entityqueue_type';
-  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship';
+  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'dosomething_project';
   $handler->display->display_options['filters']['entityqueue_type']['operator'] = 'not empty';
   $handler->display->display_options['filters']['entityqueue_type']['group'] = 1;
 
@@ -264,12 +256,6 @@ function dosomething_projects_general_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Club Projects', 'panel_pane_3');
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Webform Submission: Did you do this project with a DoSomething Club? (field_project_clubs) */
-  $handler->display->display_options['filters']['field_project_clubs_nid']['id'] = 'field_project_clubs_nid';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['table'] = 'field_data_field_project_clubs';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['field'] = 'field_project_clubs_nid';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_project_clubs_nid']['group'] = 1;
 
   /* Display: Projects of the Day */
   $handler = $view->new_display('panel_pane', 'Projects of the Day', 'panel_pane_4');
@@ -278,9 +264,8 @@ function dosomething_projects_general_views_default_views() {
   $handler->display->display_options['filters']['entityqueue_type']['id'] = 'entityqueue_type';
   $handler->display->display_options['filters']['entityqueue_type']['table'] = 'entityqueue';
   $handler->display->display_options['filters']['entityqueue_type']['field'] = 'entityqueue_type';
-  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'entityqueue_relationship';
+  $handler->display->display_options['filters']['entityqueue_type']['relationship'] = 'dosomething_project';
   $handler->display->display_options['filters']['entityqueue_type']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['entityqueue_type']['group'] = 1;
 
   /* Display: Scholarship Winners */
   $handler = $view->new_display('panel_pane', 'Scholarship Winners', 'panel_pane_5');
