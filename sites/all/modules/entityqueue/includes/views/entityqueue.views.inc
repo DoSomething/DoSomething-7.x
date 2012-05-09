@@ -15,7 +15,7 @@ function entityqueue_views_data_alter(&$data) {
     $field = field_info_field(_entityqueue_get_target_field_name($type));
     $field_table = _field_sql_storage_tablename($field);
 
-    foreach ($field['bundles'] as $entity_type => $bundles) {s
+    foreach ($field['bundles'] as $entity_type => $bundles) {
       $target_entity_info = entity_get_info($field['settings']['target_type']);
       if (isset($target_entity_info['base table'])) {
         $entity_info = entity_get_info($entity_type);
