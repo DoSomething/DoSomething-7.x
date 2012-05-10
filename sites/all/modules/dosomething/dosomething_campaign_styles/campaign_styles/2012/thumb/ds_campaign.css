@@ -1,5 +1,5 @@
 a {
-  color: #00aeef; }
+  color: #00cc99; }
   a:hover {
     color: black; }
 
@@ -7,9 +7,7 @@ h1.title {
   display: none; }
 
 body {
-  background-color: #00aeef;
-  background-image: url("assets/bg.png");
-  background-repeat: repeat; }
+  background: #222222; }
 
 div[role="main"] {
   background: rgba(188, 134, 70, 0.4);
@@ -49,7 +47,7 @@ div[role="main"] {
   list-style-image: url("assets/dot.png"); }
 
 h2.pane-title {
-  background-color: #f15c27;
+  background-color: #cc11ff;
   color: white; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -70,17 +68,15 @@ h2.pane-title {
       font-weight: 600;
       text-transform: uppercase;
       color: black; }
-    #block-dosomething-campaign-styles-campaign-nav ul.menu a.active {
-      color: #00aeef; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a.active:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a.active .active {
-        color: #00aeef;
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #00cc99;
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
-    color: #00aeef;
+    color: #00cc99;
     padding: 0;
     font-size: 26px;
     line-height: 1em;
@@ -89,7 +85,7 @@ h2.pane-title {
     font-size: 21px;
     line-height: 1.4em;
     font-weight: 600;
-    color: #00aeef; }
+    color: #00cc99; }
 
 #scholarship_bubble {
   height: 85px; }
@@ -98,22 +94,14 @@ h2.pane-title {
     right: -65px;
     top: -25px; }
 
-#refer {
-  display: block;
-  position: relative;
-  top: -45px; }
-
 .pane-node-field-campain-date .field-item {
   font-size: 27px;
-  color: #f15c27; }
+  color: #cc11ff; }
 
 .pane-node-field-campaign-teaser p {
   font-weight: lighter;
   color: black;
   margin-bottom: 0; }
-
-.ui-dialog .ui-dialog-titlebar-close {
-  left: -2px; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -125,7 +113,7 @@ h2.pane-title {
 .panel-row-ad-quick-info .field-name-body {
   margin-top: -15px; }
 .panel-row-ad-quick-info .pane-content h3 {
-  color: #f15c27;
+  color: #cc11ff;
   font-size: 26px;
   text-transform: uppercase;
   font-weight: 600;
@@ -174,24 +162,21 @@ h2.pane-title {
 .faq-section {
   border: none !important; }
   .faq-section .pane-content {
-    background: #f3f3f4; }
+    background: rgba(255, 100, 100, 0.3); }
     .faq-section .pane-content ul {
       padding: 5px 5px 5px 20px;
       margin: 0; }
 
 .resources-section .pane-content,
 .faq-section .pane-content {
-  background: #f3f3f4;
+  background: rgba(255, 100, 100, 0.3);
   padding: 10px 15px; }
 .resources-section h3,
 .faq-section h3 {
   font-size: 20px;
-  color: #00aeef;
+  color: #00cc99;
   padding-bottom: 5px;
   text-align: center; }
-.resources-section .different-pane,
-.faq-section .different-pane {
-  background-color: #00aeef; }
 
 .content .resources-section .pane-content {
   padding: 0; }
@@ -201,7 +186,7 @@ h2.pane-title {
   padding: 0; }
 .content .resources-section .resource-content {
   padding: 10px 15px !important;
-  background-color: #f3f3f4;
+  background-color: rgba(255, 100, 100, 0.3);
   margin-bottom: 20px; }
 
 .faq-section h3 {
@@ -234,7 +219,7 @@ h2.pane-title {
   .pane-campaign-blog-panel-pane-1 .pane-content {
     padding: 15px; }
   .pane-campaign-blog-panel-pane-1 a {
-    color: #00aeef;
+    color: #00cc99;
     text-decoration: underline; }
     .pane-campaign-blog-panel-pane-1 a:hover {
       color: black; }
@@ -257,13 +242,13 @@ h2.pane-title {
       border: none;
       margin: 0; }
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
-    background-color: #f3f3f4; }
+    background-color: rgba(255, 100, 100, 0.3); }
 
 .mcommons-webform {
-  background-color: #f3f3f4 !important;
-  color: black;
+  width: 100%;
   overflow: auto;
-  height: 310px; }
+  background-color: rgba(255, 100, 100, 0.3) !important;
+  color: black; }
   .mcommons-webform input.field {
     width: 100%;
     height: 22px;
@@ -284,7 +269,7 @@ h2.pane-title {
   height: 300px;
   margin: 0 0 15px 0;
   border: none !important;
-  background-color: #f3f3f4 !important; }
+  background-color: rgba(255, 100, 100, 0.3) !important; }
   .mcommons-webform-long .go-button {
     left: 285px; }
 
@@ -298,6 +283,15 @@ h2.pane-title {
   float: left;
   width: 40%;
   margin-right: 10%; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
+
+#help_copy {
+  float: right; }
 
 #breadcrumb {
   display: none; }
