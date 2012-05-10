@@ -1,0 +1,362 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #00cc99 //
+$complement: #cc11ff //
+$secondaryLink: black
+$bgColor: rgba(255,100,100,0.3)
+
+// borders
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: #333 
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: rgba(188,134,70,.4)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+
+h1.title
+  display: none 
+
+body
+  background: #222
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 20px
+  padding-top: 10px
+  background: #fff
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+.panel-panel
+  margin-bottom: 15px
+
+.float-left
+  float: left
+
+.float-right
+  float: right
+  
+.li-circles
+  list-style-image: url("assets/dot.png")
+      
+h2.pane-title
+  background-color: $complement
+  color: #fff
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: #fff
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    background: #fff
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: $secondaryLink
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+// top right wrapper
+.panel-row-top-right
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+      padding: 0
+      font-size: 26px
+      line-height: 1em
+      margin-top: 15px
+    .pane-content
+      font-size: 21px
+      line-height: 1.4em
+      font-weight: 600
+      color: $baseColor
+
+// scholarship bubble
+#scholarship_bubble
+  height: 85px
+  img
+    position: absolute
+    right: -65px
+    top: -25px
+    
+//social
+.pane-node-field-campain-date
+  .field-item
+    font-size: 27px
+    color: $complement
+
+.pane-node-field-campaign-teaser
+  p
+    font-weight: lighter
+    color: #000
+    margin-bottom: 0
+
+// ad row (quick info and psa)
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    font-weight: 500
+  .field-name-body
+    margin-top: -15px
+  .pane-content
+    h3
+      color: $complement
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
+      letter-spacing: 0.1em
+      margin-bottom: -5px
+    p
+      margin: 0
+      padding-bottom: 0.2em
+      font-size: 11px
+    &:before
+      +insetBorder
+      margin-bottom: 20px
+
+.panel-row-ad
+  margin: 0
+
+.panel-row-ad-psa
+  margin: 45px 0 0 0
+
+.panel-row-flexible
+  .panel-pane
+    +block
+    background: #fff
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    &:before,&:after
+      +insetBorder
+
+.faq-section
+  border: none !important
+  .pane-content
+    background: $bgColor
+    ul
+      padding: 5px 5px 5px 20px
+      margin: 0
+          
+// faq & resources section
+.resources-section,
+.faq-section
+  .pane-content
+    background: $bgColor
+    padding: 10px 15px
+  h3
+    font-size: 20px
+    color: $baseColor
+    padding-bottom: 5px
+    text-align: center
+
+.content
+  .resources-section
+    .pane-content
+      padding: 0
+    .panel-pane
+      width: 100%
+      margin-bottom: 0
+      padding: 0
+    .resource-content
+      padding: 10px 15px !important
+      background-color: $bgColor
+      margin-bottom: 20px
+
+.faq-section
+  h3
+    padding-bottom: 0
+    text-align: left
+
+// blog
+.node-campaign-blog-post
+  padding: 15px !important
+  .field-name-field-picture
+    img
+      margin: 0 20px 20px 0
+      float: left
+  .field-name-field-blog-video
+    clear: both
+    position: relative
+    bottom: -25px
+    right: -125px
+    margin: 35px 0
+    iframe
+      margin: 0 auto
+      display: block
+
+.field-type-text-with-summary
+  img
+    padding: 10px
+    margin: 20px auto
+    display: block
+    border: 1px solid #000!important
+
+.pane-campaign-blog-panel-pane-1
+  border: none !important
+  .pane-content
+    padding: 15px
+  a
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
+  .more-link
+    text-transform: uppercase
+
+.pane-campaign-blog-panel-pane-2
+  border: none !important
+  width: 100%
+  .pane-content
+    padding: 10px 0 0 0
+  .view-campaign-blog
+    .views-row
+      padding: 5px 15px 15px
+        margin: 1em 0 1em 0
+      &:first-child
+        &:before
+          border: none
+          margin: 0
+    .views-row-even
+      background-color: $bgColor
+
+// refer five friends
+.mcommons-webform
+  width: 100%
+  overflow: auto
+  background-color: $bgColor !important
+  color: #000
+  input.field
+    width: 100%
+    height: 22px
+    margin-bottom: 15px
+  label
+    font-weight: 600
+  .go-button
+    padding-top: 3px
+    margin: 0 10px 5px 0
+    left: 150px
+    bottom: -15px
+    position: relative
+  .pane-content
+    padding: 10px
+  
+.mcommons-webform-long
+  float: none
+  height: 300px
+  margin: 0 0 15px 0
+  border: none !important
+  background-color: $bgColor !important
+  .go-button
+    left: 285px
+
+#five_friends
+  width: 170px
+  position: absolute
+  bottom: 0px
+  left: 15px
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 10%
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  padding: 15px 15px 0 15px
+  margin-bottom: -15px
+
+// got questions?  
+#help_copy
+  float: right
+  
+// resetting the nonsense
+#breadcrumb
+  display: none
+
+img
+  border: none !important
+  box-shadow: none !important
+  -o-box-shadow: none !important
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: #000 !important
+    
+.ds-panel
+  .pane-content
+    padding-bottom: 0 !important
+    
+.panel-row-top
+  .panel-panel
+    margin-bottom: 0

@@ -1,0 +1,313 @@
+a {
+  color: #00cc99; }
+  a:hover {
+    color: black; }
+
+h1.title {
+  display: none; }
+
+body {
+  background: #222222; }
+
+div[role="main"] {
+  background: rgba(188, 134, 70, 0.4);
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
+  box-shadow: black 0 0 30px -10px;
+  margin-top: 20px;
+  padding-top: 10px;
+  background: white; }
+
+.line-top:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.line-bottom:after {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.panel-panel {
+  margin-bottom: 15px; }
+
+.float-left {
+  float: left; }
+
+.float-right {
+  float: right; }
+
+.li-circles {
+  list-style-image: url("assets/dot.png"); }
+
+h2.pane-title {
+  background-color: #cc11ff;
+  color: white; }
+
+#block-dosomething-campaign-styles-campaign-nav {
+  background: white;
+  margin-right: -5px;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    background: rgba(188, 134, 70, 0.4);
+    background-image: none;
+    text-align: right;
+    background: white; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: black; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #00cc99;
+        text-decoration: none; }
+
+.panel-row-top-right .panel-top-right-mini-info {
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-title {
+    background: none;
+    color: #00cc99;
+    padding: 0;
+    font-size: 26px;
+    line-height: 1em;
+    margin-top: 15px; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-content {
+    font-size: 21px;
+    line-height: 1.4em;
+    font-weight: 600;
+    color: #00cc99; }
+
+#scholarship_bubble {
+  height: 85px; }
+  #scholarship_bubble img {
+    position: absolute;
+    right: -65px;
+    top: -25px; }
+
+.pane-node-field-campain-date .field-item {
+  font-size: 27px;
+  color: #cc11ff; }
+
+.pane-node-field-campaign-teaser p {
+  font-weight: lighter;
+  color: black;
+  margin-bottom: 0; }
+
+.panel-row-ad-quick-info .pane-title {
+  font-size: 35px;
+  padding: 0;
+  background: transparent;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 500; }
+.panel-row-ad-quick-info .field-name-body {
+  margin-top: -15px; }
+.panel-row-ad-quick-info .pane-content h3 {
+  color: #cc11ff;
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  margin-bottom: -5px; }
+.panel-row-ad-quick-info .pane-content p {
+  margin: 0;
+  padding-bottom: 0.2em;
+  font-size: 11px; }
+.panel-row-ad-quick-info .pane-content:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px; }
+
+.panel-row-ad {
+  margin: 0; }
+
+.panel-row-ad-psa {
+  margin: 45px 0 0 0; }
+
+.panel-row-flexible .panel-pane {
+  background: rgba(188, 134, 70, 0.4);
+  background: white; }
+.panel-row-flexible .blog {
+  background: transparent; }
+  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.faq-section {
+  border: none !important; }
+  .faq-section .pane-content {
+    background: rgba(255, 100, 100, 0.3); }
+    .faq-section .pane-content ul {
+      padding: 5px 5px 5px 20px;
+      margin: 0; }
+
+.resources-section .pane-content,
+.faq-section .pane-content {
+  background: rgba(255, 100, 100, 0.3);
+  padding: 10px 15px; }
+.resources-section h3,
+.faq-section h3 {
+  font-size: 20px;
+  color: #00cc99;
+  padding-bottom: 5px;
+  text-align: center; }
+
+.content .resources-section .pane-content {
+  padding: 0; }
+.content .resources-section .panel-pane {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0; }
+.content .resources-section .resource-content {
+  padding: 10px 15px !important;
+  background-color: rgba(255, 100, 100, 0.3);
+  margin-bottom: 20px; }
+
+.faq-section h3 {
+  padding-bottom: 0;
+  text-align: left; }
+
+.node-campaign-blog-post {
+  padding: 15px !important; }
+  .node-campaign-blog-post .field-name-field-picture img {
+    margin: 0 20px 20px 0;
+    float: left; }
+  .node-campaign-blog-post .field-name-field-blog-video {
+    clear: both;
+    position: relative;
+    bottom: -25px;
+    right: -125px;
+    margin: 35px 0; }
+    .node-campaign-blog-post .field-name-field-blog-video iframe {
+      margin: 0 auto;
+      display: block; }
+
+.field-type-text-with-summary img {
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid black !important; }
+
+.pane-campaign-blog-panel-pane-1 {
+  border: none !important; }
+  .pane-campaign-blog-panel-pane-1 .pane-content {
+    padding: 15px; }
+  .pane-campaign-blog-panel-pane-1 a {
+    color: #00cc99;
+    text-decoration: underline; }
+    .pane-campaign-blog-panel-pane-1 a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .views-field-title a {
+    text-decoration: none; }
+    .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .more-link {
+    text-transform: uppercase; }
+
+.pane-campaign-blog-panel-pane-2 {
+  border: none !important;
+  width: 100%; }
+  .pane-campaign-blog-panel-pane-2 .pane-content {
+    padding: 10px 0 0 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row {
+    padding: 5px 15px 15px;
+      padding-margin: 1em 0 1em 0; }
+    .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
+      border: none;
+      margin: 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
+    background-color: rgba(255, 100, 100, 0.3); }
+
+.mcommons-webform {
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(255, 100, 100, 0.3) !important;
+  color: black; }
+  .mcommons-webform input.field {
+    width: 100%;
+    height: 22px;
+    margin-bottom: 15px; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .go-button {
+    padding-top: 3px;
+    margin: 0 10px 5px 0;
+    left: 150px;
+    bottom: -15px;
+    position: relative; }
+  .mcommons-webform .pane-content {
+    padding: 10px; }
+
+.mcommons-webform-long {
+  float: none;
+  height: 300px;
+  margin: 0 0 15px 0;
+  border: none !important;
+  background-color: rgba(255, 100, 100, 0.3) !important; }
+  .mcommons-webform-long .go-button {
+    left: 285px; }
+
+#five_friends {
+  width: 170px;
+  position: absolute;
+  bottom: 0px;
+  left: 15px; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 10%; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
+
+#help_copy {
+  float: right; }
+
+#breadcrumb {
+  display: none; }
+
+img {
+  border: none !important;
+  box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important; }
+
+.panel-row-ad-quick-info h2.pane-title {
+  color: black !important; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0 !important; }
+
+.panel-row-top .panel-panel {
+  margin-bottom: 0; }
