@@ -107,6 +107,8 @@ h2.pane-title
       font-weight: 600
       text-transform: uppercase
       color: $secondaryLink
+    a.active
+      color: $baseColor
       &:hover, .active
         color: $baseColor
         text-decoration: none
@@ -136,7 +138,12 @@ h2.pane-title
     position: absolute
     right: -65px
     top: -25px
-    
+
+#refer
+  display: block
+  position: relative
+  top: -45px
+ 
 //social
 .pane-node-field-campain-date
   .field-item
@@ -148,6 +155,11 @@ h2.pane-title
     font-weight: lighter
     color: #000
     margin-bottom: 0
+
+// short form
+.ui-dialog
+  .ui-dialog-titlebar-close
+    left: -2px
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info
@@ -213,6 +225,8 @@ h2.pane-title
     color: $baseColor
     padding-bottom: 5px
     text-align: center
+  .different-pane
+    background-color: $baseColor
 
 .content
   .resources-section
@@ -291,10 +305,10 @@ h2.pane-title
 
 // refer five friends
 .mcommons-webform
-  width: 100%
-  overflow: auto
   background-color: $bgGrey !important
   color: #000
+  overflow: auto
+  height: 310px
   input.field
     width: 100%
     height: 22px
@@ -330,16 +344,6 @@ h2.pane-title
   width: 40%
   margin-right: 10%
 
-form.webform-client-form
-  border: none
-  box-shadow: none
-  padding: 15px 15px 0 15px
-  margin-bottom: -15px
-
-// got questions?  
-#help_copy
-  float: right
-  
 // resetting the nonsense
 #breadcrumb
   display: none

@@ -70,7 +70,9 @@ h2.pane-title {
       font-weight: 600;
       text-transform: uppercase;
       color: black; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a.active {
+      color: #00aeef; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a.active:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a.active .active {
         color: #00aeef;
         text-decoration: none; }
 
@@ -96,6 +98,11 @@ h2.pane-title {
     right: -65px;
     top: -25px; }
 
+#refer {
+  display: block;
+  position: relative;
+  top: -45px; }
+
 .pane-node-field-campain-date .field-item {
   font-size: 27px;
   color: #f15c27; }
@@ -104,6 +111,9 @@ h2.pane-title {
   font-weight: lighter;
   color: black;
   margin-bottom: 0; }
+
+.ui-dialog .ui-dialog-titlebar-close {
+  left: -2px; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -179,6 +189,9 @@ h2.pane-title {
   color: #00aeef;
   padding-bottom: 5px;
   text-align: center; }
+.resources-section .different-pane,
+.faq-section .different-pane {
+  background-color: #00aeef; }
 
 .content .resources-section .pane-content {
   padding: 0; }
@@ -247,10 +260,10 @@ h2.pane-title {
     background-color: #f3f3f4; }
 
 .mcommons-webform {
-  width: 100%;
-  overflow: auto;
   background-color: #f3f3f4 !important;
-  color: black; }
+  color: black;
+  overflow: auto;
+  height: 310px; }
   .mcommons-webform input.field {
     width: 100%;
     height: 22px;
@@ -285,15 +298,6 @@ h2.pane-title {
   float: left;
   width: 40%;
   margin-right: 10%; }
-
-form.webform-client-form {
-  border: none;
-  box-shadow: none;
-  padding: 15px 15px 0 15px;
-  margin-bottom: -15px; }
-
-#help_copy {
-  float: right; }
 
 #breadcrumb {
   display: none; }
