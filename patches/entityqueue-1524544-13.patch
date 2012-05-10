@@ -1,0 +1,127 @@
+diff --git a/entityqueue.api.php b/entityqueue.api.php
+index e8f497c..483335c 100644
+--- a/entityqueue.api.php
++++ b/entityqueue.api.php
+@@ -35,5 +35,24 @@ function hook_entityqueue_default_queues() {
+ }
+ 
+ /**
++ * Define a new queue type.
++ */
++function hook_entityqueue_types() {
++  return array(
++    'my_node_queue' => array(
++      'label' => t('My Node Queue'),
++      'base type' => 'node',
++    ),
++  );
++}
++
++/**
++ * Alter the queue types.
++ */
++function hook_entityqueue_types_alter(&$types) {
++  $types['my_node_queue']['label'] = t('Your Node Queue');
++}
++
++/**
+  * @} End of "addtogroup hooks".
+  */
+diff --git a/entityqueue.module b/entityqueue.module
+index 43c79f3..3103994 100644
+--- a/entityqueue.module
++++ b/entityqueue.module
+@@ -279,11 +279,42 @@ function entityqueue_load_multiple($names = array(), $conditions = array(), $res
+ }
+ 
+ /**
+- * Returns an array of queue types (bundles), keyed by name.
++ * @todo.
+  */
+-function entityqueue_type_get_name() {
++function entityqueue_entityqueue_types() {
+   $queue_types = array();
+   foreach (entity_get_info() as $type => $info) {
++    $queue_types[$type] = array(
++      'label' => $info['label'],
++      'base type' => $type,
++    );
++  }
++  return $queue_types;
++}
++
++/**
++ * Returns an array of queue types, keyed by type.
++ */
++function entityqueue_type_get_types() {
++  $queue_types = module_invoke_all('entityqueue_types');
++  drupal_alter('entityqueue_types', $queue_types);
++  return $queue_types;
++}
++
++/**
++ * @todo.
++ */
++function entityqueue_type_get_type($queue_type) {
++  $queue_types = entityqueue_type_get_types();
++  return isset($queue_types[$queue_type]) ? $queue_types[$queue_type]['base type'] : array();
++}
++
++/**
++ * Returns an array of queue type labels, keyed by type.
++ */
++function entityqueue_type_get_name() {
++  $queue_types = array();
++  foreach (entityqueue_type_get_types() as $type => $info) {
+     $queue_types[$type] = $info['label'];
+   }
+ 
+diff --git a/includes/entityqueue.admin.inc b/includes/entityqueue.admin.inc
+index ae29ff9..bf72ac0 100644
+--- a/includes/entityqueue.admin.inc
++++ b/includes/entityqueue.admin.inc
+@@ -341,6 +341,7 @@ function entityqueue_form($form, &$form_state, $queue, $op = 'edit') {
+ 
+   $form['data']['#tree'] = TRUE;
+ 
++  $queue_type = entityqueue_type_get_type($queue_type);
+   $entity_info = entity_get_info($queue_type);
+   $bundles = array();
+   foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {
+diff --git a/includes/views/entityqueue.views.inc b/includes/views/entityqueue.views.inc
+index 68767e4..5b4f0e8 100644
+--- a/includes/views/entityqueue.views.inc
++++ b/includes/views/entityqueue.views.inc
+@@ -20,7 +20,7 @@ function entityqueue_views_data_alter(&$data) {
+       if (isset($target_entity_info['base table'])) {
+         $entity_info = entity_get_info($entity_type);
+ 
+-        $data[$target_entity_info['base table']]['entityqueue_relationship']['relationship'] = array(
++        $data[$target_entity_info['base table']][$type]['relationship'] = array(
+           'handler' => 'entityqueue_handler_relationship_entityqueue',
+           'field_name' => $field['field_name'],
+           'field table' => $field_table,
+@@ -29,8 +29,8 @@ function entityqueue_views_data_alter(&$data) {
+           'base field' => $entity_info['entity keys']['id'],
+           'label' => t('Queue'),
+           'group' => t('Entityqueue'),
+-          'title' => t('Queue'),
+-          'help' => t('Create a relationship to a entityqeuue.'),
++          'title' => t('@type Queue', array('@type' => $type)),
++          'help' => t('Create a relationship to an entityqueue.'),
+         );
+       }
+     }
+diff --git a/includes/views/entityqueue_handler_relationship_entityqueue.inc b/includes/views/entityqueue_handler_relationship_entityqueue.inc
+index 86520db..c4d865e 100644
+--- a/includes/views/entityqueue_handler_relationship_entityqueue.inc
++++ b/includes/views/entityqueue_handler_relationship_entityqueue.inc
+@@ -32,7 +32,7 @@ class entityqueue_handler_relationship_entityqueue extends views_handler_relatio
+     $options = array();
+     $views_data = views_fetch_data($this->table);
+     // @todo: Add a helper function for this.
+-    $queues = entityqueue_load_multiple(array(), array('type' => $views_data['table']['entity type'], 'subqueue' => TRUE));
++    $queues = entityqueue_load_multiple(array(), array('type' => $this->real_field, 'subqueue' => TRUE));
+     foreach ($queues as $name => $queue) {
+       $options[$name] = $queue->label;
+     }

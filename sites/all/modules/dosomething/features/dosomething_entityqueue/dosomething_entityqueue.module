@@ -13,5 +13,7 @@ function dosomething_entityqueue_entityqueue_types() {
     'label' => t('DoSomething Grant Applications (webform submissions)'),
     'base type' => 'webform_submission_entity',
   );
+  // Note, when adding a new type, entityqueue_install() must be rerun.
+  // drush php-eval "include_once('sites/all/modules/entityqueue/entityqueue.install'); entityqueue_install();"
   return $types;
 }
