@@ -130,7 +130,7 @@ function dosomething_blocks_facebook_activity_block_content() {
     '#type' => 'container',
     '#attributes' => array(
       'class' => array(
-        'fb-activity',
+        'skyscraper-fb-activity',
       ),
       'data-width' => 183,
       'data-header' => 'false',
