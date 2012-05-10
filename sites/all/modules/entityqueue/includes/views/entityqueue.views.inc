@@ -30,7 +30,7 @@ function entityqueue_views_data_alter(&$data) {
           'label' => t('Queue'),
           'group' => t('Entityqueue'),
           'title' => t('@type Queue', array('@type' => $type)),
-          'help' => t('Create a relationship to a entityqeuue.'),
+          'help' => t('Create a relationship to an entityqueue.'),
         );
       }
     }
