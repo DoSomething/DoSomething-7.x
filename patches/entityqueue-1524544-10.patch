@@ -1,0 +1,39 @@
+diff --git a/sites/all/modules/entityqueue/includes/views/entityqueue.views.inc b/sites/all/modules/entityqueue/includes/views/entityqueue.views.inc
+index 68767e4..28a08ab 100644
+--- a/sites/all/modules/entityqueue/includes/views/entityqueue.views.inc
++++ b/sites/all/modules/entityqueue/includes/views/entityqueue.views.inc
+@@ -13,12 +13,12 @@ function entityqueue_views_data_alter(&$data) {
+     $field = field_info_field(_entityqueue_get_target_field_name($type));
+     $field_table = _field_sql_storage_tablename($field);
+ 
+       $target_entity_info = entity_get_info($field['settings']['target_type']);
+       if (isset($target_entity_info['base table'])) {
+         $entity_info = entity_get_info($entity_type);
+ 
+-        $data[$target_entity_info['base table']]['entityqueue_relationship']['relationship'] = array(
++        $data[$target_entity_info['base table']][$type]['relationship'] = array(
+           'handler' => 'entityqueue_handler_relationship_entityqueue',
+           'field_name' => $field['field_name'],
+           'field table' => $field_table,
+@@ -29,7 +29,7 @@ function entityqueue_views_data_alter(&$data) {
+           'base field' => $entity_info['entity keys']['id'],
+           'label' => t('Queue'),
+           'group' => t('Entityqueue'),
+-          'title' => t('Queue'),
++          'title' => t('@type Queue', array('@type' => $type)),
+           'help' => t('Create a relationship to a entityqeuue.'),
+         );
+       }
+diff --git a/sites/all/modules/entityqueue/includes/views/entityqueue_handler_relationship_entityqueue.inc b/sites/all/modules/entityqueue/includes/views/entityqueue_handler_relationship_entityqueue.inc
+index 86520db..c4d865e 100644
+--- a/sites/all/modules/entityqueue/includes/views/entityqueue_handler_relationship_entityqueue.inc
++++ b/sites/all/modules/entityqueue/includes/views/entityqueue_handler_relationship_entityqueue.inc
+@@ -32,7 +32,7 @@ class entityqueue_handler_relationship_entityqueue extends views_handler_relatio
+     $options = array();
+     $views_data = views_fetch_data($this->table);
+     // @todo: Add a helper function for this.
+-    $queues = entityqueue_load_multiple(array(), array('type' => $views_data['table']['entity type'], 'subqueue' => TRUE));
++    $queues = entityqueue_load_multiple(array(), array('type' => $this->real_field, 'subqueue' => TRUE));
+     foreach ($queues as $name => $queue) {
+       $options[$name] = $queue->label;
+     }

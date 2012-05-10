@@ -32,7 +32,7 @@ class entityqueue_handler_relationship_entityqueue extends views_handler_relatio
     $options = array();
     $views_data = views_fetch_data($this->table);
     // @todo: Add a helper function for this.
-    $queues = entityqueue_load_multiple(array(), array('type' => $views_data['table']['entity type'], 'subqueue' => TRUE));
+    $queues = entityqueue_load_multiple(array(), array('type' => $this->real_field, 'subqueue' => TRUE));
     foreach ($queues as $name => $queue) {
       $options[$name] = $queue->label;
     }

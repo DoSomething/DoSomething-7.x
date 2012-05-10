@@ -20,7 +20,7 @@ function entityqueue_views_data_alter(&$data) {
       if (isset($target_entity_info['base table'])) {
         $entity_info = entity_get_info($entity_type);
 
-        $data[$target_entity_info['base table']]['entityqueue_relationship']['relationship'] = array(
+        $data[$target_entity_info['base table']][$type]['relationship'] = array(
           'handler' => 'entityqueue_handler_relationship_entityqueue',
           'field_name' => $field['field_name'],
           'field table' => $field_table,
@@ -29,7 +29,7 @@ function entityqueue_views_data_alter(&$data) {
           'base field' => $entity_info['entity keys']['id'],
           'label' => t('Queue'),
           'group' => t('Entityqueue'),
-          'title' => t('Queue'),
+          'title' => t('@type Queue', array('@type' => $type)),
           'help' => t('Create a relationship to a entityqeuue.'),
         );
       }
