@@ -37,15 +37,18 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
       ${$res->type} = $res->nid;
     }
 
+    if (!isset($campaign_report_back) || !isset($campaign_contact_form)) {
+      return;
+    }
+
     module_load_include('inc', 'webform', 'includes/webform.submissions');
     $block = new stdClass();
     $sign_up_count = webform_get_submission_count($campaign_contact_form) + $doing_padding;
 
-    $count_text = isset($campaign_entity->field_counter_text[LANGUAGE_NONE]) ? $campaign_entity->field_counter_text[LANGUAGE_NONE][0]['value'] : '';
+    $count_text = isset($campaign_entity->field_counter_text[LANGUAGE_NONE]) ? $campaign_entity->field_counter_text[LANGUAGE_NONE][0]['value'] : 'people did it';
 
     if ($campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value'] == '#count') {
       $count = webform_get_submission_count($campaign_report_back);
-      $count_text = 'people did it';
     }
     else {
       // load all webform entities for this node

@@ -42,7 +42,8 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_render($subty
 
     }
     if (empty($block->content)) {
-      $block->content = 'There was a problem loading the sign up form for this campaign. Please email help@dosomething.org if you see this message.';
+      return;
+      //$block->content = 'There was a problem loading the sign up form for this campaign. Please email help@dosomething.org if you see this message.';
     }
 
     return $block;
