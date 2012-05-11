@@ -87,14 +87,14 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     $wrapper->value()->data[4]['value'][0] = $volunteers;
     $wrapper->value()->data[5]['value'][0] = $donators;
 
-    if (isset($school_id)) {
+    if (!empty($school_id)) {
       $school_id_state = self::getStateFromID($school_id);
       $school_id_num = self::getNumFromID($school_id);
 
       // DB query to ds_school table to find matching sid to submit to webform
       $unique_sid = db_query('SELECT sid FROM {ds_school} WHERE school_id = :schoolID AND state = :state', array(':schoolID' => $school_id_num, ':state' => $school_id_state))->fetchField();
 
-      if (isset($unique_sid)) { 
+      if (!empty($unique_sid)) { 
         // School ID is submitted differently since it's an entity field ... or something
         $wrapper->field_webform_school_reference->set($unique_sid);
       }

@@ -53,7 +53,7 @@ class ConductorActivityDSReceiveSchoolID extends ConductorActivitySMSPrompt {
       else {
         // No schools found
         //$this->question = t('Sorry there were no matches found. Text AGAIN to try again or GO to continue.');
-        $this->question = t('Sorry there were no matches found. Text AGAIN to try again or GO to continue.');
+        $this->question = t('Sorry there were no matches found. Text GO to continue.');
       } 
     }
 

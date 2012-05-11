@@ -34,12 +34,12 @@ class ConductorActivityDSGetSchoolID extends ConductorActivity {
     $error_check = $mc_profile->xpath("error");
     if (empty($error_check)) {
       $school_id_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School ID']");
-      $school_id_xml = $school_id_arr[0];
-      $school_id = self::getCustomColumnValue($school_id_xml);
+      if (!empty($school_id_arr[0])) {
+        $school_id = self::getCustomColumnValue($school_id_arr[0]);
 
-      if (isset($school_id)) {
-        $school_id = trim($school_id);
-        $this->getState()->setContext('school_id', $school_id);
+        if (!empty($school_id)) {
+          $this->getState()->setContext('school_id', $school_id);
+        }
       }
     }
 
@@ -67,7 +67,7 @@ class ConductorActivityDSGetSchoolID extends ConductorActivity {
       }
     }
 
-    return $return;
+    return trim($return);
   }
 }
                 
