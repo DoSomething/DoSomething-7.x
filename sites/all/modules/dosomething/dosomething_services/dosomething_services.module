@@ -143,6 +143,7 @@ function _dosomething_services_facebook_login($access_token) {
 function _dosomething_services_user_resource_create($account) {
   // Avoid variable_set() because it does some cache clearing.
   $GLOBALS['conf']['user_email_verification'] = FALSE;
-  _user_resource_create($account);
+  $return = _user_resource_create($account);
   $GLOBALS['conf']['user_email_verification'] = TRUE;
+  return $return;
 }
