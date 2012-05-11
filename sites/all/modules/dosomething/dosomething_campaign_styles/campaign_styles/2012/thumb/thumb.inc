@@ -29,8 +29,8 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'thumb'),
-    array('title' => 'resources', 'href' => 'thumb/gallery'),
-    array('title' => 'faq', 'href' => 'thumb/caption'),
-    array('title' => 'blog', 'href' => 'thumb/faq'),
+    array('title' => 'gallery', 'href' => 'thumb/gallery'),
+    array('title' => 'caption contest', 'href' => 'thumb/caption'),
+    array('title' => 'faq', 'href' => 'thumb/faq'),
   ),
 );

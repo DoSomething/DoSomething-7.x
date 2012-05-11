@@ -7,10 +7,8 @@
 ////////////////////////////////////////
 
 // colors
-$baseColor: #00cc99 //
-$complement: #cc11ff //
-$secondaryLink: black
-$bgColor: rgba(255,100,100,0.3)
+$thumbYellow: #ffdd00 
+$thumbBlue: #0A5083
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -21,11 +19,7 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: #333 
-
-// block definition (all blocks--don't define width or float here)
-@mixin block
-  background: rgba(188,134,70,.4)
+$imageBackground: url('assets/bg.png') 
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -42,22 +36,24 @@ $imageBackground: #333
 ////////////////////////////////////////
 
 a
-  color: $baseColor
+  color: $thumbBlue
+  text-decoration: underline
   &:hover
-    color: $secondaryLink
+    color: $thumbYellow
 
 h1.title
   display: none 
 
 body
-  background: #222
+  background: $imageBackground $thumbYellow no-repeat
+  background-position: center
+  background-size: 1200px 100%
 
 div[role="main"]
-  +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 20px
   padding-top: 10px
-  background: #fff
+  background: #000
 
 .line-top
   &:before
@@ -79,8 +75,8 @@ div[role="main"]
   list-style-image: url("assets/dot.png")
       
 h2.pane-title
-  background-color: $complement
-  color: #fff
+  background-color: $thumbBlue
+  color: $thumbYellow
 
 //////////////////////////////////////////
 ////////////// sections /////////////////
@@ -88,15 +84,15 @@ h2.pane-title
 
 // navigation
 #block-dosomething-campaign-styles-campaign-nav
-  background: #fff
   margin-right: -5px
   padding: 0
   font-family: $accent
+  background: #000
   ul.menu
-    +block
+    background: inherit
     background-image: none
     text-align: right
-    background: #fff
+    padding-top: 12px
     a
       display: inline-block
       width: 100%
@@ -104,9 +100,10 @@ h2.pane-title
       font-size: 21px
       font-weight: 600
       text-transform: uppercase
-      color: $secondaryLink
+      color: white
+      text-decoration: none
       &:hover, .active
-        color: $baseColor
+        color: $thumbYellow
         text-decoration: none
 
 // top right wrapper
@@ -116,7 +113,7 @@ h2.pane-title
     font-family: $accent
     .pane-title
       background: none
-      color: $baseColor
+      color: $thumbBlue
       padding: 0
       font-size: 26px
       line-height: 1em
@@ -125,7 +122,7 @@ h2.pane-title
       font-size: 21px
       line-height: 1.4em
       font-weight: 600
-      color: $baseColor
+      color: $thumbYellow
 
 // scholarship bubble
 #scholarship_bubble
@@ -139,12 +136,12 @@ h2.pane-title
 .pane-node-field-campain-date
   .field-item
     font-size: 27px
-    color: $complement
+    color: $thumbYellow
 
 .pane-node-field-campaign-teaser
   p
     font-weight: lighter
-    color: #000
+    color: #fff
     margin-bottom: 0
 
 // ad row (quick info and psa)
@@ -154,13 +151,13 @@ h2.pane-title
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
+    color: $thumbYellow
     font-weight: 500
   .field-name-body
     margin-top: -15px
   .pane-content
     h3
-      color: $complement
+      color: $thumbYellow
       font-size: 26px
       text-transform: uppercase
       font-weight: 600
@@ -171,9 +168,17 @@ h2.pane-title
       margin: 0
       padding-bottom: 0.2em
       font-size: 11px
+      color: #fff
     &:before
       +insetBorder
       margin-bottom: 20px
+
+.psa-image
+  .pane-content
+    height: 425px
+    img
+      position: absolute
+      top: -50px
 
 .panel-row-ad
   margin: 0
@@ -183,52 +188,34 @@ h2.pane-title
 
 .panel-row-flexible
   .panel-pane
-    +block
     background: #fff
-  .blog
-    background: transparent
-    &:before, &:after
-      +insetBorder
-    &:before,&:after
+    border: none !important
+// sponsor and help panel
+  .sponsor-and-help
+    text-align: right
+    img
+      float: right
       +insetBorder
 
 .faq-section
   border: none !important
   .pane-content
-    background: $bgColor
-    ul
+    background: white
       padding: 5px 5px 5px 20px
       margin: 0
           
 // faq & resources section
 .resources-section,
 .faq-section
+  border: none !important
   .pane-content
-    background: $bgColor
+    background: white
     padding: 10px 15px
   h3
     font-size: 20px
-    color: $baseColor
+    color: black
     padding-bottom: 5px
     text-align: center
-
-.content
-  .resources-section
-    .pane-content
-      padding: 0
-    .panel-pane
-      width: 100%
-      margin-bottom: 0
-      padding: 0
-    .resource-content
-      padding: 10px 15px !important
-      background-color: $bgColor
-      margin-bottom: 20px
-
-.faq-section
-  h3
-    padding-bottom: 0
-    text-align: left
 
 // blog
 .node-campaign-blog-post
@@ -259,15 +246,15 @@ h2.pane-title
   .pane-content
     padding: 15px
   a
-    color: $baseColor
+    color: $thumbBlue
     text-decoration: underline
     &:hover
-      color: $secondaryLink
+      color: $thumbYellow
   .views-field-title
     a
       text-decoration: none
       &:hover
-        color: $secondaryLink
+        color: $thumbYellow
   .more-link
     text-transform: uppercase
 
@@ -285,13 +272,13 @@ h2.pane-title
           border: none
           margin: 0
     .views-row-even
-      background-color: $bgColor
+      background-color: #ddd
 
 // refer five friends
 .mcommons-webform
   width: 100%
   overflow: auto
-  background-color: $bgColor !important
+  background-color: white!important
   color: #000
   input.field
     width: 100%
@@ -313,7 +300,7 @@ h2.pane-title
   height: 300px
   margin: 0 0 15px 0
   border: none !important
-  background-color: $bgColor !important
+  background-color: white !important
   .go-button
     left: 285px
 
@@ -334,10 +321,20 @@ form.webform-client-form
   padding: 15px 15px 0 15px
   margin-bottom: -15px
 
-// got questions?  
-#help_copy
-  float: right
-  
+// sponsor and help panel
+.pane-content
+  #sponsor-and-help
+    text-align: right
+    background: #000
+    border-top: 2px solid $thumbYellow
+    padding-top: 10px
+    color: white
+    img
+      float: right
+      margin: 0
+    a
+      color: $thumbYellow
+
 // resetting the nonsense
 #breadcrumb
   display: none
@@ -348,11 +345,7 @@ img
   -o-box-shadow: none !important
   -moz-box-shadow: none !important
   -webkit-box-shadow: none !important
-
-.panel-row-ad-quick-info
-  h2.pane-title
-    color: #000 !important
-    
+ 
 .ds-panel
   .pane-content
     padding-bottom: 0 !important
