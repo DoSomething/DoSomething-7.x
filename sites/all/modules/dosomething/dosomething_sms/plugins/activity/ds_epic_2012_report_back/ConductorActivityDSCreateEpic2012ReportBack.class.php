@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Activity for the Epic 2012 workflow.
+ * Activity to process and submit report back for the Epic 2012 workflow.
  */
 class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
 
@@ -22,56 +22,14 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
 
     // Get values from the workflow
     $mobile = $state->getContext('sms_number');
+    $school_id = $state->getContext('school_id');
     $books = $state->getContext('get_books:message');
     $volunteers = $state->getContext('get_volunteers:message');
     $donators = $state->getContext('get_donators:message');
     $first_name = $state->getContext('get_first_name:message');
     $last_name = $state->getContext('get_last_name:message');
 
-    $gateway = sms_gateways('gateways');
-    $config = $gateway['sms_mobile_commons']['configuration'];
-    $api_send_url = $config['sms_mobile_commons_custom_url'];
-    $auth_string = $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
-
-    // Remove http or https at beginning of string.
-    $api_send_url = str_replace('https://', '', $api_send_url);
-    $api_send_url = str_replace('http://', '', $api_send_url);
-    
-    $api_check_user_url = 'https://' . $api_send_url . '/api/profile?phone_number=' . $mobile;
-
-    /*
-    $opts = array(
-      'http' => array(
-        'method'  => 'GET',
-        'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode($auth_string)),
-      ),
-    );
-    $context = stream_context_create($opts);
-    $return_val = file_get_contents($api_check_user_url, FALSE, $context);
-    */
-    // NOTE: Tried using file_get_contents() but nothing would get returned
-    $ch = curl_init();
-    curl_setopt($ch,CURLOPT_HTTPAUTH,CURLAUTH_BASIC);
-    curl_setopt($ch,CURLOPT_USERPWD,$auth_string); 
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch,CURLOPT_URL,$api_check_user_url);
-    $mc_profile_xml = curl_exec($ch);
-    curl_close($ch);
-
-    $mc_profile = new SimpleXMLElement($mc_profile_xml);
-    $error_check = $mc_profile->xpath("error");
-    if( !isset($error_check) ) {
-      $school_id_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School ID']");
-      $school_id_xml = $school_id_arr[0];
-      $school_id = self::getCustomColumnValue($school_id_xml);
-      $school_name_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School Name']");
-      $school_name_xml = $school_name_arr[0];
-      $school_name = self::getCustomColumnValue($school_name_xml);
-    }
-
     // If we have a user with this mobile, update their info.
-    $state->markCompeted();	//TODO: fix the spelling on this function
     $account = dosomething_general_find_user_by_cell($mobile);
 
     // Otherwise, create a new account
@@ -148,30 +106,6 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     $wrapper->save();
 
     $state->markCompeted();
-  }
-
-  /**
-   * Pulls the value out of a custom_column tag 
-   * @param $xml_obj SimpleXMLElement object for a custom_column
-   * @return 
-   */
-  private function getCustomColumnValue($xml_obj) {
-    // if it fails, just return the object back
-    $return = $xml_obj;
-
-    $xml_str = $xml_obj->asXml();
-    if ($xml_str != '') {
-      $value_start = strpos($xml_str, '>');
-      if ($value_start !== FALSE) {
-        $cull1 = substr($xml_str, $value_start+1);
-
-        $value_end = strpos($cull1, '</');
-        if ($value_end !== FALSE)
-          $return = substr($cull1, 0, $value_end);
-      }
-    }
-
-    return $return;
   }
 
   /**

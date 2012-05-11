@@ -242,9 +242,58 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->name = 'start';
   $activity->title = 'Start';
   $activity->outputs = array(
-    'get_books',
+    'get_school_id',
   );
-  $activity->inputs = array();
+  // Check if we have the user's school id
+  $activity = $workflow->newActivity('ds_get_school_id');
+  $activity->x = 80;
+  $activity->y = 100;
+  $activity->name = 'get_school_id';
+  $activity->title = 'Get user\'s school id from mCommons profile';
+  $activity->inputs = array(
+    'start',
+  );
+  $activity->outputs = array(
+    'ask_school_name',
+  );
+  // Ask for the school
+  $activity = $workflow->newActivity('ds_ask_school_name');
+  $activity->x = 80;
+  $activity->y = 100;
+  $activity->name = 'ask_school_name';
+  $activity->title = 'Ask user for their state and school name';
+  $activity->question = 'Text your state abbreviation & full school (ex: va hylton high school).';
+  $activity->inputs = array(
+    'get_school_id',
+  );
+  $activity->outputs = array(
+    'recv_school_name',
+  );
+  // Receive and process the school name
+  $activity = $workflow->newActivity('ds_receive_school_name');
+  $activity->x = 80;
+  $activity->y = 100;
+  $activity->name = 'recv_school_name';
+  $activity->title = 'Receive and process the state and school name';
+  $activity->inputs = array(
+    'ask_school_name'
+  );
+  $activity->outputs = array(
+    'recv_school_id'
+  );
+  // Receive and process the school id 
+  $activity = $workflow->newActivity('ds_receive_school_id');
+  $activity->x = 80;
+  $activity->y = 100;
+  $activity->name = 'recv_school_id';
+  $activity->title = 'Receive and process the school ID or NOID';
+  $activity->inputs = array(
+    'recv_school_name'
+  );
+  $activity->outputs = array(
+    'get_books'
+  );
+  // Get the number of books donated
   $activity = $workflow->newActivity('sms_prompt');
   $activity->x = 280;
   $activity->y = 100;
@@ -252,7 +301,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->title = 'Get the number of books';
   $activity->question = 'How many books were donated through your drive?';
   $activity->inputs = array(
-    'start',
+    'recv_school_id',
   );
   $activity->outputs = array(
     'get_volunteers'
@@ -341,9 +390,9 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->inputs = array(
     'create_epic_2012_report_back'
   );
+
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
-
 
   return $workflows;
 }
