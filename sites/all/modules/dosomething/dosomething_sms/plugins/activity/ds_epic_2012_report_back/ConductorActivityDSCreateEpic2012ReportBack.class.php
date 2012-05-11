@@ -84,8 +84,8 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     $wrapper->value()->data[1]['value'][0] = $first_name;
     $wrapper->value()->data[2]['value'][0] = $last_name;
     $wrapper->value()->data[3]['value'][0] = $books;
-    $wrapper->value()->data[4]['value'][0] = $volunteers;
-    $wrapper->value()->data[5]['value'][0] = $donators;
+    $wrapper->value()->data[6]['value'][0] = $volunteers;
+    $wrapper->value()->data[4]['value'][0] = $donators;
 
     if (!empty($school_id)) {
       $school_id_state = self::getStateFromID($school_id);
