@@ -15,7 +15,7 @@
       <span class="title"><?php print t('Online'); ?></span><span class="detail"><?php print t('<a href="/help-ticket">Submit a ticket</a>'); ?></span>
     </div>
     <div class="row">
-      <span class="title"><?php print t('Text'); ?></span><span class="detail"><?php print t('text HELPME to 38383'); ?></span>
+      <span class="title"><?php print t('Text'); ?></span><span class="detail"><?php print t('text QUESTION to 38383'); ?></span>
     </div>
     <div class="row">
       <span class="title"><?php print t('Email'); ?></span><span class="detail"><?php print l('helpme@dosomething.org', 'mailto:helpme@dosomething.org'); 
