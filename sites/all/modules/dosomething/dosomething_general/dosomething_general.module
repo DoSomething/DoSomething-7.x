@@ -347,11 +347,11 @@ function dosomething_general_form_webform_client_validate($form, &$form_state) {
     else {
       // Store the cleaned up number.
       $form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] = $valid_number;
-    }
 
-    if ($phone_account = dosomething_general_find_user_by_cell($valid_number)) {
-      if ($phone_account->uid != $account->uid) {
-        form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.'));
+      if ($phone_account = dosomething_general_find_user_by_cell($valid_number)) {
+        if ($phone_account->uid != $account->uid) {
+          form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.'));
+        }
       }
     }
   }
