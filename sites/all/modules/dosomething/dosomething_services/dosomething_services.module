@@ -8,6 +8,79 @@
 include_once('dosomething_services.features.inc');
 
 /**
+ * Implements hook_field_widget_form_alter().
+ *
+ * Provides specific functionality for handling webform fields that fail when
+ * being submitted through Services.
+ */
+function dosomething_services_field_widget_form_alter(&$element, &$form_state, $context) {
+  // Check that type is 'image'
+  $type = $context['field']['type'];
+  $is_type_image = $type == 'image';
+  
+  // Checking 'programmed' and 'submitted' flags which indicate to us that it's
+  // likely been submitted through the webform_service
+  $is_services_submitted = $form_state['programmed'] && $form_state['submitted'];
+  
+  // Finally check that there are field_webform_pictures that were submitted
+  $has_field_webform_pictures_fid = isset($form_state['values']['submitted']['field_webform_pictures'][LANGUAGE_NONE][0]['fid']);
+
+  if ($is_type_image && $is_services_submitted && $has_field_webform_pictures_fid) {
+    // Most of this code is taken from file_field_widget_form(), only that we're
+    // ensuring elements get added to the array for each image submitted
+    $instance = $context['instance'];
+    $field = $context['field'];
+
+    $defaults = array(
+      'fid' => 0,
+      'display' => !empty($field['settings']['display_default']),
+      'description' => '',
+    );
+
+    // Programmatically building the struct for this element that would've been
+    // found when processing through file_field_widget_form()
+    $elem = array(
+      '#entity_type' => 'webform_submission_entity',
+      '#bundle' => 'campaign_report_back',
+      '#field_name' => 'field_webform_pictures',
+      '#language' => 'und',
+      '#field_parents' => array('submitted'),
+      '#columns' => array(
+        'fid',
+        'alt',
+        'title',
+        'width',
+        'height',
+      ),
+      '#title' => 'Pictures'
+    );
+
+    // Then similar to what's found in file_field_widget_form(), essentially 
+    // use the managed_file type, but extended with some enhancements.
+    $element_info = element_info('managed_file');
+    $elem += array(
+      '#type' => 'managed_file',
+      '#upload_location' => file_field_widget_uri($field, $instance),
+      '#upload_validators' => file_field_widget_upload_validators($field, $instance),
+      '#value_callback' => 'file_field_widget_value',
+      '#process' => array_merge($element_info['#process'], array('file_field_widget_process')),
+      '#progress_indicator' => $instance['widget']['settings']['progress_indicator'],
+      // Allows this field to return an array instead of a single value.
+      '#extended' => TRUE,
+    );
+
+    // Add element for each item
+    $item_count = count($form_state['values']['submitted']['field_webform_pictures'][LANGUAGE_NONE]);
+    for ($delta = 0; $delta < $item_count; $delta++) {
+      $element[$delta] = $elem;
+      $element[$delta]['#default_value'] = $defaults;
+      $element[$delta]['#weight'] = $delta;
+      $element[$delta]['#required'] = ($elem['#required'] && $delta == 0);
+    }
+  }
+}
+
+/**
  * Implements hook_services_resources().
  */
 function dosomething_services_services_resources() {
