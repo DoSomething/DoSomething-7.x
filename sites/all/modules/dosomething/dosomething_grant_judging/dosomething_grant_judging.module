@@ -13,7 +13,7 @@ function dosomething_grant_judging_user_presave(&$edit, $account, $category) {
     // domain addresses to auto-promote to grant reviewer
     $grant_domains = array(
       'aexp.com',
-      //'dosomething.org',
+      'dosomething.org',
     );
 
     // get the domain of the user emails
