@@ -1,0 +1,63 @@
+<?php
+
+include_once 'dosomething_grant_judging.features.inc';
+
+/**
+ * Implements hook_user_presave().
+ */
+function dosomething_grant_judging_user_presave(&$edit, $account, $category) {
+  if (isset($account->is_new) && !empty($account->is_new)) {
+    // set the role to add to someone's profile for grant judging
+    $grant_role = variable_get('dosomething_grant_judging_role', 5);
+
+    // domain addresses to auto-promote to grant reviewer
+    $grant_domains = array(
+      'aexp.com',
+      //'dosomething.org',
+    );
+
+    // get the domain of the user emails
+    $domain = explode('@', $account->email);
+    $domain = $domain[count($domain)-1];
+
+    // if they have an email from this domain
+    if (in_array($domain, $grant_domains)) {
+      $roles = user_roles(TRUE);
+      if (!isset($edit['roles'])) {
+        $edit['roles'] = array();
+      }
+
+      // append the user role to any currently added roles
+      $edit['roles'] = $edit['roles'] + array($grant_role => $roles[$grant_role]);
+    }
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function dosomething_grant_judging_ctools_plugin_type() {
+  return array(
+    'grant_judge_form' => array(
+      'cache' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ *
+ * @param string $owner
+ *   The system name of the module owning the plugin type for which a base
+ *   directory location is being requested.
+ * @param string $plugin_type
+ *   The name of the plugin type for which a base directory is being requested.
+ * @return string
+ *   The path where CTools' plugin system should search for plugin files,
+ *   relative to your module's root. Omit leading and trailing slashes.
+ */
+function dosomething_grant_judging_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
