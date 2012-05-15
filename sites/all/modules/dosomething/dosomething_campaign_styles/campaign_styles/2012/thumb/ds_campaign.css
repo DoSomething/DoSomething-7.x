@@ -1,6 +1,5 @@
 a {
-  color: #0a5083;
-  text-decoration: underline; }
+  color: #0a5083; }
   a:hover {
     color: #ffdd00; }
 
@@ -153,6 +152,61 @@ h2.pane-title {
   background: white;
   border: none !important; }
 
+.panel-row-actions {
+  background: #dddddd; }
+  .panel-row-actions .pane-title {
+    background: #0a5083; }
+  .panel-row-actions .pane-content {
+    padding-right: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      border: none; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
+        width: 100%; }
+
+.panel-row-actions-stats .campaign-counter {
+  margin: 15px 5px 0 0; }
+
+.campaign-counter-labels {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  line-height: 25px;
+  float: left;
+  margin: 5px 0 0 10px; }
+
+.campaign-counter-label-top {
+  margin-bottom: 10px; }
+
+.campaign-counter-number-top {
+  margin: 6px 0 10px 0; }
+
+.campaign-counter-numbers {
+  float: right; }
+
+.campaign-counter-number-top,
+.campaign-counter-number-bottom {
+  text-align: right; }
+
+.panel-pane {
+  margin-bottom: 0; }
+
+#campaign-opt-in {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  width: 250px; }
+
 .faq-section {
   border: none !important; }
   .faq-section .pane-content {
@@ -162,7 +216,8 @@ h2.pane-title {
 
 .resources-section,
 .faq-section {
-  border: none !important; }
+  border: none !important;
+  padding: 15px; }
   .resources-section .pane-content,
   .faq-section .pane-content {
     background: white;
@@ -171,14 +226,13 @@ h2.pane-title {
   .faq-section h3 {
     font-size: 20px;
     color: black;
-    padding-bottom: 5px;
-    text-align: center; }
+    padding-bottom: 5px; }
 
 .node-campaign-blog-post {
   padding: 15px !important; }
   .node-campaign-blog-post .field-name-field-picture img {
-    margin: 0 20px 20px 0;
-    float: left; }
+    margin: 0 auto 15px;
+    display: block; }
   .node-campaign-blog-post .field-name-field-blog-video {
     clear: both;
     position: relative;
@@ -283,6 +337,18 @@ form.webform-client-form {
   .pane-content #sponsor-and-help a {
     color: #ffdd00; }
 
+#contest_button {
+  text-decoration: underline;
+  text-align: center; }
+
+#contest_info {
+  background-color: #dddddd;
+  width: 721px;
+  position: relative;
+  bottom: -15px;
+  padding: 15px;
+  margin-bottom: 15px; }
+
 #breadcrumb {
   display: none; }
 
@@ -298,3 +364,6 @@ img {
 
 .panel-row-top .panel-panel {
   margin-bottom: 0; }
+
+.panel-row-actions {
+  border: none !important; }

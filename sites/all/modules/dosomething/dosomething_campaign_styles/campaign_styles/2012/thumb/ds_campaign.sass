@@ -9,6 +9,7 @@
 // colors
 $thumbYellow: #ffdd00 
 $thumbBlue: #0A5083
+$thumbGrey: #ddd
 
 // borders
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -37,7 +38,6 @@ $imageBackground: url('assets/bg.png')
 
 a
   color: $thumbBlue
-  text-decoration: underline
   &:hover
     color: $thumbYellow
 
@@ -197,6 +197,70 @@ h2.pane-title
       float: right
       +insetBorder
 
+      .pane-node-field-campaign-teaser
+        color: black
+        .pane-content
+          padding-bottom: 5px
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  background: $thumbGrey
+  .pane-title
+    background: $thumbBlue
+  .pane-content
+    padding-right: 18px
+  .panel-row-actions-sign-up
+    .pane-campaign-sign-up
+      margin: 0
+    .pane-content
+      padding: 0
+      .webform-client-form
+        border: none
+      .field-name-field-webform-mobile  
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      .field-name-field-webform-email
+        margin-bottom: 0.5em
+        input
+          width: 100%
+
+//campaign counter
+.panel-row-actions-stats
+  .campaign-counter
+    margin: 15px 5px 0 0
+
+.campaign-counter-labels
+  text-transform: uppercase
+  font-size: 25px
+  font-family: $accent
+  font-weight: 500
+  line-height: 25px
+  float: left
+  margin: 5px 0 0 10px
+
+.campaign-counter-label-top
+  margin-bottom: 10px
+
+.campaign-counter-number-top
+  margin: 6px 0 10px 0
+
+.campaign-counter-numbers
+  float: right
+
+.campaign-counter-number-top,
+.campaign-counter-number-bottom
+  text-align: right
+
+.panel-pane
+  margin-bottom: 0
+
+#campaign-opt-in
+  position: absolute
+  left: 15px
+  bottom: 15px
+  width: 250px
+
 .faq-section
   border: none !important
   .pane-content
@@ -208,6 +272,7 @@ h2.pane-title
 .resources-section,
 .faq-section
   border: none !important
+  padding: 15px
   .pane-content
     background: white
     padding: 10px 15px
@@ -215,15 +280,14 @@ h2.pane-title
     font-size: 20px
     color: black
     padding-bottom: 5px
-    text-align: center
 
 // blog
 .node-campaign-blog-post
   padding: 15px !important
   .field-name-field-picture
     img
-      margin: 0 20px 20px 0
-      float: left
+      margin: 0 auto 15px
+      display: block
   .field-name-field-blog-video
     clear: both
     position: relative
@@ -335,6 +399,19 @@ form.webform-client-form
     a
       color: $thumbYellow
 
+// jQuery dropdown styling
+#contest_button
+  text-decoration: underline
+  text-align: center
+  
+#contest_info
+  background-color: $thumbGrey
+  width: 721px
+  position: relative
+  bottom: -15px
+  padding: 15px
+  margin-bottom: 15px
+
 // resetting the nonsense
 #breadcrumb
   display: none
@@ -353,3 +430,6 @@ img
 .panel-row-top
   .panel-panel
     margin-bottom: 0
+
+.panel-row-actions
+  border: none !important
