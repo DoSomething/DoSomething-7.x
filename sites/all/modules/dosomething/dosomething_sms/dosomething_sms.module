@@ -262,7 +262,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 100;
   $activity->name = 'ask_school_name';
   $activity->title = 'Ask user for their state and school name';
-  $activity->question = 'Text your state abbreviation & full school (ex: va hylton high school).';
+  $activity->question = 'O.K. let\'s get started. First, text us your state abbreviation and full school name! (ex. va groves high school)';
   $activity->inputs = array(
     'get_school_id',
   );
@@ -299,7 +299,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 100;
   $activity->name = 'get_books';
   $activity->title = 'Get the number of books';
-  $activity->question = 'How many books were donated through your drive?';
+  $activity->question = 'Awesome!! So how many books were donated through your drive? Please respond with a # (ex. 20)';
   $activity->inputs = array(
     'recv_school_id',
   );
@@ -312,7 +312,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 120;
   $activity->name = 'get_volunteers';
   $activity->title = 'Get the number of volunteers';
-  $activity->question = 'How many volunteers helped with your drive?';
+  $activity->question = 'And how many people are in your drive group? Please respond with a # (ex. 20)';
   $activity->inputs = array(
     'get_books',
   );
@@ -325,7 +325,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 140;
   $activity->name = 'get_donators';
   $activity->title = 'Get the number of people who donated books';
-  $activity->question = 'How many people donated books to your drive?';
+  $activity->question = 'Impressive! How many people donated books to your drive? Please respond with a # (ex. 20)';
   $activity->inputs = array(
     'get_volunteers',
   );
@@ -338,7 +338,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 160;
   $activity->name = 'get_first_name';
   $activity->title = 'Get the user\'s first name.';
-  $activity->question = 'Thanks! We just need two more answers. Please reply with your first name.';
+  $activity->question = 'Thanks! We just need two more answers (promise!). Please reply with your first name.';
   $activity->inputs = array(
     'get_donators'
   );
@@ -350,7 +350,7 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->y = 180;
   $activity->name = 'get_last_name';
   $activity->title = 'Get the user\'s last name.';
-  $activity->question = 'Lastly, please reply with your last name.';
+  $activity->question = 'And lastly, please reply with your last name.';
   $activity->inputs = array(
     'get_first_name',
   );

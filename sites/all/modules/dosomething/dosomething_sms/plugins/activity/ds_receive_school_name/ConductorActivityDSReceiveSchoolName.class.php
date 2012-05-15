@@ -42,59 +42,23 @@ class ConductorActivityDSReceiveSchoolName extends ConductorActivitySMSPrompt {
           $sxml = curl_exec($ch);
           curl_close($ch);
 
-          $sxml = new SimpleXMLElement($sxml);
+          if (!empty($sxml)) {
+            $sxml = new SimpleXMLElement($sxml);
 
-          if (count($sxml->school) > 0) {
-            // Schools found. Build header, body, and footer message text.
-            $return_msg = 'We found ' . count($sxml->school) . " matches\n";
-            foreach ($sxml->school as $school) {
-              $return_msg .= $school->state . $school->gsId . ' - ' . $school->name . "\n";
-            }
-            $return_msg .= "Reply w/ the school ID (ex: NY1234) or NOID if you don't see your school.";
-
-            // Set message as 'question' for ConductorActivitySMSPrompt to handle
-            $this->question = $return_msg;
-
-            // TODO: Will need to verify, but may not need to do this if mCommons
-            // can just handle splitting up the message for us.
-            /*
-            // Schools found. Build header, body, and footer message text.
-            $header = 'We found' . count($sxml->school) . "matches\n";
-            $schools = array();
-            foreach ($sxml->school as $school) {
-              $sid = $school->state . $school->gsId . ' - ' . $school->name;
-              $schools[] = $sid . "\n";
-            }
-            $footer = "Reply w/ the school ID (ex: NY1234) or NOID if you don't see your school.";
-
-            // Place header into message
-            $curr_msg = 0;
-            $message[$curr_msg] = $header;
-
-            // Place school results into message. If current message will
-            // exceed 160 characters, start a new message.
-            foreach ($schools as $school ) {
-              if (strlen($message[$curr_msg]) + strlen($school) > 160) {
-                $curr_msg++;
-                $message[$curr_msg] = $school;
+            if (count($sxml->school) > 0) {
+              // Schools found. Build header, body, and footer message text.
+              $return_msg = 'Text us your school ID (ex: NY1234), we found ' . count($sxml->school) . " matches\n";
+              foreach ($sxml->school as $school) {
+                $return_msg .= $school->state . $school->gsId . ' - ' . $school->name . "\n";
               }
-              else {
-                $message[$curr_msg] .= $school;
-              }
-            }
+              $return_msg .= "or text NOID if you don't see it.";
 
-            // Place footer into message
-            if (strlen($message[$curr_msg]) + strlen($footer) > 160) {
-              $curr_msg++;
-              $message[$curr_msg] = $footer;
-            }
-            else {
-              $message[$curr_msg] .= $footer;
-            }
-            */
+              // Set message as 'question' for ConductorActivitySMSPrompt to handle
+              $this->question = $return_msg;
 
-            $bFoundSchools = TRUE;
-            break;
+              $bFoundSchools = TRUE;
+              break;
+            }
           }
 
           // If last search did not succeed, pop off a search word and search again

@@ -101,7 +101,7 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
     }
 
     // Final message
-    $state->setContext('sms_response', t('Thanks for participating in the Epic Book Drive! You\'re now eligible to win more awesome stuff!'));
+    $state->setContext('sms_response', t('Thanks for collecting books for low-income families in your community. You should feel like such a rockstar! We\'ll share results soon! - <3 Epic Book Drive Team'));
 
     $wrapper->save();
 

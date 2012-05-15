@@ -29,8 +29,7 @@ class ConductorActivityDSReceiveSchoolID extends ConductorActivitySMSPrompt {
 
         if ($message == 'NOID') {
           // User didn't see ID
-          //$this->question = t('Sorry we couldn\'t find your school. Text AGAIN to try again or GO to continue.');
-          $this->question = t('Sorry we couldn\'t find your school. Text GO to continue.');
+          $this->question = t('Drats! We couldn\'t find your school. But we still want to hear more about your drive! Text GO to continue.');
         }
         else {
           // Assume we've got a greatschools id
@@ -45,15 +44,13 @@ class ConductorActivityDSReceiveSchoolID extends ConductorActivitySMSPrompt {
           }
           else {
             // Unknown response
-            //$this->question = t('Sorry there were no matches found. Text AGAIN to try again or GO to continue.');
-            $this->question = t('Sorry there were no matches found. Text GO to continue.');
+            $this->question = t('Drats! We couldn\'t find your school. But we still want to hear more about your drive! Text GO to continue.');
           }
         }
       }
       else {
         // No schools found
-        //$this->question = t('Sorry there were no matches found. Text AGAIN to try again or GO to continue.');
-        $this->question = t('Sorry there were no matches found. Text GO to continue.');
+        $this->question = t('Drats! We couldn\'t find your school. But we still want to hear more about your drive! Text GO to continue.');
       } 
     }
 

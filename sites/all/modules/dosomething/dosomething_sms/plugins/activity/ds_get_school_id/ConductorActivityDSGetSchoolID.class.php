@@ -30,15 +30,17 @@ class ConductorActivityDSGetSchoolID extends ConductorActivity {
     $mc_profile_xml = curl_exec($ch);
     curl_close($ch);
 
-    $mc_profile = new SimpleXMLElement($mc_profile_xml);
-    $error_check = $mc_profile->xpath("error");
-    if (empty($error_check)) {
-      $school_id_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School ID']");
-      if (!empty($school_id_arr[0])) {
-        $school_id = self::getCustomColumnValue($school_id_arr[0]);
+    if (!empty($mc_profile_xml)) {
+      $mc_profile = new SimpleXMLElement($mc_profile_xml);
+      $error_check = $mc_profile->xpath("error");
+      if (empty($error_check)) {
+        $school_id_arr = $mc_profile->xpath("profile/custom_columns/custom_column[@name='School ID']");
+        if (!empty($school_id_arr[0])) {
+          $school_id = self::getCustomColumnValue($school_id_arr[0]);
 
-        if (!empty($school_id)) {
-          $this->getState()->setContext('school_id', $school_id);
+          if (!empty($school_id)) {
+            $this->getState()->setContext('school_id', $school_id);
+          }
         }
       }
     }
