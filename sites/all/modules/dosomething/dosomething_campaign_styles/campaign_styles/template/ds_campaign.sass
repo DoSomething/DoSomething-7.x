@@ -1,3 +1,5 @@
+// CAMPAIGN NAME HERE PLZ!
+
 // Base imports. Be sure to compile using the --compass switch
 @import compass/css3
 @import compass/utilities/general/clearfix
@@ -28,8 +30,8 @@ $bgFallback: #1F4BA7
 // sets the background for the page nav and main section
 @mixin block
   // make sure you specify the RBG fallback if you have a RGBA set!
-  background: rgb(188,134,70)
-  background: rgba(188,134,70,.4)
+  background: rgb(255,255,255)
+  background: rgba(255,255,255,.8)
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -145,7 +147,10 @@ div[role="main"]
         text-decoration: none
 
 // campaign logo
-
+.field-name-field-campaign-logo img
+  width: 480px
+  height: 230px
+  margin-top: 0px !important
 
 // mini info
 // brief campaign description at the top right
@@ -157,13 +162,14 @@ div[role="main"]
     color: $baseColor
     padding: 0
     font-weight: 600
+  .field-name-field-campaign-teaser p
+    margin-bottom: 15px
   .pane-content  
     padding-bottom: 0
 
 // campaign social buttons, top right
 .pane-campaign-social
   .pane-content
-    +block
     .fb-facepile
       &:before
         +insetBorder
@@ -177,7 +183,7 @@ div[role="main"]
         left: -18px
         margin-bottom: 8px
         position: relative
-        width: 237px
+        width: 247px
 
 // short form
 .panel-row-actions
