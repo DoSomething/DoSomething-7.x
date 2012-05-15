@@ -12,6 +12,10 @@ include_once('dosomething_services.features.inc');
  *
  * Provides specific functionality for handling webform fields that fail when
  * being submitted through Services.
+ *
+ * One such field was the picture field (field_webform_pictures). Most of the code
+ * found here was taken from file_field_widget_form(). Main difference is that
+ * we're ensuring our image items got added to the array.
  */
 function dosomething_services_field_widget_form_alter(&$element, &$form_state, $context) {
   // Check that type is 'image'
@@ -26,7 +30,7 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
   $has_field_webform_pictures_fid = isset($form_state['values']['submitted']['field_webform_pictures'][LANGUAGE_NONE][0]['fid']);
 
   if ($is_type_image && $is_services_submitted && $has_field_webform_pictures_fid) {
-    // Most of this code is taken from file_field_widget_form(), only that we're
+    // Start to code found from file_field_widget_form(), only that we're
     // ensuring elements get added to the array for each image submitted
     $instance = $context['instance'];
     $field = $context['field'];
@@ -69,7 +73,8 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
       '#extended' => TRUE,
     );
 
-    // Add element for each item
+    // **IMPORTANT** Key difference in code is here where we unconditionally 
+    // add to the $element array for each picture item
     $item_count = count($form_state['values']['submitted']['field_webform_pictures'][LANGUAGE_NONE]);
     for ($delta = 0; $delta < $item_count; $delta++) {
       $element[$delta] = $elem;
@@ -77,6 +82,8 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
       $element[$delta]['#weight'] = $delta;
       $element[$delta]['#required'] = ($elem['#required'] && $delta == 0);
     }
+
+    // end to field_webform_pictures handling and to code found from file_field_widget_form()
   }
 }
 
