@@ -104,6 +104,12 @@ function _submission_resource_create($data) {
   $node = node_load($nid);
   $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
 
+  // For overidden op's on individual webforms
+  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
+  if (isset($form['actions']['submit']['#value'])) {
+    $default_op = $form['actions']['submit']['#value'];
+  }
+
   // Load the required includes for drupal_execute
   module_load_include('module', 'webform');
 
@@ -145,6 +151,11 @@ function _submission_resource_create($data) {
 function _submission_resource_update($nid, $sid, $submission) {
   $node = node_load($nid);
   $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
+  // For overidden op's on individual webforms
+  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
+  if (isset($form['actions']['submit']['#value'])) {
+    $default_op = $form['actions']['submit']['#value'];
+  }
   // Adds backwards compatability with regression fixed in #1083242
   $submission = _services_arg_value($submission, 'webform_submission');
 
