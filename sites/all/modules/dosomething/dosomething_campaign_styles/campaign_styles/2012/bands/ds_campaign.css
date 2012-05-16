@@ -570,6 +570,11 @@ div[role="main"] {
   .report-back-teaser h3 {
     color: white;
     border: none; }
+  .report-back-teaser .go-button {
+    position: relative;
+    bottom: -12px;
+    left: 0;
+    padding: 1px 13px 0; }
 
 #judges_container {
   margin: 15px 0 0 20px;
@@ -641,6 +646,10 @@ div[role="main"] {
 #video-gallery .view-header p {
   margin-bottom: 0;
   padding: 10px 0 0 10px; }
+#video-gallery h3 {
+  color: white;
+  text-align: center;
+  padding-top: 15px; }
 
 #looking-for {
   margin-bottom: 15px; }
