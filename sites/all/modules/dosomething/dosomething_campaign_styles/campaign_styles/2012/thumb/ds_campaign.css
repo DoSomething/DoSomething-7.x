@@ -173,6 +173,14 @@ h2.pane-title {
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
 
+#post-sign-up {
+  padding: 15px;
+  width: 100%; }
+  #post-sign-up .go-button {
+    position: relative;
+    bottom: -17px;
+    left: -5px; }
+
 .panel-row-actions-stats .campaign-counter {
   margin: 15px 5px 0 0; }
 
@@ -278,6 +286,9 @@ h2.pane-title {
       margin: 0; }
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
     background-color: #dddddd; }
+
+#edit-submitted-field-webform-school-reference {
+  display: none; }
 
 .mcommons-webform {
   width: 100%;
