@@ -101,13 +101,33 @@ function dosomething_services_services_resources() {
             array(
               'name' => 'access_token',
               'type' => 'string',
-              'description' => 'User\'s access token received from Facebook authorization',
+              'description' => t('User\'s access token received from Facebook authorization'),
               'source' => array('data' => 'access_token'),
               'optional' => FALSE,
             ),
           ),
           'access callback' => 'services_access_menu',
           'file' => array('type' => 'module', 'module' => 'dosomething_services', 'name' => 'dosomething_services'),
+        ),
+      ),
+    ),
+    'file' => array(
+      'actions' => array(
+        'create_media' => array(
+          'help' => 'Create a media file from accepted URLs',
+          'callback' => '_dosomething_services_create_media',
+          'args' => array(
+            array(
+              'name' => 'url',
+              'type' => 'string',
+              'description' => t('URL for media source from accepted location (ex: youtube, vimeo, etc)'),
+              'source' => array('data' => 'url'),
+              'optional' => FALSE,
+            ),
+          ),
+          'access callback' => '_dosomething_services_create_media_access',
+          'access arguments' => array('create_media'),
+          'access arguments append' => TRUE,
         ),
       ),
     ),
@@ -209,7 +229,7 @@ function _dosomething_services_facebook_login($access_token) {
   }
   else {
     $error_obj = new stdClass();
-    $error_obj->error = "Error in Facebook login.";
+    $error_obj->error = t('Error in Facebook login.');
     $error_obj->user_obj = $user_return;
     $error_obj->user_uid = $user_return->uid;
 
@@ -226,4 +246,38 @@ function _dosomething_services_user_resource_create($account) {
   $return = _user_resource_create($account);
   $GLOBALS['conf']['user_email_verification'] = TRUE;
   return $return;
+}
+
+/**
+ * Submit media to parse and process. If successful, returns submitted file object.
+ */
+function _dosomething_services_create_media($url) {
+  $return = new stdClass();
+
+  if (!empty($url) && valid_url($url)) {
+    try {
+      $file_obj = media_parse_to_file($url);
+      $return = $file_obj;
+    }
+    catch (Exception $e) {
+      $return->error = $e->getMessage();
+    }
+  }
+  else {
+    // Invalid URL, return error
+    $return->error = t('Invalid URL');
+  }
+
+  return $return;
+}
+
+/**
+ * Access callback for the file/create_media resource
+ */
+function _dosomething_services_create_media_access($op = 'view', $args = array()) {
+  if ($op == 'create_media') {
+    return user_access('save file information');
+  }
+
+  return FALSE;
 }
