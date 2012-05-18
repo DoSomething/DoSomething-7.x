@@ -53,9 +53,22 @@ function dosomething_services_default_services_endpoint() {
           'enabled' => 1,
         ),
       ),
+      'actions' => array(
+        'create_media' => array(
+          'enabled' => 1,
+        ),
+      ),
     ),
     'node' => array(
       'alias' => 'node',
+    ),
+    'system' => array(
+      'alias' => 'system',
+      'actions' => array(
+        'connect' => array(
+          'enabled' => 1,
+        ),
+      ),
     ),
     'user' => array(
       'alias' => 'user',
@@ -75,6 +88,9 @@ function dosomething_services_default_services_endpoint() {
           'enabled' => 1,
         ),
         'register' => array(
+          'enabled' => 1,
+        ),
+        'fblogin' => array(
           'enabled' => 1,
         ),
       ),
