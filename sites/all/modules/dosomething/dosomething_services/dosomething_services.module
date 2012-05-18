@@ -140,11 +140,16 @@ function dosomething_services_services_resources() {
  * Replace the default user creation callback with ours.
  */
 function dosomething_services_services_resources_alter(&$resources, $endpoint) {
-  // TODO: we should only do this on a specific endpoint.
+  // Only execute these changes on the dosomething default 'rest' endpoint
+  if ($endpoint->name == 'rest') {
+    // If email verification is enabled, bypass it with our custom callback.
+    if (variable_get('user_email_verification', TRUE)) {
+      $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
+    }
 
-  // If email verification is enabled, bypass it with our custom callback.
-  if (variable_get('user_email_verification', TRUE)) {
-    $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
+    // Add additional session information to the connect and login actions
+    $resources['system']['actions']['connect']['callback'] = '_dosomething_services_system_resource_connect';
+    $resources['user']['actions']['login']['callback'] = '_dosomething_services_user_resource_login';
   }
 }
 
@@ -222,6 +227,7 @@ function _dosomething_services_facebook_login($access_token) {
     $return = new stdClass();
     $return->sessid = session_id();
     $return->session_name = session_name();
+    _dosomething_services_add_more_session_info($return);
 
     $return->user = $user_return;
 
@@ -246,6 +252,26 @@ function _dosomething_services_user_resource_create($account) {
   $return = _user_resource_create($account);
   $GLOBALS['conf']['user_email_verification'] = TRUE;
   return $return;
+}
+
+/**
+ * Modify the output from _user_resource_login() to give more session info
+ */
+function _dosomething_services_user_resource_login($username, $password) {
+  $return = _user_resource_login($username, $password);
+  _dosomething_services_add_more_session_info($return);
+
+  return $return;
+}
+
+/**
+ * Modify the output from _system_resource_connect() to give more session info
+ */
+function _dosomething_services_system_resource_connect() {
+  $return = _system_resource_connect();
+  _dosomething_services_add_more_session_info($return);
+  
+  return $return; 
 }
 
 /**
@@ -280,4 +306,13 @@ function _dosomething_services_create_media_access($op = 'view', $args = array()
   }
 
   return FALSE;
+}
+
+/**
+ * Append additional session information onto our return objects
+ */
+function _dosomething_services_add_more_session_info(&$obj) {
+  $obj->session_cache_expire = session_cache_expire();
+  $obj->session_cache_limiter = session_cache_limiter();
+  $obj->session_get_cookie_params = session_get_cookie_params();
 }
