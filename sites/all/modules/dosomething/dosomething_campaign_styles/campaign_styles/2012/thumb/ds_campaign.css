@@ -184,6 +184,9 @@ h2.pane-title {
 .panel-row-actions-stats .campaign-counter {
   margin: 15px 5px 0 0; }
 
+.pane-campaign-counter .pane-title {
+  width: 376px; }
+
 .campaign-counter-labels {
   text-transform: uppercase;
   font-size: 25px;
@@ -287,6 +290,9 @@ h2.pane-title {
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
     background-color: #dddddd; }
 
+.fb-social-comments-plugin iframe {
+  margin: 20px 0 0 100px; }
+
 #edit-submitted-field-webform-school-reference {
   display: none; }
 
@@ -335,6 +341,19 @@ form.webform-client-form {
   box-shadow: none;
   padding: 15px 15px 0 15px;
   margin-bottom: -15px; }
+
+.pager {
+  margin: 0;
+  padding: 15px; }
+  .pager ul.pager a {
+    color: black; }
+
+#thumbs .thumbs {
+  width: 750px;
+  margin-left: -20px; }
+
+#slideshow {
+  margin: 30px auto; }
 
 .pane-content #sponsor-and-help {
   text-align: right;
