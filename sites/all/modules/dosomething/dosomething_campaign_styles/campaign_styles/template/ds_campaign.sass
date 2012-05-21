@@ -11,7 +11,7 @@
 // colors - define any campaign specific colors here
 $baseColor: blue
 $secondaryLink: black
-$paneBG: white
+$paneBG: #eee
 $paneTitleBG: red
  
 // borders (all lines - i.e. around social / quick info)
@@ -89,7 +89,11 @@ div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
+  padding-top: 10px  
+
+.main-inner
   padding-top: 10px
+  width: 750px
 
 .three-boxes
   width: 29%
@@ -147,6 +151,8 @@ div[role="main"]
         text-decoration: none
 
 // campaign logo
+.pane-node-field-campaign-logo .pane-content
+  padding-bottom: 0
 .field-name-field-campaign-logo img
   width: 480px
   height: 230px
@@ -188,14 +194,17 @@ div[role="main"]
 // short form
 .panel-row-actions
   background: $paneBG
+  margin: 0
   +noBorder
   .form-wrapper
-    margin-bottom: 12px
+    margin-bottom: 5px !important
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
   .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
     .pane-campaign-sign-up
       margin: 0
       .pane-title
@@ -205,68 +214,56 @@ div[role="main"]
       .webform-client-form
         +noShadow
         +noBorder
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
+        margin-bottom: 0.5em
+        input
+          width: 100%
       .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
         margin-bottom: 0.5em
         input
           width: 75%
           margin-top: 5px
-      .field-name-field-webform-email
-        margin-bottom: 0.5em
-        input
-          width: 100%
 
 .webform-client-form
   #edit-actions
     position: absolute
-    right: 11px
-    bottom: 7px
+    right: 86px
+    bottom: 9px
 
 #campaign-opt-in
   font-size: 11px
   margin-left: 15px
-  margin-top: 25px
+  padding: 6px 0
   a
     font-weight: bold
     display: block
     height: 20px
     width: 20px
     position: absolute
-    bottom: 0
-    left: 330px
+    bottom: 8px
+    left: 326px
     color: $baseColor
     &:hover
       color: $secondaryLink
       text-decoration: none
 
 // counter
-.panel-row-actions
-  background: $paneBG
-  +noBorder
-  .form-wrapper
-    margin-bottom: 12px
-  .pane-title
-    background: $baseColor
+.pane-campaign-counter
   .pane-content
-    padding: 14px 18px 18px 30px
-  .panel-row-actions-sign-up
-    .pane-campaign-sign-up
-      margin: 0
-      .pane-title
-        color: white
-    .pane-content
-      padding: 0
-      .webform-client-form
-        +noShadow
-        +noBorder
-      .field-name-field-webform-mobile  
-        margin-bottom: 0.5em
-        input
-          width: 75%
-          margin-top: 5px
-      .field-name-field-webform-email
-        margin-bottom: 0.5em
-        input
-          width: 100%
+    padding: 20px 25px
+    .campaign-counter-labels
+      text-transform: uppercase
+      font-size: 25px
+      font-family: din-web,"Trebuchet MS",sans-serif 
+      font-weight: 500
+      line-height: 25px
+      float: left
+    .digits, .campaign-counter-label-bottom, .campaign-counter-label-top
+      margin-bottom: 8px
 
 // Quick Info
 .panel-row-ad-quick-info
@@ -276,21 +273,20 @@ div[role="main"]
     background: transparent
     text-transform: uppercase
     color: $secondaryLink
-    line-height: 1.3em
+    line-height: 1em
     font-weight: 500
   .pane-content
     margin-top: 1em
     padding: 0
     h3
       color: $baseColor
-      font-size: 26px
+      font-size: 24px
       text-transform: uppercase
       font-weight: 600
-      line-height: 1em
+      line-height: .8em
     p
-      margin: 0 0 0.5em 0
+      margin: 0 0 0.8em 0
     &:before
-      +insetBorder
       margin-bottom: 20px
 
 .panel-row-flexible

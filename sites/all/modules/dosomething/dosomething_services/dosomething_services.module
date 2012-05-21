@@ -101,13 +101,33 @@ function dosomething_services_services_resources() {
             array(
               'name' => 'access_token',
               'type' => 'string',
-              'description' => 'User\'s access token received from Facebook authorization',
+              'description' => t('User\'s access token received from Facebook authorization'),
               'source' => array('data' => 'access_token'),
               'optional' => FALSE,
             ),
           ),
           'access callback' => 'services_access_menu',
           'file' => array('type' => 'module', 'module' => 'dosomething_services', 'name' => 'dosomething_services'),
+        ),
+      ),
+    ),
+    'file' => array(
+      'actions' => array(
+        'create_media' => array(
+          'help' => 'Create a media file from accepted URLs',
+          'callback' => '_dosomething_services_create_media',
+          'args' => array(
+            array(
+              'name' => 'url',
+              'type' => 'string',
+              'description' => t('URL for media source from accepted location (ex: youtube, vimeo, etc)'),
+              'source' => array('data' => 'url'),
+              'optional' => FALSE,
+            ),
+          ),
+          'access callback' => '_dosomething_services_create_media_access',
+          'access arguments' => array('create_media'),
+          'access arguments append' => TRUE,
         ),
       ),
     ),
@@ -120,11 +140,16 @@ function dosomething_services_services_resources() {
  * Replace the default user creation callback with ours.
  */
 function dosomething_services_services_resources_alter(&$resources, $endpoint) {
-  // TODO: we should only do this on a specific endpoint.
+  // Only execute these changes on the dosomething default 'rest' endpoint
+  if ($endpoint->name == 'rest') {
+    // If email verification is enabled, bypass it with our custom callback.
+    if (variable_get('user_email_verification', TRUE)) {
+      $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
+    }
 
-  // If email verification is enabled, bypass it with our custom callback.
-  if (variable_get('user_email_verification', TRUE)) {
-    $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
+    // Add additional session information to the connect and login actions
+    $resources['system']['actions']['connect']['callback'] = '_dosomething_services_system_resource_connect';
+    $resources['user']['actions']['login']['callback'] = '_dosomething_services_user_resource_login';
   }
 }
 
@@ -202,6 +227,7 @@ function _dosomething_services_facebook_login($access_token) {
     $return = new stdClass();
     $return->sessid = session_id();
     $return->session_name = session_name();
+    _dosomething_services_add_more_session_info($return);
 
     $return->user = $user_return;
 
@@ -209,7 +235,7 @@ function _dosomething_services_facebook_login($access_token) {
   }
   else {
     $error_obj = new stdClass();
-    $error_obj->error = "Error in Facebook login.";
+    $error_obj->error = t('Error in Facebook login.');
     $error_obj->user_obj = $user_return;
     $error_obj->user_uid = $user_return->uid;
 
@@ -221,9 +247,81 @@ function _dosomething_services_facebook_login($access_token) {
  * Disable the email verification then delegate back to _user_resource_create().
  */
 function _dosomething_services_user_resource_create($account) {
+  $return = new stdClass();
+
   // Avoid variable_set() because it does some cache clearing.
   $GLOBALS['conf']['user_email_verification'] = FALSE;
-  $return = _user_resource_create($account);
+  $return->user = _user_resource_create($account);
   $GLOBALS['conf']['user_email_verification'] = TRUE;
+
+  // Add session information to the return value
+  $return->sessid = session_id();
+  $return->session_name = session_name();
+  _dosomething_services_add_more_session_info($return);
+
   return $return;
+}
+
+/**
+ * Modify the output from _user_resource_login() to give more session info
+ */
+function _dosomething_services_user_resource_login($username, $password) {
+  $return = _user_resource_login($username, $password);
+  _dosomething_services_add_more_session_info($return);
+
+  return $return;
+}
+
+/**
+ * Modify the output from _system_resource_connect() to give more session info
+ */
+function _dosomething_services_system_resource_connect() {
+  $return = _system_resource_connect();
+  $return->session_name = session_name();
+  _dosomething_services_add_more_session_info($return);
+  
+  return $return; 
+}
+
+/**
+ * Submit media to parse and process. If successful, returns submitted file object.
+ */
+function _dosomething_services_create_media($url) {
+  $return = new stdClass();
+
+  if (!empty($url) && valid_url($url)) {
+    try {
+      $file_obj = media_parse_to_file($url);
+      $return = $file_obj;
+    }
+    catch (Exception $e) {
+      $return->error = $e->getMessage();
+    }
+  }
+  else {
+    // Invalid URL, return error
+    $return->error = t('Invalid URL');
+  }
+
+  return $return;
+}
+
+/**
+ * Access callback for the file/create_media resource
+ */
+function _dosomething_services_create_media_access($op = 'view', $args = array()) {
+  if ($op == 'create_media') {
+    return user_access('save file information');
+  }
+
+  return FALSE;
+}
+
+/**
+ * Append additional session information onto our return objects
+ */
+function _dosomething_services_add_more_session_info(&$obj) {
+  $obj->session_cache_expire = session_cache_expire();
+  $obj->session_cache_limiter = session_cache_limiter();
+  $obj->session_get_cookie_params = session_get_cookie_params();
 }
