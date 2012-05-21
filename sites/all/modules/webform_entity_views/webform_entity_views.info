@@ -1,0 +1,8 @@
+name = Webform Submission Entity Views Integration
+description = Allow views to spit out RSS feeds of webform entities
+package = Webform
+core = 7.x
+dependencies[] = webform_entity
+
+files[] = views/webform_entity_views_plugin_row_entity_rss.inc
+files[] = views/webform_entity_views.views.inc
