@@ -148,6 +148,10 @@ div[role="main"] {
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
 
+#post-sign-up {
+  padding: 15px;
+  width: 100%; }
+
 .panel-row-actions-stats .campaign-counter {
   margin: 10px 5px 0 0; }
 
@@ -242,6 +246,15 @@ div[role="main"] {
     content: "";
     border-top: 1px solid #f48b8c;
     border-bottom: 1px solid #f48b8c; }
+
+.pane-campaign-blog-panel-pane-1 .pane-content {
+  padding: 0 15px 10px 15px; }
+
+.pane-content-blog-panel-pane-1 .pane-content {
+  padding: 3px 15px; }
+
+.node-campaign-blog-post {
+  padding: 3px 15px !important; }
 
 .panel-row-logos .pane-title {
   color: #f48b8c;
@@ -352,6 +365,19 @@ form.webform-client-form {
   padding: 10px; }
 .prizes #scholarship, .prizes p {
   text-align: center; }
+
+#submitted-field-webform-school-reference-add-more-wrapper fieldset legend {
+  display: none; }
+
+#autocomplete ul li {
+  font-size: 12px;
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0; }
+  #autocomplete ul li div {
+    border-bottom: 1px solid #cccccc;
+    margin-left: 5px; }
 
 #webform-client-form-721424,
 img {
