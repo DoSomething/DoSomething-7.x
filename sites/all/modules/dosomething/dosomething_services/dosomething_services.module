@@ -147,9 +147,26 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
       $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
     }
 
-    // Add additional session information to the connect and login actions
+    // system/connect callback override
     $resources['system']['actions']['connect']['callback'] = '_dosomething_services_system_resource_connect';
+
+    // user/login override
     $resources['user']['actions']['login']['callback'] = '_dosomething_services_user_resource_login';
+    // user/login arg for email login
+    $resources['user']['actions']['login']['args'][] = array(
+      'name' => 'email',
+      'type' => 'string',
+      'description' => 'A valid email address',
+      'source' => array('data' => 'email'),
+      'optional' => TRUE,
+    );
+    // username arg now becomes optional
+    foreach ($resources['user']['actions']['login']['args'] as &$user_arg) {
+      if ($user_arg['name'] == 'username') {
+        $user_arg['optional'] = TRUE;
+        break;
+      }
+    }
   }
 }
 
@@ -265,9 +282,28 @@ function _dosomething_services_user_resource_create($account) {
 /**
  * Modify the output from _user_resource_login() to give more session info
  */
-function _dosomething_services_user_resource_login($username, $password) {
-  $return = _user_resource_login($username, $password);
-  _dosomething_services_add_more_session_info($return);
+function _dosomething_services_user_resource_login($username, $password, $email) {
+  // If no email or username, then nothing to log in with
+  if (empty($username) && empty($email)) {
+    $return = services_error(t('No \'username\' or \'email\' sent. Need one to login.'), 401);
+  }
+  // If there's a username, then use normal login process
+  elseif (!empty($username)) {
+    $return = _user_resource_login($username, $password);
+    _dosomething_services_add_more_session_info($return);
+  }
+  // If there's an email and no username, then load account by email and 
+  // attempt to authenticate based on that account.
+  elseif (!empty($email) && valid_email_address($email)) {
+    $account = user_load_by_mail($email);
+    if (count($account) > 0 && $account->name) {
+      $return = _user_resource_login($account->name, $password);
+      _dosomething_services_add_more_session_info($return);
+    }
+    else {
+      $return = services_error(t('No account found with this email address.'), 401);
+    }
+  }
 
   return $return;
 }
