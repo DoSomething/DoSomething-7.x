@@ -30,7 +30,7 @@ $plugin = array(
   'menu' => array(
     array('title' => 'home', 'href' => 'thumbwars'),
     array('title' => 'gallery', 'href' => 'thumbwars/gallery'),
-    array('title' => 'caption contest', 'href' => 'thumbwars/contest'),
+    array('title' => 'caption contest', 'href' => 'thumbwars/contest/1'),
     array('title' => 'faq', 'href' => 'thumbwars/faq'),
   ),
 );
