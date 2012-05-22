@@ -342,11 +342,14 @@ form.webform-client-form {
   padding: 15px 15px 0 15px;
   margin-bottom: -15px; }
 
-.pager {
+.view-campaign-gallery .pager {
   margin: 0;
   padding: 15px; }
-  .pager ul.pager a {
+  .view-campaign-gallery .pager a {
     color: black; }
+
+.gallery-header .pane-content {
+  display: none; }
 
 #thumbs .thumbs {
   width: 750px;

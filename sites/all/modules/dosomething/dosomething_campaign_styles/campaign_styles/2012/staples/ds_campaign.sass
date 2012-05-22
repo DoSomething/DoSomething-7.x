@@ -1,4 +1,4 @@
-// CAMPAIGN NAME HERE PLZ!
+// Staples
 
 // Base imports. Be sure to compile using the --compass switch
 @import compass/css3
@@ -9,7 +9,7 @@
 ////////////////////////////////////////
 
 // colors - define any campaign specific colors here
-$baseColor: blue
+$baseColor: #EC008C
 $secondaryLink: black
 $paneBG: #eee
 $paneTitleBG: red
@@ -61,15 +61,13 @@ $bgFallback: #1F4BA7
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-.main-inner 
-  padding-top: 10px
-  width: 750px
-  a
-    color: $baseColor
-    &:hover
-      color: $secondaryLink
-  b
-    font-weight: $boldWeight
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+
+b
+  font-weight: $boldWeight
 
 h1.title
   display: none
@@ -91,7 +89,11 @@ div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
-  padding-top: 10px  
+  padding-top: 10px
+  
+.main-inner
+  padding-top: 10px
+  width: 750px
 
 .three-boxes
   width: 29%
@@ -121,6 +123,8 @@ div[role="main"]
   h2.pane-title
     color: $baseColor !important
 
+.panel-pane
+  +noBorder
 
 //////////////////////////////////////////
 ////////////// sections /////////////////
@@ -193,6 +197,7 @@ div[role="main"]
 .panel-row-actions
   background: $paneBG
   margin: 0
+  width: 750px
   +noBorder
   .form-wrapper
     margin-bottom: 5px !important
@@ -225,7 +230,7 @@ div[role="main"]
         input
           width: 75%
           margin-top: 5px
-
+      
 .webform-client-form
   #edit-actions
     position: absolute

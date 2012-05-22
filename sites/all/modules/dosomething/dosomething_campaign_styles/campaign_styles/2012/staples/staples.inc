@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  // 'title' => 'CAMPAIGN TITLE',
+  'title' => 'Staples For Students',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,9 +28,13 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => 'thumbwars'),
-    array('title' => 'gallery', 'href' => 'thumbwars/gallery'),
-    array('title' => 'caption contest', 'href' => 'thumbwars/contest/1'),
-    array('title' => 'faq', 'href' => 'thumbwars/faq'),
+    array('title' => 'home', 'href' => 'staples'),
+    array('title' => 'run a drive', 'href' => 'staples/run-a-drive'),
+    array('title' => 'raise your hand', 'href' => 'staples/raise-your-hand'),
+    array('title' => 'tell us about it', 'href' => 'staples/tell-us'),
+    array('title' => 'prizes', 'href' => 'staples/prizes'),
+    array('title' => 'faq', 'href' => 'staples/faq'),
+    array('title' => 'blog', 'href' => 'staples/blog'),
+    array('title' => 'gallery', 'href' => 'staples/gallery'),
   ),
 );
