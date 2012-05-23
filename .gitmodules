@@ -19,3 +19,6 @@
 [submodule "sites/all/modules/conductor_sms"]
 	path = sites/all/modules/conductor_sms
 	url = git://github.com/tizzo/conductor_sms.git
+[submodule "sites/all/modules/views_filter_view"]
+	path = sites/all/modules/views_filter_view
+	url = http://git.drupal.org/sandbox/dereine/1443726.git
