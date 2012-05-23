@@ -94,11 +94,11 @@ div[role="main"]
   padding-top: 10px  
 
 .three-boxes
-  width: 29%
-  float: left
-  margin-right: 6.5%
+  width: 32% !important
+  float: left !important
+  margin-right: 2% !important
   &:last-child
-    margin-right: 0
+    margin-right: 0 !important
   .pane-content
     +setBorderBox
 
@@ -112,6 +112,21 @@ div[role="main"]
 .line-bottom
   &:after
     +insetBorder
+  
+// General pane definitions
+.panel-row-flexible, .panel-row-actions
+  .panel-pane
+    margin-bottom: 15px
+    +block
+    .pane-title
+      background-image: $paneTitleBGIMG
+      background-repeat: repeat-x
+      background-position: left top
+    .pane-content
+      background: $paneBG
+
+.ds-panel .pane-content
+  padding-bottom: 0px
 
 #breadcrumb
   display: none
@@ -193,6 +208,7 @@ div[role="main"]
 .panel-row-actions
   background: $paneBG
   margin: 0
+  width: 750px
   +noBorder
   .form-wrapper
     margin-bottom: 5px !important
@@ -286,18 +302,6 @@ div[role="main"]
       margin: 0 0 0.8em 0
     &:before
       margin-bottom: 20px
-
-.panel-row-flexible
-  .panel-pane
-    +block
-    .pane-title
-      background: $baseColor
-  .blog
-    background: transparent
-    &:before, &:after
-      +insetBorder
-    &:before,&:after
-      +insetBorder
 
 // sponsor logos
 .panel-row-logos
