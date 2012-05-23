@@ -1,7 +1,11 @@
-a {
-  color: #0a5083; }
-  a:hover {
-    color: #ffdd00; }
+.main-inner a {
+  color: #0a5083;
+  text-decoration: none; }
+  .main-inner a:hover {
+    color: #0a5083;
+    text-decoration: underline; }
+  .main-inner a:visited {
+    color: #0a5083; }
 
 h1.title {
   display: none; }
@@ -111,21 +115,20 @@ h2.pane-title {
   background: transparent;
   text-transform: uppercase;
   color: #ffdd00;
+  line-height: 1em;
   font-weight: 500; }
 .panel-row-ad-quick-info .field-name-body {
-  margin-top: -15px; }
+  margin-top: 1em;
+  padding: 0; }
 .panel-row-ad-quick-info .pane-content h3 {
   color: #ffdd00;
-  font-size: 26px;
+  font-size: 24px;
   text-transform: uppercase;
   font-weight: 600;
-  line-height: 1em;
-  letter-spacing: 0.1em;
-  margin-bottom: -5px; }
+  line-height: 0.8em;
+  padding: 7px 0 5px; }
 .panel-row-ad-quick-info .pane-content p {
-  margin: 0;
-  padding-bottom: 0.2em;
-  font-size: 11px;
+  margin: 0 0 0.8 0;
   color: white; }
 .panel-row-ad-quick-info .pane-content:before {
   overflow: hidden;
@@ -135,6 +138,10 @@ h2.pane-title {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   margin-bottom: 20px; }
+.panel-row-ad-quick-info .pane-content a {
+  color: #ffdd00; }
+.panel-row-ad-quick-info .pane-content:active, .panel-row-ad-quick-info .pane-content:visited {
+  color: #ffdd00; }
 
 .psa-image .pane-content {
   height: 425px; }
@@ -241,6 +248,8 @@ h2.pane-title {
 
 .node-campaign-blog-post {
   padding: 15px !important; }
+  .node-campaign-blog-post span {
+    display: none; }
   .node-campaign-blog-post .field-name-field-picture img {
     margin: 0 auto 15px;
     display: block; }
@@ -293,6 +302,14 @@ h2.pane-title {
 .fb-social-comments-plugin iframe {
   margin: 20px 0 0 100px; }
 
+#node-722143 .field-label-above {
+  display: none; }
+#node-722143 #webform-component-instructions {
+  margin: -20px 0 10px 0; }
+#node-722143 #edit-actions {
+  height: 60px;
+  margin: 10px 0 0 0; }
+
 #edit-submitted-field-webform-school-reference {
   display: none; }
 
@@ -342,18 +359,18 @@ form.webform-client-form {
   padding: 15px 15px 0 15px;
   margin-bottom: -15px; }
 
+.view-campaign-gallery #thumbs {
+  margin: 0 0 0 -8px; }
+  .view-campaign-gallery #thumbs .thumbs {
+    width: 750px; }
 .view-campaign-gallery .pager {
   margin: 0;
-  padding: 15px; }
+  padding: 0 0 20px; }
   .view-campaign-gallery .pager a {
     color: black; }
 
 .gallery-header .pane-content {
   display: none; }
-
-#thumbs .thumbs {
-  width: 750px;
-  margin-left: -20px; }
 
 #slideshow {
   margin: 30px auto; }
@@ -381,6 +398,8 @@ form.webform-client-form {
   bottom: -15px;
   padding: 15px;
   margin-bottom: 15px; }
+  #contest_info a {
+    text-align: center; }
 
 #breadcrumb {
   display: none; }

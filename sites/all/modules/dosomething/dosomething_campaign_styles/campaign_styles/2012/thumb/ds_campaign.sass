@@ -36,10 +36,15 @@ $imageBackground: url('assets/bg.png')
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-a
-  color: $thumbBlue
-  &:hover
-    color: $thumbYellow
+.main-inner
+  a
+    color: $thumbBlue
+    text-decoration: none
+    &:hover
+      color: $thumbBlue
+      text-decoration: underline
+    &:visited
+      color: $thumbBlue
 
 h1.title
   display: none 
@@ -144,7 +149,7 @@ h2.pane-title
     color: #fff
     margin-bottom: 0
 
-// ad row (quick info and psa)
+// quick info
 .panel-row-ad-quick-info
   .pane-title
     font-size: 35px
@@ -152,26 +157,29 @@ h2.pane-title
     background: transparent
     text-transform: uppercase
     color: $thumbYellow
+    line-height: 1em
     font-weight: 500
   .field-name-body
-    margin-top: -15px
+    margin-top: 1em
+    padding: 0
   .pane-content
     h3
       color: $thumbYellow
-      font-size: 26px
+      font-size: 24px
       text-transform: uppercase
       font-weight: 600
-      line-height: 1em
-      letter-spacing: 0.1em
-      margin-bottom: -5px
+      line-height: .8em
+      padding: 7px 0 5px
     p
-      margin: 0
-      padding-bottom: 0.2em
-      font-size: 11px
+      margin: 0 0 .8 0
       color: #fff
     &:before
       +insetBorder
       margin-bottom: 20px
+    a
+      color: $thumbYellow
+    &:active, &:visited
+      color: $thumbYellow
 
 .psa-image
   .pane-content
@@ -296,6 +304,8 @@ h2.pane-title
 // blog
 .node-campaign-blog-post
   padding: 15px !important
+  span
+    display: none
   .field-name-field-picture
     img
       margin: 0 auto 15px
@@ -418,7 +428,7 @@ form.webform-client-form
 // gallery
 .view-campaign-gallery
   #thumbs 
-     margin: 0 0 0 -8px
+    margin: 0 0 0 -8px
     .thumbs
       width: 750px
   .pager
@@ -460,6 +470,8 @@ form.webform-client-form
   bottom: -15px
   padding: 15px
   margin-bottom: 15px
+  a
+    text-align: center
 
 // resetting the nonsense
 #breadcrumb
