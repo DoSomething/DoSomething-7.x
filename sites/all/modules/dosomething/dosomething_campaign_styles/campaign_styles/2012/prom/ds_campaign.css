@@ -62,17 +62,6 @@ div[role="main"] {
     background: #f0ebde;
     overflow: hidden;
     *zoom: 1; }
-  .pane-content li {
-    list-style-image: url("assets/bullet.png");
-    list-style-position: outside;
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 20px;
-    float: left;
-    line-height: 26px;
-    width: 310px;
-    margin: 0 20px 0 10px;
-    padding-left: 10px; }
   .pane-content br {
     clear: left; }
 
@@ -191,21 +180,20 @@ div[role="main"] {
   background: transparent;
   text-transform: uppercase;
   color: black;
-  line-height: 1.3em;
+  line-height: 1em;
   font-weight: 500; }
-  .panel-row-ad-quick-info .pane-title:after {
-    border: none; }
 .panel-row-ad-quick-info .pane-content {
+  margin-top: 1em;
   padding: 0;
   background: transparent; }
   .panel-row-ad-quick-info .pane-content h3 {
     color: #f48b8c;
-    font-size: 26px;
+    font-size: 24px;
     text-transform: uppercase;
     font-weight: 600;
-    line-height: 1em; }
+    line-height: 0.8em; }
   .panel-row-ad-quick-info .pane-content p {
-    margin: 0 0 1em 0; }
+    margin: 0 0 0.8em 0; }
   .panel-row-ad-quick-info .pane-content:before {
     overflow: hidden;
     *zoom: 1;
@@ -247,14 +235,56 @@ div[role="main"] {
     border-top: 1px solid #f48b8c;
     border-bottom: 1px solid #f48b8c; }
 
-.pane-campaign-blog-panel-pane-1 .pane-content {
-  padding: 0 15px 10px 15px; }
-
-.pane-content-blog-panel-pane-1 .pane-content {
-  padding: 3px 15px; }
-
 .node-campaign-blog-post {
-  padding: 3px 15px !important; }
+  padding: 15px !important; }
+  .node-campaign-blog-post .field-name-field-picture img {
+    margin: 0 20px 20px 0;
+    float: left; }
+  .node-campaign-blog-post .field-name-field-blog-video {
+    clear: both;
+    position: relative;
+    bottom: -25px;
+    right: -125px;
+    margin: 35px 0; }
+    .node-campaign-blog-post .field-name-field-blog-video iframe {
+      margin: 0 auto;
+      display: block; }
+    .node-campaign-blog-post .field-name-field-blog-video p {
+      font-size: 15px;
+      line-height: 22px; }
+
+.pane-campaign-blog-panel-pane-1 {
+  background: transparent !important;
+  border: none !important; }
+  .pane-campaign-blog-panel-pane-1 .pane-content {
+    padding: 15px; }
+  .pane-campaign-blog-panel-pane-1 a {
+    color: #f48b8c;
+    text-decoration: underline; }
+    .pane-campaign-blog-panel-pane-1 a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .views-field-title a {
+    text-decoration: none; }
+    .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .more-link {
+    text-transform: uppercase; }
+
+.pane-campaign-blog-panel-pane-2 {
+  border: none !important;
+  width: 100%; }
+  .pane-campaign-blog-panel-pane-2 .pane-content {
+    padding: 10px 0 0 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row {
+    padding: 5px 15px 15px;
+      padding-margin: 1em 0 1em 0; }
+    .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
+      border: none;
+      margin: 0; }
+
+#page .node-campaign-blog-post {
+  width: 550px;
+  margin: 0 auto; }
 
 .panel-row-logos .pane-title {
   color: #f48b8c;
@@ -279,7 +309,7 @@ div[role="main"] {
 
 .drive .pane-content {
   background: #f0ebde;
-  padding: 10px 20px 10px 0; }
+  padding: 10px 20px 10px 0 !important; }
 .drive p {
   padding-left: 25px; }
 .drive li {
@@ -290,7 +320,9 @@ div[role="main"] {
   font-size: 12px;
   font-family: "Trebuchet MS", sans-serif;
   line-height: 22px;
-  float: none; }
+  float: none;
+  list-style-image: url("assets/bullet.png");
+  padding-left: 10px; }
   .drive li h3 {
     font-family: din-web, "Trebuchet MS", sans-serif;
     color: #f48b8c;
