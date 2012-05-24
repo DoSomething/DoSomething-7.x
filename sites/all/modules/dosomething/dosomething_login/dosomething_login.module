@@ -142,7 +142,8 @@ function dosomething_login_block_view($delta = '') {
           }
         }
         $block['subject'] = t('Register for an account');
-        $block['content'] = $form;
+        $block['content'][] = $form;
+        $block['content'][] = drupal_get_form('dosomething_login_login_popup_form');
       }
       break;
   }
