@@ -299,8 +299,10 @@ h2.pane-title {
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
     background-color: #dddddd; }
 
-.fb-social-comments-plugin iframe {
-  margin: 20px 0 0 100px; }
+.fb-social-comments-plugin {
+  padding-bottom: 40px; }
+  .fb-social-comments-plugin iframe {
+    margin: 20px 0 0 100px; }
 
 #node-722143 .field-label-above {
   display: none; }
