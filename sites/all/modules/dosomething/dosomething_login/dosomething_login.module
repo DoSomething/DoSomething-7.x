@@ -131,11 +131,16 @@ function dosomething_login_block_view($delta = '') {
       break;
     case 'register_block':
       if ($is_anonymous) {
-        drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
-        drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-block.js');
-        drupal_add_css(drupal_get_path('module', 'dosomething_login') . '/css/dosomething-login-registration-block.css');
         $form = drupal_get_form('dosomething_login_register_popup_form');
-        unset($form['final_submit']);
+        if (arg(0) == 'node' && is_numeric(arg(1))) {
+          $node = node_load(arg(1));
+          if ($node->type == 'campaign_sign_up') {
+            drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
+            drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-block.js');
+            drupal_add_css(drupal_get_path('module', 'dosomething_login') . '/css/dosomething-login-registration-block.css');
+            unset($form['final_submit']);
+          }
+        }
         $block['subject'] = t('Register for an account');
         $block['content'] = $form;
       }
