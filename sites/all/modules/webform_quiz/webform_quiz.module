@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Implements hook_webform_component_info().
+ */
+function webform_quiz_webform_component_info() {
+  $components = array();
+
+  $components['quiz_question'] = array(
+    'label' => t('Quiz question'),
+    'description' => t('A question to be scored for a quiz.'),
+    'features' => array(
+      'description' => FALSE,
+      'title_display' => FALSE,
+      'title_inline' => FALSE,
+      'default_value' => FALSE,
+    ),
+    'file' => 'webform_quiz.component.inc',
+  );
+
+  return $components;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function webform_quiz_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_configure_form') {
+
+    $form['role_control']['#weight'] = -2;
+
+    $form['quiz_enable'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable quiz feature'),
+      '#weight' => -3,
+    );
+
+    $form['quiz'] = array(
+      '#type' => 'markup',
+      '#title' => 'Quiz options',
+      '#markup' => 'This is a test.',
+      '#weight' => -3,
+      '#states' => array(
+        'visible' => array(
+          ':input[name="quiz_enable"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+  }
+}

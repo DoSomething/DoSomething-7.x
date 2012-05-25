@@ -1,0 +1,7 @@
+name = Webform Quiz
+description = Provides a way to create basic "personality" type quizzes from webforms.
+package = Webform
+core = 7.x
+dependencies[] = webform
+
+files[] = webform_quiz.module
