@@ -142,7 +142,8 @@ function dosomething_login_block_view($delta = '') {
           }
         }
         $block['subject'] = t('Register for an account');
-        $block['content'] = $form;
+        $block['content'][] = $form;
+        $block['content'][] = drupal_get_form('dosomething_login_login_popup_form');
       }
       break;
   }
@@ -555,7 +556,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       'placeholder' => t('Cell'),
     ),
     '#size' => 20,
-    '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
 
   $form['pass'] = array(
