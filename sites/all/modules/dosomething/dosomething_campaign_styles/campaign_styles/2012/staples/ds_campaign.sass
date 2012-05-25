@@ -67,7 +67,8 @@ $bgFallback: #1F4BA7
   padding-top: 10px
   width: 750px
   a
-    color: $baseColor
+    text-decoration: underline
+    //color: $baseColor
   b
     font-weight: $boldWeight
 
@@ -80,7 +81,10 @@ h2.pane-title
 img
   +noShadow
   +noBorder
-    
+
+ul
+  margin: 0
+
 body
   background-color: $bgFallback
   background-image: $imageBackground
@@ -102,6 +106,17 @@ div[role="main"]
     margin-right: 0 !important
   .pane-content
     +setBorderBox
+    font-weight: 600
+    text-align: center
+    height: 175px
+    padding: 1.5em
+    
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
+    
+.pane-staples-2012-boxes .pane-content
+  background: white
     
 // General pane definitions
 .panel-row-flexible, .panel-row-actions
@@ -118,9 +133,7 @@ div[role="main"]
 .ds-panel .pane-content
   padding-bottom: 0px
 
-// IE8 does not support :last-child
-.three-boxes-last-child
-  margin-right: 0 !important
+
 
 .line-top
   &:before
@@ -188,6 +201,7 @@ div[role="main"]
 .pane-campaign-social
   .pane-content
     .fb-facepile
+      margin-bottom: 5px
       &:before
         +insetBorder
     // positioning line between social width and campaign teaser
@@ -205,7 +219,7 @@ div[role="main"]
 // short form
 .panel-row-actions
   background: $contactPaneBG
-  margin: 0
+  margin: 0 0 15px 0
   width: 750px
   +noBorder
   .form-wrapper
@@ -258,9 +272,7 @@ div[role="main"]
     position: absolute
     bottom: 8px
     left: 326px
-    color: $baseColor
     &:hover
-      color: $secondaryLink
       text-decoration: none
 
 // counter
@@ -303,6 +315,10 @@ div[role="main"]
     &:before
       margin-bottom: 20px
 
+// PSA
+.panel-row-ad-psa
+  margin-top: 35px
+
 // sponsor logos
 .panel-row-logos
   margin-top: 2em
@@ -319,19 +335,18 @@ div[role="main"]
 .faq-section
   +noBorder
   .pane-content
-    background: $paneBG
-    padding-bottom: 0
     ul
       margin: 0px 10px
       padding: 1.5em
     li
+      list-style-image: url(assets/bullet.png)
+      list-style-position: outside
       h3
-        font-size: 1.6em
+        font-size: 1.5em
         text-transform: none
+        color: #4E175B
       p 
         margin-top: 0
-  .pane-title
-    color: $paneTitleBG
 
 // Blog
 .node-campaign-blog-post
@@ -407,9 +422,6 @@ div[role="main"]
     margin-bottom: 6px
   label
     font-weight: 600
-  // overriding padding on go-button to center the SUBMIT text
-  .go-button
-    padding-top: 3px
   .pane-content
     height: 175px
     padding: 0.5em
@@ -431,3 +443,15 @@ form.webform-client-form
 .ds-panel
   .pane-content
     padding-bottom: 0
+    
+.hidden
+  display: none
+  
+.pink-pane
+  .panel-pane
+    .pane-title
+      background-image: none
+      background-color: #E40079
+    .pane-content
+      border: 2px solid #E40079
+      background-color: white
