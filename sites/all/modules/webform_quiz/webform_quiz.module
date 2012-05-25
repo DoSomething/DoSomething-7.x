@@ -27,6 +27,10 @@ function webform_quiz_webform_component_info() {
 function webform_quiz_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'webform_configure_form') {
 
+    $field_limit = 8;
+    $filler = range(0, $field_limit);
+    unset($filler[0]);
+
     $form['role_control']['#weight'] = -2;
 
     $form['quiz_enable'] = array(
@@ -36,9 +40,10 @@ function webform_quiz_form_alter(&$form, &$form_state, $form_id) {
     );
 
     $form['quiz'] = array(
-      '#type' => 'markup',
-      '#title' => 'Quiz options',
-      '#markup' => 'This is a test.',
+      '#type' => 'fieldset',
+      '#title' => t('Quiz Options'),
+      '#description' => t('Enter the URL, internal or external, to redirect to when a given numbered response is chosen most frequently. In other words, if response 1 is chosen the most number of times, we will redirect them to the URL below for response 1. Additional fields will show up, up to 8, after entering a value.'),
+      '#collapsible' => TRUE,
       '#weight' => -3,
       '#states' => array(
         'visible' => array(
@@ -46,5 +51,21 @@ function webform_quiz_form_alter(&$form, &$form_state, $form_id) {
         ),
       ),
     );
+
+    foreach ($filler as $int) {
+      $form['quiz']['response_redirect_' . $int] = array(
+        '#type' => 'textfield',
+        '#title' => t('Redirect URL: Response') . ' ' . $int,
+        '#states' => array(
+          'visible' => array(
+            ':input[name="response_redirect_'.($int-1).'"]' => array('empty' => FALSE),
+          ),
+        ),
+      );
+    }
+    unset($form['quiz']['response_redirect_1']['#states']);
+
+    $form['#valudate'][] = 'webform_quiz_webform_configure_validate';
+    $form['#submit'][] = 'webform_quiz_webform_configure_submit';
   }
 }
