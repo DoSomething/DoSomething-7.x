@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function webform_quiz_schema() {
+  $schema = array();
+
+  $schema['webform_quiz'] = array(
+    'description' => 'Table for storing webform_quiz meta information about quiz-enabled webforms.',
+    'primary key' => array('nid', 'rid'),
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The node ID for the webform.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'rid' => array(
+        'description' => 'The response ID for the answer mapping to a URL.',
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'redirect_url' => array(
+        'description' => 'The URL to redirect to if this response wins.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+    ),
+  );
+
+  return $schema;
+}

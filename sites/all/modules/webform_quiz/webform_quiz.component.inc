@@ -15,12 +15,21 @@ function _webform_defaults_quiz_question() {
       'private' => FALSE,
       'quiz_question' => '',
       'quiz_multiplier' => 1,
+      'multiple' => 0,
     ),  
   );  
 }
 
 function _webform_edit_quiz_question($component) {
   $node = node_load($component['nid']);
+  $nid = $node->nid;
+
+  if (!isset($node->webform['quiz_redirects'])) {
+    drupal_set_message(t('This webform does not have any configured URL redirects for quiz fields. Please !configure before attempting to add a quiz question.', array('!configure' => l(t('configure the webform'), "node/$nid/webform/configure"))), 'error');
+    drupal_goto($_SERVER['HTTP_REFERER']);
+    return;
+  }
+
   $form = array();
 
   $form['quiz']['question'] = array(
@@ -30,6 +39,14 @@ function _webform_edit_quiz_question($component) {
     '#default_value' => $component['extra']['quiz_question'],
     '#parents' => array('extra', 'quiz_question'),
   );
+
+  $form['quiz']['multiple'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow multiple select'),
+    '#default_value' => $component['extra']['multiple'],
+    '#parents' => array('extra', 'multiple'),
+  );
+  
   $form['quiz']['multiplier'] = array(
     '#type' => 'textfield',
     '#title' => t('Multiplier'),
@@ -39,16 +56,22 @@ function _webform_edit_quiz_question($component) {
     '#maxlength' => 3,
     '#parents' => array('extra', 'quiz_multiplier'),
   );
+
+  foreach ($node->webform['quiz_redirects'] as $i => $redirect) {
+    $form['quiz']['responses'][$i] = array(
+      '#type' => 'textfield',
+      '#title' => t('Response to redirect to: !url', array('!url' => l($redirect, $redirect))),
+      '#default_value' => $component['extra']['responses'][$i],
+      '#parents' => array('extra', 'responses', $i),
+    );
+  }
   return $form;
 }
 
 function _webform_render_quiz_question($component, $value = NULL, $filter = TRUE) {
   $form_item = array(
-    '#type' => 'select',
-    '#options' => array(
-      'yes' => 'Yes',
-      'no' => 'No',
-    ),
+    '#type' => ($component['extra']['multiple']) ? 'checkboxes' : 'radios',
+    '#options' => $component['extra']['responses'],
     '#title' => $fliter ? _webform_filter_xss($component['extra']['quiz_question']) : $component['extra']['quiz_question'],
     '#required' => $component['mandatory'],
     '#weight' => $component['weight'],
