@@ -68,9 +68,15 @@ $bgFallback: #1F4BA7
   width: 750px
   a
     text-decoration: underline
-    //color: $baseColor
+    color: black
+  a.go-button
+    text-decoration: none
   b
     font-weight: $boldWeight
+
+h1
+  font-size: 32px
+  margin-bottom: 5px
 
 h1.title
   display: none
@@ -98,6 +104,10 @@ div[role="main"]
   margin-top: 8px
   padding-top: 10px
   
+// Override the go button
+form .go-button
+  padding-top: 2px 
+  
 .three-boxes
   width: 32% !important
   float: left !important
@@ -107,6 +117,7 @@ div[role="main"]
   .pane-content
     +setBorderBox
     font-weight: 600
+    font-size: 13px
     text-align: center
     height: 175px
     padding: 1.5em
@@ -120,6 +131,7 @@ div[role="main"]
     
 // General pane definitions
 .panel-row-flexible, .panel-row-actions
+  margin: 0
   .panel-pane
     margin-bottom: 15px
     +block
@@ -129,6 +141,10 @@ div[role="main"]
       background-position: left top
     .pane-content
       background: $paneBG
+      
+// Override for the Mini-panel
+.panel-panel .pane-staples-2012-boxes .pane-content
+  background: white
       
 .ds-panel .pane-content
   padding-bottom: 0px
@@ -261,15 +277,16 @@ div[role="main"]
 #campaign-opt-in
   font-size: 11px
   margin-left: 15px
-  padding: 6px 0
+  padding: 15px 0 12px 0
   a
     font-weight: bold
     display: block
+    text-decoration: none
     height: 20px
     width: 20px
     position: absolute
-    bottom: 8px
-    left: 326px
+    bottom: 13px
+    left: 324px
     &:hover
       text-decoration: none
 
@@ -334,17 +351,32 @@ div[role="main"]
   +noBorder
   .pane-content
     ul
-      margin: 0px 10px
+      margin: 0px 22px
       padding: 1.5em
+    ul.bella-bg
+      background-image: url('http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.png')
+      background-position: 510px 0px
+      background-repeat: no-repeat
     li
       list-style-image: url(assets/bullet.png)
       list-style-position: outside
       h3
-        font-size: 1.5em
+        font-size: 1.3em
         text-transform: none
+        font-weight: bold
         color: #4E175B
       p 
         margin-top: 0
+        font-size: 1.15em
+        
+.faq-section .pane-content ul.bella-bg li p
+  width: 500px
+        
+.faq-section
+  .pane-content
+    li
+      p
+        width: 500px
 
 // Blog
 .node-campaign-blog-post
@@ -412,7 +444,7 @@ div[role="main"]
 .mcommons-webform
   float: left
   width: 66%
-  margin-right: 5%
+  margin-right: 2%
   border: none !important
   input.field
     width: 85%
@@ -446,10 +478,15 @@ form.webform-client-form
   display: none
   
 .pink-pane
-  .panel-pane
-    .pane-title
-      background-image: none
-      background-color: #E40079
-    .pane-content
-      border: 2px solid #E40079
-      background-color: white
+  .pane-title
+    background-image: none
+    background-color: #E40079
+  .pane-content
+    border: 2px solid #E40079
+    background-color: white
+      
+.email-us
+  background: white
+  float: right
+  margin-right: 5px
+  font-size: 13px

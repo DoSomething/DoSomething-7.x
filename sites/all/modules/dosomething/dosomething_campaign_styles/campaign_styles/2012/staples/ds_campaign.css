@@ -2,9 +2,16 @@
   padding-top: 10px;
   width: 750px; }
   .main-inner a {
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: black; }
+  .main-inner a.go-button {
+    text-decoration: none; }
   .main-inner b {
     font-weight: 600; }
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 5px; }
 
 h1.title {
   display: none; }
@@ -34,6 +41,9 @@ div[role="main"] {
   margin-top: 8px;
   padding-top: 10px; }
 
+form .go-button {
+  padding-top: 2px; }
+
 .three-boxes {
   width: 32% !important;
   float: left !important;
@@ -46,6 +56,7 @@ div[role="main"] {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     font-weight: 600;
+    font-size: 13px;
     text-align: center;
     height: 175px;
     padding: 1.5em; }
@@ -56,15 +67,20 @@ div[role="main"] {
 .pane-staples-2012-boxes .pane-content {
   background: white; }
 
-.panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
-  margin-bottom: 15px;
+.panel-row-flexible, .panel-row-actions {
+  margin: 0; }
+  .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
+    margin-bottom: 15px;
+    background: white; }
+    .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
+      background-image: url("assets/pane-title-bg.png");
+      background-repeat: repeat-x;
+      background-position: left top; }
+    .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
+      background: #59a64d; }
+
+.panel-panel .pane-staples-2012-boxes .pane-content {
   background: white; }
-  .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
-    background-image: url("assets/pane-title-bg.png");
-    background-repeat: repeat-x;
-    background-position: left top; }
-  .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
-    background: #59a64d; }
 
 .ds-panel .pane-content {
   padding-bottom: 0px; }
@@ -205,15 +221,16 @@ div[role="main"] {
 #campaign-opt-in {
   font-size: 11px;
   margin-left: 15px;
-  padding: 6px 0; }
+  padding: 15px 0 12px 0; }
   #campaign-opt-in a {
     font-weight: bold;
     display: block;
+    text-decoration: none;
     height: 20px;
     width: 20px;
     position: absolute;
-    bottom: 8px;
-    left: 326px; }
+    bottom: 13px;
+    left: 324px; }
     #campaign-opt-in a:hover {
       text-decoration: none; }
 
@@ -270,17 +287,29 @@ div[role="main"] {
 .faq-section {
   border: none !important; }
   .faq-section .pane-content ul {
-    margin: 0px 10px;
+    margin: 0px 22px;
     padding: 1.5em; }
+  .faq-section .pane-content ul.bella-bg {
+    background-image: url("http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.png");
+    background-position: 510px 0px;
+    background-repeat: no-repeat; }
   .faq-section .pane-content li {
     list-style-image: url(assets/bullet.png);
     list-style-position: outside; }
     .faq-section .pane-content li h3 {
-      font-size: 1.5em;
+      font-size: 1.3em;
       text-transform: none;
+      font-weight: bold;
       color: #4e175b; }
     .faq-section .pane-content li p {
-      margin-top: 0; }
+      margin-top: 0;
+      font-size: 1.15em; }
+
+.faq-section .pane-content ul.bella-bg li p {
+  width: 500px; }
+
+.faq-section .pane-content li p {
+  width: 500px; }
 
 .node-campaign-blog-post {
   padding: 15px !important; }
@@ -340,7 +369,7 @@ div[role="main"] {
 .mcommons-webform {
   float: left;
   width: 66%;
-  margin-right: 5%;
+  margin-right: 2%;
   border: none !important; }
   .mcommons-webform input.field {
     width: 85%;
@@ -372,9 +401,15 @@ form.webform-client-form {
 .hidden {
   display: none; }
 
-.pink-pane .panel-pane .pane-title {
+.pink-pane .pane-title {
   background-image: none;
   background-color: #e40079; }
-.pink-pane .panel-pane .pane-content {
+.pink-pane .pane-content {
   border: 2px solid #e40079;
   background-color: white; }
+
+.email-us {
+  background: white;
+  float: right;
+  margin-right: 5px;
+  font-size: 13px; }
