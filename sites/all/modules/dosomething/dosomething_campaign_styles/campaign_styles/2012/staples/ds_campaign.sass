@@ -11,8 +11,11 @@
 // colors - define any campaign specific colors here
 $baseColor: #EC008C
 $secondaryLink: black
-$paneBG: #eee
-$paneTitleBG: red
+$paneBG: #59A64D
+$paneTitleBG: #59A64D
+$pinkPaneTitleBG: #EC008C
+$contactPaneBG: #59A64D
+$paneTitleBGIMG: url('assets/pane-title-bg.png')
  
 // borders (all lines - i.e. around social / quick info)
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -31,7 +34,6 @@ $bgFallback: #1F4BA7
 @mixin block
   // make sure you specify the RBG fallback if you have a RGBA set!
   background: rgb(255,255,255)
-  background: rgba(255,255,255,.8)
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -61,13 +63,14 @@ $bgFallback: #1F4BA7
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-a
-  color: $baseColor
-  &:hover
-    color: $secondaryLink
-
-b
-  font-weight: $boldWeight
+.main-inner 
+  padding-top: 10px
+  width: 750px
+  a
+    text-decoration: underline
+    //color: $baseColor
+  b
+    font-weight: $boldWeight
 
 h1.title
   display: none
@@ -79,11 +82,15 @@ img
   +noShadow
   +noBorder
 
+ul
+  margin: 0
+
 body
   background-color: $bgFallback
   background-image: $imageBackground
-  background-repeat: repeat-y
-  background-position: center top
+//  background-repeat: repeat-y
+//  background-position: center top
+  background-size: auto 100%
 
 div[role="main"]
   +block
@@ -91,22 +98,42 @@ div[role="main"]
   margin-top: 8px
   padding-top: 10px
   
-.main-inner
-  padding-top: 10px
-  width: 750px
-
 .three-boxes
-  width: 29%
-  float: left
-  margin-right: 6.5%
+  width: 32% !important
+  float: left !important
+  margin-right: 2% !important
   &:last-child
-    margin-right: 0
+    margin-right: 0 !important
   .pane-content
     +setBorderBox
-
+    font-weight: 600
+    text-align: center
+    height: 175px
+    padding: 1.5em
+    
 // IE8 does not support :last-child
 .three-boxes-last-child
   margin-right: 0 !important
+    
+.pane-staples-2012-boxes .pane-content
+  background: white
+    
+// General pane definitions
+.panel-row-flexible, .panel-row-actions
+  .panel-pane
+    margin-bottom: 15px
+    +block
+    .pane-title
+      background-image: $paneTitleBGIMG
+      background-repeat: repeat-x
+      background-position: left top
+    .pane-content
+      background: $paneBG
+      
+.ds-panel .pane-content
+  padding-bottom: 0px
+
+
 
 .line-top
   &:before
@@ -117,11 +144,6 @@ div[role="main"]
 
 #breadcrumb
   display: none
-
-// reset quick info color
-.panel-row-ad-quick-info
-  h2.pane-title
-    color: $baseColor !important
 
 .panel-pane
   +noBorder
@@ -179,6 +201,7 @@ div[role="main"]
 .pane-campaign-social
   .pane-content
     .fb-facepile
+      margin-bottom: 5px
       &:before
         +insetBorder
     // positioning line between social width and campaign teaser
@@ -195,14 +218,14 @@ div[role="main"]
 
 // short form
 .panel-row-actions
-  background: $paneBG
-  margin: 0
+  background: $contactPaneBG
+  margin: 0 0 15px 0
   width: 750px
   +noBorder
   .form-wrapper
     margin-bottom: 5px !important
   .pane-title
-    background: $baseColor
+    background: $paneTitleBG
   .pane-content
     padding: 18px
   .panel-row-actions-sign-up
@@ -249,13 +272,13 @@ div[role="main"]
     position: absolute
     bottom: 8px
     left: 326px
-    color: $baseColor
     &:hover
-      color: $secondaryLink
       text-decoration: none
 
 // counter
 .pane-campaign-counter
+  .pane-title
+    background-position: 15px 0px !important
   .pane-content
     padding: 20px 25px
     .campaign-counter-labels
@@ -292,17 +315,9 @@ div[role="main"]
     &:before
       margin-bottom: 20px
 
-.panel-row-flexible
-  .panel-pane
-    +block
-    .pane-title
-      background: $baseColor
-  .blog
-    background: transparent
-    &:before, &:after
-      +insetBorder
-    &:before,&:after
-      +insetBorder
+// PSA
+.panel-row-ad-psa
+  margin-top: 35px
 
 // sponsor logos
 .panel-row-logos
@@ -320,19 +335,18 @@ div[role="main"]
 .faq-section
   +noBorder
   .pane-content
-    background: $paneBG
-    padding-bottom: 0
     ul
       margin: 0px 10px
       padding: 1.5em
     li
+      list-style-image: url(assets/bullet.png)
+      list-style-position: outside
       h3
-        font-size: 1.6em
+        font-size: 1.5em
         text-transform: none
+        color: #4E175B
       p 
         margin-top: 0
-  .pane-title
-    color: $baseColor
 
 // Blog
 .node-campaign-blog-post
@@ -391,3 +405,53 @@ div[role="main"]
           margin: 0
     .views-row-even
       background-color: $paneBG
+      
+.banner .pane-content
+  img
+    margin: 0
+    
+// refer
+.mcommons-webform
+  float: left
+  width: 66%
+  margin-right: 5%
+  border: none !important
+  input.field
+    width: 85%
+    height: 23px
+    margin-bottom: 6px
+  label
+    font-weight: 600
+  .pane-content
+    height: 175px
+    padding: 0.5em
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 2%
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  padding: 15px 15px 0 15px
+  margin-bottom: -15px
+
+.form-wrapper
+  margin-bottom: 5px
+
+.ds-panel
+  .pane-content
+    padding-bottom: 0
+    
+.hidden
+  display: none
+  
+.pink-pane
+  .panel-pane
+    .pane-title
+      background-image: none
+      background-color: #E40079
+    .pane-content
+      border: 2px solid #E40079
+      background-color: white
