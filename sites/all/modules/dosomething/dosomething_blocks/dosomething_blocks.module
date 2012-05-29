@@ -69,7 +69,7 @@ function dosomething_blocks_block_view($delta = '') {
 
     case 'dosomething_social_node_buttons':
       $block['subject'] = t('Social Buttons');
-      $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), $options = array('fb_social_preset' => 'FB Like Box'));
+      $block['content'] = dosomething_blocks_social_node_plugins($url = NULL, array('sharethis' => t('Share This')), $options = array('fb_social_preset' => 'FB Like Box'));
       break;
     case 'dosomething_facepile_general':
       $block['content'] = dosomething_blocks_facepile();
@@ -472,7 +472,6 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
   if (module_exists('sharethis') && isset($modules['sharethis']) && $modules['sharethis']) {
     // Force the sharethis module to only use ShareThis.
     $data_options = get_options_array();
-    $data_options['services'] = '"ShareThis:sharethis"';
 
     $element['#sharethis'] = array(
       //'#markup' => get_button_HTML($data_options, $base_url . '/' . $current_path, drupal_get_title()),
