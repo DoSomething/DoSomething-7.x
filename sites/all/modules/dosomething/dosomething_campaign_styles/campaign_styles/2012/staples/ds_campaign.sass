@@ -16,7 +16,8 @@ $paneTitleBG: #59A64D
 $pinkPaneTitleBG: #EC008C
 $contactPaneBG: #59A64D
 $paneTitleBGIMG: url('assets/pane-title-bg.png') 
- 
+$paneTitlePinkBGIMG: url('assets/pane-title-pink-bg.png') 
+
 // borders (all lines - i.e. around social / quick info)
 $borderTop: 1px solid rgba(0,0,0,.5)
 $borderBot: 1px solid rgba(255,255,255,.5)
@@ -126,7 +127,7 @@ form .go-button
 .three-boxes-last-child
   margin-right: 0 !important
     
-.pane-staples-2012-boxes .pane-content
+.pane-staples-2012-boxes > .pane-content
   background: white
     
 // General pane definitions
@@ -354,7 +355,7 @@ form .go-button
       margin: 0px 22px
       padding: 1.5em
     ul.bella-bg
-      background-image: url('http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.png')
+      background-image: url('http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.jpg')
       background-position: 510px 0px
       background-repeat: no-repeat
     li
@@ -367,7 +368,7 @@ form .go-button
         color: #4E175B
       p 
         margin-top: 0
-        font-size: 1.15em
+        font-size: 1.1em
         
 .faq-section .pane-content ul.bella-bg li p
   width: 500px
@@ -479,11 +480,10 @@ form.webform-client-form
   
 .pink-pane
   .pane-title
-    background-image: none
-    background-color: #E40079
+    background-image: $paneTitlePinkBGIMG !important
   .pane-content
     border: 2px solid #E40079
-    background-color: white
+    background-color: white !important
       
 .email-us
   background: white
