@@ -4,6 +4,7 @@ function dosomething_sms_conductor_sms_keywords() {
   return array(
     //'zivtech' => 'ds_sms_user_registration',
     //'zivtech2' => 'ds_sms_project_report_back',
+    'checked' => 'ds_sms_iheartdad_checked',
     'epicshare' => 'ds_sms_epic_2012_report_back',
     'epicsharetest' => 'ds_sms_epic_2012_report_back',
     'register' => 'ds_sms_user_registration',
@@ -390,7 +391,102 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->inputs = array(
     'create_epic_2012_report_back'
   );
+  $activity->outputs = array();
+  $workflows[$workflow->name] = $workflow;
 
+  /**
+   * Workflow for I<3Dad CHECKED keyword
+   */
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'ds_sms_iheartdad_checked';
+  $workflow->title = 'I <3 Dad CHECKED workflow';
+  $workflow->description = 'I <3 Dad CHECKED workflow asks for zipcode and blood pressure.';
+  $workflow->api_version = '1.0';
+
+  // Starting activity
+  $activity = $workflow->newActivity('start');
+  $activity->x = 80;
+  $activity->y = 100;
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->outputs = array(
+    'ask_tested',
+  );
+  // Ask if blood pressure was tested
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->x = 280;
+  $activity->y = 160;
+  $activity->name = 'ask_tested';
+  $activity->title = 'Ask if blood pressure tested';
+  $activity->question = 'Did you take your dad to get his blood pressure tested? Reply with Y or N.';
+  $activity->inputs = array(
+    'start',
+  );
+  $activity->outputs = array(
+    'ask_zipcode',
+  );
+  // Ask for zipcode if they replied y from ask_tested
+  $activity = $workflow->newActivity('ds_conditional_sms_prompt');
+  $activity->x = 480;
+  $activity->y = 220;
+  $activity->name = 'ask_zipcode';
+  $activity->title = 'Ask for zipcode';
+  $activity->question = 'Awesome, what\'s your zipcode?';
+  $activity->conditional_check = 'ask_tested:message';
+  $activity->run_on_conditional_values = array(
+    'y',
+    'yes',
+    'yea',
+    'ya',
+  );
+  $activity->inputs = array(
+    'ask_tested',
+  );
+  $activity->outputs = array(
+    'ask_pressure',
+  );
+  // Ask for blood pressure if replied y from ask_tested
+  $activity = $workflow->newActivity('ds_conditional_sms_prompt');
+  $activity->x = 480;
+  $activity->y = 220;
+  $activity->name = 'ask_pressure';
+  $activity->title = 'Ask for blood pressure';
+  $activity->question = 'Great! We love dads baring their arms. What were his blood pressure numbers? (Reply in #/# format)';
+  $activity->conditional_check = 'ask_tested:message';
+  $activity->run_on_conditional_values = array(
+    'y',
+    'yes',
+    'yea',
+    'ya',
+  );
+  $activity->inputs = array(
+    'ask_zipcode',
+  );
+  $activity->outputs = array(
+    'end_response',
+  );
+  // Final response state of CHECKED workflow.
+  $activity = $workflow->newActivity('ds_iheartdad_2012_checked_response');
+  $activity->x = 480;
+  $activity->y = 220;
+  $activity->name = 'end_response';
+  $activity->title = 'Final CHECKED workflow response.';
+  $activity->inputs = array(
+    'ask_pressure',
+  );
+  $activity->outputs = array(
+    'end',
+  );
+  // End state
+  $activity = $workflow->newActivity('end');
+  $activity->x = 480;
+  $activity->y = 220;
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array(
+    'end_response',
+  );
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
 
