@@ -15,7 +15,7 @@ $paneBG: #59A64D
 $paneTitleBG: #59A64D
 $pinkPaneTitleBG: #EC008C
 $contactPaneBG: #59A64D
-$paneTitleBGIMG: url('assets/pane-title-bg.png')
+$paneTitleBGIMG: url('assets/pane-title-bg.png') 
  
 // borders (all lines - i.e. around social / quick info)
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -67,9 +67,16 @@ $bgFallback: #1F4BA7
   padding-top: 10px
   width: 750px
   a
-    color: $baseColor
+    text-decoration: underline
+    color: black
+  a.go-button
+    text-decoration: none
   b
     font-weight: $boldWeight
+
+h1
+  font-size: 32px
+  margin-bottom: 5px
 
 h1.title
   display: none
@@ -80,7 +87,10 @@ h2.pane-title
 img
   +noShadow
   +noBorder
-    
+
+ul
+  margin: 0
+
 body
   background-color: $bgFallback
   background-image: $imageBackground
@@ -94,17 +104,34 @@ div[role="main"]
   margin-top: 8px
   padding-top: 10px
   
+// Override the go button
+form .go-button
+  padding-top: 2px 
+  
 .three-boxes
   width: 32% !important
   float: left !important
-  margin-right: 2% !important
+  margin-right: 2.2% !important
   &:last-child
     margin-right: 0 !important
   .pane-content
     +setBorderBox
+    font-weight: 600
+    font-size: 13px
+    text-align: center
+    height: 175px
+    padding: 1.5em
+    
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
+    
+.pane-staples-2012-boxes .pane-content
+  background: white
     
 // General pane definitions
 .panel-row-flexible, .panel-row-actions
+  margin: 0
   .panel-pane
     margin-bottom: 15px
     +block
@@ -115,12 +142,12 @@ div[role="main"]
     .pane-content
       background: $paneBG
       
+// Override for the Mini-panel
+.panel-panel .pane-staples-2012-boxes .pane-content
+  background: white
+      
 .ds-panel .pane-content
   padding-bottom: 0px
-
-// IE8 does not support :last-child
-.three-boxes-last-child
-  margin-right: 0 !important
 
 .line-top
   &:before
@@ -188,6 +215,7 @@ div[role="main"]
 .pane-campaign-social
   .pane-content
     .fb-facepile
+      margin-bottom: 5px
       &:before
         +insetBorder
     // positioning line between social width and campaign teaser
@@ -205,7 +233,7 @@ div[role="main"]
 // short form
 .panel-row-actions
   background: $contactPaneBG
-  margin: 0
+  margin: 0 0 15px 0
   width: 750px
   +noBorder
   .form-wrapper
@@ -249,18 +277,17 @@ div[role="main"]
 #campaign-opt-in
   font-size: 11px
   margin-left: 15px
-  padding: 6px 0
+  padding: 15px 0 12px 0
   a
     font-weight: bold
     display: block
+    text-decoration: none
     height: 20px
     width: 20px
     position: absolute
-    bottom: 8px
-    left: 326px
-    color: $baseColor
+    bottom: 13px
+    left: 324px
     &:hover
-      color: $secondaryLink
       text-decoration: none
 
 // counter
@@ -303,6 +330,10 @@ div[role="main"]
     &:before
       margin-bottom: 20px
 
+// PSA
+.panel-row-ad-psa
+  margin-top: 35px
+
 // sponsor logos
 .panel-row-logos
   margin-top: 2em
@@ -319,19 +350,33 @@ div[role="main"]
 .faq-section
   +noBorder
   .pane-content
-    background: $paneBG
-    padding-bottom: 0
     ul
-      margin: 0px 10px
+      margin: 0px 22px
       padding: 1.5em
+    ul.bella-bg
+      background-image: url('http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.png')
+      background-position: 510px 0px
+      background-repeat: no-repeat
     li
+      list-style-image: url(assets/bullet.png)
+      list-style-position: outside
       h3
-        font-size: 1.6em
+        font-size: 1.3em
         text-transform: none
+        font-weight: bold
+        color: #4E175B
       p 
         margin-top: 0
-  .pane-title
-    color: $paneTitleBG
+        font-size: 1.15em
+        
+.faq-section .pane-content ul.bella-bg li p
+  width: 500px
+        
+.faq-section
+  .pane-content
+    li
+      p
+        width: 500px
 
 // Blog
 .node-campaign-blog-post
@@ -399,7 +444,7 @@ div[role="main"]
 .mcommons-webform
   float: left
   width: 66%
-  margin-right: 5%
+  margin-right: 2%
   border: none !important
   input.field
     width: 85%
@@ -407,9 +452,6 @@ div[role="main"]
     margin-bottom: 6px
   label
     font-weight: 600
-  // overriding padding on go-button to center the SUBMIT text
-  .go-button
-    padding-top: 3px
   .pane-content
     height: 175px
     padding: 0.5em
@@ -431,3 +473,30 @@ form.webform-client-form
 .ds-panel
   .pane-content
     padding-bottom: 0
+    
+.hidden
+  display: none
+  
+.pink-pane
+  .pane-title
+    background-image: none
+    background-color: #E40079
+  .pane-content
+    border: 2px solid #E40079
+    background-color: white
+      
+.email-us
+  background: white
+  float: right
+  margin-right: 5px
+  font-size: 13px
+  
+.prizes, .scholarships
+  width: 49%
+  float: left
+  .pane-content
+    text-align: center
+    padding-bottom: 10px
+
+.prizes
+  margin-right: 2%

@@ -15,8 +15,8 @@ if(empty($_REQUEST['username']) || empty($_REQUEST['password'])) {
   $err = 1;
 }
 else {
-  $uname = mysql_real_escape_string($_REQUEST['username']);
-  $pass = mysql_real_escape_string($_REQUEST['password']);
+  $uname = $_REQUEST['username'];
+  $pass = $_REQUEST['password'];
   $uid = user_authenticate($uname, $pass);
   if($uid === FALSE){ $err = 2; }
 }

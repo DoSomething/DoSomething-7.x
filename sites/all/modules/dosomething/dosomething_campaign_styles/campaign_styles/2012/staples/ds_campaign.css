@@ -2,9 +2,16 @@
   padding-top: 10px;
   width: 750px; }
   .main-inner a {
-    color: #ec008c; }
+    text-decoration: underline;
+    color: black; }
+  .main-inner a.go-button {
+    text-decoration: none; }
   .main-inner b {
     font-weight: 600; }
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 5px; }
 
 h1.title {
   display: none; }
@@ -19,6 +26,9 @@ img {
   box-shadow: none !important;
   border: none !important; }
 
+ul {
+  margin: 0; }
+
 body {
   background-color: #1f4ba7;
   background-image: url("assets/bg.jpg"); }
@@ -31,33 +41,49 @@ div[role="main"] {
   margin-top: 8px;
   padding-top: 10px; }
 
+form .go-button {
+  padding-top: 2px; }
+
 .three-boxes {
   width: 32% !important;
   float: left !important;
-  margin-right: 2% !important; }
+  margin-right: 2.2% !important; }
   .three-boxes:last-child {
     margin-right: 0 !important; }
   .three-boxes .pane-content {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box; }
-
-.panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
-  margin-bottom: 15px;
-  background: white; }
-  .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
-    background-image: url("assets/pane-title-bg.png");
-    background-repeat: repeat-x;
-    background-position: left top; }
-  .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
-    background: #59a64d; }
-
-.ds-panel .pane-content {
-  padding-bottom: 0px; }
+    box-sizing: border-box;
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+    height: 175px;
+    padding: 1.5em; }
 
 .three-boxes-last-child {
   margin-right: 0 !important; }
+
+.pane-staples-2012-boxes .pane-content {
+  background: white; }
+
+.panel-row-flexible, .panel-row-actions {
+  margin: 0; }
+  .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
+    margin-bottom: 15px;
+    background: white; }
+    .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
+      background-image: url("assets/pane-title-bg.png");
+      background-repeat: repeat-x;
+      background-position: left top; }
+    .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
+      background: #59a64d; }
+
+.panel-panel .pane-staples-2012-boxes .pane-content {
+  background: white; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0px; }
 
 .line-top:before {
   overflow: hidden;
@@ -123,13 +149,15 @@ div[role="main"] {
   .panel-top-right-mini-info .pane-content {
     padding-bottom: 0; }
 
-.pane-campaign-social .pane-content .fb-facepile:before {
-  overflow: hidden;
-  *zoom: 1;
-  display: block;
-  content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+.pane-campaign-social .pane-content .fb-facepile {
+  margin-bottom: 5px; }
+  .pane-campaign-social .pane-content .fb-facepile:before {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 .pane-campaign-social .pane-content .socialWrapper {
   margin: 0 0 8px 18px; }
   .pane-campaign-social .pane-content .socialWrapper:before {
@@ -148,7 +176,7 @@ div[role="main"] {
 
 .panel-row-actions {
   background: #59a64d;
-  margin: 0;
+  margin: 0 0 15px 0;
   width: 750px;
   border: none !important; }
   .panel-row-actions .form-wrapper {
@@ -193,18 +221,17 @@ div[role="main"] {
 #campaign-opt-in {
   font-size: 11px;
   margin-left: 15px;
-  padding: 6px 0; }
+  padding: 15px 0 12px 0; }
   #campaign-opt-in a {
     font-weight: bold;
     display: block;
+    text-decoration: none;
     height: 20px;
     width: 20px;
     position: absolute;
-    bottom: 8px;
-    left: 326px;
-    color: #ec008c; }
+    bottom: 13px;
+    left: 324px; }
     #campaign-opt-in a:hover {
-      color: black;
       text-decoration: none; }
 
 .pane-campaign-counter .pane-title {
@@ -243,6 +270,9 @@ div[role="main"] {
   .panel-row-ad-quick-info .pane-content:before {
     margin-bottom: 20px; }
 
+.panel-row-ad-psa {
+  margin-top: 35px; }
+
 .panel-row-logos {
   margin-top: 2em; }
   .panel-row-logos .pane-title {
@@ -256,19 +286,30 @@ div[role="main"] {
 
 .faq-section {
   border: none !important; }
-  .faq-section .pane-content {
-    background: #59a64d;
-    padding-bottom: 0; }
-    .faq-section .pane-content ul {
-      margin: 0px 10px;
-      padding: 1.5em; }
+  .faq-section .pane-content ul {
+    margin: 0px 22px;
+    padding: 1.5em; }
+  .faq-section .pane-content ul.bella-bg {
+    background-image: url("http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.png");
+    background-position: 510px 0px;
+    background-repeat: no-repeat; }
+  .faq-section .pane-content li {
+    list-style-image: url(assets/bullet.png);
+    list-style-position: outside; }
     .faq-section .pane-content li h3 {
-      font-size: 1.6em;
-      text-transform: none; }
+      font-size: 1.3em;
+      text-transform: none;
+      font-weight: bold;
+      color: #4e175b; }
     .faq-section .pane-content li p {
-      margin-top: 0; }
-  .faq-section .pane-title {
-    color: #59a64d; }
+      margin-top: 0;
+      font-size: 1.15em; }
+
+.faq-section .pane-content ul.bella-bg li p {
+  width: 500px; }
+
+.faq-section .pane-content li p {
+  width: 500px; }
 
 .node-campaign-blog-post {
   padding: 15px !important; }
@@ -324,3 +365,61 @@ div[role="main"] {
 
 .banner .pane-content img {
   margin: 0; }
+
+.mcommons-webform {
+  float: left;
+  width: 66%;
+  margin-right: 2%;
+  border: none !important; }
+  .mcommons-webform input.field {
+    width: 85%;
+    height: 23px;
+    margin-bottom: 6px; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .pane-content {
+    height: 175px;
+    padding: 0.5em; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 2%; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
+
+.form-wrapper {
+  margin-bottom: 5px; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0; }
+
+.hidden {
+  display: none; }
+
+.pink-pane .pane-title {
+  background-image: none;
+  background-color: #e40079; }
+.pink-pane .pane-content {
+  border: 2px solid #e40079;
+  background-color: white; }
+
+.email-us {
+  background: white;
+  float: right;
+  margin-right: 5px;
+  font-size: 13px; }
+
+.prizes, .scholarships {
+  width: 49%;
+  float: left; }
+  .prizes .pane-content, .scholarships .pane-content {
+    text-align: center;
+    padding-bottom: 10px; }
+
+.prizes {
+  margin-right: 2%; }
