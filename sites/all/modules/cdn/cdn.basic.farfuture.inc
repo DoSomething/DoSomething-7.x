@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -27,21 +26,14 @@ function cdn_basic_farfuture_download($token, $ufi, $path) {
   }
 
   if (!file_exists($path)) {
-    /*
-    // If the file does not yet exist, try if it should be generated first.
-    if ($router_item = menu_get_item($path)) {
-      if ($router_item['access']) {
-        if ($router_item['file']) {
-          require_once($router_item['file']);
-        }
-        call_user_func_array($router_item['page_callback'], $router_item['page_arguments']);
-      }
-    }
-    */
-    if (!file_exists($path)) {
-      header('HTTP/1.1 404 Not Found');
-      exit();
-    }
+    watchdog(
+      'cdn',
+      'CDN Far Future 404: %file.',
+      array('%file' => $path),
+      WATCHDOG_ALERT
+    );
+    header('HTTP/1.1 404 Not Found');
+    exit();
   }
 
   // Remove some useless/unwanted headers.
@@ -101,7 +93,7 @@ function cdn_basic_farfuture_download($token, $ufi, $path) {
   // extensions (by default: images, fonts and flash content), then cache it
   // in the far future.
   $farfuture_extensions  = variable_get(CDN_BASIC_FARFUTURE_EXTENSIONS_VARIABLE, CDN_BASIC_FARFUTURE_EXTENSIONS_DEFAULT);
-  $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+  $extension = drupal_strtolower(pathinfo($path, PATHINFO_EXTENSION));
   if (in_array($extension, explode("\n", $farfuture_extensions))) {
     // Remove all previously set Cache-Control headers, because we're going to
     // override it. Since multiple Cache-Control headers might have been set,
@@ -165,31 +157,31 @@ function cdn_basic_farfuture_download($token, $ufi, $path) {
   exit();
 }
 
+function cdn_basic_farfuture_reverseproxy_test($token) {
+  $reference_token = variable_get('cdn_reverse_proxy_test');
+  if ($reference_token === FALSE || $token != $reference_token) {
+    header('HTTP/1.1 403 Forbidden');
+    exit();
+  }
+
+  print REQUEST_TIME . '-' . md5(rand());
+  exit();
+}
+
 
 //----------------------------------------------------------------------------
 // Public functions.
 
 /**
- * Gets the servers on which a file is available when basic mode is enabled.
+ * Get the UFI method for the file at a path.
  *
  * @param $path
- *   The path to get the servers for.
+ *   The path to get UFI method for the file at the given path.
+ * @param $mapping
+ *   The UFI mapping to use.
  */
-function cdn_basic_farfuture_get_identifier($path) {
-  static $mapping;
-  static $ufi_info;
-  $servers = array();
 
-  // Gather all unique file identifier info.
-  if (!isset($ufi_info)) {
-    $ufi_info = module_invoke_all('cdn_unique_file_identifier_info');
-  }
-
-  // We only need to parse the textual CDN mapping once into a lookup table.
-  if (!isset($mapping)) {
-    $mapping = _cdn_basic_farfuture_parse_raw_mapping(variable_get(CDN_BASIC_FARFUTURE_UNIQUE_IDENTIFIER_MAPPING_VARIABLE, CDN_BASIC_FARFUTURE_UNIQUE_IDENTIFIER_MAPPING_DEFAULT));
-  }
-
+function cdn_basic_farfuture_get_ufi_method($path, $mapping) {
   // Determine which UFI method should be used. Note that we keep on trying to
   // find another method until the end: the order of rules matters!
   // However, specificity also matters. The directory pattern "foo/bar/*"
@@ -199,13 +191,13 @@ function cdn_basic_farfuture_get_identifier($path) {
   foreach (array_keys($mapping) as $directory) {
     if (drupal_match_path($path, $directory)) {
       // Parse the file extension from the given path; convert it to lower case.
-      $file_extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+      $file_extension = drupal_strtolower(pathinfo($path, PATHINFO_EXTENSION));
 
       // Based on the file extension, determine which key should be used to find
       // the CDN URLs in the mapping lookup table, if any.
       $extension = NULL;
       if (array_key_exists($file_extension, $mapping[$directory])) {
-        $key = $file_extension;
+        $extension = $file_extension;
       }
       elseif (array_key_exists('*', $mapping[$directory])) {
         $extension = '*';
@@ -227,6 +219,31 @@ function cdn_basic_farfuture_get_identifier($path) {
   if ($ufi_method === FALSE) {
     $ufi_method = CDN_BASIC_FARFUTURE_UNIQUE_IDENTIFIER_DEFAULT;
   }
+
+  return $ufi_method;
+}
+
+/**
+ * Get the UFI (Unique File Identifier) for the file at a path.
+ *
+ * @param $path
+ *   The path to get a UFI for.
+ */
+function cdn_basic_farfuture_get_identifier($path) {
+  static $ufi_info;
+  static $mapping;
+
+  // Gather all unique file identifier info.
+  if (!isset($ufi_info)) {
+    $ufi_info = module_invoke_all('cdn_unique_file_identifier_info');
+  }
+
+  // We only need to parse the textual CDN mapping once into a lookup table.
+  if (!isset($mapping)) {
+    $mapping = _cdn_basic_farfuture_parse_raw_mapping(variable_get(CDN_BASIC_FARFUTURE_UNIQUE_IDENTIFIER_MAPPING_VARIABLE, CDN_BASIC_FARFUTURE_UNIQUE_IDENTIFIER_MAPPING_DEFAULT));
+  }
+
+  $ufi_method = cdn_basic_farfuture_get_ufi_method($path, $mapping);
 
   $prefix = $ufi_info[$ufi_method]['prefix'];
   if (isset($ufi_info[$ufi_method]['value'])) {
@@ -271,12 +288,12 @@ function _cdn_basic_farfuture_parse_raw_mapping($mapping_raw) {
       // - part 3: unique file identifier method
       if (count($parts) == 2) {
         $extensions = array('*'); // Use the asterisk as a wildcard.
-        $ufi_method = strtolower(trim($parts[1]));
+        $ufi_method = drupal_strtolower(trim($parts[1]));
       }
-      else if (count($parts) == 3) {
+      elseif (count($parts) == 3) {
         // Convert to lower case, remove periods, whitespace and split on ' '.
-        $extensions = explode(' ', trim(str_replace('.', '', strtolower($parts[1]))));
-        $ufi_method = strtolower(trim($parts[2]));
+        $extensions = explode(' ', trim(str_replace('.', '', drupal_strtolower($parts[1]))));
+        $ufi_method = drupal_strtolower(trim($parts[2]));
       }
 
       // Create the mapping lookup table.
@@ -405,13 +422,66 @@ function _cdn_basic_farfuture_get_mimetype($path) {
   //   - image.jpeg, and
   //   - awesome.image.jpeg
   while ($additional_part = array_pop($file_parts)) {
-    $extension = strtolower($additional_part . ($extension ? '.' . $extension : ''));
+    $extension = drupal_strtolower($additional_part . ($extension ? '.' . $extension : ''));
     if (isset($mapping['extensions'][$extension])) {
       return $mapping['mimetypes'][$mapping['extensions'][$extension]];
     }
   }
 
   return 'application/octet-stream';
+}
+
+/**
+ * Perform a nested HTTP request to generate a file.
+ *
+ * @param $path
+ *   A path relative to the Drupal root (not urlencoded!) to the file that
+ *   should be generated.
+ * @return
+ *   Whether the file was generated or not.
+ */
+function _cdn_basic_farfuture_generate_file($path) {
+  // Check if there's a file to generate in the first place!
+  if (!menu_get_item($path)) {
+    return FALSE;
+  }
+
+  // While it should already be impossible to enter recursion because of the
+  // above menu system check, we still want to detect this just to be safe.
+  // This really can only happen if a file is missing and we try to generate
+  // it and the request to generate the file itself triggers a 404, which
+  // again references the file that is missing, and would thus again trigger a
+  // 404, etc.
+  // @see http://drupal.org/node/1417616#comment-5694960
+  if (request_uri() == base_path() . $path) {
+    watchdog('cdn', 'Recursion detected for %file!', array('%file' => $path), WATCHDOG_ALERT);
+    header('HTTP/1.1 404 Not Found');
+    exit();
+  }
+
+  $url = $GLOBALS['base_url'] . '/' . drupal_encode_path($path);
+
+  $headers = array(
+    // Make sure we hit the server and do not end up with a stale
+    // cached version.
+    'Cache-Control' => 'no-cache',
+    'Pragma'        => 'no-cache',
+  );
+  drupal_http_request($url, array('headers' => $headers));
+
+  $exists = file_exists($path);
+  watchdog(
+    'cdn',
+    'Nested HTTP request to generate %file: %result (URL: %url, time: !time).',
+    array(
+      '!time'   => (int) $_SERVER['REQUEST_TIME'],
+      '%file'   => $path,
+      '%url'    => $url,
+      '%result' => $exists ? 'success' : 'failure',
+    ),
+    $exists ? WATCHDOG_NOTICE : WATCHDOG_CRITICAL
+  );
+  return $exists;
 }
 
 /**
