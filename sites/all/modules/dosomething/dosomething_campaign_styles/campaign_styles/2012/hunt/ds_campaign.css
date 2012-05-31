@@ -333,6 +333,9 @@ div[role="main"] {
   display: block;
   text-align: center; }
 
+#faq-section h2 {
+  text-align: center;
+  margin-bottom: 15px; }
 #faq-section h3 {
   color: #d32a1b;
   text-transform: uppercase;
@@ -416,7 +419,7 @@ div[role="main"] {
       border: none !important;
       margin: 0px; }
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
-    background-color: #d6d6d7; }
+    background-color: #bebfc1; }
 
 #block-dosomething-campaign-styles-campaign-nav {
   margin-right: -7px; }
