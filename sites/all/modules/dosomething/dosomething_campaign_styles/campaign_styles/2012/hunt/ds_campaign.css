@@ -369,6 +369,13 @@ div[role="main"] {
 .no-bg .pane-content {
   background: white; }
 
+.view-campaign-gallery #gallery {
+  height: 416px; }
+  .view-campaign-gallery #gallery #slideshow {
+    height: 360px;
+    width: 480px;
+    margin: 0 auto; }
+
 .node-campaign-blog-post {
   padding: 15px !important; }
   .node-campaign-blog-post .field-name-field-picture img {
