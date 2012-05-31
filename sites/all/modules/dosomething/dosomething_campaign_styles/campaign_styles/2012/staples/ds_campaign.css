@@ -42,7 +42,7 @@ div[role="main"] {
   padding-top: 10px; }
 
 form .go-button {
-  padding-top: 2px; }
+  padding-top: 2px !important; }
 
 .three-boxes {
   width: 32% !important;
@@ -247,6 +247,8 @@ form .go-button {
     float: left; }
   .pane-campaign-counter .pane-content .digits, .pane-campaign-counter .pane-content .campaign-counter-label-bottom, .pane-campaign-counter .pane-content .campaign-counter-label-top {
     margin-bottom: 8px; }
+  .pane-campaign-counter .pane-content .campaign-counter-label-top, .pane-campaign-counter .pane-content .campaign-counter-number-top {
+    display: none; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
