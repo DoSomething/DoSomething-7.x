@@ -312,8 +312,12 @@ h2.pane-title {
   height: 60px;
   margin: 10px 0 0 0; }
 
-#edit-submitted-field-webform-school-reference {
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper {
   display: none; }
+
+#dosomething-login-register-popup-form .popup-content {
+  height: 165px; }
 
 .mcommons-webform {
   width: 100%;
