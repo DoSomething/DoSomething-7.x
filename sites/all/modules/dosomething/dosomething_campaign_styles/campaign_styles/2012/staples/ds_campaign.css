@@ -294,7 +294,7 @@ form .go-button {
   border: none !important; }
   .faq-section .pane-content ul {
     margin: 0 0 0 22px;
-    padding: 1.5em; }
+    padding: 1.5em 1.5em 0.5em 1.5em; }
   .faq-section .pane-content ul.bella-bg {
     background-image: url("http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/staples/assets/bella.jpg");
     background-position: 500px 5px;
@@ -308,8 +308,7 @@ form .go-button {
       font-weight: bold;
       color: #4e175b; }
     .faq-section .pane-content li p {
-      margin-top: 0;
-      font-size: 1.1em; }
+      margin-top: 0; }
 
 .faq-section .pane-content ul.bella-bg li p {
   width: 500px; }
