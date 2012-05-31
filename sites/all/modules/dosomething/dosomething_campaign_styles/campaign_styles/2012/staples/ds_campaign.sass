@@ -188,6 +188,7 @@ form .go-button
       font-weight: 600
       text-transform: uppercase
       color: $secondaryLink
+      font-family: "din-web-reg"
       &:hover, .active
         color: $baseColor
         text-decoration: none
@@ -504,11 +505,28 @@ form.webform-client-form
   .pane-content
     text-align: center
     padding-bottom: 10px
+    min-height: 235px
+    p
+      margin: 0 30px
 
 .prizes
   margin-right: 2%
   
-// report back
-.edit-submitted-field-webform-school-reference
-  display: none
+.tell-us
+  width: 65%
+  #edit-submitted-field-webform-school-reference
+    display: none
+  #edit-submitted-field-webform-pictures
+    margin-bottom: 100px
   
+.sign-up
+  width: 65%
+  #edit-submitted-field-webform-school-reference,
+  .field-name-group-audience
+    display: none
+  #webform-component-zip-code
+    margin-bottom: 100px
+  
+// set the resgister for Do Something block on sign up to be taller
+#dosomething-login-register-popup-form .popup-content
+  height: 165px !important
