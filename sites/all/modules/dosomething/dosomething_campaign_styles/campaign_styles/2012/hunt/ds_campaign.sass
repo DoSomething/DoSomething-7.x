@@ -1,0 +1,505 @@
+// HUNT HUNT HUNT HUNT
+
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors - define any campaign specific colors here
+$baseColor: #D32A1B
+$secondaryLink: #D32A1B
+$paneBG: #D6D6D7
+$huntLighter: #D6D6D7
+$huntDarker: #BEBFC1
+$huntDarkest: #939398
+$offBlack: #1E1D1C
+ 
+// borders (all lines - i.e. around social / quick info)
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+$boldWeight: 600
+
+// sets the background for the entire page
+$imageBackground: url('assets/bg.png')
+$bgFallback: #C66F2B
+
+// sets the background for the page nav and main section
+@mixin block
+  // make sure you specify the RBG fallback if you have a RGBA set!
+  background: rgb(255,255,255)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin setBorderBox
+  -moz-box-sizing: border-box
+  -ms-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+.main-inner
+  a
+    color: $baseColor
+    &:hover
+      color: $secondaryLink
+  b
+    font-weight: $boldWeight
+
+h1.title
+  display: none
+
+h2.pane-title
+  background: $baseColor
+
+img
+  +noShadow
+  +noBorder
+
+body
+  background-color: $bgFallback
+  background-image: $imageBackground
+  background-repeat: repeat-y
+  background-position: center top
+  background-size: 100% auto
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 8px
+  padding-top: 10px  
+
+.main-inner
+  padding-top: 10px
+  width: 750px
+
+// panels reset
+.ds-panel .pane-content
+  padding-bottom: 0 !important
+
+// panelizer definitions
+.panel-row-flexible, .panel-row-actions
+  .panel-pane
+    margin-bottom: 15px
+    +block
+  .pane-content
+    background: $huntLighter
+
+.panel-row-flexible .pane-content
+  padding: 15px !important
+
+//three boxes
+.three-boxes
+  width: 32% !important
+  float: left !important
+  margin-right: 2% !important
+  &:last-child
+    margin-right: 0 !important
+  .pane-content
+    +setBorderBox
+
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+#breadcrumb
+  display: none
+
+// reset quick info color
+#page
+  .panel-row-ad-quick-info
+    h2.pane-title
+      color: $secondaryLink !important
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: transparent
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    padding: 5px 0
+    .active
+      color: $baseColor
+    a
+      display: inline-block
+      width: 100%
+      padding: 6px 19px 6px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: #000
+      &:hover
+        color: $baseColor
+        text-decoration: none
+
+// campaign logo
+.pane-node-field-campaign-logo .pane-content
+  padding-bottom: 0
+.field-name-field-campaign-logo img
+  width: 480px
+  height: 230px
+  margin-top: 0px !important
+
+// brief campaign description at the top right
+.panel-top-right-mini-info
+  font-family: $accent
+  font-size: 21px
+  line-height: 1.4em
+  .field-name-field-campain-date
+    color: $baseColor
+    padding: 0
+    font-weight: 600
+  .field-name-field-campaign-teaser p
+    margin-bottom: 15px
+  .pane-content  
+    padding-bottom: 0
+
+// campaign social buttons, top right
+.pane-campaign-social
+  .pane-content
+    .fb-facepile
+      &:before
+        +insetBorder
+    // positioning line between social width and campaign teaser
+    .socialWrapper
+      margin: 0 0 8px 18px
+      &:before
+        +insetBorder
+        content: ""
+        display: block
+        left: -18px
+        margin-bottom: 8px
+        position: relative
+        width: 247px
+
+// short form
+.panel-row-actions
+  background: $huntLighter
+  width: 750px
+  margin: 15px 0
+  +noBorder
+  .form-wrapper
+    margin-bottom: 5px !important
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+  .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noShadow
+        +noBorder
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px
+
+.webform-client-form
+  #edit-actions
+    position: absolute
+    right: 86px
+    bottom: 9px
+
+#campaign-opt-in
+  font-size: 11px
+  margin-left: 15px
+  padding: 6px 0
+  a
+    font-weight: bold
+    display: block
+    height: 20px
+    width: 20px
+    position: absolute
+    bottom: 8px
+    left: 326px
+    color: $baseColor
+    &:hover
+      color: $secondaryLink
+      text-decoration: none
+
+// counter
+.pane-campaign-counter
+  .pane-content
+    padding: 20px 25px
+    .campaign-counter-labels
+      text-transform: uppercase
+      font-size: 25px
+      font-family: din-web,"Trebuchet MS",sans-serif 
+      font-weight: 500
+      line-height: 25px
+      float: left
+    .digits, .campaign-counter-label-bottom, .campaign-counter-label-top
+      margin-bottom: 8px
+
+// quick info
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    line-height: 1em
+    font-weight: 500
+  .pane-content
+    margin-top: 1em
+    padding: 0
+    h3
+      color: $baseColor
+      font-size: 24px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: .8em
+    p
+      margin: 0 0 0.8em 0
+    &:before
+      margin-bottom: 20px
+
+.panel-row-flexible
+  .panel-pane
+    +block
+    .pane-title
+      background: $baseColor
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    &:before,&:after
+      +insetBorder
+
+// sponsor and help panel
+.pane-content
+  .got_questions
+    text-align: right
+    border-top: 2px solid $baseColor
+    padding-top: 10px
+    color: black
+    a
+      color: $baseColor
+      
+// prizes
+
+#prizeblock-1, #prizeblock-2, #prizeblock-3
+  width: 100%
+  overflow: auto
+  img
+    border: none !important
+  span
+    text-transform: uppercase
+    font-weight: 600
+  p
+    font-size: 14px
+    line-height: 20px
+
+  div
+    width: 55%
+    text-align: center
+    margin: 0 auto
+    h2
+      text-transform: uppercase
+      border-bottom: 2px solid $offBlack
+      margin: 0 auto 5px
+      width: 35%
+      font-size: 25px
+  .prizeimg-1, .prizeimg-2, .prizeimg-3, .prizeimg-4, .prizeimg-5, .prizeimg-6
+    position: absolute
+
+#prizeblock-1
+  .prizeimg-1
+    left: 12px
+    top: 40px
+  .prizeimg-2
+    right: -20px
+    top: -5px
+
+#prizeblock-2
+  .prizeimg-3
+    top: -5px
+    left: 10px
+  .prizeimg-4
+    top: -5px
+    right: 12px
+  div
+    margin: 35px auto
+
+#prizeblock-3
+  .prizeimg-5
+    top: 10px
+    right: 12px
+  .prizeimg-6
+    top: 10px
+    left: 12px
+  div
+    width: 70%
+  .legal_copy
+    font-size: 10px
+    margin-top: -30px
+  a
+    display: block
+    text-align: center
+  
+// faq
+.faq-section
+  +noBorder
+  .pane-content
+    background: $huntLighter
+    padding-bottom: 0
+    ul
+      margin: 0px 10px
+      padding: 1.5em
+    li
+      h3
+        font-size: 1.6em
+        text-transform: none
+      p 
+        margin-top: 0
+  .pane-title
+    color: $baseColor
+
+// challenges
+#challenges
+  ul
+    background-color: $huntDarkest
+    margin: -10px 0 10px 0
+    padding: 12px 29px 1px
+  li
+    list-style-image: url("assets/dot.png")
+  h2
+    margin: -5px 0 10px 0
+    text-align: center
+    font-family: "din-web-reg"
+    font-weight: 400
+    font-size: 16px
+  h3
+    background-color: $huntDarker
+    height: 2em
+    margin-bottom: 10px
+    padding: .5em .7em
+    color: #fff
+    text-transform: uppercase
+    font-family: "din-web-reg"
+    font-weight: 500
+    font-size: 15px
+  p
+    color: #fff
+
+.no-bg
+  .pane-content 
+    background: #fff
+
+// blog
+.node-campaign-blog-post
+  padding: 15px !important
+  .field-name-field-picture
+    img
+      margin: 0 20px 20px 0
+      float: left
+  .field-name-field-blog-video
+    clear: both
+    position: relative
+    bottom: -25px
+    right: -125px
+    margin: 35px 0
+    iframe
+      margin: 0 auto
+      display: block
+
+.field-type-text-with-summary
+  img
+    padding: 10px
+    margin: 20px auto
+    display: block
+    border: 1px solid #000!important
+
+.pane-campaign-blog-panel-pane-1
+  background: transparent !important
+  +noBorder
+  .pane-content
+    padding: 15px
+  a
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
+  .more-link
+    text-transform: uppercase
+
+.pane-campaign-blog-panel-pane-2
+  +noBorder
+  width: 100%
+  .pane-content
+    padding: 10px 0 0 0
+  .view-campaign-blog
+    .views-row
+      padding: 5px 15px 15px
+        margin: 1em 0 1em 0
+      &:first-child
+        &:before
+          +noBorder
+          margin: 0px
+    .views-row-even
+      background-color: $huntLighter
+      
+#block-dosomething-campaign-styles-campaign-nav
+  margin-right: -7px
