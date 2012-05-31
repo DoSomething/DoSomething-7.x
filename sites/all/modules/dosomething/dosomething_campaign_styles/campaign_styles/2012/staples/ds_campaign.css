@@ -411,9 +411,10 @@ form.webform-client-form {
 
 .email-us {
   background: white;
-  float: right;
-  margin-right: 5px;
-  font-size: 13px; }
+  width: 100%; }
+  .email-us p {
+    float: right;
+    font-size: 13px; }
 
 .prizes, .scholarships {
   width: 49%;
