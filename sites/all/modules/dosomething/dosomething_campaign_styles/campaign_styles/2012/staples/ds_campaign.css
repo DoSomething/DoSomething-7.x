@@ -42,7 +42,8 @@ div[role="main"] {
   padding-top: 10px; }
 
 form .go-button {
-  padding-top: 2px !important; }
+  padding-top: 2px !important;
+  color: black; }
 
 .three-boxes {
   width: 32% !important;
@@ -81,6 +82,9 @@ form .go-button {
 
 .panel-panel .pane-staples-2012-boxes .pane-content {
   background: white; }
+
+.panel-panel .pane-staples-2012-boxes .three-boxes .pane-content {
+  background: #59a64d; }
 
 .ds-panel .pane-content {
   padding-bottom: 0px; }
@@ -425,3 +429,6 @@ form.webform-client-form {
 
 .prizes {
   margin-right: 2%; }
+
+.edit-submitted-field-webform-school-reference {
+  display: none; }
