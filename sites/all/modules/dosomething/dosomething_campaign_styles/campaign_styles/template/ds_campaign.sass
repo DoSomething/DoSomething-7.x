@@ -123,9 +123,7 @@ div[role="main"]
     margin-bottom: 15px
     +block
     .pane-title
-      background-image: $paneTitleBGIMG
-      background-repeat: repeat-x
-      background-position: left top
+      background: $paneTitleBG
     .pane-content
       background: $paneBG
 
@@ -395,3 +393,12 @@ div[role="main"]
           margin: 0
     .views-row-even
       background-color: $paneBG
+      
+// set the resgister for Do Something block on sign up to be taller
+#dosomething-login-register-popup-form .popup-content
+  height: 165px
+
+// hide school data on the long form
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper
+  display: none
