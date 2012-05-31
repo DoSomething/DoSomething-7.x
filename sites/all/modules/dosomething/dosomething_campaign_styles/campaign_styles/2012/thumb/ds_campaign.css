@@ -317,7 +317,7 @@ h2.pane-title {
   display: none; }
 
 #dosomething-login-register-popup-form .popup-content {
-  height: 165px; }
+  height: 165px !important; }
 
 .mcommons-webform {
   width: 100%;
