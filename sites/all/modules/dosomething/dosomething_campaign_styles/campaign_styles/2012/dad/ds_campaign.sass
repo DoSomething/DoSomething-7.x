@@ -1,4 +1,4 @@
-// HUNT HUNT HUNT HUNT
+// I <3 DAD
 
 // Base imports. Be sure to compile using the --compass switch
 @import compass/css3
@@ -9,13 +9,10 @@
 ////////////////////////////////////////
 
 // colors - define any campaign specific colors here
-$baseColor: #D32A1B
-$secondaryLink: #D32A1B
-$paneBG: #D6D6D7
-$huntLighter: #D6D6D7
-$huntDarker: #BEBFC1
-$huntDarkest: #939398
-$offBlack: #1E1D1C
+$baseColor: #5DB7E0
+$secondaryLink: #E31837
+$paneBG: #DDDDDD
+$paneTitleBG: #5DB7E0
  
 // borders (all lines - i.e. around social / quick info)
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -27,13 +24,14 @@ $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
 // sets the background for the entire page
-$imageBackground: url('assets/bg.png')
-$bgFallback: #C66F2B
+$imageBackground: url('assets/bg.jpg')
+$bgFallback: #1F4BA7
 
 // sets the background for the page nav and main section
 @mixin block
   // make sure you specify the RBG fallback if you have a RGBA set!
   background: rgb(255,255,255)
+  background: rgba(255,255,255,.8)
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -63,7 +61,9 @@ $bgFallback: #C66F2B
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-.main-inner
+.main-inner 
+  padding-top: 10px
+  width: 750px
   a
     color: $baseColor
     &:hover
@@ -75,18 +75,20 @@ h1.title
   display: none
 
 h2.pane-title
-  background: $baseColor
+  background: $paneTitleBG
 
 img
   +noShadow
   +noBorder
+  
+ul
+  margin: 0
 
 body
   background-color: $bgFallback
   background-image: $imageBackground
   background-repeat: repeat-y
   background-position: center top
-  background-size: 100% auto
 
 div[role="main"]
   +block
@@ -94,26 +96,6 @@ div[role="main"]
   margin-top: 8px
   padding-top: 10px  
 
-.main-inner
-  padding-top: 10px
-  width: 750px
-
-// panels reset
-.ds-panel .pane-content
-  padding-bottom: 0 !important
-
-// panelizer definitions
-.panel-row-flexible, .panel-row-actions
-  .panel-pane
-    margin-bottom: 15px
-    +block
-  .pane-content
-    background: $huntLighter
-
-.panel-row-flexible .pane-content
-  padding: 15px !important
-
-//three boxes
 .three-boxes
   width: 32% !important
   float: left !important
@@ -133,15 +115,29 @@ div[role="main"]
 .line-bottom
   &:after
     +insetBorder
+  
+// General pane definitions
+.panel-row-flexible, .panel-row-actions
+  margin: 0px
+  .panel-pane
+    margin-bottom: 15px
+    +block
+    .pane-title
+      background: $paneTitleBG
+    .pane-content
+      background: $paneBG
+
+.ds-panel .pane-content
+  padding-bottom: 0px
 
 #breadcrumb
   display: none
 
 // reset quick info color
-#page
-  .panel-row-ad-quick-info
-    h2.pane-title
-      color: $secondaryLink !important
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: $baseColor !important
+
 
 //////////////////////////////////////////
 ////////////// sections /////////////////
@@ -157,18 +153,15 @@ div[role="main"]
     +block
     background-image: none
     text-align: right
-    padding: 5px 0
-    .active
-      color: $baseColor
     a
       display: inline-block
       width: 100%
-      padding: 6px 19px 6px 0
+      padding: 10px 19px 10px 0
       font-size: 21px
       font-weight: 600
       text-transform: uppercase
-      color: #000
-      &:hover
+      color: $secondaryLink
+      &:hover, .active
         color: $baseColor
         text-decoration: none
 
@@ -180,6 +173,7 @@ div[role="main"]
   height: 230px
   margin-top: 0px !important
 
+// mini info
 // brief campaign description at the top right
 .panel-top-right-mini-info
   font-family: $accent
@@ -198,6 +192,7 @@ div[role="main"]
 .pane-campaign-social
   .pane-content
     .fb-facepile
+      margin-bottom: 5px
       &:before
         +insetBorder
     // positioning line between social width and campaign teaser
@@ -214,9 +209,9 @@ div[role="main"]
 
 // short form
 .panel-row-actions
-  background: $huntLighter
+  background: $paneBG
+  margin: 0 0 15px 0
   width: 750px
-  margin: 15px 0
   +noBorder
   .form-wrapper
     margin-bottom: 5px !important
@@ -259,15 +254,15 @@ div[role="main"]
 #campaign-opt-in
   font-size: 11px
   margin-left: 15px
-  padding: 6px 0
+  padding: 15px 0 12px 0
   a
     font-weight: bold
     display: block
     height: 20px
     width: 20px
     position: absolute
-    bottom: 8px
-    left: 326px
+    bottom: 13px
+    left: 324px
     color: $baseColor
     &:hover
       color: $secondaryLink
@@ -287,7 +282,7 @@ div[role="main"]
     .digits, .campaign-counter-label-bottom, .campaign-counter-label-top
       margin-bottom: 8px
 
-// quick info
+// Quick Info
 .panel-row-ad-quick-info
   .pane-title
     font-size: 35px
@@ -310,142 +305,38 @@ div[role="main"]
       margin: 0 0 0.8em 0
     &:before
       margin-bottom: 20px
-
-.panel-row-flexible
-  .panel-pane
-    +block
-    .pane-title
-      background: $baseColor
-  .blog
-    background: transparent
-    &:before, &:after
-      +insetBorder
-    &:before,&:after
-      +insetBorder
-
-// sponsor and help panel
-.pane-content
-  .got_questions
-    text-align: right
-    border-top: 2px solid $baseColor
-    padding-top: 10px
-    color: black
-    a
-      color: $baseColor
       
-// prizes
+// PSA
+.panel-row-ad-psa
+  margin-top: 35px
 
-#prizeblock-1, #prizeblock-2, #prizeblock-3
-  width: 100%
-  overflow: auto
-  img
-    border: none !important
-  span
-    text-transform: uppercase
-    font-weight: 600
-  p
-    font-size: 14px
-    line-height: 20px
-
-  div
-    width: 55%
-    text-align: center
-    margin: 0 auto
-    h2
-      text-transform: uppercase
-      border-bottom: 2px solid $offBlack
-      margin: 0 auto 5px
-      width: 35%
-      font-size: 25px
-  .prizeimg-1, .prizeimg-2, .prizeimg-3, .prizeimg-4, .prizeimg-5, .prizeimg-6
-    position: absolute
-
-#prizeblock-1
-  .prizeimg-1
-    left: 12px
-    top: 40px
-  .prizeimg-2
-    right: -20px
-    top: -5px
-
-#prizeblock-2
-  .prizeimg-3
-    top: -5px
-    left: 10px
-  .prizeimg-4
-    top: -5px
-    right: 12px
-  div
-    margin: 35px auto
-
-#prizeblock-3
-  .prizeimg-5
-    top: 10px
-    right: 12px
-  .prizeimg-6
-    top: 10px
-    left: 12px
-  div
-    width: 70%
-  .legal_copy
-    font-size: 10px
-    margin-top: -30px
-  a
-    display: block
-    text-align: center
-  
-// faq
-#faq-section
-  h2
-    text-align: center
-    margin-bottom: 15px
-  h3
+// sponsor logos
+.panel-row-logos
+  margin-top: 2em
+  .pane-title
     color: $baseColor
-    text-transform: uppercase
-    font-size: 19px
+    background: none
+    margin: 0
+    padding: 0
+  .pane-content
+    background: none
+    padding: 0
 
+// FAQ
+.faq-section
+  +noBorder
+  .pane-content
+    ul
+      margin: 0px 10px
+      padding: 1.5em
+    li
+      h3
+        font-size: 1.6em
+        text-transform: none
+      p 
+        margin-top: 0
 
-// challenges
-#challenges
-  ul
-    background-color: $huntDarkest
-    margin: -10px 0 10px 0
-    padding: 12px 29px 1px
-  li
-    list-style-image: url("assets/dot.png")
-  h2
-    margin: -5px 0 10px 0
-    text-align: center
-    font-family: "din-web-reg"
-    font-weight: 400
-    font-size: 16px
-  h3
-    background-color: $huntDarker
-    height: 2em
-    margin-bottom: 10px
-    padding: .5em .7em
-    color: #fff
-    text-transform: uppercase
-    font-family: "din-web-reg"
-    font-weight: 500
-    font-size: 15px
-  p
-    color: #fff
-
-.no-bg
-  .pane-content 
-    background: #fff
-
-//gallery
-.view-campaign-gallery
-  #gallery
-    height: 416px
-    #slideshow
-      height: 360px
-      width: 480px
-      margin: 0 auto
-
-// blog
+// Blog
 .node-campaign-blog-post
   padding: 15px !important
   .field-name-field-picture
@@ -499,19 +390,22 @@ div[role="main"]
       &:first-child
         &:before
           +noBorder
-          margin: 0px
+          margin: 0
     .views-row-even
-      background-color: $huntDarker
+      background-color: $paneBG
 
 .campaign-blog-post
   .panel-row-flexible
     width: 82%
     margin: 0 auto 15px
   .pane-dosomething-blocks-dosomething-social-node-buttons
-    margin: 0 auto      
+    margin: 0 auto
+      
+// set the resgister for Do Something block on sign up to be taller
+#dosomething-login-register-popup-form .popup-content
+  height: 165px
 
-.pane-dosomething-blocks-dosomething-social-node-buttons
-  margin: 0 auto
-
-#block-dosomething-campaign-styles-campaign-nav
-  margin-right: -7px
+// hide school data on the long form
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper
+  display: none
