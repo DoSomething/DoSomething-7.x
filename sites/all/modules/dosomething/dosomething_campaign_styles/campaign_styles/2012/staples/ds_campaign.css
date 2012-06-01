@@ -450,3 +450,13 @@ form.webform-client-form {
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
+
+.gallery-header {
+  margin-bottom: 0 !important; }
+
+.gallery #gallery {
+  height: auto; }
+  .gallery #gallery #slideshow {
+    margin: 0 auto; }
+.gallery ul.pager {
+  padding-bottom: 20px; }
