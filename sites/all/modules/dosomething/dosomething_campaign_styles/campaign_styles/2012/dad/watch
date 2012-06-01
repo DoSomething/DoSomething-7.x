@@ -1,0 +1,1 @@
+sass --watch --compass ds_campaign.sass:ds_campaign.css
