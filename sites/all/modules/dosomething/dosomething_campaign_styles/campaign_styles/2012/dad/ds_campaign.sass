@@ -10,7 +10,7 @@
 
 // colors - define any campaign specific colors here
 $baseColor: #5DB7E0
-$secondaryLink: #E31837
+$secondaryLink: #EB444A
 $paneBG: #DDDDDD
 $paneTitleBG: #5DB7E0
  
@@ -19,19 +19,19 @@ $borderTop: 1px solid rgba(0,0,0,.5)
 $borderBot: 1px solid rgba(255,255,255,.5)
 
 // fonts - don't change these. if you do, -50 life points
-$accent: din-web,"Trebuchet MS",sans-serif
+$accent: din-web, "Trebuchet MS", sans-serif
+$accent-reg: din-web-reg, "Trebuchet MS", sans-serif
 $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
 // sets the background for the entire page
 $imageBackground: url('assets/bg.jpg')
-$bgFallback: #1F4BA7
+$bgFallback: #ccc
 
 // sets the background for the page nav and main section
 @mixin block
   // make sure you specify the RBG fallback if you have a RGBA set!
-  background: rgb(255,255,255)
-  background: rgba(255,255,255,.8)
+  background: white
 
 // top and bottom border for elements
 // use with &:before and &:after
@@ -67,15 +67,12 @@ $bgFallback: #1F4BA7
   a
     color: $baseColor
     &:hover
-      color: $secondaryLink
+      color: $baseColor
   b
     font-weight: $boldWeight
 
 h1.title
   display: none
-
-h2.pane-title
-  background: $paneTitleBG
 
 img
   +noShadow
@@ -87,8 +84,7 @@ ul
 body
   background-color: $bgFallback
   background-image: $imageBackground
-  background-repeat: repeat-y
-  background-position: center top
+  background-repeat: both
 
 div[role="main"]
   +block
@@ -136,7 +132,7 @@ div[role="main"]
 // reset quick info color
 .panel-row-ad-quick-info
   h2.pane-title
-    color: $baseColor !important
+    color: #000 !important
 
 
 //////////////////////////////////////////
@@ -148,21 +144,24 @@ div[role="main"]
   background: transparent
   margin-right: -5px
   padding: 0
-  font-family: $accent
+  font-family: $accent-reg
   ul.menu
     +block
     background-image: none
     text-align: right
+    padding: 5px 0
+    .active
+      color: $secondaryLink
     a
       display: inline-block
       width: 100%
-      padding: 10px 19px 10px 0
+      padding: 6px 5px 6px 0
       font-size: 21px
       font-weight: 600
       text-transform: uppercase
-      color: $secondaryLink
-      &:hover, .active
-        color: $baseColor
+      color: #000
+      &:hover
+        color: $secondaryLink
         text-decoration: none
 
 // campaign logo
@@ -184,7 +183,8 @@ div[role="main"]
     padding: 0
     font-weight: 600
   .field-name-field-campaign-teaser p
-    margin-bottom: 15px
+    margin-bottom: 8px
+    font-size: 20px
   .pane-content  
     padding-bottom: 0
 
@@ -289,17 +289,17 @@ div[role="main"]
     padding: 0
     background: transparent
     text-transform: uppercase
-    color: $secondaryLink
     line-height: 1em
     font-weight: 500
   .pane-content
     margin-top: 1em
     padding: 0
     h3
-      color: $baseColor
-      font-size: 24px
+      color: $secondaryLink
+      font-size: 21px
+      font-family: $accent-reg
       text-transform: uppercase
-      font-weight: 600
+      font-weight: 500
       line-height: .8em
     p
       margin: 0 0 0.8em 0
@@ -322,19 +322,60 @@ div[role="main"]
     background: none
     padding: 0
 
-// FAQ
-.faq-section
-  +noBorder
+// refer five friends
+.mcommons-webform
+  background-color: $paneBG !important
+  color: #000
+  overflow: auto
+  height: 310px
+  input.field
+    width: 100%
+    height: 22px
+    margin-bottom: 15px
+  label
+    font-weight: 600
+  .go-button
+    padding-top: 3px
+    margin: 0 10px 5px 0
+    left: 150px
+    bottom: -15px
+    position: relative
   .pane-content
-    ul
-      margin: 0px 10px
-      padding: 1.5em
-    li
-      h3
-        font-size: 1.6em
-        text-transform: none
-      p 
-        margin-top: 0
+    padding: 10px
+
+.mcommons-webform-long
+  float: none
+  height: 300px
+  margin: 0 0 15px 0
+  border: none !important
+  background-color: $paneBG !important
+  .go-button
+    left: 285px
+
+#five_friends
+  width: 170px
+  position: absolute
+  bottom: 0px
+  left: 15px
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 10%
+  
+// FAQ
+#faq-section
+  padding: 15px
+  h3
+    color: $baseColor
+    text-transform: uppercase
+    font-size: 19px
+  h4
+    font-size: 1.0em
+  ul
+    margin-bottom: 15px
+  li
+    list-style: none
 
 // Blog
 .node-campaign-blog-post

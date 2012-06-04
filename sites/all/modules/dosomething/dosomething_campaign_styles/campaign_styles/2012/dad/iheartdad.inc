@@ -31,8 +31,9 @@ $plugin = array(
     array('title' => 'home', 'href' => 'iheartdad'),
     array('title' => 'faq', 'href' => 'iheartdad/faq'),
     array('title' => 'gallery', 'href' => 'iheartdad/gallery'),
+    array('title' => 'send an e-card', 'href' => 'iheartdad/e-card'),
     array('title' => 'scholarships', 'href' => 'iheartdad/scholarships'),
     array('title' => 'blog', 'href' => 'iheartdad/blog'),
-    array('title' => 'send an e-card', 'href' => 'iheartdad/report-back'),
+    array('title' => 'tell us about it', 'href' => 'iheartdad/report-back'),
   ),
 );
