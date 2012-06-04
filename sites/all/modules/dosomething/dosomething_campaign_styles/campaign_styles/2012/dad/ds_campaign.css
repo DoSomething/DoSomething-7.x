@@ -4,15 +4,12 @@
   .main-inner a {
     color: #5db7e0; }
     .main-inner a:hover {
-      color: #e31837; }
+      color: #5db7e0; }
   .main-inner b {
     font-weight: 600; }
 
 h1.title {
   display: none; }
-
-h2.pane-title {
-  background: #5db7e0; }
 
 img {
   -moz-box-shadow: none !important;
@@ -25,14 +22,12 @@ ul {
   margin: 0; }
 
 body {
-  background-color: #1f4ba7;
+  background-color: #cccccc;
   background-image: url("assets/bg.jpg");
-  background-repeat: repeat-y;
-  background-position: center top; }
+  background-repeat: both; }
 
 div[role="main"] {
   background: white;
-  background: rgba(255, 255, 255, 0.8);
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -74,8 +69,7 @@ div[role="main"] {
   margin: 0px; }
   .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
     margin-bottom: 15px;
-    background: white;
-    background: rgba(255, 255, 255, 0.8); }
+    background: white; }
     .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
       background: #5db7e0; }
     .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
@@ -88,28 +82,30 @@ div[role="main"] {
   display: none; }
 
 .panel-row-ad-quick-info h2.pane-title {
-  color: #5db7e0 !important; }
+  color: black !important; }
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: transparent;
   margin-right: -5px;
   padding: 0;
-  font-family: din-web, "Trebuchet MS", sans-serif; }
+  font-family: din-web-reg, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
     background: white;
-    background: rgba(255, 255, 255, 0.8);
     background-image: none;
-    text-align: right; }
+    text-align: right;
+    padding: 5px 0; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu .active {
+      color: #eb444a; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
-      padding: 10px 19px 10px 0;
+      padding: 6px 5px 6px 0;
       font-size: 21px;
       font-weight: 600;
       text-transform: uppercase;
-      color: #e31837; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #5db7e0;
+      color: black; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover {
+        color: #eb444a;
         text-decoration: none; }
 
 .pane-node-field-campaign-logo .pane-content {
@@ -129,7 +125,8 @@ div[role="main"] {
     padding: 0;
     font-weight: 600; }
   .panel-top-right-mini-info .field-name-field-campaign-teaser p {
-    margin-bottom: 15px; }
+    margin-bottom: 8px;
+    font-size: 20px; }
   .panel-top-right-mini-info .pane-content {
     padding-bottom: 0; }
 
@@ -216,7 +213,7 @@ div[role="main"] {
     left: 324px;
     color: #5db7e0; }
     #campaign-opt-in a:hover {
-      color: #e31837;
+      color: #eb444a;
       text-decoration: none; }
 
 .pane-campaign-counter .pane-content {
@@ -236,17 +233,17 @@ div[role="main"] {
   padding: 0;
   background: transparent;
   text-transform: uppercase;
-  color: #e31837;
   line-height: 1em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content {
   margin-top: 1em;
   padding: 0; }
   .panel-row-ad-quick-info .pane-content h3 {
-    color: #5db7e0;
-    font-size: 24px;
+    color: #eb444a;
+    font-size: 21px;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 0.8em; }
   .panel-row-ad-quick-info .pane-content p {
     margin: 0 0 0.8em 0; }
@@ -267,16 +264,58 @@ div[role="main"] {
     background: none;
     padding: 0; }
 
-.faq-section {
-  border: none !important; }
-  .faq-section .pane-content ul {
-    margin: 0px 10px;
-    padding: 1.5em; }
-  .faq-section .pane-content li h3 {
-    font-size: 1.6em;
-    text-transform: none; }
-  .faq-section .pane-content li p {
-    margin-top: 0; }
+.mcommons-webform {
+  background-color: #dddddd !important;
+  color: black;
+  overflow: auto;
+  height: 310px; }
+  .mcommons-webform input.field {
+    width: 100%;
+    height: 22px;
+    margin-bottom: 15px; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .go-button {
+    padding-top: 3px;
+    margin: 0 10px 5px 0;
+    left: 150px;
+    bottom: -15px;
+    position: relative; }
+  .mcommons-webform .pane-content {
+    padding: 10px; }
+
+.mcommons-webform-long {
+  float: none;
+  height: 300px;
+  margin: 0 0 15px 0;
+  border: none !important;
+  background-color: #dddddd !important; }
+  .mcommons-webform-long .go-button {
+    left: 285px; }
+
+#five_friends {
+  width: 170px;
+  position: absolute;
+  bottom: 0px;
+  left: 15px; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 10%; }
+
+#faq-section {
+  padding: 15px; }
+  #faq-section h3 {
+    color: #5db7e0;
+    text-transform: uppercase;
+    font-size: 19px; }
+  #faq-section h4 {
+    font-size: 1em; }
+  #faq-section ul {
+    margin-bottom: 15px; }
+  #faq-section li {
+    list-style: none; }
 
 .node-campaign-blog-post {
   padding: 15px !important; }
@@ -308,11 +347,11 @@ div[role="main"] {
     color: #5db7e0;
     text-decoration: underline; }
     .pane-campaign-blog-panel-pane-1 a:hover {
-      color: #e31837; }
+      color: #eb444a; }
   .pane-campaign-blog-panel-pane-1 .views-field-title a {
     text-decoration: none; }
     .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
-      color: #e31837; }
+      color: #eb444a; }
   .pane-campaign-blog-panel-pane-1 .more-link {
     text-transform: uppercase; }
 
