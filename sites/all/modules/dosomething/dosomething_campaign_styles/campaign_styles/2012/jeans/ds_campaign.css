@@ -266,3 +266,28 @@ img {
 
 .pane-campaign-social {
   border-top: 1px solid rgba(0, 0, 0, 0.5); }
+
+/* 100 schools blog post */
+#winning-schools-post {
+  padding: 10px; }
+
+#winning-schools-post #schools-map {
+  margin-left: 10px;
+  margin-bottom: 10px; }
+
+#winning-schools-post table {
+  margin-left: 50px; }
+
+#winning-schools-post tr {
+  line-height: 22px;
+  font-size: 16px; }
+
+#winning-schools-post .hd {
+  display: none; }
+
+#winning-schools-post table .s4 {
+  text-align: center; }
+
+#winning-schools-post tr:nth-child(3) {
+  font-size: 30px;
+  line-height: 34px; }
