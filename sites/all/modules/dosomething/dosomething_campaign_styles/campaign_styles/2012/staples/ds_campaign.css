@@ -48,7 +48,7 @@ form .go-button {
 .three-boxes {
   width: 32% !important;
   float: left !important;
-  margin-right: 2.2% !important; }
+  margin-right: 2% !important; }
   .three-boxes:last-child {
     margin-right: 0 !important; }
   .three-boxes .pane-content {
@@ -413,6 +413,9 @@ form.webform-client-form {
   border: 2px solid #e40079;
   background-color: white !important; }
 
+.pink-title .pane-title {
+  background-image: url("assets/pane-title-pink-bg.png") !important; }
+
 .email-us {
   background: white;
   width: 100%; }
@@ -466,3 +469,8 @@ form.webform-client-form {
 
 .pane-dosomething-blocks-dosomething-social-node-buttons .pane-content {
   background: white; }
+
+.confirmation {
+  padding: 15px;
+  font-size: 14px;
+  text-align: center; }
