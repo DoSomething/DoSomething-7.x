@@ -115,17 +115,21 @@ function webform_quiz_webform_submission_presave($node, $submission) {
   foreach ($node->webform['components'] as $cid => $component) {
     if ($component['type'] == 'quiz_question') {
       foreach ($submission->data[$cid]['value'] as $value) {
-        if ($value != '0') {
-          $aggregator[$value] = (isset($aggregator[$value])) ? $aggregator[$value] + 1 : 1;
+        if ($value) {
+          $inc = $component['extra']['quiz_multiplier'];
+          $aggregator[$value] = (isset($aggregator[$value])) ? $aggregator[$value] + $inc : $inc;
         }
       }
     }
   }
-  asort($aggregator);
-  end($aggregator);
-  $winner = key($aggregator);
 
-  $node->webform['redirect_url'] = $node->webform['quiz_redirects'][$winner];
+  if (count($aggregator) > 0) {
+    asort($aggregator);
+    end($aggregator);
+    $winner = key($aggregator);
+
+    $node->webform['redirect_url'] = $node->webform['quiz_redirects'][$winner];
+  }
 }
 
 function webform_quiz_clear($nid) {

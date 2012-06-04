@@ -16,6 +16,7 @@ function _webform_defaults_quiz_question() {
       'quiz_question' => '',
       'quiz_multiplier' => 1,
       'multiple' => 0,
+      'randomize' => 0,
     ),  
   );  
 }
@@ -40,9 +41,10 @@ function _webform_edit_quiz_question($component) {
     '#parents' => array('extra', 'quiz_question'),
   );
 
-  $form['quiz']['multiple'] = array(
+  $form['display']['multiple'] = array(
     '#type' => 'checkbox',
     '#title' => t('Allow multiple select'),
+    '#description' => t('Checking this box will switch to using checkboxes instead of radios.'),
     '#default_value' => $component['extra']['multiple'],
     '#parents' => array('extra', 'multiple'),
   );
@@ -57,6 +59,14 @@ function _webform_edit_quiz_question($component) {
     '#parents' => array('extra', 'quiz_multiplier'),
   );
 
+  $form['display']['randomize'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Randomize options'),
+    '#description' => t('Randomize the display of the responses to the question. This will not affect outcome.'),
+    '#default_value' => $component['extra']['randomize'],
+    '#parents' => array('extra', 'randomize'),
+  );
+
   foreach ($node->webform['quiz_redirects'] as $i => $redirect) {
     $form['quiz']['responses'][$i] = array(
       '#type' => 'textfield',
@@ -69,6 +79,16 @@ function _webform_edit_quiz_question($component) {
 }
 
 function _webform_render_quiz_question($component, $value = NULL, $filter = TRUE) {
+  if ($component['extra']['randomize']) {
+    $keys = array_keys($component['extra']['responses']);
+    shuffle($keys);
+    $return = array();
+    foreach ($keys as $key) {
+      $return[$key] = $component['extra']['responses'][$key];
+    }
+    $component['extra']['responses'] = $return;
+  }
+
   $form_item = array(
     '#type' => ($component['extra']['multiple']) ? 'checkboxes' : 'radios',
     '#options' => $component['extra']['responses'],
