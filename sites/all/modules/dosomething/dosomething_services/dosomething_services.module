@@ -271,6 +271,15 @@ function _dosomething_services_user_resource_create($account) {
   $return->user = _user_resource_create($account);
   $GLOBALS['conf']['user_email_verification'] = TRUE;
 
+  // Add mail information to the return value
+  $new_user = user_load($return->user['uid']);
+  if (!empty($new_user)) {
+    $mail = $new_user->mail;
+    if (!empty($mail)) {
+      $return->user['mail'] = $mail;
+    }
+  }
+
   // Add session information to the return value
   $return->sessid = session_id();
   $return->session_name = session_name();
