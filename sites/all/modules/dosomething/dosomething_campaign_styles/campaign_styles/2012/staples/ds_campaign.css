@@ -120,6 +120,8 @@ form .go-button {
     background: white;
     background-image: none;
     text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu li {
+      line-height: 1.2em; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
@@ -450,6 +452,8 @@ form.webform-client-form {
     display: none; }
   .sign-up #webform-component-zip-code {
     margin-bottom: 100px; }
+  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
+    margin-top: 20px; }
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
@@ -474,3 +478,10 @@ form.webform-client-form {
   padding: 15px;
   font-size: 14px;
   text-align: center; }
+
+.mini-gallery .pane-content {
+  height: 130px; }
+.mini-gallery ul.jcarousel-list-horizontal {
+  width: 644px !important; }
+  .mini-gallery ul.jcarousel-list-horizontal li {
+    width: 118px !important; }
