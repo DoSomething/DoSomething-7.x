@@ -964,16 +964,14 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-views-ifempty img,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-picture img,
 .node-type-club .pane-profile-panel-pane-1 .views-field-views-ifempty img, .node-page .content img, .page-node .content img, .page-why-become-a-member .content img, .node-form, .popup-content, .apps-grid .apps-box {
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
 }
 
 .box-shadow-none, .page-taxonomy-term .field-name-field-picture img {
-  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
-  -o-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
+  -moz-box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
   box-shadow: rgba(75, 71, 68, 0.35) 0 0px 0px;
 }
 
@@ -1076,9 +1074,8 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 }
 
 h1.title {
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding-top: 23px;
@@ -1171,11 +1168,10 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, #og-ui-confirm-subscribe #edit-actions #edit-submit {
   font-weight: bold;
-  -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
-  -o-border-radius: 12px;
+  -moz-border-radius: 12px;
   -ms-border-radius: 12px;
-  -khtml-border-radius: 12px;
+  -o-border-radius: 12px;
   border-radius: 12px;
   border: none;
   height: 30px;
@@ -1827,9 +1823,8 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   margin: 0;
 }
 .pane-narrow-block .views-row, .panes-2 .panel-second .views-row, .pane-blog-center .views-row {
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding: 15px 0;
@@ -2182,15 +2177,13 @@ html {
 }
 
 * {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .ie8 * {
-  -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
-  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
 
@@ -2322,8 +2315,9 @@ dd {
 a {
   color: #18408b;
   text-decoration: none;
-  -moz-transition: "all" 0.3s "ease-out";
   -webkit-transition: "all" 0.3s "ease-out";
+  -moz-transition: "all" 0.3s "ease-out";
+  -ms-transition: "all" 0.3s "ease-out";
   -o-transition: "all" 0.3s "ease-out";
   transition: "all" 0.3s "ease-out";
 }
@@ -2655,9 +2649,8 @@ input[type=range],
 input[type=search],
 input[type=color] {
   border: none;
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   outline: none;
   padding-left: 5px;
@@ -2716,9 +2709,8 @@ select.form-select {
 #dosomething-login-register-popup-form input[type="text"], #dosomething-login-register-popup-form input[type="textarea"],
 #dosomething-login-register-facebook input[type="text"],
 #dosomething-login-register-facebook input[type="textarea"] {
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   background: white;
 }
@@ -2923,9 +2915,9 @@ select.form-select {
 }
 .ie7 #dosomething-login-register-popup-form .under-13-field #edit-parent-email-message, .ie7
 #dosomething-login-register-facebook .under-13-field #edit-parent-email-message {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/under-13.gif');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3035,9 +3027,9 @@ select.form-select {
 }
 .ie7 .front.not-logged-in a.ie-signup-button {
   display: block;
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/ie-signup-button.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3106,9 +3098,8 @@ div.status p:last-child, div.warning p:last-child, div.error p:last-child, div.m
 }
 
 .error, div.error {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   color: red;
   color: red;
@@ -3142,15 +3133,13 @@ ul.tabs.primary li a {
   background-image: linear-gradient(top, #fcfdfa, #f1f2ef);
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
-  -o-border-top-left-radius: 3px;
   -ms-border-top-left-radius: 3px;
-  -khtml-border-top-left-radius: 3px;
+  -o-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
-  -o-border-top-right-radius: 3px;
   -ms-border-top-right-radius: 3px;
-  -khtml-border-top-right-radius: 3px;
+  -o-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
   color: #18408b;
   padding-top: 8px;
@@ -3311,9 +3300,8 @@ body {
   font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
   font-size: 16px;
   text-transform: uppercase;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 #utility-bar .utility-block {
@@ -3341,9 +3329,8 @@ body {
   position: relative;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1 {
-  -moz-box-shadow: inset 0 0 4px 1px #4d4a4a;
   -webkit-box-shadow: inset 0 0 4px 1px #4d4a4a;
-  -o-box-shadow: inset 0 0 4px 1px #4d4a4a;
+  -moz-box-shadow: inset 0 0 4px 1px #4d4a4a;
   box-shadow: inset 0 0 4px 1px #4d4a4a;
   background-color: #746f6f;
   border: 1px solid #4d4a4a;
@@ -3351,9 +3338,9 @@ body {
   padding: 4px;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/icn-utility-search-magnify.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3404,9 +3391,9 @@ body {
   z-index: 101;
 }
 #site-name a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3418,9 +3405,8 @@ body {
 div[role=main] {
   background-color: #efefef;
   padding: 23px;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 752px;
 }
@@ -3446,9 +3432,9 @@ div[role=main] {
 }
 
 .connect-thru-facebook a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/btn-facebook-dashboard-login.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3461,9 +3447,9 @@ div[role=main] {
 }
 
 .connect-with-facebook a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/btn-facebook-popup-login.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3569,8 +3555,9 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   font-size: 18px;
   line-height: 38px;
   text-transform: capitalize;
-  -moz-transition: opacity 0.2s "ease-out";
   -webkit-transition: opacity 0.2s "ease-out";
+  -moz-transition: opacity 0.2s "ease-out";
+  -ms-transition: opacity 0.2s "ease-out";
   -o-transition: opacity 0.2s "ease-out";
   transition: opacity 0.2s "ease-out";
   margin-left: -28px;
@@ -3925,9 +3912,8 @@ h2.block-title, h2.pane-title {
   background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 133px center;
 }
 .block-facetapi .content {
-  -moz-box-shadow: white 0 -1px -1px 1px;
   -webkit-box-shadow: white 0 -1px -1px 1px;
-  -o-box-shadow: white 0 -1px -1px 1px;
+  -moz-box-shadow: white 0 -1px -1px 1px;
   box-shadow: white 0 -1px -1px 1px;
   border-top: 1px #d4d2d1 solid;
   margin-left: 8px;
@@ -4040,9 +4026,8 @@ h2.block-title, h2.pane-title {
   padding: 15px 0;
   padding-right: 19px;
   width: 95%;
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
 }
@@ -4076,9 +4061,8 @@ h2.block-title, h2.pane-title {
   height: 23px;
 }
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:last-of-type a {
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   line-height: 22px;
@@ -4280,9 +4264,8 @@ h2.block-title, h2.pane-title {
   width: 230px;
 }
 .member-profile .upper {
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding-bottom: 5px;
@@ -4367,11 +4350,10 @@ h2.block-title, h2.pane-title {
   background: #4b4744;
   border: none;
   padding: 23px;
-  -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  -o-border-radius: 0;
+  -moz-border-radius: 0;
   -ms-border-radius: 0;
-  -khtml-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
 }
 .ui-dialog .ui-dialog-content {
@@ -4405,9 +4387,9 @@ h2.block-title, h2.pane-title {
 }
 
 .ui-icon.ui-icon-closethick {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -4430,9 +4412,8 @@ h2.block-title, h2.pane-title {
 
 .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"] {
   background: #333131;
-  -moz-box-shadow: none;
   -webkit-box-shadow: none;
-  -o-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
   display: inline;
   float: left;
@@ -4476,9 +4457,8 @@ h2.block-title, h2.pane-title {
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"] {
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   background: white;
 }
@@ -4681,9 +4661,8 @@ h2.block-title, h2.pane-title {
 
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .no-js.ie.ie8.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
@@ -4718,9 +4697,8 @@ h2.block-title, h2.pane-title {
 
 .no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
 .no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .no-js.ie.ie7.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .form-item-first-name,
@@ -4939,6 +4917,20 @@ comments.fb_iframe_widget {
   width: 73%;
 }
 
+.page-node .content .service-links img, .service-links img {
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.service-links iframe {
+  vertical-align: middle;
+}
+.service-links a {
+  margin-right: 24px;
+}
+
 .sharethis-plugin .stButton .stBubble {
   height: 39px;
   margin-top: 0;
@@ -4951,11 +4943,10 @@ comments.fb_iframe_widget {
   padding-top: 8px;
   height: 36px;
   background: white;
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
+  -moz-border-radius: 3px;
   -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
 }
 .sharethis-plugin .stButton .stButton_gradient {
@@ -5085,9 +5076,9 @@ comments.fb_iframe_widget {
   padding-left: 10px;
 }
 .apps-grid .apps-box .doingit-icon {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/doing-it-guy.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -5130,9 +5121,9 @@ comments.fb_iframe_widget {
   cursor: pointer;
   display: block;
   float: right;
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/circle-inactive.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -5141,9 +5132,9 @@ comments.fb_iframe_widget {
   width: 25px;
 }
 .slide-count span.active {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/circle-active.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -5188,9 +5179,8 @@ comments.fb_iframe_widget {
 }
 
 .ribbon-front {
-  -moz-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
-  -o-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   box-shadow: rgba(0, 0, 0, 0.8) -5px 3px 10px;
   background-color: #502862;
   height: 65px;
@@ -5251,9 +5241,9 @@ comments.fb_iframe_widget {
   padding: 0 5px;
   display: block;
   width: 45px;
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/scroller_arrows.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -5484,9 +5474,8 @@ comments.fb_iframe_widget {
 }
 
 .pane-ds-stuff-you-need .pane-content {
-  -moz-box-shadow: #d4d2d1 0 1px 0 inset;
   -webkit-box-shadow: #d4d2d1 0 1px 0 inset;
-  -o-box-shadow: #d4d2d1 0 1px 0 inset;
+  -moz-box-shadow: #d4d2d1 0 1px 0 inset;
   box-shadow: #d4d2d1 0 1px 0 inset;
   border-top: 1px white solid;
 }
@@ -5725,9 +5714,8 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 .node-type-club .pane-club-projects-panel-pane-1 .views-row,
 .node-type-club .pane-club-projects-panel-pane-2 .views-row,
 .node-type-club .pane-profile-panel-pane-1 .views-row {
-  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
-  -o-box-shadow: #d4d2d1 0 1px 0 0;
+  -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding: 15px 0;
