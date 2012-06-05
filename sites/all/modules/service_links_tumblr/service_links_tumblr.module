@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Add the support for Forward module.
+ */
+
+/**
+ * Implements hook_service_links().
+ */
+function service_links_tumblr_service_links() {
+  $links = array();
+
+  $links['tumblr'] = array(
+    'name' => 'Tumblr',
+    'link' => 'http://www.tumblr.com/share/link?url=<encoded-url>&name=<encoded-title>&description=<encoded-teaser>',
+    'description' => t('Share on Tumblr'),
+  );
+
+  return $links;
+}
