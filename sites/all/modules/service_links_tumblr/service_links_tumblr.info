@@ -1,0 +1,9 @@
+name = Tumblr Services
+description = Add the support for Tumblr service.
+core = 7.x
+package = Service Links - Services
+dependencies[] = service_links 
+
+version = VERSION
+files[] = service_links_tumblr.module
+
