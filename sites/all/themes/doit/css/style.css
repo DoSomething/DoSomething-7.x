@@ -4924,8 +4924,9 @@ comments.fb_iframe_widget {
   box-shadow: none;
 }
 
-.service-links iframe {
+.service-links iframe, .service-links div {
   vertical-align: middle;
+  height: 20px;
 }
 .service-links a {
   margin-right: 24px;
