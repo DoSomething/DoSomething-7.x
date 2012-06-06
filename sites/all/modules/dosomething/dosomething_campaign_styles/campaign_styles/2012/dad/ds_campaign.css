@@ -100,7 +100,7 @@ div[role="main"] {
       display: inline-block;
       width: 100%;
       padding: 6px 5px 6px 0;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 600;
       text-transform: uppercase;
       color: black; }
@@ -201,20 +201,7 @@ div[role="main"] {
 
 #campaign-opt-in {
   font-size: 11px;
-  margin-left: 15px;
-  padding: 15px 0 12px 0; }
-  #campaign-opt-in a {
-    font-weight: bold;
-    display: block;
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    bottom: 13px;
-    left: 324px;
-    color: #5db7e0; }
-    #campaign-opt-in a:hover {
-      color: #eb444a;
-      text-decoration: none; }
+  margin: -5px 0 0 5px; }
 
 .pane-campaign-counter .pane-content {
   padding: 20px 25px; }
@@ -240,7 +227,7 @@ div[role="main"] {
   padding: 0; }
   .panel-row-ad-quick-info .pane-content h3 {
     color: #eb444a;
-    font-size: 21px;
+    font-size: 20px;
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
     text-transform: uppercase;
     font-weight: 500;
@@ -264,13 +251,18 @@ div[role="main"] {
     background: none;
     padding: 0; }
 
+.pane-content .got_questions {
+  text-align: right;
+  border-top: 2px solid black;
+  padding-top: 10px; }
+
 .mcommons-webform {
   background-color: #dddddd !important;
   color: black;
   overflow: auto;
   height: 310px; }
   .mcommons-webform input.field {
-    width: 100%;
+    width: 90%;
     height: 22px;
     margin-bottom: 15px; }
   .mcommons-webform label {
@@ -278,15 +270,23 @@ div[role="main"] {
   .mcommons-webform .go-button {
     padding-top: 3px;
     margin: 0 10px 5px 0;
-    left: 150px;
-    bottom: -15px;
+    left: 277px;
+    bottom: 40px;
     position: relative; }
   .mcommons-webform .pane-content {
-    padding: 10px; }
+    padding: 10px;
+    width: 100%;
+    overflow: visible; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 10%;
+  max-height: 200px; }
 
 .mcommons-webform-long {
   float: none;
-  height: 300px;
+  height: 250px;
   margin: 0 0 15px 0;
   border: none !important;
   background-color: #dddddd !important; }
@@ -298,11 +298,6 @@ div[role="main"] {
   position: absolute;
   bottom: 0px;
   left: 15px; }
-
-.mcommons-webform-column {
-  float: left;
-  width: 40%;
-  margin-right: 10%; }
 
 #faq-section {
   padding: 15px; }
