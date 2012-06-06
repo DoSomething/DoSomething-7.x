@@ -21,7 +21,7 @@ function dosomething_service_links_service_links() {
 
   $links['ds_facebook'] = array(
     'name' => 'DS Facebook Like',
-    'link' => '<encoded-url>',
+    'link' => '<url>',
     'javascript' => $moddir . 'fb_like.js',
     'description' => t('DoSomething.org Custom Like'),
   );
