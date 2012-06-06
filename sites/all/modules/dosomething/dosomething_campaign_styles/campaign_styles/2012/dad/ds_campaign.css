@@ -34,20 +34,24 @@ div[role="main"] {
   margin-top: 8px;
   padding-top: 10px; }
 
-.three-boxes {
-  width: 32% !important;
-  float: left !important;
-  margin-right: 2% !important; }
-  .three-boxes:last-child {
-    margin-right: 0 !important; }
-  .three-boxes .pane-content {
+.panel-row-flexible .three-boxes {
+  width: 28%;
+  float: left;
+  margin-right: 0; }
+  .panel-row-flexible .three-boxes h3 {
+    text-align: center;
+    padding: 25px 20px 0px;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif; }
+  .panel-row-flexible .three-boxes a {
+    color: black; }
+    .panel-row-flexible .three-boxes a:hover {
+      color: black; }
+  .panel-row-flexible .three-boxes .pane-content {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box; }
-
-.three-boxes-last-child {
-  margin-right: 0 !important; }
+    box-sizing: border-box;
+    height: 165px; }
 
 .line-top:before {
   overflow: hidden;
@@ -69,6 +73,7 @@ div[role="main"] {
   margin: 0px; }
   .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
     margin-bottom: 15px;
+    border: none;
     background: white; }
     .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
       background: #5db7e0; }
@@ -126,9 +131,16 @@ div[role="main"] {
     font-weight: 600; }
   .panel-top-right-mini-info .field-name-field-campaign-teaser p {
     margin-bottom: 8px;
-    font-size: 20px; }
+    width: 90%;
+    font-size: 18px; }
   .panel-top-right-mini-info .pane-content {
     padding-bottom: 0; }
+  .panel-top-right-mini-info .scholarship_heart {
+    position: absolute;
+    right: -80px;
+    top: -10px;
+    width: 145px;
+    z-index: 1; }
 
 .pane-campaign-social .pane-content .fb-facepile {
   margin-bottom: 5px; }
@@ -201,7 +213,7 @@ div[role="main"] {
 
 #campaign-opt-in {
   font-size: 11px;
-  margin: -5px 0 0 5px; }
+  margin: 18px 0 0 15px; }
 
 .pane-campaign-counter .pane-content {
   padding: 20px 25px; }
@@ -257,47 +269,48 @@ div[role="main"] {
   padding-top: 10px; }
 
 .mcommons-webform {
-  background-color: #dddddd !important;
-  color: black;
-  overflow: auto;
-  height: 310px; }
+  float: left;
+  width: 66%;
+  margin-right: 5%;
+  border: none !important; }
   .mcommons-webform input.field {
-    width: 90%;
-    height: 22px;
-    margin-bottom: 15px; }
+    width: 85%;
+    height: 20px;
+    margin-bottom: 5px; }
   .mcommons-webform label {
     font-weight: 600; }
   .mcommons-webform .go-button {
     padding-top: 3px;
-    margin: 0 10px 5px 0;
-    left: 277px;
-    bottom: 40px;
-    position: relative; }
+    margin: 0 10px 5px 0; }
   .mcommons-webform .pane-content {
     padding: 10px;
-    width: 100%;
-    overflow: visible; }
+    height: 165px; }
 
-.mcommons-webform-column {
-  float: left;
-  width: 40%;
-  margin-right: 10%;
-  max-height: 200px; }
-
-.mcommons-webform-long {
+.mcommons-webform-video {
   float: none;
-  height: 250px;
+  width: 100%;
   margin: 0 0 15px 0;
-  border: none !important;
-  background-color: #dddddd !important; }
-  .mcommons-webform-long .go-button {
-    left: 285px; }
+  border: none !important; }
 
 #five_friends {
   width: 170px;
   position: absolute;
   bottom: 0px;
   left: 15px; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 2%; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
+
+.panel-row-flexible .pane-i-heart-dad-2012-m-commons-locator > .pane-content {
+  background-color: white; }
 
 #faq-section {
   padding: 15px; }
@@ -311,6 +324,23 @@ div[role="main"] {
     margin-bottom: 15px; }
   #faq-section li {
     list-style: none; }
+  #faq-section img {
+    border: 5px solid #eb444a !important;
+    background-color: white; }
+
+.ecard {
+  float: left;
+  width: 350px;
+  padding: 10px; }
+
+.intro {
+  padding: 20px;
+  text-align: center; }
+
+.outro {
+  clear: both;
+  text-align: center;
+  padding: 20px; }
 
 .node-campaign-blog-post {
   padding: 15px !important; }
@@ -375,4 +405,35 @@ div[role="main"] {
 
 #edit-submitted-field-webform-school-reference,
 #submitted-field-webform-school-zip-add-more-wrapper {
+  display: none; }
+
+#long-form {
+  width: 80%;
+  margin: 0 auto; }
+
+#node-722416 {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+  #node-722416 .webform-component {
+    margin-bottom: 10px; }
+  #node-722416 label {
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 2px; }
+  #node-722416 input {
+    width: 200px; }
+  #node-722416 #edit-submitted--2 {
+    display: none; }
+  #node-722416 #webform-component-no-worries, #node-722416 #webform-component-experience-like {
+    font-size: 11px;
+    font-weight: 500; }
+
+#edit-submitted-field-webform-pictures-und legend {
+  display: none; }
+
+.fb-social-comments-plugin {
   display: none; }
