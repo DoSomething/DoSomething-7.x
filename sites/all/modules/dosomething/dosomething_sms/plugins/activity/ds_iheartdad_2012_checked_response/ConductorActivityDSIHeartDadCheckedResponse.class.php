@@ -1,22 +1,23 @@
 <?php
 
 /**
- *
+ * Activity takes blood pressure and zip code from previous activities in the
+ * flow, submits that data to a webform, and sends different responses to the
+ * user depending on the blood pressure numbers.
  */
 class ConductorActivityDSIHeartDadCheckedResponse extends ConductorActivity {
   // nid of the webform to submit the zipcodes to
-  // TODO: create webform and get actual NID
-  const ZIPCODE_WEBFORM_NID = 123456;
+  const ZIPCODE_WEBFORM_NID = 722458;
 
   public function run() {
-    $msg_not_tested = t('You still have time to take pressure off dad! Check dad\'s pressure at your local drug store. Txt CHECKED w/ a pic & his blood pressure #s. You could win a $4k scholarship!');
+    $msg_not_tested = t('U still have time to take pressure off dad! Check dad\'s pressure @ ur local drug store. Txt CHECKED w/ ur zip & his blood pressure #s to win $4k!');
     // TODO: do we care about Hypotension? (90/60 or less)
     // Normal blood pressure (less than 120/80)
     $msg_normal = "Awesome, looks like his health is in tip top shape. Keep it that way! Check out our site for more tips on keeping dad healthy at iheartdad.org/FAQs";
     // Pre Hypertension (120-139/80-89)
-    $msg_pre_hypertension = "Dad's pressure is a little high but no worries! Check out our guide on our website at iheartdad.org to find out what you can do iheartdad.org/FAQs";
+    $msg_pre_hypertension = "Dad’s pressure is a little high but no worries! Check out our guide on our website at iheartdad.org/FAQs for tips on keeping dad's pressure low";
     // Hypertension (140/90 and higher)
-    $msg_hypertension = "Dad's pressure is on the rise but no worries! Have him schedule an appt with a trusted doc and check out our website with more tips on keeping dad healthy iheartdad.org/FAQs";
+    $msg_hypertension = "Dad’s pressure is on the rise but no worries! Have him schedule an appt w/a trusted doc & check out iheartdad.org/FAQs for tips on keeping dad healthy";
     // Error
     $msg_error = "That's not a blood pressure";
 
@@ -74,7 +75,57 @@ class ConductorActivityDSIHeartDadCheckedResponse extends ConductorActivity {
         }
       }
 
-      // TODO: Submit zipcode and blood pressure responses to a webform
+      // If we have a user with this mobile #, use their existing account
+      $mobile = $state->getContext('sms_number');
+      $account = dosomething_general_find_user_by_cell($mobile);
+
+      // Otherwise, create a new account
+      if (!$account) {
+        $account = new stdClass;
+        $account->name = $mobile;
+
+        $suffix = 0;
+        $base_name = $account->name;
+        while (user_load_by_name($account->name)) {
+          $suffix++;
+          $account->name = $base_name . '-' . $suffix;
+        }
+        $account->mail = $mobile . '@mobile';
+        $account->status = 1;
+        user_save($account);
+        $profile_values = array(
+          'type' => 'main',
+          'field_user_mobiel' => array(
+            LANGUAGE_NONE => array(
+              'value' => $mobile,
+            ),
+          ),
+        );
+        $profile = profile2_create($profile_values);
+        $profile->uid = $account->uid;
+
+        try {
+          profile2_save($profile);
+        }
+        catch (Exception $e) {
+        }
+      }
+
+      // Submit zipcode and blood pressure responses to a webform
+      $submission = new stdClass;
+      $submission->nid = self::ZIPCODE_WEBFORM_NID;
+      $submission->data = array();
+      $submission->uid = $account->uid;
+      $submission->submitted = REQUEST_TIME;
+      $submission->remote_addr = ip_address();
+      $submission->is_draft = FALSE;
+      $submission->sid = NULL;
+
+      $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
+      $wrapper->value()->data[1]['value'][0] = $zip_msg;
+      $wrapper->value()->data[2]['value'][0] = $bp_msg;
+
+      $wrapper->save();
     }
     // Blood pressure did NOT get tested
     else {
