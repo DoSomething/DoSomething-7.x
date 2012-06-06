@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * Implements hook_webform_component_info().
+ */
+function webform_quiz_webform_component_info() {
+  $components = array();
+
+  $components['quiz_question'] = array(
+    'label' => t('Quiz question'),
+    'description' => t('A question to be scored for a quiz.'),
+    'features' => array(
+      'description' => FALSE,
+      'title_display' => FALSE,
+      'title_inline' => FALSE,
+      'default_value' => FALSE,
+    ),
+    'file' => 'webform_quiz.component.inc',
+  );
+
+  return $components;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function webform_quiz_form_webform_configure_form_alter(&$form, &$form_state, $form_id) {
+  $node = &$form['#node'];
+  $field_limit = 8;
+  $filler = range(0, $field_limit);
+  unset($filler[0]);
+
+  $form['role_control']['#weight'] = -2;
+
+  $form['quiz_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable quiz feature'),
+    '#default_value' => isset($node->webform['quiz_redirects']),
+    '#weight' => -3,
+  );
+
+  $form['quiz'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Quiz Options'),
+    '#description' => t('Enter the URL, internal or external, to redirect to when a given numbered response is chosen most frequently. In other words, if response 1 is chosen the most number of times, we will redirect them to the URL below for response 1. Additional fields will show up, up to 8, after entering a value.'),
+    '#collapsible' => TRUE,
+    '#weight' => -3,
+    '#states' => array(
+      'visible' => array(
+        ':input[name="quiz_enable"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
+  foreach ($filler as $int) {
+    $form['quiz']["response_redirect_$int"] = array(
+      '#type' => 'textfield',
+      '#title' => t('Redirect URL: Response') . ' ' . $int,
+      '#default_value' => $node->webform['quiz_redirects'][$int],
+      '#states' => array(
+        'visible' => array(
+          ':input[name="response_redirect_'.($int-1).'"]' => array('empty' => FALSE),
+        ),
+      ),
+    );
+  }
+  unset($form['quiz']['response_redirect_1']['#states']);
+
+  $form['#valudate'][] = 'webform_quiz_webform_configure_validate';
+  $form['#submit'][] = 'webform_quiz_webform_configure_submit';
+}
+
+function webform_quiz_webform_configure_validate($form, &$form_state) {
+  return;
+}
+
+function webform_quiz_webform_configure_submit($form, $form_state) {
+  $node = &$form['#node'];
+
+  webform_quiz_clear($node->nid);
+  if (isset($form_state['values']['quiz_enable']) && $form_state['values']['quiz_enable']) {
+    $i = 1;
+    while ($form_state['values']["response_redirect_$i"] != '') {
+      $node->webform['quiz_redirects'][$i] = $form_state['values']["response_redirect_$i"];
+      $write = array(
+        'rid' => $i,
+        'nid' => $node->nid,
+        'redirect_url' => $node->webform['quiz_redirects'][$i],
+      );
+      
+      drupal_write_record('webform_quiz', $write);
+      $i++;
+    }
+  }
+  return;
+}
+
+function webform_quiz_node_load($nodes, $types) {
+  foreach ($nodes as $nid => $node) {
+    $result = db_select('webform_quiz')
+      ->fields('webform_quiz')
+      ->condition('nid', $nid)
+      ->execute()
+      ->fetchAllAssoc('rid', PDO::FETCH_ASSOC);
+
+    foreach ($result as $rid => $webform_quiz) {
+      $nodes[$nid]->webform['quiz_redirects'][$rid] = $webform_quiz['redirect_url'];
+    }
+  }
+}
+
+function webform_quiz_webform_submission_presave($node, $submission) {
+  $aggregator = array();
+
+  foreach ($node->webform['components'] as $cid => $component) {
+    if ($component['type'] == 'quiz_question') {
+      foreach ($submission->data[$cid]['value'] as $value) {
+        if ($value) {
+          $inc = $component['extra']['quiz_multiplier'];
+          $aggregator[$value] = (isset($aggregator[$value])) ? $aggregator[$value] + $inc : $inc;
+        }
+      }
+    }
+  }
+
+  if (count($aggregator) > 0) {
+    asort($aggregator);
+    end($aggregator);
+    $winner = key($aggregator);
+
+    $node->webform['redirect_url'] = $node->webform['quiz_redirects'][$winner];
+  }
+}
+
+function webform_quiz_clear($nid) {
+  db_delete('webform_quiz')
+    ->condition('nid', $nid)
+    ->execute();
+}
