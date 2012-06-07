@@ -376,6 +376,67 @@ div[role="main"] {
     width: 480px;
     margin: 0 auto; }
 
+#block-system-main .team {
+  background-color: #d6d6d7;
+  height: 470px; }
+  #block-system-main .team div {
+    border: 2px dotted #d32a1b; }
+  #block-system-main .team h2, #block-system-main .team h3, #block-system-main .team h4 {
+    text-transform: uppercase;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    margin-bottom: 5px; }
+  #block-system-main .team h2 {
+    color: black;
+    text-align: center; }
+  #block-system-main .team h3 {
+    color: #d32a1b;
+    text-align: center;
+    font-size: 17px; }
+  #block-system-main .team h4 {
+    color: black;
+    text-align: left;
+    font-size: 17px;
+    margin: 10px 0 0 0; }
+  #block-system-main .team img {
+    border: none !important;
+    width: 45px;
+    height: 45px;
+    margin: 0 15px 15px 0;
+    padding: 0;
+    float: left; }
+  #block-system-main .team .activity-list li {
+    list-style-image: url("assets/triangle.png"); }
+  #block-system-main .team .members-list {
+    margin: 0;
+    padding: 0; }
+  #block-system-main .team .members-list li {
+    list-style: none;
+    width: 100%;
+    overflow: auto;
+    margin: 0 15px 0 0; }
+  #block-system-main .team .team-col_l {
+    float: left;
+    width: 63%;
+    margin-right: 2%; }
+  #block-system-main .team .team-col_r {
+    float: right;
+    width: 35%; }
+  #block-system-main .team .team-activity, #block-system-main .team .team-members {
+    overflow: hidden; }
+  #block-system-main .team .team-progress {
+    height: 250px; }
+  #block-system-main .team .team-members {
+    height: 300px;
+    overflow: auto; }
+  #block-system-main .team .team-activity {
+    height: 200px;
+    overflow: auto; }
+  #block-system-main .team .team-share {
+    height: 150px; }
+  #block-system-main .team .team-progress, #block-system-main .team .team-members, #block-system-main .team .team-activity, #block-system-main .team .team-share {
+    margin-bottom: 20px;
+    padding: 15px; }
+
 .node-campaign-blog-post {
   padding: 15px !important; }
   .node-campaign-blog-post .field-name-field-picture img {

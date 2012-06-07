@@ -1,4 +1,4 @@
-// HUNT HUNT HUNT HUNT
+w// HUNT HUNT HUNT HUNT
 
 // Base imports. Be sure to compile using the --compass switch
 @import compass/css3
@@ -22,7 +22,8 @@ $borderTop: 1px solid rgba(0,0,0,.5)
 $borderBot: 1px solid rgba(255,255,255,.5)
 
 // fonts - don't change these. if you do, -50 life points
-$accent: din-web,"Trebuchet MS",sans-serif
+$accent: din-web, "Trebuchet MS", sans-serif
+$accent-reg: din-web-reg, "Trebuchet MS", sans-serif
 $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
@@ -444,6 +445,69 @@ div[role="main"]
       height: 360px
       width: 480px
       margin: 0 auto
+
+//team 
+#block-system-main
+  .team
+    background-color: $huntLighter
+    height: 470px
+    div
+      border: 2px dotted $baseColor
+    h2, h3, h4
+      text-transform: uppercase
+      font-family: $accent-reg
+      margin-bottom: 5px
+    h2
+      color: #000
+      text-align: center
+    h3
+      color: $baseColor
+      text-align: center
+      font-size: 17px
+    h4
+      color: #000
+      text-align: left
+      font-size: 17px
+      margin: 10px 0 0 0
+    img
+      +noBorder
+      width: 45px
+      height: 45px
+      margin: 0 15px 15px 0
+      padding: 0
+      float: left
+    .activity-list li
+      list-style-image: url("assets/triangle.png")
+    .members-list
+      margin: 0
+      padding: 0
+    .members-list li
+      list-style: none
+      width: 100%
+      overflow: auto
+      margin: 0 15px 0 0
+    .team-col_l
+      float: left
+      width: 63%
+      margin-right: 2%
+    .team-col_r
+      float: right
+      width: 35%
+    .team-activity, .team-members
+      overflow: hidden
+    .team-progress
+      height: 250px
+    .team-members
+      height: 300px
+      overflow: auto
+    .team-activity
+      height: 200px
+      overflow: auto
+    .team-share
+      height: 150px
+    .team-progress, .team-members, .team-activity, .team-share
+      margin-bottom: 20px
+      padding: 15px
 
 // blog
 .node-campaign-blog-post
