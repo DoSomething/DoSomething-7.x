@@ -25,7 +25,7 @@ $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
 // sets the background for the entire page
-$imageBackground: url('assets/bg.jpg')
+$imageBackground: url('assets/new_bg.jpg')
 $bgFallback: #ccc
 
 // sets the background for the page nav and main section
@@ -195,8 +195,8 @@ div[role="main"]
     padding-bottom: 0
   .scholarship_heart
     position: absolute
-    right: -80px
-    top: -10px
+    right: -115px
+    top: -37px
     width: 145px
     z-index: 1
 
@@ -225,6 +225,10 @@ div[role="main"]
   margin: 0 0 15px 0
   width: 750px
   +noBorder
+  #edit-actions
+    position: absolute
+    right: 82px
+    bottom: 1px
   .form-wrapper
     margin-bottom: 5px !important
   .pane-title
@@ -257,15 +261,13 @@ div[role="main"]
           width: 75%
           margin-top: 5px
 
-.webform-client-form
-  #edit-actions
-    position: absolute
-    right: 86px
-    bottom: 9px
+.panel-row-actions-sign-up  
+  #campaign-opt-in
+    font-size: 11px
+    margin: 25px 0 0 17px
 
-#campaign-opt-in
-  font-size: 11px
-  margin: 18px 0 0 15px
+.pane-content #dosomething-login-register-popup-form .popup-content
+  height: 150px
 
 // counter
 .pane-campaign-counter
@@ -348,6 +350,10 @@ div[role="main"]
   .pane-content
     padding: 10px
     height: 165px
+  #campaign-opt-in
+    font-size: 11px
+    margin: 7px 0 0 4px
+    width: 155px
 
 .mcommons-webform-video
   float: none
@@ -374,7 +380,7 @@ form.webform-client-form
 
 // pane within a pane background color fix
 .panel-row-flexible
-  .pane-i-heart-dad-2012-m-commons-locator > .pane-content
+  .pane-iheartdad-locator-box > .pane-content
     background-color: white
 
 // FAQ
@@ -394,11 +400,22 @@ form.webform-client-form
     border: 5px solid $secondaryLink !important
     background-color: #fff
 
+
+// scholarship page
+.official_rules_link
+  position: relative
+  text-align: center
+  bottom: 160px
+
 // e-card page
 .ecard
   float: left
   width: 350px
   padding: 10px
+  
+.ecard-wrapper
+  margin: 0 auto
+  width: 700px
 
 .intro
   padding: 20px
@@ -475,6 +492,12 @@ form.webform-client-form
   .pane-dosomething-blocks-dosomething-social-node-buttons
     margin: 0 auto
       
+// sign up form
+#node-722415
+  .field-name-group-audience
+    display: none
+  
+
 // set the resgister for Do Something block on sign up to be taller
 #dosomething-login-register-popup-form .popup-content
   height: 165px
@@ -487,9 +510,9 @@ form.webform-client-form
 // report back form
 #long-form
   width: 80%
-  margin: 0 auto
+  margin: 0 auto 50px
 
-#node-722416
+#node-722416, #node-722415
   +noBorder
   +noShadow
   .webform-component
@@ -499,13 +522,20 @@ form.webform-client-form
     font-size: 14px
     font-weight: 600
     padding-bottom: 2px
-  input
-    width: 200px
+  .form-item
+    input
+      width: 200px
   #edit-submitted--2
     display: none
-  #webform-component-no-worries, #webform-component-experience-like
-    font-size: 11px
-    font-weight: 500
+  #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc, 
+  #webform-component-no-worries
+    label
+      font-size: 12px
+      font-weight: 500
+      margin-top: -10px
+  #edit-actions
+    text-align: center
+    height: 70px
 
 #edit-submitted-field-webform-pictures-und
   legend

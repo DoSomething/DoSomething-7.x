@@ -23,7 +23,7 @@ ul {
 
 body {
   background-color: #cccccc;
-  background-image: url("assets/bg.jpg");
+  background-image: url("assets/new_bg.jpg");
   background-repeat: both; }
 
 div[role="main"] {
@@ -137,8 +137,8 @@ div[role="main"] {
     padding-bottom: 0; }
   .panel-top-right-mini-info .scholarship_heart {
     position: absolute;
-    right: -80px;
-    top: -10px;
+    right: -115px;
+    top: -37px;
     width: 145px;
     z-index: 1; }
 
@@ -172,6 +172,10 @@ div[role="main"] {
   margin: 0 0 15px 0;
   width: 750px;
   border: none !important; }
+  .panel-row-actions #edit-actions {
+    position: absolute;
+    right: 82px;
+    bottom: 1px; }
   .panel-row-actions .form-wrapper {
     margin-bottom: 5px !important; }
   .panel-row-actions .pane-title {
@@ -206,14 +210,12 @@ div[role="main"] {
         width: 75%;
         margin-top: 5px; }
 
-.webform-client-form #edit-actions {
-  position: absolute;
-  right: 86px;
-  bottom: 9px; }
-
-#campaign-opt-in {
+.panel-row-actions-sign-up #campaign-opt-in {
   font-size: 11px;
-  margin: 18px 0 0 15px; }
+  margin: 25px 0 0 17px; }
+
+.pane-content #dosomething-login-register-popup-form .popup-content {
+  height: 150px; }
 
 .pane-campaign-counter .pane-content {
   padding: 20px 25px; }
@@ -285,6 +287,10 @@ div[role="main"] {
   .mcommons-webform .pane-content {
     padding: 10px;
     height: 165px; }
+  .mcommons-webform #campaign-opt-in {
+    font-size: 11px;
+    margin: 7px 0 0 4px;
+    width: 155px; }
 
 .mcommons-webform-video {
   float: none;
@@ -309,7 +315,7 @@ form.webform-client-form {
   padding: 15px 15px 0 15px;
   margin-bottom: -15px; }
 
-.panel-row-flexible .pane-i-heart-dad-2012-m-commons-locator > .pane-content {
+.panel-row-flexible .pane-iheartdad-locator-box > .pane-content {
   background-color: white; }
 
 #faq-section {
@@ -328,10 +334,19 @@ form.webform-client-form {
     border: 5px solid #eb444a !important;
     background-color: white; }
 
+.official_rules_link {
+  position: relative;
+  text-align: center;
+  bottom: 160px; }
+
 .ecard {
   float: left;
   width: 350px;
   padding: 10px; }
+
+.ecard-wrapper {
+  margin: 0 auto;
+  width: 700px; }
 
 .intro {
   padding: 20px;
@@ -400,6 +415,9 @@ form.webform-client-form {
 .campaign-blog-post .pane-dosomething-blocks-dosomething-social-node-buttons {
   margin: 0 auto; }
 
+#node-722415 .field-name-group-audience {
+  display: none; }
+
 #dosomething-login-register-popup-form .popup-content {
   height: 165px; }
 
@@ -409,28 +427,33 @@ form.webform-client-form {
 
 #long-form {
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto 50px; }
 
-#node-722416 {
+#node-722416, #node-722415 {
   border: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
   box-shadow: none !important; }
-  #node-722416 .webform-component {
+  #node-722416 .webform-component, #node-722415 .webform-component {
     margin-bottom: 10px; }
-  #node-722416 label {
+  #node-722416 label, #node-722415 label {
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
     font-size: 14px;
     font-weight: 600;
     padding-bottom: 2px; }
-  #node-722416 input {
+  #node-722416 .form-item input, #node-722415 .form-item input {
     width: 200px; }
-  #node-722416 #edit-submitted--2 {
+  #node-722416 #edit-submitted--2, #node-722415 #edit-submitted--2 {
     display: none; }
-  #node-722416 #webform-component-no-worries, #node-722416 #webform-component-experience-like {
-    font-size: 11px;
-    font-weight: 500; }
+  #node-722416 #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc label,
+  #node-722416 #webform-component-no-worries label, #node-722415 #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc label, #node-722415 #webform-component-no-worries label {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: -10px; }
+  #node-722416 #edit-actions, #node-722415 #edit-actions {
+    text-align: center;
+    height: 70px; }
 
 #edit-submitted-field-webform-pictures-und legend {
   display: none; }
