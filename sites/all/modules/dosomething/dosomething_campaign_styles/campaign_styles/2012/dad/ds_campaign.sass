@@ -92,18 +92,22 @@ div[role="main"]
   margin-top: 8px
   padding-top: 10px  
 
-.three-boxes
-  width: 32% !important
-  float: left !important
-  margin-right: 2% !important
-  &:last-child
-    margin-right: 0 !important
-  .pane-content
-    +setBorderBox
-
-// IE8 does not support :last-child
-.three-boxes-last-child
-  margin-right: 0 !important
+.panel-row-flexible
+  .three-boxes
+    width: 28%
+    float: left
+    margin-right: 0
+    h3
+      text-align: center
+      padding: 25px 20px 0px
+      font-family: $accent-reg
+    a
+      color: #000
+      &:hover
+        color: #000
+    .pane-content
+      +setBorderBox
+      height: 165px
 
 .line-top
   &:before
@@ -117,6 +121,7 @@ div[role="main"]
   margin: 0px
   .panel-pane
     margin-bottom: 15px
+    border: none
     +block
     .pane-title
       background: $paneTitleBG
@@ -184,9 +189,16 @@ div[role="main"]
     font-weight: 600
   .field-name-field-campaign-teaser p
     margin-bottom: 8px
-    font-size: 20px
+    width: 90%
+    font-size: 18px
   .pane-content  
     padding-bottom: 0
+  .scholarship_heart
+    position: absolute
+    right: -80px
+    top: -10px
+    width: 145px
+    z-index: 1
 
 // campaign social buttons, top right
 .pane-campaign-social
@@ -253,7 +265,7 @@ div[role="main"]
 
 #campaign-opt-in
   font-size: 11px
-  margin: -5px 0 0 5px
+  margin: 18px 0 0 15px
 
 // counter
 .pane-campaign-counter
@@ -309,6 +321,7 @@ div[role="main"]
     background: none
     padding: 0
 
+// mini panels
 // sponsor and help panel
 .pane-content
   .got_questions
@@ -316,50 +329,54 @@ div[role="main"]
     border-top: 2px solid #000
     padding-top: 10px
 
-// refer five friends
+// m.commons & three-boxes mini panel
 .mcommons-webform
-  background-color: $paneBG !important
-  color: #000
-  overflow: auto
-  height: 310px
+  float: left
+  width: 66%
+  margin-right: 5%
+  border: none !important
   input.field
-    width: 90%
-    height: 22px
-    margin-bottom: 15px
+    width: 85%
+    height: 20px
+    margin-bottom: 5px
   label
     font-weight: 600
+  // overriding padding on go-button to center the SUBMIT text
   .go-button
     padding-top: 3px
     margin: 0 10px 5px 0
-    left: 277px
-    bottom: 40px
-    position: relative
   .pane-content
     padding: 10px
-    width: 100%
-    overflow: visible
-    
-.mcommons-webform-column
-  float: left
-  width: 40%
-  margin-right: 10%
-  max-height: 200px
+    height: 165px
 
-.mcommons-webform-long
+.mcommons-webform-video
   float: none
-  height: 250px
+  width: 100%
   margin: 0 0 15px 0
   border: none !important
-  background-color: $paneBG !important
-  .go-button
-    left: 285px
 
 #five_friends
   width: 170px
   position: absolute
   bottom: 0px
   left: 15px
-  
+
+.mcommons-webform-column
+  float: left
+  width: 40%
+  margin-right: 2%
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  padding: 15px 15px 0 15px
+  margin-bottom: -15px
+
+// pane within a pane background color fix
+.panel-row-flexible
+  .pane-i-heart-dad-2012-m-commons-locator > .pane-content
+    background-color: white
+
 // FAQ
 #faq-section
   padding: 15px
@@ -373,8 +390,27 @@ div[role="main"]
     margin-bottom: 15px
   li
     list-style: none
+  img
+    border: 5px solid $secondaryLink !important
+    background-color: #fff
 
-// Blog
+// e-card page
+.ecard
+  float: left
+  width: 350px
+  padding: 10px
+
+.intro
+  padding: 20px
+  text-align: center
+
+// really just exists as an excuse to clear the floats used on the e-card “gallery”
+.outro 
+  clear: both
+  text-align: center
+  padding: 20px
+
+// blog
 .node-campaign-blog-post
   padding: 15px !important
   .field-name-field-picture
@@ -446,4 +482,34 @@ div[role="main"]
 // hide school data on the long form
 #edit-submitted-field-webform-school-reference,
 #submitted-field-webform-school-zip-add-more-wrapper
+  display: none
+
+// report back form
+#long-form
+  width: 80%
+  margin: 0 auto
+
+#node-722416
+  +noBorder
+  +noShadow
+  .webform-component
+    margin-bottom: 10px
+  label
+    font-family: $accent-reg
+    font-size: 14px
+    font-weight: 600
+    padding-bottom: 2px
+  input
+    width: 200px
+  #edit-submitted--2
+    display: none
+  #webform-component-no-worries, #webform-component-experience-like
+    font-size: 11px
+    font-weight: 500
+
+#edit-submitted-field-webform-pictures-und
+  legend
+    display: none
+
+.fb-social-comments-plugin
   display: none
