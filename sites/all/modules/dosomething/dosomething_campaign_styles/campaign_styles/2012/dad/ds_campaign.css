@@ -210,6 +210,12 @@ div[role="main"] {
         width: 75%;
         margin-top: 5px; }
 
+#post-sign-up h3 {
+  padding: 20px 15px 15px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 40px; }
+
 .panel-row-actions-sign-up #campaign-opt-in {
   font-size: 11px;
   margin: 25px 0 0 17px; }
@@ -351,6 +357,20 @@ form.webform-client-form {
 .intro {
   padding: 20px;
   text-align: center; }
+
+.ecard-big {
+  width: 500px;
+  margin: -20px auto 0 !important; }
+
+.ecard-big > img {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+
+.ecard-big > iframe {
+  margin-left: 10px; }
 
 .outro {
   clear: both;
