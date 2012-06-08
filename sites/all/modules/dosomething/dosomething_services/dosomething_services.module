@@ -298,12 +298,31 @@ function _dosomething_services_user_resource_login($username, $password, $email)
   }
   // If there's a username, then use normal login process
   elseif (!empty($username)) {
-    $return = _user_resource_login($username, $password);
-    _dosomething_services_add_more_session_info($return);
+    try {
+      $return = _user_resource_login($username, $password);
+      _dosomething_services_add_more_session_info($return);
+    }
+    catch (Exception $e) {
+      if ($e->getCode() == 401) {
+        // If login threw a 401 and input is a valid email, try to login as email instead
+        if (valid_email_address($username)) {
+          $email = $username;
+          $bLoginAsEmail = true;
+        }
+        else {
+          watchdog('user', 'Invalid login attempt for %username.', array('%username' => $username));
+          $return = services_error(t('Wrong username or password.'), 401);
+        }
+      }
+    }
   }
-  // If there's an email and no username, then load account by email and 
-  // attempt to authenticate based on that account.
+  // If there's an email and no username
   elseif (!empty($email) && valid_email_address($email)) {
+    $bLoginAsEmail = true;
+  }
+
+  // Attempt to load user by email and authenticate based on that account
+  if ($bLoginAsEmail) {
     $account = user_load_by_mail($email);
     if (count($account) > 0 && $account->name) {
       $return = _user_resource_login($account->name, $password);
