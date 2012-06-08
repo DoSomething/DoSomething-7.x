@@ -191,7 +191,7 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path) {
     'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
   );
 
-  //drupal_http_request($api_opt_in_path_url, $options);
+  drupal_http_request($api_opt_in_path_url, $options);
 }
 
 function dosomething_general_user_presave(&$edit, $account, $category) {
