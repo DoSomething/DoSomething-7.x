@@ -1,5 +1,7 @@
 <?php
 
+include_once('teams.features.inc');
+
 /**
  * Implements hook_menu().
  */
@@ -40,8 +42,8 @@ function teams_block_view($delta = '') {
 
   if ($delta != 'team_management') return;
 
-  if (arg(0) == 'team' && is_numeric(arg(1))) {
-    $gid = arg(1);
+  if (arg(0) == 'team' && is_numeric(arg(2))) {
+    $gid = og_get_group('webform_submission_entity', arg(2))->gid;
     $is_admin = og_user_access($gid, 'administer group');
 
     $query = db_select('og_membership', 'ogm');
@@ -249,7 +251,7 @@ function teams_remove($gid, $uid) {
  */
 function teams_my_team($url_base) {
   $team = teams_get_my_teams_for_url($url_base);
-  drupal_goto('team/'.array_shift($team));
+  drupal_goto('team/'.$url_base.'/'.array_shift($team));
 }
 
 /**
@@ -261,9 +263,9 @@ function teams_in_group($url_base) {
 }
 
 function teams_get_my_teams_for_url($url) {
-  static $gid;
+  static $sid;
   global $user;
-  if (!isset($gid)) {
+  if (!isset($sid)) {
     $campaign_nid = teams_get_nid_from_path($url);
     $campaign_gid = og_get_group('node', $campaign_nid)->gid;
 
@@ -276,12 +278,12 @@ function teams_get_my_teams_for_url($url) {
     $query->condition('o3.etid', $user->uid, '=');
     $query->condition('o1.gid', $campaign_gid, '=');
     $query->condition('n.type', 'campaign_sign_up', '=');
-    $query->fields('o2', array('gid'));
-    $result = $query->execute()->fetchAllAssoc('gid', PDO::FETCH_ASSOC);
+    $query->fields('wf', array('sid'));
+    $result = $query->execute()->fetchAllAssoc('sid', PDO::FETCH_ASSOC);
 
-    $gid = array_keys($result);
+    $sid = array_keys($result);
   }
-  return $gid;
+  return $sid;
 }
 
 function teams_get_nid_from_path($url) {
@@ -292,3 +294,4 @@ function teams_get_nid_from_path($url) {
   }
   return $campaign_nid;
 }
+

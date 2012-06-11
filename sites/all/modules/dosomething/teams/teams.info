@@ -1,7 +1,11 @@
-name = Teams
-description = DoSomething Team implementation, including menu items for working with group members.
-core = 7.x
-dependencies[] = og
-package = DoSometing
-
-files[] = teams.module
+name = "Teams"
+description = "DoSomething Team implementation, including menu items for working with group members."
+core = "7.x"
+package = "DoSomething"
+php = "5.2.4"
+dependencies[] = "ctools"
+dependencies[] = "og"
+dependencies[] = "page_manager"
+features[ctools][] = "page_manager:pages_default:1"
+features[page_manager_pages][] = "team_pages"
+files[] = "teams.module"

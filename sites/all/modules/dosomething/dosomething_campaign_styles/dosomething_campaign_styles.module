@@ -173,9 +173,14 @@ function dosomething_campaign_styles_og_context_panels() {
 function dosomething_campaign_styles_og_context_webform_submissions() {
   $context = array();
   $item = menu_get_item();
+  $content_types = array('campaign_report_back', 'campaign_sign_up');
+
   if (isset($item['map']) && is_array($item['map'])) {
     foreach ($item['map'] as $map) {
-      if (is_object($map) && isset($map->bundle) && $map->bundle == 'campaign_report_back') {
+      if (is_object($map) && !isset($map->bundle) && isset($map->data->bundle)) {
+        $map = $map->data;
+      }
+      if (is_object($map) && isset($map->bundle) && in_array($map->bundle, $content_types)) {
         $parent = node_load($map->nid);
         $context[] = array($parent->group_audience[LANGUAGE_NONE][0]['gid']);
       }
