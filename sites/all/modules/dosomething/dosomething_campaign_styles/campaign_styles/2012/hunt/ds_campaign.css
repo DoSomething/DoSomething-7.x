@@ -1,5 +1,5 @@
 .main-inner a {
-  color: #d32a1c; }
+  color: #d32a1b; }
   .main-inner a:hover {
     color: #d32a1b; }
 .main-inner b {
@@ -500,3 +500,61 @@ div[role="main"] {
 
 #block-dosomething-campaign-styles-campaign-nav {
   margin-right: -7px; }
+
+.hunt_quiz-response .pane-content {
+  background: #cb2a1b url(assets/quizbg.gif) no-repeat 0 0 !important;
+  border: 10px solid black;
+  -webkit-box-shadow: #cccccc 0 0 5px;
+  -moz-box-shadow: #cccccc 0 0 5px;
+  box-shadow: #cccccc 0 0 5px; }
+  .hunt_quiz-response .pane-content h2 {
+    font-size: 56px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0.5em 0 0.75em;
+    color: white;
+    font-weight: bold; }
+  .hunt_quiz-response .pane-content h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2em;
+    margin: 0.75em 0 0.2em; }
+  .hunt_quiz-response .pane-content .hunt_share-box {
+    background: white;
+    width: 280px;
+    padding: 10px;
+    border: 5px solid black;
+    margin: 0 auto 30px;
+    -webkit-box-shadow: #333333 0 0 10px;
+    -moz-box-shadow: #333333 0 0 10px;
+    box-shadow: #333333 0 0 10px; }
+    .hunt_quiz-response .pane-content .hunt_share-box p {
+      text-align: center; }
+    .hunt_quiz-response .pane-content .hunt_share-box .twitter-share-button {
+      position: relative;
+      top: 6px; }
+  .hunt_quiz-response .pane-content .hunt_portrait {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    border: 8px solid white !important;
+    -webkit-box-shadow: #333333 0 0 15px !important;
+    -moz-box-shadow: #333333 0 0 15px !important;
+    -webkit-backface-visibility: hidden;
+    box-shadow: #333333 0 0 15px !important;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    transform: rotate(-3deg); }
+  .hunt_quiz-response .pane-content .hunt_result-text {
+    float: right;
+    width: 350px;
+    padding-top: 0.5em;
+    padding-right: 25px;
+    color: white;
+    font-family: din-web, Helvetica;
+    font-size: 2.2em;
+    line-height: 1.2em; }
+    .hunt_quiz-response .pane-content .hunt_result-text a {
+      color: white;
+      text-decoration: underline; }
