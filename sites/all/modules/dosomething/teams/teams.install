@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * implements hook_schema().
+ */
+function teams_schema() {
+  $schema = array();
+
+  $schema['teams_invited'] = array(
+    'description' => 'stores mobile invites to teams',
+    'primary key' => array('gid', 'number'),
+    'fields' => array(
+      'gid' => array(
+        'description' => 'the group id from og.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'number' => array(
+        'description' => 'the invited phone number.',
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => true,
+      ),
+    ),
+  );
+
+  return $schema;
+}

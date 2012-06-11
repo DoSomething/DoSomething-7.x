@@ -1,0 +1,7 @@
+name = Teams
+description = DoSomething Team implementation, including menu items for working with group members.
+core = 7.x
+dependencies[] = og
+package = DoSometing
+
+files[] = teams.module
