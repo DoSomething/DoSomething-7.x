@@ -39,6 +39,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     );
 
     $form['actions']['submit']['#value'] = 'SIGN UP';
+    $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
     
     // Replace labels with HTML5 Placeholder text.
     $make_placeholder = array('field_webform_mobile' => 'value', 'field_webform_email' => 'email');
@@ -71,7 +72,6 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
 
       $form['#validate'][] = 'dosomething_general_webform_email_and_mail_validate';
       $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
-      $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
     }
     else {
       $form['actions']['submit']['#ajax'] = array(
