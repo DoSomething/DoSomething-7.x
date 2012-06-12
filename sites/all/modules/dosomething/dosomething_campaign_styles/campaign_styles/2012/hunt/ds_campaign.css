@@ -501,6 +501,57 @@ div[role="main"] {
 #block-dosomething-campaign-styles-campaign-nav {
   margin-right: -7px; }
 
+.quiz-top-box {
+  margin-top: 10px; }
+  .quiz-top-box p {
+    float: left;
+    width: 360px; }
+  .quiz-top-box img {
+    float: right; }
+
+#quiz .pane-content {
+  padding: 0 !important; }
+  #quiz .pane-content #node-722479 {
+    background-color: white; }
+    #quiz .pane-content #node-722479 #webform-client-form-722479 {
+      -webkit-box-shadow: white 0 0 0;
+      -moz-box-shadow: white 0 0 0;
+      box-shadow: white 0 0 0;
+      padding: 0 !important; }
+  #quiz .pane-content .form-actions {
+    clear: both;
+    position: static !important;
+    margin-top: 10px; }
+
+.webform-component-quiz-question {
+  float: left;
+  width: 340px;
+  padding: 6px;
+  margin-bottom: 20px;
+  background-color: #ececec; }
+  .webform-component-quiz-question .form-item > label {
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-size: 20px;
+    line-height: 22px;
+    color: #cb2a1b; }
+    .webform-component-quiz-question .form-item > label .form-required {
+      display: none; }
+  .webform-component-quiz-question .form-item label.option {
+    margin-left: 5px; }
+
+#webform-component-q1, #webform-component-q3,
+#webform-component-q5, #webform-component-q7 {
+  float: left; }
+
+#webform-component-q2, #webform-component-q4,
+#webform-component-q6, #webform-component-q8 {
+  float: right; }
+
+#webform-component-email-address,
+#webform-component-cell-number {
+  clear: both;
+  float: right; }
+
 .hunt_quiz-response .pane-content {
   background: #cb2a1b url(assets/quizbg.gif) no-repeat 0 0 !important;
   border: 10px solid black;
@@ -558,3 +609,6 @@ div[role="main"] {
     .hunt_quiz-response .pane-content .hunt_result-text a {
       color: white;
       text-decoration: underline; }
+
+.clear-both {
+  clear: both; }

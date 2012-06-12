@@ -579,6 +579,63 @@ div[role="main"]
 
 #block-dosomething-campaign-styles-campaign-nav
   margin-right: -7px
+
+
+
+// quiz questions page
+.quiz-top-box
+  margin-top: 10px
+  p
+    float: left
+    width: 360px
+  img
+    float: right
+
+#quiz .pane-content
+  padding: 0 !important
+  
+  #node-722479
+    background-color: white
+    #webform-client-form-722479  
+      @include box-shadow(#fff 0 0 0)
+      padding: 0 !important
+  
+  .form-actions
+    clear: both
+    position: static !important
+    margin-top: 10px
+
+.webform-component-quiz-question
+  float: left 
+  width: 340px
+  padding: 6px 
+  margin-bottom: 20px
+  background-color: #ECECEC
+  
+  .form-item > label
+    font-family: din-web,"Trebuchet MS",sans-serif
+    font-size: 20px
+    line-height: 22px
+    color: #CB2A1B
+    .form-required
+      display: none
+  
+  .form-item
+    label.option
+      margin-left: 5px
+    
+#webform-component-q1, #webform-component-q3,
+#webform-component-q5, #webform-component-q7
+  float: left
+  
+#webform-component-q2, #webform-component-q4,
+#webform-component-q6, #webform-component-q8
+  float: right
+  
+#webform-component-email-address,
+#webform-component-cell-number
+  clear: both
+  float: right
   
 // quiz results page
 
@@ -640,3 +697,6 @@ div[role="main"]
     a
       color: #fff
       text-decoration: underline
+      
+.clear-both
+  clear: both
