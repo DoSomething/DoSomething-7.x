@@ -425,3 +425,38 @@ img {
 
 .panel-row-actions {
   border: none !important; }
+
+#thumbwars_facts h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  margin: 16px;
+  border-bottom: 3px solid black; }
+#thumbwars_facts .thumbwars_stats {
+  height: 250px; }
+  #thumbwars_facts .thumbwars_stats .thumbwars_stat {
+    float: left;
+    background: #ffdf00;
+    width: 218px;
+    height: 218px;
+    margin: 0 16px 16px; }
+    #thumbwars_facts .thumbwars_stats .thumbwars_stat p {
+      font-family: din-web;
+      font-size: 2em;
+      line-height: 1.3em;
+      text-align: center;
+      padding: 16px 16px 0;
+      margin-bottom: 12px; }
+    #thumbwars_facts .thumbwars_stats .thumbwars_stat a {
+      display: block;
+      text-align: center;
+      color: black;
+      text-decoration: underline; }
+#thumbwars_facts .thumbwars_col {
+  width: 380px;
+  padding: 0 0 2em; }
+  #thumbwars_facts .thumbwars_col ul {
+    margin: 0 20px 0; }
+#thumbwars_facts .thumbwars_rightcol {
+  float: right;
+  margin-left: 16px; }
