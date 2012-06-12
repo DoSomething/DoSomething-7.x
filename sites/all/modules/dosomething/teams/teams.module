@@ -2,6 +2,91 @@
 
 include_once('teams.features.inc');
 
+function teams_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') !== 0 || empty($form_state['webform_entity']) || $form_state['webform_entity']['bundle'] != 'campaign_sign_up') {
+    return;
+  }
+
+  $entity_form = &$form['submitted'];
+  $node = $form['#node'];
+
+  if ($node->field_teams_enable[LANGUAGE_NONE][0]['value']) {
+    $entity_form['group_group'][LANGUAGE_NONE]['#default_value'] = 1;
+  }
+  else {
+    $entity_form['group_group'][LANGUAGE_NONE]['#default_value'] = 0;
+  }
+
+  $form['#validate'][] = 'teams_form_validate';
+  $form['#submit'][] = 'teams_form_submit';
+}
+
+function teams_form_validate(&$form, &$form_state) {
+  if (isset($form['#submission']->submitted)) {
+    $sub = $form['#submission']->submitted;
+    $team_name = $sub['field_team_name'][LANGUAGE_NONE][0]['value'];
+    $leader_info = $sub['field_leader_info'][LANGUAGE_NONE][0]['value'];
+
+    if (!empty($team_name) && !empty($leader_info)) {
+      form_set_error('field_team_name', t('You may not attempt to join and create a team at the same time.'));
+    }
+    else if (empty($team_name) && empty($leader_info)) {
+      form_set_error('field_team_name', t('You must either join a team or create a team.'));
+    }
+    else if (!empty($team_name) && teams_team_exists($sub['field_team_name'][LANGUAGE_NONE][0]['value'], $form['#node']->nid)) {
+      form_set_error('field_team_name', t('A team with that name has already been created.'));
+    }
+    else if (!empty($leader_info) && dosomething_general_load_user_by_mail_or_cell($leader_info) === FALSE) {
+      form_set_error('field_leader_info', t('A team leader with that email/cell does not exist.'));
+    }
+  }
+}
+
+function teams_form_submit(&$form, &$form_state) {
+  $sub = $form_state['webform_entity']['submission']->submitted;
+  $sid = $form_state['values']['details']['sid'];
+  $team_name = $sub['field_team_name'][LANGUAGE_NONE][0]['value'];
+  $leader_info = $sub['field_leader_info'][LANGUAGE_NONE][0]['value'];
+  $friends = $sub['field_team_invite'][LANGUAGE_NONE];
+
+  if (!empty($team_name)) {
+    $gid = og_get_group('webform_submission_entity', $sid, true)->gid;
+    // invite friends
+    foreach ($friends as $index => $friend) {
+      if (is_int($index)) {
+        teams_add_member($friend['value'], $gid);
+      }
+    }
+  }
+  else if (!empty($leader_info)) {
+    // join me to this team
+  }
+}
+
+function teams_team_exists($team_name, $webform_nid) {
+  $query = db_select('webform_submissions', 'wf');
+  $query->addJoin('INNER', 'og', 'og', 'etid=sid');
+  $query->addJoin('INNER', 'field_data_field_team_name', 'name', 'name.entity_id=wf.sid');
+  $query->condition('wf.nid', $webform_nid, '=');
+  $query->condition('name.field_team_name_value', $team_name, '=');
+  $query->addField('wf', 'sid');
+
+  $result = $query->execute()->rowCount();
+  return (bool)$result;
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function teams_module_implements_alter(&$implementations, $hook) {
+  // We can only disable our elements if we come after webform_entity, make sure we do.
+  if ($hook == 'form_alter' && isset($implementations['teams'])) {
+    $group = $implementations['teams'];
+    unset($implementations['teams']);
+    $implementations['teams'] = $group;
+  }
+}
+
 /**
  * Implements hook_menu().
  */
@@ -14,6 +99,12 @@ function teams_menu() {
     'page arguments' => array(1),
     'access callback' => 'teams_in_group',
     'access arguments' => array(1),
+  );
+
+  $items['teams/join/%/%'] = array(
+    'page callback' => 'teams_join_by_url',
+    'page arguments' => array(2,3),
+    'access callback' => 'user_is_logged_in',
   );
 
   return $items;
@@ -63,7 +154,7 @@ function teams_block_view($delta = '') {
       $name = '<div class="member-name">'.$name.'</div>';
 
       if ($is_admin && $uid != $user->uid) {
-        $name .= drupal_render(drupal_get_form('teams_remove_member', $gid, $uid));
+        $name .= drupal_render(drupal_get_form('teams_remove_member_form', $gid, $uid));
       }
 
       $list_elements[] = array(
@@ -95,7 +186,7 @@ function teams_block_view($delta = '') {
         'id' => 'teams-notification-area',
       ),
     );
-    $block['content']['add-form'] = drupal_get_form('teams_add_member', $gid);
+    $block['content']['add-form'] = drupal_get_form('teams_add_member_form', $gid);
 
     $block['content']['#attached'] = array(
       'js' => array(
@@ -106,7 +197,7 @@ function teams_block_view($delta = '') {
   return $block;
 }
 
-function teams_add_member($form, &$form_state, $gid) {
+function teams_add_member_form($form, &$form_state, $gid) {
   $form['friend'] = array(
     '#type' => 'textfield',
     '#title' => 'Friend\'s cell or email',
@@ -137,7 +228,7 @@ function teams_add_member($form, &$form_state, $gid) {
   return $form;
 }
 
-function teams_remove_member($form, &$form_state, $gid, $uid) {
+function teams_remove_member_form($form, &$form_state, $gid, $uid) {
   $form['uid'] = array(
     '#type' => 'hidden',
     '#default_value' => $uid,
@@ -168,47 +259,59 @@ function teams_remove_member($form, &$form_state, $gid, $uid) {
 }
 
 function teams_ajax_add_member($form, $form_state) {
-  global $user;
   if (isset($form_state['values']['friend'])) {
     $friend = $form_state['values']['friend'];
-    $type = 'email';
-    if (!valid_email_address($friend)) {
-      if (!$number = dosomething_general_valid_cell($friend)) {
-        return 'Please enter a cell number or email address.';
-      }
-      else {
-        teams_store_number($number, $gid);
-        $type = 'phone';
-        $friend = $number;
-      }
-    }
-
-    if ($account = dosomething_general_load_user_by_mail_or_cell($friend)) {
-      og_group($form_state['values']['gid'], array(
-        'entity' => $account,
-        'state' => OG_STATE_ACTIVE,
-      ));
-      // TODO: add the username to the team list. via an ajax command
-      return $friend . ' has been added to your team.';
-    }
-    else {
-      $profile = profile2_load_by_user($user, 'main');
-      $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-      $first = $profile_wrapper->field_user_first_name->value();
-      $last = $profile_wrapper->field_user_last_name->value();
-
-      if ($type == 'email') {
-        $group_hash = teams_get_group_hash($gid);
-        // send email with base_url/team/join/$gid/$hash
-      }
-      else {
-        $message = "You have been invited to join $first $last's DoSomething team. Reply TEAMJOIN to join!";
-        //sms_send($number, $message);
-      }
-      return $friend . ' has been invited to join your team.';
-    }
+    $gid = $form_state['values']['gid'];
+    return teams_add_member($friend, $gid);
   }
   return 'Please include your friend\'s cell or email.';
+}
+
+function teams_add_member($friend, $gid) {
+  global $user;
+  $type = 'email';
+  if (!valid_email_address($friend)) {
+    if (!$number = dosomething_general_valid_cell($friend)) {
+      return 'Please enter a cell number or email address.';
+    }
+    else {
+      $type = 'phone';
+      $friend = $number;
+    }
+  }
+
+  if ($account = dosomething_general_load_user_by_mail_or_cell($friend)) {
+    og_group($gid, array(
+      'entity' => $account,
+      'state' => OG_STATE_ACTIVE,
+    ));
+    // TODO: add the username to the team list. via an ajax command
+    return $friend . ' has been added to your team.';
+  }
+  else {
+    $profile = profile2_load_by_user($user, 'main');
+    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+    $first = $profile_wrapper->field_user_first_name->value();
+    $last = $profile_wrapper->field_user_last_name->value();
+
+    if ($type == 'email') {
+      global $language;
+      $group_hash = teams_get_group_hash($gid);
+      $params = array(
+        'account' => $user,
+        'link' => url("teams/join/$gid/$group_hash", array(
+          'absolute' => true,
+        )),
+      );
+      drupal_mail('teams', 'invite', $friend, $language, $params);
+    }
+    else {
+      teams_store_number($number, $gid);
+      $message = "You have been invited to join $first $last's DoSomething team. Reply TEAMJOIN to join!";
+      //sms_send($number, $message);
+    }
+    return $friend . ' has been invited to join your team.';
+  }
 }
 
 function teams_ajax_remove_member($form, $form_state) {
@@ -229,9 +332,22 @@ function teams_store_number($number, $gid) {
   drupal_write_record('teams_invited', $data);
 }
 
+function teams_join_by_url($gid, $hash) {
+  if ($hash === teams_get_group_hash($gid)) {
+    og_group($gid);
+
+    $sub = og_load_entity_from_group($gid);
+    $form = node_load($sub->nid);
+    $campaign = og_load_entity_from_group($form->group_audience[LANGUAGE_NONE][0]['gid']);
+    $url = drupal_lookup_path('alias', 'node/' . $campaign->nid);
+
+    drupal_goto('my-team/' . $url);
+  }
+}
+
 function teams_get_group_hash($gid) {
-  $sub = entity_load('webform_submission_entity', array(og_load($gid)->etid));
-  return substr(md5($sub->sid . $sub->nid . $sub->uid), 0, 8);
+  $sub = og_load_entity_from_group($gid);
+  return substr(md5($sub->sid . $sub->nid . 'bananas!'), 0, 8);
 }
 
 /**
@@ -293,5 +409,32 @@ function teams_get_nid_from_path($url) {
     $campaign_nid = $campaign_nid[1];
   }
   return $campaign_nid;
+}
+
+/**
+ * Implements hook_mail().
+ */
+function teams_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'invite':
+      $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
+      $message['subject'] = t('@name has invited you to join their DoSomething team', array('@name' => $params['full_name']));
+      $message['body'][] = drupal_html_to_text(theme('teams_invite', $params));
+      $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function teams_theme($existing, $type, $theme, $path) {
+  return array(
+    'teams_invite' => array(
+      'path' => $path . '/templates',
+      'variables' => array(),
+      'template' => 'teams-invite',
+    ),
+  );
 }
 
