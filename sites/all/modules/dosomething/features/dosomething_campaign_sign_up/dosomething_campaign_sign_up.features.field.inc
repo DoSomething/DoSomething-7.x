@@ -181,6 +181,9 @@ The content from this field will only be shown to anonymous users.',
           'field_webform_mobile' => 'Mobile Phone Number',
           'field_webform_school' => 'School',
           'field_webform_school_zip' => 'School Zip Code',
+          'field_team_name' => 'Team Name',
+          'field_leader_info' => 'Team Leader Info',
+          'field_team_invite' => 'Invite Team Members',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,
@@ -233,6 +236,78 @@ The content from this field will only be shown to anonymous users.',
         'settings' => array(),
         'type' => 'options_buttons',
         'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_sign_up-field_teams_enable'
+  $fields['node-campaign_sign_up-field_teams_enable'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_teams_enable',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Disable Team Functionality',
+          1 => 'Enable Team Functionality',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_teams_enable',
+      'label' => 'Enable Team Functionality',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '32',
       ),
     ),
   );
@@ -318,7 +393,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => 60,
         ),
         'type' => 'group_audience_autocomplete',
-        'weight' => 31,
+        'weight' => '31',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -380,6 +455,204 @@ The content from this field will only be shown to anonymous users.',
         ),
         'type' => 'geocoder',
         'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_leader_info'
+  $fields['webform_submission_entity-campaign_sign_up-field_leader_info'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_leader_info',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_leader_info',
+      'label' => 'Team Leader Email or Cell',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '11',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_team_invite'
+  $fields['webform_submission_entity-campaign_sign_up-field_team_invite'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_team_invite',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 9,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_team_invite',
+      'label' => 'Invite your friends by entering their email or cell numbers',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '12',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_team_name'
+  $fields['webform_submission_entity-campaign_sign_up-field_team_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_team_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '25',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_sign_up',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 7,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_team_name',
+      'label' => 'Team Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '25',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '10',
       ),
     ),
   );
@@ -744,7 +1017,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'campaign_sign_up',
       'default_value' => array(
         0 => array(
-          'value' => 0,
+          'value' => 1,
         ),
       ),
       'deleted' => '0',
@@ -761,7 +1034,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'group_group',
       'label' => 'Group',
-      'required' => 0,
+      'required' => FALSE,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -778,7 +1051,6 @@ The content from this field will only be shown to anonymous users.',
         ),
       ),
       'widget' => array(
-        'active' => 1,
         'module' => 'options',
         'settings' => array(
           'display_label' => 0,
@@ -798,12 +1070,16 @@ The content from this field will only be shown to anonymous users.',
 The content from this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
   t('Email');
+  t('Enable Team Functionality');
   t('Enabled Fields');
   t('Geocode Data');
   t('Group');
+  t('Invite your friends by entering their email or cell numbers');
   t('Mobile Phone Number');
   t('School');
   t('School Zip Code');
+  t('Team Leader Email or Cell');
+  t('Team Name');
   t('The content from this field will only be shown to logged in users.');
 
   return $fields;
