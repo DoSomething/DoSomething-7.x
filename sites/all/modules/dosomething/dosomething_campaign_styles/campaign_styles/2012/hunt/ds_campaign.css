@@ -33,6 +33,9 @@ div[role="main"] {
   margin-top: 8px;
   padding-top: 10px; }
 
+.white-bg .pane-content {
+  background: white !important; }
+
 .main-inner {
   padding-top: 10px;
   width: 750px; }
@@ -376,6 +379,25 @@ div[role="main"] {
     width: 480px;
     margin: 0 auto; }
 
+.team-name-title {
+  margin-bottom: 0px !important;
+  border: none !important; }
+  .team-name-title .pane-content {
+    background-color: #d32a1b !important;
+    padding: 6px 12px 6px 12px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    line-height: 22px !important;
+    font-size: 21px !important;
+    font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif !important; }
+
+.members-list {
+  float: right;
+  width: 30%; }
+
+#teams-remove-members {
+  display: none; }
+
 #block-system-main .team {
   background-color: #d6d6d7;
   height: 470px; }
@@ -620,3 +642,113 @@ div[role="main"] {
 
 .clear-both {
   clear: both; }
+
+#hunt-form {
+  width: 500px;
+  margin: 0 auto 50px; }
+
+#hunt-form-logo .pane-content {
+  background-color: white; }
+#hunt-form-logo img {
+  display: block;
+  margin: 0 auto; }
+
+#node-721671 .webform-client-form {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+#node-721671 .field-name-group-audience, #node-721671 .field-name-field-teams-enable, #node-721671 .tabledrag-toggle-weight-wrapper, #node-721671 thead, #node-721671 td.field-multiple-drag {
+  display: none; }
+#node-721671 .webform-component {
+  margin-bottom: 10px; }
+#node-721671 label {
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  float: left;
+  width: 50%;
+  padding-top: 5px; }
+#node-721671 table input[type="text"] {
+  width: 100%; }
+#node-721671 input[type="text"] {
+  width: 50%; }
+#node-721671 #edit-submitted--2 {
+  display: none; }
+#node-721671 #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc label,
+#node-721671 #webform-component-no-worries label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -10px; }
+#node-721671 #edit-actions {
+  text-align: center; }
+
+#webform-component-instructions h2 {
+  text-align: center;
+  font-size: 26px;
+  padding-bottom: 15px; }
+
+#webform-component-kill-me {
+  display: none; }
+
+fieldset#webform-component-create-or-join {
+  margin: 55px 0 30px 0;
+  padding: 0 0 0 0; }
+  fieldset#webform-component-create-or-join .fieldset-wrapper {
+    background-color: #bbbbbb;
+    padding: 15px; }
+  fieldset#webform-component-create-or-join .inactive {
+    background-color: #aaaaaa; }
+
+#edit-submitted-field-team-name,
+#edit-submitted-field-team-invite,
+#webform-component-derp {
+  display: none; }
+
+table#field-team-invite-values {
+  width: 208px;
+  table-layout: fixed;
+  float: right; }
+
+#edit-submitted-field-team-invite-und-add-more {
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  border: none;
+  height: 30px;
+  padding: 1px 13px 0;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  background-color: #222222;
+  margin: 25px 0px 0px 30px; }
+  #edit-submitted-field-team-invite-und-add-more:hover {
+    background-color: #090909; }
+
+div#webform-component-tabs {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 166px;
+  left: 22px; }
+  div#webform-component-tabs h2 {
+    display: block;
+    width: 125px;
+    float: left;
+    text-align: center;
+    background-color: #bbbbbb;
+    padding: 5px; }
+    div#webform-component-tabs h2:hover {
+      text-decoration: none;
+      color: #d32a1b; }
+
+#edit-submitted-field-webform-pictures-und legend {
+  display: none; }
+
+.fb-social-comments-plugin {
+  display: none; }

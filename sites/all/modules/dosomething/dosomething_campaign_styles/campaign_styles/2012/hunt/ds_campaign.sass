@@ -94,6 +94,10 @@ div[role="main"]
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
   padding-top: 10px  
+  
+.white-bg
+  .pane-content
+    background: white !important
 
 .main-inner
   padding-top: 10px
@@ -447,6 +451,26 @@ div[role="main"]
       margin: 0 auto
 
 //team 
+.team-name-title 
+  margin-bottom: 0px !important
+  border: none !important
+  
+  .pane-content
+    background-color: $baseColor !important
+    padding: 6px 12px 6px 12px !important
+    margin-top: 0 !important
+    margin-bottom: 0 !important
+    line-height: 22px !important
+    font-size: 21px !important
+    font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif !important
+    
+.members-list
+  float: right
+  width: 30%
+  
+#teams-remove-members
+  display: none
+
 #block-system-main
   .team
     background-color: $huntLighter
@@ -708,3 +732,124 @@ div[role="main"]
       
 .clear-both
   clear: both
+  
+// sign up & report back
+#hunt-form
+  width: 500px
+  margin: 0 auto 50px
+
+// logo above webform
+#hunt-form-logo
+  .pane-content
+    background-color: #fff
+  img
+    display: block
+    margin: 0 auto
+
+// sign up form
+#node-721671
+  .webform-client-form
+    +noBorder 
+    +noShadow
+  .field-name-group-audience, .field-name-field-teams-enable, .tabledrag-toggle-weight-wrapper, thead, td.field-multiple-drag
+    display: none
+  .webform-component
+    margin-bottom: 10px
+  label
+    font-family: $accent-reg
+    font-size: 14px
+    font-weight: 600
+    float: left
+    width: 50%
+    padding-top: 5px
+  table input[type="text"]
+    width: 100%
+  input[type="text"]
+    width: 50%
+  #edit-submitted--2
+    display: none
+  #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc, 
+  #webform-component-no-worries
+    label
+      font-size: 12px
+      font-weight: 500
+      margin-top: -10px
+  #edit-actions
+    text-align: center
+
+// instruction div
+#webform-component-instructions h2
+  text-align: center
+  font-size: 26px
+  padding-bottom: 15px
+
+// fieldset containing Drupal insanity
+#webform-component-kill-me
+  display: none
+
+// create_team & join_team functionality fieldset
+fieldset#webform-component-create-or-join
+  margin: 55px 0 30px 0
+  padding: 0 0 0 0
+  .fieldset-wrapper
+    background-color: #bbb
+    padding: 15px
+  .inactive
+    background-color: #aaa
+
+// initially hide #create_team fields
+#edit-submitted-field-team-name,
+#edit-submitted-field-team-invite,
+#webform-component-derp
+  display: none
+
+// "add another item" input table
+table#field-team-invite-values
+  width: 208px
+  table-layout: fixed
+  float: right
+
+// "add another item" button
+#edit-submitted-field-team-invite-und-add-more
+  font-weight: bold
+  -webkit-border-radius: 12px
+  -moz-border-radius: 12px
+  -ms-border-radius: 12px
+  -o-border-radius: 12px
+  border-radius: 12px
+  border: none
+  height: 30px
+  padding: 1px 13px 0
+  font-size: 15px
+  text-transform: uppercase
+  color: white
+  font-family: $accent
+  background-color: #222
+  margin: 25px 0px 0px 30px
+  &:hover
+    background-color: darken(#222, 10%)
+
+// #join_team & #create_team jQuery hooks
+div#webform-component-tabs
+  width: 100%
+  overflow: hidden
+  position: absolute
+  top: 166px
+  left: 22px
+  h2
+    display: block
+    width: 125px
+    float: left
+    text-align: center
+    background-color: #bbb
+    padding: 5px
+    &:hover
+      text-decoration: none
+      color: $baseColor
+
+#edit-submitted-field-webform-pictures-und
+  legend
+    display: none
+
+.fb-social-comments-plugin
+  display: none
