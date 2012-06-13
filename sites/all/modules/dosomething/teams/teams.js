@@ -16,6 +16,13 @@ Drupal.behaviors.teams = {
       };
     });
 
+    addSubmitButton = $('#teams-add-member-form .form-submit').attr('id');
+    var before = Drupal.ajax[addSubmitButton].options.complete;
+    Drupal.ajax[addSubmitButton].options.complete = function (response, status) {
+      $('#edit-friend').val('');
+      return before(response, status);
+    };
+
     $('#teams-remove-members').click(function () {
       $('.team-member form').toggle();
       return false;

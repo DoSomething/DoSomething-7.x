@@ -460,3 +460,79 @@ img {
 #thumbwars_facts .thumbwars_rightcol {
   float: right;
   margin-left: 16px; }
+
+#thumbwars_actionguide .action-step {
+  float: left;
+  display: block;
+  width: 300px;
+  margin: 10px 37px;
+  -webkit-box-shadow: 0 15px 20px -10px #cccccc;
+  -moz-box-shadow: 0 15px 20px -10px #cccccc;
+  box-shadow: 0 15px 20px -10px #cccccc; }
+  #thumbwars_actionguide .action-step h1 {
+    width: 45px;
+    padding-top: 5px;
+    margin: 16px auto 16px;
+    text-align: center;
+    background: #0a5083;
+    color: white;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    border-radius: 25px; }
+  #thumbwars_actionguide .action-step h2 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 0.5em; }
+  #thumbwars_actionguide .action-step img {
+    border: 0 !important;
+    margin: 0;
+    padding: 0; }
+#thumbwars_actionguide .outro {
+  clear: both;
+  text-align: center;
+  font-family: din-web;
+  font-size: 3em;
+  padding: 2em; }
+
+#thumbwars_scholarship h1 {
+  margin: 16px;
+  text-align: center;
+  font-size: 5em;
+  border-bottom: 3px solid black;
+  font-weight: bold;
+  text-transform: uppercase; }
+#thumbwars_scholarship h3 {
+  text-transform: lowercase;
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 1em; }
+#thumbwars_scholarship .scholarship-method {
+  width: 250px;
+  margin: 16px 62px;
+  float: left; }
+  #thumbwars_scholarship .scholarship-method img {
+    border: 0 !important;
+    margin: 0;
+    padding: 0; }
+  #thumbwars_scholarship .scholarship-method p {
+    background: #ffdf00;
+    font-family: din-web;
+    font-size: 1.75em;
+    line-height: 1em;
+    padding: 16px; }
+#thumbwars_scholarship .outro {
+  clear: both;
+  font-family: din-web;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+  padding: 16px 200px;
+  text-align: center; }
+  #thumbwars_scholarship .outro span {
+    display: block;
+    font-size: 0.75em;
+    font-weight: normal;
+    margin-top: 0.5em; }
