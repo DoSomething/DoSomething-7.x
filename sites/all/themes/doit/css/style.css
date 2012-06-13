@@ -3728,6 +3728,8 @@ h2.block-title, h2.pane-title {
   margin-left: 30px;
 }
 .not-logged-in #dosomething-login-register-block #edit-or {
+  font-family: Trebuchet MS, sans-serif;
+  font-size: 12px;
   line-height: 22px;
   text-align: center;
 }
