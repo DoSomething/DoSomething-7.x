@@ -5329,6 +5329,10 @@ comments.fb_iframe_widget {
 .node-type-action-guide .dosomething-stats-action-guide .counter-labels, .node-type-action-guide .dosomething-stats-action-guide .digits span, .digits .node-type-action-guide .dosomething-stats-action-guide span, .node-type-action-guide .dosomething-stats-action-guide .empty-digit, .node-type-action-guide .dosomething-stats-action-guide .start-a-project:before, .node-type-action-guide .dosomething-stats-action-guide .suggest-a-cause:before {
   padding-right: 5px;
 }
+.node-type-action-guide .field-name-body b {
+  font-weight: bold;
+  font-weight: 600;
+}
 .node-type-action-guide .field-name-body h2 {
   display: inline;
 }
