@@ -585,9 +585,13 @@ div[role="main"]
 // quiz questions page
 .quiz-top-box
   margin-top: 10px
+  .pane-content
+    padding: 2px 15px !important
   p
     float: left
     width: 360px
+    margin: 8px
+    font-size: 15px
   img
     float: right
 
@@ -604,6 +608,8 @@ div[role="main"]
     clear: both
     position: static !important
     margin-top: 10px
+    .edit-submit
+      margin-top: 10px
 
 .webform-component-quiz-question
   float: left 
@@ -612,17 +618,19 @@ div[role="main"]
   margin-bottom: 20px
   background-color: #ECECEC
   
-  .form-item > label
+  .form-type-radios > label
     font-family: din-web,"Trebuchet MS",sans-serif
     font-size: 20px
     line-height: 22px
     color: #CB2A1B
+    cursor: default
     .form-required
       display: none
   
   .form-item
     label.option
       margin-left: 5px
+      line-height: 18px
     
 #webform-component-q1, #webform-component-q3,
 #webform-component-q5, #webform-component-q7

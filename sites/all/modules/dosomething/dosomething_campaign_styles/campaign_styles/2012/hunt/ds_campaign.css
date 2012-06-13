@@ -503,9 +503,13 @@ div[role="main"] {
 
 .quiz-top-box {
   margin-top: 10px; }
+  .quiz-top-box .pane-content {
+    padding: 2px 15px !important; }
   .quiz-top-box p {
     float: left;
-    width: 360px; }
+    width: 360px;
+    margin: 8px;
+    font-size: 15px; }
   .quiz-top-box img {
     float: right; }
 
@@ -522,6 +526,8 @@ div[role="main"] {
     clear: both;
     position: static !important;
     margin-top: 10px; }
+    #quiz .pane-content .form-actions .edit-submit {
+      margin-top: 10px; }
 
 .webform-component-quiz-question {
   float: left;
@@ -529,15 +535,17 @@ div[role="main"] {
   padding: 6px;
   margin-bottom: 20px;
   background-color: #ececec; }
-  .webform-component-quiz-question .form-item > label {
+  .webform-component-quiz-question .form-type-radios > label {
     font-family: din-web, "Trebuchet MS", sans-serif;
     font-size: 20px;
     line-height: 22px;
-    color: #cb2a1b; }
-    .webform-component-quiz-question .form-item > label .form-required {
+    color: #cb2a1b;
+    cursor: default; }
+    .webform-component-quiz-question .form-type-radios > label .form-required {
       display: none; }
   .webform-component-quiz-question .form-item label.option {
-    margin-left: 5px; }
+    margin-left: 5px;
+    line-height: 18px; }
 
 #webform-component-q1, #webform-component-q3,
 #webform-component-q5, #webform-component-q7 {
