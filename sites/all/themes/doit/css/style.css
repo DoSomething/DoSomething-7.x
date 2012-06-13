@@ -5399,6 +5399,10 @@ comments.fb_iframe_widget {
   display: none;
 }
 
+.node-blog b {
+  font-weight: bold;
+  font-weight: 600;
+}
 .node-blog .field-name-upload {
   clear: both;
   padding-bottom: 15px;
