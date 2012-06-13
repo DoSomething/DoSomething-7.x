@@ -176,6 +176,10 @@ function teams_block_view($delta = '') {
       );
     }
 
+    $block['content']['team_members'] = array(
+      '#type' => 'markup',
+      '#markup' => '<h3>Team Members</h3>',
+    );
     $block['content']['toggle-admin'] = array(
       '#type' => 'markup',
       '#markup' => l('Remove members', '', array(
@@ -198,6 +202,10 @@ function teams_block_view($delta = '') {
         'id' => 'teams-notification-area',
       ),
     );
+    $block['content']['add-form-description'] = array(
+      '#type' => 'markup',
+      '#markup' => '<p>Enter your friends\' email address to invite them to join the team. Make sure they know the email address of the team leader--they\'ll need that to join.</p>',
+    );
     $block['content']['add-form'] = drupal_get_form('teams_add_member_form', $gid);
 
     $block['content']['#attached'] = array(
@@ -212,7 +220,7 @@ function teams_block_view($delta = '') {
 function teams_add_member_form($form, &$form_state, $gid) {
   $form['friend'] = array(
     '#type' => 'textfield',
-    '#title' => 'Friend\'s cell or email',
+    '#title' => 'Friend\'s email',
     '#size' => 16,
   );
 
@@ -224,7 +232,7 @@ function teams_add_member_form($form, &$form_state, $gid) {
 
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Add',
+    '#value' => 'Invite',
     '#ajax' => array(
       'progress' => array(
         'type' => 'throbber',
@@ -298,7 +306,7 @@ function teams_add_member($friend, $gid) {
       'state' => OG_STATE_ACTIVE,
     ));
     // TODO: add the username to the team list. via an ajax command
-    return $friend . ' has been added to your team.';
+    return $friend . ' has been added to your team. Feel free to add more!';
   }
   else {
     $profile = profile2_load_by_user($user, 'main');
@@ -322,7 +330,7 @@ function teams_add_member($friend, $gid) {
       $message = "You have been invited to join $first $last's DoSomething team. Reply TEAMJOIN to join!";
       //sms_send($number, $message);
     }
-    return $friend . ' has been invited to join your team.';
+    return $friend . ' has been invited to join your team. Feel free to add more!';
   }
 }
 
@@ -362,18 +370,6 @@ function teams_join_by_url($gid, $hash) {
 function teams_get_group_hash($gid) {
   $sub = og_load_entity_from_group($gid);
   return substr(md5($sub->sid . $sub->nid . 'bananas!'), 0, 8);
-}
-
-/**
- * Permission callback for checking if a user is an admin.
- * Duplicate the OG callback, just translate GID to entity_type
- * and etid.
- */
-function teams_access_group($gid) {
-  return true;
-}
-
-function teams_remove($gid, $uid) {
 }
 
 /**
@@ -451,4 +447,5 @@ function teams_theme($existing, $type, $theme, $path) {
     ),
   );
 }
+
 
