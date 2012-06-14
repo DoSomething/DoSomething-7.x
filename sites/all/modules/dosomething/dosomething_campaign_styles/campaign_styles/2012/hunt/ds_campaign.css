@@ -387,10 +387,11 @@ div[role="main"] {
   .pane-teams-team-management form label {
     font-size: 13px;
     font-weight: bold; }
-  .pane-teams-team-management form input {
-    width: 150px;
+  .pane-teams-team-management form input#edit-friend {
+    width: 151px;
     height: 30px;
-    margin-right: 10px; }
+    margin-right: 10px;
+    float: left; }
   .pane-teams-team-management form .form-submit {
     border-radius: 12px;
     border: none;
