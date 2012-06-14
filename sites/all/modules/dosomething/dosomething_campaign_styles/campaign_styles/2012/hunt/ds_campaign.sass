@@ -451,38 +451,6 @@ div[role="main"]
       margin: 0 auto
 
 //teampage 
-.pane-teams-team-management
-  border: none !important
-  .pane-content
-    p
-      width: 60%
-      font-size: 14px
-  form
-    label
-      font-size: 13px
-      font-weight: bold
-    input#edit-friend
-      width: 151px
-      height: 30px
-      margin-right: 10px
-      float: left
-    .form-submit // forgive me SASS gods, this is gross, but I'm in a rush
-      border-radius: 12px
-      border: none
-      height: 30px
-      padding: 1px 13px 0
-      background-color: #FED100
-      background-image: -webkit-linear-gradient(top, white, #FED100)
-      background-image: -moz-linear-gradient(top, white, #FED100)
-      background-image: -o-linear-gradient(top, white, #FED100)
-      background-image: -ms-linear-gradient(top, white, #FED100)
-      background-image: linear-gradient(top, white, #FED100)
-      font-size: 18px
-      text-transform: uppercase
-      color: #333131
-      font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif
-      font-weight: bold
-
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
@@ -498,28 +466,9 @@ div[role="main"]
     color: white !important
     font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif !important
     
-.team-member-list
+.members-list
   float: right
-  width: 35%
-  h3
-    text-transform: uppercase
-    font-family: $accent-reg
-    margin-bottom: 5px
-    color: $baseColor
-    text-align: center
-    font-size: 17px
-  li
-    list-style: none
-    font-size: 16px
-  
-.sponsor-logos
-  text-align: center
-  img
-    margin: 0 15px
-    
-.team-notification-area
-  font-size: 13px
-  margin-top: 15px
+  width: 31%
   
 .pane-teams-team-management
   border: none !important
@@ -803,8 +752,8 @@ div[role="main"]
     margin: 0 auto
 
 // sign up form
-// #node-722347 (production)
-#node-721671
+// #node-721671 // (local)
+#node-722347 // (production)
   .webform-client-form
     +noBorder 
     +noShadow
@@ -943,12 +892,3 @@ table#field-team-invite-values
 
 .fb-social-comments-plugin
   display: none
-  
-.pane-dosomething-login-register-block 
-  width: 500px
-  margin: 10px auto
-  .popup-content
-    height: 160px !important
-
-.panel-row-ad-psa
-  margin-top: 34px
