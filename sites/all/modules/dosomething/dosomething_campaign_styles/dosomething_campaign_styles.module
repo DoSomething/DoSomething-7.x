@@ -115,7 +115,9 @@ function dosomething_campaign_styles_block_view($delta) {
       $campaign_links = array();
       if (count($plugin['menu']) > 0) {
         foreach ($plugin['menu'] as $num => $link) {
-          $link['href'] = drupal_lookup_path('source', $link['href']);
+          if (!isset($link['validate'])) {
+            $link['href'] = drupal_lookup_path('source', $link['href']);
+          }
           $campaign_links['campaign_nav_'.$num] = $link;
         }
       }
