@@ -442,6 +442,10 @@ div[role="main"] {
 #teams-remove-members {
   display: none; }
 
+#teams-notification-area {
+  font-size: 14px;
+  margin: 10px 0; }
+
 #block-system-main .team {
   background-color: #d6d6d7;
   height: 470px; }
