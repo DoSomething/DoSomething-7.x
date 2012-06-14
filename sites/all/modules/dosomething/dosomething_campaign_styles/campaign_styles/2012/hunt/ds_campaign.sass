@@ -803,14 +803,13 @@ div[role="main"]
     margin: 0 auto
 
 // sign up form
-#node-722347
+// #node-722347 (production)
+#node-721671
   .webform-client-form
     +noBorder 
     +noShadow
   .field-name-group-audience, .field-name-field-teams-enable, .tabledrag-toggle-weight-wrapper, thead, td.field-multiple-drag
     display: none
-  .active
-    color: $baseColor
   .webform-component
     margin-bottom: 10px
   h3
@@ -826,15 +825,7 @@ div[role="main"]
     width: 100%
   input[type="text"]
     width: 50%
-  #edit-submitted--2
-    display: none
-  #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc, 
-  #webform-component-no-worries
-    label
-      font-size: 12px
-      font-weight: 500
-      margin-top: -10px
-  #edit-actions
+  #edit-actions, #edit-actions--2
     position: relative
     right: 0
     bottom: 0
@@ -866,14 +857,11 @@ div[role="main"]
 
 // create_team & join_team functionality fieldset
 fieldset#webform-component-create-or-join
-  margin: 55px 0 30px 0
+  margin: 0 0 30px 0
   padding: 0 0 0 0
   .fieldset-wrapper
     background-color: #bbb
     padding: 15px
-  .inactive
-    color: #000
-    background-color: #aaa
 
 // initially hide #create_team fields
 #edit-submitted-field-team-name,
@@ -908,12 +896,10 @@ table#field-team-invite-values
     background-color: darken(#222, 10%)
 
 // #join_team & #create_team jQuery hooks
-div#webform-component-tabs
+#webform-component-tabs
   width: 100%
   overflow: hidden
-  position: absolute
-  top: 172px
-  left: 27px
+  margin: 0 !important
   h2
     display: block
     width: 125px
@@ -921,10 +907,35 @@ div#webform-component-tabs
     text-align: center
     background-color: #bbb
     padding: 5px
-    color: #fff
+    color: $baseColor
     &:hover
       text-decoration: none
       color: $baseColor
+  .inactive
+    color: #000
+    background-color: #aaa
+
+// hack to fix anon. two submit button bug
+#edit-submit--2
+  font-weight: bold 
+  -webkit-border-radius: 12px 
+  -moz-border-radius: 12px 
+  -ms-border-radius: 12px 
+  -o-border-radius: 12px 
+  border-radius: 12px 
+  border: none 
+  height: 30px 
+  padding: 1px 13px 0 
+  background-color: #FED100 
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, #FED100)) 
+  background-image: -webkit-linear-gradient(top, white, #FED100) 
+  background-image: -moz-linear-gradient(top, white, #FED100) 
+  background-image: -o-linear-gradient(top, white, #FED100) 
+  background-image: -ms-linear-gradient(top, white, #FED100) 
+  background-image: linear-gradient(top, white, #FED100) 
+  font-size: 18px 
+  font-family: $accent
+  text-transform: uppercase 
 
 #edit-submitted-field-webform-pictures-und
   legend

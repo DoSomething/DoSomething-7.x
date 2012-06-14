@@ -5,7 +5,8 @@
     attach: function (context, settings) {
 
     // move webform fields into containing fieldset
-    $("#edit-submitted-field-leader-info,#webform-component-tabs,#edit-submitted-field-team-name,#webform-component-derp,#edit-submitted-field-team-invite").appendTo("#webform-component-create-or-join > .fieldset-wrapper");
+    // #webform-component-tabs
+    $("#edit-submitted-field-leader-info,#edit-submitted-field-team-name,#webform-component-derp,#edit-submitted-field-team-invite").appendTo("#webform-component-create-or-join > .fieldset-wrapper");
     
     // hide sunglass address fieldset & show if opt-in is checked
     $("#webform-component-address-holder").hide(); 

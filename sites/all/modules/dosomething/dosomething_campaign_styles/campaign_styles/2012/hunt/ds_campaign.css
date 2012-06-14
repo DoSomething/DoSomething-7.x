@@ -707,39 +707,30 @@ div[role="main"] {
   display: block;
   margin: 0 auto; }
 
-#node-722347 .webform-client-form {
+#node-721671 .webform-client-form {
   border: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
   box-shadow: none !important; }
-#node-722347 .field-name-group-audience, #node-722347 .field-name-field-teams-enable, #node-722347 .tabledrag-toggle-weight-wrapper, #node-722347 thead, #node-722347 td.field-multiple-drag {
+#node-721671 .field-name-group-audience, #node-721671 .field-name-field-teams-enable, #node-721671 .tabledrag-toggle-weight-wrapper, #node-721671 thead, #node-721671 td.field-multiple-drag {
   display: none; }
-#node-722347 .active {
-  color: #d32a1b; }
-#node-722347 .webform-component {
+#node-721671 .webform-component {
   margin-bottom: 10px; }
-#node-722347 h3 {
+#node-721671 h3 {
   text-align: center; }
-#node-722347 label {
+#node-721671 label {
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 14px;
   font-weight: 600;
   float: left;
   width: 50%;
   padding-top: 5px; }
-#node-722347 table input[type="text"] {
+#node-721671 table input[type="text"] {
   width: 100%; }
-#node-722347 input[type="text"] {
+#node-721671 input[type="text"] {
   width: 50%; }
-#node-722347 #edit-submitted--2 {
-  display: none; }
-#node-722347 #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc label,
-#node-722347 #webform-component-no-worries label {
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: -10px; }
-#node-722347 #edit-actions {
+#node-721671 #edit-actions, #node-721671 #edit-actions--2 {
   position: relative;
   right: 0;
   bottom: 0;
@@ -767,14 +758,11 @@ div[role="main"] {
   display: none; }
 
 fieldset#webform-component-create-or-join {
-  margin: 55px 0 30px 0;
+  margin: 0 0 30px 0;
   padding: 0 0 0 0; }
   fieldset#webform-component-create-or-join .fieldset-wrapper {
     background-color: #bbbbbb;
     padding: 15px; }
-  fieldset#webform-component-create-or-join .inactive {
-    color: black;
-    background-color: #aaaaaa; }
 
 #edit-submitted-field-team-name,
 #edit-submitted-field-team-invite,
@@ -805,23 +793,45 @@ table#field-team-invite-values {
   #edit-submitted-field-team-invite-und-add-more:hover {
     background-color: #090909; }
 
-div#webform-component-tabs {
+#webform-component-tabs {
   width: 100%;
   overflow: hidden;
-  position: absolute;
-  top: 172px;
-  left: 27px; }
-  div#webform-component-tabs h2 {
+  margin: 0 !important; }
+  #webform-component-tabs h2 {
     display: block;
     width: 125px;
     float: left;
     text-align: center;
     background-color: #bbbbbb;
     padding: 5px;
-    color: white; }
-    div#webform-component-tabs h2:hover {
+    color: #d32a1b; }
+    #webform-component-tabs h2:hover {
       text-decoration: none;
       color: #d32a1b; }
+  #webform-component-tabs .inactive {
+    color: black;
+    background-color: #aaaaaa; }
+
+#edit-submit--2 {
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  border: none;
+  height: 30px;
+  padding: 1px 13px 0;
+  background-color: #fed100;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, #fed100));
+  background-image: -webkit-linear-gradient(top, white, #fed100);
+  background-image: -moz-linear-gradient(top, white, #fed100);
+  background-image: -o-linear-gradient(top, white, #fed100);
+  background-image: -ms-linear-gradient(top, white, #fed100);
+  background-image: linear-gradient(top, #ffffff, #fed100);
+  font-size: 18px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-transform: uppercase; }
 
 #edit-submitted-field-webform-pictures-und legend {
   display: none; }
