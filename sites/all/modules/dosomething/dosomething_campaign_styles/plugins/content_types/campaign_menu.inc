@@ -17,7 +17,9 @@ function dosomething_campaign_styles_campaign_menu_content_type_render($subtype,
 
   $campaign_links = array();
   foreach ($plugin['menu'] as $num => $link) {
-    $link['href'] = drupal_lookup_path('source', $link['href']);
+    if (!isset($link['validate'])) {
+      $link['href'] = drupal_lookup_path('source', $link['href']);
+    }
     $campaign_links['campaign_nav_'.$num] = $link;
   }
   $block->content = theme('links', array('links' => $campaign_links));
