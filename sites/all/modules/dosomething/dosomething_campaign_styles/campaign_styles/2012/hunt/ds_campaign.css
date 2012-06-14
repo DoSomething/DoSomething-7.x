@@ -423,9 +423,28 @@ div[role="main"] {
     color: white !important;
     font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif !important; }
 
-.members-list {
+.team-member-list {
   float: right;
-  width: 31%; }
+  width: 35%; }
+  .team-member-list h3 {
+    text-transform: uppercase;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    margin-bottom: 5px;
+    color: #d32a1b;
+    text-align: center;
+    font-size: 17px; }
+  .team-member-list li {
+    list-style: none;
+    font-size: 16px; }
+
+.sponsor-logos {
+  text-align: center; }
+  .sponsor-logos img {
+    margin: 0 15px; }
+
+.team-notification-area {
+  font-size: 13px;
+  margin-top: 15px; }
 
 .pane-teams-team-management {
   border: none !important; }
@@ -809,3 +828,9 @@ div#webform-component-tabs {
 
 .fb-social-comments-plugin {
   display: none; }
+
+.pane-dosomething-login-register-block {
+  width: 500px;
+  margin: 10px auto; }
+  .pane-dosomething-login-register-block .popup-content {
+    height: 160px !important; }
