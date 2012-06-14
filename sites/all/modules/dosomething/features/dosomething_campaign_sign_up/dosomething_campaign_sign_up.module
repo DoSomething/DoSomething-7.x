@@ -41,13 +41,6 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
 
   $entity_form['group_group'][LANGUAGE_NONE]['#access'] = FALSE;
 
-  global $user;
-  // Take no further action if this user is not authenticated.
-  if ($user->uid == 0) {
-    return;
-  }
-
-
   // The list field that specifies which fields on this form are enabled.
   $magic_fields_field = 'field_signup_magic_fields';
   $enabled_fields = array();
@@ -69,6 +62,12 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
     if (isset($entity_form[$field_name]) && !in_array($field_name, $enabled_fields)) {
       $entity_form[$field_name]['#access'] = FALSE;
     }
+  }
+
+  global $user;
+  // Take no further action if this user is not authenticated.
+  if ($user->uid == 0) {
+    return;
   }
 
   $profile = profile2_load_by_user($user, 'main');
