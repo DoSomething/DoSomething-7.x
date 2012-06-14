@@ -21,11 +21,9 @@ class ConductorActivityTeamsJoinTeam extends ConductorActivity {
       $profile = profile2_load_by_user($user);
 
       $form_state = array();
-      $form_state['values']['field_leader_info'] = $state->getContext('team_leader:message');
-      $form_state['values']['field_webform_mobile'] = $mobile;
+      $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] = $mobile;
+      $form_state['webform_entity']['submission']->submitted['field_leader_info'][LANGUAGE_NONE][0]['value'] = $state->getContext('team_leader:message');
       drupal_form_submit('webform_client_form_' . self::SIGNUP_NID, $form_state, node_load(self::SIGNUP_NID), new StdClass());
-
-      print_r(form_get_errors());
 
       $state->setContext('sms_response', t('Thanks! You\'re added to their team.'));
 
