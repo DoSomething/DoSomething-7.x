@@ -451,37 +451,6 @@ div[role="main"]
       margin: 0 auto
 
 //teampage 
-.pane-teams-team-management
-  border: none !important
-  .pane-content
-    p
-      width: 60%
-      font-size: 14px
-  form
-    label
-      font-size: 13px
-      font-weight: bold
-    input
-      width: 150px
-      height: 30px
-      margin-right: 10px
-    .form-submit // forgive me SASS gods, this is gross, but I'm in a rush
-      border-radius: 12px
-      border: none
-      height: 30px
-      padding: 1px 13px 0
-      background-color: #FED100
-      background-image: -webkit-linear-gradient(top, white, #FED100)
-      background-image: -moz-linear-gradient(top, white, #FED100)
-      background-image: -o-linear-gradient(top, white, #FED100)
-      background-image: -ms-linear-gradient(top, white, #FED100)
-      background-image: linear-gradient(top, white, #FED100)
-      font-size: 18px
-      text-transform: uppercase
-      color: #333131
-      font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif
-      font-weight: bold
-
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
@@ -497,37 +466,15 @@ div[role="main"]
     color: white !important
     font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif !important
     
-.team-member-list
+.members-list
   float: right
-  width: 35%
-  h3  
-    text-transform: uppercase
-    font-family: $accent-reg
-    margin-bottom: 5px
-    color: $baseColor
-    text-align: center
-    font-size: 17px
-  li
-    list-style: none
-    width: 100%
-    overflow: auto
-    margin: 0 0 0 15px
-    font-size: 16px
+  width: 31%
+  
+.pane-teams-team-management
+  border: none !important
   
 #teams-remove-members
   display: none
-  
-#teams-notification-area
-  font-size: 14px
-  margin: 10px 0
-  
-.header-info h2
-  margin-top: 10px
-  
-.sponsor-logos
-  text-align: center
-  img
-    margin: 0 20px
 
 #block-system-main
   .team
@@ -805,14 +752,18 @@ div[role="main"]
     margin: 0 auto
 
 // sign up form
-#node-721671
+#node-722347
   .webform-client-form
     +noBorder 
     +noShadow
   .field-name-group-audience, .field-name-field-teams-enable, .tabledrag-toggle-weight-wrapper, thead, td.field-multiple-drag
     display: none
+  .active
+    color: $baseColor
   .webform-component
     margin-bottom: 10px
+  h3
+    text-align: center
   label
     font-family: $accent-reg
     font-size: 14px
@@ -837,12 +788,26 @@ div[role="main"]
     right: 0
     bottom: 0
     text-align: center
+    margin: 25px 0 -15px 0
 
 // instruction div
-#webform-component-instructions h2
+#webform-component-instructions h2,
+#webform-component-sunglass-instructions h2
   text-align: center
   font-size: 26px
   padding-bottom: 15px
+
+#webform-component-sunglass-instructions h2
+  padding-bottom: 0
+  
+// opt-in checkbox
+#webform-component-yes
+  width: 15%
+  margin: 0 auto !important
+  > label
+    display: none
+  .form-item-submitted-yes-yes label
+    margin-top: -4px
 
 // fieldset containing Drupal insanity
 #webform-component-kill-me
@@ -856,6 +821,7 @@ fieldset#webform-component-create-or-join
     background-color: #bbb
     padding: 15px
   .inactive
+    color: #000
     background-color: #aaa
 
 // initially hide #create_team fields
@@ -904,6 +870,7 @@ div#webform-component-tabs
     text-align: center
     background-color: #bbb
     padding: 5px
+    color: #fff
     &:hover
       text-decoration: none
       color: $baseColor
@@ -914,6 +881,3 @@ div#webform-component-tabs
 
 .fb-social-comments-plugin
   display: none
-  
-.panel-row-ad-psa
-  margin-top: 34px !important

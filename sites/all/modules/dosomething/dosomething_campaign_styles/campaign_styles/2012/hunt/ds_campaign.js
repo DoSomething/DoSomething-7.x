@@ -5,9 +5,20 @@
     attach: function (context, settings) {
 
     // move webform fields into containing fieldset
-    // hack hack hack
     $("#edit-submitted-field-leader-info,#webform-component-tabs,#edit-submitted-field-team-name,#webform-component-derp,#edit-submitted-field-team-invite").appendTo("#webform-component-create-or-join > .fieldset-wrapper");
     
+    // hide sunglass address fieldset & show if opt-in is checked
+    $("#webform-component-address-holder").hide(); 
+
+    $("#edit-submitted-yes-1").change(function () {
+      if ($("#edit-submitted-yes-1").is(':checked')) {
+        $("#webform-component-address-holder").slideToggle();
+      }
+      else {
+        $("#webform-component-address-holder").slideToggle();        
+      }
+    });
+
     // create & join functionality
     // show:join
     $("#join_team").click(function(){
