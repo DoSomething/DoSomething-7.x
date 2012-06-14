@@ -446,6 +446,11 @@ div[role="main"] {
   font-size: 14px;
   margin: 10px 0; }
 
+.sponsor-logos {
+  text-align: center; }
+  .sponsor-logos img {
+    margin: 0 20px; }
+
 #block-system-main .team {
   background-color: #d6d6d7;
   height: 470px; }
