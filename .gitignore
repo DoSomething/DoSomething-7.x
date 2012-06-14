@@ -13,3 +13,5 @@ tag
 #Ignore livereload
 sites/all/modules/livereload/
 
+# Ignore sass-cache
+*/.sass-cache
