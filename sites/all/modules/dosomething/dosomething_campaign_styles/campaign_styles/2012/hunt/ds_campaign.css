@@ -379,23 +379,69 @@ div[role="main"] {
     width: 480px;
     margin: 0 auto; }
 
+.pane-teams-team-management {
+  border: none !important; }
+  .pane-teams-team-management .pane-content {
+    height: 175px; }
+    .pane-teams-team-management .pane-content p {
+      width: 60%;
+      font-size: 14px; }
+  .pane-teams-team-management form label {
+    font-size: 13px;
+    font-weight: bold; }
+  .pane-teams-team-management form input#edit-friend {
+    width: 151px;
+    height: 30px;
+    margin-right: 10px;
+    float: left; }
+  .pane-teams-team-management form .form-submit {
+    border-radius: 12px;
+    border: none;
+    height: 30px;
+    padding: 1px 13px 0;
+    background-color: #fed100;
+    background-image: -webkit-linear-gradient(top, white, #fed100);
+    background-image: -moz-linear-gradient(top, white, #fed100);
+    background-image: -o-linear-gradient(top, white, #fed100);
+    background-image: -ms-linear-gradient(top, white, #fed100);
+    background-image: linear-gradient(top, #ffffff, #fed100);
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #333131;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    font-weight: bold; }
+
 .team-name-title {
   margin-bottom: 0px !important;
   border: none !important; }
-  .team-name-title .pane-content {
-    background-color: #d32a1b !important;
-    padding: 6px 12px 6px 12px !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    line-height: 22px !important;
-    font-size: 21px !important;
-    font-weight: 600 !important;
-    color: white !important;
-    font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif !important; }
 
-.members-list {
+.team-member-list {
   float: right;
-  width: 31%; }
+  width: 35%;
+  border: 2px dotted #d32a1b;
+  height: 145px;
+  padding: 10px;
+  overflow-y: scroll; }
+  .team-member-list h3 {
+    text-transform: uppercase;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    margin-bottom: 5px;
+    color: #d32a1b;
+    text-align: center;
+    font-size: 17px; }
+  .team-member-list ul li {
+    list-style: none;
+    font-size: 16px;
+    margin: 5px 0; }
+
+.sponsor-logos {
+  text-align: center; }
+  .sponsor-logos img {
+    margin: 0 15px; }
+
+.team-notification-area {
+  font-size: 13px;
+  margin-top: 15px; }
 
 .pane-teams-team-management {
   border: none !important; }
