@@ -451,6 +451,37 @@ div[role="main"]
       margin: 0 auto
 
 //teampage 
+.pane-teams-team-management
+  border: none !important
+  .pane-content
+    p
+      width: 60%
+      font-size: 14px
+  form
+    label
+      font-size: 13px
+      font-weight: bold
+    input
+      width: 150px
+      height: 30px
+      margin-right: 10px
+    .form-submit // forgive me SASS gods, this is gross, but I'm in a rush
+      border-radius: 12px
+      border: none
+      height: 30px
+      padding: 1px 13px 0
+      background-color: #FED100
+      background-image: -webkit-linear-gradient(top, white, #FED100)
+      background-image: -moz-linear-gradient(top, white, #FED100)
+      background-image: -o-linear-gradient(top, white, #FED100)
+      background-image: -ms-linear-gradient(top, white, #FED100)
+      background-image: linear-gradient(top, white, #FED100)
+      font-size: 18px
+      text-transform: uppercase
+      color: #333131
+      font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif
+      font-weight: bold
+
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
@@ -466,12 +497,22 @@ div[role="main"]
     color: white !important
     font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif !important
     
-.members-list
+.team-member-list
   float: right
-  width: 31%
-  
-.pane-teams-team-management
-  border: none !important
+  width: 35%
+  h3  
+    text-transform: uppercase
+    font-family: $accent-reg
+    margin-bottom: 5px
+    color: $baseColor
+    text-align: center
+    font-size: 17px
+  li
+    list-style: none
+    width: 100%
+    overflow: auto
+    margin: 0 0 0 15px
+    font-size: 16px
   
 #teams-remove-members
   display: none

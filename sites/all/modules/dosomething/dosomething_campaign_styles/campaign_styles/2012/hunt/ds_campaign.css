@@ -379,6 +379,35 @@ div[role="main"] {
     width: 480px;
     margin: 0 auto; }
 
+.pane-teams-team-management {
+  border: none !important; }
+  .pane-teams-team-management .pane-content p {
+    width: 60%;
+    font-size: 14px; }
+  .pane-teams-team-management form label {
+    font-size: 13px;
+    font-weight: bold; }
+  .pane-teams-team-management form input {
+    width: 150px;
+    height: 30px;
+    margin-right: 10px; }
+  .pane-teams-team-management form .form-submit {
+    border-radius: 12px;
+    border: none;
+    height: 30px;
+    padding: 1px 13px 0;
+    background-color: #fed100;
+    background-image: -webkit-linear-gradient(top, white, #fed100);
+    background-image: -moz-linear-gradient(top, white, #fed100);
+    background-image: -o-linear-gradient(top, white, #fed100);
+    background-image: -ms-linear-gradient(top, white, #fed100);
+    background-image: linear-gradient(top, #ffffff, #fed100);
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #333131;
+    font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
+    font-weight: bold; }
+
 .team-name-title {
   margin-bottom: 0px !important;
   border: none !important; }
@@ -393,12 +422,22 @@ div[role="main"] {
     color: white !important;
     font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif !important; }
 
-.members-list {
+.team-member-list {
   float: right;
-  width: 31%; }
-
-.pane-teams-team-management {
-  border: none !important; }
+  width: 35%; }
+  .team-member-list h3 {
+    text-transform: uppercase;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    margin-bottom: 5px;
+    color: #d32a1b;
+    text-align: center;
+    font-size: 17px; }
+  .team-member-list li {
+    list-style: none;
+    width: 100%;
+    overflow: auto;
+    margin: 0 0 0 15px;
+    font-size: 16px; }
 
 #teams-remove-members {
   display: none; }
