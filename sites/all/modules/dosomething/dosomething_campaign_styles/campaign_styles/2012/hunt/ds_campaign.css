@@ -382,34 +382,48 @@ div[role="main"] {
 .pane-teams-team-management {
   border: none !important; }
   .pane-teams-team-management .pane-content {
-    height: 175px; }
-    .pane-teams-team-management .pane-content p {
-      width: 60%;
-      font-size: 14px; }
-  .pane-teams-team-management form label {
+    height: 180px; }
+    .pane-teams-team-management .pane-content p, .pane-teams-team-management .pane-content #teams-add-member-form {
+      width: 63%;
+      font-size: 14px;
+      padding: 10px;
+      margin: 0; }
+  .pane-teams-team-management #teams-add-member-form {
+    border: 2px dotted #d32a1b;
+    height: 76px; }
+  .pane-teams-team-management .members-list label {
     font-size: 13px;
-    font-weight: bold; }
-  .pane-teams-team-management form input#edit-friend {
+    font-weight: bold;
+    float: left;
+    margin: 6px 12px 0 0; }
+  .pane-teams-team-management .members-list input#edit-friend {
     width: 151px;
     height: 30px;
     margin-right: 10px;
     float: left; }
-  .pane-teams-team-management form .form-submit {
-    border-radius: 12px;
-    border: none;
-    height: 30px;
-    padding: 1px 13px 0;
-    background-color: #fed100;
-    background-image: -webkit-linear-gradient(top, white, #fed100);
-    background-image: -moz-linear-gradient(top, white, #fed100);
-    background-image: -o-linear-gradient(top, white, #fed100);
-    background-image: -ms-linear-gradient(top, white, #fed100);
-    background-image: linear-gradient(top, #ffffff, #fed100);
-    font-size: 17px;
-    text-transform: uppercase;
-    color: #333131;
-    font-family: din-web-reg, "Trebuchet MS", sans-serif;
-    font-weight: bold; }
+  .pane-teams-team-management .members-list .form-submit {
+    border: none !important;
+    background-image: url("http://files.dosomething.org/files/campaigns/hunt/team_sprite.png");
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 18px;
+    display: block;
+    text-indent: -9999em;
+    float: right;
+    margin: -18px 0 0 0;
+    background-color: #d6d6d7; }
+    .pane-teams-team-management .members-list .form-submit:hover {
+      background-position-y: -18px; }
+
+#teams-add-member-form .form-item-friend input, #teams-add-member-form .form-item-friend label {
+  float: left;
+  margin-top: 2px; }
+#teams-add-member-form .form-item-friend input {
+  width: 200px; }
+#teams-add-member-form .form-item-friend label {
+  margin: 5px 30px 0 0; }
+#teams-add-member-form .form-submit {
+  float: right; }
 
 .team-name-title {
   margin-bottom: 0px !important;
@@ -419,96 +433,44 @@ div[role="main"] {
   float: right;
   width: 35%;
   border: 2px dotted #d32a1b;
-  height: 145px;
+  height: 150px;
   padding: 10px;
   overflow-y: scroll; }
-  .team-member-list h3 {
-    text-transform: uppercase;
-    font-family: din-web-reg, "Trebuchet MS", sans-serif;
-    margin-bottom: 5px;
-    color: #d32a1b;
-    text-align: center;
-    font-size: 17px; }
   .team-member-list ul li {
     list-style: none;
     font-size: 16px;
     margin: 5px 0; }
+
+.team-member-list h3,
+#teams-add-member-form h3 {
+  text-transform: uppercase;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  margin-bottom: 5px;
+  color: #d32a1b;
+  text-align: center;
+  font-size: 17px; }
 
 .sponsor-logos {
   text-align: center; }
   .sponsor-logos img {
     margin: 0 15px; }
 
-.team-notification-area {
+#teams-notification-area {
   font-size: 13px;
-  margin-top: 15px; }
+  margin-top: 15px;
+  text-align: center; }
 
 .pane-teams-team-management {
   border: none !important; }
 
 #teams-remove-members {
-  display: none; }
-
-#block-system-main .team {
-  background-color: #d6d6d7;
-  height: 470px; }
-  #block-system-main .team div {
-    border: 2px dotted #d32a1b; }
-  #block-system-main .team h2, #block-system-main .team h3, #block-system-main .team h4 {
-    text-transform: uppercase;
-    font-family: din-web-reg, "Trebuchet MS", sans-serif;
-    margin-bottom: 5px; }
-  #block-system-main .team h2 {
-    color: black;
-    text-align: center; }
-  #block-system-main .team h3 {
-    color: #d32a1b;
-    text-align: center;
-    font-size: 17px; }
-  #block-system-main .team h4 {
-    color: black;
-    text-align: left;
-    font-size: 17px;
-    margin: 10px 0 0 0; }
-  #block-system-main .team img {
-    border: none !important;
-    width: 45px;
-    height: 45px;
-    margin: 0 15px 15px 0;
-    padding: 0;
-    float: left; }
-  #block-system-main .team .activity-list li {
-    list-style-image: url("assets/triangle.png"); }
-  #block-system-main .team .members-list {
-    margin: 0;
-    padding: 0; }
-  #block-system-main .team .members-list li {
-    list-style: none;
-    width: 100%;
-    overflow: auto;
-    margin: 0 15px 0 0; }
-  #block-system-main .team .team-col_l {
-    float: left;
-    width: 63%;
-    margin-right: 2%; }
-  #block-system-main .team .team-col_r {
-    float: right;
-    width: 35%; }
-  #block-system-main .team .team-activity, #block-system-main .team .team-members {
-    overflow: hidden; }
-  #block-system-main .team .team-progress {
-    height: 250px; }
-  #block-system-main .team .team-members {
-    height: 300px;
-    overflow: auto; }
-  #block-system-main .team .team-activity {
-    height: 200px;
-    overflow: auto; }
-  #block-system-main .team .team-share {
-    height: 150px; }
-  #block-system-main .team .team-progress, #block-system-main .team .team-members, #block-system-main .team .team-activity, #block-system-main .team .team-share {
-    margin-bottom: 20px;
-    padding: 15px; }
+  display: block;
+  text-align: center;
+  text-transform: capitalize; }
+  #teams-remove-members:before {
+    content: "[ "; }
+  #teams-remove-members:after {
+    content: " ]"; }
 
 .node-campaign-blog-post {
   padding: 15px !important; }
@@ -760,6 +722,24 @@ fieldset#webform-component-create-or-join {
   fieldset#webform-component-create-or-join .fieldset-wrapper {
     background-color: #bbbbbb;
     padding: 15px; }
+    fieldset#webform-component-create-or-join .fieldset-wrapper .form-submit {
+      font-weight: bold;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      -ms-border-radius: 12px;
+      -o-border-radius: 12px;
+      border-radius: 12px;
+      border: none;
+      height: 30px;
+      padding: 1px 13px 0;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: white;
+      font-family: din-web, "Trebuchet MS", sans-serif;
+      background-color: #222222;
+      margin: 25px 0px 0px 30px; }
+      fieldset#webform-component-create-or-join .fieldset-wrapper .form-submit:hover {
+        background-color: #090909; }
 
 #edit-submitted-field-team-name,
 #edit-submitted-field-team-invite,
@@ -770,25 +750,6 @@ table#field-team-invite-values {
   width: 50%;
   table-layout: fixed;
   float: right; }
-
-#edit-submitted-field-team-invite-und-add-more {
-  font-weight: bold;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
-  border-radius: 12px;
-  border: none;
-  height: 30px;
-  padding: 1px 13px 0;
-  font-size: 15px;
-  text-transform: uppercase;
-  color: white;
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  background-color: #222222;
-  margin: 25px 0px 0px 30px; }
-  #edit-submitted-field-team-invite-und-add-more:hover {
-    background-color: #090909; }
 
 #webform-component-tabs {
   width: 100%;
@@ -809,7 +770,8 @@ table#field-team-invite-values {
     color: black;
     background-color: #aaaaaa; }
 
-#edit-submit--2 {
+.node-campaign-sign-up #edit-actions--2 .form-submit,
+.pane-teams-team-management .form-submit {
   font-weight: bold;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
