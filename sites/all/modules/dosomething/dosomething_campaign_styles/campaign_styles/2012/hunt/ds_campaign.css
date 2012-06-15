@@ -386,7 +386,8 @@ div[role="main"] {
     font-size: 14px; }
   .pane-teams-team-management form label {
     font-size: 13px;
-    font-weight: bold; }
+    font-weight: bold;
+    cursor: default; }
   .pane-teams-team-management form input#edit-friend {
     width: 151px;
     height: 30px;
@@ -442,7 +443,7 @@ div[role="main"] {
   .sponsor-logos img {
     margin: 0 15px; }
 
-.team-notification-area {
+.teams-notification-area {
   font-size: 13px;
   margin-top: 15px; }
 
