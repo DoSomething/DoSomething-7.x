@@ -536,3 +536,52 @@ img {
     font-size: 0.75em;
     font-weight: normal;
     margin-top: 0.5em; }
+
+#edit-submitted-group-audience {
+  display: none; }
+
+#thumbwars_reportback label {
+  font-family: din-web;
+  font-weight: normal;
+  font-size: 1.75em;
+  padding: 1em 0 0.5em; }
+#thumbwars_reportback #webform-component-first-name {
+  float: left;
+  margin-right: 16px; }
+#thumbwars_reportback .form-select {
+  width: 240px;
+  height: 40px;
+  overflow: hidden;
+  background: #919396 url("assets/dropdown_arrow.png") no-repeat 95% 50%;
+  border: 0;
+  padding: 7px 14px;
+  color: white;
+  font-family: din-web;
+  font-size: 1.5em;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none; }
+#thumbwars_reportback textarea {
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  border: 0; }
+#thumbwars_reportback #edit-submitted-field-webform-pictures legend {
+  padding: 2em 0 0;
+  margin-bottom: 0;
+  line-height: 1em; }
+#thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper {
+  background: white;
+  margin-top: 20px;
+  width: 300px;
+  padding: 0 15px;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset; }
+#thumbwars_reportback #edit-submitted-field-webform-pictures input {
+  margin: 5px 0; }
+#thumbwars_reportback #edit-actions {
+  margin-bottom: 16px; }

@@ -397,6 +397,8 @@ div[role="main"] {
     float: left;
     margin: 6px 12px 0 0; }
   .pane-teams-team-management .members-list input#edit-friend {
+    cursor: default; }
+  .pane-teams-team-management form input#edit-friend {
     width: 151px;
     height: 30px;
     margin-right: 10px;
@@ -455,7 +457,11 @@ div[role="main"] {
   .sponsor-logos img {
     margin: 0 15px; }
 
+<<<<<<< HEAD
 #teams-notification-area {
+=======
+.teams-notification-area {
+>>>>>>> 074f1ec89d3bc5c5345667a9757b38ecd9d0709c
   font-size: 13px;
   margin-top: 15px;
   text-align: center; }

@@ -31,7 +31,7 @@ $plugin = array(
     array('title' => 'home', 'href' => 'hunt'),
     array('title' => 'challenges', 'href' => 'hunt/challenges'),
     array('title' => 'my team', 'href' => 'my-team/hunt', 'validate' => FALSE),
-    array('title' => 'win stuff', 'href' => 'hunt/prizes'),
+    array('title' => 'scholarships & prizes', 'href' => 'hunt/prizes'),
     array('title' => 'quiz', 'href' => 'hunt/quiz'),
     array('title' => 'faq', 'href' => 'hunt/faq'),
     array('title' => 'blog', 'href' => 'hunt/blog'),
