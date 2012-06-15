@@ -381,9 +381,11 @@ div[role="main"] {
 
 .pane-teams-team-management {
   border: none !important; }
-  .pane-teams-team-management .pane-content p {
-    width: 60%;
-    font-size: 14px; }
+  .pane-teams-team-management .pane-content {
+    height: 175px; }
+    .pane-teams-team-management .pane-content p {
+      width: 60%;
+      font-size: 14px; }
   .pane-teams-team-management form label {
     font-size: 13px;
     font-weight: bold;
@@ -404,29 +406,23 @@ div[role="main"] {
     background-image: -o-linear-gradient(top, white, #fed100);
     background-image: -ms-linear-gradient(top, white, #fed100);
     background-image: linear-gradient(top, #ffffff, #fed100);
-    font-size: 18px;
+    font-size: 17px;
     text-transform: uppercase;
     color: #333131;
-    font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
     font-weight: bold; }
 
 .team-name-title {
   margin-bottom: 0px !important;
   border: none !important; }
-  .team-name-title .pane-content {
-    background-color: #d32a1b !important;
-    padding: 6px 12px 6px 12px !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    line-height: 22px !important;
-    font-size: 21px !important;
-    font-weight: 600 !important;
-    color: white !important;
-    font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif !important; }
 
 .team-member-list {
   float: right;
-  width: 35%; }
+  width: 35%;
+  border: 2px dotted #d32a1b;
+  height: 145px;
+  padding: 10px;
+  overflow-y: scroll; }
   .team-member-list h3 {
     text-transform: uppercase;
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
@@ -434,9 +430,10 @@ div[role="main"] {
     color: #d32a1b;
     text-align: center;
     font-size: 17px; }
-  .team-member-list li {
+  .team-member-list ul li {
     list-style: none;
-    font-size: 16px; }
+    font-size: 16px;
+    margin: 5px 0; }
 
 .sponsor-logos {
   text-align: center; }
@@ -716,8 +713,6 @@ div[role="main"] {
   box-shadow: none !important; }
 #node-722347 .field-name-group-audience, #node-722347 .field-name-field-teams-enable, #node-722347 .tabledrag-toggle-weight-wrapper, #node-722347 thead, #node-722347 td.field-multiple-drag {
   display: none; }
-#node-722347 .active {
-  color: #d32a1b; }
 #node-722347 .webform-component {
   margin-bottom: 10px; }
 #node-722347 h3 {
@@ -733,14 +728,7 @@ div[role="main"] {
   width: 100%; }
 #node-722347 input[type="text"] {
   width: 50%; }
-#node-722347 #edit-submitted--2 {
-  display: none; }
-#node-722347 #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc label,
-#node-722347 #webform-component-no-worries label {
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: -10px; }
-#node-722347 #edit-actions {
+#node-722347 #edit-actions, #node-722347 #edit-actions--2 {
   position: relative;
   right: 0;
   bottom: 0;
@@ -768,14 +756,11 @@ div[role="main"] {
   display: none; }
 
 fieldset#webform-component-create-or-join {
-  margin: 55px 0 30px 0;
+  margin: 0 0 30px 0;
   padding: 0 0 0 0; }
   fieldset#webform-component-create-or-join .fieldset-wrapper {
     background-color: #bbbbbb;
     padding: 15px; }
-  fieldset#webform-component-create-or-join .inactive {
-    color: black;
-    background-color: #aaaaaa; }
 
 #edit-submitted-field-team-name,
 #edit-submitted-field-team-invite,
@@ -806,35 +791,48 @@ table#field-team-invite-values {
   #edit-submitted-field-team-invite-und-add-more:hover {
     background-color: #090909; }
 
-div#webform-component-tabs {
+#webform-component-tabs {
   width: 100%;
   overflow: hidden;
-  position: absolute;
-  top: 172px;
-  left: 27px; }
-  div#webform-component-tabs h2 {
+  margin: 0 !important; }
+  #webform-component-tabs h2 {
     display: block;
     width: 125px;
     float: left;
     text-align: center;
     background-color: #bbbbbb;
     padding: 5px;
-    color: white; }
-    div#webform-component-tabs h2:hover {
+    color: #d32a1b; }
+    #webform-component-tabs h2:hover {
       text-decoration: none;
       color: #d32a1b; }
+  #webform-component-tabs .inactive {
+    color: black;
+    background-color: #aaaaaa; }
+
+#edit-submit--2 {
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  border: none;
+  height: 30px;
+  padding: 1px 13px 0;
+  background-color: #fed100;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, #fed100));
+  background-image: -webkit-linear-gradient(top, white, #fed100);
+  background-image: -moz-linear-gradient(top, white, #fed100);
+  background-image: -o-linear-gradient(top, white, #fed100);
+  background-image: -ms-linear-gradient(top, white, #fed100);
+  background-image: linear-gradient(top, #ffffff, #fed100);
+  font-size: 18px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-transform: uppercase; }
 
 #edit-submitted-field-webform-pictures-und legend {
   display: none; }
 
 .fb-social-comments-plugin {
   display: none; }
-
-.pane-dosomething-login-register-block {
-  width: 500px;
-  margin: 10px auto; }
-  .pane-dosomething-login-register-block .popup-content {
-    height: 160px !important; }
-
-.panel-row-ad-psa {
-  margin-top: 34px; }

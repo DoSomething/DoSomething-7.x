@@ -441,7 +441,7 @@ div[role="main"]
   .pane-content 
     background: #fff
 
-//gallery
+// gallery
 .view-campaign-gallery
   #gallery
     height: 415px
@@ -450,10 +450,11 @@ div[role="main"]
       width: 480px
       margin: 0 auto
 
-//teampage 
+// team pages 
 .pane-teams-team-management
   border: none !important
   .pane-content
+    height: 175px
     p
       width: 60%
       font-size: 14px
@@ -469,6 +470,7 @@ div[role="main"]
       float: left
     .form-submit // forgive me SASS gods, this is gross, but I'm in a rush
       border-radius: 12px
+      
       border: none
       height: 30px
       padding: 1px 13px 0
@@ -478,30 +480,23 @@ div[role="main"]
       background-image: -o-linear-gradient(top, white, #FED100)
       background-image: -ms-linear-gradient(top, white, #FED100)
       background-image: linear-gradient(top, white, #FED100)
-      font-size: 18px
+      font-size: 17px
       text-transform: uppercase
       color: #333131
-      font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif
+      font-family: $accent-reg
       font-weight: bold
 
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
-  
-  .pane-content
-    background-color: $baseColor !important
-    padding: 6px 12px 6px 12px !important
-    margin-top: 0 !important
-    margin-bottom: 0 !important
-    line-height: 22px !important
-    font-size: 21px !important
-    font-weight: 600 !important
-    color: white !important
-    font-family: din-web,"HelveticaNeue-CondensedBold","Arial Narrow",Arial,"Trebuchet MS",sans-serif !important
     
 .team-member-list
   float: right
   width: 35%
+  border: 2px dotted $baseColor
+  height: 145px
+  padding: 10px
+  overflow-y: scroll
   h3
     text-transform: uppercase
     font-family: $accent-reg
@@ -509,16 +504,17 @@ div[role="main"]
     color: $baseColor
     text-align: center
     font-size: 17px
-  li
+  ul li
     list-style: none
     font-size: 16px
-  
+    margin: 5px 0
+
 .sponsor-logos
   text-align: center
   img
     margin: 0 15px
-    
-.teams-notification-area
+
+.team-notification-area
   font-size: 13px
   margin-top: 15px
   
@@ -804,14 +800,13 @@ div[role="main"]
     margin: 0 auto
 
 // sign up form
-#node-722347
+// #node-721671 // (local)
+#node-722347 // (production)
   .webform-client-form
     +noBorder 
     +noShadow
   .field-name-group-audience, .field-name-field-teams-enable, .tabledrag-toggle-weight-wrapper, thead, td.field-multiple-drag
     display: none
-  .active
-    color: $baseColor
   .webform-component
     margin-bottom: 10px
   h3
@@ -827,15 +822,7 @@ div[role="main"]
     width: 100%
   input[type="text"]
     width: 50%
-  #edit-submitted--2
-    display: none
-  #webform-component-ie-why-you-participated-what-getting-your-dad-to-take-his-blood-pressure-was-like-etc, 
-  #webform-component-no-worries
-    label
-      font-size: 12px
-      font-weight: 500
-      margin-top: -10px
-  #edit-actions
+  #edit-actions, #edit-actions--2
     position: relative
     right: 0
     bottom: 0
@@ -867,14 +854,11 @@ div[role="main"]
 
 // create_team & join_team functionality fieldset
 fieldset#webform-component-create-or-join
-  margin: 55px 0 30px 0
+  margin: 0 0 30px 0
   padding: 0 0 0 0
   .fieldset-wrapper
     background-color: #bbb
     padding: 15px
-  .inactive
-    color: #000
-    background-color: #aaa
 
 // initially hide #create_team fields
 #edit-submitted-field-team-name,
@@ -909,12 +893,10 @@ table#field-team-invite-values
     background-color: darken(#222, 10%)
 
 // #join_team & #create_team jQuery hooks
-div#webform-component-tabs
+#webform-component-tabs
   width: 100%
   overflow: hidden
-  position: absolute
-  top: 172px
-  left: 27px
+  margin: 0 !important
   h2
     display: block
     width: 125px
@@ -922,10 +904,35 @@ div#webform-component-tabs
     text-align: center
     background-color: #bbb
     padding: 5px
-    color: #fff
+    color: $baseColor
     &:hover
       text-decoration: none
       color: $baseColor
+  .inactive
+    color: #000
+    background-color: #aaa
+
+// hack to fix anon. two submit button bug
+#edit-submit--2
+  font-weight: bold 
+  -webkit-border-radius: 12px 
+  -moz-border-radius: 12px 
+  -ms-border-radius: 12px 
+  -o-border-radius: 12px 
+  border-radius: 12px 
+  border: none 
+  height: 30px 
+  padding: 1px 13px 0 
+  background-color: #FED100 
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, #FED100)) 
+  background-image: -webkit-linear-gradient(top, white, #FED100) 
+  background-image: -moz-linear-gradient(top, white, #FED100) 
+  background-image: -o-linear-gradient(top, white, #FED100) 
+  background-image: -ms-linear-gradient(top, white, #FED100) 
+  background-image: linear-gradient(top, white, #FED100) 
+  font-size: 18px 
+  font-family: $accent
+  text-transform: uppercase 
 
 #edit-submitted-field-webform-pictures-und
   legend
@@ -933,12 +940,3 @@ div#webform-component-tabs
 
 .fb-social-comments-plugin
   display: none
-  
-.pane-dosomething-login-register-block 
-  width: 500px
-  margin: 10px auto
-  .popup-content
-    height: 160px !important
-
-.panel-row-ad-psa
-  margin-top: 34px
