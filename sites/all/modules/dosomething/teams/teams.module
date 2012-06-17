@@ -549,6 +549,7 @@ function teams_default_conductor_workflows() {
   $activity->title = 'Ask for their first name if we do not yet have it.';
   $activity->question = 'What is your first name?';
   $activity->conditional_check = 'check_name:has_name';
+  $activity->isset_type = 'notset';
   $activity->check_type = 'isset';
   $activity->inputs = array('check_name');
   $activity->outputs = array('team_leader');
@@ -560,6 +561,7 @@ function teams_default_conductor_workflows() {
   $activity->title = 'Ask for team leader email/cell';
   $activity->question = 'Tell us your team leader\'s email or cell #. Let them know to make sure they have this info on their DoSomething.org account!';
   $activity->conditional_check = 'check_name:is_invited';
+  $activity->isset_type = 'notset';
   $activity->check_type = 'isset';
   $activity->inputs = array('ask_name');
   $activity->outputs = array('signature_remover');
@@ -587,8 +589,6 @@ function teams_default_conductor_workflows() {
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
-
-  // 
 
   return $workflows;
 }

@@ -50,7 +50,8 @@ class ConductorActivityTeamsCheckUser extends ConductorActivitySMSPrompt {
     }
 
     if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-      //$state->setContext('has_name', TRUE);
+      print_r('got here');exit;
+      $state->setContext('has_name', TRUE);
     }
 
     $state->markCompeted();
