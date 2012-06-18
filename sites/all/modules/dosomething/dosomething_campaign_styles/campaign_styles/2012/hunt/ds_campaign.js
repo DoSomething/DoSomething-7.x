@@ -1,8 +1,7 @@
 // hunt hunt hunt hunt
 // drupal jQuery initialization
 (function ($) {
-  Drupal.behaviors.Hunt = {
-    attach: function (context, settings) {
+  $(document).ready(function() {
 
     // move webform fields into containing fieldset
     // #webform-component-tabs
@@ -46,6 +45,5 @@
         $("a#join_team > h2").addClass("inactive");
           return false
      });
-    }
-  }
+  });
 })(jQuery);

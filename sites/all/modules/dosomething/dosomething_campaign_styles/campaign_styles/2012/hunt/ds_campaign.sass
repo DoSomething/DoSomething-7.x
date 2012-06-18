@@ -454,137 +454,110 @@ div[role="main"]
 .pane-teams-team-management
   border: none !important
   .pane-content
-    height: 175px
-    p
-      width: 60%
+    height: 180px
+    p, #teams-add-member-form
+      width: 63%
       font-size: 14px
-  form
+      padding: 10px 10px 10px 10px
+      margin: 0
+  #teams-add-member-form
+    height: 50px
+    margin: 35px 0 0 0 !important
+  .members-list
     label
       font-size: 13px
       font-weight: bold
+      float: left
+      margin: 6px 12px 0 0
       cursor: default
     input#edit-friend
       width: 151px
       height: 30px
       margin-right: 10px
       float: left
-    .form-submit // forgive me SASS gods, this is gross, but I'm in a rush
-      border-radius: 12px
-      
-      border: none
-      height: 30px
-      padding: 1px 13px 0
-      background-color: #FED100
-      background-image: -webkit-linear-gradient(top, white, #FED100)
-      background-image: -moz-linear-gradient(top, white, #FED100)
-      background-image: -o-linear-gradient(top, white, #FED100)
-      background-image: -ms-linear-gradient(top, white, #FED100)
-      background-image: linear-gradient(top, white, #FED100)
-      font-size: 17px
-      text-transform: uppercase
-      color: #333131
-      font-family: $accent-reg
-      font-weight: bold
+    .form-submit // "Vos et nos dimittimus providere sprites." 
+      +noBorder
+      background-image: url("http://files.dosomething.org/files/campaigns/hunt/team_sprite.png")
+      background-repeat: no-repeat
+      height: 18px
+      width: 18px
+      display: block
+      text-indent: -9999em
+      float: right
+      margin: -18px 0 0 0
+      background-color: $huntLighter
+      &:hover
+        background-position-y: -18px
+
+#teams-add-member-form
+  .form-item-friend
+    input, label
+      float: left
+      margin-top: 2px
+    input
+      width: 200px
+    label
+      margin: 5px 30px 0 0
+  .form-submit
+    float: right
 
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
+  .pane-content // holy !important, batman
+    background-color: $baseColor !important 
+    padding: 6px 12px 6px 12px !important 
+    margin-top: 0 !important  
+    margin-bottom: 0 !important 
+    line-height: 22px !important
+    font-size: 21px !important
+    font-weight: 600 !important
+    color: white !important
+    font-family: $accent-reg
     
 .team-member-list
   float: right
   width: 35%
   border: 2px dotted $baseColor
-  height: 145px
+  height: 150px
   padding: 10px
   overflow-y: scroll
-  h3
-    text-transform: uppercase
-    font-family: $accent-reg
-    margin-bottom: 5px
-    color: $baseColor
-    text-align: center
-    font-size: 17px
   ul li
     list-style: none
     font-size: 16px
     margin: 5px 0
+
+.team-member-list h3,
+#teams-add-member-form h3
+  text-transform: uppercase
+  font-family: $accent-reg
+  margin-bottom: 5px
+  color: $baseColor
+  text-align: center
+  font-size: 17px
 
 .sponsor-logos
   text-align: center
   img
     margin: 0 15px
 
-.team-notification-area
+// member has been invited notification
+#teams-notification-area
   font-size: 13px
-  margin-top: 15px
+  margin-top: 20px
+  text-align: center
   
 .pane-teams-team-management
   border: none !important
   
 #teams-remove-members
-  display: none
-
-#block-system-main
-  .team
-    background-color: $huntLighter
-    height: 470px
-    div
-      border: 2px dotted $baseColor
-    h2, h3, h4
-      text-transform: uppercase
-      font-family: $accent-reg
-      margin-bottom: 5px
-    h2
-      color: #000
-      text-align: center
-    h3
-      color: $baseColor
-      text-align: center
-      font-size: 17px
-    h4
-      color: #000
-      text-align: left
-      font-size: 17px
-      margin: 10px 0 0 0
-    img
-      +noBorder
-      width: 45px
-      height: 45px
-      margin: 0 15px 15px 0
-      padding: 0
-      float: left
-    .activity-list li
-      list-style-image: url("assets/triangle.png")
-    .members-list
-      margin: 0
-      padding: 0
-    .members-list li
-      list-style: none
-      width: 100%
-      overflow: auto
-      margin: 0 15px 0 0
-    .team-col_l
-      float: left
-      width: 63%
-      margin-right: 2%
-    .team-col_r
-      float: right
-      width: 35%
-    .team-activity, .team-members
-      overflow: hidden
-    .team-progress
-      height: 250px
-    .team-members
-      height: 300px
-      overflow: auto
-    .team-activity
-      height: 200px
-      overflow: auto
-    .team-share
-      height: 150px
-    .team-progress, .team-members, .team-activity, .team-share
-      margin-bottom: 20px
-      padding: 15px
+  display: block
+  text-align: center
+  text-transform: capitalize
+  &:before
+    content: "[ "
+  &:after
+    content: " ]"
 
 // blog
 .node-campaign-blog-post
@@ -786,11 +759,6 @@ div[role="main"]
 .clear-both
   clear: both
   
-// sign up & report back
-#hunt-form
-  width: 500px
-  margin: 0 auto 50px
-
 // logo above webform
 #hunt-form-logo
   .pane-content
@@ -800,13 +768,14 @@ div[role="main"]
     margin: 0 auto
 
 // sign up form
-// #node-721671 // (local)
-#node-722347 // (production)
+#hunt-form
+  width: 500px
+  margin: 0 auto 50px
   .webform-client-form
-    +noBorder 
+    +noBorder
     +noShadow
   .field-name-group-audience, .field-name-field-teams-enable, .tabledrag-toggle-weight-wrapper, thead, td.field-multiple-drag
-    display: none
+    display: none !important
   .webform-component
     margin-bottom: 10px
   h3
@@ -835,6 +804,7 @@ div[role="main"]
   text-align: center
   font-size: 26px
   padding-bottom: 15px
+  margin-top: -15px
 
 #webform-component-sunglass-instructions h2
   padding-bottom: 0
@@ -842,7 +812,7 @@ div[role="main"]
 // opt-in checkbox
 #webform-component-yes
   width: 15%
-  margin: 0 auto !important
+  margin: 15px auto 0 !important
   > label
     display: none
   .form-item-submitted-yes-yes label
@@ -854,11 +824,30 @@ div[role="main"]
 
 // create_team & join_team functionality fieldset
 fieldset#webform-component-create-or-join
-  margin: 0 0 30px 0
+  margin: 0 0 40px 0
   padding: 0 0 0 0
   .fieldset-wrapper
     background-color: #bbb
     padding: 15px
+    // "add another item" button
+    .form-submit
+      font-weight: bold
+      -webkit-border-radius: 12px
+      -moz-border-radius: 12px
+      -ms-border-radius: 12px
+      -o-border-radius: 12px
+      border-radius: 12px
+      border: none
+      height: 30px
+      padding: 1px 13px 0
+      font-size: 15px
+      text-transform: uppercase
+      color: white
+      font-family: $accent
+      background-color: #222
+      margin: 25px 0px 0px 30px
+      &:hover
+        background-color: darken(#222, 10%)
 
 // initially hide #create_team fields
 #edit-submitted-field-team-name,
@@ -871,26 +860,6 @@ table#field-team-invite-values
   width: 50%
   table-layout: fixed
   float: right
-
-// "add another item" button
-#edit-submitted-field-team-invite-und-add-more
-  font-weight: bold
-  -webkit-border-radius: 12px
-  -moz-border-radius: 12px
-  -ms-border-radius: 12px
-  -o-border-radius: 12px
-  border-radius: 12px
-  border: none
-  height: 30px
-  padding: 1px 13px 0
-  font-size: 15px
-  text-transform: uppercase
-  color: white
-  font-family: $accent
-  background-color: #222
-  margin: 25px 0px 0px 30px
-  &:hover
-    background-color: darken(#222, 10%)
 
 // #join_team & #create_team jQuery hooks
 #webform-component-tabs
@@ -912,8 +881,10 @@ table#field-team-invite-values
     color: #000
     background-color: #aaa
 
-// hack to fix anon. two submit button bug
-#edit-submit--2
+// hack to fix multiple submit button bug
+// select only /sign-up and /my-team submit & input buttons respectively
+.node-campaign-sign-up #edit-actions--2 .form-submit,
+.pane-teams-team-management .form-submit
   font-weight: bold 
   -webkit-border-radius: 12px 
   -moz-border-radius: 12px 
@@ -938,5 +909,6 @@ table#field-team-invite-values
   legend
     display: none
 
+// hide facebook commenting on /report-back
 .fb-social-comments-plugin
   display: none
