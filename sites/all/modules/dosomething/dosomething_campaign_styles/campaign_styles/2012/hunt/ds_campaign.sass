@@ -699,6 +699,8 @@ div[role="main"]
   background: #CB2A1B url(assets/quizbg.gif) no-repeat 0 0 !important
   border: 10px solid #000
   @include box-shadow(#ccc 0 0 5px)
+  width: 100%
+  overflow: auto
   
   h2
     font-size: 56px
@@ -730,6 +732,7 @@ div[role="main"]
       top: 6px
   
   .hunt_portrait
+    float: left
     margin-left: 20px
     margin-bottom: 10px
     border: 8px solid #fff !important
@@ -739,8 +742,9 @@ div[role="main"]
     box-shadow: #333 0 0 15px !important
     //@include box-shadow(#333 0 0 10px)
     @include rotate(-3deg, false, false)
+    padding: 0 !important
     
-  .hunt_result-text
+  .hunt_result-text, .hunt_result-again
     float: right
     width: 350px
     padding-top: 0.5em
@@ -753,6 +757,22 @@ div[role="main"]
     a
       color: #fff
       text-decoration: underline
+    
+  .hunt_result-again
+    float: none
+    clear: both
+    width: 100%
+    text-align: center
+    padding-right: 0
+    h2
+      font-size: 35px
+    a
+      color: #000
+      text-decoration: none
+      text-align: center
+      position: relative
+      padding: 2px 12px
+      
       
 .clear-both
   clear: both
