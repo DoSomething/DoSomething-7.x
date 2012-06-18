@@ -485,3 +485,9 @@ form.webform-client-form {
   width: 644px !important; }
   .mini-gallery ul.jcarousel-list-horizontal li {
     width: 118px !important; }
+
+.report-back-teaser p {
+  font-weight: bold;
+  padding: 10px; }
+.report-back-teaser a {
+  bottom: -5px; }
