@@ -553,7 +553,7 @@ img {
 
 #thumbwars_reportback label {
   font-family: din-web;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 1.75em;
   padding: 1em 0 0.5em; }
 #thumbwars_reportback #webform-component-first-name {
@@ -581,18 +581,84 @@ img {
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   border: 0; }
 #thumbwars_reportback #edit-submitted-field-webform-pictures legend {
-  padding: 2em 0 0;
+  padding: 1em 0 0;
   margin-bottom: 0;
   line-height: 1em; }
 #thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper {
   background: white;
-  margin-top: 20px;
+  margin-top: 0;
   width: 300px;
-  padding: 0 15px;
+  padding: 0 15px 15px;
   -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
   box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset; }
+  #thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper label {
+    font-weight: normal; }
 #thumbwars_reportback #edit-submitted-field-webform-pictures input {
   margin: 5px 0; }
 #thumbwars_reportback #edit-actions {
   margin-bottom: 16px; }
+
+.mcommons-webform {
+  float: left;
+  background: #ffdf00 !important;
+  width: 66%;
+  margin-right: 2%;
+  border: none !important; }
+  .mcommons-webform input.field {
+    width: 85%;
+    height: 23px;
+    margin-bottom: 6px; }
+  .mcommons-webform label {
+    font-weight: 600; }
+  .mcommons-webform .pane-content {
+    height: 175px;
+    padding: 0.5em; }
+  .mcommons-webform .go-button {
+    position: absolute;
+    width: 60px;
+    left: 380px;
+    bottom: 5px; }
+
+.mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-right: 2%; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
+
+.form-wrapper {
+  margin-bottom: 5px; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0; }
+
+.hidden {
+  display: none; }
+
+#celebsocks {
+  background: #ffdf00;
+  text-align: center;
+  font-family: din-web;
+  font-size: 2em;
+  line-height: 1.3em;
+  height: 209px;
+  width: 240px; }
+  #celebsocks img {
+    margin: 20px 0 15px; }
+  #celebsocks p {
+    padding: 0 10px; }
+  #celebsocks a {
+    text-decoration: underline;
+    color: black; }
+
+#thumbwars_conf p {
+  text-align: center;
+  padding: 2em;
+  font-family: din-web;
+  font-size: 2.5em;
+  font-weight: 500; }
