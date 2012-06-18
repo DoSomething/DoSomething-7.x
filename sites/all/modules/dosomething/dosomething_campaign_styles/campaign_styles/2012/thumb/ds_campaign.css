@@ -456,7 +456,18 @@ img {
   width: 380px;
   padding: 0 0 2em; }
   #thumbwars_facts .thumbwars_col ul {
-    margin: 0 20px 0; }
+    margin: 0 5px 0; }
+  #thumbwars_facts .thumbwars_col li {
+    list-style-type: none;
+    padding-left: 14px;
+    background: url("assets/list-dot.png") no-repeat 0 45%; }
+  #thumbwars_facts .thumbwars_col a {
+    color: black;
+    text-decoration: underline;
+    font-family: din-web;
+    font-size: 1.7em;
+    line-height: 1.3em;
+    font-weight: 500; }
 #thumbwars_facts .thumbwars_rightcol {
   float: right;
   margin-left: 16px; }
