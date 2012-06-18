@@ -386,19 +386,18 @@ div[role="main"] {
     .pane-teams-team-management .pane-content p, .pane-teams-team-management .pane-content #teams-add-member-form {
       width: 63%;
       font-size: 14px;
-      padding: 10px;
+      padding: 10px 10px 10px 10px;
       margin: 0; }
   .pane-teams-team-management #teams-add-member-form {
-    border: 2px dotted #d32a1b;
-    height: 76px; }
+    height: 50px;
+    margin: 35px 0 0 0 !important; }
   .pane-teams-team-management .members-list label {
     font-size: 13px;
     font-weight: bold;
     float: left;
-    margin: 6px 12px 0 0; }
-  .pane-teams-team-management .members-list input#edit-friend {
+    margin: 6px 12px 0 0;
     cursor: default; }
-  .pane-teams-team-management form input#edit-friend {
+  .pane-teams-team-management .members-list input#edit-friend {
     width: 151px;
     height: 30px;
     margin-right: 10px;
@@ -430,6 +429,16 @@ div[role="main"] {
 .team-name-title {
   margin-bottom: 0px !important;
   border: none !important; }
+  .team-name-title .pane-content {
+    background-color: #d32a1b !important;
+    padding: 6px 12px 6px 12px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    line-height: 22px !important;
+    font-size: 21px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif; }
 
 .team-member-list {
   float: right;
@@ -457,13 +466,9 @@ div[role="main"] {
   .sponsor-logos img {
     margin: 0 15px; }
 
-<<<<<<< HEAD
 #teams-notification-area {
-=======
-.teams-notification-area {
->>>>>>> 074f1ec89d3bc5c5345667a9757b38ecd9d0709c
   font-size: 13px;
-  margin-top: 15px;
+  margin-top: 20px;
   text-align: center; }
 
 .pane-teams-team-management {
@@ -662,58 +667,58 @@ div[role="main"] {
 .clear-both {
   clear: both; }
 
-#hunt-form {
-  width: 500px;
-  margin: 0 auto 50px; }
-
 #hunt-form-logo .pane-content {
   background-color: white; }
 #hunt-form-logo img {
   display: block;
   margin: 0 auto; }
 
-#node-722347 .webform-client-form {
-  border: none !important;
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  box-shadow: none !important; }
-#node-722347 .field-name-group-audience, #node-722347 .field-name-field-teams-enable, #node-722347 .tabledrag-toggle-weight-wrapper, #node-722347 thead, #node-722347 td.field-multiple-drag {
-  display: none; }
-#node-722347 .webform-component {
-  margin-bottom: 10px; }
-#node-722347 h3 {
-  text-align: center; }
-#node-722347 label {
-  font-family: din-web-reg, "Trebuchet MS", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  float: left;
-  width: 50%;
-  padding-top: 5px; }
-#node-722347 table input[type="text"] {
-  width: 100%; }
-#node-722347 input[type="text"] {
-  width: 50%; }
-#node-722347 #edit-actions, #node-722347 #edit-actions--2 {
-  position: relative;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  margin: 25px 0 -15px 0; }
+#hunt-form {
+  width: 500px;
+  margin: 0 auto 50px; }
+  #hunt-form .webform-client-form {
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #hunt-form .field-name-group-audience, #hunt-form .field-name-field-teams-enable, #hunt-form .tabledrag-toggle-weight-wrapper, #hunt-form thead, #hunt-form td.field-multiple-drag {
+    display: none !important; }
+  #hunt-form .webform-component {
+    margin-bottom: 10px; }
+  #hunt-form h3 {
+    text-align: center; }
+  #hunt-form label {
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    float: left;
+    width: 50%;
+    padding-top: 5px; }
+  #hunt-form table input[type="text"] {
+    width: 100%; }
+  #hunt-form input[type="text"] {
+    width: 50%; }
+  #hunt-form #edit-actions, #hunt-form #edit-actions--2 {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    margin: 25px 0 -15px 0; }
 
 #webform-component-instructions h2,
 #webform-component-sunglass-instructions h2 {
   text-align: center;
   font-size: 26px;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  margin-top: -15px; }
 
 #webform-component-sunglass-instructions h2 {
   padding-bottom: 0; }
 
 #webform-component-yes {
   width: 15%;
-  margin: 0 auto !important; }
+  margin: 15px auto 0 !important; }
   #webform-component-yes > label {
     display: none; }
   #webform-component-yes .form-item-submitted-yes-yes label {
@@ -723,7 +728,7 @@ div[role="main"] {
   display: none; }
 
 fieldset#webform-component-create-or-join {
-  margin: 0 0 30px 0;
+  margin: 0 0 40px 0;
   padding: 0 0 0 0; }
   fieldset#webform-component-create-or-join .fieldset-wrapper {
     background-color: #bbbbbb;

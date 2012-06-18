@@ -461,8 +461,8 @@ div[role="main"]
       padding: 10px 10px 10px 10px
       margin: 0
   #teams-add-member-form
-    border: 2px dotted $baseColor
-    height: 76px
+    height: 50px
+    margin: 35px 0 0 0 !important
   .members-list
     label
       font-size: 13px
@@ -504,6 +504,16 @@ div[role="main"]
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
+  .pane-content // holy !important, batman
+    background-color: $baseColor !important 
+    padding: 6px 12px 6px 12px !important 
+    margin-top: 0 !important  
+    margin-bottom: 0 !important 
+    line-height: 22px !important
+    font-size: 21px !important
+    font-weight: 600 !important
+    color: white !important
+    font-family: $accent-reg
     
 .team-member-list
   float: right
@@ -749,11 +759,6 @@ div[role="main"]
 .clear-both
   clear: both
   
-// sign up & report back
-#hunt-form
-  width: 500px
-  margin: 0 auto 50px
-
 // logo above webform
 #hunt-form-logo
   .pane-content
@@ -763,13 +768,14 @@ div[role="main"]
     margin: 0 auto
 
 // sign up form
-// #node-721671 // (local)
-#node-722347 // (production)
+#hunt-form
+  width: 500px
+  margin: 0 auto 50px
   .webform-client-form
-    +noBorder 
+    +noBorder
     +noShadow
   .field-name-group-audience, .field-name-field-teams-enable, .tabledrag-toggle-weight-wrapper, thead, td.field-multiple-drag
-    display: none
+    display: none !important
   .webform-component
     margin-bottom: 10px
   h3
@@ -798,6 +804,7 @@ div[role="main"]
   text-align: center
   font-size: 26px
   padding-bottom: 15px
+  margin-top: -15px
 
 #webform-component-sunglass-instructions h2
   padding-bottom: 0
@@ -805,7 +812,7 @@ div[role="main"]
 // opt-in checkbox
 #webform-component-yes
   width: 15%
-  margin: 0 auto !important
+  margin: 15px auto 0 !important
   > label
     display: none
   .form-item-submitted-yes-yes label
@@ -817,7 +824,7 @@ div[role="main"]
 
 // create_team & join_team functionality fieldset
 fieldset#webform-component-create-or-join
-  margin: 0 0 30px 0
+  margin: 0 0 40px 0
   padding: 0 0 0 0
   .fieldset-wrapper
     background-color: #bbb
