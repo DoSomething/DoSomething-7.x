@@ -16,8 +16,8 @@ function dosomething_user_my_somethings_menu_alter(&$items) {
 }
 
 /**
-* Implementation of hook_ctools_plugin_directory().
-*/
+ * Implementation of hook_ctools_plugin_directory().
+ */
 function dosomething_user_my_somethings_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
@@ -119,33 +119,25 @@ function dosomething_user_my_somethings_profile_completion($account = FALSE, $si
     'percentage' => array(
       '#type' => 'container',
       '#attributes' => array(
-        'class' => array(
-          'dosomething-login-percentage',
-        ),
+        'class' => array('dosomething-login-percentage'),
       ),
       'ratio' => array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => array(
-            'ratio',
-          ),
+          'class' => array('ratio'),
           'data-ratio' => $ratio,
         ),
         'inner' => array(
           '#type' => 'container',
           '#attributes' => array(
-            'class' => array(
-              'inner',
-            ),
+            'class' => array('inner'),
             'style' => 'width: ' . $ratio . '%',
           ),
         ),
         'label' => array(
           '#type' => 'container',
           '#attributes' => array(
-            'class' => array(
-              'label',
-            ),
+            'class' => array('label'),
           ),
           '#children' => t($complete_text, array('%percent' => number_format($ratio, 0) . '%')),
         ),
@@ -154,25 +146,19 @@ function dosomething_user_my_somethings_profile_completion($account = FALSE, $si
     'footer' => array(
       '#type' => 'container',
       '#attributes' => array(
-        'class' => array(
-          'profile-footer',
-        ),
+        'class' => array('profile-footer'),
       ),
       'complete-profile' => array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => array(
-            'complete-profile',
-          ),
+          'class' => array('complete-profile'),
         ),
         '#children' => t('Complete your profile now'),
       ),
       'complete-link' => array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => array(
-            'complete-link',
-          ),
+          'class' => array('complete-link'),
         ),
         '#children' => l('Go', 'user/' . $account->uid . '/complete-profile'),
       ),
@@ -199,7 +185,7 @@ function dosomething_user_my_somethings_my_somethings() {
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => 'inner',
+          'class' => array('inner'),
         ),
         '#children' => t('Doing It'),
       ),
@@ -208,9 +194,7 @@ function dosomething_user_my_somethings_my_somethings() {
       '#theme' => 'item_list',
       '#items' => $items,
       '#attributes' => array(
-        'class' => array(
-          'doing-it',
-        ),
+        'class' => array('doing-it'),
       ),
     ),
   );
@@ -226,13 +210,24 @@ function dosomething_user_my_somethings_my_somethings() {
  */
 function dosomething_user_my_somethings_my_current_something_links($uid) {
   $items = array();
-  $account = user_load($uid);
 
+  $save_it = FALSE;
   $cid = 'dosomething_user_my_somethings_' . $uid;
   $cache = cache_get($cid);
   if (!$cache) {
     $cache = new stdClass();
     $cache->data = array();
+  }
+  if (!isset($cache->data['somethings'])) {
+    $cache->data['somethings'] = dosomething_user_my_somethings_get_my_somethings($uid, 'current');
+    $save_it = TRUE;
+  }
+  if (!isset($cache->data['report_backs'])) {
+    $cache->data['report_backs'] = dosomething_user_my_somethings_campaign_report_backs_needed($uid);
+    $save_it = TRUE;
+  }
+  if ($save_it) {
+    cache_set($cid, $cache->data);
   }
 
   $somethings_info = array(
@@ -245,41 +240,27 @@ function dosomething_user_my_somethings_my_current_something_links($uid) {
       'title_field' => 'field_project_title',
     ),
   );
-
-  if (!isset($cache->data['somethings'])) {
-    $cache->data['somethings'] = dosomething_user_my_somethings_get_my_somethings($uid, 'current');
-    cache_set($cid, $cache->data);
-  }
-  $somethings = $cache->data['somethings'];
-
-  if (count($somethings)) {
-    foreach ($somethings as $type => $something) {
-      if (count($something)) {
-        $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
-        foreach ($something as $submission) {
-          // Note: This is not an actual submission object, but it has the right
-          // info, so we're not loading it up as of now.
-          $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
-          $node = node_load($submission->nid);
-          $link = 'webform-submission/' . $submission->sid;
-          $items[$type]['children'][] = l($title, $link);
-        }
-      }
+  $somethings = array_filter($cache->data['somethings']);
+  foreach ($somethings as $type => $something) {
+    $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
+    foreach ($something as $submission) {
+      // Note: This is not an actual submission object, but it has the right
+      // info, so we're not loading it up as of now.
+      $title = filter_xss($submission->{$somethings_info[$type]['title_field'] . '_value'});
+      $node = node_load($submission->nid);
+      $link = 'webform-submission/' . $submission->sid;
+      $items[$type]['children'][] = l($title, $link);
     }
   }
 
-  if (!isset($cache->data['report_backs'])) {
-    $cache->data['report_backs'] = dosomething_user_my_somethings_campaign_report_backs_needed($uid);
-    cache_set($cid, $cache->data);
-  }
   $report_backs = $cache->data['report_backs'];
-
   if (count($report_backs)) {
     $items['campaign_report_back'] = array('data' => 'Campaign Sign Ups', 'children' => array());
     foreach($report_backs as $report_back) {
       $items['campaign_report_back']['children'][] = l($report_back->campaign_title, 'node/' . $report_back->report_back_entity_id);
     }
   }
+
   return $items;
 }
 
@@ -303,7 +284,7 @@ function dosomething_user_my_somethings_my_past_somethings() {
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => 'inner',
+          'class' => array('inner'),
         ),
         '#children' => t('Done It'),
       ),
@@ -312,9 +293,7 @@ function dosomething_user_my_somethings_my_past_somethings() {
       '#theme' => 'item_list',
       '#items' => $items,
       '#attributes' => array(
-        'class' => array(
-          'done-it',
-        ),
+        'class' => array('done-it'),
       ),
     ),
   );
@@ -330,13 +309,28 @@ function dosomething_user_my_somethings_my_past_somethings() {
  */
 function dosomething_user_my_somethings_my_past_something_links($uid) {
   $items = array();
-  $account = user_load($uid);
 
+  $save_it = FALSE;
   $cid = 'dosomething_user_my_past_somethings_' . $uid;
   $cache = cache_get($cid);
   if (!$cache) {
     $cache = new stdClass();
     $cache->data = array();
+  }
+  if (!isset($cache->data['somethings'])) {
+    $cache->data['somethings'] = dosomething_user_my_somethings_get_my_somethings($uid, 'past');
+    $save_it = TRUE;
+  }
+  if (!isset($cache->data['report_backs'])) {
+    $cache->data['report_backs'] = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
+    $save_it = TRUE;
+  }
+  if (!isset($cache->data['groups'])) {
+    $cache->data['groups'] = dosomething_user_my_somethings_get_user_group_memberships($uid, 'club');
+    $save_it = TRUE;
+  }
+  if ($save_it) {
+    cache_set($cid, $cache->data);
   }
 
   $somethings_info = array(
@@ -349,17 +343,8 @@ function dosomething_user_my_somethings_my_past_something_links($uid) {
       'title_field' => 'field_project_title',
     ),
   );
-
-  if (!isset($cache->data['somethings'])) {
-    $cache->data['somethings'] = dosomething_user_my_somethings_get_my_somethings($uid, 'past');
-    cache_set($cid, $cache->data);
-  }
-  $somethings = $cache->data['somethings'];
-
+  $somethings = array_filter($cache->data['somethings']);
   foreach ($somethings as $type => $something) {
-    if (empty($something)) {
-      continue;
-    }
     $items[$type] = array('data' => $somethings_info[$type]['title'], 'children' => array());
     foreach ($something as $submission) {
       // Note: This is not an actual submission object, but it has the right
@@ -372,12 +357,7 @@ function dosomething_user_my_somethings_my_past_something_links($uid) {
     }
   }
 
-  if (!isset($cache->data['report_backs'])) {
-    $cache->data['report_backs'] = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
-    cache_set($cid, $cache->data);
-  }
   $report_backs = $cache->data['report_backs'];
-
   if (!empty($report_backs)) {
     $items['campaign_report_back'] = array('data' => 'Campaign Sign Ups', 'children' => array());
     foreach($report_backs as $report_back) {
@@ -385,7 +365,7 @@ function dosomething_user_my_somethings_my_past_something_links($uid) {
     }
   }
 
-  $groups = dosomething_user_my_somethings_get_user_group_memberships($account->uid, 'club');
+  $groups = $cache->data['groups'];
   if (!empty($groups)) {
     $items['clubs'] = array('data' => 'Clubs', 'children' => array());
     foreach ($groups as $group) {
@@ -424,7 +404,7 @@ function dosomething_user_my_somethings_clubs($account = NULL) {
       'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => 'inner',
+          'class' => array('inner'),
         ),
         '#children' => t('Done It'),
       ),
@@ -433,9 +413,7 @@ function dosomething_user_my_somethings_clubs($account = NULL) {
       '#theme' => 'item_list',
       '#items' => $items,
       '#attributes' => array(
-        'class' => array(
-          'done-it',
-        ),
+        'class' => array('done-it'),
       ),
     ),
   );
@@ -475,6 +453,7 @@ function dosomething_user_my_somethings_user_role($account = NULL) {
 function dosomething_user_my_somethings_get_submissions($uid, $type, $title_field, $is_draft = FALSE, $statuses = NULL) {
   $submissions = array();
   if (is_array($statuses)) {
+    // Lookup the ids of valid statuses.
     $available_statuses = array(
       2 => 'project idea',
       3 => 'ongoing project',
@@ -547,11 +526,12 @@ function dosomething_user_my_somethings_get_user_group_memberships($uid, $node_t
  * @param $uid
  *  (int) a user id.
  * @param $era
- * (string) 'current' or 'past' somethings. 
+ * (string) 'current' or 'past' somethings.
  * @return array
  */
 function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
   $somethings = array();
+
   $somethings_info = array(
     'grant_application' => array(
       'title_field' => 'field_webform_name',
@@ -561,10 +541,9 @@ function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
     'project_report' => array(
       'title_field' => 'field_project_title',
       'draft' => FALSE,
-      'statuses' => $era == 'current' ? array('ongoing project', 'project idea') : array('completed project'),
+      'statuses' => ($era == 'current') ? array('ongoing project', 'project idea') : array('completed project'),
     ),
   );
-
   foreach ($somethings_info as $type => $info) {
     $somethings[$type] = dosomething_user_my_somethings_get_submissions($uid, $type, $info['title_field'], $info['draft'], $info['statuses']);
   }
@@ -650,8 +629,8 @@ function dosomething_user_my_somethings_campaign_report_backs_complete($uid) {
   $report_backs = db_query("SELECT DISTINCT(o.etid) as campaign_entity_id, (o.label) as campaign_title FROM {webform_submissions} w
                             INNER JOIN {og_membership} om ON w.sid = om.etid
                             INNER JOIN {og} o ON om.gid = o.gid
-                            WHERE w.bundle = 'campaign_report_back' AND o.entity_type = 'node' AND w.uid = :uid", 
-                            array(':uid' => $uid))->fetchAll();
+                            WHERE w.bundle = 'campaign_report_back' AND o.entity_type = 'node' AND w.uid = :uid",
+                            array(':uid' => $uid))->fetchAllAssoc('campaign_entity_id');
   return $report_backs;
 }
 
@@ -822,11 +801,12 @@ function dosomething_user_my_somethings_projects_grants_list($uid, $era) {
       }
     }
   }
+
   return $somethings;
 }
 
 /**
- * Content for the current somethings and past somethings panes.
+ * Content for the current and past somethings panes.
  */
 function dosomething_user_my_somethings_display($uid, $era = 'current', $all = TRUE) {
   $cid = 'dosomething_user_my_somethings_' . $uid;
@@ -844,17 +824,13 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
   $all_somethings = $cache->data[$era];
 
   if (!count($all_somethings)) {
-    switch ($era) {
-      case 'current':
-        $empty_text = t('You are not doing anything. Join a campaign, or start a grant application or project!');
-        break;
-      case 'past':
-        $empty_text = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
-        break;
-    }
+    $empty_text = array(
+      'current' => t('You are not doing anything. Join a campaign, or start a grant application or project!'),
+      'past' => t('You have not done anything. Complete a campaign report back, or finish a grant application or project!'),
+    );
     $element = array(
       '#type' => 'markup',
-      '#markup' => $empty_text,
+      '#markup' => $empty_text[$era],
       '#prefix' => '<p>',
       '#suffix' => '</p>',
     );
@@ -889,9 +865,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
       $element[$delta] = array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => array(
-            'views-row',
-          ),
+          'class' => array('views-row'),
         ),
         'image' => array(
           '#theme' => 'image_formatter',
@@ -909,9 +883,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
         'description' => array(
           '#type' => 'container',
           '#attributes' => array(
-            'class' => array(
-              'something-description',
-            ),
+            'class' => array('something-description'),
           ),
           'title' => array(
             '#type' => 'link',
@@ -960,7 +932,7 @@ function dosomething_user_my_somethings_counter($uid) {
   return theme('dosomething_stats_counter', array('items' => $items));
 }
 
-/*
+/**
  * Content for stuff you need to do and stuff you've done.
  */
 function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current') {
@@ -1022,7 +994,7 @@ function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current
           break;
 
         case 'profile_field':
-          $items[] = l(t('Add !title', array('!title' => $something->title)), "user/$uid/edit/main");
+          $items[] = l(t('Add @title', array('@title' => $something->title)), "user/$uid/edit/main");
           break;
       }
     }
@@ -1046,30 +1018,25 @@ function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current
           break;
 
         case 'profile_field':
-          $items[] = t('Added !title', array('!title' => $something->title));
+          $items[] = t('Added @title', array('@title' => $something->title));
           break;
       }
     }
+
     $output = array(
       'title' => array(
         '#prefix' => '<h3>',
         '#suffix' => '</h3>',
         'inner' => array(
           '#type' => 'container',
-          '#attributes' => array(
-            'class' => 'stuff-header',
-          ),
+          '#attributes' => array('class' => 'stuff-header'),
           '#children' => $title,
         ),
       ),
       'list' => array(
         '#theme' => 'item_list',
         '#items' => $items,
-        '#attributes' => array(
-          'class' => array(
-            'profile-stuff',
-          ),
-        ),
+        '#attributes' => array('class' => 'profile-stuff'),
       ),
     );
   }
@@ -1115,9 +1082,8 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
       if ($era == 'current') {
         if (empty($profile->$field_name)) {
           $field_info = field_info_instance('profile2', $field_name, 'main');
-          $label = $field_info['label'];
           $something = new stdClass();
-          $something->title = $label;
+          $something->title = $field_info['label'];
           $something->type = 'profile_field';
           $fields[] = $something;
         }
@@ -1125,9 +1091,8 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
       else {
         if (!empty($profile->$field_name)) {
           $field_info = field_info_instance('profile2', $field_name, 'main');
-          $label = $field_info['label'];
           $something = new stdClass();
-          $something->title = $label;
+          $something->title = $field_info['label'];
           $something->type = 'profile_field';
           $fields[] = $something;
         }
