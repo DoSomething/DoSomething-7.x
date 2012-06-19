@@ -805,6 +805,9 @@ table#field-team-invite-values {
     color: black;
     background-color: #aaaaaa; }
 
+.pane-content #dosomething-login-register-popup-form .popup-content {
+  height: 165px; }
+
 .node-campaign-sign-up #edit-actions--2 .form-submit,
 .pane-teams-team-management .form-submit {
   font-weight: bold;
