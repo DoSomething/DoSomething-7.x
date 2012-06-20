@@ -486,8 +486,179 @@ form.webform-client-form {
   .mini-gallery ul.jcarousel-list-horizontal li {
     width: 118px !important; }
 
-.report-back-teaser p {
-  font-weight: bold;
-  padding: 10px; }
-.report-back-teaser a {
-  bottom: -5px; }
+body.page-node-722489 div[role="main"] {
+  padding: 0 !important; }
+
+#staples_raise-your-hand {
+  width: 797px;
+  margin-bottom: 0; }
+  #staples_raise-your-hand .pane-content {
+    position: relative;
+    background: white url("assets/Enter_Sweeps_bg.jpg") no-repeat;
+    height: 600px; }
+  #staples_raise-your-hand .intro {
+    position: absolute;
+    top: 135px;
+    left: 310px;
+    width: 415px;
+    text-align: center;
+    color: white; }
+  #staples_raise-your-hand .grandprize {
+    position: absolute;
+    top: 263px;
+    left: 380px;
+    width: 350px;
+    color: #401849; }
+    #staples_raise-your-hand .grandprize strong {
+      color: white; }
+  #staples_raise-your-hand .prettygreat {
+    position: absolute;
+    top: 400px;
+    left: 455px;
+    width: 295px;
+    color: #333333;
+    font-size: 11px; }
+    #staples_raise-your-hand .prettygreat ul {
+      margin-top: 5px;
+      font-weight: bold;
+      width: 280px; }
+
+#staples_raise-your-hand-webform {
+  width: 797px; }
+  #staples_raise-your-hand-webform .pane-title {
+    display: none; }
+  #staples_raise-your-hand-webform .webform-client-form {
+    background: #58af47 url("assets/form_border.png") no-repeat 430px 50%; }
+  #staples_raise-your-hand-webform #webform-component-instructions {
+    width: 400px;
+    color: white;
+    padding-top: 70px;
+    background: url("assets/how_to_enter.png") no-repeat top center; }
+    #staples_raise-your-hand-webform #webform-component-instructions ol {
+      padding-left: 10px; }
+      #staples_raise-your-hand-webform #webform-component-instructions ol li {
+        margin-bottom: 7px; }
+      #staples_raise-your-hand-webform #webform-component-instructions ol li::before {
+        font-size: 1em;
+        font-family: "Trebuchet MS", sans-serif;
+        font-weight: bold; }
+  #staples_raise-your-hand-webform #submitted-field-webform-school-reference-add-more-wrapper {
+    display: none; }
+  #staples_raise-your-hand-webform #webform-component-first-name {
+    float: left;
+    margin-right: 12px;
+    width: 150px; }
+    #staples_raise-your-hand-webform #webform-component-first-name label {
+      padding-left: 5px;
+      color: #2f5e26;
+      text-transform: uppercase;
+      font-family: din-web;
+      font-weight: 600; }
+  #staples_raise-your-hand-webform #webform-component-last-name label {
+    padding-left: 5px;
+    color: #2f5e26;
+    text-transform: uppercase;
+    font-family: din-web;
+    font-weight: 600; }
+  #staples_raise-your-hand-webform label {
+    color: white; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-email {
+    width: 383px;
+    margin: 10px 0 0; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-email label {
+      padding-left: 5px;
+      color: #2f5e26;
+      text-transform: uppercase;
+      font-family: din-web;
+      font-weight: 600; }
+  #staples_raise-your-hand-webform input[type="text"] {
+    font-size: 1.5em;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures {
+    float: right;
+    padding: 15px; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures legend {
+      padding: 1em 0 0;
+      margin-bottom: 0;
+      line-height: 1em; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper {
+      background: #eeeeee url("assets/linen_bg.png");
+      border: 10px solid white;
+      margin-top: 60px;
+      width: 300px;
+      padding: 25px 30px;
+      -webkit-box-shadow: #cccccc 0 1px 4px 1px inset, #444444 0 15px 20px -10px;
+      -moz-box-shadow: #cccccc 0 1px 4px 1px inset, #444444 0 15px 20px -10px;
+      box-shadow: #cccccc 0 1px 4px 1px inset, #444444 0 15px 20px -10px; }
+      #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper label {
+        color: black;
+        font-weight: normal; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures input {
+      margin: 5px 0; }
+  #staples_raise-your-hand-webform .form-wrapper {
+    margin-bottom: 0; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und legend {
+    display: none; }
+  #staples_raise-your-hand-webform label[for="edit-submitted-required-checkboxes"] {
+    display: none; }
+  #staples_raise-your-hand-webform label[for="edit-submitted-opt-in-boxes"] {
+    display: none; }
+  #staples_raise-your-hand-webform #webform-component-required-checkboxes {
+    width: 390px;
+    margin-top: 16px; }
+    #staples_raise-your-hand-webform #webform-component-required-checkboxes label {
+      padding-left: 15px;
+      text-indent: -15px; }
+  #staples_raise-your-hand-webform #webform-component-opt-in-boxes {
+    width: 390px;
+    padding-bottom: 16px; }
+    #staples_raise-your-hand-webform #webform-component-opt-in-boxes label {
+      padding-left: 15px;
+      text-indent: -15px; }
+  #staples_raise-your-hand-webform #edit-actions {
+    position: relative;
+    right: 0;
+    bottom: 0; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table {
+    border: 0; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table thead {
+      display: none; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table td {
+      border: 0 !important; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table tbody {
+      border: 0 !important; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table tr.even, #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table tr.odd {
+      border-bottom: 0; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table .handle {
+      display: none; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table .image-widget-data {
+      display: none; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table .image-preview {
+      padding: 0; }
+      #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table .image-preview img {
+        margin: 0; }
+    #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures-und-table #edit-submitted-field-webform-pictures-und-0-remove-button {
+      background: #555555;
+      border: 0;
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px; }
+  #staples_raise-your-hand-webform .tabledrag-toggle-weight-wrapper {
+    display: none; }
+  #staples_raise-your-hand-webform .sticky-header {
+    display: none; }
+  #staples_raise-your-hand-webform .form-item-submitted-field-webform-pictures-und-1 {
+    display: none; }
