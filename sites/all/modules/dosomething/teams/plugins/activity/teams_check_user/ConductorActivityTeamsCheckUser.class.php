@@ -12,6 +12,8 @@ class ConductorActivityTeamsCheckUser extends ConductorActivitySMSPrompt {
 
     $mobile = $state->getContext('sms_number');
 
+    if ($mobile[0] == '1') $mobile = substr($mobile, 1);
+
     // If we have a user with this mobile, lets update their info.
     $account = dosomething_general_find_user_by_cell($mobile);
     $profile = NULL;
@@ -49,9 +51,8 @@ class ConductorActivityTeamsCheckUser extends ConductorActivitySMSPrompt {
       $profile = profile2_load_by_user($account);
     }
 
-    if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-      print_r('got here');exit;
-      $state->setContext('has_name', TRUE);
+    if (!empty($profile['main']->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+      $state->setContext($this->name . ':has_name', 'true');
     }
 
     $state->markCompeted();
