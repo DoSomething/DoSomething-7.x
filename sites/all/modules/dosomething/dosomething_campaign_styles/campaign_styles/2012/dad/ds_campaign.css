@@ -340,6 +340,15 @@ form.webform-client-form {
     border: 5px solid #eb444a !important;
     background-color: white; }
 
+.view-campaign-gallery .thumbs {
+  margin-left: -10px; }
+.view-campaign-gallery .pager {
+  margin: 0;
+  padding-bottom: 20px; }
+  .view-campaign-gallery .pager li {
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    font-weight: 600; }
+
 .official_rules_link {
   position: relative;
   text-align: center;

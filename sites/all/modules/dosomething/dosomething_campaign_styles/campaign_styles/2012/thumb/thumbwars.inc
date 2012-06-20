@@ -29,8 +29,12 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'thumbwars'),
+    array('title' => 'action guide', 'href' => 'thumbwars/actionguide'),
     array('title' => 'gallery', 'href' => 'thumbwars/gallery'),
-    array('title' => 'caption contest', 'href' => 'thumbwars/contest'),
+    array('title' => 'scholarships', 'href' => 'thumbwars/scholarship'),
+    array('title' => 'tell us about it', 'href' => 'thumbwars/tell-us'),
     array('title' => 'faq', 'href' => 'thumbwars/faq'),
+    array('title' => 'caption contest', 'href' => 'thumbwars/contest'),
+    array('title' => 'facts & resources', 'href' => 'thumbwars/facts'),
   ),
 );

@@ -630,8 +630,6 @@ div[role="main"]
 #block-dosomething-campaign-styles-campaign-nav
   margin-right: -7px
 
-
-
 // quiz questions page
 .quiz-top-box
   margin-top: 10px
@@ -701,6 +699,8 @@ div[role="main"]
   background: #CB2A1B url(assets/quizbg.gif) no-repeat 0 0 !important
   border: 10px solid #000
   @include box-shadow(#ccc 0 0 5px)
+  width: 100%
+  overflow: auto
   
   h2
     font-size: 56px
@@ -732,6 +732,7 @@ div[role="main"]
       top: 6px
   
   .hunt_portrait
+    float: left
     margin-left: 20px
     margin-bottom: 10px
     border: 8px solid #fff !important
@@ -741,8 +742,9 @@ div[role="main"]
     box-shadow: #333 0 0 15px !important
     //@include box-shadow(#333 0 0 10px)
     @include rotate(-3deg, false, false)
+    padding: 0 !important
     
-  .hunt_result-text
+  .hunt_result-text, .hunt_result-again
     float: right
     width: 350px
     padding-top: 0.5em
@@ -755,10 +757,33 @@ div[role="main"]
     a
       color: #fff
       text-decoration: underline
+    
+  .hunt_result-again
+    float: none
+    clear: both
+    width: 100%
+    text-align: center
+    padding-right: 0
+    h2
+      font-size: 35px
+    a
+      color: #000
+      text-decoration: none
+      text-align: center
+      position: relative
+      padding: 2px 12px
+      
       
 .clear-both
   clear: both
-  
+
+// report back HTML
+#post-sign-up h3
+  padding: 20px 15px 15px
+  text-align: center
+  font-size: 20px
+  line-height: 40px
+
 // logo above webform
 #hunt-form-logo
   .pane-content
@@ -880,6 +905,10 @@ table#field-team-invite-values
   .inactive
     color: #000
     background-color: #aaa
+
+// user registration block height fix
+.pane-content #dosomething-login-register-popup-form .popup-content
+  height: 165px
 
 // hack to fix multiple submit button bug
 // select only /sign-up and /my-team submit & input buttons respectively
