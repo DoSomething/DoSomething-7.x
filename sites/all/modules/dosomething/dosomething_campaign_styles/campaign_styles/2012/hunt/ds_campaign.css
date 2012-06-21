@@ -346,12 +346,14 @@ div[role="main"] {
 
 #challenges ul {
   background-color: #939398;
-  margin: -10px 0 10px 0;
+  margin: 0 0 0 0;
   padding: 12px 29px 1px; }
 #challenges li {
   list-style-image: url("assets/dot.png"); }
+#challenges div {
+  width: 100%; }
 #challenges h2 {
-  margin: -5px 0 10px 0;
+  margin: -5px 0 0 0;
   text-align: center;
   font-family: "din-web-reg";
   font-weight: 400;
@@ -359,7 +361,7 @@ div[role="main"] {
 #challenges h3 {
   background-color: #bebfc1;
   height: 2em;
-  margin-bottom: 10px;
+  margin-top: 10px;
   padding: 0.5em 0.7em;
   color: white;
   text-transform: uppercase;
@@ -368,9 +370,11 @@ div[role="main"] {
   font-size: 15px; }
 #challenges p {
   color: white; }
-
-.no-bg .pane-content {
-  background: white; }
+#challenges strong {
+  font-weight: 500;
+  float: right;
+  color: #d32a1b;
+  width: 175px; }
 
 .view-campaign-gallery #gallery {
   height: 415px; }
