@@ -1,0 +1,283 @@
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #E42D91
+$complement: #E42D91
+$secondaryLink: black
+
+// borders
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('assets/bg.png')
+$bgFallback: #DDDDDD
+$bgTrans: rgba(255, 255, 255, 0.4)
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: $bgTrans
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+
+h1.title
+  display: none
+
+body
+  background: $imageBackground center center fixed $bgFallback
+  background-repeat: repeat
+
+p
+  font-family: $accent
+  font-size: 1.6em
+  line-height: 1.5em
+  letter-spacing: 1px
+  padding: 0
+  margin: 0
+  color: #444
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 20px
+  padding-top: 10px
+
+body.one-sidebar.sidebar-first [role="main"]
+  margin: 0
+
+.three-boxes
+  width: 29%
+  float: left
+  margin-right: 6.5%
+  &:last-child
+    margin-right: 0
+
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: transparent
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: #444
+      &:hover, .active
+        color: $baseColor
+
+        text-decoration: none
+
+// top right wrapper
+.panel-row-top-right
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+      padding: 0
+      line-height: 1em
+    .pane-content
+      line-height: 1.4em
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  margin-bottom: 40px
+  border: none
+  img
+    margin: 15px
+  +block
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+
+.panel-row-actions-stats
+  p
+    margin-top: 20px
+
+.panel-row-actions-sign-up
+  img
+    margin: 15px 0 15px 25px
+
+// ad row (quick info and psa)
+.panel-row-ad-quick-info
+  .pane-title
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    line-height: 1.3em
+    font-weight: 500
+  .pane-content
+    h3
+      color: $baseColor
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
+    p
+      margin: 0
+    &:before
+      +insetBorder
+      margin-bottom: 20px
+
+.panel-row-flexible
+  .pane-content
+    overflow: auto
+  .pane-title
+    background-image: url('assets/header-bg.jpg')
+    background-color: #F6F6F6
+    border-top: 1px solid #ccc
+    border-bottom: 1px solid #ccc
+    a
+      text-decoration:  none
+      text-align: center
+      font-weight: 300
+      color: $baseColor
+      padding: 15px 0 10px
+      display: block
+      font-size: 40px
+      line-height: 1em
+  .panel-pane
+    +block
+    margin-bottom: 40px
+    border-top: none
+    border-right: 1px solid #ccc
+    border-bottom: 1px solid #ccc
+    border-left: 1px solid #ccc
+    box-shadow: 0px 20px 30px -10px #aaa
+    -moz-box-shadow: 0px 20px 30px -10px #aaa
+    -webkit-box-shadow: 0px 20px 30px -10px #aaa
+    p
+      margin-top: 0
+  #story-pane
+    width: 255px
+    float: left
+    p
+      margin-bottom: 15px
+      line-height: 1.3em
+  iframe
+    float: right
+
+// logos
+.panel-row-logos
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+  img
+    border: none
+
+.panel-row-top-logo
+  height: 230px
+
+.field-name-field-picture
+  img
+    border: none
+
+// mini & social section
+.panel-top-right-mini-info
+  .pane-content
+    padding: 15px 0
+  h1
+    font-size: 1.2em
+    color: #444
+  p
+    font-size: 1em
+
+.panel-top-right-social
+  width: 250px
+  h2.pane-title
+    display: none
+  .pane-content
+    width: 225px
+    padding: 0
+  .facebook-plugin
+    width: 60px
+
+.fb_edge_widget_with_comment
+  top: -5px
+
+// main section styles
+
+#honorees-pane
+  img
+    margin: 15px auto
+    display: block
+
+#sponsors-pane
+  div
+    p
+      &:first-child
+        margin-bottom: 20px
+
+.ds-panel
+  .pane-content
+    padding: 15px
+  .panel-top-right-mini-info
+    .pane-content
+      padding: 0
+
+.center
+  text-align: center
+
+// sweepin' away the breadcrumb trail
+#breadcrumb
+  display: none
+
+// resetting the nonsense
+img
+  border: none !important
+  box-shadow: none !important
+  -o-box-shadow: none !important
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
