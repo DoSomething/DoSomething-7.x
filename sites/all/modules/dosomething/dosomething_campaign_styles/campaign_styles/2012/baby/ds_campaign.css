@@ -135,7 +135,8 @@ h2.pane-title {
 .panel-row-ad-quick-info .pane-content p {
   margin: 0;
   padding-bottom: 0.2em;
-  font-size: 11px; }
+  font-size: 13px;
+  line-height: 21px; }
 .panel-row-ad-quick-info .pane-content:before {
   overflow: hidden;
   *zoom: 1;
@@ -147,9 +148,10 @@ h2.pane-title {
 
 .panel-row-ad {
   margin: 0; }
-
-.panel-row-ad-psa {
-  margin: 45px 0 0 0; }
+  .panel-row-ad .panel-row-ad-psa {
+    width: 45%; }
+  .panel-row-ad .panel-row-ad-quick-info {
+    width: 50%; }
 
 .panel-row-flexible .panel-pane {
   background: rgba(188, 134, 70, 0.4);
@@ -263,7 +265,8 @@ h2.pane-title {
   background-color: #f3f3f4 !important;
   color: black;
   overflow: auto;
-  height: 310px; }
+  height: 275px;
+  width: 75%; }
   .mcommons-webform input.field {
     width: 100%;
     height: 22px;
@@ -273,20 +276,11 @@ h2.pane-title {
   .mcommons-webform .go-button {
     padding-top: 3px;
     margin: 0 10px 5px 0;
-    left: 150px;
+    left: 50%;
     bottom: -15px;
     position: relative; }
   .mcommons-webform .pane-content {
     padding: 10px; }
-
-.mcommons-webform-long {
-  float: none;
-  height: 300px;
-  margin: 0 0 15px 0;
-  border: none !important;
-  background-color: #f3f3f4 !important; }
-  .mcommons-webform-long .go-button {
-    left: 285px; }
 
 #five_friends {
   width: 170px;
@@ -295,9 +289,8 @@ h2.pane-title {
   left: 15px; }
 
 .mcommons-webform-column {
-  float: left;
-  width: 40%;
-  margin-right: 10%; }
+  margin: 0 auto;
+  width: 90%; }
 
 #breadcrumb {
   display: none; }
