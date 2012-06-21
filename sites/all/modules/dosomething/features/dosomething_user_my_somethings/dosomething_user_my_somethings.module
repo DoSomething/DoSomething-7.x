@@ -681,36 +681,18 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   // values to prevent the user page from blowing up.
   // NOTE: is_object($profile) complains that $profile is not a variable while
   // isset($profile) does not.
-  $address = '';
   $variables['member_school'] = '';
+  $variables['hometown'] = '';
   if (isset($profile)) {
     $address = $profile->field_user_address->value();
     if (isset($address->name)) {
       $variables['member_school'] = $address->name;
     }
+    // Kick out any city and state info we've got on them.
+    $citystate = array_filter(array($address['locality'], $address['administrative_area']));
+    $variables['hometown'] = check_plain(implode(', ', $citystate));
   }
-
-  // Build the hometown value out of city and state.
-  // Check to see if the profile object was loaded, if not, assign some
-  $variables['hometown'] = dosomething_user_my_somethings_hometown($address);
 }
-
-function dosomething_user_my_somethings_hometown($address) {
-  if (empty($address)) {
-    return;
-  }
-
-  $hometown = array(
-    $address['locality'],
-    $address['administrative_area'],
-  );
-  $hometown = implode(', ', array_filter($hometown));
-  //if (empty($hometown)) {
-    //$hometown = '-';
-  //}
-  return check_plain($hometown);
-}
-
 
 /**
  * Get data for /user campaign report backs for current and past my somethings.
