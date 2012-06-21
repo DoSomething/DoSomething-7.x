@@ -2,7 +2,7 @@
 
 class ConductorActivityTeamsJoinTeam extends ConductorActivitySMSPrompt {
 
-  const SIGNUP_NID = 719306;
+  const SIGNUP_NID = 722347;
 
   public function run($workflow) {
     $state = $this->getState();
