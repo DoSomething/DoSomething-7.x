@@ -30,6 +30,6 @@ $plugin = array(
   'menu' => array(
     array('title' => 'our story', 'href' => 'pre-party', 'fragment' => 'our-story'),
     array('title' => 'event', 'href' => 'pre-party', 'fragment' => 'event'),
-    array('title' => 'pricing', 'href' => 'pre-party', 'fragment' => 'pricing'),
+    array('title' => 'join us', 'href' => 'pre-party', 'fragment' => 'join-us'),
   ),
 );
