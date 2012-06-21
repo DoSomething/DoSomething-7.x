@@ -1,5 +1,5 @@
 a {
-  color: #e42d91; }
+  color: #d4d2d1; }
   a:hover {
     color: black; }
 
@@ -20,7 +20,7 @@ p {
   color: #444444; }
 
 div[role="main"] {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   -webkit-box-shadow: black 0 0 30px -10px;
   -moz-box-shadow: black 0 0 30px -10px;
   box-shadow: black 0 0 30px -10px;
@@ -59,7 +59,7 @@ body.one-sidebar.sidebar-first [role="main"] {
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.7);
     background-image: none;
     text-align: right; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
@@ -71,14 +71,14 @@ body.one-sidebar.sidebar-first [role="main"] {
       text-transform: uppercase;
       color: #444444; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: #e42d91;
+        color: #d4d2d1;
         text-decoration: none; }
 
 .panel-row-top-right .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif; }
   .panel-row-top-right .panel-top-right-mini-info .pane-title {
     background: none;
-    color: #e42d91;
+    color: #d4d2d1;
     padding: 0;
     line-height: 1em; }
   .panel-row-top-right .panel-top-right-mini-info .pane-content {
@@ -87,11 +87,11 @@ body.one-sidebar.sidebar-first [role="main"] {
 .panel-row-actions {
   margin-bottom: 40px;
   border: none;
-  background: rgba(255, 255, 255, 0.4); }
+  background: rgba(255, 255, 255, 0.7); }
   .panel-row-actions img {
     margin: 15px; }
   .panel-row-actions .pane-title {
-    background: #e42d91; }
+    background: #d4d2d1; }
   .panel-row-actions .pane-content {
     padding: 18px; }
 
@@ -109,7 +109,7 @@ body.one-sidebar.sidebar-first [role="main"] {
   line-height: 1.3em;
   font-weight: 500; }
 .panel-row-ad-quick-info .pane-content h3 {
-  color: #e42d91;
+  color: #d4d2d1;
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1em; }
@@ -135,13 +135,13 @@ body.one-sidebar.sidebar-first [role="main"] {
     text-decoration: none;
     text-align: center;
     font-weight: 300;
-    color: #e42d91;
+    color: #d4d2d1;
     padding: 15px 0 10px;
     display: block;
     font-size: 40px;
     line-height: 1em; }
 .panel-row-flexible .panel-pane {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   margin-bottom: 40px;
   border-top: none;
   border-right: 1px solid #cccccc;
@@ -162,7 +162,7 @@ body.one-sidebar.sidebar-first [role="main"] {
   float: right; }
 
 .panel-row-logos .pane-title {
-  color: #e42d91;
+  color: #d4d2d1;
   background: none;
   margin: 0;
   padding: 0; }
