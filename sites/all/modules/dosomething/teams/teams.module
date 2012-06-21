@@ -485,6 +485,7 @@ function teams_conductor_sms_keywords() {
   return array(
     'jointeam' => 'teams_sms_join',
     'startteam' => 'teams_sms_create',
+    'invite' => 'teams_sms_invite',
   );
 }
 
@@ -549,6 +550,7 @@ function teams_default_conductor_workflows() {
   $activity->title = 'Ask for their first name if we do not yet have it.';
   $activity->question = 'What is your first name?';
   $activity->conditional_check = 'check_name:has_name';
+  $activity->isset_type = 'notset';
   $activity->check_type = 'isset';
   $activity->inputs = array('check_name');
   $activity->outputs = array('team_leader');
@@ -560,6 +562,7 @@ function teams_default_conductor_workflows() {
   $activity->title = 'Ask for team leader email/cell';
   $activity->question = 'Tell us your team leader\'s email or cell #. Let them know to make sure they have this info on their DoSomething.org account!';
   $activity->conditional_check = 'check_name:is_invited';
+  $activity->isset_type = 'notset';
   $activity->check_type = 'isset';
   $activity->inputs = array('ask_name');
   $activity->outputs = array('signature_remover');
@@ -588,14 +591,125 @@ function teams_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
-  // 
+
+
+  // initialize our first workflow
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'teams_sms_create';
+  $workflow->title = 'Teams SMS Create';
+  $workflow->description = 'Create a team via SMS.';
+  $workflow->api_version = '1.0';
+
+  // start making activities!
+  $activity = $workflow->newActivity('start');
+  teams_xy($activity, 1);
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('check_name');
+
+  // check if they have a user account with a name filled out
+  $activity = $workflow->newActivity('teams_check_user');
+  teams_xy($activity, 2);
+  $activity->name = 'check_name';
+  $activity->title = 'Check if they have a profile and name field.';
+  $activity->inputs = array('start');
+  $activity->outputs = array('ask_name');
+
+  // ask for their name to populate their profile
+  $activity = $workflow->newActivity('ds_conditional_sms_prompt');
+  teams_xy($activity, 3);
+  $activity->name = 'ask_name';
+  $activity->title = 'Ask for their first name if we do not yet have it.';
+  $activity->question = 'What is your first name?';
+  $activity->conditional_check = 'check_name:has_name';
+  $activity->isset_type = 'notset';
+  $activity->check_type = 'isset';
+  $activity->inputs = array('check_name');
+  $activity->outputs = array('team_name');
+
+  // ask for the team name
+  $activity = $workflow->newActivity('sms_prompt');
+  teams_xy($activity, 4);
+  $activity->name = 'team_name';
+  $activity->title = 'Ask for team name';
+  $activity->question = 'What would you like your team\'s name to be? Be creative. There can only be one team with this name, and you can\'t change it later!';
+  $activity->inputs = array('ask_name');
+  $activity->outputs = array('signature_remover');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  teams_xy($activity, 5);
+  $activity->name = 'signature_remover';
+  $activity->title = 'Remove the signature from all sms context.';
+  $activity->inputs = array('team_name');
+  $activity->outputs = array('save_join');
+
+  $activity = $workflow->newActivity('teams_create_team');
+  teams_xy($activity, 6);
+  $activity->name = 'save_join';
+  $activity->title = 'Save the team.';
+  $activity->inputs = array('signature_remover');
+  $activity->outputs = array('end');
+
+  // end!
+  $activity = $workflow->newActivity('end');
+  teams_xy($activity, 7);
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('save_join');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+
+
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'teams_sms_invite';
+  $workflow->title = 'Teams SMS Invite';
+  $workflow->description = 'Invite people to a team via SMS.';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  teams_xy($activity, 1);
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('get_info');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  teams_xy($activity, 2);
+  $activity->name = 'get_info';
+  $activity->title = 'Get Info';
+  $activity->question = 'Give us the email or cell of someone you would like to invite to your group.';
+  $activity->inputs = array('start');
+  $activity->outputs = array('process');
+
+  $activity = $workflow->newActivity('teams_invite');
+  teams_xy($activity, 3);
+  $activity->name = 'process';
+  $activity->title = 'Process a team join';
+  $activity->inputs = array('get_info');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  teams_xy($activity, 4);
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('process');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+
 
   return $workflows;
 }
 
 /**
  * Helper function to increase X and Y by an amount for Conductor activities.
- * Remember, objects in PHP are automatically pass by reference.
+ * Objects in PHP are automatically pass by reference.
  */
 function teams_xy($activity, $multiplier) {
   $num = 50*$multiplier;

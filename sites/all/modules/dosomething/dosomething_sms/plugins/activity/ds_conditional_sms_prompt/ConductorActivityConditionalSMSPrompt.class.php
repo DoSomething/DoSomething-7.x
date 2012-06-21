@@ -12,11 +12,16 @@ class ConductorActivityConditionalSMSPrompt extends ConductorActivitySMSPrompt {
   // then execute the normal sms_prompt parent activity
   public $run_on_conditional_values = array(); 
 
+  public $check_type = 'array';
+  public $isset_type = 'set';
+
   // Add more options for this activity
   public function option_definition() {
     $options = parent::option_definition();
     $options['conditional_check'] = array('default' => '');
     $options['run_on_conditional_values'] = array('default' => array());
+    $options['check_type'] = array('default' => 'array');
+    $options['isset_type'] = 'set';
     return $options;
   }
 
@@ -28,11 +33,20 @@ class ConductorActivityConditionalSMSPrompt extends ConductorActivitySMSPrompt {
 
     // Cycle through conditional values looking for a match
     $bMatchFound = FALSE;
-    foreach ($this->run_on_conditional_values as $success_val) {
-      // Only looking for matches at the beginning of the string
-      $pos = strpos($check_val, strtolower($success_val));
-      if ($pos === 0) {
-        $bMatchFound = TRUE;
+    if ($this->check_type == 'array') {
+      foreach ($this->run_on_conditional_values as $success_val) {
+        // Only looking for matches at the beginning of the string
+        $pos = strpos($check_val, strtolower($success_val));
+        if ($pos === 0) {
+          $bMatchFound = TRUE;
+        }
+      }
+    }
+    else if ($this->check_type == 'isset') {
+      if ($state->getContext($this->conditional_check) === FALSE) {
+        if ($this->isset_type != 'set') {
+          $bMatchFound = TRUE;
+        }
       }
     }
 
