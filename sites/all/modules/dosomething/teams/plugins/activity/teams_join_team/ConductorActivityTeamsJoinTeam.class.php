@@ -30,6 +30,8 @@ class ConductorActivityTeamsJoinTeam extends ConductorActivitySMSPrompt {
             'nid' => self::SIGNUP_NID,
             'sid' => NULL,
           ),
+          'op' => t('Submit'),
+          'submit' => t('Submit'),
           'form_id' => 'webform_client_form_'.self::SIGNUP_NID,
         ),
       );
