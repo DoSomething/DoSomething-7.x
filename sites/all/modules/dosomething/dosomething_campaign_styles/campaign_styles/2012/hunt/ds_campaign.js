@@ -1,5 +1,5 @@
-// hunt hunt hunt hunt
-// drupal jQuery initialization
+// Hunt, Hunt, Hunt, Hunt.
+// jQuery! Get some.
 (function ($) {
   $(document).ready(function() {
 
@@ -45,5 +45,32 @@
         $("a#join_team > h2").addClass("inactive");
           return false
      });
+     
+     // // challenges!
+     // // determine current time
+     // var today = new Date(); // specify time zone
+     // var day = today.getDate();
+     // var hour = today.getHours();
+     // var testDate = 4
+     // 
+     // // holy challenges, batman!
+     // $("#challenges div").css("display","none"); // on production hide in CSS
+     // 
+     // // activate available challenges
+     // $("h3").slice(0, (day - 14)).click(function(){
+     //   $(this).next("div").slideToggle();
+     //   $(this).siblings().next("div").slideUp();
+     // });
+     // 
+     // // add "today" to current challenge && color all other active challenges    
+     // $("#challenges h3:eq(" + (day - 16) + ")").append("<strong>[ today's challenge ]</strong>");
+     // $("h3 > span").slice(0, (day - 14)).css("color","#D32A1B");
+     // $("h3").slice(0, (day - 14)).css("cursor","pointer");
+     // 
+     // // show current challenge
+     // $("#challenges div:eq(" + (day - 16) + ")").css("display","block");
+     // 
+     // // remove future challenges from DOM
+     // $("#challenges div").slice((day - 15), 11).remove(); 
   });
 })(jQuery);
