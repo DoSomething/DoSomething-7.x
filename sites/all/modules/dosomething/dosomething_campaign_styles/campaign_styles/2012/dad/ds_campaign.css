@@ -349,6 +349,9 @@ form.webform-client-form {
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
     font-weight: 600; }
 
+.copy-above-gallery .pane-title {
+  marign-bottom: 15px; }
+
 .official_rules_link {
   position: relative;
   text-align: center;
