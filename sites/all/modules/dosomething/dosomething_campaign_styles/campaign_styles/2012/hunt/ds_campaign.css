@@ -123,15 +123,16 @@ div[role="main"] {
 
 .sunglass_sign-up {
   position: absolute;
-  right: -70px;
-  top: -35px;
+  right: -15px;
+  top: 0px;
   width: 125px;
   z-index: 1; }
 
 .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 21px;
-  line-height: 1.4em; }
+  line-height: 1.4em;
+  margin-top: 30px; }
   .panel-top-right-mini-info .field-name-field-campain-date {
     color: #d32a1b;
     padding: 0;
