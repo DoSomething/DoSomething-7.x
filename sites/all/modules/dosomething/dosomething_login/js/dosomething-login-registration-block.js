@@ -30,7 +30,10 @@ Drupal.behaviors.dosomethingRegisterAjax = {
           if (wfCellField.length > 0) {
             wfCellField.find('input').val($('#edit-cell').val());
           }
-          webform.unbind('submit').submit();
+
+          webform.unbind('submit');
+          var actionButton = webform.find('input[name="op"]');
+          actionButton.removeAttr('disabled').click().attr('disabled', true);
         }
       });
       return false;

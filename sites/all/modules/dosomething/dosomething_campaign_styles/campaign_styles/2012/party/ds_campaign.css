@@ -6,10 +6,6 @@ a {
 h1.title {
   display: none; }
 
-body {
-  background: url("assets/bg.png") center center fixed #dddddd;
-  background-repeat: repeat; }
-
 p {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 1.6em;
