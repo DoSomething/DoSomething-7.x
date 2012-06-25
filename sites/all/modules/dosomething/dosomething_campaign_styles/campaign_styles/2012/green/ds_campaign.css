@@ -58,6 +58,13 @@ div[role="main"] {
 .panel-row-actions {
   background-color: #8dc641; }
 
+.panel-row-actions-stats {
+  height: 190px; }
+  .panel-row-actions-stats .campaign-counter-label-top {
+    margin-bottom: 18px; }
+  .panel-row-actions-stats .campaign-counter-number-top {
+    margin-bottom: 18px; }
+
 #block-dosomething-campaign-styles-campaign-nav {
   background: transparent;
   margin-right: -5px;
