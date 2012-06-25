@@ -447,17 +447,13 @@ form.webform-client-form {
 
 .sign-up {
   width: 65%; }
-  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below,
-  .sign-up #webform-component-address-1,
-  .sign-up #webform-component-address-2,
-  .sign-up #webform-component-city,
-  .sign-up #webform-component-state,
-  .sign-up #webform-component-zip-code,
   .sign-up #edit-submitted-field-webform-school-reference,
   .sign-up .field-name-group-audience {
     display: none; }
-  .sign-up #edit-submitted-field-webform-mobile-und-0-value {
+  .sign-up #webform-component-zip-code {
     margin-bottom: 80px; }
+  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
+    margin-top: 20px; }
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
@@ -508,6 +504,21 @@ body.page-node-722491 div[role="main"] {
     text-align: center;
     font-size: 1.2em;
     color: white; }
+  #staples_raise-your-hand .campaign-counter {
+    position: absolute;
+    top: 210px;
+    left: 80px;
+    width: 480px; }
+    #staples_raise-your-hand .campaign-counter .campaign-counter-labels {
+      float: left;
+      font-family: din-web;
+      color: white;
+      font-size: 2em;
+      width: 215px;
+      text-align: right; }
+    #staples_raise-your-hand .campaign-counter .campaign-counter-numbers {
+      float: left;
+      margin-left: 15px; }
   #staples_raise-your-hand .lendahand {
     position: absolute;
     top: 460px;
@@ -772,6 +783,13 @@ body.page-node-722490 div[role="main"] {
     font-size: 1.4em;
     line-height: 1.4em;
     color: white; }
+  #staples_raise-your-hand-share .sharebox {
+    position: absolute;
+    top: 370px;
+    left: 230px; }
+    #staples_raise-your-hand-share .sharebox .twitter-share-button {
+      position: relative;
+      top: 3px; }
   #staples_raise-your-hand-share .showyourhand {
     position: absolute;
     top: 630px;
