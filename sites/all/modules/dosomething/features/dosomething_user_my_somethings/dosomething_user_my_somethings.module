@@ -445,9 +445,11 @@ function dosomething_user_my_somethings_get_user_group_memberships($uid, $node_t
   $query->innerJoin('node', 'n', 'o.etid = n.nid');
   $query->fields('o', array('gid', 'etid'));
   $query->fields('n', array('nid', 'title'));
-  $query->condition('o.entity_type', 'node', '=');
-  $query->condition('m.etid', $uid, '=');
-  $query->condition('n.type', $node_type, '=');
+  $query->condition('o.entity_type', 'node');
+  $query->condition('m.etid', $uid);
+  $query->condition('m.entity_type', 'user');
+  $query->condition('n.type', $node_type);
+  $query->condition('n.status', 1);
   $query->condition('o.state', OG_STATE_ACTIVE);
   $results = $query->execute();
   while ($result = $results->fetchObject()) {
@@ -536,61 +538,48 @@ function dosomething_user_my_somethings_theme() {
  * for that user's campaign groups.
  */
 function dosomething_user_my_somethings_campaign_report_backs_needed($uid) {
-  $gids = array();
   $report_backs = array();
-  $report_backs_entity_ids = array();
-  $user_submissions = array();
-  $incomplete_report_backs = array();
 
   if ($groups = dosomething_user_my_somethings_get_user_group_memberships($uid, 'campaign')) {
+    $gids = array();
     foreach ($groups as $group) {
       $gids[] = $group->gid;
     }
 
-    // Check that a campaign report back exists for each user's campaign.
-    // Get campaign title and entity_id of that campaign's report back.
+    // Figure out the campaign's this user has signed up for. Gather the
+    // campaign title and entity_id of that campaign's report back.
     $query = db_select('og_membership', 'om');
     $query->innerJoin('og', 'o', 'om.gid = o.gid');
     $query->innerJoin('node', 'n', 'om.etid = n.nid');
     $query->addField('om', 'etid', 'report_back_entity_id');
     $query->addField('o', 'etid', 'campaign_entity_id');
     $query->addField('o', 'label', 'campaign_title');
-    $query->condition('n.type', 'campaign_report_back', '=');
+    $query->condition('om.entity_type', 'node');
+    $query->condition('n.type', 'campaign_report_back');
+    $query->condition('n.status', 1);
     $query->condition('o.gid', $gids, 'IN');
-    $results = $query->execute();
-    while ($result = $results->fetchObject()) {
-      $report_backs[] = $result;
-      $report_backs_entity_ids[] = $result->report_back_entity_id;
-    }
+    $report_backs = $query->execute()->fetchAllAssoc('report_back_entity_id');
 
-    if (!empty($report_backs_entity_ids)) {
-      // From these existing campaign report backs, get the user's submissions.
+    if (!empty($report_backs)) {
+      // If they've submitted a report back, remove the campaign from the list.
       $db_query = db_select('webform_submissions', 'w');
       $db_query->fields('w', array('nid'));
       $db_query->condition('w.uid', $uid, '=');
-      $db_query->condition('nid', $report_backs_entity_ids, 'IN');
-      $results = $db_query->execute();
-      while ($result = $results->fetchObject()) {
-        $user_submissions[] = $result->nid;
-      }
-    }
-
-    // Check if user has a submission for each report back,
-    // if not return that info.
-    foreach ($report_backs as $report_back) {
-      if (!in_array($report_back->report_back_entity_id, $user_submissions)) {
-        $incomplete_report_backs[$report_back->report_back_entity_id] = $report_back;
+      $db_query->condition('nid', array_keys($report_backs), 'IN');
+      foreach ($db_query->execute() as $result) {
+        unset($report_backs[$result->nid]);
       }
     }
   }
-  return $incomplete_report_backs;
+
+  return $report_backs;
 }
 
 /**
  * Get a list of campaign report backs completed by user.
  */
 function dosomething_user_my_somethings_campaign_report_backs_complete($uid) {
-  $report_backs = db_query("SELECT DISTINCT(o.etid) as campaign_entity_id, (o.label) as campaign_title FROM {webform_submissions} w
+  $report_backs = db_query("SELECT DISTINCT(o.etid) as campaign_entity_id, (o.label) AS campaign_title FROM {webform_submissions} w
                             INNER JOIN {og_membership} om ON w.sid = om.etid
                             INNER JOIN {og} o ON om.gid = o.gid
                             WHERE w.bundle = 'campaign_report_back' AND o.entity_type = 'node' AND w.uid = :uid",
@@ -740,7 +729,8 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
  */
 function dosomething_user_my_somethings_display($uid, $era = 'current', $all = TRUE) {
   $all_somethings = dosomething_user_my_somethings_fetch_long($uid, $era);
-  if (!count($all_somethings)) {
+
+  if (empty($all_somethings)) {
     if ($era == 'current') {
       $empty_text = t('You are not doing anything. Join a campaign, or start a grant application or project!');
     }
