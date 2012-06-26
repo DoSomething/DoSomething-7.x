@@ -839,6 +839,34 @@ body.page-node-722489
       padding-left: 15px
       text-indent: -15px
   
+  #webform-component-birthday
+    float: left !important
+    margin-top: 12px
+    margin-right: 28px !important
+    
+    label
+      padding-left: 5px
+      color: #2f5e26
+      text-transform: uppercase
+      font-family: din-web
+      font-weight: 600
+  
+  #webform-component-state
+    margin-top: 12px
+    
+    label
+      padding-left: 5px
+      color: #2f5e26
+      text-transform: uppercase
+      font-family: din-web
+      font-weight: 600
+  
+  #webform-component-extended-instructions
+    width: 400px
+    margin-top: 16px
+    color: #fff
+    font-size: 0.8em
+  
   #webform-component-opt-in-boxes
     width: 390px
     padding-bottom: 16px
@@ -901,6 +929,26 @@ body.page-node-722489
 body.page-node-722490
   div[role="main"]
     padding: 0 !important
+  
+  // for confirmation popup
+  .ui-dialog
+    overflow: visible
+    background: blue
+    border: 2px solid #fff
+    background: #049fdb url('assets/confirmation_msg.jpg') no-repeat center center !important
+    @include box-shadow(0 0 205px #222)
+    
+    .ui-dialog-titlebar
+      position: absolute
+      top: -10px
+      left: -15px
+    
+    .ui-icon-closethick
+      pointer: cursor
+      background: #000 url('assets/staples_close.png') no-repeat center center
+      text-indent: -9000px !important
+      border: 2px solid #fff
+      @include border-radius(13px)
 
 #staples_raise-your-hand-share
   width: 797px
@@ -965,15 +1013,58 @@ body.page-node-722490
       -moz-box-shadow: 0 15px 20px -10px #3C5173 !important
       -webkit-box-shadow: 0 15px 20px -10px #3C5173 !important
       box-shadow: 0 15px 20px -10px #3C5173 !important
+      
+// raise your hand: confirmation popup
+.message
+  position: absolute
+  top: 80px
+  left: 150px
+  width: 470px
+  color: #fff
+  text-align: center
+  font-size: 1.05em
   
-  .button
-    font-family: din-web
-    font-weight: bold
-    font-size: 16px
-    text-transform: uppercase
-    text-decoration: none
-    background-color: #fed100
-    padding: 1px 13px 0
-    border: 0
-    @include border-radius(12px)
-    @include background(linear-gradient(top, white, #FED100))
+.call-to-action
+  position: absolute
+  top: 260px
+  left: 250px
+  width: 250px
+  text-align: center
+  color: #049fdb
+  font-size: 1.3em
+  line-height: 1.3em
+  
+.link-container
+  position: absolute
+  top: 340px
+  left: 250px
+  width: 250px
+  text-align: center
+  line-height: 2em
+
+#staples_raise-your-hand-popuptrigger
+  .pane-content
+    background: #fff
+    margin: 0 auto
+    text-align: center
+    
+    a
+      color: #ccc !important
+
+// raise your hand [common]
+.button
+  font-family: din-web
+  font-weight: bold
+  font-size: 16px
+  text-transform: uppercase
+  text-decoration: none !important
+  background-color: #fed100
+  padding: 1px 13px 0
+  border: 0
+  color: #000 !important
+  text-decoration: none !important
+  @include border-radius(12px)
+  @include background(linear-gradient(top, white, #FED100))
+  
+.button:hover
+  text-decoration: none

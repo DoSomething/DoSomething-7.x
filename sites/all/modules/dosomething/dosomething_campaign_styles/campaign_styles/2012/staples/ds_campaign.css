@@ -719,6 +719,29 @@ body.page-node-722489 div[role="main"] {
     #staples_raise-your-hand-webform #webform-component-required-checkboxes label {
       padding-left: 15px;
       text-indent: -15px; }
+  #staples_raise-your-hand-webform #webform-component-birthday {
+    float: left !important;
+    margin-top: 12px;
+    margin-right: 28px !important; }
+    #staples_raise-your-hand-webform #webform-component-birthday label {
+      padding-left: 5px;
+      color: #2f5e26;
+      text-transform: uppercase;
+      font-family: din-web;
+      font-weight: 600; }
+  #staples_raise-your-hand-webform #webform-component-state {
+    margin-top: 12px; }
+    #staples_raise-your-hand-webform #webform-component-state label {
+      padding-left: 5px;
+      color: #2f5e26;
+      text-transform: uppercase;
+      font-family: din-web;
+      font-weight: 600; }
+  #staples_raise-your-hand-webform #webform-component-extended-instructions {
+    width: 400px;
+    margin-top: 16px;
+    color: white;
+    font-size: 0.8em; }
   #staples_raise-your-hand-webform #webform-component-opt-in-boxes {
     width: 390px;
     padding-bottom: 16px; }
@@ -767,6 +790,28 @@ body.page-node-722489 div[role="main"] {
 
 body.page-node-722490 div[role="main"] {
   padding: 0 !important; }
+body.page-node-722490 .ui-dialog {
+  overflow: visible;
+  background: blue;
+  border: 2px solid white;
+  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important;
+  -webkit-box-shadow: 0 0 205px #222222;
+  -moz-box-shadow: 0 0 205px #222222;
+  box-shadow: 0 0 205px #222222; }
+  body.page-node-722490 .ui-dialog .ui-dialog-titlebar {
+    position: absolute;
+    top: -10px;
+    left: -15px; }
+  body.page-node-722490 .ui-dialog .ui-icon-closethick {
+    pointer: cursor;
+    background: black url("assets/staples_close.png") no-repeat center center;
+    text-indent: -9000px !important;
+    border: 2px solid white;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    border-radius: 13px; }
 
 #staples_raise-your-hand-share {
   width: 797px;
@@ -821,23 +866,63 @@ body.page-node-722490 div[role="main"] {
       -moz-box-shadow: 0 15px 20px -10px #3c5173 !important;
       -webkit-box-shadow: 0 15px 20px -10px #3c5173 !important;
       box-shadow: 0 15px 20px -10px #3c5173 !important; }
-  #staples_raise-your-hand-share .button {
-    font-family: din-web;
-    font-weight: bold;
-    font-size: 16px;
-    text-transform: uppercase;
-    text-decoration: none;
-    background-color: #fed100;
-    padding: 1px 13px 0;
-    border: 0;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    border-radius: 12px;
-    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
-    background: -webkit-linear-gradient(top, #ffffff, #fed100);
-    background: -moz-linear-gradient(top, #ffffff, #fed100);
-    background: -o-linear-gradient(top, #ffffff, #fed100);
-    background: -ms-linear-gradient(top, #ffffff, #fed100);
-    background: linear-gradient(top, #ffffff, #fed100); }
+
+.message {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+  width: 470px;
+  color: white;
+  text-align: center;
+  font-size: 1.05em; }
+
+.call-to-action {
+  position: absolute;
+  top: 260px;
+  left: 250px;
+  width: 250px;
+  text-align: center;
+  color: #049fdb;
+  font-size: 1.3em;
+  line-height: 1.3em; }
+
+.link-container {
+  position: absolute;
+  top: 340px;
+  left: 250px;
+  width: 250px;
+  text-align: center;
+  line-height: 2em; }
+
+#staples_raise-your-hand-popuptrigger .pane-content {
+  background: white;
+  margin: 0 auto;
+  text-align: center; }
+  #staples_raise-your-hand-popuptrigger .pane-content a {
+    color: #cccccc !important; }
+
+.button {
+  font-family: din-web;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  background-color: #fed100;
+  padding: 1px 13px 0;
+  border: 0;
+  color: black !important;
+  text-decoration: none !important;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
+  background: -webkit-linear-gradient(top, #ffffff, #fed100);
+  background: -moz-linear-gradient(top, #ffffff, #fed100);
+  background: -o-linear-gradient(top, #ffffff, #fed100);
+  background: -ms-linear-gradient(top, #ffffff, #fed100);
+  background: linear-gradient(top, #ffffff, #fed100); }
+
+.button:hover {
+  text-decoration: none; }
