@@ -790,6 +790,28 @@ body.page-node-722489 div[role="main"] {
 
 body.page-node-722490 div[role="main"] {
   padding: 0 !important; }
+body.page-node-722490 .ui-dialog {
+  overflow: visible;
+  background: blue;
+  border: 2px solid white;
+  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important;
+  -webkit-box-shadow: 0 0 205px #222222;
+  -moz-box-shadow: 0 0 205px #222222;
+  box-shadow: 0 0 205px #222222; }
+  body.page-node-722490 .ui-dialog .ui-dialog-titlebar {
+    position: absolute;
+    top: -10px;
+    left: -15px; }
+  body.page-node-722490 .ui-dialog .ui-icon-closethick {
+    pointer: cursor;
+    background: black url("assets/staples_close.png") no-repeat center center;
+    text-indent: -9000px !important;
+    border: 2px solid white;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    border-radius: 13px; }
 
 #staples_raise-your-hand-share {
   width: 797px;
@@ -844,28 +866,6 @@ body.page-node-722490 div[role="main"] {
       -moz-box-shadow: 0 15px 20px -10px #3c5173 !important;
       -webkit-box-shadow: 0 15px 20px -10px #3c5173 !important;
       box-shadow: 0 15px 20px -10px #3c5173 !important; }
-
-body.page-node-722492 div[role="main"] {
-  padding: 0 !important; }
-body.page-node-722492 .ui-dialog {
-  overflow: visible;
-  background: blue;
-  border: 2px solid white;
-  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important; }
-  body.page-node-722492 .ui-dialog .ui-dialog-titlebar {
-    position: absolute;
-    top: -10px;
-    left: -15px; }
-  body.page-node-722492 .ui-dialog .ui-icon-closethick {
-    pointer: cursor;
-    background: black url("assets/staples_close.png") no-repeat center center;
-    text-indent: -9000px !important;
-    border: 2px solid white;
-    -webkit-border-radius: 13px;
-    -moz-border-radius: 13px;
-    -ms-border-radius: 13px;
-    -o-border-radius: 13px;
-    border-radius: 13px; }
 
 .message {
   position: absolute;

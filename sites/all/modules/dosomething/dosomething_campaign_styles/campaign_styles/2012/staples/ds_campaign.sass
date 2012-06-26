@@ -929,6 +929,26 @@ body.page-node-722489
 body.page-node-722490
   div[role="main"]
     padding: 0 !important
+  
+  // for confirmation popup
+  .ui-dialog
+    overflow: visible
+    background: blue
+    border: 2px solid #fff
+    background: #049fdb url('assets/confirmation_msg.jpg') no-repeat center center !important
+    @include box-shadow(0 0 205px #222)
+    
+    .ui-dialog-titlebar
+      position: absolute
+      top: -10px
+      left: -15px
+    
+    .ui-icon-closethick
+      pointer: cursor
+      background: #000 url('assets/staples_close.png') no-repeat center center
+      text-indent: -9000px !important
+      border: 2px solid #fff
+      @include border-radius(13px)
 
 #staples_raise-your-hand-share
   width: 797px
@@ -994,29 +1014,7 @@ body.page-node-722490
       -webkit-box-shadow: 0 15px 20px -10px #3C5173 !important
       box-shadow: 0 15px 20px -10px #3C5173 !important
       
-// raise your hand: confirmation page
-body.page-node-722492
-  div[role="main"]
-    padding: 0 !important
-    
-  .ui-dialog
-    overflow: visible
-    background: blue
-    border: 2px solid #fff
-    background: #049fdb url('assets/confirmation_msg.jpg') no-repeat center center !important
-    
-    .ui-dialog-titlebar
-      position: absolute
-      top: -10px
-      left: -15px
-    
-    .ui-icon-closethick
-      pointer: cursor
-      background: #000 url('assets/staples_close.png') no-repeat center center
-      text-indent: -9000px !important
-      border: 2px solid #fff
-      @include border-radius(13px)
-      
+// raise your hand: confirmation popup
 .message
   position: absolute
   top: 80px
