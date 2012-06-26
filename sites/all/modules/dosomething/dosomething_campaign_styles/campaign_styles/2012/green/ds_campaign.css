@@ -58,6 +58,9 @@ div[role="main"] {
 .panel-row-actions {
   background-color: #8dc641; }
 
+.panel-row-actions-stats .campaign-counter-label-top, .panel-row-actions-stats .campaign-counter-number-top {
+  margin-bottom: 18px; }
+
 #block-dosomething-campaign-styles-campaign-nav {
   background: transparent;
   margin-right: -5px;
@@ -92,65 +95,73 @@ div[role="main"] {
     line-height: 1.4em; }
 
 .panel-row-actions {
-  background: black;
-  border: none !important;
-  margin: 1em 0 2em 0; }
+  background: #8dc641;
+  margin: 0 0 15px 0;
+  width: 750px;
+  border: none !important; }
+  .panel-row-actions #edit-actions {
+    position: absolute;
+    right: 82px;
+    bottom: 1px; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 5px !important; }
   .panel-row-actions .pane-title {
     background: #009444; }
   .panel-row-actions .pane-content {
     padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up form {
+    padding-bottom: 0; }
   .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
     margin: 0; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content {
-      padding: 0;
-      min-height: 90px; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .webform-client-form {
-        border: none !important;
-        -moz-box-shadow: none !important;
-        -webkit-box-shadow: none !important;
-        -o-box-shadow: none !important;
-        box-shadow: none !important; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile {
-        margin-bottom: 0.5em; }
-        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-mobile input {
-          width: 100%; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email {
-        margin-bottom: 0.5em; }
-        .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-content .field-name-field-webform-email input {
-          width: 100%; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-.form-wrapper {
-      margin-bottom: 0; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-actions {
-      height: auto; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-submit {
-      margin-right: 0; }
-
-.campaign-counter-labels {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  color: white;
-  font-size: 24px;
-  line-height: 24px;
-  text-transform: uppercase; }
-
-.panel-row-actions {
-  background: black;
-  margin: 0; }
-  .panel-row-actions .pane-title {
-    background: #009444; }
-  .panel-row-actions .pane-content {
-    padding: 18px; }
-  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
-    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: white; }
   .panel-row-actions .panel-row-actions-sign-up .pane-content {
     padding: 0; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile {
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      -o-box-shadow: none !important;
+      box-shadow: none !important;
+      border: none !important; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+      font-size: 14px;
+      width: 280px;
       margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-mobile input {
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
         width: 100%; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email {
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+      font-size: 14px;
+      width: 240px;
       margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content #edit-submitted-field-webform-email input {
-        width: 100%; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+        width: 75%;
+        margin-top: 5px; }
+
+#post-sign-up h3 {
+  padding: 20px 15px 15px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 40px; }
+
+.panel-row-actions-sign-up #campaign-opt-in {
+  font-size: 11px;
+  margin: 0 0 0 15px; }
+
+.pane-content #dosomething-login-register-popup-form .popup-content {
+  height: 150px; }
+
+.pane-campaign-counter .pane-content {
+  padding: 20px 25px 20px 0; }
+  .pane-campaign-counter .pane-content .campaign-counter-labels {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-weight: 500;
+    line-height: 25px;
+    float: left;
+    margin-left: -25px; }
+  .pane-campaign-counter .pane-content .digits, .pane-campaign-counter .pane-content .campaign-counter-label-bottom, .pane-campaign-counter .pane-content .campaign-counter-label-top {
+    margin-bottom: 8px; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;

@@ -121,16 +121,28 @@ div[role="main"] {
   height: 230px;
   margin-top: 0px !important; }
 
+.sunglass_sign-up {
+  position: absolute;
+  right: -15px;
+  top: 0px;
+  width: 125px;
+  z-index: 1; }
+
 .panel-top-right-mini-info {
   font-family: din-web, "Trebuchet MS", sans-serif;
   font-size: 21px;
-  line-height: 1.4em; }
+  line-height: 1.4em;
+  margin-top: 30px; }
   .panel-top-right-mini-info .field-name-field-campain-date {
     color: #d32a1b;
     padding: 0;
     font-weight: 600; }
-  .panel-top-right-mini-info .field-name-field-campaign-teaser p {
-    margin-bottom: 15px; }
+  .panel-top-right-mini-info .field-name-field-campaign-teaser {
+    width: 70%;
+    font-size: 18px;
+    line-height: 25px; }
+    .panel-top-right-mini-info .field-name-field-campaign-teaser p {
+      margin-bottom: 15px; }
   .panel-top-right-mini-info .pane-content {
     padding-bottom: 0; }
 

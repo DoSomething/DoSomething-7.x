@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'CAMPAIGN TITLE',
+  'title' => 'Do Something Awards - Pre Party!',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,10 +28,8 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => 'green-your-school'),
-    array('title' => 'project ideas', 'href' => 'green-your-school/project-ideas'),
-    array('title' => 'dont be trashy', 'href' => 'trashy', 'attributes' => array('target' => '_blank')),
-    array('title' => 'prizes', 'href' => 'green-your-school/prizes'),
-    array('title' => 'faq', 'href' => 'green-your-school/faq'),
+    array('title' => 'our story', 'href' => 'pre-party', 'fragment' => 'our-story'),
+    array('title' => 'event', 'href' => 'pre-party', 'fragment' => 'event'),
+    array('title' => 'join us', 'href' => 'pre-party', 'fragment' => 'join-us'),
   ),
 );

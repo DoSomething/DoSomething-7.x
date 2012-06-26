@@ -46,7 +46,15 @@ $bgFallback: black
   -o-box-shadow: none !important
   box-shadow: none !important
 
+@mixin noBorder
+  border: none !important
 
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+  
 //////////////////////////////////////////
 ///////// general definitions ///////////
 ////////////////////////////////////////
@@ -110,6 +118,10 @@ div[role="main"]
 .panel-row-actions
   background-color: #8DC641
 
+.panel-row-actions-stats
+  .campaign-counter-label-top, .campaign-counter-number-top
+    margin-bottom: 18px
+
 // navigation
 #block-dosomething-campaign-styles-campaign-nav
   background: transparent
@@ -147,66 +159,76 @@ div[role="main"]
       font-size: 21px
       line-height: 1.4em
 
-// actions panel (sign-up and counter)
+// short form
 .panel-row-actions
-  +block
+  background: #8DC641
+  margin: 0 0 15px 0
+  width: 750px
   +noBorder
-  margin: 1em 0 2em 0
+  #edit-actions
+    position: absolute
+    right: 82px
+    bottom: 1px
+  .form-wrapper
+    margin-bottom: 5px !important
   .pane-title
     background: $baseColor
   .pane-content
     padding: 18px
   .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
     .pane-campaign-sign-up
       margin: 0
-      .pane-content
-        padding: 0
-        min-height: 90px
-        .webform-client-form
-          +noBorder
-          +noBoxShadow
-        .field-name-field-webform-mobile
-          margin-bottom: 0.5em
-          input
-            width: 100%
-        .field-name-field-webform-email  
-          margin-bottom: 0.5em
-          input
-            width: 100%
-      #edit-.form-wrapper
-        margin-bottom: 0
-      #edit-actions
-        height: auto
-      #edit-submit
-        margin-right: 0
-
-.campaign-counter-labels
-  font-family: din-web, "Trebuchet MS", sans-serif
-  color: white
-  font-size: 24px
-  line-height: 24px
-  text-transform: uppercase
-
-.panel-row-actions
-  +block
-  margin: 0
-  .pane-title
-    background: $baseColor
-  .pane-content
-    padding: 18px
-  .panel-row-actions-sign-up
-    .pane-campaign-sign-up
-      margin: 0
+      .pane-title
+        color: white
     .pane-content
       padding: 0
-      #edit-submitted-field-webform-mobile
+      .webform-client-form
+        +noShadow
+        +noBorder
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
         margin-bottom: 0.5em
         input
           width: 100%
-      #edit-submitted-field-webform-email
+      .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
         margin-bottom: 0.5em
         input
-          width: 100%
+          width: 75%
+          margin-top: 5px
+
+#post-sign-up h3
+  padding: 20px 15px 15px
+  text-align: center
+  font-size: 20px
+  line-height: 40px
+
+.panel-row-actions-sign-up  
+  #campaign-opt-in
+    font-size: 11px
+    margin: 0 0 0 15px
+
+.pane-content #dosomething-login-register-popup-form .popup-content
+  height: 150px
+
+// counter
+.pane-campaign-counter
+  .pane-content
+    padding: 20px 25px 20px 0
+    .campaign-counter-labels
+      text-transform: uppercase
+      font-size: 25px
+      font-family: din-web,"Trebuchet MS",sans-serif 
+      font-weight: 500
+      line-height: 25px
+      float: left
+      margin-left: -25px
+    .digits, .campaign-counter-label-bottom, .campaign-counter-label-top
+      margin-bottom: 8px
 
 // ad row (quick info and psa)
 .panel-row-ad-quick-info

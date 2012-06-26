@@ -447,17 +447,13 @@ form.webform-client-form {
 
 .sign-up {
   width: 65%; }
-  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below,
-  .sign-up #webform-component-address-1,
-  .sign-up #webform-component-address-2,
-  .sign-up #webform-component-city,
-  .sign-up #webform-component-state,
-  .sign-up #webform-component-zip-code,
   .sign-up #edit-submitted-field-webform-school-reference,
   .sign-up .field-name-group-audience {
     display: none; }
-  .sign-up #edit-submitted-field-webform-mobile-und-0-value {
+  .sign-up #webform-component-zip-code {
     margin-bottom: 80px; }
+  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
+    margin-top: 20px; }
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
@@ -490,7 +486,7 @@ form.webform-client-form {
   .mini-gallery ul.jcarousel-list-horizontal li {
     width: 118px !important; }
 
-body.page-node-722489 div[role="main"] {
+body.page-node-722491 div[role="main"] {
   padding: 0 !important; }
 
 #staples_raise-your-hand {
@@ -498,31 +494,133 @@ body.page-node-722489 div[role="main"] {
   margin-bottom: 0; }
   #staples_raise-your-hand .pane-content {
     position: relative;
+    background: white url("assets/RaiseYourHand_bg.jpg") no-repeat;
+    height: 928px; }
+  #staples_raise-your-hand .intro {
+    position: absolute;
+    top: 120px;
+    left: 80px;
+    width: 450px;
+    text-align: center;
+    font-size: 1.2em;
+    color: white; }
+  #staples_raise-your-hand .campaign-counter {
+    position: absolute;
+    top: 210px;
+    left: 80px;
+    width: 480px; }
+    #staples_raise-your-hand .campaign-counter .campaign-counter-labels {
+      float: left;
+      font-family: din-web;
+      color: white;
+      font-size: 2em;
+      width: 215px;
+      text-align: right; }
+    #staples_raise-your-hand .campaign-counter .campaign-counter-numbers {
+      float: left;
+      margin-left: 15px; }
+  #staples_raise-your-hand .lendahand {
+    position: absolute;
+    top: 460px;
+    left: 60px;
+    width: 175px;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.4em; }
+    #staples_raise-your-hand .lendahand strong {
+      text-transform: uppercase; }
+  #staples_raise-your-hand .showyourhand {
+    position: absolute;
+    top: 460px;
+    left: 240px;
+    width: 175px;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.4em; }
+    #staples_raise-your-hand .showyourhand strong {
+      text-transform: uppercase; }
+  #staples_raise-your-hand .gethandson {
+    position: absolute;
+    top: 460px;
+    left: 423px;
+    width: 175px;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.4em; }
+    #staples_raise-your-hand .gethandson strong {
+      text-transform: uppercase; }
+  #staples_raise-your-hand .outro {
+    position: absolute;
+    top: 695px;
+    left: 60px;
+    width: 380px;
+    font-size: 0.9em;
+    color: white; }
+  #staples_raise-your-hand .gallery {
+    position: absolute;
+    top: 630px;
+    left: 475px;
+    width: 295px;
+    text-align: right; }
+    #staples_raise-your-hand .gallery img {
+      border: 10px solid white !important;
+      -moz-box-shadow: 0 15px 20px -10px #3c5173 !important;
+      -webkit-box-shadow: 0 15px 20px -10px #3c5173 !important;
+      box-shadow: 0 15px 20px -10px #3c5173 !important; }
+  #staples_raise-your-hand .button {
+    font-family: din-web;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #fed100;
+    padding: 1px 13px 0;
+    border: 0;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    border-radius: 12px;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
+    background: -webkit-linear-gradient(top, #ffffff, #fed100);
+    background: -moz-linear-gradient(top, #ffffff, #fed100);
+    background: -o-linear-gradient(top, #ffffff, #fed100);
+    background: -ms-linear-gradient(top, #ffffff, #fed100);
+    background: linear-gradient(top, #ffffff, #fed100); }
+
+body.page-node-722489 div[role="main"] {
+  padding: 0 !important; }
+
+#staples_raise-your-hand-sweeps {
+  width: 797px;
+  margin-bottom: 0; }
+  #staples_raise-your-hand-sweeps .pane-content {
+    position: relative;
     background: white url("assets/Enter_Sweeps_bg.jpg") no-repeat;
     height: 600px; }
-  #staples_raise-your-hand .intro {
+  #staples_raise-your-hand-sweeps .intro {
     position: absolute;
     top: 135px;
     left: 310px;
     width: 415px;
     text-align: center;
     color: white; }
-  #staples_raise-your-hand .grandprize {
+  #staples_raise-your-hand-sweeps .grandprize {
     position: absolute;
     top: 263px;
     left: 380px;
     width: 350px;
     color: #401849; }
-    #staples_raise-your-hand .grandprize strong {
+    #staples_raise-your-hand-sweeps .grandprize strong {
       color: white; }
-  #staples_raise-your-hand .prettygreat {
+  #staples_raise-your-hand-sweeps .prettygreat {
     position: absolute;
     top: 400px;
     left: 455px;
     width: 295px;
     color: #333333;
     font-size: 11px; }
-    #staples_raise-your-hand .prettygreat ul {
+    #staples_raise-your-hand-sweeps .prettygreat ul {
       margin-top: 5px;
       font-weight: bold;
       width: 280px; }
@@ -621,6 +719,29 @@ body.page-node-722489 div[role="main"] {
     #staples_raise-your-hand-webform #webform-component-required-checkboxes label {
       padding-left: 15px;
       text-indent: -15px; }
+  #staples_raise-your-hand-webform #webform-component-birthday {
+    float: left !important;
+    margin-top: 12px;
+    margin-right: 28px !important; }
+    #staples_raise-your-hand-webform #webform-component-birthday label {
+      padding-left: 5px;
+      color: #2f5e26;
+      text-transform: uppercase;
+      font-family: din-web;
+      font-weight: 600; }
+  #staples_raise-your-hand-webform #webform-component-state {
+    margin-top: 12px; }
+    #staples_raise-your-hand-webform #webform-component-state label {
+      padding-left: 5px;
+      color: #2f5e26;
+      text-transform: uppercase;
+      font-family: din-web;
+      font-weight: 600; }
+  #staples_raise-your-hand-webform #webform-component-extended-instructions {
+    width: 400px;
+    margin-top: 16px;
+    color: white;
+    font-size: 0.8em; }
   #staples_raise-your-hand-webform #webform-component-opt-in-boxes {
     width: 390px;
     padding-bottom: 16px; }
@@ -666,3 +787,142 @@ body.page-node-722489 div[role="main"] {
     display: none; }
   #staples_raise-your-hand-webform .form-item-submitted-field-webform-pictures-und-1 {
     display: none; }
+
+body.page-node-722490 div[role="main"] {
+  padding: 0 !important; }
+
+#staples_raise-your-hand-share {
+  width: 797px;
+  margin-bottom: 0; }
+  #staples_raise-your-hand-share .pane-content {
+    background: white url("assets/Share_bg.jpg") no-repeat;
+    height: 1065px; }
+  #staples_raise-your-hand-share .intro {
+    position: absolute;
+    top: 250px;
+    left: 60px;
+    width: 400px;
+    text-align: center;
+    font-size: 1.4em;
+    line-height: 1.4em;
+    color: white; }
+  #staples_raise-your-hand-share .sharebox {
+    position: absolute;
+    top: 370px;
+    left: 230px; }
+    #staples_raise-your-hand-share .sharebox .twitter-share-button {
+      position: relative;
+      top: 3px; }
+  #staples_raise-your-hand-share .showyourhand {
+    position: absolute;
+    top: 630px;
+    left: 80px;
+    width: 175px;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.4em; }
+    #staples_raise-your-hand-share .showyourhand strong {
+      text-transform: uppercase; }
+  #staples_raise-your-hand-share .gethandson {
+    position: absolute;
+    top: 630px;
+    left: 310px;
+    width: 175px;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.4em; }
+    #staples_raise-your-hand-share .gethandson strong {
+      text-transform: uppercase; }
+  #staples_raise-your-hand-share .gallery {
+    position: absolute;
+    top: 815px;
+    left: 475px;
+    width: 295px;
+    text-align: right; }
+    #staples_raise-your-hand-share .gallery img {
+      border: 10px solid white !important;
+      -moz-box-shadow: 0 15px 20px -10px #3c5173 !important;
+      -webkit-box-shadow: 0 15px 20px -10px #3c5173 !important;
+      box-shadow: 0 15px 20px -10px #3c5173 !important; }
+
+body.page-node-722492 div[role="main"] {
+  padding: 0 !important; }
+body.page-node-722492 .ui-dialog {
+  overflow: visible;
+  background: blue;
+  border: 2px solid white;
+  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important; }
+  body.page-node-722492 .ui-dialog .ui-dialog-titlebar {
+    position: absolute;
+    top: -10px;
+    left: -15px; }
+  body.page-node-722492 .ui-dialog .ui-icon-closethick {
+    pointer: cursor;
+    background: black url("assets/staples_close.png") no-repeat center center;
+    text-indent: -9000px !important;
+    border: 2px solid white;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    border-radius: 13px; }
+
+.message {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+  width: 470px;
+  color: white;
+  text-align: center;
+  font-size: 1.05em; }
+
+.call-to-action {
+  position: absolute;
+  top: 260px;
+  left: 250px;
+  width: 250px;
+  text-align: center;
+  color: #049fdb;
+  font-size: 1.3em;
+  line-height: 1.3em; }
+
+.link-container {
+  position: absolute;
+  top: 340px;
+  left: 250px;
+  width: 250px;
+  text-align: center;
+  line-height: 2em; }
+
+#staples_raise-your-hand-popuptrigger .pane-content {
+  background: white;
+  margin: 0 auto;
+  text-align: center; }
+  #staples_raise-your-hand-popuptrigger .pane-content a {
+    color: #cccccc !important; }
+
+.button {
+  font-family: din-web;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  background-color: #fed100;
+  padding: 1px 13px 0;
+  border: 0;
+  color: black !important;
+  text-decoration: none !important;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
+  background: -webkit-linear-gradient(top, #ffffff, #fed100);
+  background: -moz-linear-gradient(top, #ffffff, #fed100);
+  background: -o-linear-gradient(top, #ffffff, #fed100);
+  background: -ms-linear-gradient(top, #ffffff, #fed100);
+  background: linear-gradient(top, #ffffff, #fed100); }
+
+.button:hover {
+  text-decoration: none; }
