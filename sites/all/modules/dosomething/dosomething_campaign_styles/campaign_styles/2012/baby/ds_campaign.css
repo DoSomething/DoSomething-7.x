@@ -264,9 +264,7 @@ h2.pane-title {
 .mcommons-webform {
   background-color: #f3f3f4 !important;
   color: black;
-  overflow: auto;
-  height: 275px;
-  width: 75%; }
+  height: 300px; }
   .mcommons-webform input.field {
     width: 100%;
     height: 22px;
