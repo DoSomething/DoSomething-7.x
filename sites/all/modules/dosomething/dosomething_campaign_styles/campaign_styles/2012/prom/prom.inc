@@ -30,7 +30,6 @@ $plugin = array(
   'menu' => array(
     array('title' => 'home', 'href' => 'prom'),
     array('title' => 'run a drive', 'href' => 'prom/drive'),
-    array('title' => 'scholarships / prizes', 'href' => 'prom/scholarships'),
     array('title' => 'locations', 'href' => 'prom/locations'),
     array('title' => 'gallery', 'href' => 'prom/gallery'),
     array('title' => 'faq', 'href' => 'prom/faq'),
