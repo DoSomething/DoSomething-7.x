@@ -171,9 +171,46 @@ function dosomething_user_my_somethings_profile_completion($account = FALSE, $si
  */
 function dosomething_user_my_somethings_my_current_somethings() {
   global $user;
+
   $items = array();
 
-  $items = dosomething_user_my_somethings_my_current_something_links($user->uid);
+  $data = dosomething_user_my_somethings_get_my_somethings_cached($user->uid, 'current');
+
+  // 'title' - List title.
+  // 'title_field' - Object field to use for the item title.
+  // 'link_path' - Pattern to use for generating the item's link.
+  // 'link_id_field' - Object field to use for the %id replacement.
+  $somethings_info = array(
+    'grant_application' => array(
+      'title' => t('Grant Applications'),
+      'title_field' => 'title',
+      'link_path' => 'webform-submission/%id',
+      'link_id_field' => 'sid',
+    ),
+    'project_report' => array(
+      'title' => t('Project Reports'),
+      'title_field' => 'field_project_title_value',
+      'link_path' => 'webform-submission/%id',
+      'link_id_field' => 'sid',
+    ),
+    'report_back' => array(
+      'title' => t('Campaign Sign Ups'),
+      'title_field' => 'campaign_title',
+      'link_path' => 'node/%id',
+      'link_id_field' => 'report_back_entity_id',
+    ),
+  );
+
+  foreach (array_filter($data) as $type => $somethings) {
+    $conf = $somethings_info[$type];
+    $items[$type] = array('data' => $conf['title'], 'children' => array());
+    foreach ($somethings as $s) {
+      $title = filter_xss($s->{$conf['title_field']});
+      $link = strtr($conf['link_path'], array('%id' => $s->{$conf['link_id_field']}));
+      $items[$type]['children'][] = l($title, $link);
+    }
+  }
+
   if (empty($items)) {
     $items[] = t('You are not doing anything. Join a campaign, or start a grant application or project!');
   }
@@ -201,103 +238,15 @@ function dosomething_user_my_somethings_my_current_somethings() {
 }
 
 /**
- * Get a list of links for the different types of my somethings.
- * This populates the sidebar list of 'my current somethings'.
- *
- * @param $uid
- *  (int) a user id.
- * @return array
- */
-function dosomething_user_my_somethings_my_current_something_links($uid) {
-  $items = array();
-
-  $data = dosomething_user_my_somethings_get_my_somethings_cached($uid, 'current');
-
-  // 'title' - List title.
-  // 'title_field' - Object field to use for the item title.
-  // 'link_path' - Pattern to use for generating the item's link.
-  // 'link_id_field' - Object field to use for the %id replacement.
-  $somethings_info = array(
-    'grant_application' => array(
-      'title' => t('Grant Applications'),
-      'title_field' => 'title',
-      'link_path' => 'webform-submission/%id',
-      'link_id_field' => 'sid',
-    ),
-    'project_report' => array(
-      'title' => t('Project Reports'),
-      'title_field' => 'field_project_title_value',
-      'link_path' => 'webform-submission/%id',
-      'link_id_field' => 'sid',
-    ),
-    'report_back' => array(
-      'title' => t('Campaign Sign Ups'),
-      'title_field' => 'campaign_title',
-      'link_path' => 'node/%id',
-      'link_id_field' => 'report_back_entity_id',
-    ),
-  );
-  foreach (array_filter($data) as $type => $somethings) {
-    $conf = $somethings_info[$type];
-    $items[$type] = array('data' => $conf['title'], 'children' => array());
-    foreach ($somethings as $s) {
-      $title = filter_xss($s->{$conf['title_field']});
-      $link = strtr($conf['link_path'], array('%id' => $s->{$conf['link_id_field']}));
-      $items[$type]['children'][] = l($title, $link);
-    }
-  }
-
-
-  return $items;
-}
-
-/**
  * Get markup for my past somethings (sidebar version).
  * Renamed 'Done It' for theming purposes.
  */
 function dosomething_user_my_somethings_my_past_somethings() {
   global $user;
+
   $items = array();
 
-  $items = dosomething_user_my_somethings_my_past_something_links($user->uid);
-  if (empty($items)) {
-    $items[] = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
-  }
-
-  return array(
-    'title' => array(
-      '#prefix' => '<h3 class="done-it">',
-      '#suffix' => '</h3>',
-      'inner' => array(
-        '#type' => 'container',
-        '#attributes' => array(
-          'class' => array('inner'),
-        ),
-        '#children' => t('Done It'),
-      ),
-    ),
-    'list' => array(
-      '#theme' => 'item_list',
-      '#items' => $items,
-      '#attributes' => array(
-        'class' => array('done-it'),
-      ),
-    ),
-  );
-}
-
-/**
- * Get a list of links for the different types of my past somethings.
- * This populates the sidebar list of 'Done it'
- *
- * @param $uid
- *  (int) a user id.
- * @return array
- */
-function dosomething_user_my_somethings_my_past_something_links($uid) {
-  $items = array();
-
-  $data = dosomething_user_my_somethings_get_my_somethings_cached($uid, 'past');
+  $data = dosomething_user_my_somethings_get_my_somethings_cached($user->uid, 'past');
 
   // 'title' - List title.
   // 'title_field' - Object field to use for the item title.
@@ -339,7 +288,30 @@ function dosomething_user_my_somethings_my_past_something_links($uid) {
     }
   }
 
-  return $items;
+  if (empty($items)) {
+    $items[] = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
+  }
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h3 class="done-it">',
+      '#suffix' => '</h3>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('inner'),
+        ),
+        '#children' => t('Done It'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array('done-it'),
+      ),
+    ),
+  );
 }
 
 /**
