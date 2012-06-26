@@ -344,6 +344,7 @@ function _dosomething_services_user_resource_create($account) {
   if ($uri = services_resource_uri(array('user', $new_user->uid))) {
     $return->user['uri'] = $uri;
   }
+  $return->user['mail'] = $account['mail'];
 
   // Add session information to the return value
   $return->sessid = session_id();
