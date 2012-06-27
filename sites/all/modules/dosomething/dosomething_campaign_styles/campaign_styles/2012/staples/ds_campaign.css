@@ -492,7 +492,7 @@ form.webform-client-form {
   .mini-gallery ul.jcarousel-list-horizontal li {
     width: 118px !important; }
 
-body.page-node-722491 div[role="main"] {
+body.page-node-722266 div[role="main"] {
   padding: 0 !important; }
 
 #staples_raise-your-hand {
@@ -594,7 +594,7 @@ body.page-node-722491 div[role="main"] {
     background: -ms-linear-gradient(top, #ffffff, #fed100);
     background: linear-gradient(top, #ffffff, #fed100); }
 
-body.page-node-722489 div[role="main"] {
+body.page-node-722952 div[role="main"] {
   padding: 0 !important; }
 
 #staples_raise-your-hand-sweeps {
@@ -692,7 +692,7 @@ body.page-node-722489 div[role="main"] {
     border-radius: 4px; }
   #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures {
     float: right;
-    padding: 15px; }
+    width: 340px; }
     #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures legend {
       padding: 1em 0 0;
       margin-bottom: 0;
@@ -700,8 +700,8 @@ body.page-node-722489 div[role="main"] {
     #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper {
       background: #eeeeee url("assets/linen_bg.png");
       border: 10px solid white;
-      margin-top: 60px;
-      width: 300px;
+      margin-top: 100px;
+      margin-left: 15px;
       padding: 25px 30px;
       -webkit-box-shadow: #cccccc 0 1px 4px 1px inset, #444444 0 15px 20px -10px;
       -moz-box-shadow: #cccccc 0 1px 4px 1px inset, #444444 0 15px 20px -10px;
@@ -794,8 +794,30 @@ body.page-node-722489 div[role="main"] {
   #staples_raise-your-hand-webform .form-item-submitted-field-webform-pictures-und-1 {
     display: none; }
 
-body.page-node-722490 div[role="main"] {
+body.page-node-722954 div[role="main"] {
   padding: 0 !important; }
+body.page-node-722954 .ui-dialog {
+  overflow: visible;
+  background: blue;
+  border: 2px solid white;
+  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important;
+  -webkit-box-shadow: 0 0 205px #222222;
+  -moz-box-shadow: 0 0 205px #222222;
+  box-shadow: 0 0 205px #222222; }
+  body.page-node-722954 .ui-dialog .ui-dialog-titlebar {
+    position: absolute;
+    top: -10px;
+    left: -15px; }
+  body.page-node-722954 .ui-dialog .ui-icon-closethick {
+    pointer: cursor;
+    background: black url("assets/staples_close.png") no-repeat center center;
+    text-indent: -9000px !important;
+    border: 2px solid white;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    border-radius: 13px; }
 
 #staples_raise-your-hand-share {
   width: 797px;
@@ -814,11 +836,8 @@ body.page-node-722490 div[role="main"] {
     color: white; }
   #staples_raise-your-hand-share .sharebox {
     position: absolute;
-    top: 370px;
+    top: 367px;
     left: 230px; }
-    #staples_raise-your-hand-share .sharebox .twitter-share-button {
-      position: relative;
-      top: 3px; }
   #staples_raise-your-hand-share .showyourhand {
     position: absolute;
     top: 630px;
@@ -850,28 +869,6 @@ body.page-node-722490 div[role="main"] {
       -moz-box-shadow: 0 15px 20px -10px #3c5173 !important;
       -webkit-box-shadow: 0 15px 20px -10px #3c5173 !important;
       box-shadow: 0 15px 20px -10px #3c5173 !important; }
-
-body.page-node-722492 div[role="main"] {
-  padding: 0 !important; }
-body.page-node-722492 .ui-dialog {
-  overflow: visible;
-  background: blue;
-  border: 2px solid white;
-  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important; }
-  body.page-node-722492 .ui-dialog .ui-dialog-titlebar {
-    position: absolute;
-    top: -10px;
-    left: -15px; }
-  body.page-node-722492 .ui-dialog .ui-icon-closethick {
-    pointer: cursor;
-    background: black url("assets/staples_close.png") no-repeat center center;
-    text-indent: -9000px !important;
-    border: 2px solid white;
-    -webkit-border-radius: 13px;
-    -moz-border-radius: 13px;
-    -ms-border-radius: 13px;
-    -o-border-radius: 13px;
-    border-radius: 13px; }
 
 .message {
   position: absolute;

@@ -261,24 +261,99 @@ function _dosomething_services_facebook_login($access_token) {
 }
 
 /**
- * Disable the email verification then delegate back to _user_resource_create().
+ * Helper function to create return object for form errors
+ */
+function _dosomething_services_form_error($msg, $code) {
+  $error_obj = new stdClass();
+  $error_obj->form_errors = array('error' => $msg);
+  return services_error($msg, $code, $error_obj);
+}
+
+/**
+ * Overriding _user_resource_create() to be able to set a user's profile2 data
+ * and properly send the registration email.
  */
 function _dosomething_services_user_resource_create($account) {
-  $return = new stdClass();
+  // Check for required fields
+  if (empty($account['name'])) {
+    return _dosomething_services_form_error(t('Username is required.'), 406);
+  }
+  else if (empty($account['pass'])) {
+    return _dosomething_services_form_error(t('A password is required.'), 406);
+  }
+  else if (empty($account['mail'])) {
+    return _dosomething_services_form_error(t('A valid e-mail address is required.'), 406);
+  }
+  else if (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
+    return _dosomething_services_form_error(t('Birthday is required.'), 406);
+  }
 
-  // Avoid variable_set() because it does some cache clearing.
-  $GLOBALS['conf']['user_email_verification'] = FALSE;
-  $return->user = _user_resource_create($account);
-  $GLOBALS['conf']['user_email_verification'] = TRUE;
-
-  // Add mail information to the return value
-  $new_user = user_load($return->user['uid']);
-  if (!empty($new_user)) {
-    $mail = $new_user->mail;
-    if (!empty($mail)) {
-      $return->user['mail'] = $mail;
+  // Find user by name or by mail
+  $old_user = user_load_by_name($account['name']);
+  if (!$old_user) {
+    $old_user = user_load_by_mail($account['mail']);
+    if ($old_user) {
+      return _dosomething_services_form_error(t('An account with that e-mail address already exists'), 406);
     }
   }
+  else {
+    return _dosomething_services_form_error(t('An account with that username already exists'), 406);
+  }
+  
+  // No existing account found, so create a new one
+  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+
+  $new_user = new stdClass;
+  $new_user->name = $account['name'];
+  $new_user->pass = user_hash_password($account['pass']);
+  $new_user->mail = $account['mail'];
+
+  $bday = strtotime($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date']);
+  if ($bday !== FALSE && dosomething_login_person_is_over_age($bday, 26)) {
+    $new_user->roles[20] = 'old person';
+  }
+
+  $new_user->status = 1;
+
+  user_save($new_user);
+
+  // Populate user's profile2 data
+  $new_profile = profile2_create(array('type' => 'main'));
+  $new_profile->uid = $new_user->uid;
+
+  if (isset($account['profile_main']['field_user_first_name'][LANGUAGE_NONE][0]['value'])) {
+    $new_profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $account['profile_main']['field_user_first_name'][LANGUAGE_NONE][0]['value'];
+  }
+  if (isset($account['profile_main']['field_user_last_name'][LANGUAGE_NONE][0]['value'])) {
+    $new_profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $account['profile_main']['field_user_last_name'][LANGUAGE_NONE][0]['value'];
+  }
+  if (isset($account['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
+    $new_profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $account['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
+  }
+  // Birthday
+  $bday_obj = new DateObject($bday);
+  $new_profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $bday_obj->format(DATE_FORMAT_DATETIME);
+  // Over 13
+  $new_profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($bday, 13);
+  // Membership anniversary
+  // TODO: throws a data truncated error
+  //$new_profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = date(DATE_FORMAT_DATETIME);
+
+  profile2_save($new_profile);
+
+  // Profile is now setup, so safe to send email to user
+  _user_mail_notify('register_no_approval_required', $new_user);
+
+  // Login the user
+  _user_resource_login($account['name'], $account['pass']);
+
+  // Build the return data
+  $return = new stdClass();
+  $return->user = array('uid' => $new_user->uid);
+  if ($uri = services_resource_uri(array('user', $new_user->uid))) {
+    $return->user['uri'] = $uri;
+  }
+  $return->user['mail'] = $account['mail'];
 
   // Add session information to the return value
   $return->sessid = session_id();
