@@ -154,7 +154,7 @@ div[role="main"] {
   padding: 20px 25px 20px 0; }
   .pane-campaign-counter .pane-content .campaign-counter-labels {
     text-transform: uppercase;
-    font-size: 25px;
+    font-size: 22px;
     font-family: din-web, "Trebuchet MS", sans-serif;
     font-weight: 500;
     line-height: 25px;
@@ -162,6 +162,9 @@ div[role="main"] {
     margin-left: -25px; }
   .pane-campaign-counter .pane-content .digits, .pane-campaign-counter .pane-content .campaign-counter-label-bottom, .pane-campaign-counter .pane-content .campaign-counter-label-top {
     margin-bottom: 8px; }
+
+.campaign-counter .campaign-counter-numbers {
+  text-align: right; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -419,7 +422,7 @@ div[role="main"] {
       margin-bottom: 5px; }
 
 #campaign-opt-in {
-  font-size: 11px; }
+  font-size: 10px; }
   #campaign-opt-in a#opt-in-help {
     vertical-align: super;
     font-weight: bold;
