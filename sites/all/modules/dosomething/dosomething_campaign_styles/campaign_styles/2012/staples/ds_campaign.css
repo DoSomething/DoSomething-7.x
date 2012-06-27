@@ -448,9 +448,15 @@ form.webform-client-form {
 .sign-up {
   width: 65%; }
   .sign-up #edit-submitted-field-webform-school-reference,
-  .sign-up .field-name-group-audience {
-    display: none; }
+  .sign-up .field-name-group-audience,
+  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below,
+  .sign-up #webform-component-address-1,
+  .sign-up #webform-component-address-2,
+  .sign-up #webform-component-city,
+  .sign-up #webform-component-state,
   .sign-up #webform-component-zip-code {
+    display: none; }
+  .sign-up #edit-submitted-field-webform-mobile {
     margin-bottom: 80px; }
   .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
     margin-top: 20px; }
