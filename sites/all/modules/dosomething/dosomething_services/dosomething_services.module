@@ -261,22 +261,31 @@ function _dosomething_services_facebook_login($access_token) {
 }
 
 /**
+ * Helper function to create return object for form errors
+ */
+function _dosomething_services_form_error($msg, $code) {
+  $error_obj = new stdClass();
+  $error_obj->form_errors = array('error' => $msg);
+  return services_error($msg, $code, $error_obj);
+}
+
+/**
  * Overriding _user_resource_create() to be able to set a user's profile2 data
  * and properly send the registration email.
  */
 function _dosomething_services_user_resource_create($account) {
   // Check for required fields
-  if (!isset($account['name'])) {
-    return services_error(t('Username is required.'), 406);
+  if (empty($account['name'])) {
+    return _dosomething_services_form_error(t('Username is required.'), 406);
   }
-  else if (!isset($account['pass'])) {
-    return services_error(t('A password is required.'), 406);
+  else if (empty($account['pass'])) {
+    return _dosomething_services_form_error(t('A password is required.'), 406);
   }
-  else if (!isset($account['mail'])) {
-    return services_error(t('A valid e-mail address is required.'), 406);
+  else if (empty($account['mail'])) {
+    return _dosomething_services_form_error(t('A valid e-mail address is required.'), 406);
   }
-  else if (!isset($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
-    return services_error(t('Birthday is required.'), 406);
+  else if (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
+    return _dosomething_services_form_error(t('Birthday is required.'), 406);
   }
 
   // Find user by name or by mail
@@ -284,11 +293,11 @@ function _dosomething_services_user_resource_create($account) {
   if (!$old_user) {
     $old_user = user_load_by_mail($account['mail']);
     if ($old_user) {
-      return services_error(t('An account with that e-mail address already exists'), 406);
+      return _dosomething_services_form_error(t('An account with that e-mail address already exists'), 406);
     }
   }
   else {
-    return services_error(t('An account with that username already exists'), 406);
+    return _dosomething_services_form_error(t('An account with that username already exists'), 406);
   }
   
   // No existing account found, so create a new one
