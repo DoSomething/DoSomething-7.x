@@ -513,20 +513,6 @@ function teams_conductor_sms_keywords() {
 }
 
 /**
- * Implements hook_ctools_plugin_api().
- */
-function teams_ctools_plugin_api($owner, $api) {
-  // TODO: $api should be workflow, not conductor but that messes with features file naming.
-  if ($owner == 'conductor' && $api == 'conductor') {
-    return array('version' => 1.0);
-  }
-  list($module, $api) = func_get_args();
-  if ($module == "page_manager" && $api == "pages_default") {
-    return array("version" => "1");
-  }
-}
-
-/**
  * Implements hook_ctools_plugin_directory().
  */
 function teams_ctools_plugin_directory($owner, $plugin_type) {
