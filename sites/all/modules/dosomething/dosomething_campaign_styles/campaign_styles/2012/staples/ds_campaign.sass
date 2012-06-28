@@ -528,15 +528,9 @@ form.webform-client-form
 .sign-up
   width: 65%
   #edit-submitted-field-webform-school-reference,
-  .field-name-group-audience,
-  #webform-component-want-an-action-kit-fill-out-your-address-below, 
-  #webform-component-address-1,
-  #webform-component-address-2,
-  #webform-component-city,
-  #webform-component-state,
-  #webform-component-zip-code
+  .field-name-group-audience
     display: none
-  #edit-submitted-field-webform-mobile
+  #webform-component-zip-code
     margin-bottom: 80px
   #webform-component-want-an-action-kit-fill-out-your-address-below
     margin-top: 20px
@@ -579,6 +573,9 @@ form.webform-client-form
       
 // raise your hand
 body.page-node-722266
+  background-color: #494949 !important
+  background-image: none !important
+  
   div[role="main"]
     padding: 0 !important
 
@@ -689,6 +686,9 @@ body.page-node-722266
   
 // raise your hand - sweeps
 body.page-node-722952
+  background-color: #494949 !important
+  background-image: none !important
+  
   div[role="main"]
     padding: 0 !important
 
@@ -723,14 +723,14 @@ body.page-node-722952
     position: absolute
     top: 400px
     left: 455px
-    width: 295px
+    width: 300px
     color: #333
     font-size: 11px
     
     ul
       margin-top: 5px
       font-weight: bold
-      width: 280px
+      width: 190px
     
 #staples_raise-your-hand-webform
   width: 797px
@@ -744,7 +744,7 @@ body.page-node-722952
   #webform-component-instructions
     width: 400px
     color: #fff
-    padding-top: 70px
+    padding: 70px 15px 5px
     background: url('assets/how_to_enter.png') no-repeat top center
     
     ol
@@ -786,7 +786,7 @@ body.page-node-722952
   
   #edit-submitted-field-webform-email
     width: 383px
-    margin: 10px 0 0
+    margin: 10px 0 12px
     
     label
       padding-left: 5px
@@ -882,6 +882,16 @@ body.page-node-722952
       padding-left: 15px
       text-indent: -15px
   
+  #webform-component-official-sweepstakes-rules
+    float: left
+    margin-top: 6px
+    width: 400px
+    text-align: center
+    
+    a
+      color: #fff !important
+  
+  
   #edit-actions
     position: relative
     right: 0
@@ -934,6 +944,9 @@ body.page-node-722952
 
 // raise your hand: share
 body.page-node-722954
+  background-color: #494949 !important
+  background-image: none !important
+  
   div[role="main"]
     padding: 0 !important
   
@@ -1078,3 +1091,7 @@ body.page-node-722954
   
 .button:hover
   text-decoration: none
+  
+// hiding the Google+ button
+#___plusone_0
+  display: none !important
