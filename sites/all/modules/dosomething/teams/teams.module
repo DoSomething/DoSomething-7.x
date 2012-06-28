@@ -324,7 +324,7 @@ function teams_add_member($friend, $gid) {
       drupal_mail('teams', 'added', $friend, $language, $params);
     }
     else {
-      // sms_send($friend, $message);
+      sms_send($friend, $message);
     }
 
     // TODO: add the username to the team list. via an ajax command
@@ -350,7 +350,7 @@ function teams_add_member($friend, $gid) {
     else {
       teams_store_number($number, $gid);
       $message = "You have been invited to join $first $last's DoSomething team. Reply TEAMJOIN to join!";
-      //sms_send($number, $message);
+      sms_send($number, $message);
     }
     return $friend . ' has been invited to join your team. Feel free to add more!';
   }
@@ -484,8 +484,31 @@ function teams_theme($existing, $type, $theme, $path) {
 function teams_conductor_sms_keywords() {
   return array(
     'jointeam' => 'teams_sms_join',
+    'jointem' => 'teams_sms_join',
+    'jointeams' => 'teams_sms_join',
+    'joinateam' => 'teams_sms_join',
+    'join team' => 'teams_sms_join',
+    'join tem' => 'teams_sms_join',
+    'joi team' => 'teams_sms_join',
+    'join teams' => 'teams_sms_join',
+    'join a team' => 'teams_sms_join',
+    'joina team' => 'teams_sms_join',
+
     'startteam' => 'teams_sms_create',
+    'starteam' => 'teams_sms_create',
+    'staream' => 'teams_sms_create',
+    'sarteam' => 'teams_sms_create',
+    'sartteam' => 'teams_sms_create',
+    'Start Team' => 'teams_sms_create',
+    'Star Team' => 'teams_sms_create',
+    'start' => 'teams_sms_create',
+    'star' => 'teams_sms_create',
+
     'invite' => 'teams_sms_invite',
+    'invited' => 'teams_sms_invite',
+    'invte' => 'teams_sms_invite',
+    'invitee' => 'teams_sms_invite',
+    'envite' => 'teams_sms_invite',
   );
 }
 
