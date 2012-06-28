@@ -838,6 +838,11 @@ body.page-node-722954 .ui-dialog {
     position: absolute;
     top: 367px;
     left: 230px; }
+    #staples_raise-your-hand-share .sharebox .custom_share {
+      position: relative;
+      bottom: 13px; }
+    #staples_raise-your-hand-share .sharebox .custom_share:hover {
+      opacity: 0.7; }
   #staples_raise-your-hand-share .showyourhand {
     position: absolute;
     top: 630px;
