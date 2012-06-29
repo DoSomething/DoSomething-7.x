@@ -727,7 +727,7 @@ body.page-node-722952 {
       text-indent: -15px; }
   #staples_raise-your-hand-webform #webform-component-birthday {
     float: left !important;
-    margin-top: 12px;
+    margin-top: 0;
     margin-right: 28px !important; }
     #staples_raise-your-hand-webform #webform-component-birthday label {
       padding-left: 5px;
@@ -951,7 +951,7 @@ body.page-node-722954 {
 #staples_sponsor_logo .pane-content {
   width: 797px;
   padding: 0 10px;
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: right; }
   #staples_sponsor_logo .pane-content p {
     margin-bottom: 0; }
