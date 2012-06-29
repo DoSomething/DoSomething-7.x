@@ -947,3 +947,14 @@ body.page-node-722954 {
 
 #___plusone_0 {
   display: none !important; }
+
+#staples_sponsor_logo .pane-content {
+  width: 797px;
+  padding: 0 10px;
+  font-size: 1.5em;
+  text-align: right; }
+  #staples_sponsor_logo .pane-content p {
+    margin-bottom: 0; }
+  #staples_sponsor_logo .pane-content a {
+    color: red;
+    text-decoration: none !important; }
