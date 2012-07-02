@@ -847,10 +847,13 @@ body.page-node-722954 {
   #staples_raise-your-hand-share .sharebox {
     position: absolute;
     top: 367px;
-    left: 230px; }
+    left: 230px;
+    height: 30px; }
     #staples_raise-your-hand-share .sharebox .custom_share {
+      float: left;
       position: relative;
-      bottom: 13px; }
+      bottom: 13px;
+      margin-left: 12px; }
     #staples_raise-your-hand-share .sharebox .custom_share:hover {
       opacity: 0.7; }
   #staples_raise-your-hand-share .showyourhand {
@@ -982,3 +985,8 @@ body.page-node-722954 {
 
 .fb-social-comments-plugin {
   display: none; }
+
+.st_email_large {
+  position: relative;
+  bottom: 1px;
+  margin-left: 7px; }
