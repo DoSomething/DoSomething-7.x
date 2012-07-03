@@ -29,11 +29,8 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'prom'),
-    array('title' => 'run a drive', 'href' => 'prom/drive'),
-    array('title' => 'locations', 'href' => 'prom/locations'),
     array('title' => 'gallery', 'href' => 'prom/gallery'),
     array('title' => 'faq', 'href' => 'prom/faq'),
     array('title' => 'blog', 'href' => 'prom/blog'),
-    array('title' => 'tell us about it', 'href' => 'prom/tell-us'),
   ),
 );

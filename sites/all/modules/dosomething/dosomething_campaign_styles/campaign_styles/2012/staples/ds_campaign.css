@@ -448,15 +448,9 @@ form.webform-client-form {
 .sign-up {
   width: 65%; }
   .sign-up #edit-submitted-field-webform-school-reference,
-  .sign-up .field-name-group-audience,
-  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below,
-  .sign-up #webform-component-address-1,
-  .sign-up #webform-component-address-2,
-  .sign-up #webform-component-city,
-  .sign-up #webform-component-state,
-  .sign-up #webform-component-zip-code {
+  .sign-up .field-name-group-audience {
     display: none; }
-  .sign-up #edit-submitted-field-webform-mobile {
+  .sign-up #webform-component-zip-code {
     margin-bottom: 80px; }
   .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
     margin-top: 20px; }
@@ -492,8 +486,13 @@ form.webform-client-form {
   .mini-gallery ul.jcarousel-list-horizontal li {
     width: 118px !important; }
 
-body.page-node-722266 div[role="main"] {
-  padding: 0 !important; }
+body.page-node-722266 {
+  background-color: #494949 !important;
+  background-image: none !important; }
+  body.page-node-722266 div[role="main"] {
+    padding: 0 !important; }
+  body.page-node-722266 .panel-row-logos {
+    width: 797px; }
 
 #staples_raise-your-hand {
   width: 797px;
@@ -562,10 +561,15 @@ body.page-node-722266 div[role="main"] {
     width: 380px;
     font-size: 0.9em;
     color: white; }
+  #staples_raise-your-hand .binders {
+    position: absolute;
+    top: 765px;
+    left: 20px;
+    z-index: 1; }
   #staples_raise-your-hand .gallery {
     position: absolute;
     top: 630px;
-    left: 475px;
+    left: 468px;
     width: 295px;
     text-align: right; }
     #staples_raise-your-hand .gallery img {
@@ -594,8 +598,13 @@ body.page-node-722266 div[role="main"] {
     background: -ms-linear-gradient(top, #ffffff, #fed100);
     background: linear-gradient(top, #ffffff, #fed100); }
 
-body.page-node-722952 div[role="main"] {
-  padding: 0 !important; }
+body.page-node-722952 {
+  background-color: #494949 !important;
+  background-image: none !important; }
+  body.page-node-722952 .panel-row-logos {
+    width: 797px; }
+  body.page-node-722952 div[role="main"] {
+    padding: 0 !important; }
 
 #staples_raise-your-hand-sweeps {
   width: 797px;
@@ -623,13 +632,13 @@ body.page-node-722952 div[role="main"] {
     position: absolute;
     top: 400px;
     left: 455px;
-    width: 295px;
+    width: 300px;
     color: #333333;
     font-size: 11px; }
     #staples_raise-your-hand-sweeps .prettygreat ul {
       margin-top: 5px;
       font-weight: bold;
-      width: 280px; }
+      width: 190px; }
 
 #staples_raise-your-hand-webform {
   width: 797px; }
@@ -640,7 +649,7 @@ body.page-node-722952 div[role="main"] {
   #staples_raise-your-hand-webform #webform-component-instructions {
     width: 400px;
     color: white;
-    padding-top: 70px;
+    padding: 70px 15px 5px;
     background: url("assets/how_to_enter.png") no-repeat top center; }
     #staples_raise-your-hand-webform #webform-component-instructions ol {
       padding-left: 10px; }
@@ -672,7 +681,7 @@ body.page-node-722952 div[role="main"] {
     color: white; }
   #staples_raise-your-hand-webform #edit-submitted-field-webform-email {
     width: 383px;
-    margin: 10px 0 0; }
+    margin: 10px 0 12px; }
     #staples_raise-your-hand-webform #edit-submitted-field-webform-email label {
       padding-left: 5px;
       color: #2f5e26;
@@ -709,6 +718,12 @@ body.page-node-722952 div[role="main"] {
       #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper label {
         color: black;
         font-weight: normal; }
+      #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper .image-widget .image-preview {
+        background: url("assets/uploaded_notification.png") no-repeat center center;
+        width: 120px;
+        height: 120px; }
+        #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper .image-widget .image-preview img {
+          display: none !important; }
     #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures input {
       margin: 5px 0; }
   #staples_raise-your-hand-webform .form-wrapper {
@@ -754,6 +769,29 @@ body.page-node-722952 div[role="main"] {
     #staples_raise-your-hand-webform #webform-component-opt-in-boxes label {
       padding-left: 15px;
       text-indent: -15px; }
+  #staples_raise-your-hand-webform #webform-component-official-sweepstakes-rules {
+    float: left;
+    margin-top: 6px;
+    width: 400px;
+    text-align: center; }
+    #staples_raise-your-hand-webform #webform-component-official-sweepstakes-rules a {
+      color: white !important; }
+  #staples_raise-your-hand-webform #submitted-group-audience-add-more-wrapper {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-mobile {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-taxonomy-vocabulary-5 {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-school {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-school-zip {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-videos {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-taxonomy-vocabulary-5 {
+    display: none; }
+  #staples_raise-your-hand-webform .fb-social-comments-plugin {
+    display: none; }
   #staples_raise-your-hand-webform #edit-actions {
     position: relative;
     right: 0;
@@ -794,30 +832,35 @@ body.page-node-722952 div[role="main"] {
   #staples_raise-your-hand-webform .form-item-submitted-field-webform-pictures-und-1 {
     display: none; }
 
-body.page-node-722954 div[role="main"] {
-  padding: 0 !important; }
-body.page-node-722954 .ui-dialog {
-  overflow: visible;
-  background: blue;
-  border: 2px solid white;
-  background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important;
-  -webkit-box-shadow: 0 0 205px #222222;
-  -moz-box-shadow: 0 0 205px #222222;
-  box-shadow: 0 0 205px #222222; }
-  body.page-node-722954 .ui-dialog .ui-dialog-titlebar {
-    position: absolute;
-    top: -10px;
-    left: -15px; }
-  body.page-node-722954 .ui-dialog .ui-icon-closethick {
-    pointer: cursor;
-    background: black url("assets/staples_close.png") no-repeat center center;
-    text-indent: -9000px !important;
+body.page-node-722954 {
+  background-color: #494949 !important;
+  background-image: none !important; }
+  body.page-node-722954 div[role="main"] {
+    padding: 0 !important; }
+  body.page-node-722954 .panel-row-logos {
+    width: 797px; }
+  body.page-node-722954 .ui-dialog {
+    overflow: visible;
+    background: blue;
     border: 2px solid white;
-    -webkit-border-radius: 13px;
-    -moz-border-radius: 13px;
-    -ms-border-radius: 13px;
-    -o-border-radius: 13px;
-    border-radius: 13px; }
+    background: #049fdb url("assets/confirmation_msg.jpg") no-repeat center center !important;
+    -webkit-box-shadow: 0 0 205px #222222;
+    -moz-box-shadow: 0 0 205px #222222;
+    box-shadow: 0 0 205px #222222; }
+    body.page-node-722954 .ui-dialog .ui-dialog-titlebar {
+      position: absolute;
+      top: -10px;
+      left: -15px; }
+    body.page-node-722954 .ui-dialog .ui-icon-closethick {
+      pointer: cursor;
+      background: black url("assets/staples_close.png") no-repeat center center;
+      text-indent: -9000px !important;
+      border: 2px solid white;
+      -webkit-border-radius: 13px;
+      -moz-border-radius: 13px;
+      -ms-border-radius: 13px;
+      -o-border-radius: 13px;
+      border-radius: 13px; }
 
 #staples_raise-your-hand-share {
   width: 797px;
@@ -837,10 +880,13 @@ body.page-node-722954 .ui-dialog {
   #staples_raise-your-hand-share .sharebox {
     position: absolute;
     top: 367px;
-    left: 230px; }
+    left: 230px;
+    height: 30px; }
     #staples_raise-your-hand-share .sharebox .custom_share {
+      float: left;
       position: relative;
-      bottom: 13px; }
+      bottom: 13px;
+      margin-left: 12px; }
     #staples_raise-your-hand-share .sharebox .custom_share:hover {
       opacity: 0.7; }
   #staples_raise-your-hand-share .showyourhand {
@@ -934,3 +980,22 @@ body.page-node-722954 .ui-dialog {
 
 .button:hover {
   text-decoration: none; }
+
+#___plusone_0 {
+  display: none !important; }
+
+#staples_sponsor_logo .pane-content {
+  width: 100%;
+  padding: 0 10px;
+  font-size: 1.3em;
+  text-align: right; }
+  #staples_sponsor_logo .pane-content p {
+    margin-bottom: 0; }
+  #staples_sponsor_logo .pane-content a {
+    color: red;
+    text-decoration: none !important; }
+
+.st_email_large {
+  position: relative;
+  bottom: 1px;
+  margin-left: 7px; }

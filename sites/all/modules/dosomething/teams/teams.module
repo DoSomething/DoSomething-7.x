@@ -111,8 +111,7 @@ function teams_menu() {
   $items['my-team/%'] = array(
     'page callback' => 'teams_my_team',
     'page arguments' => array(1),
-    'access callback' => 'teams_in_group',
-    'access arguments' => array(1),
+    'access callback' => true,
   );
 
   $items['teams/join/%/%'] = array(
@@ -151,14 +150,7 @@ function teams_block_view($delta = '') {
     $gid = og_get_group('webform_submission_entity', arg(2))->gid;
     $is_admin = og_user_access($gid, 'administer group');
 
-    $query = db_select('og_membership', 'ogm');
-    $query->addJoin('inner', 'users', 'u', 'etid=uid');
-    $query->condition('entity_type', 'user', '=');
-    $query->condition('gid', $gid, '=');
-    $query->fields('u', array('uid'));
-
-    $results = $query->execute()->fetchAllAssoc('uid', PDO::FETCH_ASSOC);
-    $uids = array_keys($results);
+    $uids = teams_get_member_uids($gid);
 
     $list_elements = array();
     foreach ($uids as $uid) {
@@ -217,6 +209,18 @@ function teams_block_view($delta = '') {
     );
   }
   return $block;
+}
+
+function teams_get_member_uids($gid) {
+  $query = db_select('og_membership', 'ogm');
+  $query->addJoin('inner', 'users', 'u', 'etid=uid');
+  $query->condition('entity_type', 'user', '=');
+  $query->condition('gid', $gid, '=');
+  $query->fields('u', array('uid'));
+
+  $results = $query->execute()->fetchAllAssoc('uid', PDO::FETCH_ASSOC);
+  $uids = array_keys($results);
+  return $uids;
 }
 
 function teams_add_member_form($form, &$form_state, $gid) {
@@ -398,8 +402,20 @@ function teams_get_group_hash($gid) {
  * Menu callback for my-team/%.
  */
 function teams_my_team($url_base) {
-  $team = teams_get_my_teams_for_url($url_base);
-  drupal_goto('team/'.$url_base.'/'.array_shift($team));
+  if (!user_is_logged_in()) {
+    $return = '<h1 class="title">Oops.</h1>';
+    return $return.'Please <a href="/user?destination='.$url_base.'">log in</a> or go to <a href="/'.$url_base.'">www.dosomething.org/'.$url_base.'</a> to sign up.';
+  }
+  else {
+    $team = teams_get_my_teams_for_url($url_base);
+    if (!empty($team)) {
+      drupal_goto('team/'.$url_base.'/'.array_shift($team));
+    }
+    else {
+      $return = '<h1 class="title">Oops.</h1>';
+      return $return.'Please <a href="/'.$url_base.'">sign up</a> to create a team.';
+    }
+  }
 }
 
 /**
@@ -482,7 +498,7 @@ function teams_theme($existing, $type, $theme, $path) {
 }
 
 function teams_conductor_sms_keywords() {
-  return array(
+  $keywords = array(
     'jointeam' => 'teams_sms_join',
     'jointem' => 'teams_sms_join',
     'jointeams' => 'teams_sms_join',
@@ -510,29 +526,34 @@ function teams_conductor_sms_keywords() {
     'invitee' => 'teams_sms_invite',
     'envite' => 'teams_sms_invite',
   );
-}
 
-/**
- * Implements hook_ctools_plugin_api().
- */
-function teams_ctools_plugin_api($owner, $api) {
-  // TODO: $api should be workflow, not conductor but that messes with features file naming.
-  if ($owner == 'conductor' && $api == 'conductor') {
-    return array('version' => 1.0);
+  module_load_include('inc', 'teams', 'teams.hunt_mobile');
+  foreach (teams_report_backs() as $keyword => $form) {
+    $keywords[$keyword] = $keyword;
   }
-  list($module, $api) = func_get_args();
-  if ($module == "page_manager" && $api == "pages_default") {
-    return array("version" => "1");
-  }
+
+  return $keywords;
 }
 
 /**
  * Implements hook_ctools_plugin_directory().
  */
 function teams_ctools_plugin_directory($owner, $plugin_type) {
-  if ($owner == 'conductor') {
+  if (in_array($owner, array('conductor', 'ctools'))) {
     return "plugins/$plugin_type";
   }
+}
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function teams_ctools_plugin_type() {
+  return array(
+    'team_progress' => array(
+      'load themes' => TRUE,
+      'cache' => TRUE,
+    ),
+  );
 }
 
 /**
@@ -726,6 +747,44 @@ function teams_default_conductor_workflows() {
   $workflows[$workflow->name] = $workflow;
 
 
+  module_load_include('inc', 'teams', 'teams.hunt_mobile');
+  $report_backs = teams_report_backs();
+  foreach ($report_backs as $keyword => $form) {
+    $workflow = new ConductorWorkflow;
+    $workflow->wid = 'new';
+    $workflow->name = $keyword;
+    $workflow->title = $keyword;
+    $workflow->description = 'Report back for '.$keyword;
+    $workflow->api_version = '1.0';
+
+    $activity = $workflow->newActivity('start');
+    teams_xy($activity, 1);
+    $activity->name = 'start';
+    $activity->title = 'Start';
+    $activity->inputs = array();
+    $activity->outputs = array('submit');
+
+    $activity = $workflow->newActivity('teams_report_back');
+    teams_xy($activity, 2);
+    $activity->name = 'submit';
+    $activity->title = 'Fill out report form';
+    $activity->inputs = array('start');
+    $activity->outputs = array('end');
+    $activity->nid = $form['nid'];
+    $activity->cid = $form['cid'];
+    $activity->response = $form['response'];
+    $activity->value = $form['value'];
+
+    $activity = $workflow->newActivity('end');
+    teams_xy($activity, 3);
+    $activity->name = 'end';
+    $activity->title = 'End';
+    $activity->inputs = array('submit');
+    $activity->outputs = array();
+
+    $workflows[$workflow->name] = $workflow;
+
+  }
 
   return $workflows;
 }
