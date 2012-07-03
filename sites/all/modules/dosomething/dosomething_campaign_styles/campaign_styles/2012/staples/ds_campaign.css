@@ -561,6 +561,11 @@ body.page-node-722266 {
     width: 380px;
     font-size: 0.9em;
     color: white; }
+  #staples_raise-your-hand .binders {
+    position: absolute;
+    top: 765px;
+    left: 20px;
+    z-index: 1; }
   #staples_raise-your-hand .gallery {
     position: absolute;
     top: 630px;
