@@ -718,6 +718,12 @@ body.page-node-722952 {
       #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper label {
         color: black;
         font-weight: normal; }
+      #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper .image-widget .image-preview {
+        background: url("assets/uploaded_notification.png") no-repeat center center;
+        width: 120px;
+        height: 120px; }
+        #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures .fieldset-wrapper .image-widget .image-preview img {
+          display: none !important; }
     #staples_raise-your-hand-webform #edit-submitted-field-webform-pictures input {
       margin: 5px 0; }
   #staples_raise-your-hand-webform .form-wrapper {
