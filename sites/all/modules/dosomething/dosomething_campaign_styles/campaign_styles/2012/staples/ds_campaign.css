@@ -491,6 +491,8 @@ body.page-node-722266 {
   background-image: none !important; }
   body.page-node-722266 div[role="main"] {
     padding: 0 !important; }
+  body.page-node-722266 .panel-row-logos {
+    width: 797px; }
 
 #staples_raise-your-hand {
   width: 797px;
@@ -559,10 +561,15 @@ body.page-node-722266 {
     width: 380px;
     font-size: 0.9em;
     color: white; }
+  #staples_raise-your-hand .binders {
+    position: absolute;
+    top: 765px;
+    left: 20px;
+    z-index: 1; }
   #staples_raise-your-hand .gallery {
     position: absolute;
     top: 630px;
-    left: 475px;
+    left: 468px;
     width: 295px;
     text-align: right; }
     #staples_raise-your-hand .gallery img {
@@ -594,6 +601,8 @@ body.page-node-722266 {
 body.page-node-722952 {
   background-color: #494949 !important;
   background-image: none !important; }
+  body.page-node-722952 .panel-row-logos {
+    width: 797px; }
   body.page-node-722952 div[role="main"] {
     padding: 0 !important; }
 
@@ -761,6 +770,22 @@ body.page-node-722952 {
     text-align: center; }
     #staples_raise-your-hand-webform #webform-component-official-sweepstakes-rules a {
       color: white !important; }
+  #staples_raise-your-hand-webform #submitted-group-audience-add-more-wrapper {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-mobile {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-taxonomy-vocabulary-5 {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-school {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-school-zip {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-field-webform-videos {
+    display: none; }
+  #staples_raise-your-hand-webform #edit-submitted-taxonomy-vocabulary-5 {
+    display: none; }
+  #staples_raise-your-hand-webform .fb-social-comments-plugin {
+    display: none; }
   #staples_raise-your-hand-webform #edit-actions {
     position: relative;
     right: 0;
@@ -806,6 +831,8 @@ body.page-node-722954 {
   background-image: none !important; }
   body.page-node-722954 div[role="main"] {
     padding: 0 !important; }
+  body.page-node-722954 .panel-row-logos {
+    width: 797px; }
   body.page-node-722954 .ui-dialog {
     overflow: visible;
     background: blue;
@@ -847,10 +874,13 @@ body.page-node-722954 {
   #staples_raise-your-hand-share .sharebox {
     position: absolute;
     top: 367px;
-    left: 230px; }
+    left: 230px;
+    height: 30px; }
     #staples_raise-your-hand-share .sharebox .custom_share {
+      float: left;
       position: relative;
-      bottom: 13px; }
+      bottom: 13px;
+      margin-left: 12px; }
     #staples_raise-your-hand-share .sharebox .custom_share:hover {
       opacity: 0.7; }
   #staples_raise-your-hand-share .showyourhand {
@@ -949,7 +979,7 @@ body.page-node-722954 {
   display: none !important; }
 
 #staples_sponsor_logo .pane-content {
-  width: 797px;
+  width: 100%;
   padding: 0 10px;
   font-size: 1.3em;
   text-align: right; }
@@ -959,26 +989,7 @@ body.page-node-722954 {
     color: red;
     text-decoration: none !important; }
 
-#submitted-group-audience-add-more-wrapper {
-  display: none; }
-
-#edit-submitted-field-webform-mobile {
-  display: none; }
-
-#edit-submitted-taxonomy-vocabulary-5 {
-  display: none; }
-
-#edit-submitted-field-webform-school {
-  display: none; }
-
-#edit-submitted-field-webform-school-zip {
-  display: none; }
-
-#edit-submitted-field-webform-videos {
-  display: none; }
-
-#edit-submitted-taxonomy-vocabulary-5 {
-  display: none; }
-
-.fb-social-comments-plugin {
-  display: none; }
+.st_email_large {
+  position: relative;
+  bottom: 1px;
+  margin-left: 7px; }

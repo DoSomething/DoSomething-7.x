@@ -7,7 +7,7 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function teams_ctools_plugin_api() {
+function teams_ctools_plugin_api($owner, $api) {
   if ($owner == 'conductor' && $api == 'conductor') {
     return array('version' => 1.0);
   }
