@@ -111,8 +111,7 @@ function teams_menu() {
   $items['my-team/%'] = array(
     'page callback' => 'teams_my_team',
     'page arguments' => array(1),
-    'access callback' => 'teams_in_group',
-    'access arguments' => array(1),
+    'access callback' => true,
   );
 
   $items['teams/join/%/%'] = array(
@@ -403,8 +402,20 @@ function teams_get_group_hash($gid) {
  * Menu callback for my-team/%.
  */
 function teams_my_team($url_base) {
-  $team = teams_get_my_teams_for_url($url_base);
-  drupal_goto('team/'.$url_base.'/'.array_shift($team));
+  if (!user_is_logged_in()) {
+    $return = '<h1 class="title">Oops.</h1>';
+    return $return.'Please <a href="/user?destination='.$url_base.'">log in</a> or go to <a href="/'.$url_base.'">www.dosomething.org/'.$url_base.'</a> to sign up.';
+  }
+  else {
+    $team = teams_get_my_teams_for_url($url_base);
+    if (!empty($team)) {
+      drupal_goto('team/'.$url_base.'/'.array_shift($team));
+    }
+    else {
+      $return = '<h1 class="title">Oops.</h1>';
+      return $return.'Please <a href="/'.$url_base.'">sign up</a> to create a team.';
+    }
+  }
 }
 
 /**

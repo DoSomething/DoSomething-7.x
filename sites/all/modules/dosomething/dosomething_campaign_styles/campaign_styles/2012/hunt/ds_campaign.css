@@ -856,3 +856,41 @@ table#field-team-invite-values {
 
 .fb-social-comments-plugin {
   display: none; }
+
+.page-node-722981 ul.menu {
+  display: none; }
+
+#fareast .webform-client-form #edit-actions {
+  position: absolute;
+  right: 576px;
+  bottom: 20px; }
+#fareast .webform-client-form #fem_logo {
+  float: left; }
+#fareast .webform-client-form #hunt_fem_logo {
+  float: left;
+  width: 420px; }
+#fareast .panel-row-top-logo {
+  width: 100% !important; }
+  #fareast .panel-row-top-logo .fareast_copy h2 {
+    font-size: 36px;
+    line-height: 1em;
+    text-align: center;
+    color: #bc3f3b;
+    padding: 10px 0; }
+  #fareast .panel-row-top-logo .fareast_copy h2.subhead {
+    color: black; }
+  #fareast .panel-row-top-logo .fem_video {
+    text-align: center;
+    margin-bottom: 1em; }
+  #fareast .panel-row-top-logo .pane-title {
+    display: none; }
+  #fareast .panel-row-top-logo input {
+    margin-bottom: 10px; }
+  #fareast .panel-row-top-logo label {
+    font-size: 1.3em; }
+  #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper {
+    text-align: left; }
+  #fareast .panel-row-top-logo #webform-component-rules {
+    margin-top: 44px; }
+  #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper, #fareast .panel-row-top-logo #webform-component-rules, #fareast .panel-row-top-logo input, #fareast .panel-row-top-logo label, #fareast .panel-row-top-logo table#field-webform-videos-values {
+    margin-left: 84px; }
