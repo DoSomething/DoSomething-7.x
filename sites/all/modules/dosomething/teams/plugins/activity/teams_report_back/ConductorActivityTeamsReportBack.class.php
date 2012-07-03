@@ -24,7 +24,9 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
       'values' => array(
         'submission' => NULL,
         'submitted' => array(
-          $this->cid => $this->value,
+          $this->cid => array(
+            $this->value,
+          ),
         ),
         'details' => array(
           'nid' => $this->nid,
