@@ -4,26 +4,28 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
 
   public $nid;
   public $cid;
+  public $value;
   public $response;
 
   public function run($workflow) {
     $state = $this->getState();
+    $mobile = $state->getContext('sms_number');
 
     global $user;
     $original_user = $user;
     $old_state = drupal_save_session(FALSE);
     $user = dosomething_general_find_user_by_cell($mobile);
-    $profile = profile2_load_by_user($user);
 
     module_load_include('inc', 'webform', 'includes/webform.submissions');
-    $count = webform_get_submission_count($this->nid, $user->uid);
 
     $form_state = array(
       'submitted' => true,
       'bundle' => 'campaign_sign_up',
       'values' => array(
         'submission' => NULL,
-        'submitted' => array(),
+        'submitted' => array(
+          $this->cid => $this->value,
+        ),
         'details' => array(
           'nid' => $this->nid,
           'sid' => NULL,

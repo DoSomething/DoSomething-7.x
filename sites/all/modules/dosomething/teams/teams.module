@@ -487,7 +487,7 @@ function teams_theme($existing, $type, $theme, $path) {
 }
 
 function teams_conductor_sms_keywords() {
-  return array(
+  $keywords = array(
     'jointeam' => 'teams_sms_join',
     'jointem' => 'teams_sms_join',
     'jointeams' => 'teams_sms_join',
@@ -515,6 +515,13 @@ function teams_conductor_sms_keywords() {
     'invitee' => 'teams_sms_invite',
     'envite' => 'teams_sms_invite',
   );
+
+  module_load_include('inc', 'teams', 'teams.hunt_mobile');
+  foreach (teams_report_backs() as $keyword => $form) {
+    $keywords[$keyword] = $keyword;
+  }
+
+  return $keywords;
 }
 
 /**
@@ -729,6 +736,44 @@ function teams_default_conductor_workflows() {
   $workflows[$workflow->name] = $workflow;
 
 
+  module_load_include('inc', 'teams', 'teams.hunt_mobile');
+  $report_backs = teams_report_backs();
+  foreach ($report_backs as $keyword => $form) {
+    $workflow = new ConductorWorkflow;
+    $workflow->wid = 'new';
+    $workflow->name = $keyword;
+    $workflow->title = $keyword;
+    $workflow->description = 'Report back for '.$keyword;
+    $workflow->api_version = '1.0';
+
+    $activity = $workflow->newActivity('start');
+    teams_xy($activity, 1);
+    $activity->name = 'start';
+    $activity->title = 'Start';
+    $activity->inputs = array();
+    $activity->outputs = array('submit');
+
+    $activity = $workflow->newActivity('teams_report_back');
+    teams_xy($activity, 2);
+    $activity->name = 'submit';
+    $activity->title = 'Fill out report form';
+    $activity->inputs = array('start');
+    $activity->outputs = array('end');
+    $activity->nid = $form['nid'];
+    $activity->cid = $form['cid'];
+    $activity->response = $form['response'];
+    $activity->value = $form['value'];
+
+    $activity = $workflow->newActivity('end');
+    teams_xy($activity, 3);
+    $activity->name = 'end';
+    $activity->title = 'End';
+    $activity->inputs = array('submit');
+    $activity->outputs = array();
+
+    $workflows[$workflow->name] = $workflow;
+
+  }
 
   return $workflows;
 }
