@@ -857,7 +857,7 @@ table#field-team-invite-values {
 .fb-social-comments-plugin {
   display: none; }
 
-.page-node-722981 ul.menu {
+.page-node-722981 ul.menu, .page-node-723084 ul.menu {
   display: none; }
 
 #fareast .webform-client-form #edit-actions {
@@ -870,7 +870,7 @@ table#field-team-invite-values {
   float: left;
   width: 420px; }
 #fareast .panel-row-top-logo {
-  width: 100% !important; }
+  width: 100%; }
   #fareast .panel-row-top-logo .fareast_copy h2 {
     font-size: 36px;
     line-height: 1em;
