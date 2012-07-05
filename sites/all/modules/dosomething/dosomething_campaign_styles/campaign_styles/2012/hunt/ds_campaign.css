@@ -865,9 +865,13 @@ table#field-team-invite-values {
 .fb-social-comments-plugin {
   display: none; }
 
-.page-node-722981 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-723084 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-722982 #block-dosomething-campaign-styles-campaign-nav ul.menu {
+.page-node-722981 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-723084 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-722982 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-723110 #block-dosomething-campaign-styles-campaign-nav ul.menu {
   display: none; }
 
+#fareast p {
+  font-size: 14px;
+  margin: 0 84px 15px;
+  line-height: 1.3em; }
 #fareast #fem_logo {
   float: left;
   border: none !important; }
@@ -905,14 +909,14 @@ table#field-team-invite-values {
   #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper, #fareast .panel-row-top-logo #webform-component-rules, #fareast .panel-row-top-logo input, #fareast .panel-row-top-logo label, #fareast .panel-row-top-logo table#field-webform-videos-values {
     margin-left: 84px; }
 
-.page-node-722982 #fareast .pane-content {
+.page-node-722982 #fareast .pane-content, .page-node-723110 #fareast .pane-content {
   padding: 0px !important;
   background: none !important; }
-.page-node-722982 #fareast h2 {
+.page-node-722982 #fareast h2, .page-node-723110 #fareast h2 {
   margin: 10px 30px;
   font-size: 32px;
   line-height: 1.1em; }
-.page-node-722982 #fareast h2.pane-title {
+.page-node-722982 #fareast h2.pane-title, .page-node-723110 #fareast h2.pane-title {
   display: none; }
 
 .center {
