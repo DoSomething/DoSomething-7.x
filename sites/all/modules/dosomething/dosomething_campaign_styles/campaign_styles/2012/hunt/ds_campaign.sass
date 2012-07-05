@@ -963,22 +963,24 @@ table#field-team-invite-values
 .fb-social-comments-plugin
   display: none
 
-// far east movement page
-.page-node-722981, .page-node-723084
-  ul.menu
+// Far East Movement Page
+.page-node-722981, .page-node-723084, .page-node-722982
+  #block-dosomething-campaign-styles-campaign-nav ul.menu
     display: none
 
 #fareast
+  #fem_logo
+    float: left
+    +noBorder
+  #hunt_fem_logo
+    float: left
+    width: 420px
+    +noBorder
   .webform-client-form
     #edit-actions
       position: absolute
       right: 576px
-      bottom: 20px
-    #fem_logo
-      float: left
-    #hunt_fem_logo
-      float: left
-      width: 420px   
+      bottom: 20px 
   .panel-row-top-logo
     width: 100%
     .fareast_copy
@@ -1003,9 +1005,24 @@ table#field-team-invite-values
       text-align: left
     #webform-component-rules  
       margin-top: 44px
-    // Indent Margin
+    // Indent Left Margin
     .tabledrag-toggle-weight-wrapper, #webform-component-rules, input, label, table#field-webform-videos-values
       margin-left: 84px
+
+// Far East Movment Thank You Page
+.page-node-722982
+  #fareast
+    .pane-content
+      padding: 0px !important
+      background: none !important
+    h2
+      margin: 10px 30px
+      font-size: 32px
+      line-height: 1.1em
+    h2.pane-title
+      display: none
+
+
     
 
       
