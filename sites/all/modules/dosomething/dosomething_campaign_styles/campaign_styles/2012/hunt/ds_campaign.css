@@ -514,6 +514,14 @@ div[role="main"] {
       margin: 0 auto;
       display: block; }
 
+.blog-post .go-button {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  margin-left: 5px;
+  padding-top: 2px;
+  color: black; }
+
 .field-type-text-with-summary img {
   padding: 10px;
   margin: 20px auto;
@@ -906,3 +914,6 @@ table#field-team-invite-values {
   line-height: 1.1em; }
 .page-node-722982 #fareast h2.pane-title {
   display: none; }
+
+.center {
+  text-align: center; }
