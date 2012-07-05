@@ -33,7 +33,7 @@ function teams_report_backs() {
       'nid' => 722992,
       'cid' => 'day_two',
       'value' => '2_b',
-      'response' => 'Nice, that\'s 10pts! Respond with your idea or send a picture of your group brainstorming for +25 pts. Or text ONETHREE or CENSUS for another challenge',
+      'response' => 'Nice, that\'s 10pts! Text PREVENTIDEA to tell us your idea. Or text ONETHREE or CENSUS for another challenge',
     ),
     'censusdone' => array(
       'nid' => 722992,
@@ -77,7 +77,7 @@ function teams_report_backs() {
       'nid' => 722994,
       'cid' => 'day_four',
       'value' => '4_c',
-      'response' => 'Gross, but awesome! How many pieces of trash did you and your friends collect?',
+      'response' => 'Great! Respond TRASHCOUNT to tell us how many pieces you collected.',
     ),
 
     'genderdone' => array(
@@ -179,7 +179,7 @@ function teams_report_backs() {
       'nid' => 723000,
       'cid' => 'day_ten',
       'value' => '10_a',
-      'response' => 'Great, that\'s 5pts! Respond with a pic of you doing it and we\'ll give you +25 pts. Or Text AC or VAMPIRE for other challenges',
+      'response' => 'Great, that\'s 5pts! Respond with a pic of you doing it and we\'ll give you +25 pts. Or Text DEGREES or VAMPIRE for other challenges',
     ),
     'acdone' => array(
       'nid' => 723000,
@@ -191,7 +191,7 @@ function teams_report_backs() {
       'nid' => 723000,
       'cid' => 'day_ten',
       'value' => '10_c',
-      'response' => 'Great, that\'s 20pts! Respond with a pic of you doing it and we\'ll give you +25 pts. Or Text SAVEWATER or AC for other challenges',
+      'response' => 'Great, that\'s 20pts! Respond with a pic of you doing it and we\'ll give you +25 pts. Or Text SAVEWATER or DEGREES for other challenges',
     ),
   );
   return $report_backs;

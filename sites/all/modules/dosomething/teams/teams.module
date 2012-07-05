@@ -773,6 +773,7 @@ function teams_default_conductor_workflows() {
     $activity->nid = $form['nid'];
     $activity->cid = $form['cid'];
     $activity->response = $form['response'];
+    $activity->base_url = 'hunt';
     $activity->value = $form['value'];
 
     $activity = $workflow->newActivity('end');
