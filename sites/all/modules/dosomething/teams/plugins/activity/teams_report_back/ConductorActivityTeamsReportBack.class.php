@@ -18,10 +18,10 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
     $old_state = drupal_save_session(FALSE);
     $user = dosomething_general_find_user_by_cell($mobile);
 
-    if (!teams_in_group($base_url)) {
-      $state->setContext('sms_response', t('Hmm, looks like you\'re not a part of a team yet. Text STARTTEAM or JOINTEAM to get on one, then try again.'));
-    }
-    else {
+    //if (!teams_in_group($base_url)) {
+    //  $state->setContext('sms_response', t('Hmm, looks like you\'re not a part of a team yet. Text STARTTEAM or JOINTEAM to get on one, then try again.'));
+    //}
+    //else {
       module_load_include('inc', 'webform', 'includes/webform.submissions');
 
       $form_state = array(
@@ -54,7 +54,7 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
       else {
         $state->setContext('sms_response', $this->response);
       }
-    }
+    //}
 
     $user = $original_user;
     drupal_save_session($old_state);

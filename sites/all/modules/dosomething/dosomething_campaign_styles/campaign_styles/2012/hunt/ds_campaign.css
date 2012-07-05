@@ -857,18 +857,20 @@ table#field-team-invite-values {
 .fb-social-comments-plugin {
   display: none; }
 
-.page-node-722981 ul.menu, .page-node-723084 ul.menu {
+.page-node-722981 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-723084 #block-dosomething-campaign-styles-campaign-nav ul.menu, .page-node-722982 #block-dosomething-campaign-styles-campaign-nav ul.menu {
   display: none; }
 
+#fareast #fem_logo {
+  float: left;
+  border: none !important; }
+#fareast #hunt_fem_logo {
+  float: left;
+  width: 420px;
+  border: none !important; }
 #fareast .webform-client-form #edit-actions {
   position: absolute;
   right: 576px;
   bottom: 20px; }
-#fareast .webform-client-form #fem_logo {
-  float: left; }
-#fareast .webform-client-form #hunt_fem_logo {
-  float: left;
-  width: 420px; }
 #fareast .panel-row-top-logo {
   width: 100%; }
   #fareast .panel-row-top-logo .fareast_copy h2 {
@@ -894,3 +896,13 @@ table#field-team-invite-values {
     margin-top: 44px; }
   #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper, #fareast .panel-row-top-logo #webform-component-rules, #fareast .panel-row-top-logo input, #fareast .panel-row-top-logo label, #fareast .panel-row-top-logo table#field-webform-videos-values {
     margin-left: 84px; }
+
+.page-node-722982 #fareast .pane-content {
+  padding: 0px !important;
+  background: none !important; }
+.page-node-722982 #fareast h2 {
+  margin: 10px 30px;
+  font-size: 32px;
+  line-height: 1.1em; }
+.page-node-722982 #fareast h2.pane-title {
+  display: none; }
