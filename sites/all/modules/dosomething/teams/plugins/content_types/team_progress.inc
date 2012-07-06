@@ -103,16 +103,10 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
   $percent_done = round(($challenge_count - $remaining) / $challenge_count * 100);
 
   $content = array(
-    'header' => array(
-      '#type' => 'markup',
-      '#markup' => 'Hunt Progress: ' . $percent_done . '% of available challenges completed',
-      '#prefix' => '<div class="teams-progress">',
-      '#suffix' => '</div>',
-    ),
     'progress-bar' => array(
       '#type' => 'container',
-      '#prefix' => '<div class="progress-bar-wrapper">',
-      '#suffix' => '</div>',
+      '#prefix' => '<div class="progress-bar-wrapper"><h3>PROGRESS</h3>',
+      '#suffix' => '<p>' . $percent_done . '% of available challenges completed</p></div>',
       '#attributes' => array(
         'class' => 'progress-bar',
         'style' => 'width:100%',
