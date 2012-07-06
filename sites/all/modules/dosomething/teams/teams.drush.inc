@@ -101,12 +101,11 @@ function drush_teams_hunt() {
           );
           entity_save('webform_submission_entity', $submission);
 
-          $id = (int) $message['id'];
-          variable_set('teams_hunt_last_processed', $id);
-
           break;
         }
       }
+      $id = (int) $message['id'];
+      variable_set('teams_hunt_last_processed', $id);
     }
   }
 }
