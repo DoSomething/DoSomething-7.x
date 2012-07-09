@@ -60,6 +60,9 @@ $bgFallback: #C66F2a
   -ms-box-sizing: border-box
   -webkit-box-sizing: border-box
   box-sizing: border-box
+
+@mixin redGradient
+  +background-image(linear-gradient(top, $baseColor, darken($baseColor, 10) 80%))
   
 
 //////////////////////////////////////////
@@ -95,7 +98,7 @@ div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
-  padding-top: 10px  
+  padding-top: 10px
   
 .white-bg
   .pane-content
@@ -472,8 +475,10 @@ div[role="main"]
 .pane-teams-team-management
   border: none !important
   .pane-content
-    height: 180px
-    p, #teams-add-member-form
+    height: 215px
+    .team-add-members-wrapper
+      border: 2px dotted $baseColor
+      float: left
       width: 63%
       font-size: 14px
       padding: 10px 10px 10px 10px
@@ -522,29 +527,20 @@ div[role="main"]
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
-  .pane-content // holy !important, batman
-    // background-color: $baseColor !important 
-    // padding: 6px 12px 6px 12px !important 
-    // margin-top: 0 !important  
-    // margin-bottom: 0 !important 
-    // line-height: 25px !important
-    // font-size: 21px !important
-    // font-weight: 600 !important
-    // color: white !important
-    // font-family: $accent-reg
+  .pane-content
     font-size: 25px
     line-height: 30px
     text-align: center
     color: #fff
     text-shadow: darken($baseColor, 25) 0 1px 0
-    +background-image(linear-gradient(top, $baseColor, darken($baseColor, 10) 60%))
+    @include redGradient
     @include border-radius(5px 5px 0 0)
     
 .team-member-list
   float: right
   width: 35%
   border: 2px dotted $baseColor
-  height: 150px
+  height: 180px
   padding: 10px
   overflow-y: scroll
   ul li
@@ -639,6 +635,43 @@ div[role="main"]
 #challenges-webform
   width: 85%
   margin: 35px auto 0
+  .field-name-field-webform-pictures // ribbon content
+    width: 650px
+    margin: 15px 0 0 -41px
+    padding: 5px 15px
+    position: relative
+    z-index: 1
+    @include border-radius(5px 5px 0 0) 
+    @include redGradient
+  #webform-component-photo // ribbon legs
+    position: relative
+    &:before, &:after
+      content: ""
+      position: absolute
+      bottom: -160px
+      border: 50px solid darken($baseColor, 10)
+      z-index: 0
+    &:before
+      left: -106px
+      border-right-width: 25px
+      border-left-color: transparent
+    &:after
+      right: -106px
+      border-left-width: 25px
+      border-right-color: transparent
+  #edit-submitted-field-webform-pictures-und-ajax-wrapper  // ribbon corners
+    &:before, &:after
+      content: ""
+      position: absolute
+      border-style: solid
+      border-color: darken($baseColor, 18) transparent transparent transparent
+      bottom: -10px
+    &:before
+      left: 0
+      border-width: 10px 0 0 10px
+    &:after
+      right: 0
+      border-width: 10px 10px 0 0
   .pane-content
     background-color: $huntLighter
     border-left: 1px solid #BBB
@@ -651,7 +684,7 @@ div[role="main"]
     line-height: 30px
     text-align: center
     text-shadow: darken($baseColor, 25) 0 1px 0
-    +background-image(linear-gradient(top, $baseColor, darken($baseColor, 10) 60%))
+    @include redGradient
     @include border-radius(5px 5px 0 0)
   .webform-client-form
     +noBorder
@@ -670,7 +703,7 @@ div[role="main"]
     #edit-actions
       position: relative
       right: 0
-      bottom: 0
+      bottom: -15px
       text-align: center
   .form-checkboxes
     width: 100%
@@ -700,7 +733,7 @@ div[role="main"]
   h3
     text-transform: uppercase
     font-size: 1.3em
-    padding-top: 6px
+    padding-top: 12px
 
 .points_wrapper
   position: absolute
@@ -716,7 +749,7 @@ div[role="main"]
   text-shadow: darken($baseColor, 25) 0 1px 0
   @include box-shadow(#444 0px 6px 8px -5px)
   @include border-radius(4px 4px 4px 0)
-  +background-image(linear-gradient(top, $baseColor, darken($baseColor, 10) 60%))
+  @include redGradient
   &:after
     width: 0
     height: 0
@@ -742,7 +775,7 @@ div[role="main"]
   font-size: 15px
   @include box-shadow(#444 0px 6px 8px -5px)
   @include border-radius(3px 3px 0 3px)
-  +background-image(linear-gradient(top, $baseColor, darken($baseColor, 10) 60%))
+  @include redGradient
   &:after
     width: 0
     height: 0
@@ -985,8 +1018,7 @@ div[role="main"]
       text-align: center
       position: relative
       padding: 2px 12px
-      
-      
+
 .clear-both
   clear: both
 

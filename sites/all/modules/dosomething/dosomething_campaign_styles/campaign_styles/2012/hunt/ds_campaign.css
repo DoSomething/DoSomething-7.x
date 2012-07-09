@@ -398,8 +398,10 @@ div[role="main"] {
 .pane-teams-team-management {
   border: none !important; }
   .pane-teams-team-management .pane-content {
-    height: 180px; }
-    .pane-teams-team-management .pane-content p, .pane-teams-team-management .pane-content #teams-add-member-form {
+    height: 215px; }
+    .pane-teams-team-management .pane-content .team-add-members-wrapper {
+      border: 2px dotted #d32a1b;
+      float: left;
       width: 63%;
       font-size: 14px;
       padding: 10px 10px 10px 10px;
@@ -451,12 +453,12 @@ div[role="main"] {
     text-align: center;
     color: white;
     text-shadow: #62130d 0 1px 0;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(60%, #a62115));
-    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: -o-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: linear-gradient(top, #d32a1b, #a62115 60%);
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
     -ms-border-radius: 5px 5px 0 0;
@@ -467,7 +469,7 @@ div[role="main"] {
   float: right;
   width: 35%;
   border: 2px dotted #d32a1b;
-  height: 150px;
+  height: 180px;
   padding: 10px;
   overflow-y: scroll; }
   .team-member-list ul li {
@@ -563,6 +565,51 @@ div[role="main"] {
 #challenges-webform {
   width: 85%;
   margin: 35px auto 0; }
+  #challenges-webform .field-name-field-webform-pictures {
+    width: 650px;
+    margin: 15px 0 0 -41px;
+    padding: 5px 15px;
+    position: relative;
+    z-index: 1;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -ms-border-radius: 5px 5px 0 0;
+    -o-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
+  #challenges-webform #webform-component-photo {
+    position: relative; }
+    #challenges-webform #webform-component-photo:before, #challenges-webform #webform-component-photo:after {
+      content: "";
+      position: absolute;
+      bottom: -160px;
+      border: 50px solid #a62115;
+      z-index: 0; }
+    #challenges-webform #webform-component-photo:before {
+      left: -106px;
+      border-right-width: 25px;
+      border-left-color: transparent; }
+    #challenges-webform #webform-component-photo:after {
+      right: -106px;
+      border-left-width: 25px;
+      border-right-color: transparent; }
+  #challenges-webform #edit-submitted-field-webform-pictures-und-ajax-wrapper:before, #challenges-webform #edit-submitted-field-webform-pictures-und-ajax-wrapper:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-color: #821a11 transparent transparent transparent;
+    bottom: -10px; }
+  #challenges-webform #edit-submitted-field-webform-pictures-und-ajax-wrapper:before {
+    left: 0;
+    border-width: 10px 0 0 10px; }
+  #challenges-webform #edit-submitted-field-webform-pictures-und-ajax-wrapper:after {
+    right: 0;
+    border-width: 10px 10px 0 0; }
   #challenges-webform .pane-content {
     background-color: #d6d6d7;
     border-left: 1px solid #bbbbbb;
@@ -581,12 +628,12 @@ div[role="main"] {
     line-height: 30px;
     text-align: center;
     text-shadow: #62130d 0 1px 0;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(60%, #a62115));
-    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: -o-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 60%);
-    background-image: linear-gradient(top, #d32a1b, #a62115 60%);
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
     -ms-border-radius: 5px 5px 0 0;
@@ -612,7 +659,7 @@ div[role="main"] {
     #challenges-webform .webform-client-form #edit-actions {
       position: relative;
       right: 0;
-      bottom: 0;
+      bottom: -15px;
       text-align: center; }
   #challenges-webform .form-checkboxes {
     width: 100%;
@@ -649,7 +696,7 @@ div[role="main"] {
   #webform-component-photo h3 {
     text-transform: uppercase;
     font-size: 1.3em;
-    padding-top: 6px; }
+    padding-top: 12px; }
 
 .points_wrapper {
   position: absolute;
@@ -671,12 +718,12 @@ div[role="main"] {
   -ms-border-radius: 4px 4px 4px 0;
   -o-border-radius: 4px 4px 4px 0;
   border-radius: 4px 4px 4px 0;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(60%, #a62115));
-  background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: -moz-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: -o-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: linear-gradient(top, #d32a1b, #a62115 60%); }
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+  background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .photo_ribbon:after {
     width: 0;
     height: 0;
@@ -708,12 +755,12 @@ div[role="main"] {
   -ms-border-radius: 3px 3px 0 3px;
   -o-border-radius: 3px 3px 0 3px;
   border-radius: 3px 3px 0 3px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(60%, #a62115));
-  background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: -moz-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: -o-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 60%);
-  background-image: linear-gradient(top, #d32a1b, #a62115 60%); }
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+  background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .points1:after, .points2:after, .points3:after {
     width: 0;
     height: 0;
