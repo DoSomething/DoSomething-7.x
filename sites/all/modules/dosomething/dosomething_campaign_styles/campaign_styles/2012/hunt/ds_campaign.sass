@@ -16,6 +16,7 @@ $huntLighter: #D6D6D7
 $huntDarker: #BEBFC1
 $huntDarkest: #939398
 $offBlack: #1E1D1C
+$offGrey: #F2F2F2
 
 // borders (all lines - i.e. around social / quick info)
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -60,6 +61,10 @@ $bgFallback: #C66F2a
   -webkit-box-sizing: border-box
   box-sizing: border-box
 
+@mixin redGradient
+  +background-image(linear-gradient(top, $baseColor, darken($baseColor, 10) 80%))
+  
+
 //////////////////////////////////////////
 ///////// general definitions ///////////
 ////////////////////////////////////////
@@ -93,7 +98,7 @@ div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
-  padding-top: 10px  
+  padding-top: 10px
   
 .white-bg
   .pane-content
@@ -294,10 +299,10 @@ div[role="main"]
 // counter
 .pane-campaign-counter
   .pane-content
-    padding: 20px 25px
+    padding: 20px 25px 20px 0
     .campaign-counter-labels
       text-transform: uppercase
-      font-size: 25px
+      font-size: 23px
       font-family: din-web,"Trebuchet MS",sans-serif 
       font-weight: 500
       line-height: 25px
@@ -424,21 +429,22 @@ div[role="main"]
 
 
 // challenges
-#challenges
-  ul
-    background-color: $huntDarkest
-    margin: 0 0 0 0
-    padding: 12px 29px 1px
-  li
-    list-style-image: url("assets/dot.png")
-  div
-    width: 100%
+#challenges_copy
   h2
     margin: -5px 0 0 0
     text-align: center
     font-family: "din-web-reg"
     font-weight: 400
     font-size: 16px
+    
+#challenges, #challenges_open
+  ul
+    background-color: $huntDarkest
+    margin: 0 0 0 0
+    padding: 12px 29px 1px
+  li
+    list-style-image: url("assets/dot.png")
+    color: #fff
   h3
     background-color: $huntDarker
     height: 2em
@@ -449,13 +455,15 @@ div[role="main"]
     font-family: "din-web-reg"
     font-weight: 500
     font-size: 15px
-  p
-    color: #fff
   strong
     font-weight: 500
     float: right
     color: $baseColor
     width: 175px
+
+#WYSIWYG_HACK .pane-content
+  margin-top: -35px
+  padding: 0 15px !important
 
 // gallery
 .view-campaign-gallery
@@ -470,8 +478,10 @@ div[role="main"]
 .pane-teams-team-management
   border: none !important
   .pane-content
-    height: 180px
-    p, #teams-add-member-form
+    height: 230px
+    .team-add-members-wrapper
+      border: 2px dotted $baseColor
+      float: left
       width: 63%
       font-size: 14px
       padding: 10px 10px 10px 10px
@@ -520,22 +530,23 @@ div[role="main"]
 .team-name-title 
   margin-bottom: 0px !important
   border: none !important
-  .pane-content // holy !important, batman
-    background-color: $baseColor !important 
-    padding: 6px 12px 6px 12px !important 
-    margin-top: 0 !important  
-    margin-bottom: 0 !important 
-    line-height: 22px !important
-    font-size: 21px !important
-    font-weight: 600 !important
-    color: white !important
-    font-family: $accent-reg
+  .pane-content
+    font-size: 25px
+    font-family: $accent
+    font-weight: 500
+    line-height: 30px
+    text-align: center
+    color: #fff
+    padding: 6px 12px 6px 12px !important
+    text-shadow: darken($baseColor, 25) 0 1px 0
+    @include redGradient
+    @include border-radius(5px 5px 0 0)
     
 .team-member-list
   float: right
   width: 35%
   border: 2px dotted $baseColor
-  height: 150px
+  height: 201px
   padding: 10px
   overflow-y: scroll
   ul li
@@ -543,8 +554,11 @@ div[role="main"]
     font-size: 16px
     margin: 5px 0
 
+.team-add-members-wrapper h3,
 .team-member-list h3,
-#teams-add-member-form h3
+#teams-add-member-form h3,
+.activity-feed-wrapper h3,
+.progress-bar-wrapper h3
   text-transform: uppercase
   font-family: $accent-reg
   margin-bottom: 5px
@@ -575,6 +589,279 @@ div[role="main"]
   &:after
     content: " ]"
 
+#team-pane, #progress-pane
+  .pane-content
+    border-left: 1px solid #BBB
+    border-right: 1px solid #BBB
+
+#progress-pane
+  .pane-content
+    margin: -25px 0 0 0
+    border-bottom: 1px solid #BBB
+    @include border-radius (0 0 5px 5px)
+    @include box-shadow(#666 0px 7px 15px -7px)
+
+// activity feed && progres bar
+.pane-team-progress .pane-content
+  width: 100%
+  overflow: auto
+
+.progress-bar-wrapper
+  border: 2px dotted $baseColor
+  float: right
+  width: 59%
+  padding: 10px
+  p
+    text-align: center
+    margin: 10px 0 0 0
+    color: #222
+    text-transform: uppercase
+  .progress-bar
+    height: 25px
+    background: #fff
+    .progress-bar-progress
+      width: 25% !important
+      background: #666
+
+.activity-feed-wrapper
+  border: 2px dotted $baseColor
+  float: left
+  width: 39%
+  padding: 10px
+  overflow: scroll
+      
+// challenges report back forms
+.field-name-group-audience
+  display: none
+  
+.webform-img img
+  display: block
+  margin: 0 auto
+  
+#challenges-webform
+  width: 85%
+  margin: 35px auto 0
+  .field-name-field-webform-pictures // ribbon content
+    width: 650px
+    margin: 15px 0 0 -41px
+    padding: 5px 15px
+    position: relative
+    z-index: 1
+    @include border-radius(5px 5px 0 0) 
+    @include redGradient
+    #edit-submitted-field-webform-pictures-und // upload pictures hack
+      width: 60%
+      margin: 0 auto
+    label, .description // upload pictures title and help copy
+      text-align: center
+      text-transform: uppercase
+      color: #fff
+    label
+      font-family: $accent
+      font-size: 20px !important
+      text-shadow: darken($baseColor, 10) 0 1px 0
+      padding: 0 0 5px 0
+    td
+      text-align: center
+    tr.draggable
+      margin-bottom: 10px
+    .description
+      padding: 10px 0 0 0
+    .image-widget-data
+      width: 75%
+      margin: 0 auto
+      float: none
+    input[type="submit"]
+      background: $huntDarker
+      font-family: $accent
+      font-size: 15px
+      text-transform: uppercase
+      height: 25px
+      +background-image(linear-gradient(top, $huntDarker, $huntDarkest 80%))
+      @include border-radius(7px)
+      @include noBorder
+      &:hover
+        +background-image(linear-gradient(top, darken($huntDarker, 5), darken($huntDarkest, 10) 80%))        
+      &:active
+  .tabledrag-toggle-weight-wrapper
+    display: none
+  #edit-submitted-field-webform-pictures-und-table
+    margin-bottom: 15px
+    background: none
+    width: 300px
+    margin: 0 0 0 45px
+    @include noBorder
+    span.file
+      display: block
+      overflow: hidden
+      width: 70px
+      padding-top: 20px
+    div.image-preview
+      padding: 0 10px 0 0
+    a
+      color: #000
+    tr, td
+      background: none
+      padding: 0
+      @include noBorder
+    thead, .tabledrag-handle, .file-icon, .file-size
+      display: none
+    tbody img
+      width: 60px
+      height: 60px
+      margin: 0 0 10px 0
+  #webform-component-photo // ribbon legs
+    position: relative
+    // &:before, &:after
+    //   content: ""
+    //   position: absolute
+    //   bottom: -160px
+    //   border: 50px solid darken($baseColor, 10)
+    //   z-index: 0
+    // &:before
+    //   left: -106px
+    //   border-right-width: 25px
+    //   border-left-color: transparent
+    // &:after
+    //   right: -106px
+    //   border-left-width: 25px
+    //   border-right-color: transparent
+  #edit-submitted-field-webform-pictures-und-ajax-wrapper  // ribbon corners
+    &:before, &:after
+      content: ""
+      position: absolute
+      border-style: solid
+      border-color: darken($baseColor, 18) transparent transparent transparent
+      bottom: -10px
+    &:before
+      left: 0
+      border-width: 10px 0 0 10px
+    &:after
+      right: 0
+      border-width: 10px 10px 0 0
+  .pane-content
+    background-color: $huntLighter
+    border-left: 1px solid #BBB
+    border-right: 1px solid #BBB
+    border-bottom: 1px solid #BBB
+    @include border-radius (0 0 5px 5px)
+    @include box-shadow(#666 0px 7px 15px -7px)
+  .pane-title
+    font-size: 25px
+    line-height: 30px
+    text-align: center
+    text-shadow: darken($baseColor, 25) 0 1px 0
+    @include redGradient
+    @include border-radius(5px 5px 0 0)
+  .webform-client-form
+    +noBorder
+    +noShadow
+    padding: 15px 30px
+    input[type="checkbox"]
+      width: 20px
+    input[type="text"], textarea
+      background: $offGrey
+    label
+      font-size: 13px
+      line-height: 20px
+    textarea
+      +noBorder
+      margin: 5px 0 20px
+    #edit-actions
+      position: relative
+      right: 0
+      bottom: -15px
+      text-align: center
+  .form-checkboxes
+    width: 100%
+    overflow: auto
+    .form-type-checkbox
+      float: left
+      width: 85%
+      margin-bottom: 10px
+  .webform-component-textfield
+    width: 100%
+    overflow: auto
+    margin-bottom: 15px
+    label
+      float: left
+      padding-top: 5px
+    input
+      float: left
+      width: 200px
+      margin-left: 148px
+      @include noShadow
+      @include border-radius(3px)
+
+#webform-component-photo
+  text-align: center
+  h2
+    text-indent: -90px
+  h3
+    text-transform: uppercase
+    font-size: 1.3em
+    padding-top: 12px
+
+.points_wrapper
+  position: absolute
+  right: 81px
+  top: 360px
+
+.photo_ribbon
+  position: relative
+  left: -19px
+  background: $baseColor
+  color: #fff!important
+  padding: 0 10px
+  text-shadow: darken($baseColor, 25) 0 1px 0
+  @include box-shadow(#444 0px 6px 8px -5px)
+  @include border-radius(4px 4px 4px 0)
+  @include redGradient
+  &:after
+    width: 0
+    height: 0
+    border-width: 4px
+    border-style: solid
+    border-color: darken($baseColor, 15) darken($baseColor, 15) transparent transparent
+    position: absolute
+    top: 33px
+    right: 93px
+    content: " " 
+
+.points1, .points2, .points3
+  width: 75px
+  height: 25px
+  padding: 5px 10px
+  margin-bottom: 10px
+  background: $baseColor
+  color: #fff
+  text-shadow: darken($baseColor, 25) 0 1px 0
+  text-transform: uppercase
+  text-align: center
+  font-family: $accent
+  font-size: 15px
+  @include box-shadow(#444 0px 6px 8px -5px)
+  @include border-radius(3px 3px 0 3px)
+  @include redGradient
+  &:after
+    width: 0
+    height: 0
+    border-width: 4px
+    border-style: solid
+    border-color: darken($baseColor, 15) transparent transparent darken($baseColor, 15)
+    position: absolute
+    right: 0px
+    content: " "
+
+.points1:after
+  top: 25px
+
+.points2:after
+  top: 59px
+
+.points3:after
+  top: 94px
+
 // blog
 .node-campaign-blog-post
   padding: 15px !important
@@ -592,6 +879,16 @@ div[role="main"]
       margin: 0 auto
       display: block
 
+// again with the #%!*ing blog bugs
+.blog-post
+  .go-button
+    position: relative
+    right: 0
+    bottom: 0
+    margin-left: 5px
+    padding-top: 2px
+    color: #000
+          
 .field-type-text-with-summary
   img
     padding: 10px
@@ -788,8 +1085,7 @@ div[role="main"]
       text-align: center
       position: relative
       padding: 2px 12px
-      
-      
+
 .clear-both
   clear: both
 
@@ -986,7 +1282,7 @@ table#field-team-invite-values
       right: 576px
       bottom: 20px 
   .panel-row-top-logo
-    width: 100%
+    width: 100%    
     .fareast_copy
       h2
         font-size: 36px
@@ -1012,7 +1308,23 @@ table#field-team-invite-values
     // Indent Left Margin
     .tabledrag-toggle-weight-wrapper, #webform-component-rules, input, label, table#field-webform-videos-values
       margin-left: 84px
-
+  #field-webform-videos-values, th.field-label
+    width: 350px
+    margin-top: 3px
+  input.field-add-more-submit, a.tabledrag-toggle-weight, .field-multiple-drag
+    display: none
+  a.launcher
+    font-size: 16px
+  #field-webform-videos-values
+    label
+      margin: 0
+  .fem-note
+    padding-bottom: 15px
+    color: gray
+    font-size: 12px
+  .form-wrapper #edit-submitted-field-webform-videos-und-0
+    margin-bottom: 10px
+      
 // Far East Movment Thank You Page
 .page-node-722982, .page-node-723110
   #fareast
@@ -1025,11 +1337,7 @@ table#field-team-invite-values
       line-height: 1.1em
     h2.pane-title
       display: none
-
-
     
-
       
-          
-      
-    
+.center
+  text-align: center

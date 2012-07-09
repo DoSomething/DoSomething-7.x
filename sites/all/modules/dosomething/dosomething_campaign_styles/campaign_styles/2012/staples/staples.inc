@@ -32,7 +32,7 @@ $plugin = array(
     array('title' => 'run a drive', 'href' => 'staples/run-a-drive'),
     array('title' => 'raise your hand', 'href' => 'staples/raise-your-hand'),
     array('title' => 'tell us about it', 'href' => 'staples/tell-us'),
-    array('title' => 'scholarships and prizes', 'href' => 'staples/prizes'),
+    array('title' => 'scholarships & prizes', 'href' => 'staples/prizes'),
     array('title' => 'faq', 'href' => 'staples/faq'),
     array('title' => 'blog', 'href' => 'staples/blog'),
     array('title' => 'gallery', 'href' => 'staples/gallery'),

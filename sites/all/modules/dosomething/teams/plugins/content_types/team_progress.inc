@@ -10,23 +10,31 @@ function teams_team_progress_ctools_content_types() {
 }
 
 function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $context) {
+  // Grab the challenges from the pane config array and convert to array
   $challenges = explode("\n", $conf['challenges']);
+
+  // make some bad assumptions about the current URL
   $team_id = arg(2);
   $group = og_get_group('webform_submission_entity', $team_id);
   $uids = teams_get_member_uids($group->gid);
 
+  // filter the submission query based on uid and nid
   module_load_include('inc', 'webform', 'includes/webform.submission');
   $filter = array(
     'nid' => $challenges,
     'uid' => $uids,
   );
+
+  // load up the nodes and submissions based on the challenge NIDs
   $nodes = node_load_multiple($challenges);
   $submissions = webform_get_submissions($filter);
 
+  // convert the date to a DateTime object
   $date_string = implode('/', $conf['start_date']);
   $date = DateTime::createFromFormat('n/j/Y', $date_string);
   $now = new DateTime;
 
+  // find the difference between NOW() and the start_date on the panel config
   $diff = $date->diff($now);
   if ($diff->invert) {
     $block = new StdClass;
@@ -36,10 +44,13 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
 
   $diff = $diff->d;
 
+  // 
   $challenges = array();
   $challenge_count = 0;
   $nodes_backup = $nodes;
 
+  // loop through from day 1 to day NOW, storing the available challenges into
+  // $challenges array.
   for ($i = 0; $i <= $diff; $i++) {
     $current = array_shift($nodes);
     $items = explode("\n", $current->webform['components'][1]['extra']['items']);
@@ -51,6 +62,7 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
   }
   $nodes = $nodes_backup;
 
+  // count up the completed challenges from the users.
   $challenges_for_count = $challenges;
   foreach ($submissions as $sub) {
     foreach ($sub->data[1]['value'] as $val) {
@@ -61,7 +73,8 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
       unset($challenges_for_count[$sub->nid][$val]);
     }
   }
-  
+
+  // store an array of challenges that are complete in pretty text format.
   $doneit = array();
   foreach ($completed as $nid => $done) {
     foreach ($done as $text) {
@@ -75,6 +88,8 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
     $doneit[] = 'No challenges completed yet!';
   }
 
+  // do some maths to figure out how many challenges aren't completed (we don't use this for now,
+  // but down the road we could use it to show what they still have to complete.)
   $remaining = 0;
   $incomplete = array();
   foreach ($challenges_for_count as $nid => $c) {
@@ -83,17 +98,15 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
       $incomplete[] = $nodes[$nid]->title;
     }
   }
+
+  // yay math.
   $percent_done = round(($challenge_count - $remaining) / $challenge_count * 100);
 
   $content = array(
-    'header' => array(
-      '#type' => 'markup',
-      '#markup' => 'Hunt Progress: ' . $percent_done . '% of available challenges completed',
-      '#prefix' => '<div id="teams-progress">',
-      '#suffix' => '</div>',
-    ),
     'progress-bar' => array(
       '#type' => 'container',
+      '#prefix' => '<div class="progress-bar-wrapper"><h3>PROGRESS</h3>',
+      '#suffix' => '<p>' . $percent_done . '% of available challenges completed</p></div>',
       '#attributes' => array(
         'class' => 'progress-bar',
         'style' => 'width:100%',
@@ -109,15 +122,12 @@ function teams_team_progress_content_type_render($subtype, $conf, $panel_args, $
     'activity' => array(
       '#theme' => 'item_list',
       '#items' => $doneit,
-      '#prefix' => '<h2>ACTIVITY FEED</h2>',
-      'attributes' => array(
-        'class' => 'team-activity-feed',
-      ),
+      '#prefix' => '<div class="activity-feed-wrapper"><h3>ACTIVITY FEED</h3>',
+      '#suffix' => '</div>',
     ),
   );
   $block = new StdClass;
   $block->content = $content;
-
 
   return $block;
 }

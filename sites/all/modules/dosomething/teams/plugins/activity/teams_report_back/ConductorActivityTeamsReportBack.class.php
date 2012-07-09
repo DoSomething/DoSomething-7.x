@@ -26,7 +26,7 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
 
       $form_state = array(
         'submitted' => true,
-        'bundle' => 'campaign_sign_up',
+        'bundle' => 'team_challenge',
         'values' => array(
           'submission' => NULL,
           'submitted' => array(
