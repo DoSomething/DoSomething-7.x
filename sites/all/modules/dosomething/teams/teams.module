@@ -193,11 +193,13 @@ function teams_block_view($delta = '') {
 
     $block['content']['add-form-description'] = array(
       '#type' => 'markup',
-      '#markup' => '<p>Enter your friends\' email address to invite them to join the team. Make sure they know the email address of the team leader--they\'ll need that to join.</p>',
+      '#prefix' => '<div class="team-add-members-wrapper">',      
+      '#markup' => '<h3>INVITE FRIENDS</h3><p>Enter your friends\' email address to invite them to join the team. Make sure they know the email address of the team leader--they\'ll need that to join.</p>',
     );
     $block['content']['add-form'] = drupal_get_form('teams_add_member_form', $gid);
     $block['content']['notification'] = array(
       '#type' => 'container',
+      '#suffix' => '</div>',
       '#attributes' => array(
         'id' => 'teams-notification-area',
       ),
