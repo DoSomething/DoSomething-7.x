@@ -299,10 +299,10 @@ div[role="main"]
 // counter
 .pane-campaign-counter
   .pane-content
-    padding: 20px 25px
+    padding: 20px 25px 20px 0
     .campaign-counter-labels
       text-transform: uppercase
-      font-size: 25px
+      font-size: 23px
       font-family: din-web,"Trebuchet MS",sans-serif 
       font-weight: 500
       line-height: 25px
@@ -529,9 +529,12 @@ div[role="main"]
   border: none !important
   .pane-content
     font-size: 25px
+    font-family: $accent
+    font-weight: 500
     line-height: 30px
     text-align: center
     color: #fff
+    padding: 6px 12px 6px 12px !important
     text-shadow: darken($baseColor, 25) 0 1px 0
     @include redGradient
     @include border-radius(5px 5px 0 0)
@@ -548,6 +551,7 @@ div[role="main"]
     font-size: 16px
     margin: 5px 0
 
+.team-add-members-wrapper h3,
 .team-member-list h3,
 #teams-add-member-form h3,
 .activity-feed-wrapper h3,
@@ -589,8 +593,7 @@ div[role="main"]
 
 #progress-pane
   .pane-content
-    margin: -25px 0 0 -1px
-    width: 751px
+    margin: -25px 0 0 0
     border-bottom: 1px solid #BBB
     @include border-radius (0 0 5px 5px)
     @include box-shadow(#666 0px 7px 15px -7px)
