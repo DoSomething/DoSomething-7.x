@@ -1194,6 +1194,21 @@ table#field-team-invite-values {
     margin-top: 44px; }
   #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper, #fareast .panel-row-top-logo #webform-component-rules, #fareast .panel-row-top-logo input, #fareast .panel-row-top-logo label, #fareast .panel-row-top-logo table#field-webform-videos-values {
     margin-left: 84px; }
+#fareast #field-webform-videos-values, #fareast th.field-label {
+  width: 350px;
+  margin-top: 3px; }
+#fareast input.field-add-more-submit, #fareast a.tabledrag-toggle-weight, #fareast .field-multiple-drag {
+  display: none; }
+#fareast a.launcher {
+  font-size: 16px; }
+#fareast #field-webform-videos-values label {
+  margin: 0; }
+#fareast .fem-note {
+  padding-bottom: 15px;
+  color: gray;
+  font-size: 12px; }
+#fareast .form-wrapper #edit-submitted-field-webform-videos-und-0 {
+  margin-bottom: 10px; }
 
 .page-node-722982 #fareast .pane-content, .page-node-723110 #fareast .pane-content {
   padding: 0px !important;
