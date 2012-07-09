@@ -388,7 +388,7 @@ div[role="main"] {
 
 #WYSIWYG_HACK .pane-content {
   margin-top: -35px;
-  padding: 0 15px !important; }
+  padding: 0 15px 15px 15px !important; }
 
 .view-campaign-gallery #gallery {
   height: 415px; }
