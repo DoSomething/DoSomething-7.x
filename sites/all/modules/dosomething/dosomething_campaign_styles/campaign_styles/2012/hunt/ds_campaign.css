@@ -363,13 +363,14 @@ div[role="main"] {
   font-weight: 400;
   font-size: 16px; }
 
-#challenges ul {
+#challenges ul, #challenges_open ul {
   background-color: #939398;
   margin: 0 0 0 0;
   padding: 12px 29px 1px; }
-#challenges li {
-  list-style-image: url("assets/dot.png"); }
-#challenges h3 {
+#challenges li, #challenges_open li {
+  list-style-image: url("assets/dot.png");
+  color: white; }
+#challenges h3, #challenges_open h3 {
   background-color: #bebfc1;
   height: 2em;
   margin-top: 10px;
@@ -379,9 +380,7 @@ div[role="main"] {
   font-family: "din-web-reg";
   font-weight: 500;
   font-size: 15px; }
-#challenges p {
-  color: white; }
-#challenges strong {
+#challenges strong, #challenges_open strong {
   font-weight: 500;
   float: right;
   color: #d32a1b;
@@ -401,7 +400,7 @@ div[role="main"] {
 .pane-teams-team-management {
   border: none !important; }
   .pane-teams-team-management .pane-content {
-    height: 215px; }
+    height: 230px; }
     .pane-teams-team-management .pane-content .team-add-members-wrapper {
       border: 2px dotted #d32a1b;
       float: left;
@@ -475,7 +474,7 @@ div[role="main"] {
   float: right;
   width: 35%;
   border: 2px dotted #d32a1b;
-  height: 180px;
+  height: 201px;
   padding: 10px;
   overflow-y: scroll; }
   .team-member-list ul li {
@@ -588,22 +587,82 @@ div[role="main"] {
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
+    #challenges-webform .field-name-field-webform-pictures #edit-submitted-field-webform-pictures-und {
+      width: 60%;
+      margin: 0 auto; }
+    #challenges-webform .field-name-field-webform-pictures label, #challenges-webform .field-name-field-webform-pictures .description {
+      text-align: center;
+      text-transform: uppercase;
+      color: white; }
+    #challenges-webform .field-name-field-webform-pictures label {
+      font-family: din-web, "Trebuchet MS", sans-serif;
+      font-size: 20px !important;
+      text-shadow: #a62115 0 1px 0;
+      padding: 0 0 5px 0; }
+    #challenges-webform .field-name-field-webform-pictures td {
+      text-align: center; }
+    #challenges-webform .field-name-field-webform-pictures tr.draggable {
+      margin-bottom: 10px; }
+    #challenges-webform .field-name-field-webform-pictures .description {
+      padding: 10px 0 0 0; }
+    #challenges-webform .field-name-field-webform-pictures .image-widget-data {
+      width: 75%;
+      margin: 0 auto;
+      float: none; }
+    #challenges-webform .field-name-field-webform-pictures input[type="submit"] {
+      background: #bebfc1;
+      font-family: din-web, "Trebuchet MS", sans-serif;
+      font-size: 15px;
+      text-transform: uppercase;
+      height: 25px;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bebfc1), color-stop(80%, #939398));
+      background-image: -webkit-linear-gradient(top, #bebfc1, #939398 80%);
+      background-image: -moz-linear-gradient(top, #bebfc1, #939398 80%);
+      background-image: -o-linear-gradient(top, #bebfc1, #939398 80%);
+      background-image: -ms-linear-gradient(top, #bebfc1, #939398 80%);
+      background-image: linear-gradient(top, #bebfc1, #939398 80%);
+      -webkit-border-radius: 7px;
+      -moz-border-radius: 7px;
+      -ms-border-radius: 7px;
+      -o-border-radius: 7px;
+      border-radius: 7px;
+      border: none !important; }
+      #challenges-webform .field-name-field-webform-pictures input[type="submit"]:hover {
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b1b2b5), color-stop(80%, #79797f));
+        background-image: -webkit-linear-gradient(top, #b1b2b5, #79797f 80%);
+        background-image: -moz-linear-gradient(top, #b1b2b5, #79797f 80%);
+        background-image: -o-linear-gradient(top, #b1b2b5, #79797f 80%);
+        background-image: -ms-linear-gradient(top, #b1b2b5, #79797f 80%);
+        background-image: linear-gradient(top, #b1b2b5, #79797f 80%); }
+  #challenges-webform .tabledrag-toggle-weight-wrapper {
+    display: none; }
+  #challenges-webform #edit-submitted-field-webform-pictures-und-table {
+    margin-bottom: 15px;
+    background: none;
+    width: 300px;
+    margin: 0 0 0 45px;
+    border: none !important; }
+    #challenges-webform #edit-submitted-field-webform-pictures-und-table span.file {
+      display: block;
+      overflow: hidden;
+      width: 70px;
+      padding-top: 20px; }
+    #challenges-webform #edit-submitted-field-webform-pictures-und-table div.image-preview {
+      padding: 0 10px 0 0; }
+    #challenges-webform #edit-submitted-field-webform-pictures-und-table a {
+      color: black; }
+    #challenges-webform #edit-submitted-field-webform-pictures-und-table tr, #challenges-webform #edit-submitted-field-webform-pictures-und-table td {
+      background: none;
+      padding: 0;
+      border: none !important; }
+    #challenges-webform #edit-submitted-field-webform-pictures-und-table thead, #challenges-webform #edit-submitted-field-webform-pictures-und-table .tabledrag-handle, #challenges-webform #edit-submitted-field-webform-pictures-und-table .file-icon, #challenges-webform #edit-submitted-field-webform-pictures-und-table .file-size {
+      display: none; }
+    #challenges-webform #edit-submitted-field-webform-pictures-und-table tbody img {
+      width: 60px;
+      height: 60px;
+      margin: 0 0 10px 0; }
   #challenges-webform #webform-component-photo {
     position: relative; }
-    #challenges-webform #webform-component-photo:before, #challenges-webform #webform-component-photo:after {
-      content: "";
-      position: absolute;
-      bottom: -160px;
-      border: 50px solid #a62115;
-      z-index: 0; }
-    #challenges-webform #webform-component-photo:before {
-      left: -106px;
-      border-right-width: 25px;
-      border-left-color: transparent; }
-    #challenges-webform #webform-component-photo:after {
-      right: -106px;
-      border-left-width: 25px;
-      border-right-color: transparent; }
   #challenges-webform #edit-submitted-field-webform-pictures-und-ajax-wrapper:before, #challenges-webform #edit-submitted-field-webform-pictures-und-ajax-wrapper:after {
     content: "";
     position: absolute;

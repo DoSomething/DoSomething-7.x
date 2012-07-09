@@ -437,13 +437,14 @@ div[role="main"]
     font-weight: 400
     font-size: 16px
     
-#challenges
+#challenges, #challenges_open
   ul
     background-color: $huntDarkest
     margin: 0 0 0 0
     padding: 12px 29px 1px
   li
     list-style-image: url("assets/dot.png")
+    color: #fff
   h3
     background-color: $huntDarker
     height: 2em
@@ -454,8 +455,6 @@ div[role="main"]
     font-family: "din-web-reg"
     font-weight: 500
     font-size: 15px
-  p
-    color: #fff
   strong
     font-weight: 500
     float: right
@@ -479,7 +478,7 @@ div[role="main"]
 .pane-teams-team-management
   border: none !important
   .pane-content
-    height: 215px
+    height: 230px
     .team-add-members-wrapper
       border: 2px dotted $baseColor
       float: left
@@ -547,7 +546,7 @@ div[role="main"]
   float: right
   width: 35%
   border: 2px dotted $baseColor
-  height: 180px
+  height: 201px
   padding: 10px
   overflow-y: scroll
   ul li
@@ -650,22 +649,83 @@ div[role="main"]
     z-index: 1
     @include border-radius(5px 5px 0 0) 
     @include redGradient
+    #edit-submitted-field-webform-pictures-und // upload pictures hack
+      width: 60%
+      margin: 0 auto
+    label, .description // upload pictures title and help copy
+      text-align: center
+      text-transform: uppercase
+      color: #fff
+    label
+      font-family: $accent
+      font-size: 20px !important
+      text-shadow: darken($baseColor, 10) 0 1px 0
+      padding: 0 0 5px 0
+    td
+      text-align: center
+    tr.draggable
+      margin-bottom: 10px
+    .description
+      padding: 10px 0 0 0
+    .image-widget-data
+      width: 75%
+      margin: 0 auto
+      float: none
+    input[type="submit"]
+      background: $huntDarker
+      font-family: $accent
+      font-size: 15px
+      text-transform: uppercase
+      height: 25px
+      +background-image(linear-gradient(top, $huntDarker, $huntDarkest 80%))
+      @include border-radius(7px)
+      @include noBorder
+      &:hover
+        +background-image(linear-gradient(top, darken($huntDarker, 5), darken($huntDarkest, 10) 80%))        
+      &:active
+  .tabledrag-toggle-weight-wrapper
+    display: none
+  #edit-submitted-field-webform-pictures-und-table
+    margin-bottom: 15px
+    background: none
+    width: 300px
+    margin: 0 0 0 45px
+    @include noBorder
+    span.file
+      display: block
+      overflow: hidden
+      width: 70px
+      padding-top: 20px
+    div.image-preview
+      padding: 0 10px 0 0
+    a
+      color: #000
+    tr, td
+      background: none
+      padding: 0
+      @include noBorder
+    thead, .tabledrag-handle, .file-icon, .file-size
+      display: none
+    tbody img
+      width: 60px
+      height: 60px
+      margin: 0 0 10px 0
   #webform-component-photo // ribbon legs
     position: relative
-    &:before, &:after
-      content: ""
-      position: absolute
-      bottom: -160px
-      border: 50px solid darken($baseColor, 10)
-      z-index: 0
-    &:before
-      left: -106px
-      border-right-width: 25px
-      border-left-color: transparent
-    &:after
-      right: -106px
-      border-left-width: 25px
-      border-right-color: transparent
+    // &:before, &:after
+    //   content: ""
+    //   position: absolute
+    //   bottom: -160px
+    //   border: 50px solid darken($baseColor, 10)
+    //   z-index: 0
+    // &:before
+    //   left: -106px
+    //   border-right-width: 25px
+    //   border-left-color: transparent
+    // &:after
+    //   right: -106px
+    //   border-left-width: 25px
+    //   border-right-color: transparent
   #edit-submitted-field-webform-pictures-und-ajax-wrapper  // ribbon corners
     &:before, &:after
       content: ""
