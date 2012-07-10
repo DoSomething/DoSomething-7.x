@@ -18,7 +18,7 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
     $old_state = drupal_save_session(FALSE);
     $user = dosomething_general_find_user_by_cell($mobile);
 
-    if (!teams_in_group($base_url)) {
+    if (!teams_in_group($this->base_url)) {
       $state->setContext('sms_response', t('Hmm, looks like you\'re not a part of a team yet. Text STARTTEAM or JOINTEAM to get on one, then try again.'));
     }
     else {
