@@ -462,7 +462,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -585,7 +584,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
     #challenges-webform .field-name-field-webform-pictures #edit-submitted-field-webform-pictures-und {
       width: 60%;
@@ -619,7 +617,6 @@ div[role="main"] {
       background-image: -webkit-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -moz-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -o-linear-gradient(top, #bebfc1, #939398 80%);
-      background-image: -ms-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: linear-gradient(top, #bebfc1, #939398 80%);
       -webkit-border-radius: 7px;
       -moz-border-radius: 7px;
@@ -632,7 +629,6 @@ div[role="main"] {
         background-image: -webkit-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -moz-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -o-linear-gradient(top, #b1b2b5, #79797f 80%);
-        background-image: -ms-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: linear-gradient(top, #b1b2b5, #79797f 80%); }
   #challenges-webform .tabledrag-toggle-weight-wrapper {
     display: none; }
@@ -697,7 +693,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -787,7 +782,6 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .photo_ribbon:after {
     width: 0;
@@ -824,7 +818,6 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .points1:after, .points2:after, .points3:after {
     width: 0;
@@ -1252,8 +1245,10 @@ table#field-team-invite-values {
     text-align: left; }
   #fareast .panel-row-top-logo #webform-component-rules {
     margin-top: 44px; }
-  #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper, #fareast .panel-row-top-logo #webform-component-rules, #fareast .panel-row-top-logo input, #fareast .panel-row-top-logo label, #fareast .panel-row-top-logo table#field-webform-videos-values {
+  #fareast .panel-row-top-logo .tabledrag-toggle-weight-wrapper, #fareast .panel-row-top-logo #webform-component-rules, #fareast .panel-row-top-logo input, #fareast .panel-row-top-logo label, #fareast .panel-row-top-logo table#field-webform-videos-values, #fareast .panel-row-top-logo .form-item-submitted-birthday-month {
     margin-left: 84px; }
+#fareast #webform-component-birthday .webform-container-inline {
+  margin: 4px 0 14px 0; }
 #fareast #field-webform-videos-values, #fareast th.field-label {
   width: 350px;
   margin-top: 3px; }
@@ -1269,6 +1264,10 @@ table#field-team-invite-values {
   font-size: 12px; }
 #fareast .form-wrapper #edit-submitted-field-webform-videos-und-0 {
   margin-bottom: 10px; }
+#fareast #opt-in-help {
+  position: absolute;
+  left: 175px;
+  bottom: 46px; }
 
 .page-node-722982 #fareast .pane-content, .page-node-723110 #fareast .pane-content {
   padding: 0px !important;
