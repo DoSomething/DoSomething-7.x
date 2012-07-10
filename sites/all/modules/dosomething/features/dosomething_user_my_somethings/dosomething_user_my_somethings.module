@@ -218,11 +218,11 @@ function dosomething_user_my_somethings_my_current_somethings() {
     'project_report' => array(
       'title' => t('Project Reports'),
       'title_field' => 'field_project_title_value',
-      'link_path' => 'webform-submission/%sid',
-      'link_id_fields' => array('sid'),
+      'link_path' => 'node/%nid/submission/%sid/edit',
+      'link_id_fields' => array('nid', 'sid'),
     ),
     'campaign_report_back' => array(
-      'title' => t('Campaign Report Backs'),
+      'title' => t('Campaigns'),
       'title_field' => 'campaign_title',
       'link_path' => 'node/%report_back_entity_id',
       'link_id_fields' => array('report_back_entity_id'),
@@ -277,7 +277,7 @@ function dosomething_user_my_somethings_my_past_somethings() {
       'link_id_fields' => array('sid'),
     ),
     'campaign_report_back' => array(
-      'title' => t('Campaign Report Backs'),
+      'title' => t('Campaigns'),
       'title_field' => 'campaign_title',
       'link_path' => 'node/%campaign_entity_id',
       'link_id_fields' => array('campaign_entity_id'),
