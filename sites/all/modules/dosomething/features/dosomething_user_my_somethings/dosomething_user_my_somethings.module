@@ -639,7 +639,9 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 }
 
 /**
- * Fetch the longer version of their somethings...
+ * Fetch the longer version of their somethings.
+ *
+ * These include images and are designed to be used on the user's profile page.
  *
  * - Campaign Report Backs
  * - Grant Applications
@@ -656,6 +658,10 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
     switch ($type) {
       case 'campaign_report_back':
         foreach ($data as $entity) {
+          if (empty($entity->campaign_entity_id)) {
+            continue;
+          }
+
           // Use the campaign's logo if present or fallback to the main image.
           $campaign = node_load($entity->campaign_entity_id);
           $image = field_get_items('node', $campaign, 'field_campain_logo_thumbnail');
@@ -678,12 +684,16 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
 
       case 'grant_application':
         foreach ($data as $entity) {
+          // Load the full submission entity.
           $grant_app = entity_load_single('webform_submission_entity', $entity->sid);
-          $project_ref = field_get_items('webform_submission_entity', $grant_app, 'field_webform_project_submission');
 
+          // If they reference a project and we can load it, use its image.
+          $project_ref = field_get_items('webform_submission_entity', $grant_app, 'field_webform_project_submission');
           if (isset($project_ref[0]['target_id']) && $project = entity_load_single('webform_submission_entity', $project_ref[0]['target_id'])) {
             $image = field_get_items('webform_submission_entity', $project, 'field_picture');
           }
+
+          // Check if they can edit the submission.
           $node = node_load($grant_app->nid);
           $edit_access = webform_submission_access($node, $grant_app, 'edit', $account);
 
@@ -702,8 +712,11 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
 
       case 'project_report':
         foreach ($data as $entity) {
+          // Load the full submission entity.
           $submission = entity_load_single('webform_submission_entity', $entity->sid);
           $image = field_get_items('webform_submission_entity', $submission, 'field_picture');
+          // Technically this value was already load in the bare $entity we
+          // started with but when we reloaded it we lost it.
           $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
 
           $something = array(
