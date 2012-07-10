@@ -366,7 +366,7 @@ div[role="main"] {
 #challenges ul, #challenges_open ul {
   background-color: #939398;
   margin: 0 0 0 0;
-  padding: 12px 29px 1px; }
+  padding: 12px 30px; }
 #challenges li, #challenges_open li {
   list-style-image: url("assets/dot.png");
   color: white; }
@@ -385,10 +385,25 @@ div[role="main"] {
   float: right;
   color: #d32a1b;
   width: 175px; }
+#challenges .webform_link, #challenges_open .webform_link {
+  text-align: center;
+  list-style: none;
+  height: 30px; }
+#challenges .go-button, #challenges_open .go-button {
+  color: black;
+  font-size: 13px;
+  position: relative;
+  right: 0;
+  bottom: -10px;
+  padding: 3px 7px; }
+  #challenges .go-button:hover, #challenges_open .go-button:hover {
+    color: #a62115; }
+#challenges a, #challenges_open a {
+  color: #fed100; }
 
 #WYSIWYG_HACK .pane-content {
   margin-top: -35px;
-  padding: 0 15px !important; }
+  padding: 0 15px 15px 15px !important; }
 
 .view-campaign-gallery #gallery {
   height: 415px; }
@@ -400,17 +415,17 @@ div[role="main"] {
 .pane-teams-team-management {
   border: none !important; }
   .pane-teams-team-management .pane-content {
-    height: 230px; }
+    height: 185px; }
     .pane-teams-team-management .pane-content .team-add-members-wrapper {
       border: 2px dotted #d32a1b;
       float: left;
       width: 63%;
       font-size: 14px;
-      padding: 10px 10px 10px 10px;
+      padding: 10px 15px;
       margin: 0; }
   .pane-teams-team-management #teams-add-member-form {
-    height: 50px;
-    margin: 35px 0 0 0 !important; }
+    height: 40px;
+    margin: 0 !important; }
   .pane-teams-team-management .members-list label {
     font-size: 13px;
     font-weight: bold;
@@ -436,11 +451,23 @@ div[role="main"] {
     .pane-teams-team-management .members-list .form-submit:hover {
       background-position-y: -18px; }
 
+#teams-add-member-form .throbber {
+  margin: 6px 0px 6px 20px; }
 #teams-add-member-form .form-item-friend input, #teams-add-member-form .form-item-friend label {
   float: left;
   margin-top: 2px; }
 #teams-add-member-form .form-item-friend input {
-  width: 200px; }
+  width: 200px;
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
 #teams-add-member-form .form-item-friend label {
   margin: 5px 30px 0 0; }
 #teams-add-member-form .form-submit {
@@ -474,12 +501,12 @@ div[role="main"] {
   float: right;
   width: 35%;
   border: 2px dotted #d32a1b;
-  height: 201px;
-  padding: 10px;
+  height: 151px;
+  padding: 10px 15px;
   overflow-y: scroll; }
   .team-member-list ul li {
     list-style: none;
-    font-size: 16px;
+    font-size: 15px;
     margin: 5px 0; }
 
 .team-add-members-wrapper h3,
@@ -501,7 +528,6 @@ div[role="main"] {
 
 #teams-notification-area {
   font-size: 13px;
-  margin-top: 20px;
   text-align: center; }
 
 .pane-teams-team-management {
@@ -540,18 +566,37 @@ div[role="main"] {
   border: 2px dotted #d32a1b;
   float: right;
   width: 59%;
-  padding: 10px; }
+  padding: 10px 20px; }
   .progress-bar-wrapper p {
     text-align: center;
     margin: 10px 0 0 0;
     color: #222222;
     text-transform: uppercase; }
   .progress-bar-wrapper .progress-bar {
-    height: 25px;
-    background: white; }
+    height: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(90%, #fafafa));
+    background-image: -webkit-linear-gradient(top, #ffffff, #fafafa 90%);
+    background-image: -moz-linear-gradient(top, #ffffff, #fafafa 90%);
+    background-image: -o-linear-gradient(top, #ffffff, #fafafa 90%);
+    background-image: -ms-linear-gradient(top, #ffffff, #fafafa 90%);
+    background-image: linear-gradient(top, #ffffff, #fafafa 90%); }
     .progress-bar-wrapper .progress-bar .progress-bar-progress {
-      width: 25% !important;
-      background: #666666; }
+      -webkit-border-radius: 4px 0 0 4px;
+      -moz-border-radius: 4px 0 0 4px;
+      -ms-border-radius: 4px 0 0 4px;
+      -o-border-radius: 4px 0 0 4px;
+      border-radius: 4px 0 0 4px;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+      background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+      background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+      background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+      background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+      background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
 
 .activity-feed-wrapper {
   border: 2px dotted #d32a1b;
@@ -741,9 +786,8 @@ div[role="main"] {
       float: left;
       padding-top: 5px; }
     #challenges-webform .webform-component-textfield input {
-      float: left;
+      float: right;
       width: 200px;
-      margin-left: 148px;
       -moz-box-shadow: none !important;
       -webkit-box-shadow: none !important;
       -o-box-shadow: none !important;
