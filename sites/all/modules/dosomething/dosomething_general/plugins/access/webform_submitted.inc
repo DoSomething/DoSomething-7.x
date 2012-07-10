@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Plugin to provide access control based upon role membership.
+ * Plugin to provide access control based upon webform submissions.
  */
 
 /**
@@ -44,7 +44,7 @@ function dosomething_general_webform_submitted_settings($form, &$form_state, $co
  * Compress the NIDs into an array.
  */
 function dosomething_general_webform_submitted_settings_submit($form, &$form_state) {
-  $form_state['values']['settings']['nids'] = explode("\n", $form_state['values']['settings']['nids']);
+  $form_state['values']['settings']['nids'] = explode("\n", trim($form_state['values']['settings']['nids']));
 }
 
 /**
@@ -79,7 +79,7 @@ function dosomething_general_webform_submitted($conf, $context) {
 }
 
 /**
- * Provide a summary description based upon the checked roles.
+ * Provide a summary description based upon the NIDs and logic.
  */
 function dosomething_general_webform_submitted_summary($conf, $context) {
   if (!isset($conf['nids'])) {
