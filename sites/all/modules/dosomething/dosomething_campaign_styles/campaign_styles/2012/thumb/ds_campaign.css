@@ -365,6 +365,8 @@ form.webform-client-form {
   padding: 15px 15px 0 15px;
   margin-bottom: -15px; }
 
+.view-campaign-gallery #gallery {
+  height: auto !important; }
 .view-campaign-gallery #thumbs {
   margin: 0 0 0 -8px; }
   .view-campaign-gallery #thumbs .thumbs {
