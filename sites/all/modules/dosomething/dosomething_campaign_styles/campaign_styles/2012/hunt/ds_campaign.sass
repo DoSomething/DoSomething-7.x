@@ -96,7 +96,7 @@ body
 
 div[role="main"]
   +block
-  @include box-shadow(black 0 0 30px -10px)
+  +box-shadow(black 0 0 30px -10px)
   margin-top: 8px
   padding-top: 10px
   
@@ -441,7 +441,7 @@ div[role="main"]
   ul
     background-color: $huntDarkest
     margin: 0 0 0 0
-    padding: 12px 29px 1px
+    padding: 12px 30px
   li
     list-style-image: url("assets/dot.png")
     color: #fff
@@ -460,10 +460,25 @@ div[role="main"]
     float: right
     color: $baseColor
     width: 175px
+  .webform_link
+    text-align: center
+    list-style: none
+    height: 30px
+  .go-button
+    color: #000
+    font-size: 13px
+    position: relative
+    right: 0
+    bottom: -10px
+    padding: 3px 7px
+    &:hover
+      color: darken($baseColor, 10)
+  a
+    color: #FED100
 
 #WYSIWYG_HACK .pane-content
   margin-top: -35px
-  padding: 0 15px !important
+  padding: 0 15px 15px 15px!important
 
 // gallery
 .view-campaign-gallery
@@ -478,17 +493,17 @@ div[role="main"]
 .pane-teams-team-management
   border: none !important
   .pane-content
-    height: 230px
+    height: 185px
     .team-add-members-wrapper
       border: 2px dotted $baseColor
       float: left
       width: 63%
       font-size: 14px
-      padding: 10px 10px 10px 10px
+      padding: 10px 15px
       margin: 0
   #teams-add-member-form
-    height: 50px
-    margin: 35px 0 0 0 !important
+    height: 40px
+    margin: 0 !important
   .members-list
     label
       font-size: 13px
@@ -516,12 +531,17 @@ div[role="main"]
         background-position-y: -18px
 
 #teams-add-member-form
+  .throbber
+    margin: 6px 0px 6px 20px
   .form-item-friend
     input, label
       float: left
       margin-top: 2px
     input
       width: 200px
+      +noBorder
+      +noShadow
+      +border-radius(3px)
     label
       margin: 5px 30px 0 0
   .form-submit
@@ -539,19 +559,19 @@ div[role="main"]
     color: #fff
     padding: 6px 12px 6px 12px !important
     text-shadow: darken($baseColor, 25) 0 1px 0
-    @include redGradient
-    @include border-radius(5px 5px 0 0)
+    +redGradient
+    +border-radius(5px 5px 0 0)
     
 .team-member-list
   float: right
   width: 35%
   border: 2px dotted $baseColor
-  height: 201px
-  padding: 10px
+  height: 151px
+  padding: 10px 15px
   overflow-y: scroll
   ul li
     list-style: none
-    font-size: 16px
+    font-size: 15px
     margin: 5px 0
 
 .team-add-members-wrapper h3,
@@ -574,7 +594,6 @@ div[role="main"]
 // member has been invited notification
 #teams-notification-area
   font-size: 13px
-  margin-top: 20px
   text-align: center
   
 .pane-teams-team-management
@@ -598,8 +617,8 @@ div[role="main"]
   .pane-content
     margin: -25px 0 0 0
     border-bottom: 1px solid #BBB
-    @include border-radius (0 0 5px 5px)
-    @include box-shadow(#666 0px 7px 15px -7px)
+    +border-radius (0 0 5px 5px)
+    +box-shadow(#666 0px 7px 15px -7px)
 
 // activity feed && progres bar
 .pane-team-progress .pane-content
@@ -610,18 +629,19 @@ div[role="main"]
   border: 2px dotted $baseColor
   float: right
   width: 59%
-  padding: 10px
+  padding: 10px 20px
   p
     text-align: center
     margin: 10px 0 0 0
     color: #222
     text-transform: uppercase
   .progress-bar
-    height: 25px
-    background: #fff
+    height: 20px
+    +border-radius(4px)
+    +background-image(linear-gradient(top, #fff, darken(#fff, 2) 90%))
     .progress-bar-progress
-      width: 25% !important
-      background: #666
+      +border-radius(4px 0 0 4px)
+      +redGradient
 
 .activity-feed-wrapper
   border: 2px dotted $baseColor
@@ -647,8 +667,8 @@ div[role="main"]
     padding: 5px 15px
     position: relative
     z-index: 1
-    @include border-radius(5px 5px 0 0) 
-    @include redGradient
+    +border-radius(5px 5px 0 0) 
+    +redGradient
     #edit-submitted-field-webform-pictures-und // upload pictures hack
       width: 60%
       margin: 0 auto
@@ -678,11 +698,10 @@ div[role="main"]
       text-transform: uppercase
       height: 25px
       +background-image(linear-gradient(top, $huntDarker, $huntDarkest 80%))
-      @include border-radius(7px)
-      @include noBorder
+      +border-radius(7px)
+      +noBorder
       &:hover
         +background-image(linear-gradient(top, darken($huntDarker, 5), darken($huntDarkest, 10) 80%))        
-      &:active
   .tabledrag-toggle-weight-wrapper
     display: none
   #edit-submitted-field-webform-pictures-und-table
@@ -690,7 +709,7 @@ div[role="main"]
     background: none
     width: 300px
     margin: 0 0 0 45px
-    @include noBorder
+    +noBorder
     span.file
       display: block
       overflow: hidden
@@ -703,7 +722,7 @@ div[role="main"]
     tr, td
       background: none
       padding: 0
-      @include noBorder
+      +noBorder
     thead, .tabledrag-handle, .file-icon, .file-size
       display: none
     tbody img
@@ -744,15 +763,15 @@ div[role="main"]
     border-left: 1px solid #BBB
     border-right: 1px solid #BBB
     border-bottom: 1px solid #BBB
-    @include border-radius (0 0 5px 5px)
-    @include box-shadow(#666 0px 7px 15px -7px)
+    +border-radius (0 0 5px 5px)
+    +box-shadow(#666 0px 7px 15px -7px)
   .pane-title
     font-size: 25px
     line-height: 30px
     text-align: center
     text-shadow: darken($baseColor, 25) 0 1px 0
-    @include redGradient
-    @include border-radius(5px 5px 0 0)
+    +redGradient
+    +border-radius(5px 5px 0 0)
   .webform-client-form
     +noBorder
     +noShadow
@@ -787,11 +806,10 @@ div[role="main"]
       float: left
       padding-top: 5px
     input
-      float: left
+      float: right
       width: 200px
-      margin-left: 148px
-      @include noShadow
-      @include border-radius(3px)
+      +noShadow
+      +border-radius(3px)
 
 #webform-component-photo
   text-align: center
@@ -814,9 +832,9 @@ div[role="main"]
   color: #fff!important
   padding: 0 10px
   text-shadow: darken($baseColor, 25) 0 1px 0
-  @include box-shadow(#444 0px 6px 8px -5px)
-  @include border-radius(4px 4px 4px 0)
-  @include redGradient
+  +box-shadow(#444 0px 6px 8px -5px)
+  +border-radius(4px 4px 4px 0)
+  +redGradient
   &:after
     width: 0
     height: 0
@@ -840,9 +858,9 @@ div[role="main"]
   text-align: center
   font-family: $accent
   font-size: 15px
-  @include box-shadow(#444 0px 6px 8px -5px)
-  @include border-radius(3px 3px 0 3px)
-  @include redGradient
+  +box-shadow(#444 0px 6px 8px -5px)
+  +border-radius(3px 3px 0 3px)
+  +redGradient
   &:after
     width: 0
     height: 0
@@ -962,7 +980,7 @@ div[role="main"]
   #node-722479
     background-color: white
     #webform-client-form-722479  
-      @include box-shadow(#fff 0 0 0)
+      +box-shadow(#fff 0 0 0)
       padding: 0 !important
   
   .form-actions
@@ -1011,7 +1029,7 @@ div[role="main"]
 .hunt_quiz-response .pane-content
   background: #CB2A1B url(assets/quizbg.gif) no-repeat 0 0 !important
   border: 10px solid #000
-  @include box-shadow(#ccc 0 0 5px)
+  +box-shadow(#ccc 0 0 5px)
   width: 100%
   overflow: auto
   
@@ -1035,7 +1053,7 @@ div[role="main"]
     padding: 10px
     border: 5px solid #000
     margin: 0 auto 30px
-    @include box-shadow(#333 0 0 10px)
+    +box-shadow(#333 0 0 10px)
     
     p
       text-align: center
@@ -1053,8 +1071,7 @@ div[role="main"]
     -moz-box-shadow: #333 0 0 15px !important
     -webkit-backface-visibility: hidden // fixes jaggies in Chrome
     box-shadow: #333 0 0 15px !important
-    //@include box-shadow(#333 0 0 10px)
-    @include rotate(-3deg, false, false)
+    +rotate(-3deg, false, false)
     padding: 0 !important
     
   .hunt_result-text, .hunt_result-again
@@ -1345,7 +1362,6 @@ table#field-team-invite-values
       line-height: 1.1em
     h2.pane-title
       display: none
-    
       
 .center
   text-align: center

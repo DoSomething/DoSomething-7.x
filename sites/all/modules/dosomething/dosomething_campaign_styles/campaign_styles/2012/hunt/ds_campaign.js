@@ -46,36 +46,37 @@
           return false
      });
      
-     // challenges!
-     // determine current time
-     var today = new Date();
-     var day = today.getDate();
-     var hour = today.getHours();
-     var testDate = 10
+     // // challenges!
+     // // determine current time
+     // var today = new Date();
+     // var day = today.getDate();
+     // var hour = today.getHours();
+     // var minute = today.getMinutes();
      
-     // holy challenges, batman!
-     $("#challenges_open ul").css("display","none");
-     
-     // activate available challenges
-     $("#challenges_open h3").slice(0, (testDate - 0)).click(function(){
-       $(this).next("ul").slideToggle();
-       $(this).siblings().next("ul").slideUp();
-     });
-     
-     // add "today" to current challenge && color all other active challenges    
-     $("#challenges_open h3:eq(" + (testDate - 1) + ")").append("<strong>[ today's challenge ]</strong>");
-     $("#challenges_open h3 > span").slice(0, (testDate - 0)).css("color","#D32A1B");
-     $("#challenges_open h3").slice(0, (testDate - 0)).css("cursor","pointer");
-     
-     // show current challenge
-     $("#challenges_open ul:eq(" + (testDate - 1) + ")").css("display","block");
-     
-     // remove future challenges from DOM
-     $("#challenges_open ul").slice((testDate - 0), 10).remove(); 
-     
-     // note on how to do the maths :
-        // eq() offset = slice() + 1
-
-    // note: do not foreget to add 11:11 gate
+     // // hide challenges
+     // $("#challenges_open ul").css("display","none");
+     // 
+     // // gate functionality before the 10th at 11:11
+     // if (day >= 10 && hour >= 8 && minute >= 11) {
+     //   // activate available challenges
+     //   $("#challenges_open h3").slice(0, (today - 9)).click(function(){
+     //     $(this).next("ul").slideToggle();
+     //     $(this).siblings().next("ul").slideUp();
+     //   });
+     // 
+     //   // add "today" to current challenge && color all other active challenges    
+     //   $("#challenges_open h3:eq(" + (today - 10) + ")").append("<strong>[ today's challenge ]</strong>");
+     //   $("#challenges_open h3 > span").slice(0, (today - 9)).css("color","#D32A1B");
+     //   $("#challenges_open h3").slice(0, (today - 9)).css("cursor","pointer");
+     // 
+     //   // show current challenge
+     //   $("#challenges_open ul:eq(" + (today - 10) + ")").css("display","block");
+     // 
+     //   // remove future challenges from DOM
+     //   $("#challenges_open ul").slice((today - 9), 11).remove(); 
+     // 
+     //   // note on how to do the maths :
+     //      // eq() offset = slice() + 1
+     //  }
   });
 })(jQuery);
