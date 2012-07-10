@@ -493,14 +493,15 @@ div[role="main"]
 .pane-teams-team-management
   border: none !important
   .pane-content
-    height: 185px
+    height: 200px
     .team-add-members-wrapper
       border: 2px dotted $baseColor
       float: left
-      width: 63%
+      width: 59%
       font-size: 14px
       padding: 10px 15px
       margin: 0
+      height: 170px
   #teams-add-member-form
     height: 40px
     margin: 0 !important
@@ -543,14 +544,13 @@ div[role="main"]
       +noShadow
       +border-radius(3px)
     label
-      margin: 5px 30px 0 0
+      margin: 5px 20px 0 0
   .form-submit
     float: right
 
-.team-name-title 
-  margin-bottom: 0px !important
-  border: none !important
-  .pane-content
+#main-wrapper
+  .team-name-title .pane-content,
+  .pane-team-progress .pane-title
     font-size: 25px
     font-family: $accent
     font-weight: 500
@@ -561,12 +561,16 @@ div[role="main"]
     text-shadow: darken($baseColor, 25) 0 1px 0
     +redGradient
     +border-radius(5px 5px 0 0)
+
+.team-name-title 
+  margin-bottom: 0px !important
+  border: none !important
     
 .team-member-list
   float: right
-  width: 35%
+  width: 39%
   border: 2px dotted $baseColor
-  height: 151px
+  height: 170px
   padding: 10px 15px
   overflow-y: scroll
   ul li
@@ -593,7 +597,7 @@ div[role="main"]
 
 // member has been invited notification
 #teams-notification-area
-  font-size: 13px
+  font-size: 11px
   text-align: center
   
 .pane-teams-team-management
@@ -608,14 +612,10 @@ div[role="main"]
   &:after
     content: " ]"
 
-#team-pane, #progress-pane
+#team-pane, .pane-team-progress
   .pane-content
     border-left: 1px solid #BBB
     border-right: 1px solid #BBB
-
-#progress-pane
-  .pane-content
-    margin: -25px 0 0 0
     border-bottom: 1px solid #BBB
     +border-radius (0 0 5px 5px)
     +box-shadow(#666 0px 7px 15px -7px)
@@ -648,7 +648,9 @@ div[role="main"]
   float: left
   width: 39%
   padding: 10px
-  overflow: scroll
+  overflow-y: scroll
+  max-height: 300px
+  min-height: 93px
       
 // challenges report back forms
 .field-name-group-audience
