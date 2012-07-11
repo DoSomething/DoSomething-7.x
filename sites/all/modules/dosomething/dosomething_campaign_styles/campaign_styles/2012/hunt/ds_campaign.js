@@ -59,13 +59,19 @@
       var eqNo = 11;
       var sliceNo =  10;
     }
-    else if(hour >= 11){
+    else if(hour = 11){
       if(minute < 11) {
+        var eqNo = 11;
+        var sliceNo =  10;
       }
       else if(minute >= 11){
         var eqNo = 10;
         var sliceNo = 9;
-      }
+      }    
+    }
+    else if(hour >= 12){
+      var eqNo = 10;
+      var sliceNo = 9;
     }
 
     // hide challenges
