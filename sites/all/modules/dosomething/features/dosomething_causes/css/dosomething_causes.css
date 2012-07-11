@@ -6,6 +6,7 @@
 }
 
 #cause-filter {
+  position: relative;
   width: 900px;
   height: 325px;
   padding: 0;
@@ -16,6 +17,7 @@
 }
 
 #cause-filter li {
+  position: absolute;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -28,18 +30,22 @@
 #cause-filter a:hover { text-decoration: none; }
 
 #cause-filter li img {
-  height: 325px;
-  width: 220px;
-  max-width: none;
-  margin-left: -67px;
+	position: absolute;
+	z-index: 0;
+	height:325px;
+	max-width:none;
+	margin-left:-67px;
 }
 
 #cause-filter li.active img {
   margin-left: 0;
 }
 
+#cause-filter li .term-description { display: none; }
+
 #cause-filter li.active .term-description {
   position: absolute;
+  display: block;
   bottom: 0;
   left: 0;
   height: 110px;
@@ -53,30 +59,30 @@
 }
 
 #cause-filter li .term-label {
-  width: 86px;
-  height: 325px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: black;
-  background: rgba(0,0,0,.6);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000060,endColorstr=#00000060);
-  color: white;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  text-align: center;
-  width: 325px;
-  font-size: 38px;
-  font-family: din-web,"Trebuchet MS",Arial;
-  font-weight: 500;
-  line-height: 1em;
-  padding-top: 24px;
+	position: relative;
+	width: 325px;
+	height: 325px;
+	top: 0px;
+	z-index: 1;
+	left:20px;
+	padding-top: 24px;
+	bottom: 0px;
+	margin-left: -20px;
+	background:rgba(0,0,0,.6);
+	text-align: center;
+	vertical-align: middle;
+	color:white;
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	font-size:30px;
+	font-family:din-web,"Trebuchet MS",Arial;
+	font-weight:500;
+	line-height:1em;
 }
 
-#cause-filter li.active .term-label { display: none; }
+#cause-filter li.active .term-label { visibility: hidden; }
 
 #cause-filter h2 {
   font-size: 18px;
