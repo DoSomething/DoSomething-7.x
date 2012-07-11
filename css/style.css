@@ -544,7 +544,7 @@ html {
 body {
   font-family: Georgia, serif;
   color: black;
-  background: white;
+  background: #d4edf3;
 }
 
 @media screen and (-webkit-device-pixel-ratio: 1) and (device-width: 1024px) and (max-device-height: 600px) and (orientation: landscape), screen and (-webkit-device-pixel-ratio: 1) and (device-width: 600px) and (max-device-height: 1024px) and (orientation: portrait), screen and (-o-device-pixel-ratio: 1) and (device-width: 1024px) and (max-device-height: 600px) and (orientation: landscape), screen and (-o-device-pixel-ratio: 1) and (device-width: 600px) and (max-device-height: 1024px) and (orientation: portrait), screen and (device-pixel-ratio: 1) and (device-width: 1024px) and (max-device-height: 600px) and (orientation: landscape), screen and (device-pixel-ratio: 1) and (device-width: 600px) and (max-device-height: 1024px) and (orientation: portrait) {
@@ -561,41 +561,29 @@ body {
 /* -moz- must be declared separately */
 ::-moz-selection {
   color: white;
-  background: #bada55;
+  background: #ec1c24;
   text-shadow: none;
 }
 
 ::selection {
   color: white;
-  background: #bada55;
+  background: #ec1c24;
   text-shadow: none;
 }
 
 /* Links -------------------------------------------------------------- */
 a {
-  color: #bada55;
-}
-a:visited {
-  color: #bada55;
-}
-a:hover {
-  color: #7555da;
-}
-a:active {
-  color: #7555da;
-}
-a {
+  color: #1b75bb;
   text-decoration: none;
-  border-bottom: 1px solid #bada55;
 }
 a:visited {
-  border-bottom-color: #bada55;
+  color: #1b75bb;
 }
 a:hover {
-  border-bottom-color: #7555da;
+  color: #bbbdbf;
 }
 a:active {
-  border-bottom-color: #7555da;
+  color: #bbbdbf;
 }
 
 p {
@@ -1009,6 +997,11 @@ ins {
 
 del {
   text-decoration: line-through;
+}
+
+#page {
+  width: 760px;
+  margin: auto;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
