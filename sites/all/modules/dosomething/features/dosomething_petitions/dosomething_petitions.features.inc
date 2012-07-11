@@ -34,3 +34,12 @@ function dosomething_petitions_node_info() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_default_webform_submission_entity_type().
+ */
+function dosomething_petitions_default_webform_submission_entity_type() {
+  $items = array();
+  $items['petition'] = entity_import('webform_submission_entity_type', '{ "type" : "petition", "data" : null, "rdf_mapping" : [] }');
+  return $items;
+}
