@@ -248,7 +248,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName) {
       array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),     
     )
   );
-  return $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE);
+  return $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE,FALSE);
 }
 
 /**
