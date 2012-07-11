@@ -33,13 +33,13 @@ function teams_report_backs() {
       'nid' => 722992,
       'cid' => 'day_two',
       'value' => '2_b',
-      'response' => 'Nice, that\'s 10pts! Text PREVENTIDEA to tell us your idea. Or text ONETHREE or CENSUS for another challenge',
+      'response' => 'Nice, that\'s 10pts! Text PREVENTIDEA to tell us your idea. Or text DATING or CENSUS for another challenge',
     ),
     'censusdone' => array(
       'nid' => 722992,
       'cid' => 'day_two',
       'value' => '2_c',
-      'response' => 'Wow, that\'s 20pts! Respond with a pic of you doing it and we\'ll give you +25 pts. Text ONETHREE or PREVENT2 for another challenge',
+      'response' => 'Wow, that\'s 20pts! Respond with a pic of you doing it and we\'ll give you +25 pts. Text DATING or PREVENT2 for another challenge',
     ),
 
     'spenddone' => array(
