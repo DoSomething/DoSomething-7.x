@@ -1876,6 +1876,16 @@ img.goleft {
   margin-right: 10px;
 }
 
+ul.hover-image {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  float: left;
+}
+ul.hover-image li:first-child {
+  display: none;
+}
+
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
   height: 195px;
 }
