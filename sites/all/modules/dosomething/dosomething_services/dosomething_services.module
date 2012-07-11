@@ -335,9 +335,8 @@ function _dosomething_services_user_resource_create($account) {
   $new_profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $bday_obj->format(DATE_FORMAT_DATETIME);
   // Over 13
   $new_profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($bday, 13);
-  // Membership anniversary
-  // TODO: throws a data truncated error
-  //$new_profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = date(DATE_FORMAT_DATETIME);
+  // Membership anniversary - Expects Unix timestamp
+  $new_profile->field_user_anniversary[LANGUAGE_NONE][0]['value'] = time();
 
   profile2_save($new_profile);
 
@@ -375,6 +374,8 @@ function _dosomething_services_user_resource_login($username, $password, $email)
   elseif (!empty($username)) {
     try {
       $return = _user_resource_login($username, $password);
+
+      // Successful login. Append more info to the returned object
       _dosomething_services_add_more_session_info($return);
     }
     catch (Exception $e) {
@@ -401,6 +402,8 @@ function _dosomething_services_user_resource_login($username, $password, $email)
     $account = user_load_by_mail($email);
     if (count($account) > 0 && $account->name) {
       $return = _user_resource_login($account->name, $password);
+
+      // Successful login. Append more info to the returned object
       _dosomething_services_add_more_session_info($return);
     }
     else {
