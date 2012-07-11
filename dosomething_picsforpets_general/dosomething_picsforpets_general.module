@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_picsforpets_general feature.
+ */
+
+include_once 'dosomething_picsforpets_general.features.inc';
