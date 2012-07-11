@@ -1002,6 +1002,17 @@ del {
 #page {
   width: 760px;
   margin: auto;
+  padding: 18px;
+}
+
+#logo {
+  display: inline;
+  float: right;
+}
+
+#name-and-slogan {
+  display: inline;
+  float: left;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
