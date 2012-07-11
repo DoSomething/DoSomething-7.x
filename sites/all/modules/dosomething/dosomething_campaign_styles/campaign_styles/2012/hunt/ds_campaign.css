@@ -380,6 +380,8 @@ div[role="main"] {
   font-family: "din-web-reg";
   font-weight: 500;
   font-size: 15px; }
+  #challenges h3 span, #challenges_open h3 span {
+    color: #d32a1b; }
 #challenges strong, #challenges_open strong {
   font-weight: 500;
   float: right;
@@ -499,25 +501,6 @@ div[role="main"] {
 .team-name-title {
   margin-bottom: 0px !important;
   border: none !important; }
-  .team-name-title .pane-content {
-    font-size: 25px;
-    font-family: din-web, "Trebuchet MS", sans-serif;
-    font-weight: 500;
-    line-height: 30px;
-    text-align: center;
-    color: white;
-    padding: 6px 12px 6px 12px !important;
-    text-shadow: #62130d 0 1px 0;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
-    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: linear-gradient(top, #d32a1b, #a62115 80%);
-    -webkit-border-radius: 5px 5px 0 0;
-    -moz-border-radius: 5px 5px 0 0;
-    -ms-border-radius: 5px 5px 0 0;
-    -o-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0; }
 
 .team-member-list {
   float: right;
@@ -651,6 +634,7 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
     #challenges-webform .field-name-field-webform-pictures #edit-submitted-field-webform-pictures-und {
       width: 60%;
@@ -684,6 +668,7 @@ div[role="main"] {
       background-image: -webkit-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -moz-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -o-linear-gradient(top, #bebfc1, #939398 80%);
+      background-image: -ms-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: linear-gradient(top, #bebfc1, #939398 80%);
       -webkit-border-radius: 7px;
       -moz-border-radius: 7px;
@@ -696,6 +681,7 @@ div[role="main"] {
         background-image: -webkit-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -moz-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -o-linear-gradient(top, #b1b2b5, #79797f 80%);
+        background-image: -ms-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: linear-gradient(top, #b1b2b5, #79797f 80%); }
   #challenges-webform .tabledrag-toggle-weight-wrapper {
     display: none; }
@@ -760,6 +746,7 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -848,6 +835,7 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .photo_ribbon:after {
     width: 0;
@@ -884,6 +872,7 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .points1:after, .points2:after, .points3:after {
     width: 0;
