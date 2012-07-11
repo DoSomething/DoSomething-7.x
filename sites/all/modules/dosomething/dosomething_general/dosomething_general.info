@@ -4,3 +4,4 @@ package = DoSomething
 core = 7.x
 dependencies[] = entity
 dependencies[] = opengraph_meta
+dependencies[] = mailchimp
