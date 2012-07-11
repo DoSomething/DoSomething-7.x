@@ -7,7 +7,7 @@
         picture: $('.pane-node-field-petition-picture img').attr('src').replace('/styles/490x200/public', ''),
         name: $('#page-title').text(),
         caption: 'I just signed a petition at DoSomething.org',
-        description: $('.field-name-field-petition-about p').text()
+        description: $('.pane-node-field-petition-about .field-name-field-petition-about p').text()
       };
 
       $('#petition-fb').click(function () {
