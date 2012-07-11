@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * dosomething_petitions.strongarm.inc
+ */
+
+/**
+ * Implements hook_strongarm().
+ */
+function dosomething_petitions_strongarm() {
+  $export = array();
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_petition';
+  $strongarm->value = array();
+  $export['menu_options_petition'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_petition';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_petition'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_petition';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_petition'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_petition';
+  $strongarm->value = '1';
+  $export['node_preview_petition'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_petition';
+  $strongarm->value = 1;
+  $export['node_submitted_petition'] = $strongarm;
+
+  return $export;
+}

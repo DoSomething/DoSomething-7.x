@@ -35,6 +35,36 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_general_menu() {
+  $items['webform-post-submit-associate/%/%'] = array(
+    'page callback' => 'dosomething_general_webform_associate',
+    'page arguments' => array(1,2),
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+/**
+ * Menu callback to associate a webform submission to a newly created or logged in user
+ */
+function dosomething_general_webform_associate($nid, $sid) {
+  global $user;
+  $day = 60*60*24;
+  $submission = entity_load('webform_submission_entity', array($sid));
+  $submission = array_shift($submission);
+  if ($submission->uid === '0' && (time() - $submission->submitted) < $day) {
+    $submission->uid = $user->uid;
+    entity_save('webform_submission_entity', $submission);
+  }
+
+  $destination = (isset($_GET['destination'])) ? $_GET['destination'] : drupal_get_path_alias("node/$nid");
+  drupal_goto($destination);
+}
+
+/**
  * Implements hook_user_delete().
  */
 function dosomething_general_user_delete($account) {

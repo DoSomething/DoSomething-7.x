@@ -1,0 +1,23 @@
+.panel-row {
+  *zoom: 1; }
+  .panel-row:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.panes-1 .panel-panel {
+  width: 100%; }
+
+.panel-row-top .panel-first {
+  width: 33%;
+  float: left; }
+.panel-row-top .panel-last {
+  width: 65.5%;
+  float: right; }
+
+.panel-row-bottom .panel-first {
+  width: 65.5%;
+  float: left; }
+.panel-row-bottom .panel-last {
+  width: 33%;
+  float: right; }
