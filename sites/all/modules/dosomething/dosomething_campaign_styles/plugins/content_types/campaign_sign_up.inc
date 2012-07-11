@@ -24,7 +24,11 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_render($subty
       ${$res->type} = $res->nid;
     }
 
+    $campaign_entity = array_shift(entity_load($context->entity_type, array($context->etid)));
     $block = (object)module_invoke('webform', 'block_view', 'client-block-'.$campaign_contact_form);
+    if (isset($campaign_entity->field_label_pre_sign[LANGUAGE_NONE][0]['value'])) {
+      $block->title = $campaign_entity->field_label_pre_sign[LANGUAGE_NONE][0]['value'];
+    }
 
     if (user_is_logged_in()) {
       $query = new EntityFieldQuery;
@@ -35,9 +39,11 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_render($subty
         ->execute();
 
       if (!empty($sign_ups)) {
-        $campaign_entity = array_shift(entity_load($context->entity_type, array($context->etid)));
         $block = new stdClass();
         $block->content = $campaign_entity->field_report_back_html[LANGUAGE_NONE][0]['value'];
+        if (isset($campaign_entity->field_label_post_sign[LANGUAGE_NONE][0]['value'])) {
+          $block->title = $campaign_entity->field_label_post_sign[LANGUAGE_NONE][0]['value'];
+        }
       }
 
     }
@@ -60,8 +66,8 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form($fo
 
 /*
 function dosomething_campaign_styles_campaign_sign_up_content_type_edit_form_submit(&$form, &$form_state) {
-  foreach (array('report_back_html') as $key) {
+  foreach (array('pre_sign_up', 'post_sign_up') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
 }
-*/
+ */

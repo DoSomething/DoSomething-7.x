@@ -113,24 +113,24 @@ form .go-button {
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: transparent;
-  margin-right: -7px;
+  margin-right: -5px;
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
     background: white;
     background-image: none;
-    text-align: right;
-    padding-bottom: 10px; }
+    text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu li {
+      line-height: 1.2em; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
-      padding: 15px 10px 0 0;
-      font-size: 20px;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
       font-weight: 600;
       text-transform: uppercase;
       color: black;
-      font-family: "din-web-reg";
-      line-height: 1.2em; }
+      font-family: "din-web-reg"; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
         color: #ec008c;
         text-decoration: none; }
@@ -374,12 +374,6 @@ form .go-button {
 .banner .pane-content img {
   margin: 0; }
 
-#post-sign-up h3 {
-  padding: 20px 15px 15px;
-  text-align: center;
-  font-size: 20px;
-  line-height: 40px; }
-
 .mcommons-webform {
   float: left;
   width: 66%;
@@ -452,8 +446,7 @@ form.webform-client-form {
     margin-bottom: 100px; }
 
 .sign-up {
-  width: 65%;
-  margin: 0 auto; }
+  width: 65%; }
   .sign-up #edit-submitted-field-webform-school-reference,
   .sign-up .field-name-group-audience {
     display: none; }
@@ -464,11 +457,6 @@ form.webform-client-form {
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
-
-.pane-dosomething-login-register-block {
-  width: 500px;
-  margin: 0 auto;
-  border: none !important; }
 
 .gallery-header {
   margin-bottom: 0 !important; }
@@ -494,7 +482,7 @@ form.webform-client-form {
 .mini-gallery .pane-content {
   height: 130px; }
 .mini-gallery ul.jcarousel-list-horizontal {
-  width: 644px !important; }
+  width: 999999px !important; }
   .mini-gallery ul.jcarousel-list-horizontal li {
     width: 118px !important; }
 

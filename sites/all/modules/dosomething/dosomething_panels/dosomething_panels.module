@@ -228,3 +228,33 @@ function dosomething_panels_preprocess_dosomething_panels_landings(&$variables) 
     = $variables['actions_classes']
     = '';
 }
+
+function dosomething_panels_preprocess_dosomething_panels_petitions(&$variables) {
+  $content = $variables['content'];
+
+  $top_row_classes = array();
+  if ($content['top-left']) {
+    $top_row_classes[] = 'top-first';
+  }
+  if ($content['top-right']) {
+    $top_row_classes[] = 'top-second';
+  }
+  $top_row_classes[] = 'panes-' . count($top_row_classes);
+  if ($content['top-left'] && $content['top-right']) {
+    $top_row_classes[] = 'both';
+  }
+  $variables['top_row_classes'] = implode(' ', $top_row_classes);
+
+  $bottom_row_classes = array();
+  if ($content['bottom-left']) {
+    $bottom_row_classes[] = 'bottom-first';
+  }
+  if ($content['bottom-right']) {
+    $bottom_row_classes[] = 'bottom-second';
+  }
+  $bottom_row_classes[] = 'panes-' . count($bottom_row_classes);
+  if ($content['bottom-left'] && $content['bottom-right']) {
+    $bottom_row_classes[] = 'both';
+  }
+  $variables['bottom_row_classes'] = implode(' ', $bottom_row_classes);
+}

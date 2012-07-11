@@ -1,0 +1,44 @@
+<?php
+
+function dosomething_petitions_petition_share_ctools_content_types() {
+  return array(
+    'single' => TRUE,
+    'title' => t('Petition Sharing'),
+    'description' => t('Petition share widget.'),
+    'category' => t('DoSomething'),
+  );
+}
+
+function dosomething_petitions_petition_share_content_type_render($subtype, $conf, $panel_args, $context) {
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  $node = menu_get_object();
+
+  $content = array();
+  $content['fb'] = array(
+    '#markup' => l('Share on Facebook', '', array(
+      'attributes' => array(
+        'id' => 'petition-fb',
+      ),
+      'fragment' => ' ',
+      'external' => TRUE,
+    )),
+  );
+
+  $content['form'] = drupal_get_form('dosomething_petitions_email_form', $node->nid);
+
+  $content['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'dosomething_petitions') . '/fb.js',
+    ),
+  );
+
+  $block = new StdClass();
+  $block->title = 'Share this Petition';
+  $block->content = $content;
+  return $block;
+}
+
+function dosomething_petitions_petition_share_content_type_admin_title($subtype, $conf, $context) {
+  return t('Share petition');
+}
+

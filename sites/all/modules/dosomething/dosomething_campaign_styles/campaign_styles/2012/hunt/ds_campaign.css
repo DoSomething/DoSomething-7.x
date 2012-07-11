@@ -380,6 +380,8 @@ div[role="main"] {
   font-family: "din-web-reg";
   font-weight: 500;
   font-size: 15px; }
+  #challenges h3 span, #challenges_open h3 span {
+    color: #d32a1b; }
 #challenges strong, #challenges_open strong {
   font-weight: 500;
   float: right;
@@ -415,14 +417,15 @@ div[role="main"] {
 .pane-teams-team-management {
   border: none !important; }
   .pane-teams-team-management .pane-content {
-    height: 185px; }
+    height: 200px; }
     .pane-teams-team-management .pane-content .team-add-members-wrapper {
       border: 2px dotted #d32a1b;
       float: left;
-      width: 63%;
+      width: 59%;
       font-size: 14px;
       padding: 10px 15px;
-      margin: 0; }
+      margin: 0;
+      height: 170px; }
   .pane-teams-team-management #teams-add-member-form {
     height: 40px;
     margin: 0 !important; }
@@ -469,38 +472,41 @@ div[role="main"] {
   -o-border-radius: 3px;
   border-radius: 3px; }
 #teams-add-member-form .form-item-friend label {
-  margin: 5px 30px 0 0; }
+  margin: 5px 20px 0 0; }
 #teams-add-member-form .form-submit {
   float: right; }
+
+#main-wrapper .team-name-title .pane-content,
+#main-wrapper .pane-team-progress .pane-title {
+  font-size: 25px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: center;
+  color: white;
+  padding: 6px 12px 6px 12px !important;
+  text-shadow: #62130d 0 1px 0;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
+  background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: linear-gradient(top, #d32a1b, #a62115 80%);
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -ms-border-radius: 5px 5px 0 0;
+  -o-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0; }
 
 .team-name-title {
   margin-bottom: 0px !important;
   border: none !important; }
-  .team-name-title .pane-content {
-    font-size: 25px;
-    font-family: din-web, "Trebuchet MS", sans-serif;
-    font-weight: 500;
-    line-height: 30px;
-    text-align: center;
-    color: white;
-    padding: 6px 12px 6px 12px !important;
-    text-shadow: #62130d 0 1px 0;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d32a1b), color-stop(80%, #a62115));
-    background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: linear-gradient(top, #d32a1b, #a62115 80%);
-    -webkit-border-radius: 5px 5px 0 0;
-    -moz-border-radius: 5px 5px 0 0;
-    -ms-border-radius: 5px 5px 0 0;
-    -o-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0; }
 
 .team-member-list {
   float: right;
-  width: 35%;
+  width: 39%;
   border: 2px dotted #d32a1b;
-  height: 151px;
+  height: 170px;
   padding: 10px 15px;
   overflow-y: scroll; }
   .team-member-list ul li {
@@ -526,7 +532,7 @@ div[role="main"] {
     margin: 0 15px; }
 
 #teams-notification-area {
-  font-size: 13px;
+  font-size: 11px;
   text-align: center; }
 
 .pane-teams-team-management {
@@ -541,12 +547,9 @@ div[role="main"] {
   #teams-remove-members:after {
     content: " ]"; }
 
-#team-pane .pane-content, #progress-pane .pane-content {
+#team-pane .pane-content, .pane-team-progress .pane-content {
   border-left: 1px solid #bbbbbb;
-  border-right: 1px solid #bbbbbb; }
-
-#progress-pane .pane-content {
-  margin: -25px 0 0 0;
+  border-right: 1px solid #bbbbbb;
   border-bottom: 1px solid #bbbbbb;
   -webkit-border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
@@ -602,7 +605,9 @@ div[role="main"] {
   float: left;
   width: 39%;
   padding: 10px;
-  overflow: scroll; }
+  overflow-y: scroll;
+  max-height: 300px;
+  min-height: 93px; }
 
 .field-name-group-audience {
   display: none; }
@@ -629,6 +634,7 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
     #challenges-webform .field-name-field-webform-pictures #edit-submitted-field-webform-pictures-und {
       width: 60%;
@@ -662,6 +668,7 @@ div[role="main"] {
       background-image: -webkit-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -moz-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -o-linear-gradient(top, #bebfc1, #939398 80%);
+      background-image: -ms-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: linear-gradient(top, #bebfc1, #939398 80%);
       -webkit-border-radius: 7px;
       -moz-border-radius: 7px;
@@ -674,6 +681,7 @@ div[role="main"] {
         background-image: -webkit-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -moz-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -o-linear-gradient(top, #b1b2b5, #79797f 80%);
+        background-image: -ms-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: linear-gradient(top, #b1b2b5, #79797f 80%); }
   #challenges-webform .tabledrag-toggle-weight-wrapper {
     display: none; }
@@ -738,6 +746,7 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -826,6 +835,7 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .photo_ribbon:after {
     width: 0;
@@ -862,6 +872,7 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
+  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .points1:after, .points2:after, .points3:after {
     width: 0;

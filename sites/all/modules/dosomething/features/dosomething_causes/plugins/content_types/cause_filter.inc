@@ -42,15 +42,17 @@ function dosomething_causes_cause_filter_content_type_render($subtype, $conf, $p
 
   $tree = taxonomy_get_tree($vocabulary->vid, $tid, 1, true);
   $term = end(entity_load('taxonomy_term', array($tid)));
-  if (!isset($term->field_cause_master_parent[LANGUAGE_NONE][0]['tid'])) {
+  
+if (!isset($term->field_cause_master_parent[LANGUAGE_NONE][0]['tid'])) {
     while (count($tree) == 0) {
       $tid = end(taxonomy_get_parents($tid))->tid;
       $tree = taxonomy_get_tree($vocabulary->vid, $tid, 1, true);
     }
   }
   else {
-    $tree = taxonomy_get_tree($vocabulary->vid, $term->field_cause_master_parent[LANGUAGE_NONE][0]['tid']);
-  }
+   while (count($tree) == 0) {
+    $tree = taxonomy_get_tree($vocabulary->vid, $term->field_cause_master_parent[LANGUAGE_NONE][0]['tid'], 1, true);
+  } }
 
   $params = array(
     'links' => array(),
@@ -61,24 +63,26 @@ function dosomething_causes_cause_filter_content_type_render($subtype, $conf, $p
   );
 
   $links = array();
-  foreach ($tree as $term) {
+  foreach ($tree as $trerm)
+  {
     $img = theme('image_style', array(
       'style_name' => 'cause_vertical',
-      'path' => $term->field_causes_image[LANGUAGE_NONE][0]['uri'],
-      'alt' => $term->name,
+      'path' => $trerm->field_causes_image[LANGUAGE_NONE][0]['uri'],
+      'alt' => $trerm->name,
     ));
+
     // add the vertical label
-    $img .= '<div class="term-label">'.$term->name.'</div>';
+    $img .= '<div class="term-label">' . $trerm->name . '</div>';
 
     // add the description box
-    $title = '<h2>'.$term->name.'</h2>';
-    $img .= '<div class="term-description">'.$title.$term->description.'</div>';
-    $params['links']['taxonomy-term-'.$term->tid] = array(
+    $title = '<h2>' . $trerm->name . '</h2>';
+    $img .= '<div class="term-description">' . $title . $trerm->description . '</div>';
+    $params['links']['taxonomy-term-' . $trerm->tid] = array(
       'title' => $img,
-      'href' => 'taxonomy/term/'.$term->tid,
+      'href' => 'taxonomy/term/'.$trerm->tid,
       'html' => true,
       'attributes' => array(
-        'data-tid' => $term->tid,
+        'data-tid' => $trerm->tid,
       ),
     );
   }

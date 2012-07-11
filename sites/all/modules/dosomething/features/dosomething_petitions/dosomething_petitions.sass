@@ -1,0 +1,148 @@
+@import "compass/css3/box-shadow"
+@import "compass/utilities/general/clearfix"
+@mixin ds-font
+  font-family: din-web, HelveticaNeue-CondensedBold, 'Arial Narrow', Arial, 'Trebuchet MS', sans-serif
+@mixin placeholder
+  color: #1E1D1C
+
+.page-node .content
+  .pane-content
+    img
+      margin: 0
+      +box-shadow(none)
+      margin-right: 1em
+
+.panel-row
+  margin-bottom: 2em
+.panel-row-top .pane-1
+  margin-top: 1em
+  float: right
+
+.panes-2 .panel-second h2.pane-title
+  text-align: left
+
+.panel-row-top.panes-2 .panel-second, .panel-row-bottom.panes-2 .panel-first
+  h2.pane-title
+    line-height: 1em
+    margin-bottom: 0
+    background: none
+    padding: 0
+    color: black
+  p
+    margin: 0
+
+.panel-row-bottom.panes-2 .panel-first h2.pane-title
+  border-bottom: 1px solid white 
+  +box-shadow(#D4D2D1 0 1px 0 0)
+  margin-bottom: .5em
+  padding-bottom: .5em
+
+.pane-node-field-petition-target, .pane-node-field-petition-about
+  margin-top: 1em
+  +ds-font
+  font-size: 16px
+
+.panel-row-top .pane-custom
+  +ds-font
+  font-size: 16px
+  color: #808080
+
+.pane-node-field-petition-target
+  margin-bottom: .5em
+  padding-bottom: .5em
+  border-bottom: 1px solid white
+  +box-shadow(#D4D2D1 0 1px 0 0)
+
+
+.webform-client-form, .horizontal-tabs fieldset.horizontal-tabs-pane, .pane-petition-share .pane-content
+  background: white
+  +box-shadow(rgba(75, 71, 68, 0.35) 0 0 12px)
+  padding: 12px
+
+.pane-petition-share
+  .pane-content
+    text-align: center
+  .form-item
+    margin-bottom: .5em
+  .form-submit
+    margin-top: 1em
+
+// Separate rule for Firefox.
+// Separate rule for IE, too.
+// Cannot stack with WebKit's.
+.webform-client-form ::-webkit-input-placeholder
+  +placeholder
+
+.webform-client-form input:-moz-placeholder,
+.webform-client-form textarea:-moz-placeholder
+  +placeholder
+
+.webform-client-form input.placeholder-text,
+.webform-client-form textarea.placeholder-text
+  +placeholder
+
+div.horizontal-tabs
+  margin: 0
+  padding: 0
+  border: 0
+
+.horizontal-tabs ul.horizontal-tabs-list
+  border-right: none
+  background: transparent
+  width: 100%
+  li
+    &:last-child
+      border-right: none
+    a:hover
+      background: transparent
+    &.selected
+      background: transparent
+      a strong
+        color: #888
+  .horizontal-tab-button
+    width: 33.3%
+    text-align: center
+    text-transform: uppercase
+    line-height: 1.5em
+    +ds-font
+    font-size: 21px
+    strong
+      font-weight: 500
+    &:focus
+      outline: none
+
+.pane-petition-progress
+  clear: both
+  margin-bottom: 1em
+  #signatures-text
+    +ds-font
+    +clearfix
+    font-size: 21px
+    font-weight: bold
+    font-weight: 500
+    #signatures-count
+      float: right
+    #signatures-label
+      float: left
+  #progress-bar-wrapper
+    margin-top: .5em
+    height: 12px
+    background: white
+    clear: both
+    #progress-bar
+      height: 100%
+      background: #502862
+
+.pane-petition-signatures
+  border: 2px solid white
+  .pane-content
+    padding: 0 12px
+
+#petition-fb
+  color: transparent
+  background: url('fb_share.png') center center
+  margin: 0 auto 2em
+  text-indent: -9999px
+  display: block
+  height: 32px
+  width: 185px

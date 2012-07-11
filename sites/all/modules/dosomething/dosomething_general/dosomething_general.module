@@ -35,6 +35,36 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_general_menu() {
+  $items['webform-post-submit-associate/%/%'] = array(
+    'page callback' => 'dosomething_general_webform_associate',
+    'page arguments' => array(1,2),
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+/**
+ * Menu callback to associate a webform submission to a newly created or logged in user
+ */
+function dosomething_general_webform_associate($nid, $sid) {
+  global $user;
+  $day = 60*60*24;
+  $submission = entity_load('webform_submission_entity', array($sid));
+  $submission = array_shift($submission);
+  if ($submission->uid === '0' && (time() - $submission->submitted) < $day) {
+    $submission->uid = $user->uid;
+    entity_save('webform_submission_entity', $submission);
+  }
+
+  $destination = (isset($_GET['destination'])) ? $_GET['destination'] : drupal_get_path_alias("node/$nid");
+  drupal_goto($destination);
+}
+
+/**
  * Implements hook_user_delete().
  */
 function dosomething_general_user_delete($account) {
@@ -126,7 +156,8 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
   $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
   $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
-
+  $mailchimp_group = isset($form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] : NULL;
+  
   $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
 
@@ -137,6 +168,10 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   if (!empty($inf_action) && !empty($email)) {
     dosomething_general_infusionsoft_subscribe($email, $inf_action);
   }
+  if (!empty($mailchimp_group) && !empty($email)) {
+    dosomething_general_mailchimp_subscribe($email, $mailchimp_group);
+  }
+
 }
 
 /**
@@ -198,6 +233,52 @@ function dosomething_general_user_presave(&$edit, $account, $category) {
   if (isset($edit['pass'])) {
     drupal_set_message(t('Your password has been updated.'), 'status');
   }
+}
+
+/**
+ * Subscribe the email to the mailchimp DoSomething Members List.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $groupName
+ *   The campaign name that the email is to be subscribed to.
+ * @return 
+ *   Boolean indicating success.
+ */
+function dosomething_general_mailchimp_subscribe($email, $groupName) {
+  /* Our function */
+  $mcapi = mailchimp_get_api_object();
+  // Catching function
+  // Hardcoding the list to the dosomething members
+  $listid = 'f2fab1dfd4';
+  
+  // We do not want them to have to know the grouping id so we will build 
+  // the table to look it up by using the group name specified.
+  $cid = "dosomething_general_mailchimp_group_mapping_$listid";
+  $cache = cache_get($cid);
+  if (!empty($cache->data)) {
+    $groupingIdByGroupName = $cache->data;
+  }
+  else {
+    $groupingIdByGroupName = array();
+    $groupings = $mcapi->listInterestGroupings($listid);
+    foreach ($groupings as $grouping) {  
+      foreach ($grouping['groups'] as $group) {
+        // If two groupnames are the same in different groupings 
+        // then it may pick the wrong group.
+        $groupingIdByGroupName[$group['name']] = $grouping['id']; 
+      }  
+    }
+    cache_set($cid, $groupingIdByGroupName);
+  }
+  
+  // TODO: Error Handling for groupname, still add the user if error occurs.  
+  $mergeVars = array(
+    'GROUPINGS' => array(
+      array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),     
+    )
+  );
+  return $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE,FALSE);
 }
 
 /**
