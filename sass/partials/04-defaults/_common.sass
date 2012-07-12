@@ -23,7 +23,10 @@
 body
   font-family: $font-body
   color: $text-color
-  background: $background-color
+  // background: $background-color
+  // @extend %blue-lt-gradient-bg
+  background-repeat: no-repeat
+  @extend %blue-lt-gradient-bg
 
 @if $pixel-normalize
   +pixel-normalize

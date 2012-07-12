@@ -516,14 +516,28 @@ pre, code, kbd, tt {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: sans-serif;
+  font-family: "Arial Narrow", Arial, sans-serif;
 }
 
 /* Only use the fancy ampersand in <h#> tags */
 h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-size: 1em;
-  font-family: Georgia, serif;
+  font-family: "Arial Narrow", Arial, sans-serif;
   font-style: italic;
+}
+
+body {
+  background: #d6eef3;
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZDZlZWYzIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-radial-gradient(center, ellipse cover, white 0%, #d6eef3 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, white), color-stop(100%, #d6eef3));
+  background: -webkit-radial-gradient(center, ellipse cover, white 0%, #d6eef3 100%);
+  background: -o-radial-gradient(center, ellipse cover, white 0%, #d6eef3 100%);
+  background: -ms-radial-gradient(center, ellipse cover, white 0%, #d6eef3 100%);
+  background: radial-gradient(ellipse at center, #ffffff 0%, #d6eef3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#d6eef3',GradientType=1 );
+  background-color: #d6eef3;
 }
 
 /* import font files using @font-face, if not using a service such as typekit */
@@ -542,9 +556,9 @@ html {
 }
 
 body {
-  font-family: Georgia, serif;
+  font-family: "Arial Narrow", Arial, sans-serif;
   color: black;
-  background: #d4edf3;
+  background-repeat: no-repeat;
 }
 
 @media screen and (-webkit-device-pixel-ratio: 1) and (device-width: 1024px) and (max-device-height: 600px) and (orientation: landscape), screen and (-webkit-device-pixel-ratio: 1) and (device-width: 600px) and (max-device-height: 1024px) and (orientation: portrait), screen and (-o-device-pixel-ratio: 1) and (device-width: 1024px) and (max-device-height: 600px) and (orientation: landscape), screen and (-o-device-pixel-ratio: 1) and (device-width: 600px) and (max-device-height: 1024px) and (orientation: portrait), screen and (device-pixel-ratio: 1) and (device-width: 1024px) and (max-device-height: 600px) and (orientation: landscape), screen and (device-pixel-ratio: 1) and (device-width: 600px) and (max-device-height: 1024px) and (orientation: portrait) {
@@ -580,10 +594,10 @@ a:visited {
   color: #1b75bb;
 }
 a:hover {
-  color: #bbbdbf;
+  color: #e6e7e8;
 }
 a:active {
-  color: #bbbdbf;
+  color: #e6e7e8;
 }
 
 p {
@@ -1001,8 +1015,14 @@ del {
 
 #page {
   width: 760px;
+  min-height: 600px;
   margin: auto;
   padding: 18px;
+}
+
+.front #page {
+  background: #d6eef3 url(../images/pitbull-bg.jpg) no-repeat;
+  background-position: 0 -350px;
 }
 
 #logo {
@@ -1013,6 +1033,12 @@ del {
 #name-and-slogan {
   display: inline;
   float: left;
+}
+
+.mission-text {
+  background: white;
+  width: 100%;
+  text-transform: uppercase;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
@@ -1348,7 +1374,7 @@ header aside {
   font-size: 1em;
   line-height: 1.5em;
   text-transform: uppercase;
-  font-family: sans-serif;
+  font-family: "Arial Narrow", Arial, sans-serif;
 }
 
 .colors ul li {
@@ -1395,7 +1421,7 @@ header aside {
   line-height: 1;
 }
 .styletile-1 .text-examples .logos h1.opt-1:before {
-  content: counter(logos) " - sans-serif";
+  content: counter(logos) ' - "Arial Narrow", Arial, sans-serif';
 }
 .styletile-1 .text-examples .serif {
   font-family: Georgia, serif;
@@ -1404,10 +1430,10 @@ header aside {
   content: " - Georgia, serif";
 }
 .styletile-1 .text-examples .sans, .styletile-1 .text-examples header aside, header .styletile-1 .text-examples aside {
-  font-family: sans-serif;
+  font-family: "Arial Narrow", Arial, sans-serif;
 }
 .styletile-1 .text-examples .sans .label:after, .styletile-1 .text-examples header aside .label:after, header .styletile-1 .text-examples aside .label:after, .styletile-1 .text-examples .sans .logos h1:after:before, .styletile-1 .text-examples .logos .sans h1:after:before, .styletile-1 .text-examples header aside .logos h1:after:before, .styletile-1 .text-examples .logos header aside h1:after:before, header .styletile-1 .text-examples aside .logos h1:after:before, header .styletile-1 .text-examples .logos aside h1:after:before {
-  content: " - sans-serif";
+  content: ' - "Arial Narrow", Arial, sans-serif';
 }
 
 /* graphic examples */
