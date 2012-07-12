@@ -84,6 +84,7 @@
 .panel-1col
   width: 720px
   margin: 0 auto
+  margin-bottom: 150px
 
 #find-a-shelter
   background: rgba($white, 0.75) url(../images/find-a-shelter.png) no-repeat
@@ -97,5 +98,17 @@
   background: rgba($white, 0.75) url(../images/submit-your-shelter.png) no-repeat
   background-position: 50% 74px
 
+.links
+  background: $white url(../images/links-5k-icon.png) no-repeat
+  +horizontal-list($padding: 4px, $direction: left)
+  text-transform: uppercase
+  font-size: 20px
+  line-height: 1.5
+  text-align: center
+  +clearfix
+  li
+    width: 190px
+    a
+      +link-colors($pfp-gray, $pfp-gray-lt, $pfp-gray-lt, $pfp-gray, false)
 
 

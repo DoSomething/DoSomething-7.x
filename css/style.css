@@ -1132,6 +1132,7 @@ del {
 .panel-1col {
   width: 720px;
   margin: 0 auto;
+  margin-bottom: 150px;
 }
 
 #find-a-shelter {
@@ -1147,6 +1148,55 @@ del {
 #submit-your-shelter-pic {
   background: rgba(255, 255, 255, 0.75) url(../images/submit-your-shelter.png) no-repeat;
   background-position: 50% 74px;
+}
+
+.links {
+  background: white url(../images/links-5k-icon.png) no-repeat;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  overflow: hidden;
+  *zoom: 1;
+}
+.links li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.links li:first-child, .links li.first {
+  padding-left: 0;
+}
+.links li:last-child {
+  padding-right: 0;
+}
+.links li.last {
+  padding-right: 0;
+}
+.links li {
+  width: 190px;
+}
+.links li a {
+  color: #a6a8ab;
+}
+.links li a:visited {
+  color: #a6a8ab;
+}
+.links li a:hover {
+  color: #e6e7e8;
+}
+.links li a:active {
+  color: #e6e7e8;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
