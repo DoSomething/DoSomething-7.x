@@ -13,6 +13,7 @@
   #page
     background: $background-color url(../images/pitbull-bg.jpg) no-repeat
     background-position: 0 -350px
+    padding-bottom: 12px
 
 #logo
   +float-right
@@ -30,11 +31,33 @@
   margin-top: 225px
 
 #gallery-link
-  background: $white
+  // background: $white
   +float-right
   color: $pfp-red
   text-transform: uppercase
   font-size: 24px
-  padding-right: 40px
+  line-height: 1.25
 
+.picsforpets-scholarship
+  +replace-text-with-dimensions('5k-scholarship.png')
+  +float-left
+  z-index: 1000px
+  position: relative
+
+.picsforpets-gallery
+  background: $white
+  padding-right: 40px
+  padding-left: 24px
+  +float-left
+  margin-top: 24px
+  margin-left: -12px
+  z-index: -1
+
+#ds-logo
+  +replace-text-with-dimensions('ds-logo.png')
+  +float-left
+  margin: 12px
+
+#logo
+  margin: 6px
 

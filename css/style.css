@@ -1014,6 +1014,7 @@ del {
 .front #page {
   background: #d6eef3 url(../images/pitbull-bg.jpg) no-repeat;
   background-position: 0 -350px;
+  padding-bottom: 12px;
 }
 
 #logo {
@@ -1037,13 +1038,56 @@ del {
 }
 
 #gallery-link {
-  background: white;
   display: inline;
   float: right;
   color: #ec1c24;
   text-transform: uppercase;
   font-size: 24px;
+  line-height: 1.25;
+}
+
+.picsforpets-scholarship {
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-image: url('../images/5k-scholarship.png?1342119257');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 95px;
+  height: 94px;
+  display: inline;
+  float: left;
+  z-index: 1000px;
+  position: relative;
+}
+
+.picsforpets-gallery {
+  background: white;
   padding-right: 40px;
+  padding-left: 24px;
+  display: inline;
+  float: left;
+  margin-top: 24px;
+  margin-left: -12px;
+  z-index: -1;
+}
+
+#ds-logo {
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-image: url('../images/ds-logo.png?1342119832');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 145px;
+  height: 114px;
+  display: inline;
+  float: left;
+  margin: 12px;
+}
+
+#logo {
+  margin: 6px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
