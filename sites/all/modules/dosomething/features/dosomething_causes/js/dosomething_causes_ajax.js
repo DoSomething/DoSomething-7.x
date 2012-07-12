@@ -67,6 +67,7 @@
   }
 
   function doClick(clicked, reverse) {
+    if ($('#temp-cause-name')) $('#temp-cause-name').remove();
     $('html,body').animate({scrollTop: $('h1.title').offset().top}, 'fast');
     if (!ajaxing()) {
       $('.pane-current-campaigns-panel-pane-1 .pane-content, .pane-project-related-displays-panel-pane-3 .pane-content, .pane-polls-panel-pane-1 .pane-content')
