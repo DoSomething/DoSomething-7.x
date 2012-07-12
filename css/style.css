@@ -1105,6 +1105,50 @@ del {
   margin: 6px;
 }
 
+.white-block {
+  background: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  text-transform: uppercase;
+  height: 200px;
+  width: 200px;
+  margin: 18px;
+  display: inline;
+  float: left;
+  margin-top: 100px;
+  font-size: 22px;
+  padding: 0 12px 0 12px;
+  border: 1px solid #e6e7e8;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+}
+.white-block p {
+  border-bottom: 1px solid black;
+  height: 50px;
+}
+
+.panel-1col {
+  width: 720px;
+  margin: 0 auto;
+}
+
+#find-a-shelter {
+  background: rgba(255, 255, 255, 0.75) url(../images/find-a-shelter.png) no-repeat;
+  background-position: 50% 80px;
+}
+
+#get-the-guide {
+  background: rgba(255, 255, 255, 0.75) url(../images/get-the-guide.png) no-repeat;
+  background-position: 50% 85px;
+}
+
+#submit-your-shelter-pic {
+  background: rgba(255, 255, 255, 0.75) url(../images/submit-your-shelter.png) no-repeat;
+  background-position: 50% 74px;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
