@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  * Default theme implementation to display a single Drupal page.
@@ -10,6 +8,8 @@
   <div id="page">
 
     <header role="banner" class="clearfix">
+
+      <div id="ds-logo">Do Something</div>
 
       <?php if ($logo): ?>
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
@@ -49,7 +49,7 @@
     <?php print $messages; ?>
 
     <div id="main-wrapper" class="clearfix">
-      
+
       <?php print render($page['sidebar_first']); ?>
 
       <div role="main">
