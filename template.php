@@ -32,6 +32,7 @@ function picsforpets_preprocess_page(&$variables) {
     $variables['page']['footer']['picsforpets_menu'] = array(
       '#theme' => 'links',
       '#links' => $links,
+      '#attributes' => array('class' => array('picsforpets-menu')),
     );
     $variables['page']['footer']['picsforpets_furtographer'] = drupal_get_form('dosomething_picsforpets_furtographer_dialog');
   }
