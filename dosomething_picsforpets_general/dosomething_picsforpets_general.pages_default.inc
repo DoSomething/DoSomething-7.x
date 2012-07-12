@@ -16,7 +16,10 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
   $page->admin_title = 'Lets Get Started';
   $page->admin_description = '';
   $page->path = 'lets-get-started';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -230,7 +233,10 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'gallery-link',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
