@@ -1,34 +1,31 @@
 #cause-filter-wrapper {
-  overflow: hidden;
-  float: left;
-  width: 650px;
-  height: 325px;
+	overflow:hidden;
+	float:left;
+	width:650px;
+	height:325px;
 }
 
 #cause-filter {
-  position: relative;
-  width: 900px;
-  height: 325px;
-  padding: 0;
-}
-
-#cause-filter li.active {
-  width: 220px;
+	position: relative;
+	width:900px;
+	height:325px;
+	padding:0;
 }
 
 #cause-filter li {
-  position: absolute;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 86px;
-  overflow: hidden;
-  float: left;
-  position: relative;
+	position: absolute;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	width:86px;
+	overflow:hidden;
+	float:left;
+	position:relative;
 }
 
-#cause-filter a:hover { text-decoration: none; }
-
+#cause-filter li .term-description { display: none; }
+#cause-filter li.active { width:220px; }
+#cause-filter a:hover { text-decoration:none; }
 #cause-filter li img {
 	position: absolute;
 	z-index: 0;
@@ -37,26 +34,21 @@
 	margin-left:-67px;
 }
 
-#cause-filter li.active img {
-  margin-left: 0;
-}
-
-#cause-filter li .term-description { display: none; }
-
+#cause-filter li.active img { margin-left:0; }
 #cause-filter li.active .term-description {
-  position: absolute;
-  display: block;
-  bottom: 0;
-  left: 0;
-  height: 110px;
-  width: 220px;
-  background: #502862;
-  background: rgba(80,40,98,.75);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50286275,endColorstr=#50286275);
-  color: white;
-  text-align: center;
-  padding: 12px 18px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	height:110px;
+	width:220px;
+	background:#502862;
+	background:rgba(80,40,98,.75);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50286275,endColorstr=#50286275);
+	color:white;
+	text-align:center;
+	padding:12px 18px;
 }
+
 
 #cause-filter li .term-label {
 	position: relative;
@@ -76,28 +68,29 @@
 	-moz-transform:rotate(-90deg);
 	-o-transform:rotate(-90deg);
 	-ms-transform:rotate(-90deg);
+	text-align:center;
 	font-size:30px;
 	font-family:din-web,"Trebuchet MS",Arial;
 	font-weight:500;
 	line-height:1em;
 }
 
-#cause-filter li.active .term-label { visibility: hidden; }
-
+#cause-filter li.active .term-label { visibility:hidden; }
+#cause-filter li.active .term-description { display: block; }
 #cause-filter h2 {
-  font-size: 18px;
-  margin-bottom: 4px;
-  color: white;
-  font-weight: 500;
+	font-size:18px;
+	margin-bottom:4px;
+	color:white;
+	font-weight:500;
 }
 
 .cause-scroller-arrow {
-  float: left;
-  margin-top: 130px;
-  cursor: pointer;
+	float:left;
+	margin-top:130px;
+	cursor:pointer;
 }
 
 #cause-counter {
-  float: right;
-  padding: 10px;
+	float:right;
+	padding:10px;
 }
