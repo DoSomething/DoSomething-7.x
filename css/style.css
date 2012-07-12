@@ -625,6 +625,18 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 
+h1.title {
+  border-bottom: 1px solid black;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 40px;
+  width: 430px;
+  margin: 0 auto;
+  margin-top: -124px;
+  margin-bottom: 48px;
+}
+
 /* Images -------------------------------------------------------------- */
 img {
   vertical-align: text-bottom;
@@ -1007,12 +1019,13 @@ del {
 
 #page {
   width: 760px;
-  min-height: 600px;
+  height: 800px;
   margin: auto;
+  background: #d6eef3 url(../images/bg.png) no-repeat;
 }
 
 .front #page {
-  background: #d6eef3 url(../images/pitbull-bg.jpg) no-repeat;
+  background: #b8e3ea url(../images/pitbull-bg.jpg) no-repeat;
   background-position: 0 -350px;
   padding-bottom: 12px;
 }
@@ -1025,6 +1038,10 @@ del {
 #name-and-slogan {
   display: inline;
   float: left;
+}
+
+#content {
+  clear: both;
 }
 
 .mission-text {
@@ -1057,7 +1074,6 @@ del {
   height: 94px;
   display: inline;
   float: left;
-  z-index: 1000px;
   position: relative;
 }
 
@@ -1067,9 +1083,8 @@ del {
   padding-left: 24px;
   display: inline;
   float: left;
-  margin-top: 24px;
+  margin-top: 30px;
   margin-left: -12px;
-  z-index: -1;
 }
 
 #ds-logo {

@@ -42,10 +42,6 @@
       </nav> <!-- /nav -->
     <?php endif; ?>
 
-    <?php if ($breadcrumb): ?>
-      <nav id="breadcrumb"><?php print $breadcrumb; ?></nav>
-    <?php endif; ?>
-
     <?php print $messages; ?>
 
     <div id="main-wrapper" class="clearfix">
