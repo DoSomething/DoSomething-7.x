@@ -15,6 +15,13 @@ function dosomething_fb_apps_ctools_plugin_api() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function dosomething_fb_apps_views_api() {
+  return array("version" => "3.0");
+}
+
+/**
  * Implements hook_node_info().
  */
 function dosomething_fb_apps_node_info() {
