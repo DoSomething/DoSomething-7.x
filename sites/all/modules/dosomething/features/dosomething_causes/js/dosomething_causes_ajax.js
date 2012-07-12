@@ -94,7 +94,11 @@
     if (!ajaxing()) {
       var pattern = /taxonomy-term-[0-9]+/ig;
       var result = pattern.exec(clicked.parent().attr('class'));
-      history.pushState({term: result}, 'Issue', clicked.attr('href'));
+      var msie = /*@cc_on!@*/0;
+      if (!msie)
+      {
+      	history.pushState({term: result}, 'Issue', clicked.attr('href'));
+      }
     }
   }
 

@@ -287,6 +287,12 @@ function _dosomething_services_user_resource_create($account) {
   else if (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
     return _dosomething_services_form_error(t('Birthday is required.'), 406);
   }
+  else if (empty($account['profile_main']['field_user_first_name'][LANGUAGE_NONE][0]['value'])) {
+    return _dosomething_services_form_error(t('First Name is required.'), 406);
+  }
+  else if (empty($account['profile_main']['field_user_last_name'][LANGUAGE_NONE][0]['value'])) {
+    return _dosomething_services_form_error(t('Last Name is required.'), 406);
+  }
 
   // Find user by name or by mail
   $old_user = user_load_by_name($account['name']);
