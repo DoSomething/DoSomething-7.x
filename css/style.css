@@ -1151,7 +1151,6 @@ del {
 }
 
 .picsforpets-menu {
-  background: white url(../images/links-5k-icon.png) no-repeat;
   margin: 0;
   padding: 0;
   border: 0;
@@ -1163,6 +1162,9 @@ del {
   text-align: center;
   overflow: hidden;
   *zoom: 1;
+  height: 54px;
+  padding-top: 12px;
+  padding-bottom: 14px;
 }
 .picsforpets-menu li {
   list-style-image: none;
@@ -1184,6 +1186,7 @@ del {
   padding-right: 0;
 }
 .picsforpets-menu li {
+  background: white;
   width: 190px;
 }
 .picsforpets-menu li a {
@@ -1197,6 +1200,17 @@ del {
 }
 .picsforpets-menu li a:active {
   color: #e6e7e8;
+}
+
+a.footer-furtography {
+  background: url(../images/links-5k-icon.png) no-repeat;
+  padding-left: 60px;
+  background-position: -4px -4px;
+  overflow: hidden;
+  *zoom: 1;
+  height: 75px;
+  padding-top: 12px;
+  padding-bottom: 24px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */

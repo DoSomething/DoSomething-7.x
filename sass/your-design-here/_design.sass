@@ -99,16 +99,28 @@
   background-position: 50% 74px
 
 .picsforpets-menu
-  background: $white url(../images/links-5k-icon.png) no-repeat
   +horizontal-list($padding: 4px, $direction: left)
   text-transform: uppercase
   font-size: 20px
   line-height: 1.5
   text-align: center
   +clearfix
+  height: 54px
+  padding-top: 12px
+  padding-bottom: 14px
   li
+    background: $white
     width: 190px
+    // height: 75px
     a
       +link-colors($pfp-gray, $pfp-gray-lt, $pfp-gray-lt, $pfp-gray, false)
 
+a.footer-furtography
+  background: url(../images/links-5k-icon.png) no-repeat
+  padding-left: 60px
+  background-position: -4px -4px
+  +clearfix
+  height: 75px
+  padding-top: 12px
+  padding-bottom: 24px
 
