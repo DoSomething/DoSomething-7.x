@@ -571,8 +571,8 @@ function dosomething_user_my_somethings_campaign_report_backs_complete($uid) {
   return db_query("SELECT o.etid AS campaign_entity_id, o.label AS campaign_title
       FROM {webform_submissions} w
       INNER JOIN {node} n ON w.nid = n.nid
-      LEFT JOIN {og_membership} om ON om.etid = n.nid AND om.entity_type = 'node'
-      LEFT JOIN {og} o ON o.gid = om.gid
+      INNER JOIN {og_membership} om ON om.etid = n.nid AND om.entity_type = 'node'
+      INNER JOIN {og} o ON o.gid = om.gid
       WHERE n.type = 'campaign_report_back' AND w.uid = :uid",
     array(':uid' => $uid)
   )->fetchAllAssoc('campaign_entity_id');
