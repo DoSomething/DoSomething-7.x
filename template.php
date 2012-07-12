@@ -12,10 +12,12 @@ function picsforpets_preprocess_page(&$variables) {
     $links[] = array(
       'title' => 'Gallery',
       'href' => 'pics-for-pets/gallery',
+      'attributes' => array('class' => array('footer-gallery')),
     );
     $links[] = array(
       'title' => 'Prizes',
       'href' => 'pics-for-pets/prizes',
+      'attributes' => array('class' => array('footer-prizes')),
     );
     $links[] = array(
       'title' => 'Be a Fur-tographer',
@@ -25,6 +27,7 @@ function picsforpets_preprocess_page(&$variables) {
     $links[] = array(
       'title' => 'Questions',
       'href' => 'pics-for-pets/questions',
+      'attributes' => array('class' => array('footer-questions')),
     );
     $variables['page']['footer']['picsforpets_menu'] = array(
       '#theme' => 'links',
