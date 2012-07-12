@@ -46,7 +46,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'threecol_25_50_25';
+  $display->layout = 'onecol';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -62,15 +62,16 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'left';
+    $pane->panel = 'middle';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'placeholder',
-      'body' => 'Find a shelter near you',
+      'title' => '',
+      'body' => 'Find a shelter</ br>
+near you',
       'format' => 'filtered_html',
       'substitute' => TRUE,
     );
@@ -78,12 +79,15 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'find-a-shelter',
+      'css_class' => 'white-block',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-1'] = $pane;
-    $display->panels['left'][0] = 'new-1';
+    $display->panels['middle'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'middle';
@@ -93,7 +97,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'placeholder',
+      'title' => '',
       'body' => 'get the guide',
       'format' => 'filtered_html',
       'substitute' => TRUE,
@@ -102,23 +106,27 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'get-the-guide',
+      'css_class' => 'white-block',
+    );
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $display->content['new-2'] = $pane;
-    $display->panels['middle'][0] = 'new-2';
+    $display->panels['middle'][1] = 'new-2';
     $pane = new stdClass();
     $pane->pid = 'new-3';
-    $pane->panel = 'right';
+    $pane->panel = 'middle';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'placeholder',
-      'body' => 'Submit your shelter pet pic',
+      'title' => '',
+      'body' => 'Submit your</ br>
+shelter pet pic',
       'format' => 'filtered_html',
       'substitute' => TRUE,
     );
@@ -126,12 +134,15 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'submit-your-shelter-pic',
+      'css_class' => 'white-block',
+    );
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $pane->locks = array();
     $display->content['new-3'] = $pane;
-    $display->panels['right'][0] = 'new-3';
+    $display->panels['middle'][2] = 'new-3';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
