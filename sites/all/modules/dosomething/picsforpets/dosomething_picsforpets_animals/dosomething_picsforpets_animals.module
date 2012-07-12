@@ -1,1 +1,17 @@
 <?php
+
+/**
+ * @file
+ * Custom code relating to PicsForPets pet creation and display.
+ */
+
+/**
+ * Implements webform_submission_render_alter().
+ */
+function dosomething_picsforpets_animals_webform_submission_render_alter(&$renderable) {
+	// Add carousel javascript to displays of pet profiles.
+
+	if (TRUE) { // TODO: check for specific node in $renderable.
+    drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-carousel.js');
+	}
+}
