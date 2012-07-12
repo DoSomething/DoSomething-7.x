@@ -1150,7 +1150,7 @@ del {
   background-position: 50% 74px;
 }
 
-.links {
+.picsforpets-menu {
   background: white url(../images/links-5k-icon.png) no-repeat;
   margin: 0;
   padding: 0;
@@ -1164,7 +1164,7 @@ del {
   overflow: hidden;
   *zoom: 1;
 }
-.links li {
+.picsforpets-menu li {
   list-style-image: none;
   list-style-type: none;
   margin-left: 0;
@@ -1174,28 +1174,28 @@ del {
   padding-left: 4px;
   padding-right: 4px;
 }
-.links li:first-child, .links li.first {
+.picsforpets-menu li:first-child, .picsforpets-menu li.first {
   padding-left: 0;
 }
-.links li:last-child {
+.picsforpets-menu li:last-child {
   padding-right: 0;
 }
-.links li.last {
+.picsforpets-menu li.last {
   padding-right: 0;
 }
-.links li {
+.picsforpets-menu li {
   width: 190px;
 }
-.links li a {
+.picsforpets-menu li a {
   color: #a6a8ab;
 }
-.links li a:visited {
+.picsforpets-menu li a:visited {
   color: #a6a8ab;
 }
-.links li a:hover {
+.picsforpets-menu li a:hover {
   color: #e6e7e8;
 }
-.links li a:active {
+.picsforpets-menu li a:active {
   color: #e6e7e8;
 }
 
