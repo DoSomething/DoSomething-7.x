@@ -516,13 +516,13 @@ pre, code, kbd, tt {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
 /* Only use the fancy ampersand in <h#> tags */
 h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-size: 1em;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
   font-style: italic;
 }
 
@@ -541,6 +541,12 @@ body {
 }
 
 /* import font files using @font-face, if not using a service such as typekit */
+@font-face {
+  font-family: "League_Gothic";
+  src: url('../fonts/League_Gothic-webfont.woff') format('woff'), url('../fonts/League_Gothic-webfont.ttf') format('truetype');
+  font-weight: false;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -556,7 +562,7 @@ html {
 }
 
 body {
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
   color: black;
   background-repeat: no-repeat;
 }
@@ -1017,7 +1023,6 @@ del {
   width: 760px;
   min-height: 600px;
   margin: auto;
-  padding: 18px;
 }
 
 .front #page {
@@ -1036,9 +1041,13 @@ del {
 }
 
 .mission-text {
-  background: white;
+  background: rgba(255, 255, 255, 0.75);
   width: 100%;
   text-transform: uppercase;
+  font-size: 45px;
+  text-align: center;
+  line-height: 1.125;
+  margin-top: 225px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
@@ -1374,7 +1383,7 @@ header aside {
   font-size: 1em;
   line-height: 1.5em;
   text-transform: uppercase;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
 .colors ul li {
@@ -1421,7 +1430,7 @@ header aside {
   line-height: 1;
 }
 .styletile-1 .text-examples .logos h1.opt-1:before {
-  content: counter(logos) ' - "Arial Narrow", Arial, sans-serif';
+  content: counter(logos) ' - "League_Gothic", "Arial Narrow", Arial, sans-serif';
 }
 .styletile-1 .text-examples .serif {
   font-family: Georgia, serif;
@@ -1430,10 +1439,10 @@ header aside {
   content: " - Georgia, serif";
 }
 .styletile-1 .text-examples .sans, .styletile-1 .text-examples header aside, header .styletile-1 .text-examples aside {
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 .styletile-1 .text-examples .sans .label:after, .styletile-1 .text-examples header aside .label:after, header .styletile-1 .text-examples aside .label:after, .styletile-1 .text-examples .sans .logos h1:after:before, .styletile-1 .text-examples .logos .sans h1:after:before, .styletile-1 .text-examples header aside .logos h1:after:before, .styletile-1 .text-examples .logos header aside h1:after:before, header .styletile-1 .text-examples aside .logos h1:after:before, header .styletile-1 .text-examples .logos aside h1:after:before {
-  content: ' - "Arial Narrow", Arial, sans-serif';
+  content: ' - "League_Gothic", "Arial Narrow", Arial, sans-serif';
 }
 
 /* graphic examples */

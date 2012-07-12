@@ -9,6 +9,7 @@ css_dir = "css"
 sass_dir = "sass"
 images_dir = "images"
 javascripts_dir = "js"
+fonts_dir = "fonts"
 
 # Also assuming this theme is in sites/*/themes/THEMENAME, you can add the partials
 # included with a module by uncommenting and modifying one of the lines below:
