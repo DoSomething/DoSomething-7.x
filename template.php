@@ -20,14 +20,16 @@ function picsforpets_preprocess_page(&$variables) {
     $links[] = array(
       'title' => 'Be a Fur-tographer',
       'href' => 'pics-for-pets/furtographer',
+      'attributes' => array('class' => array('footer-furtography')),
     );
     $links[] = array(
       'title' => 'Questions',
       'href' => 'pics-for-pets/questions',
     );
-    $variables['page']['footer'] = array(
+    $variables['page']['footer']['picsforpets_menu'] = array(
       '#theme' => 'links',
       '#links' => $links,
     );
+    $variables['page']['footer']['picsforpets_furtographer'] = drupal_get_form('dosomething_picsforpets_furtographer_dialog');
   }
 }
