@@ -3502,6 +3502,9 @@ nav[role=navigation] a:active {
 nav[role=navigation] a:hover, nav[role=navigation] a:active {
   text-decoration: none;
 }
+nav[role=navigation] a.active, nav[role=navigation] a.active-trail {
+  color: white;
+}
 nav[role=navigation] .region-navigation .block-menu-block {
   width: 100%;
   padding-left: 233px;
