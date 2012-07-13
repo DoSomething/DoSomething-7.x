@@ -1021,11 +1021,15 @@ del {
   width: 760px;
   height: 800px;
   margin: auto;
+}
+
+body {
   background: #d6eef3 url(../images/bg.png) no-repeat;
+  background-position: center;
 }
 
 .front #page {
-  background: #b8e3ea url(../images/pitbull-bg.jpg) no-repeat;
+  background: url(../images/pitbull-bg.png) no-repeat;
   background-position: 0 -350px;
   padding-bottom: 12px;
 }
@@ -1130,7 +1134,6 @@ del {
 }
 
 .panel-1col {
-  width: 720px;
   margin: 0 auto;
   margin-bottom: 150px;
 }
