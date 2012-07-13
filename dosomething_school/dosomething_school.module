@@ -1,0 +1,475 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_school_menu() {
+  $items = array();
+  $items['ds_school/autocomplete'] = array(
+    'title' => 'DoSomething School Autocomplete',
+    'page callback' => 'dosomething_school_autocomplete_callback',
+    'page arguments' => array(2, 3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dosomething_school_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'entityreference' && $plugin_type) {
+    return 'plugins/entityreference/' . $plugin_type;
+  }
+}
+
+/**
+ * Create a views filter based on the IN operator to allow for the use of a
+ * state drop-down.
+ */
+class dosomething_school_state_filter extends views_handler_filter_in_operator {
+  function get_value_options() {
+    if (isset($this->value_options)) {
+      return;
+    }
+    $this->value_options = _dosomething_school_get_states();
+  }
+}
+
+/**
+ * Expose some of the fields to views. Yay!
+ */
+function dosomething_school_views_data() {
+  $data['ds_school']['table']['entity type'] = 'ds_school';
+  $data['ds_school']['table']['group'] = t('School');
+  $data['ds_school']['table']['base'] = array(
+    'field' => 'sid',
+    'title' => t('School'),
+    'defaults' => array(
+      'field' => 'name',
+    ),
+  );
+
+  $data['ds_school']['state'] = array(
+    'title' => t('State'),
+    'help' => t('The state the school is in.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'dosomething_school_state_filter',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+  );
+
+  $data['ds_school']['name'] = array(
+    'title' => t('Name'),
+    'help' => t('The name of the school.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
+
+  $data['ds_school']['sid'] = array(
+    'title' => t('ID'),
+    'help' => t('The unique ID of the school.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+  );
+
+  return $data;
+}
+
+/**
+ * Implements hook_entity_info().
+ */
+function dosomething_school_entity_info() {
+  $return = array(
+    'ds_school' => array(
+      'label' => t('School'),
+      'plural label' => t('Schools'),
+      'description' => t('A school entity, most are from the Great Schools dataset but some are user added.'),
+      'entity class' => 'Entity',
+      'controller class' => 'EntityAPIController',
+      'base table' => 'ds_school',
+      'fieldable' => TRUE,
+      'entity keys' => array(
+        'id' => 'sid',
+        'label' => 'name',
+      ),
+      // 'label callback' => 'entity_class_label',
+      // 'uri callback' => 'entity_class_uri',
+    ),
+  );
+  return $return;
+}
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function dosomething_school_entity_property_info_alter(&$info) {
+  $properties = &$info['ds_school']['properties'];
+  $properties['lat_lon'] = array(
+    'type' => 'text',
+    'label' => t('Latitude and longitude'),
+    'description' => t('Latitude and longitude'),
+    'getter callback' => 'dosomething_school_get_lat_lon',
+  );
+}
+
+/**
+ * Getter callback for school lat_lon field.
+ */
+function dosomething_school_get_lat_lon($data, array $options, $name, $type, $info) {
+  $lat_lon = $data->lat . ',' . $data->lon;
+  return $lat_lon;
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function dosomething_school_field_widget_info() {
+  $widgets['dosomething_school_autocomplete'] = array(
+    'label' => t('School autocomplete'),
+    'description' => t('An autocomplete for schools, filters first by state.'),
+    'field types' => array('entityreference'),
+    'settings' => array(
+      'match_operator' => 'CONTAINS',
+      'size' => 60,
+      // We don't have a default here, because it's not the same between
+      // the two widgets, and the Field API doesn't update default
+      // settings when the widget changes.
+      'path' => '',
+    ),
+  );
+
+  return $widgets;
+}
+
+/**
+ * Implements hook_field_widget_settings_form().
+ */
+function dosomething_school_field_widget_settings_form($field, $instance) {
+  $widget = $instance['widget'];
+  $settings = $widget['settings'] + field_info_widget_settings($widget['type']);
+
+  $form = array();
+
+  $form['match_operator'] = array(
+    '#type' => 'select',
+    '#title' => t('Autocomplete matching'),
+    '#default_value' => $settings['match_operator'],
+    '#options' => array(
+//      'STARTS_WITH' => t('Starts with'),
+      'CONTAINS' => t('Contains'),
+    ),
+    '#description' => t('Select the method used to collect autocomplete suggestions. Note that <em>Contains</em> can cause performance issues on sites with thousands of entities.'),
+  );
+  $form['size'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Size of textfield'),
+    '#default_value' => $settings['size'],
+    '#element_validate' => array('_element_validate_integer_positive'),
+    '#required' => TRUE,
+  );
+
+  return $form;
+}
+
+/**
+ * Reusable helper function to get a list of available states.
+ */
+function _dosomething_school_get_states() {
+  // TODO: we might need to expand this out to Canada.
+  return array(
+    'AL' => t('Alabama'),
+    'AK' => t('Alaska'),
+    'AS' => t('American Samoa'),
+    'AZ' => t('Arizona'),
+    'AR' => t('Arkansas'),
+    'CA' => t('California'),
+    'CO' => t('Colorado'),
+    'CT' => t('Connecticut'),
+    'DE' => t('Delaware'),
+    'DC' => t('District of Columbia'),
+    'FL' => t('Florida'),
+    'GA' => t('Georgia'),
+    'GU' => t('Guam'),
+    'HI' => t('Hawaii'),
+    'ID' => t('Idaho'),
+    'IL' => t('Illinois'),
+    'IN' => t('Indiana'),
+    'IA' => t('Iowa'),
+    'KS' => t('Kansas'),
+    'KY' => t('Kentucky'),
+    'LA' => t('Louisiana'),
+    'ME' => t('Maine'),
+    'MH' => t('Marshall Islands'),
+    'MD' => t('Maryland'),
+    'MA' => t('Massachusetts'),
+    'MI' => t('Michigan'),
+    'MN' => t('Minnesota'),
+    'MS' => t('Mississippi'),
+    'MO' => t('Missouri'),
+    'MT' => t('Montana'),
+    'NE' => t('Nebraska'),
+    'NV' => t('Nevada'),
+    'NH' => t('New Hampshire'),
+    'NJ' => t('New Jersey'),
+    'NM' => t('New Mexico'),
+    'NY' => t('New York'),
+    'NC' => t('North Carolina'),
+    'ND' => t('North Dakota'),
+    'MP' => t('Northern Marianas Islands'),
+    'OH' => t('Ohio'),
+    'OK' => t('Oklahoma'),
+    'OR' => t('Oregon'),
+    'PW' => t('Palau'),
+    'PA' => t('Pennsylvania'),
+    'PR' => t('Puerto Rico'),
+    'RI' => t('Rhode Island'),
+    'SC' => t('South Carolina'),
+    'SD' => t('South Dakota'),
+    'TN' => t('Tennessee'),
+    'TX' => t('Texas'),
+    'UT' => t('Utah'),
+    'VT' => t('Vermont'),
+    'VI' => t('Virgin Islands'),
+    'VA' => t('Virginia'),
+    'WA' => t('Washington'),
+    'WV' => t('West Virginia'),
+    'WI' => t('Wisconsin'),
+    'WY' => t('Wyoming'),
+  );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  $default_state = '--';
+  $default_school = '';
+  if (empty($items[0]['target_id'])) {
+	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
+    // Try to use the profile's state.
+    $profile = profile2_load_by_user($GLOBALS['user'], 'main');
+    if (!empty($profile->field_user_address['und'][0]['administrative_area'])) {
+      $default_state = $profile->field_user_address['und'][0]['administrative_area'];
+    }
+  }
+  // TODO: Why use the target_type when we're hardcoding it to only work with schools?
+  elseif ($entity = entity_load_single($field['settings']['target_type'], $items[0]['target_id'])) {
+    $default_state = $entity->state;
+    $default_school = dosomething_school_make_label($entity);
+  }
+
+  $states = _dosomething_school_get_states();
+  $states = array('  ' => t('- Select one -')) + $states;
+
+  $element['#attached']['js'][] = drupal_get_path('module', 'dosomething_school') . '/dosomething_school.js';
+  $element['#element_validate'][] = '_dosomething_school_autocomplete_validate';
+  $element['#type'] = 'fieldset';
+  $element['#title'] = $instance['label'];
+
+  $element['state'] = array(
+    '#title' => t('School State'),
+    '#type' => 'select',
+    '#options' => $states,
+    // We don't use their required checking because '--' is our empty value, but
+    // this way it gets visibly flagged and our error makes sense.
+    '#required' => $instance['required'],
+    '#default_value' => $default_state,
+  );
+  $element['name'] = array(
+    '#title' => t('School Name'),
+    '#type' => 'textfield',
+    '#maxlength' => 1024,
+    '#default_value' => $default_school,
+    '#autocomplete_path' => 'ds_school/autocomplete/' . $default_state,
+    '#required' => $instance['required'],
+    '#size' => $instance['widget']['settings']['size'],
+  );
+
+//   $form['settings'] = array(
+//   '#type' => 'textfield',
+//   '#states' => array(
+//     'visible' => array(
+//       'input.form-autocomplete' => array('checked' => TRUE),
+//     ),
+//   ),
+// );
+
+  $element['street'] = array(
+    '#title' => t('Street Address'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#validated' => TRUE,
+  );
+  $element['city'] = array(
+    '#title' => t('City'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#validated' => TRUE,
+  );
+  $element['zip'] = array(
+    '#title' => t('Zip Code'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#validated' => TRUE,
+    '#size' => 6,
+  );
+
+  return array('target_id' => $element);
+}
+
+function _dosomething_school_autocomplete_validate($element, &$form_state, $form) {
+  $value = '';
+
+  // Make sure we've got both a state and a school name.
+  if (!empty($element['state']['#value']) && !empty($element['name']['#value'])) {
+    // Take "label (entity id)"'", match the id from parenthesis.
+    if (preg_match("/.+\((\d+)\)/", $element['name']['#value'], $matches)) {
+      $value = (int) $matches[1];
+    }
+    else {
+      // Assume their data is valid until we notice otherwise.
+      $valid = TRUE;
+      foreach (array('street', 'city', 'zip') as $key) {
+        if (drupal_strlen(trim($element[$key]['#value'])) == 0) {
+          form_error($element[$key], t('!name is required.', array('!name' => $element[$key]['#title'])));
+          $valid = FALSE;
+        }
+      }
+      if ($element['zip']['#value'] && preg_match("@\d{5}@", $element['zip']['#value']) != 1) {
+        form_error($element[$key], t('Invalid !name', array('!name' => $element[$key]['#title'])));
+        $valid = FALSE;
+      }
+
+      // Try to create a new school for them.
+      if ($valid) {
+        global $user;
+
+        // Create a school.
+        $row = (object) array(
+          'uid' => $user->uid,
+          'name' => $element['name']['#value'],
+          'street' => $element['street']['#value'],
+          'city' => $element['city']['#value'],
+          'state' => $element['state']['#value'],
+          'zip' => $element['zip']['#value'],
+          # TODO I don't think we can or should populate the rest of these:
+          // 'gsid' => NULL,
+          // 'level' => NULL,
+          // 'lat' => NULL,
+          // 'lon' => NULL,
+        );
+        if (entity_save('ds_school', $row)) {
+          $value = $row->sid;
+        }
+      }
+    }
+  }
+
+  // Update the value of this element so the field can validate the ID.
+  form_set_value($element, $value, $form_state);
+}
+
+/**
+ * Create the value that'll be used to represent the school.
+ */
+function dosomething_school_make_label($entity) {
+  return "$entity->name ($entity->sid)";
+}
+
+function dosomething_school_autocomplete_callback($state, $name) {
+  global $user;
+
+  $entity_type = 'ds_school';
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', $entity_type)
+    ->propertyCondition('state', drupal_strtoupper($state))
+    ->propertyCondition('name', $name, 'CONTAINS')
+    // Only let them see schools owned by themselves or admin.
+    ->propertyCondition('uid', array(1, $user->uid), 'IN')
+    // Put the user's schools ahead of the admin's.
+    ->propertyOrderBy('uid', 'DESC')
+    ->propertyOrderBy('name')
+    ->range(0, 10);
+
+  $matches = array();
+  $result = $query->execute();
+  if (!empty($result[$entity_type])) {
+    foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
+      $matches[dosomething_school_make_label($info)] = t('@name<br>%street, %city', array('@name' => $info->name, '%street' => $info->street, '%city' => $info->city));
+    }
+  }
+
+  drupal_json_output($matches);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_school_form_alter(&$form, &$form_state, $form_id) {
+  //TODO: We were originally going to do this on clubs as well but this needs
+  // some input from dosomething. See
+  // https://zivtech.unfuddle.com/a#/projects/38035/tickets/by_number/849
+  // for more.
+  if (strpos($form_id, 'webform_client_form') !== FALSE  || $form_id == 'club_node_form') {
+    // We're going to set the legacy fields to hidden. But they're in different
+    // places depending on the type.
+    if (strpos($form_id, 'webform_client_form') !== FALSE) {
+      $types = array('scholarship_application', 'grant_application');
+      if (in_array($form['#node']->type, $types)) {
+        $form['submitted']['field_webform_school']['#access'] = FALSE;
+
+        // We also want to auto set the school reference on the user's profile
+        // if they change it here.
+        $form['#submit'][] = 'dosomething_school_update_user_profile_school';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function dosomething_school_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dosomething_school'];
+    unset($implementations['dosomething_school']);
+    $implementations['dosomething_school'] = $group;
+  }
+}
+
+/**
+ * Submission callback that updates the user's school on his or her profile when
+ * it is saved in other kinds of forms.
+ */
+function dosomething_school_update_user_profile_school($form, &$form_state) {
+  $account = user_load($form_state['values']['details']['uid']);
+  $profile = profile2_load_by_user($account);
+  $profile = $profile['main'];
+  //set the school reference and save the profile
+  $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'];
+  profile2_save($profile);
+}

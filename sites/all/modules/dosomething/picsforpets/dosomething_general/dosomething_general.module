@@ -1,0 +1,390 @@
+<?php
+
+/**
+ * @file
+ * General custom tweaks to dosomething.
+ */
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
+  // Add the blog-archive.js file to the Blog Archive block.
+  if ($view->name == 'blog_center' && $display_id == 'blog_archive_block') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/blog-archive.js');
+  }
+  // Add project-photo-slider.js file to the project_photo_slider views content pane.
+  if ($view->name == 'project_photo_slider' && $display_id == 'panel_pane_1') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-photo-slider.js');
+  }
+  // Add homepage-photo-slider.js file to the home_slideshow views content pane.
+  if ($view->name == 'home_slideshow' && $display_id == 'panel_pane_1') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/homepage-photo-slider.js');
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_general_theme($existing, $type, $theme, $path) {
+  return array(
+    'dosomething_general_facebook_friend_pic' => array(
+      'variables' => array('fbid' => NULL, 'uid' => NULL, 'image_style' => NULL),
+    ),
+  );
+}
+
+/**
+ * Implements hook_user_delete().
+ */
+function dosomething_general_user_delete($account) {
+  // Ommitting $fbid deletes any existing associations.
+  dosomething_login_facebook_friend_process($account->uid);
+}
+
+/**
+ * Return formatted photo of Facebook friend.
+ *   Similar to theme_user_picture but can take unique image style
+ *   and doesn't require full user object.
+ */
+function theme_dosomething_general_facebook_friend_pic($var) {
+  // Less overhead than user_load.
+  $name = db_query('SELECT name from {users} WHERE uid = :uid', array(':uid' => $var['uid']))->fetchField();
+  $filepath = 'https://graph.facebook.com/' . $var['fbid'] . '/picture?type=small';
+  $alt = t("@names's picture", array('@name' => $name));
+  if (module_exists('image') && $var['image_style']) {
+    $picture = theme('image_style', array('style_name' => $var['image_style'], 'path' => $filepath, 'alt' => $alt));
+  }
+  else {
+    $picture = theme('image', array('path' => $filepath, 'alt' => $alt));
+  }
+  return $picture;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
+  // Override password field description on user login form.
+  if ($form_id == 'user_login') {
+    $form['pass']['#description'] = t('Enter the password that accompanies your email, username, or cell phone number.');
+  }
+  // Unset N/A option in required field_camp checkboxes.
+  if ($form_id == 'club_node_form') {
+    unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
+  }
+  if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-row-weights.js');
+  }
+}
+
+/**
+ * Generic handler that validates field_webform_email and field_webform_mobile
+ * for updating the user profile objects of the author
+ */
+function dosomething_general_webform_email_and_mail_validate(&$form, &$form_state) {
+  global $user;
+  // If the email is set, make sure we can update the user's email address.
+  if (isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
+    $mail = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+    $account = user_load_by_mail($mail);
+    // If we found an account with that email address and the email address does not belong to this user, set an error.
+    if ($account && $account->uid != $user->uid) {
+      form_set_error('field_webform_email', t('You may not provide the email address of another user, do you have another account?'));
+    }
+  }
+}
+
+/**
+ * Generic handler that uses field_webform_email and field_webform_mobile
+ * for updating the user profile objects of the author
+ */
+function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state) {
+  global $user;
+  if (isset($form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
+    $profile = profile2_load_by_user($user, 'main');
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+    $profile->save();
+  }
+  if (isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
+    $variables = array(
+      '@username' => $user->name,
+      '@old_mail' => $user->mail,
+      '@new_mail' => $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'],
+    );
+    watchdog('dosomething_general', 'Updating the email address for @username from @old_mail to @new_mail', $variables);
+    $user->mail = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+    user_save($user);
+  }
+}
+
+/**
+ * Generic handler that uses field_webform_email and field_webform_mobile
+ * combined with the $node values for inserting values into InfusioSoft
+ * and/or Mobile Commons
+ */
+function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
+  $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
+  $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
+
+  $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+
+  // make sure all of the required values are set in the node and submission
+  if (!empty($mc_opt_in) && !empty($cell)) {
+    dosomething_general_mobile_commons_subscribe($cell, $mc_opt_in);
+  }
+  if (!empty($inf_action) && !empty($email)) {
+    dosomething_general_infusionsoft_subscribe($email, $inf_action);
+  }
+}
+
+/**
+ * Subscribe an email address to InfusionSoft using an action.
+ * Note: tags are assigned in InfusionSoft via the action, not in Drupal.
+ */
+function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
+  if (!is_array($emails)) $emails = array($emails);
+
+  include_once('infusionsoft_sdk/src/isdk.php');
+  $app = new iSDK;
+
+  if($app->cfgCon("emaildrop")) {
+    foreach ($emails as $email) {
+      if (empty($email)) continue;
+      // set up the data to send to infusionsoft
+      $contact = array('Email' => $email);
+
+      //check for existing contact;
+      $returnFields = array('Id');
+      $dups = $app->findByEmail($contact['Email'], $returnFields);
+
+      /*If email is not a duplicate*/
+      if (empty($dups)) {
+        // add new contact and add them to the action set
+        $dups = $app->addCon($contact);
+        $app->runAS($dups, $action_id);
+      }
+      else {
+        /*If the email is a duplicate*/
+        $contactId = $dups[0]['Id'];
+        $app->runAS($contactId, $action_id);
+      }
+    }
+  }
+}
+
+/**
+ * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
+ * configured opt-in path.
+ */
+function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+
+  // Send the post data.
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
+  );
+
+  //drupal_http_request($api_opt_in_path_url, $options);
+}
+
+function dosomething_general_user_presave(&$edit, $account, $category) {
+  if (isset($edit['pass'])) {
+    drupal_set_message(t('Your password has been updated.'), 'status');
+  }
+}
+
+/**
+ * Get a user's full name as a string.
+ *
+ * @param $account
+ *  (object) A standard user object.
+ * @param $display_type
+ *  (string) type of name to show (public or private).
+ * @return string
+ */
+function dosomething_general_get_full_name($account, $display_type = 'public') {
+  $full_name = '';
+  $names = array();
+  $profile = profile2_load_by_user($account, 'main');
+
+  if (is_object($profile)) {
+    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+    $first_name = $profile_wrapper->field_user_first_name->value();
+    $last_name = $profile_wrapper->field_user_last_name->value();
+
+    switch ($display_type) {
+      case 'private':
+        // Show full name if available, otherwise show username.
+        $full_name = (!$first_name && !$last_name) ? $account->name : $first_name . ' ' . $last_name;
+        break;
+      case 'public':
+        // Show first name and last initial, or blank if not available.
+        $full_name = $first_name . ' ' . substr($last_name, 0, 1);
+        break;
+    }
+  }
+  return filter_xss($full_name);
+}
+
+/**
+ * Search for users users by their cell phone number.
+ *
+ * @param $number
+ *  (string) The cell phone number for which you are searching.
+ * @return
+ *  The user account object.
+ */
+function dosomething_general_find_user_by_cell($number) {
+  $or = db_or()
+    ->condition('mail', $number . '@mobile')
+    // Tolerate not having a `1` in the source but having one in the db.
+    ->condition('mail', substr($number, 1) . '@mobile')
+    // Tolerate having a `1` in the source but not having one in the db.
+    ->condition('mail', '1' . $number . '@mobile');
+  $uid = db_select('users')
+    ->fields('users', array('uid'))
+    ->condition($or)
+    ->execute()
+    ->fetchField();
+  if ($uid) {
+    return user_load($uid);
+  }
+  else if ($account = dosomething_load_user_by_profile_cell($number)) {
+    // Note: Cell phone numbers are not unique amongst the existing users.
+    // otherwise, we can directly search for the cell phone number when
+    // logging in. Existing users will have usernames and email addresses
+    // so this won't prevent them from logging in.
+    return $account;
+  }
+  return FALSE;
+}
+
+/**
+ * Load a user object by cell phone.
+ *
+ * @param $mobile
+ *   The cell number exactly as it appears in the database.
+ * @return
+ *   The user account or false if none is found.
+ */
+function dosomething_load_user_by_profile_cell($mobile) {
+  $account = FALSE;
+  $query = new EntityFieldQuery('profile2');
+  $results = $query->entityCondition('entity_type', 'profile2')
+    ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
+    ->deleted(FALSE)
+    ->execute();
+  if (count($results)) {
+    $profiles = reset($results);
+    ksort($profiles);
+    $pid = array_pop($profiles)->pid;
+    $profile = profile2_load($pid);
+    if ($profile) {
+      $uid = $profile->uid;
+      $account = user_load($uid);
+    }
+  }
+  return $account;
+}
+
+/**
+ * Load up the related user given and email or cell phone value.
+ *
+ * @param $value
+ *   An email or cell phone value.
+ * @return
+ *  Either FALSE or the loaded user account.
+ */
+function dosomething_general_load_user_by_mail_or_cell($value) {
+  $account = FALSE;
+  if (valid_email_address($value)) {
+    $account = user_load_by_mail($value);
+  }
+  else if ($number = dosomething_general_valid_cell($value)) {
+    $account = dosomething_general_find_user_by_cell($number);
+  }
+  return $account;
+}
+
+/**
+ * Determine if a cell phone number is valid.
+ *
+ * @param $number
+ *   A cell phone number which may contain special characters.
+ * @return
+ *  Either FALSE or the cleaned up cell phone number (only digits).
+ */
+function dosomething_general_valid_cell($number) {
+  $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
+  return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_form_alter().
+ */
+function dosomething_general_form_webform_client_form_alter(&$form, &$form_state) {
+  $form['#validate'][] = 'dosomething_general_form_webform_client_validate';
+}
+
+/**
+ * Validate mobile numbers submitted through webform entities.
+ */
+function dosomething_general_form_webform_client_validate($form, &$form_state) {
+  if (isset($form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
+    $account = user_load($form_state['values']['details']['uid']);
+
+    $valid_number = dosomething_general_valid_cell($form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value']);
+    if (!$valid_number) {
+      form_set_error('submitted][field_webform_mobile', t('Please provide a valid cell phone number.'));
+    }
+    else {
+      // Store the cleaned up number.
+      $form_state['values']['submitted']['field_webform_mobile'][LANGUAGE_NONE][0]['value'] = $valid_number;
+    }
+
+    if ($phone_account = dosomething_general_find_user_by_cell($valid_number)) {
+      if ($phone_account->uid != $account->uid) {
+        form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.'));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function dosomething_general_token_info() {
+ $info['tokens']['user']['ds_member_name'] = array(
+    'name' => t('Member Name'),
+    'description' => t('Full name or username if not available'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function dosomething_general_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'user' && !empty($data['user'])) {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'ds_member_name':
+          $name = dosomething_general_get_full_name($data['user'], 'private');
+          $replacements[$original] = $name;
+        break;
+      }
+    }
+  }
+  return $replacements;
+}
+

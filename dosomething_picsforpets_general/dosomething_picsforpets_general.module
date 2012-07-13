@@ -1,0 +1,26 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_picsforpets_general feature.
+ */
+
+include_once 'dosomething_picsforpets_general.features.inc';
+
+
+/**
+ * Form that pops up when you click 'become a furtographer'.
+ */
+function dosomething_picsforpets_furtographer_dialog($form, &$form_state) {
+	$form['#attached'] = array(
+	  'library' => array(array('system', 'ui.dialog')),
+	  'js' => array(
+	    drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/dosomething-picsforpets-dialog.js',
+	  ),
+	);
+
+  $form['ready'] = array(
+    '#markup' => '<h1>Ready to be a fur-tographer?</h1>Sign up and we\'ll give you all the tools to submit a picture to the gallery.',
+  );
+
+	return $form;
+}
