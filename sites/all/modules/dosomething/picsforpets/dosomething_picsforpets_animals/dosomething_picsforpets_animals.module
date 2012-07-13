@@ -11,7 +11,7 @@
 function dosomething_picsforpets_animals_menu() {
   $items['pics-for-pets/carousel/js/%'] = array(
     'type' => MENU_CALLBACK,
-    'access arguments' => TRUE,
+    'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_animals_wings',
     'page arguments' => array(3),
   );
@@ -40,7 +40,7 @@ function dosomething_picsforpets_animals_webform_submission_render_alter(&$rende
  */
 function dosomething_picsforpets_animals_wings($sid, $offset = 0) {
   // TODO: order by sharing desc and limit to correct node results.
-  $sids = db_query_range("SELECT sid FROM webform_submissions WHERE sid <> :sid", $offset, 4, array(':sid' => $sid))->fetchCol();
+  $sids = db_query_range("SELECT sid FROM webform_submissions WHERE sid <> :sid", $offset, 8, array(':sid' => $sid))->fetchCol();
   if (!$offset) {
     array_unshift($sids, $sid);
     $i = 0;
