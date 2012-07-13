@@ -9,7 +9,7 @@
  * Implements hook_menu().
  */
 function dosomething_picsforpets_animals_menu() {
-  $items['pics-for-pets/carousel/js/%/%/%'] = array(
+  $items['pics-for-pets/carousel/js/%'] = array(
     'type' => MENU_CALLBACK,
     'access arguments' => TRUE,
     'page callback' => 'dosomething_picsforpets_animals_wings',
@@ -27,36 +27,40 @@ function dosomething_picsforpets_animals_webform_submission_render_alter(&$rende
   if ($node->type == 'fb_app_data_gathering_form' && $node->title == 'Pet Picture') { // TODO: check for specific node id once we know one; the title can change.
     drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-carousel.js');
     drupal_add_js(array('picsforpetsAnimals' => array('sid' => $renderable['#submission']->sid)), 'setting');
+    // Total number of available pet submissions.
+    // TODO: limit to correct node results.
+    $total = db_query("SELECT COUNT(sid) FROM webform_submissions")->fetchField();
+    drupal_add_js(array('picsforpetsAnimals' => array('total' => $total)), 'setting');
   }
 }
 
 /**
  * Menu callback.
- * Return items for the 'wings' on the pet carousel.
+ * Return 10 items for the 'wings' on the pet carousel.
  */
-function dosomething_picsforpets_animals_wings($sid, $limit, $offset = 0) {
-  $result = db_query_range("SELECT sid FROM webform_submissions WHERE sid <> :sid", $offset, $limit, array(':sid' => $sid)); // TODO: order by sharing desc and limit to correct node results.
-  foreach ($result as $submission) {
-    $submissions[] = array_pop(entity_load('webform_submission_entity', array($submission->sid)));
+function dosomething_picsforpets_animals_wings($sid, $offset = 0) {
+  // TODO: order by sharing desc and limit to correct node results.
+  $sids = db_query_range("SELECT sid FROM webform_submissions WHERE sid <> :sid", $offset, 4, array(':sid' => $sid))->fetchCol();
+  if (!$offset) {
+    array_unshift($sids, $sid);
+    $i = 0;
   }
-  foreach ($submissions as $key => $submission) {
-    switch ($key) {
-      case 0:
-        $submission->wing_key = 1;
-        break;
-      case 1:
-        $submission->wing_key = -1;
-        break;
-      case 2:
-        $submission->wing_key = 2;
-        break;
-      case 3:
-        $submission->wing_key = -2;
-        break;
+  else {
+    $i = $offset + 1;
+  }
+  foreach ($sids as $sid) {
+    $wrapper = entity_metadata_wrapper('webform_submission_entity', $sid);
+    $submission = new stdClass();
+    $submission->sid = $sid;
+    $path = $wrapper->field_pfp_webform_image->value();
+    $submission->image = theme('image', array('path' => $path['uri']));
+    if ($i % 2) {
+      $submissions[-1 * ($i + 1 ) / 2] = $submission;
     }
-    $wings[$submission->wing_key] = new stdClass();
-    $wings[$submission->wing_key]->sid = $submission->sid;
-    $wings[$submission->wing_key]->image = theme('image', array('path' => $submission->field_pfp_webform_image[LANGUAGE_NONE][0]['uri']));
-   }
-  drupal_json_output($wings);
+    else {
+      $submissions[$i / 2] = $submission;
+    }
+    $i++;
+  }
+  drupal_json_output($submissions);
 }
