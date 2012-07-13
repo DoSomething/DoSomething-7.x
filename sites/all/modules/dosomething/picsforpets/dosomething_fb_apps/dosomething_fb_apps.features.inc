@@ -37,3 +37,12 @@ function dosomething_fb_apps_node_info() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_default_webform_submission_entity_type().
+ */
+function dosomething_fb_apps_default_webform_submission_entity_type() {
+  $items = array();
+  $items['fb_app_data_gathering_form'] = entity_import('webform_submission_entity_type', '{ "type" : "fb_app_data_gathering_form", "data" : null }');
+  return $items;
+}
