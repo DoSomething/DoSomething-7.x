@@ -1,7 +1,0 @@
-name = "DoSomething - School"
-description = "Creates the School content type"
-core = "7.x"
-package = "DoSomething"
-php = "5.2.4"
-dependencies[] = "entity"
-files[] = "plugins/entityreference_handler/ds_school.inc"

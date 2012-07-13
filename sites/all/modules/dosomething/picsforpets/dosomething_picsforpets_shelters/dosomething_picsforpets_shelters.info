@@ -1,6 +1,6 @@
 name = dosomething_picsforpets_shelters
 core = 7.x
-package = Features
+package = Pics For Pets
 php = 5.2.4
 dependencies[] = addressfield
 dependencies[] = ctools
