@@ -126,8 +126,38 @@ a.footer-furtography
   padding-top: 12px
   padding-bottom: 24px
 
+////////////////////////////
+// POPUP MESSAGES
+////////////////////////////
 .ui-widget-overlay
   background: $black
   +opacity(0.75)
+
+.ui-dialog
+  background: rgba($black, 0.75)
+  border: none
+
+.ui-dialog .ui-dialog-titlebar
+  padding: 12px
+
+.ui-widget-header
+  padding: 0
+  background: none
+  border: none
+  color: $white
+  text-align: center
+  font-family: $font-sans
+  text-transform: uppercase
+  font-size: 52px
+  border-bottom: 1px solid $white
+
+.ui-dialog-content
+  color: $white
+
+.ui-widget-header .ui-icon
+  background: url(../images/ui-close-x.png) no-repeat
+  &:hover
+    background: url(../images/ui-close-x.png) no-repeat
+
 
 

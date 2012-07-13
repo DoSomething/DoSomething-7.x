@@ -1222,6 +1222,38 @@ a.footer-furtography {
   opacity: 0.75;
 }
 
+.ui-dialog {
+  background: rgba(0, 0, 0, 0.75);
+  border: none;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+  padding: 12px;
+}
+
+.ui-widget-header {
+  padding: 0;
+  background: none;
+  border: none;
+  color: white;
+  text-align: center;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 52px;
+  border-bottom: 1px solid white;
+}
+
+.ui-dialog-content {
+  color: white;
+}
+
+.ui-widget-header .ui-icon {
+  background: url(../images/ui-close-x.png) no-repeat;
+}
+.ui-widget-header .ui-icon:hover {
+  background: url(../images/ui-close-x.png) no-repeat;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
