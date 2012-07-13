@@ -18,8 +18,12 @@ function dosomething_picsforpets_furtographer_dialog($form, &$form_state) {
 	  ),
 	);
 
+	$form['#attributes'] = array(
+    'title' => 'Ready to be a fur-tographer?',
+	);
+
   $form['ready'] = array(
-    '#markup' => '<h1>Ready to be a fur-tographer?</h1>Sign up and we\'ll give you all the tools to submit a picture to the gallery.',
+    '#markup' => 'Sign up and we\'ll give you all the tools to submit a picture to the gallery.',
   );
 
 	return $form;
