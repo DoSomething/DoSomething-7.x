@@ -1216,6 +1216,12 @@ a.footer-furtography {
   padding-bottom: 24px;
 }
 
+.ui-widget-overlay {
+  background: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
