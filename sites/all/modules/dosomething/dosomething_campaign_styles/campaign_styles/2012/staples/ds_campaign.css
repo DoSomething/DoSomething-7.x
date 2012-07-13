@@ -461,12 +461,12 @@ form.webform-client-form {
 .gallery-header {
   margin-bottom: 0 !important; }
 
-.gallery #gallery {
-  height: auto; }
-  .gallery #gallery #slideshow {
+#gallery {
+  height: 415px; }
+  #gallery #slideshow {
+    height: 360px;
+    width: 480px;
     margin: 0 auto; }
-.gallery ul.pager {
-  padding-bottom: 20px; }
 
 .blog-post {
   width: 580px; }
