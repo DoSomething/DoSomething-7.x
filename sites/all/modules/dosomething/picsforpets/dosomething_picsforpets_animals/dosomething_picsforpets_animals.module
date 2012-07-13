@@ -6,12 +6,57 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_animals_menu() {
+  $items['pics-for-pets/carousel/js/%/%/%'] = array(
+    'type' => MENU_CALLBACK,
+    'access arguments' => TRUE,
+    'page callback' => 'dosomething_picsforpets_animals_wings',
+    'page arguments' => array(3),
+  );
+  return $items;
+}
+
+/**
  * Implements webform_submission_render_alter().
  */
 function dosomething_picsforpets_animals_webform_submission_render_alter(&$renderable) {
-	// Add carousel javascript to displays of pet profiles.
-
-	if (TRUE) { // TODO: check for specific node in $renderable.
+  // Add carousel javascript to displays of pet profiles.
+  $node = $renderable['#node'];
+  if ($node->type == 'fb_app_data_gathering_form' && $node->title == 'Pet Picture') { // TODO: check for specific node id once we know one; the title can change.
     drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-carousel.js');
-	}
+    drupal_add_js(array('picsforpetsAnimals' => array('sid' => $renderable['#submission']->sid)), 'setting');
+  }
+}
+
+/**
+ * Menu callback.
+ * Return items for the 'wings' on the pet carousel.
+ */
+function dosomething_picsforpets_animals_wings($sid, $limit, $offset = 0) {
+  $result = db_query_range("SELECT sid FROM webform_submissions WHERE sid <> :sid", $offset, $limit, array(':sid' => $sid)); // TODO: order by sharing desc and limit to correct node results.
+  foreach ($result as $submission) {
+    $submissions[] = array_pop(entity_load('webform_submission_entity', array($submission->sid)));
+  }
+  foreach ($submissions as $key => $submission) {
+    switch ($key) {
+      case 0:
+        $submission->wing_key = 1;
+        break;
+      case 1:
+        $submission->wing_key = -1;
+        break;
+      case 2:
+        $submission->wing_key = 2;
+        break;
+      case 3:
+        $submission->wing_key = -2;
+        break;
+    }
+    $wings[$submission->wing_key] = new stdClass();
+    $wings[$submission->wing_key]->sid = $submission->sid;
+    $wings[$submission->wing_key]->image = theme('image', array('path' => $submission->field_pfp_webform_image[LANGUAGE_NONE][0]['uri']));
+   }
+  drupal_json_output($wings);
 }
