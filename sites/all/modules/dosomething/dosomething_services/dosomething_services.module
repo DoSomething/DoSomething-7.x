@@ -147,6 +147,9 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
       $resources['user']['actions']['register']['callback'] = '_dosomething_services_user_resource_create';
     }
 
+    // file/create_raw override
+    $resources['file']['actions']['create_raw']['callback'] = '_dosomething_services_file_create_raw';
+
     // system/connect callback override
     $resources['system']['actions']['connect']['callback'] = '_dosomething_services_system_resource_connect';
 
@@ -463,6 +466,29 @@ function _dosomething_services_create_media_access($op = 'view', $args = array()
   }
 
   return FALSE;
+}
+
+/**
+ * Overriding _file_resource_create_raw() to make file updates before returning
+ * results to the user.
+ */
+function _dosomething_services_file_create_raw() {
+  // Do regular create_raw process
+  $return = _file_resource_create_raw();
+
+  // Then update file status and resave
+  foreach ($return as $file_info) {
+    if ($fid = $file_info['fid']) {
+      if ($file = file_load($fid)) {
+        // By default, file is saved as temporary file. Changing its status and
+        // resaving will make it permanent (and viewable in admin/content/file)
+        $file->status = FILE_STATUS_PERMANENT;
+        file_save($file);
+      }
+    }
+  }
+
+  return $return;
 }
 
 /**
