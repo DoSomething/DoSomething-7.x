@@ -28,3 +28,13 @@ function dosomething_picsforpets_furtographer_dialog($form, &$form_state) {
 
   return $form;
 }
+
+/**
+ * Implements hook_custom_theme().
+ */
+function dosomething_picsforpets_general_custom_theme() {
+  // Use the picsforpets theme when on the pics-for-pets paths of the site.
+  if (arg(0) == 'pics-for-pets') {
+    return 'picsforpets';
+  }
+}

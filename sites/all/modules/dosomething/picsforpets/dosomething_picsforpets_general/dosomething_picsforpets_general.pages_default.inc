@@ -15,7 +15,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Lets Get Started';
   $page->admin_description = '';
-  $page->path = 'lets-get-started';
+  $page->path = 'pics-for-pets/lets-get-started';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,

@@ -314,7 +314,7 @@ function doit_date_display_range($vars) {
 function doit_preprocess_user_picture(&$variables) {
   $variables['user_picture'] = '';
     $account = $variables['account'];
-    if ($account && $fbid = fboauth_fbid_load($account->uid)) {
+    if ($account && module_exists('fboauth') && $fbid = fboauth_fbid_load($account->uid)) {
       $filepath = 'https://graph.facebook.com/' . $fbid . '/picture?type=large';
       $alt = t("@user's picture", array('@user' => format_username($account)));
       if (module_exists('image') && file_valid_uri($filepath) && $style = variable_get('user_picture_style', '')) {
