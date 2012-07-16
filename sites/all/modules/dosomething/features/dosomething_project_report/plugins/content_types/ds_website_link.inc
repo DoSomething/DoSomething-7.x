@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Information for DoSomething page content - Project Report pages
+ */
 $plugin = array(
 	'single' => TRUE,
 	'title' => t('Project website link'),
@@ -10,6 +13,10 @@ $plugin = array(
 	'render callback' => 'dosomething_project_report_website_link_render'
 );
 
+/**
+ * Creates a dynamic website section of Project Page.
+ * If there is a title and a website, display both -- otherwise just show whatever is there.
+ */
 function dosomething_project_report_website_link_render($subtype, $conf, $args, $context)
 {
 	$block = new stdClass();
@@ -39,23 +46,28 @@ function dosomething_project_report_website_link_render($subtype, $conf, $args, 
 			$title = $info['field_link'][LANGUAGE_NONE][0]['title'];
 			if ($link && $title)
 			{
+				// Website title AND url (show both with - in between)
 				$markup = $title . ' - ' . l($link, $link);
 			}
 			else if ($link && !$title)
 			{
+				// Website URL only
 				$markup = l($link, $link);
 			}
 			else if ($title && !$link)
 			{
+				// Website title only (possible?)
 				$markup = $title;
 			}
 
+			// "For More Info" section heading
 			$output['title'] = array(
 				'#prefix' => '<h2 style="margin-top: 10px">',
 				'#suffix' => '</h2>',
 				'#markup' => t('For More Info'),
 			);
 
+			// Show the website link(s)
 			$output['website_link'] = array(
 				'#type' => 'container',
 				'#attributes' => array(
