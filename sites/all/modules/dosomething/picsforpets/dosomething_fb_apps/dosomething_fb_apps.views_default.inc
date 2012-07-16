@@ -329,6 +329,7 @@ function dosomething_fb_apps_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -343,7 +344,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['relationships']['webform_submission']['id'] = 'webform_submission';
   $handler->display->display_options['relationships']['webform_submission']['table'] = 'node';
   $handler->display->display_options['relationships']['webform_submission']['field'] = 'webform_submission';
-  $handler->display->display_options['relationships']['webform_submission']['required'] = 1;
+  $handler->display->display_options['relationships']['webform_submission']['required'] = 0;
   /* Relationship: Webform submissions: Node */
   $handler->display->display_options['relationships']['nid']['id'] = 'nid';
   $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
@@ -380,6 +381,31 @@ function dosomething_fb_apps_views_default_views() {
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_pfp_webform_image']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Animal Name */
+  $handler->display->display_options['fields']['field_pfp_animal_name']['id'] = 'field_pfp_animal_name';
+  $handler->display->display_options['fields']['field_pfp_animal_name']['table'] = 'field_data_field_pfp_animal_name';
+  $handler->display->display_options['fields']['field_pfp_animal_name']['field'] = 'field_pfp_animal_name';
+  $handler->display->display_options['fields']['field_pfp_animal_name']['relationship'] = 'webform_submission';
+  $handler->display->display_options['fields']['field_pfp_animal_name']['label'] = '';
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_pfp_animal_name']['field_api_classes'] = 0;
   /* Field: Webform Submission: Shelter */
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['id'] = 'field_pfp_shelter_reference';
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['table'] = 'field_data_field_pfp_shelter_reference';
@@ -408,6 +434,7 @@ function dosomething_fb_apps_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['field_api_classes'] = 0;
+<<<<<<< HEAD
   /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_pfp_animal_name']['id'] = 'field_pfp_animal_name';
   $handler->display->display_options['fields']['field_pfp_animal_name']['table'] = 'field_data_field_pfp_animal_name';
@@ -432,6 +459,8 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_alter_empty'] = 1;
+=======
+>>>>>>> Ticket #2162 Using conditional fields instead of select or other.
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -445,6 +474,26 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'fb_app_data_gathering_form' => 'fb_app_data_gathering_form',
   );
+  /* Filter criterion: Webform Submission: Animal Type (field_pfp_animal_types) */
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['id'] = 'field_pfp_animal_types_value';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['table'] = 'field_data_field_pfp_animal_types';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['field'] = 'field_pfp_animal_types_value';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['relationship'] = 'webform_submission';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['value'] = array(
+    'all' => 'all',
+    'Dog' => 'Dog',
+    'Cat' => 'Cat',
+    'Hamster' => 'Hamster',
+    'Bird' => 'Bird',
+    'Rabbit' => 'Rabbit',
+    'Other' => 'Other',
+  );
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['operator_id'] = 'field_pfp_animal_types_value_op';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['label'] = 'Animal Type';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['operator'] = 'field_pfp_animal_types_value_op';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['identifier'] = 'field_pfp_animal_types_value';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['reduce'] = 0;
 
   /* Display: Gallery Content Pane */
   $handler = $view->new_display('panel_pane', 'Gallery Content Pane', 'panel_pane_1');

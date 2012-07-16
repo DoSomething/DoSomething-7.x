@@ -248,6 +248,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $display->panels['middle'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-5';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['pfp_gallery'] = $page;
