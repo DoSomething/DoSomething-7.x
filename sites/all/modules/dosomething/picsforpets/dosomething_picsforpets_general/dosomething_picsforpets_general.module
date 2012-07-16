@@ -6,6 +6,9 @@
 
 include_once 'dosomething_picsforpets_general.features.inc';
 
+// The node id for the pet submission form.
+define('PICSFORPETS_PET_SUBMISSION_NID', 1);
+
 
 /**
  * Form that pops up when you click 'become a furtographer'.
@@ -33,8 +36,18 @@ function dosomething_picsforpets_furtographer_dialog($form, &$form_state) {
  * Implements hook_custom_theme().
  */
 function dosomething_picsforpets_general_custom_theme() {
-  // Use the picsforpets theme when on the pics-for-pets paths of the site.
+  // Use the picsforpets theme when on the pics-for-pets paths and entities of the site.
   if (arg(0) == 'pics-for-pets') {
     return 'picsforpets';
+  }
+  if ($submission = menu_get_object('webform_entity_pages_submission')) {
+    if ($submission->nid == PICSFORPETS_PET_SUBMISSION_NID) {
+      return 'picsforpets';
+    }
+  }
+  if ($node = menu_get_object()) {
+    if ($node->nid == PICSFORPETS_PET_SUBMISSION_NID) {
+      return 'picsforpets';
+    }
   }
 }
