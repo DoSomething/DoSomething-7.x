@@ -1499,6 +1499,83 @@ a.footer-furtography {
   color: white;
 }
 
+.ui-dialog {
+  background: rgba(0, 0, 0, 0.75);
+  border: none;
+  padding: 23px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+.ui-dialog .ui-dialog-content {
+  padding: 0;
+}
+.ui-dialog .ui-dialog-title {
+  height: 0;
+  margin: 0;
+  float: none;
+}
+.ui-dialog .ui-dialog-titlebar {
+  display: inline;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+  margin: 0;
+  padding: 0;
+  right: 0;
+  top: 0;
+  width: 0;
+}
+.ui-dialog .ui-dialog-titlebar-close span {
+  margin: 0;
+}
+
+.ui-widget-header {
+  background: none;
+  border: none;
+}
+
+.ui-icon.ui-icon-closethick {
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-image: url('../images/close.png?1342194291');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  text-indent: -1000px;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  background-image: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"] {
+  background: gray;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: inline;
+  float: left;
+}
+.region-sidebar-first input[type="text"]:focus, .region-sidebar-first input[type="textarea"]:focus, .ui-dialog input[type="text"]:focus, .ui-dialog input[type="textarea"]:focus {
+  outline: none;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
