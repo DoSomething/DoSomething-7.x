@@ -35,6 +35,38 @@
 ul.tabs
   +tabs
 
+.tabs,
+  ul.tabs
+    font-size: 12px
+    // width: 100%
+    border-bottom: 1px solid #CCCCCC
+    padding-left: 12px
+    padding-top: 12px
+    +clearfix
+    li
+      padding: 6px 0 4px 0
+      border: 0
+      a
+        +background-image(linear-gradient(top, #FCFDFA, #F1F2EF))
+        +border-top-radius(6px)
+        color: #666666
+        padding: 6px
+        margin-right: 4px
+        border-color: #CCCCCC
+        &.active
+          color: $gray
+          background: $white
+          border-color: #CCCCCC
+          border-bottom: 0
+          &:hover
+            color: $gray
+            background: $white
+        &:hover
+          color: $white
+          background: $gray
+          border-color: #CCCCCC
+
+
 // NEW USER FORM
 .form-required
   color: $red
