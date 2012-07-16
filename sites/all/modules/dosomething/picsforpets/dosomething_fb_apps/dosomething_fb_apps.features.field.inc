@@ -113,7 +113,7 @@ function dosomething_fb_apps_field_default_fields() {
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => '2',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -132,7 +132,7 @@ function dosomething_fb_apps_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '6',
+        'weight' => '23',
       ),
     ),
   );
@@ -145,25 +145,26 @@ function dosomething_fb_apps_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_pfp_animal_types',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
+      'foreign keys' => array(),
       'indexes' => array(
-        'format' => array(
-          0 => 'format',
+        'value' => array(
+          0 => 'value',
         ),
       ),
-      'module' => 'text',
+      'module' => 'list',
       'settings' => array(
-        'max_length' => '60',
+        'allowed_values' => array(
+          'Dog' => 'Dog',
+          'Cat' => 'Cat',
+          'Hamster' => 'Hamster',
+          'Bird' => 'Bird',
+          'Rabbit' => 'Rabbit',
+          'Other' => 'Other',
+        ),
+        'allowed_values_function' => '',
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'list_text',
     ),
     'field_instance' => array(
       'bundle' => 'fb_app_data_gathering_form',
@@ -173,36 +174,25 @@ function dosomething_fb_apps_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'inline',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '1',
+          'type' => 'list_default',
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_pfp_animal_types',
       'label' => 'Animal Type',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'select_or_other',
-        'settings' => array(
-          'available_options' => '1_dog|Dog
-2_cat|Cat
-3_rabbit|Rabbit
-4_bird|Bird',
-          'available_options_php' => '',
-          'markup_available_options_php' => '&lt;none&gt;',
-          'other' => 'Other',
-          'other_unknown_defaults' => 'other',
-          'sort_options' => 0,
-        ),
-        'type' => 'select_or_other',
-        'weight' => '5',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '20',
       ),
     ),
   );
@@ -325,7 +315,7 @@ function dosomething_fb_apps_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -343,7 +333,7 @@ function dosomething_fb_apps_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '24',
       ),
     ),
   );

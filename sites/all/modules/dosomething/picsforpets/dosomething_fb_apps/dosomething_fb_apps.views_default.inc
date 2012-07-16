@@ -126,32 +126,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_animal_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_animal_name']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Animal Type */
-  $handler->display->display_options['fields']['field_pfp_animal_types']['id'] = 'field_pfp_animal_types';
-  $handler->display->display_options['fields']['field_pfp_animal_types']['table'] = 'field_data_field_pfp_animal_types';
-  $handler->display->display_options['fields']['field_pfp_animal_types']['field'] = 'field_pfp_animal_types';
-  $handler->display->display_options['fields']['field_pfp_animal_types']['relationship'] = 'webform_submission';
-  $handler->display->display_options['fields']['field_pfp_animal_types']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_animal_types']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_types']['field_api_classes'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
