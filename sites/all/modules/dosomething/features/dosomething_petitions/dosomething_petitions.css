@@ -50,6 +50,9 @@
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0; }
 
+.webform-client-form .form-actions {
+  text-align: center; }
+
 .webform-client-form, .horizontal-tabs fieldset.horizontal-tabs-pane, .pane-petition-share .pane-content {
   background: white;
   -webkit-box-shadow: rgba(75, 71, 68, 0.35) 0 0 12px;
