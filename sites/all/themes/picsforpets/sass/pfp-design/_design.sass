@@ -28,6 +28,7 @@ body
   clear: both
 
 .mission-text
+  @extend %league-gothic
   background: rgba($white, 0.75)
   width: 100%
   text-transform: uppercase
@@ -135,9 +136,9 @@ a.footer-furtography
   background: $black
   +opacity(0.75)
 
-.ui-dialog
-  background: rgba($black, 0.75)
-  border: none
+// .ui-dialog
+//   background: rgba($black, 0.75)
+//   border: none
 
 .ui-dialog .ui-dialog-titlebar
   padding: 12px
@@ -170,12 +171,13 @@ a.footer-furtography
 // MODAL GENERAL LAYOUT
 ////////////////////////////
 
+#dosomething-picsforpets-furtographer-dialog
+  margin-top: 12px
+
 .ui-dialog
-  // @extend .white
   background: rgba($black, 0.75)
   border: none
   padding: 23px
-  // @extend .clearfix
   +border-radius(0)
   .ui-dialog-content
     padding: 0
@@ -196,9 +198,6 @@ a.footer-furtography
     width: 0
     span
       margin: 0
-.ui-widget-header
-  background: none
-  border: none
 
 .ui-icon.ui-icon-closethick
   +replace-text-with-dimensions('close.png')
@@ -216,14 +215,14 @@ a.footer-furtography
   text-decoration: none
 
 // Dark input style
-.region-sidebar-first, .ui-dialog
-  input
-    &[type="text"],
-    &[type="textarea"]
-      @extend .white
-      background: $gray
-      +box-shadow(none)
-      +float-left
-      &:focus
-        outline: none
+// .region-sidebar-first, .ui-dialog
+//   input
+//     &[type="text"],
+//     &[type="textarea"]
+//       @extend .white
+//       background: $gray
+//       +box-shadow(none)
+//       +float-left
+//       &:focus
+//         outline: none
 
