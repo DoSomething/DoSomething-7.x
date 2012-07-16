@@ -1,0 +1,42 @@
+From 25a9290a05965c0d1f35073ff9d0db2dde7018d8 Mon Sep 17 00:00:00 2001
+From: Jon Uy <juy@dosomething.org>
+Date: Tue, 15 May 2012 16:15:08 -0400
+Subject: [PATCH] webform_service update to set default_op to its overridden
+ value, if any, from an individual webform
+
+---
+ .../modules/webform_service/webform_service.inc    |   11 +++++++++++
+ 1 files changed, 11 insertions(+), 0 deletions(-)
+
+diff --git a/sites/all/modules/webform_service/webform_service.inc b/sites/all/modules/webform_service/webform_service.inc
+index 319fa2a..37acd4c 100644
+--- a/sites/all/modules/webform_service/webform_service.inc
++++ b/sites/all/modules/webform_service/webform_service.inc
+@@ -104,6 +104,12 @@ function _submission_resource_create($data) {
+   $node = node_load($nid);
+   $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
+ 
++  // For overidden op's on individual webforms
++  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
++  if (isset($form['actions']['submit']['#value'])) {
++    $default_op = $form['actions']['submit']['#value'];
++  }
++
+   // Load the required includes for drupal_execute
+   module_load_include('module', 'webform');
+ 
+@@ -145,6 +151,11 @@ function _submission_resource_create($data) {
+ function _submission_resource_update($nid, $sid, $submission) {
+   $node = node_load($nid);
+   $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
++  // For overidden op's on individual webforms
++  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
++  if (isset($form['actions']['submit']['#value'])) {
++    $default_op = $form['actions']['submit']['#value'];
++  }
+   // Adds backwards compatability with regression fixed in #1083242
+   $submission = _services_arg_value($submission, 'webform_submission');
+ 
+-- 
+1.7.8.3
+
