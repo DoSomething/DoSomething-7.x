@@ -28,6 +28,7 @@ body
   clear: both
 
 .mission-text
+  @extend %league-gothic
   background: rgba($white, 0.75)
   width: 100%
   text-transform: uppercase
@@ -37,7 +38,7 @@ body
   margin-top: 225px
 
 #gallery-link
-  // background: $white
+  @extend %league-gothic
   +float-right
   color: $pfp-red
   text-transform: uppercase
@@ -80,6 +81,7 @@ body
   border: 1px solid $pfp-gray-lt
   +border-radius(8px)
   p
+    @extend %league-gothic
     border-bottom: 1px solid $black
     height: 50px
 
@@ -101,6 +103,7 @@ body
   background-position: 50% 74px
 
 .picsforpets-menu
+  @extend %league-gothic
   +horizontal-list($padding: 4px, $direction: left)
   text-transform: uppercase
   font-size: 20px

@@ -522,8 +522,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Only use the fancy ampersand in <h#> tags */
 h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-size: 1em;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-family: sans-serif;
   font-style: italic;
+}
+
+.mission-text, #gallery-link, .white-block p, .picsforpets-menu {
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
 /* import font files using @font-face, if not using a service such as typekit */
@@ -548,7 +552,7 @@ html {
 }
 
 body {
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-family: sans-serif;
   color: black;
   background-repeat: no-repeat;
 }
@@ -1237,7 +1241,7 @@ a.footer-furtography {
   border: none;
   color: white;
   text-align: center;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-family: sans-serif;
   text-transform: uppercase;
   font-size: 52px;
   border-bottom: 1px solid white;
@@ -1587,7 +1591,7 @@ header aside {
   font-size: 1em;
   line-height: 1.5em;
   text-transform: uppercase;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-family: sans-serif;
 }
 
 .colors ul li {
@@ -1634,7 +1638,7 @@ header aside {
   line-height: 1;
 }
 .styletile-1 .text-examples .logos h1.opt-1:before {
-  content: counter(logos) ' - "League_Gothic", "Arial Narrow", Arial, sans-serif';
+  content: counter(logos) " - sans-serif";
 }
 .styletile-1 .text-examples .serif {
   font-family: Georgia, serif;
@@ -1643,10 +1647,10 @@ header aside {
   content: " - Georgia, serif";
 }
 .styletile-1 .text-examples .sans, .styletile-1 .text-examples header aside, header .styletile-1 .text-examples aside {
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-family: sans-serif;
 }
 .styletile-1 .text-examples .sans .label:after, .styletile-1 .text-examples header aside .label:after, header .styletile-1 .text-examples aside .label:after, .styletile-1 .text-examples .sans .logos h1:after:before, .styletile-1 .text-examples .logos .sans h1:after:before, .styletile-1 .text-examples header aside .logos h1:after:before, .styletile-1 .text-examples .logos header aside h1:after:before, header .styletile-1 .text-examples aside .logos h1:after:before, header .styletile-1 .text-examples .logos aside h1:after:before {
-  content: ' - "League_Gothic", "Arial Narrow", Arial, sans-serif';
+  content: " - sans-serif";
 }
 
 /* graphic examples */
