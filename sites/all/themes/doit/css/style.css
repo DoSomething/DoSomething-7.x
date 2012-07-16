@@ -5221,6 +5221,9 @@ comments.fb_iframe_widget {
   margin-bottom: 5px;
   overflow: hidden;
 }
+#home-slide-wrap .contextual-links-region {
+  position: static;
+}
 
 .view-projects-by-state .views-exposed-widget label {
   display: block;
