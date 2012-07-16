@@ -10,7 +10,7 @@
 function dosomething_picsforpets_shelters_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-shelter-field_pfp_address'.
+  // Exported field: 'node-shelter-field_pfp_address'
   $fields['node-shelter-field_pfp_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -20,7 +20,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'field_name' => 'field_pfp_address',
       'foreign keys' => array(),
       'indexes' => array(),
-      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(),
       'translatable' => '0',
@@ -78,18 +77,18 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-country' => 'address-hide-country',
-            'organisation' => 'organisation',
             'name-full' => 0,
             'name-oneline' => 0,
+            'organisation' => 'organisation',
           ),
         ),
         'type' => 'addressfield_standard',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
 
-  // Exported field: 'node-shelter-field_pfp_contact_email_address'.
+  // Exported field: 'node-shelter-field_pfp_contact_email_address'
   $fields['node-shelter-field_pfp_contact_email_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -99,7 +98,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'field_name' => 'field_pfp_contact_email_address',
       'foreign keys' => array(),
       'indexes' => array(),
-      'locked' => '0',
       'module' => 'email',
       'settings' => array(),
       'translatable' => '0',
@@ -139,12 +137,12 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '8',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-shelter-field_pfp_contact_name'.
+  // Exported field: 'node-shelter-field_pfp_contact_name'
   $fields['node-shelter-field_pfp_contact_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -165,7 +163,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           0 => 'format',
         ),
       ),
-      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '60',
@@ -208,12 +205,12 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'node-shelter-field_pfp_geo_data'.
+  // Exported field: 'node-shelter-field_pfp_geo_data'
   $fields['node-shelter-field_pfp_geo_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -223,7 +220,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'field_name' => 'field_pfp_geo_data',
       'foreign keys' => array(),
       'indexes' => array(),
-      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(),
       'translatable' => '0',
@@ -283,12 +279,12 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           ),
         ),
         'type' => 'geocoder',
-        'weight' => '16',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-shelter-field_pfp_hours'.
+  // Exported field: 'node-shelter-field_pfp_hours'
   $fields['node-shelter-field_pfp_hours'] = array(
     'field_config' => array(
       'active' => '1',
@@ -309,7 +305,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           0 => 'format',
         ),
       ),
-      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -350,12 +345,80 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '14',
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'node-shelter-field_pfp_phone_number'.
+  // Exported field: 'node-shelter-field_pfp_partner_shelter'
+  $fields['node-shelter-field_pfp_partner_shelter'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_pfp_partner_shelter',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => 'DoSomething.org Partnered Shelter',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'shelter',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 14,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_pfp_partner_shelter',
+      'label' => 'DoSomething.org Partnered Shelter',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-shelter-field_pfp_phone_number'
   $fields['node-shelter-field_pfp_phone_number'] = array(
     'field_config' => array(
       'active' => '1',
@@ -376,7 +439,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           0 => 'format',
         ),
       ),
-      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '60',
@@ -419,12 +481,12 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '12',
+        'weight' => '5',
       ),
     ),
   );
 
-  // Exported field: 'node-shelter-field_pfp_shelter_website'.
+  // Exported field: 'node-shelter-field_pfp_shelter_website'
   $fields['node-shelter-field_pfp_shelter_website'] = array(
     'field_config' => array(
       'active' => '1',
@@ -434,7 +496,6 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'field_name' => 'field_pfp_shelter_website',
       'foreign keys' => array(),
       'indexes' => array(),
-      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -464,7 +525,7 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           'label' => 'above',
           'module' => 'link',
           'settings' => array(),
-          'type' => 'link_default',
+          'type' => 'default',
           'weight' => 10,
         ),
         'teaser' => array(
@@ -502,7 +563,7 @@ function dosomething_picsforpets_shelters_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '10',
+        'weight' => '4',
       ),
     ),
   );
@@ -512,6 +573,7 @@ function dosomething_picsforpets_shelters_field_default_fields() {
   t('Address');
   t('Contact Email Address');
   t('Contact Name');
+  t('DoSomething.org Partnered Shelter');
   t('Geo Data');
   t('Hours');
   t('Phone Number');
