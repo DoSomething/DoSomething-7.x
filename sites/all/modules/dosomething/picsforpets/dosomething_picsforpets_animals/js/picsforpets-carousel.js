@@ -43,10 +43,10 @@ function picsforpetsAnimalsPlaceImages(settings) {
   var images = settings.picsforpetsAnimals.images;
   var index = settings.picsforpetsAnimals.index;
   $('.picsforpets-wing').remove();
-  $('.webform-submission').parent().before().before('<div class="picsforpets-wing">' + images[index + -2].image + '</div>');
-  $('.webform-submission').parent().after().after('<div class="picsforpets-wing">' + images[index + 2].image + '</div>');
-  $('.webform-submission').parent().before().before('<div class="picsforpets-wing">' + images[index + -1].image + '</div>');
-  $('.webform-submission').parent().after().after('<div class="picsforpets-wing">' + images[index + 1].image + '</div>');
+  $('.webform-submission').parent().before().before('<div class="picsforpets-wing outside-left">' + images[index + -2].image + '</div>');
+  $('.webform-submission').parent().after().after('<div class="picsforpets-wing outside-right">' + images[index + 2].image + '</div>');
+  $('.webform-submission').parent().before().before('<div class="picsforpets-wing inside-left">' + images[index + -1].image + '</div>');
+  $('.webform-submission').parent().after().after('<div class="picsforpets-wing inside-right">' + images[index + 1].image + '</div>');
 
   // Respond to clicks of images.
   $('.picsforpets-wing:eq(0)').click(function() {
