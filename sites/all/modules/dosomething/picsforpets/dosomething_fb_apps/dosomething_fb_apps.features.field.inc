@@ -132,7 +132,7 @@ function dosomething_fb_apps_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '2',
+        'weight' => '6',
       ),
     ),
   );
@@ -202,7 +202,7 @@ function dosomething_fb_apps_field_default_fields() {
           'sort_options' => 0,
         ),
         'type' => 'select_or_other',
-        'weight' => '1',
+        'weight' => '5',
       ),
     ),
   );
@@ -343,7 +343,7 @@ function dosomething_fb_apps_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '7',
       ),
     ),
   );
