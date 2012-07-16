@@ -28,7 +28,6 @@ body
   clear: both
 
 .mission-text
-  @extend %league-gothic
   background: rgba($white, 0.75)
   width: 100%
   text-transform: uppercase
@@ -142,8 +141,10 @@ a.footer-furtography
 
 .ui-dialog .ui-dialog-titlebar
   padding: 12px
+  @extend %league-gothic
 
 .ui-widget-header
+  @extend %league-gothic
   padding: 0
   background: none
   border: none
@@ -157,10 +158,14 @@ a.footer-furtography
 .ui-dialog-content
   color: $white
 
-.ui-widget-header .ui-icon
-  background: url(../images/ui-close-x.png) no-repeat
-  &:hover
-    background: url(../images/ui-close-x.png) no-repeat
+// .ui-widget-header .ui-icon
+//   background: url(../images/ui-close-x.png) no-repeat
 
+// .ui.icon
+//   background: pink
+
+// .ui-icon-closethick
+//   &:hover
+//     // background-color: blue
 
 

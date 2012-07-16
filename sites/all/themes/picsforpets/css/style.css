@@ -526,7 +526,7 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-style: italic;
 }
 
-.mission-text, #gallery-link, .white-block p, .picsforpets-menu {
+#gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1497,13 +1497,6 @@ a.footer-furtography {
 
 .ui-dialog-content {
   color: white;
-}
-
-.ui-widget-header .ui-icon {
-  background: url(../images/ui-close-x.png) no-repeat;
-}
-.ui-widget-header .ui-icon:hover {
-  background: url(../images/ui-close-x.png) no-repeat;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
