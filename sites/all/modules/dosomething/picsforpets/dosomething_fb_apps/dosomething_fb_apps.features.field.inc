@@ -233,11 +233,74 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_three_words'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_three_words'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '3',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_three_words',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '60',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_three_words',
+      'label' => 'What are three words to best describe your furry friend?',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '20',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('Image');
   t('Shelter');
+  t('What are three words to best describe your furry friend?');
 
   return $fields;
 }
