@@ -433,9 +433,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['settings'] = array(
     'link' => 0,
   );
-  $handler->display->display_options['fields']['field_pfp_shelter_reference']['field_api_classes'] = 0;
-<<<<<<< HEAD
-  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_pfp_animal_name']['id'] = 'field_pfp_animal_name';
   $handler->display->display_options['fields']['field_pfp_animal_name']['table'] = 'field_data_field_pfp_animal_name';
   $handler->display->display_options['fields']['field_pfp_animal_name']['field'] = 'field_pfp_animal_name';
@@ -459,8 +456,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_alter_empty'] = 1;
-=======
->>>>>>> Ticket #2162 Using conditional fields instead of select or other.
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
