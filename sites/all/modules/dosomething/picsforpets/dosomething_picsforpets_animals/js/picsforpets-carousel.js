@@ -10,7 +10,7 @@ Drupal.behaviors.dosomethingPicsforpetsCarousel = {
     settings.picsforpetsAnimals.index = 0;
 
     // Add the previous/next arrows.
-    var $submission = $('.webform-submission');
+    var $submission = $('#webform-submission');
     $submission.after('<div class="3d-slideshow-next">&gt;</div>');
     $submission.before('<div class="3d-slideshow-prev">&lt;</div>');
 
@@ -43,10 +43,10 @@ function picsforpetsAnimalsPlaceImages(settings) {
   var images = settings.picsforpetsAnimals.images;
   var index = settings.picsforpetsAnimals.index;
   $('.3d-slideshow-wing').remove();
-  $('.webform-submission').parent().before().before('<div class="3d-slideshow-wing outside-left">' + images[index + -2].image + '</div>');
-  $('.webform-submission').parent().after().after('<div class="3d-slideshow-wing outside-right">' + images[index + 2].image + '</div>');
-  $('.webform-submission').parent().before().before('<div class="3d-slideshow-wing inside-left">' + images[index + -1].image + '</div>');
-  $('.webform-submission').parent().after().after('<div class="3d-slideshow-wing inside-right">' + images[index + 1].image + '</div>');
+  $('#webform-submission').parent().before().before('<div class="3d-slideshow-wing outside-left">' + images[index + -2].image + '</div>');
+  $('#webform-submission').parent().after().after('<div class="3d-slideshow-wing outside-right">' + images[index + 2].image + '</div>');
+  $('#webform-submission').parent().before().before('<div class="3d-slideshow-wing inside-left">' + images[index + -1].image + '</div>');
+  $('#webform-submission').parent().after().after('<div class="3d-slideshow-wing inside-right">' + images[index + 1].image + '</div>');
 
   // Respond to clicks of images.
   $('.3d-slideshow-wing:eq(0)').click(function() {
@@ -68,8 +68,8 @@ function picsforpetsAnimalsPlaceImages(settings) {
 }
 
 function picsforpetsAnimalsNext(settings) {
-  $('.webform-submission').empty();
-  $('.webform-submission').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' .webform-submission');
+  $('#webform-submission').empty();
+  $('#webform-submission').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #webform-submission');
   picsforpetsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index + 4] == undefined) {
@@ -96,8 +96,8 @@ function picsforpetsAnimalsNext(settings) {
 }
 
 function picsforpetsAnimalsPrev(settings) {
-  $('.webform-submission').empty();
-  $('.webform-submission').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' .webform-submission');
+  $('#webform-submission').empty();
+  $('#webform-submission').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #webform-submission');
   picsforpetsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index - 4] == undefined) {
