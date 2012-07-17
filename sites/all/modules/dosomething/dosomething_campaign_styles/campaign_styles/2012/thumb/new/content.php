@@ -1,5 +1,8 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
 <link href="style.css" media="all" rel="stylesheet" type="text/css">
 <script src="/misc/jquery.js?v=1.4.4"></script>
 <script src="script.js" type="text/javascript"></script>
