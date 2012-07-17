@@ -2,7 +2,8 @@
 
 form.webform-client-form
   // Float multi-step webform buttons right
-  #edit-actions
+  #edit-actions,
+  #edit-actions--2
     height: 50px
     margin-bottom: 0
     text-align: right
@@ -12,6 +13,7 @@ form.webform-client-form
   #edit-next,
   #edit-previous,
   #edit-submit,
+  #edit-submit--2,
   #edit-draft
     @extend .go-button
     +inline-block
@@ -23,7 +25,8 @@ form.webform-client-form
     padding: 0
     width: 45px
 
-  #edit-submit
+  #edit-submit,
+  #edit-submit--2
     margin-left: $s-2
 
   // Save as draft link
