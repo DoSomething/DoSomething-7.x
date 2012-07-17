@@ -117,11 +117,11 @@ function dosomething_fb_apps_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 12,
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -179,11 +179,11 @@ function dosomething_fb_apps_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 9,
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -242,11 +242,11 @@ function dosomething_fb_apps_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 10,
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -301,14 +301,14 @@ function dosomething_fb_apps_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => 15,
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -373,11 +373,11 @@ function dosomething_fb_apps_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 11,
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -453,13 +453,13 @@ function dosomething_fb_apps_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 14,
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -518,7 +518,7 @@ function dosomething_fb_apps_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 13,
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
