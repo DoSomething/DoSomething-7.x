@@ -57,6 +57,9 @@ function dosomething_services_default_services_endpoint() {
         'create_media' => array(
           'enabled' => 1,
         ),
+        'create_raw' => array(
+          'enabled' => 1,
+        ),
       ),
     ),
     'node' => array(

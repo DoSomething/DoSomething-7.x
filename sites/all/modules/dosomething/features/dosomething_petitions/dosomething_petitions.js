@@ -1,6 +1,7 @@
 (function ($) {
   Drupal.behaviors.dosomethingPetitions = {
     attach: function (context, settings) {
+      // check if the browser supports placeholder elements
       var placeholder = (function () {
         var i = document.createElement('input');
         return 'placeholder' in i;
@@ -13,6 +14,7 @@
 
       $signatureCheckbox.appendTo($('#webform-client-form-723108--2>div'));
 
+      // add the "Add a reason" link
       $displayReasonLink = $('<a>')
         .attr('id', 'add-reason-link')
         .text('Add a reason')
@@ -23,6 +25,7 @@
       $reasonBox.hide();
       $reasonLabel.append($displayReasonLink);
 
+      // convert labels to placeholders
       if (placeholder) {
         var $form = $('.webform-client-form, #dosomething-petitions-email-form');
         $form.find('label').each(function (idx, e) {
@@ -37,8 +40,11 @@
     }
   };
 
+  // Define our own jQuery plugin so we can call it from Drupal's AJAX callback
   $.fn.extend({
     dsPetitionSubmit: function (url) {
+      // Whelp, these were breaking things, so let's just destroy them.
+      // This is probably bad practice.
       delete Drupal.behaviors.dosomethingLoginRegister;
       delete Drupal.behaviors.dosomethingPetitions;
       
@@ -51,6 +57,7 @@
       var is_email = Drupal.dsRegistration.validEmail(e_or_m);
       var is_mobile = Drupal.dsRegistration.validPhone(e_or_m);
 
+      // set the values on the popup form based on user input
       if (is_email) {
         popupForm.find('input[name="email"]').val(e_or_m);
       }
@@ -59,14 +66,18 @@
       }
       popupForm.find('input[name="first_name"]').val(fName);
       popupForm.find('input[name="last_name"]').val(lName);
+
+      // change the text of the popup
       popupForm.find('#edit-title-text label')
         .text("You've Signed.")
         .after('<h2>Now get the benefits of being a full member.</h2>');
 
+      // make sure users get directed to the right page
       popupForm.attr('action', '/user/registration?destination='+url);
       popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination='+url);
       $('#dosomething-login-login-popup-form').attr('action', '/user?destination='+url);
 
+      // popup!
       popupForm.dialog({
         resizable: false,
         draggable: false,

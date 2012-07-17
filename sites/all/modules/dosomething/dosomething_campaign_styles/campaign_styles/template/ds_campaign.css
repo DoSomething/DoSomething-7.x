@@ -100,6 +100,8 @@ div[role="main"] {
     background: rgba(255, 255, 255, 0.8);
     background-image: none;
     text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu li {
+      line-height: 1.2em; }
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
@@ -107,7 +109,8 @@ div[role="main"] {
       font-size: 21px;
       font-weight: 600;
       text-transform: uppercase;
-      color: black; }
+      color: black;
+      font-family: "din-web-reg"; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
         color: blue;
         text-decoration: none; }
@@ -197,7 +200,8 @@ div[role="main"] {
         width: 75%;
         margin-top: 5px; }
 
-.webform-client-form #edit-actions {
+.webform-client-form #edit-actions,
+.webform-client-form #edit-actions--2 {
   position: absolute;
   right: 86px;
   bottom: 9px; }
@@ -331,7 +335,7 @@ div[role="main"] {
     background-color: #eeeeee; }
 
 #dosomething-login-register-popup-form .popup-content {
-  height: 165px; }
+  height: 165px !important; }
 
 #edit-submitted-field-webform-school-reference,
 #submitted-field-webform-school-zip-add-more-wrapper {

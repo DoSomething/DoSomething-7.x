@@ -795,7 +795,7 @@ function _service_links_get_node_title($node, $settings) {
       break;
   }
 
-  return check_plain($title);
+  return str_replace('&#039;', "'", strip_tags(htmlspecialchars_decode($title)));
 }
 
 /**

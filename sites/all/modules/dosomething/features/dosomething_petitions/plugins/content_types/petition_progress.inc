@@ -57,6 +57,6 @@ function dosomething_petitions_petition_progress_content_type_render($subtype, $
 }
 
 function dosomething_petitions_petition_progress_content_type_admin_title($subtype, $conf, $context) {
-  return t('Team Progress');
+  return t('Petition Progress');
 }
 

@@ -13,6 +13,7 @@ function dosomething_petitions_petition_signatures_content_type_render($subtype,
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   $node = menu_get_object();
 
+  // load up signatures for people who have checked the signature box
   $q = new EntityFieldQuery;
   $result = $q
     ->entityCondition('entity_type', 'webform_submission_entity')
@@ -22,6 +23,8 @@ function dosomething_petitions_petition_signatures_content_type_render($subtype,
     ->execute();
 
   $result = $result['webform_submission_entity'];
+
+  // load up signatures until we have 5 or we run out
   while (count($signatures) < 5 && count($result) != 0) {
     $submission = array_shift(entity_load('webform_submission_entity', array(array_shift($result)->sid)));
     $name = dosomething_general_get_full_name(user_load($submission->uid));
@@ -53,6 +56,6 @@ function dosomething_petitions_petition_signatures_content_type_render($subtype,
 }
 
 function dosomething_petitions_petition_signatures_content_type_admin_title($subtype, $conf, $context) {
-  return t('Team Progress');
+  return t('Petition Signatures');
 }
 
