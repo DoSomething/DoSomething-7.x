@@ -24,7 +24,7 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
-    'css_id' => '',
+    'css_id' => 'webform-submission',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
@@ -58,45 +58,14 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%webform_submission_entity:field_fb_app_animal_name';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
-    $pane->subtype = 'webform_submission_entity:field_pfp_animal_age';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'number_integer',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'thousand_separator' => ' ',
-        'prefix_suffix' => 1,
-      ),
-      'context' => 'argument_entity_id:webform_submission_entity_1',
-      'override_title' => 1,
-      'override_title_text' => 'Age:',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-1'] = $pane;
-    $display->panels['left'][0] = 'new-1';
-    $pane = new stdClass();
-    $pane->pid = 'new-2';
-    $pane->panel = 'left';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'webform_submission_entity:field_pfp_three_describing_words';
+    $pane->subtype = 'webform_submission_entity:field_fb_app_three_words';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -116,12 +85,12 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['left'][1] = 'new-2';
+    $display->content['new-1'] = $pane;
+    $display->panels['left'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-2';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'shelter_per_pet-panel_pane_1';
@@ -140,8 +109,39 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['right'][0] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'top';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'webform_submission_entity:field_fb_app_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'image',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'image_style' => 'medium',
+        'image_link' => '',
+      ),
+      'context' => 'argument_entity_id:webform_submission_entity_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
     $display->content['new-3'] = $pane;
-    $display->panels['right'][0] = 'new-3';
+    $display->panels['top'][0] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'top';
@@ -152,7 +152,7 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Pet name',
       'title' => '',
-      'body' => 'Hi. I\'m %webform_submission_entity:field_pfp_pet_name.',
+      'body' => 'Hi. I\'m %webform_submission_entity:field_fb_app_animal_name.',
       'format' => 'filtered_html',
       'substitute' => 1,
     );
@@ -162,10 +162,10 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $display->content['new-4'] = $pane;
-    $display->panels['top'][0] = 'new-4';
+    $display->panels['top'][1] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -186,7 +186,10 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $page->admin_title = 'Gallery';
   $page->admin_description = '';
   $page->path = 'pics-for-pets/gallery';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(

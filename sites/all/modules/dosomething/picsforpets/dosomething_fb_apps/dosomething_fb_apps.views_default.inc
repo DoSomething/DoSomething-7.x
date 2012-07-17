@@ -31,16 +31,44 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Broken/missing handler */
-  $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['id'] = 'field_pfp_shelter_reference_target_id';
-  $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['table'] = 'field_data_field_pfp_shelter_reference';
-  $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['field'] = 'field_pfp_shelter_reference_target_id';
-  $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['required'] = 1;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['id'] = 'field_fb_app_shelter_reference_target_id';
+  $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['table'] = 'field_data_field_fb_app_shelter_reference';
+  $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['field'] = 'field_fb_app_shelter_reference_target_id';
+  $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['required'] = 1;
+  /* Field: Content: Shelter Website */
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['id'] = 'field_pfp_shelter_website';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['table'] = 'field_data_field_pfp_shelter_website';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['field'] = 'field_pfp_shelter_website';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['relationship'] = 'field_fb_app_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['label'] = '';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['type'] = 'plain';
+  $handler->display->display_options['fields']['field_pfp_shelter_website']['field_api_classes'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['relationship'] = 'field_pfp_shelter_reference_target_id';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['title']['alter']['make_link'] = 1;
@@ -67,7 +95,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_address']['id'] = 'field_pfp_address';
   $handler->display->display_options['fields']['field_pfp_address']['table'] = 'field_data_field_pfp_address';
   $handler->display->display_options['fields']['field_pfp_address']['field'] = 'field_pfp_address';
-  $handler->display->display_options['fields']['field_pfp_address']['relationship'] = 'field_pfp_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_address']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_address']['label'] = '';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['make_link'] = 0;
@@ -95,41 +123,12 @@ function dosomething_fb_apps_views_default_views() {
     ),
   );
   $handler->display->display_options['fields']['field_pfp_address']['field_api_classes'] = 0;
-  /* Field: Content: Shelter Website */
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['id'] = 'field_pfp_shelter_website';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['table'] = 'field_data_field_pfp_shelter_website';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['field'] = 'field_pfp_shelter_website';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['relationship'] = 'field_pfp_shelter_reference_target_id';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['path'] = '[field_pfp_shelter_website-url]';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['target'] = '_blank';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['type'] = 'plain';
-  $handler->display->display_options['fields']['field_pfp_shelter_website']['field_api_classes'] = 0;
   /* Field: Content: Hours */
   $handler->display->display_options['fields']['field_pfp_hours']['id'] = 'field_pfp_hours';
   $handler->display->display_options['fields']['field_pfp_hours']['table'] = 'field_data_field_pfp_hours';
   $handler->display->display_options['fields']['field_pfp_hours']['field'] = 'field_pfp_hours';
-  $handler->display->display_options['fields']['field_pfp_hours']['relationship'] = 'field_pfp_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_hours']['relationship'] = 'field_fb_app_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_hours']['label'] = 'Hours:';
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['absolute'] = 0;
@@ -153,7 +152,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_contact_name']['id'] = 'field_pfp_contact_name';
   $handler->display->display_options['fields']['field_pfp_contact_name']['table'] = 'field_data_field_pfp_contact_name';
   $handler->display->display_options['fields']['field_pfp_contact_name']['field'] = 'field_pfp_contact_name';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['relationship'] = 'field_pfp_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_contact_name']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_contact_name']['label'] = '';
   $handler->display->display_options['fields']['field_pfp_contact_name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['alter_text'] = 1;
@@ -172,7 +171,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_pfp_contact_name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_pfp_contact_name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['field_pfp_contact_name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_contact_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_contact_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_contact_name']['field_api_classes'] = 0;
@@ -180,7 +179,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_phone_number']['id'] = 'field_pfp_phone_number';
   $handler->display->display_options['fields']['field_pfp_phone_number']['table'] = 'field_data_field_pfp_phone_number';
   $handler->display->display_options['fields']['field_pfp_phone_number']['field'] = 'field_pfp_phone_number';
-  $handler->display->display_options['fields']['field_pfp_phone_number']['relationship'] = 'field_pfp_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_phone_number']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_phone_number']['label'] = '';
   $handler->display->display_options['fields']['field_pfp_phone_number']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['alter_text'] = 1;
@@ -207,10 +206,11 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['id'] = 'field_pfp_contact_email_address';
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['table'] = 'field_data_field_pfp_contact_email_address';
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['field'] = 'field_pfp_contact_email_address';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['relationship'] = 'field_pfp_shelter_reference_target_id';
+  $handler->display->display_options['fields']['field_pfp_contact_email_address']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['label'] = '';
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['text'] = '[field_pfp_contact_email_address]<br />';
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['external'] = 0;
@@ -256,32 +256,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['id'] = 'field_pfp_partner_shelter';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['table'] = 'field_data_field_pfp_partner_shelter';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['field'] = 'field_pfp_partner_shelter';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['relationship'] = 'field_pfp_shelter_reference_target_id';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['text'] = '&nbsp;';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['empty'] = 'This is not a DoSomething.org Partnered Shelter.';
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['hide_alter_empty'] = 1;
   /* Contextual filter: Webform submissions: Sid */
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
   $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';
