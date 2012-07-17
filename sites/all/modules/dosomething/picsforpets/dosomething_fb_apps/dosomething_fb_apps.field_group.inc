@@ -21,7 +21,7 @@ function dosomething_fb_apps_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => '1| Enter Animal Info',
-    'weight' => '0',
+    'weight' => '1',
     'children' => array(
       0 => 'field_fb_app_animal_name',
       1 => 'field_fb_app_animal_type',
@@ -51,7 +51,7 @@ function dosomething_fb_apps_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => '2| Find Your Shelter',
-    'weight' => '2',
+    'weight' => '0',
     'children' => array(
       0 => 'field_fb_app_shelter_reference',
     ),
@@ -79,10 +79,9 @@ function dosomething_fb_apps_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => '3| Upload Your Pet Picture',
-    'weight' => '3',
+    'weight' => '2',
     'children' => array(
-      0 => 'field_pfp_webform_image',
-      1 => 'field_fb_app_image',
+      0 => 'field_fb_app_image',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
