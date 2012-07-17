@@ -31,7 +31,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Entity Reference: Referenced Entity */
+  /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['id'] = 'field_pfp_shelter_reference_target_id';
   $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['table'] = 'field_data_field_pfp_shelter_reference';
   $handler->display->display_options['relationships']['field_pfp_shelter_reference_target_id']['field'] = 'field_pfp_shelter_reference_target_id';
@@ -256,7 +256,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Field: Content: DoSomething.org Partnered Shelter */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_pfp_partner_shelter']['id'] = 'field_pfp_partner_shelter';
   $handler->display->display_options['fields']['field_pfp_partner_shelter']['table'] = 'field_data_field_pfp_partner_shelter';
   $handler->display->display_options['fields']['field_pfp_partner_shelter']['field'] = 'field_pfp_partner_shelter';
@@ -282,7 +282,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_partner_shelter']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_partner_shelter']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_partner_shelter']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_partner_shelter']['field_api_classes'] = 0;
   /* Contextual filter: Webform submissions: Sid */
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
   $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';
@@ -351,7 +350,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['relationships']['nid']['field'] = 'nid';
   $handler->display->display_options['relationships']['nid']['relationship'] = 'webform_submission';
   $handler->display->display_options['relationships']['nid']['required'] = 0;
-  /* Field: Webform Submission: Image */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_pfp_webform_image']['id'] = 'field_pfp_webform_image';
   $handler->display->display_options['fields']['field_pfp_webform_image']['table'] = 'field_data_field_pfp_webform_image';
   $handler->display->display_options['fields']['field_pfp_webform_image']['field'] = 'field_pfp_webform_image';
@@ -375,13 +374,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_webform_image']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_webform_image']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_webform_image']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_webform_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_pfp_webform_image']['settings'] = array(
-    'image_style' => 'thumbnail',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_pfp_webform_image']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Animal Name */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_pfp_animal_name']['id'] = 'field_pfp_animal_name';
   $handler->display->display_options['fields']['field_pfp_animal_name']['table'] = 'field_data_field_pfp_animal_name';
   $handler->display->display_options['fields']['field_pfp_animal_name']['field'] = 'field_pfp_animal_name';
@@ -405,8 +398,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_animal_name']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Shelter */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['id'] = 'field_pfp_shelter_reference';
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['table'] = 'field_data_field_pfp_shelter_reference';
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['field'] = 'field_pfp_shelter_reference';
@@ -430,32 +422,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_shelter_reference']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_shelter_reference']['settings'] = array(
-    'link' => 0,
-  );
-  $handler->display->display_options['fields']['field_pfp_animal_name']['id'] = 'field_pfp_animal_name';
-  $handler->display->display_options['fields']['field_pfp_animal_name']['table'] = 'field_data_field_pfp_animal_name';
-  $handler->display->display_options['fields']['field_pfp_animal_name']['field'] = 'field_pfp_animal_name';
-  $handler->display->display_options['fields']['field_pfp_animal_name']['relationship'] = 'webform_submission';
-  $handler->display->display_options['fields']['field_pfp_animal_name']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_pfp_animal_name']['hide_alter_empty'] = 1;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -469,11 +435,12 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'fb_app_data_gathering_form' => 'fb_app_data_gathering_form',
   );
-  /* Filter criterion: Webform Submission: Animal Type (field_pfp_animal_types) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['id'] = 'field_pfp_animal_types_value';
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['table'] = 'field_data_field_pfp_animal_types';
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['field'] = 'field_pfp_animal_types_value';
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['relationship'] = 'webform_submission';
+  $handler->display->display_options['filters']['field_pfp_animal_types_value']['operator'] = 'in';
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['value'] = array(
     'all' => 'all',
     'Dog' => 'Dog',
@@ -488,7 +455,6 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['label'] = 'Animal Type';
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['operator'] = 'field_pfp_animal_types_value_op';
   $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['identifier'] = 'field_pfp_animal_types_value';
-  $handler->display->display_options['filters']['field_pfp_animal_types_value']['expose']['reduce'] = 0;
 
   /* Display: Gallery Content Pane */
   $handler = $view->new_display('panel_pane', 'Gallery Content Pane', 'panel_pane_1');

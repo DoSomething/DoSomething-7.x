@@ -186,10 +186,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $page->admin_title = 'Gallery';
   $page->admin_description = '';
   $page->path = 'pics-for-pets/gallery';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
+  $page->access = array();
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -247,7 +244,6 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $display->content['new-5'] = $pane;
     $display->panels['middle'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_NONE;
-  $display->title_pane = 'new-5';
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
