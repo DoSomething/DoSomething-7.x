@@ -20,7 +20,7 @@ function dosomething_petitions_field_group_info() {
   $field_group->mode = 'default';
   $field_group->parent_name = 'group_petition';
   $field_group->data = array(
-    'label' => 'About this Petition',
+    'label' => 'Background',
     'weight' => '6',
     'children' => array(
       0 => 'field_petition_about',
@@ -72,7 +72,7 @@ function dosomething_petitions_field_group_info() {
   $field_group->mode = 'default';
   $field_group->parent_name = 'group_petition';
   $field_group->data = array(
-    'label' => 'Petition Letter',
+    'label' => 'Letter',
     'weight' => '7',
     'children' => array(
       0 => 'field_petition_letter',
@@ -97,7 +97,7 @@ function dosomething_petitions_field_group_info() {
   $field_group->mode = 'default';
   $field_group->parent_name = 'group_petition';
   $field_group->data = array(
-    'label' => 'Petition Updates',
+    'label' => 'Updates',
     'weight' => '8',
     'children' => array(
       0 => 'field_petition_updates',

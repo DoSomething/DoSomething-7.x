@@ -50,7 +50,7 @@ function dosomething_petitions_petition_signatures_content_type_render($subtype,
   }
 
   $block = new StdClass();
-  $block->title = 'Recent Signatures';
+  $block->title = 'Signatures';
   $block->content = $content;
   return $block;
 }

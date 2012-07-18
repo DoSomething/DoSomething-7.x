@@ -50,7 +50,7 @@
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0; }
 
-.webform-client-form .form-actions {
+form.webform-client-form #edit-actions.form-wrapper, form.webform-client-form #edit-actions--2.form-wrapper {
   text-align: center; }
 
 .webform-client-form, .horizontal-tabs fieldset.horizontal-tabs-pane, .pane-petition-share .pane-content {
@@ -68,15 +68,15 @@
   margin-top: 1em; }
 
 .webform-client-form ::-webkit-input-placeholder {
-  color: #1e1d1c; }
+  color: gray; }
 
 .webform-client-form input:-moz-placeholder,
 .webform-client-form textarea:-moz-placeholder {
-  color: #1e1d1c; }
+  color: gray; }
 
 .webform-client-form input.placeholder-text,
 .webform-client-form textarea.placeholder-text {
-  color: #1e1d1c; }
+  color: gray; }
 
 div.horizontal-tabs {
   margin: 0;
@@ -143,3 +143,18 @@ div.horizontal-tabs {
   display: block;
   height: 32px;
   width: 185px; }
+
+.form-item .description {
+  margin-left: 0; }
+
+#petition-sign-button-wrapper {
+  margin: 20px 0; }
+  #petition-sign-button-wrapper p {
+    border-top: 1px solid white; }
+  #petition-sign-button-wrapper a {
+    margin: -16px auto 0;
+    display: block;
+    width: 100px;
+    padding-top: 7px;
+    margin: -16px auto 0;
+    text-align: center; }
