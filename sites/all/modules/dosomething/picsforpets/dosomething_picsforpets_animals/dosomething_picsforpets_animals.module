@@ -56,7 +56,8 @@ function dosomething_picsforpets_animals_submissions($sid, $offset = 0) {
     $submission = new stdClass();
     $submission->sid = $sid;
     $path = $wrapper->field_fb_app_image->value();
-    $submission->image = theme('image', array('path' => $path['uri']));
+    $submission->image_inner = theme('image_style', array('style_name' => 'carousel_inner', 'path' => $path['uri']));
+    $submission->image_outer = theme('image_style', array('style_name' => 'carousel_outer', 'path' => $path['uri']));
     // TODO: Add comment here better than this one (meta).
     if ($i % 2) {
       $submissions[-1 * ($i + 1 ) / 2] = $submission;

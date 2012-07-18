@@ -43,10 +43,10 @@ function picsforpetsAnimalsPlaceImages(settings) {
   var images = settings.picsforpetsAnimals.images;
   var index = settings.picsforpetsAnimals.index;
   $('.3d-slideshow-wing').remove();
-  $('#webform-submission').parent().before().before('<div class="3d-slideshow-wing outside-left">' + images[index + -2].image + '</div>');
-  $('#webform-submission').parent().after().after('<div class="3d-slideshow-wing outside-right">' + images[index + 2].image + '</div>');
-  $('#webform-submission').parent().before().before('<div class="3d-slideshow-wing inside-left">' + images[index + -1].image + '</div>');
-  $('#webform-submission').parent().after().after('<div class="3d-slideshow-wing inside-right">' + images[index + 1].image + '</div>');
+  $('#webform-submission').parent().before().before('<div class="3d-slideshow-wing outside-left">' + images[index + -2].image_outer + '</div>');
+  $('#webform-submission').parent().after().after('<div class="3d-slideshow-wing outside-right">' + images[index + 2].image_outer + '</div>');
+  $('#webform-submission').parent().before().before('<div class="3d-slideshow-wing inside-left">' + images[index + -1].image_inner + '</div>');
+  $('#webform-submission').parent().after().after('<div class="3d-slideshow-wing inside-right">' + images[index + 1].image_inner + '</div>');
 
   // Respond to clicks of images.
   $('.3d-slideshow-wing:eq(0)').click(function() {
