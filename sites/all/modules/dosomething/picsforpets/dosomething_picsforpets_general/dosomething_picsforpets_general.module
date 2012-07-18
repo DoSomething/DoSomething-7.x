@@ -7,7 +7,7 @@
 include_once 'dosomething_picsforpets_general.features.inc';
 
 // The node id for the pet submission form.
-define('PICSFORPETS_PET_SUBMISSION_NID', 1);
+define('PICSFORPETS_PET_SUBMISSION_NID', 3);
 
 
 /**
