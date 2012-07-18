@@ -7,6 +7,7 @@
 
 /**
  * Implements hook_menu().
+ * TODO: use no_js here.
  */
 function dosomething_picsforpets_animals_menu() {
   $items['pics-for-pets/carousel/js/%'] = array(
@@ -26,6 +27,7 @@ function dosomething_picsforpets_animals_webform_submission_render_alter(&$rende
   $node = $renderable['#node'];
   if ($node->type == 'fb_app_data_gathering_form' && $node->title == 'Pet Picture') { // TODO: check for specific node id once we know one; the title can change.
     drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-carousel.js');
+    // TODO: set both settings as array together.
     drupal_add_js(array('picsforpetsAnimals' => array('sid' => $renderable['#submission']->sid)), 'setting');
     // Total number of available pet submissions.
     // TODO: limit to correct node results.
@@ -55,6 +57,7 @@ function dosomething_picsforpets_animals_submissions($sid, $offset = 0) {
     $submission->sid = $sid;
     $path = $wrapper->field_pfp_webform_image->value();
     $submission->image = theme('image', array('path' => $path['uri']));
+    // TODO: Add comment here better than this one (meta).
     if ($i % 2) {
       $submissions[-1 * ($i + 1 ) / 2] = $submission;
     }
