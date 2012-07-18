@@ -43,7 +43,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = '<span class="sorry"> Sorry!</span>
 We can\'t find what you are looking for.
 Please try a new combo.';
-  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['id'] = 'field_fb_app_shelter_reference_target_id';
