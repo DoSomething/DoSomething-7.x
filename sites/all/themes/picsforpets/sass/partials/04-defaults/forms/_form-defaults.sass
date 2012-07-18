@@ -1,15 +1,14 @@
 /* Forms --------------------------------------------------------------
-
-// USE FORMALIZE TO EVEN FORMS ACROSS BROWSERS
-// @import _formalize
-
-// aditional form styles
-
 fieldset
-  +trailer
-  +rhythm-borders(1px)
-  border-color: $border-color
-  border-style: dotted
+  margin-bottom: 14px
+  border: 0
+
+.fieldset-wrapper
+  background: rgba($white, 0.75)
+  border: 1px solid $pfp-gray-lt
+  +border-radius(8px)
+  padding: 12px
+  +box-sizing(border-box)
 
 legend
   padding: 0 0.25em
@@ -18,23 +17,22 @@ label
   cursor: pointer
 
 label
-  font-weight: bold
   margin-right: 0.5em
+  font-weight: normal
+  +float-left
+  font-size: 12px
 
 %textinput
   @extend %constrain-to-parent
   +adjust-font-size-to($base-font-size, 1)
-  +rhythm-borders(1px, 0.25, $base-font-size)
-  border-width: 1px
-  +trailer(0.5)
-  width: ($kit-col-width * 2) + ($kit-gutter * 1)
+  border: 1px solid $pfp-gray-lt
+  width: 140px
   margin-top: 0
-  border-color: $border-color
-  height: $base-line-height / $base-font-size * 1.5em
+  height: 22px
+  // @extend %gray-white-radial
 
 textarea
   @extend %textinput
-  height: $base-line-height / $base-font-size * 6.5
 
 input
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
@@ -47,8 +45,8 @@ input
     &::-webkit-search-decoration
       display: none
 
-textarea
-  width: ($kit-col-width * 2) + ($kit-gutter * 1)
+// textarea
+//   width: ($kit-col-width * 2) + ($kit-gutter * 1)
 
 input
   &[type="radio"], &[type="checkbox"]
@@ -57,3 +55,48 @@ input
 
 textarea, input:not([type="radio"])
   @extend %constrain-to-parent
+
+//////////////////////////////
+// PFP FORM STYLES
+//////////////////////////////
+.fieldset-legend
+  @extend %h1
+  @extend %allcaps
+  font-size: 26px
+
+
+#field-fb-app-three-words-values
+  width: 400px
+  tbody
+    border-top: 0
+  th
+    border-bottom: 0
+    font-weight: normal
+    font-size: 14px
+  tr
+    background: none
+    border-bottom: 0
+
+.form-actions
+  input[type="submit"]
+    @extend %league-gothic
+    color: $pfp-red
+    background: $white
+    padding: 2px 12px
+    +border-radius(10px)
+    border: 0
+    text-transform: uppercase
+    font-family: $font-league
+    font-size: 18px
+    +box-shadow(rgba($black, 0.1) 0px 0px 10px)
+
+
+
+
+
+
+
+
+
+
+

@@ -515,8 +515,12 @@ pre, code, kbd, tt {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, .fieldset-legend, h2, h3, h4, h5, h6 {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+}
+
+.fieldset-legend {
+  text-transform: uppercase;
 }
 
 /* Only use the fancy ampersand in <h#> tags */
@@ -526,7 +530,7 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-style: italic;
 }
 
-.mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header {
+.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -630,7 +634,7 @@ li ul {
 }
 
 /* Headings -------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
+h1, .fieldset-legend, h2, h3, h4, h5, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
@@ -961,12 +965,22 @@ optgroup {
 
 /* Forms -------------------------------------------------------------- */
 fieldset {
-  margin-bottom: 1.5em;
-  border-style: solid;
-  border-width: 0.063em;
-  padding: 1.438em;
-  border-color: gray;
-  border-style: dotted;
+  margin-bottom: 14px;
+  border: 0;
+}
+
+.fieldset-wrapper {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #e6e7e8;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  padding: 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 legend {
@@ -978,26 +992,20 @@ label {
 }
 
 label {
-  font-weight: bold;
   margin-right: 0.5em;
+  font-weight: normal;
+  display: inline;
+  float: left;
+  font-size: 12px;
 }
 
 textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
   font-size: 1em;
   line-height: 1.5em;
-  border-style: solid;
-  border-width: 0.063em;
-  padding: 0.313em;
-  border-width: 1px;
-  margin-bottom: 0.75em;
-  width: 305px;
+  border: 1px solid #e6e7e8;
+  width: 140px;
   margin-top: 0;
-  border-color: gray;
-  height: 2.25em;
-}
-
-textarea {
-  height: 9.75;
+  height: 22px;
 }
 
 input[type=search] {
@@ -1007,13 +1015,47 @@ input[type=search]::-webkit-search-decoration {
   display: none;
 }
 
-textarea {
-  width: 305px;
-}
-
 input[type="radio"], input[type="checkbox"] {
   margin-left: 0.25em;
   margin-right: 0.25em;
+}
+
+.fieldset-legend {
+  font-size: 26px;
+}
+
+#field-fb-app-three-words-values {
+  width: 400px;
+}
+#field-fb-app-three-words-values tbody {
+  border-top: 0;
+}
+#field-fb-app-three-words-values th {
+  border-bottom: 0;
+  font-weight: normal;
+  font-size: 14px;
+}
+#field-fb-app-three-words-values tr {
+  background: none;
+  border-bottom: 0;
+}
+
+.form-actions input[type="submit"] {
+  color: #ec1c24;
+  background: white;
+  padding: 2px 12px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  border: 0;
+  text-transform: uppercase;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-size: 18px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
 }
 
 /* Tables -------------------------------------------------------------- */
@@ -1150,6 +1192,7 @@ ul.tabs li a:hover {
   padding-top: 12px;
   overflow: hidden;
   *zoom: 1;
+  margin-bottom: 12px;
 }
 .tabs ul.tabs li {
   padding: 6px 0 4px 0;
