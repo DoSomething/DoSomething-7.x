@@ -18,7 +18,7 @@ Drupal.behaviors.dosomethingPicsforpetsCarousel = {
 
     // Load up initial submissions.
     $.get('/pics-for-pets/carousel/js/'+ settings.picsforpetsAnimals.sid, function(images) {
-      Drupal.settings.picsforpetsAnimals.images = images;
+      settings.picsforpetsAnimals.images = images;
       picsforpetsAnimalsPlaceImages(settings);
     });
 
