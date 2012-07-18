@@ -1320,6 +1320,9 @@ body {
 #gallery-link a {
   color: #ec1c24;
 }
+#gallery-link a:hover {
+  color: #e6e7e8;
+}
 
 .picsforpets-scholarship {
   text-indent: 110%;
