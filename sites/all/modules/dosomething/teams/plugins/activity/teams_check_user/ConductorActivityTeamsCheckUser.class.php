@@ -43,14 +43,19 @@ class ConductorActivityTeamsCheckUser extends ConductorActivitySMSPrompt {
           ),
         ),
       );
+
+      // profile2_create() returns an object of type Profile
       $profile = profile2_create($profile_values);
       $profile->uid = $account->uid;
       profile2_save($profile);
     }
     else {
+      // profile2_load_by_user() returns an array
       $profile = profile2_load_by_user($account);
     }
 
+    // Because $profile could be an object, make sure to cast to array first
+    $profile = (array)$profile;
     if (!empty($profile['main']->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
       $state->setContext($this->name . ':has_name', 'true');
     }
