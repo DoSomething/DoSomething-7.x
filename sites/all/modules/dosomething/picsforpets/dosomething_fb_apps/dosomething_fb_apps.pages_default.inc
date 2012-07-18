@@ -260,7 +260,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->pid = 'new-6';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
-    $pane->subtype = 'webform_submissions-panel_pane_1';
+    $pane->subtype = 'pics_for_pets_gallery-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
