@@ -95,7 +95,7 @@ class ConductorActivityDSIHeartDadCheckedResponse extends ConductorActivity {
         user_save($account);
         $profile_values = array(
           'type' => 'main',
-          'field_user_mobiel' => array(
+          'field_user_mobile' => array(
             LANGUAGE_NONE => array(
               'value' => $mobile,
             ),
