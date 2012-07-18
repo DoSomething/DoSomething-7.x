@@ -537,6 +537,12 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-weight: false;
 }
 
+@font-face {
+  font-family: "DINWeb-CondBold";
+  src: url('../fonts/DINWeb-CondBold.woff') format('woff'), url('../fonts/DINComp-CondBold.ttf') format('truetype');
+  font-weight: false;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
