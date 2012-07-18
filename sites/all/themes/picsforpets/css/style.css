@@ -1313,10 +1313,12 @@ body {
 #gallery-link {
   display: inline;
   float: right;
-  color: #ec1c24;
   text-transform: uppercase;
   font-size: 24px;
   line-height: 1.25;
+}
+#gallery-link a {
+  color: #ec1c24;
 }
 
 .picsforpets-scholarship {

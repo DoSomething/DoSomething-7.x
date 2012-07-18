@@ -236,7 +236,7 @@ shelter pet pic',
     $pane->configuration = array(
       'admin_title' => 'Gallery link',
       'title' => '',
-      'body' => '<div class="picsforpets-scholarship">$5k Scholarship</div><div class="picsforpets-gallery">Take me to the paw-trait gallery</div>',
+      'body' => '<div class="picsforpets-scholarship">$5k Scholarship</div><div class="picsforpets-gallery"><a href="http://picsforpets.dev.zivtech.com/pics-for-pets/gallery">Take me to the paw-trait gallery</a></div>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
