@@ -5,3 +5,11 @@
  */
 
 include_once 'dosomething_fb_apps.features.inc';
+
+function dosomething_fb_apps_form_views_exposed_form_alter(&$form, &$form_state) {
+  // By default, the text displayed for the animal type exposed filter is -any-.
+  // This changes the text to "Animal Type".
+  if ($form['#id'] == 'views-exposed-form-pics-for-pets-gallery-panel-pane-1') {
+    $form['field_fb_app_animal_type_value']['#options']['All'] = 'Animal Type';
+  }
+}
