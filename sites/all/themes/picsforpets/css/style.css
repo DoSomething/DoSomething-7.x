@@ -530,7 +530,7 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-style: italic;
 }
 
-.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .gallery-thumbnail-text {
+.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .pager, .gallery-thumbnail-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1619,7 +1619,7 @@ a.footer-furtography {
 
 .view-pics-for-pets-gallery {
   border: 1px solid white;
-  height: 400px;
+  height: 410px;
   padding: 0 12px 0 12px;
 }
 
@@ -1645,6 +1645,28 @@ a.footer-furtography {
 .view-pics-for-pets-gallery .views-row {
   display: inline;
   float: left;
+}
+
+.pager {
+  margin: auto;
+  width: 400px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.pager .pager-next a,
+.pager .pager-last a,
+.pager .pager-first a,
+.pager .pager-previous a {
+  color: #ec1c24;
+  background: white;
+}
+.pager .pager-next a,
+.pager .pager-first a {
+  padding: 0 8px 0 24px;
+}
+.pager .pager-last a,
+.pager .pager-previous a {
+  padding: 0 24px 0 8px;
 }
 
 .gallery-thumbnail-text {

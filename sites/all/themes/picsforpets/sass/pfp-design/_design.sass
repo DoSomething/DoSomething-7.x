@@ -235,7 +235,7 @@ a.footer-furtography
 ////////////////////////////
 .view-pics-for-pets-gallery
   border: 1px solid $white
-  height: 400px
+  height: 410px
   padding: 0 12px 0 12px
 
 .view-pics-for-pets-gallery
@@ -255,6 +255,29 @@ a.footer-furtography
 .view-pics-for-pets-gallery
   .views-row
     +float-left
+
+.pager
+  margin: auto
+  width: 400px
+  @extend %league-gothic
+  font-size: 12px
+  text-transform: uppercase
+  .pager-next,
+  .pager-last,
+  .pager-first,
+  .pager-previous
+    a
+      color: $pfp-red
+      background: $white
+  .pager-next,
+  .pager-first
+    a
+      padding: 0 8px 0 24px
+  .pager-last,
+  .pager-previous
+    a
+      padding: 0 24px 0 8px
+
 
 .gallery-thumbnail-text
   @extend %league-gothic
