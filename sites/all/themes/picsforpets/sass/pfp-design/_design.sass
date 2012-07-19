@@ -255,8 +255,26 @@ a.footer-furtography
 .view-pics-for-pets-gallery
   .views-row
     +float-left
-    margin-right: -9px
 
+.gallery-thumbnail-text
+  @extend %league-gothic
+  background: none
+  text-align: center
+  color: rgba($white, 0.0)
+  text-transform: uppercase
+  height: 120px
+  margin-top: -123px
+  position: relative
+  z-index: 1000px
+  display: block
+  padding-top: 20px
+  a
+    color: rgba($white, 0.0)
+  &:hover
+    background: rgba($black, 0.75)
+    color: $white
+    a
+      color: $white
 
 ////////////////////////////
 // NO RESULTS

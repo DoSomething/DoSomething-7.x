@@ -530,7 +530,7 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-style: italic;
 }
 
-.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header {
+.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .gallery-thumbnail-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1645,7 +1645,29 @@ a.footer-furtography {
 .view-pics-for-pets-gallery .views-row {
   display: inline;
   float: left;
-  margin-right: -9px;
+}
+
+.gallery-thumbnail-text {
+  background: none;
+  text-align: center;
+  color: rgba(255, 255, 255, 0);
+  text-transform: uppercase;
+  height: 120px;
+  margin-top: -123px;
+  position: relative;
+  z-index: 1000px;
+  display: block;
+  padding-top: 20px;
+}
+.gallery-thumbnail-text a {
+  color: rgba(255, 255, 255, 0);
+}
+.gallery-thumbnail-text:hover {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+}
+.gallery-thumbnail-text:hover a {
+  color: white;
 }
 
 .no-results {
