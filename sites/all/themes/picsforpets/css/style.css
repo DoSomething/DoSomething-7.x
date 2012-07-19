@@ -1714,7 +1714,7 @@ a.footer-furtography {
 }
 
 .outside-shade {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   height: 120px;
   width: 120px;
   margin-left: -120px;
@@ -1725,7 +1725,7 @@ a.footer-furtography {
 }
 
 .inside-shade {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   height: 198px;
   width: 198px;
   margin-left: -198px;
@@ -1738,6 +1738,14 @@ a.footer-furtography {
 .outside-left {
   display: inline;
   float: left;
+}
+
+.outside-left img,
+.inside-left img,
+.outside-right img,
+.inside-right img {
+  background: white;
+  padding: 6px;
 }
 
 .inside-left {
