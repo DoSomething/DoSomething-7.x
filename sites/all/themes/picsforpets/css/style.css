@@ -534,6 +534,10 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
+.no-results {
+  font-family: "DINWeb-CondBold", "Arial Narrow", Arial, sans-serif;
+}
+
 /* import font files using @font-face, if not using a service such as typekit */
 @font-face {
   font-family: "League_Gothic";
@@ -1611,6 +1615,26 @@ a.footer-furtography {
   border: none;
   outline: none;
   text-decoration: none;
+}
+
+.no-results {
+  text-align: center;
+}
+
+.sorry {
+  text-transform: uppercase;
+  font-size: 98px;
+  line-height: 82px;
+}
+
+.sorry-text {
+  text-transform: uppercase;
+  font-size: 48px;
+  line-height: 1.025;
+  padding-top: 14px;
+  border-top: 1px solid black;
+  width: 500px;
+  margin: auto;
 }
 
 /* LAYOUT -------------------------------------------------------------- */

@@ -40,9 +40,13 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['label'] = 'sorry';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = '<span class="sorry"> Sorry!</span>
-We can\'t find what you are looking for.
-Please try a new combo.';
+  $handler->display->display_options['empty']['area']['content'] = '<div class="no-results">
+<span class="sorry"> Sorry!</span>
+<div class="sorry-text">
+We can\'t find what<br />you are looking for.<br />
+Please try a new combo.
+</div>
+</div>';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Entity Reference: Referenced Entity */
