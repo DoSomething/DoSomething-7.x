@@ -31,7 +31,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = 1;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'mini';
   $handler->display->display_options['pager']['options']['items_per_page'] = '18';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
@@ -145,7 +145,8 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_animal_name']['label'] = '';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['path'] = 'webform-submission/[sid]';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['replace_spaces'] = 0;
@@ -170,13 +171,11 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_address']['field'] = 'field_pfp_address';
   $handler->display->display_options['fields']['field_pfp_address']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_address']['label'] = '';
+  $handler->display->display_options['fields']['field_pfp_address']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_pfp_address']['alter']['text'] = '<div class="gallery-thumbnail-text">
-[nothing]<br />
-[field_fb_app_animal_name]<br />
-[field_pfp_address-locality], [field_pfp_address-administrative_area]<br />
-</div>';
-  $handler->display->display_options['fields']['field_pfp_address']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_pfp_address']['alter']['text'] = '[field_pfp_address-locality], [field_pfp_address-administrative_area]';
+  $handler->display->display_options['fields']['field_pfp_address']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_pfp_address']['alter']['path'] = 'webform-submission/[sid]';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['replace_spaces'] = 0;
@@ -202,6 +201,33 @@ Please try a new combo.
     ),
   );
   $handler->display->display_options['fields']['field_pfp_address']['field_api_classes'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="gallery-thumbnail-text">
+[nothing]<br />
+[field_fb_app_animal_name]<br />
+[field_pfp_address]<br />
+</div>';
+  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
