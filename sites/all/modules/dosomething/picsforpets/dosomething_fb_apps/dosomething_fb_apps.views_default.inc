@@ -54,6 +54,31 @@ Please try a new combo.
   $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['table'] = 'field_data_field_fb_app_shelter_reference';
   $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['field'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['required'] = 0;
+  /* Field: Webform submissions: Sid */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['label'] = '';
+  $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['sid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['sid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['sid']['format_plural'] = 0;
   /* Field: Webform Submission: Image */
   $handler->display->display_options['fields']['field_fb_app_image']['id'] = 'field_fb_app_image';
   $handler->display->display_options['fields']['field_fb_app_image']['table'] = 'field_data_field_fb_app_image';
@@ -91,7 +116,8 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_animal_name_1']['label'] = '';
   $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['text'] = 'click to learn more';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['path'] = 'webform-submission/[sid]';
   $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['replace_spaces'] = 0;
