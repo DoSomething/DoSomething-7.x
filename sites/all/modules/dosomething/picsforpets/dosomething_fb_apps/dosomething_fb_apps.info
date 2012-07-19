@@ -37,6 +37,7 @@ features[field_group][] = "group_fb_app_upload_pet_pic|webform_submission_entity
 features[image][] = "carousel_center"
 features[image][] = "carousel_inner"
 features[image][] = "carousel_outer"
+features[image][] = "gallery_thumbnail"
 features[node][] = "fb_app_data_gathering_form"
 features[page_manager_handlers][] = "webform_submission_view_pet_profile"
 features[page_manager_pages][] = "pfp_gallery"
