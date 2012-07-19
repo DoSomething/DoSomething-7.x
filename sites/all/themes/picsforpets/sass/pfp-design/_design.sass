@@ -231,11 +231,32 @@ a.footer-furtography
 //         outline: none
 
 ////////////////////////////
-// SEARCH
+// GALLERY SORT
 ////////////////////////////
-.search-box
+.view-pics-for-pets-gallery
   border: 1px solid $white
-  padding-bottom: 80px
+  height: 400px
+  padding: 0 12px 0 12px
+
+.view-pics-for-pets-gallery
+  .view-filters
+    margin-top: -52px
+    input[type="submit"]
+      text-transform: uppercase
+      font-family: $font-league
+      font-size: 14px
+      color: $pfp-gray
+      border: 0
+      +border-radius(0px)
+      padding-right: 40px
+      background: $white url(../images/ui-close-x.png) no-repeat
+      background-position: 56px 4px
+
+.view-pics-for-pets-gallery
+  .views-row
+    +float-left
+    margin-right: -9px
+
 
 ////////////////////////////
 // NO RESULTS
@@ -254,6 +275,7 @@ a.footer-furtography
   font-size: 48px
   line-height: 1.025
   padding-top: 14px
+  padding-bottom: 80px
   border-top: 1px solid $black
   width: 500px
   margin: auto

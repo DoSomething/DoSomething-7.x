@@ -1617,9 +1617,35 @@ a.footer-furtography {
   text-decoration: none;
 }
 
-.search-box {
+.view-pics-for-pets-gallery {
   border: 1px solid white;
-  padding-bottom: 80px;
+  height: 400px;
+  padding: 0 12px 0 12px;
+}
+
+.view-pics-for-pets-gallery .view-filters {
+  margin-top: -52px;
+}
+.view-pics-for-pets-gallery .view-filters input[type="submit"] {
+  text-transform: uppercase;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-size: 14px;
+  color: #a6a8ab;
+  border: 0;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  padding-right: 40px;
+  background: white url(../images/ui-close-x.png) no-repeat;
+  background-position: 56px 4px;
+}
+
+.view-pics-for-pets-gallery .views-row {
+  display: inline;
+  float: left;
+  margin-right: -9px;
 }
 
 .no-results {
@@ -1637,6 +1663,7 @@ a.footer-furtography {
   font-size: 48px;
   line-height: 1.025;
   padding-top: 14px;
+  padding-bottom: 80px;
   border-top: 1px solid black;
   width: 500px;
   margin: auto;
