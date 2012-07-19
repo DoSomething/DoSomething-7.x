@@ -7,8 +7,8 @@
 include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 5);
-define('PETITIONS_INFUSIONSOFT', -1);
-define('PETITIONS_MCOMMONS', -1);
+define('PETITIONS_INFUSIONSOFT', 1648);
+define('PETITIONS_MCOMMONS', 117371);
 
 /**
  * Implements hook_form_alter().

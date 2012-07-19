@@ -158,3 +158,6 @@ div.horizontal-tabs {
     padding-top: 7px;
     margin: -16px auto 0;
     text-align: center; }
+
+.pane-petition-reasons h2 {
+  margin-top: 0.25em; }
