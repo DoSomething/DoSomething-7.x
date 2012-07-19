@@ -1446,7 +1446,7 @@ body {
 
 .panel-1col {
   margin: 0 auto;
-  margin-bottom: 150px;
+  margin-bottom: 24px;
 }
 
 #find-a-shelter {
@@ -1615,6 +1615,11 @@ a.footer-furtography {
   border: none;
   outline: none;
   text-decoration: none;
+}
+
+.search-box {
+  border: 1px solid white;
+  padding-bottom: 80px;
 }
 
 .no-results {
