@@ -24,7 +24,7 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
-    'css_id' => 'webform-submission',
+    'css_id' => 'slideshow-center',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),

@@ -237,7 +237,11 @@ function dosomething_fb_apps_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'fb_app_data_gathering_form',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 'Dog',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(

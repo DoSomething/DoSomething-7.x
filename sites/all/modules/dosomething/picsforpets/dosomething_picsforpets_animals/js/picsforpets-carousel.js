@@ -10,7 +10,7 @@ Drupal.behaviors.dosomethingPicsforpetsCarousel = {
     settings.picsforpetsAnimals.index = 0;
 
     // Add the previous/next arrows.
-    var $submission = $('#webform-submission');
+    var $submission = $('#slideshow-center');
     $submission.after('<div class="slideshow-next">&gt;</div>');
     $submission.before('<div class="slideshow-prev">&lt;</div>');
 
@@ -43,10 +43,10 @@ function picsforpetsAnimalsPlaceImages(settings) {
   var images = settings.picsforpetsAnimals.images;
   var index = settings.picsforpetsAnimals.index;
   $('.slideshow-wing').remove();
-  $('#webform-submission').parent().before().before('<div class="slideshow-wing outside-left">' + images[index + -2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
-  $('#webform-submission').parent().after().after('<div class="slideshow-wing outside-right">' + images[index + 2].image_outer + '</div> <div class ="slideshow-wing outside-shade"></div>');
-  $('#webform-submission').parent().before().before('<div class="slideshow-wing inside-left">' + images[index + -1].image_inner + '</div> <div class =    "slideshow-wing inside-shade"></div');
-  $('#webform-submission').parent().after().after('<div class="slideshow-wing inside-right">' + images[index + 1].image_inner + '</div> <div class =    "slideshow-wing inside-shade"></div');
+  $('#slideshow-center').parent().before().before('<div class="slideshow-wing outside-left">' + images[index + -2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
+  $('#slideshow-center').parent().after().after('<div class="slideshow-wing outside-right">' + images[index + 2].image_outer + '</div> <div class ="slideshow-wing outside-shade"></div>');
+  $('#slideshow-center').parent().before().before('<div class="slideshow-wing inside-left">' + images[index + -1].image_inner + '</div> <div class =    "slideshow-wing inside-shade"></div');
+  $('#slideshow-center').parent().after().after('<div class="slideshow-wing inside-right">' + images[index + 1].image_inner + '</div> <div class =    "slideshow-wing inside-shade"></div');
 
   // Respond to clicks of images.
   $('.slideshow-wing:eq(0)').click(function() {
@@ -68,8 +68,8 @@ function picsforpetsAnimalsPlaceImages(settings) {
 }
 
 function picsforpetsAnimalsNext(settings) {
-  $('#webform-submission').empty();
-  $('#webform-submission').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #webform-submission');
+  $('#slideshow-center').empty();
+  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center');
   picsforpetsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index + 4] == undefined) {
@@ -96,8 +96,8 @@ function picsforpetsAnimalsNext(settings) {
 }
 
 function picsforpetsAnimalsPrev(settings) {
-  $('#webform-submission').empty();
-  $('#webform-submission').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #webform-submission');
+  $('#slideshow-center').empty();
+  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center');
   picsforpetsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index - 4] == undefined) {
