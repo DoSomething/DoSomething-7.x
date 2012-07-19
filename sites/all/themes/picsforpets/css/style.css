@@ -1720,6 +1720,7 @@ a.footer-furtography {
   margin-left: -120px;
   z-index: 1000;
   position: relative;
+  margin-top: 140px;
   display: inline;
   float: left;
 }
@@ -1729,6 +1730,7 @@ a.footer-furtography {
   height: 198px;
   width: 198px;
   margin-left: -198px;
+  margin-top: 100px;
   z-index: 1006;
   position: relative;
   display: inline;
@@ -1738,6 +1740,7 @@ a.footer-furtography {
 .outside-left {
   display: inline;
   float: left;
+  margin-top: 140px;
 }
 
 .outside-left img,
@@ -1752,7 +1755,33 @@ a.footer-furtography {
   display: inline;
   float: left;
   margin-left: -50px;
+  margin-top: 100px;
   z-index: 1005;
+  position: relative;
+}
+
+.slideshow-prev {
+  color: white;
+  margin-left: -130px;
+  margin-top: 180px;
+  display: inline;
+  float: left;
+  z-index: 1010;
+  position: relative;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+#slideshow-center {
+  display: inline;
+  float: left;
+  background: white;
+  margin-left: -100px;
+  width: 380px;
+  padding: 10px;
+  display: inline;
+  float: left;
+  z-index: 1010;
   position: relative;
 }
 
