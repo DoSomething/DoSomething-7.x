@@ -322,10 +322,32 @@ a.footer-furtography
   margin: auto
 
 
+////////////////////////////
+// 3D SLIDESHOW
+////////////////////////////
+.outside-shade
+  background: rgba($black, 0.7)
+  height: 120px
+  width: 120px
+  margin-left: -120px
+  z-index: 1000
+  position: relative
+  +float-left
 
+.inside-shade
+  background: rgba($black, 0.7)
+  height: 198px
+  width: 198px
+  margin-left: -198px
+  z-index: 1006
+  position: relative
+  +float-left
 
+.outside-left
+  +float-left
 
-
-
-
-
+.inside-left
+  +float-left
+  margin-left: - 50px
+  z-index: 1005
+  position: relative

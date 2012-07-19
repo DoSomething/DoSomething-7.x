@@ -1713,6 +1713,41 @@ a.footer-furtography {
   margin: auto;
 }
 
+.outside-shade {
+  background: rgba(0, 0, 0, 0.7);
+  height: 120px;
+  width: 120px;
+  margin-left: -120px;
+  z-index: 1000;
+  position: relative;
+  display: inline;
+  float: left;
+}
+
+.inside-shade {
+  background: rgba(0, 0, 0, 0.7);
+  height: 198px;
+  width: 198px;
+  margin-left: -198px;
+  z-index: 1006;
+  position: relative;
+  display: inline;
+  float: left;
+}
+
+.outside-left {
+  display: inline;
+  float: left;
+}
+
+.inside-left {
+  display: inline;
+  float: left;
+  margin-left: -50px;
+  z-index: 1005;
+  position: relative;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
