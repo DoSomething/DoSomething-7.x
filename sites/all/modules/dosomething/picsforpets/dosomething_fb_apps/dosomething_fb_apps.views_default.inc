@@ -72,6 +72,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_image']['element_class'] = 'gallery-pet-image gallery-submission';
   $handler->display->display_options['fields']['field_fb_app_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_fb_app_image']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_fb_app_image']['hide_empty'] = 0;
@@ -79,10 +80,36 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_image']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_fb_app_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_fb_app_image']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'gallery_thumbnail',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_fb_app_image']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Animal Name */
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['id'] = 'field_fb_app_animal_name_1';
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['table'] = 'field_data_field_fb_app_animal_name';
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['field'] = 'field_fb_app_animal_name';
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['label'] = '';
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['text'] = 'click to learn more';
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['element_class'] = 'gallery-pet-text gallery-submission';
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['field_api_classes'] = 0;
   /* Field: Webform Submission: Animal Name */
   $handler->display->display_options['fields']['field_fb_app_animal_name']['id'] = 'field_fb_app_animal_name';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['table'] = 'field_data_field_fb_app_animal_name';
@@ -101,6 +128,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_animal_name']['element_class'] = 'gallery-pet-text gallery-submission';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['hide_empty'] = 0;
@@ -127,6 +155,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_address']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_pfp_address']['element_class'] = 'gallery-pet-text gallery-submission';
   $handler->display->display_options['fields']['field_pfp_address']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_pfp_address']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_pfp_address']['hide_empty'] = 0;
@@ -153,7 +182,7 @@ Please try a new combo.
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['field'] = 'field_fb_app_animal_type_value';
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator_id'] = 'field_fb_app_animal_type_value_op';
-  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['label'] = 'Animal Type';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['label'] = 'Sort by';
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator'] = 'field_fb_app_animal_type_value_op';
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['identifier'] = 'field_fb_app_animal_type_value';
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['reduce'] = 0;
