@@ -98,3 +98,14 @@ function dosomething_picsforpets_animals_ctools_render_alter(&$info, &$page, &$c
     break;
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_picsforpets_animals_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') === 0) {
+    if ($form['#node']->type == 'fb_app_data_gathering_form') {
+      drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-animal-type-other.js');
+    }
+  }
+}
