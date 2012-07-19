@@ -79,11 +79,37 @@ Please try a new combo.
   $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['sid']['format_plural'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'click to learn more';
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['path'] = 'webform-submission/[sid]';
+  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   /* Field: Webform Submission: Image */
   $handler->display->display_options['fields']['field_fb_app_image']['id'] = 'field_fb_app_image';
   $handler->display->display_options['fields']['field_fb_app_image']['table'] = 'field_data_field_fb_app_image';
   $handler->display->display_options['fields']['field_fb_app_image']['field'] = 'field_fb_app_image';
   $handler->display->display_options['fields']['field_fb_app_image']['label'] = '';
+  $handler->display->display_options['fields']['field_fb_app_image']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['absolute'] = 0;
@@ -110,37 +136,11 @@ Please try a new combo.
   );
   $handler->display->display_options['fields']['field_fb_app_image']['field_api_classes'] = 0;
   /* Field: Webform Submission: Animal Name */
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['id'] = 'field_fb_app_animal_name_1';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['table'] = 'field_data_field_fb_app_animal_name';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['field'] = 'field_fb_app_animal_name';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['label'] = '';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['text'] = 'click to learn more';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['path'] = 'webform-submission/[sid]';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['element_class'] = 'gallery-pet-text gallery-submission';
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_animal_name_1']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Animal Name */
   $handler->display->display_options['fields']['field_fb_app_animal_name']['id'] = 'field_fb_app_animal_name';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['table'] = 'field_data_field_fb_app_animal_name';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['field'] = 'field_fb_app_animal_name';
   $handler->display->display_options['fields']['field_fb_app_animal_name']['label'] = '';
+  $handler->display->display_options['fields']['field_fb_app_animal_name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_fb_app_animal_name']['alter']['absolute'] = 0;
@@ -168,7 +168,12 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_address']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_address']['label'] = '';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_pfp_address']['alter']['text'] = '[field_pfp_address-locality], [field_pfp_address-administrative_area]';
+  $handler->display->display_options['fields']['field_pfp_address']['alter']['text'] = '<div class="gallery-thumbnail-text">
+[field_fb_app_image]<br \\>
+[nothing]<br \\>
+[field_fb_app_animal_name]<br \\>
+[field_pfp_address-locality], [field_pfp_address-administrative_area]<br \\>
+</div>';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['external'] = 0;
