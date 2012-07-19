@@ -1006,6 +1006,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
   width: 140px;
   margin-top: 0;
   height: 22px;
+  font-size: 12px;
 }
 
 input[type=search] {
