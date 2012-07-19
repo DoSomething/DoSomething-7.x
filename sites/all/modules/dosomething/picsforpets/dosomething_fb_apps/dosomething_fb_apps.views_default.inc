@@ -109,7 +109,6 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_image']['table'] = 'field_data_field_fb_app_image';
   $handler->display->display_options['fields']['field_fb_app_image']['field'] = 'field_fb_app_image';
   $handler->display->display_options['fields']['field_fb_app_image']['label'] = '';
-  $handler->display->display_options['fields']['field_fb_app_image']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_fb_app_image']['alter']['absolute'] = 0;
@@ -169,10 +168,9 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_address']['label'] = '';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['text'] = '<div class="gallery-thumbnail-text">
-[field_fb_app_image]<br \\>
-[nothing]<br \\>
-[field_fb_app_animal_name]<br \\>
-[field_pfp_address-locality], [field_pfp_address-administrative_area]<br \\>
+[nothing]<br />
+[field_fb_app_animal_name]<br />
+[field_pfp_address-locality], [field_pfp_address-administrative_area]<br />
 </div>';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['absolute'] = 0;
