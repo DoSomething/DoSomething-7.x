@@ -127,7 +127,7 @@ function dosomething_fb_apps_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_fb_app_age',
       'label' => 'Age',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -189,7 +189,7 @@ function dosomething_fb_apps_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_fb_app_animal_name',
       'label' => 'Animal Name',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -252,7 +252,7 @@ function dosomething_fb_apps_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_fb_app_animal_type',
       'label' => 'Animal Type',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -314,7 +314,7 @@ function dosomething_fb_apps_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_fb_app_image',
       'label' => 'Image',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'alt_field' => 0,
         'file_directory' => 'fb_campaign',
