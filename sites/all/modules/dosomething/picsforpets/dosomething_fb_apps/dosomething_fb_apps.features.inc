@@ -35,6 +35,28 @@ function dosomething_fb_apps_views_api() {
 function dosomething_fb_apps_image_default_styles() {
   $styles = array();
 
+  // Exported image style: carousel_center
+  $styles['carousel_center'] = array(
+    'name' => 'carousel_center',
+    'effects' => array(
+      3 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '357',
+          'height' => '357',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: carousel_inner
   $styles['carousel_inner'] = array(
     'name' => 'carousel_inner',
@@ -49,8 +71,8 @@ function dosomething_fb_apps_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '100',
-          'height' => '100',
+          'width' => '198',
+          'height' => '198',
         ),
         'weight' => '1',
       ),
@@ -71,8 +93,8 @@ function dosomething_fb_apps_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '50',
-          'height' => '50',
+          'width' => '120',
+          'height' => '120',
         ),
         'weight' => '1',
       ),

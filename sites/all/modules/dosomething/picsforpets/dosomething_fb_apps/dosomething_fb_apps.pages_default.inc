@@ -153,7 +153,7 @@ function dosomething_fb_apps_default_page_manager_handlers() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'image_style' => 'medium',
+        'image_style' => 'carousel_center',
         'image_link' => '',
       ),
       'context' => 'argument_entity_id:webform_submission_entity_1',

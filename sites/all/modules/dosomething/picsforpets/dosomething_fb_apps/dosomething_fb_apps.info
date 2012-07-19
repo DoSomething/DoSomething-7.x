@@ -34,6 +34,7 @@ features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_
 features[field_group][] = "group_fb_app_animal_info_group|webform_submission_entity|fb_app_data_gathering_form|form"
 features[field_group][] = "group_fb_app_find_shelter_group|webform_submission_entity|fb_app_data_gathering_form|form"
 features[field_group][] = "group_fb_app_upload_pet_pic|webform_submission_entity|fb_app_data_gathering_form|form"
+features[image][] = "carousel_center"
 features[image][] = "carousel_inner"
 features[image][] = "carousel_outer"
 features[node][] = "fb_app_data_gathering_form"
