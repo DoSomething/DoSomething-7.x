@@ -51,3 +51,15 @@ function dosomething_picsforpets_general_custom_theme() {
     }
   }
 }
+
+/*
+* Implements hook_ctools_plugin_directory().
+*/
+function dosomething_picsforpets_general_ctools_plugin_directory($owner, $plugin_type) {
+  $fb_app_id = $GLOBALS['_fb_app']['id'];
+  $access_token = $_SESSION['fb_' . $fb_app_id . '_access_token'];
+  drupal_add_js(array('fb_access_token' => $access_token), 'setting');
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/content_types';
+  }
+}
