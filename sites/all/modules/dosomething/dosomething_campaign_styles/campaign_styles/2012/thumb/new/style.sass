@@ -42,12 +42,12 @@ h1.massive
   
 h1
   font-size: 32px
-  line-height: 38px 
+  line-height: 1.54em
   
 h2, .divider
   font-size: 20px
-  line-height: 25px
-  
+  line-height: 1.54em
+
 h3
   font-size: 18px
   line-height: 22px
@@ -62,7 +62,7 @@ p, label
   line-height: 17px
   
 .disclaimer
-  font-size: 12px
+  font-size: 10px
   font-weight: 500
   line-height: 14px
 
@@ -73,46 +73,38 @@ a
     text-decoration: underline
     
 // class definitions
-#cask
-  background: $thumbGrey
-  margin: 0 auto
-  width: 670px
-  padding: 0 2%
 
 .col
   width: 29%
   float: left
 
 .col2
-  width: 63%
-  float: left
+  width: 69%
+  float: right
 
 .col3, .col4
   width: 46%
   height: 295px
   float: left
 
+.col4
+  float: right
+
 .col, .col2, .col3, .col4
   position: relative
-  padding: 2%
 
-.section
-  border-bottom: 2px solid #fff
-  height: 590px
+.mid
+  margin: 0 6%
 
-.do, .learn, .scholarship, .did, .faq, .row
-  text-align: center
-  &:before, &:after
-    zoom: 1
-    content: ""
-    display: table
-  &:after
-    clear: both
+.share-here1,
+.share-here2,
+.share-here3
+  display: none
+  position: absolute
+  right: -5%
+  bottom: -11%
 
-.faq
-  text-align: left
-
-div.divider
+.divider
   text-align: center
   span
     background: $thumbYellow
@@ -123,33 +115,221 @@ div.divider
     color: #000
     position: relative
     top: -15px
+
+.social-t, .social-f
+  height: 15px
+
+  background-repeat: no-repeat
+  display: inline-block
+  &:hover
+    background-position-y: -20px
+
+.social-f
+  background-image: url("assets/social-f.jpg")
+  width: 15px
+  
+.social-t
+  background-image: url("assets/social-t.jpg")
+  width: 18px
+
+.contact_form-aside, .nav-aside
+  background: $thumbGrey
+  padding: 5%
+
+.sprint, .toyota
+  width: 130px
+  margin: 0 auto 5%
+  overflow: hidden
+  display: block
+
+.sprint
+  height: 50px
+  background: url("assets/sprint.png")
+  &:hover
+    background-position-y: -61px
+
+.toyota
+  height: 20px
+  background: url("assets/toyota.png")
+  &:hover
+    background-position-y: -26px
+
+.refer-form
+  margin: 0 auto
+  width: 65%
+
+.mcommons-col
+  width: 45%
+  margin: 0 0 0 5%
+  float: left
+  input[type="text"]
+    width: 100%
+    height: 20px
+    border-radius: 3px
+    border: none
+  input, label
+    float: left
+    margin: 0 0 5% 0
+
+.help
+  padding: 1em 0 0 0
+  font-style: italic
+  font-size: 11px
+
+.center
+  text-align: center
+
+// section styles (base)
+
+.section
+  border-bottom: 2px solid #fff
+  height: 590px
+
+.do, .do2, .learn, .scholarship, .did, .faq, .row
+  text-align: center
+  &:before, &:after
+    zoom: 1
+    content: ""
+    display: table
+  &:after
+    clear: both
+
+#cask-aside
+  width: 250px
+
+#cork, #cask
+  margin: 0 auto
+
+#cork
+  width: 796px
+  height: 270px
+  background: url("assets/header.jpg")
+  background-repeat: no-repeat
+
+#cask
+  width: 727px
+  background: $thumbGrey
+  padding: 0 2%
+
+.do
+  height: 350px
+
+.do2
+  height: 315px
+
+.learn
+  height: 630px
+
+.scholarship
+  height: 590px
+
+.did
+  height: 290px
+
+.faq
+  height: 345px
+  text-align: left
+  border-bottom: none
+       
+// page sections (deviations)
+.contact_form-aside
+  margin: 5% 0
+  h2
+    text-align: center
+    border-bottom: 2px solid #fff
     
-// page sections
-.cause
+.nav-aside
+  h3
+    color: $thumbYellow
+  h4
+    text-transform: uppercase
+  ul
+    margin: 0 0 5% 0
+    padding: 0 0 5% 0
+    border-bottom: 2px solid #fff
+
+.header
+  width: 91.35%
+  height: 270px
+  margin: 0 auto
+  text-align: right
+  position: relative
+  border-bottom: 2px solid #fff
   h1, h2
     color: $thumbYellow
     text-align: right
+    padding: 1.5% 0
+  a
+    display: inline-block
+    margin: 2% 0 0 1%
   span
-    padding: 0 5px
-    background: rgb(0,0,0)
-    background: rgba(0,0,0,0.7)
+    padding: 0 0.3em
+    background: rgb(10,80,128)
+    background: rgba(10,80,128,0.5)
 
-.do
+.do, .do2
   p
     position: absolute
     bottom: 0
+  p.disclaimer
+    position: relative
+    text-align: left
+    font-size: 10px
+    width: 145px
+    float: left
   img
     padding: 10% 0
   .col
     height: 280px
+  .col2
+    margin-top: 7.25%
+
+.do2
+  padding: 2% 0
 
 .learn
+  h3
+    margin: 40% 0 0
+  .disclaimer
+    font-style: italic
+    text-decoration: underline
+    margin-bottom: 2%
+    display: block
+    &:hover
+      color: $thumbYellow
+  .row
+    margin-bottom: 5%
+  .col2
+    float: left
+  .learn1, .learn2, .learn3
+    width: 200px
+    height: 200px
+    margin-bottom: 2%
+    overflow: hidden
+    background-repeat: no-repeat
+    &:hover
+      background-position-y: -200px
+  .learn1
+    background: url("assets/learn1.png")
+  .learn2
+    background: url("assets/learn2.png")
+  .learn3
+    background: url("assets/learn3.png")
+
 .scholarship
-  p.bottom
-    position: absolute
-    bottom: 0
+  .disclaimer, img
+    margin: 2% 0
 
 .did
 .faq
-
+  h4
+    color: $thumbYellow
+    background-image: url("assets/arrow-faq.png")
+    background-repeat: no-repeat
+    background-position-y: 5px
+  h4, p
+    padding-left: 1em
+  .activeFAQ
+    background-position-y: -15px
+    
 // le fin!
