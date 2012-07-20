@@ -106,6 +106,9 @@ function dosomething_picsforpets_animals_form_alter(&$form, &$form_state, $form_
   if (strpos($form_id, 'webform_client_form_') === 0) {
     if ($form['#node']->type == 'fb_app_data_gathering_form') {
       drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-animal-type-other.js');
+      $form['back'] = array(
+        '#markup' => l('Back (need link!)', '', array('attributes' => array('class' => array('button back')))),
+      );
     }
   }
 }
