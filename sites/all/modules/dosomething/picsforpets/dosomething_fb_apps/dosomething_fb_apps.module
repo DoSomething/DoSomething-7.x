@@ -13,3 +13,16 @@ function dosomething_fb_apps_form_views_exposed_form_alter(&$form, &$form_state)
     $form['field_fb_app_animal_type_value']['#options']['All'] = 'Animal Type';
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for theme_views_mini_pager().
+ */
+function dosomething_fb_apps_preprocess_views_mini_pager(&$variables) {
+  if ($variables['view']->name == 'pics_for_pets_gallery') {
+    // Override the strings used for mini pager links.
+    $variables['tags'] = array(
+      1 => t('Previous'),
+      3 => t('View More'),
+    );
+  }
+}
