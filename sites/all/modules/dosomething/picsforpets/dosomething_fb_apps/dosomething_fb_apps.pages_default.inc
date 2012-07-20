@@ -188,7 +188,10 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'hi-pet-name',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
