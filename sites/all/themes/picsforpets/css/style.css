@@ -526,7 +526,7 @@ h1, .fieldset-legend, h2, h3, h4, h5, h6 {
 /* Only use the fancy ampersand in <h#> tags */
 h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-size: 1em;
-  font-family: sans-serif;
+  font-family: "DINOT", sans-serif;
   font-style: italic;
 }
 
@@ -551,6 +551,12 @@ h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-weight: false;
 }
 
+@font-face {
+  font-family: "DINOT";
+  src: url('../fonts/DINOT.otf') format('opentype');
+  font-weight: false;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -566,7 +572,7 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "DINOT", sans-serif;
   color: black;
   background-repeat: no-repeat;
 }
@@ -1544,7 +1550,7 @@ a.footer-furtography {
   border: none;
   color: white;
   text-align: center;
-  font-family: sans-serif;
+  font-family: "DINOT", sans-serif;
   text-transform: uppercase;
   font-size: 52px;
   border-bottom: 1px solid white;
@@ -1772,12 +1778,25 @@ a.footer-furtography {
   float: left;
   z-index: 1010;
   position: relative;
-  min-height: 786px;
+  height: 650px;
 }
 #slideshow-center #slideshow-center {
   margin-left: 0;
   padding: 0;
   background: none;
+}
+#slideshow-center p {
+  margin: 0;
+}
+#slideshow-center h2 {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.pane-shelter-per-pet-panel-pane-1 {
+  border-left: 1px solid black;
+  padding-left: 12px;
+  margin-left: -12px;
 }
 
 .outside-right {
@@ -1794,6 +1813,27 @@ a.footer-furtography {
   margin-top: 100px;
   z-index: 1005;
   position: relative;
+}
+
+.pane-entity-field {
+  margin-bottom: 12px;
+}
+
+.pane-webform-submission-entity-field-fb-app-image {
+  margin-bottom: 6px;
+}
+
+.panel-separator {
+  display: none;
+}
+
+.hi-pet-name {
+  text-align: center;
+}
+
+.views-label-field-pfp-hours,
+.views-label-field-pfp-phone-number {
+  border-bottom: 1px solid black;
 }
 
 .slideshow-prev {
@@ -2156,7 +2196,7 @@ header aside {
   font-size: 1em;
   line-height: 1.5em;
   text-transform: uppercase;
-  font-family: sans-serif;
+  font-family: "DINOT", sans-serif;
 }
 
 .colors ul li {
@@ -2203,7 +2243,7 @@ header aside {
   line-height: 1;
 }
 .styletile-1 .text-examples .logos h1.opt-1:before {
-  content: counter(logos) " - sans-serif";
+  content: counter(logos) ' - "DINOT", sans-serif';
 }
 .styletile-1 .text-examples .serif {
   font-family: Georgia, serif;
@@ -2212,10 +2252,10 @@ header aside {
   content: " - Georgia, serif";
 }
 .styletile-1 .text-examples .sans, .styletile-1 .text-examples header aside, header .styletile-1 .text-examples aside {
-  font-family: sans-serif;
+  font-family: "DINOT", sans-serif;
 }
 .styletile-1 .text-examples .sans .label:after, .styletile-1 .text-examples header aside .label:after, header .styletile-1 .text-examples aside .label:after, .styletile-1 .text-examples .sans .logos h1:after:before, .styletile-1 .text-examples .logos .sans h1:after:before, .styletile-1 .text-examples header aside .logos h1:after:before, .styletile-1 .text-examples .logos header aside h1:after:before, header .styletile-1 .text-examples aside .logos h1:after:before, header .styletile-1 .text-examples .logos aside h1:after:before {
-  content: " - sans-serif";
+  content: ' - "DINOT", sans-serif';
 }
 
 /* graphic examples */
