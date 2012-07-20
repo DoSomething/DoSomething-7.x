@@ -279,7 +279,7 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           ),
         ),
         'type' => 'geocoder',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -426,25 +426,14 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_pfp_phone_number',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'phone',
       'settings' => array(
-        'max_length' => '60',
+        'country' => 'ca',
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'phone',
     ),
     'field_instance' => array(
       'bundle' => 'shelter',
@@ -454,10 +443,10 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'phone',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 11,
+          'type' => 'phone',
+          'weight' => 14,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -471,16 +460,18 @@ function dosomething_picsforpets_shelters_field_default_fields() {
       'label' => 'Phone Number',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'ca_phone_parentheses' => 1,
+        'ca_phone_separator' => '-',
+        'phone_country_code' => 0,
+        'phone_default_country_code' => '1',
+        'phone_int_max_length' => 15,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
+        'active' => 0,
+        'module' => 'phone',
+        'settings' => array(),
+        'type' => 'phone_textfield',
         'weight' => '5',
       ),
     ),
