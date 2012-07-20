@@ -1771,6 +1771,12 @@ a.footer-furtography {
   float: left;
   z-index: 1010;
   position: relative;
+  min-height: 786px;
+}
+#slideshow-center #slideshow-center {
+  margin-left: 0;
+  padding: 0;
+  background: none;
 }
 
 .outside-right {
