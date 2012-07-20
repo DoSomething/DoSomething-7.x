@@ -44,24 +44,24 @@ function picsforpetsAnimalsPlaceImages(settings) {
   var index = settings.picsforpetsAnimals.index;
   $('.slideshow-wing').remove();
   $('#slideshow-center').parent().before().before('<div class="slideshow-wing outside-left">' + images[index + -2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
-  $('#slideshow-center').parent().after().after('<div class="slideshow-wing outside-right">' + images[index + 2].image_outer + '</div> <div class ="slideshow-wing outside-shade"></div>');
-  $('#slideshow-center').parent().before().before('<div class="slideshow-wing inside-left">' + images[index + -1].image_inner + '</div> <div class =    "slideshow-wing inside-shade"></div');
-  $('#slideshow-center').parent().after().after('<div class="slideshow-wing inside-right">' + images[index + 1].image_inner + '</div> <div class =    "slideshow-wing inside-shade"></div');
+  $('#slideshow-center').parent().after().after('<div class="slideshow-wing outside-right">' + images[index + 2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
+  $('#slideshow-center').parent().before().before('<div class="slideshow-wing inside-left">' + images[index + -1].image_inner + '</div> <div class="slideshow-wing inside-shade"></div');
+  $('#slideshow-center').parent().after().after('<div class="slideshow-wing inside-right">' + images[index + 1].image_inner + '</div> <div class="slideshow-wing inside-shade"></div');
 
   // Respond to clicks of images.
-  $('.slideshow-wing:eq(0)').click(function() {
+  $('.outside-left').next().click(function() {
     settings.picsforpetsAnimals.index = settings.picsforpetsAnimals.index - 2;
     picsforpetsAnimalsPrev(settings);
   });
-  $('.slideshow-wing:eq(1)').click(function() {
+  $('.inside-left').next().click(function() {
     settings.picsforpetsAnimals.index--;
     picsforpetsAnimalsPrev(settings);
   });
-  $('.slideshow-wing:eq(2)').click(function() {
+  $('.inside-right').next().click(function() {
     settings.picsforpetsAnimals.index++;
     picsforpetsAnimalsNext(settings);
   });
-  $('.slideshow-wing:eq(3)').click(function() {
+  $('.outside-right').next().click(function() {
     settings.picsforpetsAnimals.index = settings.picsforpetsAnimals.index + 2;
     picsforpetsAnimalsNext(settings);
   });
