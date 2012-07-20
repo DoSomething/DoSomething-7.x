@@ -10,5 +10,3 @@ features[ctools][] = "strongarm:strongarm:1"
 features[page_manager_pages][] = "lets_get_started"
 features[page_manager_pages][] = "pics_for_pets_home"
 features[variable][] = "theme_picsforpets_settings"
-files[] = invite_friends.inc
-scripts[] = js/invite_friends.js
