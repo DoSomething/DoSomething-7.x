@@ -6,7 +6,7 @@
         link: document.location.href,
         picture: $('.pane-node-field-petition-picture img').attr('src').replace('/styles/490x200/public', ''),
         name: $('#page-title').text(),
-        caption: 'I just signed a petition at DoSomething.org',
+        caption: 'I just signed a petition at DoSomething.org and you should too.',
         description: $('.pane-node-field-petition-about .field-name-field-petition-about p').text()
       };
 

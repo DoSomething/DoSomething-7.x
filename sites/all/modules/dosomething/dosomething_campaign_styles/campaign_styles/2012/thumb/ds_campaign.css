@@ -302,7 +302,8 @@ h2.pane-title {
 .fb-social-comments-plugin {
   padding-bottom: 40px; }
   .fb-social-comments-plugin iframe {
-    margin: 20px 0 0 100px; }
+    margin: 20px 0 0 10px;
+    width: 530px !important; }
 
 #node-722143 .field-label-above {
   display: none; }
@@ -553,53 +554,54 @@ img {
 #edit-submitted-group-audience {
   display: none; }
 
-#thumbwars_reportback label {
-  font-family: din-web;
-  font-weight: 500;
-  font-size: 1.75em;
-  padding: 1em 0 0.5em; }
-#thumbwars_reportback #webform-component-first-name {
-  float: left;
-  margin-right: 16px; }
-#thumbwars_reportback .form-select {
-  width: 240px;
-  height: 40px;
-  overflow: hidden;
-  background: #919396 url("assets/dropdown_arrow.png") no-repeat 95% 50%;
-  border: 0;
-  padding: 7px 14px;
-  color: white;
-  font-family: din-web;
-  font-size: 1.5em;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
-  -webkit-appearance: none; }
-#thumbwars_reportback textarea {
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  border: 0; }
-#thumbwars_reportback #edit-submitted-field-webform-pictures legend {
-  padding: 1em 0 0;
-  margin-bottom: 0;
-  line-height: 1em; }
-#thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper {
-  background: white;
-  margin-top: 0;
-  width: 300px;
-  padding: 0 15px 15px;
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset; }
-  #thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper label {
-    font-weight: normal; }
-#thumbwars_reportback #edit-submitted-field-webform-pictures input {
-  margin: 5px 0; }
-#thumbwars_reportback #edit-actions {
-  margin-bottom: 16px; }
+#thumbwars_reportback {
+  width: 550px;
+  margin: 0 auto; }
+  #thumbwars_reportback label {
+    font-family: din-web;
+    font-weight: 500;
+    font-size: 1.75em;
+    padding: 1em 0 0.5em; }
+  #thumbwars_reportback .form-select {
+    width: 240px;
+    height: 40px;
+    overflow: hidden;
+    background: #919396 url("assets/dropdown_arrow.png") no-repeat 95% 50%;
+    border: 0;
+    padding: 7px 14px;
+    color: white;
+    font-family: din-web;
+    font-size: 1.5em;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    -webkit-appearance: none; }
+  #thumbwars_reportback textarea {
+    -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+    -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+    box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+    border: 0; }
+  #thumbwars_reportback #edit-submitted-field-webform-pictures legend {
+    padding: 1em 0 0;
+    margin-bottom: 0;
+    line-height: 1em; }
+  #thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper {
+    background: white;
+    margin-top: 0;
+    width: 300px;
+    padding: 0 15px 15px;
+    -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+    -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+    box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset; }
+    #thumbwars_reportback #edit-submitted-field-webform-pictures .fieldset-wrapper label {
+      font-weight: normal; }
+  #thumbwars_reportback #edit-submitted-field-webform-pictures input {
+    margin: 5px 0; }
+  #thumbwars_reportback #edit-actions {
+    margin-bottom: 16px;
+    text-align: left; }
 
 .mcommons-webform {
   float: left;
@@ -664,3 +666,45 @@ form.webform-client-form {
   font-family: din-web;
   font-size: 2.5em;
   font-weight: 500; }
+
+.page-node-722143 #webform-component-first-name, .page-node-722143 #webform-component-last-name, .page-node-722143 #webform-component-address-1, .page-node-722143 #webform-component-address-2, .page-node-722143 #webform-component-city, .page-node-722143 #webform-component-state, .page-node-722143 #webform-component-zip-code, .page-node-722143 #webform-component-who-with, .page-node-722143 .form-item-submitted-field-webform-email-und-0-email, .page-node-722143 .form-item-submitted-field-webform-mobile-und-0-value {
+  clear: both;
+  margin: 0 auto; }
+  .page-node-722143 #webform-component-first-name label, .page-node-722143 #webform-component-last-name label, .page-node-722143 #webform-component-address-1 label, .page-node-722143 #webform-component-address-2 label, .page-node-722143 #webform-component-city label, .page-node-722143 #webform-component-state label, .page-node-722143 #webform-component-zip-code label, .page-node-722143 #webform-component-who-with label, .page-node-722143 .form-item-submitted-field-webform-email-und-0-email label, .page-node-722143 .form-item-submitted-field-webform-mobile-und-0-value label {
+    width: 220px;
+    padding: 5px 0 0 40px; }
+  .page-node-722143 #webform-component-first-name label, .page-node-722143 #webform-component-first-name input, .page-node-722143 #webform-component-last-name label, .page-node-722143 #webform-component-last-name input, .page-node-722143 #webform-component-address-1 label, .page-node-722143 #webform-component-address-1 input, .page-node-722143 #webform-component-address-2 label, .page-node-722143 #webform-component-address-2 input, .page-node-722143 #webform-component-city label, .page-node-722143 #webform-component-city input, .page-node-722143 #webform-component-state label, .page-node-722143 #webform-component-state input, .page-node-722143 #webform-component-zip-code label, .page-node-722143 #webform-component-zip-code input, .page-node-722143 #webform-component-who-with label, .page-node-722143 #webform-component-who-with input, .page-node-722143 .form-item-submitted-field-webform-email-und-0-email label, .page-node-722143 .form-item-submitted-field-webform-email-und-0-email input, .page-node-722143 .form-item-submitted-field-webform-mobile-und-0-value label, .page-node-722143 .form-item-submitted-field-webform-mobile-und-0-value input {
+    float: left;
+    margin: 8px 0;
+    font-size: 14px; }
+  .page-node-722143 #webform-component-first-name input, .page-node-722143 #webform-component-last-name input, .page-node-722143 #webform-component-address-1 input, .page-node-722143 #webform-component-address-2 input, .page-node-722143 #webform-component-city input, .page-node-722143 #webform-component-state input, .page-node-722143 #webform-component-zip-code input, .page-node-722143 #webform-component-who-with input, .page-node-722143 .form-item-submitted-field-webform-email-und-0-email input, .page-node-722143 .form-item-submitted-field-webform-mobile-und-0-value input {
+    width: 250px; }
+    .page-node-722143 #webform-component-first-name input:focus, .page-node-722143 #webform-component-last-name input:focus, .page-node-722143 #webform-component-address-1 input:focus, .page-node-722143 #webform-component-address-2 input:focus, .page-node-722143 #webform-component-city input:focus, .page-node-722143 #webform-component-state input:focus, .page-node-722143 #webform-component-zip-code input:focus, .page-node-722143 #webform-component-who-with input:focus, .page-node-722143 .form-item-submitted-field-webform-email-und-0-email input:focus, .page-node-722143 .form-item-submitted-field-webform-mobile-und-0-value input:focus {
+      background-color: lightyellow; }
+.page-node-722143 #webform-component-who-with label {
+  width: 100%;
+  padding-left: 0; }
+.page-node-722143 #webform-component-who-with textarea {
+  border: none;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  outline: none;
+  padding-left: 5px; }
+  .page-node-722143 #webform-component-who-with textarea:focus {
+    background-color: lightyellow; }
+.page-node-722143 #webform-component-who-with .grippie {
+  margin-bottom: 10px; }
+.page-node-722143 .pane-dosomething-login-register-block {
+  width: 550px;
+  margin: 0 auto; }
+.page-node-722143 #thumbs-signup {
+  width: 550px;
+  margin: 0 auto; }
+  .page-node-722143 #thumbs-signup h2.pane-title {
+    display: none; }
+.page-node-722143 #webform-component-instructions {
+  margin: 0 0 -10px 0 !important; }
+.page-node-722143 form.webform-client-form #edit-actions--2, .page-node-722143 form.webform-client-form #edit-actions {
+  text-align: center;
+  margin: 10px; }

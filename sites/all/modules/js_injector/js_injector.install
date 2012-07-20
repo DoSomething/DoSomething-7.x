@@ -1,92 +1,126 @@
 <?php
 
 /**
- * @file
- * Install, update and uninstall functions for the js_injector module.
+ * @file js_injector.install
  *
+ * Install, update and uninstall functions for the js_injector module.
  */
-
-/**
- * Implements hook_install().
- */
-function js_injector_install() {
-}
 
 /**
  * Implements hook_schema().
  */
 function js_injector_schema() {
   $schema['js_injector_rule'] = array(
+    'description' => t('Table storing JS injector rule definitions.'),
+    'export' => array(
+      'key' => 'name',
+      'primary key' => 'crid',
+      'identifier' => 'rule', // Exports will be defined as $rule
+      'default hook' => 'js_injector_rule',
+      'save callback' => 'js_injector_rule_save',
+      'delete callback' => 'js_injector_rule_delete',
+      'api' => array(
+        'owner' => 'js_injector',
+        'api' => 'js_injector_rules',  // Base name for api include files.
+        'minimum_version' => 1,
+        'current_version' => 1,
+      ),
+    ),
     'fields' => array(
+      'name' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'description' => 'Unique ID for rules. Used to identify them programmatically.',
+      ),
       'crid' => array(
-        'description' => 'The primary identifier for the JS injection rule',
         'type' => 'serial',
         'unsigned' => TRUE,
-        'not null' => TRUE),
-      'title' => array(
-        'description' => 'The descriptive title of the JS injection rule',
-        'type' => 'varchar',
-        'length' => 255,
-        'not null' => TRUE),
-      'rule_type' => array(
-        'description' => 'The type of rule to use when determining if the JS should be injected',
-        'type' => 'int',
-        'unsigned' => TRUE,
         'not null' => TRUE,
-        'default' => 0),
-      'rule_conditions' => array(
-        'description' => 'The data to evaluate when determining if the JS should be injected',
+        'description' => 'The primary identifier for the JS injection rule',
+        'no export' => TRUE, // do not export database-only keys.
+      ),
+      'description' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'description' => 'A human readable name of a rule.',
+      ),
+      'js' => array(
         'type' => 'text',
-        'not null' => TRUE),
-      'media' => array(
-        'description' => 'The media type of the JS file (screen, print, etc.)',
+        'size' => 'big',
+        'description' => 'The actual JavaScript code.',
+      ),
+      'position' => array(
         'type' => 'varchar',
-        'length' => 255,
-        'not null' => TRUE),
+        'length' => '255',
+        'description' => 'The scope of the JavaScript on the page (e.g. header or footer).',
+      ),
       'preprocess' => array(
-        'description' => 'Whether the JS file should be included by the JS preprocessor',
+        'description' => 'Boolean indicating whether the rule should be aggregated into other JS files.',
         'type' => 'int',
-        'unsigned' => TRUE,
         'not null' => TRUE,
-        'default' => 0),
+        'default' => 0,
+      ),
+      'inline' => array(
+        'description' => 'Boolean indicating whether the rules should be inline (cannot be aggregated).',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'page_visibility' => array(
+        'description' => 'Boolean indicating whether the rule has a white or black list for page visibility.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'page_visibility_pages' => array(
+        'type' => 'text',
+        'size' => 'big',
+        'description' => 'A list of pages to either hide or show the JavaScript.',
+      ),
     ),
     'primary key' => array('crid'),
+    'unique keys' => array(
+      'name' => array('name'),
+    ),
   );
   return $schema;
 }
 
 /**
  * Implements hook_uninstall().
+ *
+ * This is required to cleanup the left over files
  */
 function js_injector_uninstall() {
-  cache_clear_all('js_injector:*', 'cache', TRUE);
-  $rules = db_query("SELECT * FROM {js_injector_rule}", array(), array('fetch' => PDO::FETCH_ASSOC))->fetchAllAssoc('crid');
-  foreach($rules as $id => $rule) {
-    file_unmanaged_delete(_js_injector_rule_path($id));
+  ctools_include('export');
+  $rules = ctools_export_load_object('js_injector_rule');
+  foreach ($rules as $name => $rule) {
+    file_unmanaged_delete(_js_injector_rule_path($rule->crid));
   }
-  db_drop_table('js_injector_rule');
 }
 
 /**
  * Implements hook_requirements().
+ *
  * We'll use this to prevent installation of the module if the file directory
  * is not available and writable.
  */
 function js_injector_requirements($phase) {
-  $status = REQUIREMENT_OK;
-  $dir = 'public://js_injector';
-  if (!file_prepare_directory($dir, FILE_MODIFY_PERMISSIONS)) {
-    if (!file_prepare_directory($dir, FILE_CREATE_DIRECTORY)) {
-      $status = REQUIREMENT_ERROR;
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $requirements['js_injector_cache_dir'] = array(
+      'title' => t('JS injector cache dir'),
+      'severity' => REQUIREMENT_OK,
+      'value' => t('Exists'),
+    );
+
+    $path = 'public://js_injector';
+    if (!file_prepare_directory($path, FILE_CREATE_DIRECTORY)) {
+      $requirements['js_injector_cache_dir']['description'] = t('The JS injector cache directory, %path could not be created due to a misconfigured files directory. Please ensure that the files directory is correctly configured and that the webserver has permission to create directories.', array('%path' => file_uri_target($path)));
+      $requirements['js_injector_cache_dir']['severity'] = REQUIREMENT_ERROR;
+      $requirements['js_injector_cache_dir']['value'] = t('Unable to create');
     }
   }
-  $requirements = array(
-    'js_injector' => array(
-      'title' => t('JS Injector directory writable'),
-      'description' => $status == REQUIREMENT_OK ? t('JS Injector Directory %dir is writable', array('%dir' => $dir)) : t('Directory %dir is not writable', array('%dir' => $dir)),
-      'severity' => $status,
-      'value' => t('Not writable'),
-    ),
-  );
+
   return $requirements;
 }
