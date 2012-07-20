@@ -337,7 +337,10 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_address']['field'] = 'field_pfp_address';
   $handler->display->display_options['fields']['field_pfp_address']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_address']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_address']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_pfp_address']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['field_pfp_address']['alter']['text'] = '[field_pfp_address-thoroughfare]<br />
+[field_pfp_address-locality], [field_pfp_address-administrative_area]
+';
   $handler->display->display_options['fields']['field_pfp_address']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_pfp_address']['alter']['external'] = 0;
@@ -368,7 +371,6 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_hours']['table'] = 'field_data_field_pfp_hours';
   $handler->display->display_options['fields']['field_pfp_hours']['field'] = 'field_pfp_hours';
   $handler->display->display_options['fields']['field_pfp_hours']['relationship'] = 'field_fb_app_shelter_reference_target_id';
-  $handler->display->display_options['fields']['field_pfp_hours']['label'] = 'Hours:';
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['absolute'] = 0;
@@ -388,40 +390,12 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_hours']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['field_api_classes'] = 0;
-  /* Field: Content: Contact Name */
-  $handler->display->display_options['fields']['field_pfp_contact_name']['id'] = 'field_pfp_contact_name';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['table'] = 'field_data_field_pfp_contact_name';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['field'] = 'field_pfp_contact_name';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['relationship'] = 'field_fb_app_shelter_reference_target_id';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['text'] = '[field_pfp_contact_name]<br />';
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_name']['field_api_classes'] = 0;
   /* Field: Content: Phone Number */
   $handler->display->display_options['fields']['field_pfp_phone_number']['id'] = 'field_pfp_phone_number';
   $handler->display->display_options['fields']['field_pfp_phone_number']['table'] = 'field_data_field_pfp_phone_number';
   $handler->display->display_options['fields']['field_pfp_phone_number']['field'] = 'field_pfp_phone_number';
   $handler->display->display_options['fields']['field_pfp_phone_number']['relationship'] = 'field_fb_app_shelter_reference_target_id';
-  $handler->display->display_options['fields']['field_pfp_phone_number']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_phone_number']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_pfp_phone_number']['label'] = 'Contact';
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['text'] = '[field_pfp_phone_number]<br />';
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['make_link'] = 0;
@@ -436,66 +410,12 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_phone_number']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_pfp_phone_number']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['field_api_classes'] = 0;
-  /* Field: Content: Contact Email Address */
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['id'] = 'field_pfp_contact_email_address';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['table'] = 'field_data_field_pfp_contact_email_address';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['field'] = 'field_pfp_contact_email_address';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['relationship'] = 'field_fb_app_shelter_reference_target_id';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['label'] = '';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['text'] = '[field_pfp_contact_email_address]<br />';
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_pfp_contact_email_address']['field_api_classes'] = 0;
-  /* Field: Contact info */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Contact info';
-  $handler->display->display_options['fields']['nothing']['label'] = 'Contact';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<br />
-[field_pfp_contact_name]
-[field_pfp_phone_number]
-[field_pfp_contact_email_address]';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   /* Contextual filter: Webform submissions: Sid */
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
   $handler->display->display_options['arguments']['sid']['table'] = 'webform_submissions';
