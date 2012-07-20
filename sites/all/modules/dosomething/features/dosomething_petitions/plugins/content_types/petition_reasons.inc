@@ -60,7 +60,7 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
   }
 
   $block = new StdClass();
-  $block->title = 'Why People Are Signing';
+  $block->title = 'Reasons for Signing';
   $block->content = $content;
   return $block;
 }

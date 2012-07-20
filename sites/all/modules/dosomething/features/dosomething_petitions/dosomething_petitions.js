@@ -11,19 +11,31 @@
       $reasonBox = $reasonWrapper.find('.form-textarea-wrapper');
       $reasonLabel = $reasonWrapper.find('label');
       $signatureCheckbox = $('#edit-submitted-field-webform-petition-signature--2');
+      $signShortcut = $('#sign-petition-scroller');
 
-      $signatureCheckbox.appendTo($('#webform-client-form-723108--2>div'));
+      $signatureCheckbox.appendTo($('.pane-node-webform .webform-client-form>div'));
 
       // add the "Add a reason" link
       $displayReasonLink = $('<a>')
         .attr('id', 'add-reason-link')
-        .text('Add a reason')
+        .text('Add one')
         .click(function () {
           $reasonBox.slideToggle();
         });
       
       $reasonBox.hide();
       $reasonLabel.append($displayReasonLink);
+
+      // make the secondary sign button do something
+      $signShortcut.click(function () {
+        $form = $('.pane-node-webform');
+        $('html, body').animate({scrollTop: $form.offset().top}, 300);
+        $form
+          .css('-webkit-box-shadow', '#18408B 0 0 12px')
+          .css('-moz-box-shadow', '#18408B 0 0 12px')
+          .css('box-shadow', '#18408B 0 0 12px');
+        return false;
+      });
 
       // convert labels to placeholders
       if (placeholder) {
