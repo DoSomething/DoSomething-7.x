@@ -69,7 +69,9 @@ function picsforpetsAnimalsPlaceImages(settings) {
 
 function picsforpetsAnimalsNext(settings) {
   $('#slideshow-center').empty();
-  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center');
+  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center', function() {
+    picsforpetsAnimalsLoadFacebook();
+  });
   picsforpetsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index + 4] == undefined) {
@@ -97,7 +99,9 @@ function picsforpetsAnimalsNext(settings) {
 
 function picsforpetsAnimalsPrev(settings) {
   $('#slideshow-center').empty();
-  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center');
+  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center', function() {
+    picsforpetsAnimalsLoadFacebook();
+  });
   picsforpetsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index - 4] == undefined) {
@@ -143,6 +147,11 @@ function picsforpetsAnimalsReindex(index, direction) {
     Drupal.settings.picsforpetsAnimals.images[index] = Drupal.settings.picsforpetsAnimals.images[limit];
     delete Drupal.settings.picsforpetsAnimals.images[limit];
   }
+}
+
+function picsforpetsAnimalsLoadFacebook() {
+  var comments = $('.fb-social-comments-plugin');
+  FB.XFBML.parse(comments[0]);
 }
 
 }(jQuery));
