@@ -12,7 +12,7 @@ define('PICSFORPETS_PET_SUBMISSION_NID', 3);
 /**
  * Implements hook_menu().
  */
-function dosomething_picsforpets_general() {
+function dosomething_picsforpets_general_menu() {
   $items['pics-for-pets/share/js/%'] = array(
     'type' => MENU_CALLBACK,
     'access callback' => TRUE,
@@ -77,10 +77,13 @@ function dosomething_picsforpets_general_ctools_plugin_directory($owner, $plugin
  * Share (like) a webform submission on facebook.
  */
 function dosomething_picsforpets_general_share($sid) {
-  $fb_app_id = $GLOBALS['_fb_app']->id;
-  $access_token = $_SESSION['fb_' . $fb_app_id . '_access_token'];
-  if (is_int($sid)) {
+  $_fb_app = fb_load('picsforpets');
+  $fb = fb_api_init($_fb_app);
+  $access_token = fb_get_token($fb);
+  if (is_numeric($sid)) {
     $url = drupal_get_path_alias('webform-submission/' . $sid);
-    drupal_http_request('http://graph.facebook.com/' . 'http://apps.facebook.com/picsforpets/' . $url . '/likes' , array('method' => 'POST', 'data' => 'access_token=' . $access_token));
+    $response = drupal_http_request('https://graph.facebook.com/' . 'http://apps.facebook.com/picsforpets/' . $url . '/likes' , array('method' => 'POST', 'data' => 'access_token=' . $access_token));
+    dpm($response);
   }
+  return '';
 }
