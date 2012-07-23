@@ -20,23 +20,6 @@ function dosomething_picsforpets_animals_menu() {
 }
 
 /**
- * Implements webform_submission_render_alter().
- */
-function dosomething_picsforpets_animals_webform_submission_render_alter(&$renderable) {
-  // Add carousel javascript to displays of pet profiles.
-  $node = $renderable['#node'];
-  if ($node->type == 'fb_app_data_gathering_form' && $node->title == 'Pet Picture') { // TODO: check for specific node id once we know one; the title can change.
-    drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_animals') . '/js/picsforpets-carousel.js');
-    // TODO: set both settings as array together.
-    drupal_add_js(array('picsforpetsAnimals' => array('sid' => $renderable['#submission']->sid)), 'setting');
-    // Total number of available pet submissions.
-    // TODO: limit to correct node results.
-    $total = db_query("SELECT COUNT(sid) FROM webform_submissions")->fetchField();
-    drupal_add_js(array('picsforpetsAnimals' => array('total' => $total)), 'setting');
-  }
-}
-
-/**
  * Menu callback.
  * Return 10 items for the 'wings' on the pet carousel.
  */
