@@ -1386,6 +1386,11 @@ body {
 }
 
 .picsforpets-scholarship {
+  display: inline;
+  float: left;
+  position: relative;
+}
+.picsforpets-scholarship a {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
@@ -1394,9 +1399,7 @@ body {
   background-position: 50% 50%;
   width: 95px;
   height: 94px;
-  display: inline;
-  float: left;
-  position: relative;
+  display: block;
 }
 
 .picsforpets-gallery {
@@ -1647,6 +1650,9 @@ a.footer-furtography {
   padding-right: 40px;
   background: white url(../images/ui-close-x.png) no-repeat;
   background-position: 56px 4px;
+}
+.view-pics-for-pets-gallery .view-filters .form-type-select {
+  margin-top: 0;
 }
 
 .view-pics-for-pets-gallery .views-row {

@@ -50,10 +50,12 @@ body
       color: $pfp-gray-lt
 
 .picsforpets-scholarship
-  +replace-text-with-dimensions('5k-scholarship.png')
   +float-left
   // z-index: 1000px
   position: relative
+  a
+    +replace-text-with-dimensions('5k-scholarship.png')
+    display: block
 
 .picsforpets-gallery
   background: $white
@@ -90,7 +92,6 @@ body
     height: 50px
 
 .panel-1col
-  // width: 720px
   margin: 0 auto
   margin-bottom: 24px
 
@@ -107,7 +108,6 @@ body
   background-position: 50% 74px
 
 .picsforpets-menu
-  // @extend %dinweb-condbold
   @extend %league-gothic
   +horizontal-list($padding: 4px, $direction: left)
   text-transform: uppercase
@@ -141,10 +141,6 @@ a.footer-furtography
   background: $black
   +opacity(0.75)
 
-// .ui-dialog
-//   background: rgba($black, 0.75)
-//   border: none
-
 .ui-dialog .ui-dialog-titlebar
   padding: 12px
   @extend %league-gothic
@@ -163,14 +159,6 @@ a.footer-furtography
 
 .ui-dialog-content
   color: $white
-
-// .ui-widget-header .ui-icon
-//   background: url(../images/ui-close-x.png) no-repeat
-
-// .ui-widget-header
-//   .ui-state-hover .ui-icon,
-//     background-image: url(../images/ui-close-x.png) no-repeat !important
-//     border: 0
 
 ////////////////////////////
 // MODAL GENERAL LAYOUT
@@ -219,18 +207,6 @@ a.footer-furtography
   outline: none
   text-decoration: none
 
-// Dark input style
-// .region-sidebar-first, .ui-dialog
-//   input
-//     &[type="text"],
-//     &[type="textarea"]
-//       @extend .white
-//       background: $gray
-//       +box-shadow(none)
-//       +float-left
-//       &:focus
-//         outline: none
-
 ////////////////////////////
 // GALLERY SORT
 ////////////////////////////
@@ -252,6 +228,8 @@ a.footer-furtography
       padding-right: 40px
       background: $white url(../images/ui-close-x.png) no-repeat
       background-position: 56px 4px
+    .form-type-select
+      margin-top: 0
 
 .view-pics-for-pets-gallery
   .views-row
