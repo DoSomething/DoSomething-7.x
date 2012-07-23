@@ -5,3 +5,10 @@
  */
 
 include_once 'dosomething_picsforpets_shelters.features.inc';
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter();
+ */
+function dosomething_picsforpets_shelters_form_shelter_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_pfp_address']['und'][0]['country']['#access'] = FALSE;
+}
