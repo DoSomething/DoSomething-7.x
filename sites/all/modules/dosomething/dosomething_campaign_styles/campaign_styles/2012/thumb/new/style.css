@@ -329,7 +329,7 @@ a {
       font-size: 80px;
       line-height: 40px;
       color: #ffdd00;
-      letter-spacing: -12px;
-      -webkit-text-stroke: 1px white; }
+      margin-right: -12px;
+      text-shadow: white 1px 1px 0, white -1px -1px 0, white -1px 1px 0, white 1px -1px 0; }
       #thumb-wars-action-guide li.action-guide-circle.active {
         color: white; }
