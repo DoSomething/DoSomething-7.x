@@ -404,6 +404,61 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_share_count'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_share_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_share_count',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 16,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_share_count',
+      'label' => 'Facebook Share Count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '22',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'] = array(
     'field_config' => array(
@@ -551,6 +606,7 @@ function dosomething_fb_apps_field_default_fields() {
   t('Animal Name');
   t('Animal Type');
   t('Body');
+  t('Facebook Share Count');
   t('Image');
   t('Other');
   t('Shelter');
