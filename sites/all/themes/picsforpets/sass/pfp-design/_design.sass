@@ -115,6 +115,8 @@ body
   line-height: 1.5
   text-align: center
   +clearfix
+  clear: both
+  position: bottom
   height: 54px
   padding-top: 12px
   padding-bottom: 14px
@@ -349,10 +351,11 @@ a.footer-furtography
   margin-left: -100px
   width: 380px
   padding: 10px
+  padding-bottom: 0
   +float-left
   z-index: 1010
   position: relative
-  height: 650px
+  min-height: 780px
   #slideshow-center
     margin-left: 0
     padding: 0
@@ -362,6 +365,13 @@ a.footer-furtography
   h2
     text-transform: uppercase
     margin: 0
+
+.fb-comments-block
+  background: $white
+  margin-left: -178px
+  width: 760px
+  padding: 12px 12px 12px 100px
+  border-top: 12px solid $pfp-blue-lt
 
 .pane-shelter-per-pet-panel-pane-1
   border-left: 1px solid $black
@@ -421,10 +431,6 @@ a.footer-furtography
   font-size: 42px
   font-weight: bold
   cursor: pointer
-
-
-
-
 
 
 

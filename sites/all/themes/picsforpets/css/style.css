@@ -1486,6 +1486,8 @@ body {
   text-align: center;
   overflow: hidden;
   *zoom: 1;
+  clear: both;
+  position: bottom;
   height: 54px;
   padding-top: 12px;
   padding-bottom: 14px;
@@ -1780,11 +1782,12 @@ a.footer-furtography {
   margin-left: -100px;
   width: 380px;
   padding: 10px;
+  padding-bottom: 0;
   display: inline;
   float: left;
   z-index: 1010;
   position: relative;
-  height: 650px;
+  min-height: 780px;
 }
 #slideshow-center #slideshow-center {
   margin-left: 0;
@@ -1797,6 +1800,14 @@ a.footer-furtography {
 #slideshow-center h2 {
   text-transform: uppercase;
   margin: 0;
+}
+
+.fb-comments-block {
+  background: white;
+  margin-left: -178px;
+  width: 760px;
+  padding: 12px 12px 12px 100px;
+  border-top: 12px solid #d6eef3;
 }
 
 .pane-shelter-per-pet-panel-pane-1 {
