@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the dosomething_fb_apps feature.
- */
-
-include_once 'dosomething_fb_apps.features.inc';
