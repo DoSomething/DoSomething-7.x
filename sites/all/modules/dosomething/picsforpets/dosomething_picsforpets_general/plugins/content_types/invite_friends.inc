@@ -4,10 +4,10 @@ $plugin = array(
   'title' => t('Invite Friends'),
   'single' => TRUE,
   'category' => array(t('Facebook')),
-  'render callback' => 'dosomething_picsforpets_general_content_type_render'
+  'render callback' => 'dosomething_picsforpets_general_content_type_render_invite'
 );
 
-function dosomething_picsforpets_general_content_type_render($subtype, $conf, $context = NULL) {
+function dosomething_picsforpets_general_content_type_render_invite($subtype, $conf, $context = NULL) {
   // Extract the user's access_token from the global PHP variables.
   $fb_app_id = $GLOBALS['_fb_app']->id;
   $access_token = $_SESSION['fb_' . $fb_app_id . '_access_token'];

@@ -9,6 +9,18 @@ include_once 'dosomething_picsforpets_general.features.inc';
 // The node id for the pet submission form.
 define('PICSFORPETS_PET_SUBMISSION_NID', 3);
 
+/**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_general() {
+  $items['pics-for-pets/share/js/%'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_picsforpets_general_share',
+    'page arguments' => array(3),
+  );
+  return $items;
+}
 
 /**
  * Form that pops up when you click 'become a furtographer'.
@@ -58,5 +70,17 @@ function dosomething_picsforpets_general_custom_theme() {
 function dosomething_picsforpets_general_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'ctools') {
     return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Share (like) a webform submission on facebook.
+ */
+function dosomething_picsforpets_general_share($sid) {
+  $fb_app_id = $GLOBALS['_fb_app']->id;
+  $access_token = $_SESSION['fb_' . $fb_app_id . '_access_token'];
+  if (is_int($sid)) {
+    $url = drupal_get_path_alias('webform-submission/' . $sid);
+    drupal_http_request('http://graph.facebook.com/' . 'http://apps.facebook.com/picsforpets/' . $url . '/likes' , array('method' => 'POST', 'data' => 'access_token=' . $access_token));
   }
 }
