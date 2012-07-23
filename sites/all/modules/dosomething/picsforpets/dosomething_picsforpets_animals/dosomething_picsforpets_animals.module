@@ -78,7 +78,7 @@ function dosomething_picsforpets_animals_ctools_render_alter(&$info, &$page, &$c
       // TODO: limit to correct node results.
       $total = db_query("SELECT COUNT(sid) FROM webform_submissions")->fetchField();
       drupal_add_js(array('picsforpetsAnimals' => array('total' => $total)), 'setting');
-    break;
+      break;
   }
 }
 
