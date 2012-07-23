@@ -27,17 +27,7 @@ function dosomething_picsforpets_shelters_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'shelter',
-      'default_value' => array(
-        0 => array(
-          'element_key' => 'node|shelter|field_pfp_address|und|0',
-          'thoroughfare' => '',
-          'premise' => '',
-          'locality' => '',
-          'administrative_area' => '',
-          'postal_code' => '',
-          'country' => 'US',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -76,10 +66,9 @@ function dosomething_picsforpets_shelters_field_default_fields() {
           ),
           'format_handlers' => array(
             'address' => 'address',
-            'address-hide-country' => 'address-hide-country',
             'name-full' => 0,
             'name-oneline' => 0,
-            'organisation' => 'organisation',
+            'organisation' => 0,
           ),
         ),
         'type' => 'addressfield_standard',
