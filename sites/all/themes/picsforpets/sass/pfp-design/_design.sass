@@ -435,14 +435,29 @@ a.footer-furtography
 .views-ui-dialog .ui-dialog-titlebar-close
   z-index: 200
 
+.pane-share
+  margin-top: -175px
+  position: absolute
+  text-transform: uppercase
+  text-align: center
+  padding-left: 60px
+  // top: -200
 
+#picsforpets-share
+  h1
+    border-bottom: 1px solid $black
+    padding-bottom: 8px
+  a
+    @extend h1
+    +border-radius(8px)
+    color: $white
+    padding: 0 12px
+    background: $pfp-blue-fb
+    border-bottom: 0
+    margin-right: 12px
 
-
-
-
-
-
-
-
-
-
+.picsforpets-share-count
+  background: url(../images/fb-share-count.png) no-repeat
+  background-color: $white
+  background-position: 6px 6px
+  padding: 4px 12px 4px 22px

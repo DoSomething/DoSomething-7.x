@@ -124,7 +124,7 @@ a:active {
  * Addresses font sizes and margins set differently in IE6/7
  * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
  */
-h1 {
+h1, #picsforpets-share a {
   font-size: 2em;
   margin: 0.67em 0;
 }
@@ -515,7 +515,7 @@ pre, code, kbd, tt {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
-h1, .fieldset-legend, h2, h3, h4, h5, h6 {
+h1, #picsforpets-share a, .fieldset-legend, h2, h3, h4, h5, h6 {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -524,7 +524,7 @@ h1, .fieldset-legend, h2, h3, h4, h5, h6 {
 }
 
 /* Only use the fancy ampersand in <h#> tags */
-h1 .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
+h1 .amp, #picsforpets-share a .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp {
   font-size: 1em;
   font-family: "DINOT", sans-serif;
   font-style: italic;
@@ -644,12 +644,12 @@ li ul {
 }
 
 /* Headings -------------------------------------------------------------- */
-h1, .fieldset-legend, h2, h3, h4, h5, h6 {
+h1, #picsforpets-share a, .fieldset-legend, h2, h3, h4, h5, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
 
-h1.title {
+h1.title, #picsforpets-share a.title {
   border-bottom: 1px solid black;
   text-transform: uppercase;
   text-align: center;
@@ -1884,6 +1884,38 @@ a.footer-furtography {
   z-index: 200;
 }
 
+.pane-share {
+  margin-top: -175px;
+  position: absolute;
+  text-transform: uppercase;
+  text-align: center;
+  padding-left: 60px;
+}
+
+#picsforpets-share h1, #picsforpets-share a {
+  border-bottom: 1px solid black;
+  padding-bottom: 8px;
+}
+#picsforpets-share a {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  color: white;
+  padding: 0 12px;
+  background: #6e85b2;
+  border-bottom: 0;
+  margin-right: 12px;
+}
+
+.picsforpets-share-count {
+  background: url(../images/fb-share-count.png) no-repeat;
+  background-color: white;
+  background-position: 6px 6px;
+  padding: 4px 12px 4px 22px;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
@@ -2212,7 +2244,7 @@ header aside {
   clear: both;
 }
 
-.label, .styletile-1 .text-examples .logos h1:before {
+.label, .styletile-1 .text-examples .logos h1:before, .styletile-1 .text-examples .logos #picsforpets-share a:before, #picsforpets-share .styletile-1 .text-examples .logos a:before {
   color: gray;
   font-size: 1em;
   line-height: 1.5em;
@@ -2255,27 +2287,27 @@ header aside {
 .styletile-1 .text-examples .logos {
   counter-reset: logos;
 }
-.styletile-1 .text-examples .logos h1 {
+.styletile-1 .text-examples .logos h1, .styletile-1 .text-examples .logos #picsforpets-share a, #picsforpets-share .styletile-1 .text-examples .logos a {
   counter-increment: logos;
 }
-.styletile-1 .text-examples .logos h1:before {
+.styletile-1 .text-examples .logos h1:before, .styletile-1 .text-examples .logos #picsforpets-share a:before, #picsforpets-share .styletile-1 .text-examples .logos a:before {
   display: block;
   font-weight: normal;
   line-height: 1;
 }
-.styletile-1 .text-examples .logos h1.opt-1:before {
+.styletile-1 .text-examples .logos h1.opt-1:before, .styletile-1 .text-examples .logos #picsforpets-share a.opt-1:before, #picsforpets-share .styletile-1 .text-examples .logos a.opt-1:before {
   content: counter(logos) ' - "DINOT", sans-serif';
 }
 .styletile-1 .text-examples .serif {
   font-family: Georgia, serif;
 }
-.styletile-1 .text-examples .serif .label:after, .styletile-1 .text-examples .serif .logos h1:after:before, .styletile-1 .text-examples .logos .serif h1:after:before {
+.styletile-1 .text-examples .serif .label:after, .styletile-1 .text-examples .serif .logos h1:after:before, .styletile-1 .text-examples .logos .serif h1:after:before, .styletile-1 .text-examples .serif .logos #picsforpets-share a:after:before, .styletile-1 .text-examples .logos #picsforpets-share .serif a:after:before, #picsforpets-share .styletile-1 .text-examples .serif .logos a:after:before, #picsforpets-share .styletile-1 .text-examples .logos .serif a:after:before {
   content: " - Georgia, serif";
 }
 .styletile-1 .text-examples .sans, .styletile-1 .text-examples header aside, header .styletile-1 .text-examples aside {
   font-family: "DINOT", sans-serif;
 }
-.styletile-1 .text-examples .sans .label:after, .styletile-1 .text-examples header aside .label:after, header .styletile-1 .text-examples aside .label:after, .styletile-1 .text-examples .sans .logos h1:after:before, .styletile-1 .text-examples .logos .sans h1:after:before, .styletile-1 .text-examples header aside .logos h1:after:before, .styletile-1 .text-examples .logos header aside h1:after:before, header .styletile-1 .text-examples aside .logos h1:after:before, header .styletile-1 .text-examples .logos aside h1:after:before {
+.styletile-1 .text-examples .sans .label:after, .styletile-1 .text-examples header aside .label:after, header .styletile-1 .text-examples aside .label:after, .styletile-1 .text-examples .sans .logos h1:after:before, .styletile-1 .text-examples .logos .sans h1:after:before, .styletile-1 .text-examples header aside .logos h1:after:before, .styletile-1 .text-examples .logos header aside h1:after:before, header .styletile-1 .text-examples aside .logos h1:after:before, header .styletile-1 .text-examples .logos aside h1:after:before, .styletile-1 .text-examples .sans .logos #picsforpets-share a:after:before, .styletile-1 .text-examples .logos #picsforpets-share .sans a:after:before, .styletile-1 .text-examples header aside .logos #picsforpets-share a:after:before, .styletile-1 .text-examples .logos #picsforpets-share header aside a:after:before, header .styletile-1 .text-examples aside .logos #picsforpets-share a:after:before, header .styletile-1 .text-examples .logos #picsforpets-share aside a:after:before, #picsforpets-share .styletile-1 .text-examples .sans .logos a:after:before, #picsforpets-share .styletile-1 .text-examples .logos .sans a:after:before, #picsforpets-share .styletile-1 .text-examples header aside .logos a:after:before, #picsforpets-share .styletile-1 .text-examples .logos header aside a:after:before, header #picsforpets-share .styletile-1 .text-examples aside .logos a:after:before, #picsforpets-share header .styletile-1 .text-examples aside .logos a:after:before, header #picsforpets-share .styletile-1 .text-examples .logos aside a:after:before, #picsforpets-share header .styletile-1 .text-examples .logos aside a:after:before {
   content: ' - "DINOT", sans-serif';
 }
 
