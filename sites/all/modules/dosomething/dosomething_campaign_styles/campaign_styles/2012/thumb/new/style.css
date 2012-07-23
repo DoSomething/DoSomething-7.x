@@ -156,13 +156,13 @@ a {
   border-bottom: 2px solid white;
   height: 590px; }
 
-.do, .do2, .learn, .scholarship, .did, .faq, .row {
+.do, .do2, .actionguide, .learn, .scholarship, .did, .faq, .row {
   text-align: center; }
-  .do:before, .do:after, .do2:before, .do2:after, .learn:before, .learn:after, .scholarship:before, .scholarship:after, .did:before, .did:after, .faq:before, .faq:after, .row:before, .row:after {
+  .do:before, .do:after, .do2:before, .do2:after, .actionguide:before, .actionguide:after, .learn:before, .learn:after, .scholarship:before, .scholarship:after, .did:before, .did:after, .faq:before, .faq:after, .row:before, .row:after {
     zoom: 1;
     content: "";
     display: table; }
-  .do:after, .do2:after, .learn:after, .scholarship:after, .did:after, .faq:after, .row:after {
+  .do:after, .do2:after, .actionguide:after, .learn:after, .scholarship:after, .did:after, .faq:after, .row:after {
     clear: both; }
 
 #cask-aside {
@@ -187,6 +187,9 @@ a {
 
 .do2 {
   height: 315px; }
+
+.actionguide {
+  height: 530px; }
 
 .learn {
   height: 630px; }
@@ -290,8 +293,43 @@ a {
   color: #ffdd00;
   background-image: url("assets/arrow-faq.png");
   background-repeat: no-repeat;
-  background-position-y: 5px; }
+  background-position-y: 5px;
+  cursor: pointer; }
 .faq h4, .faq p {
   padding-left: 1em; }
 .faq .activeFAQ {
   background-position-y: -15px; }
+
+#thumb-wars-action-guide {
+  color: white;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  position: relative; }
+  #thumb-wars-action-guide .action-guide-description {
+    margin: 10px 0; }
+  #thumb-wars-action-guide #action-guide-right, #thumb-wars-action-guide #action-guide-left {
+    position: absolute;
+    top: 120px;
+    font-size: 60px; }
+    #thumb-wars-action-guide #action-guide-right:hover, #thumb-wars-action-guide #action-guide-left:hover {
+      text-decoration: none;
+      color: white; }
+  #thumb-wars-action-guide #action-guide-right {
+    right: 60px; }
+  #thumb-wars-action-guide #action-guide-left {
+    left: 60px; }
+  #thumb-wars-action-guide li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    #thumb-wars-action-guide li.action-guide-circle {
+      display: inline;
+      cursor: pointer;
+      font-size: 80px;
+      line-height: 40px;
+      color: #ffdd00;
+      letter-spacing: -12px;
+      -webkit-text-stroke: 1px white; }
+      #thumb-wars-action-guide li.action-guide-circle.active {
+        color: white; }

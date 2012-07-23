@@ -83,13 +83,95 @@
     </div> <!-- .col2 -->    
   </div> <!-- .section .do2 (second) -->
   
-  <div class="section do">
+  <div class="section actionguide">
     <h1>how to use your socks:</h1>
-    
-    <br><h1>action</h1>
-    <br><h1>guide</h1>    
-    <br><h1>gallery</h1>
-    
+      <div id="thumb-wars-action-guide">
+        <ul id="thumb-wars-action-guide-pictures">
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_1.jpg" />
+            <div class="action-guide-description">
+              STEP 1. SIGN UP TO GET SOCKS
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_2.jpg" />
+            <div class="action-guide-description">
+              STEP 2. GET YOUR SOCKS IN THE MAIL
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_3.jpg" />
+            <div class="action-guide-description">
+              STEP 3. PICK A FRIEND WHO TEXTS AND DRIVES
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_4.jpg" />
+            <div class="action-guide-description">
+              STEP 4. HIDE THE SOCKS IN THEIR GLOVE COMPARTMENT
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_5.jpg" />
+            <div class="action-guide-description">
+              STEP 5. ...OR TAPE THEM TO THEIR STEERING WHEEL...
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_6.jpg" />
+            <div class="action-guide-description">
+              STEP 6. ...PUT THEM IN THEIR CEREAL...
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_7.jpg" />
+            <div class="action-guide-description">
+              STEP 7. ...OR SHARE THEM IN ANY WAY YOU THINK OF
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_8.jpg" />
+            <div class="action-guide-description">
+              STEP 8. SHARE A CRAZY STAT ABOUT TEXTING &amp; DRIVING
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_9.jpg" />
+            <div class="action-guide-description">
+              STEP 9. TAKE SOME PICS WITH THE SOCKS
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_10.jpg" />
+            <div class="action-guide-description">
+              STEP 10. UPLOAD AT <a href="http://www.dosomething.org/thumbwars">DOSOMETHING.ORG/THUMBWARS</a>
+            </div>
+          </li>
+          <li class="action-guide-picture">
+            <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/ag_11.jpg" />
+            <div class="action-guide-description">
+              STEP 11. DRIVE SAFELY
+            </div>
+          </li>
+        </ul>
+        <div id="thumb-wars-action-guide-nav">
+          <a href="#" id="action-guide-left">&lt;</a>
+          <a href="#" id="action-guide-right">&gt;</a>
+          <ul>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+            <li class="action-guide-circle">&bull;</li>
+          </ul>
+        </div>
+      </div>   
   </div> <!-- .section .do (third) -->
   
   <div class="section learn">
