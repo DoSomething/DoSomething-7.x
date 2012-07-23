@@ -20,7 +20,7 @@ function init_content() {
   var scrollLimit = 180;
 
   $window.scroll(function () {
-    if ($window.scrollTop() > 180) {
+    if ($window.scrollTop() > scrollLimit) {
       $nav
         .css('position', 'fixed')
         .css('top', '10px')
@@ -32,6 +32,35 @@ function init_content() {
         .css('top', '0')
         .css('margin-top', '104px');
     }
+  });
+
+  $('.faq h4').next('p').css('display','none');
+  $('.faq h4.activeFAQ').next('p').css('display','block');
+  $('.faq h4').click(function(){
+    if($(this).hasClass('activeFAQ')){
+      $(this).removeClass().next('p').slideUp();
+    }
+    else{
+      $(this).addClass('activeFAQ');
+      $(this).siblings('h4').removeClass('activeFAQ');
+      $(this).next('p').slideToggle();
+      $(this).siblings().next('p').slideUp();      
+    }
+  });
+  $('.learn1').mouseover(function(){
+    $('.share-here1').css('display', 'block');
+  }).mouseout(function(){
+    $('.share-here1').css('display', 'none');
+  });
+  $('.learn2').mouseover(function(){
+    $('.share-here2').css('display', 'block');
+  }).mouseout(function(){
+    $('.share-here2').css('display', 'none');
+  });
+  $('.learn3').mouseover(function(){
+    $('.share-here3').css('display', 'block');
+  }).mouseout(function(){
+    $('.share-here3').css('display', 'none');
   });
   init_scroller();
 }
@@ -72,32 +101,5 @@ function activeButton() {
 }
 
 jQuery(document).ready(function () {
-  $('.faq h4').next('p').css('display','none');
-  $('.faq h4.activeFAQ').next('p').css('display','block');
-  $('.faq h4').click(function(){
-    if($(this).hasClass('activeFAQ')){
-      $(this).removeClass().next('p').slideUp();
-    }
-    else{
-      $(this).addClass('activeFAQ');
-      $(this).siblings('h4').removeClass('activeFAQ');
-      $(this).next('p').slideToggle();
-      $(this).siblings().next('p').slideUp();      
-    }
-  });
-  $('.learn1').mouseover(function(){
-    $('.share-here1').css('display', 'block');
-  }).mouseout(function(){
-    $('.share-here1').css('display', 'none');
-  });
-  $('.learn2').mouseover(function(){
-    $('.share-here2').css('display', 'block');
-  }).mouseout(function(){
-    $('.share-here2').css('display', 'none');
-  });
-  $('.learn3').mouseover(function(){
-    $('.share-here3').css('display', 'block');
-  }).mouseout(function(){
-    $('.share-here3').css('display', 'none');
-  });
+
 });
