@@ -100,6 +100,3 @@ function activeButton() {
   $('.action-guide-circle:nth-child('+index+')').addClass('active');
 }
 
-jQuery(document).ready(function () {
-
-});

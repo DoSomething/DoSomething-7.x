@@ -172,7 +172,7 @@
           </ul>
         </div>
       </div>   
-  </div> <!-- .section .do (third) -->
+  </div> <!-- .section .actionguide (third) -->
   
   <div class="section learn">
     
