@@ -1,17 +1,13 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>
 
-<link href="style.css" media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all">
-<script src="/misc/jquery.js?v=1.4.4"></script>
-<script src="script.js" type="text/javascript"></script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 
 <div id="cork">
   
   <div class="header">
-    <a href="mango" class="social-f"></a>
-    <a href="https://twitter.com/share" class="social-t" data-lang="en" data-text="Save your friends from the dangers of texting and driving with @DoSomething's #ThumbWars:" data-count="none" url="http://www.dosomething.org/thumbwars"></a>
+    <a href="#" class="social-f" id="top-fb-share"></a>
+    <a href="https://twitter.com/share?url=http%3A%2F%2Fwww.thumbwars.org&text=Save your friends from the dangers of texting and driving with @DoSomething's %23ThumbWars:" class="social-t" target="_blank"></a>
       <h1>
         <span>texting and driving is one of the</span><br><span>biggest killers of teens</span>
       </h1>
@@ -42,7 +38,7 @@
       <h1>3</h1>
       <h2>tell us about it</h2>
       <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do3.png"/>
-      <p class="bottom">Take a pic of you and your friends wearing the thumb socks and send it to us <a href="/mango/report-back">here</a>. That will enter you for a $10k scholarship.</p>
+      <p class="bottom">Take a pic of you and your friends wearing the thumb socks and send it to us <a href="/thumbwars/tell-us">here</a>. That will enter you for a $10k scholarship.</p>
     </div> <!-- .col -->
   </div> <!-- .section .do (first)-->
   
@@ -51,21 +47,21 @@
       <h1>4</h1>
       <h2>win a scholarship</h2>
       <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do4.png"/>
-      <p class="bottom">There are two ways to win &ndash; send 5 friends texting and driving stats, and <a href="/mango/report-back">send us</a> pics. Check out <a href="/mango/#scholarships">scholarships</a> for more info.</p>      
+      <p class="bottom">There are two ways to win &ndash; send 5 friends texting and driving stats, and <a href="/thumbwars/tell-us">send us</a> pics. Check out <a href="#scholarships">scholarships</a> for more info.</p>      
     </div> <!-- .col -->
     
     <div class="col2">
       <h3>Send 5 friends texting and driving stats to win a $10k scholarship</h3>
       <!-- refer friends webform -->
       <div class="refer-form"><form action="http://dosomething.mcommons.com/profiles/join" method="POST">
-        <input type="hidden" name="redirect_to" value="http://www.dosomething.org/thumbwars/mango" />
+        <input type="hidden" name="redirect_to" value="http://www.dosomething.org/thumbwars/confirmation" />
         <div class="mcommons-col">
           <label>Your First Name:</label>
           <input type="text" name="person[first_name]" class="field space-after"/>
           <label>Your Cell Number:</label>
           <input type="text" name="person[phone]" class="field space-after"/>
           <div id="refer-opt-in" style="width: 175px">
-            <p class="disclaimer">By clicking submit, you are opting into these <a target="_blank" href="http://www.dosomething.org/mango">official rules</a> and our weekly updates. <a href="#" id="opt-in-help-mobile">?</a></p>
+            <p class="disclaimer">By clicking submit, you are opting into these <a target="_blank" href="http://files.dosomething.org/files/campaigns/thumb/thumb_wars_rules_and_regs.pdf">official rules</a> and our weekly updates. <a href="#" id="opt-in-help-mobile">?</a></p>
           </div> <!-- .refer-opt-in -->
         </div> <!-- .mcommons-webform-column -->
         <div class="mcommons-col">
@@ -75,8 +71,8 @@
           <input type="text" class="field left" name="friends[]"/>
           <input type="text" class="field left" name="friends[]"/>
           <input type="text" class="field left" name="friends[]"/>
-          <input type="hidden" name="friends_opt_in_path" value="mango" />
-          <input type="hidden" name="opt_in_path" value="mango">
+          <input type="hidden" name="friends_opt_in_path" value="113371" />
+          <input type="hidden" name="opt_in_path" value="113391">
           <input type="submit" class="go-button" value="go" />
         </div> <!-- .mcommons-webform-column -->
       </form></div> <!-- .refer-form -->
@@ -181,27 +177,27 @@
     <div class="row">
       <div class="col share1">
         <div class="learn1"></div>
-        <a class="disclaimer" href="mango">view source</a>
-        <a href="mango" class="social-f"></a>
-    <a href="https://twitter.com/share" class="social-t" data-lang="en" data-text="Texting drivers are 23 times more likely to get involved in a crash." data-count="none" url="http://www.dosomething.org/thumbwars"></a>
+        <a class="disclaimer" href="http://www.distraction.gov/content/get-the-facts/faq.html">view source</a>
+        <a href="#" class="social-f"></a>
+    <a href="https://twitter.com/share?url=http%3A%2F%2Fwww.thumbwars.org&text=Texting drivers are 23 times more likely to get involved in a crash." class="social-t" target="_blank"></a>
         <br>
         <img class="share-here1" src="http://files.dosomething.org/files/campaigns/thumb/scroll/arrow-share.png"/>
       </div> <!-- .col -->
 
       <div class="col share2 mid">
         <div class="learn2"></div>
-        <a class="disclaimer" href="mango">view source</a>
-        <a href="mango" class="social-f"></a>
-    <a href="https://twitter.com/share" class="social-t" data-lang="en" data-text="Drivers under 20 years old are most likely to get into a distracted driving crash" data-count="none" url="http://www.dosomething.org/thumbwars"></a>
+        <a class="disclaimer" href="http://www.distraction.gov/content/get-the-facts/faq.html">view source</a>
+        <a href="#" class="social-f"></a>
+    <a href="https://twitter.com/share?url=http%3A%2F%2Fwww.thumbwars.org&text=At 55 mph, sending or receiving a text can take a driver's eye from the road for the length of an entire football field." class="social-t" target="_blank"></a>
         <br>
         <img class="share-here2" src="http://files.dosomething.org/files/campaigns/thumb/scroll/arrow-share.png"/>
       </div> <!-- .col -->
 
       <div class="col share3">
         <div class="learn3"></div>
-        <a class="disclaimer" href="mango">view source</a>
-        <a href="mango" class="social-f"></a>
-    <a href="https://twitter.com/share" class="social-t" data-lang="en" data-text="At 55 mph, sending or receiving a text can take a driver's eye from the road for the length of an entire football field." data-count="none" url="http://www.dosomething.org/thumbwars"></a>
+        <a class="disclaimer" href="http://www.distraction.gov/research/PDF-Files/Driver-Distraction-Commercial-Vehicle-Operations.pdf">view source</a>
+        <a href="#" class="social-f"></a>
+    <a href="https://twitter.com/share?url=http%3A%2F%2Fwww.thumbwars.org&text=Drivers under 20 years old are most likely to get into a distracted driving crash" class="social-t" target="_blank"></a>
         <br>
         <img class="share-here3" src="http://files.dosomething.org/files/campaigns/thumb/scroll/arrow-share.png"/>
       </div> <!-- .col -->
@@ -214,12 +210,12 @@
     <div class="col">
       <h3>win celeb socks</h3>
       <p>Enter our caption contest<br>to win socks signed by<br>Harry Shum Jr.</p>
-      <a href="mango" class="go-button">go</a>
+      <a href="/thumbwars/contest" class="go-button">go</a>
     </div> <!-- .col -->
 
   </div> <!-- .section .learn -->
   
-  <div class="section scholarship">
+  <div class="section scholarship" id="scholarships">
 
     <div class="divider"><span>scholarship info</span></div>
  
@@ -231,13 +227,13 @@
       <div class="col3">
         <h3>send 5 friends<br>texting &amp; driving stats</h3>
         <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/scholarship2.png" alt="two ways to enter"/>
-        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <a href="mango">upload them here</a>!</p>
+        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <a href="/thumbwars/tell-us">upload them here</a>!</p>
       </div> <!-- .col3 -->
  
       <div class="col4">
         <h3>send us your<br>thumb pics</h3>
         <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/scholarship3.png" alt="two ways to enter"/>
-        <p>Use <a href="mango">this form</a> to send your friends some crazy stats on texting &amp; driving. You'll qualify to win a $10,000 scholarship.</p>
+        <p>Use <a href="/thumbwars/tell-us">this form</a> to send your friends some crazy stats on texting &amp; driving. You'll qualify to win a $10,000 scholarship.</p>
       </div> <!-- .col4 -->
 
     </div> <!-- .row -->
@@ -246,7 +242,7 @@
  
     <p class="disclaimer">One randomly selected participant will be selected to win.
       <br>
-    <a href="mango">Check out the official rules and regulations</a>
+    <a href="http://files.dosomething.org/files/campaigns/thumb/thumb_wars_rules_and_regs.pdf">Check out the official rules and regulations</a>
     </p>
   </div> <!-- .section .scholarship -->
   

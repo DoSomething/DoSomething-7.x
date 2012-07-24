@@ -1,17 +1,11 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>
 
-<link href="style.css" media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all">
-<script src="/misc/jquery.js?v=1.4.4"></script>
-<script src="script.js" type="text/javascript"></script>
-
 <div id="cask-aside">
   
   <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/thumbwars.png"/>
   
   <div class="contact_form-aside">
     <h2>sign up to get<br>your thumb socks</h2>
-    <h1>contact form goes here</h1>
   </div>
   
   <div class="nav-aside">
