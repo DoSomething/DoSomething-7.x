@@ -7,8 +7,8 @@
 include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 5);
-define('PETITIONS_INFUSIONSOFT', -1);
-define('PETITIONS_MCOMMONS', -1);
+define('PETITIONS_INFUSIONSOFT', 1648);
+define('PETITIONS_MCOMMONS', 117371);
 
 /**
  * Implements hook_form_alter().
@@ -22,10 +22,16 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       );
     }
 
+    $form['actions']['submit']['#value'] = 'SIGN THIS';
+    $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
+
     $form['#submit'][] = 'dosomething_petitions_opt_in';
   }
 }
 
+/**
+ * Submission callback for petition webforms
+ */
 function dosomething_petitions_opt_in($form, $form_state) {
   $sub = $form['#submission']->submitted;
   $val = $sub['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
@@ -38,6 +44,9 @@ function dosomething_petitions_opt_in($form, $form_state) {
   }
 }
 
+/**
+ * AJAX callback for unauthenticated user petition submission
+ */
 function dosomething_petitions_register($form, &$form_state) {
   return array(
     '#type' => 'ajax',
@@ -47,6 +56,9 @@ function dosomething_petitions_register($form, &$form_state) {
   );
 }
 
+/**
+ * Make sure we do our hook_form_alter after webform_entity does
+ */
 function dosomething_petitions_module_implements_alter(&$implementations, $hook) {
   if ($hook == 'form_alter' && isset($implementations['dosomething_petitions'])) {
     $group = $implementations['dosomething_petitions'];

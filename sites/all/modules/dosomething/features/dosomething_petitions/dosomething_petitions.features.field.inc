@@ -489,7 +489,7 @@ function dosomething_petitions_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_petition_target',
-      'label' => 'Petitioning',
+      'label' => 'Recipients',
       'required' => 1,
       'settings' => array(
         'text_processing' => '0',
@@ -623,7 +623,7 @@ function dosomething_petitions_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_email_or_cell',
       'label' => 'Email -or- Cell',
-      'required' => FALSE,
+      'required' => TRUE,
       'settings' => array(
         'text_processing' => 0,
         'user_register_form' => FALSE,
@@ -684,7 +684,7 @@ function dosomething_petitions_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_first_name',
       'label' => 'First Name',
-      'required' => FALSE,
+      'required' => TRUE,
       'settings' => array(
         'text_processing' => 0,
         'user_register_form' => FALSE,
@@ -745,7 +745,7 @@ function dosomething_petitions_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_last_name',
       'label' => 'Last Name',
-      'required' => FALSE,
+      'required' => TRUE,
       'settings' => array(
         'text_processing' => 0,
         'user_register_form' => FALSE,
@@ -803,7 +803,7 @@ function dosomething_petitions_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_petition_reason',
-      'label' => 'Why are you signing?',
+      'label' => 'What\'s your reason for signing?',
       'required' => FALSE,
       'settings' => array(
         'text_processing' => 0,
@@ -857,7 +857,7 @@ function dosomething_petitions_field_default_fields() {
         ),
       ),
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Only first name and last initial are shown.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -869,7 +869,7 @@ function dosomething_petitions_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_petition_signature',
-      'label' => 'Display my signature publicly',
+      'label' => 'Show my signature publicly',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -890,17 +890,18 @@ function dosomething_petitions_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Contact Email');
   t('Contact Name');
-  t('Display my signature publicly');
   t('Email -or- Cell');
   t('First Name');
   t('Last Name');
+  t('Only first name and last initial are shown.');
   t('Petition Description');
   t('Petition Letter');
   t('Petition Picture');
   t('Petition Updates');
-  t('Petitioning');
+  t('Recipients');
+  t('Show my signature publicly');
   t('Signature Goal');
-  t('Why are you signing?');
+  t('What\'s your reason for signing?');
 
   return $fields;
 }

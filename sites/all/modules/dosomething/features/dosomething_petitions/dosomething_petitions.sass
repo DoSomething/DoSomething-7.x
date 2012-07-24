@@ -3,7 +3,7 @@
 @mixin ds-font
   font-family: din-web, HelveticaNeue-CondensedBold, 'Arial Narrow', Arial, 'Trebuchet MS', sans-serif
 @mixin placeholder
-  color: #1E1D1C
+  color: gray
 
 .page-node .content
   .pane-content
@@ -53,6 +53,9 @@
   border-bottom: 1px solid white
   +box-shadow(#D4D2D1 0 1px 0 0)
 
+
+form.webform-client-form #edit-actions.form-wrapper, form.webform-client-form #edit-actions--2.form-wrapper
+  text-align: center
 
 .webform-client-form, .horizontal-tabs fieldset.horizontal-tabs-pane, .pane-petition-share .pane-content
   background: white
@@ -146,3 +149,22 @@ div.horizontal-tabs
   display: block
   height: 32px
   width: 185px
+
+.form-item .description
+  margin-left: 0
+ 
+
+#petition-sign-button-wrapper
+  margin: 20px 0
+  p
+    border-top: 1px solid white
+  a
+    margin: -16px auto 0
+    display: block
+    width: 100px
+    padding-top: 7px
+    margin: -16px auto 0
+    text-align: center
+
+.pane-petition-reasons h2
+  margin-top: .25em

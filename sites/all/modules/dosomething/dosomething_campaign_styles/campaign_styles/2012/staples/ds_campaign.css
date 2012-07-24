@@ -125,12 +125,13 @@ form .go-button {
     #block-dosomething-campaign-styles-campaign-nav ul.menu a {
       display: inline-block;
       width: 100%;
-      padding: 10px 19px 10px 0;
+      padding: 8px 19px 8px 0;
       font-size: 21px;
       font-weight: 600;
       text-transform: uppercase;
       color: black;
-      font-family: "din-web-reg"; }
+      font-family: "din-web-reg";
+      line-height: 1em; }
       #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
         color: #ec008c;
         text-decoration: none; }
@@ -595,7 +596,6 @@ body.page-node-722266 {
     background: -webkit-linear-gradient(top, #ffffff, #fed100);
     background: -moz-linear-gradient(top, #ffffff, #fed100);
     background: -o-linear-gradient(top, #ffffff, #fed100);
-    background: -ms-linear-gradient(top, #ffffff, #fed100);
     background: linear-gradient(top, #ffffff, #fed100); }
 
 body.page-node-722952 {
@@ -975,7 +975,6 @@ body.page-node-722954 {
   background: -webkit-linear-gradient(top, #ffffff, #fed100);
   background: -moz-linear-gradient(top, #ffffff, #fed100);
   background: -o-linear-gradient(top, #ffffff, #fed100);
-  background: -ms-linear-gradient(top, #ffffff, #fed100);
   background: linear-gradient(top, #ffffff, #fed100); }
 
 .button:hover {
@@ -999,3 +998,6 @@ body.page-node-722954 {
   position: relative;
   bottom: 1px;
   margin-left: 7px; }
+
+#node-722264 .fb-social-comments-plugin {
+  display: none; }

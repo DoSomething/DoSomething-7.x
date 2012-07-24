@@ -24,7 +24,6 @@ function dosomething_project_switcher_content_type_render($subtype, $conf, $args
     url($path) => t('All Featured Projects'),
     url($path . 'grant-winners') => t('Grant Winners'),
     url($path . 'scholarship-winners') => t('Scholarship Winners'),
-    url($path . 'pod') => t('Featured Projects of the Day'),
     url($path . 'club') => t('Club Projects'),
   );
   $default = url($path);

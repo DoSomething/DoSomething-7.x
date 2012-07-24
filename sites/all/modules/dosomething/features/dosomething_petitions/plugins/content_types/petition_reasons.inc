@@ -13,6 +13,7 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   $node = menu_get_object();
 
+  // Get petition submissions that have a reason and who have checked the public checkbox
   $q = new EntityFieldQuery;
   $result = $q
     ->entityCondition('entity_type', 'webform_submission_entity')
@@ -23,6 +24,9 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
     ->execute();
 
   $result = $result['webform_submission_entity'];
+
+  $signatures = array();
+  // Load up reasons until we have 5 or there are none left
   while (count($signatures) < 5 && count($result) != 0) {
     $submission = array_shift(entity_load('webform_submission_entity', array(array_shift($result)->sid)));
     $name = dosomething_general_get_full_name(user_load($submission->uid));
@@ -33,7 +37,7 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
       $name = 'Anonymous';
     }
 
-    $time = format_interval((time() - $submission->submitted), 1) . t(' ago');
+    $time = format_interval((time() - $submission->submitted), 2) . t(' ago');
     $comment = $submission->field_webform_petition_reason[LANGUAGE_NONE][0]['value'];
     $signatures[] = array(
       'name' => $name,
@@ -56,12 +60,12 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
   }
 
   $block = new StdClass();
-  $block->title = 'Why People Are Signing';
+  $block->title = 'Reasons for Signing';
   $block->content = $content;
   return $block;
 }
 
 function dosomething_petitions_petition_reasons_content_type_admin_title($subtype, $conf, $context) {
-  return t('Team Progress');
+  return t('Petition Reasons');
 }
 

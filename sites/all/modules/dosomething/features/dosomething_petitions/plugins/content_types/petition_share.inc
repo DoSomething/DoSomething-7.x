@@ -10,7 +10,6 @@ function dosomething_petitions_petition_share_ctools_content_types() {
 }
 
 function dosomething_petitions_petition_share_content_type_render($subtype, $conf, $panel_args, $context) {
-  module_load_include('inc', 'webform', 'includes/webform.submissions');
   $node = menu_get_object();
 
   $content = array();

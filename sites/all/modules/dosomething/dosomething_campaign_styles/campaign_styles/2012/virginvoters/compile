@@ -1,0 +1,2 @@
+#!/bin/bash
+sass --compass -C ds_campaign.sass ds_campaign.css && drush cc css-js
