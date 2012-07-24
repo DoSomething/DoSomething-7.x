@@ -16,7 +16,7 @@ jQuery.post(url_base + 'sidebar.php', function (data) {
 
 function init_content() {
   var $window = jQuery(window);
-  var $nav = jQuery('.region-sidebar-first');
+  var $nav = jQuery('#cask-aside');
   var scrollLimitTop = 180;
   var scrollLimitBot = 2514;
 
