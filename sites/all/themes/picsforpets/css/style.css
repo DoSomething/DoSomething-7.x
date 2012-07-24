@@ -1563,6 +1563,7 @@ a.footer-furtography {
 
 .ui-dialog-content {
   color: white;
+  font-family: "DINOT", sans-serif;
 }
 
 #dosomething-picsforpets-furtographer-dialog {
@@ -1895,6 +1896,7 @@ a.footer-furtography {
 #picsforpets-share h1, #picsforpets-share a {
   border-bottom: 1px solid black;
   padding-bottom: 8px;
+  margin-bottom: 16px;
 }
 #picsforpets-share a {
   -webkit-border-radius: 8px;
@@ -1906,14 +1908,25 @@ a.footer-furtography {
   padding: 0 12px;
   background: #6e85b2;
   border-bottom: 0;
-  margin-right: 12px;
+  margin-right: 6px;
+  margin-bottom: 0;
+}
+
+.picsforpets-share-count-arrow {
+  background: url(../images/fb-share-count.png) no-repeat;
+  background-position: 2px 8px;
+  position: relative;
+  z-index: 800;
+  padding: 3px;
+  margin-right: -2px;
 }
 
 .picsforpets-share-count {
-  background: url(../images/fb-share-count.png) no-repeat;
+  border: 1px solid #c5c6c8;
+  position: relative;
+  z-index: 750;
   background-color: white;
-  background-position: 6px 6px;
-  padding: 4px 12px 4px 22px;
+  padding: 2px 12px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */

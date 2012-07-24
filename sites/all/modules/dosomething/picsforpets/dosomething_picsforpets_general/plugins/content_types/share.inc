@@ -32,6 +32,7 @@ function dosomething_picsforpets_general_content_type_render_share($subtype, $co
 
   $output = '<h1>' . $text . '</h1>';
   $output .= l('Share me', 'pics-for-pets/share/js/' . $context[0]->sid, array('attributes' => array('class' => array('picsforpets-share'))));
+  $output .= '<span class="picsforpets-share-count-arrow">&nbsp;</span>';
   $output .= '<span class="picsforpets-share-count">' . $graph['shares'] . '</span>';
 
   $block = new stdClass();
