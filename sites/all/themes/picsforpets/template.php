@@ -21,8 +21,8 @@ function picsforpets_preprocess_page(&$variables) {
     );
     $links[] = array(
       'title' => 'Be a Fur-tographer',
-      'href' => 'pics-for-pets/furtographer',
-      'attributes' => array('class' => array('footer-furtography')),
+      'href' => 'pics-for-pets/become-a-furtographer',
+      'attributes' => array('class' => array('footer-furtography', 'pics-for-pets-modal')),
     );
     $links[] = array(
       'title' => 'Questions',
@@ -34,7 +34,15 @@ function picsforpets_preprocess_page(&$variables) {
       '#links' => $links,
       '#attributes' => array('class' => array('picsforpets-menu')),
     );
-    $variables['page']['footer']['picsforpets_furtographer'] = drupal_get_form('dosomething_picsforpets_furtographer_dialog');
+    $variables['page']['footer']['picsforpets_modal'] = array(
+      '#markup' => '<div id="picsforpets-modal-data"></div>',
+      '#attached' => array(
+        'library' => array(array('system', 'ui.dialog')),
+        'js' => array(
+          drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/dosomething-picsforpets-dialog.js',
+        ),
+      ),
+    );
   }
 }
 

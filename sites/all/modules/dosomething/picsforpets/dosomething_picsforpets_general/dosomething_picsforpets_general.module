@@ -19,20 +19,25 @@ function dosomething_picsforpets_general_menu() {
     'page callback' => 'dosomething_picsforpets_general_share',
     'page arguments' => array(3),
   );
+  $items['pics-for-pets/become-a-furtographer'] = array(
+    'title' => t('Become a Furtographer!'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_general_furtographer_form'),
+  );
+  $items['pics-for-pets/thanks-for-sharing'] = array(
+    'title' => t('Thanks for sharing!'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_general_thanks_form'),
+  );
   return $items;
 }
 
 /**
  * Form that pops up when you click 'become a furtographer'.
  */
-function dosomething_picsforpets_furtographer_dialog($form, &$form_state) {
-  $form['#attached'] = array(
-    'library' => array(array('system', 'ui.dialog')),
-    'js' => array(
-      drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/dosomething-picsforpets-dialog.js',
-    ),
-  );
-
+function dosomething_picsforpets_general_furtographer_form($form, &$form_state) {
   $form['#attributes'] = array(
     'title' => 'Ready to be a fur-tographer?',
   );
@@ -44,6 +49,56 @@ function dosomething_picsforpets_furtographer_dialog($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Form that pops up after you have shared 3 pets.
+ */
+function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
+  $form['#attributes'] = array(
+    'title' => t('Thanks for sharing!'),
+  );
+  $form['title'] = array(
+    '#markup' => '<h1>' . t('Thanks for sharing!') . '</h1>',
+  );
+  $form['instructions'] = array(
+    '#markup' => t("Enter your info and we'll send you updates on animals in the gallery"),
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#title' => t('Email:'),
+    '#maxlength' => 255,
+
+  );
+  $form['cell'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Cell:'),
+    '#maxlength' => 255,
+  );
+  $form['help'] = array(
+    '#markup' => t('Click submit to sign up and recieve weekly updates <a class="helptext-questionmark-popup">Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)</a>'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Default validation handler for the
+ * dosomething_picsforpets_general_thanks_form.
+ */
+function dosomething_picsforpets_general_thanks_form_validate($form, &$form_state) {
+  dpm('validating');
+}
+
+/**
+ * Default submit handler for the
+ * dosomething_picsforpets_general_thanks_form.
+ */
+function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state) {
+  dpm('submitting');
+}
 /**
  * Implements hook_custom_theme().
  */

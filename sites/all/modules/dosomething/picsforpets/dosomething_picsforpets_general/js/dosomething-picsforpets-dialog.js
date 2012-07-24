@@ -2,17 +2,21 @@
 
 Drupal.behaviors.dosomethingPicsforpetsDialog = {
   attach: function (context, settings) {
-    var furtographyForm = $('#dosomething-picsforpets-furtographer-dialog')
-      .hide();
-    $('.footer-furtography').click(function (event) {
-      furtographyForm.dialog({
+    var $furtographyForm = $('#picsforpets-modal-data');
+    $('a.pics-for-pets-modal').click(function() {
+      var linkPath = $(this).attr('href');
+      $furtographyForm.load(linkPath + ' #content', popup());
+      return false;
+    });
+
+    function popup() {
+      $furtographyForm.dialog({
         resizable: false,
         draggable: false,
         modal: true,
         width: 550,
       });
-      event.preventDefault();
-    });
+    }
   }
 };
 
