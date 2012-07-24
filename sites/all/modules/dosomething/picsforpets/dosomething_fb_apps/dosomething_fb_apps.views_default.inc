@@ -386,7 +386,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_hours']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_pfp_hours']['hide_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['field_api_classes'] = 0;
@@ -396,8 +396,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_phone_number']['field'] = 'field_pfp_phone_number';
   $handler->display->display_options['fields']['field_pfp_phone_number']['relationship'] = 'field_fb_app_shelter_reference_target_id';
   $handler->display->display_options['fields']['field_pfp_phone_number']['label'] = 'Contact';
-  $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['text'] = '[field_pfp_phone_number]<br />';
+  $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['external'] = 0;
@@ -412,7 +411,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_pfp_phone_number']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_pfp_phone_number']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_pfp_phone_number']['hide_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_pfp_phone_number']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_pfp_phone_number']['field_api_classes'] = 0;

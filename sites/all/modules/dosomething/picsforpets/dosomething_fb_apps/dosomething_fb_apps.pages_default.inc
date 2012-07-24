@@ -259,7 +259,10 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $page->admin_title = 'Action Guide';
   $page->admin_description = '';
   $page->path = 'pics-for-pets/action-guide';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
