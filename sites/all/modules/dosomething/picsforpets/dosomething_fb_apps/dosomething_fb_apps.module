@@ -129,3 +129,15 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
     }
   }
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function dosomething_fb_apps_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    // We want to have the form alter show up later.
+    $group = $implementations['dosomething_fb_apps'];
+    unset($implementations['dosomething_fb_apps']);
+    $implementations['dosomething_fb_apps'] = $group;
+  }
+}
