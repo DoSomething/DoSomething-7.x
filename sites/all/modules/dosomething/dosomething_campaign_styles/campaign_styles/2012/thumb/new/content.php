@@ -64,7 +64,7 @@
           </div> <!-- .refer-opt-in -->
         </div> <!-- .mcommons-webform-column -->
         <div class="mcommons-col">
-          <label>Friends' Cell Numbers:</label>
+          <label>Friends' Cells:</label>
           <input type="text" class="field left" name="friends[]"/>
           <input type="text" class="field left" name="friends[]"/>
           <input type="text" class="field left" name="friends[]"/>
@@ -72,8 +72,10 @@
           <input type="text" class="field left" name="friends[]"/>
           <input type="hidden" name="friends_opt_in_path" value="113371" />
           <input type="hidden" name="opt_in_path" value="113391">
-          <input type="submit" class="go-button" value="go" />
         </div> <!-- .mcommons-webform-column -->
+        <div class="mcommons-col-last">
+          <input type="submit" class="go-button" value="go" />
+        </div>
       </form></div> <!-- .refer-form -->
     </div> <!-- .col2 -->    
   </div> <!-- .section .do2 (second) -->

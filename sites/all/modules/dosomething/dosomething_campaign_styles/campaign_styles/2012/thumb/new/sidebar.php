@@ -12,11 +12,11 @@
     
     <ul>
       <li><h3>go to:</h3></li>
-      <li><h4>here's what you do</h4></li>
-      <li><h4>scholarship info</h4></li>
-      <li><h4>tell us about it</h4></li>
-      <li><h4>questions?</h4></li>
-      <li><h4>caption contest</h4></li>
+      <li><h4><a href="#do">here's what you do</a></h4></li>
+      <li><h4><a href="#scholarships">scholarship info</a></h4></li>
+      <li><h4><a href="#tell-us">tell us about it</a></h4></li>
+      <li><h4><a href="#faq">questions?</a></h4></li>
+      <li><h4><a href="/thumbwars/contest">caption contest</a></h4></li>
     </ul>
     
     <p>powered by:</p>

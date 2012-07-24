@@ -9,18 +9,19 @@ jQuery.post(url_base + 'content.php', function (data) {
 
 // sidebar
 jQuery.post(url_base + 'sidebar.php', function (data) {
-  jQuery('.region-sidebar-first').html(data).show();
-  jQuery('.region-sidebar-first .contact_form-aside').append(sign_up_form);
+  jQuery('.region-sidebar-first').html(data).show().removeClass('region-sidebar-first');
+  jQuery('.contact_form-aside').append(sign_up_form);
 });
 
 
 function init_content() {
   var $window = jQuery(window);
   var $nav = jQuery('.region-sidebar-first');
-  var scrollLimit = 180;
+  var scrollLimitTop = 180;
+  var scrollLimitBot = 2514;
 
   $window.scroll(function () {
-    if ($window.scrollTop() > scrollLimit) {
+    if ($window.scrollTop() > scrollLimitTop && $window.scrollTop() < scrollLimitBot) {
       $nav
         .css('position', 'fixed')
         .css('top', '10px')
@@ -31,6 +32,13 @@ function init_content() {
         .css('position', 'relative')
         .css('top', '0')
         .css('margin-top', '104px');
+    }
+  });
+
+  jQuery('.nav-aside a').click(function () {
+    if (jQuery(this).attr('href').charAt(0) == '#') {
+      jQuery('html,body').animate({scrollTop: jQuery(jQuery(this).attr('href')).scrollTop()});
+      return false;
     }
   });
 
