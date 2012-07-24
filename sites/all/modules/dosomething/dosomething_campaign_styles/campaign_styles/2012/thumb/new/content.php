@@ -2,7 +2,6 @@
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-
 <div id="cork">
   
   <div class="header">
@@ -31,7 +30,7 @@
     <div class="col mid">
       <h1>2</h1>
       <h2>share the socks</h2>
-      <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do2.png"/>
+      <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do2.png"/>   
       <p class="bottom">Wear them on your thumbs or pick a friend who texts and drives and share the socks with them in a surprising way.</p>
     </div> <!-- .col -->
     <div class="col">
@@ -248,9 +247,6 @@
   
   <div class="section did">
     <div class="divider"><span>tell us what you did</span></div>
-    <br><h1>report</h1>
-    <br><h1>back</h1>    
-    <br><h1>gallery</h1>
   </div> <!-- .section .did -->
   
   <div class="section faq">

@@ -71,7 +71,7 @@ function init_scroller() {
   jQuery('#thumb-wars-action-guide-nav li').click(function () {
     var index = jQuery(this).index() + 1;
     jQuery('.action-guide-picture').hide();
-    jQuery('.action-guide-picture:nth-child('+index+')').show();
+    jQuery('.action-guide-picture:nth-child('+index+')').fadeIn(1000);
     activeButton();
   });
   activeButton();
@@ -80,7 +80,7 @@ function init_scroller() {
     var $current = jQuery('.action-guide-picture:visible').hide();
     $next = $current.next();
     if ($next.length === 0) $next = jQuery('.action-guide-picture:first');
-    $next.show();
+    $next.fadeIn(1000);
     activeButton();
     return false;
   });
@@ -89,7 +89,7 @@ function init_scroller() {
     var $current = jQuery('.action-guide-picture:visible').hide();
     $prev = $current.prev();
     if ($prev.length === 0) $prev = jQuery('.action-guide-picture:last');
-    $prev.show();
+    $prev.fadeIn(1000);
     activeButton();
     return false;
   });

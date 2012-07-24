@@ -29,7 +29,6 @@ $din: din-web-reg,"Trebuchet MS",sans-serif
 h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
   font-weight: 600
   font-family: $din
-  padding: 0.2em 0
   color: #fff
 
 h1, h2, h3
@@ -117,8 +116,7 @@ a
     top: -15px
 
 .social-t, .social-f
-  height: 15px
-
+  height: 20px
   background-repeat: no-repeat
   display: inline-block
   &:hover
@@ -183,7 +181,6 @@ a
 
 .section
   border-bottom: 2px solid #fff
-  height: 590px
 
 .do, .do2, .actionguide, .learn, .scholarship, .did, .faq, .row
   text-align: center
@@ -199,35 +196,35 @@ a
 
 #cork, #cask
   margin: 0 auto
-
-#cork
-  width: 796px
-  height: 270px
-  background: url("assets/header.jpg")
-  background-repeat: no-repeat
-
-#cask
-  width: 727px
-  background: $thumbGrey
+  max-width: 727px
   padding: 0 2%
 
+#cork
+  height: 270px
+  background: url("assets/header.jpg") no-repeat
+
+#cask
+  background: $thumbGrey
+
+.header
+  height: 270px
+
 .do
-  height: 350px
+  height: 300px
 
 .do2
-  height: 315px
+  height: 250px
 
 .actionguide
-  height: 530px
+  height: 480px
 
 .learn
   height: 630px
 
 .scholarship
-  height: 590px
+  height: 595px
 
-.did
-  height: 290px
+// .did
 
 .faq
   height: 345px
@@ -252,8 +249,6 @@ a
     border-bottom: 2px solid #fff
 
 .header
-  width: 91.35%
-  height: 270px
   margin: 0 auto
   text-align: right
   position: relative
@@ -271,6 +266,8 @@ a
     background: rgba(10,80,128,0.5)
 
 .do, .do2
+  img
+    width: 100%
   p
     position: absolute
     bottom: 0
@@ -280,19 +277,22 @@ a
     font-size: 10px
     width: 145px
     float: left
-  img
-    padding: 10% 0
   .col
-    height: 280px
+    height: 230px
   .col2
-    margin-top: 7.25%
+    margin-top: 2%
 
 .do2
   padding: 2% 0
+  
+.actionguide
+  padding: 5% 0
 
 .learn
   h3
     margin: 40% 0 0
+  p
+    margin: 5% 0
   .disclaimer
     font-style: italic
     text-decoration: underline
@@ -318,12 +318,15 @@ a
     background: url("assets/learn2.png")
   .learn3
     background: url("assets/learn3.png")
+  .go-button
+    padding-top: 5%
 
 .scholarship
-  .disclaimer, img
+  h1, img, .disclaimer
     margin: 2% 0
 
-.did
+// .did
+
 .faq
   h4
     color: $thumbYellow
@@ -335,7 +338,7 @@ a
     padding-left: 1em
   .activeFAQ
     background-position-y: -15px
-    
+
 // action guide
 #thumb-wars-action-guide
   color: white
@@ -344,7 +347,7 @@ a
   font-weight: 500
   position: relative
   .action-guide-description
-    margin: 10px 0
+    margin: 2% 0 0 0
   #action-guide-right, #action-guide-left
     position: absolute
     top: 120px
@@ -361,9 +364,10 @@ a
     padding: 0
     list-style-type: none
     &.action-guide-circle
-      display: inline
+      display: inline-block
+      width: 40px
       cursor: pointer
-      font-size: 80px
+      font-size: 40px
       line-height: 40px
       color: #FD0
       margin-right: -12px
@@ -371,5 +375,24 @@ a
       &.active
         color: white
 
-
 // le fin!
+
+// kill me before you say goodbye!
+.go-button
+  font-weight: bold
+  -webkit-border-radius: 12px
+  -moz-border-radius: 12px
+  -ms-border-radius: 12px
+  -o-border-radius: 12px
+  border-radius: 12px
+  border: none
+  height: 30px
+  padding: 1px 13px 0
+  background-color: #fed100
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100% color-stop(0%, #ffffff), color-stop(100%, #fed100))
+  background-image: -webkit-linear-gradient(top, #ffffff, #fed100)
+  background-image: -moz-linear-gradient(top, #ffffff, #fed100)
+  background-image: -o-linear-gradient(top, #ffffff, #fed100)
+  background-image: linear-gradient(top, #ffffff, #fed100)
+  font-size: 18px
+  text-transform: uppercase
