@@ -1,0 +1,231 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_merge_menu() {
+  $items = array();
+  $items['dosomething/account-merge'] = array(
+    'title' => 'Merge Your Mobile',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_merge_form'),
+// TODO: need to pick a good permission for this.
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function dosomething_merge_form($form, &$form_state) {
+  $form = array();
+
+  if (empty($form_state['step'])) {
+    $form_state['step'] = 'get_a_number';
+  }
+
+  if ($form_state['step'] == 'get_a_number') {
+    $form['mobile_number'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Mobile Number:'),
+      '#description' => t("We just need the number. Don't include spaces or dashes."),
+      '#required' => TRUE,
+// TODO: remove this test number
+      '#default_value' => isset($form_state['storage']['mobile_number']) ? $form_state['storage']['mobile_number'] : '1234567890',
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Continue'),
+      '#validate' => array('dosomething_merge_checkit_validate'),
+      '#submit' => array('dosomething_merge_checkit_submit'),
+    );
+  }
+  elseif ($form_state['step'] == 'send_a_text') {
+    $form['info'] = array(
+      '#type' => 'markup',
+      '#markup' => '<div>' . t("Alright! We found %mobile in our databanks. Now we'll send you a text with a secret message to make sure it's your number.", array(
+        '%mobile' => $form_state['values']['mobile_number'])) . '</div>',
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Text Me'),
+      '#validate' => array('dosomething_merge_textme_validate'),
+      '#submit' => array('dosomething_merge_textme_submit'),
+    );
+  }
+  elseif ($form_state['step'] == 'enter_secret') {
+    $form['their_response'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Enter the message we sent you here:'),
+      '#required' => TRUE,
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Continue'),
+      '#validate' => array('dosomething_merge_doit_validate'),
+      '#submit' => array('dosomething_merge_doit_submit'),
+    );
+  }
+
+  return $form;
+}
+
+function dosomething_merge_checkit_validate($form, &$form_state) {
+  global $user;
+
+  // Remove everything that's not a digit.
+  $number = preg_replace('/[^\d]+/', '', $form_state['values']['mobile_number']);
+
+  if (strlen($number) < 10) {
+    form_set_error('mobile_number', t("You need to enter a 10 digit phone number"));
+    return;
+  }
+  elseif (strlen($number) > 11) {
+    form_set_error('mobile_number', t("That seems like too many digits."));
+    return;
+  }
+
+  // All the generated accounts have the leading 1s...
+  if (strlen($number) == 10) {
+    $number = '1' . $number;
+  }
+
+  // See if we can load the user named after that phone number.
+  $account = user_load_by_mail($number . '@mobile');
+// FIXME:
+$account->uid = 12345;
+  if (!$account->uid) {
+    form_set_error('mobile_number', t("That number doesn't seem mergable :/"));
+  }
+  else {
+    // Keep a copy of the cleaned up number and its user id.
+    $form_state['storage']['mobile_number'] = $number;
+    $form_state['storage']['mobile_uid'] = $account->uid;
+    $form_state['storage']['primary_uid'] = $user->uid;
+  }
+}
+function dosomething_merge_checkit_submit($form, &$form_state) {
+  $form_state['step'] = 'send_a_text';
+  $form_state['rebuild'] = TRUE;
+}
+
+function dosomething_merge_textme_validate($form, &$form_state) {
+  global $user;
+
+  $number = $form_state['storage']['mobile_number'];
+  $secret = $form_state['storage']['secret'] = user_password(6);
+  $message = "Enter \"$secret\" to link this number with your DoSomething.org account. ";
+
+  // FIXME: remove this once we go live.
+  if (TRUE) {
+    $number = "1234567890";
+    drupal_set_message(t("Texting %message to %mobile", array('%message' => $message, '%mobile' => $number)));
+  }
+  else {
+    $response = sms_mobile_commons_send($number, $message);
+    watchdog('SMS', '%username asked to merge mobile number %number with their account. The text message user validation response was "%validation" and the message sending status was "%message"',
+      array('%username' => $user->name, '%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
+      WATCHDOG_NOTICE
+    );
+    dsm($response);
+    if (!$response['status']) {
+      form_set_error('', t("We couldn't send a text to %number.", array('%number' => $number)));
+    }
+  }
+}
+function dosomething_merge_textme_submit($form, &$form_state) {
+  $form_state['step'] = 'enter_secret';
+  $form_state['storage']['tries'] = 3;
+  $form_state['rebuild'] = TRUE;
+}
+
+function dosomething_merge_doit_validate($form, &$form_state) {
+  // Don't bother with empty guesses.
+  if (empty($form_state['values']['their_response'])) {
+    return;
+  }
+
+  $form_state['storage']['tries']--;
+
+  // Because we want to limit the number of tries the validation and submission
+  // steps end up kind of tangled up. We can't use form_set_error() to flag
+  // errors because it prevents the submission and looses our changes to the
+  // tries counter.
+  if ($form_state['storage']['secret'] == trim($form_state['values']['their_response'])) {
+    $form_state['step'] = 'begin_merging';
+  }
+  elseif ($form_state['storage']['tries'] > 0) {
+    drupal_set_message(format_plural($form_state['storage']['tries'], "Sorry, that's not what we'd texted. You have 1 try left.", "Sorry, that's not what we'd texted. You have @count tries left."), 'error');
+  }
+  else {
+    drupal_set_message(t("Darn, you ran out of tries. We'll have to send you another text."), 'error');
+    $form_state['step'] = 'get_a_number';
+  }
+}
+
+function dosomething_merge_doit_submit($form, &$form_state) {
+  // See the comment in dosomething_merge_doit_validate() for background
+  // on why we're doing validation here.
+  if ($form_state['step'] == 'begin_merging') {
+    // TODO fire up a batch job.
+    drupal_set_message("pretend we are merging your account right now.");
+
+    $args = array($form_state['storage']['primary_uid'], $form_state['storage']['mobile_uid']);
+    $batch = array(
+      'operations' => array(
+        array('dosomething_merge_move_nodes', $args),
+        array('dosomething_merge_move_webforms', $args),
+        array('dosomething_merge_fiddle_user', $args),
+      ),
+      'finished' => 'dosomething_merge_finished'
+    );
+dsm($batch, 'batch');
+    batch_set($batch);
+  }
+  else {
+    $form_state['rebuild'] = TRUE;
+  }
+}
+
+function dosomething_merge_move_nodes($primary_uid, $mobile_uid, &$context) {
+  db_update('node')
+    ->fields(array('uid' => $primary_uid))
+    ->condition('uid', $mobile_uid, '=')
+    ->execute();
+  db_update('node_revision')
+    ->fields(array('uid' => $primary_uid))
+    ->condition('uid', $mobile_uid, '=')
+    ->execute();
+
+  $context['results']['dosomething_merge_move_nodes'] = "primary_uid $primary_uid, mobile_uid $mobile_uid";
+}
+
+function dosomething_merge_move_webforms($primary_uid, $mobile_uid, &$context) {
+  db_update('webform_submissions')
+    ->fields(array('uid' => $primary_uid))
+    ->condition('uid', $mobile_uid, '=')
+    ->execute();
+
+  $context['results']['dosomething_merge_move_webforms'] = "primary_uid $primary_uid, mobile_uid $mobile_uid";
+}
+
+function dosomething_merge_fiddle_user($primary_uid, $mobile_uid, &$context) {
+  // TODO: Need to move og stuff.
+  sleep(1);
+  $context['results']['dosomething_merge_fiddle_user'] = "primary_uid $primary_uid, mobile_uid $mobile_uid";
+}
+
+function dosomething_merge_finished($success, $results, $operations) {
+  if ($success) {
+    dsm($results, 'results');
+    dsm($operations, 'operations');
+    #drupal_set_message(t('@count results processed in @requests HTTP requests.', array('@count' => count($results), '@requests' => _batch_example_get_http_requests())));
+    #drupal_set_message(t('The final result was "%final"', array('%final' => end($results))));
+  }
+  else {
+    dsm($operations, 'operations');
+    // An error occurred.
+    // $operations contains the operations that remained unprocessed.
+    $error_operation = reset($operations);
+    drupal_set_message(t('An error occurred while processing @operation with arguments : @args', array('@operation' => $error_operation[0], '@args' => print_r($error_operation[0], TRUE))));
+  }
+}
