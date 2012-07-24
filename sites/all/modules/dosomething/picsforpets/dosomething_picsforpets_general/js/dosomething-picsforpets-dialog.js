@@ -5,7 +5,7 @@ Drupal.behaviors.dosomethingPicsforpetsDialog = {
     var $furtographyForm = $('#picsforpets-modal-data');
     $('a.pics-for-pets-modal').click(function() {
       var linkPath = $(this).attr('href');
-      $furtographyForm.load(linkPath + ' #content', popup());
+      $furtographyForm.load(linkPath + ' #main-wrapper', popup());
       return false;
     });
 
