@@ -259,6 +259,25 @@ form.webform-client-form
   #edit-actions
     text-align: center
 
+@mixin placeholder
+  color: grey
+
+// Placeholder font colors
+// Separate rule for Firefox.
+// Separate rule for IE, too.
+// Cannot stack with WebKit's.
+.webform-client-form ::-webkit-input-placeholder
+  +placeholder
+
+.webform-client-form input:-moz-placeholder,
+.webform-client-form textarea:-moz-placeholder
+  +placeholder
+
+.webform-client-form input.placeholder-text,
+.webform-client-form textarea.placeholder-text
+  +placeholder
+
+
 div.nav-aside
   h3
     color: $thumbYellow
