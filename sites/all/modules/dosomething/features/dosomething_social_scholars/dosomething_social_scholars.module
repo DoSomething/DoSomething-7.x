@@ -40,7 +40,7 @@ function dosomething_social_scholars_page_alter($page){
 
 function dosomething_social_scholars_panels_pre_render($display)
 {
-  if ($display->layout == 'flexible'/*:social_scholars'*/)
+  if ($display->layout == 'flexible:social_scholars')
   {
       if (!user_is_logged_in())
       {

@@ -2,7 +2,7 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Share Images'),
+  'title' => t('Social Scholarship Social Images'),
   'description' => t('Display images for a particular node when the form is submitted..'),
   'all contexts' => TRUE,
   'category' => t('DoSomething'),
@@ -13,9 +13,9 @@ $plugin = array(
 function dosomething_social_scholars_image_display_content_type_render($subtype, $conf, $panel_args, $context) {
   $cur = menu_get_object();
   $three = true;
-  if ($cur->nid <> 723323)
+  if ($cur->nid <> 723646)
   {
-    $node = node_load(723323);
+    $node = node_load(723646);
     $three = false;
     $width = '100%';
   }
@@ -58,10 +58,10 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
     '#markup' => $shares
    ),
   'or' => array(
-    '#markup' => '<img src="/files/or.png" />'
+    '#markup' => '<img src="' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/or.png" />'
   ),
   'mills' => array(
-    '#markup' => '<a href="/petition/put-end-to-puppy-mills"><img src="/files/mills.png" class="or-image" /></a>',
+    '#markup' => '<a href="/petition/put-end-to-puppy-mills"><img src="' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/mills.png" class="or-image" /></a>',
   )
   );
 
