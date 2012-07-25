@@ -21,6 +21,38 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
         'callback' => 'dosomething_petitions_register',
       );
     }
+    else {
+      $profile = profile2_load_by_user($user, 'main');
+      $entity_form = &$form['submitted'];
+      $field = &$entity_form['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
+      $fname = &$entity_form['field_webform_first_name'][LANGUAGE_NONE][0]['value'];
+      $lname = &$entity_form['field_webform_last_name'][LANGUAGE_NONE][0]['value'];
+
+      if ($profile) {
+        $profile_first = field_get_items('profile2', $profile, 'field_user_first_name');
+        $profile_last = field_get_items('profile2', $profile, 'field_user_last_name');
+
+        if (isset($profile_first[0]['value']) && $profile_first[0]['value'] != '') {
+          $fname['#default_value'] = $profile_first[0]['value'];
+        }
+        if (isset($profile_last[0]['value']) && $profile_last[0]['value'] != '') {
+          $lname['#default_value'] = $profile_last[0]['value'];
+        }
+      }
+      // If this email isn't actually a magic mobile number, prepopulate the form with it.
+      if (substr($user->mail, -7) != '@mobile' && $field['#default_value'] == '') {
+        $field['#default_value'] = $user->mail;
+      }
+      else {
+        if ($profile) {
+          // If we have a profile and don't have a value for the mobile number, provide the one from the profile as a default.
+          $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
+          if (isset($mobile[0]['value']) && $field['#default_value'] == '') {
+            $field['#default_value'] = $mobile[0]['value'];
+          }
+        }  
+      }
+    }
 
     $form['actions']['submit']['#value'] = 'SIGN THIS';
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
@@ -48,10 +80,13 @@ function dosomething_petitions_opt_in($form, $form_state) {
  * AJAX callback for unauthenticated user petition submission
  */
 function dosomething_petitions_register($form, &$form_state) {
+  $is_user = dosomething_general_load_user_by_mail_or_cell($form['#submission']->submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']);
+  $is_user = ($is_user !== FALSE);
+
   return array(
     '#type' => 'ajax',
     '#commands' => array(
-      ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0])),
+      ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user)),
     ),
   );
 }
