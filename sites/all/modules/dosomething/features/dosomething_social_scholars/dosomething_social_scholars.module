@@ -23,6 +23,10 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
       unset($form['submitted']['disclaimer']);
       $form['submitted']['disclaimer'] = $form['submitted']['your_information']['tac'];
       unset($form['submitted']['your_information']['tac']);
+      drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.css', array(
+        'group' => CSS_THEME,
+        'weight' => 10
+      ));
     }
 
     $form['actions']['submit']['#value'] = 'SEND';
