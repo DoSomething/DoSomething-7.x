@@ -2,8 +2,8 @@
 @import compass/css3
 
 // variable definitions
-$thumbYellow: #FFDD00
-$thumbBlue: #0A5083
+$thumbYellow: #FFD215
+$thumbBlue: #0A5080
 $thumbGrey: #231F20
 
 $borderTop: 1px solid rgba(0,0,0,.5)
@@ -227,7 +227,7 @@ div[role="main"], #cask-aside
   height: 300px
 
 .do2
-  height: 270px
+  height: 285px
 
 .actionguide
   height: 570px
@@ -248,8 +248,13 @@ div[role="main"], #cask-aside
 // page sections (deviations)
 div.contact_form-aside
   margin: 5% 0
-  h2
+  h1, h2
     text-align: center
+  h1
+    font-size: 40px
+    margin: 0 0 0 0
+  h2
+    padding: 0 0 5% 0
     border-bottom: 2px solid #fff
 
 form.webform-client-form
@@ -319,13 +324,13 @@ div.header
     width: 145px
     float: left
   .col
-    height: 230px
-  .col2
-    margin-top: 2%
+    height: 245px
 
 .do2
   padding: 2% 0
-  
+  .col2
+    margin: 2% 0 0 0 
+ 
 .actionguide
   padding: 5% 0
 
@@ -333,7 +338,7 @@ div.learn
   h3
     margin: 40% 0 0
   p
-    margin: 10px 0
+    margin: 2% 0 10%
   .disclaimer
     font-style: italic
     text-decoration: underline
@@ -361,6 +366,8 @@ div.learn
     background: url("assets/learn3.png")
   .go-button
     padding-top: 2%
+    &:hover
+      text-decoration: none
 
 div.scholarship
   h1, img, .disclaimer
