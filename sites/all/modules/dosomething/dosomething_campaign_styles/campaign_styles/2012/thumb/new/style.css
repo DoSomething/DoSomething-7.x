@@ -113,13 +113,13 @@ div[role="main"] a, #cask-aside a {
   display: block; }
 
 .sprint {
-  height: 50px;
+  height: 58px;
   background: url("assets/sprint.png"); }
   .sprint:hover {
     background-position-y: -61px; }
 
 .toyota {
-  height: 20px;
+  height: 25px;
   background: url("assets/toyota.png"); }
   .toyota:hover {
     background-position-y: -26px; }
@@ -364,6 +364,9 @@ div.faq .activeFAQ {
       text-shadow: white 1px 1px 0, white -1px -1px 0, white -1px 1px 0, white 1px -1px 0; }
       #thumb-wars-action-guide li.action-guide-circle.active {
         color: white; }
+
+.view-campaign-gallery .pager a, .view-campaign-gallery .pager a {
+  color: white; }
 
 .go-button {
   font-weight: bold;
