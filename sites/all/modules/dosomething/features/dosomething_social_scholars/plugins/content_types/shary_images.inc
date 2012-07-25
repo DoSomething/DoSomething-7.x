@@ -38,7 +38,7 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
       . 'display=popup&'
       . 'redirect_uri=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
-      $shares .= '<div style="float: left; width: ' . $width . '; margin: 10px; text-align: center;"><a href="' . $link . '" class="fb-share-image-link"><img src="/files/fb.png" class="fb-share" style="width: 16px; margin: 0px auto" alt="" /></a></div>';
+      $shares .= '<div style="float: left; width: ' . $width . '; margin: 10px; text-align: center;"><a href="' . $link . '" class="fb-share-image-link"><img src="/' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/fb.png" class="fb-share" style="width: 16px; margin: 0px auto" alt="" /></a></div>';
     }
   }
 
@@ -58,10 +58,10 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
     '#markup' => $shares
    ),
   'or' => array(
-    '#markup' => '<img src="' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/or.png" />'
+    '#markup' => '<img src="/' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/or.png" />'
   ),
   'mills' => array(
-    '#markup' => '<a href="/petition/put-end-to-puppy-mills"><img src="' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/mills.png" class="or-image" /></a>',
+    '#markup' => '<a href="/petition/put-end-to-puppy-mills"><img src="/' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/mills.png" class="or-image" /></a>',
   )
   );
 
