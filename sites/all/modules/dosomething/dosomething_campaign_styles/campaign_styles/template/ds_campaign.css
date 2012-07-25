@@ -411,3 +411,15 @@ div[role="main"] {
     font-size: 14px !important; }
 #dosomething-login-register-popup-form #edit-birthday .form-item-month, #dosomething-login-register-popup-form #edit-birthday .form-item-day, #dosomething-login-register-popup-form #edit-birthday .form-item-year {
   margin-top: 8px !important; }
+
+.node-type-campaign-report-back .panel-row-flexible-top {
+  width: 550px;
+  margin: 0 auto; }
+  .node-type-campaign-report-back .panel-row-flexible-top label {
+    margin-top: 1em; }
+  .node-type-campaign-report-back .panel-row-flexible-top fieldset legend {
+    padding: 20px 0 0 0 !important; }
+  .node-type-campaign-report-back .panel-row-flexible-top #edit-actions--2, .node-type-campaign-report-back .panel-row-flexible-top #edit-actions {
+    text-align: center;
+    margin: 10px;
+    clear: both; }
