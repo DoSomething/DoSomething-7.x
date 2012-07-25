@@ -5,6 +5,7 @@ var gallery = jQuery('#thumb-gallery');
 //Main content
 jQuery.post(url_base + 'content.php', function (data) {
   jQuery('div[role="main"]').html(data).show();
+  gallery.removeClass('hidden');
   jQuery('.did').append(gallery);
   init_content();
 });
@@ -20,14 +21,20 @@ function init_content() {
   var $window = jQuery(window);
   var $nav = jQuery('#cask-aside');
   var scrollLimitTop = 180;
-  var scrollLimitBot = 2514;
+  var scrollLimitBot = 3346;
 
   $window.scroll(function () {
-    if ($window.scrollTop() > scrollLimitTop && $window.scrollTop() < scrollLimitBot) {
+    var st = $window.scrollTop();
+    if (st > scrollLimitTop && st < scrollLimitBot) {
       $nav
         .css('position', 'fixed')
         .css('top', '10px')
         .css('margin-top', 0);
+    }
+    else if (st >= scrollLimitBot) {
+      $nav
+        .css('position', 'absolute')
+        .css('bottom', '5px');
     }
     else {
       $nav

@@ -303,6 +303,17 @@ div.learn .go-button {
 div.scholarship h1, div.scholarship img, div.scholarship .disclaimer {
   margin: 2% 0; }
 
+div.did {
+  padding-bottom: 5%; }
+  div.did h1 {
+    color: #ffdd00;
+    line-height: 1em;
+    margin-top: 1em; }
+  div.did a {
+    color: white;
+    font-size: 18px;
+    text-decoration: underline; }
+
 div.faq h4 {
   color: #ffdd00;
   background-image: url("assets/arrow-faq.png");
