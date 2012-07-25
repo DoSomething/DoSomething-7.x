@@ -38,6 +38,21 @@ Drupal.behaviors.dosomethingRegisterAjax = {
       });
       return false;
     });
+    
+    // User Registration Block Style
+    var fields = jQuery('#dosomething-login-register-popup-form input').not('#edit-month, #edit-day, #edit-year');
+    fields.each(function () {
+      var label = jQuery('<label />');
+
+      label.attr('for', jQuery(this).attr('id'));
+      label.text(jQuery(this).attr('placeholder'));
+
+      jQuery(this).attr('placeholder', '');
+
+      jQuery(this).parent().prepend(label);
+
+
+    });
   }
 };
 
