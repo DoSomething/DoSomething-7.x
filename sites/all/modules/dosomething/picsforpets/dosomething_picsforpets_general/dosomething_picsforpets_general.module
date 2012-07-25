@@ -59,35 +59,19 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   $form['kit'] = array(
     '#type' => 'checkbox',
     '#title' => t('Send me an action kit with sweet guides and supplies!'),
-    '#ajax' => array(
-      'callback' => 'dosomething_picsforpets_general_kit_ajax_callback',
-      'wrapper' => 'furtographer-address',
-      'method' => 'replace',
-      'effect' => 'fade',
-    ),
   );
   $form['address'] = array(
     '#prefix' => '<div id="furtographer-address">',
     '#suffix' => '</div>',
   );
-
-  $form['help'] = array(
-    '#markup' => t('By signing up you agree to the ') . l('terms and conditions', '/') . ' <a class="helptext-questionmark-popup">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</a>',
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Sign Up',
-  );
-  return $form;
-}
-
-/**
- * Add additional fields if the user asks for an action kit.
- */
-function dosomething_picsforpets_general_kit_ajax_callback($form, $form_state) {
-    $form['address']['fields'] = array(
+  $form['address']['fields'] = array(
     '#title' => t('address'),
     '#type' => 'fieldset',
+    '#states' => array(
+      'visible' => array(
+        ':input[name=kit]' => array('checked' => TRUE),
+      ),
+    ),
     'name' => array(
       '#type' => 'textfield',
       '#title' => t('Full Name:'),
@@ -113,7 +97,16 @@ function dosomething_picsforpets_general_kit_ajax_callback($form, $form_state) {
       '#title' => t('Zip'),
     ),
   );
-  return $form['address']['fields'];
+
+  $form['help'] = array(
+    '#markup' => t('By signing up you agree to the ') . l('terms and conditions', '/') . ' <a class="helptext-questionmark-popup">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</a>',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Sign Up',
+  );
+  $form['#action'] = '/pics-for-pets/lets-get-started';
+  return $form;
 }
 
 /**
@@ -144,6 +137,21 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => 'Submit',
   );
+  return $form;
+}
+
+/**
+ * Form that pops up after you have shared 5 pets.
+ */
+function dosomething_picsforpets_invite_form($form, &$form_state) {
+  $form['heading'] = array(
+    '#markup' => t("You've helped 5 animals!"),
+  );
+  $form['text'] = array(
+    '#markup' => t('Invite your friends to help more animals find homes!'),
+  );
+  include_once('plugins/content_types/invite_friends.inc');
+  $form['invite'] = dosomething_picsforpets_general_content_type_render_invite()->content;
   return $form;
 }
 

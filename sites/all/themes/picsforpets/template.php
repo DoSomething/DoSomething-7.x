@@ -35,9 +35,12 @@ function picsforpets_preprocess_page(&$variables) {
       '#attributes' => array('class' => array('picsforpets-menu')),
     );
     $variables['page']['footer']['picsforpets_modal'] = array(
-      '#markup' => '<div id="picsforpets-modal-data"></div>',
+      'form' => drupal_get_form('dosomething_picsforpets_general_furtographer_form'),
       '#attached' => array(
-        'library' => array(array('system', 'ui.dialog')),
+        'library' => array(
+          array('system', 'ui.dialog'),
+          array('dosomething_login', 'jquery.validate'),
+        ),
         'js' => array(
           drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/dosomething-picsforpets-dialog.js',
         ),
