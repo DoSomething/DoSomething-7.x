@@ -47,7 +47,7 @@ function init_content() {
 
   jQuery('.nav-aside a').click(function () {
     if (jQuery(this).attr('href').charAt(0) == '#') {
-      jQuery('html,body').animate({scrollTop: jQuery(jQuery(this).attr('href')).scrollTop()});
+      jQuery('html,body').animate({scrollTop: jQuery(jQuery(this).attr('href')).offset().top});
       return false;
     }
   });
