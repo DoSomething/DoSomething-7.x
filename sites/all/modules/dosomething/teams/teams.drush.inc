@@ -5,7 +5,84 @@ function teams_drush_command() {
     'teams-hunt' => array(
       'description' => 'Import images from Mobile Commons.',
     ),
+    'teams-hunt-report' => array(
+      'description' => 'Pull completed challenges per team.',
+      'arguments' => array(
+        'path' => 'Export csv filename, full path preferred',
+      ),
+    ),
   );
+}
+
+function drush_teams_hunt_report($path) {
+  $nids = array(722991, 722992, 722993, 722994, 722995, 722996, 722997, 722998, 722999, 723000);
+  $signup = 722347;
+  $headers = array();
+  for ($i = 1; $i <= count($nids); $i++) {
+    $headers[] = $i.'_a';
+    $headers[] = $i.'_b';
+    $headers[] = $i.'_c';
+    $headers[] = 'pic_'.$i;
+  }
+
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'webform_submission_entity')
+    ->propertyCondition('nid', $signup)
+    ->fieldCondition('group_group', 'value', 1, '=')
+    ->execute();
+  $teams = $result['webform_submission_entity'];
+
+  $etids = array_keys($teams);
+  $gids = og_get_group_ids('webform_submission_entity', $etids);
+
+  $result_rows = array(array_merge(array('sid'), $headers));
+  foreach ($gids as $sid => $gid) {
+    $result_row = array();
+    $result_row['sid'] = $sid;
+    foreach ($headers as $header) {
+      $result_row[$header] = FALSE;
+    }
+
+    // get group members
+    $query = new EntityFieldQuery();
+    $result = $query
+      ->entityCondition('entity_type', 'og_membership')
+      ->propertyCondition('gid', $gid)
+      ->propertyCondition('entity_type', 'user')
+      ->execute();
+
+    $memberships = entity_load('og_membership', array_keys($result['og_membership']));
+    $uids = array();
+    foreach ($memberships as $membership) {
+      $uids[] = $membership->etid;
+    }
+
+    // get the submissions they've done
+    module_load_include('inc', 'webform', 'includes/webform.submissions');
+    if (!empty($uids)) {
+      $subs = webform_get_submissions(array('uid' => $uids, 'nid' => $nids));
+      if (!empty($subs)) {
+        foreach ($subs as $sub) {
+          // capture completed challenges
+          foreach ($sub->data[1]['value'] as $challenge) {
+            $result_row[$challenge] = TRUE;
+          }
+          // capture pics
+          if (!empty($sub->field_webform_pictures)) {
+            $day = array_search($sub->nid, $nids) + 1;
+            $result_row['pic_'.$day] = TRUE;
+          }
+        }
+      }
+    }
+    $result_rows[] = $result_row;
+  }
+  $fp = fopen($path, 'w');
+  foreach ($result_rows as $row) {
+    fputcsv($fp, $row);
+  }
+  fclose($fp);
 }
 
 function drush_teams_hunt() {
