@@ -5,7 +5,8 @@
   <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/thumbwars.png"/>
   
   <div class="contact_form-aside">
-    <h2>sign up to get<br>your thumb socks</h2>
+    <h1>sign up</h1>
+    <h3>for free thumb socks</h3>
   </div>
   
   <div class="nav-aside">

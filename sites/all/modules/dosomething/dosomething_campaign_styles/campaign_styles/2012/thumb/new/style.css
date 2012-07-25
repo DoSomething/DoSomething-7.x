@@ -1,5 +1,5 @@
 body {
-  background: #ffdd00; }
+  background: #ffd215; }
 
 body.one-sidebar.sidebar-first [role="main"] {
   width: 760px;
@@ -40,7 +40,7 @@ div[role="main"] .disclaimer, #cask-aside .disclaimer {
   font-weight: 500;
   line-height: 14px; }
 div[role="main"] a, #cask-aside a {
-  color: #ffdd00;
+  color: #ffd215;
   text-decoration: none; }
   div[role="main"] a:hover, #cask-aside a:hover {
     text-decoration: underline; }
@@ -78,7 +78,7 @@ div[role="main"] a, #cask-aside a {
 .divider {
   text-align: center; }
   .divider span {
-    background: #ffdd00;
+    background: #ffd215;
     text-transform: uppercase;
     padding: 0.5em 0.8em;
     font-size: 18px;
@@ -190,7 +190,7 @@ div[role="main"] a, #cask-aside a {
   height: 300px; }
 
 .do2 {
-  height: 270px; }
+  height: 285px; }
 
 .actionguide {
   height: 570px; }
@@ -208,8 +208,13 @@ div[role="main"] a, #cask-aside a {
 
 div.contact_form-aside {
   margin: 5% 0; }
+  div.contact_form-aside h1, div.contact_form-aside h2 {
+    text-align: center; }
+  div.contact_form-aside h1 {
+    font-size: 40px;
+    margin: 0 0 0 0; }
   div.contact_form-aside h2 {
-    text-align: center;
+    padding: 0 0 5% 0;
     border-bottom: 2px solid white; }
 
 form.webform-client-form {
@@ -231,7 +236,7 @@ form.webform-client-form {
   color: grey; }
 
 div.nav-aside h3 {
-  color: #ffdd00; }
+  color: #ffd215; }
 div.nav-aside h4 {
   text-transform: uppercase; }
 div.nav-aside ul {
@@ -246,7 +251,7 @@ div.header {
   position: relative;
   border-bottom: 2px solid white; }
   div.header h1, div.header h2 {
-    color: #ffdd00;
+    color: #ffd215;
     text-align: right;
     padding: 1.5% 0; }
   div.header a {
@@ -269,12 +274,12 @@ div.header {
   width: 145px;
   float: left; }
 .do .col, .do2 .col {
-  height: 230px; }
-.do .col2, .do2 .col2 {
-  margin-top: 2%; }
+  height: 245px; }
 
 .do2 {
   padding: 2% 0; }
+  .do2 .col2 {
+    margin: 2% 0 0 0; }
 
 .actionguide {
   padding: 5% 0; }
@@ -282,14 +287,14 @@ div.header {
 div.learn h3 {
   margin: 40% 0 0; }
 div.learn p {
-  margin: 10px 0; }
+  margin: 2% 0 10%; }
 div.learn .disclaimer {
   font-style: italic;
   text-decoration: underline;
   margin-bottom: 2%;
   display: block; }
   div.learn .disclaimer:hover {
-    color: #ffdd00; }
+    color: #ffd215; }
 div.learn .row {
   margin-bottom: 5%; }
 div.learn .col2 {
@@ -310,6 +315,8 @@ div.learn .learn3 {
   background: url("assets/learn3.png"); }
 div.learn .go-button {
   padding-top: 2%; }
+  div.learn .go-button:hover {
+    text-decoration: none; }
 
 div.scholarship h1, div.scholarship img, div.scholarship .disclaimer {
   margin: 2% 0; }
@@ -317,7 +324,7 @@ div.scholarship h1, div.scholarship img, div.scholarship .disclaimer {
 div.did {
   padding-bottom: 5%; }
   div.did h1 {
-    color: #ffdd00;
+    color: #ffd215;
     line-height: 1em;
     margin-top: 1em; }
   div.did a {
@@ -326,7 +333,7 @@ div.did {
     text-decoration: underline; }
 
 div.faq h4 {
-  color: #ffdd00;
+  color: #ffd215;
   background-image: url("assets/arrow-faq.png");
   background-repeat: no-repeat;
   background-position-y: 5px;
