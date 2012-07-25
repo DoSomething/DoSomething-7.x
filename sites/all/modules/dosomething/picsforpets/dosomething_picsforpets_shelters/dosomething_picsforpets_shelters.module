@@ -26,21 +26,48 @@ function dosomething_picsforpets_shelters_menu() {
   return $items;
 }
 
-function dosomething_picsforpets_shelters_lookup_form($form, &$form_state) {
+function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip) {
   $form = array();
-  $form['test'] = array(
-    '#markup' => 'test',
+  $form['zip'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Enter Zip:'),
+    '#required' => TRUE,
+    '#weight' => 0,
   );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search'),
+    '#weight' => 0,
+  );
+  if (!empty($form_state['input']['zip'])) {
+    $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($form_state['input']['zip']);
+    $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  }
+  if (!empty($zip) && empty($form_state['input']['zip'])) {
+    // Auto populate the results.
+    $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
+    $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  }
+  if (!empty($markup)) {
+    $form['results_title'] = array(
+      '#markup' => '<h2>' . t('Shelters near you:') . '</h2>',
+      '#weight' => 1,
+    );
+    $form['results'] = array(
+      '#markup' => $markup,
+      '#weight' => 2,
+    );
+  }
   return $form;
 }
 
 #function dosomething_picsforpets_shelters_lookup($content, $arg1 = NULL) {
-function dosomething_picsforpets_shelters_lookup($arg1 = NULL) {
+function dosomething_picsforpets_shelters_lookup($arg1 = NULL, $arg2 = NULL, $arg3 = NULL, $arg4 = NULL) {
   if ($arg1 == 'json') {
     return dosomething_picsforpets_shelters_lookup_json();
   }
   else {
-    return drupal_get_form('dosomething_picsforpets_shelters_lookup_form');
+    return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $arg1);
   }
 }
 
@@ -48,6 +75,29 @@ function dosomething_picsforpets_shelters_lookup_json() {
   // Currently just a stub
   echo 'All your results are belong to JSON.';
   die();
+}
+
+function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html') {
+  $markup = '';
+  switch ($type) {
+    case 'html':
+    default:
+      foreach ($nids as $nid) {
+        $shelter = node_load($nid);
+        $address = field_get_items('node', $shelter, 'field_pfp_address');
+        $markup .= '<h3>' . check_plain($shelter->title) . '</h3>';
+        $markup .= '<p>';
+        $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
+        $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
+        $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+        $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
+        $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+        $markup .= '</p>';
+        $hours = field_get_items('node', $shelter, 'field_pfp_hours');
+        $markup .= empty($hours) ? '' : '<p>Hours:<br />' . $hours[0]['safe_value'] . '</p>';
+      }
+  }
+  return $markup;
 }
 
 /**
@@ -83,7 +133,7 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
     $lon = $result['longitude'];
   }
   // To be safe we'll cast the $start and $number variables to integers.
-  $result = db_query_range('SELECT entity_id, (((ACOS(SIN((:lat * PI()/180)) * SIN((field_pfp_geo_data_lat * PI()/180)) + COS((:lat * PI()/180)) * COS((field_pfp_geo_data_lat * PI()/180)) * COS(((:lon - field_pfp_geo_data_lon) * PI()/180)))) * 180/PI()) * 60 * 1.1515) AS distance FROM field_data_field_pfp_geo_data ORDER BY distance ASC', (int) $start, (int) $number, array(':lat' => $lat, 'lon' => $lon));
+  $result = db_query_range('SELECT entity_id, (((ACOS(SIN((:lat * PI()/180)) * SIN((field_pfp_geo_data_lat * PI()/180)) + COS((:lat * PI()/180)) * COS((field_pfp_geo_data_lat * PI()/180)) * COS(((:lon - field_pfp_geo_data_lon) * PI()/180)))) * 180/PI()) * 60 * 1.1515) AS distance FROM field_data_field_pfp_geo_data WHERE field_pfp_geo_data_lat IS NOT NULL AND field_pfp_geo_data_lon IS NOT NULL AND entity_type = :entity_type AND bundle = :bundle ORDER BY distance ASC', (int) $start, (int) $number, array(':lat' => $lat, 'lon' => $lon, ':entity_type' => 'node', ':bundle' => 'shelter'));
   $nids = $result->fetchCol(0);
   return $nids;
 }
