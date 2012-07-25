@@ -33,7 +33,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
   }
 }
 
-function dosomething_social_scholars_panels_pre_render($display)
+function dosomething_share_a_stat_scholarship_panels_pre_render($display)
 {
   if ($display->layout == 'flexible:social_scholars')
   {
