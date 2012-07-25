@@ -41,10 +41,6 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   $form['#attributes'] = array(
     'title' => 'Ready to be a fur-tographer?',
   );
-
-  $form['title'] = array(
-    '#markup' => '<h1>' . t('Ready to be a fur-tographer?') . '</h1>',
-  );
   $form['ready'] = array(
     '#markup' => 'Sign up and we\'ll give you all the tools to submit a picture to the gallery.',
   );
