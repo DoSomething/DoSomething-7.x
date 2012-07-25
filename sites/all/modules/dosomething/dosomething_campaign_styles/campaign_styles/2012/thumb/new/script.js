@@ -34,6 +34,7 @@ function init_content() {
     else if (st >= scrollLimitBot) {
       $nav
         .css('position', 'absolute')
+        .css('top', 'auto')
         .css('bottom', '5px');
     }
     else {
