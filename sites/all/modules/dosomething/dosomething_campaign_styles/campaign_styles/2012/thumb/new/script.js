@@ -1,9 +1,11 @@
 var url_base = 'http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/thumb/new/';
 var sign_up_form = jQuery('#webform-client-form-722126');
+var gallery = jQuery('#thumb-gallery');
 
 //Main content
 jQuery.post(url_base + 'content.php', function (data) {
   jQuery('div[role="main"]').html(data).show();
+  jQuery('.did').append(gallery);
   init_content();
 });
 
