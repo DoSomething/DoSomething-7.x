@@ -12,3 +12,78 @@ include_once 'dosomething_picsforpets_shelters.features.inc';
 function dosomething_picsforpets_shelters_form_shelter_node_form_alter(&$form, &$form_state, $form_id) {
   $form['field_pfp_address']['und'][0]['country']['#access'] = FALSE;
 }
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_shelters_menu() {
+  $items['pics-for-pets/shelter-search'] = array(
+    'title' => t('Search for a Shelter'),
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_picsforpets_shelters_lookup',
+    'page arguments' => array(2),
+  );
+  return $items;
+}
+
+function dosomething_picsforpets_shelters_lookup_form($form, &$form_state) {
+  $form = array();
+  $form['test'] = array(
+    '#markup' => 'test',
+  );
+  return $form;
+}
+
+#function dosomething_picsforpets_shelters_lookup($content, $arg1 = NULL) {
+function dosomething_picsforpets_shelters_lookup($arg1 = NULL) {
+  if ($arg1 == 'json') {
+    return dosomething_picsforpets_shelters_lookup_json();
+  }
+  else {
+    return drupal_get_form('dosomething_picsforpets_shelters_lookup_form');
+  }
+}
+
+function dosomething_picsforpets_shelters_lookup_json() {
+  // Currently just a stub
+  echo 'All your results are belong to JSON.';
+  die();
+}
+
+/**
+ * Return a set of node id numbers of shelters sorted by proximity to a certain
+ * point.
+ *
+ * @parap $zip
+ *   The zip code to search around.
+ * @param $start
+ *   The location of the first result to return from the list of resutls.
+ * @param $number
+ *   The number of results to return.
+ *
+ * @return
+ *  An array of node id numbers keyed by position in the result set.
+ */
+function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, $number = 10) {
+  // Initialize an array to hold the nids and act as our return value.
+  $nids = array();
+  if (!is_numeric($start) || !is_numeric($number)) {
+    // Maybe someone is up to something funny.
+    return $nids;
+  }
+  // First get the lat an long from the zipcode variable.
+  $result = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $zip))->fetchAssoc();
+  if (!$result) {
+    // We got a bad zipcode that couldn't be looked up so just give back an
+    // empty array.
+    return $nids;
+  }
+  else {
+    $lat = $result['latitude'];
+    $lon = $result['longitude'];
+  }
+  // To be safe we'll cast the $start and $number variables to integers.
+  $result = db_query_range('SELECT entity_id, (((ACOS(SIN((:lat * PI()/180)) * SIN((field_pfp_geo_data_lat * PI()/180)) + COS((:lat * PI()/180)) * COS((field_pfp_geo_data_lat * PI()/180)) * COS(((:lon - field_pfp_geo_data_lon) * PI()/180)))) * 180/PI()) * 60 * 1.1515) AS distance FROM field_data_field_pfp_geo_data ORDER BY distance ASC', (int) $start, (int) $number, array(':lat' => $lat, 'lon' => $lon));
+  $nids = $result->fetchCol(0);
+  return $nids;
+}
