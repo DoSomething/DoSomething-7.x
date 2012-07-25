@@ -7,13 +7,13 @@ define('SHARE_A_STAT_FRIEND_TXT', 117391);
 /**
 * Implementation of hook_ctools_plugin_directory().
 */
-function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
+function dosomething_share_a_stat_scholarship_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
   }
 }
 
-function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
+function dosomething_share_a_stat_scholarship_form_alter(&$form, &$form_state, $form_id)
 {
   if ($form_id == 'webform_client_form_723323')
   { 
@@ -39,11 +39,11 @@ function dosomething_share_a_stat_scholarship_panels_pre_render($display)
   {
       if (!user_is_logged_in())
       {
-        drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.js');
+        drupal_add_js(drupal_get_path('module', 'dosomething_share_a_stat_scholarship') . '/dosomething_share_a_stat.js');
       }
 
-      drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_social_stat.js');
-      drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.css', array(
+      drupal_add_js(drupal_get_path('module', 'dosomething_share_a_stat_scholarship') . '/dosomething_social_stat.js');
+      drupal_add_css(drupal_get_path('module', 'dosomething_share_a_stat_scholarship') . '/dosomething_share_a_stat.css', array(
         'group' => CSS_THEME,
         'weight' => 10
       ));
