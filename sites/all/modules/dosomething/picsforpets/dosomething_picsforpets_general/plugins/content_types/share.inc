@@ -44,6 +44,7 @@ function dosomething_picsforpets_general_content_type_render_share($subtype, $co
     '#children' => $output,
     '#attached' => array(
       'js' => array(
+        drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/share.js',
       ),
     ),
   );

@@ -6,33 +6,35 @@
 
 Drupal.behaviors.dosomethingPicsforpetsCarousel = {
   attach: function (context, settings) {
+    if (settings.picsforpetsAnimals.index == undefined) {
+      settings.picsforpetsAnimals.index = 0;
+      // Add the previous/next arrows.
+      var $submission = $('#slideshow-center');
+      $submission.after('<div class="slideshow-next">&gt;</div>');
+      $submission.before('<div class="slideshow-prev">&lt;</div>');
 
-    settings.picsforpetsAnimals.index = 0;
+      // TODO: Possibly get any query parameters from filtering the gallery over to carry over here and pass to picsforpetsCarouselimages for smarter ordering.
 
-    // Add the previous/next arrows.
-    var $submission = $('#slideshow-center');
-    $submission.after('<div class="slideshow-next">&gt;</div>');
-    $submission.before('<div class="slideshow-prev">&lt;</div>');
+      // Load up initial submissions.
+      $.get('/pics-for-pets/carousel/js/'+ settings.picsforpetsAnimals.sid, function(images) {
+        settings.picsforpetsAnimals.images = images;
+        picsforpetsAnimalsPlaceImages(settings);
+      });
 
-    // TODO: Possibly get any query parameters from filtering the gallery over to carry over here and pass to picsforpetsCarouselimages for smarter ordering.
+      // Respond to clicks on next.
+      $('.slideshow-next').click(function() {
+        settings.picsforpetsAnimals.index++;
+        picsforpetsAnimalsNext(settings);
+      });
 
-    // Load up initial submissions.
-    $.get('/pics-for-pets/carousel/js/'+ settings.picsforpetsAnimals.sid, function(images) {
-      settings.picsforpetsAnimals.images = images;
-      picsforpetsAnimalsPlaceImages(settings);
-    });
+      // Respond to clicks on prev.
+      $('.slideshow-prev').click(function() {
+        settings.picsforpetsAnimals.index--;
+        picsforpetsAnimalsPrev(settings);
+      });
+    }
 
-    // Respond to clicks on next.
-    $('.slideshow-next').click(function() {
-      settings.picsforpetsAnimals.index++;
-      picsforpetsAnimalsNext(settings);
-    });
 
-    // Respond to clicks on prev.
-    $('.slideshow-prev').click(function() {
-      settings.picsforpetsAnimals.index--;
-      picsforpetsAnimalsPrev(settings);
-    });
   }
 };
 
@@ -152,6 +154,7 @@ function picsforpetsAnimalsReindex(index, direction) {
 function picsforpetsAnimalsLoadFacebook() {
   var comments = $('.fb-social-comments-plugin');
   FB.XFBML.parse(comments[0]);
+  Drupal.attachBehaviors('#picsforpets-share');
 }
 
 }(jQuery));

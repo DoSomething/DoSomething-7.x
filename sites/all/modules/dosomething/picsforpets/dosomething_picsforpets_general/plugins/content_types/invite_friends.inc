@@ -7,10 +7,8 @@ $plugin = array(
   'render callback' => 'dosomething_picsforpets_general_content_type_render_invite'
 );
 
-function dosomething_picsforpets_general_content_type_render_invite($subtype, $conf, $context = NULL) {
-  // Extract the user's access_token from the global PHP variables.
-  //$fb_app_id = $GLOBALS['_fb_app']->id;
-  //$access_token = $_SESSION['fb_' . $fb_app_id . '_access_token'];
+
+function dosomething_picsforpets_general_content_type_render_invite($subtype = '', $conf = array(), $context = NULL) {
   // Render array for Invite Friends button.
   $block = new stdClass();
   $block->content = array(
