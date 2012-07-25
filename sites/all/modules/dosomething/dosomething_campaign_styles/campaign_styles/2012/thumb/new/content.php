@@ -19,7 +19,7 @@
 
 <div id="cask">
 
-  <div class="section do">
+  <div class="section do" id="do">
     <div class="divider"><span>here's what you do</span></div>
     <div class="col">
       <h1>1</h1>
@@ -247,11 +247,13 @@
     </p>
   </div> <!-- .section .scholarship -->
   
-  <div class="section did">
+  <div class="section did" id="did">
     <div class="divider"><span>tell us what you did</span></div>
+    <h1>WANT TO SHARE YOUR<br />AWESOME PICS?</h1>
+    <a href="/thumbwars/tell-us">CLICK HERE TO TELL US WHAT YOU DID</a>
   </div> <!-- .section .did -->
   
-  <div class="section faq">
+  <div class="section faq" id="faq">
     <div class="divider"><span>questions?</span></div>
       <h4>What is this thing you call “Thumb Wars”?</h4>
       <p>Why, it’s a campaign where you sign up to get two pairs of super-powered* thumb socks in the mail. You then share the socks with friends and family who need to learn about the dangers of texting and driving.</p>

@@ -1,9 +1,12 @@
 var url_base = 'http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/thumb/new/';
 var sign_up_form = jQuery('#webform-client-form-722126');
+var gallery = jQuery('#thumb-gallery');
 
 //Main content
 jQuery.post(url_base + 'content.php', function (data) {
   jQuery('div[role="main"]').html(data).show();
+  gallery.removeClass('hidden');
+  jQuery('.did').append(gallery);
   init_content();
 });
 
@@ -16,16 +19,23 @@ jQuery.post(url_base + 'sidebar.php', function (data) {
 
 function init_content() {
   var $window = jQuery(window);
-  var $nav = jQuery('.region-sidebar-first');
+  var $nav = jQuery('#cask-aside');
   var scrollLimitTop = 180;
-  var scrollLimitBot = 2514;
+  var scrollLimitBot = 3346;
 
   $window.scroll(function () {
-    if ($window.scrollTop() > scrollLimitTop && $window.scrollTop() < scrollLimitBot) {
+    var st = $window.scrollTop();
+    if (st > scrollLimitTop && st < scrollLimitBot) {
       $nav
         .css('position', 'fixed')
         .css('top', '10px')
         .css('margin-top', 0);
+    }
+    else if (st >= scrollLimitBot) {
+      $nav
+        .css('position', 'absolute')
+        .css('top', 'auto')
+        .css('bottom', '5px');
     }
     else {
       $nav
@@ -37,7 +47,7 @@ function init_content() {
 
   jQuery('.nav-aside a').click(function () {
     if (jQuery(this).attr('href').charAt(0) == '#') {
-      jQuery('html,body').animate({scrollTop: jQuery(jQuery(this).attr('href')).scrollTop()});
+      jQuery('html,body').animate({scrollTop: jQuery(jQuery(this).attr('href')).offset().top-20});
       return false;
     }
   });

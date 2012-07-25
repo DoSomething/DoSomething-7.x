@@ -29,11 +29,11 @@ body.one-sidebar.sidebar-first [role="main"]
   width: 760px
   padding: 0
 
-div[role="main"], .region-sidebar-first
-  *
-    margin: 0
-    padding: 0
+*
+  margin: 0
+  padding: 0
 
+div[role="main"], #cask-aside
   h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
     font-weight: 600
     font-family: $din
@@ -149,13 +149,13 @@ div[role="main"], .region-sidebar-first
   display: block
 
 .sprint
-  height: 50px
+  height: 58px
   background: url("assets/sprint.png")
   &:hover
     background-position-y: -61px
 
 .toyota
-  height: 20px
+  height: 25px
   background: url("assets/toyota.png")
   &:hover
     background-position-y: -26px
@@ -204,6 +204,8 @@ div[role="main"], .region-sidebar-first
     clear: both
 
 #cask-aside
+  margin-top: 104px
+  float: left
   width: 250px
 
 #cork, #cask
@@ -244,7 +246,7 @@ div[role="main"], .region-sidebar-first
   border-bottom: none
        
 // page sections (deviations)
-.contact_form-aside
+div.contact_form-aside
   margin: 5% 0
   h2
     text-align: center
@@ -254,8 +256,29 @@ form.webform-client-form
   text-align: center
   input
     width: 80%
+  #edit-actions
+    text-align: center
 
-.nav-aside
+@mixin placeholder
+  color: grey
+
+// Placeholder font colors
+// Separate rule for Firefox.
+// Separate rule for IE, too.
+// Cannot stack with WebKit's.
+.webform-client-form ::-webkit-input-placeholder
+  +placeholder
+
+.webform-client-form input:-moz-placeholder,
+.webform-client-form textarea:-moz-placeholder
+  +placeholder
+
+.webform-client-form input.placeholder-text,
+.webform-client-form textarea.placeholder-text
+  +placeholder
+
+
+div.nav-aside
   h3
     color: $thumbYellow
   h4
@@ -264,8 +287,9 @@ form.webform-client-form
     margin: 0 0 5% 0
     padding: 0 0 5% 0
     border-bottom: 2px solid #fff
+    list-style-type: none
 
-.header
+div.header
   margin: 0 auto
   text-align: right
   position: relative
@@ -305,11 +329,11 @@ form.webform-client-form
 .actionguide
   padding: 5% 0
 
-.learn
+div.learn
   h3
     margin: 40% 0 0
   p
-    margin: 5% 0
+    margin: 10px 0
   .disclaimer
     font-style: italic
     text-decoration: underline
@@ -336,15 +360,24 @@ form.webform-client-form
   .learn3
     background: url("assets/learn3.png")
   .go-button
-    padding-top: 5%
+    padding-top: 2%
 
-.scholarship
+div.scholarship
   h1, img, .disclaimer
     margin: 2% 0
 
-// .did
+div.did
+  padding-bottom: 5%
+  h1
+    color: $thumbYellow
+    line-height: 1em
+    margin-top: 1em
+  a
+    color: white
+    font-size: 18px
+    text-decoration: underline
 
-.faq
+div.faq
   h4
     color: $thumbYellow
     background-image: url("assets/arrow-faq.png")
@@ -389,13 +422,16 @@ form.webform-client-form
       display: inline-block
       width: 40px
       cursor: pointer
-      font-size: 40px
+      font-size: 60px
       line-height: 40px
       color: #FD0
       margin-right: -12px
       +text-shadow(white 1px 1px 0, white -1px -1px 0, white -1px 1px 0, white 1px -1px 0)
       &.active
         color: white
+
+.view-campaign-gallery .pager a, .view-campaign-gallery .pager a
+  color: white
 
 // le fin!
 
