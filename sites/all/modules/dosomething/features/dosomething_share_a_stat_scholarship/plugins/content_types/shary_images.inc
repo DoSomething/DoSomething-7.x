@@ -2,15 +2,15 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Share Images'),
+  'title' => t('Share a Stat Share Images'),
   'description' => t('Display images for a particular node when the form is submitted..'),
   'all contexts' => TRUE,
   'category' => t('DoSomething'),
   'defaults' => '',
-  'render callback' => 'dosomething_social_scholars_image_display_content_type_render'
+  'render callback' => 'dosomething_share_a_stat_scholarship_image_display_content_type_render'
 );
 
-function dosomething_social_scholars_image_display_content_type_render($subtype, $conf, $panel_args, $context) {
+function dosomething_share_a_stat_scholarship_image_display_content_type_render($subtype, $conf, $panel_args, $context) {
   $cur = menu_get_object();
   $three = true;
   if ($cur->nid <> 723323)
