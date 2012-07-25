@@ -61,33 +61,16 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
     '#title' => t('Send me an action kit with sweet guides and supplies!'),
     '#ajax' => array(
       'callback' => 'dosomething_picsforpets_general_kit_ajax_callback',
-      'wrapper' => 'dropdown-second-replace',
+      'wrapper' => 'furtographer-address',
+      'method' => 'replace',
+      'effect' => 'fade',
     ),
   );
   $form['address'] = array(
-    '#type' => 'fieldset',
-    '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
-    '#title' => t('address'),
-    'name' => array(
-      '#type' => 'textfield',
-    ),
-    'street1' => array(
-      '#type' => 'textfield',
-    ),
-    'street2' => array(
-      '#type' => 'textfield',
-    ),
-    'city' => array(
-      '#type' => 'textfield',
-    ),
-    'state' => array(
-      '#type' => 'textfield',
-    ),
-    'zip' => array(
-      '#type' => 'textfield',
-    ),
+    '#prefix' => '<div id="furtographer-address">',
+    '#suffix' => '</div>',
   );
+
   $form['help'] = array(
     '#markup' => t('By signing up you agree to the ') . l('terms and conditions', '/') . ' <a class="helptext-questionmark-popup">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</a>',
   );
@@ -98,16 +81,47 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   return $form;
 }
 
-//function dosomething_picsforpets_general_kit_ajax_callback()
+/**
+ * Add additional fields if the user asks for an action kit.
+ */
+function dosomething_picsforpets_general_kit_ajax_callback($form, $form_state) {
+    $form['address']['fields'] = array(
+    '#title' => t('address'),
+    '#type' => 'fieldset',
+    'name' => array(
+      '#type' => 'textfield',
+      '#title' => t('Full Name:'),
+    ),
+    'street1' => array(
+      '#type' => 'textfield',
+      '#title' => t('Street Address:'),
+    ),
+    'street2' => array(
+      '#type' => 'textfield',
+      '#title' => t('Street Address 2:'),
+    ),
+    'city' => array(
+      '#type' => 'textfield',
+      '#title' => t('City:'),
+    ),
+    'state' => array(
+      '#type' => 'textfield',
+      '#title' => t('State'),
+    ),
+    'zip' => array(
+      '#type' => 'textfield',
+      '#title' => t('Zip'),
+    ),
+  );
+  return $form['address']['fields'];
+}
+
 /**
  * Form that pops up after you have shared 3 pets.
  */
 function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
   $form['#attributes'] = array(
     'title' => t('Thanks for sharing!'),
-  );
-  $form['title'] = array(
-    '#markup' => '<h1>' . t('Thanks for sharing!') . '</h1>',
   );
   $form['instructions'] = array(
     '#markup' => t("Enter your info and we'll send you updates on animals in the gallery"),
@@ -117,7 +131,6 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     '#required' => TRUE,
     '#title' => t('Email:'),
     '#maxlength' => 255,
-
   );
   $form['cell'] = array(
     '#type' => 'textfield',
