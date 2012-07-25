@@ -14,7 +14,7 @@
       <li><h3>go to:</h3></li>
       <li><h4><a href="#do">here's what you do</a></h4></li>
       <li><h4><a href="#scholarships">scholarship info</a></h4></li>
-      <li><h4><a href="#tell-us">tell us about it</a></h4></li>
+      <li><h4><a href="#did">tell us about it</a></h4></li>
       <li><h4><a href="#faq">questions?</a></h4></li>
       <li><h4><a href="/thumbwars/contest">caption contest</a></h4></li>
     </ul>
