@@ -28,7 +28,6 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
       else if ($key == 2)
           $desc = 'More than 25 million animals are used in testing in the US each year.  Do something about it! Click here to share this stat with your friends and you could win a $5,000 scholarship.';
 
-      $_SERVER['HTTP_HOST'] = 'www.dosomething.org';
       $link = 'http://www.facebook.com/dialog/feed?'
       . 'app_id=105775762330&'
       . 'link=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) . '&'
