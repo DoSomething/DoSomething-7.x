@@ -26,7 +26,11 @@ function dosomething_picsforpets_shelters_menu() {
   return $items;
 }
 
-function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip) {
+/**
+ * Generates the lookup form. Takes an additional parameter for a zip code is
+ * used to allow the form to return results based on the URL.
+ */
+function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip = NULL) {
   $form = array();
   $form['zip'] = array(
     '#type' => 'textfield',
@@ -38,30 +42,52 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip)
     '#type' => 'submit',
     '#value' => t('Search'),
     '#weight' => 0,
+    '#ajax' => array(
+      'callback' => 'dosomething_picsforpets_shelters_lookup_form_submit_ajax',
+      'wrapper' => 'shelter-results',
+    ),
   );
-  if (!empty($form_state['input']['zip'])) {
-    $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($form_state['input']['zip']);
-    $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  // Initialize the markup variable
+  $markup = '';
+  if (isset($form_state['results'])) {
+    $markup = $form_state['results'];
   }
-  if (!empty($zip) && empty($form_state['input']['zip'])) {
+  if (!empty($zip) && !isset($form_state['results'])) {
     // Auto populate the results.
     $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
     $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
   }
-  if (!empty($markup)) {
-    $form['results_title'] = array(
-      '#markup' => '<h2>' . t('Shelters near you:') . '</h2>',
-      '#weight' => 1,
-    );
-    $form['results'] = array(
-      '#markup' => $markup,
-      '#weight' => 2,
-    );
-  }
+  $form['results'] = array(
+    '#markup' => $markup,
+    '#prefix' => '<div id="shelter-results">',
+    '#suffix' => '</div>',
+    '#weight' => 2,
+  );
   return $form;
 }
 
-#function dosomething_picsforpets_shelters_lookup($content, $arg1 = NULL) {
+function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state) {
+  $zip = $form_state['values']['zip'];
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
+  $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  $form_state['results'] = $markup;
+  $form_state['rebuild'] = TRUE;
+}
+
+function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, $form_state) {
+  $zip = $form_state['values']['zip'];
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
+  $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  // Wrap it in a div again so we can continue to replace the text.
+  $markup = '<div id="shelter-results">' . $markup . '</div>';
+  return $markup;
+}
+
+/**
+ * Page callback function for pics-for-pets/shelter-search
+ * Depending on args in the path, it may return the rendered form, plain HTML
+ * results, or some json data.
+ */
 function dosomething_picsforpets_shelters_lookup($arg1 = NULL, $arg2 = NULL, $arg3 = NULL, $arg4 = NULL) {
   if ($arg1 == 'json') {
     return dosomething_picsforpets_shelters_lookup_json();
@@ -71,12 +97,18 @@ function dosomething_picsforpets_shelters_lookup($arg1 = NULL, $arg2 = NULL, $ar
   }
 }
 
+/**
+ * Return a list of shelters formatted as Json data.
+ */
 function dosomething_picsforpets_shelters_lookup_json() {
   // Currently just a stub
   echo 'All your results are belong to JSON.';
   die();
 }
 
+/**
+ * Generate the formatted output of shelter nodes.
+ */
 function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html') {
   $markup = '';
   switch ($type) {
@@ -84,19 +116,29 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
     default:
       foreach ($nids as $nid) {
         $shelter = node_load($nid);
-        $address = field_get_items('node', $shelter, 'field_pfp_address');
-        $markup .= '<h3>' . check_plain($shelter->title) . '</h3>';
-        $markup .= '<p>';
-        $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
-        $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
-        $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
-        $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
-        $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
-        $markup .= '</p>';
-        $hours = field_get_items('node', $shelter, 'field_pfp_hours');
-        $markup .= empty($hours) ? '' : '<p>Hours:<br />' . $hours[0]['safe_value'] . '</p>';
+        // Quick sanity check.
+        if ($shelter->type == 'shelter') {
+          $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $markup .= '<h3>' . check_plain($shelter->title) . '</h3>';
+          $markup .= '<p>';
+          $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
+          $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
+          $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+          $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
+          $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+          $markup .= '</p>';
+          $hours = field_get_items('node', $shelter, 'field_pfp_hours');
+          $markup .= empty($hours) ? '' : '<p>Hours:<br />' . $hours[0]['safe_value'] . '</p>';
+        }
       }
   }
+  if (empty($markup)) {
+    // This should actually never happen but it's not a bad idea to have some
+    // default text just in case.
+    $markup  = t('Sorry we could not find any shelters near you');
+  }
+  // Append the title info
+  $markup = '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
   return $markup;
 }
 
