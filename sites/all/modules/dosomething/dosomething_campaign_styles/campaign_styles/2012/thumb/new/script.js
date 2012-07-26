@@ -7,6 +7,7 @@ jQuery.post(url_base + 'content.php', function (data) {
   jQuery('div[role="main"]').html(data).show();
   gallery.removeClass('hidden');
   jQuery('.did').append(gallery);
+  jQuery('.did').append('<h2>are you on instagram? so are we! document your work #thumbwars</h2>');
   init_content();
 });
 
