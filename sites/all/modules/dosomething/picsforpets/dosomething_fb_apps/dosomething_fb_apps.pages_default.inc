@@ -524,6 +524,28 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-14';
     $pane->panel = 'middle';
+    $pane->type = 'block';
+    $pane->subtype = 'views-109095e2299d141b893359308d2d7ad9';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-14'] = $pane;
+    $display->panels['middle'][1] = 'new-14';
+    $pane = new stdClass();
+    $pane->pid = 'new-15';
+    $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'pics_for_pets_gallery-panel_pane_1';
     $pane->shown = TRUE;
@@ -538,10 +560,10 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'css_class' => 'search-box',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['middle'][1] = 'new-14';
+    $display->content['new-15'] = $pane;
+    $display->panels['middle'][2] = 'new-15';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

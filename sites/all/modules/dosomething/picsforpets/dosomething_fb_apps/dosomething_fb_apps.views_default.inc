@@ -248,6 +248,7 @@ Please try a new combo.
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['exposed_block'] = TRUE;
   $export['pics_for_pets_gallery'] = $view;
 
   $view = new view;
