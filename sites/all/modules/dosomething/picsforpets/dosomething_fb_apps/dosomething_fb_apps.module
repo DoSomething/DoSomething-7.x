@@ -106,11 +106,11 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
   switch ($name) {
     case 'webform_submission_view_pet_profile':
       drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-carousel.js');
-      drupal_add_js(array('picsforpetsAnimals' => array('sid' => $context['args'][0]->sid)), 'setting');
+      drupal_add_js(array('fbappsAnimals' => array('sid' => $context['args'][0]->sid)), 'setting');
       // Total number of available pet submissions.
       // TODO: limit to correct node results.
       $total = db_query("SELECT COUNT(sid) FROM webform_submissions")->fetchField();
-      drupal_add_js(array('picsforpetsAnimals' => array('total' => $total)), 'setting');
+      drupal_add_js(array('fbappsAnimals' => array('total' => $total)), 'setting');
       break;
   }
 }

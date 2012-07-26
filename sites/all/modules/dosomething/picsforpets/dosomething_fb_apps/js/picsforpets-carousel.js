@@ -6,8 +6,8 @@
 
 Drupal.behaviors.dosomethingPicsforpetsCarousel = {
   attach: function (context, settings) {
-    if (settings.picsforpetsAnimals.index == undefined) {
-      settings.picsforpetsAnimals.index = 0;
+    if (settings.fbappsAnimals.index == undefined) {
+      settings.fbappsAnimals.index = 0;
       // Add the previous/next arrows.
       var $submission = $('#slideshow-center');
       $submission.after('<div class="slideshow-next">&gt;</div>');
@@ -16,21 +16,21 @@ Drupal.behaviors.dosomethingPicsforpetsCarousel = {
       // TODO: Possibly get any query parameters from filtering the gallery over to carry over here and pass to picsforpetsCarouselimages for smarter ordering.
 
       // Load up initial submissions.
-      $.get('/pics-for-pets/carousel/js/'+ settings.picsforpetsAnimals.sid, function(images) {
-        settings.picsforpetsAnimals.images = images;
-        picsforpetsAnimalsPlaceImages(settings);
+      $.get('/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid, function(images) {
+        settings.fbappsAnimals.images = images;
+        fbappsAnimalsPlaceImages(settings);
       });
 
       // Respond to clicks on next.
       $('.slideshow-next').click(function() {
-        settings.picsforpetsAnimals.index++;
-        picsforpetsAnimalsNext(settings);
+        settings.fbappsAnimals.index++;
+        fbappsAnimalsNext(settings);
       });
 
       // Respond to clicks on prev.
       $('.slideshow-prev').click(function() {
-        settings.picsforpetsAnimals.index--;
-        picsforpetsAnimalsPrev(settings);
+        settings.fbappsAnimals.index--;
+        fbappsAnimalsPrev(settings);
       });
     }
 
@@ -41,9 +41,9 @@ Drupal.behaviors.dosomethingPicsforpetsCarousel = {
 /**
  * Place neighbor images.
  */
-function picsforpetsAnimalsPlaceImages(settings) {
-  var images = settings.picsforpetsAnimals.images;
-  var index = settings.picsforpetsAnimals.index;
+function fbappsAnimalsPlaceImages(settings) {
+  var images = settings.fbappsAnimals.images;
+  var index = settings.fbappsAnimals.index;
   $('.slideshow-wing').remove();
   $('#slideshow-center').parent().before().before('<div class="slideshow-wing outside-left">' + images[index + -2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
   $('#slideshow-center').parent().after().after('<div class="slideshow-wing outside-right">' + images[index + 2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
@@ -52,89 +52,89 @@ function picsforpetsAnimalsPlaceImages(settings) {
 
   // Respond to clicks of images.
   $('.outside-left').next().click(function() {
-    settings.picsforpetsAnimals.index = settings.picsforpetsAnimals.index - 2;
-    picsforpetsAnimalsPrev(settings);
+    settings.fbappsAnimals.index = settings.fbappsAnimals.index - 2;
+    fbappsAnimalsPrev(settings);
   });
   $('.inside-left').next().click(function() {
-    settings.picsforpetsAnimals.index--;
-    picsforpetsAnimalsPrev(settings);
+    settings.fbappsAnimals.index--;
+    fbappsAnimalsPrev(settings);
   });
   $('.inside-right').next().click(function() {
-    settings.picsforpetsAnimals.index++;
-    picsforpetsAnimalsNext(settings);
+    settings.fbappsAnimals.index++;
+    fbappsAnimalsNext(settings);
   });
   $('.outside-right').next().click(function() {
-    settings.picsforpetsAnimals.index = settings.picsforpetsAnimals.index + 2;
-    picsforpetsAnimalsNext(settings);
+    settings.fbappsAnimals.index = settings.fbappsAnimals.index + 2;
+    fbappsAnimalsNext(settings);
   });
 }
 
-function picsforpetsAnimalsNext(settings) {
+function fbappsAnimalsNext(settings) {
   $('#slideshow-center').empty();
-  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center', function() {
-    picsforpetsAnimalsLoadFacebook();
+  $('#slideshow-center').load('/webform-submission/' + settings.fbappsAnimals.images[settings.fbappsAnimals.index].sid + ' #slideshow-center', function() {
+    fbappsAnimalsLoadFacebook();
   });
-  picsforpetsAnimalsPlaceImages(settings);
+  fbappsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
-  if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index + 4] == undefined) {
+  if (settings.fbappsAnimals.images[settings.fbappsAnimals.index + 4] == undefined) {
     var length = 0;
-    $.each(settings.picsforpetsAnimals.images, function(key, value) {
+    $.each(settings.fbappsAnimals.images, function(key, value) {
       length++;
     });
-    if (settings.picsforpetsAnimals.total != length) {
+    if (settings.fbappsAnimals.total != length) {
       // Load up more images.
-      $.get('/pics-for-pets/carousel/js/'+ settings.picsforpetsAnimals.sid + '/' + (length - 1), function(images) {
-        $.extend(Drupal.settings.picsforpetsAnimals.images, images);
+      $.get('/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid + '/' + (length - 1), function(images) {
+        $.extend(Drupal.settings.fbappsAnimals.images, images);
         // We may still need to grab images from the other side of the carousel.
         // Ensure this is run after the AJAX request completes.
-        picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index + 3, 'next');
-        picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index + 4, 'next');
+        fbappsAnimalsReindex(settings.fbappsAnimals.index + 3, 'next');
+        fbappsAnimalsReindex(settings.fbappsAnimals.index + 4, 'next');
       });
     }
     else {
       // Grab images from the other side of the carousel.
-      picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index + 3, 'next');
-      picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index + 4, 'next');
+      fbappsAnimalsReindex(settings.fbappsAnimals.index + 3, 'next');
+      fbappsAnimalsReindex(settings.fbappsAnimals.index + 4, 'next');
     }
   }
 }
 
-function picsforpetsAnimalsPrev(settings) {
+function fbappsAnimalsPrev(settings) {
   $('#slideshow-center').empty();
-  $('#slideshow-center').load('/webform-submission/' + settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index].sid + ' #slideshow-center', function() {
-    picsforpetsAnimalsLoadFacebook();
+  $('#slideshow-center').load('/webform-submission/' + settings.fbappsAnimals.images[settings.fbappsAnimals.index].sid + ' #slideshow-center', function() {
+    fbappsAnimalsLoadFacebook();
   });
-  picsforpetsAnimalsPlaceImages(settings);
+  fbappsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
-  if (settings.picsforpetsAnimals.images[settings.picsforpetsAnimals.index - 4] == undefined) {
+  if (settings.fbappsAnimals.images[settings.fbappsAnimals.index - 4] == undefined) {
     var length = 0;
-    $.each(settings.picsforpetsAnimals.images, function(key, value) {
+    $.each(settings.fbappsAnimals.images, function(key, value) {
       length++;
     });
-    if (settings.picsforpetsAnimals.total != length) {
+    if (settings.fbappsAnimals.total != length) {
       // Load up more images.
-      $.get('/pics-for-pets/carousel/js/'+ settings.picsforpetsAnimals.sid + '/' + (length - 1), function(images) {
-        $.extend(Drupal.settings.picsforpetsAnimals.images, images);
+      $.get('/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid + '/' + (length - 1), function(images) {
+        $.extend(Drupal.settings.fbappsAnimals.images, images);
         // We may still need to grab images from the other side of the carousel.
         // Ensure this is run after the AJAX request completes.
-        picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index - 3, 'prev');
-        picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index - 4, 'prev');
+        fbappsAnimalsReindex(settings.fbappsAnimals.index - 3, 'prev');
+        fbappsAnimalsReindex(settings.fbappsAnimals.index - 4, 'prev');
       });
     }
     else {
       // Grab images from the other side of the carousel.
-      picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index - 3, 'prev');
-      picsforpetsAnimalsReindex(settings.picsforpetsAnimals.index - 4, 'prev');
+      fbappsAnimalsReindex(settings.fbappsAnimals.index - 3, 'prev');
+      fbappsAnimalsReindex(settings.fbappsAnimals.index - 4, 'prev');
     }
   }
 }
 
-function picsforpetsAnimalsReindex(index, direction) {
-  if (Drupal.settings.picsforpetsAnimals.images[index] == undefined) {
+function fbappsAnimalsReindex(index, direction) {
+  if (Drupal.settings.fbappsAnimals.images[index] == undefined) {
     // Take one off the other side of the carousel.
     // Find the highest or lowest key in the images.
-    var limit = Drupal.settings.picsforpetsAnimals.index;
-    $.each(Drupal.settings.picsforpetsAnimals.images, function(key, value) {
+    var limit = Drupal.settings.fbappsAnimals.index;
+    $.each(Drupal.settings.fbappsAnimals.images, function(key, value) {
       if (direction == 'prev') {
         if (parseInt(key) > parseInt(limit)) {
           limit = key;
@@ -146,12 +146,12 @@ function picsforpetsAnimalsReindex(index, direction) {
         }
       }
     });
-    Drupal.settings.picsforpetsAnimals.images[index] = Drupal.settings.picsforpetsAnimals.images[limit];
-    delete Drupal.settings.picsforpetsAnimals.images[limit];
+    Drupal.settings.fbappsAnimals.images[index] = Drupal.settings.fbappsAnimals.images[limit];
+    delete Drupal.settings.fbappsAnimals.images[limit];
   }
 }
 
-function picsforpetsAnimalsLoadFacebook() {
+function fbappsAnimalsLoadFacebook() {
   var comments = $('.fb-social-comments-plugin');
   FB.XFBML.parse(comments[0]);
   Drupal.attachBehaviors('#picsforpets-share');
