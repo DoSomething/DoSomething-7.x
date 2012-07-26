@@ -228,7 +228,7 @@
       <div class="col3">
         <h3>send 5 friends<br>texting &amp; driving stats</h3>
         <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/scholarship2.png" alt="two ways to enter"/>
-        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <a href="/thumbwars/tell-us">upload them here</a>!</p>
+        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <br><a href="/thumbwars/tell-us">upload them here</a>!</p>
       </div> <!-- .col3 -->
  
       <div class="col4">
