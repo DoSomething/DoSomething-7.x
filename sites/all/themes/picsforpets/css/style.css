@@ -610,10 +610,10 @@ a:visited {
   color: #1b75bb;
 }
 a:hover {
-  color: #e6e7e8;
+  color: #c9cbcd;
 }
 a:active {
-  color: #e6e7e8;
+  color: #c9cbcd;
 }
 
 p {
@@ -981,7 +981,7 @@ fieldset {
 
 .fieldset-wrapper {
   background: rgba(255, 255, 255, 0.75);
-  border: 1px solid #e6e7e8;
+  border: 1px solid #c9cbcd;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -1012,7 +1012,7 @@ label {
 textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
   font-size: 1em;
   line-height: 1.5em;
-  border: 1px solid #e6e7e8;
+  border: 1px solid #c9cbcd;
   width: 140px;
   margin-top: 0;
   height: 22px;
@@ -1383,7 +1383,7 @@ body {
   color: #ec1c24;
 }
 #gallery-link a:hover {
-  color: #e6e7e8;
+  color: #c9cbcd;
 }
 
 .picsforpets-scholarship {
@@ -1443,7 +1443,7 @@ body {
   margin-top: 100px;
   font-size: 22px;
   padding: 0 12px 0 12px;
-  border: 1px solid #e6e7e8;
+  border: 1px solid #c9cbcd;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -1523,10 +1523,10 @@ body {
   color: #a6a8ab;
 }
 .picsforpets-menu li a:hover {
-  color: #e6e7e8;
+  color: #c9cbcd;
 }
 .picsforpets-menu li a:active {
-  color: #e6e7e8;
+  color: #c9cbcd;
 }
 
 a.footer-furtography {
