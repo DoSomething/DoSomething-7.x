@@ -530,7 +530,7 @@ h1 .amp, #picsforpets-share a .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .amp 
   font-style: italic;
 }
 
-.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .pager, .gallery-thumbnail-text {
+.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1636,25 +1636,28 @@ a.footer-furtography {
   padding: 0 12px 0 12px;
 }
 
-.view-pics-for-pets-gallery .view-filters {
-  margin-top: -54px;
+#edit-field-fb-app-animal-type-value-wrapper {
+  display: inline;
+  float: left;
+  clear: both;
 }
-.view-pics-for-pets-gallery .view-filters input[type="submit"] {
-  text-transform: uppercase;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
-  font-size: 14px;
-  color: #a6a8ab;
-  border: 0;
+
+.views-reset-button input[type="submit"] {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
+  text-transform: uppercase;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-size: 14px;
+  color: #a6a8ab;
+  border: 0;
   padding-right: 40px;
   background: white url(../images/ui-close-x.png) no-repeat;
   background-position: 56px 4px;
 }
-.view-pics-for-pets-gallery .view-filters .form-type-select {
+.views-reset-button .form-type-select {
   margin-top: 0;
 }
 
@@ -1945,6 +1948,38 @@ select#edit-field-fb-app-animal-type-value {
   z-index: 750;
   background-color: white;
   padding: 2px 12px;
+}
+
+#picsforpets-invite-friends {
+  display: inline;
+  float: left;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  background: #6e85b2;
+  padding: 10px 8px 10px 0;
+}
+#picsforpets-invite-friends #picsforpets-invite-friends-image {
+  display: inline;
+  float: left;
+  height: 50px;
+  width: 50px;
+  border-right: 1px solid white;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  background: url(../images/fp-invite-friends.png) no-repeat;
+  background-position: center 8px;
+}
+#picsforpets-invite-friends #picsforpets-invite-friends-text {
+  display: inline;
+  float: right;
+  font-size: 27px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: white;
+  padding-left: 12px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
