@@ -27,6 +27,7 @@ body
 
 #content
   clear: both
+  margin-top: -140px
 
 .mission-text
   @extend %league-gothic
@@ -463,6 +464,7 @@ select#edit-field-fb-app-animal-type-value
     border-bottom: 1px solid $black
     padding-bottom: 8px
     margin-bottom: 16px
+    padding-top: 20px
   a
     @extend h1
     +border-radius(8px)
@@ -492,10 +494,14 @@ select#edit-field-fb-app-animal-type-value
 // INVITE FRIENDS
 ////////////////////////////
 #picsforpets-invite-friends
-  +float-left
   +border-radius(8px)
+  +clearfix
+  cursor: pointer
   background: $pfp-blue-fb
   padding: 10px 8px 10px 0
+  margin: auto
+  width: 190px
+  margin-bottom: 50px
   #picsforpets-invite-friends-image
     +float-left
     height: 50px

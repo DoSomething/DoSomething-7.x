@@ -657,7 +657,7 @@ h1.title, #picsforpets-share a.title {
   font-size: 40px;
   width: 430px;
   margin: 0 auto;
-  margin-top: -124px;
+  margin-top: 24px;
   margin-bottom: 48px;
 }
 
@@ -1359,6 +1359,7 @@ body {
 
 #content {
   clear: both;
+  margin-top: -140px;
 }
 
 .mission-text {
@@ -1918,6 +1919,7 @@ select#edit-field-fb-app-animal-type-value {
   border-bottom: 1px solid black;
   padding-bottom: 8px;
   margin-bottom: 16px;
+  padding-top: 20px;
 }
 #picsforpets-share a {
   -webkit-border-radius: 8px;
@@ -1951,15 +1953,19 @@ select#edit-field-fb-app-animal-type-value {
 }
 
 #picsforpets-invite-friends {
-  display: inline;
-  float: left;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
+  overflow: hidden;
+  *zoom: 1;
+  cursor: pointer;
   background: #6e85b2;
   padding: 10px 8px 10px 0;
+  margin: auto;
+  width: 190px;
+  margin-bottom: 50px;
 }
 #picsforpets-invite-friends #picsforpets-invite-friends-image {
   display: inline;
