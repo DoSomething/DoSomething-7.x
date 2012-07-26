@@ -10,13 +10,16 @@ $plugin = array(
 
 function dosomething_picsforpets_general_content_type_render_invite($subtype = '', $conf = array(), $context = NULL) {
   // Render array for Invite Friends button.
+  $output = '<div id="picsforpets-invite-friends-image"></div>';
+  $output .= '<div id="picsforpets-invite-friends-text">' . t('Invite Friends') . '</div>';
+  
   $block = new stdClass();
   $block->content = array(
     '#type' => 'container',
     '#attributes' => array(
-      'id' => 'invite-friends',
+      'id' => 'picsforpets-invite-friends',
     ),
-    '#children' => t('Invite Friends'),
+    '#children' => $output,
     '#attached' => array(
       'js' => array(
         array('data' => array('fb_access_token' => 'access_token'), 'type' => 'setting'),
