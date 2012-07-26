@@ -2,7 +2,7 @@
 
 Drupal.behaviors.inviteFriendsModal = {
   attach: function(context, settings) {
-    $('#invite-friends').click(function() {
+    $('#picsforpets-invite-friends').click(function() {
       var obj = {
         method: 'apprequests',
         display: 'iframe',
