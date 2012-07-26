@@ -15,7 +15,7 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 
 function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
 {
-  if ($form_id == 'webform_client_form_723646')
+  if ($form_id == 'webform_client_form_723646'/* || $form_id == 'webform_client_form_723323'*/)
   { 
     $node = menu_get_object();
     if ($node->nid == 29308)
@@ -35,11 +35,6 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
     $form['#validate'][] = 'dosomething_share_a_stat_share_with_friends_validate';
     $form['#submit'][] = 'dosomething_share_a_stat_share_with_friends_submit';
   }
-}
-
-function dosomething_social_scholars_page_alter($page){
-    $node = menu_get_object();
-    #echo '<pre>', print_r($node), '</pre>';
 }
 
 function dosomething_social_scholars_panels_pre_render($display)
@@ -76,9 +71,22 @@ function dosomething_share_a_stat_share_with_friends_validate($form, &$form_stat
     $error++;
   }
 
+  $q = new EntityFieldQuery;
+  $result = $q
+    ->entityCondition('entity_type', 'webform_submission_entity')
+    ->propertyCondition('nid', $node->nid)
+    ->propertyOrderBy('submitted', 'DESC')
+    ->fieldCondition('field_social_scholars_cell', 'value', $form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value'], '=')
+    ->execute();
+  if (!empty($result))
+  {
+    form_set_error('form', 'You have already submitted to this scholarship.  Thank you for your time!');
+    $error++;
+  }
+
   if (!dosomething_general_valid_cell($form_state['input']['submitted']['friends_information']['field_social_scholars_friend_1'][LANGUAGE_NONE][0]['value']))
   {
-    form_set_error('submitted[friends_information][field_social_scholars_friend_1][und][0][value]', 'You must provide at least one valid cell phone number.');
+    form_set_error('submitted[friends_information][field_social_scholars_friend_1][und][0][value]', 'You must provide at least one valid friend\'s cell phone number.');
     $error++;
   }
 
@@ -105,18 +113,6 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
     $profile->save();
   }*/
 
-  $q = new EntityFieldQuery;
-  $result = $q
-    ->entityCondition('entity_type', 'webform_submission_entity')
-    ->propertyCondition('nid', $node->nid)
-    ->propertyOrderBy('submitted', 'DESC')
-    ->fieldCondition('field_social_scholars_cell', 'value', $form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value'], '=')
-    ->execute();
-  if (!empty($result))
-  {
-    return;
-  }
-
   if (dosomething_general_valid_cell($form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value']))
   {
     dosomething_general_mobile_commons_subscribe($form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value'], SHARE_A_STAT_USER_TXT);
@@ -129,5 +125,14 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
 
        dosomething_general_mobile_commons_subscribe($number[LANGUAGE_NONE][0]['value'], SHARE_A_STAT_FRIEND_TXT);
     }
+  }
+}
+
+function doit_html_head_alter(&$head)
+{
+  $node = menu_get_object();
+  if ($node->type == 'social_scholarship' && isset($node->field_fb_language[LANGUAGE_NONE][0]['value']))
+  {
+    $head['opengraph_meta_og:description']['#attributes']['content'] = $node->field_fb_language[LANGUAGE_NONE][0]['value'];
   }
 }
