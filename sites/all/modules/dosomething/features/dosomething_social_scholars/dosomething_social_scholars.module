@@ -15,7 +15,7 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 
 function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
 {
-  if ($form_id == 'webform_client_form_723646' || $form_id == 'webform_client_form_723323')
+  if ($form_id == 'webform_client_form_723646'/* || $form_id == 'webform_client_form_723323'*/)
   { 
     $node = menu_get_object();
     if ($node->nid == 29308)
