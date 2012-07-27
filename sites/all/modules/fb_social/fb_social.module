@@ -560,9 +560,9 @@ function fb_social_page_alter(&$page){
   global $language, $_fb_script_init, $base_url;
 
   // If their is no fb plugin enabled on this page, do not load fb script then
-  //if (! $_fb_script_init) {
-  //  return;
-  //}
+  if (! $_fb_script_init) {
+    return;
+  }
 
   $languages = _map_active_languages();
 
