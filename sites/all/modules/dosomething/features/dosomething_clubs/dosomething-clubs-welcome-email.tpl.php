@@ -1,7 +1,4 @@
- <?php
- 
- ?>
- <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>Do Something Newsletter</title>
   </head>
@@ -18,7 +15,7 @@
                       <tbody>
                         <tr>
                           <td>
-                            <a href="http://www.dosomething.org" target="_blank"><img alt="" border="0" height="100" src="http://www.dosomething.org/nd/eblasts/images/dslogo.gif" width="120" /></a></td>
+                            <a href="http://www.dosomething.org" target="_blank"><img alt="" border="0" height="100" src="http://files.dosomething.org/files/u/sitewide/do_something_0.png" width="120" /></a></td>
                         </tr>
                         <tr>
                           <td align="center">
@@ -28,10 +25,10 @@
                     </table>
                   </td>
                   <td align="left" width="465">
-                    <img alt="" height="23" src="http://www.dosomething.org/nd/eblasts/images/2009/top_brackets_new.gif" width="425" />
+                    <br />
                     <h2 style="margin: 0px; padding: 0px; text-align: center; color: #055494; font-family: Verdana, Arial, sans-serif; font-weight: bold; font-size: 18px;">
-                      Hey <!--?php print check_plain($name); ?--></h2>
-                    <img alt="" height="23" src="http://www.dosomething.org/nd/eblasts/images/2009/bottom_brackets_new.gif" width="425" /></td>
+                      Hey <?php print check_plain($name); ?></h2>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -45,7 +42,7 @@
                           <td align="left" id="main">
                             <h3 style="text-transform: uppercase;color: #055494;padding: 0;margin: 15px 5px 0;font-weight: bold;font-size: 16px;font-family: Arial, sans-serif">
                               Thanks for starting a Do Something Club</h3>
-                            <a href="http://www.dosomething.org/clubs" target="_blank"><img align="right" alt="clubs sticker" border="0" height="107" hspace="25" src="http://www.dosomething.org/nd/clubs/club_sticker_150_107.jpg" vspace="25" width="150" /></a>
+                            <a href="http://www.dosomething.org/clubs" target="_blank"><img align="right" alt="clubs sticker" border="0" height="107" hspace="25" src="http://files.dosomething.org/files/u/eblast/final-clubs.png" vspace="25" width="150" /></a>
                             <p style="margin: 13px 0 13px 5px;padding: 0;font-size: 13px;font-family: Arial, sans-serif;width: 100%">
                               Thanks for deciding to start a Do Something Club. Welcome to the Do Something Clubs Program!</p>
                             <p style="margin: 13px 0 13px 5px;padding: 0;font-size: 13px;font-family: Arial, sans-serif;width: 100%">
