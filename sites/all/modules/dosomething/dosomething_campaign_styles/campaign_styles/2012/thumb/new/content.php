@@ -23,9 +23,9 @@
     <div class="divider"><span>here's what you do</span></div>
     <div class="col">
       <h1>1</h1>
-      <h2>get thumb socks</h2>
+      <h2>still want socks</h2>
       <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do1.png"/>
-      <p class="bottom">Sign up to the left to enter for a chance to get two pairs of thumb socks. *You must be 25 or younger to get thumb socks.</p>
+      <p class="bottom">Thumb Wars will be back in 2013. Sign up to the left and we'll keep you updated and let you know when we're back!</p>
     </div> <!-- .col -->
     <div class="col mid">
       <h1>2</h1>

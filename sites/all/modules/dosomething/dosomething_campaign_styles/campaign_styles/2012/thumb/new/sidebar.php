@@ -6,7 +6,7 @@
   
   <div class="contact_form-aside">
     <h1>sign up</h1>
-    <h3>for free thumb socks</h3>
+    <h3>for more info</h3>
   </div>
   
   <div class="nav-aside">

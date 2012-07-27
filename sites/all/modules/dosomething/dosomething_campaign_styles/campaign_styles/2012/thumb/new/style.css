@@ -236,7 +236,8 @@ form.webform-client-form {
   color: grey; }
 
 div.nav-aside h3 {
-  color: #ffd215; }
+  color: #ffd215;
+  font-size: 24px; }
 div.nav-aside h4 {
   text-transform: uppercase; }
 div.nav-aside ul {
