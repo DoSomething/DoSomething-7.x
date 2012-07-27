@@ -1739,6 +1739,10 @@ select#edit-field-fb-app-animal-type-value {
 .gallery-thumbnail-text:hover a {
   color: white;
 }
+.gallery-thumbnail-text:hover .click-to-learn a {
+  font-size: 18px;
+  border-bottom: 1px solid white;
+}
 
 .no-results {
   text-align: center;
