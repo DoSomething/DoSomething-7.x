@@ -93,3 +93,7 @@ input#edit-submit.go-button.form-submit {
 	display: none;
 	clear: both;
 }
+
+.or-image {
+	margin-top: 10px;
+}

@@ -14,8 +14,9 @@
       fName = name;
       e_or_m = cell;
 
-      var is_email = Drupal.dsRegistration.validEmail(e_or_m);
-      var is_mobile = Drupal.dsRegistration.validPhone(e_or_m);
+      //var is_email = Drupal.dsRegistration.validEmail(e_or_m);
+      var is_email = false;
+      var is_mobile = true;//Drupal.dsRegistration.validPhone(e_or_m);
 
       // set the values on the popup form based on user input
       if (is_email) {

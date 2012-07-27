@@ -15,8 +15,8 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 
 function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
 {
-  if ($form_id == 'webform_client_form_723646'/* || $form_id == 'webform_client_form_723323'*/)
-  { 
+  if ($form_id == 'webform_client_form_723646' || $form_id == 'webform_client_form_723323')
+  {
     $node = menu_get_object();
     if ($node->nid == 29308)
     {
@@ -27,6 +27,11 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
         'group' => CSS_THEME,
         'weight' => 10
       ));
+    }
+
+    if (isset($_COOKIE['DSCC']))
+    {
+      drupal_goto('animal-social-stats');
     }
 
     $form['actions']['submit']['#value'] = 'SEND';
@@ -105,6 +110,11 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
     });
   </script>';
   drupal_set_message($message);
+
+  if (!isset($_COOKIE['DSCC']))
+  {
+    setcookie('DSCC', 1, time() + (60 * 60 * 24 * 365), '/');
+  }
 
 /*  if (isset($form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value']) && $form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value'] != '') {
     global $user;
