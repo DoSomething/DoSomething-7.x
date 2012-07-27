@@ -21,7 +21,6 @@ function dosomething_picsforpets_shelters_menu() {
     'title' => t('Search for a Shelter'),
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_shelters_lookup',
-    'page arguments' => array(2),
   );
   return $items;
 }
@@ -90,7 +89,7 @@ function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, $form_s
  */
 function dosomething_picsforpets_shelters_lookup($arg1 = NULL, $arg2 = NULL, $arg3 = NULL, $arg4 = NULL) {
   if ($arg1 == 'json') {
-    return dosomething_picsforpets_shelters_lookup_json();
+    return dosomething_picsforpets_shelters_lookup_json($arg2, $arg3, $arg4);
   }
   else {
     return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $arg1);
@@ -100,9 +99,10 @@ function dosomething_picsforpets_shelters_lookup($arg1 = NULL, $arg2 = NULL, $ar
 /**
  * Return a list of shelters formatted as Json data.
  */
-function dosomething_picsforpets_shelters_lookup_json() {
+function dosomething_picsforpets_shelters_lookup_json($zip, $start = NULL, $results = NULL) {
   // Currently just a stub
-  echo 'All your results are belong to JSON.';
+  $nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start, $results);
+  echo dosomething_picsforpets_shelters_formatted_results($nids, 'json');
   die();
 }
 
@@ -112,6 +112,27 @@ function dosomething_picsforpets_shelters_lookup_json() {
 function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html') {
   $markup = '';
   switch ($type) {
+    case 'json':
+      // switch markup to an array so we can json encode it.
+      $shelter_array = array();
+      foreach ($nids as $nid) {
+        $shelter = node_load($nid);
+        // Quick sanity check.
+        if ($shelter->type == 'shelter') {
+          $shelter_data = array();
+          $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $shelter_data['title'] = check_plain($shelter->title);
+          $shelter_data['address1'] = empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']);
+          $shelter_data['address2'] = empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']);
+          $shelter_data['city'] = empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+          $shelter_data['state'] = empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+          $shelter_data['hours'] = empty($hours) ? '' : $hours[0]['safe_value'];
+          $shelter_array[] = $shelter_data;
+        }
+      }
+      $markup = json_encode($shelter_array);
+      break;
+
     case 'html':
     default:
       foreach ($nids as $nid) {
@@ -131,14 +152,14 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $markup .= empty($hours) ? '' : '<p>Hours:<br />' . $hours[0]['safe_value'] . '</p>';
         }
       }
+      if (empty($markup)) {
+        // This should actually never happen but it's not a bad idea to have some
+        // default text just in case.
+        $markup  = t('Sorry we could not find any shelters near you');
+      }
+      // Append the title info
+      $markup = '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
   }
-  if (empty($markup)) {
-    // This should actually never happen but it's not a bad idea to have some
-    // default text just in case.
-    $markup  = t('Sorry we could not find any shelters near you');
-  }
-  // Append the title info
-  $markup = '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
   return $markup;
 }
 
@@ -159,6 +180,9 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
 function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, $number = 10) {
   // Initialize an array to hold the nids and act as our return value.
   $nids = array();
+  // if $start and $results are null then set them to the defaults.
+  $start = is_null($start) ? 0 : $start;
+  $number = is_null($number) ? 10 : $number;
   if (!is_numeric($start) || !is_numeric($number)) {
     // Maybe someone is up to something funny.
     return $nids;
