@@ -21,6 +21,16 @@ function dosomething_picsforpets_services_default_services_endpoint() {
   );
   $endpoint->server_settings = array();
   $endpoint->resources = array(
+    'user' => array(
+      'actions' => array(
+        'login' => array(
+          'enabled' => 1,
+        ),
+        'logout' => array(
+          'enabled' => 1,
+        ),
+      ),
+    ),
     'file' => array(
       'operations' => array(
         'create' => array(

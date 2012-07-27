@@ -1,6 +1,7 @@
 name = "dosomething_picsforpets_services"
 core = "7.x"
 package = "Features"
+php = "5.2.4"
 dependencies[] = "ctools"
 dependencies[] = "services"
 features[ctools][] = "services:services:3"
