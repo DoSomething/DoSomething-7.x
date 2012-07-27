@@ -71,7 +71,7 @@ function dosomething_share_a_stat_share_with_friends_validate($form, &$form_stat
     $error++;
   }
 
-  /*$q = new EntityFieldQuery;
+  $q = new EntityFieldQuery;
   $result = $q
     ->entityCondition('entity_type', 'webform_submission_entity')
     ->propertyCondition('nid', $node->nid)
@@ -82,7 +82,7 @@ function dosomething_share_a_stat_share_with_friends_validate($form, &$form_stat
   {
     form_set_error('form', 'You have already submitted to this scholarship.  Thank you for your time!');
     $error++;
-  }*/
+  }
 
   if (!dosomething_general_valid_cell($form_state['input']['submitted']['friends_information']['field_social_scholars_friend_1'][LANGUAGE_NONE][0]['value']))
   {
