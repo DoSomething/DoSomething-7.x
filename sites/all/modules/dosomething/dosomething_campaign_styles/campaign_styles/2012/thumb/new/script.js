@@ -1,6 +1,7 @@
 var url_base = 'http://www.dosomething.org/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/thumb/new/';
 var sign_up_form = jQuery('#webform-client-form-722126');
 var gallery = jQuery('#thumb-gallery');
+var referGoButton = jQuery('.mcommons-webform .go-button');
 
 //Main content
 jQuery.post(url_base + 'content.php', function (data) {
@@ -8,6 +9,7 @@ jQuery.post(url_base + 'content.php', function (data) {
   gallery.removeClass('hidden');
   jQuery('.did').append(gallery);
   jQuery('.did').append('<h2>are you on instagram? so are we! document your work #thumbwars</h2>');
+  jQuery('.mcommons-col-last').append(referGoButton);
   init_content();
 });
 

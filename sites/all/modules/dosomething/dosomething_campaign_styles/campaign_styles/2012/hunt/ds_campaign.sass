@@ -1364,3 +1364,45 @@ table#field-team-invite-values
       
 .center
   text-align: center
+
+// post-flip ribbon
+
+#top_banner
+  position: relative
+  text-align: center
+  padding: 2% 0
+  width: 817px
+  margin: 0 0 25px -33px
+  +box-shadow(5px 12px 15px -10px #666)
+  +border-radius(5px 5px 0 0) 
+  +redGradient
+  &:before, &:after
+    content: ""
+    position: absolute
+    bottom: -12px
+    border: 25px solid darken($baseColor, 10)
+    z-index: -1
+  &:before
+    left: -40px
+    border-right-width: 25px
+    border-left-color: transparent
+  &:after
+    right: -40px
+    border-left-width: 25px
+    border-right-color: transparent
+  h2
+    color: #fff
+    &:before, &:after
+      content: ""
+      position: absolute
+      border-style: solid
+      border-color: darken($baseColor, 18) transparent transparent transparent
+      bottom: -10px
+    &:before
+      left: 0
+      border-width: 10px 0 0 10px
+    &:after
+      right: 0
+      border-width: 10px 10px 0 0
+    a
+      color: #000

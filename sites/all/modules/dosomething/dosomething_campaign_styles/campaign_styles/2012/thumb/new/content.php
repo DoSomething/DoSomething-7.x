@@ -74,7 +74,6 @@
           <input type="hidden" name="opt_in_path" value="113391">
         </div> <!-- .mcommons-webform-column -->
         <div class="mcommons-col-last">
-          <input type="submit" class="go-button" value="go" />
         </div>
       </form></div> <!-- .refer-form -->
     </div> <!-- .col2 -->    
