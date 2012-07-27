@@ -1546,6 +1546,10 @@ a.footer-furtography {
   padding-bottom: 24px;
 }
 
+.views-exposed-widgets {
+  margin-bottom: -3px;
+}
+
 .ui-widget-overlay {
   background: black;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
@@ -1640,7 +1644,7 @@ a.footer-furtography {
 .view-pics-for-pets-gallery {
   border: 1px solid white;
   height: 410px;
-  padding: 0 12px 0 12px;
+  padding: 12px;
 }
 
 #edit-field-fb-app-animal-type-value-wrapper {
@@ -1723,7 +1727,7 @@ select#edit-field-fb-app-animal-type-value {
   color: rgba(255, 255, 255, 0);
   text-transform: uppercase;
   height: 120px;
-  margin-top: -123px;
+  margin-top: -122px;
   position: relative;
   z-index: 100px;
   display: block;
