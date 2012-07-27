@@ -1,0 +1,7 @@
+name = "dosomething_picsforpets_services"
+core = "7.x"
+package = "Features"
+dependencies[] = "ctools"
+dependencies[] = "services"
+features[ctools][] = "services:services:3"
+features[services_endpoint][] = "mobile_app"
