@@ -15,7 +15,7 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 
 function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
 {
-  if ($form_id == 'webform_client_form_723646'/* || $form_id == 'webform_client_form_723323'*/)
+  if ($form_id == 'webform_client_form_723646' || $form_id == 'webform_client_form_723323')
   { 
     $node = menu_get_object();
     if ($node->nid == 29308)
@@ -71,7 +71,7 @@ function dosomething_share_a_stat_share_with_friends_validate($form, &$form_stat
     $error++;
   }
 
-  $q = new EntityFieldQuery;
+  /*$q = new EntityFieldQuery;
   $result = $q
     ->entityCondition('entity_type', 'webform_submission_entity')
     ->propertyCondition('nid', $node->nid)
@@ -82,7 +82,7 @@ function dosomething_share_a_stat_share_with_friends_validate($form, &$form_stat
   {
     form_set_error('form', 'You have already submitted to this scholarship.  Thank you for your time!');
     $error++;
-  }
+  }*/
 
   if (!dosomething_general_valid_cell($form_state['input']['submitted']['friends_information']['field_social_scholars_friend_1'][LANGUAGE_NONE][0]['value']))
   {
@@ -101,7 +101,7 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
   $message ='Thanks for sharing important stats with your friends.  Together, we can spread awareness and put an end to animal cruelty.';
   $message .= '<script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery.fn.dsShareStatSubmit("/", "' . $form_state['input']['submitted']['your_information']['field_social_scholars_first_name'][LANGUAGE_NONE][0]['value'] . '", "' . $form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value'] . '");
+        jQuery.fn.dsShareStatSubmit("' . $_SERVER['REQUEST_URI'] . '", "' . $form_state['input']['submitted']['your_information']['field_social_scholars_first_name'][LANGUAGE_NONE][0]['value'] . '", "' . $form_state['input']['submitted']['your_information']['field_social_scholars_cell'][LANGUAGE_NONE][0]['value'] . '");
     });
   </script>';
   drupal_set_message($message);

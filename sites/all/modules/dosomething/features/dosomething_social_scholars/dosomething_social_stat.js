@@ -27,9 +27,12 @@ jQuery(document).ready(function() {
     return false;
   });
 
-  var tweet_text = "It's time to @dosomething about animal cruelty! Share stats with your friends and you could win $5k in scholarships: http://tinyurl.com/cuaf8ou";
-  var to = jQuery('.twitter-share-button').attr('href');
-  var changed = to.replace(/&text=[^&]+/, '&text=' + encodeURI(tweet_text));
-  var another = changed.replace(/&via=[^&]+/, '');
-  jQuery('.twitter-share-button').attr('href', another);
+  if (jQuery('.twitter-share-button').length > 0)
+  {
+    var tweet_text = "It's time to @dosomething about animal cruelty! Share stats with your friends and you could win $5k in scholarships: http://tinyurl.com/cuaf8ou";
+    var to = jQuery('.twitter-share-button').attr('href');
+    var changed = to.replace(/&text=[^&]+/, '&text=' + encodeURI(tweet_text));
+    var another = changed.replace(/&via=[^&]+/, '');
+    jQuery('.twitter-share-button').attr('href', another);
+  }
 });
