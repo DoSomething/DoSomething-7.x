@@ -1,13 +1,21 @@
 <?php
 
+/**
+ * @file activityfeed.inc
+ * 
+ * Main (ctools) plugin file for "activityfeed" plugin type
+ */
+
 $plugin = array(
     'title' => t('activityfeed'), 
     'description' => t('Facebook activityfeed plugin'), 
-    'html tag name' => 'activity' 
-)
-;
+    'html tag name' => 'activity', 
+    
+    // hooks 
+    'hook_preprocess_fb_social_plugin' => '_fb_social_activity_preprocess_fb_social_plugin' 
+);
 
-function activityfeed_defaults(){
+function activityfeed_defaults() {
   return array(
       'site' => '', 
       'width' => 300, 
@@ -20,7 +28,7 @@ function activityfeed_defaults(){
   );
 }
 
-function activityfeed_fb_settings($options){
+function activityfeed_fb_settings($options) {
   
   $form = array();
   
@@ -80,7 +88,7 @@ function activityfeed_fb_settings($options){
   
   $form['recommendations'] = array(
       '#type' => 'checkbox', 
-      '#title' => t('Show the widget header'), 
+      '#title' => t('Recommendations'), 
       '#description' => t('Show the header in the recommendations widget') 
   );
   $defaults = activityfeed_defaults();
@@ -93,11 +101,15 @@ function activityfeed_fb_settings($options){
 
 }
 
-function activityfeed_drupal_settings($options){
+function activityfeed_drupal_settings($options) {
   return array();
 }
 
-function activityfeed_preprocess_options(&$options){
+function _fb_social_activity_preprocess_fb_social_plugin(&$variables) {
+  $options = &$variables['options'];
   $options['header'] = $options['header'] ? "true" : "false";
   $options['recommendations'] = $options['recommendations'] ? "true" : "false";
 }
+
+
+

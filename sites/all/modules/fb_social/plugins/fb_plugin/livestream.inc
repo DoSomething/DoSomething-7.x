@@ -1,26 +1,33 @@
 <?php
 
+/**
+ * @file livestream.inc
+ * 
+ * Main (ctools) plugin file for "livestream" plugin type
+ */
+
 $plugin = array(
-  'title' => t('Livestream'),
-  'description' => t('Facebook livestream plugin'),
-  'html tag name' => 'live-stream'
+    'title' => t('Livestream'), 
+    'description' => t('Facebook livestream plugin'), 
+    'html tag name' => 'live-stream', 
+    
+    // hooks 
+    'hook_preprocess_fb_social_plugin' => '_fb_social_livestream_preprocess_fb_social_plugin' 
 );
 
-
-function livestream_defaults(){
+function livestream_defaults() {
   return array(
-      'event_app_id' => variable_get('fb_social_appid', ''),
+      'event_app_id' => variable_get('fb_social_appid', ''), 
       'width' => 400, 
       'height' => 500, 
       'xid' => '', 
-      'via_url' => '',
-      'always_post_to_friends' => 0,
+      'via_url' => '', 
+      'always_post_to_friends' => 0 
   );
 }
 
-
-function livestream_fb_settings($options){
-
+function livestream_fb_settings($options) {
+  
   $form = array();
   $form['event_app_id'] = array(
       '#type' => 'textfield', 
@@ -45,7 +52,7 @@ function livestream_fb_settings($options){
       '#title' => t('XID'), 
       '#description' => t('If you have multiple live stream boxes on the same page, specify a unique \'xid\' for each') 
   );
-
+  
   $form['via_url'] = array(
       '#type' => 'textfield', 
       '#title' => t('Via Attribution URL'), 
@@ -60,18 +67,19 @@ function livestream_fb_settings($options){
   
   $defaults = livestream_defaults();
   
-  foreach ($form as $id => $f){
+  foreach ( $form as $id => $f ) {
     $form[$id]['#default_value'] = isset($options[$id]) ? $options[$id] : $defaults[$id];
   }
   
   return $form;
 }
 
-
-function livestream_drupal_settings($options){
+function livestream_drupal_settings($options) {
   return array();
 }
 
-function livestream_preprocess_options(&$options){
+function _fb_social_livestream_preprocess_fb_social_plugin(&$variables) {
+  $options = &$variables['options'];
   $options['always_post_to_friends'] = $options['always_post_to_friends'] ? "true" : "false";
 }
+

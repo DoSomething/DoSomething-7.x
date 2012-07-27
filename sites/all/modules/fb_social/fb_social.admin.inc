@@ -1,8 +1,8 @@
 <?php
 
-
-
 /**
+ * @file fb_social_ctools_export_ui.inc
+ * 
  * Settings form for global fb_social custimazation
  */
 function fb_social_admin_settings_form($form, &$form_state) {
@@ -10,25 +10,39 @@ function fb_social_admin_settings_form($form, &$form_state) {
 
   $form = array();
   $form['fb_social_appid'] = array(
-    '#title' => t('Facebook application id'),
-    '#type' => 'textfield',
-    '#description' => t('<p> Register your application on Facebook to get a Facebook App Id: !url.</p>
-      <p>Go on your facebook app page (Applications > Developer > My Applications)
-      click "Edit Settings". Then click "Connect". Make sure that the "Connect
-      URL" matches your domain exactly.</p>', array(
-      '!url' => l('register here', 'http://developers.facebook.com/setup/'),
-    )),
-    '#default_value' => variable_get('fb_social_appid', ''),
+    '#title' => t('Facebook application id'), 
+    '#type' => 'textfield', 
+    '#description' => t('<p> Get the ID of your facebook app or create a new facebook app : !url.</p>
+                        Make sure that the "Site URL" matches your domain exactly.</p>', array(
+                        '!url' => l('here', 'http://developers.facebook.com/apps/') 
+    )), 
+    '#default_value' => variable_get('fb_social_appid', '') 
   );
 
-  /*
-   $form['fb_social_secret'] = array(
-   '#title' => t('Facebook application secret ky'),
-   '#type' => 'textfield',
-   '#description' => t('Facebook application secret key'),
-   '#default_value' => variable_get('fb_social_secret', '')
-   );
-   */
+  $form['fb_social_markup'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Markup type'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+  
+  $form['fb_social_markup']['fb_social_markup_type'] = array(
+    '#type' => 'radios', 
+    '#title' => t('Markup type'), 
+    '#default_value' => variable_get('fb_social_markup_type', 'xfbml'), 
+    '#options' => array('xfbml' => t('XFBML'), 'html5' => t('HTML5')),
+    '#description' => t('Facebook offers 3 different implementations for their plugins, Iframe, XFML 
+                        (their own markup language) and HTML5-cpomliant markup. Iframe has limitations 
+                        and thus is not supported'),
+  );
+  
+  $form['fb_social_opengraph'] = array(
+      '#type' => 'checkbox', 
+      '#title' => t('Output the facebook opengraph tags for the above content types'), 
+      '#description' => t('This module has limited support for fb opengraph tags. Uncheck if you are using some other modules that better support opengraph protocol'), 
+      '#default_value' => variable_get('fb_social_opengraph', 1),
+  );
+  
 
   $form['fb_social_locale'] = array(
     '#title' => t('Default facebook application locale'),
@@ -84,7 +98,7 @@ function fb_social_admin_settings_form($form, &$form_state) {
   foreach ($languages as $language) {
     $form['fb_social_languages']['fb_social_language_' . $language->language] = array(
       '#type' => 'select',
-      '#title' => 'Mapping for ' . $language->name . ' (' . $language->language . ')',
+      '#title' => 'Mapping for ' . check_plain($language->name) . ' (' . check_plain($language->language) . ')',
       '#description' => t('Select the equivalent language code in the facebook locale'),
       '#default_value' => variable_get('fb_social_language_' . $language->language, 'en_US'),
       '#options' => _get_facebook_locale(),
@@ -99,7 +113,7 @@ function _get_facebook_locale() {
   $fb_locale = array();
   $cache = cache_get('fb_social');
   if (empty($cache->data)) {
-    $result = drupal_http_request("http://www.facebook.com/translations/FacebookLocales.xml");
+    $result = drupal_http_request("https://www.facebook.com/translations/FacebookLocales.xml");
     $xml = simplexml_load_string($result->data);
     foreach ( $xml->locale as $line ) {
       $representation = ( array ) $line->codes->code->standard->representation;

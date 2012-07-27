@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Provide views handler for Facebook Social plugins.
+ */
+
+/**
  * A handler to provide a field for Facebook Social plugins.
  *
  * @ingroup views_field_handlers
@@ -30,20 +35,11 @@ class fb_social_handler_field extends views_handler_field {
       '#title' => t('Facebook Social Preset'),
       '#options' => array('' => '<select>') + $preset_list,
       '#type' => 'select',
+      '#required' => TRUE,
       '#default_value' => $this->options['fb_social_plugins'],
       '#description' => t('Choose a Facebook Social Preset'),
     );
 
-  }
-
-  /**
-   * Implements views_handler_field#query().
-   *
-   * @see views_php_views_pre_execute()
-   */
-  function query() {
-    // Provide an field alias but don't actually alter the query.
-    $this->field_alias = 'fb_social_' . $this->position;
   }
 
   /**
@@ -52,15 +48,23 @@ class fb_social_handler_field extends views_handler_field {
   function render($values) {
 
     if (!empty($this->options['fb_social_plugins'])) {
-      if (!empty($values->nid)) {
-        $url = url('node/' . $values->nid, $options = array('absolute' => TRUE));
-      }
-      else {
-        $url = NULL;
-      }
       $presets = fb_social_get_presets();
       $preset = $presets[$this->options['fb_social_plugins']];
-      $value = fb_social_preset_view($preset, $url);
+      $type = $presets[$this->options['fb_social_plugins']]->plugin_type;
+      $url = NULL;
+      // Only supply url for node if nid exists and FB preset accepts url.
+      // TODO: instead of hardcoded values, get this info from plugin defaults
+      if ($type == 'like' || $type == 'send' || $type == 'facepile' || $type == 'comments') {
+        // TODO: with a little work this could be expanded to other entities.
+        if (!empty($values->nid)) {
+          $url = fb_social_url('node/' . $values->nid);
+        }
+        elseif (!empty($values->uid)) {
+          $url = fb_social_url('user/' . $values->uid);
+        }
+        $preset -> fb_attrs['href'] = $url;
+      }
+      $value = fb_social_preset_view($preset);
     }
 
     return $value;

@@ -1,43 +1,42 @@
 <?php
 
 /**
- * @file like.inc
+ * @file subscribe.inc
  * 
- * Main (ctools) plugin file for "like" plugin type
+ * Main (ctools) plugin file for "subscribe" plugin type
  */
 
 $plugin = array(
-    'title' => t('Like'), 
-    'description' => t('Facebook like button plugin'), 
-    'html tag name' => 'like', 
+    'title' => t('Subscribe'), 
+    'description' => t('Facebook subscribe plugin'), 
+    'html tag name' => 'subscribe', 
     
     // hooks 
-    'hook_nodeapi_view' => '_fb_social_like_nodeapi_view', 
-    'hook_field_extra_fields' => '_fb_social_like_field_extra_fields', 
-    'hook_link' => '_fb_social_like_link', 
-    'hook_preprocess_fb_social_plugin' => '_fb_social_like_preprocess_fb_social_plugin' 
+    'hook_nodeapi_view' => '_fb_social_subscribe_nodeapi_view', 
+    'hook_field_extra_fields' => '_fb_social_subscribe_field_extra_fields', 
+    'hook_link' => '_fb_social_subscribe_link', 
+    'hook_preprocess_fb_social_plugin' => '_fb_social_subscribe_preprocess_fb_social_plugin' 
 );
 
-function like_defaults() {
+function subscribe_defaults() {
   return array(
       'href' => '', 
-      'send' => 0, 
-      'layout' => 'button_count', 
-      'show_faces' => 0, 
-      'width' => 350, 
-      'action' => 'like', 
+      'layout' => 'standard', 
+      'show_faces' => 1, 
+      'width' => 450, 
       'font' => 'verdana', 
-      'colorscheme' => 'dark' 
+      'colorscheme' => 'light' 
   );
 }
 
-function like_fb_settings($options) {
+function subscribe_fb_settings($options) {
   
   $form = array();
-  $form['send'] = array(
-      '#type' => 'checkbox', 
-      '#title' => t('Send button'), 
-      '#description' => t('Include a Send button with the Like button') 
+  
+  $form['href'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Profile URL'), 
+      '#description' => t('Profile URL of the user to subscribe to'),
   );
   
   $form['layout'] = array(
@@ -62,17 +61,7 @@ function like_fb_settings($options) {
       '#title' => t('Width'), 
       '#description' => t('The width of the plugin in pixel') 
   );
-  
-  $form['action'] = array(
-      '#type' => 'select', 
-      '#title' => t('Verb'), 
-      '#description' => t('The verb to display in the button'), 
-      '#options' => array(
-          'like' => t('like'), 
-          'recommend' => t('recommend') 
-      ) 
-  );
-  
+    
   $form['font'] = array(
       '#type' => 'select', 
       '#title' => t('Font'), 
@@ -97,7 +86,7 @@ function like_fb_settings($options) {
       ) 
   );
   
-  $defaults = like_defaults();
+  $defaults = subscribe_defaults();
   
   foreach ( $form as $id => $f ) {
     $form[$id]['#default_value'] = isset($options[$id]) ? $options[$id] : $defaults[$id];
@@ -107,7 +96,7 @@ function like_fb_settings($options) {
 
 }
 
-function like_drupal_settings($options) {
+function subscribe_drupal_settings($options) {
   
   $form = array();
   $form['node_types'] = array(
@@ -118,7 +107,7 @@ function like_drupal_settings($options) {
   );
   $form['node_types']['types'] = array(
       '#type' => 'checkboxes', 
-      '#description' => t('Select types that will use the facebook like plugin'), 
+      '#description' => t('Select types that will use the facebook subscribe plugin'), 
       '#default_value' => isset($options['node_types']['types']) ? array_keys(array_filter($options['node_types']['types'])) : array(), 
       '#options' => node_type_get_names() 
   );
@@ -151,25 +140,23 @@ function like_drupal_settings($options) {
 
 }
 
-function _fb_social_like_preprocess_fb_social_plugin(&$variables) {
+function _fb_social_subscribe_preprocess_fb_social_plugin(&$variables) {
   $options = &$variables['options'];
-  $options['send'] = $options['send'] ? "true" : "false";
   $options['show_faces'] = $options['show_faces'] ? "true" : "false";
-  $options['href'] = empty($options['href']) ? $url = fb_social_url($_GET['q']) : $options['href'];
 }
 
 /**
  * content_extra_fields callback for this plugin
  */
-function _fb_social_like_field_extra_fields(&$extras, $preset) {
+function _fb_social_subscribe_field_extra_fields(&$extras, $preset) {
   
   $types = ($preset->settings['node_types']['types']);
   
   foreach ( $types as $type => $value ) {
     if (! empty($value) && $preset->settings['plugin_location']['location']) {
       $extras['node'][$type]['display']['fb_social_' . $preset->name] = array(
-          'label' => t('Facebook like: ' . $preset->name), 
-          'description' => t('The "like" plugin field from ' . $preset->name . ' preset'), 
+          'label' => t('Facebook subscribe: ' . $preset->name), 
+          'description' => t('The "subscribe" plugin field from ' . $preset->name . ' preset'), 
           'weight' => 15 
       );
     
@@ -180,11 +167,10 @@ function _fb_social_like_field_extra_fields(&$extras, $preset) {
 /**
  * nodeapi_view callback for this plugin
  */
-function _fb_social_like_nodeapi_view($preset, &$node, $view_mode = 'full') {
+function _fb_social_subscribe_nodeapi_view($preset, &$node, $view_mode = 'full') {
   
   if ($node->status && fb_social_preset_node_types($preset, $node->type) && $preset->settings['plugin_location']['location']) {
     if (!empty($preset -> settings['plugin_location']['node_view_modes'][$view_mode] )) {
-      $preset->fb_attrs['href'] = fb_social_url('node/' . $node->nid);
       $output = fb_social_preset_view($preset);
       $node->content['fb_social_' . $preset->name] = array(
           '#markup' => $output, 
@@ -198,10 +184,10 @@ function _fb_social_like_nodeapi_view($preset, &$node, $view_mode = 'full') {
 /**
  * Pseudo hook_link for this plugin
  */
-function _fb_social_like_link($preset, $type, $object, $view_mode) {
+function _fb_social_subscribe_link($preset, $type, $object, $view_mode) {
   $links = array();
   
-  // no like for unpublished nodes
+  // no subscribe for unpublished nodes
   if (! $object->status) {
     return $links;
   }
@@ -218,10 +204,8 @@ function _fb_social_like_link($preset, $type, $object, $view_mode) {
   
   // good to go
   if (fb_social_preset_node_types($preset, $object->type)) {
-    
-    $preset->fb_attrs['href'] = fb_social_url('node/' . $object->nid);
     $link_title = fb_social_preset_view($preset);
-    $links['fb-social-like-' . $preset->name] = array(
+    $links['fb-social-subscribe-' . $preset->name] = array(
       'title' => $link_title, 
       'html' => TRUE 
     );

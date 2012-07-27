@@ -1,17 +1,17 @@
 <?php
 /**
- * @file fb_social_like.inc
+ * @file fb_social_subscribe.inc
  * 
- * Box class for "like" plugin type
+ * Box class for "subscribe" plugin type
  */
 
-class fb_social_like extends fb_social_default {
+class fb_social_subscribe extends fb_social_default {
   
   public $fb_plugin_name;
 
   protected function __construct() {
     parent::__construct();
-    $this->fb_plugin_name = 'like';
+    $this->fb_plugin_name = 'subscribe';
   }
 
   /**
