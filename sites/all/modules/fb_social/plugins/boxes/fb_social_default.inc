@@ -1,30 +1,25 @@
 <?php
 
-/**
- * @file fb_social_comments.inc
- * 
- * Base class for fb_social boxes 
- */
 abstract class fb_social_default extends boxes_box {
 
   /**
    * Implementation of boxes_content::options_defaults().
    */
   public function options_defaults() {
-    return fb_social_fb_plugin_defaults($this->fb_plugin_name);
+  	return fb_social_fb_plugin_defaults($this->fb_plugin_name);
   }
 
   /**
    * Implementation of boxes_content::options_form().
    */
   public function options_form(&$form_state) {
-    $fieldset = array(
+    $fieldset =  array(
         '#type' => 'fieldset', 
         '#title' => t('Facebook plugin attributes'), 
-        '#collapsible' => TRUE 
+        '#collapsible' => TRUE, 
     );
-    
-    return $fieldset + $form = fb_social_fb_plugin_fb_settings_form($this->fb_plugin_name, $this->options);
+
+    return $fieldset + $form = fb_social_fb_plugin_fb_settings_form($this->fb_plugin_name, $this -> options);
   }
 
   /**

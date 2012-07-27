@@ -1,22 +1,17 @@
 <?php
 
-/**
- * @file facepile.inc
- * 
- * Main (ctools) plugin file for "facepile" plugin type
- */
-
 $plugin = array(
-    'title' => t('facepile'), 
-    'description' => t('Facebook facepile plugin'), 
-    'html tag name' => 'facepile' 
-)
-;
+  'title' => t('facepile'),
+  'description' => t('Facebook facepile plugin'),
+  'html tag name' => 'facepile',
 
-function facepile_defaults() {
+);
+
+
+function facepile_defaults(){
   return array(
-      'href' => '', 
-      'size' => 'small', 
+      'href' => '',
+      'size' => 'small',
       'width' => 'button_count', 
       'numrows' => 1, 
       'width' => 200, 
@@ -24,14 +19,16 @@ function facepile_defaults() {
   );
 }
 
-function facepile_fb_settings($options) {
-  
+
+function facepile_fb_settings($options){
+
   $form = array();
+
   
   $form['href'] = array(
       '#type' => 'textfield', 
       '#title' => t('URL'), 
-      '#description' => t('If you want the Facepile to display friends who have liked your page, specify the URL of the page here. If you want the Facepile to display users who have signed up for your site leave this empty.') 
+      '#description' => t('If you want the Facepile to display friends who have liked your page, specify the URL of the page here. If you want the Facepile to display users who have signed up for your site leave this empty.'), 
   );
   
   $form['size'] = array(
@@ -40,20 +37,20 @@ function facepile_fb_settings($options) {
       '#description' => t('Determines the size and the images and social context in the facepile'), 
       '#options' => array(
           'small' => t('Small'), 
-          'large' => t('large') 
-      ) 
+          'large' => t('large'), 
+      )
   );
   
   $form['width'] = array(
       '#type' => 'textfield', 
       '#title' => t('Width'), 
-      '#description' => t('The width of the widget in pixels') 
+      '#description' => t('The width of the widget in pixels'), 
   );
   
   $form['numrows'] = array(
       '#type' => 'textfield', 
       '#title' => t('Num rows'), 
-      '#description' => t('The maximum number of rows of profile pictures to show') 
+      '#description' => t('The maximum number of rows of profile pictures to show'), 
   );
   
   $form['colorscheme'] = array(
@@ -62,20 +59,21 @@ function facepile_fb_settings($options) {
       '#description' => t('The color scheme of the plugin'), 
       '#options' => array(
           'dark' => t('dark'), 
-          'light' => t('light') 
+          'light' => t('light'), 
       ) 
   );
   
   $defaults = facepile_defaults();
   
-  foreach ( $form as $id => $f ) {
+  foreach ($form as $id => $f){
     $form[$id]['#default_value'] = isset($options[$id]) ? $options[$id] : $defaults[$id];
   }
   
   return $form;
-
+  
 }
 
-function facepile_drupal_settings($options) {
+
+function facepile_drupal_settings($options){
   return array();
 }
