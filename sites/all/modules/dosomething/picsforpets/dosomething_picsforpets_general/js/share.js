@@ -8,30 +8,47 @@ Drupal.behaviors.dsPfpShare = {
     else {
       var sid = settings.fbappsAnimals.images[settings.fbappsAnimals.index].sid;
     }
+
+    // Grab some text and a picture to share on the user's wall.
+    var pictureUrl = $('.field-name-field-fb-app-image img').attr('src');
+    var petName = $('.hi-pet-name p').text();
+    var threeWords = [];
+    jQuery.each($('.field-name-field-fb-app-three-words .field-items').children(), function() {
+      threeWords.push($(this).text());
+    });
+    // The 'feed' method is newer and allows us to make a more engaging share
+    // with a picture and descriptive text. If the share is successful, this
+    // method will return an object with the post_id of the share. Otherwise
+    // it will return null.
     var share = {
-      method: 'stream.share',
-      u: 'https://apps.facebook.com/zivtechdev/webform-submission/' + sid
+      method: 'feed',
+      name: 'DoSomething.org\'s Pics for Pets project.',
+      link: 'https://apps.facebook.com/zivtechdev/webform-submission/' + sid,
+      picture: pictureUrl,
+      caption: petName,
+      description: "I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2] + "."
     };
     $('#picsforpets-share').click(function () {
-      event.preventDefault();
+      // This was causing problems for me. - Dave
+      //event.preventDefault();
       FB.ui(share, function(response) {
-        console.log(response);
-        // TODO: only update this stuff if the response shows there was a share not a cancel.
-        $.get('http://graph.facebook.com/https://apps.facebook.com/zivtechdev/webform-submission/' + sid, function (data) {
-          var json = jQuery.parseJSON(data);
-          $('.picsforpets-share-count').text(json.shares);
-          var userShares = settings.fbappsAnimals.userShares;
-          if (userShares == undefined) {
-            userShares = 0;
-          }
-          userShares++;
-          settings.fbappsAnimals.userShares = userShares;
-          if (userShares == 3) {
-            // TODO: open the thank you dialog.
-            alert('three');
-          }
-        });
-      //  $.post('https://apps.facebook.com/zivtechdev/' + window.location.pathname + '/share', data);
+        // response will be an object (success) or null (cancel or fail).
+        if (response) {
+          $.get('http://graph.facebook.com/https://apps.facebook.com/zivtechdev/webform-submission/' + sid, function (data) {
+            var json = jQuery.parseJSON(data);
+            $('.picsforpets-share-count').text(json.shares);
+            var userShares = settings.fbappsAnimals.userShares;
+            if (userShares == undefined) {
+              userShares = 0;
+            }
+            userShares++;
+            settings.fbappsAnimals.userShares = userShares;
+            if (userShares == 3) {
+              // TODO: open the thank you dialog.
+              alert('three');
+            }
+          });
+        }
       });
     });
   }
