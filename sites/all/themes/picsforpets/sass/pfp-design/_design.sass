@@ -143,6 +143,11 @@ a.footer-furtography
 ////////////////////////////
 // POPUP MESSAGES
 ////////////////////////////
+#dosomething-picsforpets-general-furtographer-form--2
+  +clearfix
+  div
+    clear: both
+
 .views-exposed-widgets
   margin-bottom: -3px
 
@@ -165,6 +170,8 @@ a.footer-furtography
   text-transform: uppercase
   font-size: 52px
   border-bottom: 1px solid $white
+  +border-radius(0)
+  margin-bottom: 12px
 
 .ui-dialog-content
   color: $white
@@ -478,7 +485,7 @@ select#edit-field-fb-app-animal-type-value
     padding-bottom: 8px
     margin-bottom: 16px
     padding-top: 20px
-  a
+  div
     @extend h1
     +border-radius(8px)
     color: $white
