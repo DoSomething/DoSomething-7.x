@@ -11,7 +11,7 @@ $plugin = array(
 );
 
 function dosomething_social_scholars_image_display_content_type_render($subtype, $conf, $panel_args, $context) {
-  $node = node_load(723323);
+  $node = node_load(723646);
   $block = new StdClass();
 
   drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.css', array(
