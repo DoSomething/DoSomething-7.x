@@ -1466,7 +1466,8 @@ body {
   margin-bottom: 24px;
 }
 
-.page-pics-for-pets-lets-get-started #main-wrapper {
+.page-pics-for-pets-lets-get-started #main-wrapper,
+.node-type-fb-app-data-gathering-form #main-wrapper {
   margin-top: -124px;
 }
 
