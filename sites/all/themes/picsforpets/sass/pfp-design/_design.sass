@@ -239,7 +239,7 @@ a.footer-furtography
   input[type="submit"]
     +border-radius(0px)
     text-transform: uppercase
-    font-family: $font-league
+    @extend %league-gothic
     font-size: 14px
     color: $pfp-gray
     border: 0
@@ -256,7 +256,7 @@ a.footer-furtography
 select#edit-field-fb-app-animal-type-value
   margin-top: -10px
   text-transform: uppercase
-  font-family: $font-league
+  @extend %league-gothic
   font-size: 14px
   color: $pfp-red
   border: 0
@@ -311,10 +311,11 @@ select#edit-field-fb-app-animal-type-value
     color: $white
     a
       color: $white
+      &:first-of-type
+        border-bottom: 1px solid $white
     .click-to-learn
       a
         font-size: 18px
-        border-bottom: 1px solid $white
 
 ////////////////////////////
 // NO RESULTS

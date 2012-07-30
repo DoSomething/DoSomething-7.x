@@ -530,7 +530,7 @@ h1 .amp, #picsforpets-share div .amp, h2 .amp, h3 .amp, h4 .amp, h5 .amp, h6 .am
   font-style: italic;
 }
 
-.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
+.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1401,7 +1401,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/5k-scholarship.png?1342119257');
+  background-image: url('../images/5k-scholarship.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1423,7 +1423,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/ds-logo.png?1342119832');
+  background-image: url('../images/ds-logo.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1634,7 +1634,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png?1342457970');
+  background-image: url('../images/close.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -1674,7 +1674,6 @@ a.footer-furtography {
   -o-border-radius: 0px;
   border-radius: 0px;
   text-transform: uppercase;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
   font-size: 14px;
   color: #a6a8ab;
   border: 0;
@@ -1694,7 +1693,6 @@ a.footer-furtography {
 select#edit-field-fb-app-animal-type-value {
   margin-top: -10px;
   text-transform: uppercase;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
   font-size: 14px;
   color: #ec1c24;
   border: 0;
@@ -1757,9 +1755,11 @@ select#edit-field-fb-app-animal-type-value {
 .gallery-thumbnail-text:hover a {
   color: white;
 }
+.gallery-thumbnail-text:hover a:first-of-type {
+  border-bottom: 1px solid white;
+}
 .gallery-thumbnail-text:hover .click-to-learn a {
   font-size: 18px;
-  border-bottom: 1px solid white;
 }
 
 .no-results {
