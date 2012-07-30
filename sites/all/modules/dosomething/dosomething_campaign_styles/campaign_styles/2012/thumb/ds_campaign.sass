@@ -365,7 +365,8 @@ h2.pane-title
 .fb-social-comments-plugin
   padding-bottom: 40px
   iframe
-    margin: 20px 0 0 100px
+    margin: 20px 0 0 10px
+    width: 530px !important
 
 // sign up webform
 #node-722143
@@ -383,8 +384,8 @@ h2.pane-title
   display: none
   
 // set the resgister for Do Something block on sign up to be taller
-#dosomething-login-register-popup-form .popup-content
-  height: 165px !important
+
+
 
 // refer five friends
 .mcommons-webform
@@ -651,21 +652,23 @@ img
     
 // report back
 #edit-submitted-field-webform-school-reference
-  display:none
+  display: none
   
 #edit-submitted-group-audience
   display: none
     
 #thumbwars_reportback
+  width: 550px
+  margin: 0 auto
   label
     font-family: din-web
     font-weight: 500
     font-size: 1.75em
     padding: 1em 0 0.5em
   
-  #webform-component-first-name
-    float: left
-    margin-right: 16px
+  //#webform-component-first-name
+    //float: left
+    //margin-right: 16px
     
   .form-select
     width: 240px
@@ -705,6 +708,7 @@ img
   
   #edit-actions
     margin-bottom: 16px
+    text-align: left
 
 // refer
 .mcommons-webform
@@ -777,49 +781,101 @@ form.webform-client-form
     font-size: 2.5em
     font-weight: 500
 
-#webform-component-first-name, #webform-component-last-name, #webform-component-address-1, #webform-component-address-2, #webform-component-city, #webform-component-state, #webform-component-zip-code, #webform-component-who-with, .form-item-submitted-field-webform-email-und-0-email, .form-item-submitted-field-webform-mobile-und-0-value
-  clear: both
-  margin: 0 auto  
-  label
-    width: 220px
-    padding: 5px 0 0 40px
-  label, input
-    float: left
-    margin: 8px 0
-    font-size: 14px
-  input
-    width: 250px
-    &:focus
-      background-color: lightyellow
+// Sign Up Form
+.node-type-campaign-sign-up
+  #webform-component-first-name, #webform-component-last-name, #webform-component-address-1, #webform-component-address-2, #webform-component-city, #webform-component-state, #webform-component-zip-code, #webform-component-who-with, .form-item-submitted-field-webform-email-und-0-email, .form-item-submitted-field-webform-mobile-und-0-value, .form-item-first-name, .form-item-last-name, .form-item-email, .form-item-cell, .form-item-pass
+    clear: both
+    margin: 0 auto !important  
+    float: left !important
+    label
+      width: 220px
+      padding: 5px 0 0 40px
+    label, input
+      float: left
+      margin: 8px 0
+      font-size: 14px
+    input
+      width: 225px !important
+      &:focus
+        background-color: lightyellow   
+
+  label[for="edit-last-name"], label[for="edit-first-name"], label[for="edit-cell-or-email"]
+    display: block !important        
     
-#webform-component-who-with
-  label
-    width: 100%
-    padding-left: 0
-  textarea
-    border: none
-    -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
-    -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
-    box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
-    outline: none
-    padding-left: 5px
-    &:focus
-      background-color: lightyellow
-  .grippie
-    margin-bottom: 10px
-    
-.page-node-722143
-  .pane-dosomething-login-register-block
-    width: 550px
-    margin: 0 auto
-  #thumbs-signup
+  #webform-component-who-with
+    label
+      width: 100%
+      padding-left: 0
+    textarea
+      border: none
+      -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      outline: none
+      padding-left: 5px
+      &:focus
+        background-color: lightyellow
+    .grippie
+      margin-bottom: 10px
+
+  .panel-row-flexible-top
     width: 550px
     margin: 0 auto
     h2.pane-title
-      display: none
+      display: none  
+
   #webform-component-instructions
     margin: 0 0 -10px 0 !important
   form.webform-client-form
     #edit-actions--2, #edit-actions
       text-align: center
       margin: 10px
+      clear: both
+
+.center
+  text-align: center
+
+.pane-dosomething-login-register-block
+  margin-bottom: 0 !important
+  h2.pane-title
+    display: block !important   
+
+#dosomething-login-register-popup-form 
+  input
+    &:focus
+      background-color: lightyellow  
+  .form-item-last-name, .form-item-cell, .form-item-pass
+    width: 100%
+  .ds-registration-form-required
+    position: static
+  .popup-content
+    height: 100% !important
+    padding: 15px 15px 0 15px !important
+    margin: 0 !important    
+  #edit-birthday
+    input
+      width: 68px
+    label  
+      .login-popup-birthday
+        position: static !important
+        font-size: 14px !important  
+      width: 220px
+      padding: 5px 0 0 40px
+      margin: 8px 0
+    .form-item-month, .form-item-day, .form-item-year
+      margin-top: 8px !important   
+
+// Report Back Form  
+.node-type-campaign-report-back   
+  .panel-row-flexible-top
+    width: 550px
+    margin: 0 auto  
+    label
+      margin-top: 1em
+    fieldset 
+      legend
+        padding: 20px 0 0 0 !important 
+    #edit-actions--2, #edit-actions
+      text-align: center
+      margin: 10px
+      clear: both    

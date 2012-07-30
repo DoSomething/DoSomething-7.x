@@ -94,5 +94,9 @@
 
     // remove future challenges from DOM
     $("#challenges_open ul").slice((day - sliceNo), 11).remove();
+
+    // post-campaign banner injection
+    $('#block-system-main > .content').prepend($('#top_banner'));
+
   });
 })(jQuery);

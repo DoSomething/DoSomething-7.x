@@ -11,19 +11,31 @@
       $reasonBox = $reasonWrapper.find('.form-textarea-wrapper');
       $reasonLabel = $reasonWrapper.find('label');
       $signatureCheckbox = $('#edit-submitted-field-webform-petition-signature--2');
+      $signShortcut = $('#sign-petition-scroller');
 
-      $signatureCheckbox.appendTo($('#webform-client-form-723108--2>div'));
+      $signatureCheckbox.appendTo($('.pane-node-webform .webform-client-form>div'));
 
       // add the "Add a reason" link
       $displayReasonLink = $('<a>')
         .attr('id', 'add-reason-link')
-        .text('Add a reason')
+        .text('Add one')
         .click(function () {
           $reasonBox.slideToggle();
         });
       
       $reasonBox.hide();
       $reasonLabel.append($displayReasonLink);
+
+      // make the secondary sign button do something
+      $signShortcut.click(function () {
+        $form = $('.pane-node-webform');
+        $('html, body').animate({scrollTop: $form.offset().top}, 300);
+        $form
+          .css('-webkit-box-shadow', '#18408B 0 0 12px')
+          .css('-moz-box-shadow', '#18408B 0 0 12px')
+          .css('box-shadow', '#18408B 0 0 12px');
+        return false;
+      });
 
       // convert labels to placeholders
       if (placeholder) {
@@ -42,13 +54,15 @@
 
   // Define our own jQuery plugin so we can call it from Drupal's AJAX callback
   $.fn.extend({
-    dsPetitionSubmit: function (url) {
+    dsPetitionSubmit: function (url, is_user) {
       // Whelp, these were breaking things, so let's just destroy them.
-      // This is probably bad practice.
+      // This is bad practice.
       delete Drupal.behaviors.dosomethingLoginRegister;
+      delete Drupal.behaviors.dosomethingLoginLogin;
       delete Drupal.behaviors.dosomethingPetitions;
       
       var popupForm = $('#dosomething-login-register-popup-form');
+      var loginForm = $('#dosomething-login-login-popup-form');
 
       fName = $('#edit-submitted-field-webform-first-name-und-0-value--2').val();
       lName = $('#edit-submitted-field-webform-last-name-und-0-value--2').val();
@@ -58,11 +72,13 @@
       var is_mobile = Drupal.dsRegistration.validPhone(e_or_m);
 
       // set the values on the popup form based on user input
+      loginForm.find('input[name="name"]').val(e_or_m);
+
       if (is_email) {
         popupForm.find('input[name="email"]').val(e_or_m);
       }
       if (is_mobile) {
-        popupForm.find('input[name="cell"]').val('e_or_m');
+        popupForm.find('input[name="cell"]').val(e_or_m);
       }
       popupForm.find('input[name="first_name"]').val(fName);
       popupForm.find('input[name="last_name"]').val(lName);
@@ -75,10 +91,25 @@
       // make sure users get directed to the right page
       popupForm.attr('action', '/user/registration?destination='+url);
       popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination='+url);
-      $('#dosomething-login-login-popup-form').attr('action', '/user?destination='+url);
+      loginForm.attr('action', '/user?destination='+url);
 
+      popupForm.bind('dialogbeforeclose', function (event, ui) {
+        if ($(event.srcElement).hasClass('ui-icon-closethick')) {
+          window.location.reload();
+        }
+      });
+      loginForm.bind('dialogbeforeclose', function (event, ui) {
+        if ($(event.srcElement).hasClass('ui-icon-closethick')) {
+          window.location.reload();
+        }
+      });
+
+      var form = popupForm;
+      if (is_user) {
+        form = loginForm;
+      }
       // popup!
-      popupForm.dialog({
+      form.dialog({
         resizable: false,
         draggable: false,
         modal: true,
