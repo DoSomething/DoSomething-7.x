@@ -208,7 +208,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="gallery-thumbnail-text">
-[nothing]<br />
+<div class="click-to-learn">[nothing]</div>
 [field_fb_app_animal_name]<br />
 [field_pfp_address]<br />
 </div>';

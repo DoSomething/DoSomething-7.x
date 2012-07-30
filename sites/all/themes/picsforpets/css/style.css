@@ -1401,7 +1401,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/5k-scholarship.png?1343054988');
+  background-image: url('../images/5k-scholarship.png?1342119257');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1423,7 +1423,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/ds-logo.png?1343054988');
+  background-image: url('../images/ds-logo.png?1342119832');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1634,7 +1634,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png?1343054988');
+  background-image: url('../images/close.png?1342457970');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -1743,7 +1743,7 @@ select#edit-field-fb-app-animal-type-value {
   position: relative;
   z-index: 100px;
   display: block;
-  padding-top: 20px;
+  padding-top: 4px;
 }
 .gallery-thumbnail-text a {
   color: rgba(255, 255, 255, 0);
@@ -1755,11 +1755,12 @@ select#edit-field-fb-app-animal-type-value {
 .gallery-thumbnail-text:hover a {
   color: white;
 }
-.gallery-thumbnail-text:hover a:first-of-type {
-  border-bottom: 1px solid white;
+.gallery-thumbnail-text:hover .click-to-learn {
+  font-size: 18px;
+  margin-bottom: 8px;
 }
 .gallery-thumbnail-text:hover .click-to-learn a {
-  font-size: 18px;
+  border-bottom: 1px solid white;
 }
 
 .no-results {
