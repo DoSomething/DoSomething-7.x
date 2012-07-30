@@ -1466,6 +1466,10 @@ body {
   margin-bottom: 24px;
 }
 
+.page-pics-for-pets-lets-get-started #main-wrapper {
+  margin-top: -124px;
+}
+
 #find-a-shelter {
   background: rgba(255, 255, 255, 0.75) url(../images/find-a-shelter.png) no-repeat;
   background-position: 50% 80px;
