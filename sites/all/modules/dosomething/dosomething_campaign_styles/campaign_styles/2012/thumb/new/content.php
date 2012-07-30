@@ -23,9 +23,9 @@
     <div class="divider"><span>here's what you do</span></div>
     <div class="col">
       <h1>1</h1>
-      <h2>get thumb socks</h2>
+      <h2>still want socks</h2>
       <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do1.png"/>
-      <p class="bottom">Sign up to the left to enter for a chance to get two pairs of thumb socks. *You must be 25 or younger to get thumb socks.</p>
+      <p class="bottom">Thumb Wars will be back in 2013. Sign up to the left and we'll keep you updated and let you know when we're back!</p>
     </div> <!-- .col -->
     <div class="col mid">
       <h1>2</h1>
@@ -74,7 +74,6 @@
           <input type="hidden" name="opt_in_path" value="113391">
         </div> <!-- .mcommons-webform-column -->
         <div class="mcommons-col-last">
-          <input type="submit" class="go-button" value="go" />
         </div>
       </form></div> <!-- .refer-form -->
     </div> <!-- .col2 -->    
@@ -228,7 +227,7 @@
       <div class="col3">
         <h3>send 5 friends<br>texting &amp; driving stats</h3>
         <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/scholarship2.png" alt="two ways to enter"/>
-        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <a href="/thumbwars/tell-us">upload them here</a>!</p>
+        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <br><a href="/thumbwars/tell-us">upload them here</a>!</p>
       </div> <!-- .col3 -->
  
       <div class="col4">

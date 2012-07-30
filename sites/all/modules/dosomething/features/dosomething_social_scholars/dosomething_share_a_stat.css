@@ -35,7 +35,7 @@ input#edit-submit.go-button.form-submit {
 	top: -8px;
 }
 
- #ds-campaign-scholarship-submit-form div.form-item-submitted-friends-information-field-social-scholars-friend-1-und-0-value label {
+ #ds-campaign-submit-form div.form-item-submitted-friends-information-field-social-scholars-friend-1-und-0-value label, #ds-campaign-scholarship-submit-form div.form-item-submitted-friends-information-field-social-scholars-friend-1-und-0-value label {
  	font-size: 11.5px;
 	display: block;
 	margin-bottom: 5px;
@@ -92,4 +92,8 @@ input#edit-submit.go-button.form-submit {
 #campaign-opt-in-help {
 	display: none;
 	clear: both;
+}
+
+.or-image {
+	margin-top: 10px;
 }

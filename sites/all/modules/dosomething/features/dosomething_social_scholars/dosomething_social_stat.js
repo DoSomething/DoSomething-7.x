@@ -1,3 +1,8 @@
+var a2a_config = a2a_config || {};
+a2a_config.templates = {
+    twitter: "Reading: ${title} ${link} by @micropat"
+};
+
 jQuery(document).ready(function() {
   // Define our own jQuery plugin so we can call it from Drupal's AJAX callback
   jQuery('#ds-campaign-scholarship-submit-form input.form-text, #ds-campaign-submit-form input.form-text').each(function() {
@@ -21,6 +26,13 @@ jQuery(document).ready(function() {
     jQuery('#campaign-opt-in-help').dialog('open');
     return false;
   });
+
+  if (jQuery('.twitter-share-button').length > 0)
+  {
+    var tweet_text = "It's time to @dosomething about animal cruelty! Share stats with your friends and you could win $5k in scholarships: http://tinyurl.com/cuaf8ou";
+    var to = jQuery('.twitter-share-button').attr('href');
+    var changed = to.replace(/&text=[^&]+/, '&text=' + encodeURI(tweet_text));
+    var another = changed.replace(/&via=[^&]+/, '');
+    jQuery('.twitter-share-button').attr('href', another);
+  }
 });
-
-

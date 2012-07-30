@@ -224,10 +224,10 @@ div[role="main"], #cask-aside
   height: 270px
 
 .do
-  height: 300px
+  height: 285px
 
 .do2
-  height: 285px
+  height: 260px
 
 .actionguide
   height: 570px
@@ -248,14 +248,16 @@ div[role="main"], #cask-aside
 // page sections (deviations)
 div.contact_form-aside
   margin: 5% 0
-  h1, h2
+  h1, h3
     text-align: center
   h1
     font-size: 40px
     margin: 0 0 0 0
-  h2
+  h3
     padding: 0 0 5% 0
     border-bottom: 2px solid #fff
+  #edit-actions
+    margin 8% 0 0 0
 
 form.webform-client-form
   text-align: center
@@ -286,6 +288,7 @@ form.webform-client-form
 div.nav-aside
   h3
     color: $thumbYellow
+    font-size: 24px
   h4
     text-transform: uppercase
   ul
@@ -293,6 +296,8 @@ div.nav-aside
     padding: 0 0 5% 0
     border-bottom: 2px solid #fff
     list-style-type: none
+  // li
+  //   padding: 3% 0 0 0
 
 div.header
   margin: 0 auto
@@ -309,7 +314,7 @@ div.header
   span
     padding: 0 0.3em
     background: rgb(10,80,128)
-    background: rgba(10,80,128,0.5)
+    background: rgba(0,30,100,0.7)
 
 .do, .do2
   img
@@ -326,6 +331,10 @@ div.header
   .col
     height: 245px
 
+#cask .do h1, #cask .do2 h1
+  margin: 2% 0 0 0
+  line-height: 1em
+
 .do2
   padding: 2% 0
   .col2
@@ -338,7 +347,7 @@ div.learn
   h3
     margin: 40% 0 0
   p
-    margin: 2% 0 10%
+    margin: 5% 0 10%
   .disclaimer
     font-style: italic
     text-decoration: underline
@@ -376,13 +385,17 @@ div.scholarship
 div.did
   padding-bottom: 5%
   h1
-    color: $thumbYellow
     line-height: 1em
-    margin-top: 1em
+    margin: 2% 0
+  h3
+    background-color: $thumbBlue
+    color: $thumbYellow
+    width: 95%
+    margin: 2% auto
+    padding: 2% 0
   a
-    color: white
+    color: $thumbYellow
     font-size: 18px
-    text-decoration: underline
 
 div.faq
   h4
@@ -411,16 +424,27 @@ div.faq
   .action-guide-description
     margin: 2% 0 0 0
   #action-guide-right, #action-guide-left
+    padding: 0 5px
+    display: block
+    width: 45px
+    text-indent: -119988px
+    overflow: hidden
+    text-align: left
+    background-image: url("http://www.dosomething.org/sites/all/themes/doit/css/images/scroller_arrows.png")
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    height: 480px
     position: absolute
-    top: 120px
-    font-size: 60px
+    top: 0
     &:hover
       text-decoration: none
       color: white
   #action-guide-right
-    right: 60px
+    right: 0px
+    background-position: center right
   #action-guide-left
-    left: 60px
+    left: 0px
+    background-position: center left
   li
     margin: 0
     padding: 0

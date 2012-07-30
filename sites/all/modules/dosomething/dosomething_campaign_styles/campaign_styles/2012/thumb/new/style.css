@@ -187,10 +187,10 @@ div[role="main"] a, #cask-aside a {
   height: 270px; }
 
 .do {
-  height: 300px; }
+  height: 285px; }
 
 .do2 {
-  height: 285px; }
+  height: 260px; }
 
 .actionguide {
   height: 570px; }
@@ -208,12 +208,12 @@ div[role="main"] a, #cask-aside a {
 
 div.contact_form-aside {
   margin: 5% 0; }
-  div.contact_form-aside h1, div.contact_form-aside h2 {
+  div.contact_form-aside h1, div.contact_form-aside h3 {
     text-align: center; }
   div.contact_form-aside h1 {
     font-size: 40px;
     margin: 0 0 0 0; }
-  div.contact_form-aside h2 {
+  div.contact_form-aside h3 {
     padding: 0 0 5% 0;
     border-bottom: 2px solid white; }
 
@@ -236,7 +236,8 @@ form.webform-client-form {
   color: grey; }
 
 div.nav-aside h3 {
-  color: #ffd215; }
+  color: #ffd215;
+  font-size: 24px; }
 div.nav-aside h4 {
   text-transform: uppercase; }
 div.nav-aside ul {
@@ -260,7 +261,7 @@ div.header {
   div.header span {
     padding: 0 0.3em;
     background: #0a5080;
-    background: rgba(10, 80, 128, 0.5); }
+    background: rgba(0, 30, 100, 0.7); }
 
 .do img, .do2 img {
   width: 100%; }
@@ -276,6 +277,10 @@ div.header {
 .do .col, .do2 .col {
   height: 245px; }
 
+#cask .do h1, #cask .do2 h1 {
+  margin: 2% 0 0 0;
+  line-height: 1em; }
+
 .do2 {
   padding: 2% 0; }
   .do2 .col2 {
@@ -287,7 +292,7 @@ div.header {
 div.learn h3 {
   margin: 40% 0 0; }
 div.learn p {
-  margin: 2% 0 10%; }
+  margin: 5% 0 10%; }
 div.learn .disclaimer {
   font-style: italic;
   text-decoration: underline;
@@ -324,13 +329,17 @@ div.scholarship h1, div.scholarship img, div.scholarship .disclaimer {
 div.did {
   padding-bottom: 5%; }
   div.did h1 {
-    color: #ffd215;
     line-height: 1em;
-    margin-top: 1em; }
+    margin: 2% 0; }
+  div.did h3 {
+    background-color: #0a5080;
+    color: #ffd215;
+    width: 95%;
+    margin: 2% auto;
+    padding: 2% 0; }
   div.did a {
-    color: white;
-    font-size: 18px;
-    text-decoration: underline; }
+    color: #ffd215;
+    font-size: 18px; }
 
 div.faq h4 {
   color: #ffd215;
@@ -357,16 +366,27 @@ div.faq .activeFAQ {
   #thumb-wars-action-guide .action-guide-description {
     margin: 2% 0 0 0; }
   #thumb-wars-action-guide #action-guide-right, #thumb-wars-action-guide #action-guide-left {
+    padding: 0 5px;
+    display: block;
+    width: 45px;
+    text-indent: -119988px;
+    overflow: hidden;
+    text-align: left;
+    background-image: url("http://www.dosomething.org/sites/all/themes/doit/css/images/scroller_arrows.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 480px;
     position: absolute;
-    top: 120px;
-    font-size: 60px; }
+    top: 0; }
     #thumb-wars-action-guide #action-guide-right:hover, #thumb-wars-action-guide #action-guide-left:hover {
       text-decoration: none;
       color: white; }
   #thumb-wars-action-guide #action-guide-right {
-    right: 60px; }
+    right: 0px;
+    background-position: center right; }
   #thumb-wars-action-guide #action-guide-left {
-    left: 60px; }
+    left: 0px;
+    background-position: center left; }
   #thumb-wars-action-guide li {
     margin: 0;
     padding: 0;
