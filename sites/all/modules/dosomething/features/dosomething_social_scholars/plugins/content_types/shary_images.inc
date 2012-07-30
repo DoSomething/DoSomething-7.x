@@ -19,6 +19,12 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
     'weight' => 10
   ));
 
+  $c = menu_get_object();
+  if ($c->nid !== $node->nid)
+  {
+    header('location: /animal-social-stats');
+  }
+
   drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_social_stat.js');
 
   $width = '225px';
