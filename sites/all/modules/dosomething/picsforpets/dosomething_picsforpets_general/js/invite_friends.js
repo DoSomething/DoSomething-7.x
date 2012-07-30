@@ -8,6 +8,7 @@ Drupal.behaviors.inviteFriendsModal = {
         display: 'iframe',
         title: 'The DoSomething.org Pics for Pets Project',
         message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
+        access_token: FB.getAccessToken()
       };
       FB.ui(obj);
     });
