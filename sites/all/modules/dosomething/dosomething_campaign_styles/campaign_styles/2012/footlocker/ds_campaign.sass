@@ -20,8 +20,8 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: url('assets/bg.png')
-$bgFallback: #231F20 /* slate grey */
+$imageBackground: url('http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg')
+$bgFallback: #000000
 $bgGray: #C8C8C8
 
 // block definition (all blocks--don't define width or float here)
@@ -65,7 +65,7 @@ hr
 body
   background-color: $bgFallback
   background-image: $imageBackground
-  background-repeat: repeat-y
+  background-repeat: no-repeat
   background-position: center top
 
 div[role="main"]
@@ -150,7 +150,7 @@ div[role="main"]
   #webform-component-fieldset-2
     float: left
     width: 186px
-  #edit-actions
+  #edit-actions, #edit-actions--2
     bottom: 0
     margin-bottom: 20px !important
     margin-right: 12px
@@ -342,12 +342,14 @@ div[role="main"]
   color: white
   float: left
   font-family: din-web
-  font-size: 22px
+  font-size: 20px
   font-weight: 600
   line-height: 35px
   // setting margin-top so that the labels line up better with numbers
   margin-top: -2px
   text-transform: uppercase
+  .campaign-counter-label-top
+    margin-left: -54px  
   
 .campaign-counter-numbers
   float: right
@@ -421,6 +423,9 @@ div[role="main"]
   span
     text-transform: uppercase
     color: $baseColor
+  -webkit-border-radius: 15px
+  -moz-border-radius: 15px
+  border-radius: 15px
 
 .ui-dialog .ui-dialog-titlebar-close
   right: -425px
@@ -428,14 +433,185 @@ div[role="main"]
 #campaign-opt-in
   font-size: 11px
   a
-    vertical-align: super
+    //vertical-align: super
     font-weight: bold
   a:hover
     color: $secondaryLink
     text-decoration: none
 
-form.webform-client-form #edit-actions
+form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--2
   overflow: visible
 
 #breadcrumb
   display: none
+
+// SHORT FORM
+.panel-row-actions
+  margin: 0 0 15px 0
+  width: 750px
+  #edit-actions, #edit-actions--2
+    position: absolute
+    right: 82px
+    bottom: 14px
+  .form-wrapper
+    margin-bottom: 8px !important
+  .pane-content
+    padding: 18px
+  .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      //padding: 0
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px  
+  
+// ABOUT AND NOMINATE BLOCKS
+#footlocker-about
+  float: left
+  width: 44%
+  padding-right: 4%
+  margin: 0 2% 0 4%
+  h2.pane-title
+    font-size: 24px
+  border-right: 3px solid #E7E8E9
+  .pane-content
+    padding-bottom: 0 !important 
+
+#footlocker-nominate
+  float: left
+  width: 40%
+  margin: 0 4% 0 2%
+  h2.pane-title
+    font-size: 24px
+
+#footlocker-about
+  font-size: 16px
+  line-height: 1.3em    
+
+#footlocker-nominate
+  form.webform-client-form
+    padding: 0px
+    border: none
+    box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none 
+    font-size: 14px
+  .form-item
+    margin-bottom: 8px
+  .form-wrapper
+    margin-bottom: 0 !important 
+  .pane-content
+    padding-bottom: 0 !important    
+  #edit-submit
+    position: absolute
+    bottom: 56px
+    right: -10px
+    color: white
+    background: #DF3049
+    font-size: 18px
+    font-weight: normal
+    letter-spacing: 2px
+  .webform-component  
+    width: 220px
+    input
+      &:focus
+        background: lightyellow
+  #webform-component-copy  
+    width: 100%
+    font-size: 16px
+    margin: 0 0 18px 0
+    line-height: 1.3em 
+
+.center
+  text-align: center 
+.fl-paragraph
+  font-size: 16px
+  margin: 16px auto -10px auto
+  width: 80%
+  text-align: center       
+
+// CLASS WHITE LINE
+.winners-pane
+  h2
+    height: 36px
+  .white-line
+    border-top: 3px solid white
+    width: 98%
+    position: absolute
+    top: 18px
+    left: 1%
+  .white-text
+    background: #e31837
+    padding: 0 12px
+    position: relative
+    top: -13px
+
+// IMAGES
+.fl-hat, .fl-cup, .fl-flag
+  display: block
+  margin:  auto
+  box-shadow: none !important 
+  -webkit-box-shadow: none !important
+  -moz-box-shadow: none !important
+
+.field-name-field-campaign-logo
+  img
+    padding-bottom: 10px !important
+
+.field-name-field-campain-date
+  padding-top: 20px      
+
+// POPUPS
+.fl-popup-main-text
+  text-transform: uppercase
+  font-size: 54px
+  font-weight: bold
+  line-height: 1.2em !important 
+  font-family: din-web
+  margin-bottom: 20px
+
+.fl-popup-subtext
+  font-size: 22px
+  font-family: din-web
+  line-height: 1.4em !important
+  color: #e31837 !important
+  text-transform: uppercase
+  text-align: center
+  margin-bottom: 0
+  span
+    font-weight: bold
+    text-decoration: underline 
+
+// NOMINTATE POPUP
+#fl-nominate-confirmation-popup
+  a
+    margin-top: 30px
+    padding: 5px 5px 0 5px
+    background: #f1f1f1
+    border: 5px solid #DF3049
+    color: black
+    font-size: 24px
+    font-family: din-web
+    text-transform: uppercase
+    &:hover
+      text-decoration: none
+  .fl-popup-btn
+    margin-top: 40px
+    text-align: center
+  .fl-popup-main-text
+    font-size: 52px !important       
