@@ -26,6 +26,10 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
   }
 
   drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_social_stat.js');
+  if (!user_is_logged_in())
+  {
+    drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.js');
+  }
 
   $width = '225px';
 
