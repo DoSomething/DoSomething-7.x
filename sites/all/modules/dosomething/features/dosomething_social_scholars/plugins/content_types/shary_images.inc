@@ -20,7 +20,7 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
   ));
 
   $c = menu_get_object();
-  if ($c->nid !== $node->nid)
+  if ($c->nid == $node->nid)
   {
     header('location: /animal-social-stats');
   }
