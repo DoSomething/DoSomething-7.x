@@ -11,7 +11,7 @@ $plugin = array(
 );
 
 function dosomething_social_scholars_image_display_content_type_render($subtype, $conf, $panel_args, $context) {
-  $node = node_load(723646);
+  $node = node_load(723323);
   $block = new StdClass();
 
   drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.css', array(
@@ -40,8 +40,8 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
       . 'link=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) . '&'
       . 'picture=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . '/files/' . $image['filename']) . '&'
       . 'name=' . urlencode($node->title).  '&'
-      . 'caption=' . urlencode($node->title) . '&'
-      . 'description=' . urlencode($desc) . '&'
+      . 'caption=' . urlencode($desc) . '&'
+      . 'description=&'
       . 'display=popup&'
       . 'redirect_uri=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
