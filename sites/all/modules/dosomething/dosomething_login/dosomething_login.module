@@ -1852,3 +1852,10 @@ function dosomething_login_ajax() {
   drupal_get_messages('error');
   drupal_json_output($return);
 }
+
+/**
+ * Implements hook_fboauth_user_presave().
+ */
+function dosomething_login_fboauth_user_presave(&$edit, $fbuser) {
+  $edit['name'] = dosomething_login_unique_name($fbuser->name);
+}
