@@ -206,16 +206,16 @@ div[role="main"] a, #cask-aside a {
   text-align: left;
   border-bottom: none; }
 
-div.contact_form-aside {
-  margin: 5% 0; }
-  div.contact_form-aside h1, div.contact_form-aside h3 {
-    text-align: center; }
-  div.contact_form-aside h1 {
-    font-size: 40px;
-    margin: 0 0 0 0; }
-  div.contact_form-aside h3 {
-    padding: 0 0 5% 0;
-    border-bottom: 2px solid white; }
+div.contact_form-aside h1, div.contact_form-aside h3 {
+  text-align: center; }
+div.contact_form-aside h1 {
+  font-size: 40px;
+  margin: 0 0 0 0; }
+div.contact_form-aside h3 {
+  padding: 0 0 5% 0;
+  border-bottom: 2px solid white; }
+div.contact_form-aside #edit-actions {
+  margin: 8% 0 0 0; }
 
 form.webform-client-form {
   text-align: center; }
@@ -424,3 +424,35 @@ div.faq .activeFAQ {
   background-image: linear-gradient(top, #ffffff, #fed100);
   font-size: 18px;
   text-transform: uppercase; }
+
+#cask-aside {
+  background: #231f20;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  -ms-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0; }
+  #cask-aside img {
+    width: 86%;
+    margin: 6% auto 0;
+    display: block; }
+
+div.contact_form-aside {
+  width: 300px;
+  margin: 5% 0 0 -20px;
+  background: #e20a48;
+  position: relative; }
+  div.contact_form-aside:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+    border-color: #b10838 #b10838 transparent transparent;
+    border-width: 10px;
+    border-style: solid;
+    -webkit-border-radius: 4px 4px 4px 0;
+    -moz-border-radius: 4px 4px 4px 0;
+    -ms-border-radius: 4px 4px 4px 0;
+    -o-border-radius: 4px 4px 4px 0;
+    border-radius: 4px 4px 4px 0; }
