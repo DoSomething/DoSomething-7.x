@@ -456,3 +456,6 @@ div.contact_form-aside {
     -ms-border-radius: 4px 4px 4px 0;
     -o-border-radius: 4px 4px 4px 0;
     border-radius: 4px 4px 4px 0; }
+
+.region-sidebar-first {
+  margin-top: 0 !important; }
