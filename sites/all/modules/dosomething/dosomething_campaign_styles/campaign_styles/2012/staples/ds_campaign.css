@@ -221,6 +221,11 @@ form .go-button {
         width: 75%;
         margin-top: 5px; }
 
+.webform-client-form #edit-actions {
+  position: absolute;
+  right: 86px;
+  bottom: 9px; }
+
 #campaign-opt-in {
   font-size: 11px;
   margin-left: 15px;
@@ -434,16 +439,22 @@ form.webform-client-form {
 .prizes {
   margin-right: 2%; }
 
-.tell-us #edit-submitted-field-webform-school-reference {
-  display: none; }
+.tell-us {
+  width: 65%; }
+  .tell-us #edit-submitted-field-webform-school-reference {
+    display: none; }
+  .tell-us #edit-submitted-field-webform-pictures {
+    margin-bottom: 100px; }
 
-.sign-up #edit-submitted-field-webform-school-reference,
-.sign-up .field-name-group-audience {
-  display: none; }
-.sign-up #webform-component-zip-code {
-  margin-bottom: 80px; }
-.sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
-  margin-top: 20px; }
+.sign-up {
+  width: 65%; }
+  .sign-up #edit-submitted-field-webform-school-reference,
+  .sign-up .field-name-group-audience {
+    display: none; }
+  .sign-up #webform-component-zip-code {
+    margin-bottom: 80px; }
+  .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
+    margin-top: 20px; }
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
@@ -662,7 +673,8 @@ body.page-node-722952 {
       color: #2f5e26;
       text-transform: uppercase;
       font-family: din-web;
-      font-weight: 600; }
+      font-weight: 600;
+      margin-top: 0; }
   #staples_raise-your-hand-webform #webform-component-last-name label {
     padding-left: 5px;
     color: #2f5e26;
@@ -994,92 +1006,3 @@ body.page-node-722954 {
 
 #node-722264 .fb-social-comments-plugin {
   display: none; }
-
-.node-type-campaign-sign-up #webform-component-first-name, .node-type-campaign-sign-up #webform-component-last-name, .node-type-campaign-sign-up #webform-component-address-1, .node-type-campaign-sign-up #webform-component-address-2, .node-type-campaign-sign-up #webform-component-city, .node-type-campaign-sign-up #webform-component-state, .node-type-campaign-sign-up #webform-component-zip-code, .node-type-campaign-sign-up #webform-component-who-with, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value, .node-type-campaign-sign-up .form-item-first-name, .node-type-campaign-sign-up .form-item-last-name, .node-type-campaign-sign-up .form-item-email, .node-type-campaign-sign-up .form-item-cell, .node-type-campaign-sign-up .form-item-pass {
-  clear: both;
-  margin: 0 auto !important;
-  float: left !important; }
-  .node-type-campaign-sign-up #webform-component-first-name label, .node-type-campaign-sign-up #webform-component-last-name label, .node-type-campaign-sign-up #webform-component-address-1 label, .node-type-campaign-sign-up #webform-component-address-2 label, .node-type-campaign-sign-up #webform-component-city label, .node-type-campaign-sign-up #webform-component-state label, .node-type-campaign-sign-up #webform-component-zip-code label, .node-type-campaign-sign-up #webform-component-who-with label, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email label, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value label, .node-type-campaign-sign-up .form-item-first-name label, .node-type-campaign-sign-up .form-item-last-name label, .node-type-campaign-sign-up .form-item-email label, .node-type-campaign-sign-up .form-item-cell label, .node-type-campaign-sign-up .form-item-pass label {
-    width: 220px;
-    padding: 5px 0 0 40px; }
-  .node-type-campaign-sign-up #webform-component-first-name label, .node-type-campaign-sign-up #webform-component-first-name input, .node-type-campaign-sign-up #webform-component-last-name label, .node-type-campaign-sign-up #webform-component-last-name input, .node-type-campaign-sign-up #webform-component-address-1 label, .node-type-campaign-sign-up #webform-component-address-1 input, .node-type-campaign-sign-up #webform-component-address-2 label, .node-type-campaign-sign-up #webform-component-address-2 input, .node-type-campaign-sign-up #webform-component-city label, .node-type-campaign-sign-up #webform-component-city input, .node-type-campaign-sign-up #webform-component-state label, .node-type-campaign-sign-up #webform-component-state input, .node-type-campaign-sign-up #webform-component-zip-code label, .node-type-campaign-sign-up #webform-component-zip-code input, .node-type-campaign-sign-up #webform-component-who-with label, .node-type-campaign-sign-up #webform-component-who-with input, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email label, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value label, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input, .node-type-campaign-sign-up .form-item-first-name label, .node-type-campaign-sign-up .form-item-first-name input, .node-type-campaign-sign-up .form-item-last-name label, .node-type-campaign-sign-up .form-item-last-name input, .node-type-campaign-sign-up .form-item-email label, .node-type-campaign-sign-up .form-item-email input, .node-type-campaign-sign-up .form-item-cell label, .node-type-campaign-sign-up .form-item-cell input, .node-type-campaign-sign-up .form-item-pass label, .node-type-campaign-sign-up .form-item-pass input {
-    float: left;
-    margin: 8px 0;
-    font-size: 14px; }
-  .node-type-campaign-sign-up #webform-component-first-name input, .node-type-campaign-sign-up #webform-component-last-name input, .node-type-campaign-sign-up #webform-component-address-1 input, .node-type-campaign-sign-up #webform-component-address-2 input, .node-type-campaign-sign-up #webform-component-city input, .node-type-campaign-sign-up #webform-component-state input, .node-type-campaign-sign-up #webform-component-zip-code input, .node-type-campaign-sign-up #webform-component-who-with input, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input, .node-type-campaign-sign-up .form-item-first-name input, .node-type-campaign-sign-up .form-item-last-name input, .node-type-campaign-sign-up .form-item-email input, .node-type-campaign-sign-up .form-item-cell input, .node-type-campaign-sign-up .form-item-pass input {
-    width: 225px !important; }
-    .node-type-campaign-sign-up #webform-component-first-name input:focus, .node-type-campaign-sign-up #webform-component-last-name input:focus, .node-type-campaign-sign-up #webform-component-address-1 input:focus, .node-type-campaign-sign-up #webform-component-address-2 input:focus, .node-type-campaign-sign-up #webform-component-city input:focus, .node-type-campaign-sign-up #webform-component-state input:focus, .node-type-campaign-sign-up #webform-component-zip-code input:focus, .node-type-campaign-sign-up #webform-component-who-with input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input:focus, .node-type-campaign-sign-up .form-item-first-name input:focus, .node-type-campaign-sign-up .form-item-last-name input:focus, .node-type-campaign-sign-up .form-item-email input:focus, .node-type-campaign-sign-up .form-item-cell input:focus, .node-type-campaign-sign-up .form-item-pass input:focus {
-      background-color: lightyellow; }
-.node-type-campaign-sign-up label[for="edit-last-name"], .node-type-campaign-sign-up label[for="edit-first-name"], .node-type-campaign-sign-up label[for="edit-cell-or-email"] {
-  display: block !important; }
-.node-type-campaign-sign-up .webform-component-markup {
-  float: left;
-  clear: both;
-  width: 100%; }
-.node-type-campaign-sign-up #webform-component-who-with label {
-  width: 100%;
-  padding-left: 0; }
-.node-type-campaign-sign-up #webform-component-who-with textarea {
-  border: none;
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  outline: none;
-  padding-left: 5px; }
-  .node-type-campaign-sign-up #webform-component-who-with textarea:focus {
-    background-color: lightyellow; }
-.node-type-campaign-sign-up #webform-component-who-with .grippie {
-  margin-bottom: 10px; }
-.node-type-campaign-sign-up .panel-row-flexible-top {
-  width: 550px;
-  margin: 0 auto; }
-  .node-type-campaign-sign-up .panel-row-flexible-top h2.pane-title {
-    display: none; }
-.node-type-campaign-sign-up #webform-component-instructions {
-  margin: 0 0 -10px 0 !important; }
-.node-type-campaign-sign-up form.webform-client-form #edit-actions--2, .node-type-campaign-sign-up form.webform-client-form #edit-actions {
-  text-align: center;
-  margin: 10px;
-  clear: both; }
-
-.center {
-  text-align: center; }
-
-.pane-dosomething-login-register-block {
-  margin-bottom: 0 !important; }
-  .pane-dosomething-login-register-block h2.pane-title {
-    display: block !important; }
-
-#dosomething-login-register-popup-form input:focus {
-  background-color: lightyellow; }
-#dosomething-login-register-popup-form .form-item-last-name, #dosomething-login-register-popup-form .form-item-cell, #dosomething-login-register-popup-form .form-item-pass {
-  width: 100%; }
-#dosomething-login-register-popup-form .ds-registration-form-required {
-  position: static; }
-#dosomething-login-register-popup-form .popup-content {
-  height: 100% !important;
-  padding: 15px 15px 0 15px !important;
-  margin: 0 !important; }
-#dosomething-login-register-popup-form #edit-birthday input {
-  width: 68px; }
-#dosomething-login-register-popup-form #edit-birthday label {
-  width: 220px;
-  padding: 5px 0 0 40px;
-  margin: 8px 0; }
-  #dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday {
-    position: static !important;
-    font-size: 14px !important; }
-#dosomething-login-register-popup-form #edit-birthday .form-item-month, #dosomething-login-register-popup-form #edit-birthday .form-item-day, #dosomething-login-register-popup-form #edit-birthday .form-item-year {
-  margin-top: 8px !important; }
-
-.node-type-campaign-report-back .panel-row-flexible-top {
-  width: 550px;
-  margin: 0 auto; }
-  .node-type-campaign-report-back .panel-row-flexible-top label {
-    margin-top: 1em; }
-  .node-type-campaign-report-back .panel-row-flexible-top fieldset legend {
-    padding: 20px 0 0 0 !important; }
-  .node-type-campaign-report-back .panel-row-flexible-top #edit-actions--2, .node-type-campaign-report-back .panel-row-flexible-top #edit-actions {
-    text-align: center;
-    margin: 10px;
-    clear: both; }
