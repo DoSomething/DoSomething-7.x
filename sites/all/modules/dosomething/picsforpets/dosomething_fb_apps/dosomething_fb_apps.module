@@ -54,11 +54,11 @@ function dosomething_fb_apps_menu() {
 
 /**
  * Menu callback.
- * Return 10 items for the 'wings' on the pet carousel.
+ * Return 10 items for the 'wings' on the carousel.
  */
 function dosomething_fb_apps_submissions($sid, $offset = 0) {
-  // TODO: order by sharing desc and limit to correct node results.
-  $sids = db_query_range("SELECT sid FROM webform_submissions WHERE sid <> :sid", $offset, 8, array(':sid' => $sid))->fetchCol();
+  // Get next submissions, ordered by most shared descending.
+  $sids = db_query_range("SELECT w.sid FROM {webform_submissions} w LEFT JOIN {field_data_field_fb_app_share_count} f ON f.entity_id = w.sid AND f.entity_type = 'webform_submission_entity' WHERE w.nid = :nid AND w.sid <> :sid ORDER BY f.field_fb_app_share_count_value DESC", $offset, 8, array(':nid' => PICSFORPETS_PET_SUBMISSION_NID, ':sid' => $sid))->fetchCol();
   // The first time we run this, also add the primary submissions's info.
   if (!$offset) {
     array_unshift($sids, $sid);
@@ -74,7 +74,8 @@ function dosomething_fb_apps_submissions($sid, $offset = 0) {
     $path = $wrapper->field_fb_app_image->value();
     $submission->image_inner = theme('image_style', array('style_name' => 'carousel_inner', 'path' => $path['uri']));
     $submission->image_outer = theme('image_style', array('style_name' => 'carousel_outer', 'path' => $path['uri']));
-    // TODO: Add comment here better than this one (meta).
+    // The carousel has a left and right and inner and outer positions. To put the most popular content up front
+    // we put every other result into a positive or negative index. The series here is -1, 1, -2, 2, -3, 3 etc.
     if ($i % 2) {
       $submissions[-1 * ($i + 1 ) / 2] = $submission;
     }
