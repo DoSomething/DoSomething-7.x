@@ -6,6 +6,13 @@ a {
 h1.title {
   display: none; }
 
+img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important; }
+
 hr {
   border-top: 1px solid #be1e2d;
   border-bottom: 1px solid #e51937; }
