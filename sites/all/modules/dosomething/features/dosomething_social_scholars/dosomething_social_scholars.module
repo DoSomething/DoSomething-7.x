@@ -136,13 +136,16 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
 function doit_html_head_alter(&$head)
 {
   $node = menu_get_object();
-  if ($node->type == 'social_scholarship' && isset($node->field_fb_language[LANGUAGE_NONE][0]['value']))
+  if ($node->type == 'social_scholarship')
   {
     if (isset($_COOKIE['DSCC']))
     {
       drupal_goto('animal-social-stats');
     }
 
-    $head['opengraph_meta_og:description']['#attributes']['content'] = $node->field_fb_language[LANGUAGE_NONE][0]['value'];
+    if (isset($node->field_fb_language[LANGUAGE_NONE][0]['value']))
+    {
+      $head['opengraph_meta_og:description']['#attributes']['content'] = $node->field_fb_language[LANGUAGE_NONE][0]['value'];
+    }
   }
 }
