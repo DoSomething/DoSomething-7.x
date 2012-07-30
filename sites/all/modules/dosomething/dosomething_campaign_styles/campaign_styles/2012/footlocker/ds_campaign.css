@@ -11,9 +11,9 @@ hr {
   border-bottom: 1px solid #e51937; }
 
 body {
-  background-color: #231f20;
-  background-image: url("assets/bg.png");
-  background-repeat: repeat-y;
+  background-color: black;
+  background-image: url("http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg");
+  background-repeat: no-repeat;
   background-position: center top; }
 
 div[role="main"] {
@@ -109,7 +109,7 @@ div[role="main"] {
   .nominate-box #webform-component-fieldset-2 {
     float: left;
     width: 186px; }
-  .nominate-box #edit-actions {
+  .nominate-box #edit-actions, .nominate-box #edit-actions--2 {
     bottom: 0;
     margin-bottom: 20px !important;
     margin-right: 12px;
@@ -292,11 +292,13 @@ div[role="main"] {
   color: white;
   float: left;
   font-family: din-web;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 35px;
   margin-top: -2px;
   text-transform: uppercase; }
+  .campaign-counter-labels .campaign-counter-label-top {
+    margin-left: -54px; }
 
 .campaign-counter-numbers {
   float: right;
@@ -309,7 +311,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
     background-image: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
     background-image: -o-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
-    background-image: -ms-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
     background-image: linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
     padding: 2px 2px 0px 5px;
     letter-spacing: 5px;
@@ -325,7 +326,7 @@ div[role="main"] {
   text-align: center;
   font-family: din-web, "Trebuchet MS", sans-serif;
   color: white;
-  background: #231f20;
+  background: black;
   padding: 5px;
   font-weight: 600;
   font-size: 18px;
@@ -350,7 +351,7 @@ div[role="main"] {
     list-style: none;
     margin-right: 25px; }
   #finalist_container h3 {
-    background-color: #231f20;
+    background-color: black;
     color: white;
     margin-bottom: 15px;
     padding: 8px 0;
@@ -358,7 +359,10 @@ div[role="main"] {
     font-size: 18px; }
 
 .ui-dialog {
-  background: black; }
+  background: black;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px; }
   .ui-dialog p {
     color: white;
     line-height: 1.7em; }
@@ -378,14 +382,171 @@ div[role="main"] {
 #campaign-opt-in {
   font-size: 11px; }
   #campaign-opt-in a {
-    vertical-align: super;
     font-weight: bold; }
   #campaign-opt-in a:hover {
     color: black;
     text-decoration: none; }
 
-form.webform-client-form #edit-actions {
+form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--2 {
   overflow: visible; }
 
 #breadcrumb {
   display: none; }
+
+.panel-row-actions {
+  margin: 0 0 15px 0;
+  width: 750px; }
+  .panel-row-actions #edit-actions, .panel-row-actions #edit-actions--2 {
+    position: absolute;
+    right: 82px;
+    bottom: 14px; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 8px !important; }
+  .panel-row-actions .pane-content {
+    padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up form {
+    padding-bottom: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: white; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+    font-size: 14px;
+    width: 280px;
+    margin-bottom: 0.5em; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
+      width: 100%; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+    font-size: 14px;
+    width: 240px;
+    margin-bottom: 0.5em; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+      width: 75%;
+      margin-top: 5px; }
+
+#footlocker-about {
+  float: left;
+  width: 44%;
+  padding-right: 4%;
+  margin: 0 2% 0 4%;
+  border-right: 3px solid #e7e8e9; }
+  #footlocker-about h2.pane-title {
+    font-size: 24px; }
+  #footlocker-about .pane-content {
+    padding-bottom: 0 !important; }
+
+#footlocker-nominate {
+  float: left;
+  width: 40%;
+  margin: 0 4% 0 2%; }
+  #footlocker-nominate h2.pane-title {
+    font-size: 24px; }
+
+#footlocker-about {
+  font-size: 16px;
+  line-height: 1.3em; }
+
+#footlocker-nominate form.webform-client-form {
+  padding: 0px;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  font-size: 14px; }
+#footlocker-nominate .form-item {
+  margin-bottom: 8px; }
+#footlocker-nominate .form-wrapper {
+  margin-bottom: 0 !important; }
+#footlocker-nominate .pane-content {
+  padding-bottom: 0 !important; }
+#footlocker-nominate #edit-submit {
+  position: absolute;
+  bottom: 56px;
+  right: -10px;
+  color: white;
+  background: #df3049;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 2px; }
+#footlocker-nominate .webform-component {
+  width: 220px; }
+  #footlocker-nominate .webform-component input:focus {
+    background: lightyellow; }
+#footlocker-nominate #webform-component-copy {
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 18px 0;
+  line-height: 1.3em; }
+
+.center {
+  text-align: center; }
+
+.fl-paragraph {
+  font-size: 16px;
+  margin: 16px auto -10px auto;
+  width: 80%;
+  text-align: center; }
+
+.winners-pane h2 {
+  height: 36px; }
+.winners-pane .white-line {
+  border-top: 3px solid white;
+  width: 98%;
+  position: absolute;
+  top: 18px;
+  left: 1%; }
+.winners-pane .white-text {
+  background: #e31837;
+  padding: 0 12px;
+  position: relative;
+  top: -13px; }
+
+.fl-hat, .fl-cup, .fl-flag {
+  display: block;
+  margin: auto;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important; }
+
+.field-name-field-campaign-logo img {
+  padding-bottom: 10px !important; }
+
+.field-name-field-campain-date {
+  padding-top: 20px; }
+
+.fl-popup-main-text {
+  text-transform: uppercase;
+  font-size: 54px;
+  font-weight: bold;
+  line-height: 1.2em !important;
+  font-family: din-web;
+  margin-bottom: 20px; }
+
+.fl-popup-subtext {
+  font-size: 22px;
+  font-family: din-web;
+  line-height: 1.4em !important;
+  color: #e31837 !important;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0; }
+  .fl-popup-subtext span {
+    font-weight: bold;
+    text-decoration: underline; }
+
+#fl-nominate-confirmation-popup a {
+  margin-top: 30px;
+  padding: 5px 5px 0 5px;
+  background: #f1f1f1;
+  border: 5px solid #df3049;
+  color: black;
+  font-size: 24px;
+  font-family: din-web;
+  text-transform: uppercase; }
+  #fl-nominate-confirmation-popup a:hover {
+    text-decoration: none; }
+#fl-nominate-confirmation-popup .fl-popup-btn {
+  margin-top: 40px;
+  text-align: center; }
+#fl-nominate-confirmation-popup .fl-popup-main-text {
+  font-size: 52px !important; }

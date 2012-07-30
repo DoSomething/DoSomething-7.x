@@ -1857,5 +1857,16 @@ function dosomething_login_ajax() {
  * Implements hook_fboauth_user_presave().
  */
 function dosomething_login_fboauth_user_presave(&$edit, $fbuser) {
+  $birthdate = strtotime($fbuser->birthday);
+  // Determine the user's role by their age.
+  $role_name = 'member';
+  if (dosomething_login_person_is_over_age($birthdate, 26)) {
+    $role_name = 'old person';
+  }
+  else if (!dosomething_login_person_is_over_age($birthdate, 13)) {
+    $role_name = 'pending member';
+  }
+  $role = user_role_load_by_name($role_name);
+  $edit['roles'][$role->rid] = $role->name;
   $edit['name'] = dosomething_login_unique_name($fbuser->name);
 }
