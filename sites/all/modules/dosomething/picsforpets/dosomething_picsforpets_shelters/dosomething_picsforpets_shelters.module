@@ -26,16 +26,27 @@ function dosomething_picsforpets_shelters_menu() {
 }
 
 /**
- * Generates the lookup form. Takes an additional parameter for a zip code is
- * used to allow the form to return results based on the URL.
+ * Generates the lookup form. Takes an additional parameter for a zip code which
+ * is used to allow the form to return results based on the URL.
  */
 function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip = NULL) {
+  // Initialize variables.
+  $form_state['more_times'] = isset($form_state['more_times']) ? $form_state['more_times'] : 0;
+  $form_state['view_more'] = isset($form_state['view_more']) ? $form_state['view_more'] : FALSE;
+  if (!is_null($zip) && !isset($form_state['values']['zip'])) {
+    $zip_default = $zip;
+  }
+  else {
+    $zip_default = '';
+  }
   $form = array();
+
   $form['zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
     '#required' => TRUE,
     '#weight' => 0,
+    '#default_value' => $zip_default,
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -53,33 +64,97 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   }
   if (!empty($zip) && !isset($form_state['results'])) {
     // Auto populate the results.
-    $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
+    // We retreive an extra result and then throw it away so that we know if we
+    // should show the 'view more' button.
+    $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
+    if (count($shelter_nids) == 11) {
+      $form_state['view_more'] = TRUE;
+      unset($shelter_nids[10]);
+    }
     $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
   }
+
+  // Append the title info
+  $markup = empty($markup) ? '' : '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
+
   $form['results'] = array(
     '#markup' => $markup,
     '#prefix' => '<div id="shelter-results">',
     '#suffix' => '</div>',
     '#weight' => 2,
   );
+
+  $more = '';
+  if (isset($form_state['more_results_all'])) {
+    $more = $form_state['more_results_all'];
+  }
+  $form['more-results'] = array(
+    '#markup' => $more,
+    '#prefix' => '<div id="shelter-results-more">',
+    '#suffix' => '</div>',
+    '#weight' => 3,
+  );
+  if (isset($form_state['view_more']) && $form_state['view_more']) {
+    $form['view_more'] = array(
+      '#type' => 'submit',
+      '#value' => t('View More'),
+      '#weight' => 4,
+      '#ajax' => array(
+        'callback' => 'dosomething_picsforpets_shelters_load_more_ajax',
+        'wrapper' => 'shelter-results-more',
+      ),
+      '#submit' => array('dosomething_picsforpets_shelters_load_more'),
+    );
+  }
+
   return $form;
 }
 
 function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state) {
   $zip = $form_state['values']['zip'];
-  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
+  // We retreive an extra result and then throw it away so that we know if we
+  // should show the 'view more' button.
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
+  if (count($shelter_nids) == 11) {
+    $form_state['view_more'] = TRUE;
+    unset($shelter_nids[10]);
+  }
   $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
   $form_state['results'] = $markup;
   $form_state['rebuild'] = TRUE;
 }
 
-function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, $form_state) {
+function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_state) {
+  return '<div id="shelter-results">' . '<h2>' . t('Shelters near you:') . '</h2>' . $form_state['results'] . '</div>';
+}
+
+function dosomething_picsforpets_shelters_load_more_ajax($form, $form_state) {
+  return $form_state['more_results'] . '<div id="shelter-results-more"></div>';
+}
+
+function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
+  // Make sure we initialize the variable.
+  $form_state['more_results_all'] = isset($form_state['more_results_all']) ? $form_state['more_results_all'] : '';
+  // Update the number of times the more button has been clicked so we know how
+  // many results to skip in our result set.
+  $form_state['more_times'] += 1;
   $zip = $form_state['values']['zip'];
-  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip);
+  // We retreive an extra result and then throw it away so that we know if we
+  // should show the 'view more' button.
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
+  if (count($shelter_nids) == 11) {
+    $form_state['view_more'] = TRUE;
+    unset($shelter_nids[10]);
+  }
+  else {
+    $form_state['view_more'] = FALSE;
+  }
   $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
-  // Wrap it in a div again so we can continue to replace the text.
-  $markup = '<div id="shelter-results">' . $markup . '</div>';
-  return $markup;
+  $form_state['more_results'] = $markup;
+  // We append the results to the former results list so we have the appropriate
+  // content for non JS submissions.
+  $form_state['more_results_all'] .= $markup;
+  $form_state['rebuild'] = TRUE;
 }
 
 /**
@@ -121,6 +196,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         if ($shelter->type == 'shelter') {
           $shelter_data = array();
           $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $shelter_data['nid'] = $shelter->nid;
           $shelter_data['title'] = check_plain($shelter->title);
           $shelter_data['address1'] = empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']);
           $shelter_data['address2'] = empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']);
@@ -153,12 +229,10 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         }
       }
       if (empty($markup)) {
-        // This should actually never happen but it's not a bad idea to have some
-        // default text just in case.
-        $markup  = t('Sorry we could not find any shelters near you');
+        // This should never happen but it's not a bad idea to have some default
+        // text just in case.
+        $markup  = t('Sorry we could not find any shelters near you.');
       }
-      // Append the title info
-      $markup = '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
   }
   return $markup;
 }
