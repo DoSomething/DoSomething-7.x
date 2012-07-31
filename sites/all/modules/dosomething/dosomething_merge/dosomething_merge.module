@@ -9,8 +9,7 @@ function dosomething_merge_menu() {
     'title' => 'Merge Your Mobile',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_merge_form'),
-// TODO: need to pick a good permission for this.
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -73,14 +72,9 @@ function dosomething_merge_checkit_validate($form, &$form_state) {
   global $user;
 
   // Remove everything that's not a digit.
-  $number = preg_replace('/[^\d]+/', '', $form_state['values']['mobile_number']);
-
-  if (strlen($number) < 10) {
-    form_set_error('mobile_number', t("You need to enter a 10 digit phone number"));
-    return;
-  }
-  elseif (strlen($number) > 11) {
-    form_set_error('mobile_number', t("That seems like too many digits."));
+  $number = dosomething_general_valid_cell($form_state['values']['mobile_number']);
+  if ($number === FALSE) {
+    form_set_error('mobile_number', t("That doesn't look like a valid phone number."));
     return;
   }
 
@@ -90,11 +84,16 @@ function dosomething_merge_checkit_validate($form, &$form_state) {
   }
 
   // See if we can load the user named after that phone number.
-  $account = user_load_by_mail($number . '@mobile');
-// FIXME:
-$account->uid = 12345;
+  $account = dosomething_general_find_user_by_cell($number);
+#FIXME:
+dsm($user, 'current');
+dsm($account, 'mobile account');
+#$account->uid = 12345;
   if (!$account->uid) {
     form_set_error('mobile_number', t("That number doesn't seem mergable :/"));
+  }
+  else if ($account->uid == $user->uid) {
+    form_set_error('mobile_number', t("You already have that phone number."));
   }
   else {
     // Keep a copy of the cleaned up number and its user id.
@@ -126,7 +125,7 @@ function dosomething_merge_textme_validate($form, &$form_state) {
       array('%username' => $user->name, '%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
       WATCHDOG_NOTICE
     );
-    dsm($response);
+dsm($response);
     if (!$response['status']) {
       form_set_error('', t("We couldn't send a text to %number.", array('%number' => $number)));
     }
@@ -166,19 +165,18 @@ function dosomething_merge_doit_submit($form, &$form_state) {
   // See the comment in dosomething_merge_doit_validate() for background
   // on why we're doing validation here.
   if ($form_state['step'] == 'begin_merging') {
-    // TODO fire up a batch job.
-    drupal_set_message("pretend we are merging your account right now.");
-
-    $args = array($form_state['storage']['primary_uid'], $form_state['storage']['mobile_uid']);
+    $args = array(
+      $form_state['storage']['primary_uid'],
+      $form_state['storage']['mobile_uid'],
+      $form_state['storage']['mobile_number'],
+    );
     $batch = array(
       'operations' => array(
-        array('dosomething_merge_move_nodes', $args),
-        array('dosomething_merge_move_webforms', $args),
+        array('dosomething_merge_move_entities', $args),
         array('dosomething_merge_fiddle_user', $args),
       ),
       'finished' => 'dosomething_merge_finished'
     );
-dsm($batch, 'batch');
     batch_set($batch);
   }
   else {
@@ -186,43 +184,52 @@ dsm($batch, 'batch');
   }
 }
 
-function dosomething_merge_move_nodes($primary_uid, $mobile_uid, &$context) {
-  db_update('node')
+function dosomething_merge_move_entities($primary_uid, $mobile_uid, $mobile_number, &$context) {
+  $context['results']['file_managed'] = db_update('file_managed')
     ->fields(array('uid' => $primary_uid))
     ->condition('uid', $mobile_uid, '=')
     ->execute();
-  db_update('node_revision')
+  // $context['results']['og_membership'] = db_update('og_membership')
+  //   ->fields(array('etid' => $primary_uid))
+  //   ->condition('entity_type', 'user', '=')
+  //   ->condition('etid', $mobile_uid, '=')
+  //   ->execute();
+# Should we worry about: og_users_roles where uid = $uid
+  $context['results']['node'] = db_update('node')
     ->fields(array('uid' => $primary_uid))
     ->condition('uid', $mobile_uid, '=')
     ->execute();
-
-  $context['results']['dosomething_merge_move_nodes'] = "primary_uid $primary_uid, mobile_uid $mobile_uid";
+  $context['results']['node_revision'] = db_update('node_revision')
+    ->fields(array('uid' => $primary_uid))
+    ->condition('uid', $mobile_uid, '=')
+    ->execute();
+  $context['results']['webform_submissions'] = db_update('webform_submissions')
+    ->fields(array('uid' => $primary_uid))
+    ->condition('uid', $mobile_uid, '=')
+    ->execute();
 }
 
-function dosomething_merge_move_webforms($primary_uid, $mobile_uid, &$context) {
-  db_update('webform_submissions')
-    ->fields(array('uid' => $primary_uid))
-    ->condition('uid', $mobile_uid, '=')
-    ->execute();
+function dosomething_merge_fiddle_user($primary_uid, $mobile_uid, $mobile_number, &$context) {
+  $mobile_profile = profile2_load_by_user($mobile_uid, 'main');
 
-  $context['results']['dosomething_merge_move_webforms'] = "primary_uid $primary_uid, mobile_uid $mobile_uid";
-}
+  $primary_profile = profile2_load_by_user($primary_uid, 'main');
+  // TODO: we should probably see if there's anything worth copying off of the
+  // $mobile_profile.
+  $primary_profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile_number;
+  $primary_profile->save();
 
-function dosomething_merge_fiddle_user($primary_uid, $mobile_uid, &$context) {
-  // TODO: Need to move og stuff.
-  sleep(1);
-  $context['results']['dosomething_merge_fiddle_user'] = "primary_uid $primary_uid, mobile_uid $mobile_uid";
+  user_delete($mobile_uid);
 }
 
 function dosomething_merge_finished($success, $results, $operations) {
   if ($success) {
-    dsm($results, 'results');
-    dsm($operations, 'operations');
+dsm($results, 'results');
+dsm($operations, 'operations');
     #drupal_set_message(t('@count results processed in @requests HTTP requests.', array('@count' => count($results), '@requests' => _batch_example_get_http_requests())));
     #drupal_set_message(t('The final result was "%final"', array('%final' => end($results))));
   }
   else {
-    dsm($operations, 'operations');
+dsm($operations, 'operations');
     // An error occurred.
     // $operations contains the operations that remained unprocessed.
     $error_operation = reset($operations);
