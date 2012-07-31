@@ -210,15 +210,9 @@
     <h4>You'll DOUBLE your chances of winning<br>if you do both steps #1 and #2.</h4>
 
     <div class="do2">
-      <div class="col">
-        <h1>4</h1>
-        <h2>win a scholarship</h2>
-        <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do4.png"/>
-        <p class="bottom">There are two ways to win &ndash; send 5 friends texting and driving stats, and <a href="/thumbwars/tell-us">send us</a> pics. Check out <a href="#scholarships">scholarships</a> for more info.</p>      
-      </div> <!-- .col -->
 
       <div class="col2">
-        <h3>Send 5 friends texting and driving stats to win a $10k scholarship</h3>
+        <h3>Send 5 friends texting and driving stats<br>to win a $10k scholarship</h3>
         <!-- refer friends webform -->
         <div class="refer-form"><form action="http://dosomething.mcommons.com/profiles/join" method="POST">
           <input type="hidden" name="redirect_to" value="http://www.dosomething.org/thumbwars/confirmation" />
