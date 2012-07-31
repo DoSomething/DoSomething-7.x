@@ -94,7 +94,7 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   );
 
   $form['help'] = array(
-    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?</li><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul>',
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
