@@ -23,9 +23,9 @@
     <div class="divider"><span>here's what you do</span></div>
     <div class="col">
       <h1>1</h1>
-      <h2>still want socks</h2>
+      <h2>still want socks?</h2>
       <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do1.png"/>
-      <p class="bottom">Thumb Wars will be back in 2013. Sign up to the left and we'll keep you updated and let you know when we're back!</p>
+      <p class="bottom">Thumb Wars will be back in 2013. Sign up to the left and we'll let you know when we're back!</p>
     </div> <!-- .col -->
     <div class="col mid">
       <h1>2</h1>
@@ -40,47 +40,15 @@
       <p class="bottom">Take a pic of you and your friends wearing the thumb socks and send it to us <a href="/thumbwars/tell-us">here</a>. That will enter you for a $10k scholarship.</p>
     </div> <!-- .col -->
   </div> <!-- .section .do (first)-->
+
+  <div class="section did" id="did">
+    <div class="divider"><span>tell us what you did</span></div>
+    <h1>WANT TO SHARE YOUR<br />AWESOME PICS?</h1>
+    <a href="/thumbwars/tell-us">CLICK HERE TO TELL US WHAT YOU DID</a>
+  </div> <!-- .section .did -->
   
-  <div class="section do2">
-    <div class="col">
-      <h1>4</h1>
-      <h2>win a scholarship</h2>
-      <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do4.png"/>
-      <p class="bottom">There are two ways to win &ndash; send 5 friends texting and driving stats, and <a href="/thumbwars/tell-us">send us</a> pics. Check out <a href="#scholarships">scholarships</a> for more info.</p>      
-    </div> <!-- .col -->
-    
-    <div class="col2">
-      <h3>Send 5 friends texting and driving stats to win a $10k scholarship</h3>
-      <!-- refer friends webform -->
-      <div class="refer-form"><form action="http://dosomething.mcommons.com/profiles/join" method="POST">
-        <input type="hidden" name="redirect_to" value="http://www.dosomething.org/thumbwars/confirmation" />
-        <div class="mcommons-col">
-          <label>Your First Name:</label>
-          <input type="text" name="person[first_name]" class="field space-after"/>
-          <label>Your Cell Number:</label>
-          <input type="text" name="person[phone]" class="field space-after"/>
-          <div id="refer-opt-in" style="width: 175px">
-            <p class="disclaimer">By clicking submit, you are opting into these <a target="_blank" href="http://files.dosomething.org/files/campaigns/thumb/thumb_wars_rules_and_regs.pdf">official rules</a> and our weekly updates. <a href="#" id="opt-in-help-mobile">?</a></p>
-          </div> <!-- .refer-opt-in -->
-        </div> <!-- .mcommons-webform-column -->
-        <div class="mcommons-col">
-          <label>Friends' Cells:</label>
-          <input type="text" class="field left" name="friends[]"/>
-          <input type="text" class="field left" name="friends[]"/>
-          <input type="text" class="field left" name="friends[]"/>
-          <input type="text" class="field left" name="friends[]"/>
-          <input type="text" class="field left" name="friends[]"/>
-          <input type="hidden" name="friends_opt_in_path" value="113371" />
-          <input type="hidden" name="opt_in_path" value="113391">
-        </div> <!-- .mcommons-webform-column -->
-        <div class="mcommons-col-last">
-        </div>
-      </form></div> <!-- .refer-form -->
-    </div> <!-- .col2 -->    
-  </div> <!-- .section .do2 (second) -->
-  
-  <div class="section actionguide">
-    <h1>how to use your socks:</h1>
+  <!-- <div class="section actionguide">
+    <h1>if you got thumb socks:</h1>
       <div id="thumb-wars-action-guide">
         <ul id="thumb-wars-action-guide-pictures">
           <li class="action-guide-picture">
@@ -167,8 +135,9 @@
             <li class="action-guide-circle">&bull;</li>
           </ul>
         </div>
-      </div>   
-  </div> <!-- .section .actionguide (third) -->
+      </div>
+  </div> -->
+  <!-- .section .actionguide (third) -->
   
   <div class="section learn">
     
@@ -227,30 +196,58 @@
       <div class="col3">
         <h3>send 5 friends<br>texting &amp; driving stats</h3>
         <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/scholarship2.png" alt="two ways to enter"/>
-        <p>Sign-up above to get two pairs of thumb socks. Once you get your socks in the mail, take some pics of you and/or your friends wearing them and <br><a href="/thumbwars/tell-us">upload them here</a>!</p>
+        <p>Use the form below to send your friends some crazy stats on texting &amp; driving. You'll qualify to win a $10,000 scholarship.</p>
       </div> <!-- .col3 -->
  
       <div class="col4">
         <h3>send us your<br>thumb pics</h3>
         <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/scholarship3.png" alt="two ways to enter"/>
-        <p>Use <a href="/thumbwars/tell-us">this form</a> to send your friends some crazy stats on texting &amp; driving. You'll qualify to win a $10,000 scholarship.</p>
+        <p>Sign-up to the left for more information about scholarship opportunities! We are out of thumb socks. If you already received them then <br> <a href="/thumbwars/tell-us">upload your pictures here</a></p>
       </div> <!-- .col4 -->
 
     </div> <!-- .row -->
  
     <h4>You'll DOUBLE your chances of winning<br>if you do both steps #1 and #2.</h4>
- 
-    <p class="disclaimer">One randomly selected participant will be selected to win.
-      <br>
-    <a href="http://files.dosomething.org/files/campaigns/thumb/thumb_wars_rules_and_regs.pdf">Check out the official rules and regulations</a>
-    </p>
+
+    <div class="do2">
+      <div class="col">
+        <h1>4</h1>
+        <h2>win a scholarship</h2>
+        <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/do4.png"/>
+        <p class="bottom">There are two ways to win &ndash; send 5 friends texting and driving stats, and <a href="/thumbwars/tell-us">send us</a> pics. Check out <a href="#scholarships">scholarships</a> for more info.</p>      
+      </div> <!-- .col -->
+
+      <div class="col2">
+        <h3>Send 5 friends texting and driving stats to win a $10k scholarship</h3>
+        <!-- refer friends webform -->
+        <div class="refer-form"><form action="http://dosomething.mcommons.com/profiles/join" method="POST">
+          <input type="hidden" name="redirect_to" value="http://www.dosomething.org/thumbwars/confirmation" />
+          <div class="mcommons-col">
+            <label>Your First Name:</label>
+            <input type="text" name="person[first_name]" class="field space-after"/>
+            <label>Your Cell Number:</label>
+            <input type="text" name="person[phone]" class="field space-after"/>
+            <div id="refer-opt-in" style="width: 175px">
+              <p class="disclaimer">By clicking submit, you are opting into these <a target="_blank" href="http://files.dosomething.org/files/campaigns/thumb/thumb_wars_rules_and_regs.pdf">official rules</a> and our weekly updates. <a href="#" id="opt-in-help-mobile">?</a></p>
+            </div> <!-- .refer-opt-in -->
+          </div> <!-- .mcommons-webform-column -->
+          <div class="mcommons-col">
+            <label>Friends' Cells:</label>
+            <input type="text" class="field left" name="friends[]"/>
+            <input type="text" class="field left" name="friends[]"/>
+            <input type="text" class="field left" name="friends[]"/>
+            <input type="text" class="field left" name="friends[]"/>
+            <input type="text" class="field left" name="friends[]"/>
+            <input type="hidden" name="friends_opt_in_path" value="113371" />
+            <input type="hidden" name="opt_in_path" value="113391">
+          </div> <!-- .mcommons-webform-column -->
+          <div class="mcommons-col-last">
+          </div>
+        </form></div> <!-- .refer-form -->
+      </div> <!-- .col2 -->    
+    </div> <!-- .section .do2 (second) -->
+
   </div> <!-- .section .scholarship -->
-  
-  <div class="section did" id="did">
-    <div class="divider"><span>tell us what you did</span></div>
-    <h1>WANT TO SHARE YOUR<br />AWESOME PICS?</h1>
-    <a href="/thumbwars/tell-us">CLICK HERE TO TELL US WHAT YOU DID</a>
-  </div> <!-- .section .did -->
   
   <div class="section faq" id="faq">
     <div class="divider"><span>questions?</span></div>

@@ -187,7 +187,7 @@ div[role="main"] a, #cask-aside a {
   height: 270px; }
 
 .do {
-  height: 285px; }
+  height: 360px; }
 
 .do2 {
   height: 260px; }
@@ -199,7 +199,7 @@ div[role="main"] a, #cask-aside a {
   height: 630px; }
 
 .scholarship {
-  height: 595px; }
+  height: 805px; }
 
 .faq {
   height: 345px;
@@ -275,7 +275,8 @@ div.header {
   width: 145px;
   float: left; }
 .do .col, .do2 .col {
-  height: 245px; }
+  height: 225px;
+  margin-top: 3%; }
 
 #cask .do h1, #cask .do2 h1 {
   margin: 2% 0 0 0;
@@ -284,7 +285,15 @@ div.header {
 .do2 {
   padding: 2% 0; }
   .do2 .col2 {
-    margin: 2% 0 0 0; }
+    background: #e20a48;
+    width: 75%;
+    height: 101%;
+    margin: 0 auto 2%;
+    padding: 2% 0 0 0;
+    display: block;
+    float: none; }
+  .do2 h3 {
+    margin: 2% 0; }
 
 .actionguide {
   padding: 5% 0; }
@@ -436,12 +445,22 @@ div.faq .activeFAQ {
     width: 86%;
     margin: 6% auto 0;
     display: block; }
+  #cask-aside h1 {
+    font-size: 40px; }
+  #cask-aside h3 {
+    font-size: 16px; }
 
 div.contact_form-aside {
   width: 300px;
+  height: 235px;
   margin: 5% 0 0 -20px;
   background: #e20a48;
-  position: relative; }
+  position: relative;
+  -webkit-border-radius: 3px 3px 3px 0;
+  -moz-border-radius: 3px 3px 3px 0;
+  -ms-border-radius: 3px 3px 3px 0;
+  -o-border-radius: 3px 3px 3px 0;
+  border-radius: 3px 3px 3px 0; }
   div.contact_form-aside:before {
     content: "";
     display: block;
@@ -450,12 +469,7 @@ div.contact_form-aside {
     left: 0px;
     border-color: #b10838 #b10838 transparent transparent;
     border-width: 10px;
-    border-style: solid;
-    -webkit-border-radius: 4px 4px 4px 0;
-    -moz-border-radius: 4px 4px 4px 0;
-    -ms-border-radius: 4px 4px 4px 0;
-    -o-border-radius: 4px 4px 4px 0;
-    border-radius: 4px 4px 4px 0; }
+    border-style: solid; }
 
 .region-sidebar-first {
   margin-top: 0 !important; }
