@@ -6,7 +6,7 @@
   
   <div class="contact_form-aside">
     <h1>sign up</h1>
-    <h3>for more info</h3>
+    <h3>for Thumb Wars updates and more scholarship opportunities</h3>
   </div>
   
   <div class="nav-aside">

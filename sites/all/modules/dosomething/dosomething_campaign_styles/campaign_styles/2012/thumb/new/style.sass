@@ -225,7 +225,7 @@ div[role="main"], #cask-aside
   height: 270px
 
 .do
-  height: 285px
+  height: 360px
 
 .do2
   height: 260px
@@ -237,7 +237,7 @@ div[role="main"], #cask-aside
   height: 630px
 
 .scholarship
-  height: 595px
+  height: 805px
 
 // .did
 .faq
@@ -328,7 +328,8 @@ div.header
     width: 145px
     float: left
   .col
-    height: 245px
+    height: 225px
+    margin-top: 3%
 
 #cask .do h1, #cask .do2 h1
   margin: 2% 0 0 0
@@ -337,7 +338,15 @@ div.header
 .do2
   padding: 2% 0
   .col2
-    margin: 2% 0 0 0 
+    background: $thumbPink
+    width: 75%
+    height: 101%
+    margin: 0 auto 2%
+    padding: 2% 0 0 0
+    display: block
+    float: none
+  h3
+    margin: 2% 0
  
 .actionguide
   padding: 5% 0
@@ -493,12 +502,18 @@ div.faq
     width: 86%
     margin: 6% auto 0
     display: block
+  h1
+    font-size: 40px
+  h3
+    font-size: 16px
 
 div.contact_form-aside
   width: 300px
+  height: 235px
   margin: 5% 0 0 -20px
   background: $thumbPink
   position: relative
+  +border-radius(3px 3px 3px 0)
   &:before
     content: ""
     display: block
@@ -508,7 +523,6 @@ div.contact_form-aside
     border-color: darken($thumbPink, 10) darken($thumbPink, 10) transparent transparent
     border-width: 10px
     border-style: solid
-    +border-radius(4px 4px 4px 0)
 
 // reset margin-top on sidebar
 .region-sidebar-first
