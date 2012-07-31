@@ -1870,3 +1870,26 @@ function dosomething_login_fboauth_user_presave(&$edit, $fbuser) {
   $edit['roles'][$role->rid] = $role->name;
   $edit['name'] = dosomething_login_unique_name($fbuser->name);
 }
+
+function dosomething_login_user_taxonomy_terms() {
+  return array('fb_connected', 'fb_created_account');
+}
+
+function dosomething_login_user_taxonomy_login($account) {
+  $return = array();
+
+  if (fboauth_fbid_load($account->uid)) {
+    $return['add'] = 'fb_connected';
+  }
+  else {
+    $return['remove'] = 'fb_connected';
+  }
+  return $return;
+}
+
+function user_taxonomy_user_taxonomy_insert($account) {
+  if ($account->fboauth) {
+    return 'fb_created_account';
+  }
+}
+
