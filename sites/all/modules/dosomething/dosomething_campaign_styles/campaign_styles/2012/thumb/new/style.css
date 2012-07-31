@@ -76,7 +76,12 @@ div[role="main"] a, #cask-aside a {
   bottom: -11%; }
 
 .divider {
-  text-align: center; }
+  text-align: center;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
   .divider span {
     background: #ffd215;
     text-transform: uppercase;
@@ -211,11 +216,9 @@ div.contact_form-aside h1, div.contact_form-aside h3 {
 div.contact_form-aside h1 {
   font-size: 40px;
   margin: 0 0 0 0; }
-div.contact_form-aside h3 {
-  padding: 0 0 5% 0;
-  border-bottom: 2px solid white; }
 div.contact_form-aside #edit-actions {
-  margin: 8% 0 0 0; }
+  margin: 8% 0 0 0;
+  position: static; }
 
 form.webform-client-form {
   text-align: center; }
@@ -289,9 +292,14 @@ div.header {
     width: 75%;
     height: 101%;
     margin: 0 auto 2%;
-    padding: 2% 0 0 0;
+    padding: 1% 0 0 0;
     display: block;
-    float: none; }
+    float: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
   .do2 h3 {
     margin: 2% 0; }
 
@@ -442,9 +450,15 @@ div.faq .activeFAQ {
   -o-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0; }
   #cask-aside img {
-    width: 86%;
-    margin: 6% auto 0;
-    display: block; }
+    width: 100%;
+    margin: 6%;
+    display: block;
+    background: #231f20;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0; }
   #cask-aside h1 {
     font-size: 40px; }
   #cask-aside h3 {
@@ -452,8 +466,7 @@ div.faq .activeFAQ {
 
 div.contact_form-aside {
   width: 300px;
-  height: 235px;
-  margin: 5% 0 0 -20px;
+  margin: 0 0 0 -20px;
   background: #e20a48;
   position: relative;
   -webkit-border-radius: 3px 3px 3px 0;
