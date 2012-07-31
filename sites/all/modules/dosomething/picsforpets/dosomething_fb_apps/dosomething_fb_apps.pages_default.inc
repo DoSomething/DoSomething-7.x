@@ -314,7 +314,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Back and Next links',
       'title' => '',
-      'body' => '<a href="/" class="button back">Back (need link)</a>
+      'body' => '<a href="/pics-for-pets/shelter-search" class="button back">Back</a>
 <a href="/node/3" class="button next">Next</a>
 ',
       'format' => 'filtered_html',
@@ -341,7 +341,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'admin_title' => 'Action Steps',
       'title' => 'Action Steps',
       'body' => '<ol>
-<li>Find the <a href="/">nearest animal shelter (need link)</a> with the handy shelter locator</li>
+<li>Find the <a href="/pics-for-pets/shelter-search">nearest animal shelter</a> with the handy shelter locator</li>
 <li>Get all the materials you need to become an expert fur-tographer</li>
 <li>Visit your shelter to take an awesome animal picture and get the details</li>
 <li>Come back and <a href="/node/3">submit your picture</a> to the gallery</li>
