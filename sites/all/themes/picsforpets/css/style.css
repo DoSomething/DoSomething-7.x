@@ -1052,6 +1052,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .form-actions input[type="submit"] {
+  display: inline;
+  float: right;
   color: #ec1c24;
   background: white;
   padding: 2px 12px;
