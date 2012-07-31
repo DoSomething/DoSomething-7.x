@@ -67,11 +67,6 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   $form['address']['fields'] = array(
     '#title' => t('address'),
     '#type' => 'fieldset',
-    '#states' => array(
-      'visible' => array(
-        ':input[name=kit]' => array('checked' => TRUE),
-      ),
-    ),
     'name' => array(
       '#type' => 'textfield',
       '#title' => t('Full Name:'),
