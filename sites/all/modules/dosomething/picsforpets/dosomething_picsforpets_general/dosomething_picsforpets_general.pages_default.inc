@@ -98,7 +98,7 @@ near you</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/pics-for-pets/get-the-guide">Get the guide</a>',
+      'body' => '<a href="/pics-for-pets/action-guide">Get the guide</a>',
       'format' => 'filtered_html',
       'substitute' => TRUE,
     );
