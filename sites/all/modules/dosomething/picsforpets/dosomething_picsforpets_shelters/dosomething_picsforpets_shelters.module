@@ -77,11 +77,14 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   // Append the title info
   $markup = empty($markup) ? '' : '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
 
-  $form['results'] = array(
-    '#markup' => $markup,
+  $form['results-wrapper'] = array(
+    '#tree' => TRUE,
     '#prefix' => '<div id="shelter-results">',
     '#suffix' => '</div>',
     '#weight' => 2,
+  );
+  $form['results-wrapper']['results'] = array(
+    '#markup' => $markup,
   );
 
   $more = '';
@@ -91,19 +94,19 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   // If we have more results or should add the button let's add the container
   // element.
   if (!empty($form_state['view_more']) || !empty($more)) {
-    $form['more-wrapper'] = array(
+    $form['results-wrapper']['more-wrapper'] = array(
       '#tree' => TRUE,
       '#prefix' => '<div id="shelter-results-more">',
       '#suffix' => '</div>',
       '#weight' => 3,
     );
-    $form['more-wrapper']['more-results'] = array(
+    $form['results-wrapper']['more-wrapper']['more-results'] = array(
       '#markup' => $more,
     );
   }
   // !empty replaces isset($form_state['view_more']) && $form_state['view_more'] === TRUE.
   if (!empty($form_state['view_more'])) {
-    $form['more-wrapper']['view_more_button'] = array(
+    $form['results-wrapper']['more-wrapper']['view_more_button'] = array(
       '#type' => 'submit',
       '#value' => t('View More'),
       '#weight' => 4,
@@ -119,6 +122,14 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
 }
 
 function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state) {
+  // Reset the variables if we are hitting the search button rather than
+  // 'view more'.
+  if (isset($form_state['values']['op']) && $form_state['values']['op'] == 'Search') {
+    $form_state['more_times'] = 0;
+    $form_state['view_more'] = FALSE;
+    $form_state['more_results'] = '';
+    $form_state['more_results_all'] = '';
+  }
   $zip = $form_state['values']['zip'];
   // We retreive an extra result and then throw it away so that we know if we
   // should show the 'view more' button.
@@ -133,19 +144,23 @@ function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state
 }
 
 function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_state) {
-  #return '<div id="shelter-results">' . '<h2>' . t('Shelters near you:') . '</h2>' . $form_state['results'] . '</div>' . $form['view_more'];
   return array(
-    'more-results-ajax-load' => array(
-      '#prefix' => '<div id="shelter-results"><h2>' . t('Shelters near you:') . '</h2>',
-      '#markup' => $form_state['results'],
+    'more-results-ajax-wrapper' => array(
+      '#tree' => TRUE,
+      '#prefix' => '<div id="shelter-results">',
       '#suffix' =>  '</div>', //<div id="shelter-results-more"></div>',
+
+      'more-results-ajax-load' => array(
+        '#prefix' => '<h2>' . t('Shelters near you:') . '</h2>',
+        '#markup' => $form_state['results'],
+      ),
+      'more-results-ajax-wrapper' => $form['results-wrapper']['more-wrapper'],
     ),
-      'more-results-ajax-wrapper' => $form['more-wrapper'],
-    );
+  );
 }
 
 function dosomething_picsforpets_shelters_load_more_ajax($form, $form_state) {
-  return $form['more-wrapper'];
+  return $form['results-wrapper']['more-wrapper'];
 }
 
 function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
