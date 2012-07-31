@@ -406,7 +406,7 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
   .panel-row-actions #edit-actions, .panel-row-actions #edit-actions--2 {
     position: absolute;
     right: 82px;
-    bottom: 14px; }
+    bottom: 50px; }
   .panel-row-actions .form-wrapper {
     margin-bottom: 8px !important; }
   .panel-row-actions .pane-content {
