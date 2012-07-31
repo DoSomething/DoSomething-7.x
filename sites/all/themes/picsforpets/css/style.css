@@ -530,12 +530,30 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
   font-style: italic;
 }
 
-.form-actions input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
+.form-actions input[type="submit"], a.button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
 .no-results {
   font-family: "DINWeb-CondBold", "Arial Narrow", Arial, sans-serif;
+}
+
+.form-actions input[type="submit"], a.button {
+  color: #ec1c24;
+  background: white;
+  padding: 2px 12px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  border: 0;
+  text-transform: uppercase;
+  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
+  font-size: 18px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
 }
 
 /* import font files using @font-face, if not using a service such as typekit */
@@ -1051,24 +1069,24 @@ input[type="radio"], input[type="checkbox"] {
   border-bottom: 0;
 }
 
-.form-actions input[type="submit"] {
+.form-actions {
+  margin: 0;
   display: inline;
   float: right;
+}
+
+a.button {
+  display: inline;
+  float: left;
+}
+
+a.back {
   color: #ec1c24;
-  background: white;
-  padding: 2px 12px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
-  border: 0;
-  text-transform: uppercase;
-  font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
-  font-size: 18px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  font-weight: bold;
+  padding: 6px 32px;
+  margin-top: -4px;
+  background: white url(../images/lg-left-arrow.png) no-repeat;
+  background-position: 8px 7px;
 }
 
 /* Tables -------------------------------------------------------------- */

@@ -79,25 +79,22 @@ textarea, input:not([type="radio"])
     border-bottom: 0
 
 .form-actions
+  margin: 0
+  +float-right
   input[type="submit"]
-    @extend %league-gothic
-    +float-right
-    color: $pfp-red
-    background: $white
-    padding: 2px 12px
-    +border-radius(10px)
-    border: 0
-    text-transform: uppercase
-    font-family: $font-league
-    font-size: 18px
-    +box-shadow(rgba($black, 0.1) 0px 0px 10px)
+    @extend %pfp-button
 
+a.button
+  +float-left
+  @extend %pfp-button
 
-
-
-
-
-
+a.back
+  color: $pfp-red
+  font-weight: bold
+  padding: 6px 32px
+  margin-top: -4px
+  background: $white url(../images/lg-left-arrow.png) no-repeat
+  background-position: 8px 7px
 
 
 
