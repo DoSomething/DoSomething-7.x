@@ -42,7 +42,7 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
     'title' => 'Ready to be a fur-tographer?',
   );
   $form['ready'] = array(
-    '#markup' => 'Sign up and we\'ll give you all the tools to submit a picture to the gallery.',
+    '#markup' => '<div class="sign-up-text">Sign up and we\'ll give you all the tools to submit a picture to the gallery.</div>',
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -99,7 +99,7 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   );
 
   $form['help'] = array(
-    '#markup' => t('By signing up you agree to the ') . l('terms and conditions', '/') . ' <a class="helptext-questionmark-popup">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</a>',
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><a class="helptext-questionmark-popup">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</a>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
