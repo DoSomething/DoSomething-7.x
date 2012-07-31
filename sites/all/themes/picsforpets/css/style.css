@@ -1101,6 +1101,7 @@ a.back {
   font-size: 12px;
   text-align: center;
   padding-right: 8px;
+  padding-left: 90px;
 }
 .by-signing-up a {
   color: white;
@@ -1154,6 +1155,7 @@ a.back {
 
 fieldset {
   padding: 0;
+  clear: both;
 }
 fieldset .form-item {
   margin: 6px 0;
@@ -1174,6 +1176,44 @@ fieldset .form-item {
   border-radius: 0;
   background: none;
   border: 0;
+}
+#furtographer-address .fieldset-wrapper label {
+  color: #a6a8ab;
+  font-size: 14px;
+}
+
+.form-item-email {
+  margin-left: 100px;
+}
+
+.form-item-email,
+.form-item-cell {
+  display: inline;
+  float: left;
+}
+.form-item-email label,
+.form-item-cell label {
+  color: #a6a8ab;
+  font-size: 14px;
+}
+
+.form-item-kit {
+  display: inline;
+  float: left;
+  clear: both;
+  width: 600px;
+}
+.form-item-kit input[type="checkbox"] {
+  display: inline;
+  float: left;
+}
+
+label.option {
+  display: inline;
+  float: left;
+  margin-top: -5px;
+  font-size: 16px;
+  padding-left: 4px;
 }
 
 #edit-submit--2 {
