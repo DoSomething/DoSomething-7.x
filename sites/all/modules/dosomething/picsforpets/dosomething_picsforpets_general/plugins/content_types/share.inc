@@ -31,7 +31,7 @@ function dosomething_picsforpets_general_content_type_render_share($subtype, $co
 
 
   $output = '<h1>' . $text . '</h1>';
-  $output .= t('Share me');
+  $output .= '<div class="fb-share-me">' . t('Share me') . '</div>';
   $output .= '<span class="picsforpets-share-count-arrow">&nbsp;</span>';
   $output .= '<span class="picsforpets-share-count">' . $graph['shares'] . '</span>';
 
