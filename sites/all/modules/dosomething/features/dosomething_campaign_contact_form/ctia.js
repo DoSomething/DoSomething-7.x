@@ -1,11 +1,19 @@
 (function($) {
   $(document).ready(function () {
-    $('#campaign-opt-in-help').dialog({
-      autoOpen: false,
-    }).css('padding-top', '10px').parent().css('background', 'white');
-    $('#opt-in-help, #opt-in-help-mobile').click(function () {
-      $('#campaign-opt-in-help').dialog('open');
-      return false;
+        $(".tooltip_trigger").hover(function() {
+          $(this).next(".tooltip").show();
+          $(this).next(".tooltip").position(
+            {
+              at: 'bottom center',
+              of: $(this),
+              offset: '0 16px',
+              my: 'top'
+            });
+        });
+      
+        $(".tooltip_trigger").mouseleave(function() {
+          $(".tooltip").hide();
+        }); 
     });
   });
 })(jQuery);

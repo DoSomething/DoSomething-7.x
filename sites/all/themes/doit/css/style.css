@@ -1193,6 +1193,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
   background-image: -webkit-linear-gradient(top, #ffffff, #fed100);
   background-image: -moz-linear-gradient(top, #ffffff, #fed100);
   background-image: -o-linear-gradient(top, #ffffff, #fed100);
+  background-image: -ms-linear-gradient(top, #ffffff, #fed100);
   background-image: linear-gradient(top, #ffffff, #fed100);
   font-size: 18px;
   text-transform: uppercase;
@@ -1751,18 +1752,20 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   border: 1px #d4d2d1 solid;
   font-size: 27px;
   height: 27px;
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   line-height: 30px;
   padding: 0;
   position: relative;
   text-align: center;
   top: -6px;
   width: 29px;
+}
+.digits span {
+  *display: inline;
 }
 .digits span:nth-last-of-type(3n+4):after {
   content: ",";
@@ -1775,12 +1778,11 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   border: 1px #d4d2d1 solid;
   font-size: 27px;
   height: 27px;
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   line-height: 30px;
   padding: 0;
   position: relative;
@@ -1788,6 +1790,9 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   top: -6px;
   width: 29px;
   z-index: 2;
+}
+.empty-digit {
+  *display: inline;
 }
 
 .popup-title, #lets-talk-dialog h2 {
@@ -1902,6 +1907,23 @@ ul.hover-image {
 }
 ul.hover-image li:first-child {
   display: none;
+}
+
+.pane-campaign-sign-up #edit-actions {
+  position: absolute;
+  bottom: 26px !important;
+}
+
+.ctia_top {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ctia_bottom {
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
@@ -2213,13 +2235,13 @@ html {
 /* Body -------------------------------------------------------------- */
 /* Establish baseline rhythm
  * from compass/typography/_vertical_rhythm */
-* html {
+body {
   font-size: 75%;
+  line-height: 2em;
 }
 
-html {
+html > body {
   font-size: 12px;
-  line-height: 2em;
 }
 
 body {
@@ -2340,6 +2362,7 @@ a {
   text-decoration: none;
   -webkit-transition: "all" 0.3s "ease-out";
   -moz-transition: "all" 0.3s "ease-out";
+  -ms-transition: "all" 0.3s "ease-out";
   -o-transition: "all" 0.3s "ease-out";
   transition: "all" 0.3s "ease-out";
 }
@@ -2528,13 +2551,19 @@ form.webform-client-form #edit-previous,
 form.webform-client-form #edit-submit,
 form.webform-client-form #edit-submit--2,
 form.webform-client-form #edit-draft {
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   margin-right: 6px;
+}
+form.webform-client-form #edit-next,
+form.webform-client-form #edit-previous,
+form.webform-client-form #edit-submit,
+form.webform-client-form #edit-submit--2,
+form.webform-client-form #edit-draft {
+  *display: inline;
 }
 form.webform-client-form #edit-next,
 form.webform-client-form #edit-previous {
@@ -2935,9 +2964,9 @@ select.form-select {
 }
 .ie7 #dosomething-login-register-popup-form .under-13-field #edit-parent-email-message, .ie7
 #dosomething-login-register-facebook .under-13-field #edit-parent-email-message {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/under-13.gif');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3047,9 +3076,9 @@ select.form-select {
 }
 .ie7 .front.not-logged-in a.ie-signup-button {
   display: block;
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/ie-signup-button.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3087,6 +3116,7 @@ div.status, div.warning, div.error {
   background-color: #e5f2e5;
   background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
   background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
+  background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
   background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #d8ebd8 25px, #d8ebd8 50px);
   color: green;
   color: green;
@@ -3106,6 +3136,7 @@ div.status, div.warning, div.error {
   background-color: #fff6e5;
   background-image: -webkit-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: -moz-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
+  background-image: -ms-repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   background-image: repeating-linear-gradient(35deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 25px, #fff1d8 25px, #fff1d8 50px);
   color: #ffa500;
   color: #ffa500;
@@ -3152,12 +3183,17 @@ ul.tabs.primary li a {
   background-image: -webkit-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -moz-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -o-linear-gradient(top, #fcfdfa, #f1f2ef);
+  background-image: -ms-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: linear-gradient(top, #fcfdfa, #f1f2ef);
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
+  -ms-border-top-left-radius: 3px;
+  -o-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
+  -ms-border-top-right-radius: 3px;
+  -o-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
   color: #18408b;
   padding-top: 8px;
@@ -3306,6 +3342,7 @@ body {
   background-image: -webkit-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
   background-image: -moz-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
   background-image: -o-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
+  background-image: -ms-linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
   background-image: linear-gradient(left, #18408b 5%, #2b63b1 20%, #2b63b1 80%, #18408b 95%);
 }
 
@@ -3333,11 +3370,13 @@ body {
   width: 254px;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .utility-items {
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
+}
+#utility-bar #block-dosomething-blocks-dosomething-utility-bar .utility-items {
   *display: inline;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search {
@@ -3353,9 +3392,9 @@ body {
   padding: 4px;
 }
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search input[type="submit"] {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/icn-utility-search-magnify.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3406,9 +3445,9 @@ body {
   z-index: 101;
 }
 #site-name a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3447,9 +3486,9 @@ div[role=main] {
 }
 
 .connect-thru-facebook a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/btn-facebook-dashboard-login.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3462,9 +3501,9 @@ div[role=main] {
 }
 
 .connect-with-facebook a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/btn-facebook-popup-login.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3575,6 +3614,7 @@ nav[role=navigation] .region-navigation .block-menu-block ul.menu li ul {
   text-transform: capitalize;
   -webkit-transition: opacity 0.2s "ease-out";
   -moz-transition: opacity 0.2s "ease-out";
+  -ms-transition: opacity 0.2s "ease-out";
   -o-transition: opacity 0.2s "ease-out";
   transition: opacity 0.2s "ease-out";
   margin-left: -28px;
@@ -3911,6 +3951,7 @@ h2.block-title, h2.pane-title {
   background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
   background-color: #efefef;
   margin-right: -5px;
@@ -3998,6 +4039,7 @@ h2.block-title, h2.pane-title {
   background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -ms-linear-gradient(left, #efefef 90%, #d4d2d1);
   background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
   margin: 0;
   padding-left: 0;
@@ -4039,12 +4081,11 @@ h2.block-title, h2.pane-title {
 }
 .region-sidebar-first .block-menu-block .content li a {
   letter-spacing: 0;
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   padding: 15px 0;
   padding-right: 19px;
   width: 95%;
@@ -4052,6 +4093,9 @@ h2.block-title, h2.pane-title {
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
+}
+.region-sidebar-first .block-menu-block .content li a {
+  *display: inline;
 }
 .ie8 .region-sidebar-first .block-menu-block .content li a {
   padding-right: 11px;
@@ -4406,9 +4450,9 @@ h2.block-title, h2.pane-title {
 }
 
 .ui-icon.ui-icon-closethick {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -4793,6 +4837,11 @@ h2.block-title, h2.pane-title {
   margin-top: 12px;
 }
 
+.form-item-pass .ds-registration-form-required {
+  left: 205px;
+  top: -23px;
+}
+
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
   right: -400px;
   top: -18px;
@@ -4974,13 +5023,15 @@ comments.fb_iframe_widget {
 }
 
 .pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   line-height: 1;
+}
+.pane-views-exp-blog-center-panel-pane-3 h2.pane-title {
+  *display: inline;
 }
 
 .views-exposed-form {
@@ -5094,22 +5145,24 @@ comments.fb_iframe_widget {
   padding-left: 10px;
 }
 .apps-grid .apps-box .doingit-icon {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/doing-it-guy.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 10px;
   height: 11px;
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   margin-bottom: 5px;
   margin-right: 5px;
+}
+.apps-grid .apps-box .doingit-icon {
+  *display: inline;
 }
 .apps-grid .apps-box .apps-link {
   position: absolute;
@@ -5124,20 +5177,22 @@ comments.fb_iframe_widget {
 
 .slide-count {
   float: right;
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
+}
+.slide-count {
   *display: inline;
 }
 .slide-count span {
   cursor: pointer;
   display: block;
   float: right;
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/circle-inactive.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -5146,9 +5201,9 @@ comments.fb_iframe_widget {
   width: 25px;
 }
 .slide-count span.active {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/circle-active.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -5264,9 +5319,9 @@ comments.fb_iframe_widget {
   padding: 0 5px;
   display: block;
   width: 45px;
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('images/scroller_arrows.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
