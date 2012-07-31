@@ -19,7 +19,17 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
     'weight' => 10
   ));
 
-  drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.js');
+  $c = menu_get_object();
+  if ($c->nid == $node->nid)
+  {
+    header('location: /animal-social-stats');
+  }
+
+  drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_social_stat.js');
+  if (!user_is_logged_in())
+  {
+    drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_share_a_stat.js');
+  }
 
   $width = '225px';
 
@@ -35,12 +45,13 @@ function dosomething_social_scholars_image_display_content_type_render($subtype,
       else if ($key == 2)
           $desc = 'More than 25 million animals are used in testing in the US each year.  Do something about it! Click here to share this stat with your friends and you could win a $5,000 scholarship.';
 
+        $_SERVER['HTTP_HOST'] = 'www.dosomething.org';
       $link = 'http://www.facebook.com/dialog/feed?'
       . 'app_id=105775762330&'
       . 'link=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) . '&'
       . 'picture=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . '/files/' . $image['filename']) . '&'
       . 'name=' . urlencode($node->title).  '&'
-      . 'caption=' . urlencode($node->title) . '&'
+      . 'caption=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . '/social-scholarship/animal-cruelty') . '&'
       . 'description=' . urlencode($desc) . '&'
       . 'display=popup&'
       . 'redirect_uri=' . urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);

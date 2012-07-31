@@ -1,3 +1,5 @@
+// FOOTLOCKER
+
 // Base imports. Be sure to compile using the --compass switch
 @import compass/css3
 @import compass/utilities/general/clearfix
@@ -43,6 +45,9 @@ $bgGray: #C8C8C8
   -o-box-shadow: none !important
   box-shadow: none !important
 
+@mixin noBorder
+  border: none !important
+
 @mixin redLine
   border-top: $borderTop
   border-bottom: $borderBot
@@ -58,6 +63,10 @@ a
 
 h1.title
   display: none
+
+img
+  +noBoxShadow
+  +noBorder  
 
 hr
   +redLine

@@ -5,6 +5,7 @@
 $thumbYellow: #FFD215
 $thumbBlue: #0A5080
 $thumbGrey: #231F20
+$thumbPink: #E20A48
 
 $borderTop: 1px solid rgba(0,0,0,.5)
 $borderBot: 1px solid rgba(255,255,255,.5)
@@ -239,7 +240,6 @@ div[role="main"], #cask-aside
   height: 595px
 
 // .did
-
 .faq
   height: 345px
   text-align: left
@@ -247,7 +247,6 @@ div[role="main"], #cask-aside
        
 // page sections (deviations)
 div.contact_form-aside
-  margin: 5% 0
   h1, h3
     text-align: center
   h1
@@ -257,7 +256,7 @@ div.contact_form-aside
     padding: 0 0 5% 0
     border-bottom: 2px solid #fff
   #edit-actions
-    margin 8% 0 0 0
+    margin: 8% 0 0 0
 
 form.webform-client-form
   text-align: center
@@ -485,3 +484,32 @@ div.faq
   background-image: linear-gradient(top, #ffffff, #fed100)
   font-size: 18px
   text-transform: uppercase
+
+// vibrant sign-up box
+#cask-aside
+  background: $thumbGrey
+  +border-radius(4px 4px 0 0)
+  img
+    width: 86%
+    margin: 6% auto 0
+    display: block
+
+div.contact_form-aside
+  width: 300px
+  margin: 5% 0 0 -20px
+  background: $thumbPink
+  position: relative
+  &:before
+    content: ""
+    display: block
+    position: absolute
+    bottom: -20px
+    left: 0px
+    border-color: darken($thumbPink, 10) darken($thumbPink, 10) transparent transparent
+    border-width: 10px
+    border-style: solid
+    +border-radius(4px 4px 4px 0)
+
+// reset margin-top on sidebar
+.region-sidebar-first
+  margin-top: 0!important

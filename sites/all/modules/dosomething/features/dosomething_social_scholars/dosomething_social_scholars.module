@@ -15,7 +15,7 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 
 function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
 {
-  if ($form_id == 'webform_client_form_723646'/* || $form_id == 'webform_client_form_723323'*/)
+  if ($form_id == 'webform_client_form_723646' || $form_id == 'webform_client_form_723323')
   {
     $node = menu_get_object();
     if ($node->nid == 29308)
@@ -28,11 +28,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id)
         'weight' => 10
       ));
     }
-
-    if (isset($_COOKIE['DSCC']))
-    {
-      drupal_goto('animal-social-stats');
-    }
+    drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/dosomething_social_stat.js');
 
     $form['actions']['submit']['#value'] = 'SEND';
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
@@ -141,8 +137,16 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
 function doit_html_head_alter(&$head)
 {
   $node = menu_get_object();
-  if ($node->type == 'social_scholarship' && isset($node->field_fb_language[LANGUAGE_NONE][0]['value']))
+  if ($node->type == 'social_scholarship')
   {
-    $head['opengraph_meta_og:description']['#attributes']['content'] = $node->field_fb_language[LANGUAGE_NONE][0]['value'];
+    if (isset($_COOKIE['DSCC']))
+    {
+      drupal_goto('animal-social-stats');
+    }
+
+    if (isset($node->field_fb_language[LANGUAGE_NONE][0]['value']))
+    {
+      $head['opengraph_meta_og:description']['#attributes']['content'] = $node->field_fb_language[LANGUAGE_NONE][0]['value'];
+    }
   }
 }

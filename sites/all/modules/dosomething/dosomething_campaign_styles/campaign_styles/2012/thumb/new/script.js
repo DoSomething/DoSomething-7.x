@@ -24,7 +24,7 @@ function init_content() {
   var $window = jQuery(window);
   var $nav = jQuery('#cask-aside');
   var scrollLimitTop = 180;
-  var scrollLimitBot = 3346;
+  var scrollLimitBot = 2715;
 
   $window.scroll(function () {
     var st = $window.scrollTop();

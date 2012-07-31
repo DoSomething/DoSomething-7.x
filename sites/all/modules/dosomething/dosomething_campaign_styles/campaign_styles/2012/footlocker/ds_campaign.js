@@ -3,7 +3,7 @@
     attach: function (context, settings) {
 
     	// Sign Up Confirmation
-    	if(location.pathname.match(/footlocker/) && location.search.match(/\?sid=[0-9A-Za-z\-]*/)) {
+    	if(location.pathname.match(/footlocker/) && location.search.match(/\?signup=&sid=[0-9A-Za-z\-]*/)) {
     		$("#fl-scholar-confirmation-popup").dialog({ width: 500, height: 370, modal: true, resizeable: false});
     	}
 
