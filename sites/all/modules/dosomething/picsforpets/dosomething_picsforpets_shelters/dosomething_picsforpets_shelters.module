@@ -22,6 +22,13 @@ function dosomething_picsforpets_shelters_menu() {
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_shelters_lookup',
   );
+  $items['pics-for-pets/shelter-search-options'] = array(
+    'title' => t('Fine Your Shelter'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_shelters_options_form'),
+    'file' => 'dosomething_picsforpets_shelters.optionform.inc',
+  );
   return $items;
 }
 
@@ -250,6 +257,31 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         }
       }
       $markup = json_encode($shelter_array);
+      break;
+
+    case 'options':
+      $options = array();
+      foreach ($nids as $nid) {
+        $shelter = node_load($nid);
+        // Quick sanity check.
+        if ($shelter->type == 'shelter') {
+          $address = field_get_items('node', $shelter, 'field_pfp_address');
+          // reset the string.
+          $markup = '';
+          $markup .= '<span class="label-shelter-title">' . check_plain($shelter->title) . '</span><br />';
+          $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
+          $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
+          $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+          $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
+          $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+          $hours = field_get_items('node', $shelter, 'field_pfp_hours');
+          $markup .= empty($hours) ? '' : '<br />Hours:<br />' . $hours[0]['safe_value'];
+          // The option will have the node id as the value and the markup as the lable.
+          $options[$shelter->nid] = $markup;
+        }
+      }
+      return $options;
+      // Don't need the break but it bugs me out not to see it.
       break;
 
     case 'html':

@@ -39,46 +39,25 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
   if (isset($form_state['results'])) {
     $options = $form_state['results'];
   }
+  $options['new'] = t('I want to use a shelter not on the list.');
 
-  $form['results-wrapper'] = array(
+  $form['results'] = array(
     '#tree' => TRUE,
     '#prefix' => '<div id="shelter-results">',
     '#suffix' => '</div>',
     '#weight' => 2,
-  );
-  $form['results-wrapper']['results'] = array(
     '#type' => 'radios',
     '#options' => $options,
   );
 
-  $more = array();
-  if (isset($form_state['more_results_all'])) {
-    $more = $form_state['more_results_all'];
-  }
-  $more['new'] = t('I want to use a shelter not on the list.');
-
-  // If we have more results or should add the button let's add the container
-  // element.
-  if (!empty($form_state['view_more']) || !empty($more)) {
-    $form['results-wrapper']['more-wrapper'] = array(
-      '#tree' => TRUE,
-      '#prefix' => '<div id="shelter-results-more">',
-      '#suffix' => '</div>',
-      '#weight' => 3,
-    );
-    $form['results-wrapper']['more-wrapper']['more-results'] = array(
-      '#type' => 'radios',
-      '#options' => $more,
-    );
-  }
   if (!empty($form_state['view_more'])) {
-    $form['results-wrapper']['more-wrapper']['view_more_button'] = array(
+    $form['results']['view_more_button'] = array(
       '#type' => 'submit',
       '#value' => t('View More'),
       '#weight' => 4,
       '#ajax' => array(
-        'callback' => 'dosomething_picsforpets_shelters_load_more_ajax',
-        'wrapper' => 'shelter-results-more',
+        'callback' => 'dosomething_picsforpets_shelters_lookup_form_options_submit_ajax',
+        'wrapper' => 'shelter-results',
       ),
       '#submit' => array('dosomething_picsforpets_shelters_options_load_more'),
     );
@@ -146,6 +125,7 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
   // We append the results to the former results list so we have the appropriate
   // content for non JS submissions.
   $form_state['more_results_all'] = $form_state['more_results_all'] + $options;
+  $form_state['results'] = $form_state['results'] + $options;
   $form_state['rebuild'] = TRUE;
 }
 
@@ -153,40 +133,14 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
  * Ajax callback for the submit button on the shelter options lookup form.
  */
 function dosomething_picsforpets_shelters_lookup_form_options_submit_ajax($form, &$form_state) {
-  $return = array(
-    'more-results-ajax-wrapper' => array(
-      '#tree' => TRUE,
-      '#prefix' => '<div id="shelter-results">',
-      '#suffix' =>  '</div>',
-
-#      'more-results-ajax-load' =>
-      'more-results-ajax-load' => $form['results-wrapper']['results'],
-      /*array(
-        '#type' => 'radios',
-        '#options' => $form_state['results'],
-      ),*/
-      'more-results-ajax-wrapper' => $form['results-wrapper']['more-wrapper'],
-    ),
-  );
-  return $return;
-}
-
-/**
- * Ajax callback for the load more button on the shelter options lookup form.
- */
-function dosomething_picsforpets_shelters_load_more_options_ajax($form, $form_state) {
-  return $form['results-wrapper']['more-wrapper'];
+  return $form['results'];
 }
 
 function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_state) {
   $selected_shelter = NULL;
-  if (!empty($form_state['values']['results-wrapper']['results'])) {
-    $selected_shelter = $form_state['values']['results-wrapper']['results'];
-  }
-  else if (!empty($form_state['values']['results-wrapper']['more-wrapper']['more-results'])) {
-    $selected_shelter = $form_state['values']['results-wrapper']['more-wrapper']['more-results'];
+  if (!empty($form_state['values']['results'])) {
+    $selected_shelter = $form_state['values']['results'];
   }
   $shelter = node_load($selected_shelter);
-  dpm($form_state);
   dpm("you picked " . $shelter->title);
 }
