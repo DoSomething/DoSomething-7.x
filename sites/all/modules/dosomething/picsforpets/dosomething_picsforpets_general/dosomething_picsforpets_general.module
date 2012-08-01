@@ -101,6 +101,12 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
     '#value' => 'Sign Up',
   );
   $form['#action'] = '/pics-for-pets/lets-get-started';
+  $form['#attached'] = array(
+    'js' => array(
+      'type' => 'file',
+      'data' => drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/furtog-form.js',
+    ),
+  );
   return $form;
 }
 
