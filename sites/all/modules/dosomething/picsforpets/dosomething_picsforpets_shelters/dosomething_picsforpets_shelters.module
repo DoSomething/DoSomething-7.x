@@ -121,6 +121,9 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   return $form;
 }
 
+/**
+ * Form submission handler for the shelter lookup form.
+ */
 function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state) {
   // Reset the variables if we are hitting the search button rather than
   // 'view more'.
@@ -143,12 +146,15 @@ function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state
   $form_state['rebuild'] = TRUE;
 }
 
+/**
+ * Ajax callback for the submit button on the shelter lookup form.
+ */
 function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_state) {
   return array(
     'more-results-ajax-wrapper' => array(
       '#tree' => TRUE,
       '#prefix' => '<div id="shelter-results">',
-      '#suffix' =>  '</div>', //<div id="shelter-results-more"></div>',
+      '#suffix' =>  '</div>',
 
       'more-results-ajax-load' => array(
         '#prefix' => '<h2>' . t('Shelters near you:') . '</h2>',
@@ -159,10 +165,16 @@ function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_
   );
 }
 
+/**
+ * Ajax callback for the load more button on the shelter lookup form.
+ */
 function dosomething_picsforpets_shelters_load_more_ajax($form, $form_state) {
   return $form['results-wrapper']['more-wrapper'];
 }
 
+/**
+ * Normal submit handler for the view more button on the shelter lookup form.
+ */
 function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
   // Make sure we initialize the variable.
   $form_state['more_results_all'] = isset($form_state['more_results_all']) ? $form_state['more_results_all'] : '';
