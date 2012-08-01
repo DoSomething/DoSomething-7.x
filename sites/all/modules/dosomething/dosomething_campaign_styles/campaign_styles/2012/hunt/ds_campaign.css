@@ -1404,9 +1404,11 @@ table#field-team-invite-values {
     color: white;
     background: #d32a1b; }
 
-#scholarship_winners .pane-content {
-  text-align: center;
-  background: white; }
+#scholarship_winners {
+  clear: both; }
+  #scholarship_winners .pane-content {
+    text-align: center;
+    background: white; }
 
 #campaign_stats .pane-content {
   padding: 5px !important;
