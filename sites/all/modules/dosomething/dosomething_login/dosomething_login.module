@@ -316,11 +316,28 @@ function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
  * signup reset capabilities.
  */
 function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) {
-  // Assume we do not want to send a SMS text.
+  $name = trim($form_state['values']['name']);
+
+  // Check if they gave us a mobile number. We want to do this first because
+  // we can't send emails to the accounts we've generated with
+  // "{$number}@mobile" addresses.
+  $number = dosomething_general_valid_cell($name);
+  if ($number) {
+    $account = dosomething_general_find_user_by_cell($number);
+    if ($account) {
+      // Send a text message with the reset password.
+      $form_state['send_sms_reset'] = TRUE;
+      form_set_value(array('#parents' => array('account')), $account, $form_state);
+      return;
+    }
+  }
+
+  // Not going to be sending an SMS text at this point.
   $form_state['send_sms_reset'] = FALSE;
 
-  // Code pilfered from user_pass_validate in user.pages.inc
-  $name = trim($form_state['values']['name']);
+  // Code from here on is copied from user_pass_validate()--asside from the
+  // error message.
+
   // Try to load by email.
   $users = user_load_multiple(array(), array('mail' => $name, 'status' => '1'));
   $account = reset($users);
@@ -329,20 +346,7 @@ function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) 
     $users = user_load_multiple(array(), array('name' => $name, 'status' => '1'));
     $account = reset($users);
   }
-
-  // If we have an account return.
-  if ($account) {
-    form_set_value(array('#parents' => array('account')), $account, $form_state);
-    return;
-  }
-  // Check if they gave us a mobile number.
-  else if ($number = dosomething_general_valid_cell($name)) {
-    $account = dosomething_general_find_user_by_cell($number);
-  }
-
   if (isset($account->uid)) {
-    // Send a text message with the reset password.
-    $form_state['send_sms_reset'] = TRUE;
     form_set_value(array('#parents' => array('account')), $account, $form_state);
   }
   else {
