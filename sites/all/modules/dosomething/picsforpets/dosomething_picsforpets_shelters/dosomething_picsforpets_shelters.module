@@ -346,10 +346,8 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
 function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, $number = 10) {
   // Initialize an array to hold the nids and act as our return value.
   $nids = array();
-  // if $start and $results are null then set them to the defaults.
-  $start = is_null($start) ? 0 : $start;
-  $number = is_null($number) ? 10 : $number;
   if (!is_numeric($start) || !is_numeric($number)) {
+    // Be defensive.
     // Maybe someone is up to something funny.
     return $nids;
   }
