@@ -29,7 +29,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     // Get a shortcut to our part of the form.
     $entity_form = &$form['submitted'];
 
-    $form['#suffix'] = '<div id="campaign-opt-in"><span class="ctia_top">Sign up to receive weekly updates. No spam, we promise.</span><br /><span class="ctia_bottom">Msg &amp; data rates may apply. Text STOP to opt-out, HELP for help.</span></div>';
+    $form['#suffix'] = '<div id="campaign-opt-in"><span class="ctia_top">Sign up to receive weekly updates. No spam, we promise.</span><br /><span class="ctia_bottom">Msg &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</span></div>';
 
     $form['#attached']['library'][] = array('system', 'dialog');
     $form['#attached']['js'][] = array(
