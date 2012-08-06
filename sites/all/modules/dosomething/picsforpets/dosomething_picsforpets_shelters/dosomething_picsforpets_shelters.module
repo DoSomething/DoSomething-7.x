@@ -71,13 +71,9 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   }
   if (!empty($zip) && !isset($form_state['results'])) {
     // Auto populate the results.
-    // We retreive an extra result and then throw it away so that we know if we
-    // should show the 'view more' button.
     $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
-    if (count($shelter_nids) == 11) {
-      $form_state['view_more'] = TRUE;
-      unset($shelter_nids[10]);
-    }
+    // Show a more button?
+    $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids, 10);
     $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
   }
 
@@ -144,10 +140,8 @@ function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state
   // We retreive an extra result and then throw it away so that we know if we
   // should show the 'view more' button.
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
-  if (count($shelter_nids) == 11) {
-    $form_state['view_more'] = TRUE;
-    unset($shelter_nids[10]);
-  }
+  // Show more button?
+  $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids, 10);
   $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
   $form_state['results'] = $markup;
   $form_state['rebuild'] = TRUE;
@@ -189,16 +183,9 @@ function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
   // many results to skip in our result set.
   $form_state['more_times'] += 1;
   $zip = $form_state['values']['zip'];
-  // We retreive an extra result and then throw it away so that we know if we
-  // should show the 'view more' button.
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
-  if (count($shelter_nids) == 11) {
-    $form_state['view_more'] = TRUE;
-    unset($shelter_nids[10]);
-  }
-  else {
-    $form_state['view_more'] = FALSE;
-  }
+  // Show more button?
+  $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids, 10);
   $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
   $form_state['more_results'] = $markup;
   // We append the results to the former results list so we have the appropriate
@@ -330,6 +317,29 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
 }
 
 /**
+ * Helper function to determine if there should be a more button.
+ * We have retreived an extra result so that we know if we
+ * should show the 'view more' button. We remove that extra result and return a
+ * boolean.
+ *
+ * @param Array $shelter_nids
+ *   A list of shelter nids to check, passed by reference.
+ * @param int $min
+ *   The minimum number of results needed to have a show more button.
+ *
+ * @return
+ *   Boolean value indcating a show more button should be shown (TRUE).
+ */
+function dosomething_picsforpets_shelters_more_shelters(&$shelter_nids, $min = 10) {
+  $show_more = FALSE;
+  if (count($shelter_nids) == ($min + 1)) {
+    unset($shelter_nids[$min]);
+    $show_more = TRUE;
+  }
+  return $show_more;
+}
+
+/**
  * Return a set of node id numbers of shelters sorted by proximity to a certain
  * point.
  *
@@ -369,6 +379,8 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
   // Ex: http://www.marketingtechblog.com/calculate-distance/
 
   $result = db_query_range('SELECT entity_id, (((ACOS(SIN((:lat * PI()/180)) * SIN((field_pfp_geo_data_lat * PI()/180)) + COS((:lat * PI()/180)) * COS((field_pfp_geo_data_lat * PI()/180)) * COS(((:lon - field_pfp_geo_data_lon) * PI()/180)))) * 180/PI()) * 60 * 1.1515) AS distance FROM field_data_field_pfp_geo_data WHERE field_pfp_geo_data_lat IS NOT NULL AND field_pfp_geo_data_lon IS NOT NULL AND entity_type = :entity_type AND bundle = :bundle ORDER BY distance ASC', (int) $start, (int) $number, array(':lat' => $lat, 'lon' => $lon, ':entity_type' => 'node', ':bundle' => 'shelter'));
+  // Since we return multiple columns we explicitly fetch the first one being
+  // the entity id.
   $nids = $result->fetchCol(0);
   return $nids;
 }
