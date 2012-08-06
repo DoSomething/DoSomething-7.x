@@ -606,7 +606,7 @@ body {
     font-size: 19.2px;
   }
 }
-@media screen and (-webkit-device-pixel-ratio: 1.5) and (device-width: 683px) and (orientation: landscape), screen and (-webkit-device-pixel-ratio: 1.5) and (device-width: 400px) and (orientation: portrait), screen and (-o-device-pixel-ratio: 3/2) and (device-width: 683px) and (orientation: landscape), screen and (-o-device-pixel-ratio: 3/2) and (device-width: 400px) and (orientation: portrait), screen and (device-pixel-ratio: 1.5) and (device-width: 683px) and (orientation: landscape), screen and (device-pixel-ratio: 1.5) and (device-width: 400px) and (orientation: portrait), screen and (device-pixel-ratio: 3/2) and (device-width: 683px) and (orientation: landscape), screen and (device-pixel-ratio: 3/2) and (device-width: 400px) and (orientation: portrait) {
+@media screen and (-webkit-device-pixel-ratio: 1.5) and (device-width: 683px) and (orientation: landscape), screen and (-webkit-device-pixel-ratio: 1.5) and (device-width: 400px) and (orientation: portrait), screen and (-o-device-pixel-ratio: 3 / 2) and (device-width: 683px) and (orientation: landscape), screen and (-o-device-pixel-ratio: 3 / 2) and (device-width: 400px) and (orientation: portrait), screen and (device-pixel-ratio: 1.5) and (device-width: 683px) and (orientation: landscape), screen and (device-pixel-ratio: 1.5) and (device-width: 400px) and (orientation: portrait), screen and (device-pixel-ratio: 3 / 2) and (device-width: 683px) and (orientation: landscape), screen and (device-pixel-ratio: 3 / 2) and (device-width: 400px) and (orientation: portrait) {
   html {
     font-size: 12.8px;
   }
@@ -700,8 +700,8 @@ img.right {
 }
 
 small {
-  font-size: 0.813em;
-  line-height: 1.846em;
+  font-size: 0.8125em;
+  line-height: 1.84615em;
 }
 
 q {
@@ -2209,7 +2209,7 @@ select#edit-field-fb-app-animal-type-value {
   display: table;
   clear: both;
 }
-@media (max-width: 20.063em) {
+@media (max-width: 20.0625em) {
   .styletile #page {
     *zoom: 1;
     width: auto;
@@ -2224,7 +2224,7 @@ select#edit-field-fb-app-animal-type-value {
     clear: both;
   }
 }
-@media (min-width: 20.063em) and (max-width: 30.063em) {
+@media (min-width: 20.0625em) and (max-width: 30.0625em) {
   .styletile #page {
     *zoom: 1;
     width: auto;
@@ -2239,7 +2239,7 @@ select#edit-field-fb-app-animal-type-value {
     clear: both;
   }
 }
-@media (min-width: 30.063em) and (max-width: 45.063em) {
+@media (min-width: 30.0625em) and (max-width: 45.0625em) {
   .styletile #page {
     *zoom: 1;
     width: auto;
@@ -2254,33 +2254,33 @@ select#edit-field-fb-app-animal-type-value {
     clear: both;
   }
   .styletile #page header .client-id {
-    width: 48.276%;
+    width: 48.27586%;
     float: left;
-    margin-right: 3.448%;
+    margin-right: 3.44828%;
     display: inline;
   }
   .styletile #page header aside {
-    width: 48.276%;
+    width: 48.27586%;
     float: right;
     margin-right: 0;
     #margin-left: -1em;
     display: inline;
   }
   .styletile #page #main .text-examples {
-    width: 48.276%;
+    width: 48.27586%;
     float: left;
-    margin-right: 3.448%;
+    margin-right: 3.44828%;
     display: inline;
   }
   .styletile #page #main .graphic-examples {
-    width: 48.276%;
+    width: 48.27586%;
     float: right;
     margin-right: 0;
     #margin-left: -1em;
     display: inline;
   }
 }
-@media (min-width: 45.063em) and (max-width: 64.063em) {
+@media (min-width: 45.0625em) and (max-width: 64.0625em) {
   .styletile #page {
     *zoom: 1;
     width: auto;
@@ -2295,33 +2295,33 @@ select#edit-field-fb-app-animal-type-value {
     clear: both;
   }
   .styletile #page header .client-id {
-    width: 61.538%;
+    width: 61.53846%;
     float: left;
-    margin-right: 2.564%;
+    margin-right: 2.5641%;
     display: inline;
   }
   .styletile #page header aside {
-    width: 35.897%;
+    width: 35.89744%;
     float: right;
     margin-right: 0;
     #margin-left: -1em;
     display: inline;
   }
   .styletile #page #main .text-examples {
-    width: 48.718%;
+    width: 48.71795%;
     float: left;
-    margin-right: 2.564%;
+    margin-right: 2.5641%;
     display: inline;
   }
   .styletile #page #main .graphic-examples {
-    width: 48.718%;
+    width: 48.71795%;
     float: right;
     margin-right: 0;
     #margin-left: -1em;
     display: inline;
   }
 }
-@media (min-width: 64.063em) {
+@media (min-width: 64.0625em) {
   .styletile #page {
     *zoom: 1;
     max-width: 59em;
@@ -2337,26 +2337,26 @@ select#edit-field-fb-app-animal-type-value {
     clear: both;
   }
   .styletile #page header .client-id {
-    width: 66.102%;
+    width: 66.10169%;
     float: left;
-    margin-right: 1.695%;
+    margin-right: 1.69492%;
     display: inline;
   }
   .styletile #page header aside {
-    width: 32.203%;
+    width: 32.20339%;
     float: right;
     margin-right: 0;
     #margin-left: -1em;
     display: inline;
   }
   .styletile #page #main .text-examples {
-    width: 49.153%;
+    width: 49.15254%;
     float: left;
-    margin-right: 1.695%;
+    margin-right: 1.69492%;
     display: inline;
   }
   .styletile #page #main .graphic-examples {
-    width: 49.153%;
+    width: 49.15254%;
     float: right;
     margin-right: 0;
     #margin-left: -1em;
@@ -2385,11 +2385,11 @@ select#edit-field-fb-app-animal-type-value {
   top: 102%;
   color: gray;
 }
-@media (max-width: 20.063em) {
+@media (max-width: 20.0625em) {
   .styletile .colors ul li {
-    width: 44.444%;
+    width: 44.44444%;
     float: left;
-    margin-right: 11.111%;
+    margin-right: 11.11111%;
     display: inline;
   }
   .styletile .colors ul li:nth-of-type(2n+2) {
@@ -2399,11 +2399,11 @@ select#edit-field-fb-app-animal-type-value {
     display: inline;
   }
 }
-@media (min-width: 20.063em) and (max-width: 30.063em) {
+@media (min-width: 20.0625em) and (max-width: 30.0625em) {
   .styletile .colors ul li {
-    width: 28.571%;
+    width: 28.57143%;
     float: left;
-    margin-right: 7.143%;
+    margin-right: 7.14286%;
     display: inline;
   }
   .styletile .colors ul li:nth-of-type(3n+3) {
@@ -2413,11 +2413,11 @@ select#edit-field-fb-app-animal-type-value {
     display: inline;
   }
 }
-@media (min-width: 30.063em) and (max-width: 45.063em) {
+@media (min-width: 30.0625em) and (max-width: 45.0625em) {
   .styletile .colors ul li {
-    width: 28.571%;
+    width: 28.57143%;
     float: left;
-    margin-right: 7.143%;
+    margin-right: 7.14286%;
     display: inline;
   }
   .styletile .colors ul li:nth-of-type(3n+3) {
@@ -2427,11 +2427,11 @@ select#edit-field-fb-app-animal-type-value {
     display: inline;
   }
 }
-@media (min-width: 45.063em) and (max-width: 64.063em) {
+@media (min-width: 45.0625em) and (max-width: 64.0625em) {
   .styletile .colors ul li {
-    width: 21.053%;
+    width: 21.05263%;
     float: left;
-    margin-right: 5.263%;
+    margin-right: 5.26316%;
     display: inline;
   }
   .styletile .colors ul li:nth-of-type(4n+4) {
@@ -2441,11 +2441,11 @@ select#edit-field-fb-app-animal-type-value {
     display: inline;
   }
 }
-@media (min-width: 64.063em) {
+@media (min-width: 64.0625em) {
   .styletile .colors ul li {
-    width: 13.793%;
+    width: 13.7931%;
     float: left;
-    margin-right: 3.448%;
+    margin-right: 3.44828%;
     display: inline;
   }
   .styletile .colors ul li:nth-of-type(6n+6) {
@@ -2468,11 +2468,11 @@ select#edit-field-fb-app-animal-type-value {
   overflow: hidden;
   margin-bottom: 24px;
 }
-@media (min-width: 45.063em) and (max-width: 64.063em) {
+@media (min-width: 45.0625em) and (max-width: 64.0625em) {
   .styletile .images ul li {
-    width: 47.368%;
+    width: 47.36842%;
     float: left;
-    margin-right: 5.263%;
+    margin-right: 5.26316%;
     display: inline;
   }
   .styletile .images ul li:nth-of-type(2n+2) {
@@ -2482,11 +2482,11 @@ select#edit-field-fb-app-animal-type-value {
     display: inline;
   }
 }
-@media (min-width: 64.063em) {
+@media (min-width: 64.0625em) {
   .styletile .images ul li {
-    width: 48.276%;
+    width: 48.27586%;
     float: left;
-    margin-right: 3.448%;
+    margin-right: 3.44828%;
     display: inline;
   }
   .styletile .images ul li:nth-of-type(2n+2) {
