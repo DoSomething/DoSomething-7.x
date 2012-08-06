@@ -31,7 +31,106 @@ function dosomething_picsforpets_general_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_picsforpets_general_thanks_form'),
   );
+  $items['pics-for-pets/questions'] = array(
+    'title' => t('Thanks for sharing!'),
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_picsforpets_general_questions',
+  );
   return $items;
+}
+
+/**
+ * Making a collapsible faq for the pics-for-pets/questions page.
+ */
+function dosomething_picsforpets_general_questions() {
+  $page = array();
+  $page['#attached'] = array(
+    'js' => array(
+      'misc/form.js',
+      'misc/collapse.js',
+    ),
+  );
+  $page['question1'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('What is pics for pets?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+   $page['question2'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I become a fur-tographer?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+   $page['question3'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I find my local shelter?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question4'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('What if I want to visit a different shelter?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question5'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('Am I allowed to handle the animals?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question6'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('Can I take a picture of more than one animal?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question7'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I take good photos of animals?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question8'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I win the animals prizes?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question8'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I win a $5,000 scholarship?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+    $page['question8'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('Hey, you didn\'t answer my question!'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => 'Pics for pets is a program started by dosomething.' ,
+  );
+return $page;
 }
 
 /**
