@@ -52,13 +52,11 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
     '#required' => TRUE,
-    '#weight' => 0,
     '#default_value' => $zip_default,
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
-    '#weight' => 0,
     '#ajax' => array(
       'callback' => 'dosomething_picsforpets_shelters_lookup_form_submit_ajax',
       'wrapper' => 'shelter-results',
@@ -69,7 +67,7 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   if (isset($form_state['results'])) {
     $markup = $form_state['results'];
   }
-  if (!empty($zip) && !isset($form_state['results'])) {
+  elseif (!empty($zip)) {
     // Auto populate the results.
     $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
     // Show a more button?
@@ -181,7 +179,7 @@ function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
   $form_state['more_results_all'] = isset($form_state['more_results_all']) ? $form_state['more_results_all'] : '';
   // Update the number of times the more button has been clicked so we know how
   // many results to skip in our result set.
-  $form_state['more_times'] += 1;
+  $form_state['more_times']++;
   $zip = $form_state['values']['zip'];
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
   // Show more button?
