@@ -1379,3 +1379,38 @@ table#field-team-invite-values {
       border-width: 10px 10px 0 0; }
     #top_banner h2 a {
       color: black; }
+
+#ultrabook_winners .pane-content {
+  overflow: scroll;
+  padding: 5px !important;
+  background: white; }
+
+.ultrabook_winner {
+  float: left;
+  width: 137px;
+  margin: 5px;
+  padding-bottom: 20px;
+  font-family: "din-web";
+  font-size: 15px;
+  text-align: center; }
+  .ultrabook_winner img {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important; }
+  .ultrabook_winner .team {
+    padding: 5px 0;
+    color: #d32a1b; }
+  .ultrabook_winner .name {
+    padding: 5px 0;
+    color: white;
+    background: #d32a1b; }
+
+#scholarship_winners {
+  clear: both; }
+  #scholarship_winners .pane-content {
+    text-align: center;
+    background: white; }
+
+#campaign_stats .pane-content {
+  padding: 5px !important;
+  text-align: center;
+  background: white; }

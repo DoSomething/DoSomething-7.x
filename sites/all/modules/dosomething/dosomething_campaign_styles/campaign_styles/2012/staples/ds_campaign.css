@@ -843,6 +843,8 @@ body.page-node-722954 {
     padding: 0 !important; }
   body.page-node-722954 .panel-row-logos {
     width: 797px; }
+  body.page-node-722954 .panel-top-right-social {
+    display: none; }
   body.page-node-722954 .ui-dialog {
     overflow: visible;
     background: blue;
