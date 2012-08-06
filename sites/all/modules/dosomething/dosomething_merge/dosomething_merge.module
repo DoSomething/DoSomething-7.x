@@ -28,8 +28,7 @@ function dosomething_merge_form($form, &$form_state) {
       '#title' => t('Mobile Number:'),
       '#description' => t("We just need the number. Don't include spaces or dashes."),
       '#required' => TRUE,
-// TODO: remove this test number
-      '#default_value' => isset($form_state['storage']['mobile_number']) ? $form_state['storage']['mobile_number'] : '1234567890',
+      '#default_value' => isset($form_state['storage']['mobile_number']) ? $form_state['storage']['mobile_number'] : '',
     );
     $form['submit'] = array(
       '#type' => 'submit',
@@ -71,7 +70,7 @@ function dosomething_merge_form($form, &$form_state) {
 function dosomething_merge_checkit_validate($form, &$form_state) {
   global $user;
 
-  // Remove everything that's not a digit.
+  // Clean up the phone number.
   $number = dosomething_general_valid_cell($form_state['values']['mobile_number']);
   if ($number === FALSE) {
     form_set_error('mobile_number', t("That doesn't look like a valid phone number."));
@@ -85,12 +84,11 @@ function dosomething_merge_checkit_validate($form, &$form_state) {
 
   // See if we can load the user named after that phone number.
   $account = dosomething_general_find_user_by_cell($number);
-#FIXME:
+//FIXME://
 dsm($user, 'current');
 dsm($account, 'mobile account');
-#$account->uid = 12345;
   if (!$account->uid) {
-    form_set_error('mobile_number', t("That number doesn't seem mergable :/"));
+    form_set_error('mobile_number', t("Sorry we can't merge that account."));
   }
   else if ($account->uid == $user->uid) {
     form_set_error('mobile_number', t("You already have that phone number."));
@@ -114,9 +112,8 @@ function dosomething_merge_textme_validate($form, &$form_state) {
   $secret = $form_state['storage']['secret'] = user_password(6);
   $message = "Enter \"$secret\" to link this number with your DoSomething.org account. ";
 
-  // FIXME: remove this once we go live.
-  if (TRUE) {
-    $number = "1234567890";
+  $debug = variable_get('dosomething_merge_debug', FALSE);
+  if ($debug) {
     drupal_set_message(t("Texting %message to %mobile", array('%message' => $message, '%mobile' => $number)));
   }
   else {
@@ -125,7 +122,6 @@ function dosomething_merge_textme_validate($form, &$form_state) {
       array('%username' => $user->name, '%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
       WATCHDOG_NOTICE
     );
-dsm($response);
     if (!$response['status']) {
       form_set_error('', t("We couldn't send a text to %number.", array('%number' => $number)));
     }
@@ -189,12 +185,14 @@ function dosomething_merge_move_entities($primary_uid, $mobile_uid, $mobile_numb
     ->fields(array('uid' => $primary_uid))
     ->condition('uid', $mobile_uid, '=')
     ->execute();
+  # Leaving this commented out because I'm not sure how it would handle the case
+  # where both users have a membership. I think you'd get a key conflict.
   // $context['results']['og_membership'] = db_update('og_membership')
   //   ->fields(array('etid' => $primary_uid))
   //   ->condition('entity_type', 'user', '=')
   //   ->condition('etid', $mobile_uid, '=')
   //   ->execute();
-# Should we worry about: og_users_roles where uid = $uid
+  # Should we worry about: og_users_roles where uid = $uid
   $context['results']['node'] = db_update('node')
     ->fields(array('uid' => $primary_uid))
     ->condition('uid', $mobile_uid, '=')
@@ -223,13 +221,13 @@ function dosomething_merge_fiddle_user($primary_uid, $mobile_uid, $mobile_number
 
 function dosomething_merge_finished($success, $results, $operations) {
   if ($success) {
-dsm($results, 'results');
-dsm($operations, 'operations');
-    #drupal_set_message(t('@count results processed in @requests HTTP requests.', array('@count' => count($results), '@requests' => _batch_example_get_http_requests())));
-    #drupal_set_message(t('The final result was "%final"', array('%final' => end($results))));
+    $count = 0;
+    foreach ($context['results'] as $counter) {
+      $count += $counter;
+    }
+    drupal_set_message(format_plural($count, 'Moved @count item.', 'Moved @count items.'));
   }
   else {
-dsm($operations, 'operations');
     // An error occurred.
     // $operations contains the operations that remained unprocessed.
     $error_operation = reset($operations);
