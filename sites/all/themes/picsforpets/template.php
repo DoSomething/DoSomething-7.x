@@ -16,7 +16,7 @@ function picsforpets_preprocess_page(&$variables) {
     );
     $links[] = array(
       'title' => 'Prizes',
-      'href' => 'pics-for-pets/prizes',
+      'href' => 'pics-for-pets/prizes-and-scholarships',
       'attributes' => array('class' => array('footer-prizes')),
     );
     $links[] = array(
