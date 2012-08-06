@@ -37,7 +37,6 @@ FB_Devel.sanityCheck = function() {
  * Called when fb.js triggers the 'fb_init' event.
  */
 FB_Devel.initHandler = function() {
-  //alert("FB_Devel.initHandler");
   FB_Devel.sanityCheck();
 
   // Facebook events that may be of interest...
@@ -58,5 +57,5 @@ FB_JS.debugHandler = function(response) {
 Drupal.behaviors.fb_devel = function(context) {
   jQuery(document).bind('fb_init', FB_Devel.initHandler);
 
-  FB_Devel.sanityCheck();
+  //FB_Devel.sanityCheck(); // This is now done in page footer.
 };

@@ -26,7 +26,7 @@ function fb_admin_page() {
   if (count($apps)) {
     $header = array(
       t('Label'),
-      t('About'),
+      t('Name'),
       t('Canvas'),
       t('Local Operations'),
       t('Remote Settings'),
@@ -41,8 +41,14 @@ function fb_admin_page() {
       // Title.
       $row[] = $fb_app->label . ($fb_app->status ? '' : ' ' . t('(<em>not enabled</em>)'));
 
-      // About.
-      $row[] = l(isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label, $protocol . '://www.facebook.com/apps/application.php?id=' . $fb_app->id);
+      // New apps no longer have about pages.
+      $name = isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label;
+      if ($fb_app->about_url) {
+        $row[] = l($name, $fb_app->about_url);
+      }
+      else {
+        $row[] = $name;
+      }
 
       // Canvas Page.
       if (isset($fb_app->canvas_name) &&
@@ -89,11 +95,11 @@ function fb_admin_page() {
   else {
     $output['intro'] = array('#markup' => t('Start by creating an application.'));
     if (!module_exists('fb_app')) {
-      $output['module_enabled'] = array('#markup' => t('Ensure the Facebook Application module is enabled.'));
+      $output['module_enabled'] = array('#markup' => t('Enable the <em>Facebook Apps</em> module (fb_app.module) to manage an application.'));
     }
     else {
       $output['add_app'] = array(
-        '#markup' => t('Click <a href="!url">Add Application</a> to continue.',
+        '#markup' => t('Click <a href="!url">Add Application</a> to get started.',
                        array('!url' => url(FB_PATH_ADMIN . '/fb_app_create'))),
         '#prefix' => '<p>', '#suffix' => '</p>',
       );
@@ -124,6 +130,7 @@ function fb_admin_app_page($fb_app = NULL) {
     t('Name') => 'name',
     t('Label') => 'label',
     t('ID') => 'id',
+    t('Secret') => 'secret',
   );
   $output = "<dl>\n";
 
@@ -133,6 +140,13 @@ function fb_admin_app_page($fb_app = NULL) {
     if (isset($fb_app->$key)) {
       $output .= "<dt>$name</dt><dd>{$fb_app->$key}</dd>\n";
     }
+  }
+
+  // This clause belongs in fb_tab.module.  But currently no hook for that tab to add a "property" that is not a true facebook property.
+  if ($fb_app->installable && $fb_app->profile_tab_url && module_exists('fb_tab')) {
+    // This app can be added to a page.  Provide a link to do so.
+    $add_url = "http://www.facebook.com/dialog/pagetab?app_id=$fb_app->id&next=" . url(FB_TAB_PATH_ADDED . '/' . $fb_app->label, array('absolute' => TRUE, 'language' => FALSE));
+    $output .= '<dt>' . t('Add to page link') . '</dt><dd>' . l($add_url, $add_url) . '</dd>';
   }
 
   // Render additional properties
@@ -216,11 +230,12 @@ function fb_admin_get_app_options($include_current = FALSE, $key = 'label') {
   if ($include_current)
     $options[FB_APP_CURRENT] = t('<current>');
   foreach ($apps as $app) {
+    $title = !empty($app->title) ? $app->title : $app->label;
     if ($key == 'id') { // Still needed?
-      $options[$app->id] = $app->label;
+      $options[$app->id] = $title;
     }
     else {
-      $options[$app->label] = $app->label;
+      $options[$app->label] = $title;
     }
   }
   return $options;
@@ -346,19 +361,65 @@ function fb_admin_settings() {
 
   $form['fb_admin_session'][FB_VAR_USE_COOKIE] = array(
     '#type' => 'checkbox',
-    '#title' => t('Set FB Cookie'),
+    '#title' => t('Use FB Cookie'),
     '#default_value' => variable_get(FB_VAR_USE_COOKIE, TRUE),
-    '#description' => t('Tell Facebook\'s libraries to set a cookie, named fbs_<em>ID</em>, when user connects.  Makes facebook applications run smoother, but fails when third-party cookies are denied by user\'s browser.'),
+    '#description' => t('Tell Facebook\'s libraries to set and honor a cookie when user connects.  Makes facebook applications run smoother, but may fail when third-party cookies are denied by user\'s browser.'),
   );
 
   $form['fb_admin_session'][FB_VAR_USE_SESSION] = array(
     '#type' => 'checkbox',
     '#title' => t('Store tokens in session'),
     '#default_value' => variable_get(FB_VAR_USE_SESSION, TRUE),
-    '#description' => t('Store tokens and data needed by facebook\'s libraries in Drupal\'s session.  Helps applications work even when third-party cookies are denied.'),
+    '#description' => t('Store tokens and data needed by facebook\'s libraries in Drupal\'s session.  Helps applications work even when third-party cookies are disabled.'),
   );
 
-  $form['fb_admin_session'][FB_VAR_RELOAD_APPEND_HASH] = array(
+  $form['fb_admin_js'] = array(
+    '#title' => t('Javascript'),
+    '#type' => 'fieldset',
+    '#description' => t('Settings that control the <a href="!url" target=_blank>Javascript SDK</a>. These settings are relavant for both Apps and not Social Plugins. <br/>The defaults are the recommended values.', array(
+                          '!url' => 'http://developers.facebook.com/docs/reference/javascript/',
+                        )),
+    '#collapsible' => TRUE,
+  );
+
+  $form['fb_admin_js'][FB_VAR_JS_OAUTH] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use Oauth when initializing javascript.'),
+    '#default_value' => variable_get(FB_VAR_JS_OAUTH, TRUE),
+    '#description' => t('Pass oauth TRUE to <a href=!url target=_blank>FB.init()</a>.  When checked, javascript SDK looks for new-style cookie named "fbsr_...".  When unchecked, looks for old-style cookie named "fbs_...".  When this and above options are unchecked, user will have to explicitly connect/disconnect from your site, logging in/out of facebook will not be automatically detected.', array(
+                          '!url' => 'http://developers.facebook.com/docs/reference/javascript/FB.init/',
+                        )),
+  );
+
+  $form['fb_admin_js'][FB_VAR_JS_GET_LOGIN_STATUS] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Get login status when initializing javascript.'),
+    '#default_value' => variable_get(FB_VAR_JS_GET_LOGIN_STATUS, TRUE),
+    '#description' => t('Detect whether a connected user has logged into or out of facebook.  Uses FB.getLoginStatus().  This technique is recommended by Facebook; however, it has <a href=!url>bugs</a> and <a href=!url2>more bugs</a>.  If those bugs affect your site, you may want to disable this.', array(
+                          '!url' => 'http://developers.facebook.com/bugs/173032012783482',
+                          '!url2' => 'https://developers.facebook.com/bugs/240058389381072',
+                        )),
+  );
+
+  $form['fb_admin_js'][FB_VAR_JS_TEST_LOGIN_STATUS] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Alternative verify login status when initializing javascript.'),
+    '#default_value' => variable_get(FB_VAR_JS_TEST_LOGIN_STATUS, FALSE),
+    '#description' => t('When not using FB.getLoginStatus() (because it is <a href=!url target=_blank>buggy</a>) detect log out of facebook via a call to FB.api().  Does not detect a login (the user must explicitly click a connect button). This may add overhead on the client side to every page load.   This setting only takes effect when the setting above is unchecked.', array(
+                          '!url' => 'http://developers.facebook.com/bugs/173032012783482',
+                        )),
+  );
+
+  $form['fb_admin_js'][FB_VAR_JS_USE_SESSION] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use tokens in session to initialize javascript'),
+    '#default_value' => variable_get(FB_VAR_JS_USE_SESSION, FALSE),
+    '#description' => t('Attempt to workaround <a href=!url target=_blank>a bug in facebook\'s javascript</a> by passing a signed request in the js settings.  Facebook\'s SDK should use that instead of a cookie. (Only works when storing tokens in session and using oauth.)', array(
+                          '!url' => 'http://developers.facebook.com/bugs/173032012783482',
+                        )),
+  );
+
+  $form['fb_admin_js'][FB_VAR_RELOAD_APPEND_HASH] = array(
     '#type' => 'checkbox',
     '#title' => t('Append hash on javascript page reload'),
     '#default_value' => variable_get(FB_VAR_RELOAD_APPEND_HASH, FALSE),
@@ -408,7 +469,6 @@ function fb_admin_settings() {
   }
 
   return system_settings_form($form);
-
 }
 
 /**

@@ -122,36 +122,17 @@ function _fb_settings_honor_signed_request($sr) {
 }
 
 /**
- * Parse a facebook session cookie.  Based on sample code
- * http://developers.facebook.com/docs/guides/web.
+ * The current format of the cookie is a signed request.
+ *
+ * Facebook doesn't document the cookie name or format, so basically we just
+ * have to hope this works.
  */
 function fb_settings_get_facebook_cookie($app_id, $application_secret = NULL) {
-  if (!isset($_COOKIE['fbs_' . $app_id]))
+  if (!isset($_COOKIE['fbsr_' . $app_id]))
     return;
 
-  $args = array();
-  parse_str(trim($_COOKIE['fbs_' . $app_id], '\\"'), $args);
-  if ($application_secret) {
-    ksort($args);
-    $payload = '';
-    foreach ($args as $key => $value) {
-      if ($key != 'sig') {
-        $payload .= $key . '=' . $value;
-      }
-    }
-    if (md5($payload . $application_secret) != $args['sig']) {
-      return NULL;
-    }
-  }
-  if (!isset($args['session_key'])) {
-    // Session key missing first time facebook connect page is loaded (?)
-    if ($access_token = $args['access_token']) {
-      $tokens = explode('|', $access_token);
-      $args['session_key'] = $tokens[1] . '|' . $tokens[2];
-    }
-  }
-  //print(__FUNCTION__); print_r($args); flush(); // debug
-  return $args;
+  $sr = _fb_settings_parse_signed_request($_COOKIE['fbsr_' . $app_id]);
+  return $sr;
 }
 
 
@@ -212,12 +193,8 @@ else {
   $id = isset($conf['fb_id']) ? $conf['fb_id'] : NULL;
   $secret = isset($conf['fb_secret']) ? $conf['fb_secret'] : NULL;
   if ($id) {
-    $session = fb_settings_get_facebook_cookie($id, $secret);
-    // Honor connect session only when cookie is set.
-    if (count($session)) {
-      fb_settings(FB_SETTINGS_ID, $id);
-      fb_settings(FB_SETTINGS_TYPE, FB_SETTINGS_TYPE_CONNECT);
-      fb_settings(FB_SETTINGS_FBU, $session['uid']);
+    if ($sr = fb_settings_get_facebook_cookie($id, $secret)) {
+      _fb_settings_honor_signed_request($sr);
     }
   }
 }

@@ -76,7 +76,6 @@ function fb_canvas_fb($op, $data, &$return) {
       }
     }
     if ($fb_app) {
-      //dpm($fb_app, __FUNCTION__);
       $return = $fb_app;
     }
   }
@@ -210,8 +209,6 @@ function _fb_canvas_get_config($fb_app) {
   // Merge in defaults
   $fb_canvas_data += array(
     'require_login' => FB_CANVAS_OPTION_ALLOW_ANON, // @TODO - can this still be supported?
-    'theme_fbml' => 'fb_fbml',
-    'theme_iframe' => 'fb_fbml',
     'front_anonymous' => NULL,
     'front_loggedin' => NULL, // Facebook API no longer supports this.
     'front_added' => NULL,

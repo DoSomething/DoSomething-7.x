@@ -12,7 +12,7 @@
 function fb_tab_fb_admin($op, $data, &$return) {
   $fb = isset($data['fb']) ? $data['fb'] : NULL;
   $fb_app = isset($data['fb_app']) ? $data['fb_app'] : NULL;
-  $config = _fb_tab_get_config($fb_app);
+  $config = _fb_tab_get_app_config($fb_app);
   if ($op == FB_ADMIN_OP_SET_PROPERTIES) {
     $return['tab_default_name'] = $config['tab_default_name'];
 
@@ -100,7 +100,7 @@ function fb_tab_admin_form_alter(&$form, &$form_state, $form_id) {
   // Add our settings to the fb_app edit form.
   if (isset($form['fb_app_data']) && is_array($form['fb_app_data'])) {
     $fb_app = $form['#fb_app'];
-    $config = _fb_tab_get_config($fb_app);
+    $config = _fb_tab_get_app_config($fb_app);
 
     $form['fb_app_data']['fb_tab'] = array(
       '#type' => 'fieldset',

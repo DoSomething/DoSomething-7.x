@@ -59,7 +59,7 @@ function fb_graph_delete_confirm_form_submit($form, &$form_state) {
       $result = fb_graph($form_state['values']['fb_graph_id'], array(
                            'access_token' => $token,
                            'method' => 'delete',
-                         ));
+                         ), 'POST');
       if ($result) {
         drupal_set_message("Deleted action from Facebook timeline.");
       }

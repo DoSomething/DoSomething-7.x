@@ -45,6 +45,10 @@ function fb_connect_app_init($fb_app) {
   if (isset($GLOBALS['_fb_app']) &&
       $GLOBALS['_fb_app']->apikey != $fb_app->apikey) {
     // If we're in an iframe, only support connect for the iframe app.
+    watchdog('fb_connect', 'Unable to initialize facebook application %label1, because %label2 is already initialized.', array(
+               '%label1' => $fb_app->label,
+               '%label2' => $GLOBALS['_fb_app']->label,
+             ), WATCHDOG_ERROR);
     return;
   }
 
@@ -163,16 +167,16 @@ function _fb_connect_add_js($fb_app, $fb) {
 function _fb_connect_block_login_defaults() {
   return array('anon_not_connected' => array(
                  'title' => t('Facebook Connect'),
-                 'body' => array('value' => '<fb:login-button scope="!perms" v="2">Connect</fb:login-button>'),
+                 'body' => array('value' => '<div class="fb-login-button" scope="!perms" data-show-faces="false"></div>', 'format' => NULL),
                ),
                'user_not_connected' => array(
                  'title' => t('Facebook Connect'),
-                 'body' => array('value' => '<fb:login-button scope="!perms" v="2">Connect</fb:login-button>'),
+                 'body' => array('value' => '<div class="fb-login-button" scope="!perms" data-show-faces="false"></div>', 'format' => NULL),
                ),
                'connected' => array(
                  'title' => t('Facebook Connect'),
                  // Logout commented out, because drupal has logout link.
-                 'body' => array('value' => '<fb:profile-pic uid=!fbu></fb:profile-pic><!--<fb:login-button autologoutlink=true></fb:login-button>-->'),
+                 'body' => array('value' => '<fb:profile-pic uid=loggedinuser linked="false" facebook-logo="true"></fb:profile-pic><!--<fb:login-button autologoutlink=true></fb:login-button>-->', 'format' => NULL), // fb:profile-pic is deprecated! https://developers.facebook.com/docs/reference/fbml/profile-pic/
                ),
   );
 }
@@ -255,6 +259,7 @@ function fb_connect_block_view($delta = '') {
       // Login block
       $label = substr($delta, 6); // length of 'login_'
       $fb_app = fb_get_app(array('label' => $label));
+
       if ($fb_app &&
           ($fb = fb_connect_app_init($fb_app))) {
         $fbu = $fb->getUser();
@@ -263,19 +268,27 @@ function fb_connect_block_view($delta = '') {
 
         $base = drupal_get_path('module', 'fb_connect');
 
-        $config = variable_get('fb_connect_block_' . $delta, _fb_connect_block_login_defaults());
-        if ($fbu) {
-          $key = 'connected';
-        }
-        elseif ($GLOBALS['user']->uid >= 1) {
-          $key = 'user_not_connected';
+        $defaults = variable_get('fb_connect_block_' . $delta, _fb_connect_block_login_defaults());
+
+        if (!$fbu && $GLOBALS['user']->uid >= 1) {
+          // Render only logged in user markup.
+          $subject = $defaults['user_not_connected']['title'];
+          $content = $defaults['user_not_connected']['body']['value'];
+          $format = $defaults['user_not_connected']['body']['format'];
+
+          $subject_connected = NULL;
+          $content_connected = NULL;
         }
         else {
-          $key = 'anon_not_connected';
-        }
+          // Render both connected and not connected markup.
+          $subject = $defaults['anon_not_connected']['title'];
+          $content = $defaults['anon_not_connected']['body']['value'];
+          $format = $defaults['anon_not_connected']['body']['format'];
 
-        $subject = $config[$key]['title'];
-        $content = $config[$key]['body']['value'];
+          $subject_connected = $defaults['connected']['title'];
+          $content_connected = $defaults['connected']['body']['value'];
+          $content_connected = str_replace('!fbu', 'loggedinuser', $content_connected); // support deprecated !fbu
+        }
 
         // substitute fbu
         $content = str_replace('!fbu', $fbu, $content);
@@ -287,13 +300,26 @@ function fb_connect_block_view($delta = '') {
 
         // Filter output according to settings in block configuration
         $subject = check_plain($subject);
-        if (isset($config[$key]['body']['format'])) {
-          $content = check_markup($content, $config[$key]['body']['format'], '', FALSE);
+        if ($format) {
+          $content = check_markup($content, $format, '', FALSE);
+        }
+        if ($subject_connected !== NULL) {
+          $subject_connected = check_plain($subject_connected);
+          if ($format_connected = $defaults['connected']['body']['format']) {
+            $content_connected = check_markup($content_connected, $format_connected, FALSE);
+          }
         }
 
         $block = array(
-          'subject' => $subject,
-          'content' => $content,
+          // Theme fb_markup uses javascript to show/hide the right markup.
+          'subject' => theme('fb_markup', array(
+                               'not_connected' => $subject,
+                               'connected' => $subject_connected,
+                             )),
+          'content' => theme('fb_markup', array(
+                               'not_connected' => $content,
+                               'connected' => $content_connected,
+                             )),
         );
         return $block;
       }
@@ -423,10 +449,10 @@ function fb_connect_theme_user_picture_override($variables) {
 
   if ($fbu = fb_get_object_fbu($account)) {
     $output = theme('fb_user_picture', array(
-        'fbu' => $fbu,
-        'account' => $account,
-        'orig' =>  $orig,
-        ));
+                      'fbu' => $fbu,
+                      'account' => $account,
+                      'orig' =>  $orig,
+                    ));
   }
   else {
     $output = $orig;

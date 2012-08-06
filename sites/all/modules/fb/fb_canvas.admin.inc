@@ -15,7 +15,10 @@ function fb_canvas_fb_admin($op, $data, &$return) {
   if ($op == FB_ADMIN_OP_SET_PROPERTIES) {
     // Compute properties which we can set automatically.
     if (function_exists('fb_url_inbound_alter')) {
-      $callback_url = url('', array('absolute' => TRUE)) . FB_SETTINGS_CB . '/' . $fb_app->id . '/';
+      $callback_url = url('', array(
+                            'absolute' => TRUE,
+                            'language' => FALSE,
+                          )) . FB_SETTINGS_CB . '/' . $fb_app->id . '/';
     }
     else {
       // Paving the way to make URL alters optional.
@@ -89,6 +92,7 @@ function fb_canvas_admin_form_alter(&$form, &$form_state, $form_id) {
     foreach ($themes as $key => $theme) {
       $theme_options[$key] = $theme['name'];
     }
+
     $form['fb_app_data']['fb_canvas']['theme_iframe'] = array(
       '#type' => 'select',
       '#title' => t('Theme for canvas pages'),

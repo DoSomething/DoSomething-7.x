@@ -125,7 +125,6 @@ function fb_url_outbound_alter(&$path, &$options, $original_path) {
  *
  */
 function fb_url_inbound_alter(&$path, $original_path, $path_language) {
-  global $language;
 
   // See if this is a request for us.
   if (strpos($path, FB_SETTINGS_CB . '/') === 0) {
@@ -137,14 +136,25 @@ function fb_url_inbound_alter(&$path, $original_path, $path_language) {
       if (fb_settings($key) === NULL) // defer to previously set values
         fb_settings($key, $value); // Store for use later.
     }
+    if (fb_settings(FB_SETTINGS_CB)) {
 
-    // Remove our prefixes
-    $path = implode('/', $args);
-
-    // Because Drupal calls hook_url_inbound_alter() later than it should, we have to repeat this work, which path.inc has already done.
-    if (!$path) {
-      $path = variable_get('site_frontpage', 'node');
+      if (count($args)) {
+        $path = implode('/', $args); // remaining args
+        $alias = drupal_lookup_path('source', $path, $path_language); //can't use drupal_get_normal_path, it calls custom_url_rewrite_inbound
+        if ($alias)
+          $path = $alias;
+      }
+      else {
+        // frontpage
+        $path = variable_get('site_frontpage', 'node');
+        $alias = drupal_lookup_path('source', $path, $path_language);
+        if ($alias)
+          $path = $alias;
+        $_REQUEST['destination'] = $path; //required workaround for compatibility with Global Redirect module, best practice?
+      }
     }
+  }
+  else { //resolve aliases for non-fb-callbacks
     $alias = drupal_lookup_path('source', $path, $path_language);
     if ($alias) {
       $path = $alias;

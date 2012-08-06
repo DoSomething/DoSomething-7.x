@@ -5,9 +5,9 @@ core = 7.x
 dependencies[] = fb
 
 
-; Information added by drupal.org packaging script on 2012-06-20
-version = "7.x-3.3-beta1"
+; Information added by drupal.org packaging script on 2012-07-19
+version = "7.x-3.3-beta3"
 core = "7.x"
 project = "fb"
-datestamp = "1340222785"
+datestamp = "1342718795"
 

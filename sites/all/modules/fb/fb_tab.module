@@ -18,6 +18,8 @@ define('FB_TAB_OP_FORM', 'fb_tab_form');
 define('FB_TAB_PATH_VIEW', 'fb_tab/view');
 define('FB_TAB_PATH_FORM', 'fb_tab/config');
 define('FB_TAB_PATH_FORM_ARGS', 2);
+define('FB_TAB_PATH_ADDED', 'fb_tab/added'); // user redirected here after adding page tab.
+define('FB_TAB_PATH_ADDED_ARGS', 2);
 
 define('FB_TAB_VAR_PROCESS_FBML', 'fb_tab_process_fbml');
 define('FB_TAB_VAR_PROCESS_IFRAME', 'fb_tab_process_iframe');
@@ -47,6 +49,14 @@ function fb_tab_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items[FB_TAB_PATH_ADDED . '/%fb'] = array(
+    'page callback' => 'fb_tab_added',
+    'access arguments' => array('access content'),
+    'page arguments' => array(FB_TAB_PATH_ADDED_ARGS),
+    'type' => MENU_CALLBACK,
+  );
+
+
   // Admin pages
   $items[FB_PATH_ADMIN .'/fb_tab'] = array(
     'title' => 'Page Tabs',
@@ -72,7 +82,7 @@ function fb_tab_menu() {
 function fb_tab_custom_theme() {
   if (fb_is_tab()) {
     // Get our configuration settings.
-    $config = _fb_tab_get_config($GLOBALS['_fb_app']);
+    $config = _fb_tab_get_app_config($GLOBALS['_fb_app']);
     if ($custom_theme = $config['custom_theme']) {
       return $custom_theme;
     }
@@ -136,6 +146,9 @@ function fb_tab_fb($op, $data, &$return) {
   }
   elseif ($op == FB_OP_INITIALIZE) {
     if (fb_is_tab()) {
+      $config = _fb_tab_get_app_config($fb_app);
+      // custom_theme handling moved to fb_tab_custom_theme().
+
       if (fb_settings(FB_SETTINGS_TYPE) == FB_SETTINGS_TYPE_PAGE_TAB &&
           variable_get(FB_TAB_VAR_PROCESS_IFRAME, TRUE)) {
         // Process iframe
@@ -163,7 +176,6 @@ function fb_tab_fb($op, $data, &$return) {
 
       // Override what Drupal renders.
       if (arg(0) == 'fb_tab' && arg(1) == 'view') { // Do not override fb_tab/config.
-        $config = _fb_tab_get_config($fb_app);
         $sr = $fb->getSignedRequest();
         if ($sr['page'] && $sr['page']['liked'] && $config['profile_tab_url_liked']) {
           $path = $config['profile_tab_url_liked'];
@@ -229,7 +241,7 @@ function fb_tab_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Helper returns configuration for this module, on a per-app basis.
  */
-function _fb_tab_get_config($fb_app) {
+function _fb_tab_get_app_config($fb_app) {
   $fb_app_data = fb_get_app_data($fb_app);
   $config = isset($fb_app_data['fb_tab']) ? $fb_app_data['fb_tab'] : array();
 
@@ -254,7 +266,7 @@ function fb_tab_view() {
 
   $profile_id = fb_settings(FB_SETTINGS_CB_PAGE);
 
-  $config = fb_tab_fetch_config($fb_app, $profile_id);
+  $config = fb_tab_get_page_config($fb_app, $profile_id);
 
   $sr = $fb->getSignedRequest();
 
@@ -278,7 +290,8 @@ function fb_tab_config_form($form_state, $profile_id) {
   $fb_app = $GLOBALS['_fb_app'];
   $fb = $GLOBALS['_fb'];
 
-  $config = fb_tab_fetch_config($fb_app, $profile_id);
+  $config = fb_tab_get_page_config($fb_app, $profile_id);
+  $sr = $fb->getSignedRequest();
 
   $sr = $fb->getSignedRequest();
 
@@ -297,7 +310,6 @@ function fb_tab_config_form($form_state, $profile_id) {
                             'access_token' => fb_get_token($fb),
                           ));
     $admin_info = fb_fql_query($fb, "SELECT uid, type FROM page_admin WHERE uid=$fbu AND page_id=$profile_id"); // FQL not SQL, no {curly_brackets}
-    //dpm($admin_info, __FUNCTION__);
 
     // @TODO: if not page admin, prompt user to login or deny access.
 
@@ -386,7 +398,7 @@ function fb_tab_write_config(&$row) {
  * Return configuration of a tab by application (access via 'label') and page ID.
  * Page ID exists because an app can present different views on different pages.
  */
-function fb_tab_fetch_config($fb_app, $profile_id) {
+function fb_tab_get_page_config($fb_app, $profile_id) {
   $row = db_query("SELECT * FROM {fb_tab} WHERE label = :label AND profile_id = :pid",
                 array(':label' => $fb_app->label,
                       ':pid' => $profile_id))->fetchAssoc();
@@ -401,7 +413,43 @@ function fb_tab_fetch_config($fb_app, $profile_id) {
 }
 
 /**
- * This page callback will show the user a list of pages they have authority to configure.
+ * Drupal menu callback.  User has added a tab to one of their pages.
+ */
+function fb_tab_added($fb_app) {
+  //dpm($_REQUEST, __FUNCTION__); // debug what facebook has passed to us
+
+  if (empty($_REQUEST['tabs_added'])) {
+    // Sanity check.
+    drupal_set_message(t('Failed to add tab to facebook page.'), 'error');
+    return t('Failed to add tab to facebook page.');
+  }
+
+  foreach($_REQUEST['tabs_added'] as $page_id => $added) {
+    // TODO use batch graph api.
+    $graph = fb_graph($page_id);
+
+    watchdog('fb_tab', "Facebook application %label (%app_id) added to page %name (%page_id)", array(
+               '%label' => $fb_app->label,
+               '%app_id' => $fb_app->id,
+               '%name' => $graph['name'],
+               '%page_id' => $graph['id'],
+             ));
+  }
+
+  // Redirect user to the page tab they've added.
+  if ($graph['link']) {
+    // This undocumented format seems to be the right URL for a page tab.
+    $url = $graph['link'] . '?sk=app_' . $fb_app->id;
+    drupal_goto($url);
+  }
+
+  // If drupal_goto succeeds, user will not see this.
+  return t('Added application to Facebook page.');
+}
+
+/**
+ * This page callback will show the user a list of pages they have authority
+ * to configure.
  */
 function fb_tab_pages() {
   if ($fbu = fb_facebook_user()) {
