@@ -27,6 +27,13 @@ function dosomething_fb_apps_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'fb_canvas_process_iframe';
+  $strongarm->value = 0;
+  $export['fb_canvas_process_iframe'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_webform_submission_entity__fb_app_data_gathering_form';
   $strongarm->value = array(
     'view_modes' => array(
