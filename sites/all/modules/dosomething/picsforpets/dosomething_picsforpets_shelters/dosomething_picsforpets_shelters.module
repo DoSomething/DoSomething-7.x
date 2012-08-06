@@ -243,7 +243,6 @@ function dosomething_picsforpets_shelters_lookup($format = NULL, $zip = NULL, $s
  * Return a list of shelters formatted as Json data.
  */
 function dosomething_picsforpets_shelters_lookup_json($zip, $start = NULL, $results = NULL) {
-  // Currently just a stub
   $nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start, $results);
   echo dosomething_picsforpets_shelters_formatted_results($nids, 'json');
   die();
