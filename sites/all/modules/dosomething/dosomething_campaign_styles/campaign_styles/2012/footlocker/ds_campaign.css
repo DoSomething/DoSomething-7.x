@@ -557,3 +557,6 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
   text-align: center; }
 #fl-nominate-confirmation-popup .fl-popup-main-text {
   font-size: 52px !important; }
+
+.ui-icon.ui-icon-closethick {
+  text-indent: -9999px; }
