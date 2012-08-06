@@ -336,7 +336,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
  * @parap $zip
  *   The zip code to search around.
  * @param $start
- *   The location of the first result to return from the list of resutls.
+ *   The location of the first result to return from the list of results.
  * @param $number
  *   The number of results to return.
  *
