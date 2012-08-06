@@ -229,6 +229,37 @@ Please try a new combo.
   $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
+  /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['id'] = 'field_fb_app_share_count_value_1';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['field'] = 'field_fb_app_share_count_value';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['order'] = 'DESC';
+  /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['id'] = 'field_fb_app_share_count_value';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['field'] = 'field_fb_app_share_count_value';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['expose']['label'] = 'Most Shared';
+  /* Sort criterion: dosomething_fb_app: Least Shared */
+  $handler->display->display_options['sorts']['least_shared_1']['id'] = 'least_shared_1';
+  $handler->display->display_options['sorts']['least_shared_1']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['sorts']['least_shared_1']['field'] = 'least_shared';
+  $handler->display->display_options['sorts']['least_shared_1']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['least_shared_1']['expose']['label'] = 'Least Shared';
+  /* Sort criterion: Webform submissions: Oldest */
+  $handler->display->display_options['sorts']['submitted_asc']['id'] = 'submitted_asc';
+  $handler->display->display_options['sorts']['submitted_asc']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted_asc']['field'] = 'submitted_asc';
+  $handler->display->display_options['sorts']['submitted_asc']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['submitted_asc']['expose']['label'] = 'Oldest';
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['submitted']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['submitted']['expose']['label'] = 'Newest';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
