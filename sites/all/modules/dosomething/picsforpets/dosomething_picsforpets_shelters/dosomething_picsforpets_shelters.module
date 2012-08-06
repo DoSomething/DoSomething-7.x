@@ -363,10 +363,11 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
     $lon = $result['longitude'];
   }
   // To be safe we'll cast the $start and $number variables to integers.
-  // This method of calculating the distacne between two point based on Lat and
+  // This method of calculating the distance between two points based on Lat and
   // Long is based on the Haverside formula. Many examples of the same generated
   // query can be found around the web.
   // Ex: http://www.marketingtechblog.com/calculate-distance/
+
   $result = db_query_range('SELECT entity_id, (((ACOS(SIN((:lat * PI()/180)) * SIN((field_pfp_geo_data_lat * PI()/180)) + COS((:lat * PI()/180)) * COS((field_pfp_geo_data_lat * PI()/180)) * COS(((:lon - field_pfp_geo_data_lon) * PI()/180)))) * 180/PI()) * 60 * 1.1515) AS distance FROM field_data_field_pfp_geo_data WHERE field_pfp_geo_data_lat IS NOT NULL AND field_pfp_geo_data_lon IS NOT NULL AND entity_type = :entity_type AND bundle = :bundle ORDER BY distance ASC', (int) $start, (int) $number, array(':lat' => $lat, 'lon' => $lon, ':entity_type' => 'node', ':bundle' => 'shelter'));
   $nids = $result->fetchCol(0);
   return $nids;
