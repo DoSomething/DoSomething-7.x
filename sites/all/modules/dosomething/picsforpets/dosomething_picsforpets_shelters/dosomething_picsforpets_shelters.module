@@ -351,7 +351,7 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
     // Maybe someone is up to something funny.
     return $nids;
   }
-  // First get the lat an long from the zipcode variable.
+  // First get the lat and long from the zipcode variable.
   $result = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $zip))->fetchAssoc();
   if (!$result) {
     // We got a bad zipcode that couldn't be looked up so just give back an
