@@ -61,7 +61,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-   $page['question2'] = array(
+  $page['question2'] = array(
     '#theme' => 'fieldset',
     '#title' => t('How do I become a fur-tographer?'),
     '#attributes' => array(
@@ -69,7 +69,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-   $page['question3'] = array(
+  $page['question3'] = array(
     '#theme' => 'fieldset',
     '#title' => t('How do I find my local shelter?'),
     '#attributes' => array(
@@ -77,7 +77,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question4'] = array(
+  $page['question4'] = array(
     '#theme' => 'fieldset',
     '#title' => t('What if I want to visit a different shelter?'),
     '#attributes' => array(
@@ -85,7 +85,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question5'] = array(
+  $page['question5'] = array(
     '#theme' => 'fieldset',
     '#title' => t('Am I allowed to handle the animals?'),
     '#attributes' => array(
@@ -93,7 +93,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question6'] = array(
+  $page['question6'] = array(
     '#theme' => 'fieldset',
     '#title' => t('Can I take a picture of more than one animal?'),
     '#attributes' => array(
@@ -101,7 +101,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question7'] = array(
+  $page['question7'] = array(
     '#theme' => 'fieldset',
     '#title' => t('How do I take good photos of animals?'),
     '#attributes' => array(
@@ -109,7 +109,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question8'] = array(
+  $page['question8'] = array(
     '#theme' => 'fieldset',
     '#title' => t('How do I win the animals prizes?'),
     '#attributes' => array(
@@ -117,7 +117,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question9'] = array(
+  $page['question9'] = array(
     '#theme' => 'fieldset',
     '#title' => t('How do I win a $5,000 scholarship?'),
     '#attributes' => array(
@@ -125,7 +125,7 @@ function dosomething_picsforpets_general_questions() {
     ),
     '#children' => t('Pics for pets is a program started by dosomething.'),
   );
-    $page['question10'] = array(
+  $page['question10'] = array(
     '#theme' => 'fieldset',
     '#title' => t('Hey, you didn\'t answer my question!'),
     '#attributes' => array(
