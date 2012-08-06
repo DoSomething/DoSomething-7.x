@@ -84,9 +84,6 @@ function dosomething_merge_checkit_validate($form, &$form_state) {
 
   // See if we can load the user named after that phone number.
   $account = dosomething_general_find_user_by_cell($number);
-//FIXME://
-dsm($user, 'current');
-dsm($account, 'mobile account');
   if (!$account->uid) {
     form_set_error('mobile_number', t("Sorry we can't merge that account."));
   }
@@ -98,6 +95,12 @@ dsm($account, 'mobile account');
     $form_state['storage']['mobile_number'] = $number;
     $form_state['storage']['mobile_uid'] = $account->uid;
     $form_state['storage']['primary_uid'] = $user->uid;
+  }
+
+  // Little debugging help.
+  if (variable_get('dosomething_merge_debug', FALSE) && module_exists('devel')) {
+    dsm($user, 'current user');
+    dsm($account, 'mobile user');
   }
 }
 function dosomething_merge_checkit_submit($form, &$form_state) {
@@ -112,8 +115,7 @@ function dosomething_merge_textme_validate($form, &$form_state) {
   $secret = $form_state['storage']['secret'] = user_password(6);
   $message = "Enter \"$secret\" to link this number with your DoSomething.org account. ";
 
-  $debug = variable_get('dosomething_merge_debug', FALSE);
-  if ($debug) {
+  if (variable_get('dosomething_merge_debug', FALSE)) {
     drupal_set_message(t("Texting %message to %mobile", array('%message' => $message, '%mobile' => $number)));
   }
   else {
@@ -181,18 +183,13 @@ function dosomething_merge_doit_submit($form, &$form_state) {
 }
 
 function dosomething_merge_move_entities($primary_uid, $mobile_uid, $mobile_number, &$context) {
+
+  // Ignoring Organic Groups for now...
+
   $context['results']['file_managed'] = db_update('file_managed')
     ->fields(array('uid' => $primary_uid))
     ->condition('uid', $mobile_uid, '=')
     ->execute();
-  # Leaving this commented out because I'm not sure how it would handle the case
-  # where both users have a membership. I think you'd get a key conflict.
-  // $context['results']['og_membership'] = db_update('og_membership')
-  //   ->fields(array('etid' => $primary_uid))
-  //   ->condition('entity_type', 'user', '=')
-  //   ->condition('etid', $mobile_uid, '=')
-  //   ->execute();
-  # Should we worry about: og_users_roles where uid = $uid
   $context['results']['node'] = db_update('node')
     ->fields(array('uid' => $primary_uid))
     ->condition('uid', $mobile_uid, '=')
@@ -225,7 +222,7 @@ function dosomething_merge_finished($success, $results, $operations) {
     foreach ($context['results'] as $counter) {
       $count += $counter;
     }
-    drupal_set_message(format_plural($count, 'Moved @count item.', 'Moved @count items.'));
+    drupal_set_message(format_plural($count, 'Moved @count item and the phone number.', 'Moved @count items and the phone number.'));
   }
   else {
     // An error occurred.
