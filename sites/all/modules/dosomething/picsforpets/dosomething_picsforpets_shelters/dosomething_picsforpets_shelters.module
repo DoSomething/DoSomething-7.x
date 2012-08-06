@@ -211,13 +211,31 @@ function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
  * Page callback function for pics-for-pets/shelter-search
  * Depending on args in the path, it may return the rendered form, plain HTML
  * results, or some json data.
+ *
+ * @param string $format
+ *   Format to return. If left blank (i.e. if you put zip code in place it will
+ *   return standard HTML)
+ *
+ * @param string $zip
+ *   A zip code to base the proximity search around.
+ *
+ * @param int $skip
+ *   The number of results to skip from the result set.
+ *
+ * @param int $results
+ *   The number of results to return from the set.
  */
-function dosomething_picsforpets_shelters_lookup($arg1 = NULL, $arg2 = NULL, $arg3 = NULL, $arg4 = NULL) {
-  if ($arg1 == 'json') {
-    return dosomething_picsforpets_shelters_lookup_json($arg2, $arg3, $arg4);
+function dosomething_picsforpets_shelters_lookup($format = NULL, $zip = NULL, $skip = NULL, $results = NULL) {
+  if ($format == 'json') {
+    return dosomething_picsforpets_shelters_lookup_json($zip, $skip, $results);
   }
   else {
-    return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $arg1);
+    // In the event that the 'json' switch is left off the url... EXAMPLE
+    // pics-for-pets/shelter-search/json/90210/0/10
+    // pics-for-pets/shelter-search/90210/0/10
+    // then we take the first argument as the zip code.
+    $zip = $format;
+    return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $zip);
   }
 }
 
