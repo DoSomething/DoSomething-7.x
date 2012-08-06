@@ -267,7 +267,7 @@ shelter pet pic</a>',
   $page->task = 'page';
   $page->admin_title = 'Prizes and Scholarships';
   $page->admin_description = 'This page will display the scholorship';
-  $page->path = 'prizes-and-scholarships';
+  $page->path = 'pics-for-pets/prizes-and-scholarships';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
