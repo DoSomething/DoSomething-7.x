@@ -81,7 +81,7 @@ function dosomething_share_a_stat_share_with_friends_validate($form, &$form_stat
     ->execute();
   if (!empty($result))
   {
-    form_set_error('form', 'You have already submitted to this scholarship.  Thank you for your time!');
+  #  form_set_error('form', 'You have already submitted to this scholarship.  Thank you for your time!');
     $error++;
   }
 
@@ -132,12 +132,14 @@ function dosomething_share_a_stat_share_with_friends_submit(&$form, &$form_state
        dosomething_general_mobile_commons_subscribe($number[LANGUAGE_NONE][0]['value'], SHARE_A_STAT_FRIEND_TXT);
     }
   }
+
+  $form_state['redirect'] = 'animal-social-stats';
 }
 
 function doit_html_head_alter(&$head)
 {
   $node = menu_get_object();
-  if ($node->type == 'social_scholarship')
+  if (isset($node->type) && $node->type == 'social_scholarship')
   {
     if (isset($_COOKIE['DSCC']))
     {

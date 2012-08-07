@@ -424,23 +424,3 @@ function dosomething_projects_general_update_participants_contact_value($new_val
   }
   return $count;
 }
-
-/**
- * Implements hook_webform_submission_insert().
- */
-function dosomething_projects_general_webform_submission_insert($node, $submission) {
-  if ($node->type == 'project_report' || $node_type == 'campaign_report_back' || $node_type == 'grant_application') {
-    cache_clear_all('dosomething_user_my_past_somethings_' . $submission->uid, 'cache');
-    cache_clear_all('dosomething_user_my_somethings_' . $submission->uid, 'cache');
-  }
-}
-
-/**
- * Implements hook_webform_submission_update().
- */
-function dosomething_projects_general_webform_submission_update($node, $submission) {
-  if ($node->type == 'project_report' || $node_type == 'campaign_report_back' || $node_type == 'grant_application') {
-    cache_clear_all('dosomething_user_my_past_somethings_' . $submission->uid, 'cache');
-    cache_clear_all('dosomething_user_my_somethings_' . $submission->uid, 'cache');
-  }
-}
