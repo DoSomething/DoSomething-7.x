@@ -230,11 +230,6 @@ Please try a new combo.
   $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
   /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['id'] = 'field_fb_app_share_count_value_1';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['table'] = 'field_data_field_fb_app_share_count';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['field'] = 'field_fb_app_share_count_value';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value_1']['order'] = 'DESC';
-  /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
   $handler->display->display_options['sorts']['field_fb_app_share_count_value']['id'] = 'field_fb_app_share_count_value';
   $handler->display->display_options['sorts']['field_fb_app_share_count_value']['table'] = 'field_data_field_fb_app_share_count';
   $handler->display->display_options['sorts']['field_fb_app_share_count_value']['field'] = 'field_fb_app_share_count_value';
@@ -247,6 +242,13 @@ Please try a new combo.
   $handler->display->display_options['sorts']['least_shared_1']['field'] = 'least_shared';
   $handler->display->display_options['sorts']['least_shared_1']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['least_shared_1']['expose']['label'] = 'Least Shared';
+  /* Sort criterion: dosomething_fb_app_shelter: Closest to me */
+  $handler->display->display_options['sorts']['closest_to_me']['id'] = 'closest_to_me';
+  $handler->display->display_options['sorts']['closest_to_me']['table'] = 'field_data_field_fb_app_shelter_reference';
+  $handler->display->display_options['sorts']['closest_to_me']['field'] = 'closest_to_me';
+  $handler->display->display_options['sorts']['closest_to_me']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['closest_to_me']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['closest_to_me']['expose']['label'] = 'Closest to me';
   /* Sort criterion: Webform submissions: Oldest */
   $handler->display->display_options['sorts']['submitted_asc']['id'] = 'submitted_asc';
   $handler->display->display_options['sorts']['submitted_asc']['table'] = 'webform_submissions';
