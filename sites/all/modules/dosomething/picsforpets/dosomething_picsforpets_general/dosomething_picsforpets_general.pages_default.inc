@@ -317,8 +317,11 @@ shelter pet pic</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'For the animals',
-      'body' => '',
-      'format' => 'filtered_html',
+      'body' => 'The more shares an animal gets, the more donations their shelter receives.
+$10 for toys
+$30 for food
+$50 for bedding',
+      'format' => 'full_html',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -341,7 +344,8 @@ shelter pet pic</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'For the Fur-Tographers',
-      'body' => '',
+      'body' => '$5,000 Scholarship
+For one awesome submission to the gallery',
       'format' => 'filtered_html',
       'substitute' => TRUE,
     );
