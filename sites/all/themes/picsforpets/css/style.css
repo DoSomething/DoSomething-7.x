@@ -1754,6 +1754,7 @@ a.footer-furtography {
 
 .ui-dialog-content {
   color: white;
+  clear: both;
   font-family: "DINOT", sans-serif;
 }
 
