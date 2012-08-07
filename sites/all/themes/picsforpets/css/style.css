@@ -1954,6 +1954,141 @@ select#edit-sort-by {
   margin: auto;
 }
 
+.pane-share {
+  margin-top: -175px;
+  position: absolute;
+  text-transform: uppercase;
+  text-align: center;
+  padding-left: 60px;
+}
+
+#picsforpets-share h1, #picsforpets-share .fb-share-me {
+  border-bottom: 1px solid black;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  padding-top: 20px;
+}
+#picsforpets-share .fb-share-me {
+  display: inline;
+  float: left;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  padding: 10px 8px;
+  background: #6e85b2;
+  border-bottom: 0;
+  margin-right: -46px;
+  margin-bottom: 0;
+  margin-top: -8px;
+  margin-left: 46px;
+}
+
+.picsforpets-share-count-arrow {
+  background: url(../images/fb-share-count.png) no-repeat;
+  background-position: 2px 8px;
+  position: relative;
+  z-index: 800;
+  padding: 3px;
+  margin-right: -2px;
+}
+
+.picsforpets-share-count {
+  border: 1px solid #c5c6c8;
+  position: relative;
+  z-index: 750;
+  background-color: white;
+  padding: 2px 12px;
+}
+
+#picsforpets-invite-friends {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+  overflow: hidden;
+  *zoom: 1;
+  cursor: pointer;
+  background: #6e85b2;
+  padding: 10px 8px 10px 0;
+  margin: auto;
+  width: 190px;
+  margin-bottom: 50px;
+}
+#picsforpets-invite-friends #picsforpets-invite-friends-image {
+  display: inline;
+  float: left;
+  height: 50px;
+  width: 50px;
+  border-right: 1px solid white;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  background: url(../images/fp-invite-friends.png) no-repeat;
+  background-position: center 8px;
+}
+#picsforpets-invite-friends #picsforpets-invite-friends-text {
+  display: inline;
+  float: right;
+  font-size: 27px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: white;
+  padding-left: 12px;
+}
+
+.page-pics-for-pets-questions .questions-email {
+  margin: 0 auto;
+  padding-top: 5px;
+  text-align: center;
+  width: 430px;
+}
+.page-pics-for-pets-questions .questions-email a {
+  border-bottom: 1px solid;
+}
+.page-pics-for-pets-questions .content {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #c9cbcd;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  padding: 12px;
+  width: 425px;
+}
+.page-pics-for-pets-questions .content .fieldset-legend {
+  letter-spacing: 0;
+}
+.page-pics-for-pets-questions .content fieldset.collapsed {
+  height: auto;
+}
+.page-pics-for-pets-questions .content fieldset a {
+  color: black;
+  font-family: "DINOT", sans-serif;
+  font-size: 18px;
+  text-transform: none;
+}
+.page-pics-for-pets-questions .content fieldset .fieldset-wrapper {
+  border: none;
+  background-color: transparent;
+  line-height: 1.2;
+  padding-left: 20px;
+  padding-right: 24px;
+  padding-top: 0;
+}
+
 .outside-shade {
   background: rgba(0, 0, 0, 0.6);
   height: 120px;
@@ -2108,141 +2243,6 @@ select#edit-sort-by {
 
 .views-ui-dialog .ui-dialog-titlebar-close {
   z-index: 200;
-}
-
-.pane-share {
-  margin-top: -175px;
-  position: absolute;
-  text-transform: uppercase;
-  text-align: center;
-  padding-left: 60px;
-}
-
-#picsforpets-share h1, #picsforpets-share .fb-share-me {
-  border-bottom: 1px solid black;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  padding-top: 20px;
-}
-#picsforpets-share .fb-share-me {
-  display: inline;
-  float: left;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: white;
-  padding: 10px 8px;
-  background: #6e85b2;
-  border-bottom: 0;
-  margin-right: -46px;
-  margin-bottom: 0;
-  margin-top: -8px;
-  margin-left: 46px;
-}
-
-.picsforpets-share-count-arrow {
-  background: url(../images/fb-share-count.png) no-repeat;
-  background-position: 2px 8px;
-  position: relative;
-  z-index: 800;
-  padding: 3px;
-  margin-right: -2px;
-}
-
-.picsforpets-share-count {
-  border: 1px solid #c5c6c8;
-  position: relative;
-  z-index: 750;
-  background-color: white;
-  padding: 2px 12px;
-}
-
-#picsforpets-invite-friends {
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
-  overflow: hidden;
-  *zoom: 1;
-  cursor: pointer;
-  background: #6e85b2;
-  padding: 10px 8px 10px 0;
-  margin: auto;
-  width: 190px;
-  margin-bottom: 50px;
-}
-#picsforpets-invite-friends #picsforpets-invite-friends-image {
-  display: inline;
-  float: left;
-  height: 50px;
-  width: 50px;
-  border-right: 1px solid white;
-  margin-top: -10px;
-  margin-bottom: -10px;
-  background: url(../images/fp-invite-friends.png) no-repeat;
-  background-position: center 8px;
-}
-#picsforpets-invite-friends #picsforpets-invite-friends-text {
-  display: inline;
-  float: right;
-  font-size: 27px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: white;
-  padding-left: 12px;
-}
-
-.page-pics-for-pets-questions .questions-email {
-  margin: 0 auto;
-  padding-top: 5px;
-  text-align: center;
-  width: 430px;
-}
-.page-pics-for-pets-questions .questions-email a {
-  border-bottom: 1px solid;
-}
-.page-pics-for-pets-questions .content {
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid #c9cbcd;
-  margin: 0 auto;
-  margin-bottom: 100px;
-  padding: 12px;
-  width: 425px;
-}
-.page-pics-for-pets-questions .content .fieldset-legend {
-  letter-spacing: 0;
-}
-.page-pics-for-pets-questions .content fieldset.collapsed {
-  height: auto;
-}
-.page-pics-for-pets-questions .content fieldset a {
-  color: black;
-  font-family: "DINOT", sans-serif;
-  font-size: 18px;
-  text-transform: none;
-}
-.page-pics-for-pets-questions .content fieldset .fieldset-wrapper {
-  border: none;
-  background-color: transparent;
-  line-height: 1.2;
-  padding-left: 20px;
-  padding-right: 24px;
-  padding-top: 0;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
