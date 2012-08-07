@@ -45,8 +45,6 @@
       </nav> <!-- /nav -->
     <?php endif; ?>
 
-    <?php print $messages; ?>
-
     <div id="main-wrapper" class="clearfix">
 
       <?php print render($page['sidebar_first']); ?>
@@ -66,5 +64,7 @@
     </div> <!-- /#main -->
 
     <?php print render($page['footer']); ?>
+
+    <?php print $messages; ?>
 
   </div> <!-- /#page -->
