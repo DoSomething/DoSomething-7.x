@@ -229,32 +229,30 @@ Please try a new combo.
   $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
-  /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['id'] = 'field_fb_app_share_count_value';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['table'] = 'field_data_field_fb_app_share_count';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['field'] = 'field_fb_app_share_count_value';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['expose']['label'] = 'Most Shared';
-  /* Sort criterion: dosomething_fb_app: Least Shared */
-  $handler->display->display_options['sorts']['least_shared_1']['id'] = 'least_shared_1';
-  $handler->display->display_options['sorts']['least_shared_1']['table'] = 'field_data_field_fb_app_share_count';
-  $handler->display->display_options['sorts']['least_shared_1']['field'] = 'least_shared';
-  $handler->display->display_options['sorts']['least_shared_1']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['least_shared_1']['expose']['label'] = 'Least Shared';
-  /* Sort criterion: dosomething_fb_app_shelter: Closest to me */
-  $handler->display->display_options['sorts']['closest_to_me']['id'] = 'closest_to_me';
-  $handler->display->display_options['sorts']['closest_to_me']['table'] = 'field_data_field_fb_app_shelter_reference';
-  $handler->display->display_options['sorts']['closest_to_me']['field'] = 'closest_to_me';
-  $handler->display->display_options['sorts']['closest_to_me']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['closest_to_me']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['closest_to_me']['expose']['label'] = 'Closest to me';
-  /* Sort criterion: Webform submissions: Oldest */
-  $handler->display->display_options['sorts']['submitted_asc']['id'] = 'submitted_asc';
-  $handler->display->display_options['sorts']['submitted_asc']['table'] = 'webform_submissions';
-  $handler->display->display_options['sorts']['submitted_asc']['field'] = 'submitted_asc';
-  $handler->display->display_options['sorts']['submitted_asc']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['submitted_asc']['expose']['label'] = 'Oldest';
+  /* Field: Webform Submission: Zip */
+  $handler->display->display_options['fields']['field_fb_app_zip']['id'] = 'field_fb_app_zip';
+  $handler->display->display_options['fields']['field_fb_app_zip']['table'] = 'field_data_field_fb_app_zip';
+  $handler->display->display_options['fields']['field_fb_app_zip']['field'] = 'field_fb_app_zip';
+  $handler->display->display_options['fields']['field_fb_app_zip']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_zip']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_zip']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_zip']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_zip']['field_api_classes'] = 0;
   /* Sort criterion: Webform submissions: Submitted */
   $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
@@ -262,6 +260,31 @@ Please try a new combo.
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   $handler->display->display_options['sorts']['submitted']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['submitted']['expose']['label'] = 'Newest';
+  /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['id'] = 'field_fb_app_share_count_value';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['field'] = 'field_fb_app_share_count_value';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_fb_app_share_count_value']['expose']['label'] = 'Most Shared';
+  /* Sort criterion: dosomething_fb_app_shelter: Closest to me */
+  $handler->display->display_options['sorts']['closest_to_me']['id'] = 'closest_to_me';
+  $handler->display->display_options['sorts']['closest_to_me']['table'] = 'field_data_field_fb_app_shelter_reference';
+  $handler->display->display_options['sorts']['closest_to_me']['field'] = 'closest_to_me';
+  $handler->display->display_options['sorts']['closest_to_me']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['closest_to_me']['expose']['label'] = 'Closest to me';
+  /* Sort criterion: dosomething_fb_app: Least Shared */
+  $handler->display->display_options['sorts']['least_shared_1']['id'] = 'least_shared_1';
+  $handler->display->display_options['sorts']['least_shared_1']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['sorts']['least_shared_1']['field'] = 'least_shared';
+  $handler->display->display_options['sorts']['least_shared_1']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['least_shared_1']['expose']['label'] = 'Least Shared';
+  /* Sort criterion: Webform submissions: Oldest */
+  $handler->display->display_options['sorts']['submitted_asc']['id'] = 'submitted_asc';
+  $handler->display->display_options['sorts']['submitted_asc']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted_asc']['field'] = 'submitted_asc';
+  $handler->display->display_options['sorts']['submitted_asc']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['submitted_asc']['expose']['label'] = 'Oldest';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';

@@ -21,42 +21,43 @@ class dosomething_fb_apps_handler_closest_to_me_sort extends views_handler_sort 
     $lat = 39.95;
     $lon = -75.16;
 
-    // Get zipcode from pet shelter.
+    // Get zip from pet shelter.
 
     $join = new views_join();
-
     $join->construct('field_data_field_pfp_address', $this->table_alias, $this->real_field, 'entity_id');
-
     $this->address_table = $this->query->ensure_table('shelter_address', $this->relationship, $join);
     $this->shelter_zip_field = $this->query->add_field($this->address_table, 'field_pfp_address_postal_code');
 
     // Get zip from pet.
 
+    $join2 = new views_join();
+    $join2->construct('field_data_field_fb_app_zip', 'webform_submissions', 'sid', 'entity_id');
+    $this->query->ensure_table('field_data_field_fb_app_zip');
 
-    // Set the zip field to either the shelter zip or the pet zip.
-    // TODO: Join the webform submission zip field.
-    $zip_field = "IF(field_pfp_address_postal_code IS NULL, '90210', field_pfp_address_postal_code)";
+    // Get the lat/lon of the zipcode in each case.
 
+    $join = new views_join();
+    $join->construct('zipcodes', 'field_data_field_fb_app_zip', 'field_fb_app_zip_value', 'zip');
+    $this->zip_table = $this->query->add_relationship('zipcodes', $join, 'field_data_field_fb_app_zip');
+    $this->lat_field2 = $this->query->add_field($this->zip_table, 'latitude');
+    $this->lon_field2 = $this->query->add_field($this->zip_table, 'longitude');
 
-    // Get the lat/lon of the zipcode.
+    $join = new views_join();
+    $join->construct('zipcodes', 'shelter_address', 'field_pfp_address_postal_code', 'zip');
+    $this->zip_table2 = $this->query->add_relationship('zipcodes2', $join, 'field_data_field_pfp_address');
+    $this->lat_field = $this->query->add_field($this->zip_table2, 'latitude', 'lat2');
+    $this->lon_field = $this->query->add_field($this->zip_table2, 'longitude', 'lon2');
 
-    $zip_join = new views_join();
+    // Get the non-null lat/lon
 
-    $zip_join->construct('zipcodes', NULL, $zip_field, 'zip');
-
-    $this->zip_table = $this->query->add_relationship('zipcodes', $zip_join, $this->address_table);
-
-    $this->lat_field = $this->query->add_field($this->zip_table, 'latitude');
-    $this->lon_field = $this->query->add_field($this->zip_table, 'longitude');
+    $lat_field = "GREATEST(ifnull(zipcodes2.latitude, zipcodes.latitude), ifnull(zipcodes.latitude, zipcodes2.latitude))";
+    $lon_field = "GREATEST(ifnull(zipcodes2.longitude, zipcodes.longitude), ifnull(zipcodes.longitude, zipcodes2.longitude))";
 
     // Order by the distance.
 
-    $distance = (((ACOS(SIN(($lat * PI()/180)) * SIN(($this->lat_field * PI()/180)) + COS(($lat * PI()/180)) * COS(($this->lat_field * PI()/180)) * COS((($lon - $this->lon_field) * PI()/180)))) * 180/PI()) * 60 * 1.1515);
-
-    $this->field_alias = $this->query->add_field(NULL, $distance, 'distance');
-
-    $this->query->add_orderby(NULL, NULL, 'DESC', 'distance');
+    $this->query->add_orderby(NULL, "(((ACOS(SIN(($lat * PI()/180)) * SIN(($lat_field * PI()/180)) + COS(($lat * PI()/180)) * COS(($lat_field * PI()/180)) * COS((($lon - $lon_field) * PI()/180)))) * 180/PI()) * 60 * 1.1515)", 'ASC', 'distance');
   }
+
 
   function option_definition() {
     $options = parent::option_definition();
