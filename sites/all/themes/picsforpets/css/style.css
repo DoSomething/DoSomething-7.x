@@ -2224,8 +2224,8 @@ select#edit-field-fb-app-animal-type-value {
   border: 1px solid #c9cbcd;
   margin: 0 auto;
   margin-bottom: 100px;
-  padding: 12px 18px;
-  width: 490px;
+  padding: 12px;
+  width: 425px;
 }
 .page-pics-for-pets-questions .content .fieldset-legend {
   letter-spacing: 0;
@@ -2236,7 +2236,7 @@ select#edit-field-fb-app-animal-type-value {
 .page-pics-for-pets-questions .content fieldset a {
   color: black;
   font-family: "DINOT", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: none;
 }
 .page-pics-for-pets-questions .content fieldset .fieldset-wrapper {
