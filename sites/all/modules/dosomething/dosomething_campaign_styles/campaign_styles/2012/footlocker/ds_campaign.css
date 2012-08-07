@@ -299,13 +299,13 @@ div[role="main"] {
   color: white;
   float: left;
   font-family: din-web;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 35px;
   margin-top: -2px;
   text-transform: uppercase; }
   .campaign-counter-labels .campaign-counter-label-top {
-    margin-left: -54px; }
+    margin-left: -46px; }
 
 .campaign-counter-numbers {
   float: right;
@@ -433,7 +433,7 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
 
 #footlocker-about {
   float: left;
-  width: 44%;
+  width: 43%;
   padding-right: 4%;
   margin: 0 2% 0 4%;
   border-right: 3px solid #e7e8e9; }
