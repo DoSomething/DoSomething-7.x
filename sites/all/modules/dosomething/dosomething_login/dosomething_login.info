@@ -7,4 +7,3 @@ dependencies[] = fboauth
 dependencies[] = dosomething_roles
 dependencies[] = dosomething_general
 package = DoSomething
-

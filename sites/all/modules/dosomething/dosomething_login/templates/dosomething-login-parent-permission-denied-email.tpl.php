@@ -5,10 +5,10 @@
  */
 ?>
 
-<p>Yikes, you've been denied membership to <?php print check_plain(variable_get('site name', 'Do Something.org')); ?> by your parent or guardian. 
+<p>Yikes, you've been denied membership to <?php print check_plain(variable_get('site name', 'Do Something.org')); ?> by your parent or guardian.
 
-<br /><br />If you really want to hang out on our site and have access to all of our opportunities, bug your parent/guardian to give you permission 
-to our 
+<br /><br />If you really want to hang out on our site and have access to all of our opportunities, bug your parent/guardian to give you permission
+to our
 site.
 
 <br/><br/>Here are some reasons to convince them... With DoSomething.org, you can:
