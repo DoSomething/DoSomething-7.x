@@ -2202,6 +2202,15 @@ select#edit-field-fb-app-animal-type-value {
   padding-left: 12px;
 }
 
+.page-pics-for-pets-questions .questions-email {
+  margin: 0 auto;
+  padding-top: 5px;
+  text-align: center;
+  width: 430px;
+}
+.page-pics-for-pets-questions .questions-email a {
+  border-bottom: 1px solid;
+}
 .page-pics-for-pets-questions .content {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;

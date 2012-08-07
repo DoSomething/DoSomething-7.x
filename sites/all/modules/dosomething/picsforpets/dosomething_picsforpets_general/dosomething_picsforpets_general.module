@@ -50,9 +50,6 @@ function dosomething_picsforpets_general_questions() {
       'misc/collapse.js',
     ),
   );
-  $page['email'] = array(
-    '#markup' => t('<p class="questions-email">Email us at <a href="mailto:picsforpets@dosomething.org">picsforpets@dosomething.org</a></p>'),
-  );
   $page['question1'] = array(
     '#theme' => 'fieldset',
     '#title' => t('What is pics for pets?'),
@@ -320,4 +317,24 @@ function dosomething_picsforpets_general_share($sid) {
     dpm($response);
   }
   return '';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.tpl.php.
+ */
+function dosomething_picsforpets_general_preprocess_page(&$variables) {
+  $current_path = current_path();
+
+  // Add the email address below the title.
+  if ($current_path == 'pics-for-pets/questions') {
+    $variables['title_suffix']['dosomething_picsforpets_general_email'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'questions-email',
+        ),
+      ),
+      '#children' => t('Email us at !link', array('!link' => '<a href="mailto:picsforpets@dosomething.org">picsforpets@dosomething.org</a>')),
+    );
+  }
 }
