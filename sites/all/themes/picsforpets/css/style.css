@@ -538,8 +538,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value,
-select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
+#dosomething-picsforpets-general-furtographer-form input[type="button"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1519,6 +1518,7 @@ body {
 #logo {
   display: inline;
   float: right;
+  margin: 6px;
 }
 
 #name-and-slogan {
@@ -1599,10 +1599,6 @@ body {
   margin: 12px;
 }
 
-#logo {
-  margin: 6px;
-}
-
 .white-block {
   background: rgba(255, 255, 255, 0.75);
   text-align: center;
@@ -1657,12 +1653,12 @@ div[role="main"] {
   border: 0;
   overflow: hidden;
   *zoom: 1;
+  overflow: hidden;
+  *zoom: 1;
   text-transform: uppercase;
   font-size: 20px;
   line-height: 1.5;
   text-align: center;
-  overflow: hidden;
-  *zoom: 1;
   clear: both;
   position: bottom;
   height: 54px;
@@ -1706,11 +1702,11 @@ div[role="main"] {
 }
 
 a.footer-furtography {
+  overflow: hidden;
+  *zoom: 1;
   background: url(../images/links-5k-icon.png) no-repeat;
   padding-left: 60px;
   background-position: -4px -4px;
-  overflow: hidden;
-  *zoom: 1;
   height: 75px;
   padding-top: 12px;
   padding-bottom: 24px;
@@ -1729,9 +1725,9 @@ a.footer-furtography {
 }
 
 .ui-widget-overlay {
-  background: black;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
+  background: black;
 }
 
 .ui-dialog .ui-dialog-titlebar {
@@ -1739,6 +1735,11 @@ a.footer-furtography {
 }
 
 .ui-widget-header {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
   padding: 0;
   background: none;
   border: none;
@@ -1748,11 +1749,6 @@ a.footer-furtography {
   text-transform: uppercase;
   font-size: 52px;
   border-bottom: 1px solid white;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
   margin-bottom: 12px;
 }
 
@@ -1860,21 +1856,25 @@ a.footer-furtography {
   float: left;
 }
 
-select#edit-field-fb-app-animal-type-value,
-select#edit-sort-by {
-  text-transform: uppercase;
-  font-size: 14px;
-  color: #ec1c24;
-  border: 0;
+select#edit-field-fb-app-animal-type-value, select#edit-sort-by {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
-  padding-right: 40px;
   background: white url(../images/down-arrow.png) no-repeat;
+  margin-top: -8px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #ec1c24;
+  border: 0;
+  padding-right: 40px;
   background-position: 65px 9px;
-  height: 23px;
+  height: 24px;
+}
+
+select#edit-sort-by {
+  margin-top: 22px;
 }
 
 .pager {
