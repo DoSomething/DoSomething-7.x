@@ -10,7 +10,15 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
   // Initialize variables.
   $form_state['more_times'] = isset($form_state['more_times']) ? $form_state['more_times'] : 0;
   $form_state['view_more'] = isset($form_state['view_more']) ? $form_state['view_more'] : FALSE;
+  $form_state['add-shelter'] = isset($form_state['add-shelter']) ?  $form_state['add-shelter'] : FALSE;
+  $form_state['submit-new-address'] = isset($form_state['submit-new-address']) ? $form_state['submit-new-address'] : FALSE;
   $form = array();
+
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'dosomething_picsforpets_shelters') . '/js/shelter_options.js',
+    ),
+  );
 
   $form['helptext'] = array(
     '#prefix' => '<p>',
@@ -20,7 +28,6 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
   $form['zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
-    '#required' => TRUE,
     '#weight' => 0,
   );
   $form['submit'] = array(
@@ -32,24 +39,58 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
       'wrapper' => 'shelter-results',
     ),
     '#submit' => array('dosomething_picsforpets_shelters_lookup_options_form_submit'),
+    '#validate' => array('dosomething_picsforpets_shelters_lookup_options_form_validate'),
   );
 
   // Initialize the options variable
-  $options = '';
+  $options = array();
   if (isset($form_state['results'])) {
     $options = $form_state['results'];
   }
-  $options['new'] = t('I want to use a shelter not on the list.');
-
+  if (!empty($form_state['results'])) {
+    $options['-1'] = t('I want to use a shelter not on the list.');
+  }
   $form['results'] = array(
-    '#tree' => TRUE,
     '#prefix' => '<div id="shelter-results">',
     '#suffix' => '</div>',
     '#weight' => 2,
     '#type' => 'radios',
+    '#attributes' => array(
+      'class' => array('shelter-results-option-list'),
+    ),
     '#options' => $options,
   );
-
+  $form['results']['shelter-add'] = array(
+    '#type' => 'fieldset',
+    '#weight' => 3,
+    '#attributes' => array(
+      'class' => array('conditional-address-fieldset'),
+    ),
+    'shelter_name' => array(
+      '#type' => 'textfield',
+      '#title' => t('Shelter Name'),
+    ),
+    'address' => array(
+      '#type' => 'textfield',
+      '#title' => t('Address'),
+    ),
+    'city' => array(
+      '#type' => 'textfield',
+      '#title' => t('City'),
+    ),
+    'state' => array(
+      '#type' => 'textfield',
+      '#title' => t('State'),
+    ),
+    'shelter_zip' => array(
+      '#type' => 'textfield',
+      '#title' => t('Zip'),
+    ),
+    'hours' => array(
+      '#type' => 'textarea',
+      '#title' => t('Hours'),
+    ),
+  );
   if (!empty($form_state['view_more'])) {
     $form['results']['view_more_button'] = array(
       '#type' => 'submit',
@@ -66,17 +107,58 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Select'),
     '#weight' => 5,
-    #'#ajax' => array(
-    #  'callback' => 'dosomething_picsforpets_shelters_load_more_ajax',
-    #  'wrapper' => 'shelter-results-more',
-    #),
+    '#ajax' => array(
+      'callback' => 'dosomething_picsforpets_shelters_lookup_form_options_submit_ajax',
+      'wrapper' => 'shelter-results',
+    ),
     '#submit' => array('dosomething_picsforpets_shelters_select_shelter_submit'),
+    '#validate' => array('dosomething_picsforpets_shelters_select_shelter_validate'),
   );
   return $form;
 }
 
 /**
- * Form submission handler for the shelter lookup form with options.
+ * Validation handler for the "Search" button. Ensures that a zip code has been
+ * entered.
+ */
+function dosomething_picsforpets_shelters_lookup_options_form_validate($form, &$form_state) {
+  if (empty($form_state['values']['zip'])) {
+    form_set_error('zip', 'A zip code is required to search for shelters near you.');
+  }
+}
+
+/**
+ * Validation handler for the "Select" button. Ensures that if a new address is
+ * being added, then all fields are required.
+ */
+function dosomething_picsforpets_shelters_select_shelter_validate($form, &$form_state) {
+  // If they are not trying to add a new shelter then we don't need to validate.
+  if ($form_state['values']['results'] != -1) {
+    return;
+  }
+  $address_elements = array(
+    'shelter_name' => t('Shelter Name'),
+    'address' => t('Address'),
+    'city' => t('City'),
+    'state' => t('State'),
+    'shelter_zip' => t('Zip'),
+    'hours' => t('Hours'),
+  );
+  $errors = FALSE;
+  foreach ($address_elements as $field => $title) {
+    if (empty($form_state['values'][$field])) {
+      $errors = TRUE;
+      form_set_error($field, t('@field is required.', array('@field' => $title)));
+    }
+  }
+  if (!$errors) {
+    $form_state['submit-new-address'] = TRUE;
+  }
+}
+
+/**
+ * Form submission handler for the "Search" button on the shelter lookup form
+ // with options.
  */
 function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$form_state) {
   // Reset the variables if we are hitting the search button rather than
@@ -91,10 +173,12 @@ function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$fo
   // We retreive an extra result and then throw it away so that we know if we
   // should show the 'view more' button.
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
-  if (count($shelter_nids) == 11) {
-    $form_state['view_more'] = TRUE;
-    unset($shelter_nids[10]);
-  }
+  // Show the more button?
+  $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
+#  if (count($shelter_nids) == 11) {
+#    $form_state['view_more'] = TRUE;
+#    unset($shelter_nids[10]);
+#  }
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
   $form_state['results'] = $options;
   $form_state['rebuild'] = TRUE;
@@ -113,13 +197,15 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
   // We retreive an extra result and then throw it away so that we know if we
   // should show the 'view more' button.
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
-  if (count($shelter_nids) == 11) {
-    $form_state['view_more'] = TRUE;
-    unset($shelter_nids[10]);
-  }
-  else {
-    $form_state['view_more'] = FALSE;
-  }
+  // Show the more button?
+  $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
+  //if (count($shelter_nids) == 11) {
+  //  $form_state['view_more'] = TRUE;
+  //  unset($shelter_nids[10]);
+  //}
+  //else {
+  //  $form_state['view_more'] = FALSE;
+  //}
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
   $form_state['more_results'] = $options;
   // We append the results to the former results list so we have the appropriate
@@ -130,17 +216,53 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
 }
 
 /**
- * Ajax callback for the submit button on the shelter options lookup form.
+ * Submit handler for the "Select" button on the shelter options form.
+ * This has different behavior depending on the form state.
  */
-function dosomething_picsforpets_shelters_lookup_form_options_submit_ajax($form, &$form_state) {
-  return $form['results'];
+function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_state) {
+  $selected_shelter = $form_state['values']['results'];
+  if ($selected_shelter > 0) {
+    $form_state['add-shelter'] = FALSE;
+    $shelter_data = node_load($selected_shelter);
+    $address = field_get_items('node', $shelter_data, 'field_pfp_address');
+    $_SESSION['shelter'] = array(
+      'shelter_nid' => $selected_shelter,
+      'shelter_name' => $shelter_data->title,
+      'address' =>  $address[0]['thoroughfare'],
+      'city' => $address[0]['locality'],
+      'state' => $address[0]['administrative_area'],
+      'shelter_zip' =>  $address[0]['postal_code'],
+      'hours' => '',
+    );
+    drupal_set_message('Thanks. We\'ve received your choosen shelter.');
+  }
+  // Otherwise they're trying to add a new shelter so check if they already
+  // entered data. We'll store the new shelter on the $_SESSION array so we can
+  // pull it off on other forms later.
+  elseif ($form_state['submit-new-address']) {
+    $shelter = array(
+      'shelter_nid' => 0,
+      'shelter_name' => $form_state['values']['shelter_name'],
+      'address' => $form_state['values']['address'],
+      'city' => $form_state['values']['city'],
+      'state' => $form_state['values']['state'],
+      'shelter_zip' => $form_state['values']['shelter_zip'],
+      'hours' => $form_state['values']['hours'],
+    );
+    $_SESSION['shelter'] = $shelter;
+    drupal_set_message('Thanks. We\'ve received the address of your shelter.');
+  }
+  // Otherwise they only clicked the select button but didn't add a new address.
+  else {
+    $form_state['add-shelter'] = TRUE;
+    $form_state['rebuild'] = TRUE;
+  }
 }
 
-function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_state) {
-  $selected_shelter = NULL;
-  if (!empty($form_state['values']['results'])) {
-    $selected_shelter = $form_state['values']['results'];
-  }
-  $shelter = node_load($selected_shelter);
-  dpm("you picked " . $shelter->title);
+/**
+ * Ajax callback for all submit buttons on the shelter options lookup form.
+ */
+function dosomething_picsforpets_shelters_lookup_form_options_submit_ajax($form, &$form_state) {
+  drupal_add_js(array('picsforpetsShelterOptions' => array('showSelect' => TRUE)), 'setting');
+  return $form['results'];
 }
