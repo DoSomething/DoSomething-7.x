@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * @file
+ *   Creates the page callback and related functions for the menu entry at
+ *   pics-for-pets/shelter-search-options
+ */
+
+/**
  * Generates the lookup form when used in the context of selecting your shelter.
  * Well store the result of the final selection in the only reliable place (the
  * user's session data. This form is mostly a duplicate of the one above as most
@@ -158,7 +164,7 @@ function dosomething_picsforpets_shelters_select_shelter_validate($form, &$form_
 
 /**
  * Form submission handler for the "Search" button on the shelter lookup form
- // with options.
+ * with options.
  */
 function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$form_state) {
   // Reset the variables if we are hitting the search button rather than
@@ -175,10 +181,6 @@ function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$fo
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
   // Show the more button?
   $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
-#  if (count($shelter_nids) == 11) {
-#    $form_state['view_more'] = TRUE;
-#    unset($shelter_nids[10]);
-#  }
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
   $form_state['results'] = $options;
   $form_state['rebuild'] = TRUE;
@@ -199,13 +201,6 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
   // Show the more button?
   $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
-  //if (count($shelter_nids) == 11) {
-  //  $form_state['view_more'] = TRUE;
-  //  unset($shelter_nids[10]);
-  //}
-  //else {
-  //  $form_state['view_more'] = FALSE;
-  //}
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
   $form_state['more_results'] = $options;
   // We append the results to the former results list so we have the appropriate

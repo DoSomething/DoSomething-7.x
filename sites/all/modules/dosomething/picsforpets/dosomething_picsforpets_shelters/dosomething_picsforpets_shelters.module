@@ -23,7 +23,7 @@ function dosomething_picsforpets_shelters_menu() {
     'page callback' => 'dosomething_picsforpets_shelters_lookup',
   );
   $items['pics-for-pets/shelter-search-options'] = array(
-    'title' => t('Fine Your Shelter'),
+    'title' => t('Find Your Shelter'),
     'access callback' => TRUE,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_picsforpets_shelters_options_form'),
