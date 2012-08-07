@@ -538,7 +538,8 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
+#dosomething-picsforpets-general-furtographer-form input[type="button"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value,
+select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1155,6 +1156,7 @@ a.back {
 .sign-up-text {
   text-align: center;
   margin-top: 12px;
+  font-size: 16px;
 }
 
 fieldset {
@@ -1565,7 +1567,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/5k-scholarship.png?1343054988');
+  background-image: url('../images/5k-scholarship.png?1343742973');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1587,7 +1589,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/ds-logo.png?1343054988');
+  background-image: url('../images/ds-logo.png?1343742973');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1807,7 +1809,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png?1343054988');
+  background-image: url('../images/close.png?1343742973');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -1863,8 +1865,8 @@ a.footer-furtography {
   float: left;
 }
 
-select#edit-field-fb-app-animal-type-value {
-  margin-top: -10px;
+select#edit-field-fb-app-animal-type-value,
+select#edit-sort-by {
   text-transform: uppercase;
   font-size: 14px;
   color: #ec1c24;
