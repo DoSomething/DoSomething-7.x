@@ -1,0 +1,58 @@
+// Styling for the prizes and scholarships page
+
+.prizes-scholarships
+  margin: 0 auto
+  margin-bottom: 50px
+  width: 552px
+  h1
+    margin-bottom: 5px
+    text-transform: uppercase
+  .pane-content
+    p
+      margin: 0
+    background: rgba($white, 0.75)
+    border: 1px solid $pfp-gray-lt
+    +border-radius(8px)
+    padding: 12px 8px
+    .information
+      font-size: 16px
+      margin-bottom: 20px
+    .donations
+      +clearfix
+    .share-wrapper
+      +float-right
+      line-height: 2.2
+      margin-right: 100px
+      label
+        cursor: default
+        font-size: 18px
+        line-height: 2
+      .shares
+        +inline-block
+        height: 40px
+        width: 270px
+      &.toys
+        margin-bottom: 20px
+        .shares
+          background: image_url("200-shares-bar.png")
+        .inner
+          margin-left: 90px
+      &.food
+        margin-bottom: 20px
+        .shares
+          background: image_url("500-shares-bar.png")
+        .inner
+          margin-left: 145px
+      &.bedding .shares
+        background: image_url("1000-shares-bar.png")
+        .inner
+          margin-left: 140px
+    .scholarship
+      h2
+        margin: 0
+        text-transform: uppercase
+      &:before
+        content: image_url("star.png")
+        +float-left
+        height: 30px
+        padding-right: 6px

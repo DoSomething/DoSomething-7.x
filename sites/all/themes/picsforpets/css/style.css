@@ -1567,7 +1567,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/5k-scholarship.png?1343742973');
+  background-image: url('../images/5k-scholarship.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1589,7 +1589,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/ds-logo.png?1343742973');
+  background-image: url('../images/ds-logo.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1800,7 +1800,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png?1343742973');
+  background-image: url('../images/close.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -2041,6 +2041,95 @@ select#edit-sort-by {
   text-transform: uppercase;
   color: white;
   padding-left: 12px;
+}
+
+.prizes-scholarships {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  width: 552px;
+}
+.prizes-scholarships h1, .prizes-scholarships #picsforpets-share .fb-share-me, #picsforpets-share .prizes-scholarships .fb-share-me {
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.prizes-scholarships .pane-content {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #c9cbcd;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  padding: 12px 8px;
+}
+.prizes-scholarships .pane-content p {
+  margin: 0;
+}
+.prizes-scholarships .pane-content .information {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.prizes-scholarships .pane-content .donations {
+  overflow: hidden;
+  *zoom: 1;
+}
+.prizes-scholarships .pane-content .share-wrapper {
+  display: inline;
+  float: right;
+  line-height: 2.2;
+  margin-right: 100px;
+}
+.prizes-scholarships .pane-content .share-wrapper label {
+  cursor: default;
+  font-size: 18px;
+  line-height: 2;
+}
+.prizes-scholarships .pane-content .share-wrapper .shares {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  height: 40px;
+  width: 270px;
+}
+.prizes-scholarships .pane-content .share-wrapper .shares {
+  *display: inline;
+}
+.prizes-scholarships .pane-content .share-wrapper.toys {
+  margin-bottom: 20px;
+}
+.prizes-scholarships .pane-content .share-wrapper.toys .shares {
+  background: url('../images/200-shares-bar.png?1344369233');
+}
+.prizes-scholarships .pane-content .share-wrapper.toys .inner {
+  margin-left: 90px;
+}
+.prizes-scholarships .pane-content .share-wrapper.food {
+  margin-bottom: 20px;
+}
+.prizes-scholarships .pane-content .share-wrapper.food .shares {
+  background: url('../images/500-shares-bar.png?1344369233');
+}
+.prizes-scholarships .pane-content .share-wrapper.food .inner {
+  margin-left: 145px;
+}
+.prizes-scholarships .pane-content .share-wrapper.bedding .shares {
+  background: url('../images/1000-shares-bar.png?1344369233');
+}
+.prizes-scholarships .pane-content .share-wrapper.bedding .shares .inner {
+  margin-left: 140px;
+}
+.prizes-scholarships .pane-content .scholarship h2 {
+  margin: 0;
+  text-transform: uppercase;
+}
+.prizes-scholarships .pane-content .scholarship:before {
+  content: url('../images/star.png?1344369233');
+  display: inline;
+  float: left;
+  height: 30px;
+  padding-right: 6px;
 }
 
 .page-pics-for-pets-questions .questions-email {

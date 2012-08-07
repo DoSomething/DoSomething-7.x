@@ -316,11 +316,13 @@ shelter pet pic</a>',
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'For the animals',
-      'body' => 'The more shares an animal gets, the more donations their shelter receives.
-$10 for toys
-$30 for food
-$50 for bedding',
+      'title' => '<h1>For the animals</h1>',
+      'body' => '<div class="information">The more shares an animal gets, the more donations their shelter receives.</div>
+<div class="donations">
+<div class="share-wrapper toys"><label>$10 for toys</label><span class="shares"><span class="inner">200 shares</span></span></div>
+<div class="share-wrapper food"><label>$30 for food</label><span class="shares"><span class="inner">500 shares</span></span></div>
+<div class="share-wrapper bedding"><label>$50 for bedding</label><span class="shares"><span class="inner">1,000 shares</span></span><div>
+</div>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
@@ -328,7 +330,10 @@ $50 for bedding',
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'prizes-scholarships',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
@@ -343,17 +348,20 @@ $50 for bedding',
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'For the Fur-Tographers',
-      'body' => '$5,000 Scholarship
-For one awesome submission to the gallery',
-      'format' => 'filtered_html',
+      'title' => '<h1>For the Fur-tographers</h1>',
+      'body' => '<div class="scholarship"><h2>$5,000 Scholarship</h2>
+<div class="submission">For one awesome submission to the gallery</div></div>',
+      'format' => 'full_html',
       'substitute' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'prizes-scholarships',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
