@@ -59,7 +59,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Pics for Pets is a campaign by DoSomething.org to increase adoption rates in animal shelters across the country.  Armed with a camera or your smartphone, we are asking young people (25 and under) like you around the country to visit their local animal shelter to take a picture of an animal in need of a new headshot to share on the Pics for Pets Facebook or mobile app.'),
   );
   $page['question2'] = array(
     '#theme' => 'fieldset',
@@ -67,7 +67,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Click on “be a fur-tographer” in the Pics for Pets app, then locate your participating local shelter.  Before visiting your shelter, make sure to download the guide and watch the video of photography tips to help you along your way.  After you have taken an expert photo of an animal (or animals) at the shelter, upload the pic in the “be a fur-tographer” section and share it with your friends by clicking the “share” button.'),
   );
   $page['question3'] = array(
     '#theme' => 'fieldset',
@@ -75,7 +75,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Click on the shelter locator button in the “be a fur-tographer” section of the Pics for Pets app.  Once there, enter in your zip code to find the shelter nearest you.'),
   );
   $page['question4'] = array(
     '#theme' => 'fieldset',
@@ -83,7 +83,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('If you would like to visit a shelter we are not partnered with, click on the button in the lower righthand corner of the shelter locator section of the app.  Please note:  These shelters are not DoSomething.org partners, so you’ll want to reach out to them ahead of time to make sure you can come in and visit.  Make sure to tell them that you won’t need to handle any animals.'),
   );
   $page['question5'] = array(
     '#theme' => 'fieldset',
@@ -91,7 +91,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('For your safety, you will not be permitted to handle the animals.  When visiting the shelter, make sure that there is a volunteer present that can handle the animal for you as you take a picture of the animal.'),
   );
   $page['question6'] = array(
     '#theme' => 'fieldset',
@@ -99,7 +99,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Of course! Just be mindful that shelters are busy places and try to keep photo sessions under 30 minutes.'),
   );
   $page['question7'] = array(
     '#theme' => 'fieldset',
@@ -107,7 +107,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Visit the “be a furtographer” section of the app and click on “get the guide.”  You’ll be able to download a great guide to help you take expert photos, as well as a video with tips on how to take the best photos.'),
   );
   $page['question8'] = array(
     '#theme' => 'fieldset',
@@ -115,7 +115,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('The more shares a picture gets, the more prizes the shelter can receive. 200 shares gets the shelter $10 for toys, 500 shares gets the shelter $30 for food and 1000 shares gets the shelter $50 for bedding (up to $10,000 in prizes).'),
   );
   $page['question9'] = array(
     '#theme' => 'fieldset',
@@ -123,7 +123,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Everyone that visits their local shelter and submits a picture of an animal they took will be entered to win the $10,000 scholarship.  We will be announcing the winners by December 1st.'),
   );
   $page['question10'] = array(
     '#theme' => 'fieldset',
@@ -131,9 +131,9 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Pics for pets is a program started by dosomething.'),
+    '#children' => t('Sorry about that! Email animals@dosomething.org with any additional questions and Greg or April will get back to you as soon as possible.'),
   );
-return $page;
+  return $page;
 }
 
 /**
