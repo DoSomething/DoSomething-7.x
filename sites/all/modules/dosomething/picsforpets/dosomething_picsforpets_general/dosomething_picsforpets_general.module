@@ -51,7 +51,7 @@ function dosomething_picsforpets_general_questions() {
     ),
   );
   $page['email'] = array(
-    '#markup' => t('<p class="questions-email">Email us at picsforpets@dosomething.org</p>'),
+    '#markup' => t('<p class="questions-email">Email us at <a href="mailto:picsforpets@dosomething.org">picsforpets@dosomething.org</a></p>'),
   );
   $page['question1'] = array(
     '#theme' => 'fieldset',

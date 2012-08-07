@@ -32,6 +32,9 @@
       <?php endif; ?>
 
       <?php print render($page['header']); ?>
+      <?php print render($title_prefix); ?>
+      <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+      <?php print render($title_suffix); ?>
 
     </header> <!-- /header -->
 
@@ -51,9 +54,6 @@
       <div role="main">
         <?php print render($page['highlighted']); ?>
         <a id="main-content"></a>
-        <?php print render($title_prefix); ?>
-        <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-        <?php print render($title_suffix); ?>
         <?php if ($tabs = render($tabs)): ?><div class="tabs"><?php print $tabs; ?></div><?php endif; ?>
         <?php print render($page['help']); ?>
         <?php if ($action_links = render($action_links)): ?><ul class="action-links"><?php print $action_links; ?></ul><?php endif; ?>

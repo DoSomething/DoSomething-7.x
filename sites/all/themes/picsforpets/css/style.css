@@ -515,6 +515,11 @@ pre, code, kbd, tt {
   _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
 }
 
+.fieldset-legend {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
 h1, #picsforpets-share .fb-share-me, .fieldset-legend, h2, h3, h4, h5, h6 {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
@@ -678,11 +683,10 @@ h1.title, #picsforpets-share .title.fb-share-me {
   text-transform: uppercase;
   text-align: center;
   padding-bottom: 10px;
+  padding-top: 50px;
   font-size: 40px;
   width: 430px;
   margin: 0 auto;
-  margin-top: 24px;
-  margin-bottom: 48px;
 }
 
 /* Images -------------------------------------------------------------- */
@@ -1561,7 +1565,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/5k-scholarship.png?1343742973');
+  background-image: url('../images/5k-scholarship.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1583,7 +1587,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/ds-logo.png?1343742973');
+  background-image: url('../images/ds-logo.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1803,7 +1807,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png?1343742973');
+  background-image: url('../images/close.png?1343054988');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -2196,6 +2200,40 @@ select#edit-field-fb-app-animal-type-value {
   text-transform: uppercase;
   color: white;
   padding-left: 12px;
+}
+
+.page-pics-for-pets-questions .content {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #c9cbcd;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  padding: 12px 18px;
+  width: 490px;
+}
+.page-pics-for-pets-questions .content .fieldset-legend {
+  letter-spacing: 0;
+}
+.page-pics-for-pets-questions .content fieldset.collapsed {
+  height: auto;
+}
+.page-pics-for-pets-questions .content fieldset a {
+  color: black;
+  font-family: "DINOT", sans-serif;
+  font-size: 20px;
+  text-transform: none;
+}
+.page-pics-for-pets-questions .content fieldset .fieldset-wrapper {
+  border: none;
+  background-color: transparent;
+  padding-left: 36px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
