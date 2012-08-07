@@ -308,15 +308,16 @@ function dosomething_picsforpets_general_ctools_plugin_directory($owner, $plugin
  * Share (like) a webform submission on facebook.
  */
 function dosomething_picsforpets_general_share($sid) {
-  $_fb_app = fb_load('picsforpets');
-  $fb = fb_api_init($_fb_app);
-  $access_token = fb_get_token($fb);
-  if (is_numeric($sid)) {
-    $url = drupal_get_path_alias('webform-submission/' . $sid);
-    $response = drupal_http_request('https://graph.facebook.com/' . 'http://apps.facebook.com/picsforpets/' . $url . '/likes' , array('method' => 'POST', 'data' => 'access_token=' . $access_token));
-    dpm($response);
+  module_load_include('module', 'webform_entity', 'webform_entity');
+  $submission = webform_entity_load_webform_submission($sid);
+  $value = $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'];
+  if (!count($value)) {
+    $value = 0;
   }
-  return '';
+  $value++;
+  $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'] = $value;
+  webform_entity_save_webform_submission($submission);
+  return drupal_json_output('success');;
 }
 
 /**
