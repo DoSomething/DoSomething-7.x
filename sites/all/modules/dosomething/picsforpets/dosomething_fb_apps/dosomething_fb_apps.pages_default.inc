@@ -376,7 +376,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'title' => 'Fur-tographer Materials',
       'body' => 'Everything you need to bring with you to the shelter
 
-<a href="/sites/default/files/P4P-Action-Kit-Materials.zip" class="button download">Download (need link)</a>',
+<a href="/sites/default/files/P4P-Action-Kit-Materials.zip" class="button download">Download</a>',
       'format' => 'filtered_html',
       'substitute' => TRUE,
     );
