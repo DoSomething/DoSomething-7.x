@@ -325,7 +325,7 @@ function dosomething_picsforpets_general_share($sid) {
 function dosomething_picsforpets_general_preprocess_page(&$variables) {
   $current_path = current_path();
 
-  // Add the email address below the title.
+  // Add the email address below the  questions title.
   if ($current_path == 'pics-for-pets/questions') {
     $variables['title_suffix']['dosomething_picsforpets_general_email'] = array(
       '#type' => 'container',
@@ -335,6 +335,19 @@ function dosomething_picsforpets_general_preprocess_page(&$variables) {
         ),
       ),
       '#children' => t('Email us at !link', array('!link' => '<a href="mailto:picsforpets@dosomething.org">picsforpets@dosomething.org</a>')),
+    );
+  }
+
+  // Add the prize details below the action guide title.
+  if ($current_path == 'pics-for-pets/action-guide') {
+    $variables['title_suffix']['dosomething_page-picsforpets_action_guide'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'win-prizes',
+        ),
+      ),
+      '#children' => t('And win awesome prizes along the way'),
     );
   }
 }
