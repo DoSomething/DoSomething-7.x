@@ -2488,6 +2488,12 @@ select#edit-sort-by {
 .page-pics-for-pets-action-guide .next {
   display: inline;
   float: right;
+  color: #ec1c24;
+  font-weight: bold;
+  padding: 6px 32px;
+  margin-top: -28px;
+  background: white url(../images/lg-right-arrow.png) no-repeat;
+  background-position: 72px 7px;
 }
 .page-pics-for-pets-action-guide .win-prizes {
   text-align: center;
@@ -2513,6 +2519,14 @@ select#edit-sort-by {
   padding: 12px;
   width: 320px;
   text-align: center;
+}
+.materials p,
+.action-guide-video p {
+  margin: 8px;
+}
+.materials a,
+.action-guide-video a {
+  margin-left: 110px;
 }
 
 /* LAYOUT -------------------------------------------------------------- */
