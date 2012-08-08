@@ -2379,6 +2379,9 @@ select#edit-sort-by {
   margin: 0 auto;
   width: 552px;
 }
+#dosomething-picsforpets-shelters-lookup-form .help-text {
+  text-align: center;
+}
 #dosomething-picsforpets-shelters-lookup-form .form-item-zip label {
   cursor: default;
   text-transform: uppercase;
@@ -2406,6 +2409,28 @@ select#edit-sort-by {
   text-indent: 9999px;
   white-space: nowrap;
   width: 15px;
+}
+
+#shelter-results {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #c9cbcd;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  padding: 12px 8px;
+}
+#shelter-results h2 {
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid black;
+  padding-bottom: 3px;
+}
+#shelter-results h3 {
+  font-family: "DINOT", sans-serif;
+  font-weight: bold;
 }
 
 .page-pics-for-pets-action-guide .panel-col-first {
