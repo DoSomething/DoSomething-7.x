@@ -22,6 +22,7 @@ class dosomething_fb_apps_handler_closest_to_me_sort extends views_handler_sort 
     $lon = -75.16;
 
     // Get zip from pet shelter.
+    // TODO we can actually get lat/lon directly for shelters.
 
     $join = new views_join();
     $join->construct('field_data_field_pfp_address', $this->table_alias, $this->real_field, 'entity_id');
