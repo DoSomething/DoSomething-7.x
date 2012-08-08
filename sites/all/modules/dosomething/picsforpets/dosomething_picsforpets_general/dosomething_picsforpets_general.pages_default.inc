@@ -349,7 +349,7 @@ shelter pet pic</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '<h1>For the Fur-tographers</h1>',
-      'body' => '<div class="scholarship"><h2>$5,000 Scholarship</h2>
+      'body' => '<div class="scholarship"><h2>$10,000 Scholarship</h2>
 <div class="submission">For one awesome submission to the gallery</div></div>',
       'format' => 'full_html',
       'substitute' => TRUE,
