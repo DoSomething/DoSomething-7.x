@@ -2347,6 +2347,41 @@ select#edit-sort-by {
   z-index: 200;
 }
 
+#dosomething-picsforpets-shelters-lookup-form {
+  overflow: hidden;
+  *zoom: 1;
+  margin: 0 auto;
+  width: 270px;
+}
+#dosomething-picsforpets-shelters-lookup-form .form-item-zip label {
+  cursor: default;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-family: "DINWeb-CondBold", "Arial Narrow", Arial, sans-serif;
+  line-height: 1;
+  margin-right: 3px;
+}
+#dosomething-picsforpets-shelters-lookup-form #edit-zip,
+#dosomething-picsforpets-shelters-lookup-form #edit-submit {
+  display: inline;
+  float: left;
+}
+#dosomething-picsforpets-shelters-lookup-form #edit-submit {
+  background: url('../images/magnify-box.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border: none;
+  box-shadow: none;
+  height: 15px;
+  margin-top: 3px;
+  margin-left: 3px;
+  overflow: hidden;
+  padding: none;
+  text-indent: 9999px;
+  white-space: nowrap;
+  width: 15px;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
