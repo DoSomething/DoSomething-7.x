@@ -403,7 +403,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Video',
       'title' => '',
-      'body' => '<iframe width="560" height="315" src="http://www.youtube.com/embed/QZR_6K03gWk" frameborder="0" allowfullscreen></iframe>',
+      'body' => '<iframe width="300" height="225" src="http://www.youtube.com/embed/QZR_6K03gWk" frameborder="0" allowfullscreen></iframe>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
