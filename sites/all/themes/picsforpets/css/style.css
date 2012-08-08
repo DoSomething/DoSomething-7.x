@@ -1579,7 +1579,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/5k-scholarship.png');
+  background-image: url('../images/10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1716,7 +1716,7 @@ div[role="main"] {
 a.footer-furtography {
   overflow: hidden;
   *zoom: 1;
-  background: url(../images/links-5k-icon.png) no-repeat;
+  background: url(../images/links-10k-icon.png) no-repeat;
   padding-left: 60px;
   background-position: -4px -4px;
   height: 75px;
