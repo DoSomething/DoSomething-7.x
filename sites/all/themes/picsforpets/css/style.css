@@ -2382,6 +2382,43 @@ select#edit-sort-by {
   width: 15px;
 }
 
+.page-pics-for-pets-action-guide .panel-col-first {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #c9cbcd;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  padding: 12px;
+  width: 320px;
+}
+.page-pics-for-pets-action-guide .panel-col-first .fieldset-legend {
+  letter-spacing: 0;
+}
+.page-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
+  height: auto;
+}
+.page-pics-for-pets-action-guide .panel-col-first fieldset a {
+  color: black;
+  font-family: "DINOT", sans-serif;
+  font-size: 18px;
+  text-transform: none;
+}
+.page-pics-for-pets-action-guide .panel-col-first fieldset .fieldset-wrapper {
+  border: none;
+  background-color: transparent;
+  line-height: 1.2;
+  padding-left: 20px;
+  padding-right: 24px;
+  padding-top: 0;
+}
+
 /* LAYOUT -------------------------------------------------------------- */
 .ie6 .styletile #page, .ie7 .styletile #page, .ie8 .styletile #page {
   *zoom: 1;
