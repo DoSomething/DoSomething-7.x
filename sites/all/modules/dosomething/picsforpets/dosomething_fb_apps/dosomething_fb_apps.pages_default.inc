@@ -420,35 +420,8 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->locks = array();
     $display->content['new-11'] = $pane;
     $display->panels['right'][1] = 'new-11';
-    $pane = new stdClass();
-    $pane->pid = 'new-12';
-    $pane->panel = 'top';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Page sub-title',
-      'title' => '',
-      'body' => 'And win awesome prizes along the way',
-      'format' => 'filtered_html',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => 'sub-title',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-12'] = $pane;
-    $display->panels['top'][0] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-12';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['pfp_action_guide'] = $page;
@@ -504,7 +477,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-12';
     $pane->panel = 'middle';
     $pane->type = 'invite_friends';
     $pane->subtype = 'invite_friends';
@@ -519,10 +492,10 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['middle'][0] = 'new-13';
+    $display->content['new-12'] = $pane;
+    $display->panels['middle'][0] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-13';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'views-109095e2299d141b893359308d2d7ad9';
@@ -541,10 +514,10 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['middle'][1] = 'new-14';
+    $display->content['new-13'] = $pane;
+    $display->panels['middle'][1] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-14';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'pics_for_pets_gallery-panel_pane_1';
@@ -562,8 +535,8 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-15'] = $pane;
-    $display->panels['middle'][2] = 'new-15';
+    $display->content['new-14'] = $pane;
+    $display->panels['middle'][2] = 'new-14';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
