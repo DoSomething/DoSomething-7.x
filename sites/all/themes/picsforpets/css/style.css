@@ -538,7 +538,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text {
+#dosomething-picsforpets-general-furtographer-form input[type="button"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .sub-title {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -2438,6 +2438,13 @@ select#edit-sort-by {
   font-weight: bold;
 }
 
+.page-pics-for-pets-action-guide h2 {
+  text-transform: uppercase;
+  font-size: 28px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
 .page-pics-for-pets-action-guide .panel-col-first {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2449,7 +2456,7 @@ select#edit-sort-by {
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #c9cbcd;
-  margin: 0 auto;
+  margin: 0 24px 0 24px;
   margin-bottom: 100px;
   padding: 12px;
   width: 320px;
@@ -2473,6 +2480,39 @@ select#edit-sort-by {
   padding-left: 20px;
   padding-right: 24px;
   padding-top: 0;
+}
+.page-pics-for-pets-action-guide .panel-col-bottom {
+  display: inline;
+  float: left;
+}
+.page-pics-for-pets-action-guide .next {
+  display: inline;
+  float: right;
+}
+.page-pics-for-pets-action-guide .sub-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.materials,
+.action-guide-video {
+  overflow: hidden;
+  *zoom: 1;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #c9cbcd;
+  margin-bottom: 24px;
+  padding: 12px;
+  width: 320px;
+  text-align: center;
 }
 
 /* LAYOUT -------------------------------------------------------------- */

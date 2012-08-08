@@ -1,12 +1,18 @@
 // Styling for the action steps page
 
 .page-pics-for-pets-action-guide
+  h2
+    text-transform: uppercase
+    font-size: 28px
+    padding: 0
+    margin: 0
+    text-align: center
   .panel-col-first
     +border-radius(8px)
     +box-sizing(border-box)
     background: rgba($white, 0.75)
     border: 1px solid $pfp-gray-lt
-    margin: 0 auto
+    margin: 0 24px 0 24px
     margin-bottom: 100px
     padding: 12px
     width: 320px
@@ -27,3 +33,31 @@
         padding-left: 20px
         padding-right: 24px
         padding-top: 0
+
+  .panel-col-bottom
+    +float-left
+
+  .next
+    +float-right
+
+  .sub-title
+    @extend %league-gothic
+    text-align: center
+    text-transform: uppercase
+    font-size: 20px
+
+
+.materials,
+.action-guide-video
+  +clearfix
+  +border-radius(8px)
+  +box-sizing(border-box)
+  background: rgba($white, 0.75)
+  border: 1px solid $pfp-gray-lt
+  margin-bottom: 24px
+  padding: 12px
+  width: 320px
+  text-align: center
+
+
+
