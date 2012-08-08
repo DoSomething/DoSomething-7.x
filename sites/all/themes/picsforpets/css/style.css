@@ -1047,7 +1047,6 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
   font-size: 12px;
 }
 
-select,
 input {
   -webkit-box-shadow: #dddddd 0 0 10px inset;
   -moz-box-shadow: #dddddd 0 0 10px inset;
@@ -2020,6 +2019,12 @@ select#edit-sort-by {
 #webform-client-form-3 {
   margin: 0 auto;
   width: 552px;
+}
+#webform-client-form-3 select {
+  -webkit-box-shadow: #dddddd 0 0 10px inset;
+  -moz-box-shadow: #dddddd 0 0 10px inset;
+  box-shadow: #dddddd 0 0 10px inset;
+  border: 1px solid #c9cbcd;
 }
 #webform-client-form-3 legend {
   margin-left: -20px;
