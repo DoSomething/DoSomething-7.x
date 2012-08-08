@@ -13,11 +13,11 @@ define('PICSFORPETS_PET_SUBMISSION_NID', 3);
  * Implements hook_menu().
  */
 function dosomething_picsforpets_general_menu() {
-  $items['pics-for-pets/share/js/%'] = array(
+  $items['pics-for-pets/share/js/%/%'] = array(
     'type' => MENU_CALLBACK,
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_general_share',
-    'page arguments' => array(3),
+    'page arguments' => array(3, 4),
   );
   $items['pics-for-pets/become-a-furtographer'] = array(
     'title' => t('Become a Furtographer!'),
