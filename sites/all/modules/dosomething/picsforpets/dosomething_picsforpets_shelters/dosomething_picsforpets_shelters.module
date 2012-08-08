@@ -48,6 +48,10 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   }
   $form = array();
 
+  $form['help'] = array(
+    '#markup' => t('<p class="help-text">Enter your zipcode to find a shelter in your area.</p>'),
+  );
+
   $form['zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
