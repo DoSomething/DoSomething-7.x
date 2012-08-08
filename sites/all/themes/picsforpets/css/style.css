@@ -1034,7 +1034,7 @@ label {
   font-weight: normal;
   display: inline;
   float: left;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
@@ -2017,6 +2017,32 @@ select#edit-sort-by {
   padding: 2px 12px;
 }
 
+#webform-client-form-3 {
+  margin: 0 auto;
+  width: 552px;
+}
+#webform-client-form-3 legend {
+  margin-left: -20px;
+}
+#webform-client-form-3 label {
+  cursor: default;
+}
+#webform-client-form-3 .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
+  margin-right: 15px;
+}
+#webform-client-form-3 .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
+  width: 80px;
+}
+#webform-client-form-3 #submitted-field-fb-app-age-add-more-wrapper label {
+  margin-right: 67px;
+}
+#webform-client-form-3 #submitted-field-fb-app-age-add-more-wrapper input {
+  width: 80px;
+}
+#webform-client-form-3 #field-fb-app-three-words-values tr.odd .form-item, #webform-client-form-3 #field-fb-app-three-words-values tr.even .form-item {
+  margin-bottom: 5px;
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2168,7 +2194,7 @@ select#edit-sort-by {
   margin: 0 auto;
   margin-bottom: 100px;
   padding: 12px;
-  width: 425px;
+  width: 552px;
 }
 .page-pics-for-pets-questions .content .fieldset-legend {
   letter-spacing: 0;
@@ -2351,7 +2377,7 @@ select#edit-sort-by {
   overflow: hidden;
   *zoom: 1;
   margin: 0 auto;
-  width: 270px;
+  width: 552px;
 }
 #dosomething-picsforpets-shelters-lookup-form .form-item-zip label {
   cursor: default;
