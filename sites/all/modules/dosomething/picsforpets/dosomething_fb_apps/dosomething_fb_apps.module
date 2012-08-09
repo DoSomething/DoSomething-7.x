@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the dosomething_fb_apps feature.
@@ -131,8 +132,9 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
       $form['back'] = array(
         '#markup' => l('Back (need link!)', '', array('attributes' => array('class' => array('button back')))),
       );
-      // We want this function to load after webform entity fields are loaded.
+      // We want these functions to load after webform entity fields are loaded.
       $form['#after_build'][] = 'dosomething_fb_apps_field_fb_app_share_count';
+      $form['#after_build'][] = 'dosomething_fb_apps_field_fb_app_adopted';
     }
   }
 }
@@ -142,5 +144,34 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
  */
 function dosomething_fb_apps_field_fb_app_share_count($form, $form_state) {
   $form['submitted']['field_fb_app_share_count']['#access'] = FALSE;
+  return $form;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function dosomething_fb_apps_permission() {
+  //Creating a permission for administering pet adoption status.
+  return array(
+    'administer adopted status' => array(
+      'title' => t('Administer adopted status'),
+      'description' => t('Maintain the adoption status of pets.'),
+    ),
+  );
+}
+
+/**
+ * Form API #after_build callback: Shows field_fb_app_adopted to admin only.
+ */
+function dosomething_fb_apps_field_fb_app_adopted($form, $form_state) {
+  // Check the user's permission given to role.
+  if (user_access('administer adopted status')) {
+    // If user is admin, show adopted field.
+    $form['submitted']['field_fb_app_adopted']['#access'] = TRUE;
+  }
+    // If user is not admin, hide the adopted field.
+  else {
+    $form['submitted']['field_fb_app_adopted']['#access'] = FALSE;
+  }
   return $form;
 }
