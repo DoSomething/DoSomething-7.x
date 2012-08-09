@@ -115,7 +115,6 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
       '#markup' => $more,
     );
   }
-  // !empty replaces isset($form_state['view_more']) && $form_state['view_more'] === TRUE.
   if (!empty($form_state['view_more'])) {
     $form['results-wrapper']['more-wrapper']['view_more_button'] = array(
       '#type' => 'submit',
@@ -288,7 +287,8 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
           $hours = field_get_items('node', $shelter, 'field_pfp_hours');
           $markup .= empty($hours) ? '' : '<br />Hours:<br />' . $hours[0]['safe_value'];
-          // The option will have the node id as the value and the markup as the lable.
+          // The option will have the node id as the value and the markup as the
+          // label.
           $options[$shelter->nid] = $markup;
         }
       }

@@ -46,8 +46,8 @@ Drupal.behaviors.picsforpetsShelterPopup = {
     */
     var $searchForm = $('#dosomething-picsforpets-shelters-options-form', context);
     if (!$searchForm.hasClass('pics-popup')) {
-      $searchForm.hide(); 
-      $searchForm.addClass('pics-popup'); 
+      $searchForm.hide();
+      $searchForm.addClass('pics-popup');
     }
     //*
     $('.shelter-locator-popup', context).click(function(e) {
@@ -62,7 +62,7 @@ Drupal.behaviors.picsforpetsShelterPopup = {
           .before('<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-dialog-title-dosomething-picsforpets-shelters-options-form" class="ui-dialog-title">' + Drupal.t('Find Your Shelter') +  '</span><a class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a>');
         $('.ui-dialog')
           .after('<div class="ui-widget-overlay" style="width: 1905px; height: 1572px; z-index: 1001;">');
-        
+
         $('.ui-icon-closethick', $searchForm.parent()).click(function() {
           $searchForm.parent().hide();
           $('.ui-widget-overlay').remove();

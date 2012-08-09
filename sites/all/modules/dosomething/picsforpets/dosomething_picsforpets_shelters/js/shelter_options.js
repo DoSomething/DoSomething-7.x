@@ -2,7 +2,7 @@
   Drupal.behaviors.picsforpetsShelterOptions = {
     attach: function (context, settings) {
       settings.picsforpetsShelterOptions = settings.picsforpetsShelterOptions || {
-        showSelect : false, 
+        showSelect : false,
         selectedResult : {
           address : '',
           city : '',

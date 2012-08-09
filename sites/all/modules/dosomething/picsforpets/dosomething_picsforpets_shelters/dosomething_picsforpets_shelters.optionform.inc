@@ -138,13 +138,14 @@ function dosomething_picsforpets_shelters_lookup_options_form_validate($form, &$
  * being added, then all fields are required.
  */
 function dosomething_picsforpets_shelters_select_shelter_validate($form, &$form_state) {
-  // Send a message if they try to click the select button with no option selected.
+  // Send a message if they try to click the select button with no option
+  // selected.
   if (empty($form_state['values']['results'])) {
     form_set_error('results', t('You must select a shelter or add your own.'));
   }
-  
-  // If they are not trying to add a new shelter then we don't need to validate.
-  if ($form_state['values']['results'] != -1) {
+  elseif ($form_state['values']['results'] != -1) {
+    // If they are not trying to add a new shelter then we don't need to
+    // validate.
     return;
   }
   $address_elements = array(
@@ -248,7 +249,8 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
       'shelter_zip' =>  $address[0]['postal_code'],
       'hours' => '',
     );
-    // After getting the data, add it to the javascript settings and $_SESSION so we can use it elsewhere. 
+    // After getting the data, add it to the javascript settings and $_SESSION
+    // so we can use it elsewhere.
     $_SESSION['shelter'] = $shelter;
     drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter)), 'setting');
     drupal_set_message('Thanks. We\'ve received your choosen shelter.');
@@ -266,7 +268,8 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
       'shelter_zip' => $form_state['values']['shelter_zip'],
       'hours' => $form_state['values']['hours'],
     );
-    // After getting the data, add it to the javascript settings and $_SESSION so we can use it elsewhere. 
+    // After getting the data, add it to the javascript settings and $_SESSION
+    // so we can use it elsewhere.
     $_SESSION['shelter'] = $shelter;
     drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter)), 'setting');
     drupal_set_message('Thanks. We\'ve received the address of your shelter.');
@@ -283,12 +286,6 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
  */
 function dosomething_picsforpets_shelters_lookup_form_options_submit_ajax($form, &$form_state) {
   drupal_add_js(array('picsforpetsShelterOptions' => array('showSelect' => TRUE)), 'setting');
-  // If the form has passed validation and been 'executed' (a boolean value)
-  // then save the selected option or new address into the js variables.
-  if ($form_state['values']['op'] == 'Select' && $form_state['executed']) {
-    //drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $selected_result)), 'setting');
-  }
-    
   // If being called from an embedded form, nest the return results.
   if (isset($form['#nested_pets_form'])) {
     return $form['shelter-popup']['results'];
