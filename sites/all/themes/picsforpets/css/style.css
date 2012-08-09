@@ -2438,14 +2438,18 @@ select#edit-sort-by {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
-  height: 400px;
-  padding: 10px;
-  width: 420px;
   margin: 0 auto;
   margin-top: 60px;
-  overflow: auto;
+  padding: 3px 0;
+  height: 325px;
+  width: 355px;
 }
-#shelter-results-wrapper::-webkit-scrollbar {
+#shelter-results-wrapper .shelter-results {
+  height: 315px;
+  overflow: auto;
+  width: 345px;
+}
+#shelter-results-wrapper .shelter-results::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
   -webkit-border-radius: 8px;
@@ -2453,8 +2457,9 @@ select#edit-sort-by {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
+  cursor: pointer;
 }
-#shelter-results-wrapper::-webkit-scrollbar-track {
+#shelter-results-wrapper .shelter-results::-webkit-scrollbar-track {
   background: rgba(221, 221, 221, 0.5);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2462,30 +2467,33 @@ select#edit-sort-by {
   -o-border-radius: 8px;
   border-radius: 8px;
 }
-#shelter-results-wrapper::-webkit-scrollbar-thumb {
+#shelter-results-wrapper .shelter-results::-webkit-scrollbar-thumb {
   background-color: black;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
+  cursor: pointer;
+}
+#shelter-results-wrapper .shelter-results .no-results {
+  margin-top: 10px;
 }
 #shelter-results-wrapper h2 {
-  font-size: 50px;
+  font-size: 46px;
   text-transform: uppercase;
   text-align: center;
   border-bottom: 1px solid black;
   line-height: 1;
-  margin-bottom: 0;
-  margin-top: 0;
+  margin: 0 12px;
 }
 #shelter-results-wrapper .shelter-result-item {
   border-bottom: 1px solid black;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 6px 0;
+  margin: 0 12px;
 }
 #shelter-results-wrapper .shelter-result-item .inner {
-  padding: 0 8px;
+  padding: 0 24px;
 }
 #shelter-results-wrapper .shelter-result-item h3 {
   font-family: "DINOT", sans-serif;
@@ -2500,7 +2508,7 @@ select#edit-sort-by {
   display: block;
   margin: 0 auto;
   position: absolute;
-  top: 680px;
+  top: 600px;
   right: 680px;
 }
 

@@ -322,7 +322,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
       if (empty($markup)) {
         // This should never happen but it's not a bad idea to have some default
         // text just in case.
-        $markup  = t('Sorry we could not find any shelters near you.');
+        $markup  = '<div class="no-results">' . t('Sorry we could not find any shelters near you.') . '</div>';
       }
   }
   return $markup;

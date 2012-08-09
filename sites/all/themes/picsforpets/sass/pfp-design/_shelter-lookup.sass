@@ -46,44 +46,50 @@
   background: rgba($white, 0.75)
   border: 1px solid $pfp-gray-lt
   +border-radius(8px)
-  height: 400px
-  padding: 10px
-  width: 420px
   margin: 0 auto
   margin-top: 60px
-  overflow: auto
+  padding: 3px 0
+  height: 325px
+  width: 355px
+  .shelter-results
+    height: 315px
+    overflow: auto
+    width: 345px
 
+    // Scrollbar styling
+    &::-webkit-scrollbar
+      -webkit-appearance: none
+      width: 5px
+      +border-radius(8px)
+      cursor: pointer
 
-  &::-webkit-scrollbar
-    -webkit-appearance: none
-    width: 5px
-    +border-radius(8px)
+    &::-webkit-scrollbar-track
+      background: rgba(#ddd, 0.5)
+      +border-radius(8px)
 
-  // &::-webkit-scrollbar-button
-    display: none
+    &::-webkit-scrollbar-thumb
+      background-color: $black
+      +border-radius(8px)
+      cursor: pointer
 
-  &::-webkit-scrollbar-track
-    background: rgba(#ddd, 0.5)
-    +border-radius(8px)
+    // Styling for not results text
+    .no-results
+      margin-top: 10px
 
-  &::-webkit-scrollbar-thumb
-    background-color: $black
-    +border-radius(8px)
-
+  // Shelters near you styling
   h2
-    font-size: 50px
+    font-size: 46px
     text-transform: uppercase
     text-align: center
     border-bottom: 1px solid $black
     line-height: 1
-    margin-bottom: 0
-    margin-top: 0
+    margin: 0 12px
   .shelter-result-item
     border-bottom: 1px solid $black
-    padding-top: 10px
-    padding-bottom: 10px
+    padding: 6px 0
+    margin: 0 12px
     .inner
-      padding: 0 8px
+      padding: 0 24px
     h3
       font-family: $font-sans
       font-weight: bold
@@ -97,5 +103,5 @@
       display: block
       margin: 0 auto
       position: absolute
-      top: 680px
+      top: 600px
       right: 680px
