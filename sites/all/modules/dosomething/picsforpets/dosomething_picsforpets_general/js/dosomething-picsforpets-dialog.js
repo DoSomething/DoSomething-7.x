@@ -20,7 +20,7 @@ Drupal.behaviors.dosomethingPicsforpetsDialog = {
           }
         }
       });
-      event.preventDefault();
+      return false;
     });
   }
 };
