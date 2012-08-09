@@ -29,14 +29,14 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
   $form['helptext'] = array(
     '#prefix' => '<p>',
     '#suffix' => '</p>',
-    '#markup' => t('Enter the zip code and select the shelter where you snammed your animal pic.'),
+    '#markup' => t('Enter the zip code and select the shelter where you snapped your animal pic.'),
   );
   $form['zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
     '#weight' => 0,
   );
-  $form['submit'] = array(
+  $form['search'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
     '#weight' => 0,
@@ -192,21 +192,35 @@ function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$fo
 function dosomething_picsforpets_shelters_options_load_more($form, &$form_state) {
   // Make sure we initialize the variable.
   $form_state['more_results_all'] = isset($form_state['more_results_all']) ? $form_state['more_results_all'] : array();
+
   // Update the number of times the more button has been clicked so we know how
   // many results to skip in our result set.
-  $form_state['more_times'] += 1;
+  $form_state['more_times']++;
+
+  // Fetch the originally submitted zip code.
   $zip = $form_state['values']['zip'];
+  // In some cases (Ajaxy magic we're doing on webform entity) the value of the
+  // zip is not getting passed through to the $form_state['values'] array
+  // properly. In this case, let's just check to see if it's actully in the
+  // $form_state['input'] array.
+  if (empty($zip) && !empty($form_state['input']['zip'])) {
+    $zip = $form_state['input']['zip'];
+  }
+
   // We retreive an extra result and then throw it away so that we know if we
   // should show the 'view more' button.
   $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
   // Show the more button?
   $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
+  // Get the returned results as a list of options.
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
+  // Add the data to the form state.
   $form_state['more_results'] = $options;
   // We append the results to the former results list so we have the appropriate
   // content for non JS submissions.
   $form_state['more_results_all'] = $form_state['more_results_all'] + $options;
   $form_state['results'] = $form_state['results'] + $options;
+  // Instruct the form to rebuild with the new content.
   $form_state['rebuild'] = TRUE;
 }
 
@@ -259,6 +273,7 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
  */
 function dosomething_picsforpets_shelters_lookup_form_options_submit_ajax($form, &$form_state) {
   drupal_add_js(array('picsforpetsShelterOptions' => array('showSelect' => TRUE)), 'setting');
+  // If being called from an embedded form, nest the return results.
   if (isset($form['#nested_pets_form'])) {
     return $form['shelter-popup']['results'];
   }
