@@ -40,6 +40,10 @@ function doit_preprocess_page(&$variables) {
   drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
   drupal_add_js($theme_path . '/js/doit-select.js', array('scope' => 'footer'));
 
+ // Add Social Tracking for Google Analytics 
+  drupal_add_js($theme_path . '/js/ga_social_tracking.js');
+
+
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
   if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && arg(0) !== 'admin') {
     // Add additional css class to 'Talk to Us' footer menu item.
