@@ -3437,6 +3437,55 @@ div[role=main] {
   min-height: 752px;
 }
 
+.headline-404, .copy-404, .newshead-404, .news-404 {
+  text-align: center;
+  line-height: 1em;
+  font-family: din-web;
+}
+
+.headline-404 {
+  font-size: 42px;
+  margin: 15px 0 10px 0;
+}
+
+.copy-404 {
+  font-size: 18px;
+}
+
+.newshead-404 {
+  font-size: 36px;
+  margin: 30px 0 5px 0;
+}
+
+.news-404 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.news-404 input {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+.news-404 input[type="submit"] {
+  background: red;
+  border: none;
+  color: white;
+  margin-top: 6px;
+  padding: 4px 6px;
+  font-size: 16px;
+}
+.news-404 input[type="text"] {
+  border: 3px solid #d9d9d9;
+  padding: 6px;
+  font-size: 13px;
+  width: 225px;
+  margin-top: 4px;
+}
+
+.page-node-721535 h1.title {
+  display: none;
+}
+
 #breadcrumb {
   font-size: 0.833em;
   line-height: 2.4em;
@@ -3689,6 +3738,9 @@ h2.block-title, h2.pane-title {
 
 .android-app-img {
   padding: 10px 0;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none important;
 }
 
 #block-menu-menu-footer {
