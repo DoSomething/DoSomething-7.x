@@ -2386,7 +2386,6 @@ select#edit-sort-by {
   overflow: hidden;
   *zoom: 1;
   margin: 0 auto;
-  width: 552px;
   margin-bottom: 60px;
   margin-top: -30px;
 }
@@ -2396,7 +2395,7 @@ select#edit-sort-by {
 }
 #dosomething-picsforpets-shelters-lookup-form .form-item-zip {
   margin: 0 auto;
-  width: 245px;
+  width: 195px;
 }
 #dosomething-picsforpets-shelters-lookup-form .form-item-zip label {
   cursor: default;
