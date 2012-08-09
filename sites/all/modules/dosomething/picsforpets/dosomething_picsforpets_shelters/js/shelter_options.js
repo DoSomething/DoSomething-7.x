@@ -1,8 +1,18 @@
 (function ($) {
   Drupal.behaviors.picsforpetsShelterOptions = {
     attach: function (context, settings) {
-      settings.picsforpetsShelterOptions = settings.picsforpetsShelterOptions || {showSelect : false};
-
+      settings.picsforpetsShelterOptions = settings.picsforpetsShelterOptions || {
+        showSelect : false, 
+        selectedResult : {
+          address : '',
+          city : '',
+          state : '',
+          shelter_name : '',
+          shelter_zip : '',
+          shelter_nid : '',
+          hours : ''
+        }
+      };
       // Conditionally hide or show the Address Form
       var field = $('.conditional-address-fieldset');
       if ($('.shelter-results-option-list input[name=results]:checked').val() == -1) {

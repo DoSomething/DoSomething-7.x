@@ -1,6 +1,49 @@
 (function ($) {
 Drupal.behaviors.picsforpetsShelterPopup = {
   attach: function (context, settings) {
+    // Instantiate the selected shleter if it has not already been done.
+    settings.picsforpetsShelterOptions = settings.picsforpetsShelterOptions || {
+      selectedResult : {
+        address : '',
+        city : '',
+        state : '',
+        shelter_name : '',
+        shelter_zip : '',
+        shelter_nid : '',
+        hours : ''
+     }
+    };
+    // Set all the address form values
+    $('#edit-submitted-find-your-shelter-field-fb-app-shelter-name-und-0-value').attr(
+      {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name}
+    );
+    $('#edit-submitted-find-your-shelter-field-fb-app-address-und-0-value').attr(
+      {value : settings.picsforpetsShelterOptions.selectedResult.address}
+    );
+    $('#edit-submitted-find-your-shelter-field-fb-app-city-und-0-value').attr(
+      {value : settings.picsforpetsShelterOptions.selectedResult.city}
+    );
+    $('#edit-submitted-find-your-shelter-field-fb-app-zip-und-0-value').attr(
+      {value : settings.picsforpetsShelterOptions.selectedResult.shelter_zip}
+    );
+    $('edit-submitted-find-your-shelter-field-fb-app-shelter-reference-und-0-target-id').attr(
+      {value : settings.picsforpetsShelterOptions.selectedResult.shelter_nid}
+    );
+    if (settings.picsforpetsShelterOptions.selectedResult.state != '') {
+      $('#edit-submitted-find-your-shelter-field-fb-app-state-und option[value="_none"]').attr(
+        {"selected" : ""}
+      );
+      $('#edit-submitted-find-your-shelter-field-fb-app-state-und option[value=' + settings.picsforpetsShelterOptions.selectedResult.state + ']').attr(
+        {"selected" : "selected"}
+      );
+    }
+    /*$('#').attr(
+      {value: settings.picsforpetsShelterOptions.selectedResult.shelter_name}
+    );
+    $('#').attr(
+      {value: settings.picsforpetsShelterOptions.selectedResult.shelter_name}
+    );
+    */
     var $searchForm = $('#dosomething-picsforpets-shelters-options-form', context);
     if (!$searchForm.hasClass('pics-popup')) {
       $searchForm.hide(); 
@@ -28,28 +71,11 @@ Drupal.behaviors.picsforpetsShelterPopup = {
           $alteredForm.removeClass('ui-dialog-content')
           $alteredForm.removeClass('ui-widget-content')
           $('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all').replaceWith($alteredForm);
-          //$('.ui-widget-overlay').hide();
           return false;
         });
         $searchForm.show();
         return false;
     });
-    //*/
-    /*
-    $('.shelter-locator-popup').click(function() {
-      var dialog = $searchForm.dialog({
-        resizable: false,
-        draggable: false,
-        modal: true,
-        width: 550
-      });
-      return false;
-    });
-    //*/
-    //$('#edit-select-shelter').click(function() {
-    //  alert('WOW');
-    //  return false;
-    //});
   }
 };
 }(jQuery));
