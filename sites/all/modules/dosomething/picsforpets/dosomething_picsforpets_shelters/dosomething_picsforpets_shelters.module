@@ -303,6 +303,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         // Quick sanity check.
         if ($shelter->type == 'shelter') {
           $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $markup .= '<div class="shelter-result-item">';
           $markup .= '<h3>' . check_plain($shelter->title) . '</h3>';
           $markup .= '<p>';
           $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
@@ -313,6 +314,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $markup .= '</p>';
           $hours = field_get_items('node', $shelter, 'field_pfp_hours');
           $markup .= empty($hours) ? '' : '<p>Hours:<br />' . $hours[0]['safe_value'] . '</p>';
+          $markup .= '</div>';
         }
       }
       if (empty($markup)) {
