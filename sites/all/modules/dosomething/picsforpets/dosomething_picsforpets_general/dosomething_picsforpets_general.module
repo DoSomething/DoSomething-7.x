@@ -320,6 +320,41 @@ function dosomething_picsforpets_general_share($sid) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_picsforpets_general_form_webform_client_form_3_alter(&$form, &$form_state) {
+  $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/shelter_popup.js';
+  form_load_include($form_state, 'inc', 'dosomething_picsforpets_shelters', 'dosomething_picsforpets_shelters.optionform');
+  $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/shelter_popup.js';
+  $form['shelter-popup'] = dosomething_picsforpets_shelters_options_form($form, $form_state);
+  $form['shelter-popup']['#type'] = 'container';
+  $form['shelter-popup']['#attributes'] = array(
+    'id' => 'dosomething-picsforpets-shelters-options-form',
+  );
+
+  // BEGIN supression of validation errors. This stops the form from complaining
+  // about missing webform form elements when we are submitting the form
+  // elements for the location search.
+  $form['shelter-popup']['search']['#limit_validation_errors'] = array(
+    array('zip'),
+  );
+  $form['shelter-popup']['select-shelter']['#limit_validation_errors'] = array(
+    array('results'),
+    array('shelter_name'),
+    array('address'),
+    array('city'),
+    array('state'),
+    array('shelter_zip'),
+    array('hours'),
+  );
+  $form['shelter-popup']['results']['view_more_button']['#limit_validation_errors'] = array();
+  // END supression of validation errors.
+
+  // A flag to let the ajax results know where to load.
+  $form['#nested_pets_form'] = TRUE;
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page.tpl.php.
  */
 function dosomething_picsforpets_general_preprocess_page(&$variables) {

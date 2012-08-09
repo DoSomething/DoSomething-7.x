@@ -259,5 +259,10 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
  */
 function dosomething_picsforpets_shelters_lookup_form_options_submit_ajax($form, &$form_state) {
   drupal_add_js(array('picsforpetsShelterOptions' => array('showSelect' => TRUE)), 'setting');
-  return $form['results'];
+  if (isset($form['#nested_pets_form'])) {
+    return $form['shelter-popup']['results'];
+  }
+  else {
+    return $form['results'];
+  }
 }
