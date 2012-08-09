@@ -4,16 +4,21 @@
   +clearfix
   margin: 0 auto
   width: 552px
+  margin-bottom: 60px
   .help-text
+    margin-bottom: 10px
     text-align: center
   // Style the zip code label
-  .form-item-zip label
-    cursor: default
-    text-transform: uppercase
-    font-size: 24px
-    font-family: $font-dinweb-condbold
-    line-height: 1
-    margin-right: 3px
+  .form-item-zip
+    margin: 0 auto
+    width: 245px
+    label
+      cursor: default
+      text-transform: uppercase
+      font-size: 24px
+      font-family: $font-dinweb-condbold
+      line-height: 1
+      margin-right: 3px
   // Style search button
   #edit-zip,
   #edit-submit
@@ -32,19 +37,61 @@
     text-indent: 9999px
     white-space: nowrap
     width: 15px
+  #edit-zip
+    width: 75px
 
 // Shelter results styling
 #shelter-results
   background: rgba($white, 0.75)
   border: 1px solid $pfp-gray-lt
   +border-radius(8px)
-  padding: 12px 8px
+  height: 400px
+  margin: 0 auto
+  margin-top: 60px
+  overflow: auto
+  padding: 10px
+  width: 420px
+
+  &::-webkit-scrollbar
+    -webkit-appearance: none
+    width: 5px
+    +border-radius(8px)
+
+  // &::-webkit-scrollbar-button
+    display: none
+
+  &::-webkit-scrollbar-track
+    background: rgba(#ddd, 0.5)
+    +border-radius(8px)
+
+  &::-webkit-scrollbar-thumb
+    background-color: $black
+    +border-radius(8px)
+
   h2
-    font-size: 40px
+    font-size: 50px
     text-transform: uppercase
     text-align: center
     border-bottom: 1px solid $black
-    padding-bottom: 3px
-  h3
-    font-family: $font-sans
-    font-weight: bold
+    line-height: 1
+    margin-bottom: 0
+    margin-top: 0
+  .shelter-result-item
+    border-bottom: 1px solid $black
+    padding-top: 10px
+    padding-bottom: 10px
+    .inner
+      padding: 0 8px
+    h3
+      font-family: $font-sans
+      font-weight: bold
+      margin-bottom: 0
+      margin-top: 0
+    .shelter-hours
+      text-decoration: underline
+  #shelter-results-more
+    #edit-results-wrapper-more-wrapper-view-more-button
+      @extend %pfp-button
+      line-height: 2
+      display: block
+      margin: 0 auto
