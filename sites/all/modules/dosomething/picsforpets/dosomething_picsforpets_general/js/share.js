@@ -37,7 +37,7 @@ Drupal.behaviors.dsPfpShare = {
     // stream.share only allows us to post a link to the user's wall. We have to
     // use this method becuase other methods like 'feed' or 'stream.publish'
     // don't increase the share count of the url we're sharing.
-    var shareUrl = window.location.href  + '/webform-submission/' + sid;
+    var shareUrl = 'https://apps.facebook.com/picsforpets/webform-submission/' + sid;
     var share = {
       method: 'stream.share',
       u: shareUrl
@@ -58,7 +58,7 @@ Drupal.behaviors.dsPfpShare = {
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
-          $.post(window.location.href + '/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+          $.post('https://apps.facebook.com/picsforpets/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 3) {
