@@ -82,6 +82,69 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_address'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_address'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_address',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 22,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_address',
+      'label' => 'Address',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '27',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'] = array(
     'field_config' => array(
@@ -333,6 +396,69 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_city'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_city'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_city',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 23,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_city',
+      'label' => 'City',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '28',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_image'
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_image'] = array(
     'field_config' => array(
@@ -522,6 +648,69 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_name'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_shelter_name',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 24,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_shelter_name',
+      'label' => 'Shelter Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '29',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'] = array(
     'field_config' => array(
@@ -601,6 +790,135 @@ function dosomething_fb_apps_field_default_fields() {
         ),
         'type' => 'entityreference_autocomplete',
         'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_state'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_state'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_state',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'AL' => 'Alabama',
+          'AK' => 'Alaska',
+          'AB' => 'Alberta',
+          'AS' => 'American Samoa',
+          'AZ' => 'Arizona',
+          'AR' => 'Arkansas',
+          'AA' => 'Armed Forces America',
+          'AE' => 'Armed Forces Other Areas',
+          'AP' => 'Armed Forces Pacific',
+          'BC' => 'British Columbia',
+          'CA' => 'California',
+          'CO' => 'Colorado',
+          'CT' => 'Connecticut',
+          'DE' => 'Delaware',
+          'DC' => 'District of Columbia',
+          'FL' => 'Florida',
+          'GA' => 'Georgia',
+          'GU' => 'Guam',
+          'HI' => 'Hawaii',
+          'ID' => 'Idaho',
+          'IL' => 'Illinois',
+          'IN' => 'Indiana',
+          'IA' => 'Iowa',
+          'KS' => 'Kansas',
+          'KY' => 'Kentucky',
+          'LA' => 'Louisiana',
+          'ME' => 'Maine',
+          'MB' => 'Manitoba',
+          'MH' => 'Marshall Islands',
+          'MD' => 'Maryland',
+          'MA' => 'Massachusetts',
+          'MI' => 'Michigan',
+          'FM' => 'Micronesia',
+          'MN' => 'Minnesota',
+          'MS' => 'Mississippi',
+          'MO' => 'Missouri',
+          'MT' => 'Montana',
+          'NE' => 'Nebraska',
+          'NV' => 'Nevada',
+          'NB' => 'New Brunswick',
+          'NH' => 'New Hampshire',
+          'NJ' => 'New Jersey',
+          'NM' => 'New Mexico',
+          'NY' => 'New York',
+          'NF' => 'Newfoundland',
+          'NC' => 'North Carolina',
+          'ND' => 'North Dakota',
+          'MP' => 'Northern Mariana Islands',
+          'NT' => 'Northwest Territories',
+          'NS' => 'Nova Scotia',
+          'OH' => 'Ohio',
+          'OK' => 'Oklahoma',
+          'ON' => 'Ontario',
+          'OR' => 'Oregon',
+          'PW' => 'Palau',
+          'PA' => 'Pennsylvania',
+          'PE' => 'Prince Edward Island',
+          'PR' => 'Puerto Rico',
+          'QC' => 'Quebec',
+          'RI' => 'Rhode Island',
+          'SK' => 'Saskatchewan',
+          'SC' => 'South Carolina',
+          'SD' => 'South Dakota',
+          'TN' => 'Tennessee',
+          'TX' => 'Texas',
+          'UT' => 'Utah',
+          'VT' => 'Vermont',
+          'VI' => 'Virgin Islands',
+          'VA' => 'Virginia',
+          'WA' => 'Washington',
+          'WV' => 'West Virginia',
+          'WI' => 'Wisconsin',
+          'WY' => 'Wyoming',
+          'YT' => 'Yukon',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 25,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_state',
+      'label' => 'State',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '30',
       ),
     ),
   );
@@ -732,15 +1050,19 @@ function dosomething_fb_apps_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Address');
   t('Adopted');
   t('Age');
   t('Animal Name');
   t('Animal Type');
   t('Body');
+  t('City');
   t('Facebook Share Count');
   t('Image');
   t('Other');
   t('Shelter');
+  t('Shelter Name');
+  t('State');
   t('What are three words to best describe your furry friend?');
   t('Zip');
 
