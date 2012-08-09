@@ -63,7 +63,7 @@ Drupal.behaviors.dsPfpShare = {
             // the user has made.
             if (userShares == 3) {
               $('<div></div>')
-                .load('/pics-for-pets/thanks-for-sharing')
+                .load('/pics-for-pets/ajax/thanks-for-sharing')
                 .dialog({
                   title: Drupal.t('Thanks for sharing!'),
                   resizable: false,
