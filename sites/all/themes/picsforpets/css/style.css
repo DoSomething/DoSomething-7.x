@@ -2442,13 +2442,9 @@ select#edit-sort-by {
   padding: 3px 0;
   height: 325px;
   width: 355px;
-}
-#shelter-results-wrapper .shelter-results {
-  height: 315px;
   overflow: auto;
-  width: 345px;
 }
-#shelter-results-wrapper .shelter-results::-webkit-scrollbar {
+#shelter-results-wrapper::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
   -webkit-border-radius: 8px;
@@ -2458,7 +2454,7 @@ select#edit-sort-by {
   border-radius: 8px;
   cursor: pointer;
 }
-#shelter-results-wrapper .shelter-results::-webkit-scrollbar-track {
+#shelter-results-wrapper::-webkit-scrollbar-track {
   background: rgba(221, 221, 221, 0.5);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2466,7 +2462,7 @@ select#edit-sort-by {
   -o-border-radius: 8px;
   border-radius: 8px;
 }
-#shelter-results-wrapper .shelter-results::-webkit-scrollbar-thumb {
+#shelter-results-wrapper::-webkit-scrollbar-thumb {
   background-color: black;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2475,7 +2471,10 @@ select#edit-sort-by {
   border-radius: 8px;
   cursor: pointer;
 }
-#shelter-results-wrapper .shelter-results .no-results {
+#shelter-results-wrapper .shelter-results {
+  width: 345px;
+}
+#shelter-results-wrapper .no-results {
   margin-top: 10px;
 }
 #shelter-results-wrapper h2 {

@@ -50,30 +50,29 @@
   padding: 3px 0
   height: 325px
   width: 355px
+  overflow: auto
+  // Scrollbar styling
+  &::-webkit-scrollbar
+    -webkit-appearance: none
+    width: 5px
+    +border-radius(8px)
+    cursor: pointer
+
+  &::-webkit-scrollbar-track
+    background: rgba(#ddd, 0.5)
+    +border-radius(8px)
+
+  &::-webkit-scrollbar-thumb
+    background-color: $black
+    +border-radius(8px)
+    cursor: pointer
+
   .shelter-results
-    height: 315px
-    overflow: auto
     width: 345px
 
-    // Scrollbar styling
-    &::-webkit-scrollbar
-      -webkit-appearance: none
-      width: 5px
-      +border-radius(8px)
-      cursor: pointer
-
-    &::-webkit-scrollbar-track
-      background: rgba(#ddd, 0.5)
-      +border-radius(8px)
-
-    &::-webkit-scrollbar-thumb
-      background-color: $black
-      +border-radius(8px)
-      cursor: pointer
-
-    // Styling for not results text
-    .no-results
-      margin-top: 10px
+  // Styling for not results text
+  .no-results
+    margin-top: 10px
 
   // Shelters near you styling
   h2
