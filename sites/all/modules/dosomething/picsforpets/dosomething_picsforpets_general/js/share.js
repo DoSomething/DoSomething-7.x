@@ -23,7 +23,7 @@ Drupal.behaviors.dsPfpShare = {
     var share = {
       method: 'feed',
       name: 'DoSomething.org\'s Pics for Pets project.',
-      link: 'https://apps.facebook.com/zivtechdev/webform-submission/' + sid,
+      link: settings.dosomething_picsforpets_general.app_url + '/' + sid,
       picture: pictureUrl,
       caption: petName,
       description: "I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2] + "."
@@ -34,7 +34,7 @@ Drupal.behaviors.dsPfpShare = {
       FB.ui(share, function(response) {
         // response will be an object (success) or null (cancel or fail).
         if (response) {
-          $.get('http://graph.facebook.com/https://apps.facebook.com/zivtechdev/webform-submission/' + sid, function (data) {
+          $.get('https://graph.facebook.com/' + settings.dosomething_picsforpets_general.app_url + '/webform-submission/' + sid, function (data) {
             var json = jQuery.parseJSON(data);
             $('.picsforpets-share-count').text(json.shares);
             var userShares = settings.fbappsAnimals.userShares;

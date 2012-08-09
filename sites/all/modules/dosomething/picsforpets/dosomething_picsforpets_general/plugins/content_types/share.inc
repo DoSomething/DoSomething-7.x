@@ -8,7 +8,7 @@ $plugin = array(
 );
 
 function dosomething_picsforpets_general_content_type_render_share($subtype, $conf, $context = NULL) {
-  $request = drupal_http_request('http://graph.facebook.com/' . 'http://apps.facebook.com/picsforpets/' . $_GET['q']);
+  $request = drupal_http_request('https://graph.facebook.com/' . DOSOMETHING_FB_APPS_URL . '/' . $_GET['q']);
   $graph = drupal_json_decode($request->data);
   if (!isset($graph['shares'])) {
     $graph['shares'] = 0;
@@ -45,6 +45,7 @@ function dosomething_picsforpets_general_content_type_render_share($subtype, $co
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/share.js',
+        array('data' => array('dosomething_picsforpets_general' => array('app_url' => DOSOMETHING_FB_APPS_URL)), 'type' => 'setting'),
       ),
     ),
   );
