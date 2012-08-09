@@ -5,6 +5,7 @@
   margin: 0 auto
   width: 552px
   margin-bottom: 60px
+  margin-top: -30px
   .help-text
     margin-bottom: 10px
     text-align: center
@@ -41,16 +42,17 @@
     width: 75px
 
 // Shelter results styling
-#shelter-results
+#shelter-results-wrapper
   background: rgba($white, 0.75)
   border: 1px solid $pfp-gray-lt
   +border-radius(8px)
   height: 400px
+  padding: 10px
+  width: 420px
   margin: 0 auto
   margin-top: 60px
   overflow: auto
-  padding: 10px
-  width: 420px
+
 
   &::-webkit-scrollbar
     -webkit-appearance: none
@@ -92,6 +94,8 @@
   #shelter-results-more
     #edit-results-wrapper-more-wrapper-view-more-button
       @extend %pfp-button
-      line-height: 2
       display: block
       margin: 0 auto
+      position: absolute
+      top: 680px
+      right: 680px

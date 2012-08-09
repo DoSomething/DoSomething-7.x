@@ -161,12 +161,14 @@ function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_
   return array(
     'more-results-ajax-wrapper' => array(
       '#tree' => TRUE,
-      '#prefix' => '<div id="shelter-results">',
+      '#prefix' => '<div id="shelter-results-wrapper">',
       '#suffix' =>  '</div>',
 
       'more-results-ajax-load' => array(
-        '#prefix' => '<h2>' . t('Shelters near you:') . '</h2>',
-        '#markup' => $form_state['results'],
+        '#prefix' =>  '<div class="shelter-results">',
+        '#markup' => '<h2>' . t('Shelters near you:') . '</h2>' . $form_state['results'],
+        '#suffix' =>  '</div>',
+
       ),
       'more-results-ajax-wrapper' => $form['results-wrapper']['more-wrapper'],
     ),

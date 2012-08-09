@@ -538,7 +538,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], #shelter-results #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes {
+#dosomething-picsforpets-general-furtographer-form input[type="button"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, .pager, .gallery-thumbnail-text, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -549,7 +549,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], #shelter-results #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
+#dosomething-picsforpets-general-furtographer-form input[type="button"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
   color: #ec1c24;
   background: white;
   padding: 2px 12px;
@@ -2388,6 +2388,7 @@ select#edit-sort-by {
   margin: 0 auto;
   width: 552px;
   margin-bottom: 60px;
+  margin-top: -30px;
 }
 #dosomething-picsforpets-shelters-lookup-form .help-text {
   margin-bottom: 10px;
@@ -2429,7 +2430,7 @@ select#edit-sort-by {
   width: 75px;
 }
 
-#shelter-results {
+#shelter-results-wrapper {
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #c9cbcd;
   -webkit-border-radius: 8px;
@@ -2438,13 +2439,13 @@ select#edit-sort-by {
   -o-border-radius: 8px;
   border-radius: 8px;
   height: 400px;
+  padding: 10px;
+  width: 420px;
   margin: 0 auto;
   margin-top: 60px;
   overflow: auto;
-  padding: 10px;
-  width: 420px;
 }
-#shelter-results::-webkit-scrollbar {
+#shelter-results-wrapper::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
   -webkit-border-radius: 8px;
@@ -2453,7 +2454,7 @@ select#edit-sort-by {
   -o-border-radius: 8px;
   border-radius: 8px;
 }
-#shelter-results::-webkit-scrollbar-track {
+#shelter-results-wrapper::-webkit-scrollbar-track {
   background: rgba(221, 221, 221, 0.5);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2461,7 +2462,7 @@ select#edit-sort-by {
   -o-border-radius: 8px;
   border-radius: 8px;
 }
-#shelter-results::-webkit-scrollbar-thumb {
+#shelter-results-wrapper::-webkit-scrollbar-thumb {
   background-color: black;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2469,7 +2470,7 @@ select#edit-sort-by {
   -o-border-radius: 8px;
   border-radius: 8px;
 }
-#shelter-results h2 {
+#shelter-results-wrapper h2 {
   font-size: 50px;
   text-transform: uppercase;
   text-align: center;
@@ -2478,27 +2479,29 @@ select#edit-sort-by {
   margin-bottom: 0;
   margin-top: 0;
 }
-#shelter-results .shelter-result-item {
+#shelter-results-wrapper .shelter-result-item {
   border-bottom: 1px solid black;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-#shelter-results .shelter-result-item .inner {
+#shelter-results-wrapper .shelter-result-item .inner {
   padding: 0 8px;
 }
-#shelter-results .shelter-result-item h3 {
+#shelter-results-wrapper .shelter-result-item h3 {
   font-family: "DINOT", sans-serif;
   font-weight: bold;
   margin-bottom: 0;
   margin-top: 0;
 }
-#shelter-results .shelter-result-item .shelter-hours {
+#shelter-results-wrapper .shelter-result-item .shelter-hours {
   text-decoration: underline;
 }
-#shelter-results #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
-  line-height: 2;
+#shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
   display: block;
   margin: 0 auto;
+  position: absolute;
+  top: 680px;
+  right: 680px;
 }
 
 .page-pics-for-pets-action-guide h2 {
