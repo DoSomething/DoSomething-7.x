@@ -82,6 +82,69 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'
+  $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_fb_app_adopted',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Not Adopted',
+          1 => 'Adopted',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fb_app_data_gathering_form',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 21,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_fb_app_adopted',
+      'label' => 'Adopted',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '0',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_age'
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_age'] = array(
     'field_config' => array(
@@ -669,6 +732,7 @@ function dosomething_fb_apps_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Adopted');
   t('Age');
   t('Animal Name');
   t('Animal Type');
