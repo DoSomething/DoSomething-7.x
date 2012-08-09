@@ -319,7 +319,12 @@ function dosomething_picsforpets_general_ctools_plugin_directory($owner, $plugin
 function dosomething_picsforpets_general_share($sid, $fbid) {
   // Update the share count on the webform submission
   module_load_include('module', 'webform_entity', 'webform_entity');
+  $transaction = db_transaction();
   $submission = webform_entity_load_webform_submission($sid);
+  if (!$submission) {
+    watchdog('dosomething_picsforpets', 'Invalid webform submission id submitted as a share.');
+    return FALSE;
+  }
   $value = $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'];
   if (!count($value)) {
     $value = 0;
@@ -331,21 +336,23 @@ function dosomething_picsforpets_general_share($sid, $fbid) {
   // Log information about this share to the DB.
   $share = new stdClass;
   $share->entity_type = 'webform_submission_entity';
-  $share->entity_id = 5;
-  $share->system_path = 'webform-submission/5';
+  $share->entity_id = $sid;
+  $share->system_path = 'webform-submission/' . $sid;
   $share->fb_user_id = $fbid;
   $share->created = REQUEST_TIME;
   drupal_write_record('picsforpets_user_shares', $share);
 
   // Retrieve the total number of shares for this user.
+  watchdog('TEST', "SELECT count(fb_user_id)
+    FROM {picsforpets_user_shares}
+    WHERE fb_user_id = $fbid");
   $user_shares = db_query("
     SELECT count(fb_user_id)
     FROM {picsforpets_user_shares}
-    WHERE fb_user_id = $fbid")
+    WHERE fb_user_id = :fbid", array(':fbid' => $fbid))
     ->fetchField();
 
-  $return = drupal_json_output($user_shares);
-  return $return;
+  return drupal_json_output($user_shares);
 }
 
 /**
