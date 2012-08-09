@@ -25,11 +25,11 @@ function dosomething_picsforpets_general_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_picsforpets_general_furtographer_form'),
   );
-  $items['pics-for-pets/thanks-for-sharing'] = array(
+  $items['pics-for-pets/ajax/thanks-for-sharing'] = array(
     'title' => t('Thanks for sharing!'),
     'access callback' => TRUE,
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_picsforpets_general_thanks_form'),
+    'page callback' => 'dosomething_picsforpets_thanks_page_callback',
+    'type' => MENU_CALLBACK,
   );
   $items['pics-for-pets/questions'] = array(
     'title' => t('Frequently Asked Questions'),
@@ -243,6 +243,15 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     '#value' => 'Submit',
   );
   return $form;
+}
+
+/**
+ * Callback for /pics-for-pets/ajax/thanks-for-sharing/. Renders a form and
+ * then returns NULL to prevent Drupal from rendering the entire page.
+ */
+function dosomething_picsforpets_thanks_page_callback() {
+  print render(drupal_get_form('dosomething_picsforpets_general_thanks_form'));
+  return NULL;
 }
 
 /**
