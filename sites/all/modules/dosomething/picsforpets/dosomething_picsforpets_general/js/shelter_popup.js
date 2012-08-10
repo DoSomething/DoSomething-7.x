@@ -1,6 +1,7 @@
 (function ($) {
 Drupal.behaviors.picsforpetsShelterPopup = {
   attach: function (context, settings) {
+    var $context = $(context);
     // Instantiate the selected shleter if it has not already been done.
     settings.picsforpetsShelterOptions = settings.picsforpetsShelterOptions || {
       selectedResult : {
@@ -44,17 +45,16 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       {value: settings.picsforpetsShelterOptions.selectedResult.shelter_name}
     );
     */
-    var $searchForm = $('#dosomething-picsforpets-shelters-options-form', context);
+    var $searchForm = $context.find('#dosomething-picsforpets-shelters-options-form');
     if (!$searchForm.hasClass('pics-popup')) {
       $searchForm.hide();
       $searchForm.addClass('pics-popup');
     }
     //*
-    $('.shelter-locator-popup', context).click(function(e) {
+    $context.find('.shelter-locator-popup').once('shelter-locater-popup').click(function (e) {
         var $height = $(window).height();
         var $width = $(window).width();
         var $docHeight = $(document).height();
-        alert($docHeight);
         var $modalWidth = 555;
         var $xPos = parseInt(($width - $modalWidth) / 2);
         $searchForm
@@ -70,12 +70,15 @@ Drupal.behaviors.picsforpetsShelterPopup = {
           .after('<div class="ui-widget-overlay" style="width: ' + $width + 'px; height: ' +  $docHeight + 'px; z-index: 1001;">');
 
         $('.ui-icon-closethick', $searchForm.parent()).click(function() {
-          $searchForm.parent().hide();
           $('.ui-widget-overlay').remove();
           // Cleanup
           var $alteredForm = $('#dosomething-picsforpets-shelters-options-form');
-          $alteredForm.removeClass('ui-dialog-content')
-          $alteredForm.removeClass('ui-widget-content')
+          $alteredForm.removeClass('ui-dialog-content');
+          $alteredForm.removeClass('ui-widget-content');
+          $alteredForm.attr(
+            {style : ''}
+          );
+          $alteredForm.hide();
           $('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all').replaceWith($alteredForm);
           return false;
         });
