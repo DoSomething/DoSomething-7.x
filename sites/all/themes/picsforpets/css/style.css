@@ -1051,13 +1051,6 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
   font-size: 12px;
 }
 
-input {
-  -webkit-box-shadow: #dddddd 0 0 10px inset;
-  -moz-box-shadow: #dddddd 0 0 10px inset;
-  box-shadow: #dddddd 0 0 10px inset;
-  border: 1px solid #c9cbcd;
-}
-
 select {
   background: url('../images/select-down-arrow.png') right center no-repeat, white;
 }
@@ -2051,6 +2044,12 @@ select#edit-sort-by {
 #webform-client-form-3 #field-fb-app-three-words-values tr.odd .form-item, #webform-client-form-3 #field-fb-app-three-words-values tr.even .form-item {
   margin-bottom: 5px;
 }
+#webform-client-form-3 input {
+  -webkit-box-shadow: #dddddd 0 0 10px inset;
+  -moz-box-shadow: #dddddd 0 0 10px inset;
+  box-shadow: #dddddd 0 0 10px inset;
+  border: 1px solid #c9cbcd;
+}
 
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
@@ -2388,6 +2387,12 @@ select#edit-sort-by {
   margin: 0 auto;
   margin-bottom: 60px;
   margin-top: -30px;
+}
+#dosomething-picsforpets-shelters-lookup-form input {
+  -webkit-box-shadow: #dddddd 0 0 10px inset;
+  -moz-box-shadow: #dddddd 0 0 10px inset;
+  box-shadow: #dddddd 0 0 10px inset;
+  border: 1px solid #c9cbcd;
 }
 #dosomething-picsforpets-shelters-lookup-form .help-text {
   margin-bottom: 10px;
