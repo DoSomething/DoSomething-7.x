@@ -252,7 +252,7 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
     // After getting the data, add it to the javascript settings and $_SESSION
     // so we can use it elsewhere.
     $_SESSION['shelter'] = $shelter;
-    drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter)), 'setting');
+    drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter, 'dismiss' => TRUE)), 'setting');
     drupal_set_message('Thanks. We\'ve received your choosen shelter.');
   }
   // Otherwise they're trying to add a new shelter so check if they already
@@ -271,7 +271,7 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
     // After getting the data, add it to the javascript settings and $_SESSION
     // so we can use it elsewhere.
     $_SESSION['shelter'] = $shelter;
-    drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter)), 'setting');
+    drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter, 'dismiss' => TRUE)), 'setting');
     drupal_set_message('Thanks. We\'ve received the address of your shelter.');
   }
   // Otherwise they only clicked the select button but didn't add a new address.

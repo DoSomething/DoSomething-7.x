@@ -14,6 +14,7 @@ Drupal.behaviors.picsforpetsShelterPopup = {
         hours : ''
      }
     };
+
     // Set all the address form values
     $('#edit-submitted-find-your-shelter-field-fb-app-shelter-name-und-0-value').attr(
       {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name}
@@ -38,19 +39,20 @@ Drupal.behaviors.picsforpetsShelterPopup = {
         {"selected" : "selected"}
       );
     }
-    /*$('#').attr(
-      {value: settings.picsforpetsShelterOptions.selectedResult.shelter_name}
-    );
-    $('#').attr(
-      {value: settings.picsforpetsShelterOptions.selectedResult.shelter_name}
-    );
-    */
+
+    // Set the variable.
     var $searchForm = $context.find('#dosomething-picsforpets-shelters-options-form');
     if (!$searchForm.hasClass('pics-popup')) {
+      // Hide the form element to start.
       $searchForm.hide();
       $searchForm.addClass('pics-popup');
     }
-    //*
+
+    // Check to see if we should dismiss the modal.
+    if (settings.picsforpetsShelterOptions.dismiss) {
+      dismiss();
+    }
+
     $context.find('.shelter-locator-popup').once('shelter-locater-popup').click(function (e) {
         var $height = $(window).height();
         var $width = $(window).width();
@@ -69,7 +71,8 @@ Drupal.behaviors.picsforpetsShelterPopup = {
         $('.ui-dialog')
           .after('<div class="ui-widget-overlay" style="width: ' + $width + 'px; height: ' +  $docHeight + 'px; z-index: 1001;">');
 
-        $('.ui-icon-closethick', $searchForm.parent()).click(function() {
+        $('.ui-icon-closethick', $searchForm.parent()).click(dismiss);
+        /*$('.ui-icon-closethick', $searchForm.parent()).click(function() {
           $('.ui-widget-overlay').remove();
           // Cleanup
           var $alteredForm = $('#dosomething-picsforpets-shelters-options-form');
@@ -81,10 +84,23 @@ Drupal.behaviors.picsforpetsShelterPopup = {
           $alteredForm.hide();
           $('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all').replaceWith($alteredForm);
           return false;
-        });
+        });*/
         $searchForm.show();
         return false;
     });
+    function dismiss() {
+      $('.ui-widget-overlay').remove();
+      // Cleanup
+      var $alteredForm = $('#dosomething-picsforpets-shelters-options-form');
+      $alteredForm.removeClass('ui-dialog-content');
+      $alteredForm.removeClass('ui-widget-content');
+      $alteredForm.attr(
+        {style : ''}
+      );
+      $alteredForm.hide();
+      $('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all').replaceWith($alteredForm);
+      return false;
+    }
   }
 };
 }(jQuery));
