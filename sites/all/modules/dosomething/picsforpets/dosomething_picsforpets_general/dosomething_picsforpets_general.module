@@ -343,9 +343,6 @@ function dosomething_picsforpets_general_share($sid, $fbid) {
   drupal_write_record('picsforpets_user_shares', $share);
 
   // Retrieve the total number of shares for this user.
-  watchdog('TEST', "SELECT count(fb_user_id)
-    FROM {picsforpets_user_shares}
-    WHERE fb_user_id = $fbid");
   $user_shares = db_query("
     SELECT count(fb_user_id)
     FROM {picsforpets_user_shares}
