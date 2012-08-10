@@ -188,6 +188,8 @@ function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$fo
   // Show the more button?
   $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
+  // Instruct possible modals not to dismiss automatically.
+  drupal_add_js(array('picsforpetsShelterOptions' => array('dismiss' => FALSE)), 'setting');
   $form_state['results'] = $options;
   $form_state['rebuild'] = TRUE;
 }
@@ -204,7 +206,7 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
   $form_state['more_times']++;
 
   // Fetch the originally submitted zip code.
-  $zip = $form_state['values']['zip'];
+  $zip = isset($form_state['values']['zip']) ? $form_state['values']['zip'] : NULL;
   // In some cases (Ajaxy magic we're doing on webform entity) the value of the
   // zip is not getting passed through to the $form_state['values'] array
   // properly. In this case, let's just check to see if it's actully in the
@@ -226,7 +228,9 @@ function dosomething_picsforpets_shelters_options_load_more($form, &$form_state)
   // content for non JS submissions.
   $form_state['more_results_all'] = $form_state['more_results_all'] + $options;
   $form_state['results'] = $form_state['results'] + $options;
-  // Instruct the form to rebuild with the new content.
+  // Instruct the form to rebuild with the new content and prevent possible
+  // modals from dismissing.
+  drupal_add_js(array('picsforpetsShelterOptions' => array('dismiss' => FALSE)), 'setting');
   $form_state['rebuild'] = TRUE;
 }
 
@@ -250,7 +254,7 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
       'hours' => '',
     );
     // After getting the data, add it to the javascript settings and $_SESSION
-    // so we can use it elsewhere.
+    // so we can use it elsewhere and alert possible modals to close.
     $_SESSION['shelter'] = $shelter;
     drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter, 'dismiss' => TRUE)), 'setting');
     drupal_set_message('Thanks. We\'ve received your choosen shelter.');
@@ -269,7 +273,7 @@ function dosomething_picsforpets_shelters_select_shelter_submit($form, &$form_st
       'hours' => $form_state['values']['hours'],
     );
     // After getting the data, add it to the javascript settings and $_SESSION
-    // so we can use it elsewhere.
+    // so we can use it elsewhere and alert possible modals to close.
     $_SESSION['shelter'] = $shelter;
     drupal_add_js(array('picsforpetsShelterOptions' => array('selectedResult' => $shelter, 'dismiss' => TRUE)), 'setting');
     drupal_set_message('Thanks. We\'ve received the address of your shelter.');
