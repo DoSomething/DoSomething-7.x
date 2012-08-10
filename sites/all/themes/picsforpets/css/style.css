@@ -2044,7 +2044,7 @@ select#edit-sort-by {
 #webform-client-form-3 #field-fb-app-three-words-values tr.odd .form-item, #webform-client-form-3 #field-fb-app-three-words-values tr.even .form-item {
   margin-bottom: 5px;
 }
-#webform-client-form-3 input {
+#webform-client-form-3 input[type="text"] {
   -webkit-box-shadow: #dddddd 0 0 10px inset;
   -moz-box-shadow: #dddddd 0 0 10px inset;
   box-shadow: #dddddd 0 0 10px inset;
