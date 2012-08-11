@@ -205,6 +205,7 @@ div.robocalls-preview-button-container {
 	height: 250px;
 	border-left: 1px solid #D7D9D8;
 	padding-left: 35px;
+	padding-top: 60px;
 }
 
 input.go-button {
