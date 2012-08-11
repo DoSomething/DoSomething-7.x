@@ -167,7 +167,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
       		'cache' => FALSE
       	));
 
-      	if ($_GET['done'])
+      	if (isset($_GET['done']))
       	{
       		// Pop up the "Done!" pop up
       		drupal_add_js(drupal_get_path('module', 'robocalls') . '/robocalls_done.js', array(
@@ -196,7 +196,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
 	      	));
       }
 
-		if (!$form_state['return_to'])
+		if (!isset($form_state['return_to']))
 		    $form_state['return_to'] = $_SERVER['REQUEST_URI'];
 
 	    $form['#validate'][] = 'robocalls_call_validate';
