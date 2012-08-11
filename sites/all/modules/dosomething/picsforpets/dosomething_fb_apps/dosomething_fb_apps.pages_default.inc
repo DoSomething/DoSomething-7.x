@@ -340,15 +340,12 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Action Steps',
       'title' => 'Action Steps',
-      'body' => '<ol>
-<li>Find the <a href="/pics-for-pets/shelter-search">nearest animal shelter</a> with the handy shelter locator</li>
-<li>Get all the materials you need to become an expert fur-tographer</li>
-<li>Visit your shelter to take an awesome animal picture and get the details</li>
-<li>Come back and <a href="/node/3">submit your picture</a> to the gallery</li>
-<li>Share your animal with your Facebook friends to win it prizes and get adopted</li>
-</ol>
-',
-      'format' => 'filtered_html',
+      'body' => '<span class="fieldset-legend">1|</span><span>Find the <a href="/pics-for-pets/shelter-search">nearest animal shelter</a> with the handy shelter locator</span>
+<span class="fieldset-legend">2|</span><span>Get all the materials you need to become an expert fur-tographer</span>
+<span class="fieldset-legend">3|</span><span>Visit your shelter to take an awesome animal picture and get the details</span>
+<span class="fieldset-legend">4|</span><span>Come back and <a href="/node/3">submit your picture</a> to the gallery</span>
+<span class="fieldset-legend">5|</span><span>Share your animal with your Facebook friends to win it prizes and get adopted</span>',
+      'format' => 'full_html',
       'substitute' => TRUE,
     );
     $pane->cache = array();
