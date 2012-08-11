@@ -31,7 +31,7 @@ function dosomething_picsforpets_general_schema() {
         'description' => 'The source path to redirect from.',
       ),
       'created' => array(
-        'description' => 'The timestamp of when the share was created.'
+        'description' => 'The timestamp of when the share was created.',
         'type' => 'int',
         'unsigned' => TRUE,
       ),
