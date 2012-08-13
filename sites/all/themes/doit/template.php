@@ -715,6 +715,7 @@ function doit_search_api_page_result(array $variables) {
     'tips_and_tools' => 'field_picture',
   );
   if (isset($item->type) && in_array($item->type, array_keys($type_field_map))) {
+    if ($_GET['debugging'] == 1) { echo '<pre>', print_r($item), '</pre>'; echo $type_field_map[$item->type];}
     if (isset($item->{$type_field_map[$item->type]}) && !empty($item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0])) {
       $output .= theme('image_formatter', array(
         'item' => array('uri' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0]),
