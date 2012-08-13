@@ -341,7 +341,7 @@ function robocalls_call_submit(&$form, &$form_state)
 	else
 	{
 		// Otherwise, they ARE logged in so whatever.
-		$form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=' . $code;
+		$form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=true';
 	}
 }
 
