@@ -61,8 +61,12 @@ function remove_fb_bday_choice()
         'dialogClass': 'robocalls-submitted-message-dialog'
       });
 
-      var h = new Object();
-      history.pushState(h, '', window.location.href.replace(/\?done=.+/, ''));
+      var msie = /*@cc_on!@*/0;
+      if (!msie)
+      {
+        var h = new Object();
+        history.pushState(h, '', window.location.href.replace(/\?done=.+/, ''));
+      }
     }
   });
 
@@ -101,13 +105,6 @@ function remove_fb_bday_choice()
 })(jQuery);
 
 jQuery(document).ready(function() {
-  if (jQuery('#edit-submitted-field-celebrity-chooser-und').length > 0)
-  {
-    jQuery('#edit-submitted-field-celebrity-chooser-und').change(function() {
-      jQuery('#edit-submitted-field-celeb-tid-und-0-value').val(jQuery(this).val());
-    });
-  }
-
   var auds = jQuery('span.file').find('a');
   if (auds.length > 1)
   {

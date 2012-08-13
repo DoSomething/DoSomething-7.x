@@ -13,12 +13,12 @@ function robocalls_panels_pre_render($display)
 {
 	if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing')
 	{
-      	drupal_add_css(drupal_get_path('module', 'robocalls') . '/dosomething_robocall.css', array(
+      	drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/dosomething_robocall.css', array(
 	        'group' => CSS_THEME,
 	        'weight' => 10
       	));
 
-      	drupal_add_js(drupal_get_path('module', 'robocalls') . '/robocalls.js', array(
+      	drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
       		'weight' => -100,
       		'cache' => FALSE
       	));
@@ -161,7 +161,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
 			}
 	    }
 
-      	drupal_add_js(drupal_get_path('module', 'robocalls') . '/robocalls.js', array(
+      	drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
       		'weight' => -100,
       		'cache' => FALSE
       	));
@@ -169,7 +169,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
       	if (isset($_GET['done']))
       	{
       		// Pop up the "Done!" pop up
-      		drupal_add_js(drupal_get_path('module', 'robocalls') . '/robocalls_done.js', array(
+      		drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls_done.js', array(
       			'weight' => -99,
       			'cache' => FALSE
       		));
@@ -187,7 +187,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
 		{
 			$form_state['side_bar'] = true;
 
-	      	drupal_add_css(drupal_get_path('module', 'robocalls') . '/robocalls_remote_webform.css', array(
+	      	drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_remote_webform.css', array(
 		        'group' => CSS_THEME,
 		        'weight' => 10
 	      	));
