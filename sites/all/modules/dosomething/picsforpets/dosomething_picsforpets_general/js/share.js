@@ -44,16 +44,14 @@ Drupal.behaviors.dsPfpShare = {
         // will be undefined. Otherwise it will be an object that contains the
         // post_id of the share.
         if (typeof response !== 'undefined') {
-          // Retrieve the number of shares on this URL.
-          $.get('https://graph.facebook.com/' + shareUrl, function (data) {
-            $('.picsforpets-share-count').text(data.shares);
-          }, 'json');
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
           $.post('https://apps.facebook.com/picsforpets/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+            // Update the page with the new share count.
+            $('.picsforpets-share-count').text(userShares);
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 3) {
