@@ -11,7 +11,7 @@ define('MAX_CALLS_PER_DAY', 100);
 
 function robocalls_panels_pre_render($display)
 {
-	if ($display->layout == 'flexible:cause_calls')
+	if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing')
 	{
       	drupal_add_css(drupal_get_path('module', 'robocalls') . '/dosomething_robocall.css', array(
 	        'group' => CSS_THEME,
