@@ -179,7 +179,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
 		#$u['field_celeb_tid'][LANGUAGE_NONE][0]['value']['#default_value'] = $term->tid;
 		$u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
 
-		$form_state['side_bar'] = true;
+		$form_state['side_bar'] = false;
 		if (isset($term->tid) && !empty($term->tid))
 		{
 			#unset($u['field_celebrity_chooser']);
@@ -341,7 +341,7 @@ function robocalls_call_submit(&$form, &$form_state)
 	else
 	{
 		// Otherwise, they ARE logged in so whatever.
-		$form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=true';
+		$form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=' . $code;
 	}
 }
 
