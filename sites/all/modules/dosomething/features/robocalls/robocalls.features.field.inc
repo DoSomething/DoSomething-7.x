@@ -550,66 +550,6 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_tid'
-  $fields['webform_submission_entity-robo_calls-field_celeb_tid'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_celeb_tid',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'number',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'robo_calls',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '2',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '2',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_celeb_tid',
-      'label' => 'Celeb ID',
-      'required' => 1,
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'html5_tools',
-        'settings' => array(),
-        'type' => 'numberfield',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_name'
   $fields['webform_submission_entity-robo_calls-field_celeb_your_name'] = array(
     'field_config' => array(
@@ -831,7 +771,6 @@ function robocalls_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Birthday Call?');
   t('Body');
-  t('Celeb ID');
   t('Check this box if this particular Robo Call is a birthday call.');
   t('Date to Send:');
   t('Photo');

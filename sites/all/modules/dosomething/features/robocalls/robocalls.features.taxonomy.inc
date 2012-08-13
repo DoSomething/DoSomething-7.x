@@ -10,9 +10,9 @@
 function robocalls_taxonomy_default_vocabularies() {
   return array(
     'vocabulary_99' => array(
-      'name' => 'Cause your birthday celebrities',
+      'name' => 'Cause Call Celebrities',
       'machine_name' => 'vocabulary_99',
-      'description' => 'Celebrities for the "Cause Your Birthday" thing.',
+      'description' => 'Cause Call Celebs',
       'hierarchy' => '1',
       'module' => 'taxonomy',
       'weight' => '0',

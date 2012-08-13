@@ -13,6 +13,10 @@ function robocalls_ctools_plugin_api() {
     return array("version" => "1");
   }
   list($module, $api) = func_get_args();
+  if ($module == "panels" && $api == "layouts") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -92,5 +96,14 @@ function robocalls_node_info() {
       'help' => '',
     ),
   );
+  return $items;
+}
+
+/**
+ * Implements hook_default_webform_submission_entity_type().
+ */
+function robocalls_default_webform_submission_entity_type() {
+  $items = array();
+  $items['robo_calls'] = entity_import('webform_submission_entity_type', '{ "type" : "robo_calls", "data" : null, "rdf_mapping" : [] }');
   return $items;
 }

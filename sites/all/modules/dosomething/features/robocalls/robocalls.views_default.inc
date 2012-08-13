@@ -195,6 +195,15 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['name_2']['id'] = 'name_2';
   $handler->display->display_options['fields']['name_2']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name_2']['field'] = 'name';
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['relationship'] = 'parent';
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight_1']['id'] = 'weight_1';
+  $handler->display->display_options['sorts']['weight_1']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight_1']['field'] = 'weight';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -439,6 +448,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = 'both';
   $handler->display->display_options['style_options']['visible'] = '3';
+  $handler->display->display_options['style_options']['scroll'] = '3';
   $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['autoPause'] = 1;
   $handler->display->display_options['style_options']['animation'] = 'fast';
@@ -602,6 +612,34 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['name_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = 1;
   $handler->display->display_options['fields']['name_1']['convert_spaces'] = 0;
+  /* Field: Audio source URL */
+  $handler->display->display_options['fields']['field_celeb_call_1']['id'] = 'field_celeb_call_1';
+  $handler->display->display_options['fields']['field_celeb_call_1']['table'] = 'field_data_field_celeb_call';
+  $handler->display->display_options['fields']['field_celeb_call_1']['field'] = 'field_celeb_call';
+  $handler->display->display_options['fields']['field_celeb_call_1']['ui_name'] = 'Audio source URL';
+  $handler->display->display_options['fields']['field_celeb_call_1']['label'] = '';
+  $handler->display->display_options['fields']['field_celeb_call_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_celeb_call_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_celeb_call_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_celeb_call_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_celeb_call_1']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_celeb_call_1']['type'] = 'file_url_plain';
+  $handler->display->display_options['fields']['field_celeb_call_1']['field_api_classes'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -611,7 +649,8 @@ function robocalls_views_default_views() {
 <h3>[name]</h3>
 [description]
 [field_celeb_call]
-[name_1]';
+[name_1]
+<audio src="/files/Memo.mp3"></audio>';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;

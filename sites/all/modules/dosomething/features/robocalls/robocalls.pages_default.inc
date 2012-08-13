@@ -45,115 +45,8 @@ function robocalls_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'flexible';
-  $display->layout_settings = array(
-    'items' => array(
-      'canvas' => array(
-        'type' => 'row',
-        'contains' => 'column',
-        'children' => array(
-          0 => 'main',
-        ),
-        'parent' => NULL,
-      ),
-      'main' => array(
-        'type' => 'column',
-        'width' => 100,
-        'width_type' => '%',
-        'children' => array(
-          0 => 1,
-          1 => 'main-row',
-          2 => 2,
-          3 => 3,
-        ),
-        'parent' => 'canvas',
-      ),
-      'main-row' => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'center',
-          1 => 'celeb_information',
-        ),
-        'parent' => 'main',
-      ),
-      'center' => array(
-        'type' => 'region',
-        'title' => 'Center',
-        'width' => '30.01912406220719',
-        'width_type' => '%',
-        'parent' => 'main-row',
-      ),
-      'celeb_information' => array(
-        'type' => 'region',
-        'title' => 'Celeb Information',
-        'width' => '69.98087593779282',
-        'width_type' => '%',
-        'parent' => 'main-row',
-        'class' => 'robocalls-call-information',
-      ),
-      1 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'who_should_____call_',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'who_should_____call_' => array(
-        'type' => 'region',
-        'title' => 'Who should ... Call?',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '1',
-        'class' => '',
-      ),
-      2 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'choose_another',
-        ),
-        'parent' => 'main',
-        'class' => 'Choose Another',
-      ),
-      'choose_another' => array(
-        'type' => 'region',
-        'title' => 'Choose Another',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '2',
-        'class' => 'robocalls-choose-another-inspiring-celeb',
-      ),
-      3 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'about_robocalls',
-          1 => 'sponsor_zone',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'about_robocalls' => array(
-        'type' => 'region',
-        'title' => 'About RoboCalls',
-        'width' => '66.29715687223674',
-        'width_type' => '%',
-        'parent' => '3',
-        'class' => '',
-      ),
-      'sponsor_zone' => array(
-        'type' => 'region',
-        'title' => 'Sponsor Zone',
-        'width' => '33.70284312776326',
-        'width_type' => '%',
-        'parent' => '3',
-        'class' => '',
-      ),
-    ),
-  );
+  $display->layout = 'flexible:cause_calls';
+  $display->layout_settings = array();
   $display->panel_settings = array();
   $display->cache = array();
   $display->title = 'The Celebrity Cause Call';
@@ -188,7 +81,7 @@ function robocalls_default_page_manager_handlers() {
     $pane->pid = 'new-2';
     $pane->panel = 'celeb_information';
     $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-723327';
+    $pane->subtype = 'webform-client-block-723985';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -205,25 +98,6 @@ function robocalls_default_page_manager_handlers() {
     $display->panels['celeb_information'][0] = 'new-2';
     $pane = new stdClass();
     $pane->pid = 'new-3';
-    $pane->panel = 'celeb_information';
-    $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-723324';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['celeb_information'][1] = 'new-3';
-    $pane = new stdClass();
-    $pane->pid = 'new-4';
     $pane->panel = 'celeb_information';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -260,12 +134,12 @@ function robocalls_default_page_manager_handlers() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['celeb_information'][2] = 'new-4';
+    $display->content['new-3'] = $pane;
+    $display->panels['celeb_information'][1] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-4';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'taxonomy_term:field_celeb_photo';
@@ -297,8 +171,30 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['center'][0] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Image flag',
+      'title' => '',
+      'body' => 'Image flag!',
+      'format' => '1',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
     $display->content['new-5'] = $pane;
-    $display->panels['center'][0] = 'new-5';
+    $display->panels['center'][1] = 'new-5';
     $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'choose_another';
@@ -476,98 +372,8 @@ function robocalls_default_page_manager_pages() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'flexible';
-  $display->layout_settings = array(
-    'items' => array(
-      'canvas' => array(
-        'type' => 'row',
-        'contains' => 'column',
-        'children' => array(
-          0 => 'main',
-        ),
-        'parent' => NULL,
-      ),
-      'main' => array(
-        'type' => 'column',
-        'width' => 100,
-        'width_type' => '%',
-        'children' => array(
-          0 => 'main-row',
-          1 => 1,
-          2 => 2,
-        ),
-        'parent' => 'canvas',
-      ),
-      'main-row' => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'here_s_how_it_works',
-          1 => 'center',
-        ),
-        'parent' => 'main',
-      ),
-      'center' => array(
-        'type' => 'region',
-        'title' => 'Social Buttons',
-        'width' => '24.96967928797849',
-        'width_type' => '%',
-        'parent' => 'main-row',
-        'class' => '',
-      ),
-      'here_s_how_it_works' => array(
-        'type' => 'region',
-        'title' => 'Here\'s How it Works',
-        'width' => '75.0303207120215',
-        'width_type' => '%',
-        'parent' => 'main-row',
-        'class' => 'how-it-works',
-      ),
-      1 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'center_',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'center_' => array(
-        'type' => 'region',
-        'title' => 'Center',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '1',
-        'class' => 'robocalls-choose-celeb-and-information',
-      ),
-      2 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'abasdcasdf',
-          1 => 'asdfasdf',
-        ),
-        'parent' => 'main',
-        'class' => '',
-      ),
-      'abasdcasdf' => array(
-        'type' => 'region',
-        'title' => 'About This',
-        'width' => '65.57976924122232',
-        'width_type' => '%',
-        'parent' => '2',
-        'class' => '',
-      ),
-      'asdfasdf' => array(
-        'type' => 'region',
-        'title' => 'Sponsors',
-        'width' => '34.42023075877768',
-        'width_type' => '%',
-        'parent' => '2',
-        'class' => '',
-      ),
-    ),
-  );
+  $display->layout = 'flexible:cause_calls_landing';
+  $display->layout_settings = array();
   $display->panel_settings = array();
   $display->cache = array();
   $display->title = 'The Celebrity Cause Call';
