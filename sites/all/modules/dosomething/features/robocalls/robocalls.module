@@ -11,7 +11,7 @@ define('MAX_CALLS_PER_DAY', 100);
 
 function robocalls_panels_pre_render($display)
 {
-	if ($display->layout == 'flexible')
+	if ($display->layout == 'flexible:cause_calls')
 	{
       	drupal_add_css(drupal_get_path('module', 'robocalls') . '/dosomething_robocall.css', array(
 	        'group' => CSS_THEME,
@@ -419,7 +419,8 @@ function robocalls_views_pre_render(&$view)
 				$latest = array(
 					'stamp' => $stamp,
 					'key' => $key,
-					'tid' => $info->tid
+					'tid' => $info->tid,
+					'no' => $no
 				);
 			}
 
@@ -443,7 +444,7 @@ function robocalls_views_pre_render(&$view)
 		$flags['bdays'] = $bdays;
 
 		// New Celeb Flag -- Set from information above
-		if (!$no) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
+		if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
 
 		#$days_before_new_celeb_flag_expires = 1;
 		#if ((time() - $latest['stamp']) < ($days_before_new_celeb_flag_expires*60*60*24))
