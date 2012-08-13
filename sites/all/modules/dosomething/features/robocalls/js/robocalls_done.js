@@ -52,4 +52,16 @@ jQuery(function() {
 	}
 
 	jQuery.fn.dsRobocallsDone(person, cause);
+
+    var obj = {
+        method: 'feed',
+        link: 'http://www.dosomething.org/causecall',
+        name: 'DoSomething Cause Calls',
+        description: 'Awesome.  I just had ' + person + 'call my friend to say "Do Something about ' + cause + '"'
+      };
+
+      jQuery('#robocalls-fb-share-link').click(function () {
+        FB.ui(obj);
+        return false;
+      });
 });

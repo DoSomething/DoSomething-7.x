@@ -112,7 +112,7 @@ function robocalls_default_page_manager_handlers() {
 	<div>
 		<div id="edit-title-text" class="form-item form-type-item">
 		  <label for="edit-title-text">
-			Done.
+			<p>Done.</p>
 			<h2>Thanks for Sending a Celebrity Cause Call.</h2> 
 		   </label>
 		</div>
@@ -120,14 +120,14 @@ function robocalls_default_page_manager_handlers() {
 		<div class="robocalls-awesome-and-sharing">
 			Awesome.  I just had %term:name call my friend to say "Do Something about %term:parent."
 			<div><a href="http://www.dosomething.org/causecall">http://www.dosomething.org/causecall</a></div>
-			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" target="_blank""><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=Awesome.+I+Just+Had+%term:name+call+my+friend+to+say+"Do+Something+about+%term:parent+"\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
+			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" id="robocalls-fb-share-link" target="_blank"><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
 		</div>
 		<div class="send-another-robocall">
 			<a href="/causecall" class="go-button">Send another Birthday Call</a>
 		</div>
 	</div>
 </div>',
-      'format' => '1',
+      'format' => '3',
       'substitute' => 1,
     );
     $pane->cache = array();
@@ -388,7 +388,7 @@ function robocalls_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'About Robo Calls (Content)',
-      'title' => 'About "Cause It\'s Your Birthday"',
+      'title' => 'About The Cause Call',
       'body' => 'The Celebrity Cause Call is an original way to get your friends to take action. Plus, they’ll get a phone call from a completely awesome sauce celeb. No cost. No lame emails.',
       'format' => '1',
       'substitute' => TRUE,

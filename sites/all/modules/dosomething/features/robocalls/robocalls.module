@@ -60,11 +60,6 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
        $term_info['tid'] = $term->tid;
 	}
 
-    drupal_add_js('http://connect.facebook.net/en_US/all.js', array(
-       'weight' => -110,
-       'cache' => FALSE
-    ));
-
     $form['extras'] = array(
        '#type' => 'container',
        '#attributes' => array(
@@ -339,12 +334,6 @@ function robocalls_page_alter(&$page) {
       }
 
       $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
-
-      if ($term_info) {
-         unset($page['page_bottom']['fb_social']);
-         drupal_set_breadcrumb('');
-      }
-		#$page['content']['robofbthing']['#markup'] = '<div id="fb-root"></div>';
    }
 }
 

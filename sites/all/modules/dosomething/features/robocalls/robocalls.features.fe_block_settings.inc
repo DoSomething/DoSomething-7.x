@@ -13,6 +13,20 @@ function robocalls_default_fe_block_settings() {
   // doit
   $theme = array();
 
+  $theme['menu_block-5'] = array(
+    'module' => 'menu_block',
+    'delta' => '5',
+    'theme' => 'doit',
+    'status' => 0,
+    'weight' => '-72',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '1',
+    'pages' => 'causecall*',
+    'title' => 'Robo Calls',
+    'cache' => -1,
+  );
+
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',
     'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
@@ -59,6 +73,20 @@ function robocalls_default_fe_block_settings() {
 
   // ds
   $theme = array();
+
+  $theme['menu_block-5'] = array(
+    'module' => 'menu_block',
+    'delta' => '5',
+    'theme' => 'ds',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '1',
+    'pages' => 'causecall*',
+    'title' => 'Robo Calls',
+    'cache' => -1,
+  );
 
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',
