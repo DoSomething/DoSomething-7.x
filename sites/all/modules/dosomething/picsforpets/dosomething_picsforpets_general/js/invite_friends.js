@@ -2,6 +2,7 @@
 
 Drupal.behaviors.inviteFriendsModal = {
   attach: function(context, settings) {
+    $('.views-widget-sort-order, .views-submit-button').hide();
     $('#picsforpets-invite-friends').click(function() {
       var obj = {
         method: 'apprequests',
