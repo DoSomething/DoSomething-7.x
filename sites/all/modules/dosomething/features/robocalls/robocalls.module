@@ -25,7 +25,7 @@ function robocalls_panels_pre_render($display)
 	}
 }
 
-// Add to: dosomething_sms module mobile_commons_sms (submit it to drupal.org)
+// To-do: Add to dosomething_sms module mobile_commons_sms (submit it to drupal.org)
 function robocalls_mcommons_call($mobile, $name = '', $opt_in_path)
 {
   $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
@@ -88,7 +88,6 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
 			'#weight' => 6,
 			'#attributes' => array(
 				'class' => array('robocalls-fb-find-friends-birthdays'),
-				#'onclick' => 'return getBDays();'
 			)
 		);
 
@@ -176,13 +175,11 @@ function robocalls_form_alter(&$form, &$form_state, $form_id)
       		));
       	}
 
-		#$u['field_celeb_tid'][LANGUAGE_NONE][0]['value']['#default_value'] = $term->tid;
 		$u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
 
 		$form_state['side_bar'] = false;
 		if (isset($term->tid) && !empty($term->tid))
 		{
-			#unset($u['field_celebrity_chooser']);
 			unset($u['top_disclaimer']);
 			unset($u['step_2']);
 		}
@@ -237,17 +234,26 @@ function robocalls_call_validate(&$form, &$form_state)
 	$s = $form_state['input']['submitted']/*['celeb_call_information']*/;
 	$form_state['my_number'] = $s['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
 	$form_state['friend_number'] = $s['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'];
+	$form_state['chosen_celeb'] = $s['field_celebrity_chooser'][LANGUAGE_NONE];
 	$error = 0;
+
+	#echo '<pre>', print_r($form_state), '</pre>'; exit;
 
 	if (!$form_state['my_number'] || !dosomething_general_valid_cell($form_state['my_number']))
 	{
-		form_set_error('submitted][your_phone_number', 'Your phone number must be a valid cell phone number (xxx)xxx-xxxx.');
+		form_set_error('submitted][field_celeb_your_phone', 'Your phone number must be a valid cell phone number (xxx)xxx-xxxx.');
 		$error++;
 	}
 
 	if (!$form_state['friend_number'] || !dosomething_general_valid_cell($form_state['friend_number']))
 	{
-		form_set_error('submitted][your_friends_phone_number', 'Your friend\'s phone number must be a valid cell phone number (xxx)xxx-xxxx.');
+		form_set_error('submitted][field_celeb_friend_phone', 'Your friend\'s phone number must be a valid cell phone number (xxx)xxx-xxxx.');
+		$error++;
+	}
+
+	if (!$form_state['chosen_celeb'] || $form_state['chosen_celeb'] == '_none')
+	{
+		form_set_error('submitted][field_celebrity_chooser', "Please choose a celebrity.");
 		$error++;
 	}
 
@@ -284,7 +290,7 @@ function robocalls_call_submit(&$form, &$form_state)
 	$friend_phone = $sub['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'];
 	$user_name = $sub['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
 	$my_phone = $sub['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-	robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
+	#robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
 
 	/**
 	  * If a user is logged in and doesn't have a cell phone connected with their
@@ -350,7 +356,6 @@ function robocalls_page_alter(&$page)
 	global $term_info, $flags;
 	if (isset($term_info))
 	{
-
 		$flag = '';
 		if (in_array($term_info['tid'], $flags['bdays']))
 		{

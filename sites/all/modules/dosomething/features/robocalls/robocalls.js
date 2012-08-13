@@ -2,7 +2,8 @@ var button;
 var userInfo;
 
 window.fbAsyncInit = function() {
-  FB.init({ appId: '169271769874704', //change the appId to your appId
+  FB.init({
+        appId: '169271769874704',
         status: true, 
         cookie: true,
         xfbml: true,
@@ -14,7 +15,7 @@ window.fbAsyncInit = function() {
 }
 
 function updateButton(response) {
-    button       =   jQuery('.robocalls-fb-find-friends-birthdays');
+    button = jQuery('.robocalls-fb-find-friends-birthdays');
     
     button.click(function() {
       window.open('/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'fbinfo', 'location=no,width=350,height=400,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
@@ -34,32 +35,9 @@ function remove_fb_bday_choice()
   return false;
 }
 
-function login(response, info)
-{
-    if (response.authResponse) {
-        var accessToken  = response.authResponse.accessToken;
-        button.click(function() {
-          return getBDays();
-        });
-    }
-}
-
-function logout(response){
-    userInfo.innerHTML                             =   "";
-    document.getElementById('debug').innerHTML     =   "";
-    document.getElementById('other').style.display =   "none";
-    showLoader(false);
-}
-
-var dio = false;
-var loader = jQuery('<img class="robocall-loader" />').attr('src', '/sites/all/modules/dosomething/features/robocalls/images/loading.gif').css('margin-left', '10px');
-
 (function ($) {
-  // Define our own jQuery plugin so we can call it from Drupal's AJAX callback
   $.fn.extend({
     dsRobocallsDone: function (name, cause) {
-      // Whelp, these were breaking things, so let's just destroy them.
-      // This is probably bad practice.
       delete Drupal.behaviors.dosomethingLoginRegister;
 
       var popupForm = $('#dosomething-robocalls-submitted-message');
@@ -90,10 +68,7 @@ var loader = jQuery('<img class="robocall-loader" />').attr('src', '/sites/all/m
 
   $.fn.extend({
     dsRobocallsSubmit: function (url, cell) {
-      // Whelp, these were breaking things, so let's just destroy them.
-      // This is probably bad practice.
       delete Drupal.behaviors.dosomethingLoginRegister;
-      delete Drupal.behaviors.dosomethingPetitions;
       
       var popupForm = $('#dosomething-login-register-popup-form');
       e_or_m = cell;
@@ -111,12 +86,10 @@ var loader = jQuery('<img class="robocall-loader" />').attr('src', '/sites/all/m
         popupForm.find('#edit-title-text label').after('<h2 id="register-benefits">Just Sign Up to Make the Call Definitely Happen.</h2>');
       }
 
-      // make sure users get directed to the right page
       popupForm.attr('action', '/user/registration?destination=' + url);
       popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination=' + url);
       $('#dosomething-login-login-popup-form').attr('action', '/user?destination=' + url);
 
-      // popup!
       popupForm.dialog({
         resizable: false,
         draggable: false,
