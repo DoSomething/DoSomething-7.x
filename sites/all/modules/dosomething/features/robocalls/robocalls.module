@@ -54,9 +54,11 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
     $termid = arg(2);
     $term = taxonomy_term_load($termid);
 
-    $term_info = array();
-    $term_info['parent'] = key(taxonomy_get_parents($term->tid));
-    $term_info['tid'] = $term->tid;
+    if (!empty($term)) {
+       $term_info = array();
+       $term_info['parent'] = key(taxonomy_get_parents($term->tid));
+       $term_info['tid'] = $term->tid;
+	}
 
     drupal_add_js('http://connect.facebook.net/en_US/all.js', array(
        'weight' => -110,
@@ -268,7 +270,7 @@ function robocalls_call_submit(&$form, &$form_state) {
    $friend_phone = $sub['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'];
    $user_name = $sub['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
    $my_phone = $sub['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-   #robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
+   robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
 
    /**
      * If a user is logged in and doesn't have a cell phone connected with their
@@ -289,71 +291,61 @@ function robocalls_call_submit(&$form, &$form_state) {
      * We'll revisit this code in the JavaScript, unencode it, and use it to "fill out"
      * the pop-up form with the correct information.
      */
-	if ($form_state['side_bar'])
-	{
-		$pi = $sub['field_celebrity_chooser'][LANGUAGE_NONE][0]['tid'];
+   if ($form_state['side_bar']) {
+      $pi = $sub['field_celebrity_chooser'][LANGUAGE_NONE][0]['tid'];
+      $p = taxonomy_get_parents($pi);
+      $p = current($p);
+      $parent_name = $p->name;
 
-		$p = taxonomy_get_parents($pi);
-		$p = current($p);
-		$parent_name = $p->name;
+      $t = taxonomy_term_load($pi);
+      $term_name = $t->name;
 
-		$t = taxonomy_term_load($pi);
-		$term_name = $t->name;
-
-		$code = base64_encode(json_encode(array(
-			'name' => $term_name,
-			'cause' => $parent_name
-		)));
-	}
-	else
-	{
-		// Otherwise, we'll have all the information we need because we're on the same page.
-		$code = 'true';
-	}
+      $code = base64_encode(json_encode(array(
+         'name' => $term_name,
+         'cause' => $parent_name
+      )));
+   }
+   else {
+      // Otherwise, we'll have all the information we need because we're on the same page.
+      $code = 'true';
+   }
 
 	/**
 	  * If a user is NOT logged in (and are in the process of registering / logging in), their
 	  * post will (obviously) not have their name attached to it.  So when they DO log in / register,
 	  * let's make sure that we assign this submission to this user.
 	  */
-	if (!user_is_logged_in())
-	{
-		$form_state['goto'] = 'webform-post-submit-associate/' . $form_state['values']['details']['nid'] . '/' . $form_state['values']['details']['sid'] . '?destination=' . $form_state['return_to'] . '?done=' . $code;
-	}
-	else
-	{
-		// Otherwise, they ARE logged in so whatever.
-		$form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=' . $code;
-	}
+   if (!user_is_logged_in()) {
+      $form_state['goto'] = 'webform-post-submit-associate/' . $form_state['values']['details']['nid'] . '/' . $form_state['values']['details']['sid'] . '?destination=' . $form_state['return_to'] . '?done=' . $code;
+   }
+   else {
+      // Otherwise, they ARE logged in so whatever.
+      $form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=' . $code;
+   }
 }
 
-function robocalls_page_alter(&$page)
-{
-	global $term_info, $flags;
-	if (isset($term_info))
-	{
-		$flag = '';
-		if (in_array($term_info['tid'], $flags['bdays']))
-		{
-			$flag = 'Birthday Call';
-		}
-		else if ($flags['latest']['tid'] == $term_info['tid'])
-		{
-			$flag = 'New Celeb';
-		}
-		else if ($flags['popular'] == $term_info['tid'])
-		{
-			$flag = 'Most Popular';
-		}
+function robocalls_page_alter(&$page) {
+   global $term_info, $flags;
+   if (isset($term_info)) {
+      $flag = '';
+      if (in_array($term_info['tid'], $flags['bdays'])) {
+         $flag = 'Birthday Call';
+      }
+      else if ($flags['latest']['tid'] == $term_info['tid']) {
+         $flag = 'New Celeb';
+      }
+      else if ($flags['popular'] == $term_info['tid']) {
+         $flag = 'Most Popular';
+      }
 
-		$page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
+      $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
 
-		if ($term_info) {
-			unset($page['page_bottom']['fb_social']);
-			drupal_set_breadcrumb('');
-		}
+      if ($term_info) {
+         unset($page['page_bottom']['fb_social']);
+         drupal_set_breadcrumb('');
+      }
 		#$page['content']['robofbthing']['#markup'] = '<div id="fb-root"></div>';
-	}
+   }
 }
 
 
@@ -363,71 +355,65 @@ function robocalls_page_alter(&$page)
   * - Most Popular (defined by celebrity with most submissions.  Only one.)
   * - New Celeb (defined by most recently created celebrity -- given by date of sound file creation.  Only one.
   */
-function robocalls_views_pre_render(&$view)
-{
-	global $flags, $term_info;
+function robocalls_views_pre_render(&$view) {
+   global $flags, $term_info;
 
-	if ($view->name == 'cause_its_your_birthday')
-	{
-		$pop = db_query("SELECT `field_celebrity_chooser_tid` AS `tid`, COUNT(*) AS `c` FROM {field_data_field_celebrity_chooser} GROUP BY `field_celebrity_chooser_tid` ORDER BY `c` DESC LIMIT 1")->fetchAssoc();
-		$popular = $pop['tid'];
+   if ($view->name == 'cause_its_your_birthday') {
+      $pop = db_query("SELECT `field_celebrity_chooser_tid` AS `tid`, COUNT(*) AS `c` FROM {field_data_field_celebrity_chooser} GROUP BY `field_celebrity_chooser_tid` ORDER BY `c` DESC LIMIT 1")->fetchAssoc();
+      $popular = $pop['tid'];
 
-		$latest = array('stamp' => 0, 'key' => 0);
-		$bdays = array();
-		foreach ($view->result AS $key => $info)
-		{
-			$no = 0;
-			$parent = key(taxonomy_get_parents($info->tid));
-			if ($term_info['tid'] == $info->tid)
-			{
-				$no = 1;
-			}
+      $latest = array('stamp' => 0, 'key' => 0);
+      $bdays = array();
+      foreach ($view->result AS $key => $info) {
+         $no = 0;
+         $parent = key(taxonomy_get_parents($info->tid));
+         if ($term_info['tid'] == $info->tid) {
+            $no = 1;
+         }
 
-			// Birthday call flag -- set when a celeb has the "Birthday Call" checkbox checked.
-			if (isset($info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value']) && $info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value'] == 1) {
-				if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">Birthday Call</div>';
-				$bdays[] = $info->tid;
-			}
+         // Birthday call flag -- set when a celeb has the "Birthday Call" checkbox checked.
+         if (isset($info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value']) && $info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value'] == 1) {
+            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">Birthday Call</div>';
+            $bdays[] = $info->tid;
+		 }
 
-			// Most Popular flag -- set for the celeb with the most submissions.
-			if ($info->tid == $popular) {
-				if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">Most Popular</div>';
-			}
+         // Most Popular flag -- set for the celeb with the most submissions.
+         if ($info->tid == $popular) {
+            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">Most Popular</div>';
+         }
 
-			// New Celeb flag -- set for the most-recently-added celeb
-			$stamp = $info->_field_data['tid']['entity']->field_celeb_call[LANGUAGE_NONE][0]['timestamp'];
-			if ($stamp > $latest['stamp']) {
-				$latest = array(
-					'stamp' => $stamp,
-					'key' => $key,
-					'tid' => $info->tid,
-					'no' => $no
-				);
-			}
+         // New Celeb flag -- set for the most-recently-added celeb
+         $stamp = $info->_field_data['tid']['entity']->field_celeb_call[LANGUAGE_NONE][0]['timestamp'];
+         if ($stamp > $latest['stamp']) {
+            $latest = array(
+              'stamp' => $stamp,
+              'key' => $key,
+              'tid' => $info->tid,
+              'no' => $no
+            );
+		 }
 
-			// If we're on a cause call celebrity page, remove the celebrity you're seeing
-			// from the "Choose another celebrity" scroll.
-			if ($view->current_display == 'block_robocalls_choose_another_celeb')
-			{
-				global $term_info;
-				$parent = key(taxonomy_get_parents($info->tid));
-				if ($term_info['tid'] == $info->tid)
-				{
-					unset($view->result["$key"]);
-					continue;
-				}
-			}
+         // If we're on a cause call celebrity page, remove the celebrity you're seeing
+         // from the "Choose another celebrity" scroll.
+         if ($view->current_display == 'block_robocalls_choose_another_celeb') {
+            global $term_info;
+            $parent = key(taxonomy_get_parents($info->tid));
+            if ($term_info['tid'] == $info->tid) {
+               unset($view->result["$key"]);
+               continue;
+            }
 		}
+	  }
 
-		$flags = array();
-		$flags['latest'] = $latest;
-		$flags['popular'] = $popular;
-		$flags['bdays'] = $bdays;
+      $flags = array();
+      $flags['latest'] = $latest;
+      $flags['popular'] = $popular;
+      $flags['bdays'] = $bdays;
 
-		// New Celeb Flag -- Set from information above
-		if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
+      // New Celeb Flag -- Set from information above
+      if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
 
-		#$days_before_new_celeb_flag_expires = 1;
-		#if ((time() - $latest['stamp']) < ($days_before_new_celeb_flag_expires*60*60*24))
-	}
+      #$days_before_new_celeb_flag_expires = 1;
+      #if ((time() - $latest['stamp']) < ($days_before_new_celeb_flag_expires*60*60*24))
+   }
 }
