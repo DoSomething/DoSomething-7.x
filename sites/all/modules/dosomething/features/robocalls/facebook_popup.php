@@ -37,7 +37,7 @@ echo <<< html
 <html>
  <head>
     <title>Facebook | Post on a Friend's Wall</title>
-<link rel="stylesheet" type="text/css" href="/sites/all/modules/dosomething/features/robocalls/robocalls_facebook.css" />
+<link rel="stylesheet" type="text/css" href="/sites/all/modules/dosomething/features/robocalls/css/robocalls_facebook.css" />
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
@@ -62,24 +62,27 @@ html;
     echo '<ul>';
     foreach ($user['data'] AS $key => $friend)
     {
-        unset($info);
-        $info = array(
+        $info[$friend['name']] = array(
             'id' => $friend['id'],
             'name' => $friend['name'],
      #       'birthday' => $friend['birthday'],
             'photo' => $friend['picture']['data']['url']
         );
+    }
 
-        $r = '<li>';
-        $r .= '<input type="hidden" name="info" value="' . $friend['birthday'] . '" />';
-        $r .= '<img src="' . $friend['picture']['data']['url'] . '" style="float: left" alt="" />';
-        $r .= '<a href="http://www.facebook.com/' . $friend['id'] . '" class="friend-' . $friend['id'] . '">' . $friend['name'] . '</a>';
+    ksort($info);
+    foreach ($info AS $k => $f)
+    {
+        $r .= '<li>';
+        $r .= '<input type="hidden" name="info" value="' . $f['birthday'] . '" />';
+        $r .= '<img src="' . $f['photo'] . '" style="float: left" alt="" />';
+        $r .= '<a href="http://www.facebook.com/' . $f['id'] . '" class="friend-' . $f['id'] . '">' . $f['name'] . '</a>';
         #$r .= '<div>Birthday: ' . $friend['birthday'] . '</div>';
         $r .= '</li>';
+    }
         
         echo $r;
-    }
-    echo '</ul></body></html>';
+        echo '</ul></body></html>';
     }
     else
     {

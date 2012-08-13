@@ -1,5 +1,5 @@
 input.robocalls-fb-find-friends-birthdays {
-	background: #3B5998 url(./images/icon_facebook.png) 0px 0px no-repeat;
+	background: #3B5998 url(/sites/all/modules/dosomething/features/robocalls/images/icon_facebook.png) 0px 0px no-repeat;
 	border: 1px solid #000000;
 	box-shadow: 0px 0px 3px #808080;
 	padding: 5px;
@@ -25,7 +25,7 @@ width: 100%;
 }
 
 div.robocalls-remote-webform h2.pane-title, .panes-2 .panel-second .pane-title {
-	font-size: 16px;
+	font-size: 15pt;
 	margin-bottom: 0px;
 }
 

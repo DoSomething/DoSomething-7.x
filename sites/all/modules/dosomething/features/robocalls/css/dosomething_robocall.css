@@ -70,7 +70,7 @@ form.webform-client-form { height: 317px; padding-top: 15px; position: relative;
 #about-robocalls { border-top: 1px solid #000000; }
 
 input.robocalls-fb-find-friends-birthdays {
-	background: #3B5998 url(./images/icon_facebook.png) 0px 0px no-repeat;
+	background: #3B5998 url(../images/icon_facebook.png) 0px 0px no-repeat;
 	border: 1px solid #000000;
 	box-shadow: 0px 0px 3px #808080;
 	padding: 5px;
@@ -248,13 +248,16 @@ div.file-audio {
 div.robocall-flag {
 	background: #672E6F;
 	padding: 3px 17px;
+	height: 24px;
 	position: absolute;
 	z-index: 0;
 	top: 10px;
 	left: -7px;
 	color: #ffffff;
 	text-transform: uppercase;
-	font-size: 16px;
+	font-size: 20pt;
+	line-height: .9;
+	font-family: din-web;
 }
 div.robocall-flag.main {
 	top: 100px;
