@@ -1,0 +1,81 @@
+input.robocalls-fb-find-friends-birthdays {
+	background: #3B5998 url(./images/icon_facebook.png) 0px 0px no-repeat;
+	border: 1px solid #000000;
+	box-shadow: 0px 0px 3px #808080;
+	padding: 5px;
+	padding-left: 25px;
+	font-family: Verdana;
+	font-weight: bold;
+	color: #ffffff;
+	margin-bottom: 10px;
+	font-size: 11px;
+}
+
+div.robocalls-remote-webform {
+	background: #ffffff;
+	margin-bottom: 10px;
+}
+
+div.robocalls-remote-webform.talk-text div.pane-content p {
+	padding: 0px 10px 10px;
+}
+div.robocalls-remote-webform.form { margin-top: -15px;}
+div.robocalls-remote-webform.form input {
+width: 100%;
+}
+
+div.robocalls-remote-webform h2.pane-title, .panes-2 .panel-second .pane-title {
+	font-size: 16px;
+	margin-bottom: 0px;
+}
+
+
+div#submitted-field-celeb-tid-add-more-wrapper { display: none; }
+
+div.robocalls-submitted-message-dialog {
+	background: #fefefe;
+}
+div.robocalls-submitted-message-dialog #edit-title-text p {
+	font-weight: 600;
+	font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
+	font-size: 40px;
+	margin: 20px 0px 10px;
+	padding: 0px;
+}
+
+div#edit-or--2 {
+	border-top: 1px solid #DBD9D8;
+	padding-top: 10px;
+	margin: 10px 0px;
+
+}
+div.robocalls-submitted-message-dialog span.ui-icon-closethick {
+	color: transparent;
+}
+div.robocalls-submitted-message-dialog a.ui-dialog-titlebar-close { float: right; }
+div.robocalls-awesome-and-sharing {
+	text-align: center;
+	font-size: 11px;
+}
+
+div.send-another-robocall {
+	text-align: right;
+}
+.ui-dialog .ui-dialog-titlebar {
+	float: right;
+	margin-right: 10px;
+}
+
+
+div.robocalls-awesome-and-sharing a {
+	color: #18408B;
+	text-decoration: underline;
+}
+div.share-images {
+margin-top: 15px;
+margin-bottom: 25px;
+}
+
+div#dosomething-robocalls-submitted-message {
+	display: none;
+}
