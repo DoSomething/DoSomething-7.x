@@ -19,28 +19,23 @@ Drupal.behaviors.dsPfpShare = {
       var sid = settings.fbappsAnimals.images[settings.fbappsAnimals.index].sid;
     }
 
-    // Grab some text and a picture to share on the user's wall.
-    // XXX: Because Facebook only increases the share count when using the
-    // stream.share method, we can't use the feed method. And because we can't
-    // use the feed method, we don't need these things. But if they happen to
-    // change this in future, we can use these items to make a nicer, more
-    // engaging share.
-    /*
+    // Grab some metadata.
     var pictureUrl = $('.field-name-field-fb-app-image img').attr('src');
     var petName = $('.hi-pet-name p').text();
     var threeWords = [];
     jQuery.each($('.field-name-field-fb-app-three-words .field-items').children(), function() {
       threeWords.push($(this).text());
     });
-    */
 
-    // stream.share only allows us to post a link to the user's wall. We have to
-    // use this method becuase other methods like 'feed' or 'stream.publish'
-    // don't increase the share count of the url we're sharing.
+    // Use the 'feed' method because it allows us to post metadata.
     var shareUrl = 'https://apps.facebook.com/picsforpets/webform-submission/' + sid;
     var share = {
-      method: 'stream.share',
-      u: shareUrl
+      method: 'feed',
+      name: 'Pics For Pets',
+      link: shareUrl,
+      picture: pictureUrl,
+      caption: petName,
+      description: "I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2]
     };
 
     $('#picsforpets-share').click(function () {
