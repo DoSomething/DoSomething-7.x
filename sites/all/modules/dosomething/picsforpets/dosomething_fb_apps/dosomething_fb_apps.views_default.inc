@@ -310,7 +310,8 @@ Please try a new combo.
   /* Display: Service */
   $handler = $view->new_display('panel_pane', 'Service', 'service');
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
@@ -617,6 +618,13 @@ Please try a new combo.
   $handler->display->display_options['fields']['uri_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['uri_1']['link_to_file'] = 0;
   $handler->display->display_options['fields']['uri_1']['file_download_path'] = 1;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['expose']['label'] = 'Newest';
+  $handler->display->display_options['sorts']['submitted']['granularity'] = 'minute';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Webform submissions: Sid */
   $handler->display->display_options['arguments']['sid']['id'] = 'sid';
