@@ -6,29 +6,6 @@ body {
   background: #231f20;
   height: 200px; }
 
-#red_ribbon {
-  background: #0da0e6;
-  width: 775px;
-  height: 70%;
-  position: relative;
-  -webkit-border-radius: 2px 2px 0 2px;
-  -moz-border-radius: 2px 2px 0 2px;
-  -ms-border-radius: 2px 2px 0 2px;
-  -o-border-radius: 2px 2px 0 2px;
-  border-radius: 2px 2px 0 2px; }
-  #red_ribbon:before {
-    content: "";
-    display: block;
-    position: absolute;
-    border-style: solid;
-    border-width: 7px;
-    border-color: #096e9e transparent transparent #096e9e;
-    right: 1px;
-    bottom: -13px; }
-  #red_ribbon img {
-    padding: 2%;
-    width: 215px; }
-
 * {
   margin: 0;
   padding: 0; }
@@ -228,7 +205,7 @@ a {
   height: 595px; }
 
 .faq {
-  height: 290px;
+  height: 345px;
   text-align: left;
   border-bottom: none; }
 

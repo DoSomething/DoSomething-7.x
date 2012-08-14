@@ -31,9 +31,8 @@
 
   <div class="section webform">
     <div class="divider"><span>sign up</span></div>
-    <div id="red_ribbon">
-     <h1>form goes here!</h1><h2>oi, oi, oi!</h2>
-    </div>
+    <h1>form goes here</h1>
+    <h2>oi, oi, oi!</h2>
   </div>
 
   <div class="section do">
@@ -268,23 +267,24 @@
   
   <div class="section faq">
     <div class="divider"><span>questions?</span></div>
-      <h4>What is this thing you call “Thumb Wars”?</h4>
-      <p>Why, it’s a campaign where you sign up to get two pairs of super-powered* thumb socks in the mail. You then share the socks with friends and family who need to learn about the dangers of texting and driving.</p>
+      <h4>What is this thing you call âThumb Warsâ?</h4>
+      <p>Why, itâs a campaign where you sign up to get two pairs of super-powered* thumb socks in the mail. You then share the socks with friends and family who need to learn about the dangers of texting and driving.</p>
       <h4>Is texting and driving really that dangerous?</h4>
-      <p>Totally. Here’s the stat that kills us: on average, texting while driving at 55mph takes your eyes off the road for the length of a football field! Also, people under 20 are the most at risk for being in a distracted driving accident.</p>
-      <h4>Ah! That’s insane! What do I do?</h4>
-      <p>Join Thumb Wars. Enter your email and phone number in the sign up box above. You’ll be entered to receive two pairs of thumb socks in the mail. Once you get them, share them with your friends and family to let them know how dangerous texting and driving can be.</p>
+      <p>Totally. Hereâs the stat that kills us: on average, texting while driving at 55mph takes your eyes off the road for the length of a football field! Also, people under 20 are the most at risk for being in a distracted driving accident.</p>
+      <h4>Ah! Thatâs insane! What do I do?</h4>
+      <p>Join Thumb Wars. Enter your email and phone number in the sign up box above. Youâll be entered to receive two pairs of thumb socks in the mail. Once you get them, share them with your friends and family to let them know how dangerous texting and driving can be.</p>
       <h4>How do I use the socks?</h4>
-      <p>We think picking a friend or family member that you know texts while driving is a good first step. After that, you can tape the socks to their steering wheel, ask them to wear them while driving for a day, or hide them in the glove compartment. Be creative! Have fun with it! And if you take a picture of what you do and send it to us, you’ll be entered to win a scholarship (more info on that after June 19th).</p>
+      <p>We think picking a friend or family member that you know texts while driving is a good first step. After that, you can tape the socks to their steering wheel, ask them to wear them while driving for a day, or hide them in the glove compartment. Be creative! Have fun with it! And if you take a picture of what you do and send it to us, youâll be entered to win a scholarship (more info on that after June 19th).</p>
       <h4 class="activeFAQ">Does everybody get socks?</h4>
-      <p>Not necessarily. When you sign up above you’ll be directed to a page where you have to tell us who you will share the socks with and what you will do with them. If you don’t fill those fields out with something (and not just “i don’t know”) you won’t get them! Also, you must be between the age 13 - 25 to get the socks (and qualify for the scholarship).</p>
+      <p>Not necessarily. When you sign up above youâll be directed to a page where you have to tell us who you will share the socks with and what you will do with them. If you donât fill those fields out with something (and not just âi donât knowâ) you wonât get them! Also, you must be between the age 13 - 25 to get the socks (and qualify for the scholarship).</p>
       <h4>This is kinda silly.</h4>
-      <p>Isn’t it great? And that’s totally the point. We’ve learned that scare tactics push people away from learning about an issue. Thumb Wars is a way to make it fun for those you care about to learn how to be a bit safer. Feel free to get crazy with this campaign.</p>
+      <p>Isnât it great? And thatâs totally the point. Weâve learned that scare tactics push people away from learning about an issue. Thumb Wars is a way to make it fun for those you care about to learn how to be a bit safer. Feel free to get crazy with this campaign.</p>
       <h4>Hey! I entered to get some socks! Where are they?</h4>
-      <p>We start shipping the socks when the campaign begins, on June 19th. After that it can take up to 12 business days to get them in the mail. Remember, not everybody gets socks - you have to tell us who you’ll share them with and what you’ll do with them when you sign up.</p>
+      <p>We start shipping the socks when the campaign begins, on June 19th. After that it can take up to 12 business days to get them in the mail. Remember, not everybody gets socks - you have to tell us who youâll share them with and what youâll do with them when you sign up.</p>
       <h4>I have more questions!</h4>
       <p>We have more answers! Email Dave and Farah at <a href="mailto:thumbwars@dosomething.org">thumbwars@dosomething.org</a> with any other questions you have.</p>
-      <p class="help">*Thumb Socks do not actually have superpowers. We’re working on that. But we think you’re a hero for doing this to help make your friends and family safer.</p>
+      <p class="help">*Thumb Socks do not actually have superpowers. Weâre working on that. But we think youâre a hero for doing this to help make your friends and family safer.</p>
   </div> <!-- .section .faq -->
   
 </div> <!-- #cask -->
+
