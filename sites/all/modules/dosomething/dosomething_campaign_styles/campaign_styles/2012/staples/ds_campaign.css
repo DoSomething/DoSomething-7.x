@@ -1007,9 +1007,10 @@ body.page-node-722954 {
 #node-722264 .fb-social-comments-plugin {
   display: none; }
 
-.page-node-722952 .panel-pane.pane-campaign-social, .page-node-722266 .panel-pane.pane-campaign-social, .page-node-722241 .panel-pane.pane-campaign-social {
+.page-node-722952 .panel-pane.pane-campaign-social, .page-node-722266 .panel-pane.pane-campaign-social {
   display: none; }
-.page-node-722952 .report-back-teaser p, .page-node-722266 .report-back-teaser p, .page-node-722241 .report-back-teaser p {
+
+.report-back-teaser p {
   padding: 10px;
   width: 80%;
   font-size: 14px; }
