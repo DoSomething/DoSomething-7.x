@@ -31,8 +31,9 @@
 
   <div class="section webform">
     <div class="divider"><span>sign up</span></div>
-    <h1>form goes here</h1>
-    <h2>oi, oi, oi!</h2>
+    <div id="red_ribbon">
+     <h1>form goes here!</h1><h2>oi, oi, oi!</h2>
+    </div>
   </div>
 
   <div class="section do">
