@@ -725,6 +725,9 @@ function doit_search_api_page_result(array $variables) {
       $output .= theme('image', array('path' => drupal_get_path('theme', 'doit') . '/css/images/default-search-image.jpg', 'height' => '60px', 'width' => '60px'));
     }
   }
+  else {
+     $output .= theme('image', array('path' => drupal_get_path('theme', 'doit') . '/css/images/default-search-image.jpg', 'height' => '60px', 'width' => '60px'));
+  }
 
   // Fix for bug / request #955: Move title next to image
   $output .= '<h3>' . ($url ? l($name, $url['path'], $url['options']) : check_plain($name)) . "</h3>\n";

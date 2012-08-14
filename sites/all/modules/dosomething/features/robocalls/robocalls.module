@@ -110,11 +110,11 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
         );
 
         $form['preview']['audio'] = array(
-           '#markup' => '<audio id="robocalls-preview-audio" src="/files/' . $term->field_celeb_call[LANGUAGE_NONE][0]['filename'] . '"></audio>'
+           '#markup' => '<audio id="robocalls-preview-audio" src="/files/causecalls/' . $term->field_celeb_call[LANGUAGE_NONE][0]['filename'] . '"></audio>'
         );
 
         $form['preview']['button'] = array(
-           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', 'files/' . $term->field_celeb_call[LANGUAGE_NONE][0]['filename'], array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link')))
+           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', 'files/causecalls/' . $term->field_celeb_call[LANGUAGE_NONE][0]['filename'], array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link')))
         );
     }
 
