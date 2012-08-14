@@ -778,3 +778,6 @@ form.webform-client-form {
 
 #fb-social-comments-plugin {
   display: none; }
+
+.pane-campaign-sign-up #edit-actions {
+  left: 200px; }
