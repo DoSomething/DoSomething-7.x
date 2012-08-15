@@ -138,6 +138,7 @@ div.views-field-name {
 
 span.robocalls-remove-fb-choice { float: right; }
 div[role="main"] {
+	background: url(/files/causecalls/section_background.png) top left;
 	padding: 30px;
 	margin: 0px;
 }
@@ -202,7 +203,7 @@ div.robocalls-preview-button-container {
 	top: -150px;
 	left: -50px;
 	text-align: center;
-	height: 280px;
+	height: 280px;/*280px*/
 	border-left: 1px solid #D7D9D8;
 	padding-left: 35px;
 	padding-top: 60px;
@@ -247,7 +248,7 @@ div.file-audio {
 }
 
 div.robocall-flag {
-	background: #672E6F;
+	background: #d81f2a;
 	padding: 3px 17px;
 	height: 24px;
 	position: absolute;
@@ -264,7 +265,7 @@ div.robocall-flag {
 .main-robocall-flag {
 	position: absolute;
 	margin-top: -320px;
-	background: #672E6F;
+	background: #d81f2a;
 	padding: 3px 17px;
 	z-index: 0;
 	margin-left: -7px;
@@ -308,14 +309,7 @@ div.pane-cause-its-your-birthday h3 { clear: both; padding: 10px 0px; }
 div.views-field-nothing h3 { clear: none; padding: 0px; }
 
 body {
-	background: #e32a43; /* Old browsers */
-	background: -moz-linear-gradient(left,  #e32a43 0%, #cd4a76 35%, #cd4a76 65%, #e32a43 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e32a43), color-stop(35%,#cd4a76), color-stop(65%,#cd4a76), color-stop(100%,#e32a43)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* IE10+ */
-	background: linear-gradient(to right,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e32a43', endColorstr='#e32a43',GradientType=1 ); /* IE6-9 */
+	background: url(/files/causecalls/tile.png) top left;
 }
 
 #edit-submitted-field-celebrity-chooser-und input {
@@ -335,7 +329,16 @@ div.robocalls-awesome-and-sharing a {
 	text-decoration: underline;
 }
 
-h1#page-title { margin: 0px 0px 10px; padding: 0px; }
+h1#page-title {
+	margin: 0px 0px 10px;
+	padding: 0px;
+	background: #D81F2A;
+	width: 797px;
+	margin-left: -30px;
+	margin-top: -30px;
+	color: #F6EED2;
+	padding: 15px 30px 15px;
+}
 
 .jcarousel-skin-default .jcarousel-container-horizontal {
 	margin: 0px;
@@ -412,3 +415,11 @@ bottom: 10px;
 #or-send-now-button { margin-bottom: 0px; }
 
 .robocalls-submit { margin-left: 85px; }
+
+/*#edit-submitted-field-celeb-date { display: none;}
+.form-item-field-celeb-send-now-und { display: none; }*/
+div#block-menu-block-2 ul { background: #F6EED2; }
+select { background: white; padding: 5px 10px;}
+
+
+

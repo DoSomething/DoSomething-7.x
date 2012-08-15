@@ -49,9 +49,10 @@ jQuery(function() {
 		var res = jQuery.parseJSON(c);
 		person = res['name'];
 		cause = res['cause'];
+        limit = res['passed_limit'];
 	}
 
-	jQuery.fn.dsRobocallsDone(person, cause);
+	jQuery.fn.dsRobocallsDone(person, cause, limit);
 
     var obj = {
         method: 'feed',

@@ -7,7 +7,7 @@
 include_once 'robocalls.features.inc';
 define('MCOMMONS_ROBOCALL_CAMPAIGN', 18301);
 define('ROBOCALLS_WEBFORM_NID', 723327);
-define('MAX_CALLS_PER_DAY', 100);
+define('MAX_CALLS_PER_DAY', 1);
 
 function robocalls_panels_pre_render($display) {
   if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing') {
@@ -53,11 +53,17 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
     $termid = arg(2);
     $term = taxonomy_term_load($termid);
+    $u = &$form['submitted']/*['celeb_call_information']*/;
 
     if (!empty($term)) {
        $term_info = array();
        $term_info['parent'] = key(taxonomy_get_parents($term->tid));
        $term_info['tid'] = $term->tid;
+
+      $form['call_limit'] = array(
+        '#type' => 'hidden',
+        '#value' => $term->field_call_limit[LANGUAGE_NONE][0]['value']
+      );
 	}
 
     $form['extras'] = array(
@@ -82,6 +88,10 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
           'class' => array('robocalls-fb-find-friends-birthdays'),
        )
     );
+
+    $form['actions']['submit']['#attributes']['class'] = array('go-button robocalls-submit');
+    $form['extras']['fb_container']['submit_button'] = $form['actions']['submit'];
+    $form['actions']['submit']['#access'] = FALSE;
 
     /*$form['extras']['well_send_to'] = array(
         '#type' => 'markup',
@@ -118,11 +128,10 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
         );
     }
 
-    $form['actions']['submit']['#value'] = 'SEND IT!';
-    $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
-
+#    $form['actions']['submit']['#value'] = 'SEND IT!';
+ #   $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
     if (!user_is_logged_in()) {
-       $form['actions']['submit']['#ajax'] = array(
+       $form['extras']['fb_container']['submit_button']['#ajax'] = array(
          'callback' => 'robocalls_ajax_call',
        );
     }
@@ -132,7 +141,25 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
       * - Cell #
       * - First name
       */
-    $u = &$form['submitted']/*['celeb_call_information']*/;
+
+    if (isset($term->field_timed_call) && !empty($term->field_timed_call)) {
+      $date = (strtotime($term->field_timed_call[LANGUAGE_NONE][0]['value']) + 18000);
+      $predate = date('Y-m-d H:i:00', $date);
+      $u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value'] = $predate;
+      $form['pointless'] = array(
+        '#type' => 'hidden',
+        '#value' => date('F j, Y', $date),
+        '#attributes' => array('id' => array('pointless-hidden-box'))
+      );
+      $u['field_celeb_date']['#attributes']['class'] = array('robocalls-timed-form-times');
+    }
+    else
+    {
+      $form['extras']['fb_container']['field_celeb_send_now'] = $u['field_celeb_send_now'];
+      $form['extras']['fb_container']['field_celeb_send_now']['#weight'] = 0;
+      $form['extras']['fb_container']['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
+    }
+    $u['field_celeb_send_now']['#access'] = FALSE;
 
     if (user_is_logged_in()) {
        global $user;
@@ -164,6 +191,17 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
 
     $u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
 
+    if ($term->field_birthday_call[LANGUAGE_NONE][0]['value'] != 1 && !$predate) {
+      #$u['field_celeb_date']['#attributes']['style'] = 'display: none;';
+    }
+    else {
+      $form['extras']['is_bday_call'] = array(
+         '#type' => 'hidden',
+         '#value' => 1,
+         '#weight' => 6,
+      );
+    }
+
     $form_state['side_bar'] = false;
     if (isset($term->tid) && !empty($term->tid)) {
        unset($u['top_disclaimer']);
@@ -183,6 +221,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'robocalls_call_validate';
     $form['#submit'][] = 'robocalls_call_submit';
+    $form['#redirect'] = $form_state['return_to'];
   }
 }
 
@@ -210,6 +249,7 @@ function robocalls_ajax_call($form, &$form_state) {
     '#commands' => $commands
   );
 }
+
 
 function robocalls_call_validate(&$form, &$form_state) {
   $s = $form_state['input']['submitted']/*['celeb_call_information']*/;
@@ -241,6 +281,15 @@ function robocalls_call_validate(&$form, &$form_state) {
   $last_night = strtotime('midnight');
   $tonight = strtotime('11:59pm');
 
+  $sn = $form_state['input']['field_celeb_send_now'][LANGUAGE_NONE];
+  $form['#submission']->submitted['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
+  $form['#submission']->field_celeb_send_now[LANGUAGE_NONE][0]['value'] = $sn;
+  $form_state['values']['submitted']['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
+
+  $limit = $form_state['input']['call_limit'];
+
+
+  $form_state['already_called'] = 0;
   $q = new EntityFieldQuery;
   $result = $q
   ->entityCondition('entity_type', 'webform_submission_entity')
@@ -248,10 +297,12 @@ function robocalls_call_validate(&$form, &$form_state) {
   ->propertyCondition('submitted', array($last_night, $tonight), 'BETWEEN')
   ->propertyOrderBy('submitted', 'DESC')
   ->fieldCondition('field_celeb_friend_phone', 'value', $form_state['friend_number'], '=')
+  ->fieldCondition('field_celebrity_chooser', 'tid', $form_state['chosen_celeb'], '=')
   ->execute();
-  if (count($result['webform_submission_entity']) >= MAX_CALLS_PER_DAY) {
-    form_set_error('form', "Sorry, this phone number can only be called " . MAX_CALLS_PER_DAY . " times a day.  Wait until tomorrow and try again!");
-    $error++;
+  if (count($result['webform_submission_entity']) >= $limit) {
+    #form_set_error('form', "Sorry, this phone number can only be called " . MAX_CALLS_PER_DAY . " times a day.  Wait until tomorrow and try again!");
+    #$error++;
+    $form_state['already_called'] = $limit;
   }
 
   if ($error && user_is_logged_in()) {
@@ -260,12 +311,23 @@ function robocalls_call_validate(&$form, &$form_state) {
 }
 
 function robocalls_call_submit(&$form, &$form_state) {
-   $sub = $form['#submission']->submitted/*['celeb_call_information']*/;
+   $sub = &$form['#submission']->submitted/*['celeb_call_information']*/;
 
    $friend_phone = $sub['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'];
    $user_name = $sub['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
    $my_phone = $sub['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-   robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
+
+   $send_now =  $sub['field_celeb_send_now'][LANGUAGE_NONE][0]['value'];
+
+   if ((!$form_state['input']['is_bday_call'] || $send_now) && !$form_state['already_called']) {
+     robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
+   }
+
+   if ($form_state['already_called'])
+   {
+    $sid = $form_state['values']['details']['sid'];
+    entity_delete('webform_submission_entity', array((int) $sid));
+   }
 
    /**
      * If a user is logged in and doesn't have a cell phone connected with their
@@ -297,7 +359,8 @@ function robocalls_call_submit(&$form, &$form_state) {
 
       $code = base64_encode(json_encode(array(
          'name' => $term_name,
-         'cause' => $parent_name
+         'cause' => $parent_name,
+         'passed_limit' => intval($form_state['already_called'])
       )));
    }
    else {
@@ -316,6 +379,7 @@ function robocalls_call_submit(&$form, &$form_state) {
    else {
       // Otherwise, they ARE logged in so whatever.
       $form_state['redirect'] = $_SERVER['HTTP_REFERER'] . '?done=' . $code;
+      $_GET['redirect'] = ($form_state['redirect']);
    }
 }
 

@@ -11,7 +11,7 @@ function remove_fb_bday_choice() {
 
 (function ($) {
   $.fn.extend({
-    dsRobocallsDone: function (name, cause) {
+    dsRobocallsDone: function (name, cause, limit) {
       delete Drupal.behaviors.dosomethingLoginRegister;
 
       var popupForm = $('#dosomething-robocalls-submitted-message');
@@ -20,6 +20,13 @@ function remove_fb_bday_choice() {
         replaced = html.replace('#name#', name).replace('#cause#', cause);
 
         $('#dosomething-robocalls-submitted-message').html(replaced);
+        if (limit > 0)
+        {
+         $('#dosomething-robocalls-submitted-message label p').html("Wait!");
+         $('#dosomething-robocalls-submitted-message label h2').html('This phone number has already been called today.');
+         $('#dosomething-robocalls-submitted-message div.separator').prepend('<div class="robocalls-awesome-and-sharing" style="font-size: 13pt; font-weight: normal; margin-bottom: 15px;">This number has already been called for this date.  Why not talk with them on Facebook?</div>');
+        }
+
         $('#robocalls-twitter-button')
           .attr('href',
               $('#robocalls-twitter-button').attr('href') + encodeURIComponent('Awesome.  I just had ' + name + ' call my friend to say "Do Something about ' + cause + '."'));
@@ -90,12 +97,23 @@ jQuery(document).ready(function() {
     });
   }
 
+  var timed = jQuery('.robocalls-timed-form-times');
+  if (timed.length > 0) {
+    jQuery('#edit-submitted-field-celeb-date-und-0-value-day, #edit-submitted-field-celeb-date-und-0-value-month, #edit-submitted-field-celeb-date-und-0-value-year').parent().hide();
+    jQuery('#edit-submitted-field-celeb-date-und-0-value-day').parent().parent().prepend(jQuery('#pointless-hidden-box').val());
+    //jQuery('.fieldset-wrapper').prepend('<div style="clear: both">hi!</div>');
+  }
+
   if (jQuery('#robocalls_preview_link').length > 0) {
     jQuery('#robocalls_preview_link').click(function() {
       jQuery('#robocalls-preview-audio').trigger('play');
       return false;
     });
   }
+
+  jQuery('#edit-field-celeb-send-now-und').click(function() {
+    jQuery('#edit-submitted-field-celeb-date').toggle();
+  });
 
   button = jQuery('.robocalls-fb-find-friends-birthdays');
   if (button.length > 0) {
