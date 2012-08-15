@@ -39,7 +39,7 @@ div.views-field-nothing h3 {
 
 #robocalls-choose-another-celebrity h2.pane-title {
 	margin-left: -10px;
-	margin-top: -120px;
+	margin-top: -130px;
 }
 
 div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel { width: 150px; }
@@ -191,9 +191,9 @@ div.robocalls-extras-container {
 	width: 60%;
 	/*margin-top: -300px;*/
 	/*border-right: 1px solid #DBD9D8;*/
-	/*height: 250px; */
-	position: absolute;
-	height: 20px;
+	/*height: 250px; 
+	position: absolute;*/
+	height: 0px;
 }
 
 div.robocalls-preview-button-container {
@@ -202,16 +202,17 @@ div.robocalls-preview-button-container {
 	top: -150px;
 	left: -50px;
 	text-align: center;
-	height: 250px;
+	height: 280px;
 	border-left: 1px solid #D7D9D8;
 	padding-left: 35px;
 	padding-top: 60px;
 }
 
 input.go-button {
-	position: absolute;
-	left: 185px;
+	/*position: absolute;*/
+	/*left: 185px;
 	bottom: 45px;
+	margin-left: 10px;*/
 }
 
 div.panels-flexible-region-313-celeb_information-inside
@@ -259,6 +260,22 @@ div.robocall-flag {
 	line-height: .9;
 	font-family: din-web;
 }
+
+.main-robocall-flag {
+	position: absolute;
+	margin-top: -320px;
+	background: #672E6F;
+	padding: 3px 17px;
+	z-index: 0;
+	margin-left: -7px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 20pt;
+	line-height: .9;
+	height: 24px;
+	font-family: din-web;
+}
+
 div.robocall-flag.main {
 	top: 100px;
 }
@@ -279,7 +296,8 @@ div.views-field-nothing a.go-button {
 	bottom: 3px;
 	right: 3px;
 	height: 22px;
-
+	margin-top: 10px;
+	bottom: 10px;
 }
 
 div.views-field-nothing p {
@@ -358,18 +376,6 @@ div#robocalls-here-how-it-works {
 
 #edit-submitted-celeb-call-information-field-celeb-tid { display: none; }
 
-.main-robocall-flag {
-	position: absolute;
-	margin-top: -320px;
-	background: #672E6F;
-	padding: 3px 17px;
-	z-index: 0;
-	margin-left: -7px;
-	color: #ffffff;
-	text-transform: uppercase;
-	font-size: 16px;
-}
-
 .inside.panels-flexible-row-inside.panels-flexible-row-316-main-row-inside.clearfix {
 	height: 450px;
 }
@@ -381,3 +387,28 @@ div.ajax-progress {
 	bottom: 5px;
 	right: 20px;
 }
+
+.form-item.date-spacer { display: none; }
+.form-item.form-type-select.form-item-submitted-field-celeb-date-und-0-value-hour { clear: left; margin-left: 0px;}
+div.robocalls-call-information .webform-component, div.robocalls-call-information .form-item { clear: none; }
+#edit-submitted-field-celeb-date-und-0-value { margin-top: -50px; }
+.form-item.form-type-date-select.form-item-submitted-field-celeb-date-und-0-value { border: none; }
+#edit-submitted-field-celeb-date { height: 60px; width: 300px; float: left; margin-top: -20px; }
+#edit-submitted-field-celeb-date .fieldset-wrapper { text-align: right;}
+#edit-submit {
+bottom: 10px;
+}
+
+#edit-submitted-field-celeb-date legend {
+	font-size:12px;
+	font-family: "Trebuchet MS", sans-serif;
+	padding-left:20px;
+}
+
+.field-type-text {
+	margin-top: -10px;
+}
+
+#or-send-now-button { margin-bottom: 0px; }
+
+.robocalls-submit { margin-left: 85px; }
