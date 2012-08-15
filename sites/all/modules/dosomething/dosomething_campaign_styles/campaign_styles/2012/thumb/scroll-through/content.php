@@ -2,16 +2,6 @@
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-<!-- 	remove before commiting		-->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
-<script src="script.js" type="text/javascript"></script>
-
-<link href="style.css" rel="stylesheet" media="all" type="text/css">
-<link href="http://c308566.r66.cf1.rackcdn.com/din.css" >
-
-<!--	end scripts and stylesheets	-->
-
 <div id="cork">
   
   <div class="header">
@@ -32,7 +22,7 @@
   <div class="section webform">
     <div class="divider"><span>sign up</span></div>
     <div id="red_ribbon">
-     <h1>form goes here!</h1><h2>oi, oi, oi!</h2>
+     <h2>Sign up for updates and more scholarship opportunities!</h2>
     </div>
   </div>
 

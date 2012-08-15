@@ -6,6 +6,50 @@ body {
   background: #231f20;
   height: 200px; }
 
+body {
+  background: #fed215; }
+
+.webform {
+  text-align: center;
+  background: #231f20;
+  height: 185px; }
+
+#red_ribbon {
+  background: #0da0e6;
+  width: 774px;
+  height: 65%;
+  position: relative;
+  -webkit-border-radius: 2px 2px 0 2px;
+  -moz-border-radius: 2px 2px 0 2px;
+  -ms-border-radius: 2px 2px 0 2px;
+  -o-border-radius: 2px 2px 0 2px;
+  border-radius: 2px 2px 0 2px; }
+  #red_ribbon:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-style: solid;
+    border-width: 7px;
+    border-color: #096e9e transparent transparent #096e9e;
+    right: 1px;
+    bottom: -13px; }
+  #red_ribbon h2 {
+    padding: 2% 0 0 0; }
+  #red_ribbon img {
+    padding: 2%;
+    width: 215px; }
+  #red_ribbon #edit-submitted-field-webform-email-und-0-email, #red_ribbon #edit-submitted-field-webform-mobile-und-0-value {
+    float: left;
+    height: 30px;
+    width: 300px;
+    padding: 0 0 0 1%; }
+  #red_ribbon #edit-submitted-field-webform-email-und-0-email {
+    margin: 2% 4% 2% 6%; }
+  #red_ribbon #edit-submitted-field-webform-mobile-und-0-value {
+    margin: 2%; }
+  #red_ribbon #edit-action {
+    margin-left: 4% !important; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -176,7 +220,7 @@ a {
 
 #cork, #cask {
   margin: 0 auto;
-  max-width: 727px;
+  max-width: 725px;
   padding: 0 2%; }
 
 #cork {
@@ -362,3 +406,48 @@ a {
   background-image: linear-gradient(top, #ffffff, #fed100);
   font-size: 18px;
   text-transform: uppercase; }
+
+#cask-aside {
+  background: #231f20;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  -ms-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0; }
+  #cask-aside img {
+    width: 88%;
+    margin: 6% 6% 0 6%;
+    display: block;
+    background: #231f20;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0; }
+  #cask-aside h1 {
+    font-size: 40px; }
+  #cask-aside h3 {
+    font-size: 16px; }
+
+div.contact_form-aside {
+  width: 300px;
+  margin: 0 0 0 -20px;
+  background: #0da0e6;
+  position: relative;
+  -webkit-border-radius: 3px 3px 3px 0;
+  -moz-border-radius: 3px 3px 3px 0;
+  -ms-border-radius: 3px 3px 3px 0;
+  -o-border-radius: 3px 3px 3px 0;
+  border-radius: 3px 3px 3px 0; }
+  div.contact_form-aside:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+    border-color: #0a7eb6 #0a7eb6 transparent transparent;
+    border-width: 10px;
+    border-style: solid; }
+
+.region-sidebar-first {
+  margin-top: 0 !important; }

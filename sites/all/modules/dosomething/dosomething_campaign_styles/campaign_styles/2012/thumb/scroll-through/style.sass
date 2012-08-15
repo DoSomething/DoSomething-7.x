@@ -22,7 +22,7 @@ $din: din-web-reg,"Trebuchet MS",sans-serif
   box-shadow: none !important
 
 // kill this section
-$thumbPink: #E20A48
+$thumbAccent: #0DA0E6
 
 body
   background: #FED215
@@ -30,12 +30,12 @@ body
 .webform
   text-align: center
   background: $thumbGrey
-  height: 200px
+  height: 185px
 
 #red_ribbon
-  background: $thumbPink
-  width: 775px
-  height: 70%
+  background: $thumbAccent
+  width: 774px
+  height: 65%
   position: relative
   +border-radius (2px 2px 0 2px)
   &:before
@@ -44,12 +44,25 @@ body
     position: absolute
     border-style: solid
     border-width: 7px
-    border-color: darken($thumbPink, 10) transparent transparent darken($thumbPink, 10)
+    border-color: darken($thumbAccent, 15) transparent transparent darken($thumbAccent, 15)
     right: 1px
     bottom: -13px
+  h2
+    padding: 2% 0 0 0
   img
     padding: 2%
     width: 215px
+  #edit-submitted-field-webform-email-und-0-email, #edit-submitted-field-webform-mobile-und-0-value
+    float: left
+    height: 30px
+    width: 300px
+    padding: 0 0 0 1%
+  #edit-submitted-field-webform-email-und-0-email
+    margin: 2% 4% 2% 6%
+  #edit-submitted-field-webform-mobile-und-0-value
+    margin: 2%
+  #edit-action
+    margin-left: 4%!important
 
 // element styling && font definitions
 *
@@ -226,7 +239,7 @@ a
 
 #cork, #cask
   margin: 0 auto
-  max-width: 727px
+  max-width: 725px
   padding: 0 2%
 
 #cork
@@ -427,3 +440,37 @@ a
   font-size: 18px
   text-transform: uppercase
 
+// vibrant sign-up box
+#cask-aside
+  background: $thumbGrey
+  +border-radius(4px 4px 0 0)
+  img
+    width: 88%
+    margin: 6% 6% 0 6%
+    display: block
+    background: $thumbGrey
+    +border-radius(6px 6px 0 0)
+  h1
+    font-size: 40px
+  h3
+    font-size: 16px
+
+div.contact_form-aside
+  width: 300px
+  margin: 0 0 0 -20px
+  background: $thumbAccent
+  position: relative
+  +border-radius(3px 3px 3px 0)
+  &:before
+    content: ""
+    display: block
+    position: absolute
+    bottom: -20px
+    left: 0px
+    border-color: darken($thumbAccent, 10) darken($thumbAccent, 10) transparent transparent
+    border-width: 10px
+    border-style: solid
+
+// reset margin-top on sidebar
+.region-sidebar-first
+  margin-top: 0!important

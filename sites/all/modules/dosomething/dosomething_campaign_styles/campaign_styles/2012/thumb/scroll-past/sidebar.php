@@ -3,11 +3,13 @@
 <div id="cask-aside">
   
   <img src="http://files.dosomething.org/files/campaigns/thumb/scroll/thumbwars.png"/>
-  
+
+<!--  
   <div class="contact_form-aside">
     <h2>sign up to get<br>your thumb socks</h2>
   </div>
-  
+-->
+
   <div class="nav-aside">
     
     <ul>
