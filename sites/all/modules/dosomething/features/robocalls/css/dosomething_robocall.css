@@ -138,7 +138,7 @@ div.views-field-name {
 
 span.robocalls-remove-fb-choice { float: right; }
 div[role="main"] {
-	background: url(/files/causecalls/section_background.png) top left;
+	background: url(/sites/all/modules/dosomething/features/robocalls/images/section_background.png) top left;
 	padding: 30px;
 	margin: 0px;
 }
@@ -309,7 +309,7 @@ div.pane-cause-its-your-birthday h3 { clear: both; padding: 10px 0px; }
 div.views-field-nothing h3 { clear: none; padding: 0px; }
 
 body {
-	background: url(/files/causecalls/tile.png) top left;
+	background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) top left;
 }
 
 #edit-submitted-field-celebrity-chooser-und input {
@@ -416,8 +416,8 @@ bottom: 10px;
 
 .robocalls-submit { margin-left: 85px; }
 
-/*#edit-submitted-field-celeb-date { display: none;}
-.form-item-field-celeb-send-now-und { display: none; }*/
+#edit-submitted-field-celeb-date { display: none;}
+.form-item-field-celeb-send-now-und { display: none; }
 div#block-menu-block-2 ul { background: #F6EED2; }
 select { background: white; padding: 5px 10px;}
 
