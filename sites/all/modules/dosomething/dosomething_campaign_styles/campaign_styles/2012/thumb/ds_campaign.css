@@ -160,14 +160,14 @@ h2.pane-title {
   border: none !important; }
 
 .panel-row-actions {
-  background: #dddddd;
+  background: #0da0e6;
   margin: 0 0 15px 0;
   width: 750px;
   border: none !important; }
   .panel-row-actions .form-wrapper {
     margin-bottom: 5px !important; }
   .panel-row-actions .pane-title {
-    background: #0a5083; }
+    background: #0da0e6; }
   .panel-row-actions .pane-content {
     padding: 18px; }
   .panel-row-actions .panel-row-actions-sign-up form {
@@ -781,3 +781,8 @@ form.webform-client-form {
 
 .pane-campaign-sign-up #edit-actions {
   left: 200px; }
+
+.pane-campaign-sign-up #edit-actions {
+  position: absolute;
+  bottom: 26px !important;
+  left: 207px; }

@@ -288,7 +288,7 @@ div.header {
 .do2 {
   padding: 2% 0; }
   .do2 .col2 {
-    background: #e20a48;
+    background: #0da0e6;
     width: 75%;
     height: 101%;
     margin: 0 auto 2%;
@@ -467,7 +467,7 @@ div.faq .activeFAQ {
 div.contact_form-aside {
   width: 300px;
   margin: 0 0 0 -20px;
-  background: #e20a48;
+  background: #0da0e6;
   position: relative;
   -webkit-border-radius: 3px 3px 3px 0;
   -moz-border-radius: 3px 3px 3px 0;
@@ -480,7 +480,7 @@ div.contact_form-aside {
     position: absolute;
     bottom: -20px;
     left: 0px;
-    border-color: #b10838 #b10838 transparent transparent;
+    border-color: #0a7eb6 #0a7eb6 transparent transparent;
     border-width: 10px;
     border-style: solid; }
 
