@@ -392,7 +392,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_celeb_photo]
-<h3>[name]</h3>
+<h4>[name]</h4>
 [description]
 [field_celeb_call]
 [name_2]';
@@ -646,7 +646,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_celeb_photo]
-<h3>[name]</h3>
+<h4>[name]</h4>
 [description]
 [field_celeb_call]
 [name_1]
