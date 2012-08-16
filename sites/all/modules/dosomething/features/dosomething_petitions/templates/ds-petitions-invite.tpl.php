@@ -1,9 +1,9 @@
 Hey,
 
-<?php echo $full_name; ?> has invited you to sign the petition to <?php echo $title; ?>.
+I just signed the petition "<?php echo $title; ?>" and am hoping you could help by adding your name.
 
-<?php echo $summary; ?>
+Our goal is to reach <?php echo $signatures; ?> signatures - to get there, we need your support. You can read more and sign the petition here: <?php echo $url; ?>
 
-When you sign and share the petition, you may become eligible for a scholarship.
 
-Head over to DoSomething.org to sign the petition: <?php echo $url; ?>
+Thanks!
+<?php echo $first_name; ?>
