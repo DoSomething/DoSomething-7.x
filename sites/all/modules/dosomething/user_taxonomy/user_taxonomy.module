@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * Implements hook_flush_caches().
+ *
+ * Ensure the taxonomy tree is properly assembled.
+ */
+function user_taxonomy_flush_caches() {
+  $taxonomy = module_invoke_all('user_taxonomy_terms');
+
+  $vocabulary = taxonomy_vocabulary_machine_name_load('user_tags');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+
+  // assume a flat structure
+  foreach ($tree as $item) {
+    if (($pos = array_search($item->name, $taxonomy)) !== FALSE) {
+      unset($taxonomy[$pos]);
+    }
+  }
+
+  foreach ($taxonomy as $term) {
+    $insert = (object) array(
+      'vid' => $vocabulary->vid,
+      'name' => $term,
+    );
+    taxonomy_term_save($insert);
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ *
+ * This function is intended to be used to add a permanent tag to
+ * a user account.
+ *
+ * For this reason, it will never support the 'remove' portion of
+ * the array.
+ */
+function user_taxonomy_user_insert(&$edit, $account, $category) {
+  $taxonomy = module_invoke_all('user_taxonomy_insert', $account);
+
+  user_taxonomy_tag($account, array('add' => $taxonomy));
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function user_taxonomy_user_login(&$edit, $account) {
+  $taxonomy = module_invoke_all('user_taxonomy_login', $account);
+
+  user_taxonomy_tag($account, $taxonomy);
+  user_save($account);
+}
+
+function user_taxonomy_tag($account, $tags) {
+  // make some arrays and stuff
+  if (isset($tags['add']) && !is_array($tags['add'])) $tags['add'] = array($tags['add']);
+  if (isset($tags['remove']) && !is_array($tags['remove'])) $tags['remove'] = array($tags['remove']);
+
+  // get the current user flags
+  $fields = field_get_items('user', $account, 'field_user_tags');
+
+  // make a pretty array of term=>delta so we can easily unset stuff later
+  $tids = array();
+  foreach ($fields as $delta => $field) {
+    $tids[$field['tid']] = $delta;
+  }
+
+  // add taxonomy
+  foreach ($tags['add'] as $add) {
+    $tid = taxonomy_get_term_by_name($add, 'user_tags');
+    $tid = array_shift($tid)->tid;
+    if (!isset($tids[$tid])) {
+      $account->field_user_tags[LANGUAGE_NONE][] = array('tid' => $tid);
+    }
+  }
+
+  // remove taxonomy
+  foreach ($tags['remove'] as $remove) {
+    $tid = taxonomy_get_term_by_name($remove, 'user_tags');
+    $tid = array_shift($tid)->tid;
+    if (isset($tids[$tid])) {
+      unset($account->field_user_tags[LANGUAGE_NONE][$tids[$tid]]);
+    }
+  }
+  // re-index the array
+  $account->field_user_tags[LANGUAGE_NONE] = array_values($account->field_user_tags[LANGUAGE_NONE]);
+}
+
+

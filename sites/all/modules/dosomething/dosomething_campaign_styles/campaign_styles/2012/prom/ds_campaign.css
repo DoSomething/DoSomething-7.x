@@ -131,7 +131,7 @@ div[role="main"] {
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
-        width: 100%; }
+        width: 70%; }
     .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
       margin-bottom: 0.5em; }
       .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
@@ -169,10 +169,8 @@ div[role="main"] {
   margin-bottom: 0; }
 
 #campaign-opt-in {
-  position: absolute;
-  left: 15px;
-  bottom: 15px;
-  width: 250px; }
+  padding-left: 20px;
+  margin-top: 0px; }
 
 .panel-row-ad-quick-info .pane-title {
   font-size: 35px;
@@ -453,3 +451,7 @@ img {
 #slideshow {
   margin: 20px auto;
   display: block; }
+
+.pane-campaign-sign-up #edit-actions {
+  left: 276px;
+  bottom: 20px !important; }

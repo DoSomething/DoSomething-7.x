@@ -1,0 +1,73 @@
+body
+{
+        margin: 0px;
+        padding: 0px;
+        background: #f1f1f1;
+        max-height: 350px;
+        overflow: auto;
+}
+
+ul{
+        clear: both; 
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+}
+
+ul li
+{
+        display: block;
+        clear: both;
+        padding: 5px;
+        min-height:60px;
+        border-bottom: 1px solid #808080;
+}
+
+ul li:hover {
+        background: #f8f8f8;
+        cursor: pointer;
+}
+
+img {
+        float: left;
+        margin-right: 5px;
+}
+
+.ui-dialog.dialog-ui-friends-birthdays .ui-dialog-title
+{
+        display: inline-block;
+        background: #3B5998;
+        padding: 5px;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: Verdana;
+        font-size: 14px;
+        height: 30px;
+}
+
+.ui-dialog.dialog-ui-friends-birthdays .ui-dialog-titlebar {
+    display: inline-block;
+    background: #3B5998;
+    padding: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 14px;
+    height: 30px;
+}
+
+.platform_dialog_header{background-color:#6d84b4;border:1px solid #3b5998}
+.platform_dialog_header{color:#fff;font-size:14px;font-weight:bold;padding:5px}
+.platform_dialog_header {background:#6D84B4 url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 5px; padding: 5px; padding-left: 25px;}
+h1, h2, h3, h4, h5, h6{font-size:13px;color:#fff;margin:0;padding:0;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;}
+
+a {
+  color: #0000ee;
+  text-decoration: none;
+}
+a:visited {
+  color: #0000aa;
+}
+a:hover, a:active {
+  outline: 0;
+}

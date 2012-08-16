@@ -11,7 +11,7 @@ function dosomething_school_menu() {
   $items['ds_school/autocomplete'] = array(
     'title' => 'DoSomething School Autocomplete',
     'page callback' => 'dosomething_school_autocomplete_callback',
-    'page arguments' => array(2, 3),
+    'page arguments' => array(2, 3, 4),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -37,6 +37,26 @@ class dosomething_school_state_filter extends views_handler_filter_in_operator {
       return;
     }
     $this->value_options = _dosomething_school_get_states();
+  }
+}
+
+/**
+ * Views Field handler to convert the numeric type field into text
+ *
+ */
+class dosomething_school_handler_field_type extends views_handler_field {
+
+  function render($values) {
+    $type = $values->{$this->field_alias};
+    $types = array(
+      1 => t('High School'),
+      2 => t('College or later'),
+    );
+
+    if (isset($types[$type])) {
+      return $types[$type];
+    }
+    return '';
   }
 }
 
@@ -93,6 +113,21 @@ function dosomething_school_views_data() {
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_numeric',
+    ),
+  );
+
+  $data['ds_school']['type'] = array(
+    'title' => t('Type'),
+    'help' => t('The type of school - secondary or postsecondary.'),
+    'field' => array(
+      'handler' => 'dosomething_school_handler_field_type',
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
     ),
   );
 
@@ -268,6 +303,7 @@ function _dosomething_school_get_states() {
 function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
   $default_state = '--';
   $default_school = '';
+  $default_type = 1;
   if (empty($items[0]['target_id'])) {
 	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
     // Try to use the profile's state.
@@ -279,6 +315,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   // TODO: Why use the target_type when we're hardcoding it to only work with schools?
   elseif ($entity = entity_load_single($field['settings']['target_type'], $items[0]['target_id'])) {
     $default_state = $entity->state;
+    $default_type = $entity->type;
     $default_school = dosomething_school_make_label($entity);
   }
 
@@ -299,12 +336,23 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#required' => $instance['required'],
     '#default_value' => $default_state,
   );
+  $element['type'] = array(
+    '#title' => t('Level'),
+    '#type' => 'select',
+    '#options' => array(
+      1 => t('High School'),
+      2 => t('College or later'),
+    ),
+    '#default_value' => $default_type,
+    '#required' => TRUE,
+  );
+
   $element['name'] = array(
     '#title' => t('School Name'),
     '#type' => 'textfield',
     '#maxlength' => 1024,
     '#default_value' => $default_school,
-    '#autocomplete_path' => 'ds_school/autocomplete/' . $default_state,
+    '#autocomplete_path' => "ds_school/autocomplete/$default_type/$default_state",
     '#required' => $instance['required'],
     '#size' => $instance['widget']['settings']['size'],
   );
@@ -376,6 +424,7 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
           'city' => $element['city']['#value'],
           'state' => $element['state']['#value'],
           'zip' => $element['zip']['#value'],
+          'type' => $element['type']['#value'],
           # TODO I don't think we can or should populate the rest of these:
           // 'gsid' => NULL,
           // 'level' => NULL,
@@ -400,7 +449,7 @@ function dosomething_school_make_label($entity) {
   return "$entity->name ($entity->sid)";
 }
 
-function dosomething_school_autocomplete_callback($state, $name) {
+function dosomething_school_autocomplete_callback($type, $state, $name) {
   global $user;
 
   $entity_type = 'ds_school';
@@ -410,6 +459,7 @@ function dosomething_school_autocomplete_callback($state, $name) {
     ->propertyCondition('name', $name, 'CONTAINS')
     // Only let them see schools owned by themselves or admin.
     ->propertyCondition('uid', array(1, $user->uid), 'IN')
+    ->propertyCondition('type', $type)
     // Put the user's schools ahead of the admin's.
     ->propertyOrderBy('uid', 'DESC')
     ->propertyOrderBy('name')

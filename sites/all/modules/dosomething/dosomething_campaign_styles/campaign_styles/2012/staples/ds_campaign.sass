@@ -701,6 +701,9 @@ body.page-node-722952
   background-color: #494949 !important
   background-image: none !important
   
+  .node-type-campaign-report-back .panel-row-flexible-top
+    margin: 0 !important
+  
   .panel-row-logos
     width: 797px
   
@@ -787,6 +790,7 @@ body.page-node-722952
       text-transform: uppercase
       font-family: din-web
       font-weight: 600
+      margin-top: 0
     
   #webform-component-last-name
     label
@@ -1001,6 +1005,10 @@ body.page-node-722954
   .panel-row-logos
     width: 797px
   
+  // hide the campaign-wide share buttons on this page
+  .panel-top-right-social
+    display: none
+  
   // for confirmation popup
   .ui-dialog
     overflow: visible
@@ -1175,3 +1183,14 @@ body.page-node-722954
 #node-722264
   .fb-social-comments-plugin
     display: none
+
+// hide social buttons on select pages
+.page-node-722952, .page-node-722266
+  .panel-pane.pane-campaign-social
+    display: none  
+     
+.report-back-teaser
+  p
+    padding: 10px
+    width: 80% 
+    font-size: 14px 

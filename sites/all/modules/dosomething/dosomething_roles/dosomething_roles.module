@@ -710,6 +710,7 @@ function dosomething_roles_get_user_percentage($uid) {
   $percent = 0;
   switch ($current_role) {
     case 'varsity':
+    case 'alumni':
       $percent = 100;
       break;
     case 'active member':

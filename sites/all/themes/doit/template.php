@@ -40,6 +40,10 @@ function doit_preprocess_page(&$variables) {
   drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
   drupal_add_js($theme_path . '/js/doit-select.js', array('scope' => 'footer'));
 
+ // Add Social Tracking for Google Analytics 
+  drupal_add_js($theme_path . '/js/ga_social_tracking.js');
+
+
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
   if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && arg(0) !== 'admin') {
     // Add additional css class to 'Talk to Us' footer menu item.
@@ -699,8 +703,7 @@ function doit_search_api_page_result(array $variables) {
     }
   }
 
-  $output = '<h3>' . ($url ? l($name, $url['path'], $url['options']) : check_plain($name)) . "</h3>\n";
-
+  $output = '';
   // We need to insert images into the search results so we're mapping the
   // content type to the image field we want to use. For now we're only
   // concerned about a few content types. This list may grow as needed.
@@ -713,12 +716,21 @@ function doit_search_api_page_result(array $variables) {
   );
   if (isset($item->type) && in_array($item->type, array_keys($type_field_map))) {
     if (isset($item->{$type_field_map[$item->type]}) && !empty($item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0])) {
-      $output .= theme('image_formatter', array('item' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0], 'image_style' => 'search_results_thumbnail'));
+      $output .= theme('image_formatter', array(
+        'item' => array('uri' => $item->{$type_field_map[$item->type]}[LANGUAGE_NONE][0]['uri']),
+        'image_style' => 'search_results_thumbnail'
+      ));
     }
     else {
       $output .= theme('image', array('path' => drupal_get_path('theme', 'doit') . '/css/images/default-search-image.jpg', 'height' => '60px', 'width' => '60px'));
     }
   }
+  else {
+     $output .= theme('image', array('path' => drupal_get_path('theme', 'doit') . '/css/images/default-search-image.jpg', 'height' => '60px', 'width' => '60px'));
+  }
+
+  // Fix for bug / request #955: Move title next to image
+  $output .= '<h3>' . ($url ? l($name, $url['path'], $url['options']) : check_plain($name)) . "</h3>\n";
 
   if ($text) {
     $output .= $text;

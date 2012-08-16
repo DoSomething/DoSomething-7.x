@@ -11,7 +11,89 @@ function dosomething_school_drush_command() {
     'aliases' => array('dsgsl'),
   );
 
+  $items['dosomething-school-postsecondary-load'] = array(
+    'description' => "Parse the USDE postsecondary institution CSV data and load it into the database.",
+    'arguments' => array(
+      'file' => 'Path to the Accreditation*.csv file to import.',
+    ),
+    'bootstrap' => DRUSH_BOOTSTRAP_FULL,
+    'aliases' => array('dspsl'),
+  );
+
   return $items;
+}
+
+function drush_dosomething_school_postsecondary_load($path) {
+  if (empty($path)) {
+    drush_set_error('DRUSH_MISSING_FILE_PARAM', 'No accreditation file was supplied.');
+    return;
+  }
+
+  if (!realpath($path)) {
+    // a relative path was probably passed. try resolving it with that.
+    $path = drush_cwd() . '/' . $path;
+    if (!file_exists($path)) {
+      drush_set_error('DRUSH_BAD_FILE_PARAM', "No file could be found at $path");
+      return;
+    }
+  }
+
+  $file = new SplFileObject($path);
+  $total = count(file($file)) - 1;
+  // first line contains field names
+  $map = $file->fgetcsv();
+
+  $count = 0;
+  $row = $file->fgetcsv();
+  // for some reason the csv seems to produce an array with one key and a null
+  // val after the last record, so consider that case to mark EOF.
+  while ($file->valid() && (1 !== count($row))) {
+    // If we don't have 25 records, something broke in the csv parsing. bail.
+    if (25 !== count($row)) {
+      drush_set_error('DRUSH_BAD_CSV_DELIMITING', dt("Bad record record count on line @count. Likely a problem with the csv delimiting/escaping in the source file.", array('@count' => $count + 2)));
+      return;
+    }
+    $row = array_combine($map, $row);
+
+    $record = array();
+    $record['school_id'] = $record['gsid'] = str_pad($row['Institution_ID'], 9, '9', STR_PAD_LEFT);
+    $record['uid'] = 1;
+    $record['name'] = substr($row['Institution_Name'], 0, 127);
+    $record['street'] = $row['Institution_Address'];
+    $record['city'] = $row['Institution_City'];
+    $record['state'] = $row['Institution_State'];
+    $record['zip'] = trim($row['Institution_Zip'], '"');
+    $record['level'] = 'Postsecondary';
+    $record['lat'] = $record['lon'] = '';
+    $record['notes'] = $row['Program_Name'];
+    // Indicate this is a postsecondary school.
+    $record['type'] = 2;
+
+    // Check if there's an existing record...
+    $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $record['gsid']), TRUE);
+    $school = reset($schools);
+    if ($school) {
+      foreach ($record as $key => $value) {
+        $school->$key = $value;
+      }
+    }
+    else {
+      $school = $record;
+    }
+    entity_save('ds_school', $school);
+
+    $count++;
+    print "\rImporting records... ($count/$total)";
+    if ($count % 1000 == 0) {
+      entity_get_controller('ds_school')->resetCache();
+    }
+
+    // queue up the next row
+    $row = $file->fgetcsv();
+  }
+
+  drush_print(dt('Imported @count records.', array('@count' => $count)));
+  return;
 }
 
 function drush_dosomething_school_load() {
@@ -71,8 +153,11 @@ function drush_dosomething_school_load() {
       $row['school_id'] = $row['id'];
       unset($row['id']);
 
+      /// Indicate this is a secondary school.
+      $row['school_type'] = 1;
+
       // Check if there's an existing record...
-      $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid'], 'state' => $row['state']));
+      $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid']), TRUE);
       $school = reset($schools);
       if ($school) {
         foreach ($row as $key => $value) {
@@ -84,12 +169,9 @@ function drush_dosomething_school_load() {
       }
       entity_save('ds_school', $school);
 
-      $count++;
-      if ($count % 10000 == 0) {
-        print $count;
-      }
-      else if ($count % 1000 == 0) {
-        print '.';
+      print "\rImported $count records.";
+      if ($count % 1000 == 0) {
+        entity_get_controller('ds_school')->resetCache();
       }
     }
 
@@ -105,4 +187,3 @@ function drush_dosomething_school_load() {
   drush_print(dt('Imported @count records.', array('@count' => $count)));
 
 }
-

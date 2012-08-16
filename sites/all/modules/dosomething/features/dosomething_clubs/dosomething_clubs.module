@@ -120,6 +120,7 @@ class DosomethingClubsMailSystem implements MailSystemInterface {
  */
 function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form_id) {
   $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['state']['#title'] = 'What state is your school in?';
+  $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['type']['#title'] = 'What kind of school is it?';
   $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['name']['#title'] = 'School name';
   drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/club-autofill.js');
   global $user;

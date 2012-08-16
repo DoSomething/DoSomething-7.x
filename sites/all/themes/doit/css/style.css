@@ -1904,6 +1904,17 @@ ul.hover-image li:first-child {
   display: none;
 }
 
+.pane-campaign-sign-up #edit-actions {
+  position: absolute;
+  bottom: 26px !important;
+}
+
+#campaign-opt-in {
+  font-size: 11px;
+  line-height: 1.2em;
+  padding-top: 25px !important;
+}
+
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
   height: 195px;
 }
@@ -3426,6 +3437,84 @@ div[role=main] {
   min-height: 752px;
 }
 
+.headline-404, .subhead-404, .copy-404, .newshead-404, .news-404 {
+  text-align: center;
+  line-height: 1em;
+  font-family: din-web;
+}
+
+.headline-404 {
+  font-size: 42px;
+  margin: 15px 0 10px 0;
+}
+
+.subhead-404 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.copy-404 {
+  font-size: 18px;
+}
+
+.newshead-404 {
+  font-size: 36px;
+  margin: 30px 0 5px 0;
+}
+
+.news-404 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.news-404 input {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+.news-404 input[type="submit"] {
+  background: red;
+  border: none;
+  color: white;
+  margin-top: 6px;
+  padding: 4px 6px;
+  font-size: 16px;
+}
+.news-404 input[type="text"] {
+  border: 3px solid #d9d9d9;
+  padding: 6px;
+  font-size: 13px;
+  width: 225px;
+  margin-top: 4px;
+}
+
+.page-node-721535 h1.title {
+  display: none;
+}
+.page-node-721535 h2.pane-title {
+  display: none;
+}
+.page-node-721535 .form-type-searchfield label {
+  display: none;
+}
+.page-node-721535 .pane-search-form {
+  text-align: center;
+}
+.page-node-721535 #edit-submit {
+  background: gray;
+  border: none;
+  padding: 6px 8px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  color: white;
+}
+.page-node-721535 #edit-keys {
+  border: 1px solid lightgray;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
 #breadcrumb {
   font-size: 0.833em;
   line-height: 2.4em;
@@ -3678,6 +3767,9 @@ h2.block-title, h2.pane-title {
 
 .android-app-img {
   padding: 10px 0;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none important;
 }
 
 #block-menu-menu-footer {
@@ -4793,6 +4885,11 @@ h2.block-title, h2.pane-title {
   margin-top: 12px;
 }
 
+.form-item-pass .ds-registration-form-required {
+  left: 205px;
+  top: -23px;
+}
+
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
   right: -400px;
   top: -18px;
@@ -5116,6 +5213,10 @@ comments.fb_iframe_widget {
   bottom: 5px;
   right: 0;
   padding-right: 10px;
+}
+
+.about-us-page .apps-grid .apps-box {
+  height: 226px !important;
 }
 
 .pane-project-photo-slider-panel-pane-1 {
@@ -5578,6 +5679,8 @@ h3 .stuff-header {
 }
 .page-search .content .search-result {
   margin-bottom: 15px;
+  clear: both;
+  min-height: 70px;
 }
 .page-search .content .search-result h3 {
   font-size: 21px;
@@ -5585,6 +5688,7 @@ h3 .stuff-header {
 .page-search .content .search-result img {
   margin-right: 12px;
   margin-bottom: 12px;
+  float: left;
 }
 
 .page-node-picks .pane-profile-panel-pane-3 .something-description .views-field-title, .page-node-picks .pane-profile-panel-pane-3 .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .page-node-picks .pane-profile-panel-pane-3 .something-description a,
@@ -5804,4 +5908,24 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 }
 .page-club-members .view-club-members .views-row {
   margin-bottom: 12px;
+}
+
+.facebook-plugin {
+  width: 50px;
+}
+
+#block-block-7 {
+  background-image: -webkit-gradient(linear,0% 50%,100% 50%,color-stop(90%,#EFEFEF),color-stop(100%,#D4D2D1));
+  background-image: -webkit-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
+  background-image: -moz-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
+  background-image: -o-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
+  background-image: linear-gradient(left,#EFEFEF 90%,#D4D2D1);
+  background-color: #EFEFEF;
+  margin-right: -5px;
+  position: relative;
+  top: 5px;
+  color: black;
+  padding: 10px 10px;
+  font-size: 12pt;
+  border-bottom: 1px solid #D4D2D1;
 }

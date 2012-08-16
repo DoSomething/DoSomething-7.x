@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_flush_caches().
+ *
+ * Ensure the taxonomy tree is properly assembled.
+ */
+function user_taxonomy_flush_caches() {
+  $taxonomy = module_invoke_all('user_taxonomy_terms');
+  print_r($taxonomy);
+
+  // do stuff with the taxonomy array
+}
+
+/**
+ * Implements hook_user_presave().
+ */
+function user_taxonomy_user_presave(&$edit, $account, $category) {
+  $taxonomy = module_invoke_all('user_taxonomy');
+  print_r($taxonomy);
+}

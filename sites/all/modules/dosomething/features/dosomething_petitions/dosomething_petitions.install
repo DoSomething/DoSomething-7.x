@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * implements hook_schema().
+ */
+function dosomething_petitions_schema() {
+  $schema = array();
+
+  $schema['dosomething_petitions_invites'] = array(
+    'description' => 'stores invites to sign a petition',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'the nid of the petition.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'uid' => array(
+        'description' => 'the uid of the user filling out the form.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'invite' => array(
+        'description' => 'the invited cell or email.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Install petitions schema
+ */
+function dosomething_petitions_update_7100() {
+  drupal_install_schema('dosomething_petitions');
+}

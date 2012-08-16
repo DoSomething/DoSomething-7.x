@@ -86,6 +86,18 @@ function dosomething_school_schema() {
         'type' => 'float',
         'not null' => FALSE,
       ),
+      'type' => array(
+        'description' => 'Indicates whether the record represents a secondary (1) or postsecondary (2) institution.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'length' => 1,
+        'unsigned' => TRUE,
+      ),
+      'notes' => array(
+        'description' => 'Any additional, general notes about the record.',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
     ),
     'primary key' => array('sid'),
     'unique keys' => array(
@@ -95,6 +107,7 @@ function dosomething_school_schema() {
       // Deliberately ordered so that fixed length fields are up front.
       'uid_state_name' => array('uid', 'state', 'name'),
       'school_id' => array('school_id'),
+      'type' => array('type'),
     ),
     'foreign keys' => array(
       'users' => array(
@@ -134,4 +147,33 @@ function dosomething_school_update_7001() {
     )
   );
   db_add_index('ds_school', 'school_id', array('school_id'));
+}
+
+/**
+ * Adds a field to identify school type, for differentiating secondary from
+ * postsecondary institutions (and our two data sources, respectively).
+ *
+ * Also add a general notes field - just a bucket for dumping stuff.
+ */
+function dosomething_school_update_7002() {
+  db_add_field('ds_school', 'type',
+    array(
+      'description' => 'Indicates whether the record represents a secondary (1) or postsecondary (2) institution.',
+      'type' => 'int',
+      'not null' => TRUE,
+      'length' => 1,
+      'unsigned' => TRUE,
+      'initial' => 1,
+    )
+  );
+
+  db_add_index('ds_school', 'type', array('type'));
+
+  db_add_field('ds_school', 'notes',
+    array(
+      'description' => 'Any additional, general notes about the record.',
+      'type' => 'text',
+      'not null' => TRUE,
+    )
+  );
 }

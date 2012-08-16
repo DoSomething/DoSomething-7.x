@@ -1,0 +1,7 @@
+name = "DoSomething Merge"
+description = "Merge SMS accounts."
+core = 7.x
+dependencies[] = sms_mobile_commons
+dependencies[] = profile2
+package = DoSomething
+

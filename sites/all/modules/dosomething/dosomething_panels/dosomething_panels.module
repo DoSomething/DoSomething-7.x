@@ -9,8 +9,8 @@
  * Implements hook_ctools_plugin_directory().
  */
 function dosomething_panels_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'panels' && $plugin == 'layouts') {
-    return 'plugins/layouts';
+  if (in_array($module, array('panels', 'ctools'))) {
+    return "plugins/$plugin";
   }
 }
 

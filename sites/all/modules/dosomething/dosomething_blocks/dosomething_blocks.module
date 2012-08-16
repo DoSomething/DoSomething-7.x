@@ -415,12 +415,12 @@ function dosomething_blocks_social_node_plugins($url = NULL, $modules = array(),
     '#theme' => 'dosomething_blocks_social_node_plugins',
   );
 
+  $path = NULL;
   if ($url) {
     $path_array = explode($base_url . '/', $url);
-    $path = $path_array[1];
-  }
-  else {
-    $path = NULL;
+    if (isset($path_array[1])) {
+      $path = $path_array[1];
+    }
   }
 
   // Get the current path.

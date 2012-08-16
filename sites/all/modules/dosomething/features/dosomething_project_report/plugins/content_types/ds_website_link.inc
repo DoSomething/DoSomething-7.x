@@ -36,6 +36,7 @@ function dosomething_project_report_website_link_render($subtype, $conf, $args, 
 	$wrapper = entity_metadata_wrapper($entity_type, $args[0]);
 	$entity_id = $wrapper->getIdentifier();
 	$bundle = $wrapper->getBundle();
+	$output = array();
 
 	if ($entity_type == 'webform_submission_entity' && $bundle == 'project_report')
 	{
