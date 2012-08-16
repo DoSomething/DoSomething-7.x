@@ -24,7 +24,7 @@ function remove_fb_bday_choice() {
         {
          $('#dosomething-robocalls-submitted-message label p').html("Wait!");
          $('#dosomething-robocalls-submitted-message label h2').html('This phone number has already been called today.');
-         $('#dosomething-robocalls-submitted-message div.separator').prepend('<div class="robocalls-awesome-and-sharing" style="font-size: 13pt; font-weight: normal; margin-bottom: 15px;">This number has already been called for this date.  Why not talk with them on Facebook?</div>');
+         $('#dosomething-robocalls-submitted-message div.separator').prepend('<div class="robocalls-awesome-and-sharing" style="font-size: 13pt; font-weight: normal; margin-bottom: 15px;">This number has already been called for this date.  Connect with them on Facebook?</div>');
         }
 
         $('#robocalls-twitter-button')

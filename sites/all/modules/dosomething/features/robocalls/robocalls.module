@@ -326,7 +326,7 @@ function robocalls_call_submit(&$form, &$form_state) {
    if ($form_state['already_called'])
    {
     $sid = $form_state['values']['details']['sid'];
-    entity_delete('webform_submission_entity', array((int) $sid));
+    entity_delete('webform_submission_entity', $sid);
    }
 
    /**
