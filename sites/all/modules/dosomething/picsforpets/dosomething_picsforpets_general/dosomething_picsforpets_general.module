@@ -392,6 +392,16 @@ function dosomething_picsforpets_general_form_webform_client_form_3_alter(&$form
 function dosomething_picsforpets_general_preprocess_page(&$variables) {
   $current_path = current_path();
 
+  if ($current_path == 'pics-for-pets') {
+    // Query database for most shared pet
+    $result = db_query('SELECT entity_id FROM field_data_field_fb_app_share_count ORDER BY field_fb_app_share_count_value DESC');
+    foreach($result as $row) {
+      $sid = $row->entity_id;
+      break;
+    }
+    drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/frontpage.js');
+    drupal_add_js(array('dosomething_picsforpets_general' => array('most_shared' =>  $sid)), 'setting');
+  }
   // Add the email address below the  questions title.
   if ($current_path == 'pics-for-pets/questions') {
     $variables['title_suffix']['dosomething_picsforpets_general_email'] = array(
