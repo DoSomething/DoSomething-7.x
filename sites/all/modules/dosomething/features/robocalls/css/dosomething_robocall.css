@@ -42,7 +42,7 @@ div.views-field-nothing h3 {
 	margin-top: -130px;
 }
 
-div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel { width: 150px; }
+div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel { width: 170px; }
 div.robocalls-call-information .webform-component, div.robocalls-call-information  .form-item { clear: both; margin-bottom: 10px; }
 div.robocalls-call-information .form-item label:first-child, .webform-component label:first-child {
 	float: left;
@@ -294,11 +294,10 @@ div.robocall-flag:after, .main-robocall-flag:after {
 div.views-field-nothing a.go-button {
 	position: absolute;
 	z-index: 0;
-	bottom: 3px;
 	right: 3px;
 	height: 22px;
 	margin-top: 10px;
-	bottom: 10px;
+	bottom: 3px;
 }
 
 div.views-field-nothing p {
@@ -397,7 +396,9 @@ div.robocalls-call-information .webform-component, div.robocalls-call-informatio
 #edit-submitted-field-celeb-date-und-0-value { margin-top: -50px; }
 .form-item.form-type-date-select.form-item-submitted-field-celeb-date-und-0-value { border: none; }
 #edit-submitted-field-celeb-date { height: 60px; width: 300px; float: left; margin-top: -20px; }
-#edit-submitted-field-celeb-date .fieldset-wrapper { text-align: right;}
+#edit-submitted-field-celeb-date .fieldset-wrapper { text-align: right;
+margin-left: 35px;
+width: 275px;}
 #edit-submit {
 bottom: 10px;
 }
@@ -405,7 +406,7 @@ bottom: 10px;
 #edit-submitted-field-celeb-date legend {
 	font-size:12px;
 	font-family: "Trebuchet MS", sans-serif;
-	padding-left:20px;
+	padding-left:30px;
 }
 
 .field-type-text {
@@ -418,8 +419,21 @@ bottom: 10px;
 
 #edit-submitted-field-celeb-date { display: none;}
 .form-item-field-celeb-send-now-und { display: none; }
+
+.form-item-field-celeb-send-now-und { padding-top: 8px; }
+
 div#block-menu-block-2 ul { background: #F6EED2; }
-select { background: white; padding: 5px 10px;}
+/*
+div#edit-submitted-field-celeb-date select {
+	background: transparent;
+	border: 0px;
+	-webkit-appearance: none;
+	border: 1px solid #000000;
+	border-radius: 0px;
+}
 
-
-
+div#edit-submitted-field-celeb-date .form-item.form-type-select {
+	background: white;
+	margin-left: -6px;
+}
+*/
