@@ -1,13 +1,15 @@
 (function ($) {
   /**
-   * Our school name look up widget needs to change its URL when the state
-   * changes.
+   * Our school name look up widget needs to change its URL when the selects
+   * change.
    */
   Drupal.behaviors.dsSchoolAutocomplete = {
     attach: function (context) {
       $('.field-widget-dosomething-school-autocomplete:not(.dsschool-processed)', context).each( function(index, element) {
         var $wrapper = $(element)
-          , $state = $wrapper.find('select')
+          , $selects = $wrapper.find('select')
+          , $state = $wrapper.find('select#edit-field-school-reference-und-0-target-id-state')
+          , $type = $wrapper.find('select#edit-field-school-reference-und-0-target-id-type')
           , $schoolName = $wrapper.find('input.form-autocomplete')
 
         // If they enter a new school name we need to have them provide
@@ -29,8 +31,8 @@
         // school. NOTE: if we're using form states this might not be necessary.
         schoolHandler();
 
-        // When the state select changes we need to update the autocomplete URL.
-        $state.change(function(e) {
+        // When either select changes, we need to update the autocomplete URL.
+        $selects.change(function(e) {
           $schoolName
             .unbind() // Unbind the previous autocomplete handlers.
             .val('')  // Empty its value.
@@ -42,7 +44,7 @@
                 // Mark as not processed.
                 .removeClass('autocomplete-processed')
                 // Update autocomplete URL.
-                .val(val.substr(0, val.lastIndexOf('/') + 1) + $state.val());
+                .val(val.match('.*autocomplete/') + $type.val() + '/' + $state.val());
               // Remove the ARIA element.
               $('#' + this.id + '-autocomplete-aria-live').remove();
             })
