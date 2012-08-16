@@ -258,8 +258,8 @@ div.robocall-flag {
 	left: -7px;
 	color: #ffffff;
 	text-transform: uppercase;
-	font-size: 20pt;
-	line-height: .9;
+	font-size: 17pt;
+	line-height: 1;
 	font-family: din-web;
 }
 
@@ -272,8 +272,8 @@ div.robocall-flag {
 	margin-left: -7px;
 	color: #ffffff;
 	text-transform: uppercase;
-	font-size: 20pt;
-	line-height: .9;
+	font-size: 17pt;
+	line-height: 1;
 	height: 24px;
 	font-family: din-web;
 }
