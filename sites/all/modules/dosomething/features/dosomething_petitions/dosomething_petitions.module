@@ -184,9 +184,19 @@ function dosomething_petitions_email_form_submit($form, $form_state) {
     $email = $form_state['values']['email_'.$i];
     if (valid_email_address($email)) {
       drupal_mail('dosomething_petitions', 'petition_invite', $email, $language, $params);
+      dosomething_petitions_store_email($node->nid, $user->uid, $email);
     }
   }
   drupal_set_message(t('Great! We\'ll send them a link to this petition. Share with more friends below.'));
+}
+
+function dosomething_petitions_store_email($nid, $uid, $invite) {
+  $data = array(
+    'nid' => $nid,
+    'uid' => $uid,
+    'invite' => $invite,
+  );
+  drupal_write_record('dosomething_petitions_invites', $data);
 }
 
 /**
