@@ -79,6 +79,7 @@ input.robocalls-fb-find-friends-birthdays {
 	font-weight: bold;
 	color: #ffffff;
 	margin-bottom: 10px;
+	margin-left: 15px;
 }
 
 div#edit-fb-container {
@@ -331,12 +332,12 @@ div.robocalls-awesome-and-sharing a {
 h1#page-title {
 	margin: 0px 0px 10px;
 	padding: 0px;
-	background: #D81F2A;
+	/*background: #D81F2A;
 	width: 797px;
 	margin-left: -30px;
 	margin-top: -30px;
 	color: #F6EED2;
-	padding: 15px 30px 15px;
+	padding: 15px 30px 15px;*/
 }
 
 .jcarousel-skin-default .jcarousel-container-horizontal {
@@ -415,25 +416,33 @@ bottom: 10px;
 
 #or-send-now-button { margin-bottom: 0px; }
 
-.robocalls-submit { margin-left: 85px; }
+.robocalls-submit { margin-left: 100px; }
 
-#edit-submitted-field-celeb-date { display: none;}
-.form-item-field-celeb-send-now-und { display: none; }
+/*#edit-submitted-field-celeb-date { display: none;}
+.form-item-field-celeb-send-now-und { display: none; }*/
 
-.form-item-field-celeb-send-now-und { padding-top: 8px; }
+.form-item-field-celeb-send-now-und { padding-left: 15px; }
 
 div#block-menu-block-2 ul { background: #F6EED2; }
-/*
+
 div#edit-submitted-field-celeb-date select {
 	background: transparent;
 	border: 0px;
 	-webkit-appearance: none;
-	border: 1px solid #000000;
+	border: 1px solid #eaeaea;
 	border-radius: 0px;
+	width:50px;
+	padding: 3px;
+	background:url(/sites/all/modules/dosomething/features/robocalls/images/dropdown-arrow.png) 100% 50% no-repeat;
+
 }
 
 div#edit-submitted-field-celeb-date .form-item.form-type-select {
 	background: white;
-	margin-left: -6px;
 }
-*/
+
+div#edit-submitted-field-celeb-date select#edit-submitted-field-celeb-date-und-0-value-year { width: 58px; }
+
+div.view-id-cause_its_your_birthday h3 { font-size: 16pt; }
+
+div#submitted-field-celeb-date-add-more-wrapper { margin-top: -10px; }
