@@ -80,10 +80,18 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
        '#weight' => 6,
   	);
 
-    $form['extras']['fb_container']['connect_with_facebook'] = array(
+    $form['extras']['fb_container']['fb_button'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('robocalls-fb-button-container')
+      ),
+      '#weight' => 2,
+    );
+
+    $form['extras']['fb_container']['fb_button']['connect_with_facebook'] = array(
        '#type' => 'button',
        '#value' => t("Share on Facebook"),
-       '#weight' => 6,
+       '#weight' => 2,
        '#attributes' => array(
           'class' => array('robocalls-fb-find-friends-birthdays'),
        )
@@ -144,11 +152,12 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
 
     if (isset($term->field_timed_call) && !empty($term->field_timed_call)) {
       $date = (strtotime($term->field_timed_call[LANGUAGE_NONE][0]['value']) + 18000);
+      $label = $term->field_timed_call_label[LANGUAGE_NONE][0]['value'];
       $predate = date('Y-m-d H:i:00', $date);
       $u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value'] = $predate;
       $form['pointless'] = array(
         '#type' => 'hidden',
-        '#value' => date('F j, Y', $date),
+        '#value' => ($label ? "{$label} - " : '') . date('F j, Y', $date),
         '#attributes' => array('id' => array('pointless-hidden-box'))
       );
       $u['field_celeb_date']['#attributes']['class'] = array('robocalls-timed-form-times');
@@ -156,7 +165,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
     else
     {
       $form['extras']['fb_container']['field_celeb_send_now'] = $u['field_celeb_send_now'];
-      $form['extras']['fb_container']['field_celeb_send_now']['#weight'] = 0;
+      $form['extras']['fb_container']['field_celeb_send_now']['#weight'] = 1;
       $form['extras']['fb_container']['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
     }
     $u['field_celeb_send_now']['#access'] = FALSE;
@@ -464,7 +473,7 @@ function robocalls_views_pre_render(&$view) {
       $flags['bdays'] = $bdays;
 
       // New Celeb Flag -- Set from information above
-      if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
+      #if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
 
       #$days_before_new_celeb_flag_expires = 1;
       #if ((time() - $latest['stamp']) < ($days_before_new_celeb_flag_expires*60*60*24))

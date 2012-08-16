@@ -19,12 +19,18 @@ function remove_fb_bday_choice() {
         html = popupForm.html();
         replaced = html.replace('#name#', name).replace('#cause#', cause);
 
+        // If we reach the limited number of calls, change the message.
         $('#dosomething-robocalls-submitted-message').html(replaced);
-        if (limit > 0)
-        {
+        if (limit > 0) {
          $('#dosomething-robocalls-submitted-message label p').html("Wait!");
          $('#dosomething-robocalls-submitted-message label h2').html('This phone number has already been called today.');
          $('#dosomething-robocalls-submitted-message div.separator').prepend('<div class="robocalls-awesome-and-sharing" style="font-size: 13pt; font-weight: normal; margin-bottom: 15px;">This number has already been called for this date.  Connect with them on Facebook?</div>');
+         var fbb = $('.robocalls-fb-button-container').html();
+         $('.with-links').html('<p style="clear: both; margin: 20px">' + fbb + '</p>');
+         $('.robocalls-fb-find-friends-birthdays').click(function() {
+            window.open('/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'fbinfo', 'location=no,width=350,height=400,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
+            return false;
+          });
         }
 
         $('#robocalls-twitter-button')
