@@ -1038,7 +1038,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 }
 
 select {
-  background: url('select-down-arrow.png') right center no-repeat, white;
+  background: url('../images/select-down-arrow.png') right center no-repeat, white;
 }
 
 input[type=search] {
@@ -1560,7 +1560,7 @@ body {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('10k-scholarship.png');
+  background-image: url('../images/10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1582,7 +1582,7 @@ body {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('ds-logo.png');
+  background-image: url('../images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1794,7 +1794,7 @@ a.footer-furtography {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
-  background-image: url('close.png');
+  background-image: url('../images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
