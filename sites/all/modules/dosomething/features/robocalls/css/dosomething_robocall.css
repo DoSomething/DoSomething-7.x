@@ -390,9 +390,8 @@ div#robocalls-here-how-it-works {
 div#edit-field-celebrity-chooser { display: none; }
 
 div.ajax-progress {
-	position: absolute;
-	bottom: 5px;
-	right: 20px;
+	margin-top: 50px;
+	margin-left: 90px;
 }
 
 .form-item.date-spacer { display: none; }
