@@ -127,7 +127,16 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
       '#submit' => array('dosomething_picsforpets_shelters_load_more'),
     );
   }
-
+  $form['back'] = array(
+    '#prefix' => '<div>',
+    '#markup' => l('Back', 'pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
+    '#suffix' => '</div>',
+  );
+  $form['next'] = array(
+    '#prefix' => '<div>',
+    '#markup' => l('Next', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
+    '#suffix' => '</div>',
+  );
   return $form;
 }
 
