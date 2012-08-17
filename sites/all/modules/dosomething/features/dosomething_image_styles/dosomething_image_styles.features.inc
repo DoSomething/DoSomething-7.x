@@ -284,6 +284,50 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: petdetail_regular
+  $styles['petdetail_regular'] = array(
+    'name' => 'petdetail_regular',
+    'effects' => array(
+      3 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '300',
+          'height' => '300',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: petdetail_retina
+  $styles['petdetail_retina'] = array(
+    'name' => 'petdetail_retina',
+    'effects' => array(
+      4 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '600',
+          'height' => '600',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported image style: project_gallery_thumb
   $styles['project_gallery_thumb'] = array(
     'name' => 'project_gallery_thumb',
@@ -366,6 +410,50 @@ function dosomething_image_styles_image_default_styles() {
         'data' => array(
           'width' => '120',
           'height' => '120',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: thumbnail_regular
+  $styles['thumbnail_regular'] = array(
+    'name' => 'thumbnail_regular',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '100',
+          'height' => '100',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: thumbnail_retina
+  $styles['thumbnail_retina'] = array(
+    'name' => 'thumbnail_retina',
+    'effects' => array(
+      2 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '200',
+          'height' => '200',
         ),
         'weight' => '1',
       ),
