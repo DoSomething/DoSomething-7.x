@@ -150,7 +150,7 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 
 /**
  * Generic handler that uses field_webform_email and field_webform_mobile
- * combined with the $node values for inserting values into InfusioSoft
+ * combined with the $node values for inserting values into InfusionSoft/Mailchimp
  * and/or Mobile Commons
  */
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
@@ -158,7 +158,10 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
   $mailchimp_group = isset($form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] : NULL;
   
-  $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  //Either use the value of campaign_short_form for campaigns or program_short_form which is for clubs/scholarships/grants etc
+  $email = isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])
+? $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] : $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+
   $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
 
   // make sure all of the required values are set in the node and submission
