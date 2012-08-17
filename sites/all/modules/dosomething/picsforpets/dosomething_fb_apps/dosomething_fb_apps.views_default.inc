@@ -302,6 +302,13 @@ Please try a new combo.
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator'] = 'field_fb_app_animal_type_value_op';
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['identifier'] = 'field_fb_app_animal_type_value';
   $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['reduce'] = 0;
+  /* Filter criterion: Webform Submission: Published (field_fb_app_published) */
+  $handler->display->display_options['filters']['field_fb_app_published_value']['id'] = 'field_fb_app_published_value';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['table'] = 'field_data_field_fb_app_published';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['field'] = 'field_fb_app_published_value';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['value'] = array(
+    1 => '1',
+  );
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
