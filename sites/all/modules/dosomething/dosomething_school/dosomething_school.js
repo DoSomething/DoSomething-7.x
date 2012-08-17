@@ -8,8 +8,8 @@
       $('.field-widget-dosomething-school-autocomplete:not(.dsschool-processed)', context).each( function(index, element) {
         var $wrapper = $(element)
           , $selects = $wrapper.find('select')
-          , $state = $wrapper.find('select#edit-field-school-reference-und-0-target-id-state')
-          , $type = $wrapper.find('select#edit-field-school-reference-und-0-target-id-type')
+          , $state = $wrapper.find('select.ds-school-state')
+          , $type = $wrapper.find('select.ds-school-type')
           , $schoolName = $wrapper.find('input.form-autocomplete')
 
         // If they enter a new school name we need to have them provide
