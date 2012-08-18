@@ -469,3 +469,80 @@ function dosomething_picsforpets_general_field_formatter_view($entity_type, $ent
   );
   return $element;
 }
+
+/**
+ * Get a serialized webform from a file and save it as a node.
+ *
+ * @param $path
+ *   The file path on disc of the serialized node.
+ */
+function dosomething_picsforpets_general_save_webform_node($path) {
+  $webform = unserialize(file_get_contents($path));
+  $webform_data = $webform->webform;
+  unset($webform->webform);
+  node_save($webform);
+  unset ($webform->webform);
+  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
+  $webform->webform = $webform_data;
+  $webform_data['nid'] = $webform->nid;
+  $webform->webform['record_exists'] = TRUE;
+  foreach ($webform->webform['components'] as $key => $component) {
+    $webform->webform['components'][$key]['nid'] = $webform->nid;
+    if (!$webform->webform['components'][$key]['mandatory']) {
+      $webform->webform['components'][$key]['mandatory'] = 0;
+    }
+  }
+  node_save($webform);
+}
+
+/**
+ * Recurse through a webform object and add a new $nid.
+ */
+function dosomething_picsforpets_general_recursively_readd_nid(&$thing, $nid) {
+  if (is_array($thing) || is_object($thing)) {
+    foreach ($thing as $key => &$value) {
+      if (is_array($value) || is_object($thing)) {
+        dosomething_picsforpets_general_recursively_readd_nid($value, $nid);
+      }
+      elseif ($key == 'nid') {
+        $value = $nid;
+      }
+    }
+  }
+  return $thing;
+}
+
+/**
+ * A function to update the webform node that needs to be imported for deployment.
+ * N.B. In order for this to work the nodes directory in this module MUST BE
+ * writable by the apache user (usually www-data) and so should probably be owned
+ * or group owned by that user.
+ */
+function dosomething_picsforpets_general_update_nodes() {
+  $c = 0;
+  $result = db_query('SELECT nid FROM {node} WHERE type = :type', array(':type' => 'fb_app_data_gathering_form'));
+  while ($nid = $result->fetch()) {
+    $c++;
+    $node = node_load($nid->nid);
+    unset($node->nid);
+    unset($node->vid);
+    $node->webform['record_exists'] = FALSE;
+    $serialized = serialize($node);
+    $handle = fopen(drupal_get_path('module', 'dosomething_picsforpets_general') .  '/nodes/' . $c . '.txt', 'w');
+    fwrite($handle, $serialized);
+    fclose($handle);
+  }
+}
+
+/**
+ * Import of the webform nodes.
+ */
+function dosomething_picsforpets_general_regenerate_webform_nodes() {
+  // Get the list of files from the directory. Only serialized text files.
+  $files = file_scan_directory(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes', '/\.txt$/');
+
+  //Get the node data and save it into drupal
+  foreach ($files as $file) {
+    dosomething_picsforpets_general_save_webform_node($file->uri);
+  }
+}

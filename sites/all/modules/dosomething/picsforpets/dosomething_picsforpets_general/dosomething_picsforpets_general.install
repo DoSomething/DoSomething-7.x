@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * @file
+ *   Installs database tables and necessary data for the picsforpets app.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function dosomething_picsforpets_general_install() {
+  dosomething_picsforpets_general_regenerate_webform_nodes();
+}
+
+/**
  * Implements hook_schema().
  */
 function dosomething_picsforpets_general_schema() {
