@@ -9,7 +9,7 @@
  * Implements hook_install().
  */
 function dosomething_picsforpets_general_install() {
-  dosomething_picsforpets_general_regenerate_webform_nodes();
+  dosomething_picsforpets_general_regenerate_webform_node();
 }
 
 /**

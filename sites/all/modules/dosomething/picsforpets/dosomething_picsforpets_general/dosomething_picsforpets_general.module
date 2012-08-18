@@ -591,10 +591,10 @@ function dosomething_picsforpets_general_recursively_readd_nid(&$thing, $nid) {
 }
 
 /**
- * A function to update the webform node that needs to be imported for deployment.
- * N.B. In order for this to work the nodes directory in this module MUST BE
- * writable by the apache user (usually www-data) and so should probably be owned
- * or group owned by that user.
+ * A function to update the webform node that needs to be imported for
+ * deployment. N.B. In order for this to work the nodes directory in this module
+ * MUST BE writable by the apache user (usually www-data) and so should probably
+ * be owned or group owned by that user.
  */
 function dosomething_picsforpets_general_update_node() {
   $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type', 0, 1, array(':type' => 'fb_app_data_gathering_form'))->fetchField();
@@ -603,7 +603,7 @@ function dosomething_picsforpets_general_update_node() {
   unset($node->vid);
   $node->webform['record_exists'] = FALSE;
   $serialized = serialize($node);
-  $handle = fopen(drupal_get_path('module', 'dosomething_picsforpets_general') .  '/nodes/pet_submission_form.txt', 'w');
+  $handle = fopen(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt', 'w');
   fwrite($handle, $serialized);
   fclose($handle);
 }
@@ -611,10 +611,10 @@ function dosomething_picsforpets_general_update_node() {
 /**
  * Import of the webform nodes.
  */
-function dosomething_picsforpets_general_regenerate_webform_nodes() {
+function dosomething_picsforpets_general_regenerate_webform_node() {
   // Get the list of files from the directory. Only serialized text files.
   $file = drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt';
 
   //Get the node data and save it into drupal
-  dosomething_picsforpets_general_save_webform_node($file->uri);
+  dosomething_picsforpets_general_save_webform_node($file);
 }
