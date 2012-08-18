@@ -354,8 +354,13 @@ function dosomething_picsforpets_general_share($sid, $fbid) {
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ * TODO At launch change this function name to a FORM_ID alter.
  */
-function dosomething_picsforpets_general_form_webform_client_form_21_alter(&$form, &$form_state) {
+function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_id) {
+  // dump out if we're not on the right form.
+  if ($form_id != 'webform_client_form_' . variable_get('picsforpets_animal_form_id', NULL)) {
+    return;
+  }
   form_load_include($form_state, 'inc', 'dosomething_picsforpets_shelters', 'dosomething_picsforpets_shelters.optionform');
   $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/shelter_popup.js';
   $form['shelter-popup'] = dosomething_picsforpets_shelters_options_form($form, $form_state);
@@ -565,6 +570,7 @@ function dosomething_picsforpets_general_save_webform_node($path) {
     }
   }
   node_save($webform);
+  variable_set('picsforpets_animal_form_id', $webform->nid);
 }
 
 /**
@@ -590,20 +596,16 @@ function dosomething_picsforpets_general_recursively_readd_nid(&$thing, $nid) {
  * writable by the apache user (usually www-data) and so should probably be owned
  * or group owned by that user.
  */
-function dosomething_picsforpets_general_update_nodes() {
-  $c = 0;
-  $result = db_query('SELECT nid FROM {node} WHERE type = :type', array(':type' => 'fb_app_data_gathering_form'));
-  while ($nid = $result->fetch()) {
-    $c++;
-    $node = node_load($nid->nid);
-    unset($node->nid);
-    unset($node->vid);
-    $node->webform['record_exists'] = FALSE;
-    $serialized = serialize($node);
-    $handle = fopen(drupal_get_path('module', 'dosomething_picsforpets_general') .  '/nodes/' . $c . '.txt', 'w');
-    fwrite($handle, $serialized);
-    fclose($handle);
-  }
+function dosomething_picsforpets_general_update_node() {
+  $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type', 0, 1, array(':type' => 'fb_app_data_gathering_form'))->fetchField();
+  $node = node_load($nid->nid);
+  unset($node->nid);
+  unset($node->vid);
+  $node->webform['record_exists'] = FALSE;
+  $serialized = serialize($node);
+  $handle = fopen(drupal_get_path('module', 'dosomething_picsforpets_general') .  '/nodes/pet_submission_form.txt', 'w');
+  fwrite($handle, $serialized);
+  fclose($handle);
 }
 
 /**
@@ -611,10 +613,8 @@ function dosomething_picsforpets_general_update_nodes() {
  */
 function dosomething_picsforpets_general_regenerate_webform_nodes() {
   // Get the list of files from the directory. Only serialized text files.
-  $files = file_scan_directory(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes', '/\.txt$/');
+  $file = drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt';
 
   //Get the node data and save it into drupal
-  foreach ($files as $file) {
-    dosomething_picsforpets_general_save_webform_node($file->uri);
-  }
+  dosomething_picsforpets_general_save_webform_node($file->uri);
 }
