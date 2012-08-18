@@ -28,9 +28,14 @@ Drupal.behaviors.picsforpetsShelterPopup = {
     $('#edit-submitted-find-your-shelter-field-fb-app-zip-und-0-value').attr(
       {value : settings.picsforpetsShelterOptions.selectedResult.shelter_zip}
     );
-    $('#edit-submitted-find-your-shelter-field-fb-app-shelter-reference-und-0-target-id').attr(
-      {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name + ' (' + settings.picsforpetsShelterOptions.selectedResult.shelter_nid + ')'}
-    );
+
+    // Handle the autofill of the shelter reference
+    if (settings.picsforpetsShelterOptions.selectedResult.shelter_name != '' && settings.picsforpetsShelterOptions.selectedResult.shelter_nid != '') {
+      $('#edit-submitted-find-your-shelter-field-fb-app-shelter-reference-und-0-target-id').attr(
+        {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name + ' (' + settings.picsforpetsShelterOptions.selectedResult.shelter_nid + ')'}
+      );
+    }
+
     if (settings.picsforpetsShelterOptions.selectedResult.state != '') {
       $('#edit-submitted-find-your-shelter-field-fb-app-state-und option[value="_none"]').attr(
         {"selected" : ""}
