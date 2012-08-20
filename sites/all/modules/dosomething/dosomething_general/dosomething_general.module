@@ -526,3 +526,8 @@ function dosomething_general_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+// Return them to the page that they were on, if possible.
+function dosomething_general_user_logout($account) {
+  $goto = str_replace('http://' . $_SERVER['HTTP_HOST'] . '/', '', $_SERVER['HTTP_REFERER']);
+  $_GET['destination'] = $goto;
+}
