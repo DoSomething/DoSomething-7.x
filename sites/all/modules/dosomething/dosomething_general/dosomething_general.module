@@ -486,10 +486,15 @@ function dosomething_general_ctools_render_alter($info, $page, $context) {
   }
   if (isset($local_context)) {
     foreach ($local_context as $ctxt) {
-      if (in_array('node', $ctxt->type) && is_object($ctxt->data)) {
+      if (in_array('node', (array) $ctxt->type) && is_object($ctxt->data)) {
         $node = $ctxt->data;
-        if ($panels_pane) $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
-        OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
+        if ($panels_pane) {
+          $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
+        }
+
+        if (isset($node->opengraph_meta)) {
+           OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
+        }
         break;
       }
     }
