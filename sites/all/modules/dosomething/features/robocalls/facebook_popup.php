@@ -1,20 +1,18 @@
 <?php
 
-# We require the library  
-require("/var/www/html/sites/all/libraries/facebook/facebook.php");  
-
-# Creating the facebook object  
-$facebook = new Facebook(array(  
-    'appId'  => '169271769874704',  
-    'secret' => 'dafbb671b4fc290e827c51949c8895b9',  
-    'code' => ($_GET['code'] ? $_GET['code'] : ''),
-    'cookie' => true,
-));
-
-# Let's see if we have an active session 
-#$session = $facebook->getSession(); 
-$uid = $facebook->getUser();
-$ROBOCALLS_FB_DESCRIPTION = urlencode('I just had a celebrity call you! Go HERE to send to another friend.');
+if ($_GET['code']) {
+    echo <<< html
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+<!--
+    $(document).ready(function() {
+        window.opener.pop();
+        window.close();
+    });
+-->
+</script>
+html;
+}
 
 if (intval($_GET['post_id']))
 {
@@ -29,7 +27,7 @@ if (intval($_GET['post_id']))
 html;
     exit;
 }
-
+/* Rendered useless: Varnish removes all non-Drupal cookies.
 if ($uid)
 {
     if ($user = $facebook->api('/me/friends?fields=id,name,picture'))
@@ -106,5 +104,5 @@ else
     $login_url = $facebook->getLoginUrl($params); 
     header("Location: " . $login_url);
 }
-
+*/
 ?>

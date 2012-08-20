@@ -9,6 +9,11 @@ function remove_fb_bday_choice() {
   return false;
 }
 
+function dostuff() {
+  window.open('https://www.facebook.com/dialog/oauth?client_id=169271769874704&redirect_uri=http%3A//localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'FBP', 'width=500,height=350');
+  return false;
+}
+
 (function ($) {
   $.fn.extend({
     dsRobocallsDone: function (name, cause, limit) {
@@ -123,9 +128,27 @@ jQuery(document).ready(function() {
 
   button = jQuery('.robocalls-fb-find-friends-birthdays');
   if (button.length > 0) {
-     button.click(function() {
+     /*button.click(function() {
        window.open('/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'fbinfo', 'location=no,width=350,height=400,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
        return false;
-     });
+     });*/
   }
+
+
+  var selector1, selector2, logActivity, callbackFriendSelected, callbackFriendUnselected, callbackMaxSelection, callbackSubmit;
+  // Initialise the Friend Selector with options that will apply to all instances
+  TDFriendSelector.init({debug: true});
+  // Create some Friend Selector instances
+  selector2 = TDFriendSelector.newInstance({
+    callbackFriendSelected   : callbackFriendSelected,
+    callbackFriendUnselected : callbackFriendUnselected,
+    callbackMaxSelection     : callbackMaxSelection,
+    callbackSubmit           : callbackSubmit,
+    maxSelection             : 1,
+    friendsPerPage           : 5,
+    autoDeselection          : true,
+      callbackSubmit       : function(selectedFriendIds) {
+        window.open('http://www.facebook.com/dialog/feed?app_id=169271769874704&display=popup&to=' + selectedFriendIds + '&description=Yay+Stuff&redirect_uri=http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'FBP', 'width=500,height=350');
+      }
+  });
 });

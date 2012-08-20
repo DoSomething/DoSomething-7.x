@@ -66,6 +66,8 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
       );
 	}
 
+drupal_add_js('http://connect.facebook.net/en_US/all.js');
+
     $form['extras'] = array(
        '#type' => 'container',
        '#attributes' => array(
@@ -94,6 +96,7 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
        '#weight' => 2,
        '#attributes' => array(
           'class' => array('robocalls-fb-find-friends-birthdays'),
+          #'onclick' => "return dostuff()"
        )
     );
 
@@ -135,6 +138,37 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
            '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', 'files/causecalls/' . $term->field_celeb_call[LANGUAGE_NONE][0]['filename'], array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link')))
         );
     }
+
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/js/fb/tdfriendselector.css');
+
+
+    $form['ah'] = array(
+      '#markup' => '    <div id="TDFriendSelector">
+      <div class="TDFriendSelector_dialog">
+        <a href="#" id="TDFriendSelector_buttonClose">x</a>
+        <div class="TDFriendSelector_form">
+          <div class="TDFriendSelector_header">
+            <p>Select a Friend to Post on their Wall</p>
+          </div>
+          <div class="TDFriendSelector_content">
+            <p>Click "OK" when you\'ve chosen someone.  We\'ll pop up a message box for them.</p>
+            <div class="TDFriendSelector_searchContainer TDFriendSelector_clearfix">
+              <div class="TDFriendSelector_selectedCountContainer"><span class="TDFriendSelector_selectedCount">0</span> / <span class="TDFriendSelector_selectedCountMax">0</span> friends selected</div>
+              <input type="text" placeholder="Search friends" id="TDFriendSelector_searchField" />
+            </div>
+            <div class="TDFriendSelector_friendsContainer"></div>
+          </div>
+          <div class="TDFriendSelector_footer TDFriendSelector_clearfix">
+            <a href="#" id="TDFriendSelector_pagePrev" class="TDFriendSelector_disabled">Previous</a>
+            <a href="#" id="TDFriendSelector_pageNext">Next</a>
+            <div class="TDFriendSelector_pageNumberContainer">
+              Page <span id="TDFriendSelector_pageNumber">1</span> / <span id="TDFriendSelector_pageNumberTotal">1</span>
+            </div>
+            <a href="#" id="TDFriendSelector_buttonOK">OK</a>
+          </div>
+        </div>
+      </div>
+    </div>');
 
 #    $form['actions']['submit']['#value'] = 'SEND IT!';
  #   $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
@@ -188,6 +222,15 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
     drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
        'weight' => -100,
        'cache' => FALSE
+    ));
+
+    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/fb/tdfriendselector.js', array(
+      'weight' => -102,
+      'cache' => FALSE
+    ));
+    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/fb/example.js', array(
+      'weight' => -101,
+      'cache' => FALSE
     ));
 
     if (isset($_GET['done'])) {
@@ -468,6 +511,8 @@ function robocalls_page_alter(&$page) {
       }
 
       $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
+      unset($page['page_bottom']['fb_social']);
+
    }
 }
 
