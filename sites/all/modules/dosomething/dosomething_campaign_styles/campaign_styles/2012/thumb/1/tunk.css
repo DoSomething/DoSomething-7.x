@@ -1,0 +1,87 @@
+/*
+Syntax error: Undefined variable: "$din".
+        on line 5 of /var/www/html/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/thumb/1/partials/_typography.sass
+        from line 6 of trunk.sass
+
+1: // imports all campaign partials under #cmp to force styles
+2: @import compass/css3
+3: 
+4: #cmp
+5:   @import "partials/reset.sass"
+6:   @import "partials/typography.sass"
+7:   @import "partials/base.sass"
+8:   @import "partials/framework.sass"
+9:   @import "partials/panes.sass"
+
+Backtrace:
+/var/www/html/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/thumb/1/partials/_typography.sass:5
+trunk.sass:6
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/script/variable.rb:49:in `_perform'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/script/node.rb:40:in `perform'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:216:in `visit_prop'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:238:in `visit_rule'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:146:in `visit_import'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:146:in `map'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:146:in `visit_import'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:238:in `visit_rule'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:47:in `visit_root'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/tree/root_node.rb:20:in `render'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/engine.rb:299:in `_render'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/engine.rb:246:in `render'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin/compiler.rb:339:in `update_stylesheet'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin/compiler.rb:202:in `update_stylesheets'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin/compiler.rb:200:in `each'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin/compiler.rb:200:in `update_stylesheets'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin/compiler.rb:234:in `watch'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin.rb:107:in `send'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/plugin.rb:107:in `method_missing'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/exec.rb:431:in `watch_or_update'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/exec.rb:302:in `process_result'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/exec.rb:41:in `parse'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/../lib/sass/../sass/exec.rb:21:in `parse!'
+/usr/local/rvm/gems/ruby-1.8.7-p358/gems/sass-3.1.15/bin/sass:8
+/usr/local/rvm/gems/ruby-1.8.7-p358/bin/sass:19:in `load'
+/usr/local/rvm/gems/ruby-1.8.7-p358/bin/sass:19
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$din\".\A         on line 5 of /var/www/html/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2012/thumb/1/partials/_typography.sass\A         from line 6 of trunk.sass\A \A 1: // imports all campaign partials under #cmp to force styles\A 2: @import compass/css3\A 3: \A 4: #cmp\A 5:   @import \"partials/reset.sass\"\A 6:   @import \"partials/typography.sass\"\A 7:   @import \"partials/base.sass\"\A 8:   @import \"partials/framework.sass\"\A 9:   @import \"partials/panes.sass\""; }
