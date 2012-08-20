@@ -578,12 +578,8 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 /* Body -------------------------------------------------------------- */
 /* Establish baseline rhythm
  * from compass/typography/_vertical_rhythm */
-* html {
-  font-size: 100%;
-}
-
 html {
-  font-size: 16px;
+  font-size: 100%;
   line-height: 1.5em;
 }
 
@@ -802,6 +798,7 @@ input[type="button"] {
   background-image: -webkit-linear-gradient(#ffffff, #dddddd);
   background-image: -moz-linear-gradient(#ffffff, #dddddd);
   background-image: -o-linear-gradient(#ffffff, #dddddd);
+  background-image: -ms-linear-gradient(#ffffff, #dddddd);
   background-image: linear-gradient(#ffffff, #dddddd);
   border: 1px solid;
   border-color: #dddddd #bbbbbb #999999;
@@ -1376,6 +1373,7 @@ ul.tabs li a:hover {
   background-image: -webkit-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -moz-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -o-linear-gradient(top, #fcfdfa, #f1f2ef);
+  background-image: -ms-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: linear-gradient(top, #fcfdfa, #f1f2ef);
   -moz-border-radius-topleft: 6px;
   -webkit-border-top-left-radius: 6px;
@@ -1557,9 +1555,9 @@ body {
   position: relative;
 }
 .picsforpets-scholarship a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1579,9 +1577,9 @@ body {
 }
 
 #ds-logo {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1791,9 +1789,9 @@ a.footer-furtography {
 }
 
 .ui-icon.ui-icon-closethick {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2117,14 +2115,16 @@ select#edit-sort-by {
   line-height: 2;
 }
 .prizes-scholarships .pane-content .share-wrapper .shares {
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   height: 40px;
   width: 270px;
+}
+.prizes-scholarships .pane-content .share-wrapper .shares {
+  *display: inline;
 }
 .prizes-scholarships .pane-content .share-wrapper.toys {
   margin-bottom: 20px;
