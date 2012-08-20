@@ -424,3 +424,18 @@ select#edit-sort-by
   input[type="text"]
     +box-shadow(#ddd 0 0 10px inset)
     border: 1px solid #C9CBCD
+
+.big-numbers
+  +replace-list-numbers
+  li
+    border-left: 3px solid $black
+    margin-bottom: 0.5em
+    padding: 0 0 0 5px
+    position: relative
+    &:before
+      @extend %h1
+      font-size: 38px
+      position: absolute
+      right: 100%
+      top: 8px
+      padding-right: 5px

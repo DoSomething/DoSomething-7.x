@@ -506,7 +506,7 @@ pre, code, kbd, tt {
   letter-spacing: 0.1em;
 }
 
-h1, #picsforpets-share .fb-share-me, .fieldset-legend, h2, h3, h4, h5, h6 {
+h1, #picsforpets-share .fb-share-me, .fieldset-legend, .big-numbers li:before, h2, h3, h4, h5, h6 {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -660,7 +660,7 @@ address {
 }
 
 /* Headings -------------------------------------------------------------- */
-h1, #picsforpets-share .fb-share-me, .fieldset-legend, h2, h3, h4, h5, h6 {
+h1, #picsforpets-share .fb-share-me, .fieldset-legend, .big-numbers li:before, h2, h3, h4, h5, h6 {
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
@@ -2034,6 +2034,28 @@ select#edit-sort-by {
   border: 1px solid #c9cbcd;
 }
 
+.big-numbers {
+  counter-reset: li;
+  list-style-type: none;
+}
+.big-numbers li:before {
+  content: counter(li);
+  counter-increment: li;
+}
+.big-numbers li {
+  border-left: 3px solid black;
+  margin-bottom: 0.5em;
+  padding: 0 0 0 5px;
+  position: relative;
+}
+.big-numbers li:before {
+  font-size: 38px;
+  position: absolute;
+  right: 100%;
+  top: 8px;
+  padding-right: 5px;
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2517,9 +2539,6 @@ select#edit-sort-by {
   margin-bottom: 100px;
   padding: 12px;
   width: 320px;
-}
-.page-pics-for-pets-action-guide .panel-col-first .fieldset-legend {
-  letter-spacing: 0;
 }
 .page-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
   height: auto;
