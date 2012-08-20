@@ -84,11 +84,11 @@ html;
         
         echo $r;
         echo '</ul></body></html>';
-    }
+    } 
     else
     {
         $params = array(
-            'redirect_uri' => 'http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
+            'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
             'display' => 'popup'
         );
 
@@ -99,11 +99,12 @@ html;
 else
 {
     $params = array(
-        'redirect_uri' => 'http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
+        'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
         'display' => 'popup'
     );
 
     $login_url = $facebook->getLoginUrl($params); 
     header("Location: " . $login_url);
 }
+
 ?>
