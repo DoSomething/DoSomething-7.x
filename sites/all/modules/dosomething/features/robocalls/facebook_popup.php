@@ -6,7 +6,7 @@ require("/var/www/html/sites/all/libraries/facebook/facebook.php");
 # Creating the facebook object  
 $facebook = new Facebook(array(  
     'appId'  => '169271769874704',  
-    'secret' => '6021e05d90469af3488aef21ad86b900',  
+    'secret' => 'dafbb671b4fc290e827c51949c8895b9',  
     'cookie' => true  
 ));  
 
