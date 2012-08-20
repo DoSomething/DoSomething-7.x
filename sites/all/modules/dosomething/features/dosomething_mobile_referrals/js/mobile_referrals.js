@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-	jQuery('#webform-client-form-723988').find('input[type="text"]').each(function() {
+	jQuery('#webform-component-referall-your-info, #webform-component-referral-friend-info').find('input[type="text"]').each(function() {
 		var t = jQuery(this);
 		var v = t.val();
 		t.attr('placeholder', v);
