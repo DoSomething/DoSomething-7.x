@@ -86,6 +86,7 @@ html;
     }
     else
     {
+        if ($_SERVER['REMOTE_ADDR'] == '207.110.19.130') { echo "$user"; exit; }
         $params = array(
             'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
             'display' => 'popup'
