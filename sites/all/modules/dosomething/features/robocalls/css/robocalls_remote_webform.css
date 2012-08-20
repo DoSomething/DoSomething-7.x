@@ -1,4 +1,4 @@
-input.robocalls-fb-find-friends-birthdays {
+ input.robocalls-fb-find-friends-birthdays {
 	background: #3B5998 url(/sites/all/modules/dosomething/features/robocalls/images/icon_facebook.png) 0px 0px no-repeat;
 	border: 1px solid #000000;
 	box-shadow: 0px 0px 3px #808080;
@@ -20,15 +20,14 @@ div.robocalls-remote-webform.talk-text div.pane-content p {
 	padding: 0px 10px 10px;
 }
 div.robocalls-remote-webform.form { margin-top: -15px;}
-div.robocalls-remote-webform.form input {
+div.robocalls-remote-webform.form input[type="text"], div.robocalls-remote-webform.form input[type="tel"] {
 width: 100%;
 }
 
 div.robocalls-remote-webform h2.pane-title, .panes-2 .panel-second .pane-title {
 	font-size: 15pt;
 	margin-bottom: 0px;
-}
-
+} 
 
 div#submitted-field-celeb-tid-add-more-wrapper { display: none; }
 
@@ -79,3 +78,40 @@ margin-bottom: 25px;
 div#dosomething-robocalls-submitted-message {
 	display: none;
 }
+
+div#edit-submitted-field-celeb-date select {
+	background: transparent;
+	border: 0px;
+	-webkit-appearance: none;
+	border: 1px solid #eaeaea;
+	border-radius: 0px;
+	width:50px;
+	padding: 3px;
+	background:url(/sites/all/modules/dosomething/features/robocalls/images/dropdown-arrow.png) 100% 50% no-repeat;
+
+}
+
+div#edit-submitted-field-celeb-date .form-item.form-type-select {
+	background: white;
+}
+
+div#edit-submitted-field-celeb-date select#edit-submitted-field-celeb-date-und-0-value-year { width: 58px; }
+
+div.form-item-submitted-field-celeb-date-und-0-value { border: 0px;
+width: 175px;
+padding: 0px;
+margin-left: -5px;
+}
+
+.form-item.date-spacer { display: none; }
+div#edit-submitted-field-celeb-date-und-0-value { padding: 0px; width: 175px; }
+div.form-item.form-type-date-select.form-item-submitted-field-celeb-date-und-0-value {
+	border: 0px;
+	margin-left: -5px;
+}
+
+div.form-item.form-type-select.form-item-submitted-field-celeb-date-und-0-value-hour { margin-left: 0px; }
+#edit-submitted-field-celeb-date-und-0-value-hour, #edit-submitted-field-celeb-date-und-0-value-minute, #edit-submitted-field-celeb-date-und-0-value-ampm { margin-top: 5px; }
+
+
+
