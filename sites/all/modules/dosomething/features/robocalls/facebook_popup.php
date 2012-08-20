@@ -32,7 +32,7 @@ html;
     exit;
 }
 
-if (intval($uid) || $_GET['code'])
+if ($uid <> 0 && $uid <> '')
 {
     if ($user = $facebook->api('/me/friends?fields=id,name,picture'))
     {
