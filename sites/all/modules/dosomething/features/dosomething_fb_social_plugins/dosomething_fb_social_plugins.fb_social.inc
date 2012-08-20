@@ -347,7 +347,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
     'send' => 0,
     'layout' => 'box_count',
     'show_faces' => 0,
-    'width' => '100',
+    'width' => '60',
     'action' => 'like',
     'font' => 'verdana',
     'colorscheme' => 'light',
