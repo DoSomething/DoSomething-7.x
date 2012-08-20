@@ -2,16 +2,13 @@
 
 # We require the library  
 require("/var/www/html/sites/all/libraries/facebook/facebook.php");  
-  
-
-#$_SERVER['HTTP_HOST'] = 'http://www.dosomething.org';
 
 # Creating the facebook object  
 $facebook = new Facebook(array(  
     'appId'  => '169271769874704',  
     'secret' => 'dafbb671b4fc290e827c51949c8895b9',  
-    'cookie' => true  
-));  
+    'code' => ($_GET['code'] ? $_GET['code'] : '')
+));
 
 # Let's see if we have an active session 
 #$session = $facebook->getSession(); 
@@ -32,7 +29,7 @@ html;
     exit;
 }
 
-if ($uid <> 0 && $uid <> '')
+if ($uid)
 {
     if ($user = $facebook->api('/me/friends?fields=id,name,picture'))
     {
@@ -89,9 +86,8 @@ html;
     }
     else
     {
-        if ($_SERVER['REMOTE_ADDR'] == '207.110.19.130') { echo "$user"; exit; }
         $params = array(
-            'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
+            'redirect_uri' => 'http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
             'display' => 'popup'
         );
 
@@ -100,13 +96,13 @@ html;
     }
 }
 else
-{  
+{
     $params = array(
-        'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
+        'redirect_uri' => 'http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
         'display' => 'popup'
     );
 
     $login_url = $facebook->getLoginUrl($params); 
-    header("Location: " . $login_url);  
+    header("Location: " . $login_url);
 }
 ?>
