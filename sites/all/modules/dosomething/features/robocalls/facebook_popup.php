@@ -3,6 +3,9 @@
 # We require the library  
 require("/var/www/html/sites/all/libraries/facebook/facebook.php");  
   
+
+#$_SERVER['HTTP_HOST'] = 'http://www.dosomething.org';
+
 # Creating the facebook object  
 $facebook = new Facebook(array(  
     'appId'  => '169271769874704',  
@@ -29,7 +32,7 @@ html;
     exit;
 }
 
-if (intval($uid))
+if (intval($uid) || $_GET['code'])
 {
     if ($user = $facebook->api('/me/friends?fields=id,name,picture'))
     {
