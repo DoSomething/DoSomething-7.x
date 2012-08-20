@@ -1,4 +1,4 @@
-#webform-client-form-723988 {
+#webform-client-form-723988, #webform-client-form-724211 {
 	background: #ffffff;
 }
 
@@ -14,4 +14,4 @@ fieldset#webform-component-referral-friend-info {
 	padding-top: 12px;
 }
 
-#webform-client-form-723988 fieldset input { margin: 5px 0px; width: 100%; }
+#webform-client-form-723988 fieldset input, #webform-client-form-724211 fieldset input { margin: 5px 0px; width: 100%; }
