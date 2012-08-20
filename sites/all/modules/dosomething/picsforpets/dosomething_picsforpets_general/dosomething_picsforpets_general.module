@@ -428,3 +428,44 @@ function dosomething_picsforpets_general_preprocess_page(&$variables) {
     );
   }
 }
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function dosomething_picsforpets_general_field_formatter_info() {
+  return array(
+    'share_button' => array(
+      'label' => t('Share button'),
+      'field types' => array('number_integer'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function dosomething_picsforpets_general_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $count = 0;
+  foreach ($items as $item) {
+    $value = $item[0]['value'];
+    $value = 1979534;
+    if ($value > 999 && $value < 99999) {
+      $count = round($value / 1000, 1) . 'k';
+    }
+    else if ($value > 99999 && $value < 999999) {
+      $count = round($value / 1000, 0) . 'k';
+    }
+    else if ($value > 999999) {
+      $count = round($value / 1000000, 1) . 'M';
+    }
+    else {
+      $count = $value;
+    }
+  }
+
+  $element = array();
+  $element [0] = array(
+    '#markup' => '<span class="gallery-share-button">Share me</span><span class="gallery-share-count">' . $count . '</span>',
+  );
+  return $element;
+}
