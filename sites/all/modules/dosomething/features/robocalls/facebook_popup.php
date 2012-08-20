@@ -7,7 +7,8 @@ require("/var/www/html/sites/all/libraries/facebook/facebook.php");
 $facebook = new Facebook(array(  
     'appId'  => '169271769874704',  
     'secret' => 'dafbb671b4fc290e827c51949c8895b9',  
-    'code' => ($_GET['code'] ? $_GET['code'] : '')
+    'code' => ($_GET['code'] ? $_GET['code'] : ''),
+    'cookie' => true,
 ));
 
 # Let's see if we have an active session 
