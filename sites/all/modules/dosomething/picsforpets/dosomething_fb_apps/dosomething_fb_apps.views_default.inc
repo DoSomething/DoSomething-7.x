@@ -202,6 +202,39 @@ Please try a new combo.
     ),
   );
   $handler->display->display_options['fields']['field_pfp_address']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Facebook Share Count */
+  $handler->display->display_options['fields']['field_fb_app_share_count']['id'] = 'field_fb_app_share_count';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['field'] = 'field_fb_app_share_count';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['label'] = '';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['element_wrapper_class'] = 'sid-[sid]';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['empty'] = '0';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['type'] = 'share_button';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 0,
+  );
+  $handler->display->display_options['fields']['field_fb_app_share_count']['field_api_classes'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
@@ -211,6 +244,7 @@ Please try a new combo.
 <div class="click-to-learn">[nothing]</div>
 [field_fb_app_animal_name]<br />
 [field_pfp_address]<br />
+[field_fb_app_share_count]
 </div>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
@@ -253,36 +287,35 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_zip']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_fb_app_zip']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_fb_app_zip']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Facebook Share Count */
-  $handler->display->display_options['fields']['field_fb_app_share_count']['id'] = 'field_fb_app_share_count';
-  $handler->display->display_options['fields']['field_fb_app_share_count']['table'] = 'field_data_field_fb_app_share_count';
-  $handler->display->display_options['fields']['field_fb_app_share_count']['field'] = 'field_fb_app_share_count';
-  $handler->display->display_options['fields']['field_fb_app_share_count']['label'] = '';
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['empty'] = '0';
-  $handler->display->display_options['fields']['field_fb_app_share_count']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_fb_app_share_count']['type'] = 'share_button';
-  $handler->display->display_options['fields']['field_fb_app_share_count']['settings'] = array(
-    'thousand_separator' => '',
-    'prefix_suffix' => 0,
-  );
-  $handler->display->display_options['fields']['field_fb_app_share_count']['field_api_classes'] = 0;
+  /* Field: Webform Submission: What are three words to best describe your furry friend? */
+  $handler->display->display_options['fields']['field_fb_app_three_words']['id'] = 'field_fb_app_three_words';
+  $handler->display->display_options['fields']['field_fb_app_three_words']['table'] = 'field_data_field_fb_app_three_words';
+  $handler->display->display_options['fields']['field_fb_app_three_words']['field'] = 'field_fb_app_three_words';
+  $handler->display->display_options['fields']['field_fb_app_three_words']['label'] = '';
+  $handler->display->display_options['fields']['field_fb_app_three_words']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_fb_app_three_words']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_three_words']['field_api_classes'] = 0;
   /* Sort criterion: Webform Submission: Facebook Share Count (field_fb_app_share_count) */
   $handler->display->display_options['sorts']['field_fb_app_share_count_value']['id'] = 'field_fb_app_share_count_value';
   $handler->display->display_options['sorts']['field_fb_app_share_count_value']['table'] = 'field_data_field_fb_app_share_count';
