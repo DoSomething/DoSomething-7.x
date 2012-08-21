@@ -518,6 +518,12 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
       }
     }
   }
+  else {
+    // If the entity reference isn't set then we really want the address fields
+    // and not the entity reference. We treat it the same way we should a
+    // mismatched address.
+    $mismatch = TRUE;
+  }
   if ($mismatch) {
     // Throw away the entity reference.
     unset($form_state['values']['submitted']['find_your_shelter']['field_fb_app_shelter_reference']);
