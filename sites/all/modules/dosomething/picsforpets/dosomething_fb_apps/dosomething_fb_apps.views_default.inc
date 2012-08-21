@@ -244,7 +244,7 @@ Please try a new combo.
 <div class="click-to-learn">[nothing]</div>
 [field_fb_app_animal_name]<br />
 [field_pfp_address]<br />
-[field_fb_app_share_count]
+<div id=[sid]>[field_fb_app_share_count]</div>
 </div>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
