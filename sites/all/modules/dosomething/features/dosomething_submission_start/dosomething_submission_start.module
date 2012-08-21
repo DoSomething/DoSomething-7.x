@@ -10,7 +10,7 @@ function dosomething_submission_start_webform_submission_presave($node, &$submis
 
   // If it's a draft, add drafted time.
   if ($submission->is_draft) {
-    $submission->drafted_time = time();
+    $submission->drafted_time = REQUEST_TIME;
   }
 }
 
@@ -28,7 +28,7 @@ function dosomething_submission_start_form_alter(&$form, &$form_state) {
       $started = $form['#submission']->started;
     }
     else {
-      $started = time();
+      $started = REQUEST_TIME;
     }
   }
 
@@ -53,9 +53,9 @@ function dosomething_submission_start_webform_submission_load(&$submissions) {
 
    // ...And attach them to $submissions.
    foreach ($q AS $key => $stuff) {
-    if (in_array($stuff->sid, array_keys($submissions))) {
-      $submissions["{$stuff->sid}"]->started = $stuff->start_time;
-      $submissions["{$stuff->sid}"]->drafted = $stuff->drafted_time;
+    if (isset($submissions[$stuff->sid])) {
+      $submissions[$stuff->sid]->started = $stuff->start_time;
+      $submissions[$stuff->sid]->drafted = $stuff->drafted_time;
     }
   }
 }
@@ -65,5 +65,5 @@ function dosomething_submission_start_webform_submission_load(&$submissions) {
   */
 function dosomething_submission_start_theme_registry_alter(&$theme_registry) {
   // Changes the path to webform-submissions-information.tpl.php
-  $theme_registry['webform_submission_information']['template'] = 'sites/all/modules/dosomething/features/dosomething_submission_start/templates/webform-submission-information';
+  $theme_registry['webform_submission_information']['template'] = drupal_get_path('module', 'dosomething_submission_start') . '/templates/webform-submission-information';
 }

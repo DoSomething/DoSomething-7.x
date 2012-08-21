@@ -1,5 +1,8 @@
 <?php
 
+/**
+  * Implements hook_schema_alter()
+  */
 function dosomething_submission_start_schema_alter(&$schema) {
   $schema['webform_submissions']['fields']['start_time'] = array(
     'type' => 'int',
@@ -16,8 +19,11 @@ function dosomething_submission_start_schema_alter(&$schema) {
   );
 }
 
+/**
+  * Implements hook_install()
+  */
 function dosomething_submission_start_install() {
-  $schema['webform_submissions'] = array();
+  $schema = array();
   dosomething_submission_start_schema_alter($schema);
 
   foreach ($schema['webform_submissions']['fields'] AS $column => $data) {
@@ -25,6 +31,9 @@ function dosomething_submission_start_install() {
   }
 }
 
+/**
+  * Implements hook_uninstall()
+  */
 function dosomething_submission_start_uninstall() {
   db_drop_field('webform_submissions', 'start_time');
   db_drop_field('webform_submissions', 'drafted_time');
