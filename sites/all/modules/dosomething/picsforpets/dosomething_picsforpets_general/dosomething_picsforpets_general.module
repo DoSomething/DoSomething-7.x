@@ -406,7 +406,7 @@ function dosomething_picsforpets_general_preprocess_page(&$variables) {
 
   if ($current_path == 'pics-for-pets') {
     // Query database for most shared pet
-    $result = db_query('SELECT entity_id FROM field_data_field_fb_app_share_count ORDER BY field_fb_app_share_count_value DESC');
+    $result = db_query('SELECT entity_id FROM field_data_field_fb_app_share_count ORDER BY RAND() LIMIT 1');
     foreach($result as $row) {
       $sid = $row->entity_id;
       break;
