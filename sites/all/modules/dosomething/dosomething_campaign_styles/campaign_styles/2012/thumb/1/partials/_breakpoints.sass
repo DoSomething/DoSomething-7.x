@@ -1,13 +1,24 @@
 // RESPONSIVE STYLES
 
-$bp-xlarge: 1100px
-$bp-large: 700px
-$bp-medium: 600px
-$bp-small: 320px
-
-@media screen and (max-width: $bp-xlarge)
+@media screen and (max-width: 1100px)
   .container
-    max-width: 93.6%
-  .region-sidebar-first
-    width: 22.1%
   
+@media screen and (max-width: 897px)
+  nav[role="navigation"] .region-navigation .block-menu-block
+    padding-left: 9%
+    ul.menu li
+      width: 20.3%
+      background: green
+      font-size: 25px
+  #utility-bar
+    display: none
+  #site-name
+    top: -40px
+    left: -15px
+    a
+      width: 75px
+      height: 75px
+      background-size: 75px
+
+@media screen and (max-width: 320px)
+  background: pink
