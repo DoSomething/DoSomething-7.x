@@ -1,0 +1,5 @@
+core = 7.x
+name = fb_user_shares
+description = Stores and makes accessible metadata about Facebook user shares.
+package = Drupal for Facebook
+
