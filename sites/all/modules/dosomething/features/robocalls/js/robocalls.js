@@ -14,7 +14,7 @@ function dostuff() {
   // Weird jQuery bug with preserving an old click state...so we've set a parameter (changestate)
   // that changes when a user logs in.  This window won't pop up anymore after logging in.
   if (changestate === false) {
-     window.open('https://www.facebook.com/dialog/oauth?client_id=169271769874704&redirect_uri=http%3A//localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php&display=popup', 'FBP', 'width=500,height=350');
+     window.open('https://www.facebook.com/dialog/oauth?client_id=169271769874704&redirect_uri=http%3A//www.dosomething.org/sites/all/modules/dosomething/features/robocalls/facebook_popup.php&display=popup', 'FBP', 'width=500,height=350');
   }
   return false;
 }

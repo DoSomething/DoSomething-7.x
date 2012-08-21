@@ -46,7 +46,7 @@ jQuery(document).ready(function () {
     friendsPerPage           : 5,
     autoDeselection          : true,
       callbackSubmit       : function(selectedFriendIds) {
-        window.open('http://www.facebook.com/dialog/feed?app_id=169271769874704&display=popup&to=' + selectedFriendIds + '&description=Yay+Stuff&redirect_uri=http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'FBP', 'width=500,height=350');
+        window.open('http://www.facebook.com/dialog/feed?app_id=169271769874704&display=popup&to=' + selectedFriendIds + '&description=Yay+Stuff&redirect_uri=http://www.dosomething.org/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'FBP', 'width=500,height=350');
       }
   });
   s = selector2;
