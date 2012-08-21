@@ -78,7 +78,7 @@
                   <td>
                     <p style="font-family: Arial, sans-serif; font-size: 10px; text-align: center;">
                       <a href="http://www.dosomething.org/about">about us</a> | <a href="http://www.dosomething.org/about/contact">contact us</a> | <a href="http://www.dosomething.org/about/privacy">privacy</a><br />
-                      &copy; Do Something, Inc. &bull; 24-32 Union Square East, 4th floor &bull; New York, NY 10003</p>
+                      &copy; Do Something, Inc. &bull; 19 West 21st Street, 8th Floor &bull; New York, NY 10010</p>
                   </td>
                 </tr>
               </tbody>
