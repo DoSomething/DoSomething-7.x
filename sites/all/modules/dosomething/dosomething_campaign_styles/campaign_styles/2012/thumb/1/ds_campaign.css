@@ -1,3 +1,19 @@
+#main-wrapper div[role="main"] {
+  padding: 0 !important;
+  margin: 0 !important; }
+#main-wrapper #breadcrumb, #main-wrapper #page-title {
+  display: none; }
+#main-wrapper .tabs {
+  background: #231f20; }
+#main-wrapper ul.primary {
+  border-bottom: none;
+  margin: 0;
+  padding: 15px 0 0 8px;
+  height: 37px; }
+
+body {
+  background: #ffdd00; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -48,7 +64,7 @@
   line-height: 1.54em; }
 #cmp h2, #cmp .divider {
   font-size: 20px;
-  line-height: 1.54em; }
+  line-height: 1.55em; }
 #cmp h3 {
   font-size: 18px;
   line-height: 22px; }
@@ -168,11 +184,13 @@
   width: 250px; }
 #cmp #cork, #cmp #cask {
   margin: 0 auto;
-  max-width: 725px;
+  max-width: 797px;
   padding: 0 2%; }
 #cmp #cork {
   height: 270px;
-  background: url("assets/header.jpg") no-repeat; }
+  background: url("assets/header.jpg") no-repeat;
+  background-size: 101%;
+  background-position-x: -2px; }
 #cmp #cask {
   background: #231f20; }
 #cmp .header {
@@ -188,9 +206,9 @@
 #cmp .scholarship {
   height: 595px; }
 #cmp .faq {
-  height: 345px;
   text-align: left;
-  border-bottom: none; }
+  border-bottom: none;
+  padding-bottom: 15px; }
 #cmp .contact_form-aside {
   margin: 5% 0; }
   #cmp .contact_form-aside h2 {
@@ -221,7 +239,11 @@
     background: #0a5080;
     background: rgba(10, 80, 128, 0.5); }
 #cmp .do img, #cmp .do2 img {
-  width: 100%; }
+  width: 100%;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
 #cmp .do p, #cmp .do2 p {
   position: absolute;
   bottom: 0; }
@@ -415,3 +437,6 @@
     border-style: solid; }
 #cmp .region-sidebar-first {
   margin-top: 0 !important; }
+@media screen and (max-width: $bp-xlarge) {
+  #cmp .container {
+    max-width: 1000px; } }
