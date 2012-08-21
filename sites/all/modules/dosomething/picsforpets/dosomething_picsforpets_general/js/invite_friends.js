@@ -33,17 +33,19 @@ Drupal.behaviors.galleryShareButton = {
         cookie: true
       });
     };
-    //var shareUrl = 'https://apps.facebook.com/picsforpets/webform-submission/' + sid;
-    var share = {
-      method: 'feed',
-      name: 'Pics For Pets'
-      //link: shareUrl,
-      //picture: pictureUrl,
-      //caption: petName,
-      //description: "I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2]
-    };
 
     $('.gallery-share-button').click(function () {
+      var sid = $(this).parent().attr('id');
+      var shareUrl = 'https://apps.facebook.com/zivtechdev/webform-submission/' + sid;
+      var threeWords = settings.dosomething_picsforpets_general.gallery[sid].threeWords;
+      var share = {
+        method: 'feed',
+        name: 'Pics For Pets',
+        link: shareUrl,
+        picture: 'http://picsforpets.dev.zivtech.com/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        caption: settings.dosomething_picsforpets_general.gallery[sid].petName,
+        description: "I'm " + threeWords[0].raw.safe_value + ", " + threeWords[1].raw.safe_value + ", and " + threeWords[2].raw.safe_value
+      };
       FB.ui(share, function(response) {
         // If the share was unsuccessful or the user clicked cancel, response
         // will be undefined. Otherwise it will be an object that contains the
@@ -54,7 +56,7 @@ Drupal.behaviors.galleryShareButton = {
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
-          $.post('https://apps.facebook.com/picsforpets/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+          $.post('https://apps.facebook.com/zivtechdev/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
             // Update the page with the new share count.
             $('.picsforpets-share-count').text(userShares);
             // Display a modal dialog depending on the total number of shares
