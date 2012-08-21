@@ -187,10 +187,12 @@ a.footer-furtography
   font-family: $font-sans
 
 #shelter-results
+  +border-radius(12px)
+  +clearfix
   background: $white
   color: $black
   padding: 24px
-  +border-radius(12px)
+  margin-bottom: 24px
   input
     +float-left
   .form-item-results
@@ -198,6 +200,10 @@ a.footer-furtography
     margin-bottom: 24px
     .label-shelter-title
       font-weight: bold
+
+#dosomething-picsforpets-shelters-options-form
+  input[type="submit"]
+    @extend %pfp-button
 
 ////////////////////////////
 // MODAL GENERAL LAYOUT
