@@ -21,8 +21,8 @@ function drush_robocalls_robocall($fnid) {
     ->propertyCondition('nid', $fnid)
     ->propertyCondition('uid', 0, '>')
     ->propertyOrderBy('submitted', 'DESC')
-    #->fieldCondition('field_celeb_date', 'value', date('Y-m-d H:i:00', $time), '=')
-    ->fieldCondition('field_celeb_send_now', 'value', 0, '=')
+    ->fieldCondition('field_celeb_date', 'value', date('Y-m-d H:i:00', $time), '=')
+    #->fieldCondition('field_celeb_send_now', 'value', 0, '=')
     ->execute();
   if (!empty($result))
   {
@@ -49,7 +49,7 @@ function drush_robocalls_robocall($fnid) {
   	}
   }
   else {
-    echo "Nothing found.";
+    echo "Nothing found ($fnid).";
   }
 }
 
