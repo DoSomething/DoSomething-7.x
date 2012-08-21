@@ -1,0 +1,19 @@
+<?php
+
+function dosomething_submission_start_schema_alter(&$schema) {
+  // Add field to existing schema.
+  $schema['webform_submissions']['fields']['start_time'] = array(
+    'type' => 'text',
+    'not null' => FALSE,
+    'default' => '',
+    'description' => 'The starting time for a submission.',
+  );
+}
+
+function dosomething_submission_start_install() {
+	db_add_field('webform_submissions', 'start_time', array(
+	  'type' => 'int',
+	  'not null' => TRUE,
+	  'description' => 'Time that a submission was first begun.'
+	));
+}

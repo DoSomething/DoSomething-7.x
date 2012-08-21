@@ -696,6 +696,7 @@ function webform_get_submissions($filters = array(), $header = NULL, $pager_coun
       $submissions[$row->sid]->uid = $row->uid;
       $submissions[$row->sid]->name = $row->name;
       $submissions[$row->sid]->is_draft = $row->is_draft;
+      $submissions[$row->sid]->started = $row->start_time;
       $submissions[$row->sid]->data = array();
     }
     // CID may be NULL if this submission does not actually contain any data.

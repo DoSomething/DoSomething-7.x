@@ -1,0 +1,27 @@
+<?php
+
+function dosomething_submission_start_webform_submission_presave($node, &$submission) {
+	$start_time = intval($_POST['start_time']);
+	$submission->start_time = $start_time;
+}
+
+function dosomething_submission_start_form_alter(&$form, &$form_state) {
+	static $started;
+
+	// Drupal is stupid and is loading more than one started value.  By the end it
+	// has nothing in $form['#submission']->started...So let's make sure that the first
+	// one that appears is kept.
+	if (!$started) {
+		if (isset($form['#submission']->started)) {
+			$started = $form['#submission']->started;
+		}
+		else {
+			$started = time();
+		}
+	}
+
+	$form['start_time'] = array(
+		'#type' => 'hidden',
+		'#value' => $started
+	);
+}
