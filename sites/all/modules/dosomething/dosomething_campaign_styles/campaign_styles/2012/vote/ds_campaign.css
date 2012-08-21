@@ -1,0 +1,498 @@
+@font-face {
+  font-family: "vinyl_ot_obliqueoblique";
+  src: url("assets/vinyloblique-webfont.eot");
+  src: url("assets/vinyloblique-webfont.eot?#iefix") format("embedded-opentype"), url("assets/vinyloblique-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "vinyl_ot_regularregular";
+  src: url("assets/vinylregular-webfont.eot");
+  src: url("assets/vinylregular-webfont.eot?#iefix") format("embedded-opentype"), url("assets/vinylregular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.main-inner {
+  padding-top: 10px;
+  width: 750px; }
+  .main-inner a {
+    color: #d50021; }
+    .main-inner a:hover {
+      color: black; }
+  .main-inner b {
+    font-weight: 600; }
+
+h1.title {
+  display: none; }
+
+h2.pane-title {
+  background: #d50021;
+  text-align: center;
+  font-family: "vinyl_ot_regularregular";
+  font-size: 32px;
+  text-transform: uppercase;
+  color: #e3dcbf;
+  padding: 8px 0 5px 0; }
+
+p {
+  font-size: 14px; }
+
+img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important; }
+
+ul {
+  margin: 0; }
+
+body {
+  background-color: #272727;
+  background-image: url("assets/vote-bg.jpg");
+  background-repeat: repeat;
+  background-position: center top; }
+
+div[role="main"] {
+  background: none;
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
+  box-shadow: black 0 0 30px -10px;
+  margin-top: 8px;
+  padding-top: 10px; }
+
+.three-boxes {
+  width: 32% !important;
+  float: left !important;
+  margin-right: 2% !important; }
+  .three-boxes:last-child {
+    margin-right: 0 !important; }
+  .three-boxes .pane-content {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("assets/section_bg.jpg ") #eeeeee; }
+
+.three-boxes-last-child {
+  margin-right: 0 !important; }
+
+.line-top:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.line-bottom:after {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.panel-row-flexible, .panel-row-actions {
+  margin: 0px; }
+  .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
+    margin-bottom: 20px;
+    background: none;
+    border: none !important; }
+    .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
+      background: #d50021; }
+    .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
+      background: url("assets/section_bg.jpg ") #eeeeee; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0px; }
+
+#breadcrumb {
+  display: none; }
+
+#block-dosomething-campaign-styles-campaign-nav {
+  background: #d50021;
+  margin-right: -5px;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    background: none;
+    background-image: none;
+    text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu li {
+      line-height: 1.2em; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: black;
+      font-family: "vinyl_ot_regularregular"; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #e3dcbf;
+        text-decoration: none;
+        font-family: "vinyl_ot_obliqueoblique"; }
+
+.pane-node-field-campaign-logo .pane-content {
+  padding-bottom: 0; }
+
+.field-name-field-campaign-logo img {
+  width: 480px;
+  height: 230px;
+  margin-top: 0px !important; }
+
+.panel-top-right-mini-info {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 21px;
+  line-height: 1.4em; }
+  .panel-top-right-mini-info .field-name-field-campain-date {
+    color: #d50021;
+    padding: 0;
+    font-weight: 600; }
+  .panel-top-right-mini-info .field-name-field-campaign-teaser p {
+    margin-bottom: 15px; }
+  .panel-top-right-mini-info .pane-content {
+    padding-bottom: 0; }
+
+.pane-campaign-social .pane-content .fb-facepile {
+  margin-bottom: 5px; }
+  .pane-campaign-social .pane-content .fb-facepile:before {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+.pane-campaign-social .pane-content .socialWrapper {
+  margin: 0 0 8px 18px; }
+  .pane-campaign-social .pane-content .socialWrapper:before {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    content: "";
+    display: block;
+    left: -18px;
+    margin-bottom: 8px;
+    position: relative;
+    width: 247px; }
+
+.panel-row-actions {
+  background: url("assets/section_bg.jpg ") #eeeeee;
+  margin: 0 0 20px 0;
+  width: 750px;
+  border: none !important;
+  text-transform: uppercase; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 5px !important; }
+  .panel-row-actions .pane-title {
+    background: #d50021; }
+  .panel-row-actions .pane-content {
+    padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up form {
+    padding-bottom: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up #edit-actions {
+      bottom: 22px !important; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: #e3dcbf; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      -o-box-shadow: none !important;
+      box-shadow: none !important;
+      border: none !important; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+      font-size: 14px;
+      width: 280px;
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+      font-size: 14px;
+      width: 240px;
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+        width: 75%;
+        margin-top: 5px; }
+
+.webform-client-form #edit-actions,
+.webform-client-form #edit-actions--2 {
+  position: absolute;
+  right: 86px;
+  bottom: 9px; }
+
+#campaign-opt-in {
+  font-size: 11px;
+  margin-left: 15px;
+  padding: 5px 0 12px 0;
+  padding-top: 8px !important; }
+  #campaign-opt-in a {
+    font-weight: bold;
+    display: block;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 13px;
+    left: 324px;
+    color: #d50021; }
+    #campaign-opt-in a:hover {
+      color: black;
+      text-decoration: none; }
+
+.pane-campaign-counter .pane-content {
+  padding: 20px 25px; }
+  .pane-campaign-counter .pane-content .campaign-counter-labels {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-weight: 500;
+    line-height: 25px;
+    float: left; }
+  .pane-campaign-counter .pane-content .digits, .pane-campaign-counter .pane-content .campaign-counter-label-bottom, .pane-campaign-counter .pane-content .campaign-counter-label-top {
+    margin-bottom: 8px; }
+
+.panel-row-ad-quick-info .pane-title {
+  font-size: 35px;
+  padding: 0;
+  background: transparent;
+  text-transform: uppercase;
+  color: black;
+  line-height: 1em;
+  font-weight: 500; }
+.panel-row-ad-quick-info .pane-content {
+  margin-top: 1em;
+  padding: 0; }
+  .panel-row-ad-quick-info .pane-content h3 {
+    color: #d50021;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 0.8em; }
+  .panel-row-ad-quick-info .pane-content p {
+    margin: 0 0 0.8em 0; }
+  .panel-row-ad-quick-info .pane-content:before {
+    margin-bottom: 20px; }
+
+.panel-row-ad-psa {
+  margin-top: 35px; }
+
+.panel-row-logos {
+  margin-top: 2em; }
+  .panel-row-logos .pane-title {
+    color: #d50021;
+    background: none;
+    margin: 0;
+    padding: 0; }
+  .panel-row-logos .pane-content {
+    background: none;
+    padding: 0; }
+
+.faq-section {
+  border: none !important; }
+  .faq-section .pane-content ul {
+    margin: 0px 10px;
+    padding: 1.5em; }
+  .faq-section .pane-content li h3 {
+    font-size: 1.6em;
+    text-transform: none; }
+  .faq-section .pane-content li p {
+    margin-top: 0; }
+
+.node-campaign-blog-post {
+  padding: 15px !important; }
+  .node-campaign-blog-post .field-name-field-picture img {
+    margin: 0 20px 20px 0;
+    float: left; }
+  .node-campaign-blog-post .field-name-field-blog-video {
+    clear: both;
+    position: relative;
+    bottom: -25px;
+    right: -125px;
+    margin: 35px 0; }
+    .node-campaign-blog-post .field-name-field-blog-video iframe {
+      margin: 0 auto;
+      display: block; }
+
+.field-type-text-with-summary img {
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid black !important; }
+
+.pane-campaign-blog-panel-pane-1 {
+  background: transparent !important;
+  border: none !important; }
+  .pane-campaign-blog-panel-pane-1 .pane-content {
+    padding: 15px; }
+  .pane-campaign-blog-panel-pane-1 a {
+    color: #d50021;
+    text-decoration: underline; }
+    .pane-campaign-blog-panel-pane-1 a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .views-field-title a {
+    text-decoration: none; }
+    .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .more-link {
+    text-transform: uppercase; }
+
+.pane-campaign-blog-panel-pane-2 {
+  border: none !important;
+  width: 100%; }
+  .pane-campaign-blog-panel-pane-2 .pane-content {
+    padding: 10px 0 0 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row {
+    padding: 5px 15px 15px;
+      padding-margin: 1em 0 1em 0; }
+    .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
+      border: none !important;
+      margin: 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
+    background-color: url("assets/section_bg.jpg ") #eeeeee; }
+
+#dosomething-login-register-popup-form .popup-content {
+  height: 165px !important; }
+
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper {
+  display: none; }
+
+.pane-node-field-campain-date .field-items {
+  color: #d50021; }
+
+.field-name-field-campaign-teaser {
+  color: white; }
+
+.fb-facepile {
+  display: none !important; }
+
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5 {
+  display: none; }
+
+.pane-campaign-counter h2.pane-title, .pane-campaign-sign-up h2.pane-title {
+  background: black !important;
+  border-bottom: 8px solid #d50021;
+  color: #e3dcbf;
+  padding-top: 8px !important;
+  font-size: 26px !important; }
+
+.pane-campaign-sign-up h2.pane-title {
+  width: 750px; }
+
+.center {
+  text-align: center; }
+
+h2 span, h3 span {
+  color: #d50021; }
+
+.vote-action-copy {
+  padding: 20px 80px 0 80px;
+  font-size: 14px;
+  line-height: 1.3em; }
+
+.vote-action-1, .vote-action-2 {
+  float: left;
+  width: 275px;
+  margin: 0 45px;
+  text-align: center; }
+  .vote-action-1 h2, .vote-action-2 h2 {
+    font-family: "vinyl_ot_regularregular";
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 1em; }
+  .vote-action-1 p, .vote-action-2 p {
+    font-size: 14px; }
+
+.vote-meet {
+  clear: both;
+  text-align: center; }
+  .vote-meet h2 {
+    font-family: "vinyl_ot_regularregular";
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 1em;
+    background: url("assets/vote-meet-line2.png") no-repeat center 8px; }
+  .vote-meet p {
+    width: 500px;
+    margin: 0 auto;
+    font-size: 14px; }
+
+.vote-candidate-1, .vote-candidate-2, .vote-candidate-3, .vote-candidate-4 {
+  text-align: center;
+  width: 22.5%;
+  margin: 20px 2% 0 0;
+  float: left;
+  padding-bottom: 10px; }
+  .vote-candidate-1 h3, .vote-candidate-2 h3, .vote-candidate-3 h3, .vote-candidate-4 h3 {
+    font-family: "vinyl_ot_regularregular";
+    text-transform: uppercase;
+    font-size: 22px; }
+
+.vote-candidate-1 {
+  margin-left: 2%; }
+
+.pane-node-field-campaign-teaser p {
+  font-size: 22px; }
+
+.clear {
+  clear: both; }
+
+#vote-scholarship h2.vote-change {
+  font-family: "vinyl_ot_regularregular";
+  text-transform: uppercase;
+  font-size: 26px;
+  padding: 24px 0 0 0;
+  text-align: center; }
+  #vote-scholarship h2.vote-change span {
+    text-align: right;
+    padding-right: 32px;
+    font-size: 20px;
+    display: block; }
+
+img.spread {
+  float: right; }
+
+.vote-step-one, .vote-step-two {
+  float: left;
+  padding: 0 10px;
+  text-align: center; }
+  .vote-step-one img, .vote-step-two img {
+    margin: 0 !important; }
+
+.vote-step-one {
+  width: 35%; }
+
+.vote-step-two {
+  width: 65%; }
+  .vote-step-two form {
+    background: white;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+    padding: 10px; }
+
+.vote-form {
+  float: left;
+  width: 50%;
+  text-align: left; }
+
+#vote-learn img {
+  margin: 40px 10px; }
+
+.pane-4 .pane-content {
+  padding: 10px; }
+  .pane-4 .pane-content p {
+    font-weight: bold;
+    margin-bottom: 8px; }
+
+img.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
