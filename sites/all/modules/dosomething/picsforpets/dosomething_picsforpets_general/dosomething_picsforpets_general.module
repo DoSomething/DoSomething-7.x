@@ -473,7 +473,7 @@ function dosomething_picsforpets_general_field_formatter_view($entity_type, $ent
 
   $element = array();
   $element [0] = array(
-    '#markup' => '<span class="gallery-share-button">Share me</span><span class="gallery-share-count">' . $value . '</span>',
+    '#markup' => '<span class="gallery-share-button">Share me</span><span class="picsforpets-share-count-arrow"> </span><span class="gallery-share-count">' . $value . '</span>',
   );
   return $element;
 }
