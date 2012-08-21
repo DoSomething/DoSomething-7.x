@@ -1879,6 +1879,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   text-align: right;
   height: 30px;
   margin-bottom: 12px;
+  margin-top: 12px;
 }
 .start-a-project:before {
   content: "Start a Project";
@@ -1912,7 +1913,35 @@ ul.hover-image li:first-child {
 #campaign-opt-in {
   font-size: 11px;
   line-height: 1.2em;
-  padding-top: 25px !important;
+  padding-top: 10px !important;
+}
+
+.webform-client-form #edit-actions {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+}
+
+.btn-tell .mcommons-webform-column .go-button, .btn-tell .mcommons-webform-column #dosomething-blocks-make-an-impact-form input[type="submit"], #dosomething-blocks-make-an-impact-form .btn-tell .mcommons-webform-column input[type="submit"],
+.btn-tell .mcommons-webform-column #dosomething-blocks-make-an-impact-form-front input[type="submit"],
+#dosomething-blocks-make-an-impact-form-front .btn-tell .mcommons-webform-column input[type="submit"], .btn-tell .mcommons-webform-column form.webform-client-form #edit-next, form.webform-client-form .btn-tell .mcommons-webform-column #edit-next,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-previous,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-previous,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-submit,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-submit,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-submit--2,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-submit--2,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-draft,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-draft, .btn-tell .mcommons-webform-column .ds-login-popup-footer #edit-final-submit, .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit, .btn-tell .mcommons-webform-column .not-logged-in #dosomething-login-register-block #edit-first-submit, .not-logged-in #dosomething-login-register-block .btn-tell .mcommons-webform-column #edit-first-submit, .btn-tell .mcommons-webform-column .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .btn-tell .mcommons-webform-column a, .btn-tell .mcommons-webform-column .views-submit-button a, .views-submit-button .btn-tell .mcommons-webform-column a, .btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit,
+.btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit--2,
+.btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit,
+.btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit--2, .btn-tell .mcommons-webform-column .node-poll input[type="submit"], .node-poll .btn-tell .mcommons-webform-column input[type="submit"], .btn-tell .mcommons-webform-column #search-api-page-search-form #edit-submit-1, #search-api-page-search-form .btn-tell .mcommons-webform-column #edit-submit-1, .btn-tell .mcommons-webform-column #og-ui-confirm-subscribe #edit-actions #edit-submit, #og-ui-confirm-subscribe #edit-actions .btn-tell .mcommons-webform-column #edit-submit,
+.btn-tell .mcommons-webform-column #og-ui-confirm-subscribe #edit-actions #edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions .btn-tell .mcommons-webform-column #edit-submit--2 {
+  left: 90px !important;
 }
 
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
@@ -3770,6 +3799,22 @@ h2.block-title, h2.pane-title {
   border: none !important;
   box-shadow: none !important;
   -webkit-box-shadow: none important;
+}
+
+#block-block-7 {
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
+  background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-color: #efefef;
+  margin-right: -5px;
+  position: relative;
+  top: 5px;
+  color: black;
+  padding: 10px 10px;
+  font-size: 12pt;
+  border-bottom: 1px solid #d4d2d1;
 }
 
 #block-menu-menu-footer {
