@@ -9,8 +9,20 @@ $plugin = array(
 
 
 function dosomething_picsforpets_general_content_type_render_invite($subtype = '', $conf = array(), $context = NULL) {
-  //$app_id = $GLOBALS['_fb_app']->id;
-  //$access_token = $_SESSION['fb_' . $app_id . '_access_token'];
+  require_once 'sites/all/libraries/facebook-php-sdk/src/facebook.php';
+  $facebook = new Facebook(array(
+    'appId'  => '459236750767188',
+    'secret' => '71e0c74f92f64c1bbd426bfa2a08120c',
+  ));
+  $user = $facebook->getUser();
+  if ($user) {
+    try {
+      $user_profile = $facebook->api('/me');
+    } catch (FacebookApiException $e) {
+      error_log($e);
+      $user = null;
+    }
+  }
 
   // Render array for Invite Friends button.
   $output = '<div id="picsforpets-invite-friends-image"></div>';
@@ -25,7 +37,7 @@ function dosomething_picsforpets_general_content_type_render_invite($subtype = '
     '#children' => $output,
     '#attached' => array(
       'js' => array(
-        array('data' => array('fb_access_token' => 'access_token'), 'type' => 'setting'),
+        array('data' => array('fb_access_token' => $facebook->getAccessToken()), 'type' => 'setting'),
         ctools_attach_js('invite_friends', 'dosomething_picsforpets_general'),
       ),
     ),
