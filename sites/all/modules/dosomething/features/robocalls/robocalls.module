@@ -340,7 +340,8 @@ function robocalls_call_validate(&$form, &$form_state) {
   $s = $form_state['input']['submitted']/*['celeb_call_information']*/;
   $stime = $s['field_celeb_date'][LANGUAGE_NONE][0]['value'];
  
-  $sn = $form_state['input']['field_celeb_send_now'][LANGUAGE_NONE];
+  $sn = 0;
+  $sn = intval($form_state['input']['field_celeb_send_now'][LANGUAGE_NONE]);
   $form['#submission']->submitted['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
   $form['#submission']->field_celeb_send_now[LANGUAGE_NONE][0]['value'] = $sn;
   $form_state['values']['submitted']['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
