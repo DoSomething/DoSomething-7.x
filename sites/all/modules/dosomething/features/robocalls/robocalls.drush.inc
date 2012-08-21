@@ -48,6 +48,9 @@ function drush_robocalls_robocall($fnid) {
       }
   	}
   }
+  else {
+    echo "Nothing found.";
+  }
 }
 
 ?>
