@@ -2638,6 +2638,9 @@ select#edit-sort-by {
   padding: 2px 4px;
   color: #a6a8ab;
 }
+.gallery-thumbnail-text .picsforpets-share-count-arrow {
+  margin-right: -1px;
+}
 
 .no-results {
   text-align: center;
