@@ -457,27 +457,23 @@ function dosomething_picsforpets_general_field_formatter_info() {
  * Implements hook_field_formatter_view().
  */
 function dosomething_picsforpets_general_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $count = 0;
+  $value = 0;
   foreach ($items as $item) {
-    $value = $item[0]['value'];
-    $value = 1979534;
+    $value = $item['value'];
     if ($value > 999 && $value < 99999) {
-      $count = round($value / 1000, 1) . 'k';
+      $value = round($value / 1000, 1) . 'k';
     }
     else if ($value > 99999 && $value < 999999) {
-      $count = round($value / 1000, 0) . 'k';
+      $value = round($value / 1000, 0) . 'k';
     }
     else if ($value > 999999) {
-      $count = round($value / 1000000, 1) . 'M';
-    }
-    else {
-      $count = $value;
+      $value = round($value / 1000000, 1) . 'M';
     }
   }
 
   $element = array();
   $element [0] = array(
-    '#markup' => '<span class="gallery-share-button">Share me</span><span class="gallery-share-count">' . $count . '</span>',
+    '#markup' => '<span class="gallery-share-button">Share me</span><span class="gallery-share-count">' . $value . '</span>',
   );
   return $element;
 }
