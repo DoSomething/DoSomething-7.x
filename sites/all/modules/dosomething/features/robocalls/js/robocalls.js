@@ -1,5 +1,6 @@
 var button;
 var userInfo;
+var changestate = false;
 
 function remove_fb_bday_choice() {
   if (confirm('Remove this person from your Facebook choice? We can\'t send them a message unless they\'re listed here.')) {
@@ -10,7 +11,11 @@ function remove_fb_bday_choice() {
 }
 
 function dostuff() {
-  window.open('https://www.facebook.com/dialog/oauth?client_id=169271769874704&redirect_uri=http%3A//localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'FBP', 'width=500,height=350');
+  // Weird jQuery bug with preserving an old click state...so we've set a parameter (changestate)
+  // that changes when a user logs in.  This window won't pop up anymore after logging in.
+  if (changestate === false) {
+     window.open('https://www.facebook.com/dialog/oauth?client_id=169271769874704&redirect_uri=http%3A//localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php&display=popup', 'FBP', 'width=500,height=350');
+  }
   return false;
 }
 
@@ -133,22 +138,12 @@ jQuery(document).ready(function() {
        return false;
      });*/
   }
-
-
-  var selector1, selector2, logActivity, callbackFriendSelected, callbackFriendUnselected, callbackMaxSelection, callbackSubmit;
-  // Initialise the Friend Selector with options that will apply to all instances
-  TDFriendSelector.init({debug: true});
-  // Create some Friend Selector instances
-  selector2 = TDFriendSelector.newInstance({
-    callbackFriendSelected   : callbackFriendSelected,
-    callbackFriendUnselected : callbackFriendUnselected,
-    callbackMaxSelection     : callbackMaxSelection,
-    callbackSubmit           : callbackSubmit,
-    maxSelection             : 1,
-    friendsPerPage           : 5,
-    autoDeselection          : true,
-      callbackSubmit       : function(selectedFriendIds) {
-        window.open('http://www.facebook.com/dialog/feed?app_id=169271769874704&display=popup&to=' + selectedFriendIds + '&description=Yay+Stuff&redirect_uri=http://localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'FBP', 'width=500,height=350');
-      }
-  });
 });
+
+function alter_click() {
+  changestate = true;
+  jQuery('.robocalls-fb-find-friends-birthdays').click(function() {
+      pop();
+      return false;
+  });
+}

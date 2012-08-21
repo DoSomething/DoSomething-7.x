@@ -6,6 +6,8 @@ if ($_GET['code']) {
 <script type="text/javascript">
 <!--
     $(document).ready(function() {
+        console.log('Just logged in.  Trying to alter the click state.');
+        window.opener.alter_click();
         window.opener.pop();
         window.close();
     });
