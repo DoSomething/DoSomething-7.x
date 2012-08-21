@@ -1780,6 +1780,9 @@ a.footer-furtography {
   background: rgba(0, 0, 0, 0.75);
   border: none;
   padding: 23px;
+  border-bottom: 12px solid;
+  border-top: 12px solid;
+  border-color: rgba(0, 0, 0, 0.1);
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
