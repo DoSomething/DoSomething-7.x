@@ -18,8 +18,7 @@
   <div class="webform-submission-info-text">
     <div><?php print t('Form: !form', array('!form' => l($node->title, 'node/' . $node->nid))); ?></div>
     <div><?php print t('Submitted by !name', array('!name' => theme('username', array('account' => $account)))); ?></div>
-    <div><?php print t('Started at: !started', array('!started' => format_date($submission->started, 'large'))); ?></div>
-    <div><?php print t('Submission time: !sent', array('!sent' => format_date($submission->submitted, 'large'))); ?></div>
+    <div><?php print format_date($submission->submitted, 'large'); ?></div>
     <div><?php print $submission->remote_addr; ?></div>
   </div>
 </fieldset>

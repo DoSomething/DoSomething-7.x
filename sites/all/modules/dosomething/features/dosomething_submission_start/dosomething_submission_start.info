@@ -1,3 +1,0 @@
-name = "Webform Submission Start Time"
-description = "Records the time that a submission STARTED (instead of was submitted)."
-core = 7.x
