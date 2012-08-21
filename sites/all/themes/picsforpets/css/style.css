@@ -1081,13 +1081,22 @@ a.button {
   float: left;
 }
 
-a.back {
+a.back, a.next {
   color: #ec1c24;
   font-weight: bold;
   padding: 6px 32px;
   margin-top: -4px;
   background: white url(../images/lg-left-arrow.png) no-repeat;
   background-position: 8px 7px;
+  display: inline;
+  float: left;
+}
+
+a.next {
+  background: white url(../images/lg-right-arrow.png) no-repeat;
+  background-position: 72px 7px;
+  display: inline;
+  float: right;
 }
 
 .by-signing-up {
@@ -1757,7 +1766,6 @@ a.footer-furtography {
   border-radius: 12px;
   overflow: hidden;
   *zoom: 1;
-  background: white;
   color: black;
   padding: 24px;
   margin-bottom: 24px;
@@ -2311,8 +2319,7 @@ a.footer-furtography {
   line-height: 1;
   margin-right: 3px;
 }
-#dosomething-picsforpets-shelters-lookup-form #edit-zip,
-#dosomething-picsforpets-shelters-lookup-form #edit-submit {
+#dosomething-picsforpets-shelters-lookup-form #edit-zip {
   display: inline;
   float: left;
 }
