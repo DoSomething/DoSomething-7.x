@@ -614,3 +614,20 @@ function dosomething_picsforpets_general_regenerate_webform_node() {
   //Get the node data and save it into drupal
   dosomething_picsforpets_general_save_webform_node($file);
 }
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function dosomething_picsforpets_general_views_post_execute(&$view) {
+  if ($view->name == 'pics_for_pets_gallery') {
+    $pets = array();
+    foreach($view->result as $row) {
+      $pets[$row->sid] = array (
+        'threeWords' => $row->field_field_fb_app_three_words,
+        'petName' => $row->field_field_fb_app_animal_name[0]['raw']['safe_value'],
+        'pictureUrl' => 'sites/default/files/styles/gallery_thumbnail/public/fb_campaign/' . $row->field_field_fb_app_image[0]['raw']['filename'],
+      );
+    }
+    drupal_add_js(array('dosomething_picsforpets_general' => array('gallery' =>  $pets)), 'setting');
+ }
+}
