@@ -2,7 +2,7 @@
 
 /**
  * @file
- *   Installs database tables and necessary data for the picsforpets app.
+ * Installs database tables and necessary data for the picsforpets app.
  */
 
 /**
@@ -16,39 +16,7 @@ function dosomething_picsforpets_general_install() {
  * Implements hook_schema().
  */
 function dosomething_picsforpets_general_schema() {
-  $schema['picsforpets_user_shares'] = array(
-    'description' => 'keeps track of submissions a user has shared.',
-    'fields' => array(
-      'fb_user_id' => array(
-        'type' => 'varchar',
-        'length' => 40,
-      ),
-      'entity_type' => array(
-        'type' => 'varchar',
-        'length' => 32,
-        'not null' => FALSE,
-        'description' => 'The entity type this data is attached to',
-      ),
-      'entity_id' => array(
-        'type' => 'int',
-        'unsigned' => TRUE,
-        'not null' => FALSE,
-        'description' => 'The entity id this data is attached to',
-      ),
-      'system_path' => array(
-        'type' => 'varchar',
-        'length' => 255,
-        'not null' => FALSE,
-        'default' => 'null',
-        'description' => 'The source path to redirect from.',
-      ),
-      'created' => array(
-        'description' => 'The timestamp of when the share was created.',
-        'type' => 'int',
-        'unsigned' => TRUE,
-      ),
-    ),
-  );
+  $schema = array();
 
   $schema['dosomething_picsforpets_furtographers'] = array(
     'fields' => array(
@@ -64,6 +32,7 @@ function dosomething_picsforpets_general_schema() {
       'fbid' => array('fbid'),
     ),
   );
+
   return $schema;
 }
 
@@ -72,6 +41,34 @@ function dosomething_picsforpets_general_schema() {
  */
 function dosomething_picsforpets_general_update_7000() {
   drupal_install_schema('dosomething_picsforpets_general');
+}
+
+/**
+ * Move Facebook user shares functionality into a new module by that name.
+ */
+function dosomething_picsforpets_general_update_7001() {
+  if (!db_table_exists('picsforpets_user_shares')) {
+    return;
+  }
+
+  // Enable our new module.
+  module_enable(array('fb_user_shares'));
+
+  // Handle migration of existing user shares from the old schema.
+  if (!db_query_range('SELECT 1 FROM {picsforpets_user_shares}', 0, 1)->fetchField()) {
+    // There is nothing to migrate. Wipe the empty table.
+    db_drop_table('picsforpets_user_shares');
+    return;
+  }
+
+  // Migrate shares to the new schema.
+  $records = db_query('SELECT * FROM {picsforpets_user_shares}');
+  foreach ($records as $record) {
+    drupal_write_record('fb_user_shares', $record);
+  }
+
+  // Drop the old schema.
+  db_drop_table('picsforpets_user_shares');
 }
 
 /**
