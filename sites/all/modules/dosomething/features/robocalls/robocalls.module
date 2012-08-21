@@ -456,7 +456,7 @@ function robocalls_call_submit(&$form, &$form_state) {
       $pi = $sub['field_celebrity_chooser'][LANGUAGE_NONE][0]['tid'];
       $p = taxonomy_get_parents($pi);
       $p = current($p);
-      $parent_name = $p->name;
+      $parent_name = $p->field_short_name[LANGUAGE_NONE][0]['value'];
 
       $t = taxonomy_term_load($pi);
       $term_name = $t->name;

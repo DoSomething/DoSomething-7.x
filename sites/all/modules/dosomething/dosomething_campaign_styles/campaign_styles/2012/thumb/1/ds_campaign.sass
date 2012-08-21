@@ -1,9 +1,19 @@
-// imports all campaign partials under #cmp to force styles
 @import compass/css3
 
+// imports base variables and mixins
+@import "partials/base"
+
+// base style reset for ds.org theme
+// theme reset goes here
+@import "partials/drupal"
+
+// imports all campaign partials under #cmp to force styles
+// campaign-specific styles go here
 #cmp
-  @import "partials/base.sass"
-  @import "partials/reset.sass"
-  @import "partials/typography.sass"
-  @import "partials/framework.sass"
-  @import "partials/panes.sass"
+  @import "partials/reset"
+  @import "partials/typography"
+  @import "partials/framework"
+  @import "partials/panes"
+
+// responsive framework, media queries and breakpoints
+@import "partials/breakpoints"
