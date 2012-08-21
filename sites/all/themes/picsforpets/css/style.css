@@ -1749,6 +1749,29 @@ a.footer-furtography {
   font-family: "DINOT", sans-serif;
 }
 
+#shelter-results {
+  background: white;
+  color: black;
+  padding: 24px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+}
+#shelter-results input {
+  display: inline;
+  float: left;
+}
+#shelter-results .form-item-results {
+  overflow: hidden;
+  *zoom: 1;
+  margin-bottom: 24px;
+}
+#shelter-results .form-item-results .label-shelter-title {
+  font-weight: bold;
+}
+
 #dosomething-picsforpets-furtographer-dialog {
   margin-top: 12px;
 }
