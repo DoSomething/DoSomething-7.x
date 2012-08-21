@@ -139,7 +139,7 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
         );
     }
 
-    drupal_add_css(drupal_get_path('module', 'robocalls') . '/js/fb/tdfriendselector.css');
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.css');
 
 
     $form['ah'] = array(
@@ -224,11 +224,11 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
        'cache' => FALSE
     ));
 
-    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/fb/tdfriendselector.js', array(
+    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.js', array(
       'weight' => -102,
       'cache' => FALSE
     ));
-    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/fb/example.js', array(
+    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/example.js', array(
       'weight' => -101,
       'cache' => FALSE
     ));
