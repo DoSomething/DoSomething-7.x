@@ -39,10 +39,10 @@ div.views-field-nothing h3 {
 
 #robocalls-choose-another-celebrity h2.pane-title {
 	margin-left: -10px;
-	margin-top: -120px;
+	margin-top: -130px;
 }
 
-div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel { width: 150px; }
+div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel { width: 170px; }
 div.robocalls-call-information .webform-component, div.robocalls-call-information  .form-item { clear: both; margin-bottom: 10px; }
 div.robocalls-call-information .form-item label:first-child, .webform-component label:first-child {
 	float: left;
@@ -79,6 +79,7 @@ input.robocalls-fb-find-friends-birthdays {
 	font-weight: bold;
 	color: #ffffff;
 	margin-bottom: 10px;
+	margin-left: 15px;
 }
 
 div#edit-fb-container {
@@ -107,9 +108,13 @@ input.robocalls-send-message-now {
 	margin-left: 200px;
 }
 
-#robocalls-sponsor-zone { text-align: center; margin-top: 15px; }
-#robocalls-sponsor-zone h2 {
+#robocalls-sponsor-zone, #robocalls-partner-zone { text-align: center; margin-top: 15px; }
+#robocalls-sponsor-zone h2, #robocalls-partner-zone h2 {
 	font-size: 14px;
+}
+
+#robocalls-sponsor-zone.sponsor-right {
+	float: right;
 }
 
 #robocalls-about-block {
@@ -138,6 +143,7 @@ div.views-field-name {
 
 span.robocalls-remove-fb-choice { float: right; }
 div[role="main"] {
+	background: url(/sites/all/modules/dosomething/features/robocalls/images/section_background.png) top left;
 	padding: 30px;
 	margin: 0px;
 }
@@ -191,9 +197,9 @@ div.robocalls-extras-container {
 	width: 60%;
 	/*margin-top: -300px;*/
 	/*border-right: 1px solid #DBD9D8;*/
-	/*height: 250px; */
-	position: absolute;
-	height: 20px;
+	/*height: 250px; 
+	position: absolute;*/
+	height: 0px;
 }
 
 div.robocalls-preview-button-container {
@@ -202,16 +208,17 @@ div.robocalls-preview-button-container {
 	top: -150px;
 	left: -50px;
 	text-align: center;
-	height: 250px;
+	height: 280px;/*280px*/
 	border-left: 1px solid #D7D9D8;
 	padding-left: 35px;
 	padding-top: 60px;
 }
 
 input.go-button {
-	position: absolute;
-	left: 185px;
+	/*position: absolute;*/
+	/*left: 185px;
 	bottom: 45px;
+	margin-left: 10px;*/
 }
 
 div.panels-flexible-region-313-celeb_information-inside
@@ -246,7 +253,7 @@ div.file-audio {
 }
 
 div.robocall-flag {
-	background: #672E6F;
+	background: #d81f2a;
 	padding: 3px 17px;
 	height: 24px;
 	position: absolute;
@@ -255,10 +262,26 @@ div.robocall-flag {
 	left: -7px;
 	color: #ffffff;
 	text-transform: uppercase;
-	font-size: 20pt;
-	line-height: .9;
+	font-size: 17pt;
+	line-height: 1;
 	font-family: din-web;
 }
+
+.main-robocall-flag {
+	position: absolute;
+	margin-top: -320px;
+	background: #d81f2a;
+	padding: 3px 17px;
+	z-index: 0;
+	margin-left: -7px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 17pt;
+	line-height: 1;
+	height: 24px;
+	font-family: din-web;
+}
+
 div.robocall-flag.main {
 	top: 100px;
 }
@@ -276,10 +299,10 @@ div.robocall-flag:after, .main-robocall-flag:after {
 div.views-field-nothing a.go-button {
 	position: absolute;
 	z-index: 0;
-	bottom: 3px;
 	right: 3px;
 	height: 22px;
-
+	margin-top: 10px;
+	bottom: 3px;
 }
 
 div.views-field-nothing p {
@@ -290,14 +313,7 @@ div.pane-cause-its-your-birthday h3 { clear: both; padding: 10px 0px; }
 div.views-field-nothing h3 { clear: none; padding: 0px; }
 
 body {
-	background: #e32a43; /* Old browsers */
-	background: -moz-linear-gradient(left,  #e32a43 0%, #cd4a76 35%, #cd4a76 65%, #e32a43 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e32a43), color-stop(35%,#cd4a76), color-stop(65%,#cd4a76), color-stop(100%,#e32a43)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* IE10+ */
-	background: linear-gradient(to right,  #e32a43 0%,#cd4a76 35%,#cd4a76 65%,#e32a43 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e32a43', endColorstr='#e32a43',GradientType=1 ); /* IE6-9 */
+	background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) top left;
 }
 
 #edit-submitted-field-celebrity-chooser-und input {
@@ -317,7 +333,16 @@ div.robocalls-awesome-and-sharing a {
 	text-decoration: underline;
 }
 
-h1#page-title { margin: 0px 0px 10px; padding: 0px; }
+h1#page-title {
+	margin: 0px 0px 10px;
+	padding: 0px;
+	/*background: #D81F2A;
+	width: 797px;
+	margin-left: -30px;
+	margin-top: -30px;
+	color: #F6EED2;
+	padding: 15px 30px 15px;*/
+}
 
 .jcarousel-skin-default .jcarousel-container-horizontal {
 	margin: 0px;
@@ -349,7 +374,7 @@ nav#breadcrumb {
 }
 
 div#robocalls-who-should-celeb-call h2 {
-	margin: 30px 0px 10px 0px;
+	margin: 50px 0px 10px 0px;
 }
 
 div#robocalls-here-how-it-works {
@@ -358,18 +383,6 @@ div#robocalls-here-how-it-works {
 
 #edit-submitted-celeb-call-information-field-celeb-tid { display: none; }
 
-.main-robocall-flag {
-	position: absolute;
-	margin-top: -320px;
-	background: #672E6F;
-	padding: 3px 17px;
-	z-index: 0;
-	margin-left: -7px;
-	color: #ffffff;
-	text-transform: uppercase;
-	font-size: 16px;
-}
-
 .inside.panels-flexible-row-inside.panels-flexible-row-316-main-row-inside.clearfix {
 	height: 450px;
 }
@@ -377,7 +390,76 @@ div#robocalls-here-how-it-works {
 div#edit-field-celebrity-chooser { display: none; }
 
 div.ajax-progress {
-	position: absolute;
-	bottom: 5px;
-	right: 20px;
+	margin-top: 50px;
+	margin-left: 90px;
 }
+
+.form-item.date-spacer { display: none; }
+.form-item.form-type-select.form-item-submitted-field-celeb-date-und-0-value-hour { clear: left; margin-left: 0px;}
+div.robocalls-call-information .webform-component, div.robocalls-call-information .form-item { clear: none; }
+#edit-submitted-field-celeb-date-und-0-value { margin-top: -50px; }
+.form-item.form-type-date-select.form-item-submitted-field-celeb-date-und-0-value { border: none; }
+#edit-submitted-field-celeb-date { height: 60px; width: 300px; float: left; margin-top: -20px; }
+#edit-submitted-field-celeb-date .fieldset-wrapper { text-align: right;
+margin-left: 35px;
+width: 275px;}
+#edit-submit {
+bottom: 10px;
+}
+
+#edit-submitted-field-celeb-date legend {
+	font-size:12px;
+	font-family: "Trebuchet MS", sans-serif;
+	padding-left:30px;
+}
+
+.field-type-text {
+	margin-top: -10px;
+}
+
+#or-send-now-button { margin-bottom: 0px; }
+
+.robocalls-submit { margin-left: 100px; }
+
+/*#edit-submitted-field-celeb-date { display: none;}
+.form-item-field-celeb-send-now-und { display: none; }*/
+
+.form-item-field-celeb-send-now-und { padding-left: 15px; }
+
+div#block-menu-block-2 ul { background: #F6EED2; }
+
+div#edit-submitted-field-celeb-date select {
+	background: transparent;
+	border: 0px;
+	-webkit-appearance: none;
+	border: 1px solid #eaeaea;
+	border-radius: 0px;
+	width:50px;
+	padding: 3px;
+	background:url(/sites/all/modules/dosomething/features/robocalls/images/dropdown-arrow.png) 100% 50% no-repeat;
+
+}
+
+div#edit-submitted-field-celeb-date .form-item.form-type-select {
+	background: white;
+}
+
+div#edit-submitted-field-celeb-date select#edit-submitted-field-celeb-date-und-0-value-year { width: 58px; }
+
+div.view-id-cause_its_your_birthday h3 {
+background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #D81F2A;
+height: 39px;
+background-size: 100% 10px, 100% 35px;
+padding-top: 18px;
+width: 797px;
+margin-left: -30px;
+padding-left: 15px;
+color: #F6EED2;
+font-size: 19pt;
+ }
+
+div#submitted-field-celeb-date-add-more-wrapper { margin-top: -10px; }
+
+h4 { font-size: 13pt; }
+
+.robocalls-fb-button-container { margin: 0px; }

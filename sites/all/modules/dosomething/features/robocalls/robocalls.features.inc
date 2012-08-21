@@ -98,3 +98,12 @@ function robocalls_node_info() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_default_webform_submission_entity_type().
+ */
+function robocalls_default_webform_submission_entity_type() {
+  $items = array();
+  $items['robo_calls'] = entity_import('webform_submission_entity_type', '{ "type" : "robo_calls", "data" : null, "rdf_mapping" : [] }');
+  return $items;
+}

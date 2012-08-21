@@ -1,5 +1,6 @@
 var button;
 var userInfo;
+var changestate = false;
 
 function remove_fb_bday_choice() {
   if (confirm('Remove this person from your Facebook choice? We can\'t send them a message unless they\'re listed here.')) {
@@ -9,9 +10,18 @@ function remove_fb_bday_choice() {
   return false;
 }
 
+function dostuff() {
+  // Weird jQuery bug with preserving an old click state...so we've set a parameter (changestate)
+  // that changes when a user logs in.  This window won't pop up anymore after logging in.
+  if (changestate === false) {
+     window.open('https://www.facebook.com/dialog/oauth?client_id=169271769874704&redirect_uri=http%3A//localhost:8080/sites/all/modules/dosomething/features/robocalls/facebook_popup.php&display=popup', 'FBP', 'width=500,height=350');
+  }
+  return false;
+}
+
 (function ($) {
   $.fn.extend({
-    dsRobocallsDone: function (name, cause) {
+    dsRobocallsDone: function (name, cause, limit) {
       delete Drupal.behaviors.dosomethingLoginRegister;
 
       var popupForm = $('#dosomething-robocalls-submitted-message');
@@ -19,7 +29,20 @@ function remove_fb_bday_choice() {
         html = popupForm.html();
         replaced = html.replace('#name#', name).replace('#cause#', cause);
 
+        // If we reach the limited number of calls, change the message.
         $('#dosomething-robocalls-submitted-message').html(replaced);
+        if (limit > 0) {
+         $('#dosomething-robocalls-submitted-message label p').html("Wait!");
+         $('#dosomething-robocalls-submitted-message label h2').html('This phone number has already been called today.');
+         $('#dosomething-robocalls-submitted-message div.separator').prepend('<div class="robocalls-awesome-and-sharing" style="font-size: 13pt; font-weight: normal; margin-bottom: 15px;">This number has already been called for this date.  Connect with them on Facebook?</div>');
+         var fbb = $('.robocalls-fb-button-container').html();
+         $('.with-links').html('<p style="clear: both; margin: 20px">' + fbb + '</p>');
+         $('.robocalls-fb-find-friends-birthdays').click(function() {
+            window.open('/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'fbinfo', 'location=no,width=350,height=400,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
+            return false;
+          });
+        }
+
         $('#robocalls-twitter-button')
           .attr('href',
               $('#robocalls-twitter-button').attr('href') + encodeURIComponent('Awesome.  I just had ' + name + ' call my friend to say "Do Something about ' + cause + '."'));
@@ -90,6 +113,13 @@ jQuery(document).ready(function() {
     });
   }
 
+  var timed = jQuery('.robocalls-timed-form-times');
+  if (timed.length > 0) {
+    jQuery('#edit-submitted-field-celeb-date-und-0-value-day, #edit-submitted-field-celeb-date-und-0-value-month, #edit-submitted-field-celeb-date-und-0-value-year').parent().hide();
+    jQuery('#edit-submitted-field-celeb-date-und-0-value-day').parent().parent().prepend(jQuery('#pointless-hidden-box').val());
+    //jQuery('.fieldset-wrapper').prepend('<div style="clear: both">hi!</div>');
+  }
+
   if (jQuery('#robocalls_preview_link').length > 0) {
     jQuery('#robocalls_preview_link').click(function() {
       jQuery('#robocalls-preview-audio').trigger('play');
@@ -97,11 +127,23 @@ jQuery(document).ready(function() {
     });
   }
 
+  jQuery('#edit-field-celeb-send-now-und').click(function() {
+    jQuery('#edit-submitted-field-celeb-date').toggle();
+  });
+
   button = jQuery('.robocalls-fb-find-friends-birthdays');
   if (button.length > 0) {
-     button.click(function() {
+     /*button.click(function() {
        window.open('/sites/all/modules/dosomething/features/robocalls/facebook_popup.php', 'fbinfo', 'location=no,width=350,height=400,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
        return false;
-     });
+     });*/
   }
 });
+
+function alter_click() {
+  changestate = true;
+  jQuery('.robocalls-fb-find-friends-birthdays').click(function() {
+      pop();
+      return false;
+  });
+}
