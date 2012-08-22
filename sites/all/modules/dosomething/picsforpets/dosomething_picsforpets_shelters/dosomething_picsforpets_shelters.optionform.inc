@@ -20,23 +20,41 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
   $form_state['submit-new-address'] = isset($form_state['submit-new-address']) ? $form_state['submit-new-address'] : FALSE;
   $form = array();
 
+
+ $form['container-title'] = array (
+    '#type' =>  'container',
+    '#attributes' => array (
+      'class' => array('container-title'),
+      ),
+    );
+ 
   $form['#attached'] = array(
     'js' => array(
       drupal_get_path('module', 'dosomething_picsforpets_shelters') . '/js/shelter_options.js',
     ),
   );
 
-  $form['helptext'] = array(
+  $form['container-title']['helptext'] = array(
     '#prefix' => '<p>',
     '#suffix' => '</p>',
     '#markup' => t('Enter the zip code and select the shelter where you snapped your animal pic.'),
   );
-  $form['zip'] = array(
+
+
+  $form['container'] = array (
+    '#type' =>  'container',
+    '#attributes' => array (
+      'class' => array('zip-search-container'),
+      ),
+  );
+
+  $form ['container']['zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
     '#weight' => 0,
   );
-  $form['search'] = array(
+
+ $form ['container']['search'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
     '#weight' => 0,
@@ -48,6 +66,8 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
     '#validate' => array('dosomething_picsforpets_shelters_lookup_options_form_validate'),
   );
 
+  
+ 
   // Initialize the options variable
   $options = array();
   if (isset($form_state['results'])) {
