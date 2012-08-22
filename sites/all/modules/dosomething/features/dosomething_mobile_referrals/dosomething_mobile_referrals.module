@@ -12,31 +12,31 @@ function dosomething_mobile_referrals_implements_alter(&$implementations, $hook)
 }
 
 function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
-	if (isset($form_state['build_info']['args'][0]->title) && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form') {
-		drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referrals') . '/css/mobile_referrals.css');
-		drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referrals') . '/js/mobile_referrals.js');
+  if (isset($form_state['build_info']['args'][0]->title) && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form') {
+    drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referrals') . '/css/mobile_referrals.css');
+    drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referrals') . '/js/mobile_referrals.js');
 
-		$form_state['goto'] = $_SERVER['REQUEST_URI'];
-	    $u = &$form['submitted'];
+    if (!isset($form_state['goto'])) $form_state['goto'] = $_SERVER['REQUEST_URI'];
+    $u = &$form['submitted'];
 
-		$form['actions']['submit']['#value'] = 'SEND';
-		$form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
-	    if (!user_is_logged_in()) {
-	       $form['actions']['submit']['#ajax'] = array(
-	         'callback' => 'dosomething_mobile_referrals_ajax',
-	       );
-	    }
+    $form['actions']['submit']['#value'] = 'SEND';
+    $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
+    if (!user_is_logged_in()) {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'dosomething_mobile_referrals_ajax',
+      );
+    }
 
-	    $node = menu_get_object();
-	    if ($node->type == 'tips_and_tools') {
-			$tac = ($u['referall_your_info']['terms_and_conditions']);
-			unset($u['referall_your_info']['terms_and_conditions']);
-			$form['tac'] = $tac;
-	    }
+    $node = menu_get_object();
+    if ($node->type == 'tips_and_tools') {
+      $tac = ($u['referall_your_info']['terms_and_conditions']);
+      unset($u['referall_your_info']['terms_and_conditions']);
+      $form['tac'] = $tac;
+    }
 
-#		$form['#validate'][] = 'dosomething_mobile_referrals_validate';
-#		$form['#submit'][] = 'dosomething_mobile_referrals_submit';
-	}
+    $form['#validate'][] = 'dosomething_mobile_referrals_validate';
+    $form['#submit'][] = 'dosomething_mobile_referrals_submit';
+  }
 }
 
 function dosomething_mobile_referrals_ajax($form, &$form_state) {
@@ -45,12 +45,12 @@ function dosomething_mobile_referrals_ajax($form, &$form_state) {
   if ($errors) {
     $error_list = '';
     foreach ($errors AS $key => $error) {
-       $error_list .= '<li>' . $error . '</li>';
+      $error_list .= '<li>' . $error . '</li>';
     }
 
     $fake_error_template = '<div class="messages error">
-	    <h2 class="element-invisible">Error message</h2>
-	    <ul>' . $error_list . '</ul></div>
+      <h2 class="element-invisible">Error message</h2>
+      <ul>' . $error_list . '</ul></div>
     ';
     $commands[] = ajax_command_before('#page-title', $fake_error_template);
   }
@@ -65,29 +65,29 @@ function dosomething_mobile_referrals_ajax($form, &$form_state) {
 }
 
 function dosomething_mobile_referrals_validate($form, &$form_state) {
-	$error = 0;
-	$s = $form_state['input']['submitted'];
-	$you = $s['referall_your_info'];
-	$them = $s['referral_friend_info'];
+  $error = 0;
+  $s = $form_state['input']['submitted'];
+  $you = $s['referall_your_info'];
+  $them = $s['referral_friend_info'];
 
-	if (trim($you['referral_first_name']) == '') {
-	  form_set_error('submitted[referall_your_info][referral_first_name]', "You must provide a valid name.");
-	  $error++;
-	}
+  if (trim($you['referral_first_name']) == '') {
+    form_set_error('submitted[referall_your_info][referral_first_name]', "You must provide a valid name.");
+    $error++;
+  }
 
-	if (!dosomething_general_valid_cell($you['referral_phone_number'])) {
-	  form_set_error('submitted[referall_your_info][referral_phone_number', "Your phone number must be a valid phone number.");
-	  $error++;
-	}
+  if (!dosomething_general_valid_cell($you['referral_phone_number'])) {
+    form_set_error('submitted[referall_your_info][referral_phone_number', "Your phone number must be a valid phone number.");
+    $error++;
+  }
 
-	if (!dosomething_general_valid_cell($them['referral_friend_cell_1'])) {
-	  form_set_error('submitted[referral_friend_info][referral_friend_cell_1', "You must provide at least one valid cell phone number.");
-	  $error++;
-	}
+  if (!dosomething_general_valid_cell($them['referral_friend_cell_1'])) {
+    form_set_error('submitted[referral_friend_info][referral_friend_cell_1', "You must provide at least one valid cell phone number.");
+    $error++;
+  }
 
-	if ($error > 0 && user_is_logged_in()) {
-		drupal_goto($_SERVER['HTTP_REFERER']);
-	}
+  if ($error > 0 && user_is_logged_in()) {
+    drupal_goto($_SERVER['HTTP_REFERER']);
+  }
 }
 
 function dosomething_mobile_referrals_submit($form, &$form_state) {
@@ -112,6 +112,9 @@ function dosomething_mobile_referrals_submit($form, &$form_state) {
   	}
   }
 
-  $form_state['redirect'] = $form_state['goto'];
+  // Strip any leading slashes...
+  $goto = substr($form_state['goto'], 1);
+
+  $form_state['redirect'] = $goto;
   drupal_set_message("Thanks for submitting.  Have a nice day!");
 }
