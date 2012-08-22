@@ -1861,6 +1861,7 @@ a.footer-furtography {
   width: 0px;
   display: inline;
   margin-top: -10px;
+  cursor: pointer;
 }
 #webform-client-form-3 .ui-dialog #edit-search {
   float: right;
@@ -1987,7 +1988,7 @@ a.footer-furtography {
   list-style-type: none;
 }
 .big-numbers li:before {
-  content: counter(li);
+  content: counter(li) ". ";
   counter-increment: li;
 }
 .big-numbers li {
