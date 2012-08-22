@@ -5,29 +5,25 @@
  */
 function dosomething_picsforpets_general_views_data() {
   $data = array();
-  $data['picsforpets_user_shares']['table']['group'] = t('Picsforpets Shares');
-  $data['picsforpets_user_shares']['table']['base'] = array(
-    'field' => 'fb_user_id',
-    'title' => t('Picsforpets Shares'),
-    'help' => t("Contains number of facebook shares by fb user uid."),
-    'weight' => -10,
-  );
-  $data['picsforpets_user_shares']['table']['join'] = array(
-    'fboauth_users' => array(
-      'left_field' => 'fbid',
-      'field' => 'uid',
+
+  // Join the {fb_user_shares} to the {webform_submissions} table on entity ID.
+  $data['fb_user_shares']['table']['join'] = array(
+    'webform_submissions' => array(
+      'left_field' => 'sid',
+      'field' => 'entity_id',
     ),
   );
 
-
-  $data['picsforpets_user_shares']['entity_id'] = array(
-    'title' => t('Entity id'),
-    'help' => t('The id of the entity being shared.'),
-    'filter' => array(
-      'handler' => 'views_handler_filter_string',
+  // Add a custom argument handler onto the Facebook user ID.
+  $data['fb_user_shares']['fb_user_id'] = array(
+    // Information for automatically generating an argument to find the entity
+    // type.
+    'argument' => array(
+      'handler' => 'views_handler_argument_fb_user_id',
+      'click sortable' => TRUE,
+      'numeric' => TRUE,
     ),
   );
 
   return $data;
 }
-

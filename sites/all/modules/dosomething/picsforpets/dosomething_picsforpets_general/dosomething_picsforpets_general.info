@@ -11,3 +11,5 @@ features[page_manager_pages][] = "lets_get_started"
 features[page_manager_pages][] = "pics_for_pets_home"
 features[page_manager_pages][] = "prizes_and_scholarships"
 features[variable][] = "theme_picsforpets_settings"
+
+files[] = views_handler_argument_fb_user_id.inc
