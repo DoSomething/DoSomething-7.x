@@ -1922,6 +1922,10 @@ ul.hover-image li:first-child {
   bottom: 40px;
 }
 
+.page-node-724211 .webform-client-form #edit-actionson, .page-node-718444 .webform-client-form #edit-actionson {
+  position: static;
+}
+
 .btn-tell .mcommons-webform-column .go-button, .btn-tell .mcommons-webform-column #dosomething-blocks-make-an-impact-form input[type="submit"], #dosomething-blocks-make-an-impact-form .btn-tell .mcommons-webform-column input[type="submit"],
 .btn-tell .mcommons-webform-column #dosomething-blocks-make-an-impact-form-front input[type="submit"],
 #dosomething-blocks-make-an-impact-form-front .btn-tell .mcommons-webform-column input[type="submit"], .btn-tell .mcommons-webform-column form.webform-client-form #edit-next, form.webform-client-form .btn-tell .mcommons-webform-column #edit-next,
@@ -1942,6 +1946,22 @@ form.webform-client-form .btn-tell .mcommons-webform-column #edit-draft, .btn-te
 .btn-tell .mcommons-webform-column #og-ui-confirm-subscribe #edit-actions #edit-submit--2,
 #og-ui-confirm-subscribe #edit-actions .btn-tell .mcommons-webform-column #edit-submit--2 {
   left: 90px !important;
+}
+
+.page-scholarships #breadcrumb {
+  display: none;
+}
+.page-scholarships .panel-row-ad-quick-info p {
+  font-size: 14px;
+  line-height: 1.4em;
+  margin-bottom: 20px;
+}
+.page-scholarships .panel-top-right-mini-info {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  border-bottom: none;
 }
 
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
@@ -5957,20 +5977,4 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 
 .facebook-plugin {
   width: 50px;
-}
-
-#block-block-7 {
-  background-image: -webkit-gradient(linear,0% 50%,100% 50%,color-stop(90%,#EFEFEF),color-stop(100%,#D4D2D1));
-  background-image: -webkit-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-image: -moz-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-image: -o-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-image: linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-color: #EFEFEF;
-  margin-right: -5px;
-  position: relative;
-  top: 5px;
-  color: black;
-  padding: 10px 10px;
-  font-size: 12pt;
-  border-bottom: 1px solid #D4D2D1;
 }
