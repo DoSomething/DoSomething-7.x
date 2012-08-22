@@ -10,7 +10,8 @@ $plugin = array(
   'render callback' => 'dosomething_connections_content_type_render'
 );
 
-function array_vals_multi($array,&$vals) {
+function array_vals_multi($array,&$vals)
+{
     foreach ($array as $key => $value) {
 
         if (is_array($value)) {
@@ -41,8 +42,7 @@ function dosomething_connections_content_type_render($subtype, $conf, $panel_arg
   if (empty($celebs)) { $cels = 0; }
   else { $cels = implode(',', $celebs); }
 
-  $result = db_query("
-    SELECT GREATEST(IF(`tags`.`entity_id` IS NULL, 0, `tags`.`entity_id`), IF(`charities`.`entity_id` IS NULL, 0, `charities`.`entity_id`), IF(`celebs`.`entity_id` IS NULL, 0, `celebs`.`entity_id`)) AS `tid`, `dates`.`entity_id` AS `deid`
+/*SELECT GREATEST(IF(`tags`.`entity_id` IS NULL, 0, `tags`.`entity_id`), IF(`charities`.`entity_id` IS NULL, 0, `charities`.`entity_id`), IF(`celebs`.`entity_id` IS NULL, 0, `celebs`.`entity_id`)) AS `tid`, `dates`.`entity_id` AS `deid`
     FROM taxonomy_term_data
       LEFT OUTER JOIN field_data_field_connection_tags AS `tags` ON (`tags`.`field_connection_tags_tid` IN (" . $tags . "))
       LEFT OUTER JOIN `field_data_field_connection_charities` AS `charities` ON (`charities`.`field_connection_charities_tid` IN (" . $chars . "))
@@ -54,7 +54,29 @@ function dosomething_connections_content_type_render($subtype, $conf, $panel_arg
     )
     HAVING `deid` > 0
     ORDER BY tid ASC
-    LIMIT 1")->fetchAssoc();
+    LIMIT 1*/
+
+  $result = db_query("
+    SELECT
+  GREATEST(IF(`tags`.`entity_id` IS NULL, 0, `tags`.`entity_id`), IF(`charities`.`entity_id` IS NULL, 0, `charities`.`entity_id`), IF(`celebs`.`entity_id` IS NULL, 0, `celebs`.`entity_id`)) AS `tid`,
+  `dates`.*,
+  `tags`.`entity_id` AS `ta`,
+  `charities`.`entity_id` AS ch, `celebs`.`entity_id` AS ce,
+  CONCAT(CURDATE(), ' ', CURTIME()) BETWEEN `dates`.field_connection_run_dates_value AND `dates`.field_connection_run_dates_value2 AS `btw`,
+  CONCAT(CURDATE(), ' ', CURTIME()) > `dates`.field_connection_run_dates_value AS `aft`,
+  IF (`dates`.field_connection_run_dates_value = `dates`.field_connection_run_dates_value2, 1, 0) AS `eq`
+    FROM taxonomy_term_data
+      LEFT JOIN field_data_field_connection_tags AS `tags` ON (`tags`.`field_connection_tags_tid` IN (" . $tags . "))
+      LEFT JOIN `field_data_field_connection_charities` AS `charities` ON (`charities`.`field_connection_charities_tid` IN (" . $chars . "))
+      LEFT JOIN `field_data_field_connection_celeb_names` AS `celebs` ON (`celebs`.`field_connection_celeb_names_tid` IN (" . $cels . "))
+      LEFT JOIN `field_data_field_connection_run_dates` AS `dates` ON (`dates`.`entity_id` = GREATEST(IF(`tags`.`entity_id` IS NULL, 0, `tags`.`entity_id`), IF(`charities`.`entity_id` IS NULL, 0, `charities`.`entity_id`), IF(`celebs`.`entity_id` IS NULL, 0, `celebs`.`entity_id`)))
+  HAVING (
+    (`eq` = 1 AND `aft` = 1)
+    OR (`btw` = 1)
+  )
+    ORDER BY `tid` ASC
+    LIMIT 1
+    ")->fetchAssoc();
 
   if (!empty($result)) {
     $tid = $result['tid'];
