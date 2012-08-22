@@ -22,7 +22,7 @@ if (intval($_GET['post_id']))
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 <!--
-    $('#edit-fb-container', window.opener.document).html("Okay! We've sent your Facebook message.");
+    $('#edit-fb-button', window.opener.document).html("Okay! We've sent your Facebook message.");
     window.close();
 -->
 </script>
