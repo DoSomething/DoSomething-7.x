@@ -9,9 +9,12 @@ fieldset#webform-component-referall-your-info {
 div#referral-sidebar fieldset#webform-component-referall-your-info { margin-top: -10px; padding: 0px; float: none; width: auto; }
 div#referral-sidebar fieldset#webform-component-referral-friend-info { margin-top: -10px; padding: 0px; }
 div#referral-sidebar #webform-client-form-723988 { padding: 5px; }
+div#referral-sidebar p { position: relative; top: 5px; }
 
 fieldset#webform-component-referral-friend-info {
 	padding-top: 12px;
 }
 
 #webform-client-form-723988 fieldset input, #webform-client-form-724211 fieldset input { margin: 5px 0px; width: 100%; }
+
+.webform-client-form #edit-actions { position: relative; bottom: 0px; right: 0px; }

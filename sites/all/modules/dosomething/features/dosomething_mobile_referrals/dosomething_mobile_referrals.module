@@ -13,7 +13,10 @@ function dosomething_mobile_referrals_implements_alter(&$implementations, $hook)
 
 function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
   if (isset($form_state['build_info']['args'][0]->title) && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form') {
-    drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referrals') . '/css/mobile_referrals.css');
+    drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referrals') . '/css/mobile_referrals.css', array(
+        'group' => CSS_THEME,
+        'weight' => 10
+    ));
     drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referrals') . '/js/mobile_referrals.js');
 
     if (!isset($form_state['goto'])) $form_state['goto'] = $_SERVER['REQUEST_URI'];
