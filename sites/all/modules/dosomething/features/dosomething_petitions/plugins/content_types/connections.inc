@@ -59,11 +59,13 @@ function dosomething_connections_content_type_render($subtype, $conf, $panel_arg
   $result = db_query("
     SELECT
   GREATEST(IF(`tags`.`entity_id` IS NULL, 0, `tags`.`entity_id`), IF(`charities`.`entity_id` IS NULL, 0, `charities`.`entity_id`), IF(`celebs`.`entity_id` IS NULL, 0, `celebs`.`entity_id`)) AS `tid`,
-  `dates`.*,
+  TIMESTAMPADD(SECOND, `dates`.`field_connection_run_dates_offset`, `dates`.field_connection_run_dates_value) AS date_start_real,
+  TIMESTAMPADD(SECOND, `dates`.`field_connection_run_dates_offset2`, `dates`.field_connection_run_dates_value2) AS date_end_real,
+  `dates`.entity_id,
   `tags`.`entity_id` AS `ta`,
   `charities`.`entity_id` AS ch, `celebs`.`entity_id` AS ce,
-  CONCAT(CURDATE(), ' ', CURTIME()) BETWEEN `dates`.field_connection_run_dates_value AND `dates`.field_connection_run_dates_value2 AS `btw`,
-  CONCAT(CURDATE(), ' ', CURTIME()) > `dates`.field_connection_run_dates_value AS `aft`,
+  TIMESTAMPADD(HOUR, 1, CONCAT(CURDATE(), ' ', CURTIME())) BETWEEN TIMESTAMPADD(SECOND, `dates`.`field_connection_run_dates_offset`, `dates`.field_connection_run_dates_value) AND TIMESTAMPADD(SECOND, `dates`.`field_connection_run_dates_offset2`, `dates`.field_connection_run_dates_value2) AS `btw`,
+  TIMESTAMPADD(HOUR, 1, CONCAT(CURDATE(), ' ', CURTIME())) > TIMESTAMPADD(SECOND, `dates`.`field_connection_run_dates_offset`, `dates`.field_connection_run_dates_value) AS `aft`,
   IF (`dates`.field_connection_run_dates_value = `dates`.field_connection_run_dates_value2, 1, 0) AS `eq`
     FROM taxonomy_term_data
       LEFT JOIN field_data_field_connection_tags AS `tags` ON (`tags`.`field_connection_tags_tid` IN (" . $tags . "))
@@ -71,9 +73,10 @@ function dosomething_connections_content_type_render($subtype, $conf, $panel_arg
       LEFT JOIN `field_data_field_connection_celeb_names` AS `celebs` ON (`celebs`.`field_connection_celeb_names_tid` IN (" . $cels . "))
       LEFT JOIN `field_data_field_connection_run_dates` AS `dates` ON (`dates`.`entity_id` = GREATEST(IF(`tags`.`entity_id` IS NULL, 0, `tags`.`entity_id`), IF(`charities`.`entity_id` IS NULL, 0, `charities`.`entity_id`), IF(`celebs`.`entity_id` IS NULL, 0, `celebs`.`entity_id`)))
   HAVING (
-    (`eq` = 1 AND `aft` = 1)
-    OR (`btw` = 1)
-  )
+         (`eq` = 1 AND `aft` = 1)
+         OR (`btw` = 1)
+       )
+
     ORDER BY `tid` ASC
     LIMIT 1
     ")->fetchAssoc();
