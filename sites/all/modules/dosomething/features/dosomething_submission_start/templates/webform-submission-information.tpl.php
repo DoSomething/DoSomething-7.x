@@ -18,7 +18,7 @@
   <div class="webform-submission-info-text">
     <div><?php print t('Form: !form', array('!form' => l($node->title, 'node/' . $node->nid))); ?></div>
     <div><?php print t('Submitted by !name', array('!name' => theme('username', array('account' => $account)))); ?></div>
-    <div><?php print t('Started at: !started', array('!started' => format_date($submission->started, 'large'))); ?></div>
+    <div><?php print t('Started at: !started', array('!started' => ($submission->started ? format_date($submission->started, 'large') : '(Not Obtained)'))); ?></div>
     <div><?php print t('Submission time: !sent', array('!sent' => format_date($submission->submitted, 'large'))); ?></div>
     <?php if ($submission->drafted) {
     	echo '<div>' . t('Drafted at: !draft', array('!draft' => format_date($submission->drafted, 'large'))) . '</div>';
