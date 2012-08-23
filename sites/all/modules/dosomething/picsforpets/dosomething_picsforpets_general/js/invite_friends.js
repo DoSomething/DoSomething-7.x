@@ -7,10 +7,10 @@ Drupal.behaviors.inviteFriendsModal = {
         //appId: '459236750767188', // dev - apps.facebook.com/zivtechdev
         appId: '288011551281047', // staging - apps.facebook.com/picsforpets
         status: true,
-        cookie: true
+        cookie: true,
       });
     };
-    
+
     $('.views-widget-sort-order, .views-submit-button').hide();
     $('#picsforpets-invite-friends').click(function() {
       var obj = {
@@ -18,7 +18,8 @@ Drupal.behaviors.inviteFriendsModal = {
         display: 'iframe',
         title: 'The DoSomething.org Pics for Pets Project',
         message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
-        access_token: settings.fb_access_token
+        access_token: settings.fb_access_token,
+        show_error: true
       };
       FB.ui(obj);
     });
