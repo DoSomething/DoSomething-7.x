@@ -574,8 +574,8 @@ Please try a new combo.
     1 => '1',
   );
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: All pets */
+  $handler = $view->new_display('panel_pane', 'All pets', 'panel_pane_1');
   $handler->display->display_options['exposed_block'] = TRUE;
 
   /* Display: Service */
@@ -1024,6 +1024,40 @@ Please try a new combo.
   $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['sid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['sid']['not'] = 0;
+
+  /* Display: My shared pets */
+  $handler = $view->new_display('panel_pane', 'My shared pets', 'panel_pane_2');
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'sorry';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = '<div class="no-results">
+<span class="sorry"> Sorry!</span>
+<div class="sorry-text">
+You have not shared any pets yet.<br />
+Start sharing now!
+</div>
+</div>';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Facebook user shares: Facebook user ID */
+  $handler->display->display_options['arguments']['fb_user_id']['id'] = 'fb_user_id';
+  $handler->display->display_options['arguments']['fb_user_id']['table'] = 'fb_user_shares';
+  $handler->display->display_options['arguments']['fb_user_id']['field'] = 'fb_user_id';
+  $handler->display->display_options['arguments']['fb_user_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['fb_user_id']['default_argument_type'] = 'current_user_fbid';
+  $handler->display->display_options['arguments']['fb_user_id']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['fb_user_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['fb_user_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['fb_user_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['fb_user_id']['glossary'] = 0;
+  $handler->display->display_options['arguments']['fb_user_id']['limit'] = '0';
+  $handler->display->display_options['arguments']['fb_user_id']['transform_dash'] = 0;
+  $handler->display->display_options['arguments']['fb_user_id']['break_phrase'] = 0;
   $export['pics_for_pets_gallery'] = $view;
 
   $view = new view;
