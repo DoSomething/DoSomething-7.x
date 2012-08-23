@@ -372,7 +372,7 @@ function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_
   // BEGIN supression of validation errors. This stops the form from complaining
   // about missing webform form elements when we are submitting the form
   // elements for the location search.
-  $form['shelter-popup']['search']['#limit_validation_errors'] = array(
+  $form['shelter-popup']['container']['search']['#limit_validation_errors'] = array(
     array('zip'),
   );
   $form['shelter-popup']['select-shelter']['#limit_validation_errors'] = array(
