@@ -40,11 +40,11 @@ Drupal.behaviors.galleryShareButton = {
       var threeWords = settings.dosomething_picsforpets_general.gallery[sid].threeWords;
       var share = {
         method: 'feed',
-        name: 'Pics For Pets',
+        name: 'DoSomething.org\'s Pics For Pets Project',
         link: shareUrl,
         picture: 'http://picsforpets.dev.zivtech.com/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        caption: settings.dosomething_picsforpets_general.gallery[sid].petName,
-        description: "I'm " + threeWords[0].raw.safe_value + ", " + threeWords[1].raw.safe_value + ", and " + threeWords[2].raw.safe_value
+        caption: settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0].raw.safe_value + ", " + threeWords[1].raw.safe_value + ", and " + threeWords[2].raw.safe_value,
+        description: "@DoSomething about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
       };
       FB.ui(share, function(response) {
         // If the share was unsuccessful or the user clicked cancel, response

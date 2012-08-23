@@ -31,11 +31,11 @@ Drupal.behaviors.dsPfpShare = {
     var shareUrl = 'https://apps.facebook.com/picsforpets/webform-submission/' + sid;
     var share = {
       method: 'feed',
-      name: 'Pics For Pets',
+      name: 'DoSomething.org\'s Pics For Pets Project',
       link: shareUrl,
       picture: pictureUrl,
-      caption: petName,
-      description: "I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2]
+      caption: petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
+      description: "@DoSomething about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
     };
 
     $('#picsforpets-share').click(function () {
