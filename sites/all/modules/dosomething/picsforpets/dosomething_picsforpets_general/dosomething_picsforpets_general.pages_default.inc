@@ -229,18 +229,11 @@ shelter pet pic</a>',
     $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'middle';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'gallery_link';
+    $pane->subtype = 'gallery_link';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Gallery link',
-      'title' => '',
-      'body' => '<div class="picsforpets-scholarship"><a href="/pics-for-pets/gallery">$5k Scholarship</a></div>
-<div class="picsforpets-gallery"><a href="/pics-for-pets/gallery">Take me to the paw-trait gallery</a></div>',
-      'format' => 'full_html',
-      'substitute' => TRUE,
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
