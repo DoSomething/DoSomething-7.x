@@ -5,7 +5,8 @@ Drupal.behaviors.dsPfpShare = {
     // Initialize Facebook's Javascript SDK asyncronously.
     window.fbAsyncInit = function() {
       FB.init({
-        appId: '459236750767188',
+        //appId: '459236750767188', // dev - apps.facebook.com/zivtechdev
+        appId: '288011551281047', // staging - apps.facebook.com/picsforpets
         status: true,
         cookie: true
       });
