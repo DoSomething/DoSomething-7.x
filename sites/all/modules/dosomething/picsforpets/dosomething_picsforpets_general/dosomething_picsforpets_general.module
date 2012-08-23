@@ -477,7 +477,10 @@ function dosomething_picsforpets_general_validate_pet_shelter($form, &$form_stat
   // We need to have all the address field data set.
   foreach ($address_fields as $field => $name) {
     if (empty($form_state['values']['submitted']['find_your_shelter'][$field][LANGUAGE_NONE][0]['value'])) {
-      form_set_error($field, $name . ' is a required field');
+      // TODO: Error element is incorrect. It may need LANGUAGE_NONE][0][value,
+      // but that wasn't working.
+      $error_element = implode('][', $form['submitted']['find_your_shelter'][$field]['#parents']);
+      form_set_error($error_element, t('%name is a required field', array('%name' => $name)));
     }
   }
 }
@@ -489,6 +492,7 @@ function dosomething_picsforpets_general_validate_pet_shelter($form, &$form_stat
 function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state) {
   $mismatch = FALSE;
   $address_fields = domething_picsforpets_general_address_fields();
+
   // If there is an entity reference then
   if (!empty($form_state['webform_entity']['submission']->field_fb_app_shelter_reference[LANGUAGE_NONE][0]['target_id'])) {
     $shelter = node_load($form_state['webform_entity']['submission']->field_fb_app_shelter_reference[LANGUAGE_NONE][0]['target_id']);
@@ -514,6 +518,7 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
     // mismatched address.
     $mismatch = TRUE;
   }
+
   if ($mismatch) {
     // Throw away the entity reference.
     unset($form_state['values']['submitted']['find_your_shelter']['field_fb_app_shelter_reference']);
@@ -554,7 +559,9 @@ function dosomething_picsforpets_general_save_webform_node($path) {
   $webform_data = $webform->webform;
   unset($webform->webform);
   node_save($webform);
+  // TODO: Do we need this?
   unset ($webform->webform);
+
   dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
   $webform->webform = $webform_data;
   $webform_data['nid'] = $webform->nid;
@@ -567,6 +574,7 @@ function dosomething_picsforpets_general_save_webform_node($path) {
   }
   node_save($webform);
   variable_set('picsforpets_animal_form_id', $webform->nid);
+  return $webform;
 }
 
 /**
@@ -594,14 +602,13 @@ function dosomething_picsforpets_general_recursively_readd_nid(&$thing, $nid) {
  */
 function dosomething_picsforpets_general_update_node() {
   $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type', 0, 1, array(':type' => 'fb_app_data_gathering_form'))->fetchField();
-  $node = node_load($nid->nid);
+  $node = node_load($nid);
   unset($node->nid);
   unset($node->vid);
   $node->webform['record_exists'] = FALSE;
+
   $serialized = serialize($node);
-  $handle = fopen(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt', 'w');
-  fwrite($handle, $serialized);
-  fclose($handle);
+  file_put_contents(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt', $serialized);
 }
 
 /**
