@@ -6,22 +6,22 @@
 function dosomething_picsforpets_general_views_data() {
   $data = array();
 
-  // Join the {fb_user_shares} to the {webform_submissions} table on entity ID.
+  // @kludge This is a quick (not too dirty) module-specific solution that
+  // extends our genericized fb_user_share module for use with webform_entity
+  // type views.
+  //
+  // Ultimately we want a query like:
+  // @code
+  //   db_query("SELECT sid FROM {webform_submissions} ws
+  //     JOIN {fb_user_shares} fs ON fs.entity_id = ws.sid
+  //       AND fs.entity_type = 'webform_submission_entity'
+  //     JOIN fboauth fo ON fo.fbid = fs.fb_user_id
+  //     WHERE fo.uid = :uid", array(':uid' => $user->uid));
+  // @endcode
   $data['fb_user_shares']['table']['join'] = array(
     'webform_submissions' => array(
       'left_field' => 'sid',
       'field' => 'entity_id',
-    ),
-  );
-
-  // Add a custom argument handler onto the Facebook user ID.
-  $data['fb_user_shares']['fb_user_id'] = array(
-    // Information for automatically generating an argument to find the entity
-    // type.
-    'argument' => array(
-      'handler' => 'views_handler_argument_fb_user_id',
-      'click sortable' => TRUE,
-      'numeric' => TRUE,
     ),
   );
 

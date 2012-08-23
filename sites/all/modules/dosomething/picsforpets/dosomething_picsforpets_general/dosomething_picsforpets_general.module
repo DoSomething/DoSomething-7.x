@@ -638,3 +638,27 @@ function dosomething_picsforpets_general_views_post_execute(&$view) {
     drupal_add_js(array('dosomething_picsforpets_general' => array('gallery' =>  $pets)), 'setting');
  }
 }
+
+/**
+ * Implements hook_views_api().
+ */
+function dosomething_picsforpets_general_views_api() {
+  return array(
+    'version' => 3,
+  );
+}
+
+/**
+ * Implements hook_views_plugins
+ */
+function dosomething_picsforpets_general_views_plugins() {
+  return array(
+    'module' => 'views', // This just tells our themes are elsewhere.
+    'argument default' => array(
+      'current_user_fbid' => array(
+        'title' => t('Facebook ID from logged in user'),
+        'handler' => 'views_plugin_argument_default_current_user_fbid',
+      ),
+    ),
+  );
+}
