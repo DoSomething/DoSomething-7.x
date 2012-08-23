@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ */
+
+define('PFP_APP_ID', '459236750767188');
+define('PFP_SECRET', '71e0c74f92f64c1bbd426bfa2a08120c');
+
+
+/**
+ * Implements hook_init().
+ */
+function dosomething_picsforpets_fb_user_init() {
+  dpm(drupal_get_path_alias(request_uri()));
+  //if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
+
+    $path = libraries_get_path('facebook');
+    if (!empty($path)) {
+      require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
+    }
+    else {
+      drupal_set_message('You are missing the Facebook SDK');
+      return;
+    }
+
+    $facebook = new Facebook(array(
+      'appId' => PFP_APP_ID,
+      'secret' => PFP_SECRET,
+      'cookie' => TRUE,
+      'status' => TRUE,
+    ));
+    dpm($facebook->getUser());
+    dpm($facebook);
+    dpm($loginUrl = $facebook->getLoginUrl());
+  //}
+}

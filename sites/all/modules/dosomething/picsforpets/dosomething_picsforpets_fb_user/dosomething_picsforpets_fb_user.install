@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ *   Handles installation of the PicsForPets Facebook User Integration Module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function dosomething_picsforpets_fb_user_requirements($phase) {
+  $requirements = array();
+  // Ensure translations do not break at install time
+  $t = get_t();
+
+  $requirements['facebook php sdk'] = array(
+    'title' => $t('FaceBook PHP SDK'),
+  );
+  $libraries = libraries_get_libraries();
+  if (isset($libraries['facebook'])) {
+    $requirements['facebook php sdk']['value'] = $t('Installed');
+    $requirements['facebook php sdk']['severity'] = REQUIREMENT_OK;
+  }
+  else {
+    $requirements['facebook php sdk']['value'] = $t('Not Installed');
+    $requirements['facebook php sdk']['severity'] = REQUIREMENT_ERROR;
+    $requirements['facebook php sdk']['description'] = $t('Facebook PHP SDK needs to be installed.');
+  }
+
+  return $requirements;
+}

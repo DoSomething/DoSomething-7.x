@@ -1,0 +1,5 @@
+name = PicsForPets Facebook Users
+description = Handles Facebook user integration for Pics For Pets.
+core = 7.x
+package = Pics For Pets
+dependencies[] = libraries
