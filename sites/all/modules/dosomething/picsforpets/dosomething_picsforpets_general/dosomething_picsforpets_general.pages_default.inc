@@ -125,7 +125,7 @@ near you</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/content/submit-pet-picture">Submit your</ br>
+      'body' => '<a href="/pics-for-pets/submit-pet-picture">Submit your</ br>
 shelter pet pic</a>',
       'format' => 'filtered_html',
       'substitute' => TRUE,
@@ -261,7 +261,10 @@ shelter pet pic</a>',
   $page->admin_title = 'Prizes and Scholarships';
   $page->admin_description = 'This page will display the scholorship';
   $page->path = 'pics-for-pets/prizes-and-scholarships';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
