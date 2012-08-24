@@ -44,13 +44,19 @@ function dosomething_picsforpets_fb_user_init() {
       return;
     }
 
+    $appid = variable_get('dosomething_picsforpets_fb_user_app_id', '');
+    $secret = variable_get('dosomething_picsforpets_fb_user_app_secret', '');
     $facebook = new Facebook(array(
-      'appId' => variable_get('dosomething_picsforpets_fb_user_app_id', ''),
-      'secret' => variable_get('dosomething_picsforpets_fb_user_app_secret', ''),
+      'appId' => $appid,
+      'secret' => $secret,
     ));
     $access_token = $facebook->getAccessToken();
     // Set JS variable for use by other modules.
-    drupal_add_js(array('picsforpetsFBAuth' => array('access_token' => $access_token)), 'setting');
+    $settings = array(
+      'appId' => $appid,
+      'access_token' => $access_token,
+    );
+    drupal_add_js(array('picsforpetsFBAuth' => $settings), 'setting');
     // Load the FBOAuth include file so we can use it's functions.
     module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
