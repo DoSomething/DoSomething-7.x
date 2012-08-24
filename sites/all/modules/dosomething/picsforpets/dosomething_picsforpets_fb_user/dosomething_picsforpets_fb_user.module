@@ -12,9 +12,13 @@ define('PFP_SECRET', '71e0c74f92f64c1bbd426bfa2a08120c');
  * Implements hook_init().
  */
 function dosomething_picsforpets_fb_user_init() {
-  dpm(drupal_get_path_alias(request_uri()));
-  //if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
+  dpm(drupal_get_path_alias(request_uri()));                              
+  if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
+    global $user;
 
+    // Some browsers won't let the third party cookies through by default unless
+    // a compact privacy policy is set in the headers.
+    drupal_add_http_header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
     $path = libraries_get_path('facebook');
     if (!empty($path)) {
       require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
@@ -27,11 +31,65 @@ function dosomething_picsforpets_fb_user_init() {
     $facebook = new Facebook(array(
       'appId' => PFP_APP_ID,
       'secret' => PFP_SECRET,
-      'cookie' => TRUE,
-      'status' => TRUE,
     ));
-    dpm($facebook->getUser());
-    dpm($facebook);
-    dpm($loginUrl = $facebook->getLoginUrl());
-  //}
+    $access_token = $facebook->getAccessToken();
+    // Set JS variable for use by other modules.
+    drupal_add_js(array('picsforpetsFBAuth' => array('access_token' => $access_token)), 'setting');
+    // Load the FBOAuth include file so we can use it's functions.
+    module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+    // Conditions.
+    // 1. User already logged into Dosomething.
+    //   - Associate user id with fb id if not associated.
+    // 2. User is not logged in but has a DS uid that is not associated.
+    //   - No way to detect that unless the email matches - in which case
+    //     connect them.
+    // 3. User is not logged in and has an associated fb id
+    //   - Log them in. Nothing else needed.
+    // 4. User is not logged in and has no DS uid.
+    //   - Create a new user and log them in.
+
+    // Get the Facebook user_profile as an object. Get the associated $uid if it
+    // exists.
+    $fbuser = fboauth_graph_query('me', $access_token);
+    $uid = fboauth_uid_load($fbuser->id);
+
+    // Condition 3.
+    //If the fb uid maps to a user then log them in.
+    if (!$user->uid && $uid && ($account = user_load($uid))) {
+      dpm('CONDITION 3.');                      
+      watchdog('PFP FB', 'CONDITION 3.');                        
+      fboauth_login_user($account);
+    }
+    // Condition 4.
+    elseif (!$user->uid && !$uid) {
+      dpm('CONDITION 4.');               
+      watchdog('PFP FB', 'CONDITION 4.');                  
+      $account = fboauth_create_user($fbuser);
+      $account = user_load($account->uid);
+      fboauth_login_user($account);
+    }
+    // Condition 2.
+    elseif (!$user->uid) {
+      dpm('CONDITION 2.');                 
+      watchdog('PFP FB', 'CONDITION 2.');              
+      $found_users = user_load_multiple(array(), array('mail' => $email));
+      $found_user = array_shift($found_users);
+      if (!empty($found_user)) {
+        dpm('CONDITION 3.');              
+        watchdog('PFP FB', 'CONDITION 3.');                 
+        // We found a matching user. Associate the FB account with them. Then
+        // log them in.
+        fboauth_save($found_user->uid, $fbuser->id);
+        $account = user_load($found_user->uid);
+        fboauth_login_user($account);
+      }
+    }
+    // Condition 1
+    elseif ($user->uid) {
+      // The user is already logged into Dosomething. Associate
+      // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
+      fboauth_save($user->uid, $fbuser->id);
+    }
+  }
 }
