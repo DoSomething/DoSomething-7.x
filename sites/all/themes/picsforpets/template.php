@@ -21,7 +21,7 @@ function picsforpets_preprocess_page(&$variables) {
     );
     $links[] = array(
       'title' => 'Be a Fur-tographer',
-      'href' => 'pics-for-pets/become-a-furtographer',
+      'href' => 'pics-for-pets/lets-get-started',
       'attributes' => array('class' => array('footer-furtography', 'pics-for-pets-modal')),
     );
     $links[] = array(
@@ -34,18 +34,23 @@ function picsforpets_preprocess_page(&$variables) {
       '#links' => $links,
       '#attributes' => array('class' => array('picsforpets-menu')),
     );
-    $variables['page']['footer']['picsforpets_modal'] = array(
-      'form' => drupal_get_form('dosomething_picsforpets_general_furtographer_form'),
-      '#attached' => array(
-        'library' => array(
-          array('system', 'ui.dialog'),
-          array('dosomething_login', 'jquery.validate'),
+    // If this user does not have the role of furtographer, then we want to
+    // load the form and present it to the user using jQuery when they click
+    // on the become-a-furtographer link.
+    if (!array_search('furtographer', $variables['user']->roles)) {
+      $variables['page']['footer']['picsforpets_modal'] = array(
+        'form' => drupal_get_form('dosomething_picsforpets_general_furtographer_form'),
+        '#attached' => array(
+          'library' => array(
+            array('system', 'ui.dialog'),
+            array('dosomething_login', 'jquery.validate'),
+          ),
+          'js' => array(
+            drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/dosomething-picsforpets-dialog.js',
+          ),
         ),
-        'js' => array(
-          drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/dosomething-picsforpets-dialog.js',
-        ),
-      ),
-    );
+      );
+    }
   }
 }
 
