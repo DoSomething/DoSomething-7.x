@@ -2,17 +2,33 @@
 
 /**
  * @file
+ * API functions and hook implementations for PicsForPets Facebook Users module.
  */
 
-define('PFP_APP_ID', '459236750767188');
-define('PFP_SECRET', '71e0c74f92f64c1bbd426bfa2a08120c');
+/**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_fb_user_menu() {
+  $items = array();
+
+  $items['admin/config/people/dosomething_picsforpets_fb_user'] = array(
+    'title' => t('PicsForPets Facebook Users settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_fb_user_settings_form'),
+    'access arguments' => array('administer users'),
+    'description' => 'Configure PicsForPets Facebook Users settings.',
+    'file' => 'dosomething_picsforpets_fb_user.admin.inc',
+  );
+
+  return $items;
+}
 
 
 /**
  * Implements hook_init().
  */
 function dosomething_picsforpets_fb_user_init() {
-  dpm(drupal_get_path_alias(request_uri()));                              
+  dpm(drupal_get_path_alias(request_uri()));
   if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
     global $user;
 
@@ -29,8 +45,8 @@ function dosomething_picsforpets_fb_user_init() {
     }
 
     $facebook = new Facebook(array(
-      'appId' => PFP_APP_ID,
-      'secret' => PFP_SECRET,
+      'appId' => variable_get('dosomething_picsforpets_fb_user_app_id', ''),
+      'secret' => variable_get('dosomething_picsforpets_fb_user_app_secret', ''),
     ));
     $access_token = $facebook->getAccessToken();
     // Set JS variable for use by other modules.
@@ -57,27 +73,27 @@ function dosomething_picsforpets_fb_user_init() {
     // Condition 3.
     //If the fb uid maps to a user then log them in.
     if (!$user->uid && $uid && ($account = user_load($uid))) {
-      dpm('CONDITION 3.');                      
-      watchdog('PFP FB', 'CONDITION 3.');                        
+      dpm('CONDITION 3.');
+      watchdog('PFP FB', 'CONDITION 3.');
       fboauth_login_user($account);
     }
     // Condition 4.
     elseif (!$user->uid && !$uid) {
-      dpm('CONDITION 4.');               
-      watchdog('PFP FB', 'CONDITION 4.');                  
+      dpm('CONDITION 4.');
+      watchdog('PFP FB', 'CONDITION 4.');
       $account = fboauth_create_user($fbuser);
       $account = user_load($account->uid);
       fboauth_login_user($account);
     }
     // Condition 2.
     elseif (!$user->uid) {
-      dpm('CONDITION 2.');                 
-      watchdog('PFP FB', 'CONDITION 2.');              
+      dpm('CONDITION 2.');
+      watchdog('PFP FB', 'CONDITION 2.');
       $found_users = user_load_multiple(array(), array('mail' => $email));
       $found_user = array_shift($found_users);
       if (!empty($found_user)) {
-        dpm('CONDITION 3.');              
-        watchdog('PFP FB', 'CONDITION 3.');                 
+        dpm('CONDITION 3.');
+        watchdog('PFP FB', 'CONDITION 3.');
         // We found a matching user. Associate the FB account with them. Then
         // log them in.
         fboauth_save($found_user->uid, $fbuser->id);
