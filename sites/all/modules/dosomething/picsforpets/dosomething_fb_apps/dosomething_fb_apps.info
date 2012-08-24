@@ -32,6 +32,7 @@ features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_
 features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_city"
 features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_image"
 features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_other"
+features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_published"
 features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_share_count"
 features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_name"
 features[field][] = "webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference"
