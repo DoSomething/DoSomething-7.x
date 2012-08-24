@@ -626,6 +626,7 @@ function dosomething_picsforpets_general_regenerate_webform_node() {
  * Implements hook_views_post_execute().
  */
 function dosomething_picsforpets_general_views_post_execute(&$view) {
+  // TODO: this should be display specific.
   if ($view->name == 'pics_for_pets_gallery') {
     $pets = array();
     foreach($view->result as $row) {

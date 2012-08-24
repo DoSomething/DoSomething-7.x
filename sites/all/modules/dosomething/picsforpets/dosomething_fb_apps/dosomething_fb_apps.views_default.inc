@@ -1024,6 +1024,31 @@ Please try a new combo.
   $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['sid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['sid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'fb_app_data_gathering_form' => 'fb_app_data_gathering_form',
+  );
+  /* Filter criterion: Webform Submission: Animal Type (field_fb_app_animal_type) */
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['id'] = 'field_fb_app_animal_type_value';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['table'] = 'field_data_field_fb_app_animal_type';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['field'] = 'field_fb_app_animal_type_value';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator_id'] = 'field_fb_app_animal_type_value_op';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['label'] = 'Sort by';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator'] = 'field_fb_app_animal_type_value_op';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['identifier'] = 'animal_type';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['reduce'] = 0;
+  /* Filter criterion: Webform Submission: Published (field_fb_app_published) */
+  $handler->display->display_options['filters']['field_fb_app_published_value']['id'] = 'field_fb_app_published_value';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['table'] = 'field_data_field_fb_app_published';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['field'] = 'field_fb_app_published_value';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['value'] = array(
+    1 => '1',
+  );
 
   /* Display: My shared pets */
   $handler = $view->new_display('panel_pane', 'My shared pets', 'panel_pane_2');
