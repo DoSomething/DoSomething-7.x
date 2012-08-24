@@ -61,7 +61,7 @@ function dosomething_picsforpets_fb_user_init() {
     module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
     // Conditions.
-    // 1. User already logged into Dosomething.
+    // 1. User already logged into Dosomething but not associed with FB.
     //   - Associate user id with fb id if not associated.
     // 2. User is not logged in but has a DS uid that is not associated.
     //   - No way to detect that unless the email matches - in which case
@@ -75,6 +75,12 @@ function dosomething_picsforpets_fb_user_init() {
     // exists.
     $fbuser = fboauth_graph_query('me', $access_token);
     $uid = fboauth_uid_load($fbuser->id);
+    // Not sure if we should do this or not. Seems smarter than leaving it emtpy
+    // though.
+    if (!isset($fbuser->email)) {
+      $fbuser->email = $fbuser->id . '@facebook.com';
+    }
+    dvm(fboauth_uid_load($fbuser->id));
 
     // Condition 3.
     //If the fb uid maps to a user then log them in.
@@ -88,14 +94,18 @@ function dosomething_picsforpets_fb_user_init() {
       dpm('CONDITION 4.');
       watchdog('PFP FB', 'CONDITION 4.');
       $account = fboauth_create_user($fbuser);
-      $account = user_load($account->uid);
+      // Unblock the user.
+      $accounts = array($account->uid);
+      dpm($account);
+      user_user_operations_unblock($accounts);
+      // Then log them in.
       fboauth_login_user($account);
     }
     // Condition 2.
     elseif (!$user->uid) {
-      dpm('CONDITION 2.');
-      watchdog('PFP FB', 'CONDITION 2.');
-      $found_users = user_load_multiple(array(), array('mail' => $email));
+      dpm('CONDITION 2.');                 
+      watchdog('PFP FB', 'CONDITION 2.');              
+      $found_users = user_load_multiple(array(), array('mail' => $fbuser->email));
       $found_user = array_shift($found_users);
       if (!empty($found_user)) {
         dpm('CONDITION 3.');
@@ -108,7 +118,7 @@ function dosomething_picsforpets_fb_user_init() {
       }
     }
     // Condition 1
-    elseif ($user->uid) {
+    elseif ($user->uid && !$uid) {
       // The user is already logged into Dosomething. Associate
       // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
       fboauth_save($user->uid, $fbuser->id);
