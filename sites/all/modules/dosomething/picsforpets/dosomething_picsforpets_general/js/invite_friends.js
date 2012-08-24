@@ -2,12 +2,12 @@
 
 Drupal.behaviors.inviteFriendsModal = {
   attach: function(context, settings) {
+    var fbAppId = settings.picsforpetsFBAuth.appId;
     window.fbAsyncInit = function() {
       FB.init({
-        //appId: '459236750767188', // dev - apps.facebook.com/zivtechdev
-        appId: '288011551281047', // staging - apps.facebook.com/picsforpets
+        appId: fbAppId,
         status: true,
-        cookie: true,
+        cookie: true
       });
     };
 
@@ -28,10 +28,10 @@ Drupal.behaviors.inviteFriendsModal = {
 
 Drupal.behaviors.galleryShareButton = {
   attach: function (context, settings) {
+    var fbAppId = settings.picsforpetsFBAuth.appId;
     window.fbAsyncInit = function() {
       FB.init({
-        //appId: '459236750767188', // dev - apps.facebook.com/zivtechdev
-        appId: '288011551281047', // staging - apps.facebook.com/picsforpets
+        appId: fbAppId,
         status: true,
         cookie: true
       });
