@@ -11,7 +11,7 @@ $plugin = array(
 function dosomething_picsforpets_general_content_type_gallery_link($subtype = '', $conf = array(), $context = NULL) {
 
   // Select a random submission from the database.
-  $sid = db_query('SELECT entity_id FROM field_data_field_fb_app_share_count ORDER BY RAND() LIMIT 1')->fetchField();
+  $sid = db_query_range('SELECT entity_id FROM {field_data_field_fb_app_share_count} ORDER BY RAND()', 0, 1)->fetchField();
 
   // Build the markup for the link.
   $output = '<div class="picsforpets-scholarship"><a href="/pics-for-pets/gallery">' . t('$5k Scholarship') . '</a></div>';
