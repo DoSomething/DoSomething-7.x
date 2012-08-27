@@ -566,7 +566,6 @@ function dosomething_picsforpets_general_save_webform_node($path) {
   $webform_data = $webform->webform;
   unset($webform->webform);
   node_save($webform);
-  // TODO: Do we need this?
   unset ($webform->webform);
 
   dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
@@ -579,6 +578,7 @@ function dosomething_picsforpets_general_save_webform_node($path) {
       $webform->webform['components'][$key]['mandatory'] = 0;
     }
   }
+  $webform->path = array('alias' => 'pics-for-pets/submit-pet-picture', 'pathauto' => FALSE);
   node_save($webform);
   variable_set('picsforpets_animal_form_id', $webform->nid);
   return $webform;
