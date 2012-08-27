@@ -1,0 +1,254 @@
+// Main navigation Styles
+
+nav[role=navigation]
+  font-family: $font-headline
+  text-rendering: optimizeLegibility
+  text-transform: uppercase
+  position: relative
+  background-color: $c-menu-primary-bg
+  font-weight: 500
+  z-index: 100
+  .ie8 &, .ie7 &
+    width: 925px
+    font-weight: bold
+  a
+    text-decoration: none
+    display: block
+    +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
+  .primary
+    background-color: $c-menu-primary-bg
+    // padding-left: percentage($left-col-width / $page-width)
+    padding-left: 170px
+    .wrapper
+      display: table
+      width: 100%
+      .ie7 &
+        display: block
+  .secondary
+    background-color: $c-menu-secondary-bg
+    padding-left: percentage($left-col-width / $page-width)
+    .front &
+      position: absolute
+      width: 78%
+      z-index: 1
+    ul
+      +adjust-font-size-to($s2)
+      +horizontal-list(0.7em)
+      line-height: $submenu-height / $s2
+      min-height: calc-em($submenu-height, $s2)
+      padding-left: calc-em(6px, $s2)
+      padding-right: calc-em(19px, $s2)
+      overflow: visible
+      li
+        position: relative
+      a
+        &.active
+          color: $white
+      &:nth-of-type(4n+2)
+        margin-left: calc-em(172px, $s2)
+      &:nth-of-type(1n+3)
+        text-align: right
+        li
+          display: inline
+          float: none
+          a
+            display: inline
+      &:nth-of-type(4n+3)
+        padding-right: calc-em(220px, $s2)
+      .ds-nav-dropdown
+        background-color: $blue
+        display: none
+        margin-bottom: 0
+        +adjust-font-size-to($s0)
+        font-weight: 500
+        position: absolute
+        z-index: 10
+        text-transform: none
+        left: 2px
+        padding: 0 0.5em
+        text-align: left
+        .secondary .first &, .secondary :first-child &
+          left: -10px
+        &:active
+          background-color: none
+        li
+          display: block
+          list-style-type: none
+          list-style-image: none
+          white-space: nowrap
+          float: none
+          padding-left: 0.5em
+          padding-right: 0.5em
+          margin-left: -0.5em
+          margin-right: -0.5em
+          &:hover
+            background: $blue-light
+          a
+            +link-colors($white, $white, $white, $white, false)
+            line-height: ($menu-height - 10px) / $s4
+            margin-right: calc-em(5px, $s4)
+            padding-top: calc-em(10px, $s4)
+            padding-bottom: calc-em(10px, $s4)
+            padding-left: 0
+            padding-right: 0
+  .secondary .first .ds-nav-dropdown
+    left: -10px
+
+.secondary-menu-inactive
+  nav[role=navigation]
+    .secondary
+      position: absolute
+      width: 78%
+
+#main-menu
+  // +adjust-font-size-to($s4)
+  font-family: $font-headline
+  text-rendering: optimizeLegibility
+  font-size: 26px
+  display: table-row
+  min-height: calc-em($menu-height, $s4)
+  padding-right: calc-em(3px, $s4)
+  padding-left: 0
+  .ie7 &
+    display: block
+    margin-top: 0
+    margin-bottom: 0
+  li
+    display: table-cell
+    background: $c-menu-primary-bg
+    .ie7 &
+      display: inline
+      +float-left
+      margin-left: 12px
+    a
+      line-height: ($menu-height - 10px) / $s4
+      padding-top: calc-em(10px, $s4)
+      text-align: center
+      margin-left:  2px
+      margin-right: 2px
+      +link-colors($c-menu-primary-text, $white, $white, $c-menu-primary-text, false)
+      .ie7 &
+        padding-left: 17px
+        padding-right: 17px
+      &.active
+        color: white
+    &.first
+      a
+        margin-left: 0
+    &.last
+      a
+        margin-right: 0
+    &:hover, &.active, &.active-trail, &.active-hover
+      a
+        background-color: $c-menu-secondary-bg
+    &.active, &.active-trail
+      a
+        background:
+          image: image_url("arrow-down.png")
+          repeat: no-repeat
+          position: center -3px
+        border-top: (calc-em(2px, $s4)) solid $white
+        padding-top: calc-em(8px, $s4)
+
+nav[role=navigation]
+  .causes-dropdown-trigger
+    position: relative
+    .causes-dropdown
+      top: 30px
+      left: -9px
+      .ie7 &
+        top: 23px
+      ul
+        +clean-list
+        padding-left: 0
+        padding-right: 0
+        li
+          padding: 0
+          float: none
+          display: block
+          a
+            padding: 0.3em 0.5em
+  .causes-dropdown
+    position: absolute
+    top: 6em
+    z-index: 10
+    text-transform: none
+    +adjust-font-size-to($s0, 0, $s2)
+    ul
+      background-color: $blue
+      display: none
+      margin-bottom: 0
+      &:active
+        background-color: none
+      li
+        &:hover
+          background: $blue-light
+        a
+          +link-colors($white, $white, $white, $white, false)
+    li.causes-menu-dropdown-level-1
+      margin: 0 0 0 0.5em
+      &.active
+        position: relative
+        left: 3em
+        top: -1.7em
+        li.causes-menu-dropdown-level-2
+          position: relative
+          left: 0
+          top: 0.1em
+    ul.causes-menu-dropdown-level-1
+      background-color: $blue
+      position: relative
+      top: -1.8em
+      left: 5.3em
+      &.active
+        left: 0
+        top: -0.2em
+    li.causes-menu-dropdown-level-2
+      +clean-list
+      padding-left: 5px
+      a
+        font-size: 14px
+        margin-top: 0
+      &:hover
+        background-color: $c-menu-secondary-hover
+    a
+      line-height: ($menu-height - 10px) / $s4
+      margin-right: calc-em(5px, $s4)
+      padding-top: calc-em(10px, $s4)
+      padding-bottom: calc-em(10px, $s4)
+      padding-left: calc-em(6px, $s4)
+      padding-right: calc-em(6px, $s4)
+    &.last
+      a
+        margin-right: 0
+  .issues-dropover
+    position: relative
+    .arrows
+      position: absolute
+      left: -0.25em
+    .issues-dropdown-menu
+      background: $blue
+      position: absolute
+      left: 2px
+      display: none
+      z-index: 10
+      min-width: 10em
+    ul
+      font-size: 1em
+      +clean-list
+      padding: 0
+      text-transform: none
+      li
+        padding: 0
+        display: block
+        float: none
+        margin-bottom: 0
+        &:hover
+          background: $blue-light
+        a
+          padding: 0.3em 0.5em
+          margin-bottom: 0
+          +link-colors($white, $white, $white, $white, false)
+
+.issues-dropdown
+  display: none

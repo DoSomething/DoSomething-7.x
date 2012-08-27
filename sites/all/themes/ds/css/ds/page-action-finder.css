@@ -1,0 +1,512 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .form-required {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .focusable.form-required {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.visuallyhidden.focusable:active, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .focusable.form-required:active, .visuallyhidden.focusable:focus, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label .focusable.form-required:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.wireframe {
+  outline: 1px dashed red;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Dropdown control */
+.selectBox-dropdown {
+  width: 100%;
+  /* width = (desired width) - padding-right */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  vertical-align: middle;
+  cursor: default;
+}
+.selectBox-dropdown .selectBox-label {
+  width: 100%;
+  padding: 0.2em 0.3em;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.selectBox-dropdown .selectBox-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+  position: absolute;
+  z-index: 99999;
+  max-height: 100%;
+  /* should be the same border width as .selectBox-dropdown */
+  background-color: #726e6b;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  overflow: auto;
+}
+
+/* Inline control */
+.selectBox-inline {
+  width: 250px;
+  outline: none;
+  border: solid 1px #bbbbbb;
+  background: white;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: auto;
+}
+.selectBox-inline:focus {
+  border-color: #666666;
+}
+
+/* Options */
+.selectBox-options {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li a {
+  color: white;
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  padding: 0 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  background: 6px center no-repeat;
+}
+.selectBox-options li a:visited {
+  color: white;
+}
+.selectBox-options li a:hover {
+  color: white;
+}
+.selectBox-options li a:active {
+  color: #222222;
+}
+.selectBox-options li a {
+  border-bottom: none;
+}
+.selectBox-options li a:hover {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-hover a {
+  background-color: #8e8a86;
+}
+.selectBox-options li.selectBox-disabled a {
+  color: #888888;
+  background-color: #726e6b;
+}
+.selectBox-options li.selectBox-selected a {
+  background-color: #8e8a86;
+  display: none;
+}
+.selectBox-options .selectBox-optgroup {
+  color: #666666;
+  background: #eeeeee;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 0 0.3em;
+  white-space: nowrap;
+}
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+  color: #888888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  border-color: #666666;
+}
+
+.selectBox-inline.selectBox-disabled {
+  color: #888888 !important;
+}
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+  background-color: transparent !important;
+}
+
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label, #views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
+/* Headings -------------------------------------------------------------- */
+.h1, h1, .h2, h2, .h3, h3, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label, #views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper, .h4, h4, .h5, h5, .h6, h6 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  color: #005dab;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.h1, h1 {
+  font-size: 2.917em;
+  line-height: 1.029em;
+  font-weight: 500;
+  margin-top: 0.286em;
+}
+
+.h2, h2 {
+  font-size: 2em;
+  line-height: 1.25em;
+  font-weight: 600;
+  margin-top: 0.417em;
+}
+
+.h3, h3, #views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label, #views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
+}
+
+.action-finder-list {
+  margin-top: 2em;
+}
+.action-finder-list .views-row {
+  *zoom: 1;
+  background: url('../images/triangle-mask-left.png') no-repeat 19% center, #8e8a86;
+  background-color: #8e8a86;
+  height: 6.5em;
+  margin-bottom: 2em;
+  width: 100%;
+}
+.action-finder-list .views-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.action-finder-list .views-row:nth-of-type(even) {
+  background-color: #5f5c58;
+}
+.action-finder-list .views-field-field-picture img {
+  display: inline;
+  float: left;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  height: 6.5em;
+  margin-right: 1.5em;
+  padding: 0;
+}
+.action-finder-list .views-field-field-picture img {
+  *display: inline;
+}
+.action-finder-list .unimage-wrapper {
+  padding: 0.583em 0;
+  *zoom: 1;
+  width: 455px;
+}
+.action-finder-list .unimage-wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.action-finder-list .unimage-wrapper a {
+  color: white;
+  display: inline;
+  float: left;
+}
+.action-finder-list .unimage-wrapper h2 {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  color: white;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  width: 100%;
+}
+.action-finder-list .unimage-wrapper .fb-social-like-plugin {
+  display: inline;
+  float: right;
+  width: 6.667em;
+}
+.action-finder-list .views-row {
+  background-position-x: 12.5%;
+}
+.action-finder-list .unimage-wrapper {
+  color: white;
+  width: auto;
+}
+.action-finder-list .unimage-wrapper p {
+  margin: 0;
+}
+
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper, .impactbubbles-impact-bubble-dude, .impactbubbles-impact-bubble-how-long, #views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper, .impactbubbles-impact-bubble-mohawk, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button, .impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper, .impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
+  background: url('../images/impactbubbles-s1f00ebb755.png') no-repeat;
+}
+
+.impactbubbles-impact-bubble-cause, #views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper {
+  background-position: 0 0;
+  height: 74px;
+  width: 112px;
+}
+
+.impactbubbles-impact-bubble-dude {
+  background-position: 0 -74px;
+  height: 73px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-how-long, #views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper {
+  background-position: 0 -147px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-mohawk, #views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
+  background-position: 0 -206px;
+  height: 85px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-where, #views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper {
+  background-position: 0 -291px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-who, #views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
+  background-position: 0 -350px;
+  height: 74px;
+  width: 112px;
+}
+
+#views-exposed-form-action-finder-ctools-context-1 {
+  background: #222222;
+  padding-top: 10px;
+  min-height: 250px;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-form .views-exposed-widget {
+  float: none;
+  padding: 0;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-form {
+  position: relative;
+  left: 185px;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets {
+  position: absolute;
+  padding: 0px 0.5em;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets label {
+  color: white;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown {
+  background: #a1a1a1;
+  cursor: pointer;
+  width: 100px;
+  margin-top: 8px;
+  color: white;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select:visited,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown:visited {
+  color: white;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select:hover,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown:hover {
+  color: white;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select:active,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown:active {
+  color: #222222;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select .selectBox-label,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown .selectBox-label {
+  width: 95%;
+  height: 1.5em;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets select .selectBox-arrow,
+#views-exposed-form-action-finder-ctools-context-1 .views-exposed-widgets .selectBox-dropdown .selectBox-arrow {
+  display: none;
+}
+#views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper {
+  position: relative;
+  left: 63px;
+}
+#views-exposed-form-action-finder-ctools-context-1 #filter-title-wrapper label {
+  cursor: inherit;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper,
+#views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper,
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper,
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper {
+  position: absolute;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper label,
+#views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper label,
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper label,
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper label {
+  cursor: default;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-issues-wrapper {
+  left: 37px;
+  padding: 0px 0.5em;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-who-wrapper {
+  left: 167px;
+  padding: 0px 0.5em;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper {
+  top: 114px;
+  padding: 0px 0.5em;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-where-wrapper .selectBox-dropdown {
+  margin-top: 5px;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper {
+  left: 200px;
+  top: 114px;
+  padding: 0 0.5em 0 14px;
+}
+#views-exposed-form-action-finder-ctools-context-1 #edit-time-wrapper .selectBox-dropdown {
+  margin-top: 5px;
+}
+#views-exposed-form-action-finder-ctools-context-1 .views-submit-button {
+  position: absolute;
+  left: 124px;
+  top: 126px;
+}
+#views-exposed-form-action-finder-ctools-context-1 .form-submit {
+  position: absolute;
+  bottom: -30px;
+}

@@ -1,0 +1,31 @@
+@import setup
+// --------------------------------------------------------------------------------------
+
+// Dotted line
+.pane-webform-submission-entity-field-picture
+  border-bottom: dashed 1px $gray2
+  padding-bottom: 3em
+
+// Project status bar
+$arrow-projectstatus: "arrow-statbar-projectstatus.png"
+$project-image: $arrow-projectstatus
+
+.project-status-bar
+  +pie-clearfix
+  background-color: $gray6
+  border-top: 1px solid $white
+  border-bottom: 1px solid $white
+  +box-shadow(#cecece 0 1px -1px 1px, #cecece 0 5px 0 -4px inset)
+  margin: 1em 0
+  .project-title
+    +replace-text-with-dimensions($project-image, left, bottom)
+    +float-left
+  ul
+    +status-bar
+    +float-left
+    height: image-height($project-image)
+    margin-left: 1em
+    li
+      color: $purple
+      span
+        padding-right: 1.5em

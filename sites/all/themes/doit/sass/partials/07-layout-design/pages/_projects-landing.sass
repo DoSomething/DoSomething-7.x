@@ -1,0 +1,22 @@
+////////////////////////////
+// PROJECTS LANDING
+// two column grid on projects pages for resources, search, related projects
+// image teaser module
+////////////////////////////
+.pane-related-projects-panel-pane-1,
+.pane-related-projects-panel-pane-2,
+.pane-resources-panel-pane-1,
+.pane-projects-by-state-panel-pane-1,
+.pane-featured-projects-panel-pane-1,
+.pane-featured-projects-panel-pane-3,
+.pane-current-campaigns-panel-pane-2,
+.action-finder-list,
+.pane-project-related-displays-panel-pane-4
+  @extend .two-column-grid
+  @extend .black-h2
+  .views-row
+    @extend .image-teaser-module
+  .views-field-field-picture
+    @extend .image-teaser-module-image
+  .unimage-wrapper
+    @extend .image-teaser-module-teaser

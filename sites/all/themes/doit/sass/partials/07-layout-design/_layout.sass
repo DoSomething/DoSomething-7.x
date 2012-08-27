@@ -1,0 +1,41 @@
+// Set up the layout for your site using your chosen grid framework
+/* LAYOUT --------------------------------------------------------------
+
+.container
+  width: $page-width
+  margin: 0 auto
+  position: relative
+
+[role=main]
+  body.one-sidebar.sidebar-first &
+    width: $main-width
+    float: right
+    margin: 5px 0
+    .ie7 &
+      width: 750px
+
+.region-sidebar-first
+  width: $left-col-width
+  float: left
+
+.panel-twocol-a
+  .panes-2
+    .panel-outer-left
+      width: 550px
+    .panel-outer-right
+      width: 186px
+      margin-right: 0
+      float: right
+  .panel-outer-left
+    .panel-top
+    .panes-1
+      .panel-panel
+    .panes-2
+      .panel-panel
+      .panel-last
+
+#mini-panel-home_page
+  .panel-col-first,
+  .panel-col-second
+    .ie7 &
+      width: 49%

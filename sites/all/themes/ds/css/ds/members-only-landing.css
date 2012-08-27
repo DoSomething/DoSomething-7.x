@@ -1,0 +1,63 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.pane-2 .block-pair {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  color: white;
+  margin-top: -0.083em;
+  margin-bottom: 2.917em;
+  overflow: hidden;
+  width: 30.9%;
+  margin-right: 3%;
+}
+.pane-2 .block-pair {
+  *display: inline;
+}
+.pane-2 .block-pair:nth-of-type(even) a.members-only {
+  background-color: #5f5c58;
+}
+.pane-2 .block-pair.last {
+  margin-right: 0;
+}
+.pane-2 img {
+  width: 215px;
+  height: 102px;
+}
+.pane-2 a.members-only {
+  color: white;
+  cursor: pointer;
+  display: block;
+  height: 1.667em;
+  background: #8e8a86 url('../images/triangle-mask-up.png') no-repeat center top;
+  padding: 1.5em 1em 0.667em;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.pane-2 a.members-only:visited, .pane-2 a.members-only:hover {
+  color: white;
+}

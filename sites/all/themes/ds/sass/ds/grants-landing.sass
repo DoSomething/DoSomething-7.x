@@ -1,0 +1,87 @@
+@import setup
+
+.pane-content
+  ul
+    padding-left: 3em
+
+#seed-grant-winner
+  padding-top: 12px
+  img
+    +float-left
+    margin-right: 12px
+
+.panel-bottom
+  h2.pane-title
+    +ds-bevel-single
+    margin: 1em 0
+    display: block
+  .item-list ul
+    list-style: none
+    margin: 0
+    li
+      margin: 0
+  ul
+    li:nth-of-type(odd)
+      .pane-content
+        background: image_url('bg-arrowblock-dark.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-left
+    li:nth-of-type(even)
+      .pane-content
+        background: image_url('bg-arrowblock-light.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-right
+        img
+          padding-left: 0.3em
+  li
+    display: block
+    width: 100%
+  ul
+    +pie-clearfix
+  .pane-content
+    +inline-block
+    height: 108px
+    margin-bottom: 1em
+    width: 50%
+    .field-items
+      width: 30%
+      +float-right
+    .grant-title,
+    .views-field-title
+      color: $white
+      display: block
+      font-family: $font-headline
+      font-size: 18px
+      text-align: center
+      text-rendering: optimizeLegibility
+      text-transform: uppercase
+      a
+        color: $white
+        padding-left: 20px
+        &:hover
+          color: $white
+    .grant-title
+      margin-top: 1.5em
+    .views-field-title
+      text-align: left
+      padding-top: 1em
+      width: 355px
+    .views-field-view-node
+      position: relative
+      top: 4em
+      left: 7em
+      a
+        color: $white
+        &:hover
+          color: $white
+    img
+      +float-left
+      width: 170px
+      height: 108px
+    p
+      margin: 0
+
+.grants-past-winners
+  clear: both

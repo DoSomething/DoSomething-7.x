@@ -1,0 +1,69 @@
+/* Specific styling for multi-step Forms specific for project right now--------------------------------------------------------------
+
+form.webform-client-form
+  // Float multi-step webform buttons right
+  #edit-actions,
+  #edit-actions--2
+    height: 50px
+    margin-bottom: 0
+    text-align: right
+    +clearfix
+
+  // Next, back, submit form buttons
+  #edit-next,
+  #edit-previous,
+  #edit-submit,
+  #edit-submit--2,
+  #edit-draft
+    @extend .go-button
+    +inline-block
+    margin-right: 6px
+
+  #edit-next,
+  #edit-previous
+    margin-left: $s-2
+    padding: 0
+    width: 45px
+
+  #edit-submit,
+  #edit-submit--2
+    margin-left: $s-2
+
+  // Save as draft link
+  // #edit-draft
+  //   -webkit-appearance: none
+  //   @extend .blue
+  //   background: none
+  //   border: none
+  //   display: block
+  //   font-family: $font-body
+  //   padding: 8px 0 0 26px
+  //   position: absolute
+  //   right: 48px
+  //   bottom: 53px
+
+  // Form completion and numbering
+  #edit-submitted-dosomething-webform-numbering
+    margin: 8px 0 20px 0
+    .form-wrapper
+      margin-bottom: 0
+    .dosomething-webform-page-number
+      @extend .gray4
+      float: right
+      line-height: 8px
+    .dosomething-webform-percentage
+      background-color: $white
+      border: 1px $gray5 solid
+      margin-bottom: $s-2
+      width: 589px
+      .ratio
+        height: 7px
+      .inner
+        background-color: $purple
+        height: 7px
+        margin: 0 0 2px 0
+        max-width: 100%
+        width: 0%
+      .label
+        @extend .gray4
+        font-size: $s-1

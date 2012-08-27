@@ -1,0 +1,507 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.impactbubbles-sprite, .impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause, .impactbubbles-impact-bubble-dude, .impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long, .impactbubbles-impact-bubble-mohawk, #dosomething-blocks-make-an-impact-form-front .dude, .impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where, .impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  background: url('../images/impactbubbles-s1f00ebb755.png') no-repeat;
+}
+
+.impactbubbles-impact-bubble-cause, #dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
+  background-position: 0 0;
+  height: 74px;
+  width: 112px;
+}
+
+.impactbubbles-impact-bubble-dude {
+  background-position: 0 -74px;
+  height: 73px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-how-long, #dosomething-blocks-make-an-impact-form-front .form-item-how-long {
+  background-position: 0 -147px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-mohawk, #dosomething-blocks-make-an-impact-form-front .dude {
+  background-position: 0 -206px;
+  height: 85px;
+  width: 72px;
+}
+
+.impactbubbles-impact-bubble-where, #dosomething-blocks-make-an-impact-form-front .form-item-where {
+  background-position: 0 -291px;
+  height: 59px;
+  width: 120px;
+}
+
+.impactbubbles-impact-bubble-who, #dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  background-position: 0 -350px;
+  height: 74px;
+  width: 112px;
+}
+
+.serif {
+  font-family: Georgia, serif;
+}
+
+.sans {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.mono {
+  font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+  _font-family: Consolas, Menlo, "Courier New", monospace, monospace;
+}
+
+.caps, .allcaps, .smallcaps {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+}
+
+.headers, .h1, h1, .h2, h2, .h3, h3, #dosomething-blocks-make-an-impact-form-front .form-type-select label, .h4, h4, .h5, h5, .h6, h6 {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+}
+
+.allcaps {
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+}
+
+/* Only use the fancy ampersand in <h#> tags */
+/* Headings -------------------------------------------------------------- */
+.h1, h1, .h2, h2, .h3, h3, #dosomething-blocks-make-an-impact-form-front .form-type-select label, .h4, h4, .h5, h5, .h6, h6 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  color: #005dab;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.h1, h1 {
+  font-size: 2.917em;
+  line-height: 1.029em;
+  font-weight: 500;
+  margin-top: 0.286em;
+}
+
+.h2, h2 {
+  font-size: 2em;
+  line-height: 1.25em;
+  font-weight: 600;
+  margin-top: 0.417em;
+}
+
+.h3, h3, #dosomething-blocks-make-an-impact-form-front .form-type-select label {
+  font-size: 1.5em;
+  line-height: 1.333em;
+  font-weight: 600;
+}
+
+.h4, h4 {
+  font-size: 1.167em;
+  line-height: 1.714em;
+  font-weight: 600;
+}
+
+.h5, h5 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+.h6, h6 {
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: 500;
+}
+
+#dosomething-blocks-make-an-impact-form-front {
+  position: relative;
+  width: 100%;
+}
+#dosomething-blocks-make-an-impact-form-front #edit-description {
+  margin: 10px 0 20px 0;
+}
+#dosomething-blocks-make-an-impact-form-front label[for='edit-description'] {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select {
+  position: absolute;
+  padding: 0px 0.5em;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select label {
+  color: white;
+}
+.ie7 #dosomething-blocks-make-an-impact-form-front .form-type-select select {
+  width: 100px;
+  margin-top: 4px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown {
+  background: #a1a1a1;
+  cursor: pointer;
+  width: 100px;
+  margin-top: 8px;
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:visited {
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:hover {
+  color: white;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown:active {
+  color: #222222;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-label {
+  width: 95%;
+  height: 1.5em;
+}
+#dosomething-blocks-make-an-impact-form-front .form-type-select .selectBox-dropdown .selectBox-arrow {
+  display: none;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item, #dosomething-blocks-make-an-impact-form-front .form-actions {
+  margin: 0 auto;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause label, #dosomething-blocks-make-an-impact-form-front .form-item-who-with label, #dosomething-blocks-make-an-impact-form-front .form-item-where label, #dosomething-blocks-make-an-impact-form-front .form-item-how-long label {
+  cursor: default;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-what-cause {
+  left: 37px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-who-with {
+  left: 167px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-where {
+  top: 114px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-where .selectBox-dropdown {
+  margin-top: 5px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long {
+  left: 200px;
+  top: 114px;
+  padding: 0 0.5em 0 14px;
+}
+#dosomething-blocks-make-an-impact-form-front .form-item-how-long .selectBox-dropdown {
+  margin-top: 5px;
+}
+#dosomething-blocks-make-an-impact-form-front .dude {
+  position: absolute;
+  left: 124px;
+  top: 126px;
+}
+#dosomething-blocks-make-an-impact-form-front .dude .form-submit {
+  position: absolute;
+  bottom: -30px;
+}
+.ie7 #dosomething-blocks-make-an-impact-form-front .dude .form-submit, .ie8 #dosomething-blocks-make-an-impact-form-front .dude .form-submit {
+  left: 3px;
+}
+
+/* Dropdown control */
+.selectBox-dropdown {
+  width: 100%;
+  /* width = (desired width) - padding-right */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  vertical-align: middle;
+  cursor: default;
+}
+.selectBox-dropdown .selectBox-label {
+  width: 100%;
+  padding: 0.2em 0.3em;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.selectBox-dropdown .selectBox-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+  position: absolute;
+  z-index: 99999;
+  max-height: 100%;
+  /* should be the same border width as .selectBox-dropdown */
+  background-color: #726e6b;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px;
+  overflow: auto;
+}
+
+/* Inline control */
+.selectBox-inline {
+  width: 250px;
+  outline: none;
+  border: solid 1px #bbbbbb;
+  background: white;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: auto;
+}
+.selectBox-inline:focus {
+  border-color: #666666;
+}
+
+/* Options */
+.selectBox-options {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li {
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.selectBox-options li a {
+  color: white;
+  list-style: none;
+  display: block;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  padding: 0 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  background: 6px center no-repeat;
+}
+.selectBox-options li a:visited {
+  color: white;
+}
+.selectBox-options li a:hover {
+  color: white;
+}
+.selectBox-options li a:active {
+  color: #222222;
+}
+.selectBox-options li a {
+  border-bottom: none;
+}
+.selectBox-options li a:hover {
+  border-bottom: none;
+}
+.selectBox-options li.selectBox-hover a {
+  background-color: #8e8a86;
+}
+.selectBox-options li.selectBox-disabled a {
+  color: #888888;
+  background-color: #726e6b;
+}
+.selectBox-options li.selectBox-selected a {
+  background-color: #8e8a86;
+  display: none;
+}
+.selectBox-options .selectBox-optgroup {
+  color: #666666;
+  background: #eeeeee;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 0 0.3em;
+  white-space: nowrap;
+}
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+  color: #888888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  border-color: #666666;
+}
+
+.selectBox-inline.selectBox-disabled {
+  color: #888888 !important;
+}
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+  background-color: transparent !important;
+}
+
+.pane-dosomething-blocks-dosomething-make-impact-front form {
+  min-height: 20em;
+}
+.pane-dosomething-blocks-dosomething-make-impact-front .pane-content {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+#upcoming-somethings .pane-content {
+  background: transparent;
+}
+
+.view-upcoming-somethings .view-content {
+  *zoom: 1;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -o-border-bottom-left-radius: 6px;
+  -ms-border-bottom-left-radius: 6px;
+  -khtml-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -o-border-bottom-right-radius: 6px;
+  -ms-border-bottom-right-radius: 6px;
+  -khtml-border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #d2d2d2;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.view-upcoming-somethings .view-content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.view-upcoming-somethings .views-row {
+  -moz-box-shadow: #8e8a86 0 2px 4px;
+  -webkit-box-shadow: #8e8a86 0 2px 4px;
+  -o-box-shadow: #8e8a86 0 2px 4px;
+  box-shadow: #8e8a86 0 2px 4px;
+  background-color: #f2f2f2;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  width: 10.5em;
+}
+.ie .view-upcoming-somethings .views-row {
+  width: 125px;
+}
+.view-upcoming-somethings .views-row.views-row-first {
+  margin-left: 10px;
+}
+.view-upcoming-somethings .views-field-field-campain-date {
+  color: #005dab;
+  letter-spacing: -1px;
+  -moz-box-shadow: white 0 1px -1px 1px;
+  -webkit-box-shadow: white 0 1px -1px 1px;
+  -o-box-shadow: white 0 1px -1px 1px;
+  box-shadow: white 0 1px -1px 1px;
+  border-bottom: 1px solid #d6d6d6;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+#ready-to-start .pane-content {
+  padding: 1em;
+  text-align: center;
+}
+#ready-to-start .pane-content a {
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-right: 0.5em;
+}
+
+#explore-action-guides .pane-content {
+  background: transparent;
+}
+#explore-action-guides .views-row {
+  background-color: #652e72;
+  *zoom: 1;
+}
+#explore-action-guides .views-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#explore-action-guides .views-field-title,
+#explore-action-guides .do-this-link {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  *zoom: 1;
+  display: inline;
+  float: left;
+  height: 48px;
+  width: 50%;
+}
+#explore-action-guides .views-field-title {
+  color: white;
+  padding: 0.25em 1em;
+}
+#explore-action-guides .views-field-title .views-label {
+  font-size: 2em;
+  line-height: 2em;
+  display: block;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  line-height: 1;
+}
+#explore-action-guides .do-this-link a {
+  display: block;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/arrow-do-this.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  height: inherit;
+  -moz-background-size: contain;
+  -webkit-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+.view-featured-campaign .rotoslider,
+.view-featured-campaign img.rotoslider-image,
+.view-featured-campaign .rotoslider-images,
+.view-featured-campaign .rotoslider-images img {
+  height: 325px;
+  width: 690px;
+}
+.view-featured-campaign .rotoslider-descriptions > div {
+  width: 690px;
+}
+.view-featured-campaign .rotoslider-menu {
+  height: 260px;
+}
+.view-featured-campaign .rotoslider-nav {
+  height: 260px;
+}
+.view-featured-campaign .rotoslider-nav img {
+  height: 65px;
+}

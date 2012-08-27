@@ -1,0 +1,100 @@
+@import setup
+
+@import partials/lib/extend/helpers
+@import partials/02-extend/jquery-selectbox
+@import partials/02-extend/all
+@import partials/03-defaults/markup/headers
+
+.action-finder-list
+  +alternating-list
+  margin-top: 2em
+  .views-row
+    background-position-x: 12.5%
+  .unimage-wrapper
+    color: $white
+    width: auto
+    p
+      margin: 0
+
+// Find Something Else
+
+@import "impactbubbles/*.png"
+$impactbubbles-sprite-dimensions: true
+@include all-impactbubbles-sprites
+
+#views-exposed-form-action-finder-ctools-context-1
+  background: $c-impact
+  padding-top: 10px
+  min-height: 250px
+  .views-exposed-form .views-exposed-widget
+    float: none
+    padding: 0
+  .views-exposed-form
+    position: relative
+    left: 185px
+  .views-exposed-widgets
+    position: absolute
+    padding: 0px 0.5em
+    label
+      @extend .h3
+      color: $white
+      .form-required
+        @extend .visuallyhidden
+    select,
+    .selectBox-dropdown
+      background: $gray-lighter2
+      cursor: pointer
+      width: 100px
+      margin-top: 8px
+      +link-colors($white, $white, $c-select-link-hover, $white, false)
+      .selectBox-label
+        width: 95%
+        height: 1.5em
+      .selectBox-arrow
+        display: none
+  #filter-title-wrapper
+    @extend .h3
+    position: relative
+    left: 63px
+    label
+      cursor: inherit
+  #edit-issues-wrapper,
+  #edit-who-wrapper,
+  #edit-where-wrapper,
+  #edit-time-wrapper
+    position: absolute
+    label
+      cursor: default
+  #edit-issues-wrapper
+    @extend .impactbubbles-impact-bubble-cause
+    left: 37px
+    padding: 0px 0.5em
+  #edit-who-wrapper
+    @extend .impactbubbles-impact-bubble-who
+    left: 167px
+    padding: 0px 0.5em
+  #edit-where-wrapper
+    @extend .impactbubbles-impact-bubble-where
+    top: 114px
+    padding: 0px 0.5em
+    .selectBox-dropdown
+      margin-top: 5px
+  #edit-time-wrapper
+    @extend .impactbubbles-impact-bubble-how-long
+    left: 200px
+    top: 114px
+    padding: 0 0.5em 0 14px
+    .selectBox-dropdown
+      margin-top: 5px
+  .views-submit-button
+    // Keep these commented styles for when the mohawk is no longer wanted
+    // @extend .impactbubbles-impact-bubble-dude
+    // top: 138px
+    // height: 67px
+    position: absolute
+    left: 124px
+    @extend .impactbubbles-impact-bubble-mohawk
+    top: 126px
+  .form-submit
+    position: absolute
+    bottom: -30px

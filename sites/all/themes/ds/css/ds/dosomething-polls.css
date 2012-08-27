@@ -1,0 +1,71 @@
+/* The Coding Designer's Survival Kit
+ * A framework for designing websites in the browser.
+ *
+ * Much love to:
+ * Sass, Compass, HTML5 Boilerplate, Modernizr, Formalize, and more
+ *
+ * Available at http://thecodingdesigner.com
+ * twitter: http://twitter.com/canarymason */
+/* -------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------- */
+/* This CSS was authored using Sass & Compass
+ * Download the source files here:
+ * https://github.com/canarymason/The-Coding-Designers-Survival-Kit
+ * Learn more about Sass & Compass at http://compass-style.org/ */
+/* Links -------------------------------------------------------------- */
+/* create simple tabs from <a> unside <ul>
+ * $dir is 'bottom' for standard tabs
+ * 'top' for hanging tabs
+ * assumes placement on UL */
+.pane-polls-panel-pane-1 {
+  padding: 0;
+}
+.pane-polls-panel-pane-1 .pane-content {
+  padding: 0 !important;
+  background-color: #d2d2d2;
+  border: 1px solid transparent;
+}
+.pane-polls-panel-pane-1 .node-poll .submitted {
+  display: none;
+}
+.pane-polls-panel-pane-1 .node-poll h2,
+.pane-polls-panel-pane-1 .node-poll .field-name-field-description,
+.pane-polls-panel-pane-1 .node-poll .field-name-field-picture {
+  margin-left: 20px;
+}
+.pane-polls-panel-pane-1 .node-poll a {
+  color: black;
+}
+.pane-polls-panel-pane-1 .node-poll a {
+  border-bottom: none;
+}
+.pane-polls-panel-pane-1 .node-poll a:hover {
+  border-bottom: none;
+}
+.pane-polls-panel-pane-1 .poll .vote-form {
+  background: url('../images/bg-polls-divider-right.png');
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  text-align: left;
+}
+.pane-polls-panel-pane-1 .poll #edit-choice > .form-item {
+  background: url('../images/bg-polls-divider-left.png');
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding: 0.5em 1.5em;
+}
+.pane-polls-panel-pane-1 .poll input[type="submit"] {
+  margin-bottom: 1em;
+  margin-left: 2.5em;
+}
+.pane-polls-panel-pane-1 .poll input[type="radio"] {
+  position: static;
+  top: 0;
+  vertical-align: middle;
+}
+.pane-polls-panel-pane-1 .poll .form-item-choice {
+  margin-top: 0;
+}
+.pane-polls-panel-pane-1 .poll .form-actions {
+  margin: 1em auto;
+}

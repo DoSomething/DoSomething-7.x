@@ -1,0 +1,48 @@
+////////////////////////////
+// SEARCH RESULTS
+////////////////////////////
+
+// Form styling
+#search-api-page-search-form
+  height: 75px
+  padding-top: 15px
+  label[for="edit-keys-1"]
+    display: none
+
+  input[type="text"]
+    float: left
+    width: 275px
+
+  #edit-submit-1
+    @extend .go-button
+    display: inline
+    margin-left: 5px
+
+  .search-performance
+    font-size: 12px
+
+// Page styling
+.page-search .content
+  h2,
+  h2.title
+    @extend .black
+    @extend .bold
+    @extend .headers
+    font-size: 21px
+  ul.search-results
+    margin: 0
+    padding: 0
+  .search-result
+    margin-bottom: 15px
+    clear: both
+    min-height: 70px
+    h3
+      @extend .bold
+      font-size: 21px
+    img
+      margin-right: 12px
+      margin-bottom: 12px
+      float: left
+
+
+

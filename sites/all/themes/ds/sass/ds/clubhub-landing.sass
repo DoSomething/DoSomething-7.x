@@ -1,0 +1,72 @@
+@import setup
+
+#webform-component-hidden
+  display: none
+
+.pane-content
+  ul
+    padding-left: 3em
+
+.panel-bottom
+  h2.pane-title
+    +ds-bevel-single
+    margin: 1em 0
+    display: block
+  .item-list ul
+    list-style: none
+    margin: 0
+    li
+      margin: 0
+  ul
+    li:nth-of-type(odd)
+      .pane-content
+        background: image_url('bg-arrowblock-dark.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-left
+    li:nth-of-type(even)
+      .pane-content
+        background: image_url('bg-arrowblock-light.png') no-repeat
+        background-position: top right
+        &:nth-of-type(n)
+          +float-right
+        img
+          padding-left: 0.3em
+  li
+    display: block
+    width: 100%
+  ul
+    +pie-clearfix
+  .pane-content
+    +inline-block
+    height: 108px
+    margin-bottom: 1em
+    width: 50%
+    .field-items
+      width: 30%
+      +float-right
+    // Title Styling is an a now but a class could be used
+    a
+      color: $white
+      display: block
+      font-family: $font-headline
+      font-size: 18px
+      font-weight: 500
+      line-height: 4em
+      text-align: center
+      text-rendering: optimizeLegibility
+      text-transform: uppercase
+    .views-field-view-node
+      position: relative
+      top: 4em
+      left: 7em
+      a
+        color: $white
+        &:hover
+          color: $white
+    img
+      +float-left
+      width: 170px
+      height: 108px
+    p
+      margin: 0

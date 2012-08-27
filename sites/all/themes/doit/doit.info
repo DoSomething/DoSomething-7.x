@@ -1,0 +1,23 @@
+name = Do Something 2012
+description = A theme for DoSomething.org
+package = The Coding Designer's Survival Kit
+version = 1.0-dev
+core = 7.x
+
+; stylesheets
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/tweetbutton.css
+stylesheets[all][] = css/views.css
+
+; regions
+regions[utility] = Utility Bar
+regions[navigation] = Navigation
+regions[header] = Header
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[page_top] = Page Top
+regions[sidebar_first]  = Left sidebar
+# regions[sidebar_second] = Right sidebar
+regions[content] = Content
+regions[page_bottom] = Page Bottom
+regions[footer] = Footer
