@@ -55,7 +55,7 @@ function template_process_panels_add_content_modal(&$vars) {
 
     // This will default to 2 columns in the theme definition but could be
     // changed by a preprocess. Ensure there is at least one column.
-    $columns = ($vars['column_count'] > 0) ? $vars['column_count'] : 1;
+    $columns = max(1, $vars['column_count']);
     $vars['columns'] = array_fill(1, $columns, '');
 
     $col_size = count($titles) / $columns;
@@ -80,7 +80,4 @@ function template_preprocess_panels_add_content_link(&$vars) {
 
   $vars['image_button'] = ctools_ajax_image_button($vars['icon'], $vars['url'], $vars['description'], 'panels-modal-add-config');
   $vars['text_button'] = ctools_ajax_text_button($vars['title'], $vars['url'], $vars['description'], 'panels-modal-add-config');
-
-  //why is this here?
-  //error_log('test');
 }
