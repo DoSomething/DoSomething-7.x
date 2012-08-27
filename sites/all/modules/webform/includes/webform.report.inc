@@ -45,7 +45,7 @@ function webform_results_submissions($node, $user_filter, $pager_count) {
   foreach ($submissions as $sid => $submission) {
     $row = array(
       $submission->is_draft ? t('@sid (draft)', array('@sid' => $sid)) : $sid,
-      format_date($submission->submitted, 'short'),
+      format_date($submission->submitted, 'small'),
     );
     if (webform_results_access($node, $user)) {
       $row[] = theme('username', array('account' => $submission));
@@ -231,7 +231,7 @@ function theme_webform_results_table($variables) {
   // Generate a row for each submission.
   foreach ($submissions as $sid => $submission) {
     $cell[] = l($sid, 'node/' . $node->nid . '/submission/' . $sid);
-    $cell[] = format_date($submission->submitted, 'short');
+    $cell[] = format_date($submission->submitted, 'small');
     $cell[] = theme('username', array('account' => $submission));
     $cell[] = $submission->remote_addr;
     $component_headers = array();
@@ -761,7 +761,7 @@ function webform_results_export($node, $format = 'delimited', $options = array()
       $row[] = $sid;
     }
     if (isset($submission_information['time'])) {
-      $row[] = format_date($submission->submitted, 'short');
+      $row[] = format_date($submission->submitted, 'small');
     }
     if (isset($submission_information['draft'])) {
       $row[] = $submission->is_draft;
@@ -807,7 +807,6 @@ function webform_results_export($node, $format = 'delimited', $options = array()
   $export_info['file_name'] = $file_name;
   $export_info['exporter'] = $exporter;
   $export_info['row_count'] = $row_count;
-  $export_info['last_sid'] = $sid;
 
   return $export_info;
 }
@@ -830,7 +829,7 @@ function webform_results_download($node, $export_info) {
   @unlink($export_info['file_name']);  // Clean up, the @ makes it silent.
 
   // Update user last downloaded sid if required.
-  if ($export_info['options']['range_type'] != 'range' && $export_info['row_count'] > 0) {
+  if ($options['range_type'] != 'range' && $row_count > 0) {
     // Delete existing record.
     db_delete('webform_last_download')
       ->condition('nid', $node->nid)
@@ -841,7 +840,7 @@ function webform_results_download($node, $export_info) {
       ->fields(array(
         'nid' => $node->nid,
         'uid' => $user->uid,
-        'sid' => $export_info['last_sid'],
+        'sid' => $sid,
         'requested' => REQUEST_TIME,
       ))
       ->execute();
