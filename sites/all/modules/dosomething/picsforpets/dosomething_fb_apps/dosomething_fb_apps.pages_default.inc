@@ -553,11 +553,20 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-13';
     $pane->panel = 'middle';
-    $pane->type = 'invite_friends';
-    $pane->subtype = 'invite_friends';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'admin_title' => 'Gallery navigation markup',
+      'title' => '',
+      'body' => '<ul class="item-list" id="picsforpets-gallery-navigation">
+  <li class="first active"><a href="/pics-for-pets/gallery">All pets</a></li>
+  <li class="last"><a href="/pics-for-pets/gallery-my-shares">My shared pets</a></li>
+</ul>',
+      'format' => 'filtered_html',
+      'substitute' => TRUE,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -570,6 +579,24 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $display->panels['middle'][0] = 'new-13';
     $pane = new stdClass();
     $pane->pid = 'new-14';
+    $pane->panel = 'middle';
+    $pane->type = 'invite_friends';
+    $pane->subtype = 'invite_friends';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-14'] = $pane;
+    $display->panels['middle'][1] = 'new-14';
+    $pane = new stdClass();
+    $pane->pid = 'new-15';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'views-109095e2299d141b893359308d2d7ad9';
@@ -586,12 +613,12 @@ function dosomething_fb_apps_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['middle'][1] = 'new-14';
+    $display->content['new-15'] = $pane;
+    $display->panels['middle'][2] = 'new-15';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-16';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'pics_for_pets_gallery-panel_pane_1';
@@ -607,15 +634,159 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'css_class' => 'search-box',
     );
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-15'] = $pane;
-    $display->panels['middle'][2] = 'new-15';
+    $display->content['new-16'] = $pane;
+    $display->panels['middle'][3] = 'new-16';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['pfp_gallery'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'pfp_gallery_my_shares';
+  $page->task = 'page';
+  $page->admin_title = 'Gallery my shares';
+  $page->admin_description = '';
+  $page->path = 'pics-for-pets/gallery-my-shares';
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_pfp_gallery_my_shares_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'pfp_gallery_my_shares';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'middle' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-17';
+    $pane->panel = 'middle';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Gallery navigation markup',
+      'title' => '',
+      'body' => '<ul class="item-list" id="picsforpets-gallery-navigation">
+  <li class="first"><a href="/pics-for-pets/gallery">All pets</a></li>
+  <li class="last active"><a href="/pics-for-pets/gallery-my-shares">My shared pets</a></li>
+</ul>',
+      'format' => 'filtered_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-17'] = $pane;
+    $display->panels['middle'][0] = 'new-17';
+    $pane = new stdClass();
+    $pane->pid = 'new-18';
+    $pane->panel = 'middle';
+    $pane->type = 'invite_friends';
+    $pane->subtype = 'invite_friends';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-18'] = $pane;
+    $display->panels['middle'][1] = 'new-18';
+    $pane = new stdClass();
+    $pane->pid = 'new-19';
+    $pane->panel = 'middle';
+    $pane->type = 'block';
+    $pane->subtype = 'views-109095e2299d141b893359308d2d7ad9';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-19'] = $pane;
+    $display->panels['middle'][2] = 'new-19';
+    $pane = new stdClass();
+    $pane->pid = 'new-20';
+    $pane->panel = 'middle';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'pics_for_pets_gallery-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'search-box',
+    );
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $display->content['new-20'] = $pane;
+    $display->panels['middle'][3] = 'new-20';
+  $display->hide_title = PANELS_TITLE_NONE;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['pfp_gallery_my_shares'] = $page;
 
   return $pages;
 
