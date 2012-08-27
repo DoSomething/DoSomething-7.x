@@ -30,7 +30,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 14px;
   font: inherit;
   vertical-align: baseline; }
 #cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
@@ -60,7 +60,7 @@ body {
   line-height: 65px;
   text-align: center; }
 #cmp h1 {
-  font-size: 32px;
+  font-size: 2.28571em;
   line-height: 1.54em; }
 #cmp h2, #cmp .divider {
   font-size: 20px;
@@ -438,7 +438,7 @@ body {
 #cmp .region-sidebar-first {
   margin-top: 0 !important; }
 
-@media only screen and (max-width: 1184px) {
+@media only screen and (max-width: 1075px) {
   .region-sidebar-first {
     display: none; }
 
@@ -474,6 +474,6 @@ body {
     position: relative;
     width: 797px;
     margin: 0 auto; } }
-@media only screen and (max-width: 877px) {
+@media only screen and (max-width: 797px) {
   .container, header[role="banner"], #cork, #cask {
     width: 100%; } }
