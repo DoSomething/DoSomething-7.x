@@ -4,3 +4,4 @@ core = 7.x
 package = Pics For Pets
 dependencies[] = libraries
 dependencies[] = fboauth
+configure = admin/config/people/dosomething_picsforpets_fb_user
