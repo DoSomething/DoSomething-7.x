@@ -296,7 +296,7 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
  */
 function dosomething_picsforpets_general_custom_theme() {
   // Use the picsforpets theme when on the pics-for-pets paths and entities of the site.
-  if (arg(0) == 'pics-for-pets') {
+  if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
     return 'picsforpets';
   }
   if ($submission = menu_get_object('webform_entity_pages_submission')) {
