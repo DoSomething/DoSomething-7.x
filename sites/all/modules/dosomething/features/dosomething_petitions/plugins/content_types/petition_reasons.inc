@@ -21,14 +21,12 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
     ->propertyOrderBy('submitted', 'DESC')
     ->fieldCondition('field_webform_petition_reason', 'value', 'NULL', '!=')
     ->fieldCondition('field_webform_petition_signature', 'value', 1, '=')
+    ->range(0, 5)
     ->execute();
 
-  $result = $result['webform_submission_entity'];
-
   $signatures = array();
-  // Load up reasons until we have 5 or there are none left
-  while (count($signatures) < 5 && count($result) != 0) {
-    $submission = array_shift(entity_load('webform_submission_entity', array(array_shift($result)->sid)));
+  $submissions = entity_load('webform_submission_entity', array_keys($result['webform_submission_entity']));
+  foreach($submissions as $submission) {
     $name = dosomething_general_get_full_name(user_load($submission->uid));
     if (!$name) {
       $name = $submission->field_webform_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $submission->field_webform_last_name[LANGUAGE_NONE][0]['value'][0];
