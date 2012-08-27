@@ -1005,6 +1005,33 @@ Please try a new combo.
   $handler->display->display_options['fields']['field_fb_app_zip']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_fb_app_zip']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_fb_app_zip']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Facebook Share Count */
+  $handler->display->display_options['fields']['field_fb_app_share_count']['id'] = 'field_fb_app_share_count';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['table'] = 'field_data_field_fb_app_share_count';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['field'] = 'field_fb_app_share_count';
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['strip_tags'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_fb_app_share_count']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 0,
+  );
+  $handler->display->display_options['fields']['field_fb_app_share_count']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Webform submissions: Submitted */
   $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
