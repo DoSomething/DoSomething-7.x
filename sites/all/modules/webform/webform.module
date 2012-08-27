@@ -3404,7 +3404,7 @@ function webform_format_email_subject($subject, $node = NULL, $submission = NULL
  */
 function _webform_components_tree_build($src, &$tree, $parent, &$page_count) {
   foreach ($src as $cid => $component) {
-    if ($component['pid'] == $parent) {
+    if ((int) $component['pid'] === $parent) {
       _webform_components_tree_build($src, $component, $cid, $page_count);
       if ($component['type'] == 'pagebreak') {
         $page_count++;
