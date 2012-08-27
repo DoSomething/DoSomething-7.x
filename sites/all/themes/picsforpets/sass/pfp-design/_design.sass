@@ -12,7 +12,7 @@ body
   background: $background-color url(../images/bg.png) no-repeat
   background-position: center
 
-.front
+.page-pics-for-pets
   #page
     background: url(../images/pitbull-bg.png) no-repeat
     background-position: 0 -350px
@@ -187,19 +187,20 @@ a.footer-furtography
   font-family: $font-sans
 
 #shelter-results
-  +border-radius(12px)
-  +clearfix
-  background: $white
-  color: $black
-  padding: 24px
-  margin-bottom: 24px
-  input
-    +float-left
-  .form-item-results
+  .shelter-results-option-list
+    +border-radius(12px)
     +clearfix
+    background: $white
+    color: $black
+    padding: 24px
     margin-bottom: 24px
-    .label-shelter-title
-      font-weight: bold
+    input
+      +float-left
+    .form-item-results
+      +clearfix
+      margin-bottom: 24px
+      .label-shelter-title
+        font-weight: bold
 
 #dosomething-picsforpets-shelters-options-form
   input[type="submit"]

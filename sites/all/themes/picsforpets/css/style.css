@@ -1510,7 +1510,7 @@ body {
   background-position: center;
 }
 
-.front #page {
+.page-pics-for-pets #page {
   background: url(../images/pitbull-bg.png) no-repeat;
   background-position: 0 -350px;
   padding-bottom: 12px;
@@ -1759,7 +1759,7 @@ a.footer-furtography {
   font-family: "DINOT", sans-serif;
 }
 
-#shelter-results {
+#shelter-results .shelter-results-option-list {
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
@@ -1772,16 +1772,16 @@ a.footer-furtography {
   padding: 24px;
   margin-bottom: 24px;
 }
-#shelter-results input {
+#shelter-results .shelter-results-option-list input {
   display: inline;
   float: left;
 }
-#shelter-results .form-item-results {
+#shelter-results .shelter-results-option-list .form-item-results {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 24px;
 }
-#shelter-results .form-item-results .label-shelter-title {
+#shelter-results .shelter-results-option-list .form-item-results .label-shelter-title {
   font-weight: bold;
 }
 
