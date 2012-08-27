@@ -1,0 +1,26 @@
+From 456d3852b0dc9b88aa632de491eb07f86ea6de2b Mon Sep 17 00:00:00 2001
+From: andrew morton <drewish@katherinehouse.com>
+Date: Mon, 27 Aug 2012 16:46:04 -0400
+Subject: [PATCH] Applying a work around for webform_entity's hidden
+ components.
+
+---
+ sites/all/modules/webform/webform.module | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sites/all/modules/webform/webform.module b/sites/all/modules/webform/webform.module
+index 6ff3c85..51e333e 100644
+--- a/sites/all/modules/webform/webform.module
++++ b/sites/all/modules/webform/webform.module
+@@ -3404,7 +3404,7 @@ function webform_format_email_subject($subject, $node = NULL, $submission = NULL
+  */
+ function _webform_components_tree_build($src, &$tree, $parent, &$page_count) {
+   foreach ($src as $cid => $component) {
+-    if ($component['pid'] == $parent) {
++    if ((int) $component['pid'] === $parent) {
+       _webform_components_tree_build($src, $component, $cid, $page_count);
+       if ($component['type'] == 'pagebreak') {
+         $page_count++;
+-- 
+1.7.11.3
+

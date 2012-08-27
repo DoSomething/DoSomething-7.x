@@ -363,7 +363,7 @@ function memcache_admin_stats_raw($bin, $server, $type = 'default') {
   }
   else {
     $output = theme('memcache_admin_stats_raw_table', array('cluster' => $cluster, 'server' => $server, 'stats' => array(), 'type' => $type));
-    drupal_set_message(t('No !type statistics for this bin.', array('!type' => $type)));
+    drupal_set_message(t('No @type statistics for this bin.', array('@type' => $type)));
   }
   return $output;
 }
@@ -415,6 +415,7 @@ function theme_memcache_admin_stats_table($variables) {
 }
 
 function memcache_admin_stats_types($bin) {
+  module_load_include('inc', 'memcache', 'dmemcache');
   if ($mc = dmemcache_object($bin)) {
     if ($mc instanceof Memcache) {
       // TODO: Determine which versions of the PECL memcache extension have
@@ -427,6 +428,9 @@ function memcache_admin_stats_types($bin) {
       // The Memcached PECL extension only offers the default statistics.
       return array('default');
     }
+  }
+  else {
+    return array();
   }
 }
  

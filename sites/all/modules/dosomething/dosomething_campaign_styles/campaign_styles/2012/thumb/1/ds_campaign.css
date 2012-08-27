@@ -1,7 +1,7 @@
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important; }
-#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper .region-sidebar-first {
+#main-wrapper #breadcrumb, #main-wrapper #page-title {
   display: none; }
 #main-wrapper .tabs {
   background: #231f20; }
@@ -30,7 +30,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 14px;
   font: inherit;
   vertical-align: baseline; }
 #cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
@@ -60,7 +60,7 @@ body {
   line-height: 65px;
   text-align: center; }
 #cmp h1 {
-  font-size: 32px;
+  font-size: 2.28571em;
   line-height: 1.54em; }
 #cmp h2, #cmp .divider {
   font-size: 20px;
@@ -83,8 +83,8 @@ body {
   padding: 1em 0 0 0;
   font-style: italic;
   font-size: 11px; }
-#cmp body {
-  background: #fed215; }
+#cmp body, #cmp div[role="main"] {
+  background: #ffdd00; }
 #cmp .col {
   width: 29%;
   float: left; }
@@ -438,23 +438,42 @@ body {
 #cmp .region-sidebar-first {
   margin-top: 0 !important; }
 
-@media screen and (max-width: 897px) {
-  nav[role="navigation"] .region-navigation .block-menu-block {
-    padding-left: 9%; }
-    nav[role="navigation"] .region-navigation .block-menu-block ul.menu li {
-      width: 20.3%;
-      background: green;
-      font-size: 25px; }
-
-  #utility-bar {
+@media only screen and (max-width: 1075px) {
+  .region-sidebar-first {
     display: none; }
 
   #site-name {
-    top: -40px;
-    left: -15px; }
+    top: -30px;
+    left: 5px; }
     #site-name a {
-      width: 75px;
-      height: 75px;
-      background-size: 75px; } }
-@media screen and (max-width: 320px) {
-  background: pink; }
+      height: 50px;
+      width: 60px;
+      background-size: 60px; }
+
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
+    display: none; }
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
+    padding: 0.5em 2em 0 0; }
+
+  #page {
+    width: 100%; }
+
+  #main-wrapper div[role="main"] {
+    float: none;
+    width: 100%;
+    background: #ffdd00; }
+
+  nav[role="navigation"] {
+    display: none; }
+
+  .container {
+    margin: 0 auto;
+    width: 797px; }
+
+  header[role="banner"] {
+    position: relative;
+    width: 797px;
+    margin: 0 auto; } }
+@media only screen and (max-width: 797px) {
+  .container, header[role="banner"], #cork, #cask {
+    width: 100%; } }

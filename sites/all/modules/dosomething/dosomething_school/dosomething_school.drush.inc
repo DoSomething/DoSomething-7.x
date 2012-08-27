@@ -16,7 +16,7 @@ function dosomething_school_drush_command() {
     'arguments' => array(
       'file' => 'Path to the Accreditation*.csv file to import.',
     ),
-    'bootstrap' => DRUSH_BOOTSTRAP_FULL,
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'aliases' => array('dspsl'),
   );
 
