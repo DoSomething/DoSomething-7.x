@@ -578,12 +578,8 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 /* Body -------------------------------------------------------------- */
 /* Establish baseline rhythm
  * from compass/typography/_vertical_rhythm */
-* html {
-  font-size: 100%;
-}
-
 html {
-  font-size: 16px;
+  font-size: 100%;
   line-height: 1.5em;
 }
 
@@ -803,6 +799,7 @@ input[type="button"] {
   background-image: -webkit-linear-gradient(#ffffff, #dddddd);
   background-image: -moz-linear-gradient(#ffffff, #dddddd);
   background-image: -o-linear-gradient(#ffffff, #dddddd);
+  background-image: -ms-linear-gradient(#ffffff, #dddddd);
   background-image: linear-gradient(#ffffff, #dddddd);
   border: 1px solid;
   border-color: #dddddd #bbbbbb #999999;
@@ -1386,6 +1383,7 @@ ul.tabs li a:hover {
   background-image: -webkit-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -moz-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -o-linear-gradient(top, #fcfdfa, #f1f2ef);
+  background-image: -ms-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: linear-gradient(top, #fcfdfa, #f1f2ef);
   -moz-border-radius-topleft: 6px;
   -webkit-border-top-left-radius: 6px;
@@ -1567,9 +1565,9 @@ body {
   position: relative;
 }
 .picsforpets-scholarship a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1589,9 +1587,9 @@ body {
 }
 
 #ds-logo {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1769,6 +1767,7 @@ a.footer-furtography {
   border-radius: 12px;
   overflow: hidden;
   *zoom: 1;
+  background: white;
   color: black;
   padding: 24px;
   margin-bottom: 24px;
@@ -1871,9 +1870,9 @@ a.footer-furtography {
 }
 
 .ui-icon.ui-icon-closethick {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2086,14 +2085,16 @@ a.footer-furtography {
   line-height: 2;
 }
 .prizes-scholarships .pane-content .share-wrapper .shares {
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   height: 40px;
   width: 270px;
+}
+.prizes-scholarships .pane-content .share-wrapper .shares {
+  *display: inline;
 }
 .prizes-scholarships .pane-content .share-wrapper.toys {
   margin-bottom: 20px;
@@ -2729,6 +2730,7 @@ select#edit-sort-by {
 }
 @media (max-width: 20.0625em) {
   .styletile #page {
+    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2743,6 +2745,7 @@ select#edit-sort-by {
 }
 @media (min-width: 20.0625em) and (max-width: 30.0625em) {
   .styletile #page {
+    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2757,6 +2760,7 @@ select#edit-sort-by {
 }
 @media (min-width: 30.0625em) and (max-width: 45.0625em) {
   .styletile #page {
+    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2772,25 +2776,32 @@ select#edit-sort-by {
     width: 48.27586%;
     float: left;
     margin-right: 3.44828%;
+    display: inline;
   }
   .styletile #page header aside {
     width: 48.27586%;
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
   .styletile #page #main .text-examples {
     width: 48.27586%;
     float: left;
     margin-right: 3.44828%;
+    display: inline;
   }
   .styletile #page #main .graphic-examples {
     width: 48.27586%;
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 45.0625em) and (max-width: 64.0625em) {
   .styletile #page {
+    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2806,26 +2817,34 @@ select#edit-sort-by {
     width: 61.53846%;
     float: left;
     margin-right: 2.5641%;
+    display: inline;
   }
   .styletile #page header aside {
     width: 35.89744%;
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
   .styletile #page #main .text-examples {
     width: 48.71795%;
     float: left;
     margin-right: 2.5641%;
+    display: inline;
   }
   .styletile #page #main .graphic-examples {
     width: 48.71795%;
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 64.0625em) {
   .styletile #page {
+    *zoom: 1;
     max-width: 59em;
+    _width: 59em;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1em;
@@ -2840,21 +2859,27 @@ select#edit-sort-by {
     width: 66.10169%;
     float: left;
     margin-right: 1.69492%;
+    display: inline;
   }
   .styletile #page header aside {
     width: 32.20339%;
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
   .styletile #page #main .text-examples {
     width: 49.15254%;
     float: left;
     margin-right: 1.69492%;
+    display: inline;
   }
   .styletile #page #main .graphic-examples {
     width: 49.15254%;
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 
@@ -2882,10 +2907,13 @@ select#edit-sort-by {
     width: 44.44444%;
     float: left;
     margin-right: 11.11111%;
+    display: inline;
   }
   .styletile .colors ul li:nth-of-type(2n+2) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 20.0625em) and (max-width: 30.0625em) {
@@ -2893,10 +2921,13 @@ select#edit-sort-by {
     width: 28.57143%;
     float: left;
     margin-right: 7.14286%;
+    display: inline;
   }
   .styletile .colors ul li:nth-of-type(3n+3) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 30.0625em) and (max-width: 45.0625em) {
@@ -2904,10 +2935,13 @@ select#edit-sort-by {
     width: 28.57143%;
     float: left;
     margin-right: 7.14286%;
+    display: inline;
   }
   .styletile .colors ul li:nth-of-type(3n+3) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 45.0625em) and (max-width: 64.0625em) {
@@ -2915,10 +2949,13 @@ select#edit-sort-by {
     width: 21.05263%;
     float: left;
     margin-right: 5.26316%;
+    display: inline;
   }
   .styletile .colors ul li:nth-of-type(4n+4) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 64.0625em) {
@@ -2926,10 +2963,13 @@ select#edit-sort-by {
     width: 13.7931%;
     float: left;
     margin-right: 3.44828%;
+    display: inline;
   }
   .styletile .colors ul li:nth-of-type(6n+6) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 
@@ -2950,10 +2990,13 @@ select#edit-sort-by {
     width: 47.36842%;
     float: left;
     margin-right: 5.26316%;
+    display: inline;
   }
   .styletile .images ul li:nth-of-type(2n+2) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 @media (min-width: 64.0625em) {
@@ -2961,10 +3004,13 @@ select#edit-sort-by {
     width: 48.27586%;
     float: left;
     margin-right: 3.44828%;
+    display: inline;
   }
   .styletile .images ul li:nth-of-type(2n+2) {
     float: right;
     margin-right: 0;
+    #margin-left: -1em;
+    display: inline;
   }
 }
 
