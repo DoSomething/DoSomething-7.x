@@ -162,3 +162,26 @@ function dosomething_fb_apps_field_fb_app_adopted($form, $form_state) {
   }
   return $form;
 }
+
+/**
+ * Implements hook_proprocess_views_view().
+ *
+ * Add our custom JS to the view zip code search.
+ */
+function dosomething_fb_apps_preprocess_views_view(&$variables) {
+  // Quit early if not on the pics_for_pets_gallery view.
+  if ($variables['name'] != 'pics_for_pets_gallery') {
+    return;
+  }
+  $view = $variables['view'];
+  // We need to reset rows to an array so that it rerenders with our attached
+  // javascript.
+  $variables['rows'] = array(
+    '#markup' => $variables['rows'],
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'dosomething_fb_apps') . '/js/shelter_sort.js',
+      ),
+    ),
+  );
+}
