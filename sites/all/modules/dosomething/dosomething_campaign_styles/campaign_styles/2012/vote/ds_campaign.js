@@ -3,7 +3,7 @@
     attach: function (context, settings) {
 
 // Top Head Graphic   
-  var banner = $('<img />').attr('src', 'http://files.dosomething.org/files/campaigns/vote/vote-head2.jpg').css({'width': '750px', 'max-width': 'none'}).hide();
+  var banner = $('<img />').attr('src', 'http://files.dosomething.org/files/campaigns/vote/vote-head2.jpg').addClass('vote-logo').css({'width': '750px', 'max-width': 'none'}).hide();
     $('div.panel-campaign:not(.vote-head)').addClass('vote-head').prepend(banner);
   banner.fadeIn();
 

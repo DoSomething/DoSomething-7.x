@@ -20,7 +20,7 @@ $borderTop: 1px solid rgba(0,0,0,.5)
 $borderBot: 1px solid rgba(255,255,255,.5)
 
 // fonts - don't change these. if you do, -50 life points
-$accent: din-web,"Trebuchet MS",sans-serif
+$accent: 'vinyl_ot_regularregular',din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
@@ -175,10 +175,13 @@ div[role="main"]
 
 // navigation
 #block-dosomething-campaign-styles-campaign-nav
-  background: $baseColor
-  margin-right: -5px
-  padding: 0
   font-family: $accent
+  background: $baseColor 
+  background: url('http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png')
+  height: 329px
+  margin-right: -15px
+  margin-left: 15px
+  padding: 6px 6px 0 0
   ul.menu
     +block
     background-image: none
@@ -187,9 +190,10 @@ div[role="main"]
       line-height: 1.2em
     a
       display: inline-block
-      width: 100%
+      //width: 100%
       padding: 10px 19px 10px 0
-      font-size: 21px
+      font-size: 24px
+      line-height: 1.2em
       font-weight: 600
       text-transform: uppercase
       color: $secondaryLink
@@ -198,6 +202,10 @@ div[role="main"]
         color: $thirdLink
         text-decoration: none
         font-family: 'vinyl_ot_obliqueoblique'
+      &:hover
+        background: url('http://files.dosomething.org/files/campaigns/vote/vote-bolt-1.png') 0px 7px no-repeat
+        padding-left: 24px
+        margin-left: -24px  
 
 // campaign logo
 .pane-node-field-campaign-logo .pane-content
@@ -755,7 +763,7 @@ html[xmlns] .clearfix
       box-shadow: 2px 3px 7px #888 !important    
     img.quote
       width: 260px
-      margin-bottom: 8px !important    
+      margin-bottom: 6px !important    
     .support-box
       float: left
       position: relative
@@ -825,6 +833,9 @@ html[xmlns] .clearfix
     margin: 0 auto
     width: 600px
 
+//BOX SHADOWS AROUND PANELS AND HEADER IMAGE
+.vote-logo, #vote-take-action, #vote-scholarship, #vote-learn-the-issue, #vote-questions, .panel-row-actions, #meet-candidates
+  box-shadow: 0px 0px 8px 2px #111 !important
 
 
 
