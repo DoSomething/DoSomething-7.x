@@ -6,6 +6,7 @@
  */
 
 define('DOSOMETHING_FB_APPS_URL', 'http://apps.facebook.com/picsforpets');
+define('DOSOMETHING_FB_SITE_URL', 'http://picsforpets.dev.zivtech.com');
 
 include_once 'dosomething_fb_apps.features.inc';
 

@@ -59,7 +59,7 @@ function dosomething_picsforpets_fb_user_init() {
     'appId' => $appid,
     'access_token' => $access_token,
     'app_url' => DOSOMETHING_FB_APPS_URL,
-    'site_url' => 'http://picsforpets.local',
+    'site_url' => DOSOMETHING_FB_SITE_URL,
   );
   drupal_add_js(array('picsforpetsFBAuth' => $settings), 'setting');
 
