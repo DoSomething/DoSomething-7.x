@@ -1,42 +1,4 @@
 // _framework
-
-body, div[role="main"]
-  background: $bgColor 
-
-.col
-  width: 29%
-  float: left
-
-.col2
-  width: 69%
-  float: right
-
-.col3, .col4
-  width: 46%
-  height: 295px
-  float: left
-
-.col4
-  float: right
-
-.col, .col2, .col3, .col4
-  position: relative
-
-.mid
-  margin: 0 6%
-
-.share-here1,
-.share-here2,
-.share-here3
-  display: none
-  position: absolute
-  right: -5%
-  bottom: -11%
-
-.refer-form
-  margin: 0 auto
-  width: 65%
-
 .mcommons-col
   width: 45%
   margin: 0 0 0 5%
@@ -50,59 +12,19 @@ body, div[role="main"]
     float: left
     margin: 0 0 5% 0
 
-.help
-  padding: 1em 0 0 0
-  font-style: italic
-  font-size: 11px
+// new styles for animals!
 
-.center
-  text-align: center
+#section0, #section1, #section2, #section3
+  width: 750px
+  background: #fff
+  margin: 3% auto
+  padding: 2%
 
-// section styles (base)
+#section0
+  background-image: url("assets/bg.jpg")
 
-.section
-  border-bottom: 2px solid #fff
+#section1 img
+  +noShadow
 
-.do, .do2, .actionguide, .learn, .scholarship, .did, .faq, .row
-  text-align: center
-  &:before, &:after
-    zoom: 1
-    content: ""
-    display: table
-  &:after
-    clear: both
-
-#cask-aside
-  width: 250px
-
-#cork, #cask
-  margin: 0 auto
-  max-width: 797px
-  padding: 0 2%
-
-#cork
-  height: 270px
-  background: url("assets/header.jpg") no-repeat
-  background-size: 101%
-  background-position-x: -2px
-
-#cask
-  background: $bgColor
-
-.header
-  height: 270px
-
-.do
-  height: 300px
-
-.do2
-  height: 250px
-
-.actionguide
-  height: 480px
-
-.learn
-  height: 630px
-
-.scholarship
-  height: 595px
+#section3 img
+  +noShadow

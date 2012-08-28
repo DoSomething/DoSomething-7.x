@@ -2,8 +2,8 @@
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
 
-//    var contactForm = $('#contact_form');
-//    $('#').append(contactForm);
+   var contactForm = $('.pane-campaign-sign-up');
+   $('#section0').append(contactForm);
 	      
     } // end attach: function
   }; // end Drupal.behaviors

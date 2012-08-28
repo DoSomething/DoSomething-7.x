@@ -1,0 +1,215 @@
+#main-wrapper div[role="main"] {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #d1e9ed; }
+#main-wrapper #breadcrumb, #main-wrapper #page-title {
+  display: none; }
+#main-wrapper .tabs {
+  background: #d1e9ed; }
+#main-wrapper ul.primary {
+  border-bottom: none;
+  margin: 0;
+  padding: 15px 0 0 8px;
+  height: 37px; }
+
+body {
+  background: #d1e9ed; }
+
+#cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
+#cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
+#cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
+#cmp del, #cmp dfn, #cmp em, #cmp img, #cmp ins, #cmp kbd, #cmp q, #cmp s, #cmp samp,
+#cmp small, #cmp strike, #cmp strong, #cmp sub, #cmp sup, #cmp tt, #cmp var,
+#cmp b, #cmp u, #cmp i, #cmp center,
+#cmp dl, #cmp dt, #cmp dd, #cmp ol, #cmp ul, #cmp li,
+#cmp fieldset, #cmp form, #cmp label, #cmp legend,
+#cmp table, #cmp caption, #cmp tbody, #cmp tfoot, #cmp thead, #cmp tr, #cmp th, #cmp td,
+#cmp article, #cmp aside, #cmp canvas, #cmp details, #cmp embed,
+#cmp figure, #cmp figcaption, #cmp footer, #cmp header, #cmp hgroup,
+#cmp menu, #cmp nav, #cmp output, #cmp ruby, #cmp section, #cmp summary,
+#cmp time, #cmp mark, #cmp audio, #cmp video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+#cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
+#cmp footer, #cmp header, #cmp hgroup, #cmp menu, #cmp nav, #cmp section {
+  display: block; }
+#cmp body {
+  line-height: 1; }
+#cmp ol, #cmp ul {
+  list-style: none; }
+#cmp blockquote, #cmp q {
+  quotes: none; }
+#cmp blockquote:before, #cmp blockquote:after,
+#cmp q:before, #cmp q:after {
+  content: "";
+  content: none; }
+#cmp table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+#cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
+  font-weight: 600;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  color: black; }
+#cmp h1, #cmp h2, #cmp h3 {
+  text-transform: uppercase; }
+#cmp h1 {
+  font-size: 32px;
+  line-height: 1.54em; }
+#cmp h2, #cmp .divider {
+  font-size: 20px;
+  line-height: 1.55em; }
+#cmp h3 {
+  font-size: 18px;
+  line-height: 22px; }
+#cmp h4 {
+  font-size: 14px;
+  line-height: 17px; }
+#cmp p, #cmp label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px; }
+#cmp .disclaimer {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px; }
+#cmp .help {
+  padding: 1em 0 0 0;
+  font-style: italic;
+  font-size: 11px; }
+#cmp .mcommons-col {
+  width: 45%;
+  margin: 0 0 0 5%;
+  float: left; }
+  #cmp .mcommons-col input[type="text"] {
+    width: 100%;
+    height: 20px;
+    border-radius: 3px;
+    border: none; }
+  #cmp .mcommons-col input, #cmp .mcommons-col label {
+    float: left;
+    margin: 0 0 5% 0; }
+#cmp #section0, #cmp #section1, #cmp #section2, #cmp #section3 {
+  width: 750px;
+  background: white;
+  margin: 3% auto;
+  padding: 2%; }
+#cmp #section0 {
+  background-image: url("assets/bg.jpg"); }
+#cmp #section1 img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+#cmp #section3 img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+#cmp #section0 > img {
+  float: left; }
+#cmp #animal_dates {
+  float: right;
+  width: 30%; }
+  #cmp #animal_dates h1 {
+    font-size: 27px;
+    color: #e52127;
+    font-family: din-web; }
+#cmp .pane-campaign-sign-up {
+  clear: both;
+  width: 100%;
+  margin: 33% 0 0 0; }
+  #cmp .pane-campaign-sign-up h1 {
+    font-family: din-web;
+    font-size: 23px;
+    text-align: center;
+    color: white; }
+  #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+    width: 200px;
+    float: left;
+    margin: 0 0 0 5%; }
+#cmp #campaign-opt-in {
+  clear: both; }
+  #cmp #campaign-opt-in span {
+    font-size: 10px; }
+#cmp .webform-client-form {
+  box-shadow: none; }
+#cmp #section2 h1 {
+  font-family: din-web;
+  font-size: 25px;
+  text-align: center;
+  color: #e52127; }
+#cmp #section2 {
+  height: 225px; }
+  #cmp #section2 form {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto; }
+#cmp .mcommons-webform input.field {
+  width: 85%;
+  height: 23px;
+  margin-bottom: 6px; }
+#cmp .mcommons-webform label {
+  font-weight: 600; }
+#cmp .mcommons-webform-column {
+  float: left;
+  width: 40%;
+  margin-left: 9%; }
+#cmp .go-button {
+  right: 45px;
+  bottom: 20px;
+  padding-top: 3px; }
+#cmp form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  padding: 15px 15px 0 15px;
+  margin-bottom: -15px; }
+#cmp .form-wrapper {
+  margin-bottom: 5px; }
+#cmp .ds-panel .pane-content {
+  padding-bottom: 0; }
+#cmp .hidden {
+  display: none; }
+
+@media only screen and (max-width: 1075px) {
+  .region-sidebar-first {
+    display: none; }
+
+  #site-name {
+    top: -30px;
+    left: 5px; }
+    #site-name a {
+      height: 50px;
+      width: 60px;
+      background-size: 60px; }
+
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
+    display: none; }
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
+    padding: 0.5em 2em 0 0; }
+
+  #page {
+    width: 100%; }
+
+  #main-wrapper div[role="main"] {
+    float: none;
+    width: 100%;
+    background: #d1e9ed; }
+
+  nav[role="navigation"] {
+    display: none; }
+
+  .container {
+    margin: 0 auto;
+    width: 797px; }
+
+  header[role="banner"] {
+    position: relative;
+    width: 797px;
+    margin: 0 auto; } }
+@media only screen and (max-width: 797px) {
+  .container, header[role="banner"], #cork, #cask {
+    width: 100%; } }
