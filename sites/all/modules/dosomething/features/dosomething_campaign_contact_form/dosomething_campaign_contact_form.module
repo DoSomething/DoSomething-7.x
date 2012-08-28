@@ -73,9 +73,13 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
       $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
     }
     else {
-      $form['actions']['submit']['#ajax'] = array(
-        'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
-      );
+      $node = $form['#node'];
+
+      if (isset($node->field_login_check) && $node->field_login_check[LANGUAGE_NONE][0]['value'] == 1) {
+        $form['actions']['submit']['#ajax'] = array(
+          'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
+        );
+      }
     }
   }
 }
