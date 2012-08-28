@@ -524,7 +524,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-picsforpets-general-furtographer-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation .last a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -2591,7 +2591,7 @@ a.footer-furtography {
   float: left;
 }
 
-select#edit-field-fb-app-animal-type-value, select#edit-sort-by {
+select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation .last a {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -2610,6 +2610,24 @@ select#edit-field-fb-app-animal-type-value, select#edit-sort-by {
 
 select#edit-sort-by {
   margin-top: 22px;
+}
+
+#picsforpets-gallery-navigation {
+  list-style: none;
+  display: inline;
+  float: right;
+}
+#picsforpets-gallery-navigation li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+#picsforpets-gallery-navigation .first {
+  display: none;
+}
+#picsforpets-gallery-navigation .last a {
+  background-image: none;
+  padding: 4px 4px 4px 8px;
 }
 
 .pager {
