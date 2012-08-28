@@ -73,7 +73,7 @@ div[role="main"] {
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    background: url("assets/section_bg.jpg ") #eeeeee; }
+    background: #e3d6bb url("assets/section_bg.jpg"); }
 
 .three-boxes-last-child {
   margin-right: 0 !important; }
@@ -103,7 +103,7 @@ div[role="main"] {
     .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
       background: #d72231 url("http://files.dosomething.org/files/campaigns/vote/vote-headline3.jpg") top center no-repeat; }
     .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
-      background: url("assets/section_bg.jpg ") #eeeeee; }
+      background: #e3d6bb url("assets/section_bg.jpg"); }
 
 .ds-panel .pane-content {
   padding-bottom: 0px; }
@@ -183,7 +183,7 @@ div[role="main"] {
     width: 247px; }
 
 .panel-row-actions {
-  background: url("assets/section_bg.jpg ") #eeeeee;
+  background: #e3d6bb url("assets/section_bg.jpg");
   margin: 0 0 20px 0;
   width: 750px;
   border: none !important;
@@ -357,7 +357,7 @@ div[role="main"] {
       border: none !important;
       margin: 0; }
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
-    background-color: url("assets/section_bg.jpg ") #eeeeee; }
+    background-color: #e3d6bb url("assets/section_bg.jpg"); }
 
 #dosomething-login-register-popup-form .popup-content {
   height: 165px !important; }
@@ -689,7 +689,7 @@ html[xmlns] .clearfix {
     padding-top: 3px;
     margin-bottom: 15px; }
     #meet-candidates .candidate-content h2 span {
-      background: url("assets/section_bg.jpg ") #eeeeee;
+      background: #e3d6bb url("assets/section_bg.jpg");
       padding-right: 5px; }
   #meet-candidates .candidate-content h4.line {
     margin-top: 30px;
@@ -699,7 +699,7 @@ html[xmlns] .clearfix {
     border-top: 1px solid #555555;
     margin-bottom: 0; }
     #meet-candidates .candidate-content h4.line span {
-      background: url("assets/section_bg.jpg ") #eeeeee;
+      background: #e3d6bb url("assets/section_bg.jpg");
       margin-top: -10px;
       position: relative;
       top: -15px;
