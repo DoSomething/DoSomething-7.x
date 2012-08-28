@@ -158,23 +158,12 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
-        0 => array(
-          'name' => 'entity_field_value:webform_submission_entity:fb_app_data_gathering_form:field_fb_app_shelter_reference',
+        1 => array(
+          'name' => 'context_exists',
           'settings' => array(
-            'field_fb_app_shelter_reference' => array(
-              'und' => array(
-                0 => array(
-                  'target_id' => '',
-                ),
-              ),
-            ),
-            'field_fb_app_shelter_reference_target_id' => array(
-              0 => array(
-                'target_id' => '',
-              ),
-            ),
+            'exists' => '1',
           ),
-          'context' => 'argument_entity_id:webform_submission_entity_1',
+          'context' => 'relationship_entity_from_field:field_fb_app_shelter_reference-webform_submission_entity-node_1',
           'not' => FALSE,
         ),
       ),
@@ -202,24 +191,13 @@ function dosomething_fb_apps_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
-        0 => array(
-          'name' => 'entity_field_value:webform_submission_entity:fb_app_data_gathering_form:field_fb_app_shelter_reference',
+        1 => array(
+          'name' => 'context_exists',
           'settings' => array(
-            'field_fb_app_shelter_reference' => array(
-              'und' => array(
-                0 => array(
-                  'target_id' => '',
-                ),
-              ),
-            ),
-            'field_fb_app_shelter_reference_target_id' => array(
-              0 => array(
-                'target_id' => '',
-              ),
-            ),
+            'exists' => '0',
           ),
-          'context' => 'argument_entity_id:webform_submission_entity_1',
-          'not' => TRUE,
+          'context' => 'relationship_entity_from_field:field_fb_app_shelter_reference-webform_submission_entity-node_1',
+          'not' => FALSE,
         ),
       ),
     );
