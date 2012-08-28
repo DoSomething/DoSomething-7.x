@@ -58,8 +58,14 @@ function dosomething_picsforpets_fb_user_init() {
   $settings = array(
     'appId' => $appid,
     'access_token' => $access_token,
+    'app_url' => DOSOMETHING_FB_APPS_URL,
+    'site_url' => 'http://picsforpets.local',
   );
   drupal_add_js(array('picsforpetsFBAuth' => $settings), 'setting');
+
+  // Initialize the javascript SDK.
+  drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/picsforpets_fb_user.js');
+
   // Load the FBOAuth include file so we can use it's functions.
   module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
