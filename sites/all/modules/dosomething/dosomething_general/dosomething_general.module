@@ -154,27 +154,37 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
  * and/or Mobile Commons
  */
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
-  $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
-  $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
-  $mailchimp_group = isset($form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] : NULL;
-
-  //Either use the value of campaign_short_form for campaigns or program_short_form which is for clubs/scholarships/grants etc
-  $email = isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])
-? $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] : $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
-
-  $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-
-  // make sure all of the required values are set in the node and submission
-  if (!empty($mc_opt_in) && !empty($cell)) {
-    dosomething_general_mobile_commons_subscribe($cell, $mc_opt_in);
+  // If we don't have a node or a webform submission there's really nothing we
+  // can do. This handler was probably put on the wrong form.
+  if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
+    return;
   }
-  if (!empty($inf_action) && !empty($email)) {
-    dosomething_general_infusionsoft_subscribe($email, $inf_action);
-  }
-  if (!empty($mailchimp_group) && !empty($email)) {
-    dosomething_general_mailchimp_subscribe($email, $mailchimp_group);
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+
+  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
+  if (!empty($cell)) {
+    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
+    }
   }
 
+  // Different instances of the email field use different widgets so we have to
+  // look in two places to find their email address.
+  if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  }
+  elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+  if (!empty($email)) {
+    if (!empty($node->field_infusion_action[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_infusionsoft_subscribe($email, $node->field_infusion_action[LANGUAGE_NONE][0]['value']);
+    }
+    if (!empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']);
+    }
+  }
 }
 
 /**
