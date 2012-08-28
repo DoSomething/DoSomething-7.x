@@ -2,15 +2,6 @@
 
 Drupal.behaviors.inviteFriendsModal = {
   attach: function(context, settings) {
-    var fbAppId = settings.picsforpetsFBAuth.appId;
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: fbAppId,
-        status: true,
-        cookie: true
-      });
-    };
-
     $('.views-widget-sort-order, .views-submit-button').hide();
     $('#picsforpets-invite-friends').click(function() {
       var obj = {
