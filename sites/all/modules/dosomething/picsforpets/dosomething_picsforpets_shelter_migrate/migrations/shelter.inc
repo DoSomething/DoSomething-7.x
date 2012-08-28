@@ -27,10 +27,30 @@ class PFPShelterMigration extends Migration {
     // Add simple field mappings.
     $this->addFieldMapping('title', 'shelter_name');
     $this->addFieldMapping('field_pfp_hours', 'hours3');
+    $this->addFieldMapping('field_pfp_contact_email_address', 'email');
   }
 
   public function prepareRow($row) {
-    $row->hours3 = $row->hours . '<br /><br />' . $row->hours2;
+    // Clear off extra spaces
+    if (!empty($row->hours)) {
+      while (strpos($row->hours, '  ') !== FALSE) {
+        $row->hours = str_replace('  ', ' ', $row->hours);
+        // If the first character is a space, cut it off.
+        if (strpos(' ', $row->hours) === 0) {
+          $row->hours = substr($row->hours, 1);
+        }
+      }
+    }
+    if (!empty($row->hours2)) {
+      while (strpos($row->hours2, '  ') !== FALSE) {
+        $row->hours2 = str_replace('  ', ' ', $row->hours2);
+        // If the first character is a space, cut it off.
+        if (strpos(' ', $row->hours2) === 0) {
+          $row->hours2 = substr($row->hours2, 1);
+        }
+      }
+    }
+    $row->hours3 = !empty($row->hours2) ? $row->hours . '<br /><br />' . $row->hours2 : $row->hours;
   }
 
   public function prepare($node, stdClass $row) {
@@ -52,5 +72,11 @@ class PFPShelterMigration extends Migration {
     // Set the link data on the node.
     $node->field_pfp_shelter_website[LANGUAGE_NONE][0]['url'] = $row->link_url;
     $node->field_pfp_shelter_website[LANGUAGE_NONE][0]['title'] = $row->link_title;
+
+    // Phone number throws extra characters if it gets an empty string so just
+    // don't set it if there is none.
+    if (!empty($row->phone)) {
+      $node->field_pfp_phone_number[LANGUAGE_NONE][0]['value'] = $row->phone;
+    }
   }
 }
