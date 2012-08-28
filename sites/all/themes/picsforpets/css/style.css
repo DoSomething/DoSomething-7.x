@@ -1516,6 +1516,10 @@ body {
   padding-bottom: 12px;
 }
 
+.not-front #page {
+  background: none;
+}
+
 #logo {
   display: inline;
   float: right;
