@@ -359,23 +359,25 @@ function dosomething_general_find_user_by_cell($number) {
  *   The user account or false if none is found.
  */
 function dosomething_load_user_by_profile_cell($mobile) {
-  $account = FALSE;
   $query = new EntityFieldQuery('profile2');
   $results = $query->entityCondition('entity_type', 'profile2')
     ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
     ->deleted(FALSE)
+    // Look for more than one user but cap it at two so we don't waste all day.
+    ->range(0, 2)
     ->execute();
-  if (count($results)) {
-    $profiles = reset($results);
-    ksort($profiles);
-    $pid = array_pop($profiles)->pid;
-    $profile = profile2_load($pid);
+  // There are duplicate values in the mobile number field so if there is not
+  // exactly one account with the cell phone number don't let them log in this
+  // way. They'll need to use the username or email address instead.
+  if (count($results['profile2']) == 1) {
+    $profile = reset($results['profile2']);
+    $profile = profile2_load($profile->pid);
     if ($profile) {
       $uid = $profile->uid;
-      $account = user_load($uid);
+      return user_load($uid);
     }
   }
-  return $account;
+  return FALSE;
 }
 
 /**
