@@ -332,9 +332,9 @@ function dosomething_picsforpets_general_share($sid, $fbid) {
     watchdog('dosomething_picsforpets', 'Invalid webform submission id submitted as a share.');
     return FALSE;
   }
-  $value = $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'];
-  if (!count($value)) {
-    $value = 0;
+  $value = 0;
+  if (isset($submission->field_fb_app_share_count)) {
+    $value = $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'];
   }
   $value++;
   $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'] = $value;
