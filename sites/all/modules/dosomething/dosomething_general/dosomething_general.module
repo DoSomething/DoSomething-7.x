@@ -157,7 +157,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
   $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
   $mailchimp_group = isset($form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] : NULL;
-  
+
   //Either use the value of campaign_short_form for campaigns or program_short_form which is for clubs/scholarships/grants etc
   $email = isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])
 ? $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] : $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
@@ -245,7 +245,7 @@ function dosomething_general_user_presave(&$edit, $account, $category) {
  *   Users email address.
  * @param $groupName
  *   The campaign name that the email is to be subscribed to.
- * @return 
+ * @return
  *   Boolean indicating success.
  */
 function dosomething_general_mailchimp_subscribe($email, $groupName) {
@@ -254,8 +254,8 @@ function dosomething_general_mailchimp_subscribe($email, $groupName) {
   // Catching function
   // Hardcoding the list to the dosomething members
   $listid = 'f2fab1dfd4';
-  
-  // We do not want them to have to know the grouping id so we will build 
+
+  // We do not want them to have to know the grouping id so we will build
   // the table to look it up by using the group name specified.
   $cid = "dosomething_general_mailchimp_group_mapping_$listid";
   $cache = cache_get($cid);
@@ -265,20 +265,20 @@ function dosomething_general_mailchimp_subscribe($email, $groupName) {
   else {
     $groupingIdByGroupName = array();
     $groupings = $mcapi->listInterestGroupings($listid);
-    foreach ($groupings as $grouping) {  
+    foreach ($groupings as $grouping) {
       foreach ($grouping['groups'] as $group) {
-        // If two groupnames are the same in different groupings 
+        // If two groupnames are the same in different groupings
         // then it may pick the wrong group.
-        $groupingIdByGroupName[$group['name']] = $grouping['id']; 
-      }  
+        $groupingIdByGroupName[$group['name']] = $grouping['id'];
+      }
     }
     cache_set($cid, $groupingIdByGroupName);
   }
-  
-  // TODO: Error Handling for groupname, still add the user if error occurs.  
+
+  // TODO: Error Handling for groupname, still add the user if error occurs.
   $mergeVars = array(
     'GROUPINGS' => array(
-      array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),     
+      array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),
     )
   );
   return $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE,FALSE);
