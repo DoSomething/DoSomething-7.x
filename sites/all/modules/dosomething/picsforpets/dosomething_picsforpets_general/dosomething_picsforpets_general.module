@@ -347,12 +347,12 @@ function dosomething_picsforpets_general_share($sid, $fbid) {
   $share->system_path = 'webform-submission/' . $sid;
   $share->fb_user_id = $fbid;
   $share->created = REQUEST_TIME;
-  drupal_write_record('picsforpets_user_shares', $share);
+  drupal_write_record('fb_user_shares', $share);
 
   // Retrieve the total number of shares for this user.
   $user_shares = db_query("
     SELECT count(fb_user_id)
-    FROM {picsforpets_user_shares}
+    FROM {fb_user_shares}
     WHERE fb_user_id = :fbid", array(':fbid' => $fbid))
     ->fetchField();
 
