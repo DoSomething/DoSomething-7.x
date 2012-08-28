@@ -20,7 +20,7 @@ Drupal.behaviors.dsPfpShare = {
     });
 
     // Use the 'feed' method because it allows us to post metadata.
-    var shareUrl = 'https://apps.facebook.com/picsforpets/webform-submission/' + sid;
+    var shareUrl = settings.picsforpetsFBAuth.app_url + '/webform-submission/' + sid;
     var share = {
       method: 'feed',
       name: 'DoSomething.org\'s Pics For Pets Project',
@@ -41,9 +41,11 @@ Drupal.behaviors.dsPfpShare = {
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
-          $.post('https://apps.facebook.com/picsforpets/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
-            // Update the page with the new share count.
-            $('.picsforpets-share-count').text(userShares);
+          $.post(settings.picsforpetsFBAuth.site_url + '/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+            // Increment the displayed share count.
+            var count = $('.picsforpets-share-count').text();
+            count++;
+            $('.picsforpets-share-count').text(count);
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 3) {
