@@ -9,7 +9,7 @@ Drupal.behaviors.inviteFriendsModal = {
         display: 'iframe',
         title: 'The DoSomething.org Pics for Pets Project',
         message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
-        access_token: settings.fb_access_token,
+        access_token: settings.picsforpetsFBAuth.access_token,
         show_error: true
       };
       FB.ui(obj);
@@ -19,15 +19,6 @@ Drupal.behaviors.inviteFriendsModal = {
 
 Drupal.behaviors.galleryShareButton = {
   attach: function (context, settings) {
-    var fbAppId = settings.picsforpetsFBAuth.appId;
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: fbAppId,
-        status: true,
-        cookie: true
-      });
-    };
-
     $('.gallery-share-button').click(function () {
       var sid = $(this).parent().attr('id');
       var shareUrl = 'https://apps.facebook.com/zivtechdev/webform-submission/' + sid;

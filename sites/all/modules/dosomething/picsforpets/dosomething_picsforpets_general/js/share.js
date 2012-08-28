@@ -2,15 +2,6 @@
 
 Drupal.behaviors.dsPfpShare = {
   attach: function (context, settings) {
-    // Initialize Facebook's Javascript SDK asyncronously.
-    var fbAppId = settings.picsforpetsFBAuth.appId;
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: fbAppId,
-        status: true,
-        cookie: true
-      });
-    };
 
     // Retrieve the id of this webform submission.
     if (settings.fbappsAnimals.images == undefined) {
