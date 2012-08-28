@@ -2616,6 +2616,8 @@ select#edit-sort-by {
   list-style: none;
   display: inline;
   float: right;
+  position: relative;
+  top: 112px;
 }
 #picsforpets-gallery-navigation li {
   list-style-image: none;
