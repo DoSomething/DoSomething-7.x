@@ -437,9 +437,8 @@ function dosomething_login_user_login_validate($form, &$form_state) {
  * which calls user_load_multiple(array(), array('mail' => $mail));
  */
 function dosomething_login_find_user_by_email($email) {
-  return db_query("SELECT name FROM {users} WHERE LOWER(mail) = LOWER(:name)", array(
-      ':name' => $email,
-    ))->fetchField();
+  $user = user_load_by_mail($email);
+  return $user ? $user->name : FALSE;
 }
 
 /**
