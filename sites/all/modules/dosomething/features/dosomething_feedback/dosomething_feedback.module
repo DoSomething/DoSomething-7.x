@@ -42,22 +42,7 @@ function dosomething_feedback_unfuddle_feedback_fields_alter(&$fields, $entry) {
         break;
     }
   }
-  if (isset($entry->field_component[LANGUAGE_NONE][0]['value'])) {
-    switch($entry->field_component[LANGUAGE_NONE][0]['value']) {
-      case 'Theme':
-        $fields['assignee-id'] = 48348;
-        break;
-      case 'Functionality':
-        $fields['assignee-id'] = 48346;
-        break;
-      case 'Content':
-        $fields['assignee-id'] = 48356;
-        break;
-    }
-  }
-  else {
-    $fields['assignee-id'] = 48346;
-  }
+  $fields['assignee-id'] = 48346;
   $fields['description-format'] = 'markdown';
   $fields['milestone-id'] = 486;
 }
