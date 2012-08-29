@@ -70,7 +70,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/pics-for-pets/shelter-search">Find a shelter</ br>
+      'body' => '<a href="/pics-for-pets/shelter-search">Find a shelter<br />
 near you</a>',
       'format' => 'filtered_html',
       'substitute' => TRUE,
@@ -125,7 +125,7 @@ near you</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/pics-for-pets/submit-pet-picture">Submit your</ br>
+      'body' => '<a href="/pics-for-pets/submit-pet-picture">Submit your<br />
 shelter pet pic</a>',
       'format' => 'filtered_html',
       'substitute' => TRUE,
