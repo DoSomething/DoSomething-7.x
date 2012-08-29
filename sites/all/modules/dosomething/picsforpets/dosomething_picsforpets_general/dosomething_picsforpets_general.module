@@ -235,12 +235,12 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
   $form['email'] = array(
     '#type' => 'textfield',
     '#required' => TRUE,
-    '#title' => t('Email:'),
+    '#attributes' => array('placeholder' => t('Email:')),
     '#maxlength' => 255,
   );
   $form['cell'] = array(
     '#type' => 'textfield',
-    '#title' => t('Cell:'),
+    '#attributes' => array('placeholder' => t('Cell:')),
     '#maxlength' => 255,
   );
   $form['help'] = array(
