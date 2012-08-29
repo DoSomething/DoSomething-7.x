@@ -5,6 +5,8 @@
  * Implementation of template_preprocess_page().
  */
 function picsforpets_preprocess_page(&$variables) {
+  $variables['front_page'] = url() . 'pics-for-pets';
+
   if (arg(0) == 'pics-for-pets' && !arg(1)) {
     return;
   }
@@ -142,11 +144,11 @@ function picsforpets_views_mini_pager($vars) {
 
   if ($pager_total[$element] > 1) {
 
-    $li_previous = theme('pager_previous', 
+    $li_previous = theme('pager_previous',
       array(
-      'text' => (isset($tags[1]) ? $tags[1] : t('‹‹')), 
-      'element' => $element, 
-      'interval' => 1, 
+      'text' => (isset($tags[1]) ? $tags[1] : t('‹‹')),
+      'element' => $element,
+      'interval' => 1,
       'parameters' => $parameters,
     )
     );
@@ -154,11 +156,11 @@ function picsforpets_views_mini_pager($vars) {
       $li_previous = "&nbsp;";
     }
 
-    $li_next = theme('pager_next', 
+    $li_next = theme('pager_next',
       array(
-      'text' => (isset($tags[3]) ? $tags[3] : t('››')), 
-      'element' => $element, 
-      'interval' => 1, 
+      'text' => (isset($tags[3]) ? $tags[3] : t('››')),
+      'element' => $element,
+      'interval' => 1,
       'parameters' => $parameters,
     )
     );
@@ -168,24 +170,24 @@ function picsforpets_views_mini_pager($vars) {
     }
 
     $items[] = array(
-      'class' => array('pager-previous'), 
+      'class' => array('pager-previous'),
       'data' => $li_previous,
     );
 
     $items[] = array(
-      'class' => array('element-invisible'), 
+      'class' => array('element-invisible'),
       'data' => t('@current of @max', array('@current' => $pager_current, '@max' => $pager_max)),
     );
 
     $items[] = array(
-      'class' => array('pager-next'), 
+      'class' => array('pager-next'),
       'data' => $li_next,
     );
-    return theme('item_list', 
+    return theme('item_list',
       array(
-      'items' => $items, 
-      'title' => NULL, 
-      'type' => 'ul', 
+      'items' => $items,
+      'title' => NULL,
+      'type' => 'ul',
       'attributes' => array('class' => array('pager')),
     )
     );
