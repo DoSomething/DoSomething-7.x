@@ -2958,18 +2958,13 @@ select.form-select {
   border: 1px;
   font-size: 10px;
 }
-#dosomething-login-register-popup-form .form-item-pass,
-#dosomething-login-register-facebook .form-item-pass {
+#dosomething-login-register-popup-form .form-item-pass input,
+#dosomething-login-register-facebook .form-item-pass input {
   width: 212px;
 }
 .ie8 #dosomething-login-register-popup-form .form-item-pass label, .ie8
 #dosomething-login-register-facebook .form-item-pass label {
   float: left;
-}
-#dosomething-login-register-popup-form .form-item-pass .ds-registration-form-required,
-#dosomething-login-register-facebook .form-item-pass .ds-registration-form-required {
-  top: -27px;
-  left: -200px;
 }
 #dosomething-login-register-popup-form .form-item-pass label.error,
 #dosomething-login-register-facebook .form-item-pass label.error {
@@ -4948,11 +4943,6 @@ h2.block-title, h2.pane-title {
   clear: both;
   display: block;
   margin-top: 12px;
-}
-
-.form-item-pass .ds-registration-form-required {
-  left: 205px;
-  top: -23px;
 }
 
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
