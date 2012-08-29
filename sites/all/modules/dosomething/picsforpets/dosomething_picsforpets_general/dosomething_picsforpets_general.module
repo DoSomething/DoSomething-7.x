@@ -230,7 +230,7 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     'title' => t('Thanks for sharing!'),
   );
   $form['instructions'] = array(
-    '#markup' => t("Enter your info and we'll send you updates on animals in the gallery"),
+    '#markup' => '<div class="sign-up-text">Enter your info and we\'ll send you updates on animals in the gallery</div>',
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -244,7 +244,7 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     '#maxlength' => 255,
   );
   $form['help'] = array(
-    '#markup' => t('Click submit to sign up and recieve weekly updates <a class="helptext-questionmark-popup">Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)</a>'),
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
