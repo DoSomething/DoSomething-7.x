@@ -97,8 +97,9 @@ function dosomething_picsforpets_fb_user_init() {
 
     // Start our search for the appropriate condition.
     // Condition 3.
-    //If the fb uid maps to a user then log them in.
     if (!$user->uid && $uid && ($account = user_load($uid))) {
+      // The fb uid maps to a user. Unblock the user, then log them in.
+      user_user_operations_unblock(array($account->uid));
       fboauth_login_user($account);
     }
     // Condition 4.
@@ -116,14 +117,18 @@ function dosomething_picsforpets_fb_user_init() {
       // We found a matching user. Associate the FB account with them. Then
       // log them in.
       fboauth_save($found_user->uid, $fbuser->id);
+      // Unblock the user.
+      user_user_operations_unblock(array($found_user->uid));
       $account = user_load($found_user->uid);
       fboauth_login_user($account);
     }
-    // Condition 1
+    // Condition 1.
     elseif ($user->uid && !$uid) {
       // The user is already logged into Dosomething. Associate
       // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
       fboauth_save($user->uid, $fbuser->id);
+      // Make sure the user is unblocked.
+      user_user_operations_unblock(array($account->uid));
     }
   }
 }
