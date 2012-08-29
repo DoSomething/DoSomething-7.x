@@ -283,6 +283,7 @@ Please try a new combo.
   $handler->display->display_options['fields']['sid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['sid']['separator'] = '';
   $handler->display->display_options['fields']['sid']['format_plural'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
