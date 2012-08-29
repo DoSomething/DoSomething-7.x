@@ -146,13 +146,12 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   $form['email'] = array(
     '#type' => 'textfield',
     '#required' => TRUE,
-    '#title' => t('Email:'),
+    '#attributes' => array('placeholder' => t('Email:')),
     '#maxlength' => 255,
-
   );
   $form['cell'] = array(
     '#type' => 'textfield',
-    '#title' => t('Cell:'),
+    '#attributes' => array('placeholder' => t('Cell:')),
     '#maxlength' => 255,
   );
   $form['kit'] = array(
@@ -168,27 +167,27 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
     '#type' => 'fieldset',
     'name' => array(
       '#type' => 'textfield',
-      '#title' => t('Full Name:'),
+      '#attributes' => array('placeholder' => t('Full Name:')),
     ),
     'street1' => array(
       '#type' => 'textfield',
-      '#title' => t('Street Address:'),
+      '#attributes' => array('placeholder' => t('Street Address:')),
     ),
     'street2' => array(
       '#type' => 'textfield',
-      '#title' => t('Street Address 2:'),
+      '#attributes' => array('placeholder' => t('Street Address 2:')),
     ),
     'city' => array(
       '#type' => 'textfield',
-      '#title' => t('City:'),
+      '#attributes' => array('placeholder' => t('City:')),
     ),
     'state' => array(
       '#type' => 'textfield',
-      '#title' => t('State'),
+      '#attributes' => array('placeholder' => t('State:')),
     ),
     'zip' => array(
       '#type' => 'textfield',
-      '#title' => t('Zip'),
+      '#attributes' => array('placeholder' => t('Zip:')),
     ),
   );
 
@@ -200,11 +199,13 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
     '#value' => 'Sign Up',
   );
   $form['#action'] = '/pics-for-pets/lets-get-started';
-  $form['#attached'] = array(
-    'js' => array(
-      'type' => 'file',
-      'data' => drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/furtog-form.js',
-    ),
+  $form['#attached']['js'][] = array(
+    'type' => 'file',
+    'data' => drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/furtog-form.js',
+  );
+  $form['#attached']['js'][] = array(
+    'type' => 'file',
+    'data' => drupal_get_path('theme', 'picsforpets') . '/js/libs/jquery-html5-placeholder-shim/jquery.html5-placeholder-shim.js',
   );
   return $form;
 }

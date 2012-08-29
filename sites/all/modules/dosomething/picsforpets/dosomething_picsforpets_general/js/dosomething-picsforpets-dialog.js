@@ -9,7 +9,11 @@ Drupal.behaviors.dosomethingPicsforpetsDialog = {
         resizable: false,
         draggable: false,
         modal: true,
-        width: 550
+        width: 550,
+        // Autofocus confuses placeholder text.
+        open: function(event, ui) {
+          $("input").blur();
+        }
       });
       // Drupal.attachBehaviors();
       $furtographyForm.validate({
