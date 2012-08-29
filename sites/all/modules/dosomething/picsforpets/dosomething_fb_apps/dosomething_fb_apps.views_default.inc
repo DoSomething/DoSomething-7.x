@@ -1079,6 +1079,7 @@ Please try a new combo.
 
   /* Display: My shared pets */
   $handler = $view->new_display('panel_pane', 'My shared pets', 'panel_pane_2');
+  $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
