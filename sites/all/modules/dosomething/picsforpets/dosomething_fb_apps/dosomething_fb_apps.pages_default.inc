@@ -17,7 +17,7 @@ function dosomething_fb_apps_default_page_manager_handlers() {
   $handler->task = 'webform_submission_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 3;
+  $handler->weight = 0;
   $handler->conf = array(
     'title' => 'Pet Profile',
     'no_blocks' => 0,
