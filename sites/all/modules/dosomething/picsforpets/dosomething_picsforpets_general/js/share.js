@@ -41,7 +41,7 @@ Drupal.behaviors.dsPfpShare = {
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
-          $.post(settings.picsforpetsFBAuth.site_url + '/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+          $.post('/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
             // Increment the displayed share count.
             var count = $('.picsforpets-share-count').text();
             count++;
