@@ -524,7 +524,11 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation .last a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-picsforpets-general-furtographer-form input[type="button"],
+#dosomething-picsforpets-general-thanks-form button,
+#dosomething-picsforpets-general-thanks-form input[type="reset"],
+#dosomething-picsforpets-general-thanks-form input[type="submit"],
+#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation .last a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -535,7 +539,11 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 .form-actions input[type="submit"], a.button, #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
+#dosomething-picsforpets-general-furtographer-form input[type="button"],
+#dosomething-picsforpets-general-thanks-form button,
+#dosomething-picsforpets-general-thanks-form input[type="reset"],
+#dosomething-picsforpets-general-thanks-form input[type="submit"],
+#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
   color: #ec1c24;
   background: white;
   padding: 2px 12px;
@@ -1036,7 +1044,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 }
 
 select {
-  background: url('../images/select-down-arrow.png') right center no-repeat, white;
+  background: url('select-down-arrow.png') right center no-repeat, white;
 }
 
 input[type=search] {
@@ -1243,7 +1251,11 @@ label.option {
 #dosomething-picsforpets-general-furtographer-form button,
 #dosomething-picsforpets-general-furtographer-form input[type="reset"],
 #dosomething-picsforpets-general-furtographer-form input[type="submit"],
-#dosomething-picsforpets-general-furtographer-form input[type="button"] {
+#dosomething-picsforpets-general-furtographer-form input[type="button"],
+#dosomething-picsforpets-general-thanks-form button,
+#dosomething-picsforpets-general-thanks-form input[type="reset"],
+#dosomething-picsforpets-general-thanks-form input[type="submit"],
+#dosomething-picsforpets-general-thanks-form input[type="button"] {
   display: inline;
   float: right;
 }
@@ -1581,7 +1593,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/10k-scholarship.png');
+  background-image: url('10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1603,7 +1615,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/ds-logo.png');
+  background-image: url('ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1886,7 +1898,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png');
+  background-image: url('close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -2113,7 +2125,7 @@ a.footer-furtography {
   margin-bottom: 20px;
 }
 .prizes-scholarships .pane-content .share-wrapper.toys .shares {
-  background: url('../images/200-shares-bar.png');
+  background: url('200-shares-bar.png');
 }
 .prizes-scholarships .pane-content .share-wrapper.toys .inner {
   margin-left: 90px;
@@ -2122,13 +2134,13 @@ a.footer-furtography {
   margin-bottom: 20px;
 }
 .prizes-scholarships .pane-content .share-wrapper.food .shares {
-  background: url('../images/500-shares-bar.png');
+  background: url('500-shares-bar.png');
 }
 .prizes-scholarships .pane-content .share-wrapper.food .inner {
   margin-left: 145px;
 }
 .prizes-scholarships .pane-content .share-wrapper.bedding .shares {
-  background: url('../images/1000-shares-bar.png');
+  background: url('1000-shares-bar.png');
 }
 .prizes-scholarships .pane-content .share-wrapper.bedding .shares .inner {
   margin-left: 140px;
@@ -2138,7 +2150,7 @@ a.footer-furtography {
   text-transform: uppercase;
 }
 .prizes-scholarships .pane-content .scholarship:before {
-  content: url('../images/star.png');
+  content: url('star.png');
   display: inline;
   float: left;
   height: 30px;
@@ -2381,7 +2393,7 @@ a.footer-furtography {
   float: left;
 }
 #dosomething-picsforpets-shelters-lookup-form #edit-submit {
-  background: url('../images/magnify-box.png');
+  background: url('magnify-box.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border: none;
@@ -2606,7 +2618,7 @@ select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-ga
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
-  background: url('../images/down-arrow.png') no-repeat, white;
+  background: url('down-arrow.png') no-repeat, white;
   margin-top: -8px;
   font-size: 14px;
   color: #ec1c24;
