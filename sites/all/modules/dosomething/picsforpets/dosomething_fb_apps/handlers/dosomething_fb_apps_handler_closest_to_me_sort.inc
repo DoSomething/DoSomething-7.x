@@ -14,16 +14,28 @@ class dosomething_fb_apps_handler_closest_to_me_sort extends views_handler_sort 
    * Called to add the sort to a query.
    */
   function query() {
+    global $user;
+    $fbid = fboauth_fbid_load($user->uid);
+    $fb_zip = db_query('SELECT zip FROM {ds_fb_user_zips} WHERE fbid = :fbid', array('fbid' => $fbid))->fetchField();
+    $user->fb_zip = $fb_zip;
+
     $this->ensure_my_table();
 
-    // TODO: get the user's location
-
+    // We set a default Lat and Lon for sorting.
     $lat = 39.95;
     $lon = -75.16;
+    // Fetch the user's lat and lon and override the default.
+    if ($fb_zip) {
+      $latlon = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $fb_zip))->fetchAssoc();
+      if ($latlon) {
+        $lat = $latlon['latitude'];
+        $lon = $latlon['longitude'];
+      }
+    }
 
     // Get zip from pet shelter.
-    // TODO we can actually get lat/lon directly for shelters.
-
+    // Not every pet has an associated shelter. In order to work around this we
+    // actually look up the lat and lon for the shelters based on the animal.
     $join = new views_join();
     $join->construct('field_data_field_pfp_address', $this->table_alias, $this->real_field, 'entity_id');
     $this->address_table = $this->query->ensure_table('shelter_address', $this->relationship, $join);

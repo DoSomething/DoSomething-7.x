@@ -168,15 +168,26 @@ function dosomething_fb_apps_field_fb_app_adopted($form, $form_state) {
  * Add our custom JS to the view zip code search.
  */
 function dosomething_fb_apps_preprocess_views_view(&$variables) {
+  global $user;
+  if (!empty($user->fb_zip)) {
+    // Attach js setting to pop up the modal window.
+    drupal_add_js(array('dosomethingFBApps' => array('fbZip' =>  TRUE)), 'setting');
+  }
   // Quit early if not on the pics_for_pets_gallery view.
   if ($variables['name'] != 'pics_for_pets_gallery') {
     return;
   }
   $view = $variables['view'];
+
+  $form_state = array();
+  form_load_include($form_state, 'inc', 'dosomething_fb_apps', 'dosomething_fb_apps.forms');
+  $form = drupal_get_form('dosomething_fb_apps_enter_zip_form');
+  $rendered_form = drupal_render($form);
+
   // We need to reset rows to an array so that it rerenders with our attached
   // javascript.
   $variables['rows'] = array(
-    '#markup' => $variables['rows'],
+    '#markup' => $variables['rows'] . $rendered_form,
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'dosomething_fb_apps') . '/js/shelter_sort.js',
