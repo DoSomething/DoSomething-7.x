@@ -79,19 +79,6 @@ Drupal.behaviors.picsforpetsShelterPopup = {
           .after('<div class="ui-widget-overlay" style="width: ' + $width + 'px; height: ' +  $docHeight + 'px; z-index: 1001;">');
 
         $('.ui-icon-closethick', $searchForm.parent()).click(dismiss);
-        /*$('.ui-icon-closethick', $searchForm.parent()).click(function() {
-          $('.ui-widget-overlay').remove();
-          // Cleanup
-          var $alteredForm = $('#dosomething-picsforpets-shelters-options-form');
-          $alteredForm.removeClass('ui-dialog-content');
-          $alteredForm.removeClass('ui-widget-content');
-          $alteredForm.attr(
-            {style : ''}
-          );
-          $alteredForm.hide();
-          $('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all').replaceWith($alteredForm);
-          return false;
-        });*/
         $searchForm.show();
         return false;
     });
