@@ -3192,12 +3192,6 @@ div.status, div.warning, div.error {
   color: red;
 }
 
-label[for="edit-last-name"],
-label[for="edit-first-name"],
-label[for="edit-cell-or-email"] {
-  display: none !important;
-}
-
 ul.tabs.primary {
   padding-top: 20px;
   padding-bottom: 8px;

@@ -328,9 +328,6 @@ div[role="main"] {
   .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
     background-color: #eeeeee; }
 
-#dosomething-login-register-popup-form .popup-content {
-  height: 165px !important; }
-
 #edit-submitted-field-webform-school-reference,
 #submitted-field-webform-school-zip-add-more-wrapper {
   display: none; }
@@ -350,8 +347,6 @@ div[role="main"] {
     width: 225px !important; }
     .node-type-campaign-sign-up #webform-component-first-name input:focus, .node-type-campaign-sign-up #webform-component-last-name input:focus, .node-type-campaign-sign-up #webform-component-address-1 input:focus, .node-type-campaign-sign-up #webform-component-address-2 input:focus, .node-type-campaign-sign-up #webform-component-city input:focus, .node-type-campaign-sign-up #webform-component-state input:focus, .node-type-campaign-sign-up #webform-component-zip-code input:focus, .node-type-campaign-sign-up #webform-component-who-with input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input:focus, .node-type-campaign-sign-up .form-item-first-name input:focus, .node-type-campaign-sign-up .form-item-last-name input:focus, .node-type-campaign-sign-up .form-item-email input:focus, .node-type-campaign-sign-up .form-item-cell input:focus, .node-type-campaign-sign-up .form-item-pass input:focus {
       background-color: lightyellow; }
-.node-type-campaign-sign-up label[for="edit-last-name"], .node-type-campaign-sign-up label[for="edit-first-name"], .node-type-campaign-sign-up label[for="edit-cell-or-email"] {
-  display: block !important; }
 .node-type-campaign-sign-up .webform-component-markup {
   float: left;
   clear: both;

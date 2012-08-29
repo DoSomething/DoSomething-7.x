@@ -8,7 +8,7 @@
 
 .pane-content #dosomething-login-register-popup-form .popup-content {
   min-height: 0;
-  height: 125px;
+  /*height: 125px;*/
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   -o-box-shadow: none;
