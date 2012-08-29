@@ -1,0 +1,149 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_scholarship_rec feature.
+ */
+
+include_once 'dosomething_scholarship_rec.features.inc';
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_scholarship_rec_form_alter($form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity'])) {
+    $bundle = &$form_state['webform_entity']['bundle'];
+
+    $entity_form = &$form['submitted'];
+    if ($bundle == 'scholarship_application_with_rec') {
+      // application
+    }
+    else if ($bundle == 'scholarship_recommendation') {
+      // recommendation
+    }
+    else if ($bundle == 'scholarship_recommendation_reque') {
+      // recommendation request
+      if (isset($form['submitted']['applicant_name'])) {
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_webform_submission_presave().
+ */
+function dosomething_scholarship_rec_webform_submission_presave($node, &$submission) {
+  if ($node->type == 'scholarship_recommendation_reque') {
+    foreach ($node->webform['components'] as $comp) {
+      if ($comp['form_key'] == 'applicant_name') {
+        $rec_form = $_GET['sid'];
+        $app = reset(entity_load('webform_submission_entity', array($rec_form)));
+        $submission->data[$comp['cid']]['value'][0] = $app->field_webform_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $app->field_webform_last_name[LANGUAGE_NONE][0]['value'];;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_webform_submission_insert().
+ */
+function dosomething_scholarship_rec_webform_submission_insert($node, $submission) {
+  if ($node->type == 'scholarship_application_with_rec') {
+    if (empty($submission->details['sid']) && $submission->is_draft) {
+      webform_submission_send_mail($node, $submission);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_attach_form().
+ */
+function dosomething_scholarship_rec_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
+  if ($entity_type == 'webform_submission_entity' && isset($entity->bundle) && in_array($entity->bundle, array('scholarship_recommendation_reque', 'scholarship_recommendation'))) {
+    if (isset($form['field_application'])) {
+      dosomething_scholarship_rec_fill_reference($form['field_application'][LANGUAGE_NONE][0]['target_id']);
+    }
+    else if (isset($form['field_rec_request'])) {
+      dosomething_scholarship_rec_fill_reference($form['field_rec_request'][LANGUAGE_NONE][0]['target_id']);
+    }
+  }
+}
+
+/**
+ * Make sure we happen after webform_entity.
+ */
+function dosomething_scholarship_rec_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['dosomething_scholarship_rec'])) {
+    $group = $implementations['dosomething_scholarship_rec'];
+    unset($implementations['dosomething_scholarship_rec']);
+    $implementations['dosomething_scholarship_rec'] = $group;
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dosomething_scholarship_rec_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+function dosomething_scholarship_rec_fill_reference(&$field) {
+  if (!isset($_GET['sid']) || !is_numeric($_GET['sid'])) {
+    drupal_set_message(t('Whoops, it looks like you\'re missing the part of the URL that tells us what application this is for. Please try again.'), 'error');
+  }
+  else {
+    $app = $_GET['sid'];
+    $field['#default_value'] = "Submission $app ($app)";
+    $field['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function dosomething_scholarship_rec_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'rec_request_applicant':
+      break;
+    case 'rec_request_recommender':
+      break;
+    case 'rec_applicant':
+      break;
+    case 'app_start':
+      break;
+    case 'app_complete':
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_scholarship_rec_theme($existing, $type, $theme, $path) {
+  $types = dosomething_scholarship_rec_email_types();
+
+  $return = array();
+  foreach ($types as $type) {
+    $return[$type] = array(
+      'path' => $path . '/templates',
+      'variables' => array(),
+      'template' => 'ds-scholarship-rec-'.str_replace('_', '-', $type),
+    );
+  }
+  return $return;
+}
+
+function dosomething_scholarship_rec_email_types() {
+  return array(
+    'rec_request_applicant',
+    'rec_request_recommender',
+    'rec_applicant',
+    'app_start',
+    'app_complete',
+  );
+}
+
+function dosomething_scholarship_rec_types() {
+  return array('scholarship_application_with_rec', 'scholarship_recommendation', 'scholarship_recommendation_reque');
+}
