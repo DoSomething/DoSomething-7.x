@@ -13,30 +13,6 @@ function dosomething_picsforpets_general_install() {
 }
 
 /**
- * Implements hook_schema().
- */
-function dosomething_picsforpets_general_schema() {
-  $schema = array();
-
-  $schema['dosomething_picsforpets_furtographers'] = array(
-    'fields' => array(
-      'fbid' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'default' => 0,
-        'size' => 'big',
-      ),
-    ),
-    'primary key' => array('fbid'),
-    'indexes' => array(
-      'fbid' => array('fbid'),
-    ),
-  );
-
-  return $schema;
-}
-
-/**
  * Install our schema.
  */
 function dosomething_picsforpets_general_update_7000() {
