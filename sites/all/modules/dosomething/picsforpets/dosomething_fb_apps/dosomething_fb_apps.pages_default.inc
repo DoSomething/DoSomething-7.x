@@ -368,7 +368,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'admin_title' => 'Back and Next links',
       'title' => '',
       'body' => '<a href="/pics-for-pets/shelter-search" class="button back">Back</a>
-<a href="/content/submit-pet-picture" class="button next">Next</a>
+<a href="/pics-for-pets/submit-pet-picture" class="button next">Next</a>
 ',
       'format' => 'filtered_html',
       'substitute' => TRUE,
