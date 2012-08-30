@@ -745,8 +745,9 @@ html[xmlns] .clearfix {
   padding: 20px 0 0 0; }
 .report-back-teaser a {
   text-decoration: none;
-  color: #222222;
-  position: static; }
+  color: #222222; }
+  .report-back-teaser a .go-button {
+    position: static; }
 
 #vote-register-sign-up .pane-title {
   display: none; }
