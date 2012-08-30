@@ -35,7 +35,7 @@ Drupal.behaviors.dsPfpShare = {
         // If the share was unsuccessful or the user clicked cancel, response
         // will be undefined. Otherwise it will be an object that contains the
         // post_id of the share.
-        if (typeof response !== 'undefined') {
+        if ((typeof response !== 'undefined') && (response !== null)) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
           // Make POST request to this URL to update the share count on the
