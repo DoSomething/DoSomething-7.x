@@ -397,7 +397,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   <li>Find the <a href="/pics-for-pets/shelter-search">nearest animal shelter</a> with the handy shelter locator</li>
   <li>Get all the materials you need to become an expert fur-tographer</li>
   <li>Visit your shelter to take an awesome animal picture and get the details</li>
-  <li>Come back and <a href="/node/3">submit your picture</a> to the gallery</li>
+  <li>Come back and <a href="/pics-for-pets/submit-pet-picture">submit your picture</a> to the gallery</li>
   <li>Share your animal with your Facebook friends to win it prizes and get adopted</li>
 </ol>',
       'format' => 'full_html',
