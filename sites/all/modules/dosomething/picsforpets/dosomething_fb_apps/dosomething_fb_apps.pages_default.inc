@@ -252,7 +252,7 @@ function dosomething_fb_apps_default_page_manager_handlers() {
       'admin_title' => 'Pet name',
       'title' => '',
       'body' => 'Hi. I\'m %webform_submission_entity:field_fb_app_animal_name.',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => 1,
     );
     $pane->cache = array();
@@ -346,7 +346,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'body' => '<a href="/pics-for-pets/shelter-search" class="button back">Back</a>
 <a href="/pics-for-pets/submit-pet-picture" class="button next">Next</a>
 ',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -376,7 +376,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   <li>Come back and <a href="/pics-for-pets/submit-pet-picture">submit your picture</a> to the gallery</li>
   <li>Share your animal with your Facebook friends to win it prizes and get adopted</li>
 </ol>',
-      'format' => 'full_html',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -405,7 +405,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'body' => 'Everything you need to bring with you to the shelter
 
 <a href="/sites/default/files/Pics_For_Pets_Action_Kit.zip" class="button download">Download</a>',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -432,7 +432,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'admin_title' => 'Video',
       'title' => '',
       'body' => '<iframe width="300" height="225" src="http://www.youtube.com/embed/QZR_6K03gWk" frameborder="0" allowfullscreen></iframe>',
-      'format' => 'full_html',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -518,7 +518,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   <li class="first active"><a href="/pics-for-pets/gallery">All pets</a></li>
   <li class="last"><a href="/pics-for-pets/gallery-my-shares">My shared pets</a></li>
 </ul>',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -662,7 +662,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   <li class="first"><a href="/pics-for-pets/gallery">All pets</a></li>
   <li class="last active"><a href="/pics-for-pets/gallery-my-shares">My shared pets</a></li>
 </ul>',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();

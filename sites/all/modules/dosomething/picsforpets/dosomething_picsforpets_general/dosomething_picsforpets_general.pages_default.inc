@@ -72,7 +72,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
       'title' => '',
       'body' => '<a href="/pics-for-pets/shelter-search">Find a shelter<br />
 near you</a>',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -99,7 +99,7 @@ near you</a>',
       'admin_title' => '',
       'title' => '',
       'body' => '<a href="/pics-for-pets/action-guide">Get the guide</a>',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -127,7 +127,7 @@ near you</a>',
       'title' => '',
       'body' => '<a href="/pics-for-pets/submit-pet-picture">Submit your<br />
 shelter pet pic</a>',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -210,7 +210,7 @@ shelter pet pic</a>',
       'admin_title' => 'Mission',
       'title' => '',
       'body' => 'Help shelter animals get food, toys and a new home.',
-      'format' => 'filtered_html',
+      'format' => '1',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -319,7 +319,7 @@ shelter pet pic</a>',
 <div class="share-wrapper food"><label>$30 for food</label><span class="shares"><span class="inner">500 shares</span></span></div>
 <div class="share-wrapper bedding"><label>$50 for bedding</label><span class="shares"><span class="inner">1,000 shares</span></span><div>
 </div>',
-      'format' => 'full_html',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -347,7 +347,7 @@ shelter pet pic</a>',
       'title' => '<h1>For the Fur-tographers</h1>',
       'body' => '<div class="scholarship"><h2>$10,000 Scholarship</h2>
 <div class="submission">For one awesome submission to the gallery</div></div>',
-      'format' => 'full_html',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();

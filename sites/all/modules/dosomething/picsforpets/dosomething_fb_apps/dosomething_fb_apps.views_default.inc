@@ -254,7 +254,7 @@ We can\'t find what<br />you are looking for.<br />
 Please try a new combo.
 </div>
 </div>';
-  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_fb_app_shelter_reference_target_id']['id'] = 'field_fb_app_shelter_reference_target_id';
@@ -595,7 +595,7 @@ Please try a new combo.
   $handler->display->display_options['empty']['area']['label'] = 'sorry';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
   $handler->display->display_options['empty']['area']['content'] = 'We can\'t find what you are looking for.';
-  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
@@ -1097,7 +1097,7 @@ You have not shared any pets yet.<br />
 Start sharing now!
 </div>
 </div>';
-  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Facebook user shares: Facebook user ID */
@@ -1129,7 +1129,7 @@ Start sharing now!
   $handler->display->display_options['empty']['area']['label'] = 'sorry';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
   $handler->display->display_options['empty']['area']['content'] = 'We can\'t find what you are looking for.';
-  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
