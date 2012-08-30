@@ -2494,7 +2494,7 @@ a.footer-furtography {
 #shelter-results-wrapper .shelter-result-item .shelter-hours {
   text-decoration: underline;
 }
-#shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
+#shelter-results-wrapper #shelter-results-more input[type="submit"] {
   display: block;
   margin: 8px auto;
 }
