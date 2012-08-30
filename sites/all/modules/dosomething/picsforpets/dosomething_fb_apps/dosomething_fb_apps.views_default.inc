@@ -158,7 +158,7 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'This is not a DoSomething approved shelter';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'This is not a DoSomething.org Partnered Shelter';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
@@ -171,6 +171,8 @@ function dosomething_fb_apps_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_class'] = 'not-partnered-shelter';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;

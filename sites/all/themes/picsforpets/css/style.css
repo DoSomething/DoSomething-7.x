@@ -2030,6 +2030,15 @@ a.footer-furtography {
   padding-right: 5px;
 }
 
+.not-partnered-shelter {
+  font-size: 12px;
+  line-height: 1;
+}
+.not-partnered-shelter:before {
+  color: #ec1c24;
+  content: "*";
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
