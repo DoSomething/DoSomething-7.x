@@ -1,0 +1,13 @@
+diff --git a/fboauth.module b/fboauth.module
+index ac5965b..1027201 100644
+--- a/fboauth.module
++++ b/fboauth.module
+@@ -237,7 +237,7 @@ function fboauth_fbid_load($uid = NULL) {
+   $uid = isset($uid) ? $uid : $GLOBALS['user']->uid;
+   $result = db_query("SELECT fbid FROM {fboauth_users} WHERE uid = :uid", array(':uid' => $uid));
+   $fbid = $result->fetchField();
+-  return $fbid ? (int) $fbid : FALSE;
++  return $fbid ? $fbid : FALSE;
+ }
+ 
+ /**
