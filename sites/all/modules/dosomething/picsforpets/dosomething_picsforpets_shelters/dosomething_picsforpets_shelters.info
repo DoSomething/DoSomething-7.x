@@ -1,4 +1,5 @@
-name = "dosomething_picsforpets_shelters"
+name = "Dosomething Pics for Pets Shelters"
+description = "Provides shelter content types and functionality for pics for pets app."
 core = "7.x"
 package = "Pics For Pets"
 php = "5.2.4"
