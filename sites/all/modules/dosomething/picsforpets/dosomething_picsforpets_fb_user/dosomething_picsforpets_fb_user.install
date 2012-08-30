@@ -29,3 +29,11 @@ function dosomething_picsforpets_fb_user_requirements($phase) {
 
   return $requirements;
 }
+
+/**
+ * Implements hook_uninstall().
+ */
+function dosomething_picsforpets_fb_user_uninstall() {
+  variable_del('dosomething_picsforpets_fb_user_app_id');
+  variable_del('dosomething_picsforpets_fb_user_app_secret');
+}
