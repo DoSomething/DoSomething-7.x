@@ -293,7 +293,7 @@ div[role="main"]
   #edit-actions--2
     position: absolute
     right: 80px
-    bottom: 24px
+    top: 48px
 
 #campaign-opt-in
   font-size: 11px
@@ -664,16 +664,17 @@ ul.gallery
     margin: 0 20px 10px 20px 
   input
     width: 320px
-    margin: 2px
+    margin: 4px 2px
+    height: 35px
     font-size: 14px
-    padding: 14px 10px
+    padding: 0px 10px
     text-transform: uppercase
     border: 1px solid lightgray
   input.submit-btn
     background: url('http://files.dosomething.org/files/campaigns/vote/submit-btn.png') center center no-repeat !important
     text-indent: -99999px
     border: none
-    margin-bottom: 20px   
+    margin-bottom: 20px
 .contest
   position: absolute
   left: 50%
@@ -837,27 +838,32 @@ html[xmlns] .clearfix
 .vote-logo, #vote-take-action, #vote-scholarship, #vote-learn-the-issue, #vote-questions, .panel-row-actions, #meet-candidates, #vote-head-count
   box-shadow: 0px 0px 8px 2px #111 !important
 
-
 //HEAD COUNT PAGE
 #vote-head-count
+  line-height: 0em
   .pane-title
-    display: none    
-
+    display: none
 
 //REPORT BACK TEASE
 .report-back-teaser
   p
     text-align: center
-    padding: 20px
+    padding: 20px 0 0 0
   a
-    text-decoration: none  
+    text-decoration: none
+    color: #222
+    position: static  
 
 //SIGN UP PAGE STYLE
 #vote-register-sign-up
   .pane-title
     display: none
-  #edit-actions
-    bottom: 0  
+  .webform-client-form
+    #edit-actions,
+    #edit-actions--2
+      position: static
+      text-align: center
+      padding: 10px  
 
 .pane-dosomething-login-register-block
   margin-bottom: 0 !important
