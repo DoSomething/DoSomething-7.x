@@ -50,13 +50,12 @@ select#edit-sort-by
   +float-right
   position: relative
   top: 112px
-  .first
+  a
+    @extend select#edit-field-fb-app-animal-type-value
+    background-image: none
+    padding: 4px 4px 4px 8px
+  li.active
     display: none
-  .last
-    a
-      @extend select#edit-field-fb-app-animal-type-value
-      background-image: none
-      padding: 4px 4px 4px 8px
 
 .pager
   margin: auto
