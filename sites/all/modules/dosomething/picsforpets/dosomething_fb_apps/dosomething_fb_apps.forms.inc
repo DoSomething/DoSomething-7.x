@@ -9,6 +9,17 @@
  * Form for the zip code popup associated with the proximity based view filter.
  */
 function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
+  // Add a flag to the form to allow us to reset the sort on the view if needed.
+  if (!empty($form_state['reset_sort'])) {
+    $form['#reset_sort'] = TRUE;
+  }
+  else {
+    $form['#reset_sort'] = FALSE;
+  }
+  
+  // Add the previously selected animal filter option if it existed.
+  $form['#animal_type'] = !empty($form_state['animal_type']) ? $form_state['animal_type'] : '';
+
   $form['container-title'] = array (
     '#type' =>  'container',
     '#attributes' => array (
@@ -33,6 +44,10 @@ function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
     '#required' => TRUE,
+  );
+  $form ['container']['animal_type'] = array(
+    '#type' => 'hidden',
+    '#value' => '',
   );
 
   $form ['container']['submit'] = array(
@@ -72,5 +87,8 @@ function dosomething_fb_apps_enter_zip_form_submit($form, &$form_state) {
   else {
     drupal_write_record('ds_fb_user_zips', $record, 'fbid');
   }
-  //$form_state['redirect'] = array($_GET['q'], array('query' => array('sort_by' => 'closest_to_me')));
+  // Add a flag to make us go back to the proper page.
+  $form_state['reset_sort'] = TRUE;
+  $form_state['animal'] = $form_state['values']['animal_type'];
+  $form_state['rebuild'] = TRUE;
 }
