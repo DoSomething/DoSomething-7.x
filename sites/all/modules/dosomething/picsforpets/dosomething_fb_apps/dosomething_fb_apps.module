@@ -5,10 +5,14 @@
  * Code for the dosomething_fb_apps feature.
  */
 
-define('DOSOMETHING_FB_APPS_URL', 'http://apps.facebook.com/picsforpets');
+define('DOSOMETHING_FB_APPS_URL', variable_get('ds_picsforpets_fb_app_url', 'http://apps.facebook.com/picsforpets'));
+define('DOSOMETHING_FB_APPS_SECURE_URL', variable_get('ds_picsforpets_fb_app_secure_url', 'https://apps.facebook.com/picsforpets'));
 
 include_once 'dosomething_fb_apps.features.inc';
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function dosomething_fb_apps_form_views_exposed_form_alter(&$form, &$form_state) {
   // By default, the text displayed for the animal type exposed filter is -any-.
   // This changes the text to "Animal Type".

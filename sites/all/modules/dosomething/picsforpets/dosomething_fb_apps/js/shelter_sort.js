@@ -34,15 +34,6 @@ Drupal.behaviors.dosomethingFBApps = {
         });
       }
     });
-
-    /*if (!settings.dosomethingFBApps.fbZip) {
-      $('#edit-zip').focus(function() {
-        // If they don't have a zip code cache the state of the form element.
-        var $animalVal = $('select[name=field_fb_app_animal_type_value]').val();
-        alert($animalVal);
-        $('#dosomething-fb-apps-enter-zip-form input[name=animal_type]').val($animalVal);
-      });
-    }*/
   }
 };
 
