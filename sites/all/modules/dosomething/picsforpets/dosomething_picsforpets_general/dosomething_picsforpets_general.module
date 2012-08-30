@@ -401,6 +401,7 @@ function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_
   // Add custom validation for the shelter reference
   $form['#validate'][] = 'dosomething_picsforpets_general_validate_pet_shelter';
   array_unshift($form['#submit'], 'dosomething_picsforpets_general_submit_pet_shelter');
+  $form['#after_build'][] = 'dosomething_picsforpets_general_hide_pet_shelter';
 
   // Add back the values after a form validation. They were getting dropped.
   // TODO
@@ -494,7 +495,7 @@ function dosomething_picsforpets_general_validate_pet_shelter($form, &$form_stat
 }
 
 /**
- * Additional submit hanlder to deal with storing the data from the address
+ * Additional submit handler to deal with storing the data from the address
  * fields and the entity reference fields associated with a pet's shelter.
  */
 function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state) {
@@ -541,6 +542,16 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
       unset($form_state['webform_entity']['submission']->{$field});
     }
   }
+}
+
+/**
+ * After-build function to hide the shelter reference field.
+ * This has to stay in the DOM due to js population after shelter popup.
+ * Happens in an after-build after the field is added via webform_entity.
+ */
+function dosomething_picsforpets_general_hide_pet_shelter($form, $form_state) {
+  $form['submitted']['find_your_shelter']['field_fb_app_shelter_reference']['#attributes']['class'][] = 'element-hidden';
+  return $form;
 }
 
 /**
