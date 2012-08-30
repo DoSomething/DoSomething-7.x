@@ -734,3 +734,9 @@ html[xmlns] .clearfix {
 
 #vote-head-count .pane-title {
   display: none; }
+
+.report-back-teaser p {
+  text-align: center;
+  padding: 20px; }
+.report-back-teaser a {
+  text-decoration: none; }
