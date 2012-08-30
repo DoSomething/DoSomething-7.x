@@ -126,7 +126,7 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
       );
       // We want these functions to load after webform entity fields are loaded.
       $form['#after_build'][] = 'dosomething_fb_apps_field_fb_app_share_count';
-      $form['#after_build'][] = 'dosomething_fb_apps_field_fb_app_adopted';
+      $form['#after_build'][] = 'dosomething_fb_apps_webform_entity_fields';
     }
   }
 }
@@ -140,17 +140,19 @@ function dosomething_fb_apps_field_fb_app_share_count($form, $form_state) {
 }
 
 /**
- * Form API #after_build callback: Shows field_fb_app_adopted to admin only.
+ * Form API #after_build callback: Shows certain webform fields to admin only.
  */
-function dosomething_fb_apps_field_fb_app_adopted($form, $form_state) {
+function dosomething_fb_apps_webform_entity_fields($form, $form_state) {
   // Check the user's permission given to role.
   if (user_access('edit all webform submissions')) {
-    // If user is admin, show adopted field.
+    // If user is admin, show the following fields.
     $form['submitted']['field_fb_app_adopted']['#access'] = TRUE;
+    $form['submitted']['field_fb_app_published']['#access'] = TRUE;
   }
     // If user is not admin, hide the adopted field.
   else {
     $form['submitted']['field_fb_app_adopted']['#access'] = FALSE;
+    $form['submitted']['field_fb_app_published']['#access'] = FALSE;
   }
   return $form;
 }
