@@ -37,7 +37,7 @@ function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
 
   $form ['container']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Search'),
+    '#value' => t('Submit'),
     '#submit' => array('dosomething_fb_apps_enter_zip_form_submit'),
   );
   $form['message'] = array(
