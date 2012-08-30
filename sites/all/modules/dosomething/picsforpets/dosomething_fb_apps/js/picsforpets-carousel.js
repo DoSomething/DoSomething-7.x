@@ -152,8 +152,6 @@ function fbappsAnimalsReindex(index, direction) {
 }
 
 function fbappsAnimalsLoadFacebook() {
-  var comments = $('.fb-social-comments-plugin');
-  FB.XFBML.parse(comments[0]);
   Drupal.attachBehaviors('#picsforpets-share');
 }
 

@@ -10,9 +10,6 @@ Drupal.behaviors.picsForPetsGlobalAuth = {
         status: true,
         cookie: true
       });
-      // FB comments may need to be re-parsed following init.
-      var comments = $('.fb-social-comments-plugin');
-      FB.XFBML.parse(comments[0]);
     };
   }
 };

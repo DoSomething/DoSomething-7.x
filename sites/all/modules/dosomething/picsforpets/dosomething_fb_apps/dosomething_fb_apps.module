@@ -34,17 +34,6 @@ function dosomething_fb_apps_preprocess_views_mini_pager(&$variables) {
 }
 
 /**
- * Implements hook_init().
- */
-function dosomething_fb_apps_init() {
-  // Override the Facebook social URL to use the app link.
-  if (menu_get_custom_theme() == 'picsforpets') {
-    global $conf;
-    $conf['fb_social_base_url'] = DOSOMETHING_FB_APPS_URL;
-  }
-}
-
-/**
  * Implements hook_menu().
  * TODO: use no_js here.
  */
