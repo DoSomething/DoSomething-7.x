@@ -528,7 +528,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-picsforpets-general-thanks-form button,
 #dosomething-picsforpets-general-thanks-form input[type="reset"],
 #dosomething-picsforpets-general-thanks-form input[type="submit"],
-#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button, .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -543,7 +543,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-picsforpets-general-thanks-form button,
 #dosomething-picsforpets-general-thanks-form input[type="reset"],
 #dosomething-picsforpets-general-thanks-form input[type="submit"],
-#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more #edit-results-wrapper-more-wrapper-view-more-button {
+#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"] {
   color: #ec1c24;
   background: white;
   padding: 2px 12px;
@@ -1954,12 +1954,7 @@ a.footer-furtography {
 }
 
 .picsforpets-share-count-arrow {
-  background: url(../images/fb-share-count.png) no-repeat;
-  background-position: 2px 8px;
-  position: relative;
-  z-index: 800;
-  padding: 3px;
-  margin-right: -2px;
+  display: none;
 }
 
 .picsforpets-share-count {
@@ -2722,10 +2717,12 @@ select#edit-sort-by {
 .gallery-thumbnail-text a {
   color: white;
   padding: 0;
+  margin-bottom: -30px;
+  display: block;
 }
 .gallery-thumbnail-text .click-to-learn {
   font-size: 18px;
-  margin-bottom: 4px;
+  margin-bottom: 38px;
 }
 .gallery-thumbnail-text .click-to-learn a {
   border-bottom: 1px solid white;
@@ -2735,33 +2732,42 @@ select#edit-sort-by {
   opacity: 1;
 }
 .gallery-thumbnail-text .gallery-share-button {
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-  border-radius: 6px;
-  overflow: hidden;
-  *zoom: 1;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  display: inline;
+  float: left;
   cursor: pointer;
   background: #6e85b2;
   padding: 4px;
   margin-right: 8px;
+  margin-top: 12px;
+  margin-left: 12px;
   width: 190px;
   font-size: 18px;
-  line-height: 1;
+  line-height: 0.75;
   text-transform: uppercase;
   color: white;
+  display: block;
+  width: 60px;
 }
 .gallery-thumbnail-text .gallery-share-count {
   border: 1px solid #c5c6c8;
   position: relative;
   z-index: 750;
   background-color: white;
-  padding: 2px 4px;
+  padding: 4px;
   color: #a6a8ab;
-}
-.gallery-thumbnail-text .picsforpets-share-count-arrow {
-  margin-right: -1px;
+  display: block;
+  margin-top: 12px;
+  display: inline;
+  float: left;
+  height: 21px;
+  min-width: 22px;
+  font-size: 18px;
+  line-height: 0.75;
 }
 
 .no-results {
