@@ -2499,6 +2499,22 @@ a.footer-furtography {
   margin: 8px auto;
 }
 
+.form-next,
+.form-back {
+  margin-top: 36px;
+}
+
+.find-shelter-help {
+  clear: both;
+  float: right;
+  position: relative;
+  top: -40px;
+}
+.find-shelter-help .not-partnered-shelter {
+  text-align: center;
+  width: 105px;
+}
+
 .page-pics-for-pets-action-guide h2 {
   text-transform: uppercase;
   font-size: 28px;
