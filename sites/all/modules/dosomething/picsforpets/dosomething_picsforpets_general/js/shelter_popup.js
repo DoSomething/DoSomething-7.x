@@ -2,7 +2,7 @@
 Drupal.behaviors.picsforpetsShelterPopup = {
   attach: function (context, settings) {
     var $context = $(context);
-    // Instantiate the selected shleter if it has not already been done.
+    // Instantiate the selected shelter if it has not already been done.
     settings.picsforpetsShelterOptions = settings.picsforpetsShelterOptions || {
       selectedResult : {
         address : '',
@@ -15,19 +15,27 @@ Drupal.behaviors.picsforpetsShelterPopup = {
      }
     };
 
-    // Set all the address form values
-    $('#edit-submitted-find-your-shelter-field-fb-app-shelter-name-und-0-value').attr(
-      {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name}
-    );
-    $('#edit-submitted-find-your-shelter-field-fb-app-address-und-0-value').attr(
-      {value : settings.picsforpetsShelterOptions.selectedResult.address}
-    );
-    $('#edit-submitted-find-your-shelter-field-fb-app-city-und-0-value').attr(
-      {value : settings.picsforpetsShelterOptions.selectedResult.city}
-    );
-    $('#edit-submitted-find-your-shelter-field-fb-app-zip-und-0-value').attr(
-      {value : settings.picsforpetsShelterOptions.selectedResult.shelter_zip}
-    );
+    // Set all the address form values that are found in settings.
+    if (settings.picsforpetsShelterOptions.selectedResult.shelter_name) {
+      $('#edit-submitted-find-your-shelter-field-fb-app-shelter-name-und-0-value').attr(
+        {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name}
+      );
+    }
+    if (settings.picsforpetsShelterOptions.selectedResult.address) {
+      $('#edit-submitted-find-your-shelter-field-fb-app-address-und-0-value').attr(
+        {value : settings.picsforpetsShelterOptions.selectedResult.address}
+      );
+    }
+    if (settings.picsforpetsShelterOptions.selectedResult.city) {
+      $('#edit-submitted-find-your-shelter-field-fb-app-city-und-0-value').attr(
+        {value : settings.picsforpetsShelterOptions.selectedResult.city}
+      );
+    }
+    if (settings.picsforpetsShelterOptions.selectedResult.shelter_zip) {
+      $('#edit-submitted-find-your-shelter-field-fb-app-zip-und-0-value').attr(
+        {value : settings.picsforpetsShelterOptions.selectedResult.shelter_zip}
+      );
+    }
 
     // Handle the autofill of the shelter reference
     if (settings.picsforpetsShelterOptions.selectedResult.shelter_name != '' && settings.picsforpetsShelterOptions.selectedResult.shelter_nid != '') {
