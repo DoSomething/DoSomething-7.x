@@ -75,5 +75,7 @@ function dosomething_picsforpets_general_update_7001() {
  * Implements hook_uninstall()
  */
 function dosomething_picsforpets_general_uninstall() {
+  // Delete the webform submission node.
+  node_delete(variable_get('picsforpets_animal_form_id'));
   variable_del('picsforpets_animal_form_id');
 }
