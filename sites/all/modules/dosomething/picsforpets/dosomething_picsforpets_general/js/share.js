@@ -20,7 +20,7 @@ Drupal.behaviors.dsPfpShare = {
     });
 
     // Use the 'feed' method because it allows us to post metadata.
-    var shareUrl = settings.picsforpetsFBAuth.app_url + '/webform-submission/' + sid;
+    var shareUrl = settings.picsforpetsFBAuth.app_url + '/submit-pet-picture/submission/' + sid;
     var share = {
       method: 'feed',
       name: 'DoSomething.org\'s Pics For Pets Project',
