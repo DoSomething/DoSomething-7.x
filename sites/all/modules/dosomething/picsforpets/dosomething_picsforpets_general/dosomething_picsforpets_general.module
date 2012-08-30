@@ -682,6 +682,34 @@ function dosomething_picsforpets_general_save_webform_node($path) {
 }
 
 /**
+ * Get a serialized webform from a file and save it as a node.
+ *
+ * @param $path
+ *   The file path on disc of the serialized node.
+ */
+function dosomething_picsforpets_general_save_campaign_node($path) {
+  $webform = unserialize(file_get_contents($path));
+  $webform_data = $webform->webform;
+  unset($webform->webform);
+  node_save($webform);
+  unset ($webform->webform);
+
+  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
+  $webform->webform = $webform_data;
+  $webform_data['nid'] = $webform->nid;
+  $webform->webform['record_exists'] = TRUE;
+  foreach ($webform->webform['components'] as $key => $component) {
+    $webform->webform['components'][$key]['nid'] = $webform->nid;
+    if (!$webform->webform['components'][$key]['mandatory']) {
+      $webform->webform['components'][$key]['mandatory'] = 0;
+    }
+  }
+  node_save($webform);
+  variable_set('picsforpets_campaign_node_id', $webform->nid);
+  return $webform;
+}
+
+/**
  * Recurse through a webform object and add a new $nid.
  */
 function dosomething_picsforpets_general_recursively_readd_nid(&$thing, $nid) {
@@ -724,6 +752,34 @@ function dosomething_picsforpets_general_regenerate_webform_node() {
 
   //Get the node data and save it into drupal
   dosomething_picsforpets_general_save_webform_node($file);
+}
+
+/**
+ * A function to update the campaign sign up node that needs to be imported for
+ * deployment. N.B. In order for this to work the nodes directory in this module
+ * MUST BE writable by the apache user (usually www-data) and so should probably
+ * be owned or group owned by that user.
+ */
+function dosomething_picsforpets_general_update_campaign_node() {
+  $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type AND title = :title', 0, 1, array(':type' => 'campaign_sign_up', ':title' => 'Pics for Pets Furtography Sign Up'))->fetchField();
+  $node = node_load($nid);
+  unset($node->nid);
+  unset($node->vid);
+  $node->webform['record_exists'] = FALSE;
+
+  $serialized = serialize($node);
+  file_put_contents(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/furtography_campaign.txt', $serialized);
+}
+
+/**
+ * Import of the campaign node.
+ */
+function dosomething_picsforpets_general_regenerate_campaign_node() {
+  // Get the list of files from the directory. Only serialized text files.
+  $file = drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/furtography_campaign.txt';
+
+  //Get the node data and save it into drupal
+  dosomething_picsforpets_general_save_campaign_node($file);
 }
 
 /**
