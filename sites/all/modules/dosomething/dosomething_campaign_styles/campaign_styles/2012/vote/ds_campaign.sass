@@ -176,7 +176,7 @@ div[role="main"]
 // navigation
 #block-dosomething-campaign-styles-campaign-nav
   font-family: $accent
-  background: url('http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png')
+  background: url('http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png') no-repeat
   height: 329px
   margin-right: -15px
   margin-left: 15px
@@ -647,6 +647,8 @@ ul.gallery
     line-height: 1.3em
     margin: 10px 0 20px 0  
 .vote-step-two
+  form
+    padding: 0 20px
   img.img-step-two
     margin-left: -1px
     margin-bottom: 0 !important
@@ -661,8 +663,8 @@ ul.gallery
   p
     margin: 0 20px 10px 20px 
   input
-    width: 333px
-    margin: 0 20px
+    width: 320px
+    margin: 2px
     font-size: 14px
     padding: 14px 10px
     text-transform: uppercase
@@ -849,3 +851,27 @@ html[xmlns] .clearfix
     padding: 20px
   a
     text-decoration: none  
+
+//SIGN UP PAGE STYLE
+#vote-register-sign-up
+  .pane-title
+    display: none
+  #edit-actions
+    bottom: 0  
+
+.pane-dosomething-login-register-block
+  margin-bottom: 0 !important
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+.node-campaign-sign-up
+  width: 100%
+
+
+//IE FIX
+#meet-candidates
+  img
+    max-width: none !important
