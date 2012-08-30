@@ -10,15 +10,16 @@ Drupal.behaviors.dosomethingFBApps = {
       fbClickMe : false,
       fbAnimalSelected : ''
     };
-    
-    // Crazy autosubmit if we land on a view page and need our sort options reset.
+
+    // Crazy autosubmit if we land on a view page and need our sort options
+    // reset.
     if (settings.dosomethingFBApps.fbClickMe) {
       // Set the select and click the button.
       $context.find('select[name=field_fb_app_animal_type_value]').val(settings.dosomethingFBApps.fbAnimalSelected);
       $context.find('select[name=sort_by]').val('closest_to_me');
       $context.find('#edit-submit-pics-for-pets-gallery').click();
     }
-    
+
     // Only make the pop occur if we are on the 'closest to me setting' and we
     // don't have a zip.
     $context.find('#views-exposed-form-pics-for-pets-gallery-panel-pane-1 select[name=sort_by]').change(function() {
@@ -33,7 +34,6 @@ Drupal.behaviors.dosomethingFBApps = {
         });
       }
     });
-
 
     /*if (!settings.dosomethingFBApps.fbZip) {
       $('#edit-zip').focus(function() {

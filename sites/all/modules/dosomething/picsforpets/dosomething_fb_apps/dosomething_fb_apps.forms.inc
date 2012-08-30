@@ -16,7 +16,7 @@ function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
   else {
     $form['#reset_sort'] = FALSE;
   }
-  
+
   // Add the previously selected animal filter option if it existed.
   $form['#animal_type'] = !empty($form_state['animal_type']) ? $form_state['animal_type'] : '';
 
@@ -40,17 +40,16 @@ function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
     ),
   );
 
-  $form ['container']['zip'] = array(
+  $form['container']['zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter Zip:'),
     '#required' => TRUE,
   );
-  $form ['container']['animal_type'] = array(
+  $form['container']['animal_type'] = array(
     '#type' => 'hidden',
-    '#value' => '',
   );
 
-  $form ['container']['submit'] = array(
+  $form['container']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
     '#submit' => array('dosomething_fb_apps_enter_zip_form_submit'),

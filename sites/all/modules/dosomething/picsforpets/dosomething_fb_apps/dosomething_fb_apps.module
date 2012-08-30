@@ -172,14 +172,14 @@ function dosomething_fb_apps_preprocess_views_view(&$variables) {
   if ($variables['name'] != 'pics_for_pets_gallery') {
     return;
   }
-  
+
   global $user;
   $view = $variables['view'];
-  
   $form_state = array();
   form_load_include($form_state, 'inc', 'dosomething_fb_apps', 'dosomething_fb_apps.forms');
   $form = drupal_get_form('dosomething_fb_apps_enter_zip_form');
-  
+  $form['container']['animal_type']['#value'] = $view->exposed_raw_input['field_fb_app_animal_type_value'];
+
   // Attach js setting to pop up the modal window.
   drupal_add_js(
     array(
