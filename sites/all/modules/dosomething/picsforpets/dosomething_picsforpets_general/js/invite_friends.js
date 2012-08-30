@@ -20,15 +20,18 @@ Drupal.behaviors.inviteFriendsModal = {
 Drupal.behaviors.galleryShareButton = {
   attach: function (context, settings) {
     $('.gallery-share-button').click(function () {
-      var sid = $(this).parent().attr('id');
-      var shareUrl = 'https://apps.facebook.com/zivtechdev/webform-submission/' + sid;
-      var threeWords = settings.dosomething_picsforpets_general.gallery[sid].threeWords;
+      var sid = parseInt($(this).parent().attr('id'));
+      var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
+      var threeWords = [];
+      threeWords[0] = 0 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[0].raw.safe_value : "Fun";
+      threeWords[1] = 1 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[1].raw.safe_value : "Cute";
+      threeWords[2] = 2 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[2].raw.safe_value : "Friendly";
       var share = {
         method: 'feed',
         name: 'DoSomething.org\'s Pics For Pets Project',
         link: shareUrl,
-        picture: 'http://picsforpets.dev.zivtech.com/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        caption: settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0].raw.safe_value + ", " + threeWords[1].raw.safe_value + ", and " + threeWords[2].raw.safe_value,
+        picture: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        caption: settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
         description: "@DoSomething about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
       };
       FB.ui(share, function(response) {
@@ -41,7 +44,7 @@ Drupal.behaviors.galleryShareButton = {
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
-          $.post('https://apps.facebook.com/zivtechdev/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+          $.post('/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
             // Update the page with the new share count.
             $('.picsforpets-share-count').text(userShares);
             // Display a modal dialog depending on the total number of shares

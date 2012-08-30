@@ -17,7 +17,8 @@ function dosomething_picsforpets_general_content_type_gallery_link($subtype = ''
 
   // Build the markup for the link.
   $output = '<div class="picsforpets-scholarship"><a href="/pics-for-pets/gallery">' . t('$5k Scholarship') . '</a></div>';
-  $output .= '<div class="picsforpets-gallery"><a href="/webform-submission/' . $sid . '">' . t('Take me to the paw-trait gallery') . '</a></div>';
+  $path = drupal_get_path_alias('node/' . $webform_id);
+  $output .= '<div class="picsforpets-gallery"><a href="/' . $path . '/submission/' . $sid . '">' . t('Take me to the paw-trait gallery') . '</a></div>';
 
   $block = new stdClass();
   $block->content = array(
