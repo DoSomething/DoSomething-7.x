@@ -67,3 +67,11 @@ function dosomething_fb_apps_update_7000() {
 
   db_create_table('ds_fb_user_zips', $schema);
 }
+
+/**
+ * Implements hook_uninstall().
+ */
+function dosomething_fb_apps_uninstall() {
+  variable_del('ds_picsforpets_fb_app_url');
+  variable_del('ds_picsforpets_fb_app_secure_url');
+}
