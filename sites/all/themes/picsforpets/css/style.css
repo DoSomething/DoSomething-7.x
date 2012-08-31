@@ -2163,7 +2163,7 @@ a.footer-furtography {
 .page-pics-for-pets-questions .questions-email a {
   border-bottom: 1px solid;
 }
-.page-pics-for-pets-questions .content {
+.page-pics-for-pets-questions div[role="main"] {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -2179,19 +2179,19 @@ a.footer-furtography {
   padding: 12px;
   width: 552px;
 }
-.page-pics-for-pets-questions .content .fieldset-legend {
+.page-pics-for-pets-questions div[role="main"] .fieldset-legend {
   letter-spacing: 0;
 }
-.page-pics-for-pets-questions .content fieldset.collapsed {
+.page-pics-for-pets-questions div[role="main"] fieldset.collapsed {
   height: auto;
 }
-.page-pics-for-pets-questions .content fieldset a {
+.page-pics-for-pets-questions div[role="main"] fieldset a {
   color: black;
   font-family: "DINOT", sans-serif;
   font-size: 18px;
   text-transform: none;
 }
-.page-pics-for-pets-questions .content fieldset .fieldset-wrapper {
+.page-pics-for-pets-questions div[role="main"] fieldset .fieldset-wrapper {
   border: none;
   background-color: transparent;
   line-height: 1.2;
