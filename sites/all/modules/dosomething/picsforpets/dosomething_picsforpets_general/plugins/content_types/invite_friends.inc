@@ -48,6 +48,9 @@ function dosomething_picsforpets_general_content_type_render_invite($subtype = '
         array('data' => array('fb_access_token' => $facebook->getAccessToken()), 'type' => 'setting'),
         ctools_attach_js('invite_friends', 'dosomething_picsforpets_general'),
       ),
+      'library' => array(
+        array('system', 'ui.dialog'),
+      ),
     ),
   );
   return $block;
