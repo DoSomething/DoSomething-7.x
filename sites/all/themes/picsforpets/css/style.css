@@ -1272,10 +1272,7 @@ del {
 }
 
 #site-name a {
-  border-bottom: none;
-}
-#site-name a:hover {
-  border-bottom: none;
+  text-decoration: none;
 }
 
 #main-menu {
@@ -1376,12 +1373,6 @@ ul.tabs li a {
   -webkit-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-ul.tabs li a {
-  border-bottom: none;
-}
-ul.tabs li a:hover {
-  border-bottom: none;
-}
 ul.tabs li a:hover {
   background-color: white;
   border-bottom: 1px solid white;
@@ -1468,17 +1459,11 @@ ul.pager li.last {
   padding-right: 0;
 }
 ul.pager a {
-  border-bottom: none;
-}
-ul.pager a:hover {
-  border-bottom: none;
+  text-decoration: none;
 }
 
 a.feed-icon {
-  border-bottom: none;
-}
-a.feed-icon:hover {
-  border-bottom: none;
+  text-decoration: none;
 }
 
 ul.inline {
@@ -1798,14 +1783,19 @@ a.footer-furtography {
   color: black;
   padding: 24px;
   margin-bottom: 24px;
+  width: 100%;
 }
 #shelter-results .shelter-results-option-list input {
   display: inline;
   float: left;
+  width: auto;
 }
 #shelter-results .shelter-results-option-list .form-item-results {
+  display: inline;
+  float: left;
   overflow: hidden;
   *zoom: 1;
+  clear: both;
   margin-bottom: 24px;
 }
 #shelter-results .shelter-results-option-list .form-item-results .label-shelter-title {
@@ -2009,7 +1999,7 @@ a.footer-furtography {
   list-style-type: none;
 }
 .big-numbers li:before {
-  content: counter(li) ". ";
+  content: counter(li);
   counter-increment: li;
 }
 .big-numbers li {
@@ -2429,7 +2419,7 @@ a.footer-furtography {
   margin: 0 auto;
   margin-top: 60px;
   padding: 3px 0;
-  height: 325px;
+  height: 425px;
   width: 355px;
   overflow: auto;
   overflow-x: hidden;
@@ -2812,7 +2802,6 @@ select#edit-sort-by {
 }
 @media (max-width: 20.0625em) {
   .styletile #page {
-    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2827,7 +2816,6 @@ select#edit-sort-by {
 }
 @media (min-width: 20.0625em) and (max-width: 30.0625em) {
   .styletile #page {
-    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2842,7 +2830,6 @@ select#edit-sort-by {
 }
 @media (min-width: 30.0625em) and (max-width: 45.0625em) {
   .styletile #page {
-    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2858,32 +2845,25 @@ select#edit-sort-by {
     width: 48.27586%;
     float: left;
     margin-right: 3.44828%;
-    display: inline;
   }
   .styletile #page header aside {
     width: 48.27586%;
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
   .styletile #page #main .text-examples {
     width: 48.27586%;
     float: left;
     margin-right: 3.44828%;
-    display: inline;
   }
   .styletile #page #main .graphic-examples {
     width: 48.27586%;
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 45.0625em) and (max-width: 64.0625em) {
   .styletile #page {
-    *zoom: 1;
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -2899,34 +2879,26 @@ select#edit-sort-by {
     width: 61.53846%;
     float: left;
     margin-right: 2.5641%;
-    display: inline;
   }
   .styletile #page header aside {
     width: 35.89744%;
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
   .styletile #page #main .text-examples {
     width: 48.71795%;
     float: left;
     margin-right: 2.5641%;
-    display: inline;
   }
   .styletile #page #main .graphic-examples {
     width: 48.71795%;
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 64.0625em) {
   .styletile #page {
-    *zoom: 1;
     max-width: 59em;
-    _width: 59em;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1em;
@@ -2941,27 +2913,21 @@ select#edit-sort-by {
     width: 66.10169%;
     float: left;
     margin-right: 1.69492%;
-    display: inline;
   }
   .styletile #page header aside {
     width: 32.20339%;
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
   .styletile #page #main .text-examples {
     width: 49.15254%;
     float: left;
     margin-right: 1.69492%;
-    display: inline;
   }
   .styletile #page #main .graphic-examples {
     width: 49.15254%;
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 
@@ -2989,13 +2955,10 @@ select#edit-sort-by {
     width: 44.44444%;
     float: left;
     margin-right: 11.11111%;
-    display: inline;
   }
   .styletile .colors ul li:nth-of-type(2n+2) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 20.0625em) and (max-width: 30.0625em) {
@@ -3003,13 +2966,10 @@ select#edit-sort-by {
     width: 28.57143%;
     float: left;
     margin-right: 7.14286%;
-    display: inline;
   }
   .styletile .colors ul li:nth-of-type(3n+3) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 30.0625em) and (max-width: 45.0625em) {
@@ -3017,13 +2977,10 @@ select#edit-sort-by {
     width: 28.57143%;
     float: left;
     margin-right: 7.14286%;
-    display: inline;
   }
   .styletile .colors ul li:nth-of-type(3n+3) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 45.0625em) and (max-width: 64.0625em) {
@@ -3031,13 +2988,10 @@ select#edit-sort-by {
     width: 21.05263%;
     float: left;
     margin-right: 5.26316%;
-    display: inline;
   }
   .styletile .colors ul li:nth-of-type(4n+4) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 64.0625em) {
@@ -3045,13 +2999,10 @@ select#edit-sort-by {
     width: 13.7931%;
     float: left;
     margin-right: 3.44828%;
-    display: inline;
   }
   .styletile .colors ul li:nth-of-type(6n+6) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 
@@ -3072,13 +3023,10 @@ select#edit-sort-by {
     width: 47.36842%;
     float: left;
     margin-right: 5.26316%;
-    display: inline;
   }
   .styletile .images ul li:nth-of-type(2n+2) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 @media (min-width: 64.0625em) {
@@ -3086,13 +3034,10 @@ select#edit-sort-by {
     width: 48.27586%;
     float: left;
     margin-right: 3.44828%;
-    display: inline;
   }
   .styletile .images ul li:nth-of-type(2n+2) {
     float: right;
     margin-right: 0;
-    #margin-left: -1em;
-    display: inline;
   }
 }
 
