@@ -300,6 +300,7 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => 'Submit',
   );
+  $form['#action'] = '/pics-for-pets/gallery';
   return $form;
 }
 
@@ -341,8 +342,23 @@ function dosomething_picsforpets_general_thanks_form_validate($form, &$form_stat
  * dosomething_picsforpets_general_thanks_form.
  */
 function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state) {
-  dpm('submitting');
-  // Save data to the campaign signup form.
+  // Save to a campaign sign up webform.
+  $email = $form_state['values']['email'];
+  $cell = $form_state['values']['cell'];
+
+  global $user;
+  $submission = entity_create('webform_submission_entity', array('bundle' => 'campaign_sign_up'));
+  $submission->uid = $user->uid;
+  $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  $submission->submitted = REQUEST_TIME;
+  $submission->remote_addr = ip_address();
+  unset($submission->is_new);
+  entity_save('webform_submission_entity', $submission);
+  $submissions = entity_load('webform_submission_entity', array($submission->sid));
+  $submission = array_shift($submissions);
+  $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
+  $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
+  field_attach_update('webform_submission_entity', $submission);
 }
 
 /**
