@@ -333,7 +333,6 @@ function dosomething_picsforpets_invite_form($form, &$form_state) {
  * dosomething_picsforpets_general_thanks_form.
  */
 function dosomething_picsforpets_general_thanks_form_validate($form, &$form_state) {
-  dpm('validating');
   // TODO: do js validation.
 }
 
@@ -359,6 +358,19 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
   $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
   $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
   field_attach_update('webform_submission_entity', $submission);
+
+    // Subscribe to mailchimp.
+  if (module_exists('mailchimp')) {
+    $list = mailchimp_lists_load(1);
+    $params = array(
+      'GROUPINGS' => array(
+        array('id' => '9573', 'groups' => 'PicsforPetsSharers'),
+      ),
+      'EMAIL' => $email,
+      'UID' => $user->uid,
+    );
+    mailchimp_subscribe_user($list, $email, $params, FALSE);
+  }
 }
 
 /**
