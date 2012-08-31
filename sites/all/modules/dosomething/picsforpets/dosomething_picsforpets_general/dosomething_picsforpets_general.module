@@ -8,6 +8,8 @@ include_once 'dosomething_picsforpets_general.features.inc';
 
 // The node id for the pet submission form.
 define('PICSFORPETS_PET_SUBMISSION_NID', variable_get('picsforpets_animal_form_id', 3));
+// The node id for the campaign signup form.
+define('PICSFORPETS_CAMPAIGN_SIGNUP_NID', variable_get('picsforpets_campaign_signup_id', 15));
 
 /**
  * Implements hook_menu().
@@ -211,7 +213,39 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
 }
 
 function dosomething_picsforpets_general_furtographer_form_submit($form, $form_state) {
-  // TODO: send to mailchimp and campaign sign up webform.
+  // Save to a campaign sign up webform.
+  $email = $form_state['values']['email'];
+  $cell = $form_state['values']['cell'];
+  $name = $form_state['values']['address']['fields']['name'];
+  $street1 = $form_state['values']['address']['fields']['street1'];
+  $street2 = $form_state['values']['address']['fields']['street2'];
+  $city = $form_state['values']['address']['fields']['city'];
+  $state = $form_state['values']['address']['fields']['state'];
+  $zip = $form_state['values']['address']['fields']['zip'];
+
+  global $user;
+  $submission = entity_create('webform_submission_entity', array('bundle' => 'campaign_sign_up'));
+  $submission->uid = $user->uid;
+  $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  $submission->submitted = REQUEST_TIME;
+  $submission->remote_addr = ip_address();
+  $submission->data = array(
+    '1' => array('value' => $name),
+    '2' => array('value' => $street1),
+    '3' => array('value' => $street2),
+    '4' => array('value' => $city),
+    '5' => array('value' => $state),
+    '6' => array('value' => $zip),
+  );
+  unset($submission->is_new);
+  entity_save('webform_submission_entity', $submission);
+  $submissions = entity_load('webform_submission_entity', array($submission->sid));
+  $submission = array_shift($submissions);
+  $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = 'test@test.com';
+  $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
+  field_attach_update('webform_submission_entity', $submission);
+
+  // TODO: send to mailchimp.
 
   // Give user role of furtographer
   global $user;
@@ -284,6 +318,7 @@ function dosomething_picsforpets_invite_form($form, &$form_state) {
  */
 function dosomething_picsforpets_general_thanks_form_validate($form, &$form_state) {
   dpm('validating');
+  // TODO: do js validation.
 }
 
 /**
@@ -292,7 +327,9 @@ function dosomething_picsforpets_general_thanks_form_validate($form, &$form_stat
  */
 function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state) {
   dpm('submitting');
+  // Save data to the campaign signup form.
 }
+
 /**
  * Implements hook_custom_theme().
  */
