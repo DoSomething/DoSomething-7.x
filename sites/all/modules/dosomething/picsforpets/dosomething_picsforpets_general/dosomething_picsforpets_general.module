@@ -231,14 +231,14 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
-  if ($form_state['values']['kit']) {
+  if ($form_state['values']['kit'] && ($name || $street1 || $street2 || $city || $state || $zip)) {
     $submission->data = array(
-      '1' => array('value' => $name),
-      '2' => array('value' => $street1),
-      '3' => array('value' => $street2),
-      '4' => array('value' => $city),
-      '5' => array('value' => $state),
-      '6' => array('value' => $zip),
+      '1' => array('value' => array($name)),
+      '2' => array('value' => array($street1)),
+      '3' => array('value' => array($street2)),
+      '4' => array('value' => array($city)),
+      '5' => array('value' => array($state)),
+      '6' => array('value' => array($zip)),
     );
   }
   unset($submission->is_new);
@@ -250,15 +250,17 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   field_attach_update('webform_submission_entity', $submission);
 
   // Subscribe to mailchimp.
-  $list = mailchimp_lists_load(1);
-  $params = array(
-    'GROUPINGS' => array(
-      array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
-    ),
-    'EMAIL' => $email,
-    'UID' => $user->uid,
-  );
-  mailchimp_subscribe_user($list, $email, $params, FALSE);
+  if (module_exists('mailchimp')) {
+    $list = mailchimp_lists_load(1);
+    $params = array(
+      'GROUPINGS' => array(
+        array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
+      ),
+      'EMAIL' => $email,
+      'UID' => $user->uid,
+    );
+    mailchimp_subscribe_user($list, $email, $params, FALSE);
+  }
 
   // Give user role of furtographer
   global $user;
