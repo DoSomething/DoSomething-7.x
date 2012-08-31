@@ -14,17 +14,18 @@
 
 // new styles for animals!
 
-#section0, #section1, #section2, #section3
+.section
   width: 750px
+  overflow: auto
   background: #fff
   margin: 3% auto
   padding: 2%
 
-#section0
+.s0
   background-image: url("assets/bg.jpg")
+  background-size: 100%
+  background-repeat: no-repeat
+  background-color: $bgFallback
 
-#section1 img
-  +noShadow
-
-#section3 img
+.s1 img, .s3 img
   +noShadow
