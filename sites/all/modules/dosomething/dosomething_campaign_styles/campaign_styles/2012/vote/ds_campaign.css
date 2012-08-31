@@ -747,8 +747,8 @@ html[xmlns] .clearfix {
 .report-back-teaser a {
   text-decoration: none;
   color: #222222; }
-.report-back-teaser a.go-button {
-  position: static !important; }
+  .report-back-teaser a.go-button {
+    position: static !important; }
 
 #vote-register-sign-up .pane-title {
   display: none; }
