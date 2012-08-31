@@ -10,6 +10,7 @@
     border: 1px solid #C9CBCD
   .help-text
     margin-bottom: 10px
+    margin-top: -130px
     text-align: center
   // Style the zip code label
   .form-item-zip
@@ -53,6 +54,7 @@
   height: 325px
   width: 355px
   overflow: auto
+  overflow-x: hidden
   // Scrollbar styling
   &::-webkit-scrollbar
     -webkit-appearance: none
@@ -103,16 +105,18 @@
       display: block
       margin: 8px auto
 
-.form-next,
-.form-back
-  margin-top: 36px
+// Shelter search form buttons
+.shelter-form-button
+  margin-top: 20px
 
 // Shelter help block
 .find-shelter-help
-  clear: both
-  float: right
+  display: inline-block
   position: relative
-  top: -40px
+  right: -645px
+  bottom: -320px
+  .find-one,
   .not-partnered-shelter
     text-align: center
+  .not-partnered-shelter
     width: 105px

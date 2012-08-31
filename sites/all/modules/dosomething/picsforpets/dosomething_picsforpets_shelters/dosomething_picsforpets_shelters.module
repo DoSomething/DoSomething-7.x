@@ -48,6 +48,12 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   }
   $form = array();
 
+  $form['no-shelter'] = array(
+    '#prefix' => '<div class="find-shelter-help">',
+    '#markup' => '<div class="find-one">' . '<a href="http://theshelterpetproject.org/shelters">' . '<img src="/sites/all/themes/picsforpets/images/cant-find-shelter.png" title="Click Here" alt="Unable to find a shelter? Click Here" />' . '</a>' . '</div>',
+    '#suffix' => '<div class="not-partnered-shelter">' . t('These are not DoSomething.org Partnered Shelters') . '</div></div>',
+  );
+
   $form['help'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -72,6 +78,7 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
       'wrapper' => 'shelter-results',
     ),
   );
+
   // Initialize the markup variable
   $markup = '';
   if (isset($form_state['results'])) {
@@ -88,12 +95,6 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   // Append the title info
   $markup = empty($markup) ? '' : '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
 
-  $form['no-shelter'] = array(
-    '#prefix' => '<div class="find-shelter-help">',
-    '#markup' => '<span class="help-find-shelter">' . '</span>',
-    '#suffix' => '<div class="not-partnered-shelter">' . t('These are not DoSomething.org Partnered Shelters') . '</div></div>',
-    '#weight' => 5,
-  );
   $form['results-wrapper'] = array(
     '#tree' => TRUE,
     '#prefix' => '<div id="shelter-results">',
@@ -111,6 +112,7 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   // If we have more results or should add the button let's add the container
   // element.
   if (!empty($form_state['view_more']) || !empty($more)) {
+
     $form['results-wrapper']['more-wrapper'] = array(
       '#tree' => TRUE,
       '#prefix' => '<div id="shelter-results-more">',
@@ -134,16 +136,16 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
     );
   }
   $form['back'] = array(
-    '#prefix' => '<div class="form-back">',
+    '#prefix' => '<div class="shelter-form-button">',
     '#markup' => l('Back', 'pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
     '#suffix' => '</div>',
-    '#weight' => 6,
+    '#weight' => 7,
   );
   $form['next'] = array(
-    '#prefix' => '<div class="form-next">',
+    '#prefix' => '<div class="shelter-form-button">',
     '#markup' => l('Next', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
     '#suffix' => '</div>',
-    '#weight' => 6,
+    '#weight' => 7,
   );
   return $form;
 }
