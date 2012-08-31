@@ -217,12 +217,12 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   $email = $form_state['values']['email'];
   $cell = $form_state['values']['cell'];
   if ($form_state['values']['kit']) {
-    $name = $form_state['values']['address']['fields']['name'];
-    $street1 = $form_state['values']['address']['fields']['street1'];
-    $street2 = $form_state['values']['address']['fields']['street2'];
-    $city = $form_state['values']['address']['fields']['city'];
-    $state = $form_state['values']['address']['fields']['state'];
-    $zip = $form_state['values']['address']['fields']['zip'];
+    $name = $form_state['values']['name'];
+    $street1 = $form_state['values']['street1'];
+    $street2 = $form_state['values']['street2'];
+    $city = $form_state['values']['city'];
+    $state = $form_state['values']['state'];
+    $zip = $form_state['values']['zip'];
   }
 
   global $user;
