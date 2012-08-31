@@ -113,7 +113,7 @@ div[role="main"] {
 
 #block-dosomething-campaign-styles-campaign-nav {
   font-family: "vinyl_ot_regularregular", din-web, "Trebuchet MS", sans-serif;
-  background: url("http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png");
+  background: url("http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png") no-repeat;
   height: 329px;
   margin-right: -15px;
   margin-left: 15px;
@@ -232,7 +232,7 @@ div[role="main"] {
 .webform-client-form #edit-actions--2 {
   position: absolute;
   right: 80px;
-  bottom: 24px; }
+  top: 48px; }
 
 #campaign-opt-in {
   font-size: 11px;
@@ -555,6 +555,8 @@ ul.gallery {
   line-height: 1.3em;
   margin: 10px 0 20px 0; }
 
+.vote-step-two form {
+  padding: 0 20px; }
 .vote-step-two img.img-step-two {
   margin-left: -1px;
   margin-bottom: 0 !important;
@@ -569,10 +571,11 @@ ul.gallery {
 .vote-step-two p {
   margin: 0 20px 10px 20px; }
 .vote-step-two input {
-  width: 333px;
-  margin: 0 20px;
+  width: 320px;
+  margin: 4px 2px;
+  height: 35px;
   font-size: 14px;
-  padding: 14px 10px;
+  padding: 0px 10px;
   text-transform: uppercase;
   border: 1px solid lightgray; }
 .vote-step-two input.submit-btn {
@@ -732,11 +735,39 @@ html[xmlns] .clearfix {
 .vote-logo, #vote-take-action, #vote-scholarship, #vote-learn-the-issue, #vote-questions, .panel-row-actions, #meet-candidates, #vote-head-count {
   box-shadow: 0px 0px 8px 2px #111111 !important; }
 
-#vote-head-count .pane-title {
-  display: none; }
+#vote-head-count {
+  line-height: 0em; }
+  #vote-head-count .pane-title {
+    display: none; }
 
 .report-back-teaser p {
   text-align: center;
-  padding: 20px; }
+  padding: 20px 0 0 0; }
 .report-back-teaser a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #222222; }
+  .report-back-teaser a .go-button {
+    position: static; }
+
+#vote-register-sign-up .pane-title {
+  display: none; }
+#vote-register-sign-up .webform-client-form #edit-actions,
+#vote-register-sign-up .webform-client-form #edit-actions--2 {
+  position: static;
+  text-align: center;
+  padding: 10px; }
+
+.pane-dosomething-login-register-block {
+  margin-bottom: 0 !important; }
+
+form.webform-client-form {
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none; }
+
+.node-campaign-sign-up {
+  width: 100%; }
+
+#meet-candidates img {
+  max-width: none !important; }

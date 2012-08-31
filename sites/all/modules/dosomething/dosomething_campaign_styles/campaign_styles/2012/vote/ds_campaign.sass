@@ -176,7 +176,7 @@ div[role="main"]
 // navigation
 #block-dosomething-campaign-styles-campaign-nav
   font-family: $accent
-  background: url('http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png')
+  background: url('http://files.dosomething.org/files/campaigns/vote/vote-menu-2.png') no-repeat
   height: 329px
   margin-right: -15px
   margin-left: 15px
@@ -293,7 +293,7 @@ div[role="main"]
   #edit-actions--2
     position: absolute
     right: 80px
-    bottom: 24px
+    top: 48px
 
 #campaign-opt-in
   font-size: 11px
@@ -647,6 +647,8 @@ ul.gallery
     line-height: 1.3em
     margin: 10px 0 20px 0  
 .vote-step-two
+  form
+    padding: 0 20px
   img.img-step-two
     margin-left: -1px
     margin-bottom: 0 !important
@@ -661,17 +663,18 @@ ul.gallery
   p
     margin: 0 20px 10px 20px 
   input
-    width: 333px
-    margin: 0 20px
+    width: 320px
+    margin: 4px 2px
+    height: 35px
     font-size: 14px
-    padding: 14px 10px
+    padding: 0px 10px
     text-transform: uppercase
     border: 1px solid lightgray
   input.submit-btn
     background: url('http://files.dosomething.org/files/campaigns/vote/submit-btn.png') center center no-repeat !important
     text-indent: -99999px
     border: none
-    margin-bottom: 20px   
+    margin-bottom: 20px
 .contest
   position: absolute
   left: 50%
@@ -835,17 +838,47 @@ html[xmlns] .clearfix
 .vote-logo, #vote-take-action, #vote-scholarship, #vote-learn-the-issue, #vote-questions, .panel-row-actions, #meet-candidates, #vote-head-count
   box-shadow: 0px 0px 8px 2px #111 !important
 
-
 //HEAD COUNT PAGE
 #vote-head-count
+  line-height: 0em
   .pane-title
-    display: none    
-
+    display: none
 
 //REPORT BACK TEASE
 .report-back-teaser
   p
     text-align: center
-    padding: 20px
+    padding: 20px 0 0 0
   a
-    text-decoration: none  
+    text-decoration: none
+    color: #222
+    .go-button  
+      position: static  
+
+//SIGN UP PAGE STYLE
+#vote-register-sign-up
+  .pane-title
+    display: none
+  .webform-client-form
+    #edit-actions,
+    #edit-actions--2
+      position: static
+      text-align: center
+      padding: 10px  
+
+.pane-dosomething-login-register-block
+  margin-bottom: 0 !important
+
+form.webform-client-form
+  border: none
+  box-shadow: none
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+.node-campaign-sign-up
+  width: 100%
+
+
+//IE FIX
+#meet-candidates
+  img
+    max-width: none !important
