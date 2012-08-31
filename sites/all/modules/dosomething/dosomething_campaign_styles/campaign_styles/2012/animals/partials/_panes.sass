@@ -1,7 +1,12 @@
 // PANES 
 
-#section0 > img
+//			//
+//	.s0			- header (sign up and logo) -
+//			//
+
+.s0 > img
   float: left
+  width: 21%
 
 #animal_dates
   float: right
@@ -14,16 +19,21 @@
 .pane-campaign-sign-up
   clear: both
   width: 100%
-  margin: 33% 0 0 0
+  margin: 37% 0 0 0
   h1
     font-family: din-web
     font-size: 23px
     text-align: center
     color: #fff
   input[type="text"], input[type="tel"]
-    width: 200px
+    width: 35% 
     float: left
-    margin: 0 0 0 5%
+    margin: 0 2.5%
+  #edit-actions
+    float: right
+    position: static
+    margin: 0 2% 0 0
+    height: 32px
 
 #campaign-opt-in
   clear: both
@@ -33,18 +43,54 @@
 .webform-client-form
   box-shadow: none
 
-#section2 h1
-  font-family: din-web
-  font-size: 25px
-  text-align: center
-  color: $accentColor
+//			//
+//	.s1			- copy section -
+//			//
 
-#section2
-  height: 225px
+.s1
+  text-align: center
+  h1
+    color: $medGrey
+    font-size: 24px
+    font-family: din-web
+    span
+      color: $darkGrey
+  h2
+    color: $accentColor
+    font-size: 24px
+    font-family: din-web
+    span
+      white-space: nowrap
+      background: url("http://files.dosomething.org/files/campaigns/animals/underline.png")
+      background-repeat: no-repeat
+      background-position-y: 28px
+      padding: 0 0 1% 0
+  p
+    font-family: din-web-reg
+    font-size: 14px
+    line-height: 1.5em
+    width: 69%
+    margin: 0 auto
+    padding: 1% 0
+    span
+      font-weight: 600
+  img
+    position: absolute
+    right: 30
+//			//
+//	.s2			- mobile commons webform -
+//			//
+
+.s2
   form
     width: 80%
     height: 100%
     margin: 0 auto
+  h1
+    color: $accentColor
+    font-size: 24px
+    font-family: din-web
+    text-align: center
 
 .mcommons-webform
   input.field
@@ -60,9 +106,10 @@
   margin-left: 9%
 
 .go-button
-  right: 45px
-  bottom: 20px
-  padding-top: 3px
+  position: static
+  float: right
+  padding: 1.5% 5% 1% 5%
+  margin: 0 14% 0 0
 
 form.webform-client-form
   border: none
@@ -79,3 +126,25 @@ form.webform-client-form
     
 .hidden
   display: none
+
+//			//
+//	.s3			- footer (sponsor section) -
+//			//
+
+.sponsors, .partners
+  float: left
+  padding: 0 0 0 2%
+
+.sponsors
+  width: 26%
+
+.partners
+  width: 70%
+  margin: 2% 0 2% 3%
+  border-left: 1px solid $medGrey
+  h3
+    text-transform: uppercase
+    color: $medGrey
+  img
+    margin: 2%
+  color: $lightGrey

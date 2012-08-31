@@ -15,6 +15,65 @@
 body {
   background: #d1e9ed; }
 
+@media only screen and (max-width: 1075px) {
+  .region-sidebar-first {
+    display: none; }
+
+  #site-name {
+    top: -53px;
+    left: 23px; }
+    #site-name a {
+      height: 50px;
+      width: 60px;
+      background-size: 60px; }
+
+  #utility-bar {
+    height: 55px; }
+
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
+    display: none; }
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
+    padding: 0.5em 2em 0 0; }
+
+  #page {
+    width: 100%; }
+
+  #main-wrapper div[role="main"] {
+    float: none;
+    width: 100%;
+    background: #d1e9ed; }
+
+  nav[role="navigation"] {
+    display: none; }
+
+  .container {
+    margin: 0 auto;
+    width: 100%; }
+
+  header[role="banner"] {
+    position: relative;
+    width: 797px;
+    margin: 0 auto; }
+  #block-menu-menu-footer .content {
+    width: 80%;
+    margin: 0 auto; }
+
+  #block-menu-menu-footer .content ul.menu li span {
+    font-size: 16px;
+    line-height: 1em; }
+
+  #block-menu-menu-footer .content ul.menu ul li a {
+    font-size: 14px;
+    line-height: 1em; }
+
+  #cmp .pane-content .s0 {
+    margin-top: 0; }
+  #cmp #campaign-opt-in {
+    text-align: center; } }
+  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+    header[role="banner"] {
+      width: 100%; } }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -92,25 +151,25 @@ body {
   #cmp .mcommons-col input, #cmp .mcommons-col label {
     float: left;
     margin: 0 0 5% 0; }
-#cmp #section0, #cmp #section1, #cmp #section2, #cmp #section3 {
+#cmp .section {
   width: 750px;
+  overflow: auto;
   background: white;
   margin: 3% auto;
   padding: 2%; }
-#cmp #section0 {
-  background-image: url("assets/bg.jpg"); }
-#cmp #section1 img {
+#cmp .s0 {
+  background-image: url("assets/bg.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #da1f26; }
+#cmp .s1 img, #cmp .s3 img {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
   box-shadow: none !important; }
-#cmp #section3 img {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  box-shadow: none !important; }
-#cmp #section0 > img {
-  float: left; }
+#cmp .s0 > img {
+  float: left;
+  width: 21%; }
 #cmp #animal_dates {
   float: right;
   width: 30%; }
@@ -121,33 +180,66 @@ body {
 #cmp .pane-campaign-sign-up {
   clear: both;
   width: 100%;
-  margin: 33% 0 0 0; }
+  margin: 37% 0 0 0; }
   #cmp .pane-campaign-sign-up h1 {
     font-family: din-web;
     font-size: 23px;
     text-align: center;
     color: white; }
   #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
-    width: 200px;
+    width: 35%;
     float: left;
-    margin: 0 0 0 5%; }
+    margin: 0 2.5%; }
+  #cmp .pane-campaign-sign-up #edit-actions {
+    float: right;
+    position: static;
+    margin: 0 2% 0 0;
+    height: 32px; }
 #cmp #campaign-opt-in {
   clear: both; }
   #cmp #campaign-opt-in span {
     font-size: 10px; }
 #cmp .webform-client-form {
   box-shadow: none; }
-#cmp #section2 h1 {
+#cmp .s1 {
+  text-align: center; }
+  #cmp .s1 h1 {
+    color: #e1e1e1;
+    font-size: 24px;
+    font-family: din-web; }
+    #cmp .s1 h1 span {
+      color: #a0a2a5; }
+  #cmp .s1 h2 {
+    color: #e52127;
+    font-size: 24px;
+    font-family: din-web; }
+    #cmp .s1 h2 span {
+      white-space: nowrap;
+      background: url("http://files.dosomething.org/files/campaigns/animals/underline.png");
+      background-repeat: no-repeat;
+      background-position-y: 28px;
+      padding: 0 0 1% 0; }
+  #cmp .s1 p {
+    font-family: din-web-reg;
+    font-size: 14px;
+    line-height: 1.5em;
+    width: 69%;
+    margin: 0 auto;
+    padding: 1% 0; }
+    #cmp .s1 p span {
+      font-weight: 600; }
+  #cmp .s1 img {
+    position: absolute;
+    right: 30; }
+#cmp .s2 form {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto; }
+#cmp .s2 h1 {
+  color: #e52127;
+  font-size: 24px;
   font-family: din-web;
-  font-size: 25px;
-  text-align: center;
-  color: #e52127; }
-#cmp #section2 {
-  height: 225px; }
-  #cmp #section2 form {
-    width: 80%;
-    height: 100%;
-    margin: 0 auto; }
+  text-align: center; }
 #cmp .mcommons-webform input.field {
   width: 85%;
   height: 23px;
@@ -159,9 +251,10 @@ body {
   width: 40%;
   margin-left: 9%; }
 #cmp .go-button {
-  right: 45px;
-  bottom: 20px;
-  padding-top: 3px; }
+  position: static;
+  float: right;
+  padding: 1.5% 5% 1% 5%;
+  margin: 0 14% 0 0; }
 #cmp form.webform-client-form {
   border: none;
   box-shadow: none;
@@ -173,43 +266,74 @@ body {
   padding-bottom: 0; }
 #cmp .hidden {
   display: none; }
-
-@media only screen and (max-width: 1075px) {
-  .region-sidebar-first {
-    display: none; }
-
-  #site-name {
-    top: -30px;
-    left: 5px; }
-    #site-name a {
-      height: 50px;
-      width: 60px;
-      background-size: 60px; }
-
-  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
-    display: none; }
-  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
-    padding: 0.5em 2em 0 0; }
-
-  #page {
-    width: 100%; }
-
-  #main-wrapper div[role="main"] {
-    float: none;
+#cmp .sponsors, #cmp .partners {
+  float: left;
+  padding: 0 0 0 2%; }
+#cmp .sponsors {
+  width: 26%; }
+#cmp .partners {
+  width: 70%;
+  margin: 2% 0 2% 3%;
+  border-left: 1px solid #e1e1e1;
+  color: #ececec; }
+  #cmp .partners h3 {
+    text-transform: uppercase;
+    color: #e1e1e1; }
+  #cmp .partners img {
+    margin: 2%; }
+@media only screen and (max-width: 775px) {
+  #cmp .section {
     width: 100%;
-    background: #d1e9ed; }
-
-  nav[role="navigation"] {
-    display: none; }
-
-  .container {
-    margin: 0 auto;
-    width: 797px; }
-
-  header[role="banner"] {
-    position: relative;
-    width: 797px;
-    margin: 0 auto; } }
-@media only screen and (max-width: 797px) {
-  .container, header[role="banner"], #cork, #cask {
-    width: 100%; } }
+    margin: 2% auto; }
+  #cmp .s0 > img {
+    float: left;
+    width: 21%; }
+  #cmp #animal_dates {
+    background: rgba(255, 255, 255, 0.4);
+    width: 34%; }
+    #cmp #animal_dates h1 {
+      font-size: 23px;
+      line-height: 1.2em; }
+    #cmp #animal_dates p {
+      font-size: 12px; }
+  #cmp .s1 p {
+    width: 80%; }
+  #cmp .pane-campaign-sign-up #edit-actions {
+    margin: 0; }
+    #cmp .pane-campaign-sign-up #edit-actions input {
+      font-size: 14px;
+      padding: 1px 8px 0;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+      border-radius: 8px;
+      margin: 0; } }
+@media only screen and (max-width: 450px) {
+  #cmp .section {
+    margin: 5% auto; }
+  #cmp .mcommons-webform-column {
+    width: 45%;
+    margin-left: 5%; }
+    #cmp .mcommons-webform-column label {
+      white-space: nowrap; }
+  #cmp #animal_dates h1 {
+    font-size: 16px; }
+  #cmp .pane-campaign-sign-up h1 {
+    font-size: 18px; }
+  #cmp .s1 h1, #cmp .s1 h2 {
+    font-size: 17px; }
+  #cmp .s1 p {
+    width: 100%;
+    font-weight: 400; }
+  #cmp .s2 h1 {
+    font-size: 17px;
+    line-height: 2.2em; }
+  #cmp .s2 form {
+    width: 100%; }
+  #cmp #campaign-opt-in {
+    text-align: center;
+    width: 85%;
+    margin: 0 auto; }
+    #cmp #campaign-opt-in span {
+      font-size: 8px; } }

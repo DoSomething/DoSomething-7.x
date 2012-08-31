@@ -1,38 +1,68 @@
 // RESPONSIVE STYLES
 
-@media only screen and (max-width: 1075px)
-  .region-sidebar-first
-    display: none
-  #site-name
-    top: -30px
-    left: 5px
-    a
-      height: 50px
-      width: 60px
-      background-size: 60px 
-  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
-    .search, #help-center
-      display: none
-    .login
-      padding: 0.5em 2em 0 0
-  #page
+@media only screen and (max-width: 775px)
+  .section
     width: 100%
-  #main-wrapper div[role="main"]
-    float: none
-    width: 100%
-    background: $bgColor
-  nav[role="navigation"]
-    display: none
-  .container
-    margin: 0 auto
-    width: 797px
-  header[role="banner"]
-    position: relative
-    width: 797px
-    margin: 0 auto
+    margin: 2% auto
 
-@media only screen and (max-width: 797px)
-  .container, header[role="banner"], #cork, #cask
-    width: 100%
+  .s0 > img
+    float: left
+    width: 21%
 
-// @media screen and (max-width: 320px)
+  #animal_dates
+    background: rgba(255,255,255,0.4)
+    width: 34%
+    h1
+      font-size: 23px
+      line-height: 1.2em
+    p
+      font-size: 12px
+
+  .s1 p
+    width: 80%
+
+  .pane-campaign-sign-up
+    #edit-actions
+      margin: 0
+      input
+        font-size: 14px
+        padding: 1px 8px 0
+        +border-radius(8px)
+        margin: 0
+
+@media only screen and (max-width: 450px)
+  .section
+    margin: 5% auto
+
+  .mcommons-webform-column
+    width: 45%
+    margin-left: 5%
+    label
+      white-space: nowrap
+
+  #animal_dates h1
+    font-size: 16px
+
+  .pane-campaign-sign-up h1
+    font-size: 18px
+
+  .s1 
+    h1, h2
+      font-size: 17px
+    p
+      width: 100%
+      font-weight: 400
+
+  .s2
+    h1
+      font-size: 17px
+      line-height: 2.2em
+    form
+      width: 100%
+
+  #campaign-opt-in
+    text-align: center
+    width: 85%
+    margin: 0 auto
+    span
+      font-size: 8px
