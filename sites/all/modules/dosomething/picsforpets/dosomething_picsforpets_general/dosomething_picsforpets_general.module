@@ -216,12 +216,14 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   // Save to a campaign sign up webform.
   $email = $form_state['values']['email'];
   $cell = $form_state['values']['cell'];
-  $name = $form_state['values']['address']['fields']['name'];
-  $street1 = $form_state['values']['address']['fields']['street1'];
-  $street2 = $form_state['values']['address']['fields']['street2'];
-  $city = $form_state['values']['address']['fields']['city'];
-  $state = $form_state['values']['address']['fields']['state'];
-  $zip = $form_state['values']['address']['fields']['zip'];
+  if ($form_state['values']['kit']) {
+    $name = $form_state['values']['address']['fields']['name'];
+    $street1 = $form_state['values']['address']['fields']['street1'];
+    $street2 = $form_state['values']['address']['fields']['street2'];
+    $city = $form_state['values']['address']['fields']['city'];
+    $state = $form_state['values']['address']['fields']['state'];
+    $zip = $form_state['values']['address']['fields']['zip'];
+  }
 
   global $user;
   $submission = entity_create('webform_submission_entity', array('bundle' => 'campaign_sign_up'));
@@ -229,23 +231,33 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
-  $submission->data = array(
-    '1' => array('value' => $name),
-    '2' => array('value' => $street1),
-    '3' => array('value' => $street2),
-    '4' => array('value' => $city),
-    '5' => array('value' => $state),
-    '6' => array('value' => $zip),
-  );
+  if ($form_state['values']['kit']) {
+    $submission->data = array(
+      '1' => array('value' => $name),
+      '2' => array('value' => $street1),
+      '3' => array('value' => $street2),
+      '4' => array('value' => $city),
+      '5' => array('value' => $state),
+      '6' => array('value' => $zip),
+    );
+  }
   unset($submission->is_new);
   entity_save('webform_submission_entity', $submission);
   $submissions = entity_load('webform_submission_entity', array($submission->sid));
   $submission = array_shift($submissions);
-  $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = 'test@test.com';
+  $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
   $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
   field_attach_update('webform_submission_entity', $submission);
 
-  // TODO: send to mailchimp.
+  // Subscribe to mailchimp.
+  $list = mailchimp_lists_load(1);
+  $params = array(
+    'GROUPINGS' => array(
+      array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
+    ),
+    'UID' => $user->uid,
+  );
+  mailchimp_subscribe_user($list, $email, $params, FALSE);
 
   // Give user role of furtographer
   global $user;
