@@ -1242,6 +1242,7 @@ label.option {
   margin-top: -5px;
   font-size: 16px;
   padding-left: 4px;
+  max-width: 420px;
 }
 
 #edit-submit--2 {
