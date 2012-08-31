@@ -255,6 +255,7 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
     'GROUPINGS' => array(
       array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
     ),
+    'EMAIL' => $email,
     'UID' => $user->uid,
   );
   mailchimp_subscribe_user($list, $email, $params, FALSE);
