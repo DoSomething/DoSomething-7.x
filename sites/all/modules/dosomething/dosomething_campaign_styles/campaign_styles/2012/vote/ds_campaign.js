@@ -7,6 +7,12 @@
     $('div.panel-campaign:not(.vote-head)').addClass('vote-head').prepend(banner);
   banner.fadeIn();
 
+//NAV SLOW SCROLL
+      $('#block-dosomething-campaign-styles-campaign-nav a').click(function (event) {
+        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
+        return false;
+      });  
+
 // FAQ
 $('.faq h4').next('p').css('display','none');
 $('.faq h4.activeFAQ').next('p').css('display','block');
@@ -21,6 +27,7 @@ $('.faq h4').click(function(){
     $(this).siblings().next('p').slideUp(); 
   }
 });
+
     }
   };
 })(jQuery);
