@@ -72,6 +72,6 @@ function dosomething_fb_apps_update_7000() {
  * Implements hook_uninstall().
  */
 function dosomething_fb_apps_uninstall() {
-  variable_del('ds_picsforpets_fb_app_url');
-  variable_del('ds_picsforpets_fb_app_secure_url');
+  variable_del('dosomething_picsforpets_fb_user_app_url');
+  variable_del('dosomething_picsforpets_fb_user_app_secure_url');
 }

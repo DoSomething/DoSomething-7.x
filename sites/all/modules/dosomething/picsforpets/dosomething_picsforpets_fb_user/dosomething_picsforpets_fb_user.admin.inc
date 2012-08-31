@@ -29,5 +29,23 @@ function dosomething_picsforpets_fb_user_settings_form() {
     '#default_value' => variable_get('dosomething_picsforpets_fb_user_app_secret', ''),
   );
 
+  $form['dosomething_picsforpets_fb_user_app_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('App URL'),
+    '#size' => 20,
+    '#maxlengh' => 50,
+    '#description' => t('Enter your pics for pets App URL here.'),
+    '#default_value' => variable_get('dosomething_picsforpets_fb_user_app_url', ''),
+  );
+
+  $form['dosomething_picsforpets_fb_user_app_secure_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('App Secure URL'),
+    '#size' => 20,
+    '#maxlengh' => 50,
+    '#description' => t('Enter your pics for pets App Secure URL here.'),
+    '#default_value' => variable_get('dosomething_picsforpets_fb_user_app_secure_url', ''),
+  );
+
   return system_settings_form($form);
 }

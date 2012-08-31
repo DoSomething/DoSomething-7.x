@@ -59,8 +59,8 @@ function dosomething_picsforpets_fb_user_init() {
   $settings = array(
     'appId' => $appid,
     'access_token' => $access_token,
-    'app_url' => DOSOMETHING_FB_APPS_URL,
-    'app_secure_url' => DOSOMETHING_FB_APPS_SECURE_URL,
+    'app_url' => variable_get('dosomething_picsforpets_fb_user_app_url', ''),
+    'app_secure_url' => variable_get('dosomething_picsforpets_fb_user_app_secure_url', ''),
     'appBaseURL' => $base_url,
     'formAlias' => drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id')),
     'fbFormAlias' => str_replace('pics-for-pets/', '', drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id'))),
