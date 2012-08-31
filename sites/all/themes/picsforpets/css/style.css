@@ -1656,6 +1656,7 @@ body {
 }
 
 div[role="main"] {
+  background-color: transparent;
   padding: 6px;
 }
 
