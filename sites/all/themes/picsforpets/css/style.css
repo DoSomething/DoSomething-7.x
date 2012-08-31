@@ -1854,33 +1854,33 @@ a.footer-furtography {
   margin: 0;
 }
 
-#webform-client-form-3 .ui-dialog .ui-dialog-titlebar {
+.node-type-fb-app-data-gathering-form .ui-dialog .ui-dialog-titlebar {
   display: block;
   padding: 0 0 15px 0;
   height: auto;
   margin: 0 auto;
   width: 90%;
 }
-#webform-client-form-3 .ui-dialog #edit-container-title {
+.node-type-fb-app-data-gathering-form .ui-dialog #edit-container-title {
   margin: 0 auto;
   position: relative;
   width: 65%;
   text-align: center;
 }
-#webform-client-form-3 .ui-dialog #edit-container-title p {
+.node-type-fb-app-data-gathering-form .ui-dialog #edit-container-title p {
   font-size: 15px;
   line-height: 1em;
   padding-bottom: 0;
   margin-top: 0px 0px 0px 10px;
 }
-#webform-client-form-3 .ui-dialog #edit-container {
+.node-type-fb-app-data-gathering-form .ui-dialog #edit-container {
   margin: 0 auto;
   position: relative;
   width: 57%;
   clear: both;
   padding: 0;
 }
-#webform-client-form-3 .ui-dialog .ui-dialog-titlebar-close {
+.node-type-fb-app-data-gathering-form .ui-dialog .ui-dialog-titlebar-close {
   padding: 0px;
   right: 0px;
   top: 0px;
@@ -1889,10 +1889,10 @@ a.footer-furtography {
   margin-top: -10px;
   cursor: pointer;
 }
-#webform-client-form-3 .ui-dialog #edit-search {
+.node-type-fb-app-data-gathering-form .ui-dialog #edit-search {
   float: right;
 }
-#webform-client-form-3 .ui-dialog .form-item-zip {
+.node-type-fb-app-data-gathering-form .ui-dialog .form-item-zip {
   line-height: 1.1em;
 }
 
@@ -1966,38 +1966,38 @@ a.footer-furtography {
   padding: 2px 12px;
 }
 
-#webform-client-form-3 {
+.webform-client-form {
   margin: 0 auto;
   width: 552px;
 }
-#webform-client-form-3 select {
+.webform-client-form select {
   -webkit-box-shadow: #dddddd 0 0 10px inset;
   -moz-box-shadow: #dddddd 0 0 10px inset;
   box-shadow: #dddddd 0 0 10px inset;
   border: 1px solid #c9cbcd;
 }
-#webform-client-form-3 legend {
+.webform-client-form legend {
   margin-left: -20px;
 }
-#webform-client-form-3 label {
+.webform-client-form label {
   cursor: default;
 }
-#webform-client-form-3 .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
+.webform-client-form .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
   margin-right: 15px;
 }
-#webform-client-form-3 .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
+.webform-client-form .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
   width: 80px;
 }
-#webform-client-form-3 #submitted-field-fb-app-age-add-more-wrapper label {
+.webform-client-form #submitted-field-fb-app-age-add-more-wrapper label {
   margin-right: 67px;
 }
-#webform-client-form-3 #submitted-field-fb-app-age-add-more-wrapper input {
+.webform-client-form #submitted-field-fb-app-age-add-more-wrapper input {
   width: 80px;
 }
-#webform-client-form-3 #field-fb-app-three-words-values tr.odd .form-item, #webform-client-form-3 #field-fb-app-three-words-values tr.even .form-item {
+.webform-client-form #field-fb-app-three-words-values tr.odd .form-item, .webform-client-form #field-fb-app-three-words-values tr.even .form-item {
   margin-bottom: 5px;
 }
-#webform-client-form-3 input[type="text"] {
+.webform-client-form input[type="text"] {
   -webkit-box-shadow: #dddddd 0 0 10px inset;
   -moz-box-shadow: #dddddd 0 0 10px inset;
   box-shadow: #dddddd 0 0 10px inset;
