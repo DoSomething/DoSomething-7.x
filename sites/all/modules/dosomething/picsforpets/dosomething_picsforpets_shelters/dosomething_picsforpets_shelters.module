@@ -50,7 +50,7 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
 
   $form['no-shelter'] = array(
     '#prefix' => '<div class="find-shelter-help">',
-    '#markup' => '<div class="find-one">' . '<a href="http://theshelterpetproject.org/shelters">' . '<img src="/sites/all/themes/picsforpets/images/cant-find-shelter.png" title="Click Here" alt="Unable to find a shelter? Click Here" />' . '</a>' . '</div>',
+    '#markup' => '<div class="find-one">' . '<a href="http://theshelterpetproject.org/shelters" target="_blank">' . '<img src="/sites/all/themes/picsforpets/images/cant-find-shelter.png" title="Click Here" alt="Unable to find a shelter? Click Here" />' . '</a>' . '</div>',
     '#suffix' => '<div class="not-partnered-shelter">' . t('These are not DoSomething.org Partnered Shelters') . '</div></div>',
   );
 
