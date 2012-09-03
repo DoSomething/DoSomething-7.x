@@ -17,6 +17,7 @@ function dosomething_picsforpets_general_drush_command() {
 
 function drush_dosomething_picsforpets_general_picsforpets_deploy() {
   try {
+    drush_invoke_process('@self', 'updatedb', $modules, array('--yes', '--verbose'));
     drush_log('Enabling picsforpets modules.', 'info');
     // Enable all of our modules.
     $modules = array(
@@ -27,6 +28,7 @@ function drush_dosomething_picsforpets_general_picsforpets_deploy() {
       'dosomething_fb_apps',
       'dosomething_picsforpets_fb_user',
       'dosomething_feedback',
+      'fb_user_shares',
       'picsforpets',
     );
     drush_invoke_process('@self', 'en', $modules, array('--yes', '--verbose'));
