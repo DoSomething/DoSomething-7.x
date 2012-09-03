@@ -360,7 +360,7 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
   field_attach_update('webform_submission_entity', $submission);
 
     // Subscribe to mailchimp.
-  if (module_exists('mailchimp')) {
+  if (module_exists('mailchimp_lists')) {
     $list = mailchimp_lists_load(1);
     $params = array(
       'GROUPINGS' => array(
