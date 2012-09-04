@@ -1082,8 +1082,8 @@ Please try a new combo.
     1 => '1',
   );
 
-  /* Display: My shared pets */
-  $handler = $view->new_display('panel_pane', 'My shared pets', 'panel_pane_2');
+  /* Display: My animals */
+  $handler = $view->new_display('panel_pane', 'My animals', 'panel_pane_2');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */

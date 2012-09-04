@@ -516,7 +516,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'title' => '',
       'body' => '<ul class="item-list" id="picsforpets-gallery-navigation">
   <li class="first active"><a href="/pics-for-pets/gallery">All pets</a></li>
-  <li class="last"><a href="/pics-for-pets/gallery-my-shares">My shared pets</a></li>
+  <li class="last"><a href="/pics-for-pets/gallery-my-shares">My animals</a></li>
 </ul>',
       'format' => '1',
       'substitute' => TRUE,
@@ -660,7 +660,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'title' => '',
       'body' => '<ul class="item-list" id="picsforpets-gallery-navigation">
   <li class="first"><a href="/pics-for-pets/gallery">All pets</a></li>
-  <li class="last active"><a href="/pics-for-pets/gallery-my-shares">My shared pets</a></li>
+  <li class="last active"><a href="/pics-for-pets/gallery-my-shares">My animals</a></li>
 </ul>',
       'format' => '1',
       'substitute' => TRUE,
