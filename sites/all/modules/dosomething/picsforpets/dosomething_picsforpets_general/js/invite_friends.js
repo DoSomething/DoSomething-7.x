@@ -46,7 +46,11 @@ Drupal.behaviors.galleryShareButton = {
           // user's facebook id as URL arguments.
           $.post('/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
             // Update the page with the new share count.
-            $('.picsforpets-share-count').text(userShares);
+            // Increment the displayed share count.
+            var $countBox = $('#' + sid + ' .gallery-share-count');
+            var count = $countBox.text();
+            count++;
+            $countBox.text(count);
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 3) {
