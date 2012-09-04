@@ -48,7 +48,7 @@ Drupal.behaviors.galleryShareButton = {
             // Update the page with the new share count.
             // Increment the displayed share count.
             var countBox = $('#' + sid + ' .gallery-share-count');
-            var count = $countBox.text();
+            var count = countBox.text();
             count++;
             countBox.text(count);
             // Display a modal dialog depending on the total number of shares
