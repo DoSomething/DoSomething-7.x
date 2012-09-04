@@ -1153,6 +1153,8 @@ a.next {
 .question-icon-popup li.question-icon:hover ul.question-text-popup li.question-text {
   background: url(../images/popup-bubble.png) no-repeat;
   display: block;
+  border: 3px solid red;
+  height: auto;
 }
 .question-icon-popup li.question-icon ul.question-text-popup li.question-text {
   text-align: left;
@@ -1759,7 +1761,9 @@ a.footer-furtography {
 }
 
 .ui-widget-overlay {
-  background: rgba(0, 0, 0, 0.75);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+  background: black;
   position: absolute;
   top: 0;
   left: 0;
