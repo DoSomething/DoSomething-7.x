@@ -2657,6 +2657,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   float: left;
   clear: both;
 }
+#edit-field-fb-app-animal-type-value-wrapper label {
+  display: block;
+  float: none;
+}
 
 .views-reset-button input[type="submit"] {
   -webkit-border-radius: 0px;
