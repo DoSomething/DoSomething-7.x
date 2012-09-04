@@ -1562,6 +1562,7 @@ body {
   margin-top: 225px;
 }
 .ie8 .mission-text p, .ie7 .mission-text p {
+  margin-top: 400px;
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
