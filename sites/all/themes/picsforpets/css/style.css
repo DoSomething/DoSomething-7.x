@@ -528,7 +528,11 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-picsforpets-general-thanks-form button,
 #dosomething-picsforpets-general-thanks-form input[type="reset"],
 #dosomething-picsforpets-general-thanks-form input[type="submit"],
-#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-picsforpets-general-thanks-form input[type="button"],
+#dosomething-fb-apps-enter-zip-form button,
+#dosomething-fb-apps-enter-zip-form input[type="reset"],
+#dosomething-fb-apps-enter-zip-form input[type="submit"],
+#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -543,7 +547,11 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-picsforpets-general-thanks-form button,
 #dosomething-picsforpets-general-thanks-form input[type="reset"],
 #dosomething-picsforpets-general-thanks-form input[type="submit"],
-#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"] {
+#dosomething-picsforpets-general-thanks-form input[type="button"],
+#dosomething-fb-apps-enter-zip-form button,
+#dosomething-fb-apps-enter-zip-form input[type="reset"],
+#dosomething-fb-apps-enter-zip-form input[type="submit"],
+#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"] {
   color: #ec1c24;
   background: white;
   padding: 2px 12px;
@@ -1258,7 +1266,11 @@ label.option {
 #dosomething-picsforpets-general-thanks-form button,
 #dosomething-picsforpets-general-thanks-form input[type="reset"],
 #dosomething-picsforpets-general-thanks-form input[type="submit"],
-#dosomething-picsforpets-general-thanks-form input[type="button"] {
+#dosomething-picsforpets-general-thanks-form input[type="button"],
+#dosomething-fb-apps-enter-zip-form button,
+#dosomething-fb-apps-enter-zip-form input[type="reset"],
+#dosomething-fb-apps-enter-zip-form input[type="submit"],
+#dosomething-fb-apps-enter-zip-form input[type="button"] {
   display: inline;
   float: right;
 }
@@ -2034,6 +2046,23 @@ a.footer-furtography {
 .not-partnered-shelter:before {
   color: #ec1c24;
   content: "*";
+}
+
+div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
+  border-bottom: none;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] h1, div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] #picsforpets-share .fb-share-me, #picsforpets-share div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .fb-share-me {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-dialog-titlebar {
+  float: right;
+  position: relative;
+  right: 25px;
+  top: -24px;
 }
 
 #picsforpets-invite-friends {

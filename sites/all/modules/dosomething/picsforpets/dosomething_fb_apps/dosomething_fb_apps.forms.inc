@@ -20,12 +20,18 @@ function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
   // Add the previously selected animal filter option if it existed.
   $form['#animal_type'] = !empty($form_state['animal_type']) ? $form_state['animal_type'] : '';
 
-  $form['container-title'] = array (
+  $form['container-title'] = array(
     '#type' =>  'container',
     '#attributes' => array (
       'class' => array('container-title'),
       ),
     );
+
+  $form['container-title']['title'] = array(
+    '#prefix' => '<h1>',
+    '#suffix' => '</h1>',
+    '#markup' => t('Where You At?'),
+  );
 
   $form['container-title']['helptext'] = array(
     '#prefix' => '<p>',
