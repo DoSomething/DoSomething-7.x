@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Pics for Pets',
+  'title' => 'Give a Spit',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
