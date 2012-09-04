@@ -67,6 +67,10 @@ Drupal.behaviors.picsforpetsShelterPopup = {
     }
 
     $context.find('.shelter-locator-popup').once('shelter-locater-popup').click(function (e) {
+        // Initially we should hide the results box.
+        $results = $searchForm.find('#edit-results');
+        $results.hide();
+
         var $height = $(window).height();
         var $width = $(window).width();
         var $docHeight = $(document).height();
