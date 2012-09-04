@@ -74,8 +74,8 @@ Drupal.behaviors.galleryShareButton = {
                   draggable: false,
                   modal: true,
                   width: 550
-                }
-              );
+                };
+                Drupal.attachBehaviors();
             }
           });
         }
