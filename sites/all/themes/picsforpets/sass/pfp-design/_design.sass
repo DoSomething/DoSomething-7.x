@@ -36,13 +36,17 @@ body
 
 .mission-text
   @extend %league-gothic
-  background: rgba($white, 0.75)
+  background-color: $white
+  filter: alpha(opacity=75)
+  background-color: rgba($white, 0.75)
   width: 100%
   text-transform: uppercase
   font-size: 45px
   text-align: center
   line-height: 1.125
   margin-top: 225px
+  .ie8 &
+    margin-top: 400px
 
 #gallery-link
   @extend %league-gothic

@@ -1552,13 +1552,18 @@ body {
 }
 
 .mission-text {
-  background: rgba(255, 255, 255, 0.75);
+  background-color: white;
+  filter: alpha(opacity=75);
+  background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   text-transform: uppercase;
   font-size: 45px;
   text-align: center;
   line-height: 1.125;
   margin-top: 225px;
+}
+.ie8 .mission-text {
+  margin-top: 400px;
 }
 
 #gallery-link {
