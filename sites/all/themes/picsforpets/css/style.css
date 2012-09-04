@@ -1542,7 +1542,9 @@ body {
   clear: both;
 }
 
+.page-pics-for-pets-gallery div[role="main"],
 .page-pics-for-pets-gallery #content,
+.page-pics-for-pets-gallery-my-shares div[role="main"],
 .page-pics-for-pets-gallery-my-shares #content {
   margin-top: -140px;
 }
@@ -1642,7 +1644,6 @@ body {
 }
 
 div[role="main"] {
-  background-color: transparent;
   padding: 6px;
 }
 
