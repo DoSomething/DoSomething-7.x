@@ -761,7 +761,7 @@ function dosomething_picsforpets_general_regenerate_webform_node() {
  * be owned or group owned by that user.
  */
 function dosomething_picsforpets_general_update_campaign_node() {
-  $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type AND title = :title', 0, 1, array(':type' => 'campaign_sign_up', ':title' => 'Pics for Pets Furtography Sign Up'))->fetchField();
+  $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type AND title = :title', 0, 1, array(':type' => 'campaign_sign_up', ':title' => 'Pics for Pets Signups'))->fetchField();
   $node = node_load($nid);
   unset($node->nid);
   unset($node->vid);
