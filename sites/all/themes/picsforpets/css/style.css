@@ -2036,14 +2036,19 @@ a.footer-furtography {
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
-  overflow: hidden;
   *zoom: 1;
-  cursor: pointer;
   background: #6e85b2;
-  padding: 10px 8px 10px 0;
-  margin: auto;
-  width: 190px;
+  cursor: pointer;
+  max-height: 50px;
+  margin: 0 auto;
   margin-bottom: 50px;
+  padding: 10px 8px 10px 0;
+  width: 190px;
+}
+#picsforpets-invite-friends:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 #picsforpets-invite-friends #picsforpets-invite-friends-image {
   display: inline;
