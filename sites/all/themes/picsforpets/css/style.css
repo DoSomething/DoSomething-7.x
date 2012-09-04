@@ -1660,7 +1660,6 @@ body {
 
 .panel-1col {
   margin: 0 auto;
-  margin-bottom: 24px;
 }
 
 div[role="main"] {
@@ -2272,7 +2271,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   display: inline;
   float: left;
   margin-top: 140px;
-  margin-left: 24px;
+  margin-left: 12px;
 }
 
 .outside-left img,
