@@ -357,11 +357,11 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
   field_attach_update('webform_submission_entity', $submission);
 
     // Subscribe to mailchimp.
-  if (module_exists('mailchimp_lists')) {
+  if (module_exists('mailchimp_lists') && $email) {
     $list = mailchimp_lists_load(1);
     $params = array(
       'GROUPINGS' => array(
-        array('id' => '9573', 'groups' => 'PicsforPetsSharers'),
+        array('id' => '9573', 'groups' => 'PicsforPetsSharers2012'),
       ),
       'EMAIL' => $email,
       'UID' => $user->uid,
@@ -412,7 +412,7 @@ function dosomething_picsforpets_general_share($sid, $fbid) {
     return FALSE;
   }
   $value = 0;
-  if (isset($submission->field_fb_app_share_count)) {
+  if (isset($submission->field_fb_app_share_count[LANGUAGE_NONE])) {
     $value = $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'];
   }
   $value++;
