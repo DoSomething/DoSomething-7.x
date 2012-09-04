@@ -279,8 +279,10 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         if ($shelter->type == 'shelter') {
           $shelter_data = array();
           $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
           $shelter_data['nid'] = $shelter->nid;
           $shelter_data['title'] = check_plain($shelter->title);
+          $shelter_data['phone'] = empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']);
           $shelter_data['address1'] = empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']);
           $shelter_data['address2'] = empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']);
           $shelter_data['city'] = empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
@@ -299,9 +301,11 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         // Quick sanity check.
         if ($shelter->type == 'shelter') {
           $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
           // reset the string.
           $markup = '';
           $markup .= '<span class="label-shelter-title">' . check_plain($shelter->title) . '</span><br />';
+          $markup .= empty($phone[0]['value']) ? 'asdfasdfasdf' : check_plain($phone[0]['value']) . '<br />';
           $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
           $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
           $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
@@ -325,8 +329,10 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
         // Quick sanity check.
         if ($shelter->type == 'shelter') {
           $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
           $markup .= '<div class="shelter-result-item"><div class="inner">';
           $markup .= '<h3>' . check_plain($shelter->title) . '</h3>';
+          $markup .= empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']) . '<br />';
           $markup .= '<address>';
           $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
           $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
