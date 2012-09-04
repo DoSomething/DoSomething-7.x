@@ -2310,8 +2310,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 0;
   background: none;
 }
-#slideshow-center #slideshow-center .panel-2col-stacked .panel-col-first,
-#slideshow-center #slideshow-center .panel-2col-stacked .panel-col-last {
+#slideshow-center #slideshow-center .panel-2col-stacked.panel-col-first, #slideshow-center #slideshow-center .panel-2col-stacked.panel-col-last {
   width: 180px;
 }
 #slideshow-center p {
