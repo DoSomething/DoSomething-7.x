@@ -528,7 +528,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-picsforpets-general-thanks-form button,
 #dosomething-picsforpets-general-thanks-form input[type="reset"],
 #dosomething-picsforpets-general-thanks-form input[type="submit"],
-#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-picsforpets-general-thanks-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1551,9 +1551,8 @@ body {
   margin-top: -140px;
 }
 
-.mission-text {
+.mission-text p {
   background-color: white;
-  filter: alpha(opacity=75);
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   text-transform: uppercase;
@@ -1562,8 +1561,10 @@ body {
   line-height: 1.125;
   margin-top: 225px;
 }
-.ie8 .mission-text {
+.ie8 .mission-text p, .ie7 .mission-text p {
   margin-top: 400px;
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
 
 #gallery-link {

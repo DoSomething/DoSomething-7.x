@@ -34,10 +34,9 @@ body
   #content
     margin-top: -140px
 
-.mission-text
+.mission-text p
   @extend %league-gothic
   background-color: $white
-  filter: alpha(opacity=75)
   background-color: rgba($white, 0.75)
   width: 100%
   text-transform: uppercase
@@ -45,8 +44,11 @@ body
   text-align: center
   line-height: 1.125
   margin-top: 225px
-  .ie8 &
+  .ie8 &,
+  .ie7 &
     margin-top: 400px
+    background: transparent
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#bfffffff, endColorstr=#bfffffff)
 
 #gallery-link
   @extend %league-gothic
