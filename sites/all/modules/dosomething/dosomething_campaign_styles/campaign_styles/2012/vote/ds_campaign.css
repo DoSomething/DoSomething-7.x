@@ -742,12 +742,13 @@ html[xmlns] .clearfix {
 
 .report-back-teaser p {
   text-align: center;
-  padding: 20px 0 0 0; }
+  padding: 20px 0 0 0;
+  margin-bottom: 5px; }
 .report-back-teaser a {
   text-decoration: none;
   color: #222222; }
-  .report-back-teaser a .go-button {
-    position: static; }
+  .report-back-teaser a.go-button {
+    position: static !important; }
 
 #vote-register-sign-up .pane-title {
   display: none; }
