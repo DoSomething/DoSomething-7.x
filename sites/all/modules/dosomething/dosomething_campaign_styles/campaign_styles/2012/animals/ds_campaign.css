@@ -33,7 +33,7 @@ body {
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
     display: none; }
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
-    padding: 0.5em 2em 0 0; }
+    padding: 1em 2em 0 0; }
 
   #page {
     width: 100%; }
@@ -204,11 +204,11 @@ body {
 #cmp .s1 {
   text-align: center; }
   #cmp .s1 h1 {
-    color: #e1e1e1;
+    color: #b6b8ba;
     font-size: 24px;
     font-family: din-web; }
     #cmp .s1 h1 span {
-      color: #a0a2a5; }
+      color: #8d8f92; }
   #cmp .s1 h2 {
     color: #e52127;
     font-size: 24px;
@@ -274,11 +274,11 @@ body {
 #cmp .partners {
   width: 70%;
   margin: 2% 0 2% 3%;
-  border-left: 1px solid #e1e1e1;
-  color: #ececec; }
+  border-left: 1px solid #8d8f92;
+  color: #b6b8ba; }
   #cmp .partners h3 {
     text-transform: uppercase;
-    color: #e1e1e1; }
+    color: #8d8f92; }
   #cmp .partners img {
     margin: 2%; }
 @media only screen and (max-width: 775px) {
@@ -298,17 +298,15 @@ body {
       font-size: 12px; }
   #cmp .s1 p {
     width: 80%; }
-  #cmp .pane-campaign-sign-up #edit-actions {
-    margin: 0; }
-    #cmp .pane-campaign-sign-up #edit-actions input {
-      font-size: 14px;
-      padding: 1px 8px 0;
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
-      -ms-border-radius: 8px;
-      -o-border-radius: 8px;
-      border-radius: 8px;
-      margin: 0; } }
+  #cmp .pane-campaign-sign-up #edit-actions input, #cmp input.go-button {
+    font-size: 14px;
+    padding: 1px 8px 0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    margin: 0; } }
 @media only screen and (max-width: 450px) {
   #cmp .section {
     margin: 5% auto; }
@@ -321,8 +319,12 @@ body {
     font-size: 16px; }
   #cmp .pane-campaign-sign-up h1 {
     font-size: 18px; }
+  #cmp .s1 h1, #cmp .s1 h2, #cmp .s1 p {
+    text-align: left;
+    line-height: 1.3em;
+    padding: 0.3em 0; }
   #cmp .s1 h1, #cmp .s1 h2 {
-    font-size: 17px; }
+    font-size: 19px; }
   #cmp .s1 p {
     width: 100%;
     font-weight: 400; }

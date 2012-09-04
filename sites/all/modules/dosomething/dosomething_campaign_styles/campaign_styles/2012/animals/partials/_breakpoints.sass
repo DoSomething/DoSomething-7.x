@@ -21,14 +21,11 @@
   .s1 p
     width: 80%
 
-  .pane-campaign-sign-up
-    #edit-actions
-      margin: 0
-      input
-        font-size: 14px
-        padding: 1px 8px 0
-        +border-radius(8px)
-        margin: 0
+  .pane-campaign-sign-up #edit-actions input, input.go-button
+    font-size: 14px
+    padding: 1px 8px 0
+    +border-radius(8px)
+    margin: 0
 
 @media only screen and (max-width: 450px)
   .section
@@ -47,8 +44,12 @@
     font-size: 18px
 
   .s1 
+    h1, h2, p
+      text-align: left
+      line-height: 1.3em
+      padding: 0.3em 0
     h1, h2
-      font-size: 17px
+      font-size: 19px
     p
       width: 100%
       font-weight: 400
