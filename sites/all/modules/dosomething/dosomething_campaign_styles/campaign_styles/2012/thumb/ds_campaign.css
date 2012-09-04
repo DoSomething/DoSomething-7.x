@@ -197,7 +197,7 @@ h2.pane-title {
 #campaign-opt-in {
   font-size: 11px;
   margin-left: 15px;
-  padding: 15px 0 12px 0; }
+  padding: 20px 0 0px 0 !important; }
   #campaign-opt-in a {
     font-weight: bold;
     display: block;
@@ -784,5 +784,5 @@ form.webform-client-form {
 
 .pane-campaign-sign-up #edit-actions {
   position: absolute;
-  bottom: 26px !important;
-  left: 207px; }
+  top: 50px !important;
+  right: 75px; }
