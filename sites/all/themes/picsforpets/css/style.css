@@ -564,12 +564,14 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 /* import font files using @font-face, if not using a service such as typekit */
 @font-face {
   font-family: "League_Gothic";
-  src: url('../fonts/League_Gothic-webfont.woff') format('woff'), url('../fonts/League_Gothic-webfont.ttf') format('truetype');
+  src: url('../fonts/League_Gothic-webfont.eot');
+  src: url('../fonts/League_Gothic-webfont.eot?#iefix') format('eot'), url('../fonts/League_Gothic-webfont.woff') format('woff'), url('../fonts/League_Gothic-webfont.ttf') format('truetype'), url('../fonts/League_Gothic-webfont.svg') format('svg');
 }
 
 @font-face {
   font-family: "DINWeb-CondBold";
-  src: url('../fonts/DINWeb-CondBold.woff') format('woff'), url('../fonts/DINComp-CondBold.ttf') format('truetype');
+  src: url('../fonts/DINWeb-CondBold.eot');
+  src: url('../fonts/DINWeb-CondBold.eot?#iefix') format('eot'), url('../fonts/DINWeb-CondBold.woff') format('woff'), url('../fonts/DINComp-CondBold.ttf') format('truetype');
 }
 
 @font-face {
