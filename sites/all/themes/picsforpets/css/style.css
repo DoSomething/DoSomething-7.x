@@ -2314,6 +2314,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 #slideshow-center #slideshow-center .panel-col-last {
   width: 180px;
 }
+#slideshow-center #slideshow-center .view-shelter-per-pet .views-field {
+  word-wrap: break-word;
+}
 #slideshow-center p {
   margin: 0;
 }
