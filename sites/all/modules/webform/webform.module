@@ -3500,6 +3500,29 @@ function webform_component_options($include_disabled = FALSE) {
 }
 
 /**
+ * Retrieves a list of all component instances.
+ *
+ * @return array
+ *   array of component instance definitions as defined in {webform_components}
+ *   each cinstances is keyed by a pseuod primary key "$nid:$cid".
+ */
+function webform_component_instances() {
+  $instances = &drupal_static(__FUNCTION__);
+
+  if (!isset($instances)) {
+    $query = db_select('webform_component', 'wc')
+              ->fields('wc')
+              ->execute();
+    foreach ($query->fetchAll() as $result) {
+      $result->extra = unserialize($result->extra);
+      $instances[$result->nid . '-' . $result->cid] = (array) $result;
+    }
+  }
+
+  return $instances;
+}
+
+/**
  * Load a component file into memory.
  *
  * @param $component_type

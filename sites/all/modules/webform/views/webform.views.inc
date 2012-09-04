@@ -123,6 +123,10 @@ function webform_views_data() {
       'handler' => 'views_handler_sort_date',
     ),
   );
+  // Add date module support, if present.
+  if (module_exists('date')) {
+    $data['webform_submissions']['submitted']['filter']['handler'] = 'date_views_filter_handler_simple';
+  }
 
   // remote_addr
   $data['webform_submissions']['remote_addr'] = array(
@@ -168,6 +172,71 @@ function webform_views_data() {
       'help' => t('Provide a simple link to delete the submission.'),
       'handler' => 'webform_handler_field_submission_link',
       'link_type' => 'delete',
+    ),
+  );
+
+  // Relation to webform data.
+  $data['webform_submissions']['data'] = array(
+    'title' => t('Data'),
+    'help' => t('Relates to a webform submission data'),
+    'real field' => 'sid',
+    'relationship' => array(
+      'handler' => 'webform_handler_relationship_submission_data',
+      'base' => 'webform_submitted_data',
+      'base field' => 'sid',
+      'label' => t('Submission Data'),
+    ),
+  );
+
+  /**
+   * Submission data table definitions.
+   */
+  $data['webform_submitted_data']['table']['group'] = t('Webform submission data');
+  $data['webform_submitted_data']['data'] = array(
+    'table' => 'webform_submitted_data',
+    'title' => t('Data field (raw)'),
+    'help' => t('The submitted data value as raw output string.'),
+    'real field' => 'data',
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+    'field' => array(
+      'handler' => 'views_handler_field_xss',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
+
+  // data_formatted
+  $data['webform_submitted_data']['data_formatted'] = array(
+    'title' => t('Data field (formatted)'),
+    'help' => t('The submitted data in component specific format.'),
+    'real field' => 'data',
+    'field' => array(
+      'handler' => 'webform_handler_field_submission_data',
+    ),
+  );
+
+  // Number
+  $data['webform_submitted_data']['no'] = array(
+    'title' => t('Delta'),
+    'help' => t('The delta value of the submitted data in a multi value component.'),
+    'real field' => 'no',
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'field' => array(
+      'handler' => 'views_handler_field_numeric',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
     ),
   );
 
@@ -273,6 +342,10 @@ function webform_views_handlers() {
         'parent' => 'views_handler_field',
         'file' => 'webform_handler_field_submission_link.inc',
       ),
+      'webform_handler_field_submission_data' => array(
+        'parent' => 'views_handler_field',
+        'file' => 'webform_handler_field_submission_data.inc',
+      ),
       'webform_handler_field_submission_count' => array(
         'parent' => 'views_handler_field',
         'file' => 'webform_handler_field_submission_count.inc',
@@ -302,6 +375,10 @@ function webform_views_handlers() {
       'webform_handler_filter_webform_status' => array(
         'parent' => 'views_handler_filter_boolean_operator',
         'file' => 'webform_handler_filter_webform_status.inc',
+      ),
+      'webform_handler_relationship_submission_data' => array(
+        'parent' => 'views_handler_relationship',
+        'file' => 'webform_handler_relationship_submission_data.inc',
       ),
     ),
   );
