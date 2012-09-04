@@ -60,16 +60,16 @@ Drupal.behaviors.dsPfpShare = {
                 });
             }
             else if (userShares == 5) {
-              var $message = $('<div>')
-              .append($('<h2>').append(Drupal.t('Invite your friends to help more animals find homes!')))
-              .append($('<div>').append(Drupal.t('Invite')))
-              .dialog({
-                title: Drupal.t('You\'ve helped 5 animals!'),
-                resizable: false,
-                draggable: false,
-                modal: true,
-                width: 550
-              });
+              $('<div></div>')
+                .load('/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form')
+                .dialog({
+                  title: Drupal.t('Hey, you\'ve shared 5 animals!'),
+                  resizable: false,
+                  draggable: false,
+                  modal: true,
+                  width: 550
+                }
+              );
             }
           });
         }

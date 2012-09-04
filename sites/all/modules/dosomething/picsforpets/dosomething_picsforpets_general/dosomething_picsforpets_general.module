@@ -34,6 +34,13 @@ function dosomething_picsforpets_general_menu() {
     'page arguments' => array('dosomething_picsforpets_general_thanks_form'),
     'type' => MENU_CALLBACK,
   );
+  $items['pics-for-pets/ajax/invite-friends'] = array(
+    'title' => t('Thanks for sharing!'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_invite_form'),
+    'type' => MENU_CALLBACK,
+  );
   $items['pics-for-pets/questions'] = array(
     'title' => t('Frequently Asked Questions'),
     'access callback' => TRUE,
