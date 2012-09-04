@@ -7,7 +7,7 @@
  */
 ?>
 <?php if ($content): ?>
-  <section id="<?php print $region; ?>" class="<?php print $classes; ?>">
+  <div class="<?php print $classes; ?>">
     <?php print $content; ?>
-  </section>
+  </div>
 <?php endif; ?>
