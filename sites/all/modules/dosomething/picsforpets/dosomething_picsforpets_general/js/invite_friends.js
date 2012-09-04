@@ -67,25 +67,26 @@ Drupal.behaviors.galleryShareButton = {
             }
             else if (userShares == 5) {
               $('<div></div>')
-                .load('/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form')
+                .load('/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function () {
+                  $('.ui-dialog form').click(function() {
+                    var obj = {
+                      method: 'apprequests',
+                      display: 'iframe',
+                      title: 'The DoSomething.org Pics for Pets Project',
+                      message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
+                      access_token: settings.picsforpetsFBAuth.access_token,
+                      show_error: true
+                    };
+                    FB.ui(obj);
+                  });
+                })
                 .dialog({
                   title: Drupal.t('Hey, you\'ve shared 5 animals!'),
                   resizable: false,
                   draggable: false,
                   modal: true,
                   width: 550
-              });
-              $('.ui-dialog form').click(function() {
-                var obj = {
-                  method: 'apprequests',
-                  display: 'iframe',
-                  title: 'The DoSomething.org Pics for Pets Project',
-                  message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
-                  access_token: settings.picsforpetsFBAuth.access_token,
-                  show_error: true
-                };
-                FB.ui(obj);
-              });
+                });
             }
           });
         }
