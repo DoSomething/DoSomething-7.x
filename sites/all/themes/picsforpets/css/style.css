@@ -1748,9 +1748,10 @@ a.footer-furtography {
 }
 
 .ui-widget-overlay {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
-  opacity: 0.75;
-  background: black;
+  background: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .ui-dialog .ui-dialog-titlebar {
