@@ -117,16 +117,6 @@ a.next
     color: $white
     border-bottom: 1px solid $white
 
-.by-signing-up,
-.question-icon
-  margin-top: 80px
-
-.question-icon-popup
-  // .question-icon
-  // input#edit-submit
-  // margin-top: 80px
-
-
 //////////////////////////////
 // QUESTION POP UP
 //////////////////////////////
@@ -149,13 +139,14 @@ a.next
         li.question-text
           background: url(../images/popup-bubble.png) no-repeat
           display: block
-          overflow: visible
+          +opacity(1.0)
+          overflow: hidden
 
     ul.question-text-popup
       li.question-text
         text-align: left
         font-weight: normal
-        display: none
+        +opacity(0.0)
         list-style: none
         font-size: 12px
         line-height: 1.5
@@ -167,6 +158,12 @@ a.next
         z-index: 1500
         top: -215px
         left: -155px
+        overflow: visible
+
+.dialog-lower
+  width: 100%
+  margin-top: 150px
+  // +clearfix
 
 .sign-up-text
   text-align: center

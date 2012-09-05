@@ -1131,11 +1131,6 @@ a.next {
   border-bottom: 1px solid white;
 }
 
-.by-signing-up,
-.question-icon {
-  margin-top: 80px;
-}
-
 .question-icon-popup li.question-icon {
   font-size: 12px;
   line-height: 1.5;
@@ -1158,12 +1153,15 @@ a.next {
 .question-icon-popup li.question-icon:hover ul.question-text-popup li.question-text {
   background: url(../images/popup-bubble.png) no-repeat;
   display: block;
-  overflow: visible;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  overflow: hidden;
 }
 .question-icon-popup li.question-icon ul.question-text-popup li.question-text {
   text-align: left;
   font-weight: normal;
-  display: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
   list-style: none;
   font-size: 12px;
   line-height: 1.5;
@@ -1175,6 +1173,12 @@ a.next {
   z-index: 1500;
   top: -215px;
   left: -155px;
+  overflow: visible;
+}
+
+.dialog-lower {
+  width: 100%;
+  margin-top: 150px;
 }
 
 .sign-up-text {
