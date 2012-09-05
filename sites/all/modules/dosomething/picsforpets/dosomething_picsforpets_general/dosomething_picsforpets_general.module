@@ -319,9 +319,13 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
  */
 function dosomething_picsforpets_invite_form($form, &$form_state) {
   $form['heading'] = array(
-    '#markup' => t("You've helped 5 animals!"),
+   '#prefix' => '<div class="sign-up-text">',
+   '#suffix' =>  '</div>',
+   '#markup' => t("You've helped 5 animals!"),
   );
   $form['text'] = array(
+    '#prefix' => '<div class="sign-up-text">',
+    '#suffix' =>  '</div>',
     '#markup' => t('Invite your friends to help more animals find homes!'),
   );
   include_once('plugins/content_types/invite_friends.inc');
