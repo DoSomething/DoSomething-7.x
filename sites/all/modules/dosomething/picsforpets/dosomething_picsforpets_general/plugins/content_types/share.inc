@@ -35,6 +35,14 @@ function dosomething_picsforpets_general_content_type_render_share($subtype, $co
   $output .= '<span class="picsforpets-share-count-arrow">&nbsp;</span>';
   $output .= '<span class="picsforpets-share-count">' . $shares . '</span>';
 
+  // Send a setting if the user is a furtographer.
+  global $user;
+  $furtographer = FALSE;
+  if (in_array('furtographer', $user->roles)) {
+    $furtographer = TRUE;
+  }
+  // $furtographer =
+
   $block = new stdClass();
   $block->content = array(
     '#type' => 'container',
@@ -45,6 +53,7 @@ function dosomething_picsforpets_general_content_type_render_share($subtype, $co
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/share.js',
+        array('data' => array('picsforpetsGeneral' => array('furtographer' => $furtographer)), 'type' => 'setting'),
       ),
       'library' => array(
         array('system', 'ui.dialog'),

@@ -22,19 +22,17 @@ function dosomething_picsforpets_general_content_type_render_invite($subtype = '
     'appId' => variable_get('dosomething_picsforpets_fb_user_app_id', ''),
     'secret' => variable_get('dosomething_picsforpets_fb_user_app_secret', ''),
   ));
-  $user = $facebook->getUser();
-  if ($user) {
-    try {
-      $user_profile = $facebook->api('/me');
-    } catch (FacebookApiException $e) {
-      error_log($e);
-      $user = null;
-    }
-  }
 
   // Render array for Invite Friends button.
   $output = '<div id="picsforpets-invite-friends-image"></div>';
   $output .= '<div id="picsforpets-invite-friends-text">' . t('Invite Friends') . '</div>';
+
+  // Send a setting if the user is a furtographer.
+  global $user;
+  $furtographer = FALSE;
+  if (in_array('furtographer', $user->roles)) {
+    $furtographer = TRUE;
+  }
 
   $block = new stdClass();
   $block->content = array(
@@ -46,6 +44,7 @@ function dosomething_picsforpets_general_content_type_render_invite($subtype = '
     '#attached' => array(
       'js' => array(
         array('data' => array('fb_access_token' => $facebook->getAccessToken()), 'type' => 'setting'),
+        array('data' => array('picsforpetsGeneral' => array('furtographer' => $furtographer)), 'type' => 'setting'),
         ctools_attach_js('invite_friends', 'dosomething_picsforpets_general'),
       ),
       'library' => array(

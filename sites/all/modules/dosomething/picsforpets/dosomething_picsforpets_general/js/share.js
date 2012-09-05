@@ -48,7 +48,7 @@ Drupal.behaviors.dsPfpShare = {
             $('.picsforpets-share-count').text(count);
             // Display a modal dialog depending on the total number of shares
             // the user has made.
-            if (userShares == 3) {
+            if (userShares == 3 && !settings.picsforpetsGeneral.furtographer) {
               $('<div></div>')
                 .load('/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form')
                 .dialog({
