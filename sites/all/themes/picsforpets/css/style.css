@@ -1856,6 +1856,7 @@ a.footer-furtography {
   border-bottom: 12px solid;
   border-top: 12px solid;
   border-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
