@@ -1153,15 +1153,12 @@ a.next {
 .question-icon-popup li.question-icon:hover ul.question-text-popup li.question-text {
   background: url(../images/popup-bubble.png) no-repeat;
   display: block;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
   overflow: hidden;
 }
 .question-icon-popup li.question-icon ul.question-text-popup li.question-text {
   text-align: left;
   font-weight: normal;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
+  display: none;
   list-style: none;
   font-size: 12px;
   line-height: 1.5;
@@ -1173,7 +1170,7 @@ a.next {
   z-index: 1500;
   top: -215px;
   left: -155px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .dialog-lower {
