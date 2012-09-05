@@ -1,11 +1,9 @@
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
-  background: #d1e9ed; }
-#main-wrapper #breadcrumb, #main-wrapper #page-title {
+  background: transparent; }
+#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper {
   display: none; }
-#main-wrapper .tabs {
-  background: #d1e9ed; }
 #main-wrapper ul.primary {
   border-bottom: none;
   margin: 0;
@@ -13,7 +11,8 @@
   height: 37px; }
 
 body {
-  background: #d1e9ed; }
+  background: #d69a92;
+  background: url(assets/bg.jpg); }
 
 @media only screen and (max-width: 1075px) {
   .region-sidebar-first {
@@ -40,8 +39,7 @@ body {
 
   #main-wrapper div[role="main"] {
     float: none;
-    width: 100%;
-    background: #d1e9ed; }
+    width: 100%; }
 
   nav[role="navigation"] {
     display: none; }
@@ -90,7 +88,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 16px;
   font: inherit;
   vertical-align: baseline; }
 #cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
@@ -113,32 +111,52 @@ body {
   font-weight: 600;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   color: black; }
-#cmp h1, #cmp h2, #cmp h3 {
+#cmp h1, #cmp h3, #cmp p.divider {
   text-transform: uppercase; }
 #cmp h1 {
-  font-size: 32px;
+  font-size: 2.5em;
   line-height: 1.54em; }
-#cmp h2, #cmp .divider {
-  font-size: 20px;
+#cmp h1.condensed {
+  font-size: 3.75em;
+  font-weight: 600; }
+#cmp h2 {
+  font-size: 1.5em;
   line-height: 1.55em; }
 #cmp h3 {
-  font-size: 18px;
+  font-size: 1.25em;
   line-height: 22px; }
 #cmp h4 {
-  font-size: 14px;
+  font-size: 1em;
+  font-weight: 600;
   line-height: 17px; }
 #cmp p, #cmp label {
-  font-size: 14px;
+  font-size: 1em;
   font-weight: 500;
   line-height: 17px; }
-#cmp .disclaimer {
-  font-size: 10px;
+#cmp p.divider {
+  text-align: center;
+  color: white; }
+#cmp .legal {
+  font-size: 0.625em;
   font-weight: 500;
-  line-height: 14px; }
-#cmp .help {
-  padding: 1em 0 0 0;
-  font-style: italic;
-  font-size: 11px; }
+  line-height: 1em; }
+#cmp .section {
+  overflow: auto;
+  background: white;
+  margin: 3% auto;
+  padding: 2%; }
+#cmp .col33 {
+  width: 32%; }
+#cmp .col40 {
+  width: 39%; }
+#cmp .col60 {
+  width: 59%; }
+#cmp .col33, #cmp .col40, #cmp .col60 {
+  float: left; }
+#cmp .divider span {
+  background: black;
+  padding: 0.5em 0.8em;
+  position: relative; }
 #cmp .mcommons-col {
   width: 45%;
   margin: 0 0 0 5%;
@@ -151,32 +169,8 @@ body {
   #cmp .mcommons-col input, #cmp .mcommons-col label {
     float: left;
     margin: 0 0 5% 0; }
-#cmp .section {
-  width: 750px;
-  overflow: auto;
-  background: white;
-  margin: 3% auto;
-  padding: 2%; }
 #cmp .s0 {
-  background-image: url("assets/bg.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-color: #da1f26; }
-#cmp .s1 img, #cmp .s3 img {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  box-shadow: none !important; }
-#cmp .s0 > img {
-  float: left;
-  width: 21%; }
-#cmp #animal_dates {
-  float: right;
-  width: 30%; }
-  #cmp #animal_dates h1 {
-    font-size: 27px;
-    color: #e52127;
-    font-family: din-web; }
+  background: #dddddd; }
 #cmp .pane-campaign-sign-up {
   clear: both;
   width: 100%;
@@ -202,44 +196,9 @@ body {
 #cmp .webform-client-form {
   box-shadow: none; }
 #cmp .s1 {
-  text-align: center; }
-  #cmp .s1 h1 {
-    color: #b6b8ba;
-    font-size: 24px;
-    font-family: din-web; }
-    #cmp .s1 h1 span {
-      color: #8d8f92; }
-  #cmp .s1 h2 {
-    color: #e52127;
-    font-size: 24px;
-    font-family: din-web; }
-    #cmp .s1 h2 span {
-      white-space: nowrap;
-      background: url("http://files.dosomething.org/files/campaigns/animals/underline.png");
-      background-repeat: no-repeat;
-      background-position-y: 28px;
-      padding: 0 0 1% 0; }
-  #cmp .s1 p {
-    font-family: din-web-reg;
-    font-size: 14px;
-    line-height: 1.5em;
-    width: 69%;
-    margin: 0 auto;
-    padding: 1% 0; }
-    #cmp .s1 p span {
-      font-weight: 600; }
-  #cmp .s1 img {
-    position: absolute;
-    right: 30; }
-#cmp .s2 form {
-  width: 80%;
-  height: 100%;
-  margin: 0 auto; }
-#cmp .s2 h1 {
-  color: #e52127;
-  font-size: 24px;
-  font-family: din-web;
-  text-align: center; }
+  background: #dddddd; }
+#cmp .s2 {
+  background: #dddddd; }
 #cmp .mcommons-webform input.field {
   width: 85%;
   height: 23px;
@@ -266,76 +225,5 @@ body {
   padding-bottom: 0; }
 #cmp .hidden {
   display: none; }
-#cmp .sponsors, #cmp .partners {
-  float: left;
-  padding: 0 0 0 2%; }
-#cmp .sponsors {
-  width: 26%; }
-#cmp .partners {
-  width: 70%;
-  margin: 2% 0 2% 3%;
-  border-left: 1px solid #8d8f92;
-  color: #b6b8ba; }
-  #cmp .partners h3 {
-    text-transform: uppercase;
-    color: #8d8f92; }
-  #cmp .partners img {
-    margin: 2%; }
-@media only screen and (max-width: 775px) {
-  #cmp .section {
-    width: 100%;
-    margin: 2% auto; }
-  #cmp .s0 > img {
-    float: left;
-    width: 21%; }
-  #cmp #animal_dates {
-    background: rgba(255, 255, 255, 0.4);
-    width: 34%; }
-    #cmp #animal_dates h1 {
-      font-size: 23px;
-      line-height: 1.2em; }
-    #cmp #animal_dates p {
-      font-size: 12px; }
-  #cmp .s1 p {
-    width: 80%; }
-  #cmp .pane-campaign-sign-up #edit-actions input, #cmp input.go-button {
-    font-size: 14px;
-    padding: 1px 8px 0;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    border-radius: 8px;
-    margin: 0; } }
-@media only screen and (max-width: 450px) {
-  #cmp .section {
-    margin: 5% auto; }
-  #cmp .mcommons-webform-column {
-    width: 45%;
-    margin-left: 5%; }
-    #cmp .mcommons-webform-column label {
-      white-space: nowrap; }
-  #cmp #animal_dates h1 {
-    font-size: 16px; }
-  #cmp .pane-campaign-sign-up h1 {
-    font-size: 18px; }
-  #cmp .s1 h1, #cmp .s1 h2, #cmp .s1 p {
-    text-align: left;
-    line-height: 1.3em;
-    padding: 0.3em 0; }
-  #cmp .s1 h1, #cmp .s1 h2 {
-    font-size: 19px; }
-  #cmp .s1 p {
-    width: 100%;
-    font-weight: 400; }
-  #cmp .s2 h1 {
-    font-size: 17px;
-    line-height: 2.2em; }
-  #cmp .s2 form {
-    width: 100%; }
-  #cmp #campaign-opt-in {
-    text-align: center;
-    width: 85%;
-    margin: 0 auto; }
-    #cmp #campaign-opt-in span {
-      font-size: 8px; } }
+#cmp .s3 {
+  background: #dddddd; }

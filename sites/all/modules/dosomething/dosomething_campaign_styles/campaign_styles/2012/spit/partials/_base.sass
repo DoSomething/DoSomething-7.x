@@ -1,11 +1,11 @@
 // BASE 
 
 // variable definitions
-$bgColor: #D1E9ED
-$bgFallback: #DA1F26
-$accentColor: #E52127
-$lightGrey: #B6B8BA
-$medGrey: #8D8F92
+$spitYellow: #FFCB15
+$spitPurple: #7F3F80
+$bgFallback: #D69A92
+$offBlack: #1E1D1C
+$spitGrey: #D2D2D3
 
 $din: din-web-reg,"Trebuchet MS",sans-serif
 
@@ -19,5 +19,7 @@ $din: din-web-reg,"Trebuchet MS",sans-serif
   -o-box-shadow: none !important
   box-shadow: none !important
 
-@function em-calc($target, $context)
-  @return ($target/$context)*1em
+@function em-calc($target)
+  @return ($target/16)*1em
+
+// needs breakpoint mixin

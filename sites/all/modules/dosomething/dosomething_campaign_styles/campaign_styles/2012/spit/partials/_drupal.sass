@@ -1,12 +1,12 @@
+// HEREIN LIES A POEM TITLED 'DIE DRUPAL DIE'
+
 #main-wrapper
   div[role="main"]
     padding: 0!important
     margin: 0!important
-    background: $bgColor
-  #breadcrumb, #page-title
+    background: transparent
+  #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper
     display: none
-  .tabs
-    background: $bgColor
   ul.primary
     border-bottom: none
     margin: 0
@@ -14,7 +14,8 @@
     height: 37px
 
 body
-  background: $bgColor
+  background: $bgFallback
+  background: url(assets/bg.jpg)
 
 @media only screen and (max-width: 1075px)
   .region-sidebar-first
@@ -38,7 +39,6 @@ body
   #main-wrapper div[role="main"]
     float: none
     width: 100%
-    background: $bgColor
   nav[role="navigation"]
     display: none
   .container
