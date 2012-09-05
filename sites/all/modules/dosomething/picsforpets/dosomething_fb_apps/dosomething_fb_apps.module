@@ -164,7 +164,10 @@ function dosomething_fb_apps_preprocess_views_view(&$variables) {
   if ($variables['name'] != 'pics_for_pets_gallery') {
     return;
   }
-
+  // If there aren't any results, show the view's empty text.
+  if (empty($variables['rows'])) {
+    $variables['rows'] = $variables['empty'];
+  }
   global $user;
   $view = $variables['view'];
   $form_state = array();
