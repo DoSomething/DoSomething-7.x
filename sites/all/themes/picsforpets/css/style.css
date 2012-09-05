@@ -1840,6 +1840,8 @@ a.footer-furtography {
   *zoom: 1;
   clear: both;
   margin-bottom: 24px;
+  width: 100%;
+  text-align: left;
 }
 #shelter-results .shelter-results-option-list .form-item-results .label-shelter-title {
   font-weight: bold;
@@ -2086,17 +2088,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   position: relative;
   right: 25px;
   top: -24px;
-}
-
-div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"].ui-dialog {
-  overflow: hidden !important;
-}
-div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"].ui-dialog .ui-icon.ui-icon-closethick {
-  top: -14px;
-}
-
-.item-list .pager li {
-  padding: 0;
 }
 
 #picsforpets-invite-friends {
