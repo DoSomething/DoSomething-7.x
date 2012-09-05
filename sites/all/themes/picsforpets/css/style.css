@@ -2274,6 +2274,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   display: inline;
   float: left;
 }
+.ie8 .outside-shade {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+}
 
 .inside-shade {
   background: rgba(0, 0, 0, 0.6);
@@ -2285,6 +2288,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   position: relative;
   display: inline;
   float: left;
+}
+.ie8 .inside-shade {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
 }
 
 .outside-left {
@@ -2425,6 +2431,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 
 .views-ui-dialog .ui-dialog-titlebar-close {
   z-index: 200;
+}
+
+.ie8 #slideshow-wrapper {
+  clear: right;
 }
 
 #dosomething-picsforpets-shelters-lookup-form {

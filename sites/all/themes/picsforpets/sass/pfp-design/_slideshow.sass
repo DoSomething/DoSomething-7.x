@@ -10,6 +10,8 @@
   position: relative
   margin-top: 140px
   +float-left
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)
 
 .inside-shade
   background: rgba($black, 0.6)
@@ -20,6 +22,8 @@
   z-index: 106
   position: relative
   +float-left
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)
 
 .outside-left
   +float-left
@@ -135,3 +139,7 @@
 
 .views-ui-dialog .ui-dialog-titlebar-close
   z-index: 200
+
+#slideshow-wrapper
+  .ie8 &
+    clear: right
