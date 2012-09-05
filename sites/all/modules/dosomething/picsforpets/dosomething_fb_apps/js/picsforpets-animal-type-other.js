@@ -5,7 +5,7 @@
  */
 Drupal.behaviors.picsforpetsOtherVisibility = {
   attach: function (context) {
-    var select = '#edit-submitted-enter-animal-info-field-fb-app-animal-type-und';
+    var select = '#edit-field-fb-app-animal-type-und';
     var other = '.field-name-field-fb-app-other';
 
     if ($(select).val() == 'Other') {
@@ -21,7 +21,7 @@ Drupal.behaviors.picsforpetsOtherVisibility = {
       }
       if ($(select).val() !== 'Other') {
         $(other).hide('fast');
-        $('#edit-submitted-enter-animal-info-field-fb-app-other-und-0-value').val('');
+        $('#edit-field-fb-app-other-und-0-value').val('');
       }
     });
   }

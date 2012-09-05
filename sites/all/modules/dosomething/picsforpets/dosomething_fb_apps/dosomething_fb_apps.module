@@ -122,37 +122,82 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
         '#markup' => l('Back', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button back')))),
       );
       // We want these functions to load after webform entity fields are loaded.
-      $form['#after_build'][] = 'dosomething_fb_apps_field_fb_app_share_count';
-      $form['#after_build'][] = 'dosomething_fb_apps_webform_entity_fields';
+      $form['submitted']['field_fb_app_share_count']['#access'] = FALSE;
+
+      $form['submitted']['info'] = array(
+        '#type' => 'fieldset',
+        '#title' => '1| Enter Animal Info',
+        '#weight' => 0,
+        '#tree' => FALSE,
+      );
+      $form['submitted']['info']['field_fb_app_animal_name'] = $form['submitted']['field_fb_app_animal_name'];
+      unset($form['submitted']['field_fb_app_animal_name']);
+      $form['submitted']['info']['field_fb_app_animal_type'] = $form['submitted']['field_fb_app_animal_type'];
+      unset($form['submitted']['field_fb_app_animal_type']);
+      $form['submitted']['info']['field_fb_app_other'] = $form['submitted']['field_fb_app_other'];
+      unset($form['submitted']['field_fb_app_other']);
+      $form['submitted']['info']['field_fb_app_age'] = $form['submitted']['field_fb_app_age'];
+      unset($form['submitted']['field_fb_app_age']);
+      $form['submitted']['info']['field_fb_app_three_words'] = $form['submitted']['field_fb_app_three_words'];
+      unset($form['submitted']['field_fb_app_three_words']);
+
+      $form['submitted']['find_your_shelter'] = array(
+        '#type' => 'fieldset',
+        '#title' => '2| Find Your Shelter',
+        '#weight' => 1,
+        '#tree' => FALSE,
+      );
+      $form['submitted']['find_your_shelter']['find'] = array(
+        '#markup' => '<a href="/pics-for=pets/shetler-search-options" class="shelter-locator-popup">Locate Your Shelter</a>',
+      );
+      $form['submitted']['find_your_shelter']['field_fb_app_shelter_name'] = $form['submitted']['field_fb_app_shelter_name'];
+      unset($form['submitted']['field_fb_app_shelter_name']);
+      $form['submitted']['find_your_shelter']['field_fb_app_address'] = $form['submitted']['field_fb_app_address'];
+      unset($form['submitted']['field_fb_app_address']);
+      $form['submitted']['find_your_shelter']['field_fb_app_city'] = $form['submitted']['field_fb_app_city'];
+      unset($form['submitted']['field_fb_app_city']);
+      $form['submitted']['find_your_shelter']['field_fb_app_state'] = $form['submitted']['field_fb_app_state'];
+      unset($form['submitted']['field_fb_app_state']);
+      $form['submitted']['find_your_shelter']['field_fb_app_zip'] = $form['submitted']['field_fb_app_zip'];
+      unset($form['submitted']['field_fb_app_zip']);
+      $form['submitted']['find_your_shelter']['field_fb_app_shelter_reference'] = $form['submitted']['field_fb_app_shelter_reference'];
+      unset($form['submitted']['field_fb_app_shelter_reference']);
+
+      $form['submitted']['upload'] = array(
+        '#type' => 'fieldset',
+        '#title' => '3| Upload Your Pet Picture',
+        '#weight' => 2,
+        '#tree' => FALSE,
+      );
+      $form['submitted']['upload']['field_fb_app_image'] = $form['submitted']['field_fb_app_image'];
+      unset($form['submitted']['field_fb_app_image']);
+
+      // Check the user's permission given to role.
+      if (user_access('edit all webform submissions')) {
+        // If user is admin, show the following fields.
+        $form['submitted']['field_fb_app_adopted']['#access'] = TRUE;
+        $form['submitted']['field_fb_app_published']['#access'] = TRUE;
+      }
+      // If user is not admin, hide the adopted field.
+      else {
+        $form['submitted']['field_fb_app_adopted']['#access'] = FALSE;
+        $form['submitted']['field_fb_app_published']['#access'] = FALSE;
+      }
     }
   }
 }
 
 /**
- * Form API #after_build callback: Hides webform_entity field from users.
+ * Our form_alter implementaion needs to run after webform_entity's.
  */
-function dosomething_fb_apps_field_fb_app_share_count($form, $form_state) {
-  $form['submitted']['field_fb_app_share_count']['#access'] = FALSE;
-  return $form;
+function dosomething_fb_apps_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dosomething_fb_apps'];
+    unset($implementations['dosomething_fb_apps']);
+    $implementations['dosomething_fb_apps'] = $group;
+  }
 }
 
-/**
- * Form API #after_build callback: Shows certain webform fields to admin only.
- */
-function dosomething_fb_apps_webform_entity_fields($form, $form_state) {
-  // Check the user's permission given to role.
-  if (user_access('edit all webform submissions')) {
-    // If user is admin, show the following fields.
-    $form['submitted']['field_fb_app_adopted']['#access'] = TRUE;
-    $form['submitted']['field_fb_app_published']['#access'] = TRUE;
-  }
-    // If user is not admin, hide the adopted field.
-  else {
-    $form['submitted']['field_fb_app_adopted']['#access'] = FALSE;
-    $form['submitted']['field_fb_app_published']['#access'] = FALSE;
-  }
-  return $form;
-}
 
 /**
  * Implements hook_proprocess_views_view().

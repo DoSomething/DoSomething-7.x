@@ -335,14 +335,6 @@ function dosomething_picsforpets_invite_form($form, &$form_state) {
 }
 
 /**
- * Default validation handler for the
- * dosomething_picsforpets_general_thanks_form.
- */
-function dosomething_picsforpets_general_thanks_form_validate($form, &$form_state) {
-  // TODO: do js validation.
-}
-
-/**
  * Default submit handler for the
  * dosomething_picsforpets_general_thanks_form.
  */
@@ -576,10 +568,10 @@ function dosomething_picsforpets_general_validate_pet_shelter($form, &$form_stat
   $address_fields = domething_picsforpets_general_address_fields();
   // We need to have all the address field data set.
   foreach ($address_fields as $field => $name) {
-    if (empty($form_state['values']['submitted']['find_your_shelter'][$field][LANGUAGE_NONE][0]['value'])) {
+    if (empty($form_state['values']['submitted'][$field][LANGUAGE_NONE][0]['value'])) {
       // TODO: Error element is incorrect. It may need LANGUAGE_NONE][0][value,
       // but that wasn't working.
-      $error_element = implode('][', $form['submitted']['find_your_shelter'][$field]['#parents']);
+      $error_element = implode('][', $form['submitted'][$field]['#parents']);
       form_set_error($error_element, t('%name is a required field', array('%name' => $name)));
     }
   }
@@ -607,7 +599,7 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
       'field_fb_app_zip' => $address[0]['postal_code'],
     );
     foreach ($address_fields as $field => $name) {
-      if ($found_address[$field] != $form_state['webform_entity']['submission']->submitted['find_your_shelter'][$field][LANGUAGE_NONE][0]['value']) {
+      if ($found_address[$field] != $form_state['webform_entity']['submission']->submitted[$field][LANGUAGE_NONE][0]['value']) {
         $mismatch = TRUE;
       }
     }
@@ -621,15 +613,15 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
 
   if ($mismatch) {
     // Throw away the entity reference.
-    unset($form_state['values']['submitted']['find_your_shelter']['field_fb_app_shelter_reference']);
-    unset($form_state['webform_entity']['submission']->submitted['find_your_shelter']['field_fb_app_shelter_reference']);
+    unset($form_state['values']['submitted']['field_fb_app_shelter_reference']);
+    unset($form_state['webform_entity']['submission']->submitted['field_fb_app_shelter_reference']);
     unset($form_state['webform_entity']['submission']->field_fb_app_shelter_reference);
   }
   else {
     // Throw away the address fields.
     foreach ($address_fields as $field => $name) {
-      unset($form_state['values']['submitted']['find_your_shelter'][$field]);
-      unset($form_state['webform_entity']['submission']->submitted['find_your_shelter'][$field]);
+      unset($form_state['values']['submitted'][$field]);
+      unset($form_state['webform_entity']['submission']->submitted[$field]);
       unset($form_state['webform_entity']['submission']->{$field});
     }
   }
