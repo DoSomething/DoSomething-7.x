@@ -128,7 +128,7 @@ function dosomething_picsforpets_general_questions() {
   );
   $page['question9'] = array(
     '#theme' => 'fieldset',
-    '#title' => t('How do I win a $5,000 scholarship?'),
+    '#title' => t('How do I win a $10,000 scholarship?'),
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
