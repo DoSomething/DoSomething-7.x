@@ -95,6 +95,8 @@ body
   padding: 0 12px 0 12px
   border: 1px solid $pfp-gray-lt
   +border-radius(8px)
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff)
   p
     @extend %league-gothic
     border-bottom: 1px solid $black
@@ -171,6 +173,9 @@ a.footer-furtography
   position: absolute
   top: 0
   left: 0
+  .ie8 &
+    background: transparent
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000)
 
 .ui-dialog .ui-dialog-titlebar
   padding: 12px
@@ -237,6 +242,8 @@ a.footer-furtography
   border-top: 12px solid
   border-color: rgba($black, 0.1)
   +border-radius(0)
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000)
   .ui-dialog-content
     padding: 0
   .ui-dialog-title

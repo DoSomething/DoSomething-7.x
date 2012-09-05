@@ -1661,6 +1661,9 @@ body {
   -o-border-radius: 8px;
   border-radius: 8px;
 }
+.ie8 .white-block {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
+}
 .white-block p {
   border-bottom: 1px solid black;
   height: 50px;
@@ -1774,6 +1777,10 @@ a.footer-furtography {
   top: 0;
   left: 0;
 }
+.ie8 .ui-widget-overlay {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000);
+}
 
 .ui-dialog .ui-dialog-titlebar {
   padding: 12px;
@@ -1853,6 +1860,9 @@ a.footer-furtography {
   -ms-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
+}
+.ie8 .ui-dialog {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000);
 }
 .ui-dialog .ui-dialog-content {
   padding: 0;
@@ -2151,6 +2161,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 .prizes-scholarships .pane-content p {
   margin: 0;
 }
+.ie8 .prizes-scholarships .pane-content {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
+}
 .prizes-scholarships .pane-content .information {
   font-size: 16px;
   margin-bottom: 20px;
@@ -2242,6 +2256,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   margin-bottom: 100px;
   padding: 12px;
   width: 552px;
+}
+.ie8 .page-pics-for-pets-questions div[role="main"] {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
 .page-pics-for-pets-questions div[role="main"] .fieldset-legend {
   letter-spacing: 0;
@@ -2513,6 +2531,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   overflow: auto;
   overflow-x: hidden;
 }
+.ie8 #shelter-results-wrapper {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
+}
 #shelter-results-wrapper::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
@@ -2617,6 +2639,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 12px;
   width: 320px;
 }
+.ie8 .page-pics-for-pets-action-guide .panel-col-first {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
+}
 .page-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
   height: auto;
 }
@@ -2672,6 +2697,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 12px;
   width: 320px;
   text-align: center;
+}
+.ie8 .materials, .ie8
+.action-guide-video {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
 .materials p,
 .action-guide-video p {
@@ -2817,6 +2846,10 @@ select#edit-sort-by {
 .gallery-thumbnail-text:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+.ie8 .gallery-thumbnail-text:hover {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000);
 }
 .gallery-thumbnail-text .gallery-share-button {
   -webkit-border-radius: 4px;
