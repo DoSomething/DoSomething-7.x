@@ -73,8 +73,8 @@ function fbappsAnimalsNext(settings) {
   $('#slideshow-center').empty();
   $('#slideshow-center').load('/webform-submission/' + settings.fbappsAnimals.images[settings.fbappsAnimals.index].sid + ' #slideshow-center', function() {
     fbappsAnimalsLoadFacebook();
+    fbappsAnimalsPlaceImages(settings);
   });
-  fbappsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.fbappsAnimals.images[settings.fbappsAnimals.index + 4] == undefined) {
     var length = 0;
@@ -103,8 +103,8 @@ function fbappsAnimalsPrev(settings) {
   $('#slideshow-center').empty();
   $('#slideshow-center').load('/webform-submission/' + settings.fbappsAnimals.images[settings.fbappsAnimals.index].sid + ' #slideshow-center', function() {
     fbappsAnimalsLoadFacebook();
+    fbappsAnimalsPlaceImages(settings);
   });
-  fbappsAnimalsPlaceImages(settings);
   // The user may click next again, so ensure there are more images ready to go.
   if (settings.fbappsAnimals.images[settings.fbappsAnimals.index - 4] == undefined) {
     var length = 0;
