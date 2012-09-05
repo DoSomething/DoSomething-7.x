@@ -1922,6 +1922,8 @@ a.footer-furtography {
   width: 26px;
   height: 26px;
   position: absolute;
+  right: 10px;
+  top: 12px;
   text-indent: -1000px;
 }
 
