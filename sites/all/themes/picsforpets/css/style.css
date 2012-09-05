@@ -2440,6 +2440,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   clear: right;
 }
 
+.ie8 .page-webform-submission div[role="main"] {
+  clear: right;
+}
+
 #dosomething-picsforpets-shelters-lookup-form {
   overflow: hidden;
   *zoom: 1;
