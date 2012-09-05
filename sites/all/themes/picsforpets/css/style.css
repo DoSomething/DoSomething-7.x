@@ -1874,17 +1874,14 @@ a.footer-furtography {
   float: none;
 }
 .ui-dialog .ui-dialog-titlebar {
-  display: inline;
-  height: 0;
-  margin: 0;
-  padding: 0;
+  display: block;
+  height: auto;
+  margin: auto;
+  padding-bottom: 16px;
 }
 .ui-dialog .ui-dialog-titlebar-close {
-  margin: 0;
-  padding: 0;
   right: 0;
-  top: 0;
-  width: 0;
+  top: -22px;
 }
 .ui-dialog .ui-dialog-titlebar-close span {
   margin: 0;
