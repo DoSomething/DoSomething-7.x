@@ -19,7 +19,7 @@ define('DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST', 2);
 function dosomething_picsforpets_general_menu() {
   $items['pics-for-pets/share/js/%/%'] = array(
     'type' => MENU_CALLBACK,
-    'access callback' => TRUE,
+    'access callback' => 'dosomething_picsforpets_general_share_access_callback',
     'page callback' => 'dosomething_picsforpets_general_share',
     'page arguments' => array(3, 4),
   );
@@ -828,4 +828,28 @@ function dosomething_picsforpets_general_views_plugins() {
       ),
     ),
   );
+}
+
+/**
+ * Access callback for /pics-for-pets/shares/js/%/%.
+ *
+ * We check the HTTP_REFERER to see if the user is coming there from a
+ * submission page and we also make sure the user is actually logged in
+ * for good measure.
+ */
+function dosomething_picsforpets_general_share_access_callback() {
+  global $user;
+  drupal_debug($_SERVER);
+  
+  // Prevent share spoofing.
+  // HTTP_REFERER can hold 1 of 2 values that have certain patterns (or it may
+  // be empty).
+  // The only case we want to let through is the case when HTTP_REFER has the
+  // pattern http://<production-domain>/pics-for-pets/share/js/%/%.
+  // Let's write a regular expression to check for this pattern and then let
+  // those requests through.
+  if (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) {
+    return $user->uid ? TRUE : FALSE;
+  }
+  return FALSE;
 }
