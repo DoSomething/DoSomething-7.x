@@ -10,6 +10,8 @@ include_once 'dosomething_picsforpets_general.features.inc';
 define('PICSFORPETS_PET_SUBMISSION_NID', variable_get('picsforpets_animal_form_id', 3));
 // The node id for the campaign signup form.
 define('PICSFORPETS_CAMPAIGN_SIGNUP_NID', variable_get('picsforpets_campaign_signup_id', 15));
+// The mailchimp list ID for Dosomething Membership mailchimp list.
+define('DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST', 2);
 
 /**
  * Implements hook_menu().
@@ -259,7 +261,7 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
 
   // Subscribe to mailchimp.
   if (module_exists('mailchimp')) {
-    $list = mailchimp_lists_load(1);
+    $list = mailchimp_lists_load(DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST);
     $params = array(
       'GROUPINGS' => array(
         array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
@@ -364,7 +366,7 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
 
     // Subscribe to mailchimp.
   if (module_exists('mailchimp_lists') && $email) {
-    $list = mailchimp_lists_load(1);
+    $list = mailchimp_lists_load(DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST);
     $params = array(
       'GROUPINGS' => array(
         array('id' => '9573', 'groups' => 'PicsforPetsSharers2012'),
