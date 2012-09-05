@@ -173,13 +173,15 @@ a.footer-furtography
   left: 0
 
 .ui-dialog .ui-dialog-titlebar
-  @extend %league-gothic
   padding: 12px
+  .ui-dialog-title
+    // border: 1px solid yellow
+    @extend %league-gothic
+    font-weight: normal
 
 .ui-widget-header
   @extend %league-gothic
   +border-radius(0)
-  padding: 0
   background: none
   border: none
   color: $white
@@ -194,6 +196,7 @@ a.footer-furtography
   color: $white
   clear: both
   font-family: $font-sans
+  text-align: center
 
 #shelter-results
   .shelter-results-option-list
@@ -301,8 +304,9 @@ a.footer-furtography
 
 .ui-icon.ui-icon-closethick
   +replace-text-with-dimensions('../images/close.png')
+  +float-right
   position: absolute
-  right: 10px
+  // right: 0
   top: 12px
   text-indent: -1000px
 .ui-state-hover,

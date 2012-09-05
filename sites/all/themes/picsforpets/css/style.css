@@ -532,7 +532,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-fb-apps-enter-zip-form button,
 #dosomething-fb-apps-enter-zip-form input[type="reset"],
 #dosomething-fb-apps-enter-zip-form input[type="submit"],
-#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar .ui-dialog-title, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1153,8 +1153,7 @@ a.next {
 .question-icon-popup li.question-icon:hover ul.question-text-popup li.question-text {
   background: url(../images/popup-bubble.png) no-repeat;
   display: block;
-  border: 3px solid red;
-  height: auto;
+  overflow: visible;
 }
 .question-icon-popup li.question-icon ul.question-text-popup li.question-text {
   text-align: left;
@@ -1217,6 +1216,8 @@ fieldset .form-item {
 .form-item-cell {
   display: inline;
   float: left;
+  overflow: hidden;
+  *zoom: 1;
 }
 .form-item-email input,
 .form-item-cell input {
@@ -1772,6 +1773,9 @@ a.footer-furtography {
 .ui-dialog .ui-dialog-titlebar {
   padding: 12px;
 }
+.ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+  font-weight: normal;
+}
 
 .ui-widget-header {
   -webkit-border-radius: 0;
@@ -1779,7 +1783,6 @@ a.footer-furtography {
   -ms-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
-  padding: 0;
   background: none;
   border: none;
   color: white;
@@ -1795,6 +1798,7 @@ a.footer-furtography {
   color: white;
   clear: both;
   font-family: "DINOT", sans-serif;
+  text-align: center;
 }
 
 #shelter-results .shelter-results-option-list {
@@ -1921,8 +1925,9 @@ a.footer-furtography {
   background-position: 50% 50%;
   width: 26px;
   height: 26px;
+  display: inline;
+  float: right;
   position: absolute;
-  right: 10px;
   top: 12px;
   text-indent: -1000px;
 }
