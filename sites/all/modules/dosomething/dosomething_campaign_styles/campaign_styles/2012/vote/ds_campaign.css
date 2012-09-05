@@ -784,9 +784,10 @@ form.webform-client-form {
     margin-top: 10px; }
 .page-node-724570 .webform-client-form #edit-actions, .page-node-724570 .webform-client-form #edit-actions--2, .page-node-723007 .webform-client-form #edit-actions, .page-node-723007 .webform-client-form #edit-actions--2 {
   position: relative;
-  right: 30px;
+  left: 220px;
   bottom: 27px;
-  top: auto; }
+  top: auto;
+  width: 100px; }
 
 #node-724570, #node-723007 {
   background: #e3d6bb url(assets/section_bg.jpg); }
