@@ -55,7 +55,7 @@ Drupal.behaviors.galleryShareButton = {
             // the user has made.
             if (userShares == 3) {
               $('<div></div>')
-                .load('/pics-for-pets/ajax/thanks-for-sharing #dosomething-picsforpets-general-thanks-form')
+                .load('/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form')
                 .dialog({
                   title: Drupal.t('Thanks for sharing!'),
                   resizable: false,

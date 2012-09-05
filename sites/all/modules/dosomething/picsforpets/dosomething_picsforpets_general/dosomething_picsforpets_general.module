@@ -284,7 +284,7 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
  * Form that pops up after you have shared 3 pets.
  */
 function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
-  $form['#attributes'] = array(
+ $form['#attributes'] = array(
     'title' => t('Thanks for sharing!'),
   );
   $form['instructions'] = array(
@@ -339,9 +339,8 @@ function dosomething_picsforpets_general_thanks_form_validate($form, &$form_stat
  * Default submit handler for the
  * dosomething_picsforpets_general_thanks_form.
  */
-function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state) {
-  $form_state['redirect'] = '/pics-for-pets/gallery';
-
+function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state){
+  $form_state['redirect'] = 'webform-submission/' .  $_GET['sid'];
   $email = $form_state['values']['email'];
   $cell = $form_state['values']['cell'];
   if (!$email && !$cell) {
