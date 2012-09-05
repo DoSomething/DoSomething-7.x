@@ -88,7 +88,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 16px;
   font: inherit;
   vertical-align: baseline; }
 #cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
@@ -111,32 +111,52 @@ body {
   font-weight: 600;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   color: black; }
-#cmp h1, #cmp h2, #cmp h3 {
+#cmp h1, #cmp h3, #cmp p.divider {
   text-transform: uppercase; }
 #cmp h1 {
-  font-size: 32px;
+  font-size: 2.5em;
   line-height: 1.54em; }
-#cmp h2, #cmp .divider {
-  font-size: 20px;
+#cmp h1.condensed {
+  font-size: 3.75em;
+  font-weight: 600; }
+#cmp h2 {
+  font-size: 1.5em;
   line-height: 1.55em; }
 #cmp h3 {
-  font-size: 18px;
+  font-size: 1.25em;
   line-height: 22px; }
 #cmp h4 {
-  font-size: 14px;
+  font-size: 1em;
+  font-weight: 600;
   line-height: 17px; }
 #cmp p, #cmp label {
-  font-size: 14px;
+  font-size: 1em;
   font-weight: 500;
   line-height: 17px; }
-#cmp .disclaimer {
-  font-size: 10px;
+#cmp p.divider {
+  text-align: center;
+  color: white; }
+#cmp .legal {
+  font-size: 0.625em;
   font-weight: 500;
-  line-height: 14px; }
-#cmp .help {
-  padding: 1em 0 0 0;
-  font-style: italic;
-  font-size: 11px; }
+  line-height: 1em; }
+#cmp .section {
+  overflow: auto;
+  background: white;
+  margin: 3% auto;
+  padding: 2%; }
+#cmp .col33 {
+  width: 32%; }
+#cmp .col40 {
+  width: 39%; }
+#cmp .col60 {
+  width: 59%; }
+#cmp .col33, #cmp .col40, #cmp .col60 {
+  float: left; }
+#cmp .divider span {
+  background: black;
+  padding: 0.5em 0.8em;
+  position: relative; }
 #cmp .mcommons-col {
   width: 45%;
   margin: 0 0 0 5%;
@@ -149,11 +169,6 @@ body {
   #cmp .mcommons-col input, #cmp .mcommons-col label {
     float: left;
     margin: 0 0 5% 0; }
-#cmp .section {
-  overflow: auto;
-  background: white;
-  margin: 3% auto;
-  padding: 2%; }
 #cmp .s0 {
   background: #dddddd; }
 #cmp .pane-campaign-sign-up {

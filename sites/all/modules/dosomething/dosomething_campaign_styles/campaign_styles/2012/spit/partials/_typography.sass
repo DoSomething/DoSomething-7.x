@@ -1,41 +1,45 @@
 // TYPOGRAPHY
-  // need to add: 'em-calc'
 
 h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
   font-weight: 600
   font-family: $din
   color: #000
 
-h1, h2, h3
+h1, h3, p.divider
   text-transform: uppercase
   
 h1
-  font-size: 32px
+  font-size: em-calc(40)
   line-height: 1.54em
   
-h2, .divider
-  font-size: 20px
+h1.condensed
+  font-size: em-calc(60)
+  font-weight: 600
+  //font-family: $din-web
+
+h2
+  font-size: em-calc(24)
   line-height: 1.55em
 
 h3
-  font-size: 18px
+  font-size: em-calc(20)
   line-height: 22px
   
 h4
-  font-size: 14px
+  font-size: em-calc(16)
+  font-weight: 600
   line-height: 17px
   
 p, label
-  font-size: 14px
+  font-size: em-calc(16)
   font-weight: 500
   line-height: 17px
   
-.disclaimer
-  font-size: 10px
-  font-weight: 500
-  line-height: 14px
+p.divider
+  text-align: center
+  color: #fff
 
-.help
-  padding: 1em 0 0 0
-  font-style: italic
-  font-size: 11px
+.legal
+  font-size: em-calc(10)
+  font-weight: 500
+  line-height: 1em
