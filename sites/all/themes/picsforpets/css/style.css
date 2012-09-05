@@ -2091,10 +2091,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   top: -24px;
 }
 
-div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"] .ui-dialog {
+div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"].ui-dialog {
   overflow: hidden !important;
 }
-div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"] .ui-icon.ui-icon-closethick {
+div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"].ui-dialog .ui-icon.ui-icon-closethick {
   top: -14px;
 }
 
