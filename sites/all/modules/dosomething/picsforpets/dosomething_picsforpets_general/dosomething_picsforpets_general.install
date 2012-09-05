@@ -6,14 +6,6 @@
  */
 
 /**
- * Implements hook_install().
- */
-function dosomething_picsforpets_general_install() {
-  dosomething_picsforpets_general_regenerate_webform_node();
-  dosomething_picsforpets_general_regenerate_campaign_node();
-}
-
-/**
  * Install our schema.
  */
 function dosomething_picsforpets_general_update_7000() {
