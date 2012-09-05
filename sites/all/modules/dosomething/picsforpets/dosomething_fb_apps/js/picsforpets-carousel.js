@@ -52,10 +52,10 @@ function fbappsAnimalsPlaceImages(settings) {
     $('#slideshow-center').parent().after().after('<div class="slideshow-wing outside-right">' + images[index + 2].image_outer + '</div> <div class="slideshow-wing outside-shade"></div>');
   }
   if (images[index + -1]) {
-    $('#slideshow-center').parent().before().before('<div class="slideshow-wing inside-left">' + images[index + -1].image_inner + '</div> <div class="slideshow-wing inside-shade"></div');
+    $('#slideshow-center').parent().before().before('<div class="slideshow-wing inside-left">' + images[index + -1].image_inner + '</div> <div class="slideshow-wing inside-shade"></div>');
   }
   if (images[index + 1]) {
-    $('#slideshow-center').parent().after().after('<div class="slideshow-wing inside-right">' + images[index + 1].image_inner + '</div> <div class="slideshow-wing inside-shade"></div');
+    $('#slideshow-center').parent().after().after('<div class="slideshow-wing inside-right">' + images[index + 1].image_inner + '</div> <div class="slideshow-wing inside-shade"></div>');
   }
 
   // Respond to clicks of images.
