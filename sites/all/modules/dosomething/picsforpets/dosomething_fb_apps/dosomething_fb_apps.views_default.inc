@@ -554,6 +554,10 @@ Please try a new combo.
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   $handler->display->display_options['sorts']['submitted']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['submitted']['expose']['label'] = 'Newest';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -1102,10 +1106,6 @@ Start sharing now!
   $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'OR',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
