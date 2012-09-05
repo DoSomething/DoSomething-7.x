@@ -287,7 +287,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $shelter_data['address2'] = empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']);
           $shelter_data['city'] = empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
           $shelter_data['state'] = empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
-          $shelter_data['hours'] = empty($hours) ? '' : $hours[0]['safe_value'];
+          $shelter_data['hours'] = empty($hours) ? '' : check_markup($hours[0]['value'], 1);
           $shelter_array[] = $shelter_data;
         }
       }
@@ -312,7 +312,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
           $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
           $hours = field_get_items('node', $shelter, 'field_pfp_hours');
-          $markup .= empty($hours) ? '' : '<br />Hours:<br />' . $hours[0]['safe_value'];
+          $markup .= empty($hours) ? '' : '<br />Hours:<br />' . check_markup($hours[0]['value'], 1);
           // The option will have the node id as the value and the markup as the
           // label.
           $options[$shelter->nid] = $markup;
