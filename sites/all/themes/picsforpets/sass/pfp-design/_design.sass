@@ -241,7 +241,6 @@ a.footer-furtography
   border-bottom: 12px solid
   border-top: 12px solid
   border-color: rgba($black, 0.1)
-  overflow: hidden
   +border-radius(0)
   .ie8 &
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000)
@@ -438,6 +437,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"]
     position: relative
     right: 25px
     top: -24px
+
+// Styling for the 'Find your shelter' pop up
+div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"]
+  .ui-dialog
+    overflow: hidden !important
+  .ui-icon.ui-icon-closethick
+    top: -14px
 
 .item-list .pager li
   padding: 0
