@@ -28,11 +28,11 @@ Drupal.behaviors.galleryShareButton = {
       threeWords[2] = 2 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[2].raw.safe_value : "Friendly";
       var share = {
         method: 'feed',
-        name: 'DoSomething.org\'s Pics For Pets Project',
+        name: 'DoSomething.org\'s Pics For Pets',
         link: shareUrl,
         picture: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
         caption: settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
-        description: "@DoSomething about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
+        description: "Do Something about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
       };
       FB.ui(share, function(response) {
         // If the share was unsuccessful or the user clicked cancel, response
