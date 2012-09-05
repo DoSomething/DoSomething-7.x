@@ -1102,20 +1102,6 @@ Start sharing now!
   $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Facebook user shares: Facebook user ID */
-  $handler->display->display_options['arguments']['fb_user_id']['id'] = 'fb_user_id';
-  $handler->display->display_options['arguments']['fb_user_id']['table'] = 'fb_user_shares';
-  $handler->display->display_options['arguments']['fb_user_id']['field'] = 'fb_user_id';
-  $handler->display->display_options['arguments']['fb_user_id']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['fb_user_id']['default_argument_type'] = 'current_user_fbid';
-  $handler->display->display_options['arguments']['fb_user_id']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['fb_user_id']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['fb_user_id']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['fb_user_id']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['fb_user_id']['glossary'] = 0;
-  $handler->display->display_options['arguments']['fb_user_id']['limit'] = '0';
-  $handler->display->display_options['arguments']['fb_user_id']['transform_dash'] = 0;
-  $handler->display->display_options['arguments']['fb_user_id']['break_phrase'] = 0;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
     2 => 'OR',
