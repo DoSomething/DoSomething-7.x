@@ -1131,6 +1131,11 @@ a.next {
   border-bottom: 1px solid white;
 }
 
+.by-signing-up,
+.question-icon {
+  margin-top: 80px;
+}
+
 .question-icon-popup li.question-icon {
   font-size: 12px;
   line-height: 1.5;
