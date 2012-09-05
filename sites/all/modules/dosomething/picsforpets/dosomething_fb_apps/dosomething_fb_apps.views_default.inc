@@ -1116,6 +1116,50 @@ Start sharing now!
   $handler->display->display_options['arguments']['fb_user_id']['limit'] = '0';
   $handler->display->display_options['arguments']['fb_user_id']['transform_dash'] = 0;
   $handler->display->display_options['arguments']['fb_user_id']['break_phrase'] = 0;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'fb_app_data_gathering_form' => 'fb_app_data_gathering_form',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Webform Submission: Animal Type (field_fb_app_animal_type) */
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['id'] = 'field_fb_app_animal_type_value';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['table'] = 'field_data_field_fb_app_animal_type';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['field'] = 'field_fb_app_animal_type_value';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator_id'] = 'field_fb_app_animal_type_value_op';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['label'] = 'Sort by';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['operator'] = 'field_fb_app_animal_type_value_op';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['identifier'] = 'field_fb_app_animal_type_value';
+  $handler->display->display_options['filters']['field_fb_app_animal_type_value']['expose']['reduce'] = 0;
+  /* Filter criterion: Webform Submission: Published (field_fb_app_published) */
+  $handler->display->display_options['filters']['field_fb_app_published_value']['id'] = 'field_fb_app_published_value';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['table'] = 'field_data_field_fb_app_published';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['field'] = 'field_fb_app_published_value';
+  $handler->display->display_options['filters']['field_fb_app_published_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_fb_app_published_value']['group'] = 1;
+  /* Filter criterion: Facebook user shares: Facebook user ID */
+  $handler->display->display_options['filters']['fb_user_id']['id'] = 'fb_user_id';
+  $handler->display->display_options['filters']['fb_user_id']['table'] = 'fb_user_shares';
+  $handler->display->display_options['filters']['fb_user_id']['field'] = 'fb_user_id';
+  $handler->display->display_options['filters']['fb_user_id']['value'] = '1';
+  $handler->display->display_options['filters']['fb_user_id']['group'] = 2;
+  /* Filter criterion: Webform submissions: UID */
+  $handler->display->display_options['filters']['uid']['id'] = 'uid';
+  $handler->display->display_options['filters']['uid']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['uid']['field'] = 'uid';
+  $handler->display->display_options['filters']['uid']['value'] = '1';
+  $handler->display->display_options['filters']['uid']['group'] = 2;
 
   /* Display: Service Shared Pets */
   $handler = $view->new_display('panel_pane', 'Service Shared Pets', 'service_shared_pets');
