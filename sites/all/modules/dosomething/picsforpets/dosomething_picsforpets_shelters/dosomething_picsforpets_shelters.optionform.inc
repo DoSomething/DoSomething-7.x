@@ -22,12 +22,12 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
 
 
  $form['container-title'] = array (
-    '#type' =>  'container',
-    '#attributes' => array (
-      'class' => array('container-title'),
-      ),
-    );
- 
+   '#type' =>  'container',
+   '#attributes' => array (
+     'class' => array('container-title'),
+   ),
+ );
+
   $form['#attached'] = array(
     'js' => array(
       drupal_get_path('module', 'dosomething_picsforpets_shelters') . '/js/shelter_options.js',
@@ -66,8 +66,8 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
     '#validate' => array('dosomething_picsforpets_shelters_lookup_options_form_validate'),
   );
 
-  
- 
+
+
   // Initialize the options variable
   $options = array();
   if (isset($form_state['results'])) {
