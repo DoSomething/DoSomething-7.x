@@ -2277,6 +2277,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 }
 .ie8 .outside-shade {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  height: 132px;
 }
 
 .inside-shade {
@@ -2292,6 +2293,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 }
 .ie8 .inside-shade {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  height: 210px;
 }
 
 .outside-left {
