@@ -591,6 +591,9 @@ function _field_write_instance($instance, $update = FALSE) {
     'default' => array(),
   );
   foreach ($instance['display'] as $view_mode => $display) {
+    if (!is_array($display)) {
+      $display = array();
+    }
     $display += array(
       'label' => 'above',
       'type' => isset($field_type['default_formatter']) ? $field_type['default_formatter'] : 'hidden',
@@ -835,11 +838,12 @@ function field_delete_instance($instance, $field_cleanup = TRUE) {
 /**
  * Purges a batch of deleted Field API data, instances, or fields.
  *
- * This function will purge deleted field data on up to a specified maximum
- * number of entities and then return. If a deleted field instance with no
- * remaining data records is found, the instance itself will be purged.
- * If a deleted field with no remaining field instances is found, the field
- * itself will be purged.
+ * This function will purge deleted field data in batches. The batch size
+ * is defined as an argument to the function, and once each batch is finished,
+ * it continues with the next batch until all have completed. If a deleted field
+ * instance with no remaining data records is found, the instance itself will
+ * be purged. If a deleted field with no remaining field instances is found, the
+ * field itself will be purged.
  *
  * @param $batch_size
  *   The maximum number of field data records to purge before returning.

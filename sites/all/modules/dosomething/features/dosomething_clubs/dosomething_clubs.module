@@ -66,7 +66,7 @@ function dosomething_clubs_mail($key, &$message, $params) {
       $message['subject'] = t('Congratulations, your Club has been created!');
       $message['body'][] = theme('dosomething_clubs_welcome_email', array('name' => $params['name']));
       $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
-      $message['headers']['Bcc'] = "'clubs+approval@dosomething.org','nadir@dosomething.org'";
+      $message['headers']['Bcc'] = "'clubs+approval@dosomething.org'";
       $message['headers']['From'] = 'Do Something Clubs <clubs@dosomething.org>';
       break;
   }

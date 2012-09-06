@@ -694,6 +694,7 @@ li.search-result
   text-align: right
   height: 30px
   margin-bottom: 12px
+  margin-top: 12px
   &:before
     content: 'Start a Project'
     @extend .counter-labels
@@ -732,5 +733,39 @@ ul.hover-image
 #campaign-opt-in
   font-size: 11px
   line-height: 1.2em
-  padding-top: 25px !important
+  padding-top: 10px !important
  
+.webform-client-form
+  #edit-actions
+    position: relative
+    right: 20px
+    bottom: 40px
+
+//single pages fixs
+.page-node-724211, .page-node-718444
+  .webform-client-form
+    #edit-actionson
+      position: static
+
+//Student-financial-education page
+.btn-tell
+  .mcommons-webform-column 
+    .go-button
+      left: 90px !important    
+
+
+// SCHOLARSHIP PAGE
+.page-scholarships
+  #breadcrumb
+    display: none
+  .panel-row-ad-quick-info
+    p
+      font-size: 14px
+      line-height: 1.4em
+      margin-bottom: 20px
+  .panel-top-right-mini-info
+    -moz-box-shadow: none
+    -webkit-box-shadow: none
+    -o-box-shadow: none
+    box-shadow: none
+    border-bottom: none

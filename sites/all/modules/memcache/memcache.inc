@@ -146,6 +146,10 @@ class MemCacheDrupal implements DrupalCacheInterface {
   }
 
   function clear($cid = NULL, $wildcard = FALSE) {
+    if ($this->memcache === FALSE) {
+      // No memcache connection.
+      return;
+    }
 
     // It is not possible to detect a cache_clear_all() call other than looking
     // at the backtrace unless http://drupal.org/node/81461 is added.
@@ -330,13 +334,13 @@ class MemCacheDrupal implements DrupalCacheInterface {
         variable_set('memcache_wildcard_flushes', $this->wildcard_flushes);
       }
       $key = '.wildcard-' . $cid;
-      if (isset($wildcards[$this->bin][$key]) && $wildcards[$this->bin][$key] != 0) {
-        $this->memcache->increment($key);
+      if (isset($wildcards[$this->bin][$key])) {
         $wildcards[$this->bin][$key]++;
       }
       else {
-        dmemcache_set($key, '1', 0, $this->bin);
+        $wildcards[$this->bin][$key] = 1;
       }
+      dmemcache_set($key, $wildcards[$this->bin][$key], 0, $this->bin);
     }
     return $matching;
   }

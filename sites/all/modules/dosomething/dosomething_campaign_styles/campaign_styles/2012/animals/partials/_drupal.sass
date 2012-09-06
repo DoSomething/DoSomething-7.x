@@ -1,0 +1,67 @@
+#main-wrapper
+  div[role="main"]
+    padding: 0!important
+    margin: 0!important
+    background: $bgColor
+  #breadcrumb, #page-title
+    display: none
+  .tabs
+    background: $bgColor
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+
+body
+  background: $bgColor
+
+@media only screen and (max-width: 1075px)
+  .region-sidebar-first
+    display: none
+  #site-name
+    top: -53px
+    left: 23px
+    a
+      height: 50px
+      width: 60px
+      background-size: 60px 
+  #utility-bar
+    height: 55px
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
+    .search, #help-center
+      display: none
+    .login
+      padding: 1em 2em 0 0
+  #page
+    width: 100%
+  #main-wrapper div[role="main"]
+    float: none
+    width: 100%
+    background: $bgColor
+  nav[role="navigation"]
+    display: none
+  .container
+    margin: 0 auto
+    width: 100%
+  header[role="banner"]
+    position: relative
+    width: 797px
+    margin: 0 auto
+    @media only screen and (max-width: 775px)
+      width: 100%
+  #block-menu-menu-footer .content
+    width: 80%
+    margin: 0 auto
+  #block-menu-menu-footer .content ul.menu li span
+    font-size: 16px
+    line-height: 1em
+  #block-menu-menu-footer .content ul.menu ul li a
+    font-size: 14px
+    line-height: 1em
+  #cmp
+    .pane-content .s0
+      margin-top: 0
+    #campaign-opt-in
+      text-align: center
+

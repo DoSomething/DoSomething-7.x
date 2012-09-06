@@ -1,19 +1,20 @@
 <?php
 
-# We require the library  
-require("/var/www/html/sites/all/libraries/facebook/facebook.php");  
-  
-# Creating the facebook object  
-$facebook = new Facebook(array(  
-    'appId'  => '169271769874704',  
-    'secret' => '6021e05d90469af3488aef21ad86b900',  
-    'cookie' => true  
-));  
-
-# Let's see if we have an active session 
-#$session = $facebook->getSession(); 
-$uid = $facebook->getUser();
-$ROBOCALLS_FB_DESCRIPTION = urlencode('I just had a celebrity call you! Go HERE to send to another friend.');
+if ($_GET['code']) {
+    echo <<< html
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+<!--
+    $(document).ready(function() {
+        console.log('Just logged in.  Trying to alter the click state.');
+        window.opener.alter_click();
+        window.opener.pop();
+        window.close();
+    });
+-->
+</script>
+html;
+}
 
 if (intval($_GET['post_id']))
 {
@@ -21,15 +22,15 @@ if (intval($_GET['post_id']))
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 <!--
-    $('#edit-fb-container', window.opener.document).html("Okay! We've sent your Facebook message.");
+    $('#edit-fb-button', window.opener.document).html("Okay! We've sent your Facebook message.");
     window.close();
 -->
 </script>
 html;
     exit;
 }
-
-if (intval($uid))
+/* Rendered useless: Varnish removes all non-Drupal cookies.
+if ($uid)
 {
     if ($user = $facebook->api('/me/friends?fields=id,name,picture'))
     {
@@ -83,7 +84,7 @@ html;
         
         echo $r;
         echo '</ul></body></html>';
-    }
+    } 
     else
     {
         $params = array(
@@ -96,13 +97,14 @@ html;
     }
 }
 else
-{  
+{
     $params = array(
         'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/features/robocalls/facebook_popup.php',
         'display' => 'popup'
     );
 
     $login_url = $facebook->getLoginUrl($params); 
-    header("Location: " . $login_url);  
+    header("Location: " . $login_url);
 }
+*/
 ?>

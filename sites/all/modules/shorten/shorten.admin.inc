@@ -147,6 +147,15 @@ function shorten_admin($form, $form_state) {
     '#required' => TRUE,
     '#default_value' => variable_get('shorten_cache_fail_duration', 1800),
   );
+  $form['shorten_cache_clear_all'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Clear Shorten URLs cache when all Drupal caches are cleared.'),
+    '#description' => t('Sometimes Drupal automatically clears all caches, such as after running database updates.') . ' ' .
+      t('However, regenerating the cache of shortened URLs can be performance-intensive, and the cache does not affect Drupal behaviors.') . ' ' .
+      t('To avoid regenerating this cache after clearing all Drupal caches, un-check this option.') . ' ' .
+      t('Note that if you need to completely clear this cache, un-checking this option will require that you do it manually.'),
+    '#default_value' => variable_get('shorten_cache_clear_all', TRUE),
+  );
   unset($services['none']);
   $form['shorten_invisible_services'] = array(
     '#type' => 'checkboxes',
@@ -154,7 +163,7 @@ function shorten_admin($form, $form_state) {
     '#description' => t('Checking the box next to a service will make it <strong>unavailable</strong> for use in the Shorten URLs block and page.') . ' ' .
       t('If you disallow all services, the primary service will be used.'),
     '#default_value' => variable_get('shorten_invisible_services', array()),
-    '#options' => $services,
+    '#options' => array_map('check_plain', $services),
   );
   return system_settings_form($form);
 }
@@ -199,7 +208,7 @@ function shorten_admin_validate($form, &$form_state) {
  * Submit handler for shorten_admin().
  */
 function shorten_admin_submit($form, &$form_state) {
-  //Changed settings usually mean that different URLs should be used.
+  // Changed settings usually mean that different URLs should be used.
   cache_clear_all('*', 'cache_shorten', TRUE);
 }
 
@@ -214,23 +223,6 @@ function shorten_keys_form() {
  * Keys page.
  */
 function shorten_keys($form, $form_state) {
-  $form['shorten_adjix_fieldset'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Adjix'),
-    '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
-  );
-  $form['shorten_adjix_fieldset']['shorten_adjix'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Adjix Partner ID'),
-    '#default_value' => variable_get('shorten_adjix', ''),
-  );
-  $form['shorten_adjix_fieldset']['shorten_adjix_custom'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Adjix Custom Domain'),
-    '#default_value' => variable_get('shorten_adjix_custom', ''),
-    '#description' => t('Optional. Include the final slash, e.g. http://www.google.com/'),
-  );
   $form['shorten_bitly'] = array(
     '#type' => 'fieldset',
     '#title' => t('Bit.ly and j.mp'),

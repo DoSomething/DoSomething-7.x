@@ -1,0 +1,40 @@
+<?php
+
+/**
+  * Implements hook_schema_alter()
+  */
+function dosomething_submission_start_schema_alter(&$schema) {
+  $schema['webform_submissions']['fields']['start_time'] = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'default' => 0,
+    'description' => 'The starting time for a submission.',
+  );
+
+  $schema['webform_submissions']['fields']['drafted_time'] = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'default' => 0,
+    'description' => 'The drafted time for a submission.',
+  );
+}
+
+/**
+  * Implements hook_install()
+  */
+function dosomething_submission_start_install() {
+  $schema = array();
+  dosomething_submission_start_schema_alter($schema);
+
+  foreach ($schema['webform_submissions']['fields'] AS $column => $data) {
+    db_add_field('webform_submissions', $column, $data);
+  }
+}
+
+/**
+  * Implements hook_uninstall()
+  */
+function dosomething_submission_start_uninstall() {
+  db_drop_field('webform_submissions', 'start_time');
+  db_drop_field('webform_submissions', 'drafted_time');
+}

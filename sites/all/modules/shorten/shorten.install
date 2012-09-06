@@ -26,6 +26,8 @@ function shorten_update_6001() {
  * Implements hook_uninstall().
  */
 function shorten_uninstall() {
+  // The adjix and adjix_custom variables aren't used any more but they should
+  // still be deleted from installations that previously used them.
   variable_del('shorten_ez');
   variable_del('shorten_www');
   variable_del('shorten_adjix');
@@ -45,6 +47,7 @@ function shorten_uninstall() {
   variable_del('shorten_cache_duration');
   variable_del('shorten_generate_token');
   variable_del('shorten_service_backup');
+  variable_del('shorten_cache_clear_all');
   variable_del('shorten_invisible_services');
   variable_del('shorten_cache_fail_duration');
 }

@@ -222,9 +222,9 @@ form .go-button {
         margin-top: 5px; }
 
 .webform-client-form #edit-actions {
-  position: absolute;
-  right: 86px;
-  bottom: 9px; }
+  position: relative;
+  right: 60px;
+  bottom: 33px !important; }
 
 #campaign-opt-in {
   font-size: 11px;
@@ -399,7 +399,7 @@ form.webform-client-form {
   border: none;
   box-shadow: none;
   padding: 15px 15px 0 15px;
-  margin-bottom: -15px; }
+  margin-bottom: -60px; }
 
 .form-wrapper {
   margin-bottom: 5px; }
@@ -455,9 +455,6 @@ form.webform-client-form {
     margin-bottom: 80px; }
   .sign-up #webform-component-want-an-action-kit-fill-out-your-address-below {
     margin-top: 20px; }
-
-#dosomething-login-register-popup-form .popup-content {
-  height: 165px !important; }
 
 .gallery-header {
   margin-bottom: 0 !important; }

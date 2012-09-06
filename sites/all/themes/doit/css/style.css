@@ -1879,6 +1879,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   text-align: right;
   height: 30px;
   margin-bottom: 12px;
+  margin-top: 12px;
 }
 .start-a-project:before {
   content: "Start a Project";
@@ -1912,7 +1913,55 @@ ul.hover-image li:first-child {
 #campaign-opt-in {
   font-size: 11px;
   line-height: 1.2em;
-  padding-top: 25px !important;
+  padding-top: 10px !important;
+}
+
+.webform-client-form #edit-actions {
+  position: relative;
+  right: 20px;
+  bottom: 40px;
+}
+
+.page-node-724211 .webform-client-form #edit-actionson, .page-node-718444 .webform-client-form #edit-actionson {
+  position: static;
+}
+
+.btn-tell .mcommons-webform-column .go-button, .btn-tell .mcommons-webform-column #dosomething-blocks-make-an-impact-form input[type="submit"], #dosomething-blocks-make-an-impact-form .btn-tell .mcommons-webform-column input[type="submit"],
+.btn-tell .mcommons-webform-column #dosomething-blocks-make-an-impact-form-front input[type="submit"],
+#dosomething-blocks-make-an-impact-form-front .btn-tell .mcommons-webform-column input[type="submit"], .btn-tell .mcommons-webform-column form.webform-client-form #edit-next, form.webform-client-form .btn-tell .mcommons-webform-column #edit-next,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-previous,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-previous,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-submit,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-submit,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-submit--2,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-submit--2,
+.btn-tell .mcommons-webform-column form.webform-client-form #edit-draft,
+form.webform-client-form .btn-tell .mcommons-webform-column #edit-draft, .btn-tell .mcommons-webform-column .ds-login-popup-footer #edit-final-submit, .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit, .btn-tell .mcommons-webform-column .not-logged-in #dosomething-login-register-block #edit-first-submit, .not-logged-in #dosomething-login-register-block .btn-tell .mcommons-webform-column #edit-first-submit, .btn-tell .mcommons-webform-column .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .btn-tell .mcommons-webform-column a, .btn-tell .mcommons-webform-column .views-submit-button a, .views-submit-button .btn-tell .mcommons-webform-column a, .btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit,
+.btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit--2,
+.btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit,
+.btn-tell .mcommons-webform-column .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .btn-tell .mcommons-webform-column #edit-final-submit--2, .btn-tell .mcommons-webform-column .node-poll input[type="submit"], .node-poll .btn-tell .mcommons-webform-column input[type="submit"], .btn-tell .mcommons-webform-column #search-api-page-search-form #edit-submit-1, #search-api-page-search-form .btn-tell .mcommons-webform-column #edit-submit-1, .btn-tell .mcommons-webform-column #og-ui-confirm-subscribe #edit-actions #edit-submit, #og-ui-confirm-subscribe #edit-actions .btn-tell .mcommons-webform-column #edit-submit,
+.btn-tell .mcommons-webform-column #og-ui-confirm-subscribe #edit-actions #edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions .btn-tell .mcommons-webform-column #edit-submit--2 {
+  left: 90px !important;
+}
+
+.page-scholarships #breadcrumb {
+  display: none;
+}
+.page-scholarships .panel-row-ad-quick-info p {
+  font-size: 14px;
+  line-height: 1.4em;
+  margin-bottom: 20px;
+}
+.page-scholarships .panel-top-right-mini-info {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  border-bottom: none;
 }
 
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
@@ -2909,18 +2958,13 @@ select.form-select {
   border: 1px;
   font-size: 10px;
 }
-#dosomething-login-register-popup-form .form-item-pass,
-#dosomething-login-register-facebook .form-item-pass {
+#dosomething-login-register-popup-form .form-item-pass input,
+#dosomething-login-register-facebook .form-item-pass input {
   width: 212px;
 }
 .ie8 #dosomething-login-register-popup-form .form-item-pass label, .ie8
 #dosomething-login-register-facebook .form-item-pass label {
   float: left;
-}
-#dosomething-login-register-popup-form .form-item-pass .ds-registration-form-required,
-#dosomething-login-register-facebook .form-item-pass .ds-registration-form-required {
-  top: -27px;
-  left: -200px;
 }
 #dosomething-login-register-popup-form .form-item-pass label.error,
 #dosomething-login-register-facebook .form-item-pass label.error {
@@ -3146,12 +3190,6 @@ div.status, div.warning, div.error {
 }
 .error:active, div.error:active {
   color: red;
-}
-
-label[for="edit-last-name"],
-label[for="edit-first-name"],
-label[for="edit-cell-or-email"] {
-  display: none !important;
 }
 
 ul.tabs.primary {
@@ -3770,6 +3808,22 @@ h2.block-title, h2.pane-title {
   border: none !important;
   box-shadow: none !important;
   -webkit-box-shadow: none important;
+}
+
+#block-block-7 {
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(90%, #efefef), color-stop(100%, #d4d2d1));
+  background-image: -webkit-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -moz-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: -o-linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-image: linear-gradient(left, #efefef 90%, #d4d2d1);
+  background-color: #efefef;
+  margin-right: -5px;
+  position: relative;
+  top: 5px;
+  color: black;
+  padding: 10px 10px;
+  font-size: 12pt;
+  border-bottom: 1px solid #d4d2d1;
 }
 
 #block-menu-menu-footer {
@@ -4885,11 +4939,6 @@ h2.block-title, h2.pane-title {
   margin-top: 12px;
 }
 
-.form-item-pass .ds-registration-form-required {
-  left: 205px;
-  top: -23px;
-}
-
 div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closethick {
   right: -400px;
   top: -18px;
@@ -5912,20 +5961,4 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 
 .facebook-plugin {
   width: 50px;
-}
-
-#block-block-7 {
-  background-image: -webkit-gradient(linear,0% 50%,100% 50%,color-stop(90%,#EFEFEF),color-stop(100%,#D4D2D1));
-  background-image: -webkit-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-image: -moz-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-image: -o-linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-image: linear-gradient(left,#EFEFEF 90%,#D4D2D1);
-  background-color: #EFEFEF;
-  margin-right: -5px;
-  position: relative;
-  top: 5px;
-  color: black;
-  padding: 10px 10px;
-  font-size: 12pt;
-  border-bottom: 1px solid #D4D2D1;
 }

@@ -1,0 +1,69 @@
+<?php
+
+/**
+  * Implements hook_webform_submission_presave()
+  */
+function dosomething_submission_start_webform_submission_presave($node, &$submission) {
+  // Gather start time from "Start Time" hidden field, and add to submission.
+  $start_time = intval($_POST['start_time']);
+  $submission->start_time = $start_time;
+
+  // If it's a draft, add drafted time.
+  if ($submission->is_draft) {
+    $submission->drafted_time = REQUEST_TIME;
+  }
+}
+
+/**
+  * Implements hook_form_alter()
+  */
+function dosomething_submission_start_form_alter(&$form, &$form_state) {
+  static $started;
+
+  // For some reason, more than one value is being loaded on an edit page.  By the end, it
+  // has nothing in $form['#submission']->started...So let's make sure that the first
+  // one that appears is kept.
+  if (!$started) {
+    if (isset($form['#submission']->started)) {
+      $started = $form['#submission']->started;
+    }
+    else {
+      $started = REQUEST_TIME;
+    }
+  }
+
+  // The Start Time hidden field.
+  $form['start_time'] = array(
+    '#type' => 'hidden',
+    '#value' => $started
+  );
+}
+
+/**
+  * Implements hook_webform_submission_load()
+  */
+function dosomething_submission_start_webform_submission_load(&$submissions) {
+  // Gather start & draft time from webform_submissions table...
+  $q = db_select('webform_submissions', 'ws')
+    ->fields('ws', array('sid', 'start_time', 'drafted_time'))
+    ->condition('sid', array_keys($submissions), 'IN')
+    ->condition('bundle', NULL, 'IS NOT')
+    ->execute()
+    ->fetchAll();
+
+   // ...And attach them to $submissions.
+   foreach ($q AS $key => $stuff) {
+    if (isset($submissions[$stuff->sid])) {
+      $submissions[$stuff->sid]->started = $stuff->start_time;
+      $submissions[$stuff->sid]->drafted = $stuff->drafted_time;
+    }
+  }
+}
+
+/**
+  * Implements hook_theme_registry_alter()
+  */
+function dosomething_submission_start_theme_registry_alter(&$theme_registry) {
+  // Changes the path to webform-submissions-information.tpl.php
+  $theme_registry['webform_submission_information']['template'] = drupal_get_path('module', 'dosomething_submission_start') . '/templates/webform-submission-information';
+}

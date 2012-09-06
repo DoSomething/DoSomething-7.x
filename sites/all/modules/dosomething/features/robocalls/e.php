@@ -8,6 +8,7 @@ $fnid = 723985;
   $result = $q
     ->entityCondition('entity_type', 'webform_submission_entity')
     ->propertyCondition('nid', $fnid)
+    ->propertyCondition('uid', 0, '>')
     ->propertyOrderBy('submitted', 'DESC')
     ->fieldCondition('field_celeb_date', 'value', date('Y-m-d H:i:00', $time), '=')
     ->fieldCondition('field_celeb_send_now', 'value', 0, '=')

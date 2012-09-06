@@ -150,28 +150,41 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 
 /**
  * Generic handler that uses field_webform_email and field_webform_mobile
- * combined with the $node values for inserting values into InfusioSoft
+ * combined with the $node values for inserting values into InfusionSoft/Mailchimp
  * and/or Mobile Commons
  */
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
-  $mc_opt_in = isset($form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mc_optin[LANGUAGE_NONE][0]['value'] : NULL;
-  $inf_action = isset($form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_infusion_action[LANGUAGE_NONE][0]['value'] : NULL;
-  $mailchimp_group = isset($form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) ? $form['#node']->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] : NULL;
-  
-  $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  $cell = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  // If we don't have a node or a webform submission there's really nothing we
+  // can do. This handler was probably put on the wrong form.
+  if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
+    return;
+  }
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
 
-  // make sure all of the required values are set in the node and submission
-  if (!empty($mc_opt_in) && !empty($cell)) {
-    dosomething_general_mobile_commons_subscribe($cell, $mc_opt_in);
-  }
-  if (!empty($inf_action) && !empty($email)) {
-    dosomething_general_infusionsoft_subscribe($email, $inf_action);
-  }
-  if (!empty($mailchimp_group) && !empty($email)) {
-    dosomething_general_mailchimp_subscribe($email, $mailchimp_group);
+  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
+  if (!empty($cell)) {
+    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
+    }
   }
 
+  // Different instances of the email field use different widgets so we have to
+  // look in two places to find their email address.
+  if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  }
+  elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+  if (!empty($email)) {
+    if (!empty($node->field_infusion_action[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_infusionsoft_subscribe($email, $node->field_infusion_action[LANGUAGE_NONE][0]['value']);
+    }
+    if (!empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']);
+    }
+  }
 }
 
 /**
@@ -242,7 +255,7 @@ function dosomething_general_user_presave(&$edit, $account, $category) {
  *   Users email address.
  * @param $groupName
  *   The campaign name that the email is to be subscribed to.
- * @return 
+ * @return
  *   Boolean indicating success.
  */
 function dosomething_general_mailchimp_subscribe($email, $groupName) {
@@ -251,8 +264,8 @@ function dosomething_general_mailchimp_subscribe($email, $groupName) {
   // Catching function
   // Hardcoding the list to the dosomething members
   $listid = 'f2fab1dfd4';
-  
-  // We do not want them to have to know the grouping id so we will build 
+
+  // We do not want them to have to know the grouping id so we will build
   // the table to look it up by using the group name specified.
   $cid = "dosomething_general_mailchimp_group_mapping_$listid";
   $cache = cache_get($cid);
@@ -262,20 +275,20 @@ function dosomething_general_mailchimp_subscribe($email, $groupName) {
   else {
     $groupingIdByGroupName = array();
     $groupings = $mcapi->listInterestGroupings($listid);
-    foreach ($groupings as $grouping) {  
+    foreach ($groupings as $grouping) {
       foreach ($grouping['groups'] as $group) {
-        // If two groupnames are the same in different groupings 
+        // If two groupnames are the same in different groupings
         // then it may pick the wrong group.
-        $groupingIdByGroupName[$group['name']] = $grouping['id']; 
-      }  
+        $groupingIdByGroupName[$group['name']] = $grouping['id'];
+      }
     }
     cache_set($cid, $groupingIdByGroupName);
   }
-  
-  // TODO: Error Handling for groupname, still add the user if error occurs.  
+
+  // TODO: Error Handling for groupname, still add the user if error occurs.
   $mergeVars = array(
     'GROUPINGS' => array(
-      array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),     
+      array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),
     )
   );
   return $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE,FALSE);
@@ -356,23 +369,25 @@ function dosomething_general_find_user_by_cell($number) {
  *   The user account or false if none is found.
  */
 function dosomething_load_user_by_profile_cell($mobile) {
-  $account = FALSE;
   $query = new EntityFieldQuery('profile2');
   $results = $query->entityCondition('entity_type', 'profile2')
     ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
     ->deleted(FALSE)
+    // Look for more than one user but cap it at two so we don't waste all day.
+    ->range(0, 2)
     ->execute();
-  if (count($results)) {
-    $profiles = reset($results);
-    ksort($profiles);
-    $pid = array_pop($profiles)->pid;
-    $profile = profile2_load($pid);
+  // There are duplicate values in the mobile number field so if there is not
+  // exactly one account with the cell phone number don't let them log in this
+  // way. They'll need to use the username or email address instead.
+  if (count($results['profile2']) == 1) {
+    $profile = reset($results['profile2']);
+    $profile = profile2_load($profile->pid);
     if ($profile) {
       $uid = $profile->uid;
-      $account = user_load($uid);
+      return user_load($uid);
     }
   }
-  return $account;
+  return FALSE;
 }
 
 /**
@@ -486,10 +501,15 @@ function dosomething_general_ctools_render_alter($info, $page, $context) {
   }
   if (isset($local_context)) {
     foreach ($local_context as $ctxt) {
-      if (in_array('node', $ctxt->type) && is_object($ctxt->data)) {
+      if (in_array('node', (array) $ctxt->type) && is_object($ctxt->data)) {
         $node = $ctxt->data;
-        if ($panels_pane) $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
-        OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
+        if ($panels_pane) {
+          $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
+        }
+
+        if (isset($node->opengraph_meta)) {
+           OpenGraphMeta::instance()->render_data($node, $node->opengraph_meta);
+        }
         break;
       }
     }
@@ -526,3 +546,8 @@ function dosomething_general_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+// Return them to the page that they were on, if possible.
+function dosomething_general_user_logout($account) {
+  $goto = str_replace('http://' . $_SERVER['HTTP_HOST'] . '/', '', $_SERVER['HTTP_REFERER']);
+  $_GET['destination'] = $goto;
+}

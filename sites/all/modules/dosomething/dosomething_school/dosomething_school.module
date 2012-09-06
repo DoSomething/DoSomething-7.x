@@ -335,6 +335,9 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     // this way it gets visibly flagged and our error makes sense.
     '#required' => $instance['required'],
     '#default_value' => $default_state,
+    '#attributes' => array(
+      'class' => array('ds-school-state'),
+    ),
   );
   $element['type'] = array(
     '#title' => t('Level'),
@@ -345,6 +348,9 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     ),
     '#default_value' => $default_type,
     '#required' => TRUE,
+    '#attributes' => array(
+      'class' => array('ds-school-type'),
+    ),
   );
 
   $element['name'] = array(

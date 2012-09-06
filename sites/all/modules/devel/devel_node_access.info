@@ -6,9 +6,9 @@ core = 7.x
 configure = admin/config/development/devel
 tags[] = developer
 
-; Information added by drupal.org packaging script on 2011-11-01
-version = "7.x-1.x-dev"
+; Information added by drupal.org packaging script on 2012-06-05
+version = "7.x-1.3"
 core = "7.x"
 project = "devel"
-datestamp = "1320106040"
+datestamp = "1338940281"
 

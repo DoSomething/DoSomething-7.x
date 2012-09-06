@@ -211,7 +211,7 @@ function template_preprocess_webform_components_form(&$variables) {
       // Add each component to a table row.
       $row_data = array(
         $indents . filter_xss($component['name']),
-        t($component['type']),
+        $form['add']['type']['#options'][$component['type']],
         ($component['value'] == '') ? '-' : $component['value'],
         drupal_render($form['components'][$cid]['mandatory']),
         drupal_render($form['components'][$cid]['cid']) . drupal_render($form['components'][$cid]['pid']) . drupal_render($form['components'][$cid]['weight']),
@@ -347,6 +347,9 @@ function webform_components_form_submit($form, &$form_state) {
   }
 }
 
+/**
+ * Form to configure a webform component.
+ */
 function webform_component_edit_form($form, $form_state, $node, $component, $clone = FALSE) {
   drupal_set_title(t('Edit component: @name', array('@name' => $component['name'])), PASS_THROUGH);
 
@@ -393,6 +396,7 @@ function webform_component_edit_form($form, $form_state, $node, $component, $clo
     '#weight' => -9,
   );
 
+  $form['extra'] = array();
   if (webform_component_feature($component['type'], 'description')) {
     $form['extra']['description'] = array(
       '#type' => 'textarea',
@@ -520,8 +524,8 @@ function webform_component_edit_form($form, $form_state, $node, $component, $clo
     }
     if (webform_component_feature($test_component['type'], 'conditional')) {
       $conditional_components[$cid] = $test_component;
+      $counter++;
     }
-    $counter++;
   }
   if ($component['type'] != 'pagebreak') {
     $fieldset_description = t('Create a rule to control whether or not to skip this page.');
@@ -624,6 +628,9 @@ function webform_component_edit_form_validate($form, &$form_state) {
   }
 }
 
+/**
+ * Submit handler for webform_component_edit_form().
+ */
 function webform_component_edit_form_submit($form, &$form_state) {
   // Ensure a webform record exists.
   $node = node_load($form_state['values']['nid']);
@@ -632,7 +639,7 @@ function webform_component_edit_form_submit($form, &$form_state) {
   // Remove empty extra values.
   if (isset($form_state['values']['extra'])) {
     foreach ($form_state['values']['extra'] as $key => $value) {
-      if ($value  === '') {
+      if ($value  === '' && !isset($form['display'][$key]['#options'][''])) {
         unset($form_state['values']['extra'][$key]);
       }
     }
@@ -673,6 +680,9 @@ function webform_component_edit_form_submit($form, &$form_state) {
   $form_state['redirect'] = array('node/' . $node->nid . '/webform/components', isset($cid) ? array('query' => array('cid' => $cid)) : array());
 }
 
+/**
+ * Form to confirm deletion of a component.
+ */
 function webform_component_delete_form($form, $form_state, $node, $component) {
   $cid = $component['cid'];
 
@@ -698,6 +708,9 @@ function webform_component_delete_form($form, $form_state, $node, $component) {
   return confirm_form($form, $question, 'node/' . $node->nid . '/webform/components', $description, t('Delete'));
 }
 
+/**
+ * Submit handler for webform_component_delete_form().
+ */
 function webform_component_delete_form_submit($form, &$form_state) {
   // Delete the component.
   $node = $form_state['values']['node'];

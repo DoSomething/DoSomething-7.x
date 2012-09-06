@@ -490,7 +490,6 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%);
   -webkit-border-radius: 5px 5px 0 0;
   -moz-border-radius: 5px 5px 0 0;
@@ -585,7 +584,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #ffffff, #fafafa 90%);
     background-image: -moz-linear-gradient(top, #ffffff, #fafafa 90%);
     background-image: -o-linear-gradient(top, #ffffff, #fafafa 90%);
-    background-image: -ms-linear-gradient(top, #ffffff, #fafafa 90%);
     background-image: linear-gradient(top, #ffffff, #fafafa 90%); }
     .progress-bar-wrapper .progress-bar .progress-bar-progress {
       -webkit-border-radius: 4px 0 0 4px;
@@ -597,7 +595,6 @@ div[role="main"] {
       background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
       background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
       background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-      background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
       background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
 
 .activity-feed-wrapper {
@@ -634,7 +631,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
     #challenges-webform .field-name-field-webform-pictures #edit-submitted-field-webform-pictures-und {
       width: 60%;
@@ -668,7 +664,6 @@ div[role="main"] {
       background-image: -webkit-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -moz-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: -o-linear-gradient(top, #bebfc1, #939398 80%);
-      background-image: -ms-linear-gradient(top, #bebfc1, #939398 80%);
       background-image: linear-gradient(top, #bebfc1, #939398 80%);
       -webkit-border-radius: 7px;
       -moz-border-radius: 7px;
@@ -681,7 +676,6 @@ div[role="main"] {
         background-image: -webkit-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -moz-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: -o-linear-gradient(top, #b1b2b5, #79797f 80%);
-        background-image: -ms-linear-gradient(top, #b1b2b5, #79797f 80%);
         background-image: linear-gradient(top, #b1b2b5, #79797f 80%); }
   #challenges-webform .tabledrag-toggle-weight-wrapper {
     display: none; }
@@ -746,7 +740,6 @@ div[role="main"] {
     background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-    background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
     background-image: linear-gradient(top, #d32a1b, #a62115 80%);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -835,7 +828,6 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .photo_ribbon:after {
     width: 0;
@@ -872,7 +864,6 @@ div[role="main"] {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   .points1:after, .points2:after, .points3:after {
     width: 0;
@@ -1215,9 +1206,6 @@ table#field-team-invite-values {
     color: black;
     background-color: #aaaaaa; }
 
-.pane-content #dosomething-login-register-popup-form .popup-content {
-  height: 150px; }
-
 .pane-dosomething-login-register-block {
   width: 500px;
   margin: 0 auto;
@@ -1347,7 +1335,6 @@ table#field-team-invite-values {
   background-image: -webkit-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -moz-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: -o-linear-gradient(top, #d32a1b, #a62115 80%);
-  background-image: -ms-linear-gradient(top, #d32a1b, #a62115 80%);
   background-image: linear-gradient(top, #d32a1b, #a62115 80%); }
   #top_banner:before, #top_banner:after {
     content: "";
@@ -1388,7 +1375,7 @@ table#field-team-invite-values {
 .ultrabook_winner {
   float: left;
   width: 137px;
-  margin: 5px;
+  margin: 3px;
   padding-bottom: 20px;
   font-family: "din-web";
   font-size: 15px;
