@@ -49,6 +49,6 @@ function dosomething_picsforpets_general_uninstall() {
   variable_del('picsforpets_animal_form_id');
 
   //Delete the campaign sign up node.
-  node_delete(variable_get('picsforpets_campaign_node_id'));
-  variable_del('picsforpets_campaign_node_id');
+  node_delete(variable_get('picsforpets_campaign_signup_id'));
+  variable_del('picsforpets_campaign_signup_id');
 }

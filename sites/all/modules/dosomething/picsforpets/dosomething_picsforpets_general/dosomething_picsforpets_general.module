@@ -724,7 +724,7 @@ function dosomething_picsforpets_general_save_campaign_node($path) {
     }
   }
   node_save($webform);
-  variable_set('picsforpets_campaign_node_id', $webform->nid);
+  variable_set('picsforpets_campaign_signup_id', $webform->nid);
   return $webform;
 }
 
