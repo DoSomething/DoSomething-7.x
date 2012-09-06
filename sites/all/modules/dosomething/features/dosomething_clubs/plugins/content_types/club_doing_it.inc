@@ -20,10 +20,11 @@ function dosomething_clubs_club_doing_it_content_type_render($subtype, $conf, $p
     1 AS `is_node`,
     `node`.`created` AS `submitted`,
     node_field_data_field_campaign_list.title AS `title`,
-    `img`.`field_campaign_promo_image_fid` AS `fid`
+    `img`.`field_campaign_promo_image_fid` AS `fid`,
+    field_data_field_campaign_list.field_campaign_list_nid AS `blah`
 FROM 
 `node` node
-LEFT JOIN `field_data_field_campaign_list` field_data_field_campaign_list ON node.nid = field_data_field_campaign_list.entity_id AND (field_data_field_campaign_list.entity_type = 'node' AND field_data_field_campaign_list.deleted = '0')
+LEFT JOIN `field_data_field_campaign_list` field_data_field_campaign_list ON  field_data_field_campaign_list.entity_id = node.nid AND (field_data_field_campaign_list.entity_type = 'node' AND field_data_field_campaign_list.deleted = '0')
 LEFT JOIN `node` node_field_data_field_campaign_list ON field_data_field_campaign_list.field_campaign_list_nid = node_field_data_field_campaign_list.nid
 LEFT JOIN `field_data_field_campain_logo_thumbnail` node_field_data_field_campaign_list__field_data_field_campain_logo_thumbnail ON node_field_data_field_campaign_list.nid = node_field_data_field_campaign_list__field_data_field_campain_logo_thumbnail.entity_id AND (node_field_data_field_campaign_list__field_data_field_campain_logo_thumbnail.entity_type = 'node' AND node_field_data_field_campaign_list__field_data_field_campain_logo_thumbnail.deleted = '0')
 LEFT JOIN `file_managed` file_managed_field_data_field_campain_logo_thumbnail ON node_field_data_field_campaign_list__field_data_field_campain_logo_thumbnail.field_campain_logo_thumbnail_fid = file_managed_field_data_field_campain_logo_thumbnail.fid
@@ -39,7 +40,8 @@ SELECT
   0 AS `is_node`,
   webform_submissions.submitted AS `submitted`,
   `pt`.`field_project_title_value` AS `title`,
-  `img`.`field_picture_fid` AS `fid`
+  `img`.`field_picture_fid` AS `fid`,
+  0 AS `blah`
 FROM 
 `webform_submissions` webform_submissions
 LEFT JOIN `users` users_webform_submissions ON webform_submissions.uid = users_webform_submissions.uid
@@ -61,6 +63,9 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 	foreach ($query AS $key => $data) {
 		if (!$data->title) continue;
 		$file = file_load($data->fid);
+		if (!$file->uri) {
+		  $file->uri = 'sites/all/modules/dosomething/features/dosomething_clubs/club-nopic-01.png';
+		}
 		$image = theme('image_style', array('path' => $file->uri, 'style_name' => 'project_related_thumb'));
 		$link = ($data->is_node ? drupal_lookup_path('alias', 'node/' . $data->nid) : drupal_lookup_path('alias', 'webform-submission/' . $data->sid));
 
