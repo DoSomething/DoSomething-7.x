@@ -1,0 +1,4 @@
+name = Pics for Pets Redirect
+description = Redirects users to facebook login page if they access a picsforpets url
+core = 7.x
+package = "Pics For Pets"
