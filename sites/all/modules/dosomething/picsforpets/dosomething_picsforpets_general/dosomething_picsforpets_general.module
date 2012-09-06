@@ -620,7 +620,7 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
       'field_fb_app_zip' => $address[0]['postal_code'],
     );
     foreach ($address_fields as $field => $name) {
-      if ($found_address[$field] != $form_state['webform_entity']['submission']->submitted[$field][LANGUAGE_NONE][0]['value']) {
+      if ($found_address[$field] != $form_state['webform_entity']['submission']->{$field}[LANGUAGE_NONE][0]['value']) {
         $mismatch = TRUE;
       }
     }
