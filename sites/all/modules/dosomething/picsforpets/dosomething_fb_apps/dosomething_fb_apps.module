@@ -39,7 +39,7 @@ function dosomething_fb_apps_preprocess_views_mini_pager(&$variables) {
  * TODO: use no_js here.
  */
 function dosomething_fb_apps_menu() {
-  $items['pics-for-pets/carousel/js/%'] = array(
+  $items['fb/pics-for-pets/carousel/js/%'] = array(
     'type' => MENU_CALLBACK,
     'access callback' => TRUE,
     'page callback' => 'dosomething_fb_apps_submissions',
@@ -119,7 +119,7 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
     if ($form['#node']->type == 'fb_app_data_gathering_form') {
       drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-animal-type-other.js');
       $form['back'] = array(
-        '#markup' => l('Back', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button back')))),
+        '#markup' => l('Back', 'fb/pics-for-pets/action-guide', array('attributes' => array('class' => array('button back')))),
       );
       // We want these functions to load after webform entity fields are loaded.
       $form['submitted']['field_fb_app_share_count']['#access'] = FALSE;

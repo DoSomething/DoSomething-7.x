@@ -3,7 +3,7 @@
 /**
  * @file
  *   Creates the page callback and related functions for the menu entry at
- *   pics-for-pets/shelter-search-options
+ *   fb/pics-for-pets/shelter-search-options
  */
 
 /**

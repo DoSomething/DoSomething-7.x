@@ -17,33 +17,33 @@ define('DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST', 2);
  * Implements hook_menu().
  */
 function dosomething_picsforpets_general_menu() {
-  $items['pics-for-pets/share/js/%/%'] = array(
+  $items['fb/pics-for-pets/share/js/%/%'] = array(
     'type' => MENU_CALLBACK,
     'access callback' => 'dosomething_picsforpets_general_share_access_callback',
     'page callback' => 'dosomething_picsforpets_general_share',
     'page arguments' => array(3, 4),
   );
-  $items['pics-for-pets/become-a-furtographer'] = array(
+  $items['fb/pics-for-pets/become-a-furtographer'] = array(
     'title' => t('Become a Furtographer!'),
     'access callback' => TRUE,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_picsforpets_general_furtographer_form'),
   );
-  $items['pics-for-pets/ajax/thanks-for-sharing'] = array(
+  $items['fb/pics-for-pets/ajax/thanks-for-sharing'] = array(
     'title' => t('Thanks for sharing!'),
     'access callback' => TRUE,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_picsforpets_general_thanks_form'),
     'type' => MENU_CALLBACK,
   );
-  $items['pics-for-pets/ajax/invite-friends'] = array(
+  $items['fb/pics-for-pets/ajax/invite-friends'] = array(
     'title' => t('Thanks for sharing!'),
     'access callback' => TRUE,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_picsforpets_invite_form'),
     'type' => MENU_CALLBACK,
   );
-  $items['pics-for-pets/questions'] = array(
+  $items['fb/pics-for-pets/questions'] = array(
     'title' => t('Frequently Asked Questions'),
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_general_questions',
@@ -52,7 +52,7 @@ function dosomething_picsforpets_general_menu() {
 }
 
 /**
- * Making a collapsible faq for the pics-for-pets/questions page.
+ * Making a collapsible faq for the fb/pics-for-pets/questions page.
  */
 function dosomething_picsforpets_general_questions() {
   $page = array();
@@ -210,7 +210,7 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
     '#type' => 'submit',
     '#value' => 'Sign Up',
   );
-  $form['#action'] = '/pics-for-pets/lets-get-started';
+  $form['#action'] = '/fb/pics-for-pets/lets-get-started';
   $form['#attached']['js'][] = array(
     'type' => 'file',
     'data' => drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/furtog-form.js',
@@ -400,8 +400,8 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
  * Implements hook_custom_theme().
  */
 function dosomething_picsforpets_general_custom_theme() {
-  // Use the picsforpets theme when on the pics-for-pets paths and entities of the site.
-  if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
+  // Use the picsforpets theme when on the fb/pics-for-pets paths and entities of the site.
+  if (strpos(drupal_get_path_alias(request_uri()), '/fb/pics-for-pets') === 0) {
     return 'picsforpets';
   }
   if ($submission = menu_get_object('webform_entity_pages_submission')) {
@@ -518,7 +518,7 @@ function dosomething_picsforpets_general_preprocess_page(&$variables) {
   $current_path = current_path();
 
   // Add the email address below the  questions title.
-  if ($current_path == 'pics-for-pets/questions') {
+  if ($current_path == 'fb/pics-for-pets/questions') {
     $variables['title_suffix']['dosomething_picsforpets_general_email'] = array(
       '#type' => 'container',
       '#attributes' => array(
@@ -531,7 +531,7 @@ function dosomething_picsforpets_general_preprocess_page(&$variables) {
   }
 
   // Add the prize details below the action guide title.
-  if ($current_path == 'pics-for-pets/action-guide') {
+  if ($current_path == 'fb/pics-for-pets/action-guide') {
     $variables['title_suffix']['dosomething_page-picsforpets_action_guide'] = array(
       '#type' => 'container',
       '#attributes' => array(
@@ -694,7 +694,7 @@ function dosomething_picsforpets_general_save_webform_node($path) {
       $webform->webform['components'][$key]['mandatory'] = 0;
     }
   }
-  $webform->path = array('alias' => 'pics-for-pets/submit-pet-picture', 'pathauto' => FALSE);
+  $webform->path = array('alias' => 'fb/pics-for-pets/submit-pet-picture', 'pathauto' => FALSE);
   node_save($webform);
   variable_set('picsforpets_animal_form_id', $webform->nid);
   return $webform;
@@ -844,7 +844,7 @@ function dosomething_picsforpets_general_views_plugins() {
 }
 
 /**
- * Access callback for /pics-for-pets/shares/js/%/%.
+ * Access callback for /fb/pics-for-pets/shares/js/%/%.
  *
  * We check the HTTP_REFERER to see if the user is coming there from a
  * submission page and we also make sure the user is actually logged in

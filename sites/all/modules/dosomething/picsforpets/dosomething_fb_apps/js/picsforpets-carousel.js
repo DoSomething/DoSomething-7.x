@@ -16,7 +16,7 @@ Drupal.behaviors.dosomethingPicsforpetsCarousel = {
       // TODO: Possibly get any query parameters from filtering the gallery over to carry over here and pass to picsforpetsCarouselimages for smarter ordering.
 
       // Load up initial submissions.
-      $.get('/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid, function(images) {
+      $.get('/fb/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid, function(images) {
         settings.fbappsAnimals.images = images;
         fbappsAnimalsPlaceImages(settings);
       });
@@ -91,7 +91,7 @@ function fbappsAnimalsNext(settings) {
     });
     if (settings.fbappsAnimals.total != length) {
       // Load up more images.
-      $.get('/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid + '/' + (length - 1), function(images) {
+      $.get('/fb/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid + '/' + (length - 1), function(images) {
         $.extend(Drupal.settings.fbappsAnimals.images, images);
         // We may still need to grab images from the other side of the carousel.
         // Ensure this is run after the AJAX request completes.
@@ -121,7 +121,7 @@ function fbappsAnimalsPrev(settings) {
     });
     if (settings.fbappsAnimals.total != length) {
       // Load up more images.
-      $.get('/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid + '/' + (length - 1), function(images) {
+      $.get('/fb/pics-for-pets/carousel/js/'+ settings.fbappsAnimals.sid + '/' + (length - 1), function(images) {
         $.extend(Drupal.settings.fbappsAnimals.images, images);
         // We may still need to grab images from the other side of the carousel.
         // Ensure this is run after the AJAX request completes.

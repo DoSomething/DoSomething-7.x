@@ -532,7 +532,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-fb-apps-enter-zip-form button,
 #dosomething-fb-apps-enter-zip-form input[type="reset"],
 #dosomething-fb-apps-enter-zip-form input[type="submit"],
-#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar .ui-dialog-title, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar .ui-dialog-title, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-fb-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -1570,10 +1570,10 @@ body {
   clear: both;
 }
 
-.page-pics-for-pets-gallery div[role="main"],
-.page-pics-for-pets-gallery #content,
-.page-pics-for-pets-gallery-my-shares div[role="main"],
-.page-pics-for-pets-gallery-my-shares #content {
+.page-fb-pics-for-pets-gallery div[role="main"],
+.page-fb-pics-for-pets-gallery #content,
+.page-fb-pics-for-pets-gallery-my-shares div[role="main"],
+.page-fb-pics-for-pets-gallery-my-shares #content {
   margin-top: -140px;
 }
 
@@ -2243,16 +2243,16 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding-right: 6px;
 }
 
-.page-pics-for-pets-questions .questions-email {
+.page-fb-pics-for-pets-questions .questions-email {
   margin: 0 auto;
   padding-top: 5px;
   text-align: center;
   width: 430px;
 }
-.page-pics-for-pets-questions .questions-email a {
+.page-fb-pics-for-pets-questions .questions-email a {
   border-bottom: 1px solid;
 }
-.page-pics-for-pets-questions div[role="main"] {
+.page-fb-pics-for-pets-questions div[role="main"] {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -2268,23 +2268,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 12px;
   width: 552px;
 }
-.ie8 .page-pics-for-pets-questions div[role="main"] {
+.ie8 .page-fb-pics-for-pets-questions div[role="main"] {
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
-.page-pics-for-pets-questions div[role="main"] .fieldset-legend {
+.page-fb-pics-for-pets-questions div[role="main"] .fieldset-legend {
   letter-spacing: 0;
 }
-.page-pics-for-pets-questions div[role="main"] fieldset.collapsed {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset.collapsed {
   height: auto;
 }
-.page-pics-for-pets-questions div[role="main"] fieldset a {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset a {
   color: black;
   font-family: "DINOT", sans-serif;
   font-size: 18px;
   text-transform: none;
 }
-.page-pics-for-pets-questions div[role="main"] fieldset .fieldset-wrapper {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset .fieldset-wrapper {
   border: none;
   background-color: transparent;
   line-height: 1.2;
@@ -2632,14 +2632,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   width: 110px;
 }
 
-.page-pics-for-pets-action-guide h2 {
+.page-fb-pics-for-pets-action-guide h2 {
   text-transform: uppercase;
   font-size: 28px;
   padding: 0;
   margin: 0;
   text-align: center;
 }
-.page-pics-for-pets-action-guide .panel-col-first {
+.page-fb-pics-for-pets-action-guide .panel-col-first {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -2655,19 +2655,19 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 12px;
   width: 320px;
 }
-.ie8 .page-pics-for-pets-action-guide .panel-col-first {
+.ie8 .page-fb-pics-for-pets-action-guide .panel-col-first {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
-.page-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
+.page-fb-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
   height: auto;
 }
-.page-pics-for-pets-action-guide .panel-col-first fieldset a {
+.page-fb-pics-for-pets-action-guide .panel-col-first fieldset a {
   color: black;
   font-family: "DINOT", sans-serif;
   font-size: 18px;
   text-transform: none;
 }
-.page-pics-for-pets-action-guide .panel-col-first fieldset .fieldset-wrapper {
+.page-fb-pics-for-pets-action-guide .panel-col-first fieldset .fieldset-wrapper {
   border: none;
   background-color: transparent;
   line-height: 1.2;
@@ -2675,11 +2675,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding-right: 24px;
   padding-top: 0;
 }
-.page-pics-for-pets-action-guide .panel-col-bottom {
+.page-fb-pics-for-pets-action-guide .panel-col-bottom {
   display: inline;
   float: left;
 }
-.page-pics-for-pets-action-guide .next {
+.page-fb-pics-for-pets-action-guide .next {
   display: inline;
   float: right;
   color: #ec1c24;
@@ -2689,7 +2689,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   background: white url(../images/lg-right-arrow.png) no-repeat;
   background-position: 72px 7px;
 }
-.page-pics-for-pets-action-guide .win-prizes {
+.page-fb-pics-for-pets-action-guide .win-prizes {
   text-align: center;
   text-transform: uppercase;
   font-size: 20px;

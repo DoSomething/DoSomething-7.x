@@ -15,7 +15,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Lets Get Started';
   $page->admin_description = '';
-  $page->path = 'pics-for-pets/lets-get-started';
+  $page->path = 'fb/pics-for-pets/lets-get-started';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -70,7 +70,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/pics-for-pets/shelter-search">Find a shelter<br />
+      'body' => '<a href="/fb/pics-for-pets/shelter-search">Find a shelter<br />
 near you</a>',
       'format' => '1',
       'substitute' => TRUE,
@@ -98,7 +98,7 @@ near you</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/pics-for-pets/action-guide">Get the guide</a>',
+      'body' => '<a href="/fb/pics-for-pets/action-guide">Get the guide</a>',
       'format' => '1',
       'substitute' => TRUE,
     );
@@ -125,7 +125,7 @@ near you</a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<a href="/pics-for-pets/submit-pet-picture">Submit your<br />
+      'body' => '<a href="/fb/pics-for-pets/submit-pet-picture">Submit your<br />
 shelter pet pic</a>',
       'format' => '1',
       'substitute' => TRUE,
@@ -156,7 +156,7 @@ shelter pet pic</a>',
   $page->task = 'page';
   $page->admin_title = 'Pics for Pets Home';
   $page->admin_description = '';
-  $page->path = 'pics-for-pets';
+  $page->path = 'fb/pics-for-pets';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -260,7 +260,7 @@ shelter pet pic</a>',
   $page->task = 'page';
   $page->admin_title = 'Prizes and Scholarships';
   $page->admin_description = 'This page will display the scholorship';
-  $page->path = 'pics-for-pets/prizes-and-scholarships';
+  $page->path = 'fb/pics-for-pets/prizes-and-scholarships';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
