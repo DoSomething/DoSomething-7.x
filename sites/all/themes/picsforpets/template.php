@@ -5,7 +5,7 @@
  * Implementation of template_preprocess_page().
  */
 function picsforpets_preprocess_page(&$variables) {
-  $variables['front_page'] = url() . 'pics-for-pets';
+  $variables['front_page'] = url() . 'pics-for-pets/gallery';
 
   if (arg(0) == 'pics-for-pets' && !arg(1)) {
     return;
