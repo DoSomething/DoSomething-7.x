@@ -772,3 +772,29 @@ form.webform-client-form {
 
 #meet-candidates img {
   max-width: none !important; }
+
+.page-node-724570 #block-system-main .content .pane-title, .page-node-723007 #block-system-main .content .pane-title {
+  background: #d72231 url("http://files.dosomething.org/files/campaigns/vote/vote-headline3.jpg") top center no-repeat;
+  width: 750px; }
+.page-node-724570 #block-system-main .content form, .page-node-723007 #block-system-main .content form {
+  width: 350px;
+  padding: 0px;
+  margin: 0px 200px; }
+  .page-node-724570 #block-system-main .content form label, .page-node-723007 #block-system-main .content form label {
+    margin-top: 10px; }
+.page-node-724570 .webform-client-form #edit-actions, .page-node-724570 .webform-client-form #edit-actions--2, .page-node-723007 .webform-client-form #edit-actions, .page-node-723007 .webform-client-form #edit-actions--2 {
+  position: relative;
+  left: 220px;
+  bottom: 27px;
+  top: auto;
+  width: 100px; }
+
+#node-724570, #node-723007 {
+  background: #e3d6bb url(assets/section_bg.jpg); }
+
+img.pre-register, img.register {
+  float: left;
+  width: 345px;
+  padding: 20px 0px 20px;
+  margin: 0 15px !important;
+  border: none !important; }
