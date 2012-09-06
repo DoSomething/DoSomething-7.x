@@ -34,7 +34,7 @@ function dosomething_picsforpets_fb_user_settings_form() {
     '#title' => t('App URL'),
     '#size' => 20,
     '#maxlengh' => 50,
-    '#description' => t('Enter your pics for pets App URL here.'),
+    '#description' => t('Enter your pics for pets App URL here. NOTE: This should be the FULL URL including the leading "http://"'),
     '#default_value' => variable_get('dosomething_picsforpets_fb_user_app_url', ''),
   );
 
@@ -43,7 +43,7 @@ function dosomething_picsforpets_fb_user_settings_form() {
     '#title' => t('App Secure URL'),
     '#size' => 20,
     '#maxlengh' => 50,
-    '#description' => t('Enter your pics for pets App Secure URL here.'),
+    '#description' => t('Enter your pics for pets App Secure URL here. NOTE: This should be the FULL URL including the leading "https://"'),
     '#default_value' => variable_get('dosomething_picsforpets_fb_user_app_secure_url', ''),
   );
 
