@@ -306,7 +306,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           // reset the string.
           $markup = '';
           $markup .= '<span class="label-shelter-title">' . check_plain($shelter->title) . '</span><br />';
-          $markup .= empty($phone[0]['value']) ? 'asdfasdfasdf' : check_plain($phone[0]['value']) . '<br />';
+          $markup .= empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']) . '<br />';
           $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
           $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
           $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
