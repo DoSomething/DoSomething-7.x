@@ -2090,6 +2090,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   top: -24px;
 }
 
+.ui-dialog {
+  overflow-x: hidden !important;
+}
+
+.item-list .pager li {
+  padding: 0;
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
