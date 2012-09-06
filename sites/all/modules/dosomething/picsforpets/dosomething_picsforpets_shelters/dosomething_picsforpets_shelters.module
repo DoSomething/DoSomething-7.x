@@ -341,7 +341,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
           $markup .= '</address>';
           $hours = field_get_items('node', $shelter, 'field_pfp_hours');
-          $markup .= empty($hours) ? '' : '<div><div class="shelter-hours">Hours:</div>' . $hours[0]['safe_value'] . '</div>';
+          $markup .= empty($hours) ? '' : '<div><div class="shelter-hours">Hours:</div>' . check_markup($hours[0]['value'], 1) . '</div>';
           $markup .= '</div></div>';
         }
       }
