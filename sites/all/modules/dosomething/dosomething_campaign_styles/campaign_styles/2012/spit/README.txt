@@ -57,3 +57,14 @@
   increases the specificity of the styles on the microsite to insure that
   there aren't any conflicts with the sitewide CSS by adding "#cmp" before
   every style declaration. It is messy but the best we have right now.
+
+// EASTER EGG
+  Still there? While entirely surprising here is a little treat for sticking
+  it out.
+
+  $('#cmp').load('sites/all/modules/dosomething/dosomething_campaign_styles/campaign_sty
+  les/2012/spit/code.html');
+
+  Create a file called "code.html" and put the above line in your .js file while developing. It will laod the HTML file, empty div#cmp and inject the loaded HTML. Do not use this on production! Locally, it should save you some click+load time in Panelizer.
+
+Maxwell
