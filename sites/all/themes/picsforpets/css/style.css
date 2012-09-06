@@ -2618,6 +2618,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   width: 105px;
 }
 
+#dosomething-picsforpets-shelters-options-form #edit-view-more-button {
+  float: none;
+  width: 110px;
+}
+
 .page-pics-for-pets-action-guide h2 {
   text-transform: uppercase;
   font-size: 28px;
