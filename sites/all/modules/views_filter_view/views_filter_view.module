@@ -73,13 +73,15 @@ function views_filter_view_get_filter_views() {
         $view->init_display();
         // Find all views which has views:view as filter.
         foreach ($view->display as $display_id => $display) {
-          $filters = $display->handler->get_option('filters');
-          foreach ($filters as $id => $item) {
-            if ($item['table'] == 'views' && $item['field'] == 'view') {
-              if (!empty($item['view'])) {
-                $filter_views[$item['view']] = $item['view'];
+          if (is_object($display->handler)) {
+            $filters = $display->handler->get_option('filters');
+            foreach ($filters as $id => $item) {
+              if ($item['table'] == 'views' && $item['field'] == 'view') {
+                if (!empty($item['view'])) {
+                  $filter_views[$item['view']] = $item['view'];
+                }
+                continue;
               }
-              continue;
             }
           }
         }
