@@ -60,8 +60,12 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 		'#markup' => '<h2 class="pane-title" style="margin-bottom: 15px;">Doing It</h2>'
 	);
 
+	global $user;
 	foreach ($query AS $key => $data) {
 		if (!$data->title) continue;
+		if ($_GET['debug'] == 1 && user_access('administer group', $user)) {
+		   echo '<pre>', print_r($data), '</pre>';
+		}
 		$file = file_load($data->fid);
 		if (!$file->uri) {
 		  $file->uri = 'default-profile-picture.jpg';
