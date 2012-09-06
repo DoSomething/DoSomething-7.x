@@ -23,6 +23,13 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   $node = $context->data;
   $group = og_context();
 
+  drupal_add_library('system', 'drupal.ajax');
+  drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/club-ajax.js');
+  /*drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs-addons.css', array(
+         'group' => CSS_THEME,
+         'weight' => 100
+       ));*/
+
   if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
     $image = $node->field_club_picture[LANGUAGE_NONE][0];
     $image_style = 'action_results_thumbnail';
@@ -40,7 +47,26 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   $member_link = '';
   // Anonymous user.
   $membership = og_get_group_membership($group->gid, 'user', $user->uid);
-  if ($user->uid == 0) {
+
+  if (isset($membership->state) && $membership->state == OG_STATE_ACTIVE) {
+    $form = drupal_render(drupal_get_form('dosomething_clubs_invite_form', $group->gid));
+    $member_link = $form;
+  }
+  else if (isset($membership->state) && $membership->state == OG_STATE_PENDING) {
+    $member_link = 'Your membership is pending.';
+  }
+  else {
+    if (user_is_logged_in()) {
+      $member_link = drupal_render(drupal_get_form('dosomething_clubs_join_form', $group->gid));
+    }
+    else {
+      $member_link = drupal_render(drupal_get_form('dosomething_clubs_join_form', $group->gid));
+      // 1. pop up login/register box with ?destination set
+      // 2. destination is a new page, with destination URL encoded
+      // 3. redirect back to the club page
+    }
+  }
+  /*if ($user->uid == 0) {
     $member_link = t('Join the club') . l('Go', 'user/registration', array('query' => array('destination' => 'group/node/' . $node->nid . '/subscribe'), 'attributes' => array('class' => 'go-button')));
   }
   // Logged in non-member.
@@ -61,7 +87,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     elseif ($membership->state == 1) {
       $member_link = t('Member');
     }
-  }
+  }*/
 
   $location = '';
   $school_name = '';
@@ -71,6 +97,16 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     $school_name = $school->name;
     $location = $school->city . ', ' . $school->state;
   }
+  else {
+    $school_name = $node->title;
+    $location = $node->field_club_city[LANGUAGE_NONE][0]['value'] . ', ' . $node->field_club_state[LANGUAGE_NONE][0]['value'];
+  }
+
+  /*$link = 'http://www.facebook.com/dialog/feed?'
+  . 'app_id=105775762330&'
+  . 'display=popup&'
+  . 'link=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];*/
+  $link = 'http://www.facebook.com/sharer/sharer.php?u=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
   $output = array(
     'container' => array(
@@ -105,10 +141,20 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
           '#prefix' => '<div class="school-location">',
           '#suffix' => '</div>',
         ),
+        'blurb' => array(
+          '#markup' => $node->field_club_blurb[LANGUAGE_NONE][0]['value'],
+          '#prefix' => '<p class="club-blurb">',
+          '#suffix' => '</p>'
+        ),
         'member_link' => array(
           '#markup' => $member_link,
           '#prefix' => '<div class="invite-link">',
           '#suffix' => '</div>',
+        ),
+        'share_on_facebook' => array(
+          '#markup' => t('Share on Facebook'),
+          '#prefix' => '<a href="' . $link . '" id="clubs-share-on-facebook">',
+          '#suffix' => '</a>',
         ),
         'see_all' => array(
           '#markup' => $see_all,
@@ -148,7 +194,7 @@ function dosomething_clubs_club_counter_right() {
   $member_count = count($members);
 
   $items['total_members'] = array(
-    'title' => t('Total Members'),
+    'title' => l(t('Total Members'), '#', array('attributes' => array('class' => array('member-popup-trigger')))),
     'value' => $member_count,
   );
 
@@ -170,13 +216,18 @@ function dosomething_clubs_club_counter_right() {
     }
   }
 
-  $items['campaigns_completed'] = array(
+ /* $items['campaigns_completed'] = array(
     'title' => t('Campaigns Completed'),
     'value' => $counts['campaign_report_back'],
   );
   $items['projects_uploaded'] = array(
     'title' => t('Projects Uploaded'),
     'value' => $counts['project_report'],
+  );*/
+
+  $items['actions_taken'] = array(
+    'title' => t('Actions Taken'),
+    'value' => ($counts['campaign_report_back'] + $counts['project_report'])
   );
 
   $output[] = array(
@@ -184,5 +235,9 @@ function dosomething_clubs_club_counter_right() {
     '#items' => $items,
   );
 
-  return theme('dosomething_stats_counter', array('items' => $items));
+  $output[] = array(
+    '#markup' => l(t('View Members'), 'club/'.$group->gid.'/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')))),
+  );
+
+  return drupal_render($output);
 }
