@@ -1777,11 +1777,11 @@ Start sharing now!
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_pfp_hours']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_pfp_hours']['alter']['nl2br'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_pfp_hours']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_pfp_hours']['alter']['strip_tags'] = 1;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_pfp_hours']['element_label_colon'] = 1;
