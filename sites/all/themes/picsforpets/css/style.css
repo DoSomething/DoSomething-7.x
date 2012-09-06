@@ -1284,6 +1284,11 @@ label.option {
   float: right;
 }
 
+.ie9 form .form-item {
+  position: relative;
+  top: 0;
+}
+
 /* Tables -------------------------------------------------------------- */
 /* tables still need 'cellspacing="0"' in the markup */
 ins {
