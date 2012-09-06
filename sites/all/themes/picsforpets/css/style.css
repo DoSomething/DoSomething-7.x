@@ -1758,6 +1758,10 @@ a.footer-furtography {
   padding-bottom: 24px;
 }
 
+#dosomething-picsforpets-general-furtographer-form {
+  overflow-y: hidden !important;
+}
+
 #dosomething-picsforpets-general-furtographer-form--2 {
   overflow: hidden;
   *zoom: 1;
