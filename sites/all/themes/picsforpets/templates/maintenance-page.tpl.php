@@ -28,7 +28,7 @@
       <div id="logo-title">
 
         <?php if (!empty($logo)): ?>
-          <a href="/fb/pics-for-pets/gallery" title="<?php print t('Home'); ?>" rel="home" id="logo">
+          <a href="/pics-for-pets/gallery" title="<?php print t('Home'); ?>" rel="home" id="logo">
             <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
           </a>
         <?php endif; ?>
@@ -36,7 +36,7 @@
         <div id="name-and-slogan">
           <?php if (!empty($site_name)): ?>
             <h1 id="site-name">
-              <a href="/fb/pics-for-pets/gallery" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+              <a href="/pics-for-pets/gallery" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
             </h1>
           <?php endif; ?>
 

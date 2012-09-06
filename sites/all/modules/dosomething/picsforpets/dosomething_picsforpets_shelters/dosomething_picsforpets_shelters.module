@@ -17,12 +17,12 @@ function dosomething_picsforpets_shelters_form_shelter_node_form_alter(&$form, &
  * Implements hook_menu().
  */
 function dosomething_picsforpets_shelters_menu() {
-  $items['fb/pics-for-pets/shelter-search'] = array(
+  $items['pics-for-pets/shelter-search'] = array(
     'title' => t('Search for a Shelter'),
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_shelters_lookup',
   );
-  $items['fb/pics-for-pets/shelter-search-options'] = array(
+  $items['pics-for-pets/shelter-search-options'] = array(
     'title' => t('Find Your Shelter'),
     'access callback' => TRUE,
     'page callback' => 'drupal_get_form',
@@ -137,13 +137,13 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   }
   $form['back'] = array(
     '#prefix' => '<div class="shelter-form-button">',
-    '#markup' => l('Back', 'fb/pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
+    '#markup' => l('Back', 'pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
     '#suffix' => '</div>',
     '#weight' => 7,
   );
   $form['next'] = array(
     '#prefix' => '<div class="shelter-form-button">',
-    '#markup' => l('Next', 'fb/pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
+    '#markup' => l('Next', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
     '#suffix' => '</div>',
     '#weight' => 7,
   );
@@ -223,7 +223,7 @@ function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
 }
 
 /**
- * Page callback function for fb/pics-for-pets/shelter-search
+ * Page callback function for pics-for-pets/shelter-search
  * Depending on args in the path, it may return the rendered form, plain HTML
  * results, or some json data.
  *
@@ -246,8 +246,8 @@ function dosomething_picsforpets_shelters_lookup($format = NULL, $zip = NULL, $s
   }
   else {
     // In the event that the 'json' switch is left off the url... EXAMPLE
-    // fb/pics-for-pets/shelter-search/json/90210/0/10
-    // fb/pics-for-pets/shelter-search/90210/0/10
+    // pics-for-pets/shelter-search/json/90210/0/10
+    // pics-for-pets/shelter-search/90210/0/10
     // then we take the first argument as the zip code.
     $zip = $format;
     return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $zip);

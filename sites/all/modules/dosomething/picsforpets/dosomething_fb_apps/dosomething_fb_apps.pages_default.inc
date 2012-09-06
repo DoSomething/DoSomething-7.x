@@ -287,7 +287,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Action Guide';
   $page->admin_description = '';
-  $page->path = 'fb/pics-for-pets/action-guide';
+  $page->path = 'pics-for-pets/action-guide';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -343,8 +343,8 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Back and Next links',
       'title' => '',
-      'body' => '<a href="/fb/pics-for-pets/shelter-search" class="button back">Back</a>
-<a href="/fb/pics-for-pets/submit-pet-picture" class="button next">Next</a>
+      'body' => '<a href="/pics-for-pets/shelter-search" class="button back">Back</a>
+<a href="/pics-for-pets/submit-pet-picture" class="button next">Next</a>
 ',
       'format' => '1',
       'substitute' => TRUE,
@@ -370,10 +370,10 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'admin_title' => 'Action Steps',
       'title' => 'Action Steps',
       'body' => '<ol class="big-numbers">
-  <li>Find the <a href="/fb/pics-for-pets/shelter-search">nearest animal shelter</a> with the handy shelter locator</li>
+  <li>Find the <a href="/pics-for-pets/shelter-search">nearest animal shelter</a> with the handy shelter locator</li>
   <li>Get all the materials you need to become an expert fur-tographer</li>
   <li>Visit your shelter to take an awesome animal picture and get the details</li>
-  <li>Come back and <a href="/fb/pics-for-pets/submit-pet-picture">submit your picture</a> to the gallery</li>
+  <li>Come back and <a href="/pics-for-pets/submit-pet-picture">submit your picture</a> to the gallery</li>
   <li>Share your animal with your Facebook friends to win it prizes and get adopted</li>
 </ol>',
       'format' => '3',
@@ -461,7 +461,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Gallery';
   $page->admin_description = '';
-  $page->path = 'fb/pics-for-pets/gallery';
+  $page->path = 'pics-for-pets/gallery';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -515,8 +515,8 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'admin_title' => 'Gallery navigation markup',
       'title' => '',
       'body' => '<ul class="item-list" id="picsforpets-gallery-navigation">
-  <li class="first active"><a href="/fb/pics-for-pets/gallery">All pets</a></li>
-  <li class="last"><a href="/fb/pics-for-pets/gallery-my-shares">My animals</a></li>
+  <li class="first active"><a href="/pics-for-pets/gallery">All pets</a></li>
+  <li class="last"><a href="/pics-for-pets/gallery-my-shares">My animals</a></li>
 </ul>',
       'format' => '1',
       'substitute' => TRUE,
@@ -605,7 +605,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Gallery my shares';
   $page->admin_description = '';
-  $page->path = 'fb/pics-for-pets/gallery-my-shares';
+  $page->path = 'pics-for-pets/gallery-my-shares';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -659,8 +659,8 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'admin_title' => 'Gallery navigation markup',
       'title' => '',
       'body' => '<ul class="item-list" id="picsforpets-gallery-navigation">
-  <li class="first"><a href="/fb/pics-for-pets/gallery">All pets</a></li>
-  <li class="last active"><a href="/fb/pics-for-pets/gallery-my-shares">My animals</a></li>
+  <li class="first"><a href="/pics-for-pets/gallery">All pets</a></li>
+  <li class="last active"><a href="/pics-for-pets/gallery-my-shares">My animals</a></li>
 </ul>',
       'format' => '1',
       'substitute' => TRUE,
