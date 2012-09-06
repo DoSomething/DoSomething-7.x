@@ -50,7 +50,7 @@ class PFPShelterMigration extends Migration {
         }
       }
     }
-    $row->hours3 = !empty($row->hours2) ? $row->hours . '<br /><br />' . $row->hours2 : $row->hours;
+    $row->hours3 = !empty($row->hours2) ? $row->hours . "\n\n" . $row->hours2 : $row->hours;
   }
 
   public function prepare($node, stdClass $row) {
