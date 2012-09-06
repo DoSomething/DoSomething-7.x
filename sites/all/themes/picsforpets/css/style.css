@@ -2725,6 +2725,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 .view-pics-for-pets-gallery {
   border: 1px solid white;
   padding: 12px 12px 0 12px;
+  min-height: 390px;
+}
+.view-pics-for-pets-gallery .views-row {
+  display: inline;
+  float: left;
 }
 
 #edit-field-fb-app-animal-type-value-wrapper {
@@ -2753,11 +2758,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 }
 .views-reset-button .form-type-select {
   margin-top: 0;
-}
-
-.view-pics-for-pets-gallery .views-row {
-  display: inline;
-  float: left;
 }
 
 select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a {

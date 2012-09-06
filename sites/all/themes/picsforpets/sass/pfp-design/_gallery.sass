@@ -4,6 +4,9 @@
 .view-pics-for-pets-gallery
   border: 1px solid $white
   padding: 12px 12px 0 12px
+  min-height: 390px
+  .views-row
+    +float-left
 
 #edit-field-fb-app-animal-type-value-wrapper
   +float-left
@@ -25,10 +28,6 @@
     background-position: 56px 4px
   .form-type-select
     margin-top: 0
-
-.view-pics-for-pets-gallery
-  .views-row
-    +float-left
 
 select#edit-field-fb-app-animal-type-value
   @extend %league-gothic
