@@ -46,26 +46,3 @@ function dosomething_scholarship_rec_node_info() {
   );
   return $items;
 }
-
-/**
- * Implements hook_default_webform_submission_entity_type().
- */
-function dosomething_scholarship_rec_default_webform_submission_entity_type() {
-  $items = array();
-  $items['scholarship_application_with_rec'] = entity_import('webform_submission_entity_type', '{
-    "type" : "scholarship_application_with_rec",
-    "data" : null,
-    "rdf_mapping" : []
-  }');
-  $items['scholarship_recommendation'] = entity_import('webform_submission_entity_type', '{
-    "type" : "scholarship_recommendation",
-    "data" : null,
-    "rdf_mapping" : []
-  }');
-  $items['scholarship_recommendation_reque'] = entity_import('webform_submission_entity_type', '{
-    "type" : "scholarship_recommendation_reque",
-    "data" : null,
-    "rdf_mapping" : []
-  }');
-  return $items;
-}

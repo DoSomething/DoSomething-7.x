@@ -91,7 +91,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   $fields['node-scholarship_application_with_rec-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -141,8 +141,8 @@ function dosomething_scholarship_rec_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'group_audience',
-      'label' => 'Groups audience',
-      'required' => FALSE,
+      'label' => 'Campaign',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -159,11 +159,14 @@ function dosomething_scholarship_rec_field_default_fields() {
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'og',
         'settings' => array(
-          'opt_group' => 'auto',
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'group/autocomplete',
+          'size' => '60',
         ),
-        'type' => 'group_audience',
+        'type' => 'group_audience_autocomplete',
         'weight' => 0,
       ),
       'widget_type' => 'group_audience',
@@ -380,7 +383,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   $fields['node-scholarship_recommendation-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -430,8 +433,8 @@ function dosomething_scholarship_rec_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'group_audience',
-      'label' => 'Groups audience',
-      'required' => FALSE,
+      'label' => 'Campaign',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -448,12 +451,15 @@ function dosomething_scholarship_rec_field_default_fields() {
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'og',
         'settings' => array(
-          'opt_group' => 'auto',
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'group/autocomplete',
+          'size' => '60',
         ),
-        'type' => 'group_audience',
-        'weight' => '0',
+        'type' => 'group_audience_autocomplete',
+        'weight' => 0,
       ),
       'widget_type' => 'group_audience',
     ),
@@ -669,7 +675,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   $fields['node-scholarship_recommendation_reque-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -719,8 +725,8 @@ function dosomething_scholarship_rec_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'group_audience',
-      'label' => 'Groups audience',
-      'required' => FALSE,
+      'label' => 'Campaign',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -737,25 +743,160 @@ function dosomething_scholarship_rec_field_default_fields() {
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'og',
         'settings' => array(
-          'opt_group' => 'auto',
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'group/autocomplete',
+          'size' => '60',
         ),
-        'type' => 'group_audience',
-        'weight' => '0',
+        'type' => 'group_audience_autocomplete',
+        'weight' => 0,
       ),
       'widget_type' => 'group_audience',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_recommendation-field_application'
-  $fields['webform_submission_entity-scholarship_recommendation-field_application'] = array(
+  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_first_name'
+  $fields['webform_submission_entity-scholarship_application_with_rec-field_webform_first_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_application',
+      'field_name' => 'field_webform_first_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_application_with_rec',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_first_name',
+      'label' => 'First Name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '32',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_last_name'
+  $fields['webform_submission_entity-scholarship_application_with_rec-field_webform_last_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_last_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_application_with_rec',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_last_name',
+      'label' => 'Last Name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '34',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-scholarship_recommendation-field_rec_request'
+  $fields['webform_submission_entity-scholarship_recommendation-field_rec_request'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_rec_request',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -784,11 +925,11 @@ function dosomething_scholarship_rec_field_default_fields() {
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'field_essay_build_it:value',
-            'property' => 'sid',
+            'property' => 'nid',
             'type' => 'none',
           ),
           'target_bundles' => array(
-            'scholarship_application_with_rec' => 'scholarship_application_with_rec',
+            'scholarship_recommendation_reque' => 'scholarship_recommendation_reque',
           ),
         ),
         'handler_submit' => 'Change handler',
@@ -815,9 +956,9 @@ function dosomething_scholarship_rec_field_default_fields() {
         ),
       ),
       'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_application',
-      'label' => 'Application',
-      'required' => 1,
+      'field_name' => 'field_rec_request',
+      'label' => 'Recommendation Request',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -922,11 +1063,133 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_webform_email'
+  $fields['webform_submission_entity-scholarship_recommendation_reque-field_webform_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_email',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'email',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_recommendation_reque',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_email',
+      'label' => 'Email address',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'email',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'email_textfield',
+        'weight' => '34',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_webform_name'
+  $fields['webform_submission_entity-scholarship_recommendation_reque-field_webform_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_recommendation_reque',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 2,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_name',
+      'label' => 'Recommender\'s Name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'telwidget',
+        'weight' => '36',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Application');
   t('Body');
-  t('Groups audience');
+  t('Campaign');
+  t('Email address');
+  t('First Name');
+  t('Last Name');
+  t('Recommendation Request');
+  t('Recommender\'s Name');
   t('Referenced Application');
   t('Referenced recommendation form');
 
