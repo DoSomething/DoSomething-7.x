@@ -1,0 +1,427 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_picsforpets_shelters feature.
+ */
+
+include_once 'dosomething_picsforpets_shelters.features.inc';
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter();
+ */
+function dosomething_picsforpets_shelters_form_shelter_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_pfp_address']['und'][0]['country']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_shelters_menu() {
+  $items['pics-for-pets/shelter-search'] = array(
+    'title' => t('Search for a Shelter'),
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_picsforpets_shelters_lookup',
+  );
+  $items['pics-for-pets/shelter-search-options'] = array(
+    'title' => t('Find Your Shelter'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_shelters_options_form'),
+    'file' => 'dosomething_picsforpets_shelters.optionform.inc',
+  );
+  return $items;
+}
+
+/**
+ * Generates the lookup form. Takes an additional parameter for a zip code which
+ * is used to allow the form to return results based on the URL.
+ */
+function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip = NULL) {
+  // Initialize variables.
+  $form_state['more_times'] = isset($form_state['more_times']) ? $form_state['more_times'] : 0;
+  $form_state['view_more'] = isset($form_state['view_more']) ? $form_state['view_more'] : FALSE;
+  if (!is_null($zip) && !isset($form_state['values']['zip'])) {
+    $zip_default = $zip;
+  }
+  else {
+    $zip_default = '';
+  }
+  $form = array();
+
+  $form['no-shelter'] = array(
+    '#prefix' => '<div class="find-shelter-help">',
+    '#markup' => '<div class="find-one">' . '<a href="http://theshelterpetproject.org/shelters" target="_blank">' . '<img src="/sites/all/themes/picsforpets/images/cant-find-shelter.png" title="Click Here" alt="Unable to find a shelter? Click Here" />' . '</a>' . '</div>',
+    '#suffix' => '<div class="not-partnered-shelter">' . t('These are not DoSomething.org Partnered Shelters') . '</div></div>',
+  );
+
+  $form['help'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'help-text',
+        ),
+      ),
+      '#children' => t('Enter your zipcode to find a shelter in your area.'),
+  );
+
+  $form['zip'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Enter Zip:'),
+    '#required' => TRUE,
+    '#default_value' => $zip_default,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search'),
+    '#ajax' => array(
+      'callback' => 'dosomething_picsforpets_shelters_lookup_form_submit_ajax',
+      'wrapper' => 'shelter-results',
+    ),
+  );
+
+  // Initialize the markup variable
+  $markup = '';
+  if (isset($form_state['results'])) {
+    $markup = $form_state['results'];
+  }
+  elseif (!empty($zip)) {
+    // Auto populate the results.
+    $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
+    // Show a more button?
+    $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids, 10);
+    $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  }
+
+  // Append the title info
+  $markup = empty($markup) ? '' : '<h2>' . t('Shelters near you:') . '</h2>' . $markup;
+
+  $form['results-wrapper'] = array(
+    '#tree' => TRUE,
+    '#prefix' => '<div id="shelter-results">',
+    '#suffix' => '</div>',
+    '#weight' => 2,
+  );
+  $form['results-wrapper']['results'] = array(
+    '#markup' => $markup,
+  );
+
+  $more = '';
+  if (isset($form_state['more_results_all'])) {
+    $more = $form_state['more_results_all'];
+  }
+  // If we have more results or should add the button let's add the container
+  // element.
+  if (!empty($form_state['view_more']) || !empty($more)) {
+
+    $form['results-wrapper']['more-wrapper'] = array(
+      '#tree' => TRUE,
+      '#prefix' => '<div id="shelter-results-more">',
+      '#suffix' => '</div>',
+      '#weight' => 3,
+    );
+    $form['results-wrapper']['more-wrapper']['more-results'] = array(
+      '#markup' => $more,
+    );
+  }
+  if (!empty($form_state['view_more'])) {
+    $form['results-wrapper']['more-wrapper']['view_more_button'] = array(
+      '#type' => 'submit',
+      '#value' => t('View More'),
+      '#weight' => 4,
+      '#ajax' => array(
+        'callback' => 'dosomething_picsforpets_shelters_load_more_ajax',
+        'wrapper' => 'shelter-results-more',
+      ),
+      '#submit' => array('dosomething_picsforpets_shelters_load_more'),
+    );
+  }
+  $form['back'] = array(
+    '#prefix' => '<div class="shelter-form-button">',
+    '#markup' => l('Back', 'pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
+    '#suffix' => '</div>',
+    '#weight' => 7,
+  );
+  $form['next'] = array(
+    '#prefix' => '<div class="shelter-form-button">',
+    '#markup' => l('Next', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
+    '#suffix' => '</div>',
+    '#weight' => 7,
+  );
+  return $form;
+}
+
+/**
+ * Form submission handler for the shelter lookup form.
+ */
+function dosomething_picsforpets_shelters_lookup_form_submit($form, &$form_state) {
+  // Reset the variables if we are hitting the search button rather than
+  // 'view more'.
+  if (isset($form_state['values']['op']) && $form_state['values']['op'] == 'Search') {
+    $form_state['more_times'] = 0;
+    $form_state['view_more'] = FALSE;
+    $form_state['more_results'] = '';
+    $form_state['more_results_all'] = '';
+  }
+  $zip = $form_state['values']['zip'];
+  // We retreive an extra result and then throw it away so that we know if we
+  // should show the 'view more' button.
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
+  // Show more button?
+  $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids, 10);
+  $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  $form_state['results'] = $markup;
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Ajax callback for the submit button on the shelter lookup form.
+ */
+function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_state) {
+  return array(
+    'more-results-ajax-wrapper' => array(
+      '#tree' => TRUE,
+      '#prefix' => '<div id="shelter-results-wrapper">',
+      '#suffix' =>  '</div>',
+
+      'more-results-ajax-load' => array(
+        '#prefix' =>  '<div class="shelter-results">',
+        '#markup' => '<h2>' . t('Shelters near you:') . '</h2>' . $form_state['results'],
+        '#suffix' =>  '</div>',
+
+      ),
+      'more-results-ajax-wrapper' => $form['results-wrapper']['more-wrapper'],
+    ),
+  );
+}
+
+/**
+ * Ajax callback for the load more button on the shelter lookup form.
+ */
+function dosomething_picsforpets_shelters_load_more_ajax($form, $form_state) {
+  return $form['results-wrapper']['more-wrapper'];
+}
+
+/**
+ * Normal submit handler for the view more button on the shelter lookup form.
+ */
+function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
+  // Make sure we initialize the variable.
+  $form_state['more_results_all'] = isset($form_state['more_results_all']) ? $form_state['more_results_all'] : '';
+  // Update the number of times the more button has been clicked so we know how
+  // many results to skip in our result set.
+  $form_state['more_times']++;
+  $zip = $form_state['values']['zip'];
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $form_state['more_times'] * 10, 11);
+  // Show more button?
+  $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids, 10);
+  $markup = dosomething_picsforpets_shelters_formatted_results($shelter_nids);
+  $form_state['more_results'] = $markup;
+  // We append the results to the former results list so we have the appropriate
+  // content for non JS submissions.
+  $form_state['more_results_all'] .= $markup;
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Page callback function for pics-for-pets/shelter-search
+ * Depending on args in the path, it may return the rendered form, plain HTML
+ * results, or some json data.
+ *
+ * @param string $format
+ *   Format to return. If left blank (i.e. if you put zip code in place it will
+ *   return standard HTML)
+ *
+ * @param string $zip
+ *   A zip code to base the proximity search around.
+ *
+ * @param int $skip
+ *   The number of results to skip from the result set.
+ *
+ * @param int $results
+ *   The number of results to return from the set.
+ */
+function dosomething_picsforpets_shelters_lookup($format = NULL, $zip = NULL, $skip = NULL, $results = NULL) {
+  if ($format == 'json') {
+    return dosomething_picsforpets_shelters_lookup_json($zip, $skip, $results);
+  }
+  else {
+    // In the event that the 'json' switch is left off the url... EXAMPLE
+    // pics-for-pets/shelter-search/json/90210/0/10
+    // pics-for-pets/shelter-search/90210/0/10
+    // then we take the first argument as the zip code.
+    $zip = $format;
+    return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $zip);
+  }
+}
+
+/**
+ * Return a list of shelters formatted as Json data.
+ */
+function dosomething_picsforpets_shelters_lookup_json($zip, $start = NULL, $results = NULL) {
+  drupal_add_http_header('Content-Type', 'application/json');
+  $nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start, $results);
+  echo dosomething_picsforpets_shelters_formatted_results($nids, 'json');
+  die();
+}
+
+/**
+ * Generate the formatted output of shelter nodes.
+ */
+function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html') {
+  $markup = '';
+  switch ($type) {
+    case 'json':
+      // switch markup to an array so we can json encode it.
+      $shelter_array = array();
+      foreach ($nids as $nid) {
+        $shelter = node_load($nid);
+        // Quick sanity check.
+        if ($shelter->type == 'shelter') {
+          $shelter_data = array();
+          $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
+          $shelter_data['nid'] = $shelter->nid;
+          $shelter_data['title'] = check_plain($shelter->title);
+          $shelter_data['phone'] = empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']);
+          $shelter_data['address1'] = empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']);
+          $shelter_data['address2'] = empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']);
+          $shelter_data['city'] = empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+          $shelter_data['state'] = empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+          $shelter_data['hours'] = empty($hours) ? '' : check_markup($hours[0]['value'], 1);
+          $shelter_array[] = $shelter_data;
+        }
+      }
+      $markup = json_encode($shelter_array);
+      break;
+
+    case 'options':
+      $options = array();
+      foreach ($nids as $nid) {
+        $shelter = node_load($nid);
+        // Quick sanity check.
+        if ($shelter->type == 'shelter') {
+          $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
+          // reset the string.
+          $markup = '';
+          $markup .= '<span class="label-shelter-title">' . check_plain($shelter->title) . '</span><br />';
+          $markup .= empty($phone[0]['value']) ? 'asdfasdfasdf' : check_plain($phone[0]['value']) . '<br />';
+          $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
+          $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
+          $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+          $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
+          $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+          $hours = field_get_items('node', $shelter, 'field_pfp_hours');
+          $markup .= empty($hours) ? '' : '<br />Hours:<br />' . check_markup($hours[0]['value'], 1);
+          // The option will have the node id as the value and the markup as the
+          // label.
+          $options[$shelter->nid] = $markup;
+        }
+      }
+      return $options;
+      // Don't need the break but it bugs me out not to see it.
+      break;
+
+    case 'html':
+    default:
+      foreach ($nids as $nid) {
+        $shelter = node_load($nid);
+        // Quick sanity check.
+        if ($shelter->type == 'shelter') {
+          $address = field_get_items('node', $shelter, 'field_pfp_address');
+          $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
+          $markup .= '<div class="shelter-result-item"><div class="inner">';
+          $markup .= '<h3>' . check_plain($shelter->title) . '</h3>';
+          $markup .= empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']) . '<br />';
+          $markup .= '<address>';
+          $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
+          $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
+          $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
+          $markup .= !empty($address[0]['locality']) && !empty($address[0]['administrative_area']) ? ', ' : '';
+          $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
+          $markup .= '</address>';
+          $hours = field_get_items('node', $shelter, 'field_pfp_hours');
+          $markup .= empty($hours) ? '' : '<div><div class="shelter-hours">Hours:</div>' . $hours[0]['safe_value'] . '</div>';
+          $markup .= '</div></div>';
+        }
+      }
+      if (empty($markup)) {
+        // This should never happen but it's not a bad idea to have some default
+        // text just in case.
+        $markup  = '<div class="no-results">' . t('Sorry we could not find any shelters near you.') . '</div>';
+      }
+  }
+  return $markup;
+}
+
+/**
+ * Helper function to determine if there should be a more button.
+ * We have retreived an extra result so that we know if we
+ * should show the 'view more' button. We remove that extra result and return a
+ * boolean.
+ *
+ * @param Array $shelter_nids
+ *   A list of shelter nids to check, passed by reference.
+ * @param int $min
+ *   The minimum number of results needed to have a show more button.
+ *
+ * @return
+ *   Boolean value indcating a show more button should be shown (TRUE).
+ */
+function dosomething_picsforpets_shelters_more_shelters(&$shelter_nids, $min = 10) {
+  $show_more = FALSE;
+  if (count($shelter_nids) == ($min + 1)) {
+    unset($shelter_nids[$min]);
+    $show_more = TRUE;
+  }
+  return $show_more;
+}
+
+/**
+ * Return a set of node id numbers of shelters sorted by proximity to a certain
+ * point.
+ *
+ * @parap $zip
+ *   The zip code to search around.
+ * @param $start
+ *   The location of the first result to return from the list of results.
+ * @param $number
+ *   The number of results to return.
+ *
+ * @return
+ *  An array of node id numbers keyed by position in the result set.
+ */
+function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, $number = 10) {
+  // Initialize an array to hold the nids and act as our return value.
+  $nids = array();
+    // Be defensive.
+    // Maybe someone is up to something funny.
+  if (!is_numeric($start)) {
+    $start = 0;
+  }
+  if (!is_numeric($number)) {
+    $number = 10;
+  }
+  // First get the lat and long from the zipcode variable.
+  $result = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $zip))->fetchAssoc();
+  if (!$result) {
+    // We got a bad zipcode that couldn't be looked up so just give back an
+    // empty array.
+    return $nids;
+  }
+  else {
+    $lat = $result['latitude'];
+    $lon = $result['longitude'];
+  }
+  // To be safe we'll cast the $start and $number variables to integers.
+  // This method of calculating the distance between two points based on Lat and
+  // Long is based on the Haverside formula. Many examples of the same generated
+  // query can be found around the web.
+  // Ex: http://www.marketingtechblog.com/calculate-distance/
+
+  $result = db_query_range('SELECT entity_id, (((ACOS(SIN((:lat * PI()/180)) * SIN((field_pfp_geo_data_lat * PI()/180)) + COS((:lat * PI()/180)) * COS((field_pfp_geo_data_lat * PI()/180)) * COS(((:lon - field_pfp_geo_data_lon) * PI()/180)))) * 180/PI()) * 60 * 1.1515) AS distance FROM field_data_field_pfp_geo_data WHERE field_pfp_geo_data_lat IS NOT NULL AND field_pfp_geo_data_lon IS NOT NULL AND entity_type = :entity_type AND bundle = :bundle ORDER BY distance ASC', (int) $start, (int) $number, array(':lat' => $lat, 'lon' => $lon, ':entity_type' => 'node', ':bundle' => 'shelter'));
+  // Since we return multiple columns we explicitly fetch the first one being
+  // the entity id.
+  $nids = $result->fetchCol(0);
+  return $nids;
+}

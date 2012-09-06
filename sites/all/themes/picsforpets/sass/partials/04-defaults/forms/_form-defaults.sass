@@ -1,0 +1,243 @@
+/* Forms --------------------------------------------------------------
+fieldset
+  margin-bottom: 14px
+  border: 0
+
+.fieldset-wrapper
+  background: rgba($white, 0.75)
+  border: 1px solid $pfp-gray-lt
+  +border-radius(8px)
+  padding: 12px
+  +box-sizing(border-box)
+
+legend
+  padding: 0 0.25em
+
+label
+  cursor: pointer
+
+label
+  margin-right: 0.5em
+  font-weight: normal
+  +float-left
+  font-size: 14px
+
+%textinput
+  @extend %constrain-to-parent
+  +adjust-font-size-to($base-font-size, 1)
+  border: 1px solid $pfp-gray-lt
+  width: 140px
+  margin-top: 0
+  height: 22px
+  font-size: 12px
+  // @extend %gray-white-radial
+
+select
+  background: image_url("select-down-arrow.png") right center no-repeat, $white
+
+
+textarea
+  @extend %textinput
+
+input
+  &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+  &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+  &[type=number], &[type=range], &[type=search], &[type=color]
+    @extend %textinput
+  // reset webkit search styles
+  &[type=search]
+    -webkit-appearance: none
+    &::-webkit-search-decoration
+      display: none
+
+// textarea
+//   width: ($kit-col-width * 2) + ($kit-gutter * 1)
+
+input
+  &[type="radio"], &[type="checkbox"]
+    margin-left: 0.25em
+    margin-right: 0.25em
+
+textarea, input:not([type="radio"])
+  @extend %constrain-to-parent
+
+//////////////////////////////
+// PFP FORM STYLES
+//////////////////////////////
+.fieldset-legend
+  @extend %h1
+  @extend %allcaps
+  font-size: 26px
+
+
+#field-fb-app-three-words-values
+  width: 400px
+  tbody
+    border-top: 0
+  th
+    border-bottom: 0
+    font-weight: normal
+    font-size: 14px
+  tr
+    background: none
+    border-bottom: 0
+
+.form-actions
+  margin: 0
+  +float-right
+  input[type="submit"]
+    @extend %pfp-button
+
+a.button
+  +float-left
+  @extend %pfp-button
+
+a.back
+  color: $pfp-red
+  font-weight: bold
+  padding: 6px 32px
+  margin-top: -4px
+  background: $white url(../images/lg-left-arrow.png) no-repeat
+  background-position: 8px 7px
+  +float-left
+
+a.next
+  @extend a.back
+  background: $white url(../images/lg-right-arrow.png) no-repeat
+  background-position: 72px 7px
+  +float-right
+
+.by-signing-up
+  +float-left
+  font-size: 12px
+  text-align: center
+  padding-right: 8px
+  padding-left: 90px
+  a
+    color: $white
+    border-bottom: 1px solid $white
+
+//////////////////////////////
+// QUESTION POP UP
+//////////////////////////////
+.question-icon-popup
+  li.question-icon
+    font-size: 12px
+    line-height: 1.5
+    cursor: pointer
+    list-style: none
+    color: $gray
+    font-weight: bold
+    background: $white
+    +float-left
+    text-align: center
+    +border-radius(12px)
+    height: 18px
+    width: 18px
+    &:hover
+      ul.question-text-popup
+        li.question-text
+          background: url(../images/popup-bubble.png) no-repeat
+          display: block
+          // +opacity(1.0)
+          overflow: hidden
+
+    ul.question-text-popup
+      li.question-text
+        text-align: left
+        font-weight: normal
+        // +opacity(0.0)
+        display: none
+        list-style: none
+        font-size: 12px
+        line-height: 1.5
+        width: 250px
+        height: 190px
+        color: $black
+        padding: 14px
+        position: relative
+        z-index: 1500
+        top: -215px
+        left: -155px
+        overflow: hidden
+
+.dialog-lower
+  width: 100%
+  margin-top: 150px
+  // +clearfix
+
+.sign-up-text
+  text-align: center
+  margin-top: 12px
+  font-size: 16px
+
+fieldset
+  padding: 0
+  clear: both
+  .form-item
+    margin: 6px 0
+
+#furtographer-address
+  padding: 0
+  .fieldset-legend
+    display: none
+  .fieldset-wrapper
+    padding: 0
+    +border-radius(0)
+    background: none
+    border: 0
+    label
+      color: $black
+      font-size: 14px
+
+.form-item-email
+  margin-left: 85px
+  margin-right: 24px
+
+.form-item-email,
+.form-item-cell
+  +float-left
+  +clearfix
+  input
+    +float-left
+  label
+    color: $white
+    font-size: 14px
+    clear: both
+    border: 0
+    padding: 0
+    padding-top: 8px
+    font-size: 12px
+    color: $pfp-red
+    width: 150px
+    line-height: 1.5
+
+
+.form-item-kit
+  +float-left
+  clear: both
+  width: 450px
+  input[type="checkbox"]
+    +float-left
+
+label.option
+  +float-left
+  margin-top: -5px
+  font-size: 16px
+  padding-left: 4px
+  max-width: 420px
+
+#edit-submit--2
+  clear: both
+
+#dosomething-picsforpets-general-furtographer-form,
+#dosomething-picsforpets-general-thanks-form,
+#dosomething-fb-apps-enter-zip-form
+  button,
+  input[type="reset"],
+  input[type="submit"],
+  input[type="button"]
+    +float-right
+    @extend %pfp-button
+
+

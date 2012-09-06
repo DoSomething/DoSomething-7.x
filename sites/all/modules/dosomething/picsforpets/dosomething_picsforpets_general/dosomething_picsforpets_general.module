@@ -1,0 +1,863 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_picsforpets_general feature.
+ */
+
+include_once 'dosomething_picsforpets_general.features.inc';
+
+// The node id for the pet submission form.
+define('PICSFORPETS_PET_SUBMISSION_NID', variable_get('picsforpets_animal_form_id', 3));
+// The node id for the campaign signup form.
+define('PICSFORPETS_CAMPAIGN_SIGNUP_NID', variable_get('picsforpets_campaign_signup_id', 15));
+// The mailchimp list ID for Dosomething Membership mailchimp list.
+define('DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST', 2);
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_general_menu() {
+  $items['pics-for-pets/share/js/%/%'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => 'dosomething_picsforpets_general_share_access_callback',
+    'page callback' => 'dosomething_picsforpets_general_share',
+    'page arguments' => array(3, 4),
+  );
+  $items['pics-for-pets/become-a-furtographer'] = array(
+    'title' => t('Become a Furtographer!'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_general_furtographer_form'),
+  );
+  $items['pics-for-pets/ajax/thanks-for-sharing'] = array(
+    'title' => t('Thanks for sharing!'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_general_thanks_form'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['pics-for-pets/ajax/invite-friends'] = array(
+    'title' => t('Thanks for sharing!'),
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_invite_form'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['pics-for-pets/questions'] = array(
+    'title' => t('Frequently Asked Questions'),
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_picsforpets_general_questions',
+  );
+  return $items;
+}
+
+/**
+ * Making a collapsible faq for the pics-for-pets/questions page.
+ */
+function dosomething_picsforpets_general_questions() {
+  $page = array();
+  $page['#attached'] = array(
+    'js' => array(
+      'misc/form.js',
+      'misc/collapse.js',
+    ),
+  );
+  $page['question1'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('What is pics for pets?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Pics for Pets is a campaign by DoSomething.org to increase adoption rates in animal shelters across the country.  Armed with a camera or your smartphone, we are asking young people (25 and under) like you around the country to visit their local animal shelter to take a picture of an animal in need of a new headshot to share on the Pics for Pets Facebook or mobile app.'),
+  );
+  $page['question2'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I become a fur-tographer?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Click on “be a fur-tographer” in the Pics for Pets app, then locate your participating local shelter.  Before visiting your shelter, make sure to download the guide and watch the video of photography tips to help you along your way.  After you have taken an expert photo of an animal (or animals) at the shelter, upload the pic in the “be a fur-tographer” section and share it with your friends by clicking the “share” button.'),
+  );
+  $page['question3'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I find my local shelter?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Click on the shelter locator button in the “be a fur-tographer” section of the Pics for Pets app.  Once there, enter in your zip code to find the shelter nearest you.'),
+  );
+  $page['question4'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('What if I want to visit a different shelter?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('If you would like to visit a shelter we are not partnered with, click on the button in the lower righthand corner of the shelter locator section of the app.  Please note:  These shelters are not DoSomething.org partners, so you’ll want to reach out to them ahead of time to make sure you can come in and visit.  Make sure to tell them that you won’t need to handle any animals.'),
+  );
+  $page['question5'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('Am I allowed to handle the animals?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('For your safety, you will not be permitted to handle the animals.  When visiting the shelter, make sure that there is a volunteer present that can handle the animal for you as you take a picture of the animal.'),
+  );
+  $page['question6'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('Can I take a picture of more than one animal?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Of course! Just be mindful that shelters are busy places and try to keep photo sessions under 30 minutes.'),
+  );
+  $page['question7'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I take good photos of animals?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Visit the “be a furtographer” section of the app and click on “get the guide.”  You’ll be able to download a great guide to help you take expert photos, as well as a video with tips on how to take the best photos.'),
+  );
+  $page['question8'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I win the animals prizes?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('The more shares a picture gets, the more prizes the shelter can receive. 200 shares gets the shelter $10 for toys, 500 shares gets the shelter $30 for food and 1000 shares gets the shelter $50 for bedding (up to $10,000 in prizes).'),
+  );
+  $page['question9'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('How do I win a $10,000 scholarship?'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Everyone that visits their local shelter and submits a picture of an animal they took will be entered to win the $10,000 scholarship.  We will be announcing the winners by December 1st.'),
+  );
+  $page['question10'] = array(
+    '#theme' => 'fieldset',
+    '#title' => t('Hey, you didn\'t answer my question!'),
+    '#attributes' => array(
+      'class' => array('collapsible', 'collapsed'),
+    ),
+    '#children' => t('Sorry about that! Email animals@dosomething.org with any additional questions and Greg or April will get back to you as soon as possible.'),
+  );
+  return $page;
+}
+
+/**
+ * Form that pops up when you click 'become a furtographer'.
+ */
+function dosomething_picsforpets_general_furtographer_form($form, &$form_state) {
+  $form['#attributes'] = array(
+    'title' => 'Ready to be a fur-tographer?',
+  );
+  $form['ready'] = array(
+    '#markup' => '<div class="sign-up-text">Sign up and we\'ll give you all the tools to submit a picture to the gallery.</div>',
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Email:')),
+    '#maxlength' => 255,
+  );
+  $form['cell'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array('placeholder' => t('Cell:')),
+    '#maxlength' => 255,
+  );
+  $form['kit'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Send me an action kit with sweet guides and supplies!'),
+  );
+  $form['address'] = array(
+    '#prefix' => '<div id="furtographer-address">',
+    '#suffix' => '</div>',
+  );
+  $form['address']['fields'] = array(
+    '#title' => t('address'),
+    '#type' => 'fieldset',
+    'name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array('placeholder' => t('Full Name:')),
+    ),
+    'street1' => array(
+      '#type' => 'textfield',
+      '#attributes' => array('placeholder' => t('Street Address:')),
+    ),
+    'street2' => array(
+      '#type' => 'textfield',
+      '#attributes' => array('placeholder' => t('Street Address 2:')),
+    ),
+    'city' => array(
+      '#type' => 'textfield',
+      '#attributes' => array('placeholder' => t('City:')),
+    ),
+    'state' => array(
+      '#type' => 'textfield',
+      '#attributes' => array('placeholder' => t('State:')),
+    ),
+    'zip' => array(
+      '#type' => 'textfield',
+      '#attributes' => array('placeholder' => t('Zip:')),
+    ),
+  );
+  $form['lower'] = array('#type' => 'container', '#attributes' => array('class' => array('dialog-lower')));
+  $form['lower']['help'] = array(
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
+  );
+  $form['lower']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Sign Up',
+  );
+  $form['#action'] = '/pics-for-pets/lets-get-started';
+  $form['#attached']['js'][] = array(
+    'type' => 'file',
+    'data' => drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/furtog-form.js',
+  );
+  $form['#attached']['js'][] = array(
+    'type' => 'file',
+    'data' => drupal_get_path('theme', 'picsforpets') . '/js/libs/jquery-html5-placeholder-shim/jquery.html5-placeholder-shim.js',
+  );
+  return $form;
+}
+
+function dosomething_picsforpets_general_furtographer_form_submit($form, $form_state) {
+  // Save to a campaign sign up webform.
+  $email = $form_state['values']['email'];
+  $cell = $form_state['values']['cell'];
+  if ($form_state['values']['kit']) {
+    $name = $form_state['values']['name'];
+    $street1 = $form_state['values']['street1'];
+    $street2 = $form_state['values']['street2'];
+    $city = $form_state['values']['city'];
+    $state = $form_state['values']['state'];
+    $zip = $form_state['values']['zip'];
+  }
+
+  global $user;
+
+  $submission = new stdClass();
+  $submission->uid = $user->uid;
+  $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  $submission->submitted = REQUEST_TIME;
+  $submission->remote_addr = ip_address();
+  $submission->data[] = array(
+    'value' => array(
+      0 => '',
+    ),
+  );
+
+  if ($form_state['values']['kit'] && ($name || $street1 || $street2 || $city || $state || $zip)) {
+    $submission->data = array(
+      '1' => array('value' => array($name)),
+      '2' => array('value' => array($street1)),
+      '3' => array('value' => array($street2)),
+      '4' => array('value' => array($city)),
+      '5' => array('value' => array($state)),
+      '6' => array('value' => array($zip)),
+    );
+  }
+
+  $webform = node_load(PICSFORPETS_CAMPAIGN_SIGNUP_NID);
+  $webform->webform['nid'] = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  webform_submission_insert($webform, $submission);
+
+  $submissions = entity_load('webform_submission_entity', array($submission->sid));
+  $submission = array_shift($submissions);
+  $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
+  $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
+  field_attach_update('webform_submission_entity', $submission);
+
+  // Subscribe to mailchimp.
+  if (module_exists('mailchimp')) {
+    $list = mailchimp_lists_load(DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST);
+    $params = array(
+      'GROUPINGS' => array(
+        array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
+      ),
+      'EMAIL' => $email,
+      'UID' => $user->uid,
+    );
+    mailchimp_subscribe_user($list, $email, $params, FALSE);
+  }
+
+  // Give user role of furtographer
+  global $user;
+  if ($user->uid) {
+    $role = user_role_load_by_name('furtographer');
+    $query = db_insert('users_roles')->fields(array('uid', 'rid'))
+      ->values(array('uid' => $user->uid, 'rid' => $role->rid))
+      ->execute();
+  }
+}
+
+/**
+ * Form that pops up after you have shared 3 pets.
+ */
+function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
+ $form['#attributes'] = array(
+    'title' => t('Thanks for sharing!'),
+  );
+  $form['instructions'] = array(
+    '#markup' => '<div class="sign-up-text">Enter your info and we\'ll send you updates on animals in the gallery</div>',
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Email:')),
+    '#maxlength' => 255,
+  );
+  $form['cell'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array('placeholder' => t('Cell:')),
+    '#maxlength' => 255,
+  );
+  $form['lower'] = array('#type' => 'container', '#attributes' => array('class' => array('dialog-lower')));
+  $form['lower']['help'] = array(
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
+  );
+  $form['lower']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+
+  return $form;
+}
+
+/**
+ * Form that pops up after you have shared 5 pets.
+ */
+function dosomething_picsforpets_invite_form($form, &$form_state) {
+  $form['heading'] = array(
+   '#prefix' => '<div class="sign-up-text">',
+   '#suffix' =>  '</div>',
+   '#markup' => t("You've helped 5 animals!"),
+  );
+  $form['text'] = array(
+    '#prefix' => '<div class="sign-up-text">',
+    '#suffix' =>  '</div>',
+    '#markup' => t('Invite your friends to help more animals find homes!'),
+  );
+  include_once('plugins/content_types/invite_friends.inc');
+  $form['invite'] = dosomething_picsforpets_general_content_type_render_invite()->content;
+  return $form;
+}
+
+/**
+ * Default submit handler for the
+ * dosomething_picsforpets_general_thanks_form.
+ */
+function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state){
+  $form_state['redirect'] = 'webform-submission/' .  $_GET['sid'];
+  $email = $form_state['values']['email'];
+  $cell = $form_state['values']['cell'];
+  if (!$email && !$cell) {
+    return;
+  }
+
+  // Save to a campaign sign up webform.
+  global $user;
+
+  $submission = new stdClass();
+  $submission->uid = $user->uid;
+  $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  $submission->submitted = REQUEST_TIME;
+  $submission->remote_addr = ip_address();
+  $submission->data[] = array(
+    'value' => array(
+      0 => '',
+    ),
+  );
+
+  $webform = node_load(PICSFORPETS_CAMPAIGN_SIGNUP_NID);
+  $webform->webform['nid'] = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  webform_submission_insert($webform, $submission);
+
+  $submissions = entity_load('webform_submission_entity', array($submission->sid));
+  $submission = array_shift($submissions);
+  $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
+  $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
+  field_attach_update('webform_submission_entity', $submission);
+
+    // Subscribe to mailchimp.
+  if (module_exists('mailchimp_lists') && $email) {
+    $list = mailchimp_lists_load(DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST);
+    $params = array(
+      'GROUPINGS' => array(
+        array('id' => '9573', 'groups' => 'PicsforPetsSharers2012'),
+      ),
+      'EMAIL' => $email,
+      'UID' => $user->uid,
+    );
+    mailchimp_subscribe_user($list, $email, $params, FALSE);
+  }
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function dosomething_picsforpets_general_custom_theme() {
+  // Use the picsforpets theme when on the pics-for-pets paths and entities of the site.
+  if (strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0) {
+    return 'picsforpets';
+  }
+  if ($submission = menu_get_object('webform_entity_pages_submission')) {
+    if ($submission->nid == PICSFORPETS_PET_SUBMISSION_NID) {
+      return 'picsforpets';
+    }
+  }
+  if ($node = menu_get_object()) {
+    if ($node->nid == PICSFORPETS_PET_SUBMISSION_NID) {
+      return 'picsforpets';
+    }
+  }
+}
+
+/*
+* Implements hook_ctools_plugin_directory().
+*/
+function dosomething_picsforpets_general_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Share (like) a webform submission on facebook.
+ */
+function dosomething_picsforpets_general_share($sid, $fbid) {
+  // Update the share count on the webform submission
+  module_load_include('module', 'webform_entity', 'webform_entity');
+  $transaction = db_transaction();
+  $submission = webform_entity_load_webform_submission($sid);
+  if (!$submission) {
+    watchdog('dosomething_picsforpets', 'Invalid webform submission id submitted as a share.');
+    return FALSE;
+  }
+  $value = 0;
+  if (isset($submission->field_fb_app_share_count[LANGUAGE_NONE])) {
+    $value = $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'];
+  }
+  $value++;
+  $submission->field_fb_app_share_count[LANGUAGE_NONE][0]['value'] = $value;
+  webform_entity_save_webform_submission($submission);
+
+  // Log information about this share to the DB.
+  $share = new stdClass;
+  $share->entity_type = 'webform_submission_entity';
+  $share->entity_id = $sid;
+  $share->system_path = 'webform-submission/' . $sid;
+  $share->fb_user_id = $fbid;
+  $share->created = REQUEST_TIME;
+  drupal_write_record('fb_user_shares', $share);
+
+  // Retrieve the total number of shares for this user.
+  $user_shares = db_query("
+    SELECT count(fb_user_id)
+    FROM {fb_user_shares}
+    WHERE fb_user_id = :fbid", array(':fbid' => $fbid))
+    ->fetchField();
+
+  return drupal_json_output($user_shares);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * TODO At launch change this function name to a FORM_ID alter.
+ */
+function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_id) {
+  // dump out if we're not on the right form.
+  if ($form_id != 'webform_client_form_' . variable_get('picsforpets_animal_form_id', NULL)) {
+    return;
+  }
+  form_load_include($form_state, 'inc', 'dosomething_picsforpets_shelters', 'dosomething_picsforpets_shelters.optionform');
+  $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/shelter_popup.js';
+  $form['shelter-popup'] = dosomething_picsforpets_shelters_options_form($form, $form_state);
+  $form['shelter-popup']['#type'] = 'container';
+  $form['shelter-popup']['#attributes'] = array(
+    'id' => 'dosomething-picsforpets-shelters-options-form',
+  );
+
+  // BEGIN supression of validation errors. This stops the form from complaining
+  // about missing webform form elements when we are submitting the form
+  // elements for the location search.
+  $form['shelter-popup']['container']['search']['#limit_validation_errors'] = array(
+    array('zip'),
+  );
+  $form['shelter-popup']['select-shelter']['#limit_validation_errors'] = array(
+    array('results'),
+    array('shelter_name'),
+    array('address'),
+    array('city'),
+    array('state'),
+    array('shelter_zip'),
+    array('hours'),
+  );
+  $form['shelter-popup']['results']['view_more_button']['#limit_validation_errors'] = array();
+  // END supression of validation errors.
+
+  // A flag to let the ajax results know where to load.
+  $form['#nested_pets_form'] = TRUE;
+
+  // Add custom validation for the shelter reference
+  $form['#validate'][] = 'dosomething_picsforpets_general_validate_pet_shelter';
+  array_unshift($form['#submit'], 'dosomething_picsforpets_general_submit_pet_shelter');
+  $form['#after_build'][] = 'dosomething_picsforpets_general_hide_pet_shelter';
+
+  // Add back the values after a form validation. They were getting dropped.
+  // TODO
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.tpl.php.
+ */
+function dosomething_picsforpets_general_preprocess_page(&$variables) {
+  $current_path = current_path();
+
+  // Add the email address below the  questions title.
+  if ($current_path == 'pics-for-pets/questions') {
+    $variables['title_suffix']['dosomething_picsforpets_general_email'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'questions-email',
+        ),
+      ),
+      '#children' => t('Email us at !link', array('!link' => '<a href="mailto:picsforpets@dosomething.org">picsforpets@dosomething.org</a>')),
+    );
+  }
+
+  // Add the prize details below the action guide title.
+  if ($current_path == 'pics-for-pets/action-guide') {
+    $variables['title_suffix']['dosomething_page-picsforpets_action_guide'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'win-prizes',
+        ),
+      ),
+      '#children' => t('And win awesome prizes along the way'),
+    );
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function dosomething_picsforpets_general_field_formatter_info() {
+  return array(
+    'share_button' => array(
+      'label' => t('Share button'),
+      'field types' => array('number_integer'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function dosomething_picsforpets_general_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $value = 0;
+  foreach ($items as $item) {
+    $value = $item['value'];
+    if ($value > 999 && $value < 99999) {
+      $value = round($value / 1000, 1) . 'k';
+    }
+    else if ($value > 99999 && $value < 999999) {
+      $value = round($value / 1000, 0) . 'k';
+    }
+    else if ($value > 999999) {
+      $value = round($value / 1000000, 1) . 'M';
+    }
+  }
+
+  $element = array();
+  $element [0] = array(
+    '#markup' => '<span class="gallery-share-button">Share me</span><span class="picsforpets-share-count-arrow"></span><span class="gallery-share-count">' . $value . '</span>',
+  );
+  return $element;
+}
+
+/**
+ * Additional validation handler to deal with shelter addresses on the submitted
+ * pet.
+ */
+function dosomething_picsforpets_general_validate_pet_shelter($form, &$form_state) {
+  $address_fields = domething_picsforpets_general_address_fields();
+  // We need to have all the address field data set.
+  foreach ($address_fields as $field => $name) {
+    if (empty($form_state['values']['submitted'][$field][LANGUAGE_NONE][0]['value'])) {
+      // TODO: Error element is incorrect. It may need LANGUAGE_NONE][0][value,
+      // but that wasn't working.
+      $error_element = implode('][', $form['submitted'][$field]['#parents']);
+      form_set_error($error_element, t('%name is a required field', array('%name' => $name)));
+    }
+  }
+}
+
+/**
+ * Additional submit handler to deal with storing the data from the address
+ * fields and the entity reference fields associated with a pet's shelter.
+ */
+function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state) {
+  $mismatch = FALSE;
+  $address_fields = domething_picsforpets_general_address_fields();
+
+  // If there is an entity reference then
+  if (!empty($form_state['webform_entity']['submission']->field_fb_app_shelter_reference[LANGUAGE_NONE][0]['target_id'])) {
+    $shelter = node_load($form_state['webform_entity']['submission']->field_fb_app_shelter_reference[LANGUAGE_NONE][0]['target_id']);
+    $address = field_get_items('node', $shelter, 'field_pfp_address');
+    // We store the values from the original node as an array with the keys
+    // matching the webform address fields.
+    $found_address = array(
+      'field_fb_app_shelter_name' => $shelter->title,
+      'field_fb_app_address' => $address[0]['thoroughfare'],
+      'field_fb_app_city' => $address[0]['locality'],
+      'field_fb_app_state' => $address[0]['administrative_area'],
+      'field_fb_app_zip' => $address[0]['postal_code'],
+    );
+    foreach ($address_fields as $field => $name) {
+      if ($found_address[$field] != $form_state['webform_entity']['submission']->{$field}[LANGUAGE_NONE][0]['value']) {
+        $mismatch = TRUE;
+      }
+    }
+  }
+  else {
+    // If the entity reference isn't set then we really want the address fields
+    // and not the entity reference. We treat it the same way we should a
+    // mismatched address.
+    $mismatch = TRUE;
+  }
+
+  if ($mismatch) {
+    // Throw away the entity reference.
+    unset($form_state['values']['submitted']['field_fb_app_shelter_reference']);
+    unset($form_state['webform_entity']['submission']->submitted['field_fb_app_shelter_reference']);
+    unset($form_state['webform_entity']['submission']->field_fb_app_shelter_reference);
+  }
+  else {
+    // Throw away the address fields.
+    foreach ($address_fields as $field => $name) {
+      unset($form_state['values']['submitted'][$field]);
+      unset($form_state['webform_entity']['submission']->submitted[$field]);
+      unset($form_state['webform_entity']['submission']->{$field});
+    }
+  }
+}
+
+/**
+ * After-build function to hide the shelter reference field.
+ * This has to stay in the DOM due to js population after shelter popup.
+ * Happens in an after-build after the field is added via webform_entity.
+ */
+function dosomething_picsforpets_general_hide_pet_shelter($form, $form_state) {
+  $form['submitted']['find_your_shelter']['field_fb_app_shelter_reference']['#attributes']['class'][] = 'element-hidden';
+  return $form;
+}
+
+/**
+ * Helper function that returns a list of the address fields used in shelters.
+ */
+function domething_picsforpets_general_address_fields() {
+  return array(
+    'field_fb_app_zip' => 'Shelter Zip Code',
+    'field_fb_app_address' => 'Shelter Address',
+    'field_fb_app_city' => 'Shelter City',
+    'field_fb_app_shelter_name' => 'Shelter Name',
+    'field_fb_app_state' => 'Shelter State',
+  );
+}
+
+/**
+ * Get a serialized webform from a file and save it as a node.
+ *
+ * @param $path
+ *   The file path on disc of the serialized node.
+ */
+function dosomething_picsforpets_general_save_webform_node($path) {
+  $webform = unserialize(file_get_contents($path));
+  $webform_data = $webform->webform;
+  unset($webform->webform);
+  node_save($webform);
+  unset ($webform->webform);
+
+  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
+  $webform->webform = $webform_data;
+  $webform_data['nid'] = $webform->nid;
+  $webform->webform['record_exists'] = TRUE;
+  foreach ($webform->webform['components'] as $key => $component) {
+    $webform->webform['components'][$key]['nid'] = $webform->nid;
+    if (!$webform->webform['components'][$key]['mandatory']) {
+      $webform->webform['components'][$key]['mandatory'] = 0;
+    }
+  }
+  $webform->path = array('alias' => 'pics-for-pets/submit-pet-picture', 'pathauto' => FALSE);
+  node_save($webform);
+  variable_set('picsforpets_animal_form_id', $webform->nid);
+  return $webform;
+}
+
+/**
+ * Get a serialized webform from a file and save it as a node.
+ *
+ * @param $path
+ *   The file path on disc of the serialized node.
+ */
+function dosomething_picsforpets_general_save_campaign_node($path) {
+  $webform = unserialize(file_get_contents($path));
+  $webform_data = $webform->webform;
+  unset($webform->webform);
+  node_save($webform);
+  unset ($webform->webform);
+
+  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
+  $webform->webform = $webform_data;
+  $webform_data['nid'] = $webform->nid;
+  $webform->webform['record_exists'] = TRUE;
+  foreach ($webform->webform['components'] as $key => $component) {
+    $webform->webform['components'][$key]['nid'] = $webform->nid;
+    if (!$webform->webform['components'][$key]['mandatory']) {
+      $webform->webform['components'][$key]['mandatory'] = 0;
+    }
+  }
+  node_save($webform);
+  variable_set('picsforpets_campaign_signup_id', $webform->nid);
+  return $webform;
+}
+
+/**
+ * Recurse through a webform object and add a new $nid.
+ */
+function dosomething_picsforpets_general_recursively_readd_nid(&$thing, $nid) {
+  if (is_array($thing) || is_object($thing)) {
+    foreach ($thing as $key => &$value) {
+      if (is_array($value) || is_object($thing)) {
+        dosomething_picsforpets_general_recursively_readd_nid($value, $nid);
+      }
+      elseif ($key == 'nid') {
+        $value = $nid;
+      }
+    }
+  }
+  return $thing;
+}
+
+/**
+ * A function to update the webform node that needs to be imported for
+ * deployment. N.B. In order for this to work the nodes directory in this module
+ * MUST BE writable by the apache user (usually www-data) and so should probably
+ * be owned or group owned by that user.
+ */
+function dosomething_picsforpets_general_update_node() {
+  $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type', 0, 1, array(':type' => 'fb_app_data_gathering_form'))->fetchField();
+  $node = node_load($nid);
+  unset($node->nid);
+  unset($node->vid);
+  $node->webform['record_exists'] = FALSE;
+
+  $serialized = serialize($node);
+  file_put_contents(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt', $serialized);
+}
+
+/**
+ * Import of the webform nodes.
+ */
+function dosomething_picsforpets_general_regenerate_webform_node() {
+  // Get the list of files from the directory. Only serialized text files.
+  $file = drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/pet_submission_form.txt';
+
+  //Get the node data and save it into drupal
+  dosomething_picsforpets_general_save_webform_node($file);
+}
+
+/**
+ * A function to update the campaign sign up node that needs to be imported for
+ * deployment. N.B. In order for this to work the nodes directory in this module
+ * MUST BE writable by the apache user (usually www-data) and so should probably
+ * be owned or group owned by that user.
+ */
+function dosomething_picsforpets_general_update_campaign_node() {
+  $nid = db_query_range('SELECT nid FROM {node} WHERE type = :type AND title = :title', 0, 1, array(':type' => 'campaign_sign_up', ':title' => 'Pics for Pets Signups'))->fetchField();
+  $node = node_load($nid);
+  unset($node->nid);
+  unset($node->vid);
+  $node->webform['record_exists'] = FALSE;
+
+  $serialized = serialize($node);
+  file_put_contents(drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/furtography_campaign.txt', $serialized);
+}
+
+/**
+ * Import of the campaign node.
+ */
+function dosomething_picsforpets_general_regenerate_campaign_node() {
+  // Get the list of files from the directory. Only serialized text files.
+  $file = drupal_get_path('module', 'dosomething_picsforpets_general') . '/nodes/furtography_campaign.txt';
+
+  //Get the node data and save it into drupal
+  dosomething_picsforpets_general_save_campaign_node($file);
+}
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function dosomething_picsforpets_general_views_post_execute(&$view) {
+  // TODO: this should be display specific.
+  if ($view->name == 'pics_for_pets_gallery') {
+    $pets = array();
+    foreach($view->result as $row) {
+      $pets[$row->sid] = array (
+        'threeWords' => $row->field_field_fb_app_three_words,
+        'petName' => $row->field_field_fb_app_animal_name[0]['raw']['safe_value'],
+        'pictureUrl' => 'sites/default/files/styles/gallery_thumbnail/public/fb_campaign/' . $row->field_field_fb_app_image[0]['raw']['filename'],
+      );
+    }
+    drupal_add_js(array('dosomething_picsforpets_general' => array('gallery' =>  $pets)), 'setting');
+ }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function dosomething_picsforpets_general_views_api() {
+  return array(
+    'version' => 3,
+  );
+}
+
+/**
+ * Implements hook_views_plugins
+ */
+function dosomething_picsforpets_general_views_plugins() {
+  return array(
+    'module' => 'views', // This just tells our themes are elsewhere.
+    'argument default' => array(
+      'current_user_fbid' => array(
+        'title' => t('Facebook ID from logged in user'),
+        'handler' => 'views_plugin_argument_default_current_user_fbid',
+      ),
+    ),
+  );
+}
+
+/**
+ * Access callback for /pics-for-pets/shares/js/%/%.
+ *
+ * We check the HTTP_REFERER to see if the user is coming there from a
+ * submission page and we also make sure the user is actually logged in
+ * for good measure.
+ */
+function dosomething_picsforpets_general_share_access_callback() {
+  global $user;
+  // Prevent share spoofing - If HTTP_REFERER is empty or it comes from the
+  // apps.facebook.com domain, then we know that the user didn't click on the
+  // share button and is trying to spoof a share.
+  if (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER']) && !substr_count($_SERVER['HTTP_REFERER'], 'apps.facebook.com')) {
+    // Don't let anonymous users share. TODO: Do we actually want this?
+    return $user->uid ? TRUE : FALSE;
+  }
+  return FALSE;
+}

@@ -1,0 +1,138 @@
+<?php
+
+/**
+ * @file
+ * API functions and hook implementations for PicsForPets Facebook Users module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_picsforpets_fb_user_menu() {
+  $items = array();
+
+  $items['admin/config/people/dosomething_picsforpets_fb_user'] = array(
+    'title' => t('PicsForPets Facebook Users settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_picsforpets_fb_user_settings_form'),
+    'access arguments' => array('administer users'),
+    'description' => 'Configure PicsForPets Facebook Users settings.',
+    'file' => 'dosomething_picsforpets_fb_user.admin.inc',
+  );
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_init().
+ */
+function dosomething_picsforpets_fb_user_init() {
+  // Just bail out quickly if we're not on a pics for pets page.
+  if (!(strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0)) {
+    return;
+  }
+
+  global $user;
+  global $base_url;
+
+  // Some browsers won't let the third party cookies through by default unless
+  // a compact privacy policy is set in the headers.
+  drupal_add_http_header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+  $path = libraries_get_path('facebook');
+  if (!empty($path)) {
+    require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
+  }
+  else {
+    drupal_set_message('You are missing the Facebook SDK');
+    return;
+  }
+
+  $appid = variable_get('dosomething_picsforpets_fb_user_app_id', '');
+  $secret = variable_get('dosomething_picsforpets_fb_user_app_secret', '');
+  $facebook = new Facebook(array(
+    'appId' => $appid,
+    'secret' => $secret,
+  ));
+  $access_token = $facebook->getAccessToken();
+  // Set JS variable for use by other modules.
+  $settings = array(
+    'appId' => $appid,
+    'access_token' => $access_token,
+    'app_url' => variable_get('dosomething_picsforpets_fb_user_app_url', ''),
+    'app_secure_url' => variable_get('dosomething_picsforpets_fb_user_app_secure_url', ''),
+    'appBaseURL' => $base_url,
+    'formAlias' => drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id')),
+    'fbFormAlias' => str_replace('pics-for-pets/', '', drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id'))),
+  );
+  drupal_add_js(array('picsforpetsFBAuth' => $settings), 'setting');
+
+  // Initialize the javascript SDK.
+  drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/picsforpets_fb_user.js');
+
+  // Load the FBOAuth include file so we can use it's functions.
+  module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+  // Conditions.
+  // 1. User already logged into Dosomething but not associed with FB.
+  //   - Associate user id with fb id if not associated.
+  // 2. User is not logged in but has a DS uid that is not associated.
+  //   - No way to detect that unless the email matches - in which case
+  //     connect them.
+  // 3. User is not logged in and has an associated fb id
+  //   - Log them in. Nothing else needed.
+  // 4. User is not logged in and has no DS uid.
+  //   - Create a new user and log them in.
+
+  // Get the Facebook user_profile as an object. Get the associated $uid if it
+  // exists.
+  $fbuser = fboauth_graph_query('me', $access_token);
+  // In some cases we don't get an id. This will break everything so we wrap
+  // the whole shebang in an if.
+  if (isset($fbuser->id)) {
+    $uid = fboauth_uid_load($fbuser->id);
+    // Not sure if we should do this or not. Seems smarter than leaving it emtpy
+    // though.
+    if (!isset($fbuser->email)) {
+      $fbuser->email = $fbuser->id . '@facebook.com';
+    }
+    $found_users = user_load_multiple(array(), array('mail' => $fbuser->email));
+    $found_user = array_shift($found_users);
+
+    // Start our search for the appropriate condition.
+    // Condition 3.
+    if (!$user->uid && $uid && ($account = user_load($uid))) {
+      // The fb uid maps to a user. Unblock the user, then log them in.
+      user_user_operations_unblock(array($account->uid));
+      fboauth_login_user($account);
+    }
+    // Condition 4.
+    elseif (!$user->uid && !$uid && empty($found_user)) {
+      $account = fboauth_create_user($fbuser);
+      // Unblock the user.
+      $accounts = array($account->uid);
+      user_user_operations_unblock($accounts);
+      $account = user_load($account->uid);
+      // Then log them in.
+      fboauth_login_user($account);
+    }
+    // Condition 2.
+    elseif (!$user->uid && !$uid && !empty($found_user)) {
+      // We found a matching user. Associate the FB account with them. Then
+      // log them in.
+      fboauth_save($found_user->uid, $fbuser->id);
+      // Unblock the user.
+      user_user_operations_unblock(array($found_user->uid));
+      $account = user_load($found_user->uid);
+      fboauth_login_user($account);
+    }
+    // Condition 1.
+    elseif ($user->uid && !$uid) {
+      // The user is already logged into Dosomething. Associate
+      // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
+      fboauth_save($user->uid, $fbuser->id);
+      // Make sure the user is unblocked.
+      user_user_operations_unblock(array($account->uid));
+    }
+  }
+}

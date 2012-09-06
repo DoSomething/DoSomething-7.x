@@ -1,0 +1,74 @@
+// Styling for the action steps page
+
+.page-pics-for-pets-action-guide
+  h2
+    text-transform: uppercase
+    font-size: 28px
+    padding: 0
+    margin: 0
+    text-align: center
+  .panel-col-first
+    +border-radius(8px)
+    +box-sizing(border-box)
+    background: rgba($white, 0.75)
+    border: 1px solid $pfp-gray-lt
+    margin: 0 24px 0 24px
+    margin-bottom: 100px
+    padding: 12px
+    width: 320px
+    .ie8 &
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff)
+    fieldset.collapsed
+      height: auto
+    fieldset
+      a
+        color: $black
+        font-family: $font-sans
+        font-size: 18px
+        text-transform: none
+      .fieldset-wrapper
+        border: none
+        background-color: transparent
+        line-height: 1.2
+        padding-left: 20px
+        padding-right: 24px
+        padding-top: 0
+
+  .panel-col-bottom
+    +float-left
+
+  .next
+    +float-right
+    color: $pfp-red
+    font-weight: bold
+    padding: 6px 32px
+    margin-top: -28px
+    background: $white url(../images/lg-right-arrow.png) no-repeat
+    background-position: 72px 7px
+
+
+  .win-prizes
+    @extend %league-gothic
+    text-align: center
+    text-transform: uppercase
+    font-size: 20px
+
+
+.materials,
+.action-guide-video
+  +clearfix
+  +border-radius(8px)
+  +box-sizing(border-box)
+  background: rgba($white, 0.75)
+  border: 1px solid $pfp-gray-lt
+  margin-bottom: 24px
+  padding: 12px
+  width: 320px
+  text-align: center
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff)
+  p
+    margin: 8px
+  a
+    margin-left: 110px
+

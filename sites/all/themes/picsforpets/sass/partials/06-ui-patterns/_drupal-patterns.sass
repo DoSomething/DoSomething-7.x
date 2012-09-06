@@ -1,0 +1,117 @@
+=remove-link-underlines
+
+// see: elements-ui-patterns-drupal.html for markup
+
+// SITE NAME
+#site-name
+  a
+    text-decoration: none
+
+// MENUS
+#main-menu
+  +horizontal-list(0.5em)
+
+// SEARCH FIELD
+
+// MESSAGES
+.messages
+  border: 1px solid $border-color
+  padding: $kit-baseline-half 0.5em
+  p:last-child
+    margin-bottom: 0
+.status, .warning, .error
+  @extend .messages
+.status
+  border-color: $green
+  color: $green
+.warning
+  border-color: $orange
+  color: $orange
+.error
+  border-color: $red
+  color: $red
+
+// BLOCK
+
+// TABS
+ul.tabs
+  +tabs
+
+.tabs
+  clear: both
+  ul.tabs
+    font-size: 12px
+    // width: 100%
+    border-bottom: 1px solid #CCCCCC
+    padding-left: 12px
+    padding-top: 12px
+    +clearfix
+    margin-bottom: 12px
+    li
+      padding: 6px 0 4px 0
+      border: 0
+      a
+        +background-image(linear-gradient(top, #FCFDFA, #F1F2EF))
+        +border-top-radius(6px)
+        color: #666666
+        padding: 6px
+        margin-right: 4px
+        border-color: #CCCCCC
+        &.active
+          color: $gray
+          background: $white
+          border-color: #CCCCCC
+          border-bottom: 0
+          &:hover
+            color: $gray
+            background: $white
+        &:hover
+          color: $white
+          background: $gray
+          border-color: #CCCCCC
+
+
+// NEW USER FORM
+.form-required
+  color: $red
+
+// LOG IN FORM
+
+// NEW PASSWORD FORM
+
+// PAGERS
+ul.pager
+  +horizontal-list(0.5em)
+  a
+    text-decoration: none
+
+// RSS LINK
+a.feed-icon
+  text-decoration: none
+
+// INLINE LINKS
+ul.inline
+  +inline-list
+
+// TAXONOMY LIST
+.field-type-taxonomy-term-reference
+  .field-item
+    display: inline
+
+// FIELDS
+.field-label-above
+  .field-label
+    display: block
+
+// NODE PAGE
+
+// COMMENTS
+#comments
+  .comment
+    +vertical-separation
+    &:last-child
+      +un-vertical-separation
+  .indented
+    padding-left: 1em
+
+// COMMENT FORM

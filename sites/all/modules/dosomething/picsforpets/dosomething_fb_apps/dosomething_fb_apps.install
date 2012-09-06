@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ *   Handles the schema creation and updates for the dosomething fb app module.
+ */
+
+/**
+ * Implements hook_schemaHandles the schema creation and updates for the
+ * dosomething fb app module.
+ */
+function dosomething_fb_apps_schema() {
+  $schema['ds_fb_user_zips'] = array(
+    'fields' => array(
+      'fbid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+      ),
+      'zip' => array(
+        'type' => 'varchar',
+        'length' => 12,
+      ),
+    ),
+    'primary key' => array('fbid'),
+    'indexes' => array(
+      'fbid' => array('fbid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Update 7000 - Ensure we have a table for mapping fb user ids to zip codes.
+ */
+function dosomething_fb_apps_update_7000() {
+  // Bail if the table exists.
+  if (db_table_exists('ds_fb_user_zips')) {
+    return;
+  }
+
+  $schema = array(
+    'fields' => array(
+      'fbid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+      ),
+      'zip' => array(
+        'type' => 'varchar',
+        'length' => 12,
+      ),
+    ),
+    'primary key' => array('fbid'),
+    'indexes' => array(
+      'fbid' => array('fbid'),
+    ),
+  );
+
+  db_create_table('ds_fb_user_zips', $schema);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function dosomething_fb_apps_uninstall() {
+  variable_del('dosomething_picsforpets_fb_user_app_url');
+  variable_del('dosomething_picsforpets_fb_user_app_secure_url');
+}

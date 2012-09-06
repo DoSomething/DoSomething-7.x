@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Installation tasks for Facebook user shares.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function fb_user_shares_schema() {
+  $schema = array();
+
+  $schema['fb_user_shares'] = array(
+    'description' => 'Stores metadata about Facebook user shares.',
+    'fields' => array(
+      'sid' => array(
+        'type' => 'serial',
+        'description' => 'Unique Facebook user share ID.',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'fb_user_id' => array(
+        'type' => 'varchar',
+        'description' => 'Facebook user ID.',
+        'length' => 40,
+      ),
+      'entity_type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => FALSE,
+        'description' => 'The entity type this data is attached to.',
+      ),
+      'entity_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'description' => 'The entity id this data is attached to.',
+      ),
+      'system_path' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => 'null',
+        'description' => 'The source path to redirect from.',
+      ),
+      'created' => array(
+        'description' => 'The Unix timestamp when the share was created.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'sid' => array('sid'),
+    ),
+    'primary key' => array('sid'),
+  );
+
+  return $schema;
+}

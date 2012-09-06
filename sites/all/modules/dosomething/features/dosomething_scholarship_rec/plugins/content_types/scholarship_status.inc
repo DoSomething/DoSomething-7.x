@@ -12,7 +12,14 @@ function dosomething_scholarship_rec_scholarship_status_ctools_content_types() {
 function dosomething_scholarship_rec_scholarship_status_content_type_render($subtype, $conf, $panel_args, $context) {
   global $user;
   module_load_include('inc', 'webform', 'includes/webform.submissions');
-  $subs = webform_get_submissions(array('nid' => $conf['app_nid'], 'uid' => $user->uid));
+  $filter = array('nid' => $conf['app_nid']);
+  if (isset($_GET['sid']) && user_access('access all webform results')) {
+    $filter['sid'] = $_GET['sid'];
+  }
+  else {
+    $filter['uid'] = $user->uid;
+  }
+  $subs = webform_get_submissions($filter);
   $apps = $sids = array_keys($subs);
 
   $block = new StdClass();

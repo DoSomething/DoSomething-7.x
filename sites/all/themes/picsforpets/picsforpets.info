@@ -1,0 +1,8 @@
+name = Pics for Pets
+description = A custom theme for Pics for Pets
+package = The Coding Designer's Survival Kit
+version = 1.x-dev
+core = 7.x
+
+; stylesheets
+stylesheets[all][] = css/style.css

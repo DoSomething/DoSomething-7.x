@@ -1,0 +1,154 @@
+////////////////////////////
+// 3D SLIDESHOW
+////////////////////////////
+.outside-shade
+  background: rgba($black, 0.6)
+  height: 120px
+  width: 120px
+  margin-left: -120px
+  z-index: 100
+  position: relative
+  margin-top: 140px
+  +float-left
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)
+    height: 132px
+
+.inside-shade
+  background: rgba($black, 0.6)
+  height: 198px
+  width: 198px
+  margin-left: -198px
+  margin-top: 100px
+  z-index: 106
+  position: relative
+  +float-left
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)
+    height: 210px
+
+.outside-left
+  +float-left
+  margin-top: 140px
+  margin-left: 6px
+
+.outside-left,
+.inside-left,
+.outside-right,
+.inside-right
+  img
+    background: $white
+    padding: 6px
+
+.inside-left
+  +float-left
+  margin-left: -50px
+  margin-top: 100px
+  z-index: 105
+  position: relative
+
+#slideshow-center
+  +float-left
+  background: $white
+  margin-left: -100px
+  width: 380px
+  padding: 10px
+  padding-bottom: 0
+  +float-left
+  z-index: 110
+  position: relative
+  min-height: 780px
+  #slideshow-center
+    margin-left: 0
+    padding: 0
+    background: none
+    .panel-col-first,
+    .panel-col-last
+      width: 180px
+    .view-shelter-per-pet .views-field
+      word-wrap: break-word
+  p
+    margin: 0
+  h2
+    text-transform: uppercase
+    margin: 0
+
+.fb-comments-block
+  background: $white
+  margin-left: -178px
+  width: 760px
+  padding: 12px 12px 12px 100px
+  border-top: 12px solid $pfp-blue-lt
+
+.pane-shelter-per-pet-panel-pane-1
+  border-left: 1px solid $black
+  padding-left: 12px
+  margin-left: -12px
+
+.outside-right
+  +float-left
+  margin-top: 140px
+  margin-left: -40px
+
+.inside-right
+  +float-left
+  margin-left: -90px
+  margin-top: 100px
+  z-index: 105
+  position: relative
+
+.pane-entity-field
+  margin-bottom: 12px
+
+.pane-webform-submission-entity-field-fb-app-image
+  margin-bottom: 6px
+
+.panel-separator
+  display: none
+
+.hi-pet-name
+  text-align: center
+
+.views-label-field-pfp-hours,
+.views-label-field-pfp-phone-number
+  border-bottom: 1px solid $black
+
+////////////////////////////
+// SLIDESHOW ARROWS
+////////////////////////////
+.slideshow-prev
+  color: $white
+  margin-left: -130px
+  margin-top: 180px
+  +float-left
+  z-index: 110
+  position: relative
+  font-size: 42px
+  font-weight: bold
+  cursor: pointer
+
+.slideshow-next
+  color: $white
+  margin-left: 5px
+  margin-right: -130px
+  margin-top: 180px
+  +float-left
+  z-index: 110
+  position: relative
+  font-size: 42px
+  font-weight: bold
+  cursor: pointer
+
+.views-ui-dialog .ui-dialog-titlebar-close
+  z-index: 200
+
+// Clear right on parent for carousel page
+#slideshow-wrapper
+  .ie8 &
+    clear: right
+
+// Clear right on parent for carousel page
+.page-webform-submission
+  div[role="main"]
+    .ie8 &
+      clear: right

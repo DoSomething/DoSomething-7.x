@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * API functions and hook implementations for Facebook user shares.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function fb_user_shares_views_api() {
+  return array(
+    'version' => 3,
+  );
+}

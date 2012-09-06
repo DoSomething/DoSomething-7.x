@@ -1,0 +1,452 @@
+////////////////////////////
+// Create your site-specific
+// styles here
+////////////////////////////
+#page
+  width: 760px
+  min-height: 800px
+  margin: auto
+  padding-bottom: 20px
+
+body
+  background: $background-color url(../images/bg.png) no-repeat
+  background-position: center
+
+.pics-for-pets-home
+  #page
+    background: url(../images/pitbull-bg.png) no-repeat
+    background-position: 0 -350px
+    padding-bottom: 12px
+
+#logo
+  +float-right
+  margin: 6px
+
+#name-and-slogan
+  +float-left
+
+#content
+  clear: both
+
+.page-pics-for-pets-gallery,
+.page-pics-for-pets-gallery-my-shares
+  div[role="main"],
+  #content
+    margin-top: -140px
+
+.mission-text p
+  @extend %league-gothic
+  background-color: $white
+  background-color: rgba($white, 0.75)
+  width: 100%
+  text-transform: uppercase
+  font-size: 45px
+  text-align: center
+  line-height: 1.125
+  margin-top: 225px
+  .ie8 &,
+  .ie7 &
+    margin-top: 400px
+    background: transparent
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#bfffffff, endColorstr=#bfffffff)
+
+#gallery-link
+  @extend %league-gothic
+  +float-right
+  text-transform: uppercase
+  font-size: 24px
+  line-height: 1.25
+  a
+    color: $pfp-red
+    &:hover
+      color: $pfp-gray-lt
+
+.picsforpets-scholarship
+  +float-left
+  // z-index: 1000px
+  position: relative
+  a
+    +replace-text-with-dimensions('10k-scholarship.png')
+    display: block
+
+.picsforpets-gallery
+  background: $white
+  padding-right: 40px
+  padding-left: 24px
+  +float-left
+  margin-top: 30px
+  margin-left: -12px
+
+#ds-logo
+  +replace-text-with-dimensions('ds-logo.png')
+  +float-left
+  margin: 12px
+
+.white-block
+  background: rgba($white, 0.75)
+  text-align: center
+  text-transform: uppercase
+  height: 200px
+  width: 200px
+  margin: 18px
+  +float-left
+  margin-top: 100px
+  font-size: 22px
+  padding: 0 12px 0 12px
+  border: 1px solid $pfp-gray-lt
+  +border-radius(8px)
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff)
+  p
+    @extend %league-gothic
+    border-bottom: 1px solid $black
+    height: 50px
+
+.panel-1col
+  margin: 0 auto
+
+div[role="main"]
+  padding: 6px
+
+////////////////////////////
+// LETS GET STARTED
+////////////////////////////
+// .page-pics-for-pets-lets-get-started,
+// .node-type-fb-app-data-gathering-form
+//   #main-wrapper
+//     margin-top: -124px
+
+#find-a-shelter
+  background: rgba($white, 0.75) url(../images/find-a-shelter.png) no-repeat
+  background-position: 50% 80px
+
+#get-the-guide
+  background: rgba($white, 0.75) url(../images/get-the-guide.png) no-repeat
+  background-position: 50% 85px
+
+#submit-your-shelter-pic
+  background: rgba($white, 0.75) url(../images/submit-your-shelter.png) no-repeat
+  background-position: 50% 74px
+
+.picsforpets-menu
+  @extend %league-gothic
+  +horizontal-list($padding: 4px, $direction: left)
+  +clearfix
+  text-transform: uppercase
+  font-size: 20px
+  line-height: 1.5
+  text-align: center
+  clear: both
+  position: bottom
+  height: 54px
+  padding-top: 12px
+  padding-bottom: 14px
+  li
+    background: $white
+    width: 190px
+    a
+      +link-colors($pfp-gray, $pfp-gray-lt, $pfp-gray-lt, $pfp-gray, false)
+
+a.footer-furtography
+  +clearfix
+  background: url(../images/links-10k-icon.png) no-repeat
+  padding-left: 60px
+  background-position: -4px -4px
+  height: 75px
+  padding-top: 12px
+  padding-bottom: 24px
+
+////////////////////////////
+// POPUP MESSAGES
+////////////////////////////
+#dosomething-picsforpets-general-furtographer-form--2
+  +clearfix
+  div
+    clear: both
+
+.views-exposed-widgets
+  margin-bottom: -3px
+
+.ui-widget-overlay
+  +opacity(0.75)
+  background: $black
+  position: absolute
+  top: 0
+  left: 0
+  .ie8 &
+    background: transparent
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000)
+
+.ui-dialog .ui-dialog-titlebar
+  padding: 12px
+  .ui-dialog-title
+    @extend %league-gothic
+    font-weight: normal
+    // display: block
+    // height: auto
+    // padding-bottom: 12px
+
+.ui-widget-header
+  @extend %league-gothic
+  +border-radius(0)
+  background: none
+  border: none
+  color: $white
+  text-align: center
+  font-family: $font-sans
+  text-transform: uppercase
+  font-size: 52px
+  border-bottom: 1px solid $white
+  margin-bottom: 12px
+
+.ui-dialog-content
+  color: $white
+  clear: both
+  font-family: $font-sans
+  text-align: center
+
+#shelter-results
+  .shelter-results-option-list
+    +border-radius(12px)
+    +clearfix
+    background: $white
+    color: $black
+    padding: 24px
+    margin-bottom: 24px
+    width: 100%
+    input
+      +float-left
+      width: auto
+    .form-item-results
+      +float-left
+      +clearfix
+      clear: both
+      margin-bottom: 24px
+      width: 100%
+      text-align: left
+      .label-shelter-title
+        font-weight: bold
+
+#dosomething-picsforpets-shelters-options-form
+  input[type="submit"]
+    @extend %pfp-button
+
+////////////////////////////
+// MODAL GENERAL LAYOUT
+////////////////////////////
+
+#dosomething-picsforpets-furtographer-dialog
+  margin-top: 12px
+
+.ui-dialog
+  background: rgba($black, 0.75)
+  border: none
+  padding: 23px
+  border-bottom: 12px solid
+  border-top: 12px solid
+  border-color: rgba($black, 0.1)
+  +border-radius(0)
+  .ie8 &
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000)
+  .ui-dialog-content
+    padding: 0
+  .ui-dialog-title
+    height: 0
+    margin: 0
+    float: none
+  .ui-dialog-titlebar
+    display: block
+    height: auto
+    margin: auto
+    padding-bottom: 16px
+  .ui-dialog-titlebar-close
+    // margin: 0
+    // padding: 0
+    right: 0
+    top: -22px
+    // width: 0
+    span
+      margin: 0
+
+.node-type-fb-app-data-gathering-form
+
+  .ui-dialog
+
+    .ui-dialog-titlebar
+      display: block
+      padding: 0 0 15px 0
+      height: auto
+      margin: 0 auto
+      width: 90%
+
+    #edit-container-title
+      margin: 0 auto
+      position: relative
+      width: 65%
+      text-align: center
+
+    #edit-container-title p
+      font-size: 15px
+      line-height: 1em
+      padding-bottom: 0
+      margin-top: 0px 0px 0px 10px
+
+    #edit-container
+      margin: 0 auto
+      position: relative
+      width: 57%
+      clear: both
+      padding: 0
+
+    .ui-dialog-titlebar-close
+      padding: 0px
+      right: 0px
+      top: 0px
+      width: 0px
+      display: inline
+      margin-top: -10px
+      cursor: pointer
+
+    #edit-search
+      float: right
+
+    .form-item-zip
+      line-height: 1.1em
+
+.ui-icon.ui-icon-closethick
+  +replace-text-with-dimensions('../images/close.png')
+  +float-right
+  position: absolute
+  // right: 0
+  top: 12px
+  text-indent: -1000px
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus
+  background-image: none
+  border: none
+  outline: none
+  text-decoration: none
+
+.pane-share
+  margin-top: -175px
+  position: absolute
+  text-transform: uppercase
+  text-align: center
+  padding-left: 60px
+  // top: -200
+
+#picsforpets-share
+  h1
+    border-bottom: 1px solid $black
+    padding-bottom: 8px
+    margin-bottom: 16px
+    padding-top: 20px
+  .fb-share-me
+    @extend h1
+    +float-left
+    +border-radius(8px)
+    cursor: pointer
+    color: $white
+    padding: 10px 8px
+    background: $pfp-blue-fb
+    border-bottom: 0
+    margin-right: -46px
+    margin-bottom: 0
+    margin-top: -8px
+    margin-left: 46px
+
+.picsforpets-share-count-arrow
+  // background: url(../images/fb-share-count.png) no-repeat
+  // background-position: -4px 8px
+  // position: relative
+  // z-index: 800
+  // padding: 3px
+  // margin-right: -2px
+  display: none
+
+.picsforpets-share-count
+  border: 1px solid #c5c6c8
+  position: relative
+  z-index: 750
+  background-color: $white
+  padding: 2px 12px
+
+// Submit a pet picture
+.webform-client-form
+  margin: 0 auto
+  width: 552px
+  select
+    +box-shadow(#ddd 0 0 10px inset)
+    border: 1px solid #C9CBCD
+  legend
+    margin-left: -20px
+  label
+    cursor: default
+  .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und
+    label
+      margin-right: 15px
+    select
+      width: 80px
+  #submitted-field-fb-app-age-add-more-wrapper
+    label
+      margin-right: 67px
+    input
+      width: 80px
+  #field-fb-app-three-words-values
+    tr.odd .form-item, tr.even .form-item
+      margin-bottom : 5px
+  input[type="text"]
+    +box-shadow(#ddd 0 0 10px inset)
+    border: 1px solid #C9CBCD
+
+.big-numbers
+  +replace-list-numbers
+  li
+    border-left: 3px solid $black
+    margin-bottom: 0.5em
+    padding: 0 0 0 5px
+    position: relative
+    &:before
+      @extend %h1
+      font-size: 38px
+      position: absolute
+      right: 100%
+      top: 8px
+      padding-right: 5px
+
+// Text styling of not-approved shelters on individual pet submissions
+.not-partnered-shelter
+  font-size: 12px
+  line-height: 1
+  &:before
+    color: $pfp-red
+    content: "*"
+
+// Styling for the 'shelters closest to me' filter popup on the gallery page
+div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"]
+  .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix
+    border-bottom: none
+  h1
+    font-size: 52px
+    line-height: 1
+    margin-bottom: 0
+    margin-top: 0
+    text-transform: uppercase
+  .ui-dialog-titlebar
+    float: right
+    position: relative
+    right: 25px
+    top: -24px
+
+// Styling for the 'Find your shelter' pop up
+// div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"].ui-dialog
+//   overflow: hidden !important
+//   .ui-icon.ui-icon-closethick
+//     top: -14px
+
+// .item-list .pager li
+//   padding: 0

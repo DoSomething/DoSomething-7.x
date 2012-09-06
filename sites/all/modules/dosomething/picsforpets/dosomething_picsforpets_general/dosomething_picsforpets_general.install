@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Installs database tables and necessary data for the picsforpets app.
+ */
+
+/**
+ * Install our schema.
+ */
+function dosomething_picsforpets_general_update_7000() {
+  drupal_install_schema('dosomething_picsforpets_general');
+}
+
+/**
+ * Move Facebook user shares functionality into a new module by that name.
+ */
+function dosomething_picsforpets_general_update_7001() {
+  if (!db_table_exists('picsforpets_user_shares')) {
+    return;
+  }
+
+  // Enable our new module.
+  module_enable(array('fb_user_shares'));
+
+  // Handle migration of existing user shares from the old schema.
+  if (!db_query_range('SELECT 1 FROM {picsforpets_user_shares}', 0, 1)->fetchField()) {
+    // There is nothing to migrate. Wipe the empty table.
+    db_drop_table('picsforpets_user_shares');
+    return;
+  }
+
+  // Migrate shares to the new schema.
+  $records = db_query('SELECT * FROM {picsforpets_user_shares}');
+  foreach ($records as $record) {
+    drupal_write_record('fb_user_shares', $record);
+  }
+
+  // Drop the old schema.
+  db_drop_table('picsforpets_user_shares');
+}
+
+/**
+ * Implements hook_uninstall()
+ */
+function dosomething_picsforpets_general_uninstall() {
+  // Delete the webform submission node.
+  node_delete(variable_get('picsforpets_animal_form_id'));
+  variable_del('picsforpets_animal_form_id');
+
+  //Delete the campaign sign up node.
+  node_delete(variable_get('picsforpets_campaign_signup_id'));
+  variable_del('picsforpets_campaign_signup_id');
+}

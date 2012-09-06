@@ -1,0 +1,98 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_picsforpets_services feature.
+ */
+
+include_once 'dosomething_picsforpets_services.features.inc';
+
+/**
+ * Implements hook_services_resources().
+ */
+function dosomething_picsforpets_services_services_resources() {
+  return array(
+    'dosomething_views' => array(
+      'retrieve' => array(
+        'help' => 'Retrieves a view.',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'services_views',
+          'name' => 'services_views.resource',
+        ),
+        'callback' => 'services_views_retrieve',
+        'access callback' => 'dosomething_picsforpets_services_views_access',
+        'access arguments' => array('view'),
+        'access arguments append' => TRUE,
+        'args' => array(
+          'view_name' => array(
+            'name' => 'view_name',
+            'type' => 'string',
+            'description' => 'The name of the view to get.',
+            'source' => array('path' => '0'),
+            'optional' => FALSE,
+          ),
+          'display_id' => array(
+            'name' => 'display_id',
+            'type' => 'string',
+            'description' => 'The display ID of the view to get.',
+            'source' => array('param' => 'display_id'),
+            'optional' => TRUE,
+            'default value' => 'service',
+          ),
+          'args' => array(
+            'name' => 'args',
+            'type' => 'array',
+            'description' => 'A list of arguments to pass to the view.',
+            'source' => array('param' => 'args'),
+            'optional' => TRUE,
+            'default value' => array(),
+          ),
+          'offset' => array(
+            'name' => 'offset',
+            'type' => 'int',
+            'description' => 'The number of the entry for the page begin with.',
+            'source' => array('param' => 'offset'),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+          'limit' => array(
+             'name' => 'limit',
+             'type' => 'int',
+             'description' => 'The total number of entries to list.',
+             'source' => array('param' => 'limit'),
+             'optional' => TRUE,
+             'default value' => 10,
+           ),
+           'format_output' => array(
+             'name' => 'format_output',
+             'type' => 'bool',
+             'description' => 'Whether to return the raw data results or style the results.',
+             'source' => array('param' => 'format_output'),
+             'optional' => TRUE,
+             'default value' => FALSE,
+           ),
+           'filters' => array(
+             'name' => 'filters',
+             'type' => 'array',
+             'description' => 'A list of filters to pass to the view.  These are defined by the exposed filters on your view.  Example call: <code>/views/your_view?filters[nid]=12345</code>',
+             'source' => array('param' => 'filters'),
+             'optional' => TRUE,
+             'default value' => array(),
+           ),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Access callback for service views.
+ */
+function dosomething_picsforpets_services_views_access($op = 'view', $args = array()) {
+  // We are only allowing this view.  We couldn't use the Services view because
+  // it sends raw data that doesn't really mean anything to the app.
+  if ($args['view_name'] == 'pics_for_pets_gallery' && in_array($args['display_id'], array('service', 'service_shared_pets'))) {
+    return services_views_access($op, $args);
+  }
+  return FALSE;
+}

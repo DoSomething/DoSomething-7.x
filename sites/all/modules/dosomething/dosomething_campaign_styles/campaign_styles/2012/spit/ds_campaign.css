@@ -72,6 +72,12 @@ body {
     header[role="banner"] {
       width: 100%; } }
 
+#cmp img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -110,6 +116,7 @@ body {
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
   font-weight: 600;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  text-align: center;
   color: black; }
 #cmp h1, #cmp h3, #cmp p.divider {
   text-transform: uppercase; }
@@ -118,7 +125,8 @@ body {
   line-height: 1.54em; }
 #cmp h1.condensed {
   font-size: 3.75em;
-  font-weight: 600; }
+  font-weight: 600;
+  font-family: "din-web"; }
 #cmp h2 {
   font-size: 1.5em;
   line-height: 1.55em; }
@@ -134,7 +142,6 @@ body {
   font-weight: 500;
   line-height: 17px; }
 #cmp p.divider {
-  text-align: center;
   color: white; }
 #cmp .legal {
   font-size: 0.625em;
@@ -143,20 +150,27 @@ body {
 #cmp .section {
   overflow: auto;
   background: white;
-  margin: 3% auto;
-  padding: 2%; }
+  margin: 0 auto;
+  padding: 2% 2% 0 2%; }
+#cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
+  float: left;
+  padding: 0 1.5%; }
 #cmp .col33 {
-  width: 32%; }
+  width: 33%; }
 #cmp .col40 {
-  width: 39%; }
+  width: 40%; }
+#cmp .col50 {
+  width: 50%; }
 #cmp .col60 {
-  width: 59%; }
-#cmp .col33, #cmp .col40, #cmp .col60 {
-  float: left; }
-#cmp .divider span {
-  background: black;
-  padding: 0.5em 0.8em;
-  position: relative; }
+  width: 60%; }
+#cmp .divider {
+  border-top: 2px solid #eeeeee;
+  margin: 0 0 3% 0;
+  padding: 0.8% 0 0 0; }
+  #cmp .divider span {
+    background: black;
+    padding: 0.5em 0.8em;
+    position: relative; }
 #cmp .mcommons-col {
   width: 45%;
   margin: 0 0 0 5%;
@@ -170,7 +184,20 @@ body {
     float: left;
     margin: 0 0 5% 0; }
 #cmp .s0 {
-  background: #dddddd; }
+  background: url("assets/brad.jpg");
+  background-position: 29% -120%; }
+  #cmp .s0 h1, #cmp .s0 h2 {
+    text-align: left;
+    color: #ffcb15; }
+  #cmp .s0 span {
+    text-align: center;
+    background: #7f3f80;
+    background: rgba(127, 63, 128, 0.6); }
+  #cmp .s0 .webform {
+    margin: 20% 0 0 -2%;
+    background: black;
+    background: rgba(0, 0, 0, 0.3);
+    width: 105%; }
 #cmp .pane-campaign-sign-up {
   clear: both;
   width: 100%;
@@ -195,10 +222,10 @@ body {
     font-size: 10px; }
 #cmp .webform-client-form {
   box-shadow: none; }
-#cmp .s1 {
-  background: #dddddd; }
-#cmp .s2 {
-  background: #dddddd; }
+#cmp .s1 img {
+  display: block;
+  margin: 5% auto;
+  width: 65%; }
 #cmp .mcommons-webform input.field {
   width: 85%;
   height: 23px;
@@ -225,5 +252,3 @@ body {
   padding-bottom: 0; }
 #cmp .hidden {
   display: none; }
-#cmp .s3 {
-  background: #dddddd; }

@@ -1,0 +1,25 @@
+diff --git a/plugins/views_plugin_pager_mini.inc b/plugins/views_plugin_pager_mini.inc
+index 2daea99..23fd199 100644
+--- a/plugins/views_plugin_pager_mini.inc
++++ b/plugins/views_plugin_pager_mini.inc
+@@ -21,6 +21,6 @@ class views_plugin_pager_mini extends views_plugin_pager_full {
+   function render($input) {
+     $pager_theme = views_theme_functions('views_mini_pager', $this->view, $this->display);
+     return theme($pager_theme, array(
+-      'parameters' => $input, 'element' => $this->options['id']));
++      'parameters' => $input, 'element' => $this->options['id'], 'view' => $this->view));
+   }
+ }
+diff --git a/views.module b/views.module
+index f8689c9..e38fef1 100644
+--- a/views.module
++++ b/views.module
+@@ -69,7 +69,7 @@ function views_theme($existing, $type, $theme, $path) {
+ 
+   // Our extra version of pager from pager.inc
+   $hooks['views_mini_pager'] = $base + array(
+-    'variables' => array('tags' => array(), 'quantity' => 10, 'element' => 0, 'parameters' => array()),
++    'variables' => array('tags' => array(), 'quantity' => 10, 'element' => 0, 'parameters' => array(), 'view' => NULL),
+     'pattern' => 'views_mini_pager__',
+   );
+ 

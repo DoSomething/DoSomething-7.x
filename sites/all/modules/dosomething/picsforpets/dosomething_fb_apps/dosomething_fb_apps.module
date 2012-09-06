@@ -1,0 +1,244 @@
+<?php
+
+/**
+ * @file
+ * Code for the dosomething_fb_apps feature.
+ */
+
+include_once 'dosomething_fb_apps.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_fb_apps_form_views_exposed_form_alter(&$form, &$form_state) {
+  // By default, the text displayed for the animal type exposed filter is -any-.
+  // This changes the text to "Animal Type".
+  if ($form['#id'] == 'views-exposed-form-pics-for-pets-gallery-panel-pane-1') {
+    $form['field_fb_app_animal_type_value']['#options']['All'] = 'Animal Type';
+    $form['sort_by']['#title'] = '';
+    $form['sort_by']['#default_value'] = 'field_fb_app_share_count_value';
+    unset($form['sort_order']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for theme_views_mini_pager().
+ */
+function dosomething_fb_apps_preprocess_views_mini_pager(&$variables) {
+  if ($variables['view']->name == 'pics_for_pets_gallery') {
+    // Override the strings used for mini pager links.
+    $variables['tags'] = array(
+      1 => t('Previous'),
+      3 => t('View More'),
+    );
+  }
+}
+
+/**
+ * Implements hook_menu().
+ * TODO: use no_js here.
+ */
+function dosomething_fb_apps_menu() {
+  $items['pics-for-pets/carousel/js/%'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_fb_apps_submissions',
+    'page arguments' => array(3),
+  );
+  return $items;
+}
+
+/**
+ * Menu callback.
+ * Return 10 items for the 'wings' on the carousel.
+ */
+function dosomething_fb_apps_submissions($sid, $offset = 0) {
+  // Get next submissions, ordered by most shared descending.
+  $sids = db_query_range("SELECT w.sid FROM {webform_submissions} w LEFT JOIN {field_data_field_fb_app_share_count} f ON f.entity_id = w.sid AND f.entity_type = 'webform_submission_entity' WHERE w.nid = :nid AND w.sid <> :sid ORDER BY f.field_fb_app_share_count_value DESC", $offset, 8, array(':nid' => PICSFORPETS_PET_SUBMISSION_NID, ':sid' => $sid))->fetchCol();
+  // The first time we run this, also add the primary submissions's info.
+  if (!$offset) {
+    array_unshift($sids, $sid);
+    $i = 0;
+  }
+  else {
+    $i = $offset + 1;
+  }
+  foreach ($sids as $sid) {
+    $wrapper = entity_metadata_wrapper('webform_submission_entity', $sid);
+    $submission = new stdClass();
+    $submission->sid = $sid;
+    $path = $wrapper->field_fb_app_image->value();
+    $submission->image_inner = theme('image_style', array('style_name' => 'carousel_inner', 'path' => $path['uri']));
+    $submission->image_outer = theme('image_style', array('style_name' => 'carousel_outer', 'path' => $path['uri']));
+    // The carousel has a left and right and inner and outer positions. To put the most popular content up front
+    // we put every other result into a positive or negative index. The series here is -1, 1, -2, 2, -3, 3 etc.
+    if ($i % 2) {
+      $submissions[-1 * ($i + 1 ) / 2] = $submission;
+    }
+    else {
+      $submissions[$i / 2] = $submission;
+    }
+    $i++;
+  }
+  drupal_json_output($submissions);
+}
+
+/**
+ * Implements hook_ctools_render_alter().
+ *
+ * This hook gives us access to the panel itself, not just one pane.
+ */
+function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
+  if (!$page || (isset($context['task']['task type']) && $context['task']['task type'] != 'page')) {
+    return;
+  }
+
+  // If this is a custom page, the name is the machine name, and is stored as
+  // the name of the subtask. If it is a system page like node/%node, the name
+  // is stored as the name of the handler. These names are global, not per-page.
+  // Unless it is customized upon export, it will be in the form of
+  // NAME_panel_context_DELTA, for example, node_view_panel_context_3.
+  $name = isset($context['subtask']['name']) ? $context['subtask']['name'] : $context['handler']->name;
+
+  switch ($name) {
+    case 'webform_submission_view_pet_profile':
+      drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-carousel.js');
+      drupal_add_js(array('fbappsAnimals' => array('sid' => $context['args'][0]->sid)), 'setting');
+      // Total number of available pet submissions.
+      $total = db_query("SELECT COUNT(sid) FROM webform_submissions WHERE nid = :nid", array("nid" => PICSFORPETS_PET_SUBMISSION_NID))->fetchField();
+      drupal_add_js(array('fbappsAnimals' => array('total' => $total)), 'setting');
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') === 0) {
+    if ($form['#node']->type == 'fb_app_data_gathering_form') {
+      drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-animal-type-other.js');
+      $form['back'] = array(
+        '#markup' => l('Back', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button back')))),
+      );
+      // We want these functions to load after webform entity fields are loaded.
+      $form['submitted']['field_fb_app_share_count']['#access'] = FALSE;
+
+      $form['submitted']['info'] = array(
+        '#type' => 'fieldset',
+        '#title' => '1| Enter Animal Info',
+        '#weight' => 0,
+        '#tree' => FALSE,
+      );
+      $form['submitted']['info']['field_fb_app_animal_name'] = $form['submitted']['field_fb_app_animal_name'];
+      unset($form['submitted']['field_fb_app_animal_name']);
+      $form['submitted']['info']['field_fb_app_animal_type'] = $form['submitted']['field_fb_app_animal_type'];
+      unset($form['submitted']['field_fb_app_animal_type']);
+      $form['submitted']['info']['field_fb_app_other'] = $form['submitted']['field_fb_app_other'];
+      unset($form['submitted']['field_fb_app_other']);
+      $form['submitted']['info']['field_fb_app_age'] = $form['submitted']['field_fb_app_age'];
+      unset($form['submitted']['field_fb_app_age']);
+      $form['submitted']['info']['field_fb_app_three_words'] = $form['submitted']['field_fb_app_three_words'];
+      unset($form['submitted']['field_fb_app_three_words']);
+
+      $form['submitted']['find_your_shelter'] = array(
+        '#type' => 'fieldset',
+        '#title' => '2| Find Your Shelter',
+        '#weight' => 1,
+        '#tree' => FALSE,
+      );
+      $form['submitted']['find_your_shelter']['find'] = array(
+        '#markup' => '<a href="/pics-for=pets/shetler-search-options" class="shelter-locator-popup">Locate Your Shelter</a>',
+      );
+      $form['submitted']['find_your_shelter']['field_fb_app_shelter_name'] = $form['submitted']['field_fb_app_shelter_name'];
+      unset($form['submitted']['field_fb_app_shelter_name']);
+      $form['submitted']['find_your_shelter']['field_fb_app_address'] = $form['submitted']['field_fb_app_address'];
+      unset($form['submitted']['field_fb_app_address']);
+      $form['submitted']['find_your_shelter']['field_fb_app_city'] = $form['submitted']['field_fb_app_city'];
+      unset($form['submitted']['field_fb_app_city']);
+      $form['submitted']['find_your_shelter']['field_fb_app_state'] = $form['submitted']['field_fb_app_state'];
+      unset($form['submitted']['field_fb_app_state']);
+      $form['submitted']['find_your_shelter']['field_fb_app_zip'] = $form['submitted']['field_fb_app_zip'];
+      unset($form['submitted']['field_fb_app_zip']);
+      $form['submitted']['find_your_shelter']['field_fb_app_shelter_reference'] = $form['submitted']['field_fb_app_shelter_reference'];
+      unset($form['submitted']['field_fb_app_shelter_reference']);
+
+      $form['submitted']['upload'] = array(
+        '#type' => 'fieldset',
+        '#title' => '3| Upload Your Pet Picture',
+        '#weight' => 2,
+        '#tree' => FALSE,
+      );
+      $form['submitted']['upload']['field_fb_app_image'] = $form['submitted']['field_fb_app_image'];
+      unset($form['submitted']['field_fb_app_image']);
+
+      // Check the user's permission given to role.
+      if (user_access('edit all webform submissions')) {
+        // If user is admin, show the following fields.
+        $form['submitted']['field_fb_app_adopted']['#access'] = TRUE;
+        $form['submitted']['field_fb_app_published']['#access'] = TRUE;
+      }
+      // If user is not admin, hide the adopted field.
+      else {
+        $form['submitted']['field_fb_app_adopted']['#access'] = FALSE;
+        $form['submitted']['field_fb_app_published']['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+/**
+ * Our form_alter implementaion needs to run after webform_entity's.
+ */
+function dosomething_fb_apps_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dosomething_fb_apps'];
+    unset($implementations['dosomething_fb_apps']);
+    $implementations['dosomething_fb_apps'] = $group;
+  }
+}
+
+
+/**
+ * Implements hook_proprocess_views_view().
+ *
+ * Add our custom JS to the view zip code search.
+ */
+function dosomething_fb_apps_preprocess_views_view(&$variables) {
+  // Quit early if not on the pics_for_pets_gallery view.
+  if ($variables['name'] != 'pics_for_pets_gallery') {
+    return;
+  }
+  // If there aren't any results, show the view's empty text.
+  if (empty($variables['rows'])) {
+    $variables['rows'] = $variables['empty'];
+  }
+  global $user;
+  $view = $variables['view'];
+  $form_state = array();
+  form_load_include($form_state, 'inc', 'dosomething_fb_apps', 'dosomething_fb_apps.forms');
+  $form = drupal_get_form('dosomething_fb_apps_enter_zip_form');
+  $form['container']['animal_type']['#value'] = $view->exposed_raw_input['field_fb_app_animal_type_value'];
+
+  // Attach js setting to pop up the modal window.
+  drupal_add_js(
+    array(
+      'dosomethingFBApps' => array(
+        'fbZip' =>  !empty($user->fb_zip),
+        'fbClickMe' => $form['#reset_sort'],
+        'fbAnimalSelected' => $form['#animal_type'],
+      )
+    ), 'setting');
+  $rendered_form = drupal_render($form);
+
+  // We need to reset rows to an array so that it rerenders with our attached
+  // javascript.
+  $variables['rows'] = array(
+    '#markup' => $variables['rows'] . $rendered_form,
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'dosomething_fb_apps') . '/js/shelter_sort.js',
+      ),
+    ),
+  );
+}
