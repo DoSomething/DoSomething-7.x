@@ -280,6 +280,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $shelter_data = array();
           $address = field_get_items('node', $shelter, 'field_pfp_address');
           $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
+          $hours = field_get_items('node', $shelter, 'field_pfp_hours');
           $shelter_data['nid'] = $shelter->nid;
           $shelter_data['title'] = check_plain($shelter->title);
           $shelter_data['phone'] = empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']);
