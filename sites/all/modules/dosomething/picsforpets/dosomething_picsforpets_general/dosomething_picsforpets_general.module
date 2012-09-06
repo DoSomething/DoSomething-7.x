@@ -831,16 +831,11 @@ function dosomething_picsforpets_general_views_plugins() {
  */
 function dosomething_picsforpets_general_share_access_callback() {
   global $user;
-  drupal_debug($_SERVER);
-  
-  // Prevent share spoofing.
-  // HTTP_REFERER can hold 1 of 2 values that have certain patterns (or it may
-  // be empty).
-  // The only case we want to let through is the case when HTTP_REFER has the
-  // pattern http://<production-domain>/pics-for-pets/share/js/%/%.
-  // Let's write a regular expression to check for this pattern and then let
-  // those requests through.
-  if (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) {
+  // Prevent share spoofing - If HTTP_REFERER is empty or it comes from the
+  // apps.facebook.com domain, then we know that the user didn't click on the
+  // share button and is trying to spoof a share.
+  if (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER']) && !substr_count($_SERVER['HTTP_REFERER'], 'apps.facebook.com')) {
+    // Don't let anonymous users share. TODO: Do we actually want this?
     return $user->uid ? TRUE : FALSE;
   }
   return FALSE;
