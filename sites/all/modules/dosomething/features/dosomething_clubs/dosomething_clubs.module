@@ -242,7 +242,7 @@ function dosomething_clubs_change_owner($clubid, $userid) {
   $node->uid = $user->uid;
   $node->field_email[LANGUAGE_NONE][0]['value'] = $user->mail;
   $node->field_name_last[LANGUAGE_NONE][0]['value'] = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
-  #$node->field_name[LANGUAGE_NONE][0]['value'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  $node->field_name[LANGUAGE_NONE][0]['value'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
   if (isset($profile->field_user_mobile[LANGUAGE_NONE][0]['value']) && !empty($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
     $phone = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
@@ -538,7 +538,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
       $augmented = TRUE;
       $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
       if ($form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
-        #$form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value();
+        $form['field_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value();
       }
       if ($form['field_name_last'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
         $form['field_name_last'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_last_name->value();
@@ -709,7 +709,7 @@ function dosomething_clubs_form_submit(&$form, &$form_state) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['field_phone_required'][LANGUAGE_NONE][0]['value'];
   }
   if (isset($values['field_name'][LANGUAGE_NONE][0]['value']) && $values['field_name'][LANGUAGE_NONE][0]['value'] != '') {
-    #$profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['field_name'][LANGUAGE_NONE][0]['value'];
+    $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['field_name'][LANGUAGE_NONE][0]['value'];
   }
   if (isset($values['field_name_last'][LANGUAGE_NONE][0]['value']) && $values['field_name_last'][LANGUAGE_NONE][0]['value'] != '') {
     $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['field_name_last'][LANGUAGE_NONE][0]['value'];
@@ -1017,8 +1017,8 @@ function dosomething_clubs_join_form_submit($form, &$form_state) {
   $profile = profile2_load_by_user($user, 'main');
 
   $params = array(
-    'requester' => '',#$profile->field_user_first_name[LANGUAGE_NONE][0]['value'],
-    'leader' => '',#$p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+    'requester' => $profile->field_user_first_name[LANGUAGE_NONE][0]['value'],
+    'leader' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
     'club_link' => 'http://' . $_SERVER['HTTP_HOST'] . '/' . drupal_lookup_path('alias', 'node/' . $n->nid),
     'club_name' => $n->title
   );
