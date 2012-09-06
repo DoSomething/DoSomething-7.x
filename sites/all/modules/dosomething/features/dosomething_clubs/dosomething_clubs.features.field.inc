@@ -19,7 +19,7 @@ function dosomething_clubs_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_camp',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -140,6 +140,134 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
+  // Exported field: 'node-club-field_campaign_list'
+  $fields['node-club-field_campaign_list'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_list',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'module' => 'node_reference',
+      'settings' => array(
+        'profile2_private' => FALSE,
+        'referenceable_types' => array(
+          'action_guide' => 0,
+          'api_key' => 0,
+          'awards_archive' => 0,
+          'bc_bio_form' => 0,
+          'blog' => 0,
+          'campaign' => 0,
+          'campaign_art_2011' => 0,
+          'campaign_blog_post' => 0,
+          'campaign_bully_2011' => 0,
+          'campaign_cancer_2011' => 0,
+          'campaign_contact_form' => 0,
+          'campaign_content_page' => 0,
+          'campaign_ew_2011' => 0,
+          'campaign_macys_2011' => 0,
+          'campaign_report_back' => 0,
+          'campaign_sign_up' => 0,
+          'campaign_sports_2011' => 0,
+          'cancer_2011_signup' => 0,
+          'cause_video' => 0,
+          'club' => 0,
+          'club_event' => 0,
+          'decade_2011_signup' => 0,
+          'ds_award_judging' => 0,
+          'dsaward_rec' => 0,
+          'dsu_askprof' => 0,
+          'dsu_guides' => 0,
+          'easy_idea' => 0,
+          'editorial_content_' => 0,
+          'ewaste_signup_2011' => 0,
+          'final_grant_update' => 0,
+          'grant_alumni' => 0,
+          'grant_application' => 0,
+          'grant_judge' => 0,
+          'help_ticket' => 0,
+          'member_opportunity' => 0,
+          'page' => 0,
+          'petition' => 0,
+          'poll' => 0,
+          'press' => 0,
+          'program_short_form' => 0,
+          'project_report' => 0,
+          'project_update' => 0,
+          'robo_calls' => 0,
+          'scholarship' => 0,
+          'scholarship_application' => 0,
+          'school' => 0,
+          'scroller' => 0,
+          'share_of_day' => 0,
+          'social_scholarship' => 0,
+          'sponsor' => 0,
+          'team_challenge' => 0,
+          'tips_and_tools' => 0,
+          'webform' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'references_1',
+          'view_name' => 'campaign_list_for_clubs',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'node_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_list',
+      'label' => 'My Do Something Club is going to work on',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '0',
+      ),
+    ),
+  );
+
   // Exported field: 'node-club-field_club_address'
   $fields['node-club-field_club_address'] = array(
     'field_config' => array(
@@ -238,6 +366,78 @@ sports|Sports Equipment - our fall sports equipment drive',
         'weight' => '20',
       ),
       'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-club-field_club_blurb'
+  $fields['node-club-field_club_blurb'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_club_blurb',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '140',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'In 140 characters or less, post your club\'s goals, next meeting date, or upcoming volunteer opportunities.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 30,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_club_blurb',
+      'label' => 'Insert a blurb of text about your club',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '5',
+      ),
     ),
   );
 
@@ -358,6 +558,8 @@ sports|Sports Equipment - our fall sports equipment drive',
       'indexes' => array(),
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
           'hour' => 0,
@@ -379,7 +581,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     'field_instance' => array(
       'bundle' => 'club',
       'deleted' => '0',
-      'description' => 'mm/dd/yyyy',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -516,7 +718,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'bundle' => 'club',
       'default_value' => '',
       'deleted' => '0',
-      'description' => 'This is for your Club\'s Profile Page!',
+      'description' => 'We\'ll resize and crop it down to a square for you.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -565,7 +767,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_club_picture',
-      'label' => 'Official club photo',
+      'label' => 'Official Club photo',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
@@ -584,11 +786,51 @@ sports|Sports Equipment - our fall sports equipment drive',
         'settings' => array(
           'insert' => 0,
           'insert_class' => '',
-          'insert_default' => array(
-            0 => 'auto',
-          ),
+          'insert_default' => 'auto',
           'insert_styles' => array(
-            0 => 'auto',
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
           ),
           'insert_width' => '',
           'preview_image_style' => 'thumbnail',
@@ -908,10 +1150,9 @@ sports|Sports Equipment - our fall sports equipment drive',
           'browser_plugins' => array(
             'library' => 0,
             'media_default--media_browser_1' => 0,
-            'media_internet' => 0,
+            'media_internet' => 'media_internet',
             'upload' => 0,
           ),
-          'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
@@ -1030,6 +1271,9 @@ sports|Sports Equipment - our fall sports equipment drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_email',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1048,6 +1292,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1056,9 +1301,9 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => '',
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Please give us an email address you check often so we can let you know when your application has been approved and notify you if you win any grants/prizes!',
+      'description' => 'As the club leader we may need to send you important notifications regarding your eligibility for grants, prizes, and other sweet opportunities.  So please provide an email address you actually check.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1099,19 +1344,17 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_type' => 'node',
       'field_name' => 'field_email',
       'label' => 'Your Email',
-      'required' => '1',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-4',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '-3',
@@ -1325,6 +1568,153 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
+  // Exported field: 'node-club-field_no_school_associate'
+  $fields['node-club-field_no_school_associate'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_no_school_associate',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Check this box if this club is not associated with a school.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '13',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_no_school_associate',
+      'label' => 'My Club is not associated with a school',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-club-field_noschool_club_name'
+  $fields['node-club-field_noschool_club_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_noschool_club_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => '[Group Name] DoSomething.org Club',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Keep our Clubs Directory listing clean by capitalizing the first letters in your club name and using our standard formatting like its pre-filled above.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '11',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_noschool_club_name',
+      'label' => 'What would you like to name this club?',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Exported field: 'node-club-field_participants'
   $fields['node-club-field_participants'] = array(
     'field_config' => array(
@@ -1361,7 +1751,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'bundle' => 'club',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'List the phone numbers and email addresses of people you\'d like to invite to your club.',
+      'description' => 'List the email addresses of people you\'d like to invite to your club.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1392,7 +1782,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -1405,6 +1795,9 @@ sports|Sports Equipment - our fall sports equipment drive',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_phone_required',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1423,6 +1816,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -1431,13 +1825,10 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'This is how we can call you with sweet opportunities or text you weekly updates on everything DoSomething.org including scholarships, volunteer opportunities, and even inspiring quotes!
+<br />Msg & data rates may apply.  Text STOP to opt-out, HELP for help.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1478,19 +1869,17 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_type' => 'node',
       'field_name' => 'field_phone_required',
       'label' => 'Your Cell Phone',
-      'required' => '1',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-5',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '-4',
@@ -1540,8 +1929,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'bundle' => 'club',
       'default_value' => '',
       'deleted' => '0',
-      'description' => 'Please don\'t use BMP files.
-Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ',
+      'description' => '<p>Upload photos of your club or projects here by choosing a file then hitting "Upload".  Please don\'t use BMP files.  Max photo dimensions are 580x50 pxels.</p>',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -1590,7 +1978,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       ),
       'entity_type' => 'node',
       'field_name' => 'field_project_photo',
-      'label' => 'Club Photos',
+      'label' => 'Club Photo Gallery',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
@@ -1609,11 +1997,52 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'settings' => array(
           'insert' => 0,
           'insert_class' => '',
-          'insert_default' => array(
-            0 => 'auto',
-          ),
+          'insert_default' => 'auto',
           'insert_styles' => array(
-            0 => 'auto',
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
           ),
           'insert_width' => '',
           'preview_image_style' => 'thumbnail',
@@ -1695,7 +2124,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
       'entity_type' => 'node',
       'field_name' => 'field_school_reference',
       'label' => 'School',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -1709,6 +2138,78 @@ Upload photos that are relevant to your project here.  The first photo will be u
         ),
         'type' => 'dosomething_school_autocomplete',
         'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-club-field_send_goodies'
+  $fields['node-club-field_send_goodies'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_send_goodies',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 29,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_send_goodies',
+      'label' => 'Send me a package full of goodies every Fall and Spring!',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '7',
       ),
     ),
   );
@@ -1791,7 +2292,7 @@ Upload photos that are relevant to your project here.  The first photo will be u
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '9',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1876,32 +2377,227 @@ Upload photos that are relevant to your project here.  The first photo will be u
     ),
   );
 
+  // Exported field: 'taxonomy_term-clubs_todo_list-field_todo_image'
+  $fields['taxonomy_term-clubs_todo_list-field_todo_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_todo_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 0,
+        'display_field' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'clubs_todo_list',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_todo_image',
+      'label' => 'Image',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'jpg jpeg gif png',
+        'max_filesize' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'file',
+        'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => 'auto',
+          'insert_styles' => array(
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
+          ),
+          'insert_width' => '',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-clubs_todo_list-field_todo_link'
+  $fields['taxonomy_term-clubs_todo_list-field_todo_link'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_todo_link',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'clubs_todo_list',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_todo_link',
+      'label' => 'Link to',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
+  t('<p>Upload photos of your club or projects here by choosing a file then hitting "Upload".  Please don\'t use BMP files.  Max photo dimensions are 580x50 pxels.</p>');
   t('Add group content');
   t('Address');
+  t('As the club leader we may need to send you important notifications regarding your eligibility for grants, prizes, and other sweet opportunities.  So please provide an email address you actually check.');
+  t('Check this box if this club is not associated with a school.');
   t('City');
-  t('Club Photos');
+  t('Club Photo Gallery');
   t('Date of birth');
   t('First Name');
   t('Group type');
+  t('Image');
+  t('In 140 characters or less, post your club\'s goals, next meeting date, or upcoming volunteer opportunities.');
+  t('Insert a blurb of text about your club');
   t('Invite a Friend');
+  t('Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.');
+  t('Keep our Clubs Directory listing clean by capitalizing the first letters in your club name and using our standard formatting like its pre-filled above.');
   t('Last Name');
-  t('List the phone numbers and email addresses of people you\'d like to invite to your club.');
+  t('Link to');
+  t('List the email addresses of people you\'d like to invite to your club.');
+  t('My Club is not associated with a school');
   t('My Do Something Club is going to work on');
-  t('Official club photo');
-  t('Please don\'t use BMP files.
-Upload photos that are relevant to your project here.  The first photo will be used on the site when linking to your project, so make sure it\'s good! Maximum photo dimensions are 580px by 580px.  ');
-  t('Please give us an email address you check often so we can let you know when your application has been approved and notify you if you win any grants/prizes!');
+  t('Official Club photo');
   t('School');
+  t('Send me a package full of goodies every Fall and Spring!');
   t('State');
-  t('This is for your Club\'s Profile Page!');
+  t('This is how we can call you with sweet opportunities or text you weekly updates on everything DoSomething.org including scholarships, volunteer opportunities, and even inspiring quotes!
+<br />Msg & data rates may apply.  Text STOP to opt-out, HELP for help.');
   t('Verified');
   t('Video (optional)');
+  t('We\'ll resize and crop it down to a square for you.');
+  t('What would you like to name this club?');
   t('Your Cell Phone');
   t('Your Email');
   t('ZIP/Postal Code');
-  t('mm/dd/yyyy');
 
   return $fields;
 }
