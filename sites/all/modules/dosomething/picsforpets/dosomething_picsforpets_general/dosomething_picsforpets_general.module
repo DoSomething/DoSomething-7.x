@@ -236,11 +236,18 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   }
 
   global $user;
-  $submission = entity_create('webform_submission_entity', array('bundle' => 'campaign_sign_up'));
+
+  $submission = new stdClass();
   $submission->uid = $user->uid;
   $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
+  $submission->data[] = array(
+    'value' => array(
+      0 => '',
+    ),
+  );
+
   if ($form_state['values']['kit'] && ($name || $street1 || $street2 || $city || $state || $zip)) {
     $submission->data = array(
       '1' => array('value' => array($name)),
@@ -251,8 +258,12 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
       '6' => array('value' => array($zip)),
     );
   }
-  unset($submission->is_new);
-  entity_save('webform_submission_entity', $submission);
+
+  $webform = node_load(PICSFORPETS_CAMPAIGN_SIGNUP_NID);
+  $webform->webform['nid'] = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  webform_submission_insert($webform, $submission);
+
   $submissions = entity_load('webform_submission_entity', array($submission->sid));
   $submission = array_shift($submissions);
   $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
@@ -348,13 +359,23 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
 
   // Save to a campaign sign up webform.
   global $user;
-  $submission = entity_create('webform_submission_entity', array('bundle' => 'campaign_sign_up'));
+
+  $submission = new stdClass();
   $submission->uid = $user->uid;
   $submission->nid = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
-  unset($submission->is_new);
-  entity_save('webform_submission_entity', $submission);
+  $submission->data[] = array(
+    'value' => array(
+      0 => '',
+    ),
+  );
+
+  $webform = node_load(PICSFORPETS_CAMPAIGN_SIGNUP_NID);
+  $webform->webform['nid'] = PICSFORPETS_CAMPAIGN_SIGNUP_NID;
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  webform_submission_insert($webform, $submission);
+
   $submissions = entity_load('webform_submission_entity', array($submission->sid));
   $submission = array_shift($submissions);
   $submission->field_webform_email[LANGUAGE_NONE][0]['email'] = $email;
