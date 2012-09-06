@@ -180,8 +180,8 @@ function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_
   return array(
     'more-results-ajax-wrapper' => array(
       '#tree' => TRUE,
-      '#prefix' => '<div id="shelter-results-wrapper">',
-      '#suffix' =>  '</div>',
+      '#prefix' => '<div id="shelter-results"><div id="shelter-results-wrapper">',
+      '#suffix' =>  '</div></div>',
 
       'more-results-ajax-load' => array(
         '#prefix' =>  '<div class="shelter-results">',
