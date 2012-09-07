@@ -21,7 +21,7 @@ function dosomething_picsforpets_general_menu() {
     'type' => MENU_CALLBACK,
     'access callback' => 'dosomething_picsforpets_general_share_access_callback',
     'page callback' => 'dosomething_picsforpets_general_share',
-    'page arguments' => array(3, 4),
+    'page arguments' => array(4, 5),
   );
   $items['fb/pics-for-pets/become-a-furtographer'] = array(
     'title' => t('Become a Furtographer!'),

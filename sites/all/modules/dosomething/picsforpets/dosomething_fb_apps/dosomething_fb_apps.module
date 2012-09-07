@@ -43,7 +43,7 @@ function dosomething_fb_apps_menu() {
     'type' => MENU_CALLBACK,
     'access callback' => TRUE,
     'page callback' => 'dosomething_fb_apps_submissions',
-    'page arguments' => array(3),
+    'page arguments' => array(4),
   );
   return $items;
 }
