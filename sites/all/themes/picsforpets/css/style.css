@@ -1897,6 +1897,15 @@ a.footer-furtography {
 .ui-dialog .ui-dialog-titlebar-close span {
   margin: 0;
 }
+.ui-dialog #shelter-results .shelter-results-option-list input {
+  float: none;
+}
+.ui-dialog .form-item.form-type-textfield.form-item-shelter-name {
+  width: 440px;
+}
+.ui-dialog .fieldset-wrapper {
+  padding: 4px;
+}
 
 .node-type-fb-app-data-gathering-form .ui-dialog .ui-dialog-titlebar {
   display: block;
@@ -2001,10 +2010,6 @@ a.footer-furtography {
   margin-left: 46px;
 }
 
-.picsforpets-share-count-arrow {
-  display: none;
-}
-
 .picsforpets-share-count {
   border: 1px solid #c5c6c8;
   position: relative;
@@ -2028,23 +2033,29 @@ a.footer-furtography {
 }
 .webform-client-form label {
   cursor: default;
+  min-width: 80px;
+  text-align: right;
 }
-.webform-client-form .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
+
+.form-item-hours label {
+  text-align: none;
+}
+.form-item-hours .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
   margin-right: 15px;
 }
-.webform-client-form .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
+.form-item-hours .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
   width: 80px;
 }
-.webform-client-form #submitted-field-fb-app-age-add-more-wrapper label {
+.form-item-hours #submitted-field-fb-app-age-add-more-wrapper label {
   margin-right: 67px;
 }
-.webform-client-form #submitted-field-fb-app-age-add-more-wrapper input {
+.form-item-hours #submitted-field-fb-app-age-add-more-wrapper input {
   width: 80px;
 }
-.webform-client-form #field-fb-app-three-words-values tr.odd .form-item, .webform-client-form #field-fb-app-three-words-values tr.even .form-item {
+.form-item-hours #field-fb-app-three-words-values tr.odd .form-item, .form-item-hours #field-fb-app-three-words-values tr.even .form-item {
   margin-bottom: 5px;
 }
-.webform-client-form input[type="text"] {
+.form-item-hours input[type="text"] {
   -webkit-box-shadow: #dddddd 0 0 10px inset;
   -moz-box-shadow: #dddddd 0 0 10px inset;
   box-shadow: #dddddd 0 0 10px inset;
@@ -2877,10 +2888,10 @@ select#edit-sort-by {
   float: left;
   cursor: pointer;
   background: #6e85b2;
-  padding: 4px;
-  margin-right: 8px;
+  padding: 5px 4px 4px 4px;
+  margin-right: 4px;
   margin-top: 12px;
-  margin-left: 12px;
+  margin-left: 7px;
   width: 190px;
   font-size: 18px;
   line-height: 0.75;
@@ -2890,20 +2901,21 @@ select#edit-sort-by {
   width: 60px;
 }
 .gallery-thumbnail-text .gallery-share-count {
-  border: 1px solid #c5c6c8;
   position: relative;
   z-index: 750;
   background-color: white;
-  padding: 4px;
+  padding: 7px 4px 4px 4px;
   color: #a6a8ab;
   display: block;
   margin-top: 12px;
   display: inline;
   float: left;
   height: 21px;
-  min-width: 22px;
-  font-size: 18px;
+  min-width: 42px;
+  font-size: 12px;
   line-height: 0.75;
+  background: url(../images/share-background.png) no-repeat;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .no-results {
