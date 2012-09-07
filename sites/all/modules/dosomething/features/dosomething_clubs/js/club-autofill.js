@@ -22,6 +22,12 @@
           }
         });
 
+        if ($('#edit-field-no-school-associate-und').attr('checked') == 'checked' || $('#edit-field-no-school-associate-und').attr('checked') == true) {
+          $('#edit-field-school-reference-und-0-target-id-name').val('');
+          $('#edit-field-school-reference-und-0-target-id').hide();
+          $('#edit-field-noschool-club-name').show();
+        }
+
         $('#edit-field-no-school-associate-und').click(function() {
           $('input#edit-field-school-reference-und-0-target-id-name').val('');
           $('#edit-field-school-reference-und-0-target-id').toggle();
@@ -36,12 +42,6 @@
           $(this).css('color', '#808080');
         }
       });
-
-      if ($('#edit-field-no-school-associate-und').attr('checked') == 'checked' || $('#edit-field-no-school-associate-und').attr('checked') == true) {
-        $('#edit-field-school-reference-und-0-target-id-name').val('');
-        $('#edit-field-school-reference').hide();
-        $('#edit-field-noschool-club-name').show();
-      }
 
       // COPPA Parent's birthday for club member signup
       if ($('.form-item-parent-email').length > 0) {
