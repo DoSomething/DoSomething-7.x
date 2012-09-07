@@ -126,7 +126,7 @@ Drupal.behaviors.picsforpetsShelterPopup = {
         var $docHeight = $(document).height();
         var $modalWidth = 555;
         var $xPos = parseInt(($width - $modalWidth) / 2);
-        var $topPos = 280;
+        var $topPos = 180;
         var $modalHeight = 500;
         $searchForm
           .addClass('ui-dialog-content')

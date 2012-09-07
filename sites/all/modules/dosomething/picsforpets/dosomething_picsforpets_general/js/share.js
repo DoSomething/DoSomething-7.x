@@ -56,6 +56,7 @@ Drupal.behaviors.dsPfpShare = {
                   resizable: false,
                   draggable: false,
                   modal: true,
+                  top: 180,
                   width: 550
                 });
             }
@@ -79,6 +80,7 @@ Drupal.behaviors.dsPfpShare = {
                   resizable: false,
                   draggable: false,
                   modal: true,
+                  top: 180,
                   width: 550
                 });
             }

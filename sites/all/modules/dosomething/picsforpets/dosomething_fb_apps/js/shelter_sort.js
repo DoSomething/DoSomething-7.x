@@ -30,6 +30,7 @@ Drupal.behaviors.dosomethingFBApps = {
           resizable: false,
           draggable: false,
           modal: true,
+          top: 180,
           width: 550,
         });
       }
