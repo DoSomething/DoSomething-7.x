@@ -1,0 +1,4 @@
+name = "DoSomething Admin Clubs Pull"
+description = "Pull Clubs Data from the server and export if necessary."
+core = 7.x
+package = DoSomething

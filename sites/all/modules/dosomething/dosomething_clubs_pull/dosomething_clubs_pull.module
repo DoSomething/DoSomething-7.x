@@ -1,0 +1,386 @@
+<?php
+
+function dosomething_clubs_pull_menu() {
+	$items['admin/clubs-pull'] = array(
+		'title' => t('Pull Club Data'),
+		'page callback' => 'dosomething_clubs_pull_data',
+    'access arguments' => array('administer group'),
+    'type' => MENU_CALLBACK
+	);
+
+  $items['admin/clubs-pull/export'] = array(
+    'title' => t('Export Clubs Data'),
+    'page callback' => 'dosomething_clubs_pull_export',
+    'access arguments' => array('administer group'),
+    'type' => MENU_CALLBACK
+  );
+
+  $items['admin/clubs-pull/export/finished'] = array(
+    'title' => t('Your export is finished!'),
+    'page callback' => 'dosomething_clubs_pull_export_finished',
+    'access arguments' => array('administer group'),
+    'type' => MENU_CALLBACK
+  );
+
+  $items['admin/clubs-pull/export/file'] = array(
+    'page callback' => 'dosomething_clubs_pull_file',
+    'access arguments' => array('administer group'),
+    'type' => MENU_CALLBACK
+  );
+
+	return $items;
+}
+
+function dosomething_clubs_pull_file() {
+  if (strpos($_SESSION['csv_download_file'], file_directory_temp()) === FALSE) {
+    return 'Access denied!';
+  }
+
+  drupal_add_http_header('Content-Type', 'text/csv; utf-8');
+  drupal_add_http_header('Content-Disposition', 'attachment; filename=' . $_SESSION['csv_download_filename'], TRUE);
+
+  drupal_add_http_header('Cache-Control', 'max-age=300; must-revalidate');
+
+  readfile($_SESSION['csv_download_file']);
+  exit;
+}
+
+function dosomething_clubs_pull_export_finished() {
+  global $base_url;
+
+  if (empty($_SESSION['csv_download_filename']) || empty($_SESSION['csv_download_file'])) {
+    return t('Sorry, there was an error in creating your file.');
+  }
+
+  $redirect = base_path() . 'admin/clubs-pull/export/file';
+  drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
+
+  $download_link = t('Your export is complete! If your download does not begun automatically, !click!', array(
+    '!click' => l(t('Click here'), 'admin/clubs-pull/export/file'))
+  );
+
+  $output = '<p>' . $download_link . '</p>';
+  return $output;
+}
+
+function dosomething_clubs_pull_export() {
+  $batch = array(
+    'title' => t('Exporting Clubs Data (This will take some time...)'),
+    'operations' => array(
+      array('dosomething_clubs_pull_batch_process', array())
+    ),
+    'finished' => 'dosomething_clubs_pull_batch_finished',
+    'file' => '/var/www/html/sites/all/modules/dosomething/dosomething_clubs_pull/exports/' . date('m-d-y', REQUEST_TIME) . '.csv'
+  );
+  batch_set($batch);
+  batch_process('admin/clubs-pull/export/finished');
+}
+
+function get_campaign_list() {
+  $result = db_query("SELECT GROUP_CONCAT(DISTINCT nid) AS `nodes` FROM `node` WHERE `type` = 'campaign'")->fetchAssoc();
+  return $result['nodes'];
+}
+
+function dosomething_clubs_pull_mega_query($limit = 0, $offset = 0, $return_query = FALSE) {
+  $cs = get_campaign_list();
+
+  $q = db_query("SELECT
+  node.nid AS nid,
+  node.title AS node_title,
+  `node`.`created` AS `created`,
+  `users_node`.name AS `creator`,
+  `users_node`.`uid` AS `creator_id`,
+  `users_node`.`mail` AS `creator_email`,
+  `firstname`.`field_user_first_name_value` AS `first_name`,
+  `lastname`.`field_user_last_name_value` AS `last_name`,
+  `birthday`.`field_user_birthday_value` AS `birth_day`,
+  `mobile`.`field_user_mobile_value` AS `phone`,
+  `address`.`field_user_address_thoroughfare` AS `owner_street`,
+  `address`.`field_user_address_locality` AS `owner_city`,
+  `address`.`field_user_address_administrative_area` AS `owner_state`,
+  `address`.`field_user_address_postal_code` AS `owner_zip`,
+  `city`.`field_club_city_value` AS `city`,
+  `state`.`field_club_state_value` AS `state`,
+  `zip`.`field_club_zip_value` AS `zip`,
+  COUNT(DISTINCT og_membership_og.etid) AS `member_count`,
+  IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
+  GROUP_CONCAT(`ogu`.`mail`) AS `member_emails`,
+  GROUP_CONCAT(`ogu`.`uid`) AS `member_uids`,
+  (SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`))) AS `pcount`,
+  (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
+  (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN (" . $cs . ") AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`,
+  `sc`.name AS `school_name`,
+  `sc`.type AS `school_type`,
+  `sc`.state AS `school_state`,
+  IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
+  `blurb`.`field_club_blurb_value` AS `blurb`,
+  IF (`old_goodies`.`field_club_mailings_value` = 'mailings', 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
+FROM 
+`node` node
+LEFT JOIN `users` users_node ON node.uid = users_node.uid
+LEFT JOIN `profile` profile_users ON users_node.uid = profile_users.uid
+LEFT JOIN `og` og_node ON node.nid = og_node.etid AND og_node.entity_type = 'node'
+LEFT JOIN `og_membership` og_membership_og ON og_node.gid = og_membership_og.gid
+LEFT JOIN `field_data_field_user_first_name` AS `firstname` ON (`firstname`.`entity_id` = `profile_users`.`pid`)
+LEFT JOIN `field_data_field_user_last_name` AS `lastname` ON (`lastname`.`entity_id` = `profile_users`.`pid`)
+LEFT JOIN `field_data_field_user_birthday` AS `birthday` ON (`birthday`.`entity_id` = `profile_users`.`pid`)
+LEFT JOIN `field_data_field_user_mobile` AS `mobile` ON (`mobile`.`entity_id` = `profile_users`.`pid`)
+LEFT JOIN `field_data_field_user_address` AS `address` ON (`address`.`entity_id` = `profile_users`.`pid`)
+LEFT JOIN `field_data_field_club_city` AS `city` ON (`city`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_club_state` AS `state` ON (`state`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_club_zip` AS `zip` ON (`zip`.`entity_id` = `node`.`nid`)
+LEFT JOIN `og_membership` AS `ogm` ON (`ogm`.`gid` = `og_node`.`gid` AND `ogm`.`entity_type` = 'user')
+LEFT JOIN `users` AS `ogu` ON (`ogu`.`uid` = `ogm`.`etid`)
+LEFT JOIN `field_data_field_no_school_associate` AS `noassoc` ON (`noassoc`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_club_blurb` AS `blurb` ON (`blurb`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_camp` AS `camp1` ON (`camp1`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_campaign_list` AS `camp2` ON (`camp2`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_send_goodies` AS `goodies` ON (`goodies`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_club_mailings` AS `old_goodies` ON (`old_goodies`.`entity_id` = `node`.`nid`)
+LEFT JOIN `field_data_field_school_reference` AS `school` ON (
+  `school`.`entity_id` = `node`.`nid` AND (
+    `school`.`entity_type` = 'node' AND `school`.`deleted` = '0'
+  )
+)
+LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
+WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
+GROUP BY nid, node_title
+ORDER BY node_title ASC
+" . ($limit ? " limit $limit" . ($offset ? ", $offset" : '') : ''));
+
+  if ($return_query) {
+    return $q;
+  }
+  else {
+    return array(
+      'count' => $q->rowCount(),
+      'results' => $q->fetchAll()
+    );
+  }
+}
+
+function dosomething_clubs_pull_batch_process(&$context) {
+  $limit = 1000;
+  $context['finished'] = 0;
+
+  if (!isset($context['sandbox']['file'])) {
+    $field_labels = array(
+      t('Club ID'),
+      t('Club Name'),
+      t('Not associated with a school'),
+      t('Blurb'),
+      t('Date Created'),
+      t('User ID'),
+      t('Created By'),
+      t('Owner Email'),
+      t('Owner Cell'),
+      t('Owner First Name'),
+      t('Owner Last Name'),
+      t('Owner Birthday'),
+      t('Owner Street'),
+      t('Owner City'),
+      t('Owner State'),
+      t('Owner Zip'),
+      t('City'),
+      t('State'),
+      t('Zip'),
+      t('My Club is Going to Work On'),
+      t('Send Goodies'),
+      t('School Name'),
+      t('School Type'),
+      t('School State'),
+      t('Member Count'),
+      t('Member Emails'),
+      t('Member UIDs'),
+      t('Number of Projects'),
+      t('Most recently created project'),
+      t('Last joined Campaign time')
+    );
+
+    $filename = 'clubs_export_' . date('m-d-y', REQUEST_TIME) . '.csv';
+    $file_path = file_directory_temp() . '/' . $filename;
+    $handle = fopen($file_path, 'w');
+    fputcsv($handle, $field_labels);
+    fclose($handle);
+
+    $clubs = dosomething_clubs_pull_mega_query();
+    $context['sandbox']['clubs'] = $clubs['results'];
+    $context['sandbox']['total_clubs'] = $clubs['count'];
+    $context['sandbox']['clubs_count'] = intval($clubs['count']);
+
+    $context['sandbox']['file'] = $file_path;
+    $context['sandbox']['fields'] = $field_labels;
+
+    $context['results']['filename'] = $filename;
+    $context['results']['file'] = $file_path;
+    $context['results']['list_id'] = $list_id;
+  }
+
+  if (!isset($context['results']['count'])) {
+    $context['results']['count'] = 0;
+  }
+
+  $handle = fopen($context['sandbox']['file'], 'a');
+  reset($context['sandbox']['clubs']);
+  for ($i = 0; $i < $context['sandbox']['total_clubs']; $i++) {
+    $remaining = count($context['sandbox']['clubs']) - 1;
+
+    if ($remaining) {
+      $stuff = (array) $context['sandbox']['clubs']["$i"];
+      $c = array(
+        'remaining' =>        $remaining,
+        'club id' =>          $stuff['nid'],
+        'club name' =>        $stuff['node_title'],
+        'not associated with a school' => $stuff['not_associated'],
+        'blurb' =>            $stuff['blurb'],
+        'date created' =>     format_date($stuff['created']),
+        'user id' =>          $stuff['creator_id'],
+        'created by' =>       $stuff['creator'],
+        'Owner email' =>      $stuff['creator_email'],
+        'Owner Cell' =>       $stuff['phone'],
+        'Owner First Name' => $stuff['first_name'],
+        'Owner Last Name' =>  $stuff['last_name'],
+        'Owner Birthday' =>   $stuff['birth_day'],
+        'Owner Street' =>     $stuff['owner_street'],
+        'Owner City' =>       $stuff['owner_city'],
+        'Owner State' =>      $stuff['owner_state'],
+        'Owner Zip' =>        $stuff['owner_zip'],
+        'City' =>             $stuff['city'],
+        'State' =>            $stuff['state'],
+        'Zip' =>              $stuff['zip'],
+        'Working On' =>       str_replace(',', ', ', $stuff['camps']),
+        'Send Goodies' =>     $stuff['send_goodies'],
+        'School Name' =>      $stuff['school_name'],
+        'School Type' =>      $stuff['school_type'],
+        'School State' =>     $stuff['school_state'],
+        'Member Count' =>     $stuff['member_count'],
+        'Member Emails' =>    str_replace(',', ', ', $stuff['member_emails']),
+        'Member UIDs' =>      str_replace(',', ', ', $stuff['member_uids']),
+        '# of Projects' =>    $stuff['pcount'],
+        'Recent Project' =>   format_date($stuff['lastcreated']),
+        'Last joined campaign time' => format_date($stuff['last_joined_campaign'])
+      );
+
+      unset($context['sandbox']['clubs']["$i"]);
+
+      fputcsv($handle, $c);
+      $context['results']['count']++;
+      $context['finished'] = ($context['results']['count'] / $context['sandbox']['total_clubs']);
+    }
+    else {
+      $context['finished'] = 1;
+      break;
+    }
+  }
+
+  fclose($handle);
+
+  $context['message'] = t('Exporting Clubs Data: @count of @total.', array(
+    '@count' => $context['results']['count'],
+    '@total' => $context['sandbox']['total_clubs']
+  ));
+}
+
+function dosomething_clubs_pull_batch_finished($success, $results, $operations) {
+  if ($success) {
+    $message = t('The Clubs data was successfully exported.  See more information below.');
+    $warning = 'status';
+  }
+  else {
+    $mssage = t("Sorry, we couldn't successfully export the clubs data.  Please try again later.");
+    $warning = 'error';
+  }
+  drupal_set_message($message, $warning);
+
+  $_SESSION['csv_download_file'] = $results['file'];
+  $_SESSION['csv_download_filename'] = $results['filename'];
+}
+
+function dosomething_clubs_pull_data() {
+  $header = array(
+    array('data' => t('Club ID'), 'class' => array('page-manager-page-title')),
+    array('data' => t('Club Name'), 'class' => array('page-manager-page-title')),
+    array('data' => t('Not associated with a school'), 'class' => array('clubs-pull-not-associated')),
+    array('data' => t('Blurb'), 'class' => array('clubs-pull-blurb')),
+    array('data' => t('Date Created'), 'class' => array('page-manager-page-path')),
+    array('data' => t('User ID'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Created By'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Email'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Cell'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner First Name'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Last Name'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Birthday'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Street'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner City'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner State'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Zip'), 'class' => array('page-manager-page-path')),
+    array('data' => t('City'), 'class' => array('page-manager-page-path')),
+    array('data' => t('State'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Zip'), 'class' => array('page-manager-page-storage')),
+    array('data' => t('My Club is Going to Work On'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Send Goodies'), 'class' => array('clubs-pull-send-goodies')),
+    array('data' => t('School Name'), 'class' => array('page-manager-page-path')),
+    array('data' => t('School Type'), 'class' => array('page-manager-page-path')),
+    array('data' => t('School State'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Member Count'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Member Emails'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Member UIDs'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Number of Projects'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Most recently created project'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Last joined campaign time'), 'class' => array('clubs-pull-last-joined-campaign'))
+  );
+
+$count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
+$num = $count->rowCount();
+
+  $num_per_page = 100;
+  $page = pager_default_initialize($num, $num_per_page);
+
+  $offset = $num_per_page * $page;
+
+  $pages = array();
+  $results = dosomething_clubs_pull_mega_query($offset, $num_per_page, TRUE);
+  while ($result = $results->fetchAssoc()) {
+    $pages['rows'][] = array(
+      'data' => array(
+        'club id' =>                  array('data' => $result['nid']),
+        'club name' =>                array('data' => $result['node_title']),
+        'Not associated with a school' => array('data' => $result['not_associated']),
+        'blurb' =>                    array('data' => $result['blurb']),
+        'date created' =>             array('data' => format_date($result['created'])),
+        'user id' =>                  array('data' => $result['creator_id']),
+        'created by' =>               array('data' => $result['creator']),
+        'Owner email' =>              array('data' => $result['creator_email']),
+        'Owner Cell' =>               array('data' => $result['phone']),
+        'Owner First Name' =>         array('data' => $result['first_name']),
+        'Owner Last Name' =>          array('data' => $result['last_name']),
+        'Owner Birthday' =>           array('data' => $result['birth_day']),
+        'Owner Street' =>             array('data' => $result['owner_street']),
+        'Owner City' =>               array('data' => $result['owner_city']),
+        'Owner State' =>              array('data' => $result['owner_state']),
+        'Owner Zip' =>                array('data' => $result['owner_zip']),
+        'City' =>                     array('data' => $result['city']),
+        'State' =>                    array('data' => $result['state']),
+        'Zip' =>                        array('data' => $result['zip']),
+        'My Club is Going to Work On' => array('data' => str_replace(',', ', ', $result['camps'])),
+        'Send Goodies' =>             array('data' => $result['send_goodies']),
+        'School Name' =>                 array('data' => $result['school_name']),
+        'School Type' =>                 array('data' => $result['school_type']),
+        'School State' =>                array('data' => $result['school_state']),
+        'Member Count' =>                array('data' => $result['member_count']),
+        'Member Emails' =>               array('data' => str_replace(',', ', ', $result['member_emails'])),
+        'Member UIDs' =>                   array('data' => str_replace(',', ', ', $result['member_uids'])),
+        'Number of Projects' =>            array('data' => $result['pcount']),
+        'Most Recently Created Project' => array('data' => format_date($result['lastcreated'])),
+        'Last joined campaign time' =>      array('data' => format_date($result['last_joined_campaign']))
+      )
+    );
+  }
+
+  $content .= l('+ Export club data', 'admin/clubs-pull/export');
+  $content .= theme('pager');
+  $content .= '<p />' . theme('table', array('header' => $header, 'rows' => $pages['rows'], 'attributes' => array('id' => 'page-manager-list-pages')));
+  $content .= theme('pager');
+
+  return $content;
+}
