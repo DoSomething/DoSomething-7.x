@@ -648,6 +648,7 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
       unset($form_state['webform_entity']['submission']->{$field});
     }
   }
+  dpm($form_state);
 }
 
 /**
@@ -656,7 +657,13 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
  * Happens in an after-build after the field is added via webform_entity.
  */
 function dosomething_picsforpets_general_hide_pet_shelter($form, $form_state) {
+  dpm($form);
   $form['submitted']['find_your_shelter']['field_fb_app_shelter_reference']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_address']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_city']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_state']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_zip']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_shelter_name']['#attributes']['class'][] = 'element-hidden';
   return $form;
 }
 
