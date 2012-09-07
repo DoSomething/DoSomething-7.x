@@ -1916,9 +1916,12 @@ ul.hover-image li:first-child {
   padding-top: 10px !important;
 }
 
-.webform-client-form #edit-actions {
+.webform-client-form {
   position: relative;
-  right: 20px;
+}
+.webform-client-form #edit-actions {
+  position: absolute;
+  right: 0px;
   bottom: 40px;
 }
 
