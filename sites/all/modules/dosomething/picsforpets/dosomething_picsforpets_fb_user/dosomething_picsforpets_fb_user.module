@@ -29,7 +29,7 @@ function dosomething_picsforpets_fb_user_menu() {
  */
 function dosomething_picsforpets_fb_user_init() {
   // Just bail out quickly if we're not on a pics for pets page.
-  if (!(strpos(drupal_get_path_alias(request_uri()), '/pics-for-pets') === 0)) {
+  if (!(strpos(drupal_get_path_alias(request_uri()), '/fb/pics-for-pets') === 0)) {
     return;
   }
 
@@ -63,12 +63,13 @@ function dosomething_picsforpets_fb_user_init() {
     'app_secure_url' => variable_get('dosomething_picsforpets_fb_user_app_secure_url', ''),
     'appBaseURL' => $base_url,
     'formAlias' => drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id')),
-    'fbFormAlias' => str_replace('pics-for-pets/', '', drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id'))),
+    'fbFormAlias' => str_replace('fb/pics-for-pets/', '', drupal_get_path_alias('node/' . variable_get('picsforpets_animal_form_id'))),
   );
   drupal_add_js(array('picsforpetsFBAuth' => $settings), 'setting');
 
   // Initialize the javascript SDK.
   drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/picsforpets_fb_user.js');
+  drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/pfpredirect.js');
 
   // Load the FBOAuth include file so we can use it's functions.
   module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');

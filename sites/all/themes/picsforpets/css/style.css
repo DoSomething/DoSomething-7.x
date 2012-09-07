@@ -532,7 +532,7 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 #dosomething-fb-apps-enter-zip-form button,
 #dosomething-fb-apps-enter-zip-form input[type="reset"],
 #dosomething-fb-apps-enter-zip-form input[type="submit"],
-#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar .ui-dialog-title, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
+#dosomething-fb-apps-enter-zip-form input[type="button"], #dosomething-picsforpets-shelters-options-form input[type="submit"], #shelter-results-wrapper #shelter-results-more input[type="submit"], .mission-text p, #gallery-link, .white-block p, .picsforpets-menu, .ui-dialog .ui-dialog-titlebar .ui-dialog-title, .ui-widget-header, #picsforpets-invite-friends #picsforpets-invite-friends-text, .page-fb-pics-for-pets-action-guide .win-prizes, .views-reset-button input[type="submit"], select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a, .pager, .gallery-thumbnail-text, .gallery-thumbnail-text .gallery-share-button {
   font-family: "League_Gothic", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -572,14 +572,14 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 /* import font files using @font-face, if not using a service such as typekit */
 @font-face {
   font-family: "League_Gothic";
-  src: url('/League_Gothic-webfont.eot');
-  src: url('/League_Gothic-webfont.eot?#iefix') format('eot'), url('../fonts/League_Gothic-webfont.woff') format('woff'), url('../fonts/League_Gothic-webfont.ttf') format('truetype'), url('../fonts/League_Gothic-webfont.svg') format('svg');
+  src: url('../fonts/League_Gothic-webfont.eot');
+  src: url('../fonts/League_Gothic-webfont.eot?#iefix') format('eot'), url('../fonts/League_Gothic-webfont.woff') format('woff'), url('../fonts/League_Gothic-webfont.ttf') format('truetype'), url('../fonts/League_Gothic-webfont.svg') format('svg');
 }
 
 @font-face {
   font-family: "DINWeb-CondBold";
-  src: url('/DINWeb-CondBold.eot');
-  src: url('/DINWeb-CondBold.eot?#iefix') format('eot'), url('../fonts/DINWeb-CondBold.woff') format('woff'), url('../fonts/DINComp-CondBold.ttf') format('truetype');
+  src: url('../fonts/DINWeb-CondBold.eot');
+  src: url('../fonts/DINWeb-CondBold.eot?#iefix') format('eot'), url('../fonts/DINWeb-CondBold.woff') format('woff'), url('../fonts/DINComp-CondBold.ttf') format('truetype');
 }
 
 @font-face {
@@ -1054,7 +1054,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 }
 
 select {
-  background: url('select-down-arrow.png') right center no-repeat, white;
+  background: url('../images/select-down-arrow.png') right center no-repeat, white;
 }
 
 input[type=search] {
@@ -1282,6 +1282,11 @@ label.option {
 #dosomething-fb-apps-enter-zip-form input[type="button"] {
   display: inline;
   float: right;
+}
+
+.ie9 form .form-item {
+  position: relative;
+  top: 0;
 }
 
 /* Tables -------------------------------------------------------------- */
@@ -1565,10 +1570,10 @@ body {
   clear: both;
 }
 
-.page-pics-for-pets-gallery div[role="main"],
-.page-pics-for-pets-gallery #content,
-.page-pics-for-pets-gallery-my-shares div[role="main"],
-.page-pics-for-pets-gallery-my-shares #content {
+.page-fb-pics-for-pets-gallery div[role="main"],
+.page-fb-pics-for-pets-gallery #content,
+.page-fb-pics-for-pets-gallery-my-shares div[role="main"],
+.page-fb-pics-for-pets-gallery-my-shares #content {
   margin-top: -140px;
 }
 
@@ -1611,7 +1616,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('10k-scholarship.png');
+  background-image: url('../images/10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 95px;
@@ -1633,7 +1638,7 @@ body {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('ds-logo.png');
+  background-image: url('../images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 145px;
@@ -1756,6 +1761,10 @@ a.footer-furtography {
   height: 75px;
   padding-top: 12px;
   padding-bottom: 24px;
+}
+
+#dosomething-picsforpets-general-furtographer-form {
+  overflow-y: hidden !important;
 }
 
 #dosomething-picsforpets-general-furtographer-form--2 {
@@ -1888,6 +1897,15 @@ a.footer-furtography {
 .ui-dialog .ui-dialog-titlebar-close span {
   margin: 0;
 }
+.ui-dialog #shelter-results .shelter-results-option-list input {
+  float: none;
+}
+.ui-dialog .form-item.form-type-textfield.form-item-shelter-name {
+  width: 440px;
+}
+.ui-dialog .fieldset-wrapper {
+  padding: 4px;
+}
 
 .node-type-fb-app-data-gathering-form .ui-dialog .ui-dialog-titlebar {
   display: block;
@@ -1935,7 +1953,7 @@ a.footer-furtography {
   text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('../images/close.png');
+  background-image: url('../images/../images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 26px;
@@ -1992,10 +2010,6 @@ a.footer-furtography {
   margin-left: 46px;
 }
 
-.picsforpets-share-count-arrow {
-  display: none;
-}
-
 .picsforpets-share-count {
   border: 1px solid #c5c6c8;
   position: relative;
@@ -2019,23 +2033,29 @@ a.footer-furtography {
 }
 .webform-client-form label {
   cursor: default;
+  min-width: 80px;
+  text-align: right;
 }
-.webform-client-form .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
+
+.form-item-hours label {
+  text-align: none;
+}
+.form-item-hours .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und label {
   margin-right: 15px;
 }
-.webform-client-form .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
+.form-item-hours .form-item-submitted-enter-animal-info-field-fb-app-animal-type-und select {
   width: 80px;
 }
-.webform-client-form #submitted-field-fb-app-age-add-more-wrapper label {
+.form-item-hours #submitted-field-fb-app-age-add-more-wrapper label {
   margin-right: 67px;
 }
-.webform-client-form #submitted-field-fb-app-age-add-more-wrapper input {
+.form-item-hours #submitted-field-fb-app-age-add-more-wrapper input {
   width: 80px;
 }
-.webform-client-form #field-fb-app-three-words-values tr.odd .form-item, .webform-client-form #field-fb-app-three-words-values tr.even .form-item {
+.form-item-hours #field-fb-app-three-words-values tr.odd .form-item, .form-item-hours #field-fb-app-three-words-values tr.even .form-item {
   margin-bottom: 5px;
 }
-.webform-client-form input[type="text"] {
+.form-item-hours input[type="text"] {
   -webkit-box-shadow: #dddddd 0 0 10px inset;
   -moz-box-shadow: #dddddd 0 0 10px inset;
   box-shadow: #dddddd 0 0 10px inset;
@@ -2090,6 +2110,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   top: -24px;
 }
 
+.ui-dialog {
+  overflow-x: hidden !important;
+}
+
+.item-list .pager li {
+  padding: 0;
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -2105,9 +2133,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   height: 50px;
   margin: 0 auto;
   margin-bottom: 50px;
-  padding: 10px 8px 10px 0;
-  width: 190px;
   margin-top: 12px;
+  padding-top: 10px;
+  width: 190px;
 }
 #picsforpets-invite-friends:after {
   content: "";
@@ -2126,13 +2154,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   background-position: center 8px;
 }
 #picsforpets-invite-friends #picsforpets-invite-friends-text {
-  display: inline;
-  float: right;
+  color: white;
   font-size: 27px;
   line-height: 1;
+  text-align: center;
   text-transform: uppercase;
-  color: white;
-  padding-left: 12px;
 }
 
 .prizes-scholarships {
@@ -2196,7 +2222,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   margin-bottom: 20px;
 }
 .prizes-scholarships .pane-content .share-wrapper.toys .shares {
-  background: url('200-shares-bar.png');
+  background: url('../images/200-shares-bar.png');
 }
 .prizes-scholarships .pane-content .share-wrapper.toys .inner {
   margin-left: 90px;
@@ -2205,13 +2231,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   margin-bottom: 20px;
 }
 .prizes-scholarships .pane-content .share-wrapper.food .shares {
-  background: url('500-shares-bar.png');
+  background: url('../images/500-shares-bar.png');
 }
 .prizes-scholarships .pane-content .share-wrapper.food .inner {
   margin-left: 145px;
 }
 .prizes-scholarships .pane-content .share-wrapper.bedding .shares {
-  background: url('1000-shares-bar.png');
+  background: url('../images/1000-shares-bar.png');
 }
 .prizes-scholarships .pane-content .share-wrapper.bedding .shares .inner {
   margin-left: 140px;
@@ -2221,23 +2247,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   text-transform: uppercase;
 }
 .prizes-scholarships .pane-content .scholarship:before {
-  content: url('star.png');
+  content: url('../images/star.png');
   display: inline;
   float: left;
   height: 30px;
   padding-right: 6px;
 }
 
-.page-pics-for-pets-questions .questions-email {
+.page-fb-pics-for-pets-questions .questions-email {
   margin: 0 auto;
   padding-top: 5px;
   text-align: center;
   width: 430px;
 }
-.page-pics-for-pets-questions .questions-email a {
+.page-fb-pics-for-pets-questions .questions-email a {
   border-bottom: 1px solid;
 }
-.page-pics-for-pets-questions div[role="main"] {
+.page-fb-pics-for-pets-questions div[role="main"] {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -2253,23 +2279,23 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 12px;
   width: 552px;
 }
-.ie8 .page-pics-for-pets-questions div[role="main"] {
+.ie8 .page-fb-pics-for-pets-questions div[role="main"] {
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
-.page-pics-for-pets-questions div[role="main"] .fieldset-legend {
+.page-fb-pics-for-pets-questions div[role="main"] .fieldset-legend {
   letter-spacing: 0;
 }
-.page-pics-for-pets-questions div[role="main"] fieldset.collapsed {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset.collapsed {
   height: auto;
 }
-.page-pics-for-pets-questions div[role="main"] fieldset a {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset a {
   color: black;
   font-family: "DINOT", sans-serif;
   font-size: 18px;
   text-transform: none;
 }
-.page-pics-for-pets-questions div[role="main"] fieldset .fieldset-wrapper {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset .fieldset-wrapper {
   border: none;
   background-color: transparent;
   line-height: 1.2;
@@ -2493,7 +2519,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   float: left;
 }
 #dosomething-picsforpets-shelters-lookup-form #edit-submit {
-  background: url('magnify-box.png');
+  background: url('../images/magnify-box.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border: none;
@@ -2612,14 +2638,19 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   width: 105px;
 }
 
-.page-pics-for-pets-action-guide h2 {
+#dosomething-picsforpets-shelters-options-form #edit-view-more-button {
+  float: none;
+  width: 110px;
+}
+
+.page-fb-pics-for-pets-action-guide h2 {
   text-transform: uppercase;
   font-size: 28px;
   padding: 0;
   margin: 0;
   text-align: center;
 }
-.page-pics-for-pets-action-guide .panel-col-first {
+.page-fb-pics-for-pets-action-guide .panel-col-first {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -2635,19 +2666,19 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 12px;
   width: 320px;
 }
-.ie8 .page-pics-for-pets-action-guide .panel-col-first {
+.ie8 .page-fb-pics-for-pets-action-guide .panel-col-first {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
-.page-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
+.page-fb-pics-for-pets-action-guide .panel-col-first fieldset.collapsed {
   height: auto;
 }
-.page-pics-for-pets-action-guide .panel-col-first fieldset a {
+.page-fb-pics-for-pets-action-guide .panel-col-first fieldset a {
   color: black;
   font-family: "DINOT", sans-serif;
   font-size: 18px;
   text-transform: none;
 }
-.page-pics-for-pets-action-guide .panel-col-first fieldset .fieldset-wrapper {
+.page-fb-pics-for-pets-action-guide .panel-col-first fieldset .fieldset-wrapper {
   border: none;
   background-color: transparent;
   line-height: 1.2;
@@ -2655,11 +2686,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding-right: 24px;
   padding-top: 0;
 }
-.page-pics-for-pets-action-guide .panel-col-bottom {
+.page-fb-pics-for-pets-action-guide .panel-col-bottom {
   display: inline;
   float: left;
 }
-.page-pics-for-pets-action-guide .next {
+.page-fb-pics-for-pets-action-guide .next {
   display: inline;
   float: right;
   color: #ec1c24;
@@ -2669,7 +2700,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   background: white url(../images/lg-right-arrow.png) no-repeat;
   background-position: 72px 7px;
 }
-.page-pics-for-pets-action-guide .win-prizes {
+.page-fb-pics-for-pets-action-guide .win-prizes {
   text-align: center;
   text-transform: uppercase;
   font-size: 20px;
@@ -2710,6 +2741,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 .view-pics-for-pets-gallery {
   border: 1px solid white;
   padding: 12px 12px 0 12px;
+  min-height: 390px;
+}
+.view-pics-for-pets-gallery .views-row {
+  display: inline;
+  float: left;
 }
 
 #edit-field-fb-app-animal-type-value-wrapper {
@@ -2740,18 +2776,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   margin-top: 0;
 }
 
-.view-pics-for-pets-gallery .views-row {
-  display: inline;
-  float: left;
-}
-
 select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
-  background: url('down-arrow.png') no-repeat, white;
+  background: url('../images/down-arrow.png') no-repeat, white;
   margin-top: -8px;
   font-size: 14px;
   color: #ec1c24;
@@ -2857,10 +2888,10 @@ select#edit-sort-by {
   float: left;
   cursor: pointer;
   background: #6e85b2;
-  padding: 4px;
-  margin-right: 8px;
+  padding: 5px 4px 4px 4px;
+  margin-right: 4px;
   margin-top: 12px;
-  margin-left: 12px;
+  margin-left: 7px;
   width: 190px;
   font-size: 18px;
   line-height: 0.75;
@@ -2870,20 +2901,21 @@ select#edit-sort-by {
   width: 60px;
 }
 .gallery-thumbnail-text .gallery-share-count {
-  border: 1px solid #c5c6c8;
   position: relative;
   z-index: 750;
   background-color: white;
-  padding: 4px;
+  padding: 7px 4px 4px 4px;
   color: #a6a8ab;
   display: block;
   margin-top: 12px;
   display: inline;
   float: left;
   height: 21px;
-  min-width: 22px;
-  font-size: 18px;
+  min-width: 42px;
+  font-size: 12px;
   line-height: 0.75;
+  background: url(../images/share-background.png) no-repeat;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .no-results {

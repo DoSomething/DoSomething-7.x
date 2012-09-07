@@ -44,7 +44,7 @@ Drupal.behaviors.galleryShareButton = {
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
-          $.post('/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+          $.post('/fb/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
             // Update the page with the new share count.
             // Increment the displayed share count.
             var countBox = $('#' + sid + ' .gallery-share-count');
@@ -55,7 +55,7 @@ Drupal.behaviors.galleryShareButton = {
             // the user has made.
             if (userShares == 3  && !settings.picsforpetsGeneral.furtographer) {
               $('<div></div>')
-                .load('/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form')
+                .load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form')
                 .dialog({
                   title: Drupal.t('Thanks for sharing!'),
                   resizable: false,
@@ -67,7 +67,7 @@ Drupal.behaviors.galleryShareButton = {
             }
             else if (userShares == 5) {
               $('<div></div>')
-                .load('/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function () {
+                .load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function () {
                   $('.ui-dialog form').click(function() {
                     var obj = {
                       method: 'apprequests',

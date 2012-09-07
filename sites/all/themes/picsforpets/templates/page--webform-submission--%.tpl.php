@@ -12,7 +12,7 @@
       <div id="ds-logo">Do Something</div>
 
       <?php if ($logo): ?>
-        <a href="/pics-for-pets/gallery" title="Gallery" rel="home" id="logo">
+        <a href="/fb/pics-for-pets/gallery" title="Gallery" rel="home" id="logo">
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
         </a>
       <?php endif; ?>

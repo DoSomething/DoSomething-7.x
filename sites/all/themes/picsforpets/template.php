@@ -5,30 +5,31 @@
  * Implementation of template_preprocess_page().
  */
 function picsforpets_preprocess_page(&$variables) {
-  $variables['front_page'] = url() . 'pics-for-pets/gallery';
+  $variables['front_page'] = url() . 'fb/pics-for-pets/gallery';
 
-  if (arg(0) == 'pics-for-pets' && !arg(1)) {
+  // @todo Will this theme ever load when not on this path?
+  if (!(strpos(drupal_get_path_alias(request_uri()), '/fb/pics-for-pets') === 0)) {
     return;
   }
   else {
     $links[] = array(
       'title' => 'Gallery',
-      'href' => 'pics-for-pets/gallery',
+      'href' => 'fb/pics-for-pets/gallery',
       'attributes' => array('class' => array('footer-gallery')),
     );
     $links[] = array(
       'title' => 'Prizes',
-      'href' => 'pics-for-pets/prizes-and-scholarships',
+      'href' => 'fb/pics-for-pets/prizes-and-scholarships',
       'attributes' => array('class' => array('footer-prizes')),
     );
     $links[] = array(
       'title' => 'Be a Fur-tographer',
-      'href' => 'pics-for-pets/lets-get-started',
+      'href' => 'fb/pics-for-pets/lets-get-started',
       'attributes' => array('class' => array('footer-furtography', 'pics-for-pets-modal')),
     );
     $links[] = array(
       'title' => 'Questions',
-      'href' => 'pics-for-pets/questions',
+      'href' => 'fb/pics-for-pets/questions',
       'attributes' => array('class' => array('footer-questions')),
     );
     $variables['page']['footer']['picsforpets_menu'] = array(

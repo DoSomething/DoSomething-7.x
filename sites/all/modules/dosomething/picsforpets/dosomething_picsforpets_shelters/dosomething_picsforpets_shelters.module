@@ -17,12 +17,12 @@ function dosomething_picsforpets_shelters_form_shelter_node_form_alter(&$form, &
  * Implements hook_menu().
  */
 function dosomething_picsforpets_shelters_menu() {
-  $items['pics-for-pets/shelter-search'] = array(
+  $items['fb/pics-for-pets/shelter-search'] = array(
     'title' => t('Search for a Shelter'),
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_shelters_lookup',
   );
-  $items['pics-for-pets/shelter-search-options'] = array(
+  $items['fb/pics-for-pets/shelter-search-options'] = array(
     'title' => t('Find Your Shelter'),
     'access callback' => TRUE,
     'page callback' => 'drupal_get_form',
@@ -137,13 +137,13 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
   }
   $form['back'] = array(
     '#prefix' => '<div class="shelter-form-button">',
-    '#markup' => l('Back', 'pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
+    '#markup' => l('Back', 'fb/pics-for-pets/lets-get-started', array('attributes' => array('class' => array('button back')))),
     '#suffix' => '</div>',
     '#weight' => 7,
   );
   $form['next'] = array(
     '#prefix' => '<div class="shelter-form-button">',
-    '#markup' => l('Next', 'pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
+    '#markup' => l('Next', 'fb/pics-for-pets/action-guide', array('attributes' => array('class' => array('button next')))),
     '#suffix' => '</div>',
     '#weight' => 7,
   );
@@ -180,8 +180,8 @@ function dosomething_picsforpets_shelters_lookup_form_submit_ajax($form, &$form_
   return array(
     'more-results-ajax-wrapper' => array(
       '#tree' => TRUE,
-      '#prefix' => '<div id="shelter-results-wrapper">',
-      '#suffix' =>  '</div>',
+      '#prefix' => '<div id="shelter-results"><div id="shelter-results-wrapper">',
+      '#suffix' =>  '</div></div>',
 
       'more-results-ajax-load' => array(
         '#prefix' =>  '<div class="shelter-results">',
@@ -223,7 +223,7 @@ function dosomething_picsforpets_shelters_load_more($form, &$form_state) {
 }
 
 /**
- * Page callback function for pics-for-pets/shelter-search
+ * Page callback function for fb/pics-for-pets/shelter-search
  * Depending on args in the path, it may return the rendered form, plain HTML
  * results, or some json data.
  *
@@ -246,8 +246,8 @@ function dosomething_picsforpets_shelters_lookup($format = NULL, $zip = NULL, $s
   }
   else {
     // In the event that the 'json' switch is left off the url... EXAMPLE
-    // pics-for-pets/shelter-search/json/90210/0/10
-    // pics-for-pets/shelter-search/90210/0/10
+    // fb/pics-for-pets/shelter-search/json/90210/0/10
+    // fb/pics-for-pets/shelter-search/90210/0/10
     // then we take the first argument as the zip code.
     $zip = $format;
     return drupal_get_form('dosomething_picsforpets_shelters_lookup_form', $zip);
@@ -280,6 +280,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $shelter_data = array();
           $address = field_get_items('node', $shelter, 'field_pfp_address');
           $phone = field_get_items('node', $shelter, 'field_pfp_phone_number');
+          $hours = field_get_items('node', $shelter, 'field_pfp_hours');
           $shelter_data['nid'] = $shelter->nid;
           $shelter_data['title'] = check_plain($shelter->title);
           $shelter_data['phone'] = empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']);
@@ -305,7 +306,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           // reset the string.
           $markup = '';
           $markup .= '<span class="label-shelter-title">' . check_plain($shelter->title) . '</span><br />';
-          $markup .= empty($phone[0]['value']) ? 'asdfasdfasdf' : check_plain($phone[0]['value']) . '<br />';
+          $markup .= empty($phone[0]['value']) ? '' : check_plain($phone[0]['value']) . '<br />';
           $markup .= empty($address[0]['thoroughfare']) ? '' : check_plain($address[0]['thoroughfare']) . '<br />';
           $markup .= empty($address[0]['premise']) ? '' : check_plain($address[0]['premise']) . '<br />';
           $markup .= empty($address[0]['locality']) ? '' : check_plain($address[0]['locality']);
@@ -341,7 +342,7 @@ function dosomething_picsforpets_shelters_formatted_results($nids, $type = 'html
           $markup .= empty($address[0]['administrative_area']) ? '' : check_plain($address[0]['administrative_area']);
           $markup .= '</address>';
           $hours = field_get_items('node', $shelter, 'field_pfp_hours');
-          $markup .= empty($hours) ? '' : '<div><div class="shelter-hours">Hours:</div>' . $hours[0]['safe_value'] . '</div>';
+          $markup .= empty($hours) ? '' : '<div><div class="shelter-hours">Hours:</div>' . check_markup($hours[0]['value'], 1) . '</div>';
           $markup .= '</div></div>';
         }
       }

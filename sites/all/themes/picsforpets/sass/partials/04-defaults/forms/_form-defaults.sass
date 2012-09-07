@@ -240,4 +240,9 @@ label.option
     +float-right
     @extend %pfp-button
 
-
+// Fix placeholder position in IE9 because of shim
+form
+  .ie9 &
+    .form-item
+      position: relative
+      top: 0

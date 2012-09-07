@@ -26,7 +26,6 @@ function drush_dosomething_picsforpets_general_picsforpets_deploy() {
       'dosomething_picsforpets_shelter_migrate',
       'dosomething_fb_apps',
       'dosomething_picsforpets_fb_user',
-      'dosomething_feedback',
       'fb_user_shares',
       'picsforpets',
     );
