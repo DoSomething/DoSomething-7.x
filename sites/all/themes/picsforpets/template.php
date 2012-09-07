@@ -7,8 +7,8 @@
 function picsforpets_preprocess_page(&$variables) {
   $variables['front_page'] = url() . 'fb/pics-for-pets/gallery';
 
-  // @todo Will this theme ever load when not on this path?
-  if (!(strpos(drupal_get_path_alias(request_uri()), '/fb/pics-for-pets') === 0)) {
+  // On the landing page, don't add the footer menu.
+  if (arg(0) == 'fb' && arg(1) == 'pics-for-pets' && !arg(2)) {
     return;
   }
   else {

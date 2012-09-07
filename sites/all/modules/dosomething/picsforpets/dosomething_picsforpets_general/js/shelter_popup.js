@@ -105,6 +105,11 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       );
       $alteredForm.hide();
       $('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all').replaceWith($alteredForm);
+      $('.field-name-field-fb-app-shelter-name').removeClass('element-hidden');
+      $('.field-name-field-fb-app-address').removeClass('element-hidden');
+      $('.field-name-field-fb-app-city').removeClass('element-hidden');
+      $('.field-name-field-fb-app-state').removeClass('element-hidden');
+      $('.field-name-field-fb-app-zip').removeClass('element-hidden');
       return false;
     }
   }

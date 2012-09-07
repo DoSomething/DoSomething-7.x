@@ -21,7 +21,7 @@ function dosomething_picsforpets_general_menu() {
     'type' => MENU_CALLBACK,
     'access callback' => 'dosomething_picsforpets_general_share_access_callback',
     'page callback' => 'dosomething_picsforpets_general_share',
-    'page arguments' => array(3, 4),
+    'page arguments' => array(4, 5),
   );
   $items['fb/pics-for-pets/become-a-furtographer'] = array(
     'title' => t('Become a Furtographer!'),
@@ -202,9 +202,11 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
       '#attributes' => array('placeholder' => t('Zip:')),
     ),
   );
+
+  $terms_and_conditions = l(t('terms and conditions'), 'http://www.dosomething.org/about/terms-of-service', array('attributes' => array('target'=>'_blank')));
   $form['lower'] = array('#type' => 'container', '#attributes' => array('class' => array('dialog-lower')));
   $form['lower']['help'] = array(
-    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . $terms_and_conditions . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
   );
   $form['lower']['submit'] = array(
     '#type' => 'submit',
@@ -316,7 +318,7 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
   );
   $form['lower'] = array('#type' => 'container', '#attributes' => array('class' => array('dialog-lower')));
   $form['lower']['help'] = array(
-    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . l('terms and conditions', '/') . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
+    '#markup' => '<div class="by-signing-up">' . t('By signing up you agree to the ') . $terms_and_conditions . '</div><ul class="question-icon-popup"><li class="question-icon">?<ul class="question-text-popup"><li class="question-text">' . t('Enter your phone number to get weekly updates from DoSomething.org, including campaign news and chances to win prizes and scholarships. (Message and data rates may apply. Text STOP to opt-out. Email help@dosomething.org or text HELP for help.)') . '</li></ul></li></ul>',
   );
   $form['lower']['submit'] = array(
     '#type' => 'submit',
@@ -646,6 +648,7 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
       unset($form_state['webform_entity']['submission']->{$field});
     }
   }
+  dpm($form_state);
 }
 
 /**
@@ -654,7 +657,13 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
  * Happens in an after-build after the field is added via webform_entity.
  */
 function dosomething_picsforpets_general_hide_pet_shelter($form, $form_state) {
+  dpm($form);
   $form['submitted']['find_your_shelter']['field_fb_app_shelter_reference']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_address']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_city']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_state']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_zip']['#attributes']['class'][] = 'element-hidden';
+  $form['submitted']['find_your_shelter']['field_fb_app_shelter_name']['#attributes']['class'][] = 'element-hidden';
   return $form;
 }
 

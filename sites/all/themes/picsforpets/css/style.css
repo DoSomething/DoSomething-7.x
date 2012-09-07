@@ -2768,12 +2768,18 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   font-size: 14px;
   color: #a6a8ab;
   border: 0;
-  padding-right: 40px;
   background: white;
   background-position: 56px 4px;
 }
 .views-reset-button .form-type-select {
   margin-top: 0;
+}
+
+.form-item-field-fb-app-animal-type-value,
+.form-item-sort-by {
+  margin-right: 3px;
+  overflow: hidden;
+  width: 80px;
 }
 
 select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-gallery-navigation a {
@@ -2782,15 +2788,14 @@ select#edit-field-fb-app-animal-type-value, select#edit-sort-by, #picsforpets-ga
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
-  background: url('../images/down-arrow.png') no-repeat, white;
-  margin-top: -8px;
-  font-size: 14px;
-  color: #ec1c24;
+  background: url('../images/down-arrow.png') 60px 8px no-repeat, white;
   border: 0;
-  padding-right: 40px;
-  background-position: 65px 9px;
+  color: #ec1c24;
+  font-size: 14px;
   height: 24px;
+  margin-top: -8px;
   text-transform: uppercase;
+  width: 100px;
 }
 
 select#edit-sort-by {
