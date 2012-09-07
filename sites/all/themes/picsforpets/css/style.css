@@ -1937,7 +1937,7 @@ a.footer-furtography {
 .node-type-fb-app-data-gathering-form .ui-dialog #edit-container {
   margin: 0 auto;
   position: relative;
-  width: 57%;
+  width: 65%;
   clear: both;
   padding: 0;
 }
@@ -2743,16 +2743,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 .materials a,
 .action-guide-video a {
   margin-left: 110px;
-}
-
-.view-pics-for-pets-gallery {
-  border: 1px solid white;
-  padding: 12px 12px 0 12px;
-  min-height: 390px;
-}
-.view-pics-for-pets-gallery .views-row {
-  display: inline;
-  float: left;
 }
 
 #edit-field-fb-app-animal-type-value-wrapper {
