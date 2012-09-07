@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * implements hook_schema().
+ */
+function dosomething_clubs_schema() {
+  $schema = array();
+
+  $schema['dosomething_clubs_invites'] = array(
+    'description' => 'stores invites to clubs',
+    'primary key' => array('gid', 'invite'),
+    'fields' => array(
+      'gid' => array(
+        'description' => 'the group id from og.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'invite' => array(
+        'description' => 'the invited cell or email.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+    ),
+  );
+
+  return $schema;
+}
