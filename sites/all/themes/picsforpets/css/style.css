@@ -1289,6 +1289,14 @@ label.option {
   top: 0;
 }
 
+.ui-dialog .ui-dialog-titlebar-close {
+  padding: 0;
+}
+
+a.ui-dialog-titlebar-close.ui-corner-all.ui-state-hover {
+  background-color: transparent !important;
+}
+
 /* Tables -------------------------------------------------------------- */
 /* tables still need 'cellspacing="0"' in the markup */
 ins {
@@ -2107,7 +2115,6 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   float: right;
   position: relative;
   right: 25px;
-  top: -24px;
 }
 
 .ui-dialog {
