@@ -1,0 +1,13 @@
+diff --git a/modules/field/modules/list/list.module b/modules/field/modules/list/list.module
+index 634c134..89c09e4 100644
+--- a/modules/field/modules/list/list.module
++++ b/modules/field/modules/list/list.module
+@@ -434,7 +434,7 @@ function list_field_widget_info_alter(&$info) {
+ /**
+  * Implements hook_options_list().
+  */
+-function list_options_list($field, $instance, $entity_type, $entity) {
++function list_options_list($field, $instance = NULL, $entity_type = NULL, $entity = NULL) {
+   return list_allowed_values($field, $instance, $entity_type, $entity);
+ }
+ 
