@@ -69,7 +69,9 @@ function dosomething_picsforpets_fb_user_init() {
 
   // Initialize the javascript SDK.
   drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/picsforpets_fb_user.js');
-  drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/pfpredirect.js');
+  if (variable_get('dosomething_picsforpets_fb_user_facebook_redirect', TRUE)) {
+    drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_fb_user') . '/js/pfpredirect.js');
+  }
 
   // Load the FBOAuth include file so we can use it's functions.
   module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
