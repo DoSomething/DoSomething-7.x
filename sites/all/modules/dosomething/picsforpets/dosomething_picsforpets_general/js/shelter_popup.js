@@ -109,6 +109,13 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       dismiss();
     }
 
+    var cancelButton = '<input id="popup-cancel-button" type="submit" value="Cancel" style="display: inline;" />';
+    $context.find('#edit-select-shelter').once('edit-select-shelter').before(cancelButton);
+    $context.find('#popup-cancel-button').click(function() {
+      dismiss();
+      return false;
+    });
+
     $context.find('.shelter-locator-popup').once('shelter-locater-popup').click(function (e) {
         // Initially we should hide the results box.
         $results = $searchForm.find('#edit-results');
