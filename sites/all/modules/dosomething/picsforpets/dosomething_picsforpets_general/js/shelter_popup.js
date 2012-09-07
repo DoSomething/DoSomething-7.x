@@ -15,26 +15,33 @@ Drupal.behaviors.picsforpetsShelterPopup = {
      }
     };
 
+    // Flag for whether or not to hide the address fields.
+    var hideElements = true;
+
     // Set all the address form values that are found in settings.
     if (settings.picsforpetsShelterOptions.selectedResult.shelter_name) {
       $('#edit-field-fb-app-shelter-name-und-0-value').attr(
         {value : settings.picsforpetsShelterOptions.selectedResult.shelter_name}
       );
+      hideElements = false;
     }
     if (settings.picsforpetsShelterOptions.selectedResult.address) {
       $('#edit-field-fb-app-address-und-0-value').attr(
         {value : settings.picsforpetsShelterOptions.selectedResult.address}
       );
+      hideElements = false;
     }
     if (settings.picsforpetsShelterOptions.selectedResult.city) {
       $('#edit-field-fb-app-city-und-0-value').attr(
         {value : settings.picsforpetsShelterOptions.selectedResult.city}
       );
+      hideElements = false;
     }
     if (settings.picsforpetsShelterOptions.selectedResult.shelter_zip) {
       $('#edit-field-fb-app-zip-und-0-value').attr(
         {value : settings.picsforpetsShelterOptions.selectedResult.shelter_zip}
       );
+      hideElements = false;
     }
 
     // Handle the autofill of the shelter reference
@@ -51,6 +58,7 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       $('#edit-field-fb-app-state-und option[value=' + settings.picsforpetsShelterOptions.selectedResult.state + ']').attr(
         {"selected" : "selected"}
       );
+      hideElements = false;
     }
 
     // Set the variable.
@@ -59,6 +67,41 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       // Hide the form element to start.
       $searchForm.hide();
       $searchForm.addClass('pics-popup');
+    }
+
+    // Array of the ids of elements to hide initially.
+    var hiddenElements = [
+      '#edit-field-fb-app-shelter-name',
+      '#edit-field-fb-app-address',
+      '#edit-field-fb-app-city',
+      '#edit-field-fb-app-zip',
+      '#edit-field-fb-app-state'
+    ];
+
+    var valueElements = [
+      '#edit-field-fb-app-shelter-name-und-0-value',
+      '#edit-field-fb-app-address-und-0-value',
+      '#edit-field-fb-app-city-und-0-value',
+      '#edit-field-fb-app-zip-und-0-value',
+      '#edit-field-fb-app-state-und'
+    ];
+
+    for (var i = 0; i < valueElements.length - 1; i++) {
+      if ($(valueElements[i]).val() != '') {
+        hideElements = false;
+      }
+    }
+
+    //special one off for the state select box.
+    if ($('#edit-field-fb-app-state-und').val() != '_none') {
+      hideElements = false;
+    }
+
+    // If flag is set, hide the elements.
+    if (hideElements) {
+      for (var i = 0; i < valueElements.length; i++) {
+        $(hiddenElements[i]).hide();
+      }
     }
 
     // Check to see if we should dismiss the modal.
@@ -95,6 +138,11 @@ Drupal.behaviors.picsforpetsShelterPopup = {
         return false;
     });
     function dismiss() {
+      // Show the shelter fields after the popup is dismissed.
+      for (var i = 0; i < hiddenElements.length; i++) {
+        $(hiddenElements[i]).show();
+      }
+
       $('.ui-widget-overlay').remove();
       // Cleanup
       var $alteredForm = $('#dosomething-picsforpets-shelters-options-form');
