@@ -64,9 +64,18 @@ $key = json_encode(array(
   exit;
 }
 if ($_POST['do'] == 'email') {
+  $text = "
+  Hey,
+
+  " . $node->me . " has invited you to sign the petition, \"" . $node->title . "\".  You can make a difference if you click on this link and sign it, too.
+
+  " . $node->link . "
+
+  Thanks!
+  Calvin and the DoSomething.org Team"; 
   foreach (explode(',', $_POST['real_emails']) AS $email) {
     if (trim($email)) {
-      mail(trim($email), 'HI THERE!', 'Hey Me.  How is it going?');
+      mail(trim($email), $node->me . " has just sent you a message", $text, 'From: DoSomething.org <cstowell@dosomething.org>');
     }
   }
 }

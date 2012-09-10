@@ -61,6 +61,29 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+function dosomething_petitions_goal_email($goal, $nid) {
+  $count = webform_get_submission_count($node->nid);
+
+  if ($count == $goal) {
+    // Email everyone about goal reached
+  }
+  else {
+    $milestones = array(10000, 25000, 50000, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000);
+
+    foreach ($milestones AS $stone) {
+      if ($count > $stone) continue;
+      else {
+        if ($count == $stone) {
+          // Mail everyone that we reached milestone
+        }
+        else continue;
+      }
+    }
+  }
+
+  exit;
+}
+
 /**
  * Submission callback for petition webforms
  */
@@ -70,6 +93,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
 
   if (valid_email_address($val)) {
     global $language, $user;
+
 
     if ($user->uid) {
       $profile = profile2_load_by_user($user, 'main');
@@ -83,6 +107,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
     }
 
     $node = node_load($form_state['values']['details']['nid']);
+    dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
     $a = user_load($node->uid);
     $p = profile2_load_by_user($a, 'main');
     $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
@@ -173,10 +198,14 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     '#prefix' => '<p id="invite-by-email">',
     '#suffix' => '</p>'
   );
+
+  global $user;
+  $profile = profile2_load_by_user($user, 'main');
   $h = array(
     'title' => $node->title,
     'id' => $node->nid,
-    'link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE))
+    'link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
+    'me' => $profile->field_user_first_name[LANGUAGE_NONE][0]['value']
   );
 
   $form['invite_data'] = array(
