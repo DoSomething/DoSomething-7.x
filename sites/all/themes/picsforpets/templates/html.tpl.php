@@ -59,6 +59,7 @@
 
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
+  <link rel="stylesheet" href="/sites/all/themes/picsforpets/css/font-face.css" media="all">
   <?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
