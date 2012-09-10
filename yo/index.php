@@ -51,14 +51,13 @@ class yahooauth {
 		$retarr = $this->get_access_token($this->consumer_key, $this->consumer_secret, $this->oauth_token, $this->oauth_secret, $this->oauth_verifier, false, true, true);
 		$info = $retarr[3];
 
-		$this->real_oauth_token = $info['oauth_token'];
+		$this->real_oauth_token = urldecode($info['oauth_token']);
 		$this->real_oauth_secret = $info['oauth_token_secret'];
 		$this->real_oauth_session = $info['oauth_session_handle'];
 		$this->real_oauth_guid = $info['xoauth_yahoo_guid'];
 
-		echo '<pre>', print_R($this), '</pre>';
 		$contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
-		echo '<pre>', print_r($contacts), '</pre>';
+		echo '<pre>', print_r(json_decode($contacts)), '</pre>';
 		exit;
 	}
 
@@ -119,7 +118,7 @@ class yahooauth {
 	    $body_parsed = oauth_parse_str($body);
 	    if (! empty($body_parsed)) {
 	      logit("getreqtok:INFO:response_body_parsed:");
-	      print_r($body_parsed);
+	      #print_r($body_parsed);
 	    }
 	    $retarr = $response;
 	    $retarr[] = $body_parsed;
@@ -182,7 +181,7 @@ class yahooauth {
 	    $body_parsed = oauth_parse_str($body);
 	    if (! empty($body_parsed)) {
 	      logit("getacctok:INFO:response_body_parsed:");
-	      print_r($body_parsed);
+	      #print_r($body_parsed);
 	    }
 	    $retarr = $response;
 	    $retarr[] = $body_parsed;
@@ -239,7 +238,7 @@ class yahooauth {
 	    list($info, $header, $body) = $response;
 	    if ($body) {
 	      logit("callcontact:INFO:response:");
-	      print(json_pretty_print($body));
+	      #print(json_pretty_print($body));
 	    }
 	    $retarr = $response;
 	  }
