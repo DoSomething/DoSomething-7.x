@@ -244,7 +244,7 @@ html;
 	  $retarr = array();  // return value
 	  $response = array();
 
-	  $url = 'http://social.yahooapis.com/v1/user/' . $guid . '/contacts;count=5';
+	  $url = 'http://social.yahooapis.com/v1/user/' . $guid . '/contacts';
 	  $params['format'] = 'json';
 	  $params['view'] = 'compact';
 	  $params['oauth_version'] = '1.0';
