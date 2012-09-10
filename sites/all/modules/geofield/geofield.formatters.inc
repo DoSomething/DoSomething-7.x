@@ -33,7 +33,7 @@ function geofield_field_formatter_info() {
     'geofield_latlon' => array(
       'label' => t('Latitude/Longitude'),
       'field types' => array('geofield'),
-      'settings' => array('data' => 'full', 'format' => 'decimal_degrees'),
+      'settings' => array('data' => 'full', 'format' => 'decimal_degrees', 'labels' => 1),
     ),
     'geofield_lat' => array(
       'label' => t('Latitude Only'),
@@ -52,14 +52,14 @@ function geofield_field_formatter_info() {
     ),
   );
 
-  if (module_exists('openlayers')) {  
+  if (module_exists('openlayers')) {
     $formatters['geofield_openlayers'] = array(
       'label' => t('OpenLayers'),
       'field types' => array('geofield'),
       'settings' => array('data' => 'full', 'map_preset' => 'geofield_formatter_map'),
     );
   }
-  
+
   // Accessibility formatters for blind users with screen-readers
   $formatters['geofield_def_list'] = array(
     'label' => t('Definition List (Accessibility)'),
@@ -71,7 +71,7 @@ function geofield_field_formatter_info() {
     'field types' => array('geofield'),
     'settings' => array('data' => '', 'address' => 0),
   );
-  
+
   return $formatters;
 }
 
@@ -93,7 +93,7 @@ function _geofield_formatter_settings_format_options($formatter) {
   return array(
     'decimal_degrees' => t('Decimal degrees'),
     'degrees_minutes_seconds' => t('Degrees minutes seconds'),
-    'ccs' => t('Astronomical Celestial Coordinates System (CCS)'), 
+    'ccs' => t('Astronomical Celestial Coordinates System (CCS)'),
   );
 }
 
@@ -114,7 +114,7 @@ function geofield_field_formatter_settings_form($field, $instance, $view_mode, $
         $preset_options[$preset->name] = $preset->title;
       }
     }
-    
+
     $element['map_preset'] = array(
       '#title' => t('OpenLayers Preset'),
       '#type' => 'select',
@@ -124,7 +124,7 @@ function geofield_field_formatter_settings_form($field, $instance, $view_mode, $
       '#description' => t('Select which OpenLayers map you would like to use. Only maps which have the geofield placeholder layer may be selected. If your preferred map is not here, add the geofield placeholder layer to it first.'),
     );
   }
-  
+
   $data_options = _geofield_formatter_settings_data_options($display['type']);
   $element['data'] = array(
     '#title' => t('Data options'),
@@ -144,12 +144,20 @@ function geofield_field_formatter_settings_form($field, $instance, $view_mode, $
       '#options' => $format_options,
     );
   }
-  
+
+  if ($display['type'] == 'geofield_latlon') {
+    $element['labels'] = array(
+      '#title' => t('Display Labels'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['labels'],
+    );
+  }
+
   if ($display['type'] == 'geofield_def_list' || $display['type'] == 'geofield_description') {
     $element['address'] = array(
       '#title' => t('Include reverse-geocoded address'),
       '#type' => 'checkbox',
-      '#default_value' => $settings['address'] ? $settings['address'] : 0,
+      '#default_value' => $settings['address'],
     );
   }
 
@@ -175,7 +183,7 @@ function geofield_field_formatter_settings_summary($field, $instance, $view_mode
   else {
     $summary[] = t('No data options set');
   }
-  
+
   if ($display['type'] == 'geofield_openlayers' && !empty($settings['map_preset'])) {
     $openlayers_presets = openlayers_preset_options();
     $summary[] = t('Openlayers Map: @data', array('@data' => $openlayers_presets[$settings['map_preset']]));
@@ -201,10 +209,17 @@ function geofield_field_formatter_settings_summary($field, $instance, $view_mode
  */
 function geofield_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
-  
+
+  // First check to see if we have any value and remove any unset deltas
+  foreach ($items as $delta => $item) {
+    if (empty($item['geom'])) {
+      unset($items[$delta]);
+    }
+  }
+
   // Transform into centroid or bounding if needed
   if ($display['settings']['data'] != 'full') {
-    geofield_load_geophp();
+    geophp_load();
     if ($display['settings']['data'] == 'centroid') {
       foreach ($items as $delta => $item) {
         $centroid_wkt = 'POINT(' . $item['lon'] . ' ' . $item['lat'] . ')';
@@ -214,13 +229,13 @@ function geofield_field_formatter_view($entity_type, $entity, $field, $instance,
     }
     if ($display['settings']['data'] == 'bounding') {
       foreach ($items as $delta => $item) {
-        $envelope_wkt = 'POLYGON ((' . $item['left'] . ' ' . $item['top'] . ', ' . $item['right'] . ' ' . $item['top'] . ', ' . $item['right'] . ' ' . $item['bottom'] . ', ' . $item['left'] . ' ' . $item['bottom'] . ', ' . $item['left'] . ' ' . $item['top'] . ')))';
+        $envelope_wkt = 'POLYGON ((' . $item['left'] . ' ' . $item['top'] . ', ' . $item['right'] . ' ' . $item['top'] . ', ' . $item['right'] . ' ' . $item['bottom'] . ', ' . $item['left'] . ' ' . $item['bottom'] . ', ' . $item['left'] . ' ' . $item['top'] . '))';
         $envelope = geoPHP::load($envelope_wkt, 'wkt');
         $items[$delta] = geofield_get_values_from_geometry($envelope);
       }
     }
   }
-  
+
   // If we are a lat, lon, or latlon, and we are using degrees-minutes-seconds (instead of decimal degrees), then do a transformation
   if (isset($display['settings']['format'])) {
     if ($display['settings']['format'] == 'degrees_minutes_seconds') {
@@ -243,48 +258,59 @@ function geofield_field_formatter_view($entity_type, $entity, $field, $instance,
 
   switch ($display['type']) {
     case 'geofield_wkt':
+      geophp_load();
       foreach ($items as $delta => $item) {
-        $element[$delta] = array('#markup' => $item['wkt']);
+        $geometry = geoPHP::load($item['geom'], 'wkb');
+        $wkt = $geometry->out('wkt');
+        $microdata = _geofield_item_microdata_propertyvalue($entity, $instance, $item);
+        $element[$delta] = array('#markup' => $wkt . $microdata);
       }
       return $element;
     case 'geofield_geojson':
-      geofield_load_geophp();
+      geophp_load();
       foreach ($items as $delta => $item) {
-        $geometry = geoPHP::load($item['wkt'], 'wkt');
+        $geometry = geoPHP::load($item['geom'], 'wkb');
         $json = $geometry->out('json');
         $element[$delta] = array('#markup' => $json);
       }
       return $element;
     case 'geofield_kml':
-      geofield_load_geophp();
+      geophp_load();
       foreach ($items as $delta => $item) {
-        $geometry = geoPHP::load($item['wkt'], 'wkt');
+        $geometry = geoPHP::load($item['geom'], 'wkb');
         $kml = $geometry->out('kml');
         $element[$delta] = array('#markup' => $kml);
       }
       return $element;
     case 'geofield_gpx':
-      geofield_load_geophp();
+      geophp_load();
       foreach ($items as $delta => $item) {
-        $geometry = geoPHP::load($item['wkt'], 'wkt');
+        $geometry = geoPHP::load($item['geom'], 'wkb');
         $kml = $geometry->out('gpx');
         $element[$delta] = array('#markup' => $kml);
       }
       return $element;
     case 'geofield_latlon':
       foreach ($items as $delta => $item) {
-        $output = t('Latitude: !latitude <br/>Longitude: !longitude', array('!latitude' => $item['lat'], '!longitude' => $item['lon']));
-        $element[$delta] = array('#markup' => $output);
+        $microdata = _geofield_item_microdata_propertyvalue($entity, $instance, $item);
+        if ($display['settings']['labels']) {
+          $element[$delta] = array('#markup' => t('Latitude: !latitude <br/>Longitude: !longitude' . $microdata, array('!latitude' => $item['lat'], '!longitude' => $item['lon'])));
+        }
+        else {
+          $element[$delta] = array('#markup' => $item['lat'] . ', ' . $item['lon'] . $microdata);
+        }
       }
       return $element;
     case 'geofield_lat':
       foreach ($items as $delta => $item) {
-        $element[$delta] = array('#markup' => $item['lat']);
+        $microdata = _geofield_item_microdata_propertyvalue($entity, $instance, $item);
+        $element[$delta] = array('#markup' => $item['lat'] . $microdata);
       }
       return $element;
     case 'geofield_lon':
       foreach ($items as $delta => $item) {
-        $element[$delta] = array('#markup' => $item['lon']);
+        $microdata = _geofield_item_microdata_propertyvalue($entity, $instance, $item);
+        $element[$delta] = array('#markup' => $item['lon'] . $microdata);
       }
       return $element;
     case 'geofield_geo_type':
@@ -294,7 +320,7 @@ function geofield_field_formatter_view($entity_type, $entity, $field, $instance,
       return $element;
     case 'geofield_openlayers':
       $map_name = $display['settings']['map_preset'] ? $display['settings']['map_preset'] : 'geofield_formatter_map';
-      $element[0] = array('#markup' => _geofield_openlayers_formatter($map_name, $items)); 
+      $element[0] = array('#markup' => _geofield_openlayers_formatter($map_name, $items));
       return $element;
     case 'geofield_def_list':
       foreach ($items as $delta => $item) {
@@ -311,13 +337,48 @@ function geofield_field_formatter_view($entity_type, $entity, $field, $instance,
   return $element;
 }
 
+/**
+ * Function to return appropriate GeoCoordinates/GeoShape properties.
+ *
+ * This is developing code, as an example. Output can be made available to the
+ * theme, as specific site may want to display or not data based on other
+ * factors.
+ */
+function _geofield_item_microdata_propertyvalue($entity, $instance, $item) {
+  $output = '';
+
+  // If there is no microdata mapping for the field, return an empty string.
+  if (isset($entity->microdata[$instance['field_name']])) {
+    $microdata = $entity->microdata[$instance['field_name']];
+  }
+  else {
+    return '';
+  }
+
+  if ($item['geo_type'] == 'point') {
+    foreach (array('lat', 'lon') as $property) {
+      $microdata[$property]['#attributes']['content'] = $item[$property];
+      $output .= '<meta' . drupal_attributes($microdata[$property]['#attributes']) .' />';
+    }
+  }
+  else {
+    $schemaorg_shape = geofield_schemaorg_shape($item);
+    $microdata['schemaorg_shape']['#attributes']['content'] = $schemaorg_shape;
+    $output .= '<meta' . drupal_attributes($microdata['schemaorg_shape']['#attributes']) .' />';
+  }
+
+  return $output;
+}
+
 function _geofield_openlayers_formatter($map_name, $items) {
   $features = array();
+  geophp_load();
 
   // Create array of $features
   foreach ($items as $delta) {
+    $geometry = geoPHP::load($delta['geom'], 'wkb');
     $features[] = array(
-      'wkt' => $delta['wkt'],
+      'wkt' => $geometry->out('wkt'),
       'projection' => '4326',
     );
   }
@@ -325,14 +386,14 @@ function _geofield_openlayers_formatter($map_name, $items) {
   // Get map preset
   $preset = openlayers_preset_load($map_name);
   $map = openlayers_build_map($preset->data);
-  
+
   if (!isset($map['layers']['geofield_formatter'])) {
     drupal_set_message(t('Trying to render a geofield formatter on a map without the placeholder layer'), 'error');
   }
-  
+
   // Add the features to the placeholder layer
   $map['layers']['geofield_formatter']['features'] = $features;
-  
+
   // Return themed map if no errors found
   if (empty($map['errors'])) {
     $js = array('openlayers' => array('maps' => array($map['id'] => $map)));
@@ -348,12 +409,12 @@ function _geofield_openlayers_formatter($map_name, $items) {
 }
 
 function _geofield_def_list_formatter($item, $settings) {
-  geofield_load_geophp();
-  $geometry = geoPHP::load($item['wkt'], 'wkt');
-  
+  geophp_load();
+  $geometry = geoPHP::load($item['geom'], 'wkt');
+
   // Single types
-  $single_types = array('Point', 'LineStrnig', 'Polygon');
-    
+  $single_types = array('Point', 'LineString', 'Polygon');
+
   if (in_array($geometry->geometryType(), $single_types)) {
     $centroid = new Point($item['lon'], $item['lat']);
     $info = _geofield_formatter_get_info($geometry, $centroid, $settings['address']);
@@ -368,7 +429,7 @@ function _geofield_def_list_formatter($item, $settings) {
     }
     return $output;
   }
-  
+
 }
 
 function _geofield_def_list_formatter_dl($info) {
@@ -376,19 +437,19 @@ function _geofield_def_list_formatter_dl($info) {
   foreach ($info as $dt => $dd) {
     $output .= '<dt>' . drupal_ucfirst($dt) . '</dt><dd>' . $dd . '</dd>';
   }
-  
+
   $output .= '</dl>';
-  
+
   return $output;
 }
 
 function _geofield_description_formatter($item, $settings) {
-  geofield_load_geophp();
-  $geometry = geoPHP::load($item['wkt'], 'wkt');
-  
+  geophp_load();
+  $geometry = geoPHP::load($item['geom'], 'wkt');
+
   // Single types
-  $single_types = array('Point', 'LineStrnig', 'Polygon');
-  
+  $single_types = array('Point', 'LineString', 'Polygon');
+
   if (in_array($geometry->geometryType(), $single_types)) {
     $centroid = new Point($item['lon'], $item['lat']);
     $info = _geofield_formatter_get_info($geometry, $centroid, $settings['address']);
@@ -405,15 +466,15 @@ function _geofield_description_formatter($item, $settings) {
     $output .= '</ol>';
     return $output;
   }
-  
+
 }
 
 function _geofield_description_formatter_text($info) {
-  $text = t('@shape with a center of latitude @lat and longitude @lon.', array('@shape' => $info['shape'], '@lat' => $info['latitude'], '@lon' => $info['longitude'])); 
+  $text = t('@shape with a center of latitude @lat and longitude @lon.', array('@shape' => $info['shape'], '@lat' => $info['latitude'], '@lon' => $info['longitude']));
   if (isset($info['address'])) {
     $text .= ' ' . t('It has an approximate address of @address.', array('@address' => $info['address']));
   }
-    
+
   if (isset($info['area'])) {
     $text .= ' ' . t('It has an area of @area.', array('@area' => $info['area']));
   }
@@ -429,7 +490,7 @@ function _geofield_formatter_get_info($geometry, $centroid, $address = FALSE, $u
     'latitude' => $centroid->y(),
     'longitude' => $centroid->x(),
   );
-  
+
   // Get the shape
   if ($geometry->geometryType() == 'Point') {
     $info['shape'] = 'Point';
@@ -441,11 +502,11 @@ function _geofield_formatter_get_info($geometry, $centroid, $address = FALSE, $u
     //@@TODO: Get more useful information like 'Triangle', 'Square', 'Rectangle', 'Pentagon'
     $info['shape'] = 'Polygon';
   }
-  
+
   if ($address) {
     $info['address'] = $centroid->out('google_geocode');
   }
-  
+
   //@@TODO, convert length and area to proper units
   #if ($geometry->geometryType() == 'LineString') {
   #  $info['length'] = $geometry->length();
@@ -453,6 +514,6 @@ function _geofield_formatter_get_info($geometry, $centroid, $address = FALSE, $u
   #if ($geometry->geometryType() == 'Polygon') {
   #  $info['area'] = $geometry->area();
   #}
-  
-  return $info; 
+
+  return $info;
 }

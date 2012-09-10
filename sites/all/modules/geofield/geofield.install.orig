@@ -216,16 +216,14 @@ function geofield_update_7201(&$sandbox) {
 
       foreach ($result as $record) {
         $geom = geoPHP::load($record->wkt, 'wkt');
-        if ($geom) {
-          db_update($sandbox['geofield_tables'][$i]['table_name'])
-            ->fields(array(
-              $sandbox['geofield_tables'][$i]['field_name'] . '_geom' => $geom->out('wkb'),
-            ))
-            ->condition('entity_id', $record->entity_id)
-            ->condition('revision_id', $record->revision_id)
-            ->condition('delta', $record->delta)
-            ->execute();
-        }
+        db_update($sandbox['geofield_tables'][$i]['table_name'])
+          ->fields(array(
+            $sandbox['geofield_tables'][$i]['field_name'] . '_geom' => $geom->out('wkb'),
+          ))
+          ->condition('entity_id', $record->entity_id)
+          ->condition('revision_id', $record->revision_id)
+          ->condition('delta', $record->delta)
+          ->execute();
 
         $sandbox['batch_count']++;
         $sandbox['count']++;
