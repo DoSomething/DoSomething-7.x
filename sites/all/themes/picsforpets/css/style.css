@@ -1929,6 +1929,13 @@ a.footer-furtography {
 .ui-dialog .ui-dialog-titlebar-close span {
   margin: 0;
 }
+.ui-dialog .form-asterik {
+  color: red;
+  float: left;
+  margin: 5px 0px 0px 75px;
+  padding: 0;
+  position: absolute;
+}
 
 .node-type-fb-app-data-gathering-form .ui-dialog .ui-dialog-titlebar {
   display: block;

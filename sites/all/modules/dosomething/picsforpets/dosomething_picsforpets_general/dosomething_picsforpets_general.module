@@ -155,9 +155,12 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   $form['ready'] = array(
     '#markup' => '<div class="sign-up-text">Sign up and we\'ll give you all the tools to submit a picture to the gallery.</div>',
   );
+  $form['asterik'] = array(
+    '#markup' => '<div class="form-asterik">*</div>',
+  );
   $form['email'] = array(
     '#type' => 'textfield',
-    '#required' => TRUE,
+    '#required' => TRUE, 
     '#attributes' => array('placeholder' => t('Email:')),
     '#maxlength' => 255,
   );
