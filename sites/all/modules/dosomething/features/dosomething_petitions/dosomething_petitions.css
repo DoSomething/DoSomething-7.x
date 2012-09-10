@@ -176,6 +176,6 @@ div.horizontal-tabs {
 
 .ui-dialog-titlebar {
   float: right;
-  margin-top: -18px;
-  margin-right: 5px;
+  top: -18px;
+  right: 6px;
 }
