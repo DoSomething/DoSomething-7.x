@@ -408,26 +408,31 @@ a.footer-furtography
     padding: 10px 8px
     background: $pfp-blue-fb
     border-bottom: 0
-    margin-right: -46px
+    margin-right: -50px
     margin-bottom: 0
     margin-top: -8px
     margin-left: 46px
 
-//.picsforpets-share-count-arrow
-  //background: url('../images/share-arrow.png') center left no-repeat
-  //position: absolute
-  //z-index: 800
-  //padding: 3px
-  //margin-left: -4px
-  //margin-top: 19px
-
-
+// Style the share count box
 .picsforpets-share-count
+  background-color: $white
   border: 1px solid #c5c6c8
+  display: inline-block
+  min-width: 34px
+  padding: 2px 7px
   position: relative
   z-index: 750
-  background-color: $white
-  padding: 2px 12px
+
+// Style the share count box arrow
+.picsforpets-share-count-arrow
+  background: image_url("fb-share-count.png") no-repeat right
+  display: inline-block
+  height: 12px
+  margin-left: 18px
+  position: relative
+  right: -1px
+  width: 10px
+  z-index: 800
 
 // Submit a pet picture
 .webform-client-form
@@ -495,7 +500,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"]
     position: relative
     right: 25px
 
-// Styling for the 'Find your shelter' pop up
+// Styling for the pop up scroll bars
 .ui-dialog
   overflow-x: hidden !important
 

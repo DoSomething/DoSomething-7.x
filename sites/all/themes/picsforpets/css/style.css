@@ -596,12 +596,8 @@ h1 .amp, #picsforpets-share .fb-share-me .amp, h2 .amp, h3 .amp, h4 .amp, h5 .am
 /* Body -------------------------------------------------------------- */
 /* Establish baseline rhythm
  * from compass/typography/_vertical_rhythm */
-* html {
-  font-size: 100%;
-}
-
 html {
-  font-size: 16px;
+  font-size: 100%;
   line-height: 1.5em;
 }
 
@@ -821,6 +817,7 @@ input[type="button"] {
   background-image: -webkit-linear-gradient(#ffffff, #dddddd);
   background-image: -moz-linear-gradient(#ffffff, #dddddd);
   background-image: -o-linear-gradient(#ffffff, #dddddd);
+  background-image: -ms-linear-gradient(#ffffff, #dddddd);
   background-image: linear-gradient(#ffffff, #dddddd);
   border: 1px solid;
   border-color: #dddddd #bbbbbb #999999;
@@ -1439,6 +1436,7 @@ ul.tabs li a:hover {
   background-image: -webkit-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -moz-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: -o-linear-gradient(top, #fcfdfa, #f1f2ef);
+  background-image: -ms-linear-gradient(top, #fcfdfa, #f1f2ef);
   background-image: linear-gradient(top, #fcfdfa, #f1f2ef);
   -moz-border-radius-topleft: 6px;
   -webkit-border-top-left-radius: 6px;
@@ -1623,9 +1621,9 @@ body {
   position: relative;
 }
 .picsforpets-scholarship a {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/10k-scholarship.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1645,9 +1643,9 @@ body {
 }
 
 #ds-logo {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/ds-logo.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1999,9 +1997,9 @@ a.footer-furtography {
 }
 
 .ui-icon.ui-icon-closethick {
-  text-indent: -119988px;
+  text-indent: 110%;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: left;
   background-image: url('../images/../images/close.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -2056,18 +2054,31 @@ a.footer-furtography {
   padding: 10px 8px;
   background: #6e85b2;
   border-bottom: 0;
-  margin-right: -46px;
+  margin-right: -50px;
   margin-bottom: 0;
   margin-top: -8px;
   margin-left: 46px;
 }
 
 .picsforpets-share-count {
+  background-color: white;
   border: 1px solid #c5c6c8;
+  display: inline-block;
+  min-width: 34px;
+  padding: 2px 7px;
   position: relative;
   z-index: 750;
-  background-color: white;
-  padding: 2px 12px;
+}
+
+.picsforpets-share-count-arrow {
+  background: url('../images/fb-share-count.png') no-repeat right;
+  display: inline-block;
+  height: 12px;
+  margin-left: 18px;
+  position: relative;
+  right: -1px;
+  width: 10px;
+  z-index: 800;
 }
 
 .webform-client-form {
@@ -2113,7 +2124,7 @@ a.footer-furtography {
   list-style-type: none;
 }
 .big-numbers li:before {
-  content: counter(li) ". ";
+  content: counter(li);
   counter-increment: li;
 }
 .big-numbers li {
@@ -2252,14 +2263,16 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   line-height: 2;
 }
 .prizes-scholarships .pane-content .share-wrapper .shares {
-  display: -moz-inline-stack;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
   height: 40px;
   width: 270px;
+}
+.prizes-scholarships .pane-content .share-wrapper .shares {
+  *display: inline;
 }
 .prizes-scholarships .pane-content .share-wrapper.toys {
   margin-bottom: 20px;
