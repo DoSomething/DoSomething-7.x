@@ -31,7 +31,7 @@ Drupal.behaviors.dosomethingFBApps = {
           draggable: false,
           modal: true,
           top: 180,
-          width: 550,
+          width: 550
         });
       }
     });
