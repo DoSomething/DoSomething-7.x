@@ -146,7 +146,7 @@ if ($_POST['do'] == 'email') {
       li span { float: right; }
 
       a#gmail {
-        background: url(/files/gmail.png) top left no-repeat;
+        background: url(/sites/all/modules/dosomething/dosomething_contact_picker/images/gmail.png) top left no-repeat;
         text-decoration: none;
         display: inline-block;
         height: 35px;
@@ -155,7 +155,7 @@ if ($_POST['do'] == 'email') {
       }
 
       a#yahoo {
-        background: url(/files/yahoo.jpg) top left no-repeat;
+        background: url(/sites/all/modules/dosomething/dosomething_contact_picker/images/yahoo.jpg) top left no-repeat;
         text-decoration: none;
         display: inline-block;
         height: 35px;
