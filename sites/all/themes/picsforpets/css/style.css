@@ -2121,6 +2121,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   overflow-x: hidden !important;
 }
 
+div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"] .ui-icon.ui-icon-closethick {
+  right: 20px;
+}
+
 .item-list .pager li {
   padding: 0;
 }
@@ -2390,7 +2394,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 #slideshow-center #slideshow-center .panel-col-last {
   width: 180px;
 }
-#slideshow-center #slideshow-center .view-shelter-per-pet .views-field {
+#slideshow-center #slideshow-center .view-shelter-per-pet .views-field .field-content {
   word-wrap: break-word;
 }
 #slideshow-center p {
