@@ -51,16 +51,14 @@ class yahooauth {
 		$retarr = $this->get_access_token($this->consumer_key, $this->consumer_secret, $this->oauth_token, $this->oauth_secret, $this->oauth_verifier, false, true, true);
 		$info = $retarr[3];
 
-echo '<pre>', print_r($info), '</pre>';
-
 		$this->real_oauth_token = $info['oauth_token'];
-		$this->real_oauth_secret = $info['oauth_secret'];
+		$this->real_oauth_secret = $info['oauth_token_secret'];
 		$this->real_oauth_session = $info['oauth_session_handle'];
 		$this->real_oauth_guid = $info['xoauth_yahoo_guid'];
 
 		echo '<pre>', print_R($this), '</pre>';
 		$contacts = callcontact($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
-echo '<pre>', print_r($contacts), '</pre>';
+		echo '<pre>', print_r($contacts), '</pre>';
 		exit;
 	}
 
