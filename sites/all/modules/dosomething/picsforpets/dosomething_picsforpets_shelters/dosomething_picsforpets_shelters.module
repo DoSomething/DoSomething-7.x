@@ -147,6 +147,7 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
     '#suffix' => '</div>',
     '#weight' => 7,
   );
+  $form['#attached']['js'] = array(drupal_get_path('module', 'dosomething_picsforpets_shelters') . '/js/shelter_search.js');
   return $form;
 }
 
