@@ -49,8 +49,10 @@ class yahooauth {
 
 	function step2() {
 		$retarr = $this->get_access_token($this->consumer_key, $this->consumer_secret, $this->oauth_token, $this->oauth_secret, $this->oauth_verifier, false, true, true);
-
 		$info = $retarr[3];
+
+echo '<pre>', print($info), '</pre>';
+
 		$this->real_oauth_token = $info['oauth_token'];
 		$this->real_oauth_secret = $info['oauth_secret'];
 		$this->real_oauth_session = $info['oauth_session_handle'];
