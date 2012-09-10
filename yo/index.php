@@ -60,14 +60,6 @@ class yahooauth {
 		$contacts = json_decode($contacts[2])->contacts;
 		$count = $contacts->total;
 	    $res = '<ul id="blah">';
-	    foreach ($emails[1] AS $key => $email) {
-	      $res .= '
-	      <li>
-	        <input type="checkbox" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
-	        <label for="' . clean_email($email) . '"><strong>' . $email . '</strong></label>
-	        <span>' . $titles["$key"] . '</span>
-	      </li>';
-	    }
 	    $list = array();
 		foreach ($contacts->contact AS $key => $person) {
 			$tmp_name = $person->id;
@@ -81,7 +73,7 @@ class yahooauth {
 				}
 			}
 
-			$list = $this->fix_list($list, $tmp_name, $real_name);
+			$this->fix_list($list, $tmp_name, $real_name);
 		}
 	    $res .= '</ul>';
 		echo '<pre>', print_r($list), '</pre>';
