@@ -57,7 +57,7 @@ class yahooauth {
 		$this->real_oauth_guid = $info['xoauth_yahoo_guid'];
 
 		echo '<pre>', print_R($this), '</pre>';
-		$contacts = callcontact($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
+		$contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
 		echo '<pre>', print_r($contacts), '</pre>';
 		exit;
 	}
