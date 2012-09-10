@@ -20,10 +20,10 @@ class yahooauth {
 		else {
 			$this->oauth_verifier = $_GET['oauth_verifier'];
 			if ($_COOKIE['y_oauth_token']) {
-				$this->oauth_token = $_COOKIE['oauth_token'];
+				$this->oauth_token = $_COOKIE['y_oauth_token'];
 			}
 			if ($_COOKIE['y_oauth_secret']) {
-				$this->oauth_secret = $_COOKIE['oauth_secret'];
+				$this->oauth_secret = $_COOKIE['y_oauth_secret'];
 			}
 
 			$this->step2();
