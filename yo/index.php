@@ -118,7 +118,7 @@ class yahooauth {
 	    $body_parsed = oauth_parse_str($body);
 	    if (! empty($body_parsed)) {
 	      logit("getreqtok:INFO:response_body_parsed:");
-	      #print_r($body_parsed);
+	      print_r($body_parsed);
 	    }
 	    $retarr = $response;
 	    $retarr[] = $body_parsed;
@@ -181,7 +181,7 @@ class yahooauth {
 	    $body_parsed = oauth_parse_str($body);
 	    if (! empty($body_parsed)) {
 	      logit("getacctok:INFO:response_body_parsed:");
-	      #print_r($body_parsed);
+	      print_r($body_parsed);
 	    }
 	    $retarr = $response;
 	    $retarr[] = $body_parsed;
@@ -238,7 +238,7 @@ class yahooauth {
 	    list($info, $header, $body) = $response;
 	    if ($body) {
 	      logit("callcontact:INFO:response:");
-	      #print(json_pretty_print($body));
+	      print(json_pretty_print($body));
 	    }
 	    $retarr = $response;
 	  }
