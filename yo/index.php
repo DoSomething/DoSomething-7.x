@@ -57,8 +57,43 @@ class yahooauth {
 		$this->real_oauth_guid = $info['xoauth_yahoo_guid'];
 
 		$contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
-		echo '<pre>', print_r(json_decode($contacts)), '</pre>';
+		$contacts = json_decode($contacts[2])->contacts;
+		$count = $contacts->total;
+	    $res = '<ul id="blah">';
+	    foreach ($emails[1] AS $key => $email) {
+	      $res .= '
+	      <li>
+	        <input type="checkbox" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
+	        <label for="' . clean_email($email) . '"><strong>' . $email . '</strong></label>
+	        <span>' . $titles["$key"] . '</span>
+	      </li>';
+	    }
+	    $list = array();
+		foreach ($contacts->contact AS $key => $person) {
+			$tmp_name = $person->id;
+			$real_name = '';
+			foreach ($person['fields'] AS $key => $data) {
+				if ($data->type == 'name') {
+					$real_name = $data->value->givenName . ' ' . $data->value->familyName;
+				}
+				else if ($data->type == 'email') {
+					$list["$tmp_name"] = $data->value; 
+				}
+			}
+
+			$list = $this->fix_list($list, $tmp_name, $real_name);
+		}
+	    $res .= '</ul>';
+		echo '<pre>', print_r($list), '</pre>';
 		exit;
+	}
+
+	private function fix_list(&$list, $tmp_name, $real_name) {
+		foreach ($list AS $key => $val) {
+			if ($key == $tmp_name) {
+				$key = $real_name;
+			}
+		}
 	}
 
 	private function get_request_token($consumer_key, $consumer_secret, $callback, $usePost=false, $useHmacSha1Sig=true, $passOAuthInHeader=false) {
