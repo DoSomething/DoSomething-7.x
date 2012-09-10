@@ -3,7 +3,7 @@
     attach: function (context, settings) {
 
    var contactForm = $('.pane-campaign-sign-up');
-   $('.s0').append(contactForm);
+   $('.webform').append(contactForm);
 
   // on lines 9-10 terrible things happen
   $('#campaign-opt-in br').remove();
