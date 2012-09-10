@@ -35,6 +35,11 @@ class yahooauth {
 		}
 	}
 
+	private function clean_email($email) {
+	  $email = preg_replace('#[^A-Za-z0-9\-\_]#i', '_', $email);
+	  return $email;
+	}
+
 	private function authenticate() {
 		$retarr = $this->get_request_token($this->consumer_key, $this->consumer_secret, $this->callback, false, true, true);
 
@@ -47,46 +52,48 @@ class yahooauth {
 		header('location: ' . $this->redirect);
 	}
 
-	function step2() {
-		$retarr = $this->get_access_token($this->consumer_key, $this->consumer_secret, $this->oauth_token, $this->oauth_secret, $this->oauth_verifier, false, true, true);
-		$info = $retarr[3];
+    private function step2() {
+        $retarr = $this->get_access_token($this->consumer_key, $this->consumer_secret, $this->oauth_token, $this->oauth_secret, $this->oauth_verifier, false, true, true);
+        $info = $retarr[3];
 
-		$this->real_oauth_token = urldecode($info['oauth_token']);
-		$this->real_oauth_secret = $info['oauth_token_secret'];
-		$this->real_oauth_session = $info['oauth_session_handle'];
-		$this->real_oauth_guid = $info['xoauth_yahoo_guid'];
+        $this->real_oauth_token = urldecode($info['oauth_token']);
+        $this->real_oauth_secret = $info['oauth_token_secret'];
+        $this->real_oauth_session = $info['oauth_session_handle'];
+        $this->real_oauth_guid = $info['xoauth_yahoo_guid'];
 
-		$contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
-		$contacts = json_decode($contacts[2])->contacts;
-		$count = $contacts->total;
-	    $res = '<ul id="blah">';
-	    $list = array();
-		foreach ($contacts->contact AS $key => $person) {
-			$tmp_name = $person->id;
-			$real_name = '';
-			foreach ($person['fields'] AS $key => $data) {
-				if ($data->type == 'name') {
-					$real_name = $data->value->givenName . ' ' . $data->value->familyName;
-				}
-				else if ($data->type == 'email') {
-					$list["$tmp_name"] = $data->value; 
-				}
-			}
+        $contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
+        $contacts = json_decode($contacts[2])->contacts;
+        $count = $contacts->total;
+        $res = '<ul id="blah">';
+        $list = array();
+        foreach ($contacts->contact AS $key => $person) {
+            $name = $this->find_name($person->fields);
+            foreach ($person->fields AS $key => $data) {
+                if ($data->type == 'email') {
+			      $res .= '
+			      <li>
+			        <input type="checkbox" name="emails" value="' . $data->value . '" id="' . clean_email($data->value) . '" />
+			        <label for="' . clean_email($data->value) . '"><strong>' . $data->value . '</strong></label>
+			        <span>' . $name . '</span>
+			      </li>';
+                    $list["$name"] = $data->value;     
+                }
+            }
+        }
+        $res .= '</ul>';
+        echo '<pre>', print_r($list), '</pre>';
+        echo $res;
+        exit;
+    }
 
-			$this->fix_list($list, $tmp_name, $real_name);
-		}
-	    $res .= '</ul>';
-		echo '<pre>', print_r($list), '</pre>';
-		exit;
-	}
-
-	private function fix_list(&$list, $tmp_name, $real_name) {
-		foreach ($list AS $key => $val) {
-			if ($key == $tmp_name) {
-				$key = $real_name;
-			}
-		}
-	}
+    private function find_name(&$list) {
+            foreach ($list AS $key => $data) {
+                    if ($data->type == 'name') {
+                            unset($list[$key]);
+                            return $data->value->givenName . ' ' . $data->value->familyName;;
+                    }
+            }
+    }
 
 	private function get_request_token($consumer_key, $consumer_secret, $callback, $usePost=false, $useHmacSha1Sig=true, $passOAuthInHeader=false) {
 	  $retarr = array();  // return value
