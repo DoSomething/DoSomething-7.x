@@ -1863,6 +1863,28 @@ a.footer-furtography {
 #shelter-results .shelter-results-option-list .form-item-results .label-shelter-title {
   font-weight: bold;
 }
+#shelter-results .shelter-results-option-list #edit-shelter-add label {
+  min-width: 80px;
+  text-align: right;
+}
+#shelter-results .shelter-results-option-list #edit-shelter-add input {
+  float: none;
+}
+#shelter-results .shelter-results-option-list #edit-shelter-add .form-item.form-type-textfield.form-item-shelter-name {
+  width: 440px;
+}
+#shelter-results .shelter-results-option-list #edit-shelter-add .form-item.form-type-textfield.form-item-shelter-name label {
+  margin-right: 2px;
+}
+#shelter-results .shelter-results-option-list #edit-shelter-add .fieldset-wrapper {
+  padding: 4px;
+}
+#shelter-results .shelter-results-option-list #edit-shelter-add #edit-hours {
+  clear: both;
+}
+#shelter-results .shelter-results-option-list #edit-shelter-add .form-item-hours label {
+  text-align: left;
+}
 
 #dosomething-picsforpets-furtographer-dialog {
   margin-top: 12px;
@@ -1904,15 +1926,6 @@ a.footer-furtography {
 }
 .ui-dialog .ui-dialog-titlebar-close span {
   margin: 0;
-}
-.ui-dialog #shelter-results .shelter-results-option-list input {
-  float: none;
-}
-.ui-dialog .form-item.form-type-textfield.form-item-shelter-name {
-  width: 440px;
-}
-.ui-dialog .fieldset-wrapper {
-  padding: 4px;
 }
 
 .node-type-fb-app-data-gathering-form .ui-dialog .ui-dialog-titlebar {
